@@ -1,0 +1,207 @@
+'use client';
+
+import { useTranslations, useLocale } from 'next-intl';
+import { useParams } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { Link } from '@/lib/i18n/navigation';
+import GoldDivider from '@/components/ui/GoldDivider';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { NAKSHATRA_DETAILS } from '@/lib/constants/nakshatra-details';
+import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
+import type { Locale } from '@/types/panchang';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+
+export default function NakshatraDetailPage() {
+  const params = useParams();
+  const locale = useLocale() as Locale;
+  const isDevanagari = locale !== 'en';
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+
+  const id = parseInt(params.id as string, 10);
+  const nak = NAKSHATRAS[id - 1];
+  const detail = NAKSHATRA_DETAILS.find(d => d.id === id);
+
+  if (!nak || !detail) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-20 text-center">
+        <p className="text-text-secondary text-lg">Nakshatra not found.</p>
+        <Link href="/panchang/nakshatra" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
+          &larr; {locale === 'en' ? 'Back to Nakshatras' : 'नक्षत्रों पर वापस'}
+        </Link>
+      </div>
+    );
+  }
+
+  const prevId = id > 1 ? id - 1 : 27;
+  const nextId = id < 27 ? id + 1 : 1;
+  const prevNak = NAKSHATRAS[prevId - 1];
+  const nextNak = NAKSHATRAS[nextId - 1];
+
+  const sections = [
+    { title: locale === 'en' ? 'Meaning & Etymology' : 'अर्थ और व्युत्पत्ति', content: detail.meaning[locale], color: 'gold-primary' },
+    { title: locale === 'en' ? 'Mythology & Legend' : 'पौराणिक कथा', content: detail.mythology[locale], color: 'gold-light' },
+    { title: locale === 'en' ? 'Significance' : 'महत्व', content: detail.significance[locale], color: 'emerald-400' },
+    { title: locale === 'en' ? 'Personality & Characteristics' : 'व्यक्तित्व और विशेषताएं', content: detail.characteristics[locale], color: 'gold-primary' },
+    { title: locale === 'en' ? 'Favorable Activities' : 'अनुकूल गतिविधियां', content: detail.compatibleActivities[locale], color: 'emerald-400' },
+    { title: locale === 'en' ? 'Remedies & Worship' : 'उपाय और पूजा', content: detail.remedies[locale], color: 'indigo-400' },
+  ];
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Navigation */}
+      <Link href="/panchang/nakshatra" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8 transition-colors">
+        <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'All Nakshatras' : 'सभी नक्षत्र'}
+      </Link>
+
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-card rounded-2xl p-8 sm:p-10 mb-10 border-2 border-gold-primary/20"
+      >
+        <div className="flex flex-col sm:flex-row items-center gap-8">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, type: 'spring' }}
+            className="flex-shrink-0"
+          >
+            <NakshatraIconById id={id} size={120} />
+          </motion.div>
+          <div className="text-center sm:text-left flex-1">
+            <div className="text-gold-dark text-sm font-mono mb-2">
+              #{id} of 27 · {nak.startDeg.toFixed(1)}° — {nak.endDeg.toFixed(1)}°
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-3" style={headingFont}>
+              <span className="text-gold-gradient">{nak.name[locale]}</span>
+            </h1>
+            {locale === 'en' && (
+              <p className="text-gold-dark text-lg mb-2" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
+                {nak.name.sa}
+              </p>
+            )}
+            <p className="text-text-secondary text-lg italic" style={bodyFont}>
+              &ldquo;{detail.meaning[locale]}&rdquo;
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Quick Info Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+        {[
+          { label: locale === 'en' ? 'Deity' : 'देवता', value: nak.deity[locale] },
+          { label: locale === 'en' ? 'Ruler' : 'स्वामी', value: nak.rulerName[locale] },
+          { label: locale === 'en' ? 'Nature' : 'स्वभाव', value: nak.nature[locale] },
+          { label: locale === 'en' ? 'Gana' : 'गण', value: detail.gana[locale] },
+          { label: locale === 'en' ? 'Guna' : 'गुण', value: detail.guna[locale] },
+          { label: locale === 'en' ? 'Tattva' : 'तत्व', value: detail.tattva[locale] },
+          { label: locale === 'en' ? 'Animal' : 'पशु', value: detail.associatedAnimal[locale] },
+          { label: locale === 'en' ? 'Degrees' : 'अंश', value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
+        ].map((item, i) => (
+          <motion.div
+            key={item.label}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 + i * 0.05 }}
+            className="glass-card rounded-xl p-4 text-center"
+          >
+            <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{item.label}</div>
+            <div className="text-gold-light text-sm font-semibold" style={bodyFont}>{item.value}</div>
+          </motion.div>
+        ))}
+      </div>
+
+      <GoldDivider />
+
+      {/* Content Sections */}
+      <div className="space-y-8 my-10">
+        {sections.map((section, i) => (
+          <motion.div
+            key={section.title}
+            initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+          >
+            <h2 className={`text-2xl font-bold text-${section.color} mb-4`} style={headingFont}>
+              {section.title}
+            </h2>
+            <div className="glass-card rounded-xl p-6">
+              <p className="text-text-secondary text-base leading-relaxed" style={bodyFont}>
+                {section.content}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <GoldDivider />
+
+      {/* Pada Information */}
+      <section className="my-10">
+        <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
+          {locale === 'en' ? 'Four Padas (Quarters)' : 'चार पाद'}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          {[1, 2, 3, 4].map(pada => {
+            const padaDeg = 3.333;
+            const start = nak.startDeg + (pada - 1) * padaDeg;
+            const end = start + padaDeg;
+            const navamshaRashi = ((id - 1) * 4 + (pada - 1)) % 12 + 1;
+            const rashiNames = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+            const rashiNamesHi = ['मेष', 'वृषभ', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'];
+            return (
+              <motion.div
+                key={pada}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: pada * 0.1 }}
+                className="glass-card rounded-xl p-5 text-center border border-gold-primary/10"
+              >
+                <div className="text-gold-primary text-3xl font-bold mb-2">{pada}</div>
+                <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
+                  {locale === 'en' ? `Pada ${pada}` : `पाद ${pada}`}
+                </div>
+                <div className="text-text-secondary text-xs font-mono mb-1">
+                  {start.toFixed(2)}° — {end.toFixed(2)}°
+                </div>
+                <div className="text-gold-light text-sm font-semibold" style={bodyFont}>
+                  {locale === 'en' ? `Navamsha: ${rashiNames[navamshaRashi - 1]}` : `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`}
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      <GoldDivider />
+
+      {/* Navigation to prev/next */}
+      <div className="flex justify-between items-center my-10">
+        <Link
+          href={`/panchang/nakshatra/${prevId}`}
+          className="glass-card rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
+        >
+          <ArrowLeft className="w-5 h-5 text-gold-primary group-hover:-translate-x-1 transition-transform" />
+          <div>
+            <div className="text-gold-dark text-xs">{locale === 'en' ? 'Previous' : 'पिछला'}</div>
+            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{prevNak.name[locale]}</div>
+          </div>
+        </Link>
+        <Link
+          href={`/panchang/nakshatra/${nextId}`}
+          className="glass-card rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
+        >
+          <div className="text-right">
+            <div className="text-gold-dark text-xs">{locale === 'en' ? 'Next' : 'अगला'}</div>
+            <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{nextNak.name[locale]}</div>
+          </div>
+          <ArrowRight className="w-5 h-5 text-gold-primary group-hover:translate-x-1 transition-transform" />
+        </Link>
+      </div>
+    </div>
+  );
+}

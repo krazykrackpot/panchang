@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import BirthForm from '@/components/kundali/BirthForm';
@@ -13,7 +13,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
-import type { KundaliData, BirthData, ChartStyle, PlanetPosition } from '@/types/kundali';
+import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
 // Planet colors for table highlights
@@ -180,9 +180,10 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'tippanni'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
+  const [activeChart, setActiveChart] = useState<'D1' | 'D9' | 'bhav_chalit' | 'D3' | 'D10' | 'D12'>('D1');
 
   const handleGenerate = async (birthData: BirthData, style: ChartStyle) => {
     setLoading(true);
@@ -253,6 +254,7 @@ export default function KundaliPage() {
               { key: 'chart' as const, label: t('birthChart') },
               { key: 'planets' as const, label: t('planetPositions') },
               { key: 'dasha' as const, label: t('dashaTimeline') },
+              { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
               { key: 'tippanni' as const, label: t('tippanni') },
             ]).map((tab) => (
               <button
@@ -272,6 +274,25 @@ export default function KundaliPage() {
           {/* ===== CHART TAB ===== */}
           {activeTab === 'chart' && (
             <div>
+              {/* Chart type selector */}
+              <div className="flex flex-wrap justify-center gap-2 mb-4">
+                {([
+                  { key: 'D1' as const, label: t('birthChart') },
+                  { key: 'D9' as const, label: t('navamsha') },
+                  { key: 'bhav_chalit' as const, label: t('bhavChalit') },
+                  { key: 'D3' as const, label: t('drekkana') },
+                  { key: 'D10' as const, label: t('dasamsa') },
+                  { key: 'D12' as const, label: t('dwadasamsa') },
+                ]).map(c => (
+                  <button key={c.key} onClick={() => setActiveChart(c.key)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                      activeChart === c.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+                    }`}>
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+
               {/* Style toggle */}
               <div className="flex justify-center gap-4 mb-6">
                 <button onClick={() => setChartStyle('north')} className={`px-5 py-2 rounded-lg text-sm transition-all ${chartStyle === 'north' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary'}`}>
@@ -286,20 +307,41 @@ export default function KundaliPage() {
                 {locale === 'en' ? 'Click on any house to see details' : 'विवरण देखने के लिए किसी भाव पर क्लिक करें'}
               </p>
 
-              {/* Charts - full width, side by side on desktop */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
-                {chartStyle === 'north' ? (
-                  <>
-                    <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />
-                    <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />
-                  </>
-                ) : (
-                  <>
-                    <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />
-                    <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />
-                  </>
-                )}
-              </div>
+              {/* Chart display */}
+              {(() => {
+                const chartData = activeChart === 'D1' ? kundali.chart
+                  : activeChart === 'D9' ? kundali.navamshaChart
+                  : activeChart === 'bhav_chalit' ? (kundali.bhavChalitChart || kundali.chart)
+                  : kundali.divisionalCharts?.[activeChart]
+                    ? kundali.divisionalCharts[activeChart]
+                    : kundali.chart;
+
+                const chartTitle = activeChart === 'D1' ? t('birthChart')
+                  : activeChart === 'D9' ? t('navamsha')
+                  : activeChart === 'bhav_chalit' ? t('bhavChalit')
+                  : kundali.divisionalCharts?.[activeChart]?.label[locale] || activeChart;
+
+                // Show selected chart + D1 side by side (unless D1 is already selected)
+                const showD1Companion = activeChart !== 'D1';
+
+                return (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
+                    {chartStyle === 'north' ? (
+                      <>
+                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />}
+                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
+                        {!showD1Companion && <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
+                      </>
+                    ) : (
+                      <>
+                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />}
+                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
+                        {!showD1Companion && <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
+                      </>
+                    )}
+                  </div>
+                );
+              })()}
 
               {/* Planet legend below charts */}
               <div className="mt-8 glass-card rounded-xl p-5">
@@ -483,9 +525,358 @@ export default function KundaliPage() {
             </div>
           )}
 
+          {/* ===== ASHTAKAVARGA TAB ===== */}
+          {activeTab === 'ashtakavarga' && kundali.ashtakavarga && (
+            <AshtakavargaTab ashtakavarga={kundali.ashtakavarga} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} t={t} />
+          )}
+
           {/* ===== TIPPANNI TAB ===== */}
           {activeTab === 'tippanni' && <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />}
         </motion.div>
+      )}
+    </div>
+  );
+}
+
+function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }: {
+  ashtakavarga: AshtakavargaData; locale: Locale; isDevanagari: boolean;
+  headingFont: React.CSSProperties; t: (key: string) => string;
+}) {
+  const [viewMode, setViewMode] = useState<'sav' | 'bpi'>('sav');
+
+  return (
+    <div className="space-y-8">
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{t('ashtakavarga')}</h3>
+
+      <div className="flex justify-center gap-3 mb-6">
+        <button onClick={() => setViewMode('sav')}
+          className={`px-5 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === 'sav' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+          {t('sarvashtakavarga')}
+        </button>
+        <button onClick={() => setViewMode('bpi')}
+          className={`px-5 py-2 rounded-lg text-sm font-bold transition-all ${viewMode === 'bpi' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+          {t('bhinnashtakavarga')}
+        </button>
+      </div>
+
+      {viewMode === 'sav' ? (
+        <div className="glass-card rounded-xl p-6 overflow-x-auto">
+          <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('sarvashtakavarga')}</h4>
+          <p className="text-text-secondary text-xs mb-4">
+            {locale === 'en' ? 'Total bindu points per sign from all 7 planets. Houses with 28+ points are strong.' : 'सभी 7 ग्रहों के कुल बिन्दु प्रति राशि। 28+ बिन्दु वाले भाव बलवान हैं।'}
+          </p>
+          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
+            {RASHIS.map((r, i) => {
+              const val = ashtakavarga.savTable[i];
+              const strong = val >= 28;
+              const weak = val < 22;
+              return (
+                <motion.div key={r.id}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.04 }}
+                  className={`rounded-xl p-3 text-center border ${strong ? 'border-emerald-500/30 bg-emerald-500/10' : weak ? 'border-red-500/20 bg-red-500/5' : 'border-gold-primary/10 bg-bg-tertiary/30'}`}
+                >
+                  <RashiIconById id={r.id} size={24} />
+                  <div className="text-[10px] text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
+                  <div className={`text-xl font-bold mt-1 ${strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-gold-light'}`}>{val}</div>
+                </motion.div>
+              );
+            })}
+          </div>
+          <div className="text-center text-text-secondary text-xs mt-4">
+            {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
+          </div>
+        </div>
+      ) : (
+        <div className="glass-card rounded-xl p-6 overflow-x-auto">
+          <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('bhinnashtakavarga')}</h4>
+          <p className="text-text-secondary text-xs mb-4">
+            {locale === 'en' ? 'Individual planet bindu points per sign (max 8 per cell).' : 'प्रत्येक ग्रह के बिन्दु प्रति राशि (अधिकतम 8 प्रति कक्ष)।'}
+          </p>
+          <div className="min-w-[700px]">
+            <table className="w-full text-sm">
+              <thead>
+                <tr>
+                  <th className="text-left text-gold-dark text-xs p-2">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                  {RASHIS.map(r => (
+                    <th key={r.id} className="text-center p-1">
+                      <div className="flex flex-col items-center">
+                        <RashiIconById id={r.id} size={16} />
+                        <span className="text-[9px] text-text-secondary/60 mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale].slice(0, 3)}</span>
+                      </div>
+                    </th>
+                  ))}
+                  <th className="text-center text-gold-dark text-xs p-2">{locale === 'en' ? 'Total' : 'कुल'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ashtakavarga.bpiTable.map((row, pi) => {
+                  const graha = GRAHAS[pi];
+                  const total = row.reduce((a, b) => a + b, 0);
+                  return (
+                    <tr key={pi} className="border-t border-gold-primary/5">
+                      <td className="p-2">
+                        <div className="flex items-center gap-1.5">
+                          <GrahaIconById id={pi} size={20} />
+                          <span className="text-xs font-medium" style={{ color: graha.color, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>{graha.name[locale]}</span>
+                        </div>
+                      </td>
+                      {row.map((val, si) => (
+                        <td key={si} className="text-center p-1">
+                          <span className={`text-xs font-mono ${val >= 5 ? 'text-emerald-400' : val <= 2 ? 'text-red-400/70' : 'text-text-secondary'}`}>{val}</span>
+                        </td>
+                      ))}
+                      <td className="text-center p-2 font-bold text-gold-light text-xs">{total}</td>
+                    </tr>
+                  );
+                })}
+                <tr className="border-t-2 border-gold-primary/20">
+                  <td className="p-2 font-bold text-gold-dark text-xs">SAV</td>
+                  {ashtakavarga.savTable.map((val, si) => (
+                    <td key={si} className="text-center p-1">
+                      <span className={`text-xs font-bold ${val >= 28 ? 'text-emerald-400' : val < 22 ? 'text-red-400' : 'text-gold-light'}`}>{val}</span>
+                    </td>
+                  ))}
+                  <td className="text-center p-2 font-bold text-gold-primary text-sm">{ashtakavarga.savTable.reduce((a, b) => a + b, 0)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }: {
+  tip: TippanniContent; locale: Locale; isDevanagari: boolean;
+  headingFont: React.CSSProperties; tTip: (key: string) => string;
+}) {
+  const [expandedRemedyIdx, setExpandedRemedyIdx] = useState<number | null>(null);
+  const yp = tip.yearPredictions;
+
+  const impactColors: Record<string, string> = {
+    favorable: 'bg-emerald-500',
+    mixed: 'bg-amber-500',
+    challenging: 'bg-red-500',
+  };
+  const impactBadge: Record<string, string> = {
+    favorable: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+    mixed: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+    challenging: 'bg-red-500/15 text-red-400 border-red-500/30',
+  };
+  const impactLabel = (impact: string) => tTip(impact);
+
+  return (
+    <section className="space-y-6">
+      {/* Section header */}
+      <div className="text-center">
+        <h3 className="text-2xl text-gold-gradient font-bold" style={headingFont}>
+          {yp.year} {tTip('yearPredictions')}
+        </h3>
+      </div>
+
+      {/* Overview card */}
+      <div className="glass-card rounded-xl p-6 sm:p-8 border-2 border-gold-primary/30 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-primary/0 via-gold-primary to-gold-primary/0" />
+        <h4 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-semibold">{tTip('yearOverview')}</h4>
+        <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {yp.overview}
+        </p>
+      </div>
+
+      {/* Events timeline */}
+      {yp.events.length > 0 && (
+        <div className="glass-card rounded-xl p-6 sm:p-8">
+          <h4 className="text-gold-light text-lg font-semibold mb-6" style={headingFont}>{tTip('majorEvents')}</h4>
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-[11px] top-3 bottom-3 w-0.5 bg-gradient-to-b from-gold-primary/40 via-gold-primary/20 to-gold-primary/5" />
+
+            <div className="space-y-6">
+              {yp.events.map((event, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  className="relative pl-9"
+                >
+                  {/* Impact dot */}
+                  <div className={`absolute left-0 top-1.5 w-6 h-6 rounded-full ${impactColors[event.impact]} flex items-center justify-center`}>
+                    <div className="w-2.5 h-2.5 rounded-full bg-white/90" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex items-start gap-3 flex-wrap">
+                      <h5 className="text-gold-light font-semibold text-sm flex-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        {event.title}
+                      </h5>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="text-text-secondary/60 text-xs font-mono">{event.period}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full border ${impactBadge[event.impact]}`}>
+                          {impactLabel(event.impact)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {event.description}
+                    </p>
+
+                    {event.remedies && (
+                      <div>
+                        <button
+                          onClick={() => setExpandedRemedyIdx(expandedRemedyIdx === i ? null : i)}
+                          className="text-amber-400 text-xs hover:text-amber-300 transition-colors"
+                        >
+                          {expandedRemedyIdx === i ? tTip('hideRemedies') : tTip('showRemedies')}
+                        </button>
+                        <AnimatePresence>
+                          {expandedRemedyIdx === i && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: 'auto', opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="mt-2 p-3 bg-amber-500/5 rounded-lg border border-amber-500/10">
+                                <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                  {event.remedies}
+                                </p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Quarterly forecast grid */}
+      <div className="glass-card rounded-xl p-6 sm:p-8">
+        <h4 className="text-gold-light text-lg font-semibold mb-6" style={headingFont}>{tTip('quarterlyOutlook')}</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {yp.quarters.map((q, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className={`p-4 rounded-lg border ${
+                q.outlook === 'favorable' ? 'border-emerald-500/20 bg-emerald-500/5'
+                : q.outlook === 'challenging' ? 'border-red-500/20 bg-red-500/5'
+                : 'border-amber-500/20 bg-amber-500/5'
+              }`}
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-gold-light text-sm font-semibold">{q.quarter}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full border ${impactBadge[q.outlook]}`}>
+                  {impactLabel(q.outlook)}
+                </span>
+              </div>
+              <p className="text-text-secondary text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {q.summary}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Key advice */}
+      <div className="glass-card rounded-xl p-6 sm:p-8 border border-gold-primary/25 bg-gradient-to-br from-gold-primary/5 to-transparent">
+        <h4 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-semibold">{tTip('keyAdvice')}</h4>
+        <p className="text-gold-light text-sm leading-relaxed font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          {yp.keyAdvice}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
+  refs: TippanniContent['planetInsights'][0]['classicalReferences'];
+  locale: Locale;
+  isDevanagari: boolean;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  if (!refs) return null;
+
+  const confidenceColors: Record<string, string> = {
+    high: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30',
+    medium: 'bg-amber-500/15 text-amber-400 border-amber-500/30',
+    low: 'bg-gray-500/15 text-gray-400 border-gray-500/30',
+  };
+
+  return (
+    <div className="mt-3 p-3 rounded-lg border-2 border-amber-600/20 bg-gradient-to-br from-amber-900/10 to-amber-800/5">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <svg className="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
+            {locale === 'en' ? 'Classical References' : locale === 'hi' ? 'शास्त्रीय सन्दर्भ' : 'शास्त्रीयसन्दर्भाः'}
+          </span>
+        </div>
+        <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${confidenceColors[refs.confidence]}`}>
+          {refs.confidence}
+        </span>
+      </div>
+      <p className="text-text-secondary text-sm leading-relaxed mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+        {refs.summary}
+      </p>
+      {refs.citations.length > 0 && (
+        <div>
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-amber-400/70 text-xs hover:text-amber-300 transition-colors flex items-center gap-1"
+          >
+            <svg className={`w-3 h-3 transition-transform ${expanded ? 'rotate-90' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            {expanded
+              ? (locale === 'en' ? 'Hide citations' : 'सन्दर्भ छुपाएँ')
+              : (locale === 'en' ? `View ${refs.citations.length} citation${refs.citations.length > 1 ? 's' : ''}` : `${refs.citations.length} सन्दर्भ देखें`)
+            }
+          </button>
+          <AnimatePresence>
+            {expanded && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-2 space-y-2">
+                  {refs.citations.map((cite, i) => (
+                    <div key={i} className="p-2.5 rounded-lg bg-bg-primary/40 border border-amber-600/10">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-amber-400 text-xs font-bold">{cite.textName}</span>
+                        {cite.verseRange && <span className="text-text-secondary/50 text-[10px] font-mono">{cite.verseRange}</span>}
+                      </div>
+                      {cite.sanskritExcerpt && (
+                        <p className="text-amber-200/60 text-xs italic mb-1" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
+                          {cite.sanskritExcerpt}
+                        </p>
+                      )}
+                      <p className="text-text-secondary text-xs leading-relaxed">{cite.translationExcerpt}</p>
+                      {cite.relevanceNote && (
+                        <p className="text-amber-500/50 text-[10px] mt-1 italic">{cite.relevanceNote}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       )}
     </div>
   );
@@ -497,7 +888,47 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 }) {
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);
   const [expandedYoga, setExpandedYoga] = useState<number | null>(null);
-  const tip = generateTippanni(kundali, locale);
+
+  // Client-side base tippanni (renders immediately, memoized)
+  const baseTip = useMemo(() => generateTippanni(kundali, locale), [kundali, locale]);
+
+  // Server-side RAG-enhanced tippanni (loads async)
+  const [ragTip, setRagTip] = useState<TippanniContent | null>(null);
+  const [ragLoading, setRagLoading] = useState(false);
+
+  // Stable key for useCallback dependency (avoid object reference issues)
+  const kundaliKey = useMemo(
+    () => `${kundali.ascendant.sign}-${kundali.planets.map(p => `${p.planet.id}:${p.house}:${p.sign}`).join(',')}`,
+    [kundali]
+  );
+
+  const fetchRagTippanni = useCallback(async () => {
+    setRagLoading(true);
+    try {
+      const res = await fetch('/api/tippanni', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kundali, locale, ragEnabled: true }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.ragEnabled) {
+          setRagTip(data);
+        }
+      }
+    } catch (err) {
+      console.error('RAG tippanni fetch failed:', err);
+    }
+    setRagLoading(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kundaliKey, locale]);
+
+  useEffect(() => {
+    fetchRagTippanni();
+  }, [fetchRagTippanni]);
+
+  // Use RAG-enhanced data if available, otherwise fall back to base
+  const tip = ragTip || baseTip;
 
   const severityColors: Record<string, string> = {
     severe: 'bg-red-500/20 text-red-400',
@@ -509,6 +940,31 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{tTip('title')}</h2>
+
+      {/* RAG status indicator */}
+      {tip.ragEnabled && (
+        <div className="flex items-center justify-center gap-2 mt-2">
+          <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+          <span className="text-amber-400/60 text-xs">
+            {locale === 'en' ? 'Enhanced with classical Jyotish text references' : 'शास्त्रीय ज्योतिष ग्रन्थ सन्दर्भों से समृद्ध'}
+          </span>
+        </div>
+      )}
+      {ragLoading && !tip.ragEnabled && (
+        <div className="flex items-center justify-center gap-2 mt-2">
+          <div className="w-3 h-3 border-2 border-amber-500/30 border-t-amber-400 rounded-full animate-spin" />
+          <span className="text-amber-400/40 text-xs">
+            {locale === 'en' ? 'Loading classical references...' : 'शास्त्रीय सन्दर्भ लोड हो रहे हैं...'}
+          </span>
+        </div>
+      )}
+
+      {/* ===== YEAR PREDICTIONS (at top — most immediately relevant) ===== */}
+      <YearPredictionsSection tip={tip} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
+
+      <GoldDivider />
 
       {/* ===== PERSONALITY PROFILE ===== */}
       <section className="glass-card rounded-xl p-6 sm:p-8">
@@ -591,6 +1047,14 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                           <p className="text-text-secondary text-sm">{pi.prognosis}</p>
                         </div>
                       )}
+                      {pi.classicalReferences ? (
+                        <ClassicalReferencesBlock refs={pi.classicalReferences} locale={locale} isDevanagari={isDevanagari} />
+                      ) : ragLoading ? (
+                        <div className="mt-3 p-3 rounded-lg border border-amber-600/10 bg-amber-900/5 flex items-center gap-2">
+                          <div className="w-3 h-3 border-2 border-amber-500/30 border-t-amber-400 rounded-full animate-spin" />
+                          <span className="text-amber-400/50 text-xs">{locale === 'en' ? 'Loading classical references...' : 'शास्त्रीय सन्दर्भ लोड हो रहे हैं...'}</span>
+                        </div>
+                      ) : null}
                     </div>
                   </motion.div>
                 )}
@@ -625,9 +1089,14 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
               <AnimatePresence>
                 {expandedYoga === i && yoga.present && yoga.implications && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                    <div className="p-3 ml-4 mt-1 bg-green-500/5 rounded-lg border border-green-500/10">
-                      <p className="text-green-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'What This Means For You' : 'आपके लिए इसका अर्थ'}</p>
-                      <p className="text-text-secondary text-sm">{yoga.implications}</p>
+                    <div className="ml-4 mt-1 space-y-2">
+                      <div className="p-3 bg-green-500/5 rounded-lg border border-green-500/10">
+                        <p className="text-green-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'What This Means For You' : 'आपके लिए इसका अर्थ'}</p>
+                        <p className="text-text-secondary text-sm">{yoga.implications}</p>
+                      </div>
+                      {yoga.classicalReferences && (
+                        <ClassicalReferencesBlock refs={yoga.classicalReferences} locale={locale} isDevanagari={isDevanagari} />
+                      )}
                     </div>
                   </motion.div>
                 )}
@@ -658,6 +1127,9 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                   <p className="text-amber-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Remedial Measures' : 'उपचारात्मक उपाय'}</p>
                   <p className="text-text-secondary text-sm">{dosha.remedies}</p>
                 </div>
+              )}
+              {dosha.classicalReferences && (
+                <ClassicalReferencesBlock refs={dosha.classicalReferences} locale={locale} isDevanagari={isDevanagari} />
               )}
             </div>
           ))}

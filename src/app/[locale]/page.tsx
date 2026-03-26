@@ -148,6 +148,57 @@ export default function HomePage() {
 
       <GoldDivider />
 
+      {/* Explore Tools Grid */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={stagger}
+        >
+          <motion.div variants={fadeInUp} className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}>
+              <span className="text-gold-gradient">{t('exploreTools')}</span>
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">{t('exploreToolsDesc')}</p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[
+              { href: '/calendar', label: locale === 'en' ? 'Festivals & Vrat' : 'त्योहार और व्रत', color: 'from-amber-500/10 to-transparent border-amber-500/20' },
+              { href: '/transits', label: locale === 'en' ? 'Planet Transits' : 'ग्रह गोचर', color: 'from-indigo-500/10 to-transparent border-indigo-500/20' },
+              { href: '/retrograde', label: locale === 'en' ? 'Retrograde Calendar' : 'वक्री पंचांग', color: 'from-red-500/10 to-transparent border-red-500/20' },
+              { href: '/eclipses', label: locale === 'en' ? 'Eclipse Calendar' : 'ग्रहण पंचांग', color: 'from-purple-500/10 to-transparent border-purple-500/20' },
+              { href: '/muhurat', label: locale === 'en' ? 'Muhurat Finder' : 'मुहूर्त खोजक', color: 'from-emerald-500/10 to-transparent border-emerald-500/20' },
+              { href: '/sign-calculator', label: locale === 'en' ? 'Sign Calculator' : 'राशि गणक', color: 'from-amber-500/10 to-transparent border-amber-500/20' },
+              { href: '/sade-sati', label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती', color: 'from-blue-500/10 to-transparent border-blue-500/20' },
+              { href: '/prashna', label: locale === 'en' ? 'Prashna Kundali' : 'प्रश्न कुण्डली', color: 'from-violet-500/10 to-transparent border-violet-500/20' },
+              { href: '/baby-names', label: locale === 'en' ? 'Baby Names' : 'शिशु नाम', color: 'from-pink-500/10 to-transparent border-pink-500/20' },
+              { href: '/shraddha', label: locale === 'en' ? 'Shraddha Calculator' : 'श्राद्ध गणक', color: 'from-stone-500/10 to-transparent border-stone-500/20' },
+              { href: '/vedic-time', label: locale === 'en' ? 'Vedic Time' : 'वैदिक समय', color: 'from-amber-500/10 to-transparent border-amber-500/20' },
+              { href: '/devotional', label: locale === 'en' ? 'Devotional Guide' : 'भक्ति मार्गदर्शिका', color: 'from-orange-500/10 to-transparent border-orange-500/20' },
+              { href: '/regional', label: locale === 'en' ? 'Regional Calendars' : 'क्षेत्रीय पंचांग', color: 'from-teal-500/10 to-transparent border-teal-500/20' },
+              { href: '/upagraha', label: locale === 'en' ? 'Upagraha' : 'उपग्रह', color: 'from-cyan-500/10 to-transparent border-cyan-500/20' },
+              { href: '/matching', label: locale === 'en' ? 'Kundali Matching' : 'कुण्डली मिलान', color: 'from-rose-500/10 to-transparent border-rose-500/20' },
+              { href: '/learn', label: locale === 'en' ? 'Learn Jyotish' : 'ज्योतिष सीखें', color: 'from-gold-primary/10 to-transparent border-gold-primary/20' },
+            ].map((tool, i) => (
+              <motion.div key={tool.href} variants={fadeInUp}>
+                <Link
+                  href={tool.href}
+                  className={`block rounded-xl p-5 text-center bg-gradient-to-br ${tool.color} border hover:border-gold-primary/40 hover:bg-gold-primary/10 transition-all duration-300 group`}
+                >
+                  <span className="text-sm font-bold text-text-secondary group-hover:text-gold-light transition-colors" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {tool.label}
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      <GoldDivider />
+
       {/* Why Panchang is Science */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div

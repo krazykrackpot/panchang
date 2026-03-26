@@ -9,10 +9,33 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
-import type { PanchangData, Locale, Muhurta } from '@/types/panchang';
+import type { PanchangData, Locale, Muhurta, TransitionInfo, BalamResult } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { TITHIS } from '@/lib/constants/tithis';
+import { YOGAS } from '@/lib/constants/yogas';
+import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
+import { computeBalam } from '@/lib/panchang/balam';
+
+// ──────────────────────────────────────────────────────────────
+// Check if a transition endTime (HH:MM) has already passed today
+// ──────────────────────────────────────────────────────────────
+function hasTransitionPassed(
+  endTime: string,
+  now: Date,
+  selectedDate: string,
+  tz: number
+): boolean {
+  // Only apply real-time adjustment for today's date
+  const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+  if (selectedDate !== todayStr) return false;
+
+  const [hh, mm] = endTime.split(':').map(Number);
+  const endMinutes = hh * 60 + mm;
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+  return nowMinutes >= endMinutes;
+}
 
 interface LocationData {
   lat: number;
@@ -38,6 +61,16 @@ export default function PanchangPage() {
   const [showAllMuhurtas, setShowAllMuhurtas] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [currentMuhurtaIdx, setCurrentMuhurtaIdx] = useState(-1);
+  const [birthNakshatra, setBirthNakshatra] = useState(0);
+  const [birthRashi, setBirthRashi] = useState(0);
+  const [balamResult, setBalamResult] = useState<BalamResult | null>(null);
+  const [now, setNow] = useState<Date>(new Date());
+
+  // Tick current time every 60s so transition checks stay fresh
+  useEffect(() => {
+    const timer = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Initialize date on client only to avoid hydration mismatch
   useEffect(() => {
@@ -98,7 +131,10 @@ export default function PanchangPage() {
       const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
       const data = await res.json();
       if (data.length > 0) {
-        setLocation({ lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: -new Date().getTimezoneOffset() / 60 });
+        const lng = parseFloat(data[0].lon);
+        // Approximate timezone from longitude (round to nearest 0.5h)
+        const approxTz = Math.round(lng / 15 * 2) / 2;
+        setLocation({ lat: parseFloat(data[0].lat), lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
         setShowLocationSearch(false);
         setLocationInput('');
       }
@@ -156,6 +192,19 @@ export default function PanchangPage() {
     const interval = setInterval(update, 60000);
     return () => clearInterval(interval);
   }, [panchang?.muhurtas]);
+
+  // Compute balam when birth data changes
+  useEffect(() => {
+    if (birthNakshatra && birthRashi && panchang) {
+      const todayNakshatra = panchang.nakshatra.id;
+      // Get today's Moon rashi from planets array (Moon = id 1)
+      const moonPlanet = panchang.planets.find(p => p.id === 1);
+      const todayMoonRashi = moonPlanet?.rashi || 1;
+      setBalamResult(computeBalam(birthNakshatra, birthRashi, todayNakshatra, todayMoonRashi));
+    } else {
+      setBalamResult(null);
+    }
+  }, [birthNakshatra, birthRashi, panchang]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -220,13 +269,30 @@ export default function PanchangPage() {
 
           {/* ═══ FIVE ELEMENTS — BIG & BOLD ═══ */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 mb-14">
-            {[
-              { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), Icon: TithiIcon },
-              { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: `${panchang.nakshatra.deity[locale]}`, Icon: NakshatraIcon },
-              { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], Icon: YogaIcon },
-              { label: t('karana'), value: panchang.karana.name[locale], sub: panchang.karana.type, Icon: KaranaIcon },
-              { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], Icon: VaraIcon },
-            ].map((el, i) => (
+            {(() => {
+              // Resolve currently-active values by checking if transitions have passed
+              const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, now, selectedDate, location.tz) : false;
+
+              const tithiPassed = tp(panchang.tithiTransition);
+              const nextTithi = tithiPassed && panchang.tithiTransition ? TITHIS[panchang.tithiTransition.nextNumber - 1] : null;
+
+              const nakPassed = tp(panchang.nakshatraTransition);
+              const nextNak = nakPassed && panchang.nakshatraTransition ? NAKSHATRAS[panchang.nakshatraTransition.nextNumber - 1] : null;
+
+              const yogaPassed = tp(panchang.yogaTransition);
+              const nextYoga = yogaPassed && panchang.yogaTransition ? YOGAS[panchang.yogaTransition.nextNumber - 1] : null;
+
+              const karanaPassed = tp(panchang.karanaTransition);
+              const nextKarana = karanaPassed && panchang.karanaTransition ? KARANAS[panchang.karanaTransition.nextNumber - 1] : null;
+
+              return [
+                { label: t('tithi'), value: nextTithi ? nextTithi.name[locale] : panchang.tithi.name[locale], sub: nextTithi ? (nextTithi.paksha === 'shukla' ? t('shukla') : t('krishna')) : (panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna')), Icon: TithiIcon, transition: tithiPassed ? undefined : panchang.tithiTransition },
+                { label: t('nakshatra'), value: nextNak ? nextNak.name[locale] : panchang.nakshatra.name[locale], sub: nextNak ? nextNak.deity[locale] : panchang.nakshatra.deity[locale], Icon: NakshatraIcon, transition: nakPassed ? undefined : panchang.nakshatraTransition },
+                { label: t('yoga'), value: nextYoga ? nextYoga.name[locale] : panchang.yoga.name[locale], sub: nextYoga ? nextYoga.meaning[locale] : panchang.yoga.meaning[locale], Icon: YogaIcon, transition: yogaPassed ? undefined : panchang.yogaTransition },
+                { label: t('karana'), value: nextKarana ? nextKarana.name[locale] : panchang.karana.name[locale], sub: nextKarana ? nextKarana.type : panchang.karana.type, Icon: KaranaIcon, transition: karanaPassed ? undefined : panchang.karanaTransition },
+                { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], Icon: VaraIcon, transition: undefined as TransitionInfo | undefined },
+              ];
+            })().map((el, i) => (
               <motion.div
                 key={el.label}
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -239,6 +305,15 @@ export default function PanchangPage() {
                 <div className="text-gold-dark text-xs uppercase tracking-widest mb-2 font-semibold">{el.label}</div>
                 <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{el.value}</div>
                 <div className="text-text-secondary text-xs mt-3 leading-relaxed">{el.sub}</div>
+                {el.transition && (
+                  <div className="mt-4 pt-3 border-t border-gold-primary/10">
+                    <div className="text-[10px] text-text-secondary uppercase tracking-wider">{t('upto')}</div>
+                    <div className="text-gold-primary font-mono text-sm font-bold mt-0.5">{el.transition.endTime}</div>
+                    <div className="text-[10px] text-text-secondary mt-1">
+                      {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.transition.nextName[locale]}</span>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -292,6 +367,119 @@ export default function PanchangPage() {
             ))}
           </div>
 
+          {/* ═══ SARVARTHA SIDDHI YOGA BANNER ═══ */}
+          {panchang.sarvarthaSiddhi && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="mb-10 mt-4"
+            >
+              <div className="glass-card rounded-2xl p-6 border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-gold-primary/5 to-emerald-500/10 text-center">
+                <div className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t('sarvarthaSiddhi')}</div>
+                <div className="text-emerald-300 text-lg font-bold" style={headingFont}>{t('sarvarthaSiddhiActive')}</div>
+                <div className="text-text-secondary text-xs mt-2">{t('sarvarthaSiddhiDesc')}</div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* ═══ SPECIAL TIMINGS — Amrit Kalam, Varjyam ═══ */}
+          {(panchang.amritKalam || panchang.varjyam) && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 mt-4">
+                {panchang.amritKalam && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="glass-card rounded-xl p-6 border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent"
+                  >
+                    <div className="text-emerald-400 text-xs uppercase tracking-widest mb-1 font-bold">{t('amritKalam')}</div>
+                    <div className="font-mono text-2xl font-bold text-emerald-300">{panchang.amritKalam.start} — {panchang.amritKalam.end}</div>
+                    <div className="text-text-secondary text-xs mt-2">{t('amritKalamDesc')}</div>
+                  </motion.div>
+                )}
+                {panchang.varjyam && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="glass-card rounded-xl p-6 border border-red-500/20 bg-gradient-to-br from-red-500/5 to-transparent"
+                  >
+                    <div className="text-red-400 text-xs uppercase tracking-widest mb-1 font-bold">{t('varjyam')}</div>
+                    <div className="font-mono text-2xl font-bold text-red-300">{panchang.varjyam.start} — {panchang.varjyam.end}</div>
+                    <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
+                  </motion.div>
+                )}
+              </div>
+            </>
+          )}
+
+          {/* ═══ NAMED MUHURTAS ═══ */}
+          <div className="mb-14">
+            <h2 className="text-3xl font-bold text-gold-gradient mb-6 text-center" style={headingFont}>
+              {t('namedMuhurtas')}
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {panchang.brahmaMuhurta && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                  className="glass-card rounded-xl p-5 text-center border border-indigo-500/20">
+                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold mb-1">{t('brahmaMuhurta')}</div>
+                  <div className="font-mono text-lg font-bold text-indigo-300">{panchang.brahmaMuhurta.start} — {panchang.brahmaMuhurta.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('brahmaMuhurtaDesc')}</div>
+                </motion.div>
+              )}
+              {panchang.sandhyaKaal && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+                  className="glass-card rounded-xl p-5 text-center border border-amber-500/20">
+                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">{t('sandhyaKaal')}</div>
+                  <div className="text-text-primary text-xs mt-1">{t('morningSandhya')}: <span className="font-mono text-amber-300">{panchang.sandhyaKaal.morning.start}—{panchang.sandhyaKaal.morning.end}</span></div>
+                  <div className="text-text-primary text-xs mt-1">{t('eveningSandhya')}: <span className="font-mono text-amber-300">{panchang.sandhyaKaal.evening.start}—{panchang.sandhyaKaal.evening.end}</span></div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('sandhyaKaalDesc')}</div>
+                </motion.div>
+              )}
+              {panchang.godhuli && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                  className="glass-card rounded-xl p-5 text-center border border-gold-primary/20">
+                  <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">{t('godhuli')}</div>
+                  <div className="font-mono text-lg font-bold text-gold-light">{panchang.godhuli.start} — {panchang.godhuli.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('godhuliDesc')}</div>
+                </motion.div>
+              )}
+              {panchang.nishitaKaal && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+                  className="glass-card rounded-xl p-5 text-center border border-purple-500/20">
+                  <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-1">{t('nishitaKaal')}</div>
+                  <div className="font-mono text-lg font-bold text-purple-300">{panchang.nishitaKaal.start} — {panchang.nishitaKaal.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('nishitaKaalDesc')}</div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+
+          {/* ═══ DISHA SHOOL ═══ */}
+          {panchang.dishaShool && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="glass-card rounded-xl p-6 border border-orange-500/20 bg-gradient-to-r from-orange-500/5 to-transparent mb-14"
+            >
+              <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                  <span className="text-orange-400 text-2xl font-bold">
+                    {panchang.dishaShool.direction[locale].charAt(0)}
+                  </span>
+                </div>
+                <div className="flex-1">
+                  <div className="text-orange-400 text-xs uppercase tracking-widest font-bold mb-1">{t('dishaShool')}</div>
+                  <div className="text-text-primary font-bold text-lg" style={headingFont}>{panchang.dishaShool.direction[locale]}</div>
+                  <div className="text-text-secondary text-xs mt-1">{t('dishaShoolDesc')}</div>
+                </div>
+                <div className="text-center sm:text-right">
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{t('remedy')}</div>
+                  <div className="text-text-secondary text-sm mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.dishaShool.remedy[locale]}</div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
           <GoldDivider />
 
           {/* ═══ ABHIJIT MUHURTA HIGHLIGHT ═══ */}
@@ -329,6 +517,124 @@ export default function PanchangPage() {
               </div>
             </div>
           </motion.div>
+
+          <GoldDivider />
+
+          {/* ═══ CHOGHADIYA ═══ */}
+          {panchang.choghadiya && panchang.choghadiya.length > 0 && (
+            <div className="my-14">
+              <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
+                {t('choghadiya')}
+              </h2>
+              <p className="text-text-secondary text-sm text-center mb-8">{t('choghadiyaDesc')}</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Day Choghadiya */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Sun className="w-5 h-5 text-gold-primary" />
+                    <h3 className="text-lg font-bold text-gold-light" style={headingFont}>{t('dayChoghadiya')}</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {panchang.choghadiya.filter(s => s.period === 'day').map((slot, i) => (
+                      <motion.div
+                        key={`day-${i}`}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.04 }}
+                        className={`rounded-lg p-3 border flex items-center justify-between ${
+                          slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/20' :
+                          slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/20' :
+                          'bg-amber-500/5 border-amber-500/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className={`w-2 h-2 rounded-full ${
+                            slot.nature === 'auspicious' ? 'bg-emerald-400' :
+                            slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
+                          }`} />
+                          <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                            {slot.name[locale]}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Night Choghadiya */}
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Moon className="w-5 h-5 text-indigo-400" />
+                    <h3 className="text-lg font-bold text-indigo-300/80" style={headingFont}>{t('nightChoghadiya')}</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {panchang.choghadiya.filter(s => s.period === 'night').map((slot, i) => (
+                      <motion.div
+                        key={`night-${i}`}
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.04 }}
+                        className={`rounded-lg p-3 border flex items-center justify-between ${
+                          slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/20' :
+                          slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/20' :
+                          'bg-amber-500/5 border-amber-500/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className={`w-2 h-2 rounded-full ${
+                            slot.nature === 'auspicious' ? 'bg-emerald-400' :
+                            slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
+                          }`} />
+                          <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                            {slot.name[locale]}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <GoldDivider />
+
+          {/* ═══ HORA (PLANETARY HOURS) ═══ */}
+          {panchang.hora && panchang.hora.length > 0 && (
+            <div className="my-14">
+              <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
+                {t('hora')}
+              </h2>
+              <p className="text-text-secondary text-sm text-center mb-8">{t('horaDesc')}</p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+                {panchang.hora.map((slot, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.02 }}
+                    className={`rounded-lg p-3 border text-center ${
+                      slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/15' :
+                      slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/15' :
+                      'bg-amber-500/5 border-amber-500/15'
+                    }`}
+                  >
+                    <div className="flex justify-center mb-1">
+                      <GrahaIconById id={slot.planetId} size={24} />
+                    </div>
+                    <div className="text-gold-light text-xs font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {slot.planet[locale]}
+                    </div>
+                    <div className="font-mono text-[10px] text-text-secondary mt-1">{slot.startTime}—{slot.endTime}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <GoldDivider />
 
@@ -522,6 +828,107 @@ export default function PanchangPage() {
                 <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{item.value}</div>
               </motion.div>
             ))}
+          </div>
+
+          <GoldDivider />
+
+          {/* ═══ CHANDRABALAM & TARABALAM ═══ */}
+          <div className="my-14">
+            <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
+              {locale === 'en' ? 'Chandrabalam & Tarabalam' : 'चन्द्रबल एवं ताराबल'}
+            </h2>
+            <p className="text-text-secondary text-sm text-center mb-8">
+              {locale === 'en'
+                ? 'Select your birth Nakshatra and Rashi to see today\'s Moon strength and star strength for you.'
+                : 'आज का चन्द्रबल और ताराबल जानने के लिए अपना जन्म नक्षत्र और राशि चुनें।'}
+            </p>
+            <div className="max-w-2xl mx-auto glass-card rounded-2xl p-6">
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
+                    {locale === 'en' ? 'Birth Nakshatra' : 'जन्म नक्षत्र'}
+                  </label>
+                  <select
+                    value={birthNakshatra}
+                    onChange={(e) => setBirthNakshatra(Number(e.target.value))}
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
+                    style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                  >
+                    <option value={0}>{locale === 'en' ? 'Select...' : 'चुनें...'}</option>
+                    {NAKSHATRAS.map((n) => (
+                      <option key={n.id} value={n.id}>{n.name[locale]}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
+                    {locale === 'en' ? 'Birth Rashi (Moon)' : 'जन्म राशि (चन्द्र)'}
+                  </label>
+                  <select
+                    value={birthRashi}
+                    onChange={(e) => setBirthRashi(Number(e.target.value))}
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
+                    style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                  >
+                    <option value={0}>{locale === 'en' ? 'Select...' : 'चुनें...'}</option>
+                    {RASHIS.map((r) => (
+                      <option key={r.id} value={r.id}>{r.name[locale]}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <AnimatePresence>
+                {balamResult && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="grid grid-cols-2 gap-4"
+                  >
+                    <div className={`rounded-xl p-4 border text-center ${
+                      balamResult.chandrabalam.favorable
+                        ? 'bg-emerald-500/5 border-emerald-500/20'
+                        : 'bg-red-500/5 border-red-500/20'
+                    }`}>
+                      <div className={`text-xs uppercase tracking-wider font-bold mb-1 ${
+                        balamResult.chandrabalam.favorable ? 'text-emerald-400' : 'text-red-400'
+                      }`}>
+                        {locale === 'en' ? 'Chandrabalam' : 'चन्द्रबल'}
+                      </div>
+                      <div className={`text-2xl font-bold ${
+                        balamResult.chandrabalam.favorable ? 'text-emerald-300' : 'text-red-300'
+                      }`}>
+                        {balamResult.chandrabalam.favorable
+                          ? (locale === 'en' ? 'Strong' : 'बलवान्')
+                          : (locale === 'en' ? 'Weak' : 'दुर्बल')}
+                      </div>
+                      <div className="text-text-secondary text-[10px] mt-2">
+                        {locale === 'en' ? `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house` : `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`}
+                      </div>
+                    </div>
+                    <div className={`rounded-xl p-4 border text-center ${
+                      balamResult.tarabalam.favorable
+                        ? 'bg-emerald-500/5 border-emerald-500/20'
+                        : 'bg-red-500/5 border-red-500/20'
+                    }`}>
+                      <div className={`text-xs uppercase tracking-wider font-bold mb-1 ${
+                        balamResult.tarabalam.favorable ? 'text-emerald-400' : 'text-red-400'
+                      }`}>
+                        {locale === 'en' ? 'Tarabalam' : 'ताराबल'}
+                      </div>
+                      <div className={`text-2xl font-bold ${
+                        balamResult.tarabalam.favorable ? 'text-emerald-300' : 'text-red-300'
+                      }`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                        {balamResult.tarabalam.taraName[locale]}
+                      </div>
+                      <div className="text-text-secondary text-[10px] mt-2">
+                        {locale === 'en' ? `Tara #${balamResult.tarabalam.tara}` : `तारा #${balamResult.tarabalam.tara}`}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           <GoldDivider />

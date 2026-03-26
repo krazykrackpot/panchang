@@ -7,6 +7,8 @@ import BirthForm from '@/components/kundali/BirthForm';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
+import ShareButton from '@/components/ui/ShareButton';
+import { Download } from 'lucide-react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -245,6 +247,24 @@ export default function KundaliPage() {
               <span className="text-gold-primary text-base font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                 {locale === 'en' ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
               </span>
+            </div>
+            {/* Export & Share */}
+            <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={async () => {
+                  const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
+                  exportKundaliPDF(kundali, locale as Locale);
+                }}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                aria-label="Download PDF report"
+              >
+                <Download className="w-4 h-4" />
+                PDF Report
+              </button>
+              <ShareButton
+                title={`Kundali — ${kundali.birthData.name}`}
+                text={`Vedic birth chart for ${kundali.birthData.name} generated on Jyotish Panchang`}
+              />
             </div>
           </div>
 

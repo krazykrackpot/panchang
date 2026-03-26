@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import ShareButton from '@/components/ui/ShareButton';
+import { Download } from 'lucide-react';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
@@ -265,6 +267,24 @@ export default function PanchangPage() {
               <span className="text-gold-light font-medium">{panchang.location.name}</span>
               {' · '}{panchang.date}
             </p>
+            <div className="flex items-center justify-center gap-3 mt-3">
+              <button
+                onClick={async () => {
+                  const { exportPanchangPDF } = await import('@/lib/export/pdf-panchang');
+                  exportPanchangPDF(panchang, locale as Locale);
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                aria-label="Download PDF"
+              >
+                <Download className="w-3.5 h-3.5" />
+                PDF
+              </button>
+              <ShareButton
+                title={`Panchang — ${panchang.date}`}
+                text={`Today's Vedic Panchang from Jyotish Panchang`}
+                className="!px-3 !py-1.5 !text-xs"
+              />
+            </div>
           </div>
 
           {/* ═══ FIVE ELEMENTS — BIG & BOLD ═══ */}

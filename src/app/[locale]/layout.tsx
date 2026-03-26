@@ -6,6 +6,7 @@ import { locales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
+import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
 import '@/styles/globals.css';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jyotishpanchang.com';
@@ -136,6 +137,7 @@ export default async function LocaleLayout({
             {children}
           </main>
           <Footer />
+          <ServiceWorkerRegistrar />
         </NextIntlClientProvider>
       </body>
     </html>

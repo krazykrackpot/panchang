@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
+import UserMenu from '@/components/auth/UserMenu';
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
 
 interface DropdownItem {
@@ -131,6 +132,7 @@ export default function Navbar() {
             )}
             <div className="w-px h-6 bg-gold-primary/20" />
             <LocaleSwitcher />
+            <UserMenu />
           </div>
 
           {/* Mobile toggle */}
@@ -188,8 +190,9 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <div className="pt-3 mt-2 border-t border-gold-primary/10">
+              <div className="pt-3 mt-2 border-t border-gold-primary/10 flex items-center gap-3">
                 <LocaleSwitcher />
+                <UserMenu />
               </div>
             </div>
           </div>

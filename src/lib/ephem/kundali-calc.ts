@@ -6,7 +6,7 @@ import {
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala } from '@/types/kundali';
+import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData } from '@/types/kundali';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -215,6 +215,202 @@ function calculateNavamsha(planets: PlanetPosition[], ascDeg: number): ChartData
 }
 
 /**
+ * Bhav Chalit Chart — mid-cusp house system
+ * Each house midpoint = cusp degree, so house spans from midpoint-15° to midpoint+15°
+ */
+function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartData {
+  // In Bhav Chalit, the Ascendant is the midpoint of House 1
+  // House 1 spans from (Asc - 15°) to (Asc + 15°)
+  const bhavCusps: number[] = [];
+  for (let i = 0; i < 12; i++) {
+    bhavCusps.push(normalizeDeg(ascDeg - 15 + i * 30));
+  }
+
+  const houses: number[][] = Array.from({ length: 12 }, () => []);
+  planets.forEach((p) => {
+    const house = getHouse(p.longitude, bhavCusps);
+    houses[house - 1].push(p.planet.id);
+  });
+
+  return { houses, ascendantDeg: ascDeg, ascendantSign: getRashiNumber(ascDeg) };
+}
+
+/**
+ * Generic Divisional Chart calculator
+ * Maps each planet's sidereal longitude to a divisional sign
+ */
+function calculateDivisionalChart(
+  planets: PlanetPosition[],
+  ascDeg: number,
+  division: number,
+  divisionType: 'drekkana' | 'dasamsa' | 'dwadasamsa'
+): ChartData {
+  const getNavSign = (sidLong: number): number => {
+    const signIndex = Math.floor(sidLong / 30); // 0-based sign (0=Aries)
+    const degInSign = sidLong % 30;
+
+    if (divisionType === 'drekkana') {
+      // D3: 3 parts of 10° each
+      const part = Math.floor(degInSign / 10); // 0, 1, 2
+      // 1st=same sign, 2nd=5th from sign, 3rd=9th from sign
+      const offsets = [0, 4, 8];
+      return ((signIndex + offsets[part]) % 12) + 1;
+    }
+
+    if (divisionType === 'dasamsa') {
+      // D10: 10 parts of 3° each
+      const part = Math.floor(degInSign / 3); // 0-9
+      // Odd signs: start from same sign; Even signs: start from 9th
+      const startOffset = (signIndex % 2 === 0) ? 0 : 8; // 0-based sign
+      return ((signIndex + startOffset + part) % 12) + 1;
+    }
+
+    // D12: Dwadasamsa — 12 parts of 2.5° each, start from same sign
+    const part = Math.floor(degInSign / 2.5); // 0-11
+    return ((signIndex + part) % 12) + 1;
+  };
+
+  // Divisional ascendant
+  const divAscSign = getNavSign(normalizeDeg(ascDeg));
+  const divAscDeg = normalizeDeg(ascDeg * division);
+
+  const houses: number[][] = Array.from({ length: 12 }, () => []);
+  planets.forEach((p) => {
+    const divSign = getNavSign(p.longitude);
+    const houseNum = ((divSign - divAscSign + 12) % 12);
+    houses[houseNum].push(p.planet.id);
+  });
+
+  return { houses, ascendantDeg: divAscDeg, ascendantSign: divAscSign };
+}
+
+/**
+ * Ashtakavarga — Bhinnashtakavarga + Sarvashtakavarga
+ * Each of the 7 planets (Sun-Saturn) gets bindu points (0-8) per sign
+ * Based on relative positions from natal planets and ascendant
+ */
+
+// Benefic positions (houses from which each planet gives bindu)
+// Key: contributing planet -> benefic houses from itself
+const ASHTAKAVARGA_RULES: Record<number, Record<number, number[]>> = {
+  // Sun's BAV: positions from each planet where Sun gets bindu
+  0: {
+    0: [1, 2, 4, 7, 8, 9, 10, 11],   // from Sun
+    1: [3, 6, 10, 11],                 // from Moon
+    2: [1, 2, 4, 7, 8, 9, 10, 11],   // from Mars
+    3: [3, 5, 6, 9, 10, 11, 12],     // from Mercury
+    4: [5, 6, 9, 11],                 // from Jupiter
+    5: [6, 7, 12],                    // from Venus
+    6: [1, 2, 4, 7, 8, 9, 10, 11],   // from Saturn
+    99: [3, 4, 6, 10, 11, 12],        // from Ascendant
+  },
+  // Moon's BAV
+  1: {
+    0: [3, 6, 7, 8, 10, 11],
+    1: [1, 3, 6, 7, 10, 11],
+    2: [2, 3, 5, 6, 9, 10, 11],
+    3: [1, 3, 4, 5, 7, 8, 10, 11],
+    4: [1, 4, 7, 8, 10, 11, 12],
+    5: [3, 4, 5, 7, 9, 10, 11],
+    6: [3, 5, 6, 11],
+    99: [3, 6, 10, 11],
+  },
+  // Mars' BAV
+  2: {
+    0: [3, 5, 6, 10, 11],
+    1: [3, 6, 11],
+    2: [1, 2, 4, 7, 8, 10, 11],
+    3: [3, 5, 6, 11],
+    4: [6, 10, 11, 12],
+    5: [6, 8, 11, 12],
+    6: [1, 4, 7, 8, 9, 10, 11],
+    99: [1, 3, 6, 10, 11],
+  },
+  // Mercury's BAV
+  3: {
+    0: [5, 6, 9, 11, 12],
+    1: [2, 4, 6, 8, 10, 11],
+    2: [1, 2, 4, 7, 8, 9, 10, 11],
+    3: [1, 3, 5, 6, 9, 10, 11, 12],
+    4: [6, 8, 11, 12],
+    5: [1, 2, 3, 4, 5, 8, 9, 11],
+    6: [1, 2, 4, 7, 8, 9, 10, 11],
+    99: [1, 2, 4, 6, 8, 10, 11],
+  },
+  // Jupiter's BAV
+  4: {
+    0: [1, 2, 3, 4, 7, 8, 9, 10, 11],
+    1: [2, 5, 7, 9, 11],
+    2: [1, 2, 4, 7, 8, 10, 11],
+    3: [1, 2, 4, 5, 6, 9, 10, 11],
+    4: [1, 2, 3, 4, 7, 8, 10, 11],
+    5: [2, 5, 6, 9, 10, 11],
+    6: [3, 5, 6, 12],
+    99: [1, 2, 4, 5, 6, 7, 9, 10, 11],
+  },
+  // Venus' BAV
+  5: {
+    0: [8, 11, 12],
+    1: [1, 2, 3, 4, 5, 8, 9, 11, 12],
+    2: [3, 5, 6, 9, 11, 12],
+    3: [3, 5, 6, 9, 11],
+    4: [5, 8, 9, 10, 11],
+    5: [1, 2, 3, 4, 5, 8, 9, 10, 11],
+    6: [3, 4, 5, 8, 9, 10, 11],
+    99: [1, 2, 3, 4, 5, 8, 9, 11],
+  },
+  // Saturn's BAV
+  6: {
+    0: [1, 2, 4, 7, 8, 10, 11],
+    1: [3, 6, 11],
+    2: [3, 5, 6, 10, 11, 12],
+    3: [6, 8, 9, 10, 11, 12],
+    4: [5, 6, 11, 12],
+    5: [6, 11, 12],
+    6: [3, 5, 6, 11],
+    99: [1, 3, 4, 6, 10, 11],
+  },
+};
+
+function calculateAshtakavarga(planets: PlanetPosition[], ascSign: number): AshtakavargaData {
+  const planetIds = [0, 1, 2, 3, 4, 5, 6]; // Sun through Saturn
+  const bpiTable: number[][] = []; // 7 planets x 12 signs
+
+  // Get sign positions of all planets and ascendant
+  const signPositions: Record<number, number> = {};
+  planets.forEach(p => { signPositions[p.planet.id] = p.sign; });
+  signPositions[99] = ascSign; // Ascendant as contributor
+
+  for (const targetPlanet of planetIds) {
+    const row: number[] = new Array(12).fill(0);
+    const rules = ASHTAKAVARGA_RULES[targetPlanet];
+
+    for (const contributorId of [...planetIds, 99]) {
+      const contribSign = signPositions[contributorId];
+      if (contribSign === undefined || !rules[contributorId]) continue;
+
+      for (const house of rules[contributorId]) {
+        // house is 1-based offset from contributor's sign
+        const targetSign = ((contribSign - 1 + house - 1) % 12); // 0-based index
+        row[targetSign]++;
+      }
+    }
+    bpiTable.push(row);
+  }
+
+  // Sarvashtakavarga: sum across all planets per sign
+  const savTable: number[] = new Array(12).fill(0);
+  for (let s = 0; s < 12; s++) {
+    for (let p = 0; p < 7; p++) {
+      savTable[s] += bpiTable[p][s];
+    }
+  }
+
+  const planetNames = planetIds.map(id => GRAHAS[id].name.en);
+  return { bpiTable, savTable, planetNames };
+}
+
+/**
  * Main Kundali generation function
  */
 export function generateKundali(birthData: BirthData): KundaliData {
@@ -294,6 +490,22 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Navamsha
   const navamshaChart = calculateNavamsha(planets, siderealAsc);
 
+  // Bhav Chalit
+  const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
+
+  // Divisional Charts
+  const d3 = calculateDivisionalChart(planets, siderealAsc, 3, 'drekkana');
+  const d10 = calculateDivisionalChart(planets, siderealAsc, 10, 'dasamsa');
+  const d12 = calculateDivisionalChart(planets, siderealAsc, 12, 'dwadasamsa');
+  const divisionalCharts: Record<string, DivisionalChart> = {
+    D3: { ...d3, division: 'D3', label: { en: 'Drekkana (D3)', hi: 'द्रेष्काण (D3)', sa: 'द्रेष्काणः (D3)' } },
+    D10: { ...d10, division: 'D10', label: { en: 'Dasamsa (D10)', hi: 'दशांश (D10)', sa: 'दशांशः (D10)' } },
+    D12: { ...d12, division: 'D12', label: { en: 'Dwadasamsa (D12)', hi: 'द्वादशांश (D12)', sa: 'द्वादशांशः (D12)' } },
+  };
+
+  // Ashtakavarga
+  const ashtakavarga = calculateAshtakavarga(planets, ascSign);
+
   // Dasha
   const moonPlanet = planets.find((p) => p.planet.id === 1);
   const moonSidLong = moonPlanet?.longitude || 0;
@@ -314,6 +526,9 @@ export function generateKundali(birthData: BirthData): KundaliData {
     houses,
     chart,
     navamshaChart,
+    bhavChalitChart,
+    divisionalCharts,
+    ashtakavarga,
     dashas,
     shadbala,
     ayanamshaValue,

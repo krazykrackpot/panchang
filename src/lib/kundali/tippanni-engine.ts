@@ -8,12 +8,26 @@ import type { Locale } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
-import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS, PLANET_REMEDIES } from './tippanni-planets';
+import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import type {
   TippanniContent, PersonalitySection, PlanetInsight, YogaInsight,
   DoshaInsight, LifeAreaSection, LifeArea, DashaInsightSection,
   RemedySection, RemedyItem, StrengthEntry,
 } from './tippanni-types';
+
+// Enhanced tippanni modules
+import { getPlanetInSignText } from '@/lib/tippanni/planet-in-sign';
+import { getPlanetInHouseEnhanced } from '@/lib/tippanni/planet-in-house-enhanced';
+import { calculateAllAspects } from '@/lib/tippanni/aspects';
+import { detectExtendedYogas } from '@/lib/tippanni/yogas-extended';
+import { detectExtendedDoshas } from '@/lib/tippanni/doshas-extended';
+import { getDashaLordAnalysis, getAntardashaInteraction } from '@/lib/tippanni/dasha-effects-enhanced';
+import { getRemediesForWeakPlanets } from '@/lib/tippanni/remedies-enhanced';
+import {
+  analyzeCareerEnhanced, analyzeWealthEnhanced, analyzeMarriageEnhanced,
+  analyzeHealthEnhanced, analyzeEducationEnhanced,
+} from '@/lib/tippanni/life-areas-enhanced';
+import { generateYearPredictions } from '@/lib/tippanni/year-predictions';
 
 export type { TippanniContent } from './tippanni-types';
 
@@ -221,6 +235,12 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
     const base = PLANET_HOUSE_BASE[p.planet.id]?.[p.house] || '';
     const depth = PLANET_HOUSE_DEPTH[p.planet.id]?.[p.house];
 
+    // Try enhanced trilingual house data first
+    const enhanced = getPlanetInHouseEnhanced(p.planet.id, p.house, locale);
+
+    // Get planet-in-sign interpretation for richer personality context
+    const signText = getPlanetInSignText(p.planet.id, p.sign, locale);
+
     let dignity: string | null = null;
     if (p.isExalted) dignity = t(locale, `${graha.name.en} ${DIGNITY_EFFECTS.exalted.en}`, `${graha.name.hi} ${DIGNITY_EFFECTS.exalted.hi}`);
     else if (p.isDebilitated) dignity = t(locale, `${graha.name.en} ${DIGNITY_EFFECTS.debilitated.en}`, `${graha.name.hi} ${DIGNITY_EFFECTS.debilitated.hi}`);
@@ -231,11 +251,23 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       retrogradeEffect = t(locale, `${graha.name.en} ${DIGNITY_EFFECTS.retrograde.en}`, `${graha.name.hi} ${DIGNITY_EFFECTS.retrograde.hi}`);
     }
 
-    const description = locale === 'en' ? base : t(locale,
-      base,
-      `${graha.name.hi} ${p.house}वें भाव में ${p.signName[locale]} राशि में विराजमान है। ${base}`,
-      `${graha.name.sa} ${p.house} भावे ${p.signName.sa} राशौ स्थितः।`
-    );
+    // Build description: house base + sign text for comprehensive insight
+    let description = '';
+    if (enhanced) {
+      description = enhanced.general;
+    } else if (locale === 'en') {
+      description = base;
+    } else {
+      description = t(locale,
+        base,
+        `${graha.name.hi} ${p.house}वें भाव में ${p.signName[locale]} राशि में विराजमान है। ${base}`,
+        `${graha.name.sa} ${p.house} भावे ${p.signName.sa} राशौ स्थितः।`
+      );
+    }
+    // Append sign-based interpretation
+    if (signText) {
+      description = description + '\n\n' + signText;
+    }
 
     return {
       planetId: p.planet.id,
@@ -244,8 +276,8 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       house: p.house,
       signName: p.signName[locale],
       description,
-      implications: depth?.implications || '',
-      prognosis: depth?.prognosis || '',
+      implications: enhanced?.implications || depth?.implications || '',
+      prognosis: enhanced?.prognosis || depth?.prognosis || '',
       dignity,
       retrogradeEffect,
     };
@@ -350,6 +382,16 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
     });
   }
 
+  // Merge extended yogas from new module
+  const extendedYogas = detectExtendedYogas(planets, kundali.houses, kundali.ascendant.sign, locale);
+  // Avoid duplicates by checking names
+  const existingNames = new Set(yogas.map(y => y.name));
+  for (const ey of extendedYogas) {
+    if (!existingNames.has(ey.name)) {
+      yogas.push(ey);
+    }
+  }
+
   return yogas;
 }
 
@@ -429,6 +471,15 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
       ? t(locale, 'Remedies: 1) Perform Pitra Tarpan on Amavasya. 2) Shraddha ceremonies for ancestors. 3) Donate food to Brahmins. 4) Plant a Peepal tree. 5) Recite Surya mantra daily.', 'उपाय: 1) अमावस्या पर पितृ तर्पण। 2) पूर्वजों के लिए श्राद्ध संस्कार। 3) ब्राह्मणों को भोजन दान। 4) पीपल वृक्ष लगाएँ। 5) सूर्य मन्त्र का दैनिक जप।')
       : '',
   });
+
+  // Merge extended doshas from new module
+  const extendedDoshas = detectExtendedDoshas(kundali.planets, kundali.houses, kundali.ascendant.sign, locale);
+  const existingDoshaNames = new Set(doshas.map(d => d.name));
+  for (const ed of extendedDoshas) {
+    if (!existingDoshaNames.has(ed.name)) {
+      doshas.push(ed);
+    }
+  }
 
   return doshas;
 }
@@ -526,7 +577,21 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
       `आपकी सीखने की शैली ${RASHIS[kundali.ascendant.sign - 1]?.element.hi} तत्व से मेल खाती है।`),
   };
 
-  return { career, wealth, marriage, health, education };
+  // Use enhanced life area analysis
+  const ascSign = kundali.ascendant.sign;
+  const enhancedCareer = analyzeCareerEnhanced(planets, houses, ascSign, locale);
+  const enhancedWealth = analyzeWealthEnhanced(planets, houses, ascSign, locale);
+  const enhancedMarriage = analyzeMarriageEnhanced(planets, houses, ascSign, locale);
+  const enhancedHealth = analyzeHealthEnhanced(planets, houses, ascSign, locale);
+  const enhancedEducation = analyzeEducationEnhanced(planets, houses, ascSign, locale);
+
+  return {
+    career: enhancedCareer,
+    wealth: enhancedWealth,
+    marriage: enhancedMarriage,
+    health: enhancedHealth,
+    education: enhancedEducation,
+  };
 }
 
 function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsightSection {
@@ -542,8 +607,13 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
     const end = new Date(d.endDate);
     if (now >= start && now <= end) {
       currentMaha = t(locale, `${d.planet} Mahadasha`, `${d.planetName[locale]} महादशा`);
-      const effect = DASHA_EFFECTS[d.planet];
-      currentMahaAnalysis = effect ? (locale === 'en' ? `${d.planet} Mahadasha ${effect.en}` : `${d.planetName[locale]} महादशा ${effect.hi}`) : '';
+
+      // Enhanced dasha lord analysis (dignity-conditioned)
+      const enhancedAnalysis = getDashaLordAnalysis(d.planet, kundali.planets, kundali.houses, kundali.ascendant.sign, locale);
+      const baseEffect = DASHA_EFFECTS[d.planet];
+      currentMahaAnalysis = enhancedAnalysis.overall
+        ? `${enhancedAnalysis.overall}\n\n${enhancedAnalysis.dignityEffect}\n\n${enhancedAnalysis.houseEffect}\n\n${enhancedAnalysis.advice}`
+        : baseEffect ? (locale === 'en' ? `${d.planet} Mahadasha ${baseEffect.en}` : `${d.planetName[locale]} महादशा ${baseEffect.hi}`) : '';
 
       if (d.subPeriods) {
         for (const sub of d.subPeriods) {
@@ -551,8 +621,11 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
           const se = new Date(sub.endDate);
           if (now >= ss && now <= se) {
             currentAntar = t(locale, `${sub.planet} Antardasha`, `${sub.planetName[locale]} अन्तर्दशा`);
+
+            // Enhanced antardasha interaction
+            const interaction = getAntardashaInteraction(d.planet, sub.planet, locale);
             const subEffect = DASHA_EFFECTS[sub.planet];
-            currentAntarAnalysis = subEffect ? (locale === 'en' ? `Within the ${d.planet} period, ${sub.planet} sub-period ${subEffect.en}` : `${d.planetName[locale]} काल में, ${sub.planetName[locale]} उपकाल ${subEffect.hi}`) : '';
+            currentAntarAnalysis = interaction || (subEffect ? (locale === 'en' ? `Within the ${d.planet} period, ${sub.planet} sub-period ${subEffect.en}` : `${d.planetName[locale]} काल में, ${sub.planetName[locale]} उपकाल ${subEffect.hi}`) : '');
 
             // Next sub-period
             const subIdx = d.subPeriods.indexOf(sub);
@@ -575,54 +648,7 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
 }
 
 function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
-  const gemstones: RemedyItem[] = [];
-  const mantras: RemedyItem[] = [];
-  const practices: RemedyItem[] = [];
-
-  // Find weak/afflicted planets
-  const weakPlanets = kundali.planets.filter(p =>
-    p.isDebilitated || (p.planet.id <= 6 && kundali.shadbala.find(s => s.planet === p.planet.name.en)?.totalStrength || 50) < 40
-  );
-
-  // Also add remedies for lagna lord
-  const ascSign = kundali.ascendant.sign;
-  const lagnaRuler = RASHIS[ascSign - 1]?.ruler;
-  const rulerMap: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6 };
-  const lagnaRulerId = rulerMap[lagnaRuler];
-
-  const targetIds = new Set<number>();
-  for (const p of weakPlanets) targetIds.add(p.planet.id);
-  if (lagnaRulerId !== undefined) targetIds.add(lagnaRulerId);
-
-  for (const id of targetIds) {
-    if (id > 8) continue;
-    const remedy = PLANET_REMEDIES[id];
-    if (!remedy) continue;
-    const graha = GRAHAS[id];
-    const planetName = graha.name[locale];
-
-    gemstones.push({
-      name: locale === 'en' ? remedy.gemstone.en : remedy.gemstone.hi,
-      planet: planetName,
-      description: t(locale,
-        `Wear ${remedy.gemstone.en} to strengthen ${graha.name.en}. Consult an astrologer for ring finger and metal recommendations.`,
-        `${graha.name.hi} को मजबूत करने के लिए ${remedy.gemstone.hi} धारण करें। अंगूठी और धातु के लिए ज्योतिषी से परामर्श करें।`),
-    });
-    mantras.push({
-      name: locale === 'en' ? remedy.mantra.en : remedy.mantra.hi,
-      planet: planetName,
-      description: t(locale,
-        `Chant ${remedy.mantra.en} starting on ${remedy.practice.day}. Best done during sunrise facing east.`,
-        `${remedy.mantra.hi} ${remedy.practice.day === 'Sunday' ? 'रविवार' : remedy.practice.day === 'Monday' ? 'सोमवार' : remedy.practice.day === 'Tuesday' ? 'मंगलवार' : remedy.practice.day === 'Wednesday' ? 'बुधवार' : remedy.practice.day === 'Thursday' ? 'गुरुवार' : remedy.practice.day === 'Friday' ? 'शुक्रवार' : 'शनिवार'} से प्रारम्भ करें।`),
-    });
-    practices.push({
-      name: t(locale, `${graha.name.en} Remedy`, `${graha.name.hi} उपाय`),
-      planet: planetName,
-      description: locale === 'en' ? remedy.practice.en : remedy.practice.hi,
-    });
-  }
-
-  return { gemstones, mantras, practices };
+  return getRemediesForWeakPlanets(kundali.planets, kundali.shadbala, kundali.ascendant.sign, locale);
 }
 
 function generateStrengthOverview(kundali: KundaliData, locale: Locale): StrengthEntry[] {
@@ -643,6 +669,7 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
 
 export function generateTippanni(kundali: KundaliData, locale: Locale): TippanniContent {
   return {
+    yearPredictions: generateYearPredictions(kundali, locale),
     personality: generatePersonality(kundali, locale),
     planetInsights: generatePlanetInsights(kundali, locale),
     yogas: generateYogas(kundali, locale),

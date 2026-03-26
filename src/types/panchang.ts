@@ -65,6 +65,12 @@ export interface Graha {
   isRetrograde?: boolean;
 }
 
+export interface TransitionInfo {
+  endTime: string;       // "HH:MM" when current element ends
+  nextName: Trilingual;  // name of the next element
+  nextNumber: number;    // index/number of the next element
+}
+
 export interface PanchangData {
   date: string;
   location: { lat: number; lng: number; name: string };
@@ -87,6 +93,62 @@ export interface PanchangData {
   samvatsara: Trilingual;
   ritu: Trilingual;
   ayana: Trilingual;
+  // Transition times
+  tithiTransition?: TransitionInfo;
+  nakshatraTransition?: TransitionInfo;
+  yogaTransition?: TransitionInfo;
+  karanaTransition?: TransitionInfo;
+  // Choghadiya
+  choghadiya?: ChoghadiyaSlot[];
+  // Hora (planetary hours)
+  hora?: HoraSlot[];
+  // Special time windows
+  amritKalam?: { start: string; end: string };
+  varjyam?: { start: string; end: string };
+  // Named muhurtas
+  brahmaMuhurta?: { start: string; end: string };
+  godhuli?: { start: string; end: string };
+  sandhyaKaal?: { morning: { start: string; end: string }; evening: { start: string; end: string } };
+  nishitaKaal?: { start: string; end: string };
+  // Disha Shool & Sarvartha Siddhi
+  dishaShool?: DishaShoolInfo;
+  sarvarthaSiddhi?: boolean;
+}
+
+export interface ChoghadiyaSlot {
+  name: Trilingual;
+  type: 'amrit' | 'shubh' | 'labh' | 'char' | 'rog' | 'kaal' | 'udveg';
+  nature: 'auspicious' | 'inauspicious' | 'neutral';
+  startTime: string;
+  endTime: string;
+  period: 'day' | 'night';
+}
+
+export interface HoraSlot {
+  planet: Trilingual;
+  planetId: number;
+  startTime: string;
+  endTime: string;
+  nature: 'auspicious' | 'inauspicious' | 'neutral';
+}
+
+export interface DishaShoolInfo {
+  direction: Trilingual;
+  remedy: Trilingual;
+}
+
+export interface BalamResult {
+  chandrabalam: {
+    house: number;
+    favorable: boolean;
+    description: Trilingual;
+  };
+  tarabalam: {
+    tara: number;
+    taraName: Trilingual;
+    favorable: boolean;
+    description: Trilingual;
+  };
 }
 
 export interface Muhurta {

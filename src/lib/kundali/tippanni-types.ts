@@ -1,5 +1,29 @@
 import type { Locale } from '@/types/panchang';
 
+// ============================================================
+// Classical References (RAG)
+// ============================================================
+
+export interface ClassicalCitation {
+  textName: string;
+  textFullName: string;
+  chapter: number | null;
+  verseRange: string;
+  sanskritExcerpt: string | null;
+  translationExcerpt: string;
+  relevanceNote: string;
+}
+
+export interface ClassicalReferencesSection {
+  summary: string;
+  citations: ClassicalCitation[];
+  confidence: 'high' | 'medium' | 'low';
+}
+
+// ============================================================
+// Core Tippanni Types
+// ============================================================
+
 export interface PersonalitySection {
   lagna: InterpBlock;
   moonSign: InterpBlock;
@@ -24,6 +48,7 @@ export interface PlanetInsight {
   prognosis: string;
   dignity: string | null;
   retrogradeEffect: string | null;
+  classicalReferences?: ClassicalReferencesSection | null;
 }
 
 export interface YogaInsight {
@@ -33,6 +58,7 @@ export interface YogaInsight {
   description: string;
   implications: string;
   strength: 'Strong' | 'Moderate' | 'Weak';
+  classicalReferences?: ClassicalReferencesSection | null;
 }
 
 export interface DoshaInsight {
@@ -41,6 +67,7 @@ export interface DoshaInsight {
   severity: 'none' | 'mild' | 'moderate' | 'severe';
   description: string;
   remedies: string;
+  classicalReferences?: ClassicalReferencesSection | null;
 }
 
 export interface LifeArea {
@@ -65,6 +92,7 @@ export interface DashaInsightSection {
   currentAntar: string;
   currentAntarAnalysis: string;
   upcoming: string;
+  classicalReferences?: ClassicalReferencesSection | null;
 }
 
 export interface RemedyItem {
@@ -86,7 +114,31 @@ export interface StrengthEntry {
   status: string;
 }
 
+export interface YearEvent {
+  type: 'sade_sati' | 'jupiter_transit' | 'rahu_ketu' | 'dasha_transition';
+  title: string;
+  description: string;
+  period: string;
+  impact: 'favorable' | 'mixed' | 'challenging';
+  remedies?: string;
+}
+
+export interface QuarterForecast {
+  quarter: string;
+  outlook: 'favorable' | 'mixed' | 'challenging';
+  summary: string;
+}
+
+export interface YearPredictionSection {
+  year: number;
+  overview: string;
+  events: YearEvent[];
+  quarters: QuarterForecast[];
+  keyAdvice: string;
+}
+
 export interface TippanniContent {
+  yearPredictions: YearPredictionSection;
   personality: PersonalitySection;
   planetInsights: PlanetInsight[];
   yogas: YogaInsight[];
@@ -95,4 +147,9 @@ export interface TippanniContent {
   dashaInsight: DashaInsightSection;
   remedies: RemedySection;
   strengthOverview: StrengthEntry[];
+
+  // RAG metadata
+  ragEnabled?: boolean;
+  ragTimestamp?: string;
+  ragError?: string | null;
 }

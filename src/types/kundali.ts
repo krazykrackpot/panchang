@@ -72,10 +72,24 @@ export interface KundaliData {
   houses: HouseCusp[];
   chart: ChartData;
   navamshaChart: ChartData;
+  bhavChalitChart?: ChartData;
+  divisionalCharts?: Record<string, DivisionalChart>;
+  ashtakavarga?: AshtakavargaData;
   dashas: DashaEntry[];
   shadbala: ShadBala[];
   ayanamshaValue: number;
   julianDay: number;
+}
+
+export interface DivisionalChart extends ChartData {
+  division: string; // 'D1' | 'D3' | 'D9' | 'D10' | 'D12' | 'bhav_chalit'
+  label: { en: string; hi: string; sa: string };
+}
+
+export interface AshtakavargaData {
+  bpiTable: number[][]; // 7 planets x 12 signs — Bhinnashtakavarga (0-8 per cell)
+  savTable: number[];   // 12 signs — Sarvashtakavarga (sum of all planets per sign)
+  planetNames: string[];
 }
 
 export type ChartStyle = 'north' | 'south';

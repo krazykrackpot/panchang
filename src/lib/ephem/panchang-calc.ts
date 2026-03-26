@@ -5,7 +5,7 @@ import {
   approximateSunrise, approximateSunset, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
-  getSamvatsara, getRitu, getAyana, formatDegrees, lahiriAyanamsha,
+  getSamvatsara, getRitu, getAyana,
 } from './astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -14,7 +14,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, VARA_DATA } from '@/lib/constants/grahas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
-import { PanchangData, Muhurta } from '@/types/panchang';
+import { PanchangData, Muhurta, TransitionInfo, ChoghadiyaSlot, HoraSlot, DishaShoolInfo } from '@/types/panchang';
 
 export interface PanchangInput {
   year: number;
@@ -25,6 +25,400 @@ export interface PanchangInput {
   tzOffset: number; // hours from UTC (e.g., 5.5 for IST)
   locationName?: string;
 }
+
+// ──────────────────────────────────────────────────────────────
+// Binary search helpers — find when a panchang element transitions
+// ──────────────────────────────────────────────────────────────
+
+/** Find JD when tithi changes from `currentTithi` within [jdStart, jdEnd]. */
+function findTithiTransition(currentTithi: number, jdStart: number, jdEnd: number): number {
+  let lo = jdStart, hi = jdEnd;
+  for (let i = 0; i < 30; i++) { // ~30 iterations gives sub-second precision
+    const mid = (lo + hi) / 2;
+    const t = calculateTithi(mid).number;
+    if (t === currentTithi) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/** Find JD when nakshatra (by sidereal Moon) changes. */
+function findNakshatraTransition(currentNak: number, jdStart: number, jdEnd: number): number {
+  let lo = jdStart, hi = jdEnd;
+  for (let i = 0; i < 30; i++) {
+    const mid = (lo + hi) / 2;
+    const moonSid = toSidereal(moonLongitude(mid), mid);
+    const n = getNakshatraNumber(moonSid);
+    if (n === currentNak) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/** Find JD when yoga changes. */
+function findYogaTransition(currentYoga: number, jdStart: number, jdEnd: number): number {
+  let lo = jdStart, hi = jdEnd;
+  for (let i = 0; i < 30; i++) {
+    const mid = (lo + hi) / 2;
+    const y = calculateYoga(mid);
+    if (y === currentYoga) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/** Find JD when karana changes. */
+function findKaranaTransition(currentKarana: number, jdStart: number, jdEnd: number): number {
+  let lo = jdStart, hi = jdEnd;
+  for (let i = 0; i < 30; i++) {
+    const mid = (lo + hi) / 2;
+    const k = calculateKarana(mid);
+    if (k === currentKarana) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * Compute transition info for a panchang element.
+ * Scans forward from sunrise in small steps to find when the element changes,
+ * then binary-searches for the exact transition JD.
+ */
+function computeTransition(
+  currentValue: number,
+  getter: (jd: number) => number,
+  finder: (cur: number, jdStart: number, jdEnd: number) => number,
+  jdSunrise: number,
+  tzOffset: number,
+  dataArray: { name: { en: string; hi: string; sa: string } }[],
+  wrapMax: number, // e.g. 30 for tithi, 27 for nakshatra/yoga, 11 for karana
+): TransitionInfo | undefined {
+  // Scan forward up to 36 hours (1.5 days) in 30-min steps
+  const step = 1 / 48; // ~30 min in JD
+  const maxJd = jdSunrise + 1.5;
+  let found = false;
+  let transitionJd = maxJd;
+
+  for (let jd = jdSunrise + step; jd <= maxJd; jd += step) {
+    const val = getter(jd);
+    if (val !== currentValue) {
+      // Binary search between previous step and this step
+      transitionJd = finder(currentValue, jd - step, jd);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) return undefined;
+
+  // Next value
+  const nextValue = getter(transitionJd + 0.001); // tiny step past transition
+  const nextIndex = nextValue - 1; // arrays are 0-based
+  const nextData = dataArray[nextIndex] || dataArray[0];
+
+  return {
+    endTime: formatTime(jdToDecimalHoursUT(transitionJd, jdSunrise), tzOffset),
+    nextName: nextData.name,
+    nextNumber: nextValue,
+  };
+}
+
+/** Convert a JD to decimal hours UT on the same day as jdRef */
+function jdToDecimalHoursUT(jd: number, jdRef: number): number {
+  // jdRef is at sunrise UT. We need the fractional day difference as hours.
+  const diff = (jd - Math.floor(jdRef - 0.5) - 0.5) * 24; // hours from midnight UT
+  return ((diff % 24) + 24) % 24;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Choghadiya
+// ──────────────────────────────────────────────────────────────
+
+const CHOGHADIYA_TYPES = ['udveg', 'char', 'labh', 'amrit', 'kaal', 'shubh', 'rog'] as const;
+
+const CHOGHADIYA_NAMES: Record<string, { en: string; hi: string; sa: string }> = {
+  amrit:  { en: 'Amrit',  hi: 'अमृत',  sa: 'अमृतम्' },
+  shubh:  { en: 'Shubh',  hi: 'शुभ',   sa: 'शुभम्' },
+  labh:   { en: 'Labh',   hi: 'लाभ',   sa: 'लाभः' },
+  char:   { en: 'Char',   hi: 'चल',    sa: 'चलम्' },
+  rog:    { en: 'Rog',    hi: 'रोग',   sa: 'रोगः' },
+  kaal:   { en: 'Kaal',   hi: 'काल',   sa: 'कालः' },
+  udveg:  { en: 'Udveg',  hi: 'उद्वेग', sa: 'उद्वेगः' },
+};
+
+const CHOGHADIYA_NATURE: Record<string, 'auspicious' | 'inauspicious' | 'neutral'> = {
+  amrit: 'auspicious', shubh: 'auspicious', labh: 'auspicious',
+  char: 'neutral',
+  rog: 'inauspicious', kaal: 'inauspicious', udveg: 'inauspicious',
+};
+
+// Day choghadiya starting index per weekday (Sun=0 through Sat=6)
+const DAY_CHOGHADIYA_START = [0, 4, 1, 5, 2, 6, 3]; // Sun=Udveg, Mon=Amrit, Tue=Rog, ...
+const NIGHT_CHOGHADIYA_START = [4, 1, 5, 2, 6, 3, 0]; // Night starts from 5th element after day start
+
+function computeChoghadiya(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): ChoghadiyaSlot[] {
+  const dayDuration = sunsetUT - sunriseUT;
+  const nightDuration = 24 - dayDuration;
+  const daySlotDuration = dayDuration / 8;
+  const nightSlotDuration = nightDuration / 8;
+  const slots: ChoghadiyaSlot[] = [];
+
+  // Day choghadiya (8 slots from sunrise to sunset)
+  const dayStart = DAY_CHOGHADIYA_START[weekday];
+  for (let i = 0; i < 8; i++) {
+    const typeIdx = (dayStart + i) % 7;
+    const type = CHOGHADIYA_TYPES[typeIdx];
+    const startUT = sunriseUT + i * daySlotDuration;
+    const endUT = startUT + daySlotDuration;
+    slots.push({
+      name: CHOGHADIYA_NAMES[type],
+      type,
+      nature: CHOGHADIYA_NATURE[type],
+      startTime: formatTime(startUT, tzOffset),
+      endTime: formatTime(endUT, tzOffset),
+      period: 'day',
+    });
+  }
+
+  // Night choghadiya (8 slots from sunset to next sunrise)
+  const nightStart = NIGHT_CHOGHADIYA_START[weekday];
+  for (let i = 0; i < 8; i++) {
+    const typeIdx = (nightStart + i) % 7;
+    const type = CHOGHADIYA_TYPES[typeIdx];
+    const startUT = (sunsetUT + i * nightSlotDuration) % 24;
+    const endUT = (sunsetUT + (i + 1) * nightSlotDuration) % 24;
+    slots.push({
+      name: CHOGHADIYA_NAMES[type],
+      type,
+      nature: CHOGHADIYA_NATURE[type],
+      startTime: formatTime(startUT, tzOffset),
+      endTime: formatTime(endUT, tzOffset),
+      period: 'night',
+    });
+  }
+
+  return slots;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Hora (Planetary Hours)
+// ──────────────────────────────────────────────────────────────
+
+// Hora planet sequence: Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars (then repeats)
+const HORA_PLANET_SEQUENCE = [0, 5, 3, 1, 6, 4, 2]; // planet IDs
+const HORA_PLANET_NAMES: Record<number, { en: string; hi: string; sa: string }> = {
+  0: { en: 'Sun',     hi: 'सूर्य',   sa: 'सूर्यः' },
+  1: { en: 'Moon',    hi: 'चन्द्र',  sa: 'चन्द्रः' },
+  2: { en: 'Mars',    hi: 'मंगल',    sa: 'मङ्गलः' },
+  3: { en: 'Mercury', hi: 'बुध',     sa: 'बुधः' },
+  4: { en: 'Jupiter', hi: 'गुरु',    sa: 'गुरुः' },
+  5: { en: 'Venus',   hi: 'शुक्र',   sa: 'शुक्रः' },
+  6: { en: 'Saturn',  hi: 'शनि',    sa: 'शनिः' },
+};
+
+// Starting hora planet for each weekday (the day's ruling planet)
+// Sun=0(Sun), Mon=1(Moon), Tue=2(Mars), Wed=3(Mercury), Thu=4(Jupiter), Fri=5(Venus), Sat=6(Saturn)
+const HORA_DAY_START_INDEX = [0, 3, 6, 2, 5, 1, 4]; // index into HORA_PLANET_SEQUENCE
+
+const HORA_NATURE: Record<number, 'auspicious' | 'inauspicious' | 'neutral'> = {
+  0: 'auspicious',  // Sun
+  1: 'auspicious',  // Moon
+  2: 'inauspicious', // Mars
+  3: 'neutral',      // Mercury
+  4: 'auspicious',  // Jupiter
+  5: 'auspicious',  // Venus
+  6: 'inauspicious', // Saturn
+};
+
+function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOffset: number): HoraSlot[] {
+  const dayDuration = sunsetUT - sunriseUT;
+  const nightDuration = 24 - dayDuration;
+  const dayHoraDuration = dayDuration / 12;
+  const nightHoraDuration = nightDuration / 12;
+  const slots: HoraSlot[] = [];
+
+  const startIdx = HORA_DAY_START_INDEX[weekday];
+
+  // 12 day horas + 12 night horas = 24 total
+  for (let i = 0; i < 24; i++) {
+    const seqIdx = (startIdx + i) % 7;
+    const planetId = HORA_PLANET_SEQUENCE[seqIdx];
+    const isDay = i < 12;
+    const slotDuration = isDay ? dayHoraDuration : nightHoraDuration;
+    const base = isDay ? sunriseUT : sunsetUT;
+    const slotIdx = isDay ? i : i - 12;
+    const startUT = (base + slotIdx * slotDuration) % 24;
+    const endUT = (base + (slotIdx + 1) * slotDuration) % 24;
+
+    slots.push({
+      planet: HORA_PLANET_NAMES[planetId],
+      planetId,
+      startTime: formatTime(startUT, tzOffset),
+      endTime: formatTime(endUT, tzOffset),
+      nature: HORA_NATURE[planetId],
+    });
+  }
+
+  return slots;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Amrit Kalam & Varjyam
+// ──────────────────────────────────────────────────────────────
+
+// These are derived from Nakshatra-Vara combination.
+// The time windows are specific portions of the day based on traditional tables.
+// Each nakshatra (1-27) has a specific ghati (1 ghati = 24 min) offset for varjyam and amrit kalam.
+
+// Varjyam ghati offset from nakshatra start (in ghatis, 1 ghati = 24 min)
+const VARJYAM_GHATI: number[] = [
+  50, 44, 30, 20, 32, // Ashwini-Mrigashira
+  30, 20, 32, 44, 50, // Ardra-Magha
+  20, 32, 44, 50, 30, // P.Phalguni-Swati
+  32, 44, 50, 20, 30, // Vishakha-P.Ashadha
+  50, 20, 44, 30, 32, // U.Ashadha-P.Bhadra
+  50, 44,             // U.Bhadra-Revati
+];
+
+// Amrit Kalam ghati offset from nakshatra start
+const AMRIT_GHATI: number[] = [
+  2, 46, 36, 8, 14,   // Ashwini-Mrigashira
+  22, 8, 14, 46, 2,    // Ardra-Magha
+  8, 14, 46, 2, 36,    // P.Phalguni-Swati
+  14, 46, 2, 8, 36,    // Vishakha-P.Ashadha
+  2, 8, 46, 36, 14,    // U.Ashadha-P.Bhadra
+  2, 46,               // U.Bhadra-Revati
+];
+
+function computeAmritVarjyam(
+  nakshatraNum: number, sunriseUT: number, tzOffset: number
+): { amritKalam?: { start: string; end: string }; varjyam?: { start: string; end: string } } {
+  const nakIdx = nakshatraNum - 1;
+  if (nakIdx < 0 || nakIdx >= 27) return {};
+
+  // Convert ghati offset to hours from sunrise (1 ghati = 24 min = 0.4 hr)
+  const varjyamOffset = (VARJYAM_GHATI[nakIdx] || 0) * 0.4;
+  const amritOffset = (AMRIT_GHATI[nakIdx] || 0) * 0.4;
+  const duration = 0.4 * 4; // 4 ghati duration (96 min)
+
+  const varjyamStartUT = sunriseUT + varjyamOffset;
+  const amritStartUT = sunriseUT + amritOffset;
+
+  return {
+    amritKalam: {
+      start: formatTime(amritStartUT % 24, tzOffset),
+      end: formatTime((amritStartUT + duration) % 24, tzOffset),
+    },
+    varjyam: {
+      start: formatTime(varjyamStartUT % 24, tzOffset),
+      end: formatTime((varjyamStartUT + duration) % 24, tzOffset),
+    },
+  };
+}
+
+// ──────────────────────────────────────────────────────────────
+// Named Muhurtas
+// ──────────────────────────────────────────────────────────────
+
+function computeNamedMuhurtas(
+  sunriseUT: number, sunsetUT: number, tzOffset: number
+): {
+  brahmaMuhurta: { start: string; end: string };
+  godhuli: { start: string; end: string };
+  sandhyaKaal: { morning: { start: string; end: string }; evening: { start: string; end: string } };
+  nishitaKaal: { start: string; end: string };
+} {
+  // Brahma Muhurta: 96 min (2 muhurtas) before sunrise
+  const brahmaStart = sunriseUT - 96 / 60;
+  const brahmaEnd = sunriseUT - 48 / 60;
+
+  // Godhuli (cow-dust time): ~24 min around sunset
+  const godhuliStart = sunsetUT - 12 / 60;
+  const godhuliEnd = sunsetUT + 12 / 60;
+
+  // Sandhya Kaal: ~24 min before/after sunrise (morning) and sunset (evening)
+  const mSandhyaStart = sunriseUT - 24 / 60;
+  const mSandhyaEnd = sunriseUT + 24 / 60;
+  const eSandhyaStart = sunsetUT - 24 / 60;
+  const eSandhyaEnd = sunsetUT + 24 / 60;
+
+  // Nishita Kaal: midnight ± ~24 min
+  const midpoint = sunsetUT + (24 - (sunsetUT - sunriseUT)) / 2; // approximate midnight
+  const nishitaStart = midpoint - 24 / 60;
+  const nishitaEnd = midpoint + 24 / 60;
+
+  return {
+    brahmaMuhurta: {
+      start: formatTime(((brahmaStart % 24) + 24) % 24, tzOffset),
+      end: formatTime(((brahmaEnd % 24) + 24) % 24, tzOffset),
+    },
+    godhuli: {
+      start: formatTime(godhuliStart % 24, tzOffset),
+      end: formatTime(godhuliEnd % 24, tzOffset),
+    },
+    sandhyaKaal: {
+      morning: {
+        start: formatTime(((mSandhyaStart % 24) + 24) % 24, tzOffset),
+        end: formatTime(mSandhyaEnd % 24, tzOffset),
+      },
+      evening: {
+        start: formatTime(eSandhyaStart % 24, tzOffset),
+        end: formatTime(eSandhyaEnd % 24, tzOffset),
+      },
+    },
+    nishitaKaal: {
+      start: formatTime(((nishitaStart % 24) + 24) % 24, tzOffset),
+      end: formatTime(((nishitaEnd % 24) + 24) % 24, tzOffset),
+    },
+  };
+}
+
+// ──────────────────────────────────────────────────────────────
+// Disha Shool
+// ──────────────────────────────────────────────────────────────
+
+const DISHA_SHOOL_DATA: Record<number, DishaShoolInfo> = {
+  0: { // Sunday
+    direction: { en: 'West',  hi: 'पश्चिम', sa: 'पश्चिमम्' },
+    remedy:    { en: 'Consume jaggery before travel', hi: 'यात्रा से पहले गुड़ खाएं', sa: 'गुडं भक्षयित्वा यात्रां कुर्यात्' },
+  },
+  1: { // Monday
+    direction: { en: 'East',  hi: 'पूर्व',  sa: 'पूर्वम्' },
+    remedy:    { en: 'Consume milk before travel', hi: 'यात्रा से पहले दूध पिएं', sa: 'दुग्धं पीत्वा यात्रां कुर्यात्' },
+  },
+  2: { // Tuesday
+    direction: { en: 'North', hi: 'उत्तर',  sa: 'उत्तरम्' },
+    remedy:    { en: 'Consume wheat products before travel', hi: 'यात्रा से पहले गेहूं खाएं', sa: 'गोधूमं भक्षयित्वा यात्रां कुर्यात्' },
+  },
+  3: { // Wednesday
+    direction: { en: 'North', hi: 'उत्तर',  sa: 'उत्तरम्' },
+    remedy:    { en: 'Consume green vegetables before travel', hi: 'यात्रा से पहले हरी सब्जी खाएं', sa: 'हरितशाकं भक्षयित्वा यात्रां कुर्यात्' },
+  },
+  4: { // Thursday
+    direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' },
+    remedy:    { en: 'Consume curd before travel', hi: 'यात्रा से पहले दही खाएं', sa: 'दधि भक्षयित्वा यात्रां कुर्यात्' },
+  },
+  5: { // Friday
+    direction: { en: 'West',  hi: 'पश्चिम', sa: 'पश्चिमम्' },
+    remedy:    { en: 'Consume sour items before travel', hi: 'यात्रा से पहले अम्ल पदार्थ खाएं', sa: 'आम्लं भक्षयित्वा यात्रां कुर्यात्' },
+  },
+  6: { // Saturday
+    direction: { en: 'East',  hi: 'पूर्व',  sa: 'पूर्वम्' },
+    remedy:    { en: 'Consume iron/sesame before travel', hi: 'यात्रा से पहले तिल खाएं', sa: 'तिलं भक्षयित्वा यात्रां कुर्यात्' },
+  },
+};
+
+// ──────────────────────────────────────────────────────────────
+// Sarvartha Siddhi Yoga
+// ──────────────────────────────────────────────────────────────
+
+// Sarvartha Siddhi occurs on specific Nakshatra + Vara combinations
+// Key: weekday (0-6) → set of nakshatra numbers that form Sarvartha Siddhi
+const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
+  0: new Set([2, 5, 7, 9, 12, 16, 21, 26]),     // Sunday
+  1: new Set([1, 6, 11, 15, 17, 22, 27]),        // Monday
+  2: new Set([3, 7, 12, 14, 18, 23, 25]),        // Tuesday
+  3: new Set([2, 5, 8, 13, 17, 19, 24, 26]),     // Wednesday
+  4: new Set([1, 4, 7, 10, 14, 16, 20, 25, 27]), // Thursday
+  5: new Set([3, 6, 9, 12, 15, 19, 21, 26]),     // Friday
+  6: new Set([4, 8, 11, 14, 18, 22, 24, 27]),    // Saturday
+};
 
 export function computePanchang(input: PanchangInput): PanchangData {
   const { year, month, day, lat, lng, tzOffset, locationName } = input;
@@ -135,6 +529,53 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const samvatsaraIndex = getSamvatsara(year);
   const ayana = getAyana(sunSid);
 
+  // ── Transition times ──
+  const tithiTransition = computeTransition(
+    tithiResult.number,
+    (jd) => calculateTithi(jd).number,
+    findTithiTransition,
+    jdSunrise, tzOffset, TITHIS, 30,
+  );
+
+  const nakshatraTransition = computeTransition(
+    nakshatraNum,
+    (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd)),
+    findNakshatraTransition,
+    jdSunrise, tzOffset, NAKSHATRAS, 27,
+  );
+
+  const yogaTransition = computeTransition(
+    yogaNum,
+    (jd) => calculateYoga(jd),
+    findYogaTransition,
+    jdSunrise, tzOffset, YOGAS, 27,
+  );
+
+  const karanaTransition = computeTransition(
+    karanaNum,
+    (jd) => calculateKarana(jd),
+    findKaranaTransition,
+    jdSunrise, tzOffset, KARANAS, 11,
+  );
+
+  // ── Choghadiya ──
+  const choghadiya = computeChoghadiya(sunriseUT, sunsetUT, weekday, tzOffset);
+
+  // ── Hora ──
+  const hora = computeHora(sunriseUT, sunsetUT, weekday, tzOffset);
+
+  // ── Amrit Kalam & Varjyam ──
+  const { amritKalam, varjyam } = computeAmritVarjyam(nakshatraNum, sunriseUT, tzOffset);
+
+  // ── Named Muhurtas ──
+  const namedMuhurtas = computeNamedMuhurtas(sunriseUT, sunsetUT, tzOffset);
+
+  // ── Disha Shool ──
+  const dishaShool = DISHA_SHOOL_DATA[weekday];
+
+  // ── Sarvartha Siddhi Yoga ──
+  const sarvarthaSiddhi = SARVARTHA_SIDDHI[weekday]?.has(nakshatraNum) ?? false;
+
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
@@ -145,8 +586,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     vara: { day: weekday, name: varaData.name, ruler: varaData.ruler },
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
-    moonrise: formatTime((sunriseUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset), // Approximate based on tithi
-    moonset: formatTime((sunsetUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset), // Approximate based on tithi
+    moonrise: formatTime((sunriseUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset),
+    moonset: formatTime((sunsetUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset),
     rahuKaal: { start: formatTime(rahuKaal.start, tzOffset), end: formatTime(rahuKaal.end, tzOffset) },
     yamaganda: { start: formatTime(yamaganda.start, tzOffset), end: formatTime(yamaganda.end, tzOffset) },
     gulikaKaal: { start: formatTime(gulikaKaal.start, tzOffset), end: formatTime(gulikaKaal.end, tzOffset) },
@@ -157,5 +598,19 @@ export function computePanchang(input: PanchangInput): PanchangData {
     samvatsara: SAMVATSARA_NAMES[samvatsaraIndex] || SAMVATSARA_NAMES[0],
     ritu: RITU_NAMES[rituIndex] || RITU_NAMES[0],
     ayana,
+    tithiTransition,
+    nakshatraTransition,
+    yogaTransition,
+    karanaTransition,
+    choghadiya,
+    hora,
+    amritKalam,
+    varjyam,
+    brahmaMuhurta: namedMuhurtas.brahmaMuhurta,
+    godhuli: namedMuhurtas.godhuli,
+    sandhyaKaal: namedMuhurtas.sandhyaKaal,
+    nishitaKaal: namedMuhurtas.nishitaKaal,
+    dishaShool,
+    sarvarthaSiddhi,
   };
 }

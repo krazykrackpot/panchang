@@ -34,6 +34,8 @@ function NavDropdown({ label, items, onNavigate }: { label: string; items: Dropd
       <button
         onClick={() => setOpen(!open)}
         onMouseEnter={() => setOpen(true)}
+        aria-expanded={open}
+        aria-haspopup="true"
         className="flex items-center gap-1 text-text-secondary hover:text-gold-light transition-colors duration-200 text-sm font-medium"
       >
         {label}
@@ -98,7 +100,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-gold-primary/10">
+    <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-gold-primary/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -135,6 +137,8 @@ export default function Navbar() {
           <button
             className="lg:hidden text-text-primary p-2"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

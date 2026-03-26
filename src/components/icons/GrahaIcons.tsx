@@ -26,7 +26,7 @@ function Defs({ id, primary, secondary }: { id: string; primary: string; seconda
 export function SuryaIcon({ size = 48, className }: IconProps) {
   const c = '#e67e22', l = '#f5b041';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="sur" primary={c} secondary={l} />
       {Array.from({ length: 12 }, (_, i) => {
         const a = (Math.PI * 2 * i) / 12;
@@ -43,7 +43,7 @@ export function SuryaIcon({ size = 48, className }: IconProps) {
 // 1. Chandra (Moon) — Silver crescent
 export function ChandraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="cha" primary="#9b97a0" secondary="#ecf0f1" />
       <circle cx="32" cy="32" r="22" fill="url(#grg-cha)" filter="url(#gg-cha)" />
       <circle cx="42" cy="26" r="18" fill="#0a0e27" />
@@ -59,7 +59,7 @@ export function ChandraIcon({ size = 48, className }: IconProps) {
 export function MangalIcon({ size = 48, className }: IconProps) {
   const c = '#e74c3c', l = '#f1948a';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="man" primary={c} secondary={l} />
       <circle cx="28" cy="36" r="18" stroke={c} strokeWidth="2.5" fill={`url(#grg-man)`} fillOpacity="0.3" filter="url(#gg-man)" />
       {/* Arrow pointing NE */}
@@ -73,7 +73,7 @@ export function MangalIcon({ size = 48, className }: IconProps) {
 export function BudhaIcon({ size = 48, className }: IconProps) {
   const c = '#2ecc71', l = '#82e0aa';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="bud" primary={c} secondary={l} />
       <circle cx="32" cy="38" r="12" stroke={c} strokeWidth="2.5" fill={`url(#grg-bud)`} fillOpacity="0.3" filter="url(#gg-bud)" />
       {/* Cross below */}
@@ -91,7 +91,7 @@ export function BudhaIcon({ size = 48, className }: IconProps) {
 export function GuruIcon({ size = 48, className }: IconProps) {
   const c = '#f39c12', l = '#f9e79f';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="gur" primary={c} secondary={l} />
       {/* Large sphere */}
       <circle cx="32" cy="32" r="20" fill={`url(#grg-gur)`} fillOpacity="0.3" stroke={c} strokeWidth="2" filter="url(#gg-gur)" />
@@ -110,7 +110,7 @@ export function GuruIcon({ size = 48, className }: IconProps) {
 export function ShukraIcon({ size = 48, className }: IconProps) {
   const c = '#e8e6e3', l = '#fdfefe';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="shu" primary={c} secondary={l} />
       <circle cx="32" cy="26" r="16" stroke={c} strokeWidth="2.5" fill={`url(#grg-shu)`} fillOpacity="0.25" filter="url(#gg-shu)" />
       {/* Venus cross */}
@@ -126,7 +126,7 @@ export function ShukraIcon({ size = 48, className }: IconProps) {
 export function ShaniIcon({ size = 48, className }: IconProps) {
   const c = '#3498db', l = '#85c1e9';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="sha" primary={c} secondary={l} />
       <circle cx="32" cy="32" r="14" fill={`url(#grg-sha)`} fillOpacity="0.3" stroke={c} strokeWidth="2" filter="url(#gg-sha)" />
       {/* Ring */}
@@ -145,7 +145,7 @@ export function ShaniIcon({ size = 48, className }: IconProps) {
 export function RahuIcon({ size = 48, className }: IconProps) {
   const c = '#8e44ad', l = '#c39bd3';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="rah" primary={c} secondary={l} />
       {/* Shadow sphere */}
       <circle cx="32" cy="32" r="20" fill={`url(#grg-rah)`} fillOpacity="0.2" filter="url(#gg-rah)" />
@@ -170,7 +170,7 @@ export function RahuIcon({ size = 48, className }: IconProps) {
 export function KetuIcon({ size = 48, className }: IconProps) {
   const c = '#95a5a6', l = '#d5dbdb';
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="ket" primary={c} secondary={l} />
       {/* Comet head */}
       <circle cx="32" cy="20" r="10" fill={`url(#grg-ket)`} fillOpacity="0.4" filter="url(#gg-ket)" />

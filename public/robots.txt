@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jyotishpanchang.com/sitemap.xml
+
+# Disallow API routes
+Disallow: /api/
+
+# Disallow internal Next.js paths
+Disallow: /_next/

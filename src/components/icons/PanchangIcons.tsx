@@ -34,7 +34,7 @@ function GoldGradient({ id }: { id: string }) {
 // ─── TITHI: Crescent Moon with phase arc ──────────────────────────
 export function TithiIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="tithi" />
       {/* Outer moon circle */}
       <circle cx="32" cy="32" r="26" stroke="url(#gold-tithi)" strokeWidth="2" fill="none" opacity="0.3" />
@@ -67,7 +67,7 @@ export function NakshatraIcon({ size = defaults.size, className }: IconProps) {
   }).join(' ') + 'Z';
 
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="nak" />
       {/* Outer glow ring */}
       <circle cx="32" cy="32" r="28" stroke="#f0d48a" strokeWidth="0.5" opacity="0.3" />
@@ -83,7 +83,7 @@ export function NakshatraIcon({ size = defaults.size, className }: IconProps) {
 // ─── YOGA: Interlocking celestial rings ───────────────────────────
 export function YogaIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="yoga" />
       {/* Sun circle */}
       <circle cx="24" cy="32" r="16" stroke="url(#gold-yoga)" strokeWidth="2.5" fill="none" />
@@ -104,7 +104,7 @@ export function YogaIcon({ size = defaults.size, className }: IconProps) {
 // ─── KARANA: Half-moon with geometric split ───────────────────────
 export function KaranaIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="karana" />
       {/* Full circle outline */}
       <circle cx="32" cy="32" r="24" stroke="url(#gold-karana)" strokeWidth="2" fill="none" opacity="0.4" />
@@ -128,7 +128,7 @@ export function KaranaIcon({ size = defaults.size, className }: IconProps) {
 export function VaraIcon({ size = defaults.size, className }: IconProps) {
   const rays = 12;
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="vara" />
       {/* Rays */}
       {Array.from({ length: rays }, (_, i) => {
@@ -154,7 +154,7 @@ export function VaraIcon({ size = defaults.size, className }: IconProps) {
 // ─── MUHURTA: Hourglass / Time ────────────────────────────────────
 export function MuhurtaIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="muhurta" />
       {/* Top triangle */}
       <path d="M16 12h32L32 32z" fill="url(#gold-muhurta)" opacity="0.8" />
@@ -175,7 +175,7 @@ export function MuhurtaIcon({ size = defaults.size, className }: IconProps) {
 // ─── GRAHAN: Eclipse — overlapping sun and moon ───────────────────
 export function GrahanIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="grahan" />
       {/* Corona rays */}
       {Array.from({ length: 16 }, (_, i) => {
@@ -202,7 +202,7 @@ export function GrahanIcon({ size = defaults.size, className }: IconProps) {
 // ─── RASHI: Zodiac wheel segment ──────────────────────────────────
 export function RashiIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="rashi" />
       {/* Outer wheel */}
       <circle cx="32" cy="32" r="26" stroke="url(#gold-rashi)" strokeWidth="2" fill="none" />
@@ -225,7 +225,7 @@ export function RashiIcon({ size = defaults.size, className }: IconProps) {
 // ─── MASA: Lunar month — waxing/waning cycle ──────────────────────
 export function MasaIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="masa" />
       {/* Orbit path */}
       <ellipse cx="32" cy="32" rx="26" ry="12" stroke="url(#gold-masa)" strokeWidth="1.5" fill="none" opacity="0.4"
@@ -248,7 +248,7 @@ export function MasaIcon({ size = defaults.size, className }: IconProps) {
 // ─── SAMVATSARA: Cycle wheel with 60 segments ─────────────────────
 export function SamvatsaraIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="samv" />
       {/* Outer ring with tick marks */}
       <circle cx="32" cy="32" r="26" stroke="url(#gold-samv)" strokeWidth="2" fill="none" opacity="0.4" />
@@ -281,7 +281,7 @@ export function SamvatsaraIcon({ size = defaults.size, className }: IconProps) {
 // ─── SUNRISE icon ─────────────────────────────────────────────────
 export function SunriseIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="rise" />
       {/* Horizon line */}
       <line x1="6" y1="40" x2="58" y2="40" stroke="#f0d48a" strokeWidth="2" opacity="0.5" />
@@ -304,7 +304,7 @@ export function SunriseIcon({ size = defaults.size, className }: IconProps) {
 // ─── SUNSET icon ──────────────────────────────────────────────────
 export function SunsetIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="set" />
       <line x1="6" y1="40" x2="58" y2="40" stroke="#8a6d2b" strokeWidth="2" opacity="0.5" />
       <path d="M14 40a18 18 0 0 1 36 0" fill="url(#gold-set)" opacity="0.4" />
@@ -317,7 +317,7 @@ export function SunsetIcon({ size = defaults.size, className }: IconProps) {
 // ─── MOONRISE icon ────────────────────────────────────────────────
 export function MoonriseIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="mrise" />
       <line x1="6" y1="40" x2="58" y2="40" stroke="#f0d48a" strokeWidth="1.5" opacity="0.4" />
       {/* Crescent rising */}
@@ -336,7 +336,7 @@ export function MoonriseIcon({ size = defaults.size, className }: IconProps) {
 // ─── RITU: Season leaf/cycle ──────────────────────────────────────
 export function RituIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="ritu" />
       {/* Leaf shape */}
       <path
@@ -355,7 +355,7 @@ export function RituIcon({ size = defaults.size, className }: IconProps) {
 // ─── AYANA: Solstice path ─────────────────────────────────────────
 export function AyanaIcon({ size = defaults.size, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <GoldGradient id="ayana" />
       {/* Sine wave path */}
       <path

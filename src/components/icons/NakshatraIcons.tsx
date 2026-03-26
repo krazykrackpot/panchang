@@ -30,7 +30,7 @@ function Defs({ id }: { id: string }) {
 // 1. Ashwini — Horse head (swift healers)
 export function AshwiniIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="ash" />
       {/* Horse head profile */}
       <path d="M20 48L22 34L18 26L22 16L28 10L36 8L42 12L44 20L48 24L46 30L40 34L38 44L34 48"
@@ -49,7 +49,7 @@ export function AshwiniIcon({ size = 48, className }: IconProps) {
 // 2. Bharani — Yoni/Triangle (creation)
 export function BharaniIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="bha" />
       {/* Inverted triangle */}
       <path d="M32 52L12 16h40z" stroke="url(#ng-bha)" strokeWidth="2.5" fill="url(#ng-bha)" fillOpacity="0.15" strokeLinejoin="round" filter="url(#gl-bha)" />
@@ -65,7 +65,7 @@ export function BharaniIcon({ size = 48, className }: IconProps) {
 // 3. Krittika — Flame / Razor
 export function KrittikaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="kri" />
       {/* Main flame */}
       <path d="M32 6C26 18 18 28 18 40c0 10 6 18 14 18s14-8 14-18C46 28 38 18 32 6z"
@@ -82,7 +82,7 @@ export function KrittikaIcon({ size = 48, className }: IconProps) {
 // 4. Rohini — Chariot / Cart (creation, growth)
 export function RohiniIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="roh" />
       {/* Cart body */}
       <rect x="16" y="22" width="32" height="18" rx="3" stroke="url(#ng-roh)" strokeWidth="2" fill="url(#ng-roh)" fillOpacity="0.15" />
@@ -108,7 +108,7 @@ export function RohiniIcon({ size = 48, className }: IconProps) {
 // 5. Mrigashira — Deer head (searching, quest)
 export function MrigashiraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="mri" />
       {/* Antlers */}
       <path d="M24 26L18 12L14 6M24 26L22 14L26 8" stroke="url(#ng-mri)" strokeWidth="2" strokeLinecap="round" fill="none" />
@@ -129,7 +129,7 @@ export function MrigashiraIcon({ size = 48, className }: IconProps) {
 // 6. Ardra — Teardrop / Diamond (storm, transformation)
 export function ArdraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="ard" />
       {/* Main teardrop */}
       <path d="M32 8C32 8 14 30 14 42c0 8 8 14 18 14s18-6 18-14C50 30 32 8 32 8z"
@@ -149,7 +149,7 @@ export function ArdraIcon({ size = 48, className }: IconProps) {
 // 7. Punarvasu — Bow and quiver (return, renewal)
 export function PunarvasuIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="pun" />
       {/* Bow */}
       <path d="M16 52C10 36 10 28 16 12" stroke="url(#ng-pun)" strokeWidth="3" fill="none" strokeLinecap="round" filter="url(#gl-pun)" />
@@ -171,7 +171,7 @@ export function PunarvasuIcon({ size = 48, className }: IconProps) {
 // 8. Pushya — Lotus flower (nourishment)
 export function PushyaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="pus" />
       {/* Petals */}
       {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
@@ -191,7 +191,7 @@ export function PushyaIcon({ size = 48, className }: IconProps) {
 // 9. Ashlesha — Coiled serpent (mystical energy)
 export function AshleshaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="asl" />
       {/* Coiled body */}
       <path d="M32 56C20 56 12 48 12 40s6-14 14-14c-4 0-8-4-8-10s6-10 14-10c8 0 14 4 14 10s-4 10-8 10c8 0 14 6 14 14s-8 16-20 16z"
@@ -214,7 +214,7 @@ export function AshleshaIcon({ size = 48, className }: IconProps) {
 // 10. Magha — Royal throne / Crown (ancestry, authority)
 export function MaghaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="mag" />
       {/* Crown base */}
       <path d="M14 40h36v10H14z" fill="url(#ng-mag)" opacity="0.3" stroke="url(#ng-mag)" strokeWidth="1.5" />
@@ -236,7 +236,7 @@ export function MaghaIcon({ size = 48, className }: IconProps) {
 // 11. Purva Phalguni — Hammock / Swinging bed (enjoyment)
 export function PurvaPhalgIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="ppf" />
       {/* Support poles */}
       <line x1="12" y1="8" x2="12" y2="56" stroke="url(#ng-ppf)" strokeWidth="2.5" strokeLinecap="round" />
@@ -257,7 +257,7 @@ export function PurvaPhalgIcon({ size = 48, className }: IconProps) {
 // 12. Uttara Phalguni — Sun / Patronage (friendship)
 export function UttaraPhalgIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="upf" />
       {/* Bed/cot frame */}
       <rect x="10" y="26" width="44" height="22" rx="2" stroke="url(#ng-upf)" strokeWidth="2" fill="url(#ng-upf)" fillOpacity="0.1" />
@@ -279,7 +279,7 @@ export function UttaraPhalgIcon({ size = 48, className }: IconProps) {
 // 13. Hasta — Open hand (skill, dexterity)
 export function HastaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="has" />
       {/* Palm */}
       <path d="M24 54V28L20 16L24 14V8L28 6V14L32 4L36 6V14L40 6L44 8V14L46 12L48 16L44 28V54z"
@@ -296,7 +296,7 @@ export function HastaIcon({ size = 48, className }: IconProps) {
 // 14. Chitra — Pearl / Gem (brilliance)
 export function ChitraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="chi" />
       {/* Diamond gem */}
       <path d="M32 8L52 28L32 56L12 28z" stroke="url(#ng-chi)" strokeWidth="2.5"
@@ -317,7 +317,7 @@ export function ChitraIcon({ size = 48, className }: IconProps) {
 // 15. Swati — Coral / Young plant shoot (independence)
 export function SwatiIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="swa" />
       {/* Stem */}
       <path d="M32 56C32 56 30 40 28 34s2-12 4-20" stroke="url(#ng-swa)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
@@ -337,7 +337,7 @@ export function SwatiIcon({ size = 48, className }: IconProps) {
 // 16. Vishakha — Triumphal archway / forked branch (determination)
 export function VishakhaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="vis" />
       {/* Archway */}
       <path d="M12 56V24C12 14 22 6 32 6s20 8 20 18v32"
@@ -358,7 +358,7 @@ export function VishakhaIcon({ size = 48, className }: IconProps) {
 // 17. Anuradha — Lotus (devotion, friendship)
 export function AnuradhaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="anu" />
       {/* Lotus petals - top layer */}
       <path d="M32 12C28 20 24 28 32 36C40 28 36 20 32 12z" fill="url(#ng-anu)" opacity="0.5" filter="url(#gl-anu)" />
@@ -380,7 +380,7 @@ export function AnuradhaIcon({ size = 48, className }: IconProps) {
 // 18. Jyeshtha — Circular earring / Talisman (protection, seniority)
 export function JyeshthaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="jye" />
       {/* Outer ring */}
       <circle cx="32" cy="30" r="20" stroke="url(#ng-jye)" strokeWidth="3" fill="none" filter="url(#gl-jye)" />
@@ -403,7 +403,7 @@ export function JyeshthaIcon({ size = 48, className }: IconProps) {
 // 19. Mula — Roots / tied bunch (foundation, origin)
 export function MulaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="mul" />
       {/* Root system */}
       <path d="M32 8V24" stroke="url(#ng-mul)" strokeWidth="3" strokeLinecap="round" />
@@ -423,7 +423,7 @@ export function MulaIcon({ size = 48, className }: IconProps) {
 // 20. Purva Ashadha — Fan / Winnowing basket (invincibility)
 export function PurvaAshadhaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="pas" />
       {/* Fan shape */}
       <path d="M32 52C32 52 8 30 8 18C8 12 14 8 22 12C26 14 30 18 32 24C34 18 38 14 42 12C50 8 56 12 56 18C56 30 32 52 32 52z"
@@ -442,7 +442,7 @@ export function PurvaAshadhaIcon({ size = 48, className }: IconProps) {
 // 21. Uttara Ashadha — Elephant tusk (final victory)
 export function UttaraAshadhaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="uas" />
       {/* Tusk */}
       <path d="M24 8C22 16 20 28 22 40C24 50 30 56 36 56C40 56 42 50 40 40C38 28 34 16 30 8"
@@ -461,7 +461,7 @@ export function UttaraAshadhaIcon({ size = 48, className }: IconProps) {
 // 22. Shravana — Three footprints / Ear (listening, learning)
 export function ShravanaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="shr" />
       {/* Ear outline */}
       <path d="M40 12C50 16 54 26 52 36C50 44 44 50 38 52C34 54 28 52 26 48C24 44 28 40 32 38C36 36 38 32 38 28C38 24 36 20 32 18C28 16 24 20 24 26"
@@ -482,7 +482,7 @@ export function ShravanaIcon({ size = 48, className }: IconProps) {
 // 23. Dhanishtha — Drum / Mridanga (wealth, music)
 export function DhanishthaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="dha" />
       {/* Drum body */}
       <ellipse cx="32" cy="32" rx="12" ry="22" stroke="url(#ng-dha)" strokeWidth="2.5"
@@ -503,7 +503,7 @@ export function DhanishthaIcon({ size = 48, className }: IconProps) {
 // 24. Shatabhisha — Empty circle / 100 stars (healing, mysticism)
 export function ShatabhishaIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="sat" />
       {/* Outer ring */}
       <circle cx="32" cy="32" r="24" stroke="url(#ng-sat)" strokeWidth="2.5" fill="none" filter="url(#gl-sat)" />
@@ -530,7 +530,7 @@ export function ShatabhishaIcon({ size = 48, className }: IconProps) {
 // 25. Purva Bhadrapada — Sword / Two-faced man (spiritual fire)
 export function PurvaBhadraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="pbd" />
       {/* Sword blade */}
       <path d="M32 6L36 42h-8z" fill="url(#ng-pbd)" opacity="0.3" stroke="url(#ng-pbd)" strokeWidth="2" filter="url(#gl-pbd)" />
@@ -551,7 +551,7 @@ export function PurvaBhadraIcon({ size = 48, className }: IconProps) {
 // 26. Uttara Bhadrapada — Twin serpent / back legs of bed (deep wisdom)
 export function UttaraBhadraIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="ubd" />
       {/* Twin serpent / caduceus-like */}
       <path d="M32 8V56" stroke="url(#ng-ubd)" strokeWidth="2" />
@@ -573,7 +573,7 @@ export function UttaraBhadraIcon({ size = 48, className }: IconProps) {
 // 27. Revati — Fish / Pair of fish (journey, nourishment)
 export function RevatiIcon({ size = 48, className }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className}>
+    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
       <Defs id="rev" />
       {/* Fish 1 */}
       <path d="M12 24C12 24 20 18 32 18C38 18 44 20 48 24C44 28 38 30 32 30C20 30 12 24 12 24z"

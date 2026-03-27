@@ -1,0 +1,255 @@
+'use client';
+
+import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import ChartNorth from '@/components/kundali/ChartNorth';
+import ChartSouth from '@/components/kundali/ChartSouth';
+import GoldDivider from '@/components/ui/GoldDivider';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
+import { RashiIconById } from '@/components/icons/RashiIcons';
+import type { Locale } from '@/types/panchang';
+import type { VarshaphalData } from '@/types/varshaphal';
+import type { ChartStyle } from '@/types/kundali';
+
+const LABELS = {
+  en: {
+    title: 'Varshaphal',
+    subtitle: 'Tajika Solar Return — Annual Horoscopy',
+    desc: 'Cast your annual chart for the exact moment the Sun returns to its natal position. Includes Muntha, Varsheshvara, Sahams, Tajika Yogas, and Mudda Dasha.',
+    generate: 'Generate Varshaphal',
+    generating: 'Calculating Solar Return...',
+    name: 'Name', date: 'Birth Date', time: 'Birth Time', place: 'Place', lat: 'Latitude', lng: 'Longitude', tz: 'Timezone (hrs)', year: 'Year',
+    solarReturn: 'Solar Return Moment', muntha: 'Muntha', varsheshvara: 'Year Lord (Varsheshvara)',
+    sahams: 'Tajika Sahams', tajikaYogas: 'Tajika Yogas', muddaDasha: 'Mudda Dasha',
+    yearSummary: 'Year Summary', chart: 'Annual Chart', sign: 'Sign', house: 'House', degree: 'Degree',
+    planet: 'Planet', start: 'Start', end: 'End', days: 'Days', type: 'Type', favorable: 'Favorable',
+    north: 'North Indian', south: 'South Indian', age: 'Age',
+  },
+  hi: {
+    title: 'वर्षफल',
+    subtitle: 'ताजिक सूर्य प्रत्यावर्तन — वार्षिक ज्योतिष',
+    desc: 'सूर्य जब अपनी जन्म स्थिति पर लौटता है उस क्षण की कुण्डली। मुन्था, वर्षेश्वर, सहम, ताजिक योग और मुद्दा दशा सहित।',
+    generate: 'वर्षफल बनाएं',
+    generating: 'सूर्य प्रत्यावर्तन की गणना...',
+    name: 'नाम', date: 'जन्म तिथि', time: 'जन्म समय', place: 'स्थान', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समयक्षेत्र', year: 'वर्ष',
+    solarReturn: 'सूर्य प्रत्यावर्तन क्षण', muntha: 'मुन्था', varsheshvara: 'वर्षेश्वर',
+    sahams: 'ताजिक सहम', tajikaYogas: 'ताजिक योग', muddaDasha: 'मुद्दा दशा',
+    yearSummary: 'वर्ष सारांश', chart: 'वार्षिक कुण्डली', sign: 'राशि', house: 'भाव', degree: 'अंश',
+    planet: 'ग्रह', start: 'आरम्भ', end: 'अन्त', days: 'दिन', type: 'प्रकार', favorable: 'अनुकूल',
+    north: 'उत्तर भारतीय', south: 'दक्षिण भारतीय', age: 'आयु',
+  },
+  sa: {
+    title: 'वर्षफलम्',
+    subtitle: 'ताजिकसूर्यप्रत्यावर्तनम् — वार्षिकज्योतिषम्',
+    desc: 'सूर्यः यदा स्वजन्मस्थानं प्रत्यावर्तते तदा कुण्डली। मुन्था वर्षेश्वरः सहमाः ताजिकयोगाः मुद्दादशा च।',
+    generate: 'वर्षफलं रचयतु',
+    generating: 'सूर्यप्रत्यावर्तनगणना...',
+    name: 'नाम', date: 'जन्मतिथिः', time: 'जन्मसमयः', place: 'स्थानम्', lat: 'अक्षांशः', lng: 'देशान्तरः', tz: 'समयक्षेत्रम्', year: 'वर्षम्',
+    solarReturn: 'सूर्यप्रत्यावर्तनक्षणम्', muntha: 'मुन्था', varsheshvara: 'वर्षेश्वरः',
+    sahams: 'ताजिकसहमाः', tajikaYogas: 'ताजिकयोगाः', muddaDasha: 'मुद्दादशा',
+    yearSummary: 'वर्षसारांशः', chart: 'वार्षिककुण्डली', sign: 'राशिः', house: 'भावः', degree: 'अंशः',
+    planet: 'ग्रहः', start: 'आरम्भः', end: 'अन्तः', days: 'दिनानि', type: 'प्रकारः', favorable: 'अनुकूलः',
+    north: 'उत्तरभारतीयम्', south: 'दक्षिणभारतीयम्', age: 'आयुः',
+  },
+};
+
+export default function VarshaphalPage() {
+  const locale = useLocale() as Locale;
+  const t = LABELS[locale] || LABELS.en;
+  const isDevanagari = locale !== 'en';
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', place: 'Delhi', lat: '28.6139', lng: '77.2090', tz: '5.5', ayanamsha: 'lahiri' as const });
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [data, setData] = useState<VarshaphalData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/varshaphal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          birthData: { ...form, lat: parseFloat(form.lat), lng: parseFloat(form.lng), timezone: form.tz, ayanamsha: form.ayanamsha },
+          year,
+        }),
+      });
+      const result = await res.json();
+      if (result.error) throw new Error(result.error);
+      setData(result);
+    } catch (e) { console.error(e); }
+    setLoading(false);
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+          <span className="text-gold-gradient">{t.title}</span>
+        </h1>
+        <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
+      </motion.div>
+
+      {/* Birth form */}
+      <div className="glass-card rounded-2xl p-6 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {(['name', 'date', 'time', 'place'] as const).map(f => (
+            <label key={f} className="block">
+              <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t[f]}</span>
+              <input type={f === 'date' ? 'date' : f === 'time' ? 'time' : 'text'} value={form[f]} onChange={e => setForm({ ...form, [f]: e.target.value })}
+                className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+            </label>
+          ))}
+          {(['lat', 'lng', 'tz'] as const).map(f => (
+            <label key={f} className="block">
+              <span className="text-text-secondary text-xs uppercase tracking-wider">{t[f]}</span>
+              <input type="number" step="0.01" value={form[f]} onChange={e => setForm({ ...form, [f]: e.target.value })}
+                className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+            </label>
+          ))}
+          <label className="block">
+            <span className="text-text-secondary text-xs uppercase tracking-wider">{t.year}</span>
+            <input type="number" value={year} onChange={e => setYear(parseInt(e.target.value) || new Date().getFullYear())}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+        </div>
+        <div className="text-center mt-6">
+          <motion.button onClick={handleSubmit} disabled={loading} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+            className="px-10 py-4 bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border-2 border-gold-primary/40 rounded-2xl text-gold-light text-lg font-bold hover:bg-gold-primary/30 disabled:opacity-50" style={headingFont}>
+            {loading ? t.generating : t.generate}
+          </motion.button>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {data && (
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+            <GoldDivider />
+
+            {/* Solar Return Moment + Age */}
+            <div className="glass-card rounded-xl p-6 text-center">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-2 font-bold">{t.solarReturn}</h2>
+              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN')}</p>
+              <p className="text-text-secondary mt-2">{t.age}: <span className="text-gold-light font-bold">{data.age}</span></p>
+            </div>
+
+            {/* Chart */}
+            <div className="flex justify-center gap-4 mb-2">
+              <button onClick={() => setChartStyle('north')} className={`px-5 py-2 rounded-lg text-sm ${chartStyle === 'north' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary'}`}>{t.north}</button>
+              <button onClick={() => setChartStyle('south')} className={`px-5 py-2 rounded-lg text-sm ${chartStyle === 'south' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary'}`}>{t.south}</button>
+            </div>
+            <div className="flex justify-center">
+              {chartStyle === 'north'
+                ? <ChartNorth data={data.chart.chart} title={`${t.chart} ${data.year}`} size={460} />
+                : <ChartSouth data={data.chart.chart} title={`${t.chart} ${data.year}`} size={460} />}
+            </div>
+
+            {/* Muntha */}
+            <div className="glass-card rounded-xl p-6">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.muntha}</h2>
+              <div className="flex items-center gap-4">
+                <RashiIconById id={data.muntha.sign} size={40} />
+                <div>
+                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{data.muntha.signName[locale]} — {t.house} {data.muntha.house}</p>
+                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{data.muntha.interpretation[locale]}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Varsheshvara */}
+            <div className="glass-card rounded-xl p-6">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.varsheshvara}</h2>
+              <div className="flex items-center gap-4">
+                <GrahaIconById id={data.varsheshvara.planetId} size={40} />
+                <div>
+                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{data.varsheshvara.planetName[locale]}</p>
+                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{data.varsheshvara.description[locale]}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Sahams Table */}
+            <div className="glass-card rounded-xl p-6 overflow-x-auto">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.sahams}</h2>
+              <table className="w-full text-sm">
+                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                  <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                  <th className="text-left py-2 px-2">{t.degree}</th>
+                  <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
+                  <th className="text-left py-2 px-2">{t.house}</th>
+                </tr></thead>
+                <tbody>{data.sahams.map((s, i) => (
+                  <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{s.name[locale]}</td>
+                    <td className="py-2 px-2 text-text-secondary font-mono">{s.degree.toFixed(2)}°</td>
+                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{s.signName[locale]}</td>
+                    <td className="py-2 px-2 text-text-secondary">{s.house}</td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+
+            {/* Tajika Yogas */}
+            <div className="glass-card rounded-xl p-6">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.tajikaYogas}</h2>
+              <div className="grid gap-3">
+                {data.tajikaYogas.map((y, i) => (
+                  <div key={i} className={`p-4 rounded-lg border ${y.favorable ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-gold-light font-bold text-sm" style={bodyFont}>{y.name[locale]}</span>
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
+                        {y.favorable ? (locale === 'en' ? 'Favorable' : 'अनुकूल') : (locale === 'en' ? 'Unfavorable' : 'प्रतिकूल')}
+                      </span>
+                    </div>
+                    <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
+                  </div>
+                ))}
+                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{locale === 'en' ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
+              </div>
+            </div>
+
+            {/* Mudda Dasha Timeline */}
+            <div className="glass-card rounded-xl p-6 overflow-x-auto">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.muddaDasha}</h2>
+              <div className="flex gap-1 mb-4">
+                {data.muddaDasha.map((d, i) => (
+                  <div key={i} className="flex-1 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[80px]">
+                    <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={24} />
+                    <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{d.planetName[locale]}</p>
+                    <p className="text-text-secondary text-[10px]">{d.durationDays}d</p>
+                  </div>
+                ))}
+              </div>
+              <table className="w-full text-sm">
+                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                  <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                  <th className="text-left py-2 px-2">{t.start}</th>
+                  <th className="text-left py-2 px-2">{t.end}</th>
+                  <th className="text-left py-2 px-2">{t.days}</th>
+                </tr></thead>
+                <tbody>{data.muddaDasha.map((d, i) => (
+                  <tr key={i} className="border-b border-gold-primary/5">
+                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{d.planetName[locale]}</td>
+                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
+                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
+                    <td className="py-2 px-2 text-text-secondary">{d.durationDays}</td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+
+            {/* Year Summary */}
+            <div className="glass-card rounded-xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.yearSummary}</h2>
+              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.yearSummary[locale]}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

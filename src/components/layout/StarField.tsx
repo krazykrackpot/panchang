@@ -13,7 +13,8 @@ export default function StarField() {
     if (!ctx) return;
 
     let animationId: number;
-    const stars: { x: number; y: number; size: number; speed: number; opacity: number; twinkleSpeed: number; phase: number }[] = [];
+    const stars: { x: number; y: number; size: number; opacity: number; twinkleSpeed: number; phase: number }[] = [];
+    const MAX_STARS = 150;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -22,13 +23,12 @@ export default function StarField() {
 
     const createStars = () => {
       stars.length = 0;
-      const count = Math.floor((canvas.width * canvas.height) / 8000);
+      const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), MAX_STARS);
       for (let i = 0; i < count; i++) {
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size: Math.random() * 1.5 + 0.5,
-          speed: Math.random() * 0.02 + 0.005,
           opacity: Math.random() * 0.5 + 0.3,
           twinkleSpeed: Math.random() * 0.02 + 0.01,
           phase: Math.random() * Math.PI * 2,
@@ -59,18 +59,20 @@ export default function StarField() {
       animationId = requestAnimationFrame(draw);
     };
 
+    const handleResize = () => {
+      resize();
+      createStars();
+    };
+
     resize();
     createStars();
     animationId = requestAnimationFrame(draw);
 
-    window.addEventListener('resize', () => {
-      resize();
-      createStars();
-    });
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 

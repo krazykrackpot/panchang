@@ -35,7 +35,11 @@
     "shraddha": "Shraddha Calculator",
     "vedicTime": "Vedic Time",
     "upagraha": "Upagraha",
-    "devotional": "Devotional Guide"
+    "devotional": "Devotional Guide",
+    "varshaphal": "Varshaphal",
+    "kpSystem": "KP System",
+    "ashtamangala": "Ashtamangala Prashna",
+    "muhurtaAi": "Muhurta AI"
   },
   "home": {
     "tagline": "Unveiling the Science of Time",

@@ -1,0 +1,262 @@
+'use client';
+
+import { useState } from 'react';
+import { useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import GoldDivider from '@/components/ui/GoldDivider';
+import type { Locale } from '@/types/panchang';
+import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
+
+const ACTIVITY_LIST: { id: ExtendedActivityId; label: { en: string; hi: string; sa: string } }[] = [
+  { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः' } },
+  { id: 'griha_pravesh', label: { en: 'Griha Pravesh', hi: 'गृह प्रवेश', sa: 'गृहप्रवेशः' } },
+  { id: 'mundan', label: { en: 'Mundan', hi: 'मुण्डन', sa: 'मुण्डनम्' } },
+  { id: 'vehicle', label: { en: 'Vehicle', hi: 'वाहन', sa: 'वाहनम्' } },
+  { id: 'travel', label: { en: 'Travel', hi: 'यात्रा', sa: 'यात्रा' } },
+  { id: 'property', label: { en: 'Property', hi: 'संपत्ति', sa: 'सम्पत्तिः' } },
+  { id: 'business', label: { en: 'Business', hi: 'व्यापार', sa: 'व्यापारः' } },
+  { id: 'education', label: { en: 'Education', hi: 'शिक्षा', sa: 'शिक्षा' } },
+  { id: 'namakarana', label: { en: 'Naming', hi: 'नामकरण', sa: 'नामकरणम्' } },
+  { id: 'upanayana', label: { en: 'Thread', hi: 'उपनयन', sa: 'उपनयनम्' } },
+  { id: 'engagement', label: { en: 'Engagement', hi: 'सगाई', sa: 'वाग्दानम्' } },
+  { id: 'gold_purchase', label: { en: 'Gold', hi: 'स्वर्ण', sa: 'स्वर्णम्' } },
+  { id: 'medical_treatment', label: { en: 'Medical', hi: 'चिकित्सा', sa: 'चिकित्सा' } },
+  { id: 'court_case', label: { en: 'Court Case', hi: 'न्यायालय', sa: 'न्यायालयः' } },
+  { id: 'exam', label: { en: 'Exam', hi: 'परीक्षा', sa: 'परीक्षा' } },
+  { id: 'spiritual_practice', label: { en: 'Spiritual', hi: 'साधना', sa: 'साधना' } },
+  { id: 'agriculture', label: { en: 'Agriculture', hi: 'कृषि', sa: 'कृषिः' } },
+  { id: 'financial_signing', label: { en: 'Finance', hi: 'वित्त', sa: 'वित्तम्' } },
+  { id: 'surgery', label: { en: 'Surgery', hi: 'शल्य', sa: 'शल्यम्' } },
+  { id: 'relocation', label: { en: 'Relocation', hi: 'स्थानांतर', sa: 'स्थानान्तरणम्' } },
+];
+
+const L = {
+  en: {
+    title: 'Muhurta AI', subtitle: 'Smart Muhurat Finder',
+    desc: 'Multi-factor scoring engine that ranks time windows 0-100 for any activity. Combines Panchang, transits, hora, and choghadiya.',
+    step1: 'Select Activity', step2: 'Date Range & Location',
+    startDate: 'Start Date', endDate: 'End Date', lat: 'Latitude', lng: 'Longitude', tz: 'Timezone',
+    find: 'Find Best Muhurat', finding: 'Scanning Time Windows...',
+    hero: 'Top Recommendation', score: 'Score', breakdown: 'Score Breakdown',
+    panchang: 'Panchang', transit: 'Transit', timing: 'Timing', personal: 'Personal',
+    keyFactors: 'Key Factors', results: 'All Recommendations', date: 'Date', time: 'Time',
+    noResults: 'No auspicious windows found in this range. Try extending the date range.',
+  },
+  hi: {
+    title: 'मुहूर्त AI', subtitle: 'स्मार्ट मुहूर्त खोजक',
+    desc: 'बहु-कारक स्कोरिंग इंजन जो किसी भी गतिविधि के लिए 0-100 अंक देता है। पंचांग, गोचर, होरा और चौघड़िया।',
+    step1: 'गतिविधि चुनें', step2: 'तिथि सीमा और स्थान',
+    startDate: 'आरम्भ तिथि', endDate: 'अन्तिम तिथि', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समयक्षेत्र',
+    find: 'सर्वोत्तम मुहूर्त खोजें', finding: 'समय खंड स्कैन हो रहे हैं...',
+    hero: 'शीर्ष सिफारिश', score: 'अंक', breakdown: 'अंक विश्लेषण',
+    panchang: 'पंचांग', transit: 'गोचर', timing: 'समय', personal: 'व्यक्तिगत',
+    keyFactors: 'मुख्य कारण', results: 'सभी सिफारिशें', date: 'तिथि', time: 'समय',
+    noResults: 'इस अवधि में कोई शुभ समय नहीं मिला। तिथि सीमा बढ़ाएं।',
+  },
+  sa: {
+    title: 'मुहूर्तम् AI', subtitle: 'स्मार्टमुहूर्तखोजकम्',
+    desc: 'बहुकारकाङ्कनयन्त्रम् यत् कस्यापि कर्मणः 0-100 अङ्कान् ददाति।',
+    step1: 'कर्म चिनुत', step2: 'तिथिसीमा स्थानं च',
+    startDate: 'आरम्भतिथिः', endDate: 'अन्तिमतिथिः', lat: 'अक्षांशः', lng: 'देशान्तरः', tz: 'समयक्षेत्रम्',
+    find: 'सर्वोत्तमं मुहूर्तं खोजयतु', finding: 'समयखण्डस्कैनम्...',
+    hero: 'शीर्षसिफारिशः', score: 'अङ्कः', breakdown: 'अङ्कविश्लेषणम्',
+    panchang: 'पञ्चाङ्गम्', transit: 'गोचरः', timing: 'समयः', personal: 'व्यक्तिगतम्',
+    keyFactors: 'मुख्यकारणानि', results: 'सर्वसिफारिशाः', date: 'तिथिः', time: 'समयः',
+    noResults: 'अस्मिन् अवधौ शुभसमयः न प्राप्तः।',
+  },
+};
+
+function ScoreGauge({ score, label, max = 25 }: { score: number; label: string; max?: number }) {
+  const pct = Math.round((score / max) * 100);
+  const color = pct >= 70 ? '#4ade80' : pct >= 40 ? '#facc15' : '#f87171';
+  return (
+    <div className="text-center">
+      <div className="relative w-16 h-16 mx-auto">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(212,168,83,0.15)" strokeWidth="3" />
+          <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke={color} strokeWidth="3" strokeDasharray={`${pct}, 100`} strokeLinecap="round" />
+        </svg>
+        <span className="absolute inset-0 flex items-center justify-center text-sm font-bold" style={{ color }}>{score}</span>
+      </div>
+      <p className="text-text-secondary text-xs mt-1">{label}</p>
+    </div>
+  );
+}
+
+export default function MuhurtaAIPage() {
+  const locale = useLocale() as Locale;
+  const t = L[locale] || L.en;
+  const isDevanagari = locale !== 'en';
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const today = new Date();
+  const nextMonth = new Date(today); nextMonth.setMonth(today.getMonth() + 1);
+  const fmt = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+  const [activity, setActivity] = useState<ExtendedActivityId | null>(null);
+  const [startDate, setStartDate] = useState(fmt(today));
+  const [endDate, setEndDate] = useState(fmt(nextMonth));
+  const [lat, setLat] = useState('28.6139');
+  const [lng, setLng] = useState('77.2090');
+  const [tz, setTz] = useState('5.5');
+  const [data, setData] = useState<MuhurtaAIResult | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleFind = async () => {
+    if (!activity) return;
+    setLoading(true);
+    try {
+      const res = await fetch('/api/muhurta-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ activity, startDate, endDate, lat: parseFloat(lat), lng: parseFloat(lng), tz: parseFloat(tz) }),
+      });
+      const result = await res.json();
+      if (result.error) throw new Error(result.error);
+      setData(result);
+    } catch (e) { console.error(e); }
+    setLoading(false);
+  };
+
+  const top = data?.topRecommendations[0];
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+          <span className="text-gold-gradient">{t.title}</span>
+        </h1>
+        <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
+      </motion.div>
+
+      {/* Activity Grid */}
+      <div className="mb-8">
+        <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step1}</h2>
+        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 gap-2">
+          {ACTIVITY_LIST.map(a => (
+            <motion.button key={a.id} onClick={() => setActivity(a.id)}
+              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+              className={`p-3 rounded-xl border text-center transition-all ${activity === a.id ? 'border-gold-primary/50 bg-gold-primary/15' : 'border-gold-primary/10 bg-bg-primary/40 hover:border-gold-primary/25'}`}>
+              <p className="text-xs text-gold-light font-medium" style={bodyFont}>{a.label[locale]}</p>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* Date Range */}
+      <div className="glass-card rounded-2xl p-6 mb-8">
+        <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step2}</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-w-3xl mx-auto">
+          <label className="block">
+            <span className="text-text-secondary text-xs">{t.startDate}</span>
+            <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+          <label className="block">
+            <span className="text-text-secondary text-xs">{t.endDate}</span>
+            <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+          <label className="block">
+            <span className="text-text-secondary text-xs">{t.lat}</span>
+            <input type="number" step="0.01" value={lat} onChange={e => setLat(e.target.value)}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+          <label className="block">
+            <span className="text-text-secondary text-xs">{t.lng}</span>
+            <input type="number" step="0.01" value={lng} onChange={e => setLng(e.target.value)}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+          <label className="block">
+            <span className="text-text-secondary text-xs">{t.tz}</span>
+            <input type="number" step="0.5" value={tz} onChange={e => setTz(e.target.value)}
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
+          </label>
+        </div>
+        <div className="text-center mt-6">
+          <motion.button onClick={handleFind} disabled={loading || !activity} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+            className="px-10 py-4 bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border-2 border-gold-primary/40 rounded-2xl text-gold-light text-lg font-bold hover:bg-gold-primary/30 disabled:opacity-50" style={headingFont}>
+            {loading ? t.finding : t.find}
+          </motion.button>
+        </div>
+      </div>
+
+      <AnimatePresence>
+        {data && (
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+            <GoldDivider />
+
+            {top ? (
+              <>
+                {/* Hero recommendation */}
+                <div className="glass-card rounded-xl p-8 text-center border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+                  <p className="text-gold-primary text-xs uppercase tracking-wider mb-2 font-bold">{t.hero}</p>
+                  <p className="text-5xl font-bold text-gold-light mb-1" style={headingFont}>{top.totalScore}<span className="text-2xl text-gold-dark">/100</span></p>
+                  <p className="text-text-secondary">{top.date} &middot; {top.startTime} — {top.endTime}</p>
+
+                  {/* Score breakdown gauges */}
+                  <div className="flex justify-center gap-8 mt-6">
+                    <ScoreGauge score={top.breakdown.panchangScore} label={t.panchang} />
+                    <ScoreGauge score={top.breakdown.transitScore} label={t.transit} />
+                    <ScoreGauge score={top.breakdown.timingScore} label={t.timing} />
+                    <ScoreGauge score={top.breakdown.personalScore} label={t.personal} />
+                  </div>
+
+                  {/* Key Factors */}
+                  {top.keyFactors.length > 0 && (
+                    <div className="mt-4 flex flex-wrap justify-center gap-2">
+                      {top.keyFactors.map((f, i) => (
+                        <span key={i} className="text-xs px-3 py-1 rounded-full bg-gold-primary/10 text-gold-light border border-gold-primary/15" style={bodyFont}>{f[locale]}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* All recommendations */}
+                <div className="glass-card rounded-xl p-6 overflow-x-auto">
+                  <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.results} ({data.topRecommendations.length})</h2>
+                  <table className="w-full text-sm">
+                    <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                      <th className="text-left py-2 px-2">#</th>
+                      <th className="text-left py-2 px-2">{t.date}</th>
+                      <th className="text-left py-2 px-2">{t.time}</th>
+                      <th className="text-left py-2 px-2">{t.score}</th>
+                      <th className="text-left py-2 px-2">{t.panchang}</th>
+                      <th className="text-left py-2 px-2">{t.transit}</th>
+                      <th className="text-left py-2 px-2">{t.timing}</th>
+                      <th className="text-left py-2 px-2">{t.keyFactors}</th>
+                    </tr></thead>
+                    <tbody>{data.topRecommendations.map((w, i) => (
+                      <tr key={i} className={`border-b border-gold-primary/5 ${i === 0 ? 'bg-gold-primary/5' : 'hover:bg-gold-primary/5'}`}>
+                        <td className="py-2 px-2 text-gold-light font-bold">{i + 1}</td>
+                        <td className="py-2 px-2 text-text-secondary font-mono text-xs">{w.date}</td>
+                        <td className="py-2 px-2 text-text-secondary text-xs">{w.startTime}-{w.endTime}</td>
+                        <td className="py-2 px-2">
+                          <span className={`font-bold ${w.totalScore >= 70 ? 'text-green-400' : w.totalScore >= 50 ? 'text-yellow-400' : 'text-orange-400'}`}>{w.totalScore}</span>
+                        </td>
+                        <td className="py-2 px-2 text-text-secondary">{w.breakdown.panchangScore}</td>
+                        <td className="py-2 px-2 text-text-secondary">{w.breakdown.transitScore}</td>
+                        <td className="py-2 px-2 text-text-secondary">{w.breakdown.timingScore}</td>
+                        <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{w.keyFactors.map(f => f[locale]).join(', ')}</td>
+                      </tr>
+                    ))}</tbody>
+                  </table>
+                </div>
+              </>
+            ) : (
+              <div className="glass-card rounded-xl p-8 text-center">
+                <p className="text-text-secondary" style={bodyFont}>{t.noResults}</p>
+              </div>
+            )}
+
+            {/* Summary */}
+            <div className="glass-card rounded-xl p-6 border border-gold-primary/20">
+              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.summary[locale]}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

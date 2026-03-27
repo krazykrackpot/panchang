@@ -1,0 +1,248 @@
+/**
+ * KP Chart Generator (Orchestrator)
+ *
+ * Brings together Placidus cusps, sub-lord lookup, significator
+ * calculation, and ruling planets to produce a complete KPChartData
+ * object from raw birth data.
+ */
+
+import {
+  dateToJD,
+  lahiriAyanamsha,
+  getPlanetaryPositions,
+  normalizeDeg,
+  getRashiNumber,
+  getNakshatraNumber,
+  formatDegrees,
+} from '@/lib/ephem/astronomical';
+import { RASHIS } from '@/lib/constants/rashis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { GRAHAS } from '@/lib/constants/grahas';
+
+import type { BirthData, ChartData } from '@/types/kundali';
+import type { KPChartData, KPCusp, KPPlanet } from '@/types/kp';
+
+import { calculatePlacidusCusps } from './placidus';
+import { getSubLordForDegree } from './sub-lords';
+import { calculateSignificators } from './significators';
+import { getRulingPlanets } from './ruling-planets';
+
+// ---------------------------------------------------------------------------
+// KP-specific ayanamsha (slightly different from standard Lahiri)
+// For now we use the same lahiriAyanamsha; a dedicated KP ayanamsha
+// offset can be added here later if needed.
+// ---------------------------------------------------------------------------
+
+function kpAyanamsha(jd: number): number {
+  return lahiriAyanamsha(jd);
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+/** Parse BirthData.date (ISO "YYYY-MM-DD") + time ("HH:mm") into a JD */
+function birthDataToJD(bd: BirthData): number {
+  const [yearStr, monthStr, dayStr] = bd.date.split('-');
+  const [hourStr, minStr] = bd.time.split(':');
+  const year = parseInt(yearStr, 10);
+  const month = parseInt(monthStr, 10);
+  const day = parseInt(dayStr, 10);
+  const hour = parseInt(hourStr, 10) + parseInt(minStr, 10) / 60;
+
+  // Convert local time to UT using the timezone string.
+  // For simplicity we parse common Indian timezone offset (+05:30).
+  const utHour = hour - tzOffsetHours(bd.timezone);
+
+  return dateToJD(year, month, day, utHour);
+}
+
+/** Resolve timezone string to numeric offset in hours */
+function tzOffsetHours(tz: string): number {
+  // Quick map for common Indian timezone
+  const map: Record<string, number> = {
+    'Asia/Kolkata': 5.5,
+    'Asia/Calcutta': 5.5,
+    IST: 5.5,
+    UTC: 0,
+    GMT: 0,
+    'America/New_York': -5,
+    'America/Chicago': -6,
+    'America/Denver': -7,
+    'America/Los_Angeles': -8,
+    'Europe/London': 0,
+    'Europe/Berlin': 1,
+    'Europe/Paris': 1,
+    'Asia/Dubai': 4,
+    'Asia/Singapore': 8,
+    'Asia/Tokyo': 9,
+    'Australia/Sydney': 11,
+  };
+
+  if (map[tz] !== undefined) return map[tz];
+
+  // Try parsing "+HH:MM" / "-HH:MM" style
+  const m = tz.match(/^([+-])(\d{1,2}):(\d{2})$/);
+  if (m) {
+    const sign = m[1] === '-' ? -1 : 1;
+    return sign * (parseInt(m[2], 10) + parseInt(m[3], 10) / 60);
+  }
+
+  // Default to IST
+  return 5.5;
+}
+
+/** Get nakshatra pada (1-4) from sidereal longitude */
+function getPada(sidLong: number): number {
+  const nkSpan = 360 / 27;
+  const posInNk = ((sidLong % 360 + 360) % 360) % nkSpan;
+  return Math.floor(posInNk / (nkSpan / 4)) + 1;
+}
+
+// ---------------------------------------------------------------------------
+// Planet dignities (simplified)
+// ---------------------------------------------------------------------------
+
+const EXALTATION: Record<number, number> = {
+  0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7,
+};
+const DEBILITATION: Record<number, number> = {
+  0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1,
+};
+const OWN_SIGNS: Record<number, number[]> = {
+  0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
+};
+
+// ---------------------------------------------------------------------------
+// Public API
+// ---------------------------------------------------------------------------
+
+/**
+ * Generate a complete KP chart from birth data.
+ */
+export function generateKPChart(birthData: BirthData): KPChartData {
+  // 1. Compute Julian Day
+  const jd = birthDataToJD(birthData);
+
+  // 2. Ayanamsha
+  const ayanamshaVal = kpAyanamsha(jd);
+
+  // 3. Placidus cusps (returns HouseCusp[])
+  const rawCusps = calculatePlacidusCusps(jd, birthData.lat, birthData.lng, ayanamshaVal);
+
+  // 4. Enrich cusps with sub-lord info -> KPCusp[]
+  const cusps: KPCusp[] = rawCusps.map((c) => ({
+    ...c,
+    subLordInfo: getSubLordForDegree(c.degree),
+  }));
+
+  // 5. Planetary positions (tropical) -> convert to sidereal -> KPPlanet[]
+  const rawPlanets = getPlanetaryPositions(jd);
+
+  const planets: KPPlanet[] = rawPlanets.map((rp) => {
+    const sidLong = normalizeDeg(rp.longitude - ayanamshaVal);
+    const signNum = getRashiNumber(sidLong);
+    const nkNum = getNakshatraNumber(sidLong);
+    const rashi = RASHIS[signNum - 1];
+    const nk = NAKSHATRAS[nkNum - 1];
+    const graha = GRAHAS[rp.id];
+    const pada = getPada(sidLong);
+
+    // Determine house
+    const house = findHouseForDegree(sidLong, cusps);
+
+    // Dignities
+    const isExalted = EXALTATION[rp.id] === signNum;
+    const isDebilitated = DEBILITATION[rp.id] === signNum;
+    const isOwnSign = (OWN_SIGNS[rp.id] ?? []).includes(signNum);
+
+    // Combustion (simplified: within 6 degrees of Sun for inner planets)
+    const sunSid = normalizeDeg(rawPlanets[0].longitude - ayanamshaVal);
+    const distFromSun = Math.abs(sidLong - sunSid);
+    const angularDist = Math.min(distFromSun, 360 - distFromSun);
+    const isCombust = rp.id !== 0 && rp.id !== 7 && rp.id !== 8 && angularDist < 6;
+
+    const kpPlanet: KPPlanet = {
+      planet: graha,
+      longitude: sidLong,
+      latitude: 0,
+      speed: rp.speed,
+      sign: signNum,
+      signName: rashi?.name ?? { en: '', hi: '', sa: '' },
+      house,
+      nakshatra: nk,
+      pada,
+      degree: formatDegrees(sidLong % 30),
+      isRetrograde: rp.isRetrograde,
+      isCombust,
+      isExalted,
+      isDebilitated,
+      isOwnSign,
+      subLordInfo: getSubLordForDegree(sidLong),
+    };
+
+    return kpPlanet;
+  });
+
+  // 6. Significators
+  const significators = calculateSignificators(planets, cusps);
+
+  // 7. Ruling planets
+  const ascDeg = cusps[0]?.degree ?? 0;
+  const moonPlanet = planets.find((p) => p.planet.id === 1);
+  const moonDeg = moonPlanet?.longitude ?? 0;
+  const rulingPlanets = getRulingPlanets(jd, ascDeg, moonDeg);
+
+  // 8. Build chart data (houses array: which planet ids in which house)
+  const housesArr: number[][] = Array.from({ length: 12 }, () => []);
+  for (const p of planets) {
+    if (p.house >= 1 && p.house <= 12) {
+      housesArr[p.house - 1].push(p.planet.id);
+    }
+  }
+
+  const chart: ChartData = {
+    houses: housesArr,
+    ascendantDeg: ascDeg,
+    ascendantSign: cusps[0]?.sign ?? 1,
+  };
+
+  // 9. Return KPChartData
+  return {
+    birthData,
+    cusps,
+    planets,
+    significators,
+    rulingPlanets,
+    chart,
+    ayanamshaValue: ayanamshaVal,
+    julianDay: jd,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Internal: determine house for a sidereal degree using cusp boundaries
+// ---------------------------------------------------------------------------
+
+function findHouseForDegree(deg: number, cusps: KPCusp[]): number {
+  const sorted = [...cusps].sort((a, b) => a.house - b.house);
+  const normDeg = ((deg % 360) + 360) % 360;
+
+  for (let i = 0; i < 12; i++) {
+    const cuspStart = sorted[i].degree;
+    const cuspEnd = sorted[(i + 1) % 12].degree;
+
+    if (cuspEnd > cuspStart) {
+      if (normDeg >= cuspStart && normDeg < cuspEnd) {
+        return sorted[i].house;
+      }
+    } else {
+      // Wraps around 0 degrees
+      if (normDeg >= cuspStart || normDeg < cuspEnd) {
+        return sorted[i].house;
+      }
+    }
+  }
+
+  return 1;
+}

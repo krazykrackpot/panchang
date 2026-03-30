@@ -1,26 +1,49 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
+import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
+import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
+import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import type { Locale, Trilingual } from '@/types/panchang';
 
 interface FestivalEntry {
   name: Trilingual;
   date: string;
   tithi?: string;
-  type: 'major' | 'vrat' | 'regional';
+  type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
   description: Trilingual;
+  slug?: string;
+  // Parana
+  paranaDate?: string;
+  paranaStart?: string;
+  paranaEnd?: string;
+  paranaNote?: Trilingual;
+  paranaSunrise?: string;
+  paranaHariVasaraEnd?: string;
+  paranaDwadashiEnd?: string;
+  paranaEarlyEnd?: boolean;
+  // Eclipse
+  eclipseType?: 'solar' | 'lunar';
+  eclipseMagnitude?: string;
+  eclipseMaxTime?: string;
+  sutakStart?: string;
+  sutakEnd?: string;
+  sutakApplicable?: boolean;
+  eclipsePhases?: { name: Trilingual; time: string }[];
 }
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
 
-type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham';
+type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'eclipse';
+
+interface LocationData { lat: number; lng: number; name: string; tz: number; }
 
 export default function CalendarPage() {
   const t = useTranslations('calendar');
@@ -34,16 +57,82 @@ export default function CalendarPage() {
   const [filter, setFilter] = useState<Filter>('all');
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
+  // Location
+  const [location, setLocation] = useState<LocationData>({ lat: 28.6139, lng: 77.209, name: 'New Delhi, India', tz: 5.5 });
+  const [detectingLocation, setDetectingLocation] = useState(false);
+  const [showLocationSearch, setShowLocationSearch] = useState(false);
+  const [locationInput, setLocationInput] = useState('');
+  const [searchingLocation, setSearchingLocation] = useState(false);
+
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedFestival, setSelectedFestival] = useState<FestivalEntry | null>(null);
+  const [modalDetail, setModalDetail] = useState<FestivalDetail | null>(null);
+  const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
+
+  // Auto-detect location on mount
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      setDetectingLocation(true);
+      navigator.geolocation.getCurrentPosition(
+        async (pos) => {
+          const { latitude, longitude } = pos.coords;
+          try {
+            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
+            const data = await res.json();
+            const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
+            const country = data.address?.country || '';
+            const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`;
+            setLocation({ lat: latitude, lng: longitude, name, tz: -new Date().getTimezoneOffset() / 60 });
+          } catch {
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`, tz: -new Date().getTimezoneOffset() / 60 });
+          }
+          setDetectingLocation(false);
+        },
+        () => {
+          fetch('https://ipapi.co/json/')
+            .then(r => r.json())
+            .then(data => {
+              if (data.latitude && data.longitude) {
+                setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: data.utc_offset ? parseFloat(data.utc_offset) / 100 : 5.5 });
+              }
+            })
+            .catch(() => {})
+            .finally(() => setDetectingLocation(false));
+        },
+        { timeout: 5000 }
+      );
+    }
+  }, []);
+
+  const handleLocationSearch = async () => {
+    if (!locationInput.trim()) return;
+    setSearchingLocation(true);
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(locationInput)}&limit=1`);
+      const data = await res.json();
+      if (data && data[0]) {
+        const lat = parseFloat(data[0].lat);
+        const lng = parseFloat(data[0].lon);
+        const approxTz = Math.round(lng / 15 * 2) / 2;
+        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
+        setShowLocationSearch(false);
+        setLocationInput('');
+      }
+    } catch { /* ignore */ }
+    setSearchingLocation(false);
+  };
+
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/calendar?year=${year}`)
+    fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&tz=${location.tz}`)
       .then(res => res.json())
       .then(data => {
         setFestivals(data.festivals || []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [year]);
+  }, [year, location]);
 
   const filteredFestivals = festivals.filter(f => {
     if (filter !== 'all') {
@@ -57,6 +146,53 @@ export default function CalendarPage() {
     return true;
   });
 
+  const handleFestivalClick = useCallback((festival: FestivalEntry) => {
+    setSelectedFestival(festival);
+
+    // Look up rich details
+    let detail: FestivalDetail | null = null;
+    let ekadashiDetail: EkadashiDetail | null = null;
+
+    if (festival.slug) {
+      // Check main festival details first
+      if (FESTIVAL_DETAILS[festival.slug]) {
+        detail = FESTIVAL_DETAILS[festival.slug];
+      }
+      // Check category details for vrats
+      else if (CATEGORY_DETAILS[festival.slug]) {
+        detail = CATEGORY_DETAILS[festival.slug];
+      }
+      // For ekadashi, also check category-level details
+      else if (festival.slug === 'ekadashi') {
+        detail = CATEGORY_DETAILS.ekadashi;
+      }
+      // Other category slugs
+      else if (CATEGORY_DETAILS[festival.category]) {
+        detail = CATEGORY_DETAILS[festival.category];
+      }
+    }
+
+    // For Ekadashis, also look up the specific Ekadashi detail by name
+    if (festival.category === 'ekadashi') {
+      // Try matching by festival name against all Ekadashi names
+      for (const month of Object.keys(EKADASHI_NAMES)) {
+        const monthData = EKADASHI_NAMES[month];
+        if (monthData.shukla.name.en === festival.name.en) {
+          ekadashiDetail = monthData.shukla;
+          break;
+        }
+        if (monthData.krishna.name.en === festival.name.en) {
+          ekadashiDetail = monthData.krishna;
+          break;
+        }
+      }
+    }
+
+    setModalDetail(detail);
+    setModalEkadashi(ekadashiDetail);
+    setModalOpen(true);
+  }, []);
+
   const categoryColors: Record<string, string> = {
     festival: 'text-gold-light bg-gold-primary/10 border-gold-primary/20',
     ekadashi: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
@@ -65,6 +201,7 @@ export default function CalendarPage() {
     chaturthi: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
     pradosham: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20',
     sankranti: 'text-red-400 bg-red-500/10 border-red-500/20',
+    eclipse: 'text-red-300 bg-red-500/10 border-red-500/20',
   };
 
   const filterButtons: { key: Filter; label: string; labelHi: string }[] = [
@@ -75,6 +212,7 @@ export default function CalendarPage() {
     { key: 'amavasya', label: 'Amavasya', labelHi: 'अमावस्या' },
     { key: 'chaturthi', label: 'Chaturthi', labelHi: 'चतुर्थी' },
     { key: 'pradosham', label: 'Pradosham', labelHi: 'प्रदोष' },
+    { key: 'eclipse', label: 'Eclipses', labelHi: 'ग्रहण' },
   ];
 
   return (
@@ -97,6 +235,40 @@ export default function CalendarPage() {
         <button onClick={() => setYear(y => y + 1)} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all">
           <ChevronRight className="w-5 h-5 text-gold-primary" />
         </button>
+      </div>
+
+      {/* Location bar */}
+      <div className="flex flex-col items-center gap-2 mb-6">
+        <button
+          onClick={() => setShowLocationSearch(v => !v)}
+          className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-bg-secondary/50 hover:bg-gold-primary/10 transition-all text-sm"
+        >
+          {detectingLocation
+            ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" />
+            : <MapPin className="w-4 h-4 text-gold-primary" />}
+          <span className="text-text-primary font-medium">{location.name}</span>
+          <span className="text-text-secondary text-xs">UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
+          <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
+        </button>
+        {showLocationSearch && (
+          <div className="flex items-center gap-2 w-full max-w-sm">
+            <input
+              type="text"
+              value={locationInput}
+              onChange={e => setLocationInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
+              placeholder={locale === 'en' ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
+              className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/50"
+            />
+            <button
+              onClick={handleLocationSearch}
+              disabled={searchingLocation}
+              className="p-2 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all"
+            >
+              {searchingLocation ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" /> : <Search className="w-4 h-4 text-gold-primary" />}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Month tabs */}
@@ -156,13 +328,14 @@ export default function CalendarPage() {
             const monthStr = locale === 'en' ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
 
             return (
-              <motion.div
+              <motion.button
                 key={`${f.date}-${f.name.en}-${i}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(i * 0.02, 0.5) }}
-                className={`glass-card rounded-xl p-4 flex items-center gap-4 border ${
-                  f.type === 'major' ? 'border-gold-primary/20' : 'border-gold-primary/5'
+                onClick={() => handleFestivalClick(f)}
+                className={`w-full text-left glass-card rounded-xl p-4 flex items-center gap-4 border cursor-pointer transition-all hover:scale-[1.01] hover:border-gold-primary/40 active:scale-[0.99] ${
+                  f.type === 'major' ? 'border-gold-primary/20' : f.type === 'eclipse' ? 'border-red-500/20' : 'border-gold-primary/5'
                 }`}
               >
                 {/* Date badge */}
@@ -188,20 +361,60 @@ export default function CalendarPage() {
                   </div>
                 </div>
 
+                {/* Parana time indicator */}
+                {f.paranaStart && (
+                  <div className="hidden sm:block text-right flex-shrink-0">
+                    <div className="text-text-secondary text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Parana' : 'पारण'}</div>
+                    <div className="text-emerald-400 text-xs font-mono">{f.paranaStart}</div>
+                  </div>
+                )}
+
                 {/* Tithi */}
-                {f.tithi && (
+                {f.tithi && !f.paranaStart && (
                   <div className="hidden sm:block text-right flex-shrink-0">
                     <div className="text-text-secondary text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Tithi' : 'तिथि'}</div>
                     <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
                   </div>
                 )}
-              </motion.div>
+
+                {/* Click indicator */}
+                <ChevronDown className="w-4 h-4 text-gold-primary/40 flex-shrink-0 -rotate-90" />
+              </motion.button>
             );
           })}
           <div className="text-center text-text-secondary text-sm mt-6">
             {filteredFestivals.length} {locale === 'en' ? 'entries' : 'प्रविष्टियाँ'}
           </div>
         </div>
+      )}
+
+      {/* Detail Modal */}
+      {selectedFestival && (
+        <FestivalDetailModal
+          isOpen={modalOpen}
+          onClose={() => { setModalOpen(false); setSelectedFestival(null); }}
+          locale={locale}
+          festivalName={selectedFestival.name}
+          festivalDate={selectedFestival.date}
+          festivalCategory={selectedFestival.category}
+          detail={modalDetail}
+          ekadashiDetail={modalEkadashi}
+          paranaDate={selectedFestival.paranaDate}
+          paranaStart={selectedFestival.paranaStart}
+          paranaEnd={selectedFestival.paranaEnd}
+          paranaNote={selectedFestival.paranaNote}
+          paranaSunrise={selectedFestival.paranaSunrise}
+          paranaHariVasaraEnd={selectedFestival.paranaHariVasaraEnd}
+          paranaDwadashiEnd={selectedFestival.paranaDwadashiEnd}
+          paranaEarlyEnd={selectedFestival.paranaEarlyEnd}
+          eclipseType={selectedFestival.eclipseType}
+          eclipseMagnitude={selectedFestival.eclipseMagnitude}
+          eclipseMaxTime={selectedFestival.eclipseMaxTime}
+          sutakStart={selectedFestival.sutakStart}
+          sutakEnd={selectedFestival.sutakEnd}
+          sutakApplicable={selectedFestival.sutakApplicable}
+          eclipsePhases={selectedFestival.eclipsePhases}
+        />
       )}
     </div>
   );

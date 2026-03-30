@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/lib/i18n/navigation';
-import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet } from 'lucide-react';
+import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles } from 'lucide-react';
 
 const tabs = [
   { href: '/learn', key: 'foundations', icon: BookOpen },
@@ -14,6 +14,12 @@ const tabs = [
   { href: '/learn/karanas', key: 'karanas', icon: Slice },
   { href: '/learn/muhurtas', key: 'muhurtas', icon: Clock },
   { href: '/learn/kundali', key: 'kundali', icon: FileSpreadsheet },
+  { href: '/learn/bhavas', key: 'bhavas', icon: LayoutGrid },
+  { href: '/learn/dashas', key: 'dashas', icon: CalendarClock },
+  { href: '/learn/gochar', key: 'gochar', icon: ArrowRightLeft },
+  { href: '/learn/matching', key: 'matching', icon: Heart },
+  { href: '/learn/calculations', key: 'calculations', icon: Calculator },
+  { href: '/learn/advanced', key: 'advanced', icon: Sparkles },
 ];
 
 export default function LearnTabNav() {

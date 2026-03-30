@@ -5,7 +5,7 @@ import {
   approximateSunrise, approximateSunset, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
-  getSamvatsara, getRitu, getAyana,
+  getSamvatsara, getRitu, getAyana, lahiriAyanamsha,
 } from './astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -77,8 +77,8 @@ function findKaranaTransition(currentKarana: number, jdStart: number, jdEnd: num
 
 /**
  * Compute transition info for a panchang element.
- * Scans forward from sunrise in small steps to find when the element changes,
- * then binary-searches for the exact transition JD.
+ * Scans forward from sunrise to find end time, and backward to find start time,
+ * then binary-searches for the exact transition JDs.
  */
 function computeTransition(
   currentValue: number,
@@ -89,34 +89,79 @@ function computeTransition(
   dataArray: { name: { en: string; hi: string; sa: string } }[],
   wrapMax: number, // e.g. 30 for tithi, 27 for nakshatra/yoga, 11 for karana
 ): TransitionInfo | undefined {
-  // Scan forward up to 36 hours (1.5 days) in 30-min steps
   const step = 1 / 48; // ~30 min in JD
+
+  // ── Find END time: scan forward up to 36 hours ──
   const maxJd = jdSunrise + 1.5;
-  let found = false;
-  let transitionJd = maxJd;
+  let foundEnd = false;
+  let endTransitionJd = maxJd;
 
   for (let jd = jdSunrise + step; jd <= maxJd; jd += step) {
     const val = getter(jd);
     if (val !== currentValue) {
-      // Binary search between previous step and this step
-      transitionJd = finder(currentValue, jd - step, jd);
-      found = true;
+      endTransitionJd = finder(currentValue, jd - step, jd);
+      foundEnd = true;
       break;
     }
   }
 
-  if (!found) return undefined;
+  if (!foundEnd) return undefined;
+
+  // ── Find START time: scan backward up to 36 hours ──
+  const minJd = jdSunrise - 1.5;
+  let startJdResult = jdSunrise; // fallback
+
+  const valBeforeSunrise = getter(jdSunrise - step);
+  if (valBeforeSunrise !== currentValue) {
+    let lo = jdSunrise - step, hi = jdSunrise;
+    for (let i = 0; i < 30; i++) {
+      const mid = (lo + hi) / 2;
+      if (getter(mid) !== currentValue) lo = mid; else hi = mid;
+    }
+    startJdResult = (lo + hi) / 2;
+  } else {
+    for (let jd = jdSunrise - 2 * step; jd >= minJd; jd -= step) {
+      if (getter(jd) !== currentValue) {
+        let lo = jd, hi = jd + step;
+        for (let i = 0; i < 30; i++) {
+          const mid = (lo + hi) / 2;
+          if (getter(mid) !== currentValue) lo = mid; else hi = mid;
+        }
+        startJdResult = (lo + hi) / 2;
+        break;
+      }
+    }
+  }
 
   // Next value
-  const nextValue = getter(transitionJd + 0.001); // tiny step past transition
-  const nextIndex = nextValue - 1; // arrays are 0-based
+  const nextValue = getter(endTransitionJd + 0.001);
+  const nextIndex = nextValue - 1;
   const nextData = dataArray[nextIndex] || dataArray[0];
 
   return {
-    endTime: formatTime(jdToDecimalHoursUT(transitionJd, jdSunrise), tzOffset),
+    startTime: formatTime(jdToDecimalHoursUT(startJdResult, jdSunrise), tzOffset),
+    startDate: jdToLocalDate(startJdResult, tzOffset),
+    endTime: formatTime(jdToDecimalHoursUT(endTransitionJd, jdSunrise), tzOffset),
+    endDate: jdToLocalDate(endTransitionJd, tzOffset),
     nextName: nextData.name,
     nextNumber: nextValue,
   };
+}
+
+/** Convert a JD to a local date string "YYYY-MM-DD" */
+function jdToLocalDate(jd: number, tzOffset: number): string {
+  // JD to calendar date (Meeus algorithm)
+  const localJd = jd + tzOffset / 24;
+  const z = Math.floor(localJd + 0.5);
+  const a = z < 2299161 ? z : (() => { const alpha = Math.floor((z - 1867216.25) / 36524.25); return z + 1 + alpha - Math.floor(alpha / 4); })();
+  const b = a + 1524;
+  const c = Math.floor((b - 122.1) / 365.25);
+  const d = Math.floor(365.25 * c);
+  const e = Math.floor((b - d) / 30.6001);
+  const day = b - d - Math.floor(30.6001 * e);
+  const month = e < 14 ? e - 1 : e - 13;
+  const year = month > 2 ? c - 4716 : c - 4715;
+  return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 }
 
 /** Convert a JD to decimal hours UT on the same day as jdRef */
@@ -576,6 +621,167 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // ── Sarvartha Siddhi Yoga ──
   const sarvarthaSiddhi = SARVARTHA_SIDDHI[weekday]?.has(nakshatraNum) ?? false;
 
+  // ── Enhanced fields (Drikpanchang-style) ──
+
+  // Vikram Samvat: offset ~57 years from CE (Chaitra-based, roughly year+57)
+  const vikramSamvat = (month >= 4) ? year + 57 : year + 56;
+  // Shaka Samvat: offset ~78 years from CE
+  const shakaSamvat = (month >= 4) ? year - 78 : year - 79;
+
+  // Purnimant / Amant masa — same index, different naming in some months
+  // Purnimant: lunar month ends on Purnima; Amant: ends on Amavasya
+  // For simplicity, Amant = same month, Purnimant may lag by 1
+  const purnimantMasa = MASA_NAMES[masaIndex] || MASA_NAMES[0];
+  const amantMasaIdx = tithiResult.number > 15 ? (masaIndex + 1) % 12 : masaIndex;
+  const amantMasa = MASA_NAMES[amantMasaIdx] || MASA_NAMES[0];
+
+  // Ayanamsha value
+  const ayanamsha = lahiriAyanamsha(jdSunrise);
+
+  // Sun sign and nakshatra
+  const sunSidLong = toSidereal(sunLongitude(jdSunrise), jdSunrise);
+  const sunRashi = getRashiNumber(sunSidLong);
+  const sunNakshatra = getNakshatraNumber(sunSidLong);
+  const sunSign = { rashi: sunRashi, nakshatra: sunNakshatra };
+
+  // Moon sign and nakshatra (already computed, just package)
+  const moonRashi = getRashiNumber(moonSid);
+  const moonSign = { rashi: moonRashi, nakshatra: nakshatraNum, pada: nakshatraPada };
+
+  // Day/Night duration (Dinamana/Ratrimana)
+  const dayDurationHrs = sunsetUT - sunriseUT;
+  const nightDurationHrs = 24 - dayDurationHrs;
+  const dinamana = `${Math.floor(dayDurationHrs).toString().padStart(2, '0')}:${Math.round((dayDurationHrs % 1) * 60).toString().padStart(2, '0')}`;
+  const ratrimana = `${Math.floor(nightDurationHrs).toString().padStart(2, '0')}:${Math.round((nightDurationHrs % 1) * 60).toString().padStart(2, '0')}`;
+
+  // Madhyahna (local midday)
+  const madhyahnaUT = (sunriseUT + sunsetUT) / 2;
+  const madhyahna = formatTime(madhyahnaUT, tzOffset);
+
+  // ── New fields ──
+
+  // 1. Vijaya Muhurta (10th daytime muhurta, 0-indexed position 9)
+  const muhurtaDuration = dayDuration / 15;
+  const vijayaStartUT = sunriseUT + 9 * muhurtaDuration;
+  const vijayaEndUT = sunriseUT + 10 * muhurtaDuration;
+  const vijayaMuhurta = {
+    start: formatTime(vijayaStartUT, tzOffset),
+    end: formatTime(vijayaEndUT, tzOffset),
+  };
+
+  // 2. Dur Muhurtam (inauspicious muhurta windows by weekday)
+  const DUR_MUHURTAM_INDICES: number[][] = [
+    [6, 7],  // Sunday
+    [6],     // Monday
+    [5, 6],  // Tuesday
+    [3, 10], // Wednesday
+    [4],     // Thursday
+    [7, 8],  // Friday
+    [2],     // Saturday
+  ];
+  const durMuhurtam = DUR_MUHURTAM_INDICES[weekday].map(idx => {
+    const s = sunriseUT + idx * muhurtaDuration;
+    const e = s + muhurtaDuration;
+    return { start: formatTime(s, tzOffset), end: formatTime(e, tzOffset) };
+  });
+
+  // 3. Ganda Moola
+  const GANDA_MOOLA_NAKSHATRAS = new Set([1, 9, 10, 18, 19, 27]);
+  const gandaMoolaActive = GANDA_MOOLA_NAKSHATRAS.has(nakshatraNum);
+  const gandaMoola = {
+    active: gandaMoolaActive,
+    nakshatra: gandaMoolaActive ? NAKSHATRAS[nakshatraNum - 1]?.name : undefined,
+  };
+
+  // 4. Anandadi Yoga
+  const ANANDADI_NAMES: { en: string; hi: string; sa: string }[] = [
+    { en: 'Ananda',   hi: 'आनन्द',    sa: 'आनन्दः' },
+    { en: 'Kala',     hi: 'काल',      sa: 'कालः' },
+    { en: 'Dhwanksha', hi: 'ध्वांक्ष', sa: 'ध्वांक्षः' },
+    { en: 'Shoola',   hi: 'शूल',      sa: 'शूलम्' },
+    { en: 'Kshema',   hi: 'क्षेम',    sa: 'क्षेमम्' },
+    { en: 'Utpata',   hi: 'उत्पात',   sa: 'उत्पातः' },
+    { en: 'Mrityu',   hi: 'मृत्यु',   sa: 'मृत्युः' },
+    { en: 'Susthira', hi: 'सुस्थिर',  sa: 'सुस्थिरम्' },
+    { en: 'Roga',     hi: 'रोग',      sa: 'रोगः' },
+  ];
+  const ANANDADI_AUSPICIOUS = new Set([0, 4, 7]); // Ananda, Kshema, Susthira
+  const anandadiIdx = (tithiResult.number + weekday - 2 + 9 * 100) % 9;
+  const anandadiYoga = {
+    number: anandadiIdx + 1,
+    name: ANANDADI_NAMES[anandadiIdx],
+    nature: ANANDADI_AUSPICIOUS.has(anandadiIdx) ? 'auspicious' as const : 'inauspicious' as const,
+  };
+
+  // 5. Ravi Yoga (Sun in specific nakshatra on specific weekday)
+  const RAVI_YOGA_TABLE: Record<number, Set<number>> = {
+    0: new Set([13, 12, 26]),  // Sunday: Hasta, Uttara Phalguni, Uttara Bhadrapada
+    1: new Set([4, 5, 8]),     // Monday: Rohini, Mrigashira, Pushya
+    2: new Set([1, 14, 23]),   // Tuesday: Ashvini, Chitra, Dhanishtha
+    3: new Set([17, 18, 27]),  // Wednesday: Anuradha, Jyeshtha, Revati
+    4: new Set([7, 16, 25]),   // Thursday: Punarvasu, Vishakha, Purva Bhadrapada
+    5: new Set([2, 11, 20]),   // Friday: Bharani, Purva Phalguni, Purva Ashadha
+    6: new Set([8, 21, 24]),   // Saturday: Pushya, Uttara Ashadha, Shatabhisha
+  };
+  const raviYoga = RAVI_YOGA_TABLE[weekday]?.has(sunNakshatra) ?? false;
+
+  // 6. Kali Ahargana, Kaliyuga Year, Julian Day
+  const KALI_YUGA_JD = 588465.5;
+  const kaliAhargana = Math.floor(jd - KALI_YUGA_JD);
+  const kaliyugaYear = Math.floor(kaliAhargana / 365.25) + 1;
+  const julianDay = Math.floor(jd);
+
+  // 7. Panchaka (Moon in nakshatras 23-27)
+  const PANCHAKA_NAKSHATRAS = new Set([23, 24, 25, 26, 27]);
+  const panchakaActive = PANCHAKA_NAKSHATRAS.has(nakshatraNum);
+  const PANCHAKA_TYPE: Record<number, { en: string; hi: string; sa: string }> = {
+    0: { en: 'Mrityu Panchaka',  hi: 'मृत्यु पंचक',  sa: 'मृत्युपञ्चकम्' },
+    1: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },
+    2: { en: 'Agni Panchaka',    hi: 'अग्नि पंचक',   sa: 'अग्निपञ्चकम्' },
+    4: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },
+    5: { en: 'Chora Panchaka',   hi: 'चोर पंचक',     sa: 'चोरपञ्चकम्' },
+    6: { en: 'Roga Panchaka',    hi: 'रोग पंचक',     sa: 'रोगपञ्चकम्' },
+  };
+  const PANCHAKA_DEFAULT = { en: 'Panchaka', hi: 'पंचक', sa: 'पञ्चकम्' };
+  const panchaka = {
+    active: panchakaActive,
+    type: panchakaActive ? (PANCHAKA_TYPE[weekday] || PANCHAKA_DEFAULT) : undefined,
+  };
+
+  // 8. Shiva Vaas (based on tithi)
+  const tithiMod = ((tithiResult.number - 1) % 5) + 1; // groups of 5: tithi 1,6,11 → 1; 2,7,12 → 2; etc
+  const SHIVA_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
+    1: { en: 'Kailash (Mountain)', hi: 'कैलाश पर', sa: 'कैलासे' },
+    2: { en: 'Shamshan (Cremation Ground)', hi: 'श्मशान में', sa: 'श्मशाने' },
+    3: { en: "Gori's Abode (Auspicious)", hi: 'गौरी गृह में (शुभ)', sa: 'गौरीगृहे (शुभम्)' },
+    4: { en: 'Sports & Play', hi: 'क्रीड़ा में', sa: 'क्रीडायाम्' },
+    0: { en: 'Deep Meditation (Samadhi)', hi: 'समाधि में (अति शुभ)', sa: 'समाधौ (अतिशुभम्)' },
+  };
+  // tithi 5,10,15,30 → samadhi (mod 5 = 0); others grouped by (tithi-1)%5 + 1
+  const shivaVaasKey = tithiResult.number % 5 === 0 ? 0 : tithiMod;
+  const shivaVaas = SHIVA_VAAS_MAP[shivaVaasKey];
+
+  // 9. Agni Vaas (based on weekday)
+  const AGNI_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
+    0: { en: 'Sky (Akasha)',   hi: 'आकाश में',  sa: 'आकाशे' },
+    1: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' },
+    2: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' },
+    3: { en: 'Water (Jal)',   hi: 'जल में',    sa: 'जले' },
+    4: { en: 'Sky (Akasha)',  hi: 'आकाश में',  sa: 'आकाशे' },
+    5: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' },
+    6: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' },
+  };
+  const agniVaas = AGNI_VAAS_MAP[weekday];
+
+  // 10. Chandra Vaas (based on nakshatra pada)
+  const CHANDRA_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
+    1: { en: "Brahma's Abode", hi: 'ब्रह्म लोक',  sa: 'ब्रह्मस्थाने' },
+    2: { en: "Indra's Abode",  hi: 'इन्द्र लोक', sa: 'इन्द्रस्थाने' },
+    3: { en: "Yama's Abode",   hi: 'यम लोक',     sa: 'यमस्थाने' },
+    4: { en: "Soma's Abode",   hi: 'सोम लोक',    sa: 'सोमस्थाने' },
+  };
+  const chandraVaas = CHANDRA_VAAS_MAP[nakshatraPada] || CHANDRA_VAAS_MAP[1];
+
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
@@ -586,8 +792,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     vara: { day: weekday, name: varaData.name, ruler: varaData.ruler },
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
-    moonrise: formatTime((sunriseUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset),
-    moonset: formatTime((sunsetUT + 0.5 + (tithiResult.number % 15) * 0.2) % 24, tzOffset),
+    moonrise: formatTime(((sunriseUT + (tithiResult.number - 1) * (24 / 29.53)) % 24 + 24) % 24, tzOffset),
+    moonset: formatTime(((sunriseUT + (tithiResult.number - 1) * (24 / 29.53) + 12.4) % 24 + 24) % 24, tzOffset),
     rahuKaal: { start: formatTime(rahuKaal.start, tzOffset), end: formatTime(rahuKaal.end, tzOffset) },
     yamaganda: { start: formatTime(yamaganda.start, tzOffset), end: formatTime(yamaganda.end, tzOffset) },
     gulikaKaal: { start: formatTime(gulikaKaal.start, tzOffset), end: formatTime(gulikaKaal.end, tzOffset) },
@@ -612,5 +818,27 @@ export function computePanchang(input: PanchangInput): PanchangData {
     nishitaKaal: namedMuhurtas.nishitaKaal,
     dishaShool,
     sarvarthaSiddhi,
+    vikramSamvat,
+    shakaSamvat,
+    purnimantMasa,
+    amantMasa,
+    ayanamsha,
+    sunSign,
+    moonSign,
+    dinamana,
+    ratrimana,
+    madhyahna,
+    vijayaMuhurta,
+    durMuhurtam,
+    gandaMoola,
+    anandadiYoga,
+    raviYoga,
+    kaliAhargana,
+    kaliyugaYear,
+    julianDay,
+    panchaka,
+    shivaVaas,
+    agniVaas,
+    chandraVaas,
   };
 }

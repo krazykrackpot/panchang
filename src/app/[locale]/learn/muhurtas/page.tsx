@@ -1,15 +1,21 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { ChevronDown } from 'lucide-react';
 
 export default function LearnMuhurtasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
+  const isDevanagari = locale !== 'en';
+
+  const [expandedDay, setExpandedDay] = useState<number | null>(null);
+  const [expandedNight, setExpandedNight] = useState<number | null>(null);
 
   const daytime = MUHURTA_DATA.filter(m => m.period === 'day');
   const nighttime = MUHURTA_DATA.filter(m => m.period === 'night');
@@ -46,67 +52,130 @@ export default function LearnMuhurtasPage() {
         <h4 className="text-lg text-gold-light mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {locale === 'en' ? 'Daytime Muhurtas (1-15)' : locale === 'hi' ? 'दिवा मुहूर्त (1-15)' : 'दिवामुहूर्ताः (1-15)'}
         </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
-          {daytime.map((m, i) => (
-            <motion.div
-              key={m.number}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.03 }}
-              className={`glass-card rounded-lg p-4 border ${m.number === 8 ? 'border-gold-primary/40 ring-1 ring-gold-primary/20' : 'border-gold-primary/10'}`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-gold-primary font-bold">{m.number}</span>
-                  <span className="text-gold-light font-semibold text-sm">{m.name[locale]}</span>
-                </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
-                  {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
-                </span>
-              </div>
-              <div className="text-text-secondary/70 text-xs mb-1">{m.deity[locale]}</div>
-              <div className="text-text-secondary text-xs">{m.significance[locale].slice(0, 100)}...</div>
-              {m.number === 8 && (
-                <div className="mt-2 text-xs text-gold-primary font-semibold">
-                  {locale === 'en' ? '⭐ ABHIJIT MUHURTA — Most Auspicious' : '⭐ अभिजित् मुहूर्त — सर्वाधिक शुभ'}
-                </div>
-              )}
-            </motion.div>
-          ))}
+        <div className="space-y-3 mb-10">
+          {daytime.map((m, i) => {
+            const isExpanded = expandedDay === m.number;
+            return (
+              <motion.div
+                key={m.number}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03 }}
+                className={`glass-card rounded-xl border overflow-hidden ${m.number === 8 ? 'border-gold-primary/40 ring-1 ring-gold-primary/20' : 'border-gold-primary/10'}`}
+              >
+                <button
+                  onClick={() => setExpandedDay(isExpanded ? null : m.number)}
+                  className="w-full text-left p-4 hover:bg-gold-primary/5 transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-gold-primary font-bold text-xl w-8">{m.number}</span>
+                      <div>
+                        <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
+                        {m.number === 8 && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-[10px] rounded-full font-bold uppercase">Abhijit</span>}
+                        <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
+                        {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
+                      </span>
+                      <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                    </div>
+                  </div>
+                  <p className="text-text-secondary text-sm ml-11 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {m.significance[locale]}
+                  </p>
+                </button>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 ml-11 border-t border-gold-primary/10 pt-3">
+                        <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
+                          {locale === 'en' ? 'Best Activities' : 'सर्वोत्तम कार्य'}
+                        </h4>
+                        <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {m.bestFor[locale]}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
 
         <h4 className="text-lg text-indigo-300/80 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {locale === 'en' ? 'Nighttime Muhurtas (16-30)' : locale === 'hi' ? 'रात्रि मुहूर्त (16-30)' : 'रात्रिमुहूर्ताः (16-30)'}
         </h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {nighttime.map((m, i) => (
-            <motion.div
-              key={m.number}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.03 }}
-              className={`glass-card rounded-lg p-4 border ${(m.number === 26 || m.number === 27) ? 'border-indigo-400/30 ring-1 ring-indigo-400/15' : 'border-gold-primary/10'}`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-300/80 font-bold">{m.number}</span>
-                  <span className="text-gold-light font-semibold text-sm">{m.name[locale]}</span>
-                </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
-                  {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
-                </span>
-              </div>
-              <div className="text-text-secondary/70 text-xs mb-1">{m.deity[locale]}</div>
-              <div className="text-text-secondary text-xs">{m.significance[locale].slice(0, 100)}...</div>
-              {(m.number === 26 || m.number === 27) && (
-                <div className="mt-2 text-xs text-indigo-300 font-semibold">
-                  {locale === 'en' ? '🙏 BRAHMA MUHURTA — Sacred Pre-dawn' : '🙏 ब्राह्म मुहूर्त — पवित्र प्रभातपूर्व'}
-                </div>
-              )}
-            </motion.div>
-          ))}
+        <div className="space-y-3">
+          {nighttime.map((m, i) => {
+            const isExpanded = expandedNight === m.number;
+            const isBrahma = m.number === 26 || m.number === 27;
+            return (
+              <motion.div
+                key={m.number}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03 }}
+                className={`glass-card rounded-xl border overflow-hidden ${isBrahma ? 'border-indigo-400/30 ring-1 ring-indigo-400/15' : 'border-gold-primary/10'}`}
+              >
+                <button
+                  onClick={() => setExpandedNight(isExpanded ? null : m.number)}
+                  className="w-full text-left p-4 hover:bg-gold-primary/5 transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-indigo-300/80 font-bold text-xl w-8">{m.number}</span>
+                      <div>
+                        <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
+                        {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-[10px] rounded-full font-bold">{locale === 'en' ? 'BRAHMA' : 'ब्राह्म'}</span>}
+                        <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
+                        {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
+                      </span>
+                      <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                    </div>
+                  </div>
+                  <p className="text-text-secondary text-sm ml-11 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {m.significance[locale]}
+                  </p>
+                </button>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 ml-11 border-t border-gold-primary/10 pt-3">
+                        <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
+                          {locale === 'en' ? 'Best Activities' : 'सर्वोत्तम कार्य'}
+                        </h4>
+                        <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {m.bestFor[locale]}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </LessonSection>
 
@@ -115,7 +184,7 @@ export default function LearnMuhurtasPage() {
           href="/panchang/muhurta"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {locale === 'en' ? 'View Detailed Muhurta Page with Conflict Analysis →' : 'विस्तृत मुहूर्त पृष्ठ और विरोध विश्लेषण →'}
+          {locale === 'en' ? 'View Muhurta Wheel & Conflict Analysis' : locale === 'hi' ? 'मुहूर्त चक्र और विरोध विश्लेषण देखें' : 'मुहूर्तचक्रं विरोधविश्लेषणं च पश्यतु'}
         </Link>
       </div>
     </div>

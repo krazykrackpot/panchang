@@ -60,12 +60,26 @@ export default function TodayPanchangWidget() {
 
   if (!panchang) return null;
 
+  // Format transition end time — always includes date
+  const MONTHS = locale === 'en'
+    ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    : ['जन','फर','मार','अप्रै','मई','जून','जुल','अग','सित','अक्टू','नव','दिस'];
+  const endTimeStr = (tr?: { endTime: string; endDate?: string }) => {
+    if (!tr) return '';
+    const prefix = locale === 'en' ? 'ends' : 'समाप्ति';
+    if (tr.endDate) {
+      const [, m, d] = tr.endDate.split('-').map(Number);
+      return `${prefix} ${tr.endTime}, ${d} ${MONTHS[m - 1]}`;
+    }
+    return `${prefix} ${tr.endTime}`;
+  };
+
   const elements = [
-    { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), Icon: TithiIcon },
-    { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: panchang.nakshatra.deity[locale], Icon: NakshatraIcon },
-    { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], Icon: YogaIcon },
-    { label: t('karana'), value: panchang.karana.name[locale], sub: '', Icon: KaranaIcon },
-    { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], Icon: VaraIcon },
+    { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: endTimeStr(panchang.tithiTransition), Icon: TithiIcon },
+    { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: panchang.nakshatra.deity[locale], timing: endTimeStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
+    { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], timing: endTimeStr(panchang.yogaTransition), Icon: YogaIcon },
+    { label: t('karana'), value: panchang.karana.name[locale], sub: '', timing: endTimeStr(panchang.karanaTransition), Icon: KaranaIcon },
+    { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], timing: '', Icon: VaraIcon },
   ];
 
   return (
@@ -91,6 +105,9 @@ export default function TodayPanchangWidget() {
             </div>
             {el.sub && (
               <div className="text-text-secondary text-xs mt-1">{el.sub}</div>
+            )}
+            {el.timing && (
+              <div className="font-mono text-[10px] text-gold-primary/70 mt-1">{el.timing}</div>
             )}
           </motion.div>
         ))}

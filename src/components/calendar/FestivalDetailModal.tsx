@@ -1,0 +1,459 @@
+'use client';
+
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon } from 'lucide-react';
+import type { Locale, Trilingual } from '@/types/panchang';
+import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
+
+interface FestivalDetailModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  locale: Locale;
+  festivalName: Trilingual;
+  festivalDate: string;
+  festivalCategory: string;
+  detail: FestivalDetail | null;
+  ekadashiDetail: EkadashiDetail | null;
+  // Parana (fast-breaking) info
+  paranaDate?: string;
+  paranaStart?: string;
+  paranaEnd?: string;
+  paranaNote?: Trilingual;
+  paranaSunrise?: string;
+  paranaHariVasaraEnd?: string;
+  paranaDwadashiEnd?: string;
+  paranaEarlyEnd?: boolean;
+  // Eclipse info
+  eclipseType?: 'solar' | 'lunar';
+  eclipseMagnitude?: string;
+  eclipseMaxTime?: string;
+  sutakStart?: string;
+  sutakEnd?: string;
+  sutakApplicable?: boolean;
+  eclipsePhases?: { name: Trilingual; time: string }[];
+}
+
+const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
+
+const L = {
+  mythology: { en: 'Story & Origin', hi: 'कथा एवं उत्पत्ति', sa: 'कथा उत्पत्तिश्च' },
+  observance: { en: 'How to Observe', hi: 'पालन विधि', sa: 'पालनविधिः' },
+  significance: { en: 'Significance', hi: 'महत्व', sa: 'महत्त्वम्' },
+  deity: { en: 'Deity', hi: 'देवता', sa: 'देवता' },
+  fasting: { en: 'Fasting Rules', hi: 'व्रत नियम', sa: 'व्रतनियमाः' },
+  benefit: { en: 'Benefit', hi: 'फल', sa: 'फलम्' },
+  story: { en: 'Legend', hi: 'कथा', sa: 'कथा' },
+  close: { en: 'Close', hi: 'बन्द करें', sa: 'पिधानम्' },
+};
+
+const LP = {
+  parana: { en: 'Parana (Fast Breaking)', hi: 'पारण (व्रत तोड़ना)', sa: 'पारणम् (व्रतभङ्गः)' },
+  paranaWindow: { en: 'Parana Window', hi: 'पारण समय', sa: 'पारणसमयः' },
+  to: { en: 'to', hi: 'से', sa: 'पर्यन्तम्' },
+  on: { en: 'on', hi: 'को', sa: 'दिने' },
+  eclipseInfo: { en: 'Eclipse Details', hi: 'ग्रहण विवरण', sa: 'ग्रहणविवरणम्' },
+  magnitude: { en: 'Type', hi: 'प्रकार', sa: 'प्रकारः' },
+  maxTime: { en: 'Maximum Eclipse', hi: 'अधिकतम ग्रहण', sa: 'परमग्रहणम्' },
+  sutak: { en: 'Sutak Period', hi: 'सूतक काल', sa: 'सूतककालः' },
+  sutakNote: {
+    en: 'During Sutak, avoid eating, cooking, and starting auspicious activities. Temples remain closed.',
+    hi: 'सूतक काल में भोजन, पाक, और शुभ कार्य वर्जित हैं। मन्दिर बन्द रहते हैं।',
+    sa: 'सूतककाले भोजनं पाकः शुभकार्याणि च वर्जितानि। मन्दिराणि पिहितानि तिष्ठन्ति।',
+  },
+  noSutak: {
+    en: 'Sutak is not applicable for penumbral lunar eclipses.',
+    hi: 'उपच्छाया चन्द्र ग्रहण में सूतक लागू नहीं होता।',
+    sa: 'उपच्छायाचन्द्रग्रहणे सूतकं न प्रवर्तते।',
+  },
+  phases: { en: 'Eclipse Phases', hi: 'ग्रहण चरण', sa: 'ग्रहणचरणाः' },
+};
+
+export default function FestivalDetailModal({
+  isOpen,
+  onClose,
+  locale,
+  festivalName,
+  festivalDate,
+  festivalCategory,
+  detail,
+  ekadashiDetail,
+  paranaDate,
+  paranaStart,
+  paranaEnd,
+  paranaNote,
+  paranaSunrise,
+  paranaHariVasaraEnd,
+  paranaDwadashiEnd,
+  paranaEarlyEnd,
+  eclipseType,
+  eclipseMagnitude,
+  eclipseMaxTime,
+  sutakStart,
+  sutakEnd,
+  sutakApplicable,
+  eclipsePhases,
+}: FestivalDetailModalProps) {
+  const isDevanagari = locale !== 'en';
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {};
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const dateObj = new Date(festivalDate + 'T00:00:00');
+  const dayStr = dateObj.getDate();
+  const monthStr = locale === 'en'
+    ? MONTH_NAMES[dateObj.getMonth()]
+    : MONTH_NAMES_HI[dateObj.getMonth()];
+  const yearStr = dateObj.getFullYear();
+
+  const categoryColorMap: Record<string, string> = {
+    festival: 'from-amber-500/20 to-amber-600/5 border-amber-500/30',
+    ekadashi: 'from-blue-500/20 to-blue-600/5 border-blue-500/30',
+    purnima: 'from-amber-400/20 to-amber-500/5 border-amber-400/30',
+    amavasya: 'from-purple-500/20 to-purple-600/5 border-purple-500/30',
+    chaturthi: 'from-orange-500/20 to-orange-600/5 border-orange-500/30',
+    pradosham: 'from-indigo-500/20 to-indigo-600/5 border-indigo-500/30',
+    sankranti: 'from-red-500/20 to-red-600/5 border-red-500/30',
+  };
+
+  const hasContent = detail || ekadashiDetail || paranaStart || eclipseType;
+  const hasParana = paranaStart && paranaEnd;
+  const hasEclipse = eclipseType && eclipsePhases;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            onClick={onClose}
+          />
+
+          {/* Modal */}
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.97 }}
+            transition={{ duration: 0.35, ease: 'easeOut' as const }}
+            className="fixed inset-x-4 bottom-4 top-auto sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-2xl sm:w-full z-50 max-h-[85vh] overflow-hidden flex flex-col"
+          >
+            <div className={`glass-card rounded-2xl border ${categoryColorMap[festivalCategory] || 'border-gold-primary/20'} bg-gradient-to-b overflow-hidden flex flex-col max-h-[85vh]`}>
+              {/* Header */}
+              <div className="relative px-6 pt-6 pb-4 flex-shrink-0">
+                <button
+                  onClick={onClose}
+                  className="absolute top-4 right-4 p-2 rounded-lg bg-bg-tertiary/50 hover:bg-bg-tertiary transition-colors"
+                  aria-label={L.close[locale]}
+                >
+                  <X className="w-5 h-5 text-text-secondary" />
+                </button>
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-bg-tertiary/50 flex flex-col items-center justify-center border border-gold-primary/20">
+                    <span className="text-gold-light text-2xl font-bold leading-none">{dayStr}</span>
+                    <span className="text-text-secondary text-[10px] uppercase">{locale === 'en' ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
+                  </div>
+                  <div className="flex-1 min-w-0 pr-8">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient leading-tight" style={headingFont}>
+                      {festivalName[locale]}
+                    </h2>
+                    <p className="text-text-secondary text-sm mt-1">
+                      {dayStr} {monthStr} {yearStr}
+                      {festivalCategory && (
+                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full border border-gold-primary/20 bg-gold-primary/10 text-gold-dark font-bold uppercase">
+                          {festivalCategory}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Scrollable content */}
+              <div className="overflow-y-auto px-6 pb-6 space-y-5 flex-1 custom-scrollbar">
+                {hasContent ? (
+                  <>
+                    {/* Ekadashi-specific: story + benefit */}
+                    {ekadashiDetail && (
+                      <>
+                        <Section
+                          icon={<BookOpen className="w-4 h-4" />}
+                          title={L.story[locale]}
+                          content={ekadashiDetail.story[locale]}
+                          headingFont={headingFont}
+                          bodyFont={bodyFont}
+                        />
+                        <Section
+                          icon={<Star className="w-4 h-4" />}
+                          title={L.benefit[locale]}
+                          content={ekadashiDetail.benefit[locale]}
+                          headingFont={headingFont}
+                          bodyFont={bodyFont}
+                          highlight
+                        />
+                      </>
+                    )}
+
+                    {/* Festival detail: mythology, observance, significance */}
+                    {detail && (
+                      <>
+                        <Section
+                          icon={<BookOpen className="w-4 h-4" />}
+                          title={L.mythology[locale]}
+                          content={detail.mythology[locale]}
+                          headingFont={headingFont}
+                          bodyFont={bodyFont}
+                        />
+                        <Section
+                          icon={<Flame className="w-4 h-4" />}
+                          title={L.observance[locale]}
+                          content={detail.observance[locale]}
+                          headingFont={headingFont}
+                          bodyFont={bodyFont}
+                        />
+                        <Section
+                          icon={<Star className="w-4 h-4" />}
+                          title={L.significance[locale]}
+                          content={detail.significance[locale]}
+                          headingFont={headingFont}
+                          bodyFont={bodyFont}
+                        />
+
+                        {detail.deity && (
+                          <div className="flex items-center gap-2 text-sm">
+                            <span className="text-gold-primary font-bold" style={headingFont}>{L.deity[locale]}:</span>
+                            <span className="text-text-primary" style={bodyFont}>{detail.deity[locale]}</span>
+                          </div>
+                        )}
+
+                        {detail.isFast && detail.fastNote && (
+                          <Section
+                            icon={<Clock className="w-4 h-4" />}
+                            title={L.fasting[locale]}
+                            content={detail.fastNote[locale]}
+                            headingFont={headingFont}
+                            bodyFont={bodyFont}
+                            highlight
+                          />
+                        )}
+                      </>
+                    )}
+
+                    {/* Parana (fast-breaking) section */}
+                    {hasParana && (
+                      <div className="rounded-xl p-4 bg-emerald-500/5 border border-emerald-500/20">
+                        <div className="flex items-center gap-2 mb-3">
+                          <Clock className="w-4 h-4 text-emerald-400" />
+                          <h3 className="text-sm font-bold text-emerald-300 uppercase tracking-wider" style={headingFont}>
+                            {LP.parana[locale]}
+                          </h3>
+                          {paranaDate && paranaDate !== festivalDate && (
+                            <span className="ml-auto text-xs text-text-secondary font-mono">
+                              {(() => {
+                                const pd = new Date(paranaDate + 'T00:00:00');
+                                return `${pd.getDate()} ${locale === 'en' ? MONTH_NAMES[pd.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4)}`;
+                              })()}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Recommended window — prominent */}
+                        <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-center mb-3">
+                          <div className="text-[10px] text-emerald-400/70 uppercase tracking-wider mb-1" style={headingFont}>
+                            {LP.paranaWindow[locale]}
+                          </div>
+                          <div className="text-2xl font-bold text-emerald-300 font-mono tracking-tight">
+                            {paranaStart} — {paranaEnd}
+                          </div>
+                        </div>
+
+                        {/* Timeline: Sunrise → Hari Vasara → Dwadashi End */}
+                        {(paranaSunrise || paranaHariVasaraEnd || paranaDwadashiEnd) && (
+                          <div className="space-y-1.5 mb-3">
+                            {paranaSunrise && (
+                              <div className="flex items-center justify-between text-xs rounded-lg bg-bg-tertiary/40 px-3 py-2">
+                                <span className="text-amber-300/80 font-medium" style={bodyFont}>
+                                  {locale === 'en' ? 'Sunrise' : locale === 'hi' ? 'सूर्योदय' : 'सूर्योदयः'}
+                                </span>
+                                <span className="text-amber-300 font-mono font-bold">{paranaSunrise}</span>
+                              </div>
+                            )}
+                            {paranaHariVasaraEnd && (
+                              <div className={`flex items-center justify-between text-xs rounded-lg px-3 py-2 ${paranaEarlyEnd ? 'bg-red-500/10 border border-red-500/20' : 'bg-blue-500/10 border border-blue-500/15'}`}>
+                                <span className={`font-medium ${paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'}`} style={bodyFont}>
+                                  {locale === 'en' ? 'Hari Vasara ends' : locale === 'hi' ? 'हरि वासर समाप्ति' : 'हरिवासरान्तः'}
+                                  {paranaEarlyEnd && (
+                                    <span className="ml-1 text-[10px] text-red-400 uppercase">{locale === 'en' ? '⚠ skip' : '⚠ छोड़ें'}</span>
+                                  )}
+                                </span>
+                                <span className={`font-mono font-bold ${paranaEarlyEnd ? 'text-red-300' : 'text-blue-300'}`}>{paranaHariVasaraEnd}</span>
+                              </div>
+                            )}
+                            {paranaDwadashiEnd && (
+                              <div className="flex items-center justify-between text-xs rounded-lg bg-orange-500/10 border border-orange-500/15 px-3 py-2">
+                                <span className="text-orange-300/80 font-medium" style={bodyFont}>
+                                  {locale === 'en' ? 'Dwadashi ends (deadline)' : locale === 'hi' ? 'द्वादशी समाप्ति (अंतिम समय)' : 'द्वादशीतिथ्यन्तः'}
+                                </span>
+                                <span className="text-orange-300 font-mono font-bold">{paranaDwadashiEnd}</span>
+                              </div>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Special note for early-end case */}
+                        {paranaEarlyEnd && (
+                          <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 mb-3">
+                            <p className="text-red-300 text-xs leading-relaxed" style={bodyFont}>
+                              {locale === 'en'
+                                ? 'Dwadashi ends before Hari Vasara — break fast immediately after sunrise, before Dwadashi ends.'
+                                : locale === 'hi'
+                                ? 'द्वादशी हरि वासर से पहले समाप्त हो रही है — सूर्योदय के तुरंत बाद, द्वादशी समाप्त होने से पहले पारण करें।'
+                                : 'द्वादशी हरिवासरात् पूर्वं समाप्यते — सूर्योदयानन्तरं द्वादशीसमाप्तेः पूर्वं पारणं कुर्यात्।'}
+                            </p>
+                          </div>
+                        )}
+
+                        {/* General instruction */}
+                        {!paranaEarlyEnd && paranaHariVasaraEnd && paranaDwadashiEnd && (
+                          <p className="text-text-primary/70 text-xs leading-relaxed" style={bodyFont}>
+                            {locale === 'en'
+                              ? `Fast may be broken only after Hari Vasara ends (${paranaHariVasaraEnd}). Do not delay past Dwadashi end (${paranaDwadashiEnd}).`
+                              : locale === 'hi'
+                              ? `हरि वासर समाप्ति (${paranaHariVasaraEnd}) के बाद ही पारण करें। द्वादशी समाप्ति (${paranaDwadashiEnd}) के बाद विलम्ब न करें।`
+                              : `हरिवासरान्ते (${paranaHariVasaraEnd}) पारणं कुर्यात्। द्वादशीसमाप्तेः (${paranaDwadashiEnd}) परं विलम्बः न कर्तव्यः।`}
+                          </p>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Eclipse section */}
+                    {hasEclipse && (
+                      <>
+                        {/* Eclipse type + magnitude */}
+                        <div className="rounded-xl p-4 bg-red-500/5 border border-red-500/20">
+                          <div className="flex items-center gap-2 mb-3">
+                            {eclipseType === 'solar'
+                              ? <Sun className="w-4 h-4 text-amber-400" />
+                              : <Moon className="w-4 h-4 text-blue-300" />}
+                            <h3 className="text-sm font-bold text-red-300 uppercase tracking-wider" style={headingFont}>
+                              {LP.eclipseInfo[locale]}
+                            </h3>
+                          </div>
+                          <div className="grid grid-cols-2 gap-3 mb-3">
+                            <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                              <div className="text-[10px] text-text-secondary uppercase tracking-wider mb-1">
+                                {LP.magnitude[locale]}
+                              </div>
+                              <div className="text-lg font-bold text-red-300 capitalize">
+                                {eclipseMagnitude}
+                              </div>
+                            </div>
+                            <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                              <div className="text-[10px] text-text-secondary uppercase tracking-wider mb-1">
+                                {LP.maxTime[locale]}
+                              </div>
+                              <div className="text-lg font-bold text-amber-300 font-mono">
+                                {eclipseMaxTime}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Phase timeline */}
+                          <div className="mb-3">
+                            <div className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2" style={headingFont}>
+                              {LP.phases[locale]}
+                            </div>
+                            <div className="space-y-1.5">
+                              {eclipsePhases!.map((phase, idx) => (
+                                <div key={idx} className="flex items-center justify-between text-sm">
+                                  <span className="text-text-primary/80" style={bodyFont}>
+                                    {phase.name[locale]}
+                                  </span>
+                                  <span className="text-gold-light font-mono text-xs font-bold">
+                                    {phase.time}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Sutak period */}
+                        <div className={`rounded-xl p-4 ${sutakApplicable ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-bg-tertiary/30'}`}>
+                          <div className="flex items-center gap-2 mb-2">
+                            <AlertTriangle className={`w-4 h-4 ${sutakApplicable ? 'text-amber-400' : 'text-text-secondary'}`} />
+                            <h3 className={`text-sm font-bold uppercase tracking-wider ${sutakApplicable ? 'text-amber-300' : 'text-text-secondary'}`} style={headingFont}>
+                              {LP.sutak[locale]}
+                            </h3>
+                          </div>
+                          {sutakApplicable ? (
+                            <>
+                              <div className="flex items-center gap-3 mb-2">
+                                <div className="flex-1 rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                                  <div className="text-xl font-bold text-amber-300 font-mono">
+                                    {sutakStart} — {sutakEnd}
+                                  </div>
+                                </div>
+                              </div>
+                              <p className="text-text-primary/70 text-xs leading-relaxed" style={bodyFont}>
+                                {LP.sutakNote[locale]}
+                              </p>
+                            </>
+                          ) : (
+                            <p className="text-text-secondary text-xs" style={bodyFont}>
+                              {LP.noSutak[locale]}
+                            </p>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <div className="py-8 text-center text-text-secondary text-sm" style={bodyFont}>
+                    {locale === 'en'
+                      ? 'Detailed information for this event will be added soon.'
+                      : 'इस आयोजन की विस्तृत जानकारी शीघ्र जोड़ी जाएगी।'}
+                  </div>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function Section({
+  icon,
+  title,
+  content,
+  headingFont,
+  bodyFont,
+  highlight = false,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+  headingFont: React.CSSProperties;
+  bodyFont: React.CSSProperties;
+  highlight?: boolean;
+}) {
+  return (
+    <div className={`rounded-xl p-4 ${highlight ? 'bg-gold-primary/5 border border-gold-primary/15' : 'bg-bg-tertiary/30'}`}>
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-gold-primary">{icon}</span>
+        <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
+          {title}
+        </h3>
+      </div>
+      <p className="text-text-primary/90 text-sm leading-relaxed" style={bodyFont}>
+        {content}
+      </p>
+    </div>
+  );
+}

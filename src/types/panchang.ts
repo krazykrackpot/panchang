@@ -66,7 +66,10 @@ export interface Graha {
 }
 
 export interface TransitionInfo {
+  startTime: string;     // "HH:MM" when current element started
+  startDate: string;     // "YYYY-MM-DD" date of start
   endTime: string;       // "HH:MM" when current element ends
+  endDate: string;       // "YYYY-MM-DD" date of end
   nextName: Trilingual;  // name of the next element
   nextNumber: number;    // index/number of the next element
 }
@@ -113,6 +116,30 @@ export interface PanchangData {
   // Disha Shool & Sarvartha Siddhi
   dishaShool?: DishaShoolInfo;
   sarvarthaSiddhi?: boolean;
+  // Enhanced Drikpanchang-style fields
+  vikramSamvat?: number;
+  shakaSamvat?: number;
+  purnimantMasa?: Trilingual;
+  amantMasa?: Trilingual;
+  ayanamsha?: number;
+  sunSign?: { rashi: number; nakshatra: number };
+  moonSign?: { rashi: number; nakshatra: number; pada: number };
+  dinamana?: string;  // day duration HH:MM
+  ratrimana?: string; // night duration HH:MM
+  madhyahna?: string; // midday time HH:MM
+  // New fields — Drik Panchang additions
+  vijayaMuhurta?: { start: string; end: string };
+  durMuhurtam?: { start: string; end: string }[];
+  gandaMoola?: { active: boolean; nakshatra?: Trilingual };
+  anandadiYoga?: { number: number; name: Trilingual; nature: 'auspicious' | 'inauspicious' };
+  raviYoga?: boolean;
+  kaliAhargana?: number;
+  kaliyugaYear?: number;
+  julianDay?: number;
+  panchaka?: { active: boolean; type?: Trilingual };
+  shivaVaas?: Trilingual;
+  agniVaas?: Trilingual;
+  chandraVaas?: Trilingual;
 }
 
 export interface ChoghadiyaSlot {

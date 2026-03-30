@@ -99,6 +99,8 @@ export default function Navbar() {
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/prashna-ashtamangala', label: t('ashtamangala') },
         { href: '/muhurta-ai', label: t('muhurtaAi') },
+        { href: '/kaal-nirnaya', label: t('kaalNirnaya') },
+        { href: '/nivas-shool', label: t('nivasShool') },
       ],
     },
     { href: '/learn', label: t('learn') },
@@ -135,6 +137,19 @@ export default function Navbar() {
               )
             )}
             <div className="w-px h-6 bg-gold-primary/20" />
+            <button
+              onClick={() => {
+                const html = document.documentElement;
+                html.classList.toggle('light');
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+              }}
+              className="text-text-secondary hover:text-gold-light transition-colors p-1.5 rounded-lg hover:bg-gold-primary/10"
+              aria-label="Toggle theme"
+            >
+              <Sun className="w-4 h-4 dark:hidden" />
+              <Moon className="w-4 h-4 hidden dark:block" />
+            </button>
             <LocaleSwitcher />
             <UserMenu />
           </div>

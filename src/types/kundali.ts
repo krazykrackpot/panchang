@@ -76,9 +76,17 @@ export interface KundaliData {
   divisionalCharts?: Record<string, DivisionalChart>;
   ashtakavarga?: AshtakavargaData;
   dashas: DashaEntry[];
+  yoginiDashas?: DashaEntry[];
+  ashtottariDashas?: DashaEntry[];
   shadbala: ShadBala[];
   ayanamshaValue: number;
   julianDay: number;
+  jaimini?: {
+    charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
+    karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };
+    arudhaPadas: { house: number; sign: number; signName: { en: string; hi: string; sa: string }; label: { en: string; hi: string; sa: string } }[];
+    charaDasha: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }[];
+  };
 }
 
 export interface DivisionalChart extends ChartData {

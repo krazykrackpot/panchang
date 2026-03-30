@@ -137,9 +137,14 @@ export interface PanchangData {
   kaliyugaYear?: number;
   julianDay?: number;
   panchaka?: { active: boolean; type?: Trilingual };
-  shivaVaas?: Trilingual;
-  agniVaas?: Trilingual;
-  chandraVaas?: Trilingual;
+  shivaVaas?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] };
+  agniVaas?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; validUntil?: string };
+  chandraVaas?: { name: Trilingual; direction: Trilingual; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' };
+  rahuVaas?: { direction: Trilingual };
+  udayaLagna?: { rashi: number; name: Trilingual; start: string; end: string }[];
+  tamilYoga?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' };
+  mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual } };
+  homahuti?: { direction: Trilingual; deity: Trilingual };
 }
 
 export interface ChoghadiyaSlot {

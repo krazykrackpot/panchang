@@ -5,7 +5,7 @@ import {
   approximateSunrise, approximateSunset, formatTime,
   calculateRahuKaal, getPlanetaryPositions,
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
-  getSamvatsara, getRitu, getAyana, lahiriAyanamsha,
+  getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
 } from './astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -748,39 +748,160 @@ export function computePanchang(input: PanchangInput): PanchangData {
     type: panchakaActive ? (PANCHAKA_TYPE[weekday] || PANCHAKA_DEFAULT) : undefined,
   };
 
-  // 8. Shiva Vaas (based on tithi)
+  // 8. Tamil Yoga (Chandrashtama-based) — day quality from Moon-Sun angle modulo
+  // (tithiNum + weekday + nakshatraNum) mod 9 → 9 Tamil quality names
+  const TAMIL_YOGA_NAMES: { en: string; hi: string; sa: string }[] = [
+    { en: 'Siddha Yoga', hi: 'सिद्ध योग', sa: 'सिद्धयोगः' },
+    { en: 'Marana Yoga', hi: 'मरण योग', sa: 'मरणयोगः' },
+    { en: 'Amrita Yoga', hi: 'अमृत योग', sa: 'अमृतयोगः' },
+    { en: 'Prabalarista Yoga', hi: 'प्रबलारिष्ट योग', sa: 'प्रबलारिष्टयोगः' },
+    { en: 'Siddha Yoga', hi: 'सिद्ध योग', sa: 'सिद्धयोगः' },
+    { en: 'Mrityu Yoga', hi: 'मृत्यु योग', sa: 'मृत्युयोगः' },
+    { en: 'Amrita Yoga', hi: 'अमृत योग', sa: 'अमृतयोगः' },
+    { en: 'Roga Yoga', hi: 'रोग योग', sa: 'रोगयोगः' },
+    { en: 'Siddha Yoga', hi: 'सिद्ध योग', sa: 'सिद्धयोगः' },
+  ];
+  const TAMIL_YOGA_AUSPICIOUS = new Set([0, 2, 4, 6, 8]); // Siddha and Amrita
+  const tamilYogaIdx = (tithiResult.number + weekday + nakshatraNum) % 9;
+  const tamilYoga = {
+    name: TAMIL_YOGA_NAMES[tamilYogaIdx],
+    nature: TAMIL_YOGA_AUSPICIOUS.has(tamilYogaIdx) ? 'auspicious' as const : 'inauspicious' as const,
+  };
+
+  // 9. Mantri Mandala (Planetary cabinet) — planet ruling the day acts as "king"
+  // The planet ruling the hora at sunrise is the "minister"
+  const MANTRI_ROLES: { en: string; hi: string; sa: string }[] = [
+    { en: 'King', hi: 'राजा', sa: 'राजा' },
+    { en: 'Minister', hi: 'मंत्री', sa: 'मन्त्री' },
+    { en: 'Commander', hi: 'सेनापति', sa: 'सेनापतिः' },
+    { en: 'Servant', hi: 'सेवक', sa: 'सेवकः' },
+    { en: 'Enemy', hi: 'शत्रु', sa: 'शत्रुः' },
+  ];
+  // Day lord is King, sunrise hora lord is Minister
+  const HORA_SEQUENCE = [0, 3, 6, 2, 5, 1, 4]; // Sun,Moon,Mars,Merc,Jup,Ven,Sat → planet IDs 0,3,6,2,5,1,4
+  const WEEKDAY_PLANET_MAP = [0, 3, 6, 2, 5, 1, 4]; // Sun=0,Mon=3(Moon),Tue=6(Mars),...
+  const dayLordPlanet = WEEKDAY_PLANET_MAP[weekday];
+  const horaLordPlanet = HORA_SEQUENCE[weekday]; // sunrise hora planet
+  const mantriMandala = {
+    king: { planet: dayLordPlanet, role: MANTRI_ROLES[0] },
+    minister: { planet: horaLordPlanet, role: MANTRI_ROLES[1] },
+  };
+
+  // 10. Homahuti (Fire oblation direction)
+  // On each weekday, the direction of offering ghee into the fire differs
+  const HOMAHUTI_DIR: Record<number, { direction: { en: string; hi: string; sa: string }; deity: { en: string; hi: string; sa: string } }> = {
+    0: { direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' }, deity: { en: 'Surya', hi: 'सूर्य', sa: 'सूर्यः' } },
+    1: { direction: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यम्' }, deity: { en: 'Chandra', hi: 'चन्द्र', sa: 'चन्द्रः' } },
+    2: { direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' }, deity: { en: 'Mangal', hi: 'मंगल', sa: 'मङ्गलः' } },
+    3: { direction: { en: 'North', hi: 'उत्तर', sa: 'उत्तरम्' }, deity: { en: 'Budha', hi: 'बुध', sa: 'बुधः' } },
+    4: { direction: { en: 'Northeast', hi: 'ईशान', sa: 'ईशानम्' }, deity: { en: 'Guru', hi: 'गुरु', sa: 'गुरुः' } },
+    5: { direction: { en: 'Southeast', hi: 'आग्नेय', sa: 'आग्नेयम्' }, deity: { en: 'Shukra', hi: 'शुक्र', sa: 'शुक्रः' } },
+    6: { direction: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमम्' }, deity: { en: 'Shani', hi: 'शनि', sa: 'शनिः' } },
+  };
+  const homahuti = HOMAHUTI_DIR[weekday];
+
+  // 11. Shiva Vaas (based on tithi)
   const tithiMod = ((tithiResult.number - 1) % 5) + 1; // groups of 5: tithi 1,6,11 → 1; 2,7,12 → 2; etc
-  const SHIVA_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
-    1: { en: 'Kailash (Mountain)', hi: 'कैलाश पर', sa: 'कैलासे' },
-    2: { en: 'Shamshan (Cremation Ground)', hi: 'श्मशान में', sa: 'श्मशाने' },
-    3: { en: "Gori's Abode (Auspicious)", hi: 'गौरी गृह में (शुभ)', sa: 'गौरीगृहे (शुभम्)' },
-    4: { en: 'Sports & Play', hi: 'क्रीड़ा में', sa: 'क्रीडायाम्' },
-    0: { en: 'Deep Meditation (Samadhi)', hi: 'समाधि में (अति शुभ)', sa: 'समाधौ (अतिशुभम्)' },
+  const SHIVA_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed'; tithis: number[] }> = {
+    1: { name: { en: 'Kailash (Mountain)', hi: 'कैलाश पर', sa: 'कैलासे' }, nature: 'auspicious', tithis: [1, 6, 11] },
+    2: { name: { en: 'Shamshan (Cremation Ground)', hi: 'श्मशान में', sa: 'श्मशाने' }, nature: 'inauspicious', tithis: [2, 7, 12] },
+    3: { name: { en: "Gori's Abode (Auspicious)", hi: 'गौरी गृह में (शुभ)', sa: 'गौरीगृहे (शुभम्)' }, nature: 'auspicious', tithis: [3, 8, 13] },
+    4: { name: { en: 'Sports & Play', hi: 'क्रीड़ा में', sa: 'क्रीडायाम्' }, nature: 'neutral', tithis: [4, 9, 14] },
+    0: { name: { en: 'Deep Meditation (Samadhi)', hi: 'समाधि में (अति शुभ)', sa: 'समाधौ (अतिशुभम्)' }, nature: 'mixed', tithis: [5, 10, 15, 30] },
   };
-  // tithi 5,10,15,30 → samadhi (mod 5 = 0); others grouped by (tithi-1)%5 + 1
   const shivaVaasKey = tithiResult.number % 5 === 0 ? 0 : tithiMod;
-  const shivaVaas = SHIVA_VAAS_MAP[shivaVaasKey];
+  const shivaVaas = SHIVA_VAAS_DATA[shivaVaasKey];
 
-  // 9. Agni Vaas (based on weekday)
-  const AGNI_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
-    0: { en: 'Sky (Akasha)',   hi: 'आकाश में',  sa: 'आकाशे' },
-    1: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' },
-    2: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' },
-    3: { en: 'Water (Jal)',   hi: 'जल में',    sa: 'जले' },
-    4: { en: 'Sky (Akasha)',  hi: 'आकाश में',  sa: 'आकाशे' },
-    5: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' },
-    6: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' },
+  // 9. Agni Vaas (based on weekday) — changes at midnight (next sunrise)
+  const AGNI_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
+    0: { name: { en: 'Sky (Akasha)',   hi: 'आकाश में',  sa: 'आकाशे' }, nature: 'auspicious' },
+    1: { name: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' }, nature: 'auspicious' },
+    2: { name: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' }, nature: 'inauspicious' },
+    3: { name: { en: 'Water (Jal)',   hi: 'जल में',    sa: 'जले' }, nature: 'mixed' },
+    4: { name: { en: 'Sky (Akasha)',  hi: 'आकाश में',  sa: 'आकाशे' }, nature: 'auspicious' },
+    5: { name: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' }, nature: 'auspicious' },
+    6: { name: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' }, nature: 'inauspicious' },
   };
-  const agniVaas = AGNI_VAAS_MAP[weekday];
+  const agniData = AGNI_VAAS_DATA[weekday];
+  // Next day sunrise as validity end
+  const nextDaySunriseUT = approximateSunrise(jdSunrise + 1, lat, lng);
+  const agniValidUntil = formatTime(nextDaySunriseUT, tzOffset);
+  const agniVaas = { name: agniData.name, nature: agniData.nature, validUntil: agniValidUntil };
 
-  // 10. Chandra Vaas (based on nakshatra pada)
-  const CHANDRA_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
-    1: { en: "Brahma's Abode", hi: 'ब्रह्म लोक',  sa: 'ब्रह्मस्थाने' },
-    2: { en: "Indra's Abode",  hi: 'इन्द्र लोक', sa: 'इन्द्रस्थाने' },
-    3: { en: "Yama's Abode",   hi: 'यम लोक',     sa: 'यमस्थाने' },
-    4: { en: "Soma's Abode",   hi: 'सोम लोक',    sa: 'सोमस्थाने' },
+  // 10. Chandra Vaas (based on nakshatra pada) — with direction
+  const CHANDRA_VAAS_DATA: Record<number, { name: { en: string; hi: string; sa: string }; direction: { en: string; hi: string; sa: string }; nature: 'auspicious' | 'inauspicious' | 'neutral' | 'mixed' }> = {
+    1: { name: { en: "Brahma's Abode", hi: 'ब्रह्म लोक',  sa: 'ब्रह्मस्थाने' }, direction: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' }, nature: 'auspicious' },
+    2: { name: { en: "Indra's Abode",  hi: 'इन्द्र लोक', sa: 'इन्द्रस्थाने' }, direction: { en: 'South', hi: 'दक्षिण', sa: 'दक्षिणम्' }, nature: 'neutral' },
+    3: { name: { en: "Yama's Abode",   hi: 'यम लोक',     sa: 'यमस्थाने' }, direction: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमम्' }, nature: 'mixed' },
+    4: { name: { en: "Soma's Abode",   hi: 'सोम लोक',    sa: 'सोमस्थाने' }, direction: { en: 'North', hi: 'उत्तर', sa: 'उत्तरम्' }, nature: 'inauspicious' },
   };
-  const chandraVaas = CHANDRA_VAAS_MAP[nakshatraPada] || CHANDRA_VAAS_MAP[1];
+  const chandraVaas = CHANDRA_VAAS_DATA[nakshatraPada] || CHANDRA_VAAS_DATA[1];
+
+  // 11. Rahu Vaas (direction Rahu faces, by weekday)
+  const RAHU_VAAS_MAP: Record<number, { en: string; hi: string; sa: string }> = {
+    0: { en: 'Southwest', hi: 'नैऋत्य', sa: 'नैऋत्यम्' },
+    1: { en: 'Northwest', hi: 'वायव्य', sa: 'वायव्यम्' },
+    2: { en: 'Northeast', hi: 'ईशान', sa: 'ईशानम्' },
+    3: { en: 'North', hi: 'उत्तर', sa: 'उत्तरम्' },
+    4: { en: 'Southeast', hi: 'आग्नेय', sa: 'आग्नेयम्' },
+    5: { en: 'East', hi: 'पूर्व', sa: 'पूर्वम्' },
+    6: { en: 'West', hi: 'पश्चिम', sa: 'पश्चिमम्' },
+  };
+  const rahuVaas = { direction: RAHU_VAAS_MAP[weekday] };
+
+  // 12. Udaya Lagna — rising sign windows throughout the day
+  // Compute ascendant at 10-min intervals from sunrise to next sunrise
+  function calcAscendant(jdAt: number): number {
+    const T2 = (jdAt - 2451545.0) / 36525.0;
+    const gmst = 280.46061837 + 360.98564736629 * (jdAt - 2451545.0)
+      + 0.000387933 * T2 * T2 - T2 * T2 * T2 / 38710000;
+    const lst = normalizeDeg(gmst + lng);
+    const eps = 23.4393 - 0.013 * T2;
+    const epsRad = eps * Math.PI / 180;
+    const latRad = lat * Math.PI / 180;
+    const lstRad = lst * Math.PI / 180;
+    const y = -Math.cos(lstRad);
+    const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
+    let asc = Math.atan2(y, x) * 180 / Math.PI;
+    return normalizeDeg(asc);
+  }
+  const lagnaAyanamsha = lahiriAyanamsha(jdSunrise);
+  const udayaLagna: { rashi: number; name: { en: string; hi: string; sa: string }; start: string; end: string }[] = [];
+  const STEP = 10 / 60; // 10 minutes in hours
+  let prevRashi = -1;
+  let segStart = sunriseUT;
+  for (let h = 0; h <= 24; h += STEP) {
+    const utHour = sunriseUT + h;
+    const jdAt = jdSunrise + h / 24;
+    const tropAsc = calcAscendant(jdAt);
+    const sidAsc = normalizeDeg(tropAsc - lagnaAyanamsha);
+    const rashi = Math.floor(sidAsc / 30) + 1; // 1-12
+    if (prevRashi === -1) {
+      prevRashi = rashi;
+      segStart = utHour;
+    } else if (rashi !== prevRashi) {
+      // Close previous segment
+      const r = RASHIS[(prevRashi - 1) % 12];
+      udayaLagna.push({
+        rashi: prevRashi,
+        name: r?.name || { en: `Rashi ${prevRashi}`, hi: `राशि ${prevRashi}`, sa: `राशिः ${prevRashi}` },
+        start: formatTime(segStart, tzOffset),
+        end: formatTime(utHour, tzOffset),
+      });
+      prevRashi = rashi;
+      segStart = utHour;
+    }
+  }
+  // Close final segment
+  if (prevRashi > 0) {
+    const r = RASHIS[(prevRashi - 1) % 12];
+    udayaLagna.push({
+      rashi: prevRashi,
+      name: r?.name || { en: `Rashi ${prevRashi}`, hi: `राशि ${prevRashi}`, sa: `राशिः ${prevRashi}` },
+      start: formatTime(segStart, tzOffset),
+      end: formatTime(sunriseUT + 24, tzOffset),
+    });
+  }
 
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
@@ -840,5 +961,10 @@ export function computePanchang(input: PanchangInput): PanchangData {
     shivaVaas,
     agniVaas,
     chandraVaas,
+    rahuVaas,
+    udayaLagna,
+    tamilYoga,
+    mantriMandala,
+    homahuti,
   };
 }

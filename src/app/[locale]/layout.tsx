@@ -94,8 +94,9 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}` }} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"

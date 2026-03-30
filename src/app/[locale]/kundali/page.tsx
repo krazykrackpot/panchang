@@ -182,10 +182,12 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'jaimini'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<'D1' | 'D9' | 'bhav_chalit' | 'D3' | 'D10' | 'D12'>('D1');
+  const [dashaSystem, setDashaSystem] = useState('vimshottari');
+  const [showTransits, setShowTransits] = useState(false);
 
   const handleGenerate = async (birthData: BirthData, style: ChartStyle) => {
     setLoading(true);
@@ -276,6 +278,7 @@ export default function KundaliPage() {
               { key: 'dasha' as const, label: t('dashaTimeline') },
               { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
               { key: 'tippanni' as const, label: t('tippanni') },
+              { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
             ]).map((tab) => (
               <button
                 key={tab.key}
@@ -323,6 +326,19 @@ export default function KundaliPage() {
                 </button>
               </div>
 
+              <div className="flex justify-center mb-4">
+                <button onClick={() => setShowTransits(!showTransits)}
+                  className={`px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 ${showTransits ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+                  <span className={`w-2 h-2 rounded-full ${showTransits ? 'bg-emerald-400' : 'bg-text-secondary/30'}`} />
+                  {locale === 'en' ? 'Show Current Transits' : 'वर्तमान गोचर दिखाएं'}
+                </button>
+              </div>
+              {showTransits && (
+                <div className="text-center mb-4 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                  <div className="text-emerald-400 text-xs font-medium mb-1">{locale === 'en' ? 'Transit planets shown with green markers on chart' : 'गोचर ग्रह चार्ट पर हरे चिह्नों से दर्शाए गए'}</div>
+                  <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Transits as of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')} के गोचर`}</div>
+                </div>
+              )}
               <p className="text-text-secondary/50 text-xs text-center mb-6">
                 {locale === 'en' ? 'Click on any house to see details' : 'विवरण देखने के लिए किसी भाव पर क्लिक करें'}
               </p>
@@ -503,8 +519,21 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
+              {/* Dasha system selector */}
+              <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
+                {[
+                  { key: 'vimshottari', label: locale === 'en' ? 'Vimshottari (120yr)' : 'विंशोत्तरी' },
+                  ...(kundali.yoginiDashas ? [{ key: 'yogini', label: locale === 'en' ? 'Yogini (36yr)' : 'योगिनी' }] : []),
+                  ...(kundali.ashtottariDashas ? [{ key: 'ashtottari', label: locale === 'en' ? 'Ashtottari (108yr)' : 'अष्टोत्तरी' }] : []),
+                ].map(dt => (
+                  <button key={dt.key} onClick={() => setDashaSystem(dt.key)}
+                    className={`px-4 py-1.5 rounded-lg text-xs transition-all ${dashaSystem === dt.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary border border-transparent'}`}>
+                    {dt.label}
+                  </button>
+                ))}
+              </div>
               <h3 className="text-gold-gradient text-xl font-bold mb-6 text-center" style={headingFont}>{t('dashaTimeline')}</h3>
-              {kundali.dashas.map((dasha, i) => {
+              {(dashaSystem === 'yogini' ? kundali.yoginiDashas : dashaSystem === 'ashtottari' ? kundali.ashtottariDashas : kundali.dashas)?.map((dasha, i) => {
                 const now = new Date();
                 const start = new Date(dasha.startDate);
                 const end = new Date(dasha.endDate);
@@ -552,6 +581,81 @@ export default function KundaliPage() {
 
           {/* ===== TIPPANNI TAB ===== */}
           {activeTab === 'tippanni' && <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />}
+
+          {/* ===== JAIMINI TAB ===== */}
+          {activeTab === 'jaimini' && kundali.jaimini && (
+            <div className="space-y-8">
+              {/* Chara Karakas */}
+              <div>
+                <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Chara Karakas (Variable Significators)' : 'चर कारक'}
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {kundali.jaimini.charaKarakas.map((ck, i) => (
+                    <div key={i} className={`glass-card rounded-xl p-4 ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : ''}`}>
+                      <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{ck.karaka}</div>
+                      <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
+                      <div className="text-text-secondary text-xs mt-1">{ck.karakaName[locale]}</div>
+                      <div className="text-text-tertiary text-[10px] mt-1">{ck.degree.toFixed(2)}° {locale === 'en' ? 'in sign' : 'अंश'}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Karakamsha */}
+              <div className="text-center">
+                <div className="inline-block glass-card rounded-2xl p-6 border border-gold-primary/20">
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Karakamsha' : 'कारकांश'}</div>
+                  <div className="text-gold-light font-bold text-2xl" style={headingFont}>{kundali.jaimini.karakamsha.signName[locale]}</div>
+                  <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Navamsha sign of Atmakaraka — key to soul purpose' : 'आत्मकारक का नवांश — आत्मा के उद्देश्य की कुंजी'}</div>
+                </div>
+              </div>
+
+              {/* Arudha Padas */}
+              <div>
+                <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Arudha Padas (Image Points)' : 'आरूढ़ पद'}
+                </h3>
+                <div className="glass-card rounded-2xl overflow-hidden">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 divide-x divide-y divide-gold-primary/10">
+                    {kundali.jaimini.arudhaPadas.map((ap, i) => (
+                      <div key={i} className={`p-3 text-center ${i === 0 ? 'bg-gold-primary/5' : ''}`}>
+                        <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">A{ap.house}</div>
+                        <div className="text-gold-light font-bold text-sm mt-1" style={headingFont}>{ap.signName[locale]}</div>
+                        <div className="text-text-tertiary text-[9px] mt-1 leading-tight">{ap.label[locale]}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Chara Dasha */}
+              <div>
+                <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Chara Dasha (Sign-Based Periods)' : 'चर दशा (राशि आधारित)'}
+                </h3>
+                <div className="space-y-2">
+                  {kundali.jaimini.charaDasha.map((cd, i) => {
+                    const now = new Date();
+                    const start = new Date(cd.startDate);
+                    const end = new Date(cd.endDate);
+                    const isCurrent = now >= start && now <= end;
+                    const isPast = now > end;
+                    return (
+                      <div key={i} className={`glass-card rounded-xl p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
+                        <div className="flex items-center gap-3">
+                          <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
+                          <span className="text-gold-light font-bold" style={headingFont}>{cd.signName[locale]}</span>
+                          <span className="text-text-tertiary text-xs">{cd.years} {locale === 'en' ? 'years' : 'वर्ष'}</span>
+                        </div>
+                        <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
         </motion.div>
       )}
     </div>

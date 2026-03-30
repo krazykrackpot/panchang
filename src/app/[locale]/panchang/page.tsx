@@ -4,12 +4,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import { Download } from 'lucide-react';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
+import { GRAHAS } from '@/lib/constants/grahas';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { PanchangData, Locale, Muhurta, TransitionInfo, BalamResult } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -57,6 +58,29 @@ interface LocationData {
   lng: number;
   name: string;
   tz: number;
+}
+
+// ──────────────────────────────────────────────────────────────
+// Section heading component
+// ──────────────────────────────────────────────────────────────
+function SectionHeading({
+  icon,
+  title,
+  subtitle,
+  accentClass = 'text-gold-gradient',
+}: {
+  icon: React.ReactNode;
+  title: string;
+  subtitle?: string;
+  accentClass?: string;
+}) {
+  return (
+    <div className="text-center mb-8">
+      <div className="flex justify-center mb-3">{icon}</div>
+      <h2 className={`text-3xl font-bold mb-2 ${accentClass}`}>{title}</h2>
+      {subtitle && <p className="text-text-secondary text-sm max-w-xl mx-auto">{subtitle}</p>}
+    </div>
+  );
 }
 
 export default function PanchangPage() {
@@ -300,7 +324,9 @@ export default function PanchangPage() {
             </div>
           </div>
 
-          {/* ═══ FIVE ELEMENTS — Drik Panchang style ═══ */}
+          {/* ═══════════════════════════════════════════════════
+              SECTION 1: FIVE ELEMENTS (Pancha Anga)
+          ═══════════════════════════════════════════════════ */}
           {(() => {
             const tp = (tr?: TransitionInfo) => tr ? hasTransitionPassed(tr.endTime, tr.endDate, now, selectedDate, location.tz) : false;
             const fmt = (time: string, date?: string) => formatTransitionTime(time, date, panchang.date, locale);
@@ -512,270 +538,764 @@ export default function PanchangPage() {
             ))}
           </div>
 
-          {/* ═══ INAUSPICIOUS TIMES ═══ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
-            {[
-              { label: t('rahuKaal'), start: panchang.rahuKaal.start, end: panchang.rahuKaal.end, color: 'text-red-400', bg: 'border-red-500/20' },
-              { label: t('yamaganda'), start: panchang.yamaganda.start, end: panchang.yamaganda.end, color: 'text-orange-400', bg: 'border-orange-500/20' },
-              { label: t('gulikaKaal'), start: panchang.gulikaKaal.start, end: panchang.gulikaKaal.end, color: 'text-yellow-400', bg: 'border-yellow-500/20' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7 + i * 0.08 }}
-                className={`glass-card rounded-xl p-6 text-center border ${item.bg}`}
-              >
-                <div className="text-gold-dark text-xs uppercase tracking-widest mb-2 font-bold">{item.label}</div>
-                <div className={`font-mono text-2xl font-bold ${item.color}`}>
-                  {item.start} — {item.end}
+          <GoldDivider />
+
+          {/* ═══════════════════════════════════════════════════
+              SECTION 2: AUSPICIOUS TIMINGS
+          ═══════════════════════════════════════════════════ */}
+          <div className="my-14">
+            <SectionHeading
+              icon={<MuhurtaIcon size={56} />}
+              title={locale === 'en' ? 'Auspicious Timings' : 'शुभ मुहूर्त'}
+              subtitle={locale === 'en'
+                ? 'Sacred windows of time blessed by planetary harmony — begin new ventures, ceremonies, and important work during these periods.'
+                : 'ग्रहों की अनुकूल स्थिति में शुभ काल — इन अवधियों में नए कार्य, समारोह और महत्वपूर्ण कार्य प्रारम्भ करें।'}
+              accentClass="text-emerald-400"
+            />
+
+            {/* Sarvartha Siddhi full-width banner */}
+            {panchang.sarvarthaSiddhi && (
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mb-6">
+                <div className="glass-card rounded-2xl p-6 border-2 border-gold-primary/40 bg-gradient-to-r from-gold-primary/10 via-emerald-500/5 to-gold-primary/10 text-center">
+                  <div className="flex items-center justify-center gap-3 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-gold-primary animate-pulse" />
+                    <div className="text-gold-primary text-xs uppercase tracking-[0.3em] font-bold">{t('sarvarthaSiddhi')}</div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-gold-primary animate-pulse" />
+                  </div>
+                  <div className="text-gold-light text-xl font-bold" style={headingFont}>{t('sarvarthaSiddhiActive')}</div>
+                  <div className="text-text-secondary text-sm mt-2">{t('sarvarthaSiddhiDesc')}</div>
                 </div>
-                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Avoid new activities' : 'नए कार्य टालें'}</div>
               </motion.div>
-            ))}
-          </div>
+            )}
 
-          {/* ═══ SARVARTHA SIDDHI YOGA BANNER ═══ */}
-          {panchang.sarvarthaSiddhi && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mb-10 mt-4"
-            >
-              <div className="glass-card rounded-2xl p-6 border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-500/10 via-gold-primary/5 to-emerald-500/10 text-center">
-                <div className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t('sarvarthaSiddhi')}</div>
-                <div className="text-emerald-300 text-lg font-bold" style={headingFont}>{t('sarvarthaSiddhiActive')}</div>
-                <div className="text-text-secondary text-xs mt-2">{t('sarvarthaSiddhiDesc')}</div>
-              </div>
-            </motion.div>
-          )}
+            {/* Ravi Yoga badge */}
+            {panchang.raviYoga && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-6 flex justify-center">
+                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/40 bg-amber-500/10">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                  <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">
+                    {locale === 'en' ? 'Ravi Yoga Active' : 'रवि योग सक्रिय'}
+                  </span>
+                  <span className="text-amber-400/70 text-xs">{locale === 'en' ? '· Highly Auspicious' : '· अत्यंत शुभ'}</span>
+                </div>
+              </motion.div>
+            )}
 
-          {/* ═══ Section B: SPECIAL YOGAS ROW ═══ */}
-          {(panchang.gandaMoola?.active || panchang.anandadiYoga || panchang.raviYoga || panchang.panchaka?.active) && (
-            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8 mt-2">
-              <div className="flex flex-wrap gap-3 justify-center">
-                {/* Ganda Moola */}
-                {panchang.gandaMoola?.active && (
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/40 bg-red-500/10">
-                    <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-                    <span className="text-red-300 text-xs font-bold uppercase tracking-wider">
-                      {locale === 'en' ? 'Ganda Moola' : 'गण्डमूल'}
-                    </span>
-                    {panchang.gandaMoola.nakshatra && (
-                      <span className="text-red-400/80 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        · {panchang.gandaMoola.nakshatra[locale]}
-                      </span>
-                    )}
-                  </div>
-                )}
-                {/* Anandadi Yoga — always shown */}
-                {panchang.anandadiYoga && (
-                  <div className={`flex items-center gap-2 px-4 py-2 rounded-full border ${
-                    panchang.anandadiYoga.nature === 'auspicious'
-                      ? 'border-emerald-500/40 bg-emerald-500/10'
-                      : 'border-orange-500/40 bg-orange-500/10'
-                  }`}>
-                    <span className={`w-2 h-2 rounded-full ${panchang.anandadiYoga.nature === 'auspicious' ? 'bg-emerald-400' : 'bg-orange-400'}`} />
-                    <span className={`text-xs font-bold uppercase tracking-wider ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-orange-300'}`}>
-                      {locale === 'en' ? 'Anandadi' : 'आनन्दादि'}:
-                    </span>
-                    <span className={`text-xs font-bold ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-200' : 'text-orange-200'}`}
-                      style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {panchang.anandadiYoga.name[locale]}
-                    </span>
-                  </div>
-                )}
-                {/* Ravi Yoga */}
-                {panchang.raviYoga && (
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/40 bg-amber-500/10">
-                    <span className="w-2 h-2 rounded-full bg-amber-400" />
-                    <span className="text-amber-300 text-xs font-bold uppercase tracking-wider">
-                      {locale === 'en' ? 'Ravi Yoga' : 'रवि योग'}
-                    </span>
-                    <span className="text-amber-400/70 text-[10px]">{locale === 'en' ? '· Auspicious' : '· शुभ'}</span>
-                  </div>
-                )}
-                {/* Panchaka */}
-                {panchang.panchaka?.active && (
-                  <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/40 bg-purple-500/10">
-                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                    <span className="text-purple-300 text-xs font-bold uppercase tracking-wider">
-                      {locale === 'en' ? 'Panchaka' : 'पंचक'}
-                    </span>
-                    {panchang.panchaka.type && (
-                      <span className="text-purple-400/80 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        · {panchang.panchaka.type[locale]}
-                      </span>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
-
-          {/* ═══ SPECIAL TIMINGS — Amrit Kalam, Varjyam ═══ */}
-          {(panchang.amritKalam || panchang.varjyam) && (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10 mt-4">
-                {panchang.amritKalam && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="glass-card rounded-xl p-6 border border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-transparent"
-                  >
-                    <div className="text-emerald-400 text-xs uppercase tracking-widest mb-1 font-bold">{t('amritKalam')}</div>
-                    <div className="font-mono text-2xl font-bold text-emerald-300">{panchang.amritKalam.start} — {panchang.amritKalam.end}</div>
-                    <div className="text-text-secondary text-xs mt-2">{t('amritKalamDesc')}</div>
-                  </motion.div>
-                )}
-                {panchang.varjyam && (
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="glass-card rounded-xl p-6 border border-red-500/20 bg-gradient-to-br from-red-500/5 to-transparent"
-                  >
-                    <div className="text-red-400 text-xs uppercase tracking-widest mb-1 font-bold">{t('varjyam')}</div>
-                    <div className="font-mono text-2xl font-bold text-red-300">{panchang.varjyam.start} — {panchang.varjyam.end}</div>
-                    <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
-                  </motion.div>
-                )}
-              </div>
-            </>
-          )}
-
-          {/* ═══ NAMED MUHURTAS ═══ */}
-          <div className="mb-14">
-            <h2 className="text-3xl font-bold text-gold-gradient mb-6 text-center" style={headingFont}>
-              {t('namedMuhurtas')}
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {/* Auspicious timings grid */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {/* Brahma Muhurta */}
               {panchang.brahmaMuhurta && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-                  className="glass-card rounded-xl p-5 text-center border border-indigo-500/20">
-                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold mb-1">{t('brahmaMuhurta')}</div>
-                  <div className="font-mono text-lg font-bold text-indigo-300">{panchang.brahmaMuhurta.start} — {panchang.brahmaMuhurta.end}</div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
+                  className="glass-card rounded-xl p-5 text-center border border-indigo-500/30 bg-gradient-to-br from-indigo-500/5 to-transparent">
+                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold mb-2">{t('brahmaMuhurta')}</div>
+                  <div className="font-mono text-xl font-bold text-indigo-300">{panchang.brahmaMuhurta.start} — {panchang.brahmaMuhurta.end}</div>
                   <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('brahmaMuhurtaDesc')}</div>
                 </motion.div>
               )}
-              {panchang.sandhyaKaal && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-                  className="glass-card rounded-xl p-5 text-center border border-amber-500/20">
-                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">{t('sandhyaKaal')}</div>
-                  <div className="text-text-primary text-xs mt-1">{t('morningSandhya')}: <span className="font-mono text-amber-300">{panchang.sandhyaKaal.morning.start}—{panchang.sandhyaKaal.morning.end}</span></div>
-                  <div className="text-text-primary text-xs mt-1">{t('eveningSandhya')}: <span className="font-mono text-amber-300">{panchang.sandhyaKaal.evening.start}—{panchang.sandhyaKaal.evening.end}</span></div>
-                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('sandhyaKaalDesc')}</div>
-                </motion.div>
-              )}
-              {panchang.godhuli && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-                  className="glass-card rounded-xl p-5 text-center border border-gold-primary/20">
-                  <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">{t('godhuli')}</div>
-                  <div className="font-mono text-lg font-bold text-gold-light">{panchang.godhuli.start} — {panchang.godhuli.end}</div>
-                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('godhuliDesc')}</div>
-                </motion.div>
-              )}
-              {panchang.nishitaKaal && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-                  className="glass-card rounded-xl p-5 text-center border border-purple-500/20">
-                  <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-1">{t('nishitaKaal')}</div>
-                  <div className="font-mono text-lg font-bold text-purple-300">{panchang.nishitaKaal.start} — {panchang.nishitaKaal.end}</div>
-                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('nishitaKaalDesc')}</div>
-                </motion.div>
-              )}
-              {/* Section A: Vijaya Muhurta */}
+
+              {/* Abhijit Muhurta */}
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+                className="glass-card rounded-xl p-5 text-center border-2 border-gold-primary/40 bg-gradient-to-br from-gold-primary/10 to-transparent">
+                <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+                  {locale === 'en' ? 'Abhijit Muhurta' : 'अभिजित् मुहूर्त'}
+                </div>
+                <div className="font-mono text-xl font-bold text-gold-light">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
+                <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">
+                  {locale === 'en' ? 'Most auspicious — victory assured' : 'सर्वश्रेष्ठ — विजय निश्चित'}
+                </div>
+              </motion.div>
+
+              {/* Vijaya Muhurta */}
               {panchang.vijayaMuhurta && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.11 }}
                   className="glass-card rounded-xl p-5 text-center border border-amber-400/30 bg-gradient-to-br from-amber-500/5 to-transparent">
-                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-1">
+                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
                     {locale === 'en' ? 'Vijaya Muhurta' : 'विजय मुहूर्त'}
                   </div>
-                  <div className="font-mono text-lg font-bold text-amber-300">{panchang.vijayaMuhurta.start} — {panchang.vijayaMuhurta.end}</div>
+                  <div className="font-mono text-xl font-bold text-amber-300">{panchang.vijayaMuhurta.start} — {panchang.vijayaMuhurta.end}</div>
                   <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">
                     {locale === 'en' ? '10th muhurta — victory assured' : '१०वाँ मुहूर्त — विजय निश्चित'}
                   </div>
                 </motion.div>
               )}
-              {/* Section A: Dur Muhurtam */}
-              {panchang.durMuhurtam && panchang.durMuhurtam.length > 0 && (
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
-                  className="glass-card rounded-xl p-5 text-center border border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent">
-                  <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-1">
-                    {locale === 'en' ? 'Dur Muhurtam' : 'दुर्मुहूर्त'}
+
+              {/* Amrit Kalam */}
+              {panchang.amritKalam && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
+                  className="glass-card rounded-xl p-5 text-center border border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent">
+                  <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{t('amritKalam')}</div>
+                  <div className="font-mono text-xl font-bold text-emerald-300">{panchang.amritKalam.start} — {panchang.amritKalam.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('amritKalamDesc')}</div>
+                </motion.div>
+              )}
+
+              {/* Godhuli Muhurta */}
+              {panchang.godhuli && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.17 }}
+                  className="glass-card rounded-xl p-5 text-center border border-amber-600/30 bg-gradient-to-br from-amber-600/5 to-transparent">
+                  <div className="text-amber-500 text-xs uppercase tracking-wider font-bold mb-2">{t('godhuli')}</div>
+                  <div className="font-mono text-xl font-bold text-amber-400">{panchang.godhuli.start} — {panchang.godhuli.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('godhuliDesc')}</div>
+                </motion.div>
+              )}
+
+              {/* Morning Sandhya */}
+              {panchang.sandhyaKaal && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20 }}
+                  className="glass-card rounded-xl p-5 text-center border border-orange-400/30 bg-gradient-to-br from-orange-500/5 to-transparent">
+                  <div className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">
+                    {locale === 'en' ? 'Morning Sandhya' : 'प्रातः संध्या'}
                   </div>
-                  {panchang.durMuhurtam.map((w, i) => (
-                    <div key={i} className="font-mono text-sm font-bold text-red-300 leading-tight">{w.start} — {w.end}</div>
-                  ))}
+                  <div className="font-mono text-xl font-bold text-orange-300">{panchang.sandhyaKaal.morning.start} — {panchang.sandhyaKaal.morning.end}</div>
                   <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">
-                    {locale === 'en' ? 'Inauspicious — avoid new work' : 'अशुभ — नए कार्य टालें'}
+                    {locale === 'en' ? 'Pratah Sandhya — morning prayers' : 'प्रातः संध्या — प्रातःकालीन पूजा'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Evening Sandhya */}
+              {panchang.sandhyaKaal && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.23 }}
+                  className="glass-card rounded-xl p-5 text-center border border-purple-400/30 bg-gradient-to-br from-purple-500/5 to-transparent">
+                  <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-2">
+                    {locale === 'en' ? 'Evening Sandhya' : 'सायं संध्या'}
+                  </div>
+                  <div className="font-mono text-xl font-bold text-purple-300">{panchang.sandhyaKaal.evening.start} — {panchang.sandhyaKaal.evening.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">
+                    {locale === 'en' ? 'Sayahna Sandhya — evening prayers' : 'सायंकाल संध्या — सन्ध्याकालीन पूजा'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Nishita Kaal */}
+              {panchang.nishitaKaal && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.26 }}
+                  className="glass-card rounded-xl p-5 text-center border border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-transparent">
+                  <div className="text-blue-400 text-xs uppercase tracking-wider font-bold mb-2">{t('nishitaKaal')}</div>
+                  <div className="font-mono text-xl font-bold text-blue-300">{panchang.nishitaKaal.start} — {panchang.nishitaKaal.end}</div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">{t('nishitaKaalDesc')}</div>
+                </motion.div>
+              )}
+
+              {/* Anandadi Yoga — auspicious variant */}
+              {panchang.anandadiYoga && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.29 }}
+                  className={`glass-card rounded-xl p-5 text-center border ${
+                    panchang.anandadiYoga.nature === 'auspicious'
+                      ? 'border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent'
+                      : 'border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent'
+                  }`}>
+                  <div className={`text-xs uppercase tracking-wider font-bold mb-2 ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-400' : 'text-orange-400'}`}>
+                    {locale === 'en' ? 'Anandadi Yoga' : 'आनन्दादि योग'}
+                  </div>
+                  <div className={`font-bold text-lg ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-orange-300'}`}
+                    style={headingFont}>
+                    {panchang.anandadiYoga.name[locale]}
+                  </div>
+                  <div className="text-text-secondary text-[10px] mt-2 leading-relaxed">
+                    {panchang.anandadiYoga.nature === 'auspicious'
+                      ? (locale === 'en' ? 'Auspicious yoga — favourable energy' : 'शुभ योग — अनुकूल ऊर्जा')
+                      : (locale === 'en' ? 'Mixed energy — act with caution' : 'मिश्रित ऊर्जा — सावधानी से कार्य करें')}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Tamil Yoga */}
+              {panchang.tamilYoga && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.35 }}
+                  className={`glass-card rounded-xl p-5 border ${panchang.tamilYoga.nature === 'auspicious' ? 'border-emerald-500/20' : 'border-red-500/20'}`}>
+                  <div className={`text-xs uppercase tracking-wider font-bold mb-2 ${panchang.tamilYoga.nature === 'auspicious' ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {locale === 'en' ? 'Tamil Yoga' : 'तमिल योग'}
+                  </div>
+                  <div className={`font-bold text-lg ${panchang.tamilYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-red-300'}`} style={headingFont}>
+                    {panchang.tamilYoga.name[locale]}
+                  </div>
+                  <div className="text-text-secondary text-[10px] mt-2">
+                    {panchang.tamilYoga.nature === 'auspicious'
+                      ? (locale === 'en' ? 'Auspicious — good for important activities' : 'शुभ — महत्वपूर्ण कार्यों के लिए उत्तम')
+                      : (locale === 'en' ? 'Inauspicious — avoid new ventures' : 'अशुभ — नए कार्यों से बचें')}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Homahuti */}
+              {panchang.homahuti && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}
+                  className="glass-card rounded-xl p-5 border border-orange-500/20">
+                  <div className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">
+                    {locale === 'en' ? 'Homahuti Direction' : 'होमाहुति दिशा'}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                      <Compass className="w-5 h-5 text-orange-400" />
+                    </div>
+                    <div>
+                      <div className="text-gold-light font-bold text-lg" style={headingFont}>{panchang.homahuti.direction[locale]}</div>
+                      <div className="text-text-secondary text-xs">{locale === 'en' ? 'Face this direction for Homa' : 'होम के लिए इस दिशा में मुख करें'}</div>
+                    </div>
+                  </div>
+                  <div className="text-text-tertiary text-[10px] mt-2">
+                    {locale === 'en' ? `Presiding deity: ${panchang.homahuti.deity.en}` : `अधिष्ठाता: ${panchang.homahuti.deity.hi}`}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Mantri Mandala */}
+              {panchang.mantriMandala && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.45 }}
+                  className="glass-card rounded-xl p-5 border border-gold-primary/20">
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
+                    {locale === 'en' ? 'Mantri Mandala' : 'मंत्री मण्डल'}
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-text-secondary text-xs">{panchang.mantriMandala.king.role[locale]}</span>
+                      <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.king.planet]?.name[locale]}</span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-text-secondary text-xs">{panchang.mantriMandala.minister.role[locale]}</span>
+                      <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.minister.planet]?.name[locale]}</span>
+                    </div>
+                  </div>
+                  <div className="text-text-tertiary text-[10px] mt-2">
+                    {locale === 'en' ? 'Day lord governs as King, sunrise Hora lord serves as Minister' : 'दिन स्वामी राजा, सूर्योदय होरा स्वामी मंत्री'}
                   </div>
                 </motion.div>
               )}
             </div>
           </div>
 
-          {/* ═══ DISHA SHOOL ═══ */}
-          {panchang.dishaShool && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="glass-card rounded-xl p-6 border border-orange-500/20 bg-gradient-to-r from-orange-500/5 to-transparent mb-14"
-            >
-              <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
-                  <span className="text-orange-400 text-2xl font-bold">
-                    {panchang.dishaShool.direction[locale].charAt(0)}
-                  </span>
-                </div>
-                <div className="flex-1">
-                  <div className="text-orange-400 text-xs uppercase tracking-widest font-bold mb-1">{t('dishaShool')}</div>
-                  <div className="text-text-primary font-bold text-lg" style={headingFont}>{panchang.dishaShool.direction[locale]}</div>
-                  <div className="text-text-secondary text-xs mt-1">{t('dishaShoolDesc')}</div>
-                </div>
-                <div className="text-center sm:text-right">
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{t('remedy')}</div>
-                  <div className="text-text-secondary text-sm mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.dishaShool.remedy[locale]}</div>
-                </div>
-              </div>
-            </motion.div>
-          )}
+          <GoldDivider />
+
+          {/* ═══════════════════════════════════════════════════
+              SECTION 3: INAUSPICIOUS TIMINGS
+          ═══════════════════════════════════════════════════ */}
+          <div className="my-14">
+            <SectionHeading
+              icon={
+                <svg width={56} height={56} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="red-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#fca5a5" />
+                      <stop offset="100%" stopColor="#ef4444" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="32" cy="32" r="26" stroke="url(#red-grad)" strokeWidth="2" fill="none" opacity="0.4" />
+                  <path d="M32 12v24M32 42v4" stroke="url(#red-grad)" strokeWidth="3" strokeLinecap="round" />
+                  <circle cx="32" cy="50" r="3" fill="#ef4444" />
+                </svg>
+              }
+              title={locale === 'en' ? 'Inauspicious Timings' : 'अशुभ काल'}
+              subtitle={locale === 'en'
+                ? 'Avoid initiating new activities, journeys, or important decisions during these planetary affliction periods.'
+                : 'इन ग्रह पीड़ा काल में नए कार्य, यात्रा या महत्वपूर्ण निर्णय लेने से बचें।'}
+              accentClass="text-red-400"
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+              {/* Rahu Kalam */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.05 }}
+                className="glass-card rounded-xl p-6 text-center border border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent">
+                <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
+                <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Rahu\'s period — avoid new work' : 'राहु काल — नए कार्य टालें'}</div>
+              </motion.div>
+
+              {/* Yamaganda */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.08 }}
+                className="glass-card rounded-xl p-6 text-center border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
+                <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
+                <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Yama\'s period — inauspicious' : 'यम का काल — अशुभ'}</div>
+              </motion.div>
+
+              {/* Gulika Kaal */}
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.11 }}
+                className="glass-card rounded-xl p-6 text-center border border-yellow-500/30 bg-gradient-to-br from-yellow-500/5 to-transparent">
+                <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
+                <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Gulika\'s period — avoid travel' : 'गुलिक काल — यात्रा टालें'}</div>
+              </motion.div>
+
+              {/* Dur Muhurtam */}
+              {panchang.durMuhurtam && panchang.durMuhurtam.length > 0 && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.14 }}
+                  className="glass-card rounded-xl p-6 text-center border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent">
+                  <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {locale === 'en' ? 'Dur Muhurtam' : 'दुर्मुहूर्त'}
+                  </div>
+                  {panchang.durMuhurtam.map((w, i) => (
+                    <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
+                  ))}
+                  <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Inauspicious — avoid all new work' : 'अशुभ — सभी नए कार्य टालें'}</div>
+                </motion.div>
+              )}
+
+              {/* Varjyam */}
+              {panchang.varjyam && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.17 }}
+                  className="glass-card rounded-xl p-6 text-center border border-red-400/25 bg-gradient-to-br from-red-400/5 to-transparent">
+                  <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
+                  <div className="font-mono text-2xl font-bold text-red-300">{panchang.varjyam.start} — {panchang.varjyam.end}</div>
+                  <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
+                </motion.div>
+              )}
+
+              {/* Ganda Moola — pulsing red warning */}
+              {panchang.gandaMoola?.active && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.20 }}
+                  className="glass-card rounded-xl p-6 text-center border-2 border-red-500/50 bg-gradient-to-br from-red-500/10 to-transparent">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                    <div className="text-red-400 text-xs uppercase tracking-widest font-bold">
+                      {locale === 'en' ? 'Ganda Moola' : 'गण्डमूल'}
+                    </div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+                  </div>
+                  {panchang.gandaMoola.nakshatra && (
+                    <div className="text-red-300 font-bold text-base" style={headingFont}>
+                      {panchang.gandaMoola.nakshatra[locale]}
+                    </div>
+                  )}
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Inauspicious nakshatra junction — exercise caution' : 'अशुभ नक्षत्र संधि — सावधानी बरतें'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Panchaka — pulsing purple warning */}
+              {panchang.panchaka?.active && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.23 }}
+                  className="glass-card rounded-xl p-6 text-center border-2 border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-transparent">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
+                    <div className="text-purple-400 text-xs uppercase tracking-widest font-bold">
+                      {locale === 'en' ? 'Panchaka' : 'पंचक'}
+                    </div>
+                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
+                  </div>
+                  {panchang.panchaka.type && (
+                    <div className="text-purple-300 font-bold text-base" style={headingFont}>
+                      {panchang.panchaka.type[locale]}
+                    </div>
+                  )}
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Five-fold affliction — avoid fire, construction, travel' : 'पंचगुना पीड़ा — अग्नि, निर्माण, यात्रा टालें'}
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
 
           <GoldDivider />
 
-          {/* ═══ ABHIJIT MUHURTA HIGHLIGHT ═══ */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="my-14"
-          >
-            <div className="glass-card rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 to-transparent relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gold-primary/5 rounded-full blur-3xl" />
-              <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-shrink-0"><MuhurtaIcon size={80} /></div>
-                <div className="flex-1 text-center md:text-left">
-                  <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-                    {locale === 'en' ? 'Abhijit Muhurta' : 'अभिजित् मुहूर्त'}
-                  </h2>
-                  <p className="text-text-secondary text-sm mb-3 max-w-xl">
-                    {locale === 'en'
-                      ? 'The most auspicious time of the day — around local midday. Victory is assured in activities begun during Abhijit Muhurta. Named after the star Vega (Abhijit Nakshatra).'
-                      : 'दिन का सबसे शुभ समय — स्थानीय मध्याह्न के आसपास। अभिजित् मुहूर्त में आरम्भ किए कार्यों में विजय निश्चित है। वेगा तारे (अभिजित् नक्षत्र) के नाम पर।'}
-                  </p>
-                  <div className="flex items-center gap-4 justify-center md:justify-start">
-                    <Clock className="w-5 h-5 text-gold-primary" />
-                    <span className="font-mono text-3xl font-bold text-gold-light">
-                      {panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}
-                    </span>
+          {/* ═══════════════════════════════════════════════════
+              SECTION 4: NIVAS & SHOOL
+          ═══════════════════════════════════════════════════ */}
+          <div className="my-14">
+            <SectionHeading
+              icon={<Compass className="w-14 h-14 text-indigo-400" />}
+              title={locale === 'en' ? 'Nivas & Shool' : 'निवास एवं शूल'}
+              subtitle={locale === 'en'
+                ? 'Where cosmic forces reside today — directional afflictions, divine abodes, and their remedies.'
+                : 'आज ब्रह्मांडीय शक्तियाँ कहाँ निवास करती हैं — दिशा शूल, दिव्य निवास और उनके उपाय।'}
+              accentClass="text-indigo-400"
+            />
+
+            <div className="text-center mb-6">
+              <Link href="/nivas-shool" className="inline-flex items-center gap-1.5 text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
+                {locale === 'en' ? 'Learn about all Nivas & Shool concepts' : 'सभी निवास एवं शूल अवधारणाओं के बारे में जानें'} →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {/* Disha Shool */}
+              {panchang.dishaShool && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                  className="glass-card rounded-xl p-6 border border-orange-500/25 bg-gradient-to-br from-orange-500/5 to-transparent lg:col-span-1">
+                  <div className="text-orange-400 text-xs uppercase tracking-widest font-bold mb-3">{t('dishaShool')}</div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center flex-shrink-0">
+                      <span className="text-orange-400 text-xl font-bold">
+                        {panchang.dishaShool.direction[locale].charAt(0)}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-text-primary font-bold text-lg" style={headingFont}>{panchang.dishaShool.direction[locale]}</div>
+                      <div className="text-text-secondary text-xs">{t('dishaShoolDesc')}</div>
+                    </div>
                   </div>
-                </div>
-                <div className="hidden md:block text-right">
-                  <div className="text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' ? 'Best for' : 'सर्वोत्तम'}</div>
-                  <div className="text-text-secondary text-sm mt-1">{locale === 'en' ? 'All activities' : 'सभी कार्य'}</div>
-                  <div className="text-text-secondary text-sm">{locale === 'en' ? 'Marriages' : 'विवाह'}</div>
-                  <div className="text-text-secondary text-sm">{locale === 'en' ? 'Major decisions' : 'महत्वपूर्ण निर्णय'}</div>
+                  <div className="pt-3 border-t border-orange-500/10">
+                    <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{t('remedy')}</div>
+                    <div className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.dishaShool.remedy[locale]}</div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Shiva Vaas */}
+              {panchang.shivaVaas && (() => {
+                const shivaName = panchang.shivaVaas.name?.en || (panchang.shivaVaas as unknown as { en: string }).en || '';
+                const nature = panchang.shivaVaas.nature || 'neutral';
+                const tithiList = panchang.shivaVaas.tithis || [];
+                const shivaDesc: Record<string, { nColor: string; border: string; bg: string; desc: { en: string; hi: string }; activities: { en: string; hi: string } }> = {
+                  'Kailash (Mountain)': {
+                    nColor: 'text-emerald-300', border: 'border-emerald-500/25', bg: 'from-emerald-500/5',
+                    desc: { en: 'Shiva resides in his divine abode atop Kailash with Parvati. He is serene, benevolent, and easily pleased. Best time for Shiva puja, abhishek, and auspicious activities.', hi: 'शिव कैलाश पर पार्वती के साथ हैं। वे शांत, दयालु और प्रसन्न हैं। शिव पूजा, अभिषेक और शुभ कार्यों का सर्वोत्तम समय।' },
+                    activities: { en: 'Shiva puja, abhishek, marriage, business launch', hi: 'शिव पूजा, अभिषेक, विवाह, व्यापार आरंभ' },
+                  },
+                  'Shamshan (Cremation Ground)': {
+                    nColor: 'text-red-400', border: 'border-red-500/25', bg: 'from-red-500/5',
+                    desc: { en: 'Shiva dwells in the cremation ground in his fierce Rudra/Bhairava form. Auspicious activities should be avoided; Tantric rites may be performed by adepts.', hi: 'शिव श्मशान में रुद्र/भैरव रूप में हैं। शुभ कार्यों से बचें; तांत्रिक अनुष्ठान साधक कर सकते हैं।' },
+                    activities: { en: 'Avoid auspicious events; Rudra worship, ancestral rites', hi: 'शुभ कार्य वर्जित; रुद्र पूजा, पित्र कार्य' },
+                  },
+                  "Gori's Abode (Auspicious)": {
+                    nColor: 'text-pink-300', border: 'border-pink-500/25', bg: 'from-pink-500/5',
+                    desc: { en: "Shiva visits Parvati's home — domestic bliss and harmony. Good for marriage, family, home, and matters of Venus.", hi: 'शिव पार्वती के घर में हैं — गृहस्थ आनंद। विवाह, परिवार, घर संबंधी कार्यों के लिए शुभ।' },
+                    activities: { en: 'Marriage, family rituals, home purchase, Gauri puja', hi: 'विवाह, पारिवारिक अनुष्ठान, गृह क्रय, गौरी पूजा' },
+                  },
+                  'Sports & Play': {
+                    nColor: 'text-amber-300', border: 'border-amber-500/25', bg: 'from-amber-500/5',
+                    desc: { en: "Shiva is at cosmic play (Leela) — dancing the Tandava. His attention is divided; mixed results. Arts, music, and dance are well-supported.", hi: 'शिव लीला में हैं — तांडव नृत्य कर रहे हैं। मिश्रित फल। कला, संगीत, नृत्य उत्तम।' },
+                    activities: { en: 'Arts, music, dance; avoid critical ventures', hi: 'कला, संगीत, नृत्य; महत्वपूर्ण कार्यों से बचें' },
+                  },
+                  'Deep Meditation (Samadhi)': {
+                    nColor: 'text-violet-300', border: 'border-violet-500/25', bg: 'from-violet-500/5',
+                    desc: { en: 'Shiva is in deep Samadhi — beyond the phenomenal world. Sacred for meditation and spiritual practice, but mundane activities may not receive divine support.', hi: 'शिव गहरी समाधि में हैं। ध्यान और आध्यात्मिक साधना के लिए पवित्र, लेकिन सांसारिक कार्यों में कम सहायता।' },
+                    activities: { en: 'Meditation, japa, fasting. Avoid worldly ventures.', hi: 'ध्यान, जप, उपवास। सांसारिक कार्यों से बचें।' },
+                  },
+                };
+                const d = shivaDesc[shivaName] || shivaDesc['Kailash (Mountain)'];
+                const natureLabel = { auspicious: 'Auspicious', inauspicious: 'Inauspicious', neutral: 'Neutral', mixed: 'Mixed' }[nature] || 'Neutral';
+                const natureLabelHi = { auspicious: 'शुभ', inauspicious: 'अशुभ', neutral: 'तटस्थ', mixed: 'मिश्रित' }[nature] || 'तटस्थ';
+                return (
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+                    className={`glass-card rounded-xl p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold">
+                        {locale === 'en' ? 'Shiva Vaas' : 'शिव वास'}
+                      </div>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
+                    </div>
+                    <div className="text-gold-light font-bold text-xl mb-2" style={headingFont}>{panchang.shivaVaas.name?.[locale] || shivaName}</div>
+                    {tithiList.length > 0 && (
+                      <div className="text-text-tertiary text-[10px] mb-2">{locale === 'hi' ? 'तिथियाँ' : 'Tithis'}: {tithiList.join(', ')}</div>
+                    )}
+                    <div className="text-text-secondary text-xs leading-relaxed mb-3">{locale === 'hi' ? d.desc.hi : d.desc.en}</div>
+                    <div className={`p-2.5 rounded-lg bg-black/20 border ${d.border}`}>
+                      <div className="text-text-tertiary text-[10px] uppercase tracking-wider mb-0.5">{locale === 'hi' ? 'गतिविधियाँ' : 'Activities'}</div>
+                      <div className={`text-xs font-medium ${d.nColor}`}>{locale === 'hi' ? d.activities.hi : d.activities.en}</div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
+              {/* Agni Vaas */}
+              {panchang.agniVaas && (() => {
+                const agniName = panchang.agniVaas.name?.en || (panchang.agniVaas as unknown as { en: string }).en || '';
+                const nature = panchang.agniVaas.nature || 'neutral';
+                const validUntil = panchang.agniVaas.validUntil;
+                const agniDesc: Record<string, { nColor: string; border: string; bg: string; desc: { en: string; hi: string }; ritualNote: { en: string; hi: string } }> = {
+                  'Sky (Akasha)': {
+                    nColor: 'text-sky-300', border: 'border-sky-500/25', bg: 'from-sky-500/5',
+                    desc: { en: 'Agni resides in the celestial sky. Fire rituals are carried directly to the devatas.', hi: 'अग्नि आकाश में हैं। अग्नि अनुष्ठान सीधे देवताओं तक पहुँचते हैं।' },
+                    ritualNote: { en: 'Homa & Yajna highly effective — offerings rise unimpeded', hi: 'होम और यज्ञ अत्यंत प्रभावी — आहुतियाँ बाधारहित ऊर्ध्वगामी' },
+                  },
+                  'Earth (Bhumi)': {
+                    nColor: 'text-emerald-300', border: 'border-emerald-500/25', bg: 'from-emerald-500/5',
+                    desc: { en: 'Agni is grounded in the earth plane. Fire rituals nourish the land and people.', hi: 'अग्नि पृथ्वी पर हैं। अग्नि अनुष्ठान भूमि और लोगों को पोषित करते हैं।' },
+                    ritualNote: { en: 'Agriculture blessings, prosperity rituals, Griha Pravesh powerful', hi: 'कृषि, समृद्धि, गृह प्रवेश अग्नि कार्य विशेष प्रभावी' },
+                  },
+                  'Patala': {
+                    nColor: 'text-red-400', border: 'border-red-500/25', bg: 'from-red-500/5',
+                    desc: { en: 'Agni descends to the netherworld. Fire rituals may have reversed or weakened effects.', hi: 'अग्नि पाताल में हैं। अग्नि अनुष्ठानों के उलटे या कमजोर प्रभाव।' },
+                    ritualNote: { en: 'Major Yajnas should be postponed. Simple Deepa worship permitted.', hi: 'बड़े यज्ञ स्थगित करें। साधारण दीप पूजा कर सकते हैं।' },
+                  },
+                  'Water (Jal)': {
+                    nColor: 'text-blue-300', border: 'border-blue-500/25', bg: 'from-blue-500/5',
+                    desc: { en: 'Agni is submerged in water — the Vadavagni (submarine fire of Hindu cosmology).', hi: 'अग्नि जल में हैं — वडवाग्नि (हिंदू ब्रह्माण्ड की समुद्री अग्नि)।' },
+                    ritualNote: { en: 'Rituals combining fire + water (abhishek after homa) uniquely powerful', hi: 'अग्नि + जल संयुक्त अनुष्ठान (होम बाद अभिषेक) विशेष शक्तिशाली' },
+                  },
+                };
+                const d = agniDesc[agniName] || agniDesc['Sky (Akasha)'];
+                const natureLabel = { auspicious: 'Auspicious', inauspicious: 'Inauspicious', neutral: 'Neutral', mixed: 'Mixed' }[nature] || 'Neutral';
+                const natureLabelHi = { auspicious: 'शुभ', inauspicious: 'अशुभ', neutral: 'तटस्थ', mixed: 'मिश्रित' }[nature] || 'तटस्थ';
+                return (
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 }}
+                    className={`glass-card rounded-xl p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-red-400 text-xs uppercase tracking-widest font-bold">
+                        {locale === 'en' ? 'Agni Vaas' : 'अग्नि वास'}
+                      </div>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
+                    </div>
+                    <div className="text-gold-light font-bold text-xl mb-1" style={headingFont}>{panchang.agniVaas.name?.[locale] || agniName}</div>
+                    {validUntil && (
+                      <div className={`text-xs font-medium ${d.nColor} mb-2`}>
+                        {locale === 'hi' ? `${validUntil} तक` : `Until ${validUntil}`}
+                      </div>
+                    )}
+                    <div className="text-text-secondary text-xs leading-relaxed mb-3">{locale === 'hi' ? d.desc.hi : d.desc.en}</div>
+                    <div className={`p-2.5 rounded-lg bg-black/20 border ${d.border}`}>
+                      <div className="text-text-tertiary text-[10px] uppercase tracking-wider mb-0.5">{locale === 'hi' ? 'अग्नि कर्म प्रभाव' : 'Fire Ritual Impact'}</div>
+                      <div className={`text-xs font-medium ${d.nColor}`}>{locale === 'hi' ? d.ritualNote.hi : d.ritualNote.en}</div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
+              {/* Chandra Vaas */}
+              {panchang.chandraVaas && (() => {
+                const chandraName = panchang.chandraVaas.name?.en || (panchang.chandraVaas as unknown as { en: string }).en || '';
+                const direction = panchang.chandraVaas.direction;
+                const nature = panchang.chandraVaas.nature || 'neutral';
+                const chandraDesc: Record<string, { nColor: string; border: string; bg: string; desc: { en: string; hi: string }; activities: { en: string; hi: string } }> = {
+                  "Brahma's Abode": {
+                    nColor: 'text-gold-light', border: 'border-gold-primary/25', bg: 'from-gold-primary/5',
+                    desc: { en: 'Moon faces East in Deva (celestial) abode. Divine energy flows freely — prayers answered with ease. Most auspicious pada for sacred activities.', hi: 'चंद्रमा पूर्व दिशा में देव निवास में हैं। दिव्य ऊर्जा स्वतंत्र प्रवाहित। प्रार्थनाएं सुनी जाती हैं — सर्वोत्तम शुभ पाद।' },
+                    activities: { en: 'All auspicious work, puja, sacred ceremonies', hi: 'सभी शुभ कार्य, पूजा, पवित्र समारोह' },
+                  },
+                  "Indra's Abode": {
+                    nColor: 'text-blue-300', border: 'border-blue-500/25', bg: 'from-blue-500/5',
+                    desc: { en: 'Moon faces South in Nara (human) abode — ordinary activity plane. Results are as expected, neither elevated nor hindered.', hi: 'चंद्रमा दक्षिण दिशा में मानव निवास में हैं। परिणाम सामान्य — न उन्नत, न बाधित।' },
+                    activities: { en: 'Daily work, business, social activities', hi: 'दैनिक कार्य, व्यापार, सामाजिक गतिविधियाँ' },
+                  },
+                  "Yama's Abode": {
+                    nColor: 'text-amber-400', border: 'border-amber-500/25', bg: 'from-amber-500/5',
+                    desc: { en: 'Moon faces West in Pashava (animal) abode — instinctual, reactive energy. Actions driven by impulse. Avoid important decisions.', hi: 'चंद्रमा पश्चिम दिशा में पशव निवास में हैं — सहज, प्रतिक्रियाशील ऊर्जा। महत्वपूर्ण निर्णयों से बचें।' },
+                    activities: { en: 'Physical labor, farming; avoid important decisions', hi: 'शारीरिक श्रम, खेती; महत्वपूर्ण निर्णयों से बचें' },
+                  },
+                  "Soma's Abode": {
+                    nColor: 'text-red-400', border: 'border-red-500/25', bg: 'from-red-500/5',
+                    desc: { en: 'Moon faces North in Rakshasa (demonic) abode — turbulent, obstructive energy. Activities face opposition or hidden obstacles.', hi: 'चंद्रमा उत्तर दिशा में राक्षस निवास में हैं — अशांत, अवरोधक ऊर्जा। विरोध या छिपी बाधाएं।' },
+                    activities: { en: 'Avoid sacred activities; protective rites permitted', hi: 'पवित्र गतिविधियों से बचें; सुरक्षात्मक अनुष्ठान संभव' },
+                  },
+                };
+                const d = chandraDesc[chandraName] || chandraDesc["Brahma's Abode"];
+                const natureLabel = { auspicious: 'Auspicious', inauspicious: 'Inauspicious', neutral: 'Neutral', mixed: 'Mixed' }[nature] || 'Neutral';
+                const natureLabelHi = { auspicious: 'शुभ', inauspicious: 'अशुभ', neutral: 'तटस्थ', mixed: 'मिश्रित' }[nature] || 'तटस्थ';
+                return (
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}
+                    className={`glass-card rounded-xl p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="text-blue-400 text-xs uppercase tracking-widest font-bold">
+                        {locale === 'en' ? 'Chandra Vaas' : 'चन्द्र वास'}
+                      </div>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
+                    </div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="text-gold-light font-bold text-xl" style={headingFont}>{panchang.chandraVaas.name?.[locale] || chandraName}</div>
+                      {direction && (
+                        <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/20 border border-blue-500/20">
+                          <Compass className="w-3 h-3 text-blue-400" />
+                          <span className="text-blue-300 text-xs font-bold">{direction[locale]}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-text-secondary text-xs leading-relaxed mb-3">{locale === 'hi' ? d.desc.hi : d.desc.en}</div>
+                    <div className={`p-2.5 rounded-lg bg-black/20 border ${d.border}`}>
+                      <div className="text-text-tertiary text-[10px] uppercase tracking-wider mb-0.5">{locale === 'hi' ? 'गतिविधियाँ' : 'Activities'}</div>
+                      <div className={`text-xs font-medium ${d.nColor}`}>{locale === 'hi' ? d.activities.hi : d.activities.en}</div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
+              {/* Rahu Vaas */}
+              {panchang.rahuVaas && (
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                  className="glass-card rounded-xl p-6 border border-purple-500/25 bg-gradient-to-br from-purple-500/5 to-transparent">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="text-purple-400 text-xs uppercase tracking-widest font-bold">
+                      {locale === 'en' ? 'Rahu Vaas' : 'राहु वास'}
+                    </div>
+                    <span className="text-xs font-medium px-2 py-0.5 rounded-full text-red-400 bg-black/20 border border-red-500/25">{locale === 'hi' ? 'अशुभ दिशा' : 'Avoid'}</span>
+                  </div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center flex-shrink-0">
+                      <Compass className="w-6 h-6 text-purple-400" />
+                    </div>
+                    <div>
+                      <div className="text-gold-light font-bold text-xl" style={headingFont}>{panchang.rahuVaas.direction[locale]}</div>
+                      <div className="text-text-tertiary text-xs">{locale === 'hi' ? 'राहु मुख दिशा' : "Rahu's facing direction"}</div>
+                    </div>
+                  </div>
+                  <div className="text-text-secondary text-xs leading-relaxed mb-3">
+                    {locale === 'hi'
+                      ? 'राहु (छाया ग्रह) आज इस दिशा की ओर मुख किए हुए है। इस दिशा में भूमि खरीद, नींव खुदाई और दीर्घकालिक निर्माण कार्य से बचें। यात्रा में भी सावधानी बरतें।'
+                      : "Rahu (shadow planet) faces this direction today. Avoid land purchase, foundation laying, and long-term construction in this direction. Exercise caution for travel as well."}
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-black/20 border border-purple-500/20">
+                    <div className="text-text-tertiary text-[10px] uppercase tracking-wider mb-0.5">{locale === 'hi' ? 'सुझाव' : 'Guidance'}</div>
+                    <div className="text-xs font-medium text-purple-300">
+                      {locale === 'hi'
+                        ? 'इस दिशा में नया कार्य आरंभ न करें। रक्षात्मक मंत्र और हनुमान स्मरण लाभदायक।'
+                        : 'Do not initiate new ventures in this direction. Protective mantras and Hanuman invocation are beneficial.'}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </div>
+
+          <GoldDivider />
+
+          {/* ═══════════════════════════════════════════════════
+              SECTION 5: CALENDARS & EPOCH
+          ═══════════════════════════════════════════════════ */}
+          <div className="my-14">
+            <SectionHeading
+              icon={<Calendar className="w-14 h-14 text-gold-primary" />}
+              title={locale === 'en' ? 'Calendars & Epoch' : 'पंचांग एवं युग'}
+              subtitle={locale === 'en'
+                ? 'The Hindu calendar system — lunar months, seasons, cosmic cycles, and our position in deep time.'
+                : 'हिन्दू पञ्चाङ्ग प्रणाली — चंद्र मास, ऋतु, ब्रह्मांडीय चक्र और काल में हमारी स्थिति।'}
+            />
+
+            {/* Hindu Calendar subsection */}
+            <div className="mb-4">
+              <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
+                <MasaIcon size={28} />
+                <span>{locale === 'en' ? 'Hindu Calendar' : 'हिन्दू पञ्चाङ्ग'}</span>
+              </h3>
+              <div className="glass-card rounded-2xl overflow-hidden">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-gold-primary/10">
+                  {([
+                    { label: locale === 'en' ? 'Vikram Samvat' : 'विक्रम संवत्', value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
+                    { label: locale === 'en' ? 'Shaka Samvat' : 'शक संवत्', value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
+                    { label: t('samvatsara'), value: panchang.samvatsara[locale], iconKey: 'samvatsara' as const },
+                    { label: locale === 'en' ? 'Masa (Purnimant)' : 'मास (पूर्णिमान्त)', value: (panchang.purnimantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
+                    { label: locale === 'en' ? 'Masa (Amant)' : 'मास (अमान्त)', value: (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
+                    { label: locale === 'en' ? 'Paksha' : 'पक्ष', value: panchang.tithi.paksha === 'shukla' ? (locale === 'en' ? 'Shukla Paksha' : 'शुक्ल पक्ष') : (locale === 'en' ? 'Krishna Paksha' : 'कृष्ण पक्ष'), iconKey: null },
+                    { label: t('ritu'), value: panchang.ritu[locale], iconKey: 'ritu' as const },
+                    { label: t('ayana'), value: panchang.ayana[locale], iconKey: 'ayana' as const },
+                    { label: locale === 'en' ? 'Ayanamsha (Lahiri)' : 'अयनांश (लाहिरी)', value: panchang.ayanamsha ? `${panchang.ayanamsha.toFixed(4)}°` : '—', iconKey: null },
+                    { label: locale === 'en' ? 'Day Duration' : 'दिनमान', value: panchang.dinamana || '—', iconKey: null },
+                    { label: locale === 'en' ? 'Night Duration' : 'रात्रिमान', value: panchang.ratrimana || '—', iconKey: null },
+                    { label: locale === 'en' ? 'Madhyahna' : 'मध्याह्न', value: panchang.madhyahna || '—', iconKey: null },
+                  ] as { label: string; value: string; iconKey: 'masa' | 'samvatsara' | 'ritu' | 'ayana' | null }[]).map((item, i) => {
+                    const IconMap = { masa: MasaIcon, samvatsara: SamvatsaraIcon, ritu: RituIcon, ayana: AyanaIcon };
+                    const IconComp = item.iconKey ? IconMap[item.iconKey] : null;
+                    return (
+                      <motion.div key={item.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 + i * 0.04 }}
+                        className="p-5 text-center">
+                        {IconComp && <div className="flex justify-center mb-2"><IconComp size={32} /></div>}
+                        <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{item.label}</div>
+                        <div className="text-gold-light font-bold text-base mt-1" style={headingFont}>{item.value}</div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
-          </motion.div>
+
+            {/* Epoch & Cosmic Time subsection */}
+            <div className="mt-8">
+              <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
+                <Star className="w-6 h-6 text-gold-primary" />
+                <span>{locale === 'en' ? 'Epoch & Cosmic Time' : 'युगीय काल'}</span>
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {/* Kali Ahargana — big number */}
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+                  className="glass-card rounded-xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+                  <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">
+                    {locale === 'en' ? 'Kali Ahargana' : 'कलि अहर्गण'}
+                  </div>
+                  <div className="text-gold-light font-bold text-3xl font-mono mt-1">
+                    {panchang.kaliAhargana?.toLocaleString() || '—'}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Days elapsed since Kali Yuga began (Feb 18, 3102 BCE)' : 'कलियुग आरम्भ (18 फरवरी 3102 ईसापूर्व) से बीते दिन'}
+                  </div>
+                </motion.div>
+
+                {/* Kaliyuga Year */}
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
+                  className="glass-card rounded-xl p-6 border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-transparent">
+                  <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
+                    {locale === 'en' ? 'Kaliyuga Year' : 'कलियुग वर्ष'}
+                  </div>
+                  <div className="text-amber-300 font-bold text-3xl font-mono mt-1">
+                    {panchang.kaliyugaYear?.toLocaleString() || '—'}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Current year in the Kali Yuga cycle (432,000 years total)' : 'कलियुग चक्र में वर्तमान वर्ष (कुल 4,32,000 वर्ष)'}
+                  </div>
+                </motion.div>
+
+                {/* Julian Day */}
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
+                  className="glass-card rounded-xl p-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 to-transparent">
+                  <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
+                    {locale === 'en' ? 'Julian Day Number' : 'जूलियन दिन संख्या'}
+                  </div>
+                  <div className="text-indigo-300 font-bold text-3xl font-mono mt-1">
+                    {panchang.julianDay?.toLocaleString() || '—'}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Astronomical day count from Jan 1, 4713 BCE noon' : 'खगोलशास्त्रीय दिन गणना — 4713 ईसापूर्व 1 जनवरी मध्याह्न से'}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Current Yuga info card */}
+              <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }}
+                className="mt-5 glass-card rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-r from-gold-primary/5 via-indigo-500/3 to-gold-primary/5">
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-1">
+                    <div className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
+                      {locale === 'en' ? 'Current Yuga: Kali Yuga' : 'वर्तमान युग: कलि युग'}
+                    </div>
+                    <div className="text-text-secondary text-sm leading-relaxed">
+                      {locale === 'en'
+                        ? 'We are in the 4th and final Yuga of the current Mahayuga cycle. Kali Yuga began 3102 BCE (Feb 18) and spans 432,000 years. We are approximately 5,126 years in — only 1.2% complete.'
+                        : 'हम वर्तमान महायुग चक्र के चौथे और अंतिम युग में हैं। कलियुग 3102 ईसापूर्व (18 फरवरी) से प्रारम्भ हुआ और 4,32,000 वर्ष तक चलेगा। लगभग 5,126 वर्ष बीत चुके हैं — केवल 1.2% पूर्ण।'}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    {/* Yuga progress bar */}
+                    <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-3">
+                      {locale === 'en' ? 'Kali Yuga Progress' : 'कलियुग प्रगति'}
+                    </div>
+                    <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden border border-gold-primary/10 mb-2">
+                      <div className="h-full bg-gradient-to-r from-gold-primary/60 to-amber-400/60 rounded-full"
+                        style={{ width: `${(5126 / 432000) * 100}%` }} />
+                    </div>
+                    <div className="flex justify-between text-[10px] text-text-secondary font-mono">
+                      <span>{locale === 'en' ? '3102 BCE' : '3102 ईसापूर्व'}</span>
+                      <span className="text-gold-primary">~1.2%</span>
+                      <span>{locale === 'en' ? '+426,874 yrs' : '+4,26,874 वर्ष'}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Yuga timeline row */}
+                <div className="mt-5 pt-5 border-t border-gold-primary/10">
+                  <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-3">
+                    {locale === 'en' ? 'Mahayuga Timeline (4,320,000 years)' : 'महायुग समयरेखा (43,20,000 वर्ष)'}
+                  </div>
+                  <div className="flex gap-1 flex-wrap">
+                    {[
+                      { name: locale === 'en' ? 'Satya Yuga' : 'सत्य युग', years: '1,728,000y', pct: 40, color: 'bg-emerald-500/40 border-emerald-500/30 text-emerald-300' },
+                      { name: locale === 'en' ? 'Treta Yuga' : 'त्रेता युग', years: '1,296,000y', pct: 30, color: 'bg-gold-primary/30 border-gold-primary/40 text-gold-light' },
+                      { name: locale === 'en' ? 'Dvapara Yuga' : 'द्वापर युग', years: '864,000y', pct: 20, color: 'bg-blue-500/30 border-blue-500/30 text-blue-300' },
+                      { name: locale === 'en' ? 'Kali Yuga' : 'कलि युग', years: '432,000y', pct: 10, color: 'bg-red-500/30 border-red-500/40 text-red-300 ring-1 ring-red-400/50' },
+                    ].map((y) => (
+                      <div key={y.name} className={`rounded-lg px-3 py-2 border text-center flex-1 min-w-[120px] ${y.color}`}>
+                        <div className="font-bold text-xs" style={headingFont}>{y.name}</div>
+                        <div className="text-[10px] opacity-70 font-mono">{y.years}</div>
+                        <div className="text-[10px] opacity-50">{y.pct}% of Mahayuga</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-text-secondary/50 text-[10px] mt-2 text-center font-mono">
+                    {locale === 'en' ? 'Kalpa = 1,000 Mahayugas = 4.32 billion years (one Day of Brahma)' : 'कल्प = 1,000 महायुग = 4.32 अरब वर्ष (ब्रह्मा का एक दिन)'}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
 
           <GoldDivider />
 
@@ -1089,43 +1609,34 @@ export default function PanchangPage() {
             );
           })()}
 
-          {/* ═══ HINDU CALENDAR INFO ═══ */}
-          <div className="my-14">
-            <h2 className="text-3xl font-bold text-gold-gradient mb-8 text-center" style={headingFont}>
-              {locale === 'en' ? 'Hindu Calendar' : 'हिन्दू पञ्चाङ्ग'}
-            </h2>
-            <div className="glass-card rounded-2xl overflow-hidden">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-gold-primary/10">
-                {([
-                  { label: locale === 'en' ? 'Masa (Purnimant)' : 'मास (पूर्णिमान्त)', value: (panchang.purnimantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
-                  { label: locale === 'en' ? 'Masa (Amant)' : 'मास (अमान्त)', value: (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
-                  { label: t('samvatsara'), value: panchang.samvatsara[locale], iconKey: 'samvatsara' as const },
-                  { label: locale === 'en' ? 'Vikram Samvat' : 'विक्रम संवत्', value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Shaka Samvat' : 'शक संवत्', value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
-                  { label: t('ritu'), value: panchang.ritu[locale], iconKey: 'ritu' as const },
-                  { label: t('ayana'), value: panchang.ayana[locale], iconKey: 'ayana' as const },
-                  { label: locale === 'en' ? 'Ayanamsha (Lahiri)' : 'अयनांश (लाहिरी)', value: panchang.ayanamsha ? `${panchang.ayanamsha.toFixed(4)}°` : '—', iconKey: null },
-                  { label: locale === 'en' ? 'Kali Ahargana' : 'कलि अहर्गण', value: panchang.kaliAhargana?.toLocaleString() || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Kaliyuga Year' : 'कलियुग वर्ष', value: panchang.kaliyugaYear?.toLocaleString() || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Julian Day' : 'जूलियन दिन', value: panchang.julianDay?.toLocaleString() || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Shiva Vaas' : 'शिव वास', value: panchang.shivaVaas?.[locale] || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Agni Vaas' : 'अग्नि वास', value: panchang.agniVaas?.[locale] || '—', iconKey: null },
-                  { label: locale === 'en' ? 'Chandra Vaas' : 'चन्द्र वास', value: panchang.chandraVaas?.[locale] || '—', iconKey: null },
-                ] as { label: string; value: string; iconKey: 'masa' | 'samvatsara' | 'ritu' | 'ayana' | null }[]).map((item, i) => {
-                  const IconMap = { masa: MasaIcon, samvatsara: SamvatsaraIcon, ritu: RituIcon, ayana: AyanaIcon };
-                  const IconComp = item.iconKey ? IconMap[item.iconKey] : null;
-                  return (
-                    <motion.div key={item.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 + i * 0.05 }}
-                      className="p-5 text-center">
-                      {IconComp && <div className="flex justify-center mb-2"><IconComp size={36} /></div>}
-                      <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{item.label}</div>
-                      <div className="text-gold-light font-bold text-base mt-1" style={headingFont}>{item.value}</div>
+          {/* ═══ UDAYA LAGNA ═══ */}
+          {panchang.udayaLagna && panchang.udayaLagna.length > 0 && (
+            <div className="my-10">
+              <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
+                <Star className="w-5 h-5 text-gold-primary" />
+                <span>{locale === 'en' ? 'Udaya Lagna — Rising Signs' : 'उदय लग्न — उदित राशियाँ'}</span>
+              </h3>
+              <p className="text-text-secondary text-xs mb-4 max-w-2xl">
+                {locale === 'en'
+                  ? 'The zodiac sign rising on the eastern horizon changes approximately every 2 hours. Each rising window carries the energy of that sign for muhurta selection.'
+                  : 'पूर्वी क्षितिज पर उदित राशि लगभग हर 2 घंटे में बदलती है। प्रत्येक उदय खिड़की मुहूर्त चयन के लिए उस राशि की ऊर्जा वहन करती है।'}
+              </p>
+              <div className="glass-card rounded-2xl overflow-hidden">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 divide-x divide-y divide-gold-primary/10">
+                  {panchang.udayaLagna.map((lagna, i) => (
+                    <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.02 * i }}
+                      className="p-3 text-center hover:bg-gold-primary/5 transition-colors">
+                      <div className="flex justify-center mb-1.5">
+                        <RashiIconById id={lagna.rashi} size={28} />
+                      </div>
+                      <div className="text-gold-light text-sm font-bold" style={headingFont}>{lagna.name[locale]}</div>
+                      <div className="text-text-secondary text-xs font-mono mt-1">{lagna.start} – {lagna.end}</div>
                     </motion.div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           <GoldDivider />
 

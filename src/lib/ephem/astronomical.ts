@@ -162,6 +162,46 @@ export function lahiriAyanamsha(jd: number): number {
   return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
 }
 
+export type AyanamshaType = 'lahiri' | 'raman' | 'kp' | 'bv_raman' | 'yukteshwar' | 'jn_bhasin';
+
+/**
+ * Calculate ayanamsha for different systems.
+ * All based on polynomial fits to published tables.
+ */
+export function getAyanamsha(jd: number, type: AyanamshaType = 'lahiri'): number {
+  const t = (jd - 2451545.0) / 36525.0;
+  switch (type) {
+    case 'lahiri':
+      return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
+    case 'raman':
+      // CV Raman: 22°27'37.7" at J2000.0 — slower precession rate
+      return 22.46047 + 1.38472 * t + 0.00015 * t * t;
+    case 'kp':
+      // KP (Krishnamurti): very close to Lahiri, ~6 arcmin difference
+      return 23.76056 + 1.39722 * t + 0.00018 * t * t;
+    case 'bv_raman':
+      // BV Raman: 22°22'40" at J2000.0
+      return 22.37778 + 1.38250 * t + 0.00015 * t * t;
+    case 'yukteshwar':
+      // Sri Yukteshwar: 21°46'0" at J2000.0
+      return 21.76667 + 1.38472 * t;
+    case 'jn_bhasin':
+      // JN Bhasin: 23°09'06" at J2000.0
+      return 23.15167 + 1.39722 * t + 0.00018 * t * t;
+    default:
+      return lahiriAyanamsha(jd);
+  }
+}
+
+export const AYANAMSHA_OPTIONS: { value: AyanamshaType; label: { en: string; hi: string; sa: string } }[] = [
+  { value: 'lahiri', label: { en: 'Lahiri (Chitrapaksha)', hi: 'लाहिरी (चित्रपक्ष)', sa: 'लाहिरी (चित्रपक्षः)' } },
+  { value: 'kp', label: { en: 'KP (Krishnamurti)', hi: 'केपी (कृष्णमूर्ति)', sa: 'केपी (कृष्णमूर्तिः)' } },
+  { value: 'raman', label: { en: 'CV Raman', hi: 'सी.वी. रमन', sa: 'सी.वी. रमणः' } },
+  { value: 'bv_raman', label: { en: 'BV Raman', hi: 'बी.वी. रमन', sa: 'बी.वी. रमणः' } },
+  { value: 'yukteshwar', label: { en: 'Sri Yukteshwar', hi: 'श्री युक्तेश्वर', sa: 'श्री युक्तेश्वरः' } },
+  { value: 'jn_bhasin', label: { en: 'JN Bhasin', hi: 'जे.एन. भसीन', sa: 'जे.एन. भसीनः' } },
+];
+
 // Convert tropical longitude to sidereal
 export function toSidereal(tropicalLong: number, jd: number): number {
   return normalizeDeg(tropicalLong - lahiriAyanamsha(jd));

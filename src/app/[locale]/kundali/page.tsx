@@ -17,6 +17,7 @@ import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -212,6 +213,13 @@ export default function KundaliPage() {
       });
       const data = await res.json();
       setKundali(data);
+      // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
+      if (data.planets) {
+        const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: number }) => p.planet.id === 1);
+        if (moon) {
+          useBirthDataStore.getState().setBirthData(moon.nakshatra, moon.sign, birthData.name || '');
+        }
+      }
     } catch (e) {
       console.error('Kundali generation failed:', e);
     }

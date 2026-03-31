@@ -20,6 +20,7 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { computeBalam } from '@/lib/panchang/balam';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 
 // ──────────────────────────────────────────────────────────────
 // Check if a transition endTime has already passed
@@ -103,7 +104,20 @@ export default function PanchangPage() {
   const [birthNakshatra, setBirthNakshatra] = useState(0);
   const [birthRashi, setBirthRashi] = useState(0);
   const [balamResult, setBalamResult] = useState<BalamResult | null>(null);
+  const [birthAutoDetected, setBirthAutoDetected] = useState(false);
   const [now, setNow] = useState<Date>(new Date());
+
+  // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
+  useEffect(() => {
+    const store = useBirthDataStore.getState();
+    store.loadFromStorage();
+    const { birthNakshatra: storedNak, birthRashi: storedRashi, isSet } = useBirthDataStore.getState();
+    if (isSet && storedNak > 0 && storedRashi > 0) {
+      setBirthNakshatra(storedNak);
+      setBirthRashi(storedRashi);
+      setBirthAutoDetected(true);
+    }
+  }, []);
 
   // Tick current time every 60s so transition checks stay fresh
   useEffect(() => {
@@ -232,18 +246,21 @@ export default function PanchangPage() {
     return () => clearInterval(interval);
   }, [panchang?.muhurtas]);
 
-  // Compute balam when birth data changes
+  // Compute balam when birth data changes — also persist manual selections
   useEffect(() => {
     if (birthNakshatra && birthRashi && panchang) {
       const todayNakshatra = panchang.nakshatra.id;
-      // Get today's Moon rashi from planets array (Moon = id 1)
       const moonPlanet = panchang.planets.find(p => p.id === 1);
       const todayMoonRashi = moonPlanet?.rashi || 1;
       setBalamResult(computeBalam(birthNakshatra, birthRashi, todayNakshatra, todayMoonRashi));
+      // Persist to store so it remembers next visit
+      if (!birthAutoDetected) {
+        useBirthDataStore.getState().setBirthData(birthNakshatra, birthRashi);
+      }
     } else {
       setBalamResult(null);
     }
-  }, [birthNakshatra, birthRashi, panchang]);
+  }, [birthNakshatra, birthRashi, panchang, birthAutoDetected]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -1664,11 +1681,23 @@ export default function PanchangPage() {
               {locale === 'en' ? 'Chandrabalam & Tarabalam' : 'चन्द्रबल एवं ताराबल'}
             </h2>
             <p className="text-text-secondary text-sm text-center mb-8">
-              {locale === 'en'
-                ? 'Select your birth Nakshatra and Rashi to see today\'s Moon strength and star strength for you.'
-                : 'आज का चन्द्रबल और ताराबल जानने के लिए अपना जन्म नक्षत्र और राशि चुनें।'}
+              {birthAutoDetected
+                ? (locale === 'en'
+                  ? `Auto-detected from your birth chart${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''}. You can change below if needed.`
+                  : `आपकी जन्म कुण्डली${useBirthDataStore.getState().birthName ? ` (${useBirthDataStore.getState().birthName})` : ''} से स्वतः प्राप्त। आवश्यकतानुसार नीचे बदलें।`)
+                : (locale === 'en'
+                  ? 'Select your birth Nakshatra and Rashi, or generate a Kundali first to auto-detect.'
+                  : 'अपना जन्म नक्षत्र और राशि चुनें, या स्वतः पता लगाने के लिए पहले कुण्डली बनाएं।')}
             </p>
             <div className="max-w-2xl mx-auto glass-card rounded-2xl p-6">
+              {birthAutoDetected && (
+                <div className="flex items-center justify-center gap-2 mb-4 p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span className="text-emerald-400 text-xs font-medium">
+                    {locale === 'en' ? 'Birth data loaded from your Kundali' : 'कुण्डली से जन्म डेटा लोड हुआ'}
+                  </span>
+                </div>
+              )}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
@@ -1676,7 +1705,10 @@ export default function PanchangPage() {
                   </label>
                   <select
                     value={birthNakshatra}
-                    onChange={(e) => setBirthNakshatra(Number(e.target.value))}
+                    onChange={(e) => {
+                      setBirthNakshatra(Number(e.target.value));
+                      setBirthAutoDetected(false);
+                    }}
                     className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                   >
@@ -1692,7 +1724,10 @@ export default function PanchangPage() {
                   </label>
                   <select
                     value={birthRashi}
-                    onChange={(e) => setBirthRashi(Number(e.target.value))}
+                    onChange={(e) => {
+                      setBirthRashi(Number(e.target.value));
+                      setBirthAutoDetected(false);
+                    }}
                     className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                   >

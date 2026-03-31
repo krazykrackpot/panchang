@@ -18,6 +18,7 @@ import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -646,121 +647,9 @@ export default function KundaliPage() {
           {activeTab === 'tippanni' && <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />}
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
-          {activeTab === 'varga' && (() => {
-            const { generateVargaTippanni } = require('@/lib/tippanni/varga-tippanni');
-            const synthesis = generateVargaTippanni(kundali, locale);
-            type VCT = { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak'; overallCommentary: { en: string; hi: string }; prognosis: { en: string; hi: string }; keyFindings: { en: string; hi: string }[] };
-            const sC = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
-            const sL = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
-            const isHi = locale === 'hi';
-            return (
-              <div className="space-y-8">
-                {/* Overall Synthesis */}
-                <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
-                  <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                    {isHi ? 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' : 'Varga Synthesis — All Divisional Charts'}
-                  </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-4">{isHi ? synthesis.overall.hi : synthesis.overall.en}</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {synthesis.strongAreas.length > 0 && (
-                      <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                        <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'बलवान क्षेत्र' : 'Strong Areas'}</div>
-                        {synthesis.strongAreas.map((a: { en: string; hi: string }, i: number) => (
-                          <div key={i} className="text-emerald-300 text-xs mb-1">+ {isHi ? a.hi : a.en}</div>
-                        ))}
-                      </div>
-                    )}
-                    {synthesis.weakAreas.length > 0 && (
-                      <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
-                        <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'ध्यान देने योग्य' : 'Needs Attention'}</div>
-                        {synthesis.weakAreas.map((a: { en: string; hi: string }, i: number) => (
-                          <div key={i} className="text-red-300 text-xs mb-1">- {isHi ? a.hi : a.en}</div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Strength grid */}
-                <div>
-                  <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-                    {isHi ? 'वर्ग बल अवलोकन' : 'Varga Strength Overview'}
-                  </h3>
-                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
-                    {synthesis.vargaInsights.map((v: VCT, i: number) => (
-                      <div key={i} className={`rounded-lg p-2 border text-center ${sC[v.strength]}`}>
-                        <div className="font-bold text-xs">{v.chart}</div>
-                        <div className="text-[8px] text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
-                        <div className="text-[10px] font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Per-chart: Overall Commentary + Prognosis */}
-                <div>
-                  <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-                    {isHi ? 'प्रति-चार्ट विस्तृत टिप्पणी' : 'Detailed Per-Chart Commentary'}
-                  </h3>
-                  <div className="space-y-4">
-                    {synthesis.vargaInsights.map((v: VCT, i: number) => (
-                      <div key={i} className="glass-card rounded-2xl overflow-hidden">
-                        {/* Header */}
-                        <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[v.strength].split(' ').slice(1).join(' ')}`}>
-                          <div className="flex items-center gap-3">
-                            <span className="text-gold-light font-bold text-lg">{v.chart}</span>
-                            <span className="text-text-secondary text-xs">{isHi ? v.label.hi : v.label.en}</span>
-                          </div>
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
-                            {isHi ? sL[v.strength].hi : sL[v.strength].en}
-                          </span>
-                        </div>
-
-                        <div className="p-5 space-y-4">
-                          {/* Overall Commentary */}
-                          <div>
-                            <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
-                              {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
-                            </div>
-                            <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
-                              {isHi ? v.overallCommentary.hi : v.overallCommentary.en}
-                            </div>
-                          </div>
-
-                          {/* Key Findings */}
-                          {v.keyFindings.length > 0 && (
-                            <div>
-                              <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
-                                {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
-                              </div>
-                              <div className="space-y-1">
-                                {v.keyFindings.map((f: { en: string; hi: string }, j: number) => (
-                                  <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
-                                    <span className="text-gold-dark mt-0.5 shrink-0">•</span>
-                                    <span>{isHi ? f.hi : f.en}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Prognosis */}
-                          <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
-                            <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
-                              {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
-                            </div>
-                            <div className="text-text-secondary text-xs leading-relaxed">
-                              {isHi ? v.prognosis.hi : v.prognosis.en}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
+          {activeTab === 'varga' && (
+            <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+          )}
 
           {/* ===== JAIMINI TAB ===== */}
           {activeTab === 'jaimini' && kundali.jaimini && (
@@ -1182,6 +1071,124 @@ function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
           </AnimatePresence>
         </div>
       )}
+    </div>
+  );
+}
+
+function VargaAnalysisTab({ kundali, locale, headingFont }: {
+  kundali: KundaliData; locale: Locale; headingFont: React.CSSProperties;
+}) {
+  const synthesis = useMemo(() => generateVargaTippanni(kundali, locale), [kundali, locale]);
+  const isHi = locale === 'hi';
+  const sC: Record<string, string> = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
+  const sL: Record<string, { en: string; hi: string }> = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
+
+  return (
+    <div className="space-y-8">
+      {/* Overall Synthesis */}
+      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+        <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+          {isHi ? 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' : 'Varga Synthesis — All Divisional Charts'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-4">{isHi ? synthesis.overall.hi : synthesis.overall.en}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {synthesis.strongAreas.length > 0 && (
+            <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+              <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'बलवान क्षेत्र' : 'Strong Areas'}</div>
+              {synthesis.strongAreas.map((a, i) => (
+                <div key={i} className="text-emerald-300 text-xs mb-1">+ {isHi ? a.hi : a.en}</div>
+              ))}
+            </div>
+          )}
+          {synthesis.weakAreas.length > 0 && (
+            <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+              <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'ध्यान देने योग्य' : 'Needs Attention'}</div>
+              {synthesis.weakAreas.map((a, i) => (
+                <div key={i} className="text-red-300 text-xs mb-1">- {isHi ? a.hi : a.en}</div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Strength grid */}
+      <div>
+        <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
+          {isHi ? 'वर्ग बल अवलोकन' : 'Varga Strength Overview'}
+        </h3>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
+          {synthesis.vargaInsights.map((v, i) => (
+            <div key={i} className={`rounded-lg p-2 border text-center ${sC[v.strength]}`}>
+              <div className="font-bold text-xs">{v.chart}</div>
+              <div className="text-[8px] text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
+              <div className="text-[10px] font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Per-chart detailed commentary */}
+      <div>
+        <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
+          {isHi ? 'प्रति-चार्ट विस्तृत टिप्पणी' : 'Detailed Per-Chart Commentary'}
+        </h3>
+        <div className="space-y-4">
+          {synthesis.vargaInsights.map((v, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}
+              className="glass-card rounded-2xl overflow-hidden">
+              {/* Header */}
+              <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[v.strength].split(' ').slice(1).join(' ')}`}>
+                <div className="flex items-center gap-3">
+                  <span className="text-gold-light font-bold text-lg">{v.chart}</span>
+                  <span className="text-text-secondary text-xs">{isHi ? v.label.hi : v.label.en}</span>
+                </div>
+                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
+                  {isHi ? sL[v.strength].hi : sL[v.strength].en}
+                </span>
+              </div>
+
+              <div className="p-5 space-y-4">
+                {/* Overall Commentary */}
+                <div>
+                  <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                    {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
+                  </div>
+                  <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
+                    {isHi ? v.overallCommentary.hi : v.overallCommentary.en}
+                  </div>
+                </div>
+
+                {/* Key Findings */}
+                {v.keyFindings.length > 0 && (
+                  <div>
+                    <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                      {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
+                    </div>
+                    <div className="space-y-1">
+                      {v.keyFindings.map((f, j) => (
+                        <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
+                          <span className="text-gold-dark mt-0.5 shrink-0">•</span>
+                          <span>{isHi ? f.hi : f.en}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Prognosis */}
+                <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+                  <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+                    {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
+                  </div>
+                  <div className="text-text-secondary text-xs leading-relaxed">
+                    {isHi ? v.prognosis.hi : v.prognosis.en}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,29 +1,35 @@
 /**
- * Varga (Divisional Chart) Tippanni — per-chart commentary
- * Generates interpretation for each divisional chart based on planet placements.
- * Reference: BPHS Ch.6-7, Jataka Parijata, Saravali
+ * Varga (Divisional Chart) Tippanni — comprehensive per-chart commentary
+ * Two sections per chart: (1) Overall Commentary, (2) 1-2 Year Prognosis
+ * Reference: BPHS Ch.6-7, Jataka Parijata, Saravali, Phaladeepika
  */
 
 import type { Locale } from '@/types/panchang';
-import type { KundaliData, DivisionalChart, PlanetPosition } from '@/types/kundali';
+import type { KundaliData, DivisionalChart, PlanetPosition, DashaEntry } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
 
-interface VargaInsight {
+type Bi = { en: string; hi: string };
+
+export interface VargaChartTippanni {
   chart: string;
-  label: { en: string; hi: string };
-  meaning: { en: string; hi: string };
+  label: Bi;
+  meaning: Bi;
   strength: 'strong' | 'moderate' | 'weak';
-  insights: { en: string; hi: string }[];
+  overallCommentary: Bi;     // Detailed interpretation of this chart
+  prognosis: Bi;             // Next 1-2 year forecast
+  keyFindings: Bi[];         // Bullet points
 }
 
-interface VargaSynthesis {
-  overall: { en: string; hi: string };
-  strongAreas: { en: string; hi: string }[];
-  weakAreas: { en: string; hi: string }[];
-  vargaInsights: VargaInsight[];
+export interface VargaSynthesis {
+  overall: Bi;
+  strongAreas: Bi[];
+  weakAreas: Bi[];
+  vargaInsights: VargaChartTippanni[];
 }
 
-const PLANET_NAMES: Record<number, { en: string; hi: string }> = {
+// ─── Helpers ────────────────────────────────────────────────────────────────
+
+const PN: Record<number, Bi> = {
   0: { en: 'Sun', hi: 'सूर्य' }, 1: { en: 'Moon', hi: 'चन्द्र' },
   2: { en: 'Mars', hi: 'मंगल' }, 3: { en: 'Mercury', hi: 'बुध' },
   4: { en: 'Jupiter', hi: 'गुरु' }, 5: { en: 'Venus', hi: 'शुक्र' },
@@ -31,196 +37,286 @@ const PLANET_NAMES: Record<number, { en: string; hi: string }> = {
   8: { en: 'Ketu', hi: 'केतु' },
 };
 
-// Benefic planets: Jupiter, Venus, Moon (waxing), Mercury (unafflicted)
 const BENEFICS = new Set([1, 3, 4, 5]);
 const MALEFICS = new Set([0, 2, 6, 7, 8]);
-
-// Houses that are good (kendras & trikonas) vs dusthanas
-const GOOD_HOUSES = new Set([1, 4, 5, 7, 9, 10]);
+const KENDRAS = new Set([1, 4, 7, 10]);
+const TRIKONAS = new Set([1, 5, 9]);
 const DUSTHANAS = new Set([6, 8, 12]);
+const GOOD = new Set([1, 2, 3, 4, 5, 7, 9, 10, 11]);
 
-function assessChartStrength(chart: DivisionalChart, natalPlanets: PlanetPosition[]): {
-  strength: 'strong' | 'moderate' | 'weak';
-  beneficCount: number;
-  maleficInKendra: number;
-  ascLordHouse: number;
-} {
-  let beneficInGood = 0;
-  let maleficInKendra = 0;
-  const ascLord = getSignLord(chart.ascendantSign);
-  let ascLordHouse = 1;
-
-  for (let h = 0; h < 12; h++) {
-    const houseNum = h + 1;
-    for (const pid of chart.houses[h]) {
-      if (pid === ascLord) ascLordHouse = houseNum;
-      if (BENEFICS.has(pid) && GOOD_HOUSES.has(houseNum)) beneficInGood++;
-      if (MALEFICS.has(pid) && (houseNum === 1 || houseNum === 4 || houseNum === 7 || houseNum === 10)) maleficInKendra++;
-    }
-  }
-
-  const strength = beneficInGood >= 3 ? 'strong' : beneficInGood >= 1 ? 'moderate' : 'weak';
-  return { strength, beneficCount: beneficInGood, maleficInKendra, ascLordHouse };
+function signLord(sign: number): number {
+  return ({ 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 } as Record<number, number>)[sign] ?? 0;
 }
 
-function getSignLord(sign: number): number {
-  const lords: Record<number, number> = {
-    1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3,
-    7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4,
-  };
-  return lords[sign] ?? 0;
-}
-
-function getPlanetsInHouse(chart: DivisionalChart, house: number): number[] {
+function planetsIn(chart: { houses: number[][] }, house: number): number[] {
   return chart.houses[(house - 1) % 12] || [];
 }
 
-function generateChartInsights(
-  chartKey: string,
-  chart: DivisionalChart,
-  natalPlanets: PlanetPosition[],
-  locale: string,
-): { en: string; hi: string }[] {
-  const insights: { en: string; hi: string }[] = [];
-  const assess = assessChartStrength(chart, natalPlanets);
-  const ascName = RASHIS[chart.ascendantSign - 1]?.name;
-
-  // Lagna lord placement
-  const lordName = PLANET_NAMES[getSignLord(chart.ascendantSign)];
-  if (GOOD_HOUSES.has(assess.ascLordHouse)) {
-    insights.push({
-      en: `${chartKey} Lagna lord (${lordName.en}) in ${assess.ascLordHouse}${ordinal(assess.ascLordHouse)} house — favorable placement supporting this life area.`,
-      hi: `${chartKey} लग्नेश (${lordName.hi}) ${assess.ascLordHouse}वें भाव में — इस जीवन क्षेत्र का समर्थन।`,
-    });
-  } else if (DUSTHANAS.has(assess.ascLordHouse)) {
-    insights.push({
-      en: `${chartKey} Lagna lord (${lordName.en}) in ${assess.ascLordHouse}${ordinal(assess.ascLordHouse)} house (dusthana) — challenges and obstacles in this area.`,
-      hi: `${chartKey} लग्नेश (${lordName.hi}) ${assess.ascLordHouse}वें भाव (दुःस्थान) में — इस क्षेत्र में चुनौतियाँ।`,
-    });
-  }
-
-  // Benefics in kendras/trikonas
-  const h1Planets = getPlanetsInHouse(chart, 1);
-  if (h1Planets.some(p => BENEFICS.has(p))) {
-    const names = h1Planets.filter(p => BENEFICS.has(p)).map(p => PLANET_NAMES[p]?.en).join(', ');
-    insights.push({
-      en: `Benefic(s) ${names} in ${chartKey} lagna — natural strength and positive outcomes.`,
-      hi: `शुभ ग्रह ${chartKey} लग्न में — स्वाभाविक बल और अनुकूल परिणाम।`,
-    });
-  }
-
-  // Jupiter in kendras
-  for (const kendra of [1, 4, 7, 10]) {
-    if (getPlanetsInHouse(chart, kendra).includes(4)) {
-      insights.push({
-        en: `Jupiter in ${kendra}${ordinal(kendra)} house of ${chartKey} — strong protection and growth in this domain.`,
-        hi: `${chartKey} के ${kendra}वें भाव में गुरु — इस क्षेत्र में सुरक्षा और विकास।`,
-      });
-      break;
-    }
-  }
-
-  // Saturn in dusthanas
-  for (const dust of [6, 8, 12]) {
-    if (getPlanetsInHouse(chart, dust).includes(6)) {
-      insights.push({
-        en: `Saturn in ${dust}${ordinal(dust)} house of ${chartKey} — delays and karmic lessons in this area. Patience advised.`,
-        hi: `${chartKey} के ${dust}वें भाव में शनि — इस क्षेत्र में विलंब और कार्मिक शिक्षा। धैर्य आवश्यक।`,
-      });
-      break;
-    }
-  }
-
-  // Malefics in 1st/7th
-  if (h1Planets.some(p => MALEFICS.has(p))) {
-    insights.push({
-      en: `Malefic influence on ${chartKey} ascendant — challenges need to be overcome through effort.`,
-      hi: `${chartKey} लग्न पर पाप प्रभाव — प्रयास से चुनौतियों पर विजय संभव।`,
-    });
-  }
-
-  return insights;
-}
-
-function ordinal(n: number): string {
+function ord(n: number): string {
   const s = ['th', 'st', 'nd', 'rd'];
-  const v = n % 100;
-  return s[(v - 20) % 10] || s[v] || s[0];
+  return n + (s[(n - 20) % 10] || s[n] || s[0]);
 }
 
-/**
- * Generate full Varga Tippanni — per-chart insights + synthesis
- */
+function rashiName(sign: number, locale: string): string {
+  return RASHIS[(sign - 1) % 12]?.name[locale as Locale] || '';
+}
+
+function findCurrentDasha(dashas: DashaEntry[]): { maha: DashaEntry; antar?: DashaEntry } | null {
+  const now = new Date();
+  for (const d of dashas) {
+    if (now >= new Date(d.startDate) && now <= new Date(d.endDate)) {
+      let antar: DashaEntry | undefined;
+      if (d.subPeriods) {
+        antar = d.subPeriods.find(s => now >= new Date(s.startDate) && now <= new Date(s.endDate));
+      }
+      return { maha: d, antar };
+    }
+  }
+  return null;
+}
+
+// Planet name -> id mapping
+function planetId(name: string): number {
+  const map: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
+  return map[name] ?? -1;
+}
+
+// ─── Chart-specific commentary generators ──────────────────────────────────
+
+// Domain descriptions for each varga
+const VARGA_DOMAINS: Record<string, { domain: Bi; desc: Bi }> = {
+  D1: { domain: { en: 'Overall Life & Personality', hi: 'समग्र जीवन एवं व्यक्तित्व' }, desc: { en: 'The Rashi chart is the master chart from which all other divisional charts are derived. It shows the overall life trajectory, physical constitution, temperament, and general karmic pattern of the native.', hi: 'राशि चार्ट मास्टर चार्ट है जिससे अन्य सभी विभागीय चार्ट व्युत्पन्न होते हैं। यह जातक के समग्र जीवन पथ, शारीरिक संरचना, स्वभाव और सामान्य कार्मिक प्रारूप को दर्शाता है।' } },
+  BC: { domain: { en: 'Actual House Occupancy', hi: 'वास्तविक भाव अधिवास' }, desc: { en: 'The Bhav Chalit chart shows where planets actually function in terms of house significations. Planets near cusp boundaries may shift houses from D1, revealing their true house influence. This is critical for prediction accuracy.', hi: 'भाव चलित चार्ट दर्शाता है कि ग्रह वास्तव में किस भाव में कार्य करते हैं। संधि के निकट ग्रह D1 से भाव बदल सकते हैं।' } },
+  D2: { domain: { en: 'Wealth & Financial Prosperity', hi: 'धन एवं वित्तीय समृद्धि' }, desc: { en: 'The Hora chart divides each sign into Solar and Lunar halves. Sun\'s hora indicates wealth through effort, authority, and government. Moon\'s hora indicates wealth through public dealings, trade, and emotional intelligence. The balance of planets between these two horas reveals the native\'s wealth potential and earning style.', hi: 'होरा चार्ट प्रत्येक राशि को सौर और चंद्र अर्ध में विभाजित करता है। सूर्य होरा प्रयास, अधिकार से धन दर्शाता है। चंद्र होरा व्यापार, सार्वजनिक व्यवहार से।' } },
+  D3: { domain: { en: 'Siblings, Courage & Initiative', hi: 'भाई-बहन, साहस एवं पहल' }, desc: { en: 'The Drekkana chart reveals the native\'s relationship with siblings, courage in adversity, and capacity for self-initiative. Strong benefics in D3 kendras indicate supportive siblings and innate bravery. The 3rd house of D3 is especially significant for younger siblings.', hi: 'द्रेष्काण चार्ट भाई-बहनों से संबंध, विपत्ति में साहस और आत्म-पहल की क्षमता दर्शाता है। D3 केंद्र में शुभ ग्रह सहायक सहोदर और जन्मजात वीरता दर्शाते हैं।' } },
+  D4: { domain: { en: 'Property, Fortune & Fixed Assets', hi: 'संपत्ति, भाग्य एवं स्थावर संपदा' }, desc: { en: 'The Chaturthamsha chart governs immovable property, landed assets, vehicles, and general fortune (bhagya). A strong D4 indicates inheritance of property, successful real estate ventures, and comfortable living conditions. The 4th house here shows the home environment.', hi: 'चतुर्थांश चार्ट अचल संपत्ति, भूमि, वाहन और सामान्य भाग्य को नियंत्रित करता है। मजबूत D4 संपत्ति विरासत और सुखद जीवन स्थिति दर्शाता है।' } },
+  D5: { domain: { en: 'Fame, Authority & Spiritual Merit', hi: 'यश, अधिकार एवं पुण्य' }, desc: { en: 'The Panchamsha chart relates to fame, dignity, authority, and accumulated spiritual merit (poorva punya). It shows the native\'s capacity to command respect and exercise power with wisdom. Strong D5 indicates recognition and honor in society.', hi: 'पंचमांश चार्ट यश, प्रतिष्ठा, अधिकार और संचित पूर्व पुण्य से संबंधित है। यह सम्मान और बुद्धिमत्ता से शक्ति प्रयोग की क्षमता दर्शाता है।' } },
+  D6: { domain: { en: 'Health, Disease & Enemies', hi: 'स्वास्थ्य, रोग एवं शत्रु' }, desc: { en: 'The Shashthamsha chart reveals vulnerability to diseases, the nature of enemies, and legal disputes. Malefics in D6 kendras can indicate chronic health issues. Benefics in the 6th house of D6 actually give strength to overcome enemies and disease.', hi: 'षष्ठांश चार्ट रोग, शत्रुओं और कानूनी विवादों की प्रवृत्ति दर्शाता है। D6 केंद्र में पाप ग्रह दीर्घकालिक स्वास्थ्य समस्याओं का संकेत दे सकते हैं।' } },
+  D7: { domain: { en: 'Children & Progeny', hi: 'संतान एवं वंशवृद्धि' }, desc: { en: 'The Saptamsha chart is the primary indicator for children — their number, nature, relationship with the native, and their success. The 5th house of D7 shows the first child, 7th shows the second. Jupiter\'s placement is crucial here.', hi: 'सप्तमांश चार्ट संतान का प्राथमिक सूचक है — उनकी संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। D7 का 5वां भाव प्रथम संतान दर्शाता है।' } },
+  D8: { domain: { en: 'Longevity & Sudden Events', hi: 'दीर्घायु एवं अप्रत्याशित घटनाएं' }, desc: { en: 'The Ashtamsha chart reveals longevity, sudden events, accidents, and transformative experiences. A strong D8 with benefics in kendras indicates long life and the ability to weather crises. The 8th house here shows the nature of the end.', hi: 'अष्टमांश चार्ट दीर्घायु, आकस्मिक घटनाएं, दुर्घटनाएं और परिवर्तनकारी अनुभव दर्शाता है। केंद्र में शुभ ग्रहों वाला मजबूत D8 दीर्घ जीवन दर्शाता है।' } },
+  D10: { domain: { en: 'Career, Profession & Public Life', hi: 'करियर, व्यवसाय एवं सार्वजनिक जीवन' }, desc: { en: 'The Dasamsha is one of the most important divisional charts. It reveals the nature of career, professional achievements, fame in one\'s field, and relationship with authority figures. The 10th house and its lord in D10 are paramount for career success.', hi: 'दशांश सबसे महत्वपूर्ण विभागीय चार्टों में से एक है। यह करियर, व्यावसायिक उपलब्धियाँ, क्षेत्र में प्रसिद्धि और अधिकारियों से संबंध दर्शाता है।' } },
+  D12: { domain: { en: 'Parents, Ancestry & Lineage', hi: 'माता-पिता, वंशावली' }, desc: { en: 'The Dwadasamsha chart shows the relationship with parents, family lineage, and inherited traits. The 4th house represents the mother and the 9th/10th the father. Strong D12 indicates a distinguished family background and good relationship with parents.', hi: 'द्वादशांश चार्ट माता-पिता से संबंध, पारिवारिक वंशावली और विरासत में मिले गुण दर्शाता है। 4वां भाव माता और 9वां/10वां पिता का प्रतिनिधित्व करता है।' } },
+  D16: { domain: { en: 'Vehicles, Comforts & Luxuries', hi: 'वाहन, सुख एवं विलासिता' }, desc: { en: 'The Shodasamsha chart governs vehicles, conveyances, and material comforts. In the modern context, this extends to cars, properties used for pleasure, and technological devices. Strong Venus or Jupiter in D16 indicates acquisition of luxurious items.', hi: 'षोडशांश चार्ट वाहन, यातायात साधन और भौतिक सुखों को नियंत्रित करता है। आधुनिक संदर्भ में यह कार, सुख-संपत्ति और तकनीकी उपकरणों तक विस्तृत है।' } },
+  D20: { domain: { en: 'Spiritual Progress & Upasana', hi: 'आध्यात्मिक प्रगति एवं उपासना' }, desc: { en: 'The Vimshamsha chart reveals spiritual inclinations, devotional practices (upasana), and progress on the spiritual path. Jupiter and Ketu\'s placement here is crucial. A strong D20 indicates natural inclination toward meditation, mantra, and spiritual wisdom.', hi: 'विंशांश चार्ट आध्यात्मिक प्रवृत्तियों, भक्ति साधनाओं और आध्यात्मिक मार्ग पर प्रगति दर्शाता है। गुरु और केतु की स्थिति यहाँ महत्वपूर्ण है।' } },
+  D24: { domain: { en: 'Education, Learning & Knowledge', hi: 'शिक्षा, विद्या एवं ज्ञान' }, desc: { en: 'The Chaturvimshamsha chart governs education, academic achievements, and the nature of knowledge the native acquires. Mercury and Jupiter\'s strength here determines intellectual capacity. The 4th house shows formal education, 5th shows creative intelligence.', hi: 'चतुर्विंशांश चार्ट शिक्षा, शैक्षणिक उपलब्धियों और ज्ञान की प्रकृति को नियंत्रित करता है। बुध और गुरु की शक्ति बौद्धिक क्षमता निर्धारित करती है।' } },
+  D27: { domain: { en: 'Strengths, Vitality & Stamina', hi: 'बल, ओज एवं सहनशक्ति' }, desc: { en: 'The Nakshatramsha chart indicates physical and mental strength, vitality, and endurance. Mars and Sun\'s placement here reveals the native\'s stamina and fighting spirit. A strong D27 indicates robust health and the ability to sustain effort.', hi: 'नक्षत्रांश चार्ट शारीरिक और मानसिक बल, ओज और सहनशक्ति दर्शाता है। मंगल और सूर्य की स्थिति जातक की सहनशीलता और लड़ाकू भावना दर्शाती है।' } },
+  D30: { domain: { en: 'Misfortunes, Evils & Suffering', hi: 'दुर्भाग्य, पाप एवं कष्ट' }, desc: { en: 'The Trimshamsha chart reveals vulnerability to misfortune, evil influences, and suffering. It specifically shows dangers from hidden enemies, black magic, and negative karmic patterns. Benefics in D30 kendras protect against such influences.', hi: 'त्रिंशांश चार्ट दुर्भाग्य, बुरे प्रभावों और कष्टों के प्रति संवेदनशीलता दर्शाता है। D30 केंद्र में शुभ ग्रह ऐसे प्रभावों से रक्षा करते हैं।' } },
+  D40: { domain: { en: 'Auspicious/Inauspicious Effects (Maternal)', hi: 'शुभाशुभ प्रभाव (मातृपक्ष)' }, desc: { en: 'The Khavedamsha chart shows auspicious and inauspicious effects inherited from the maternal side. It indicates the blessings or karmic debts from the mother\'s lineage and how they manifest in the native\'s life.', hi: 'खवेदांश चार्ट मातृपक्ष से विरासत में मिले शुभ और अशुभ प्रभाव दर्शाता है। यह माता के वंश से मिले आशीर्वाद या कार्मिक ऋण को दर्शाता है।' } },
+  D45: { domain: { en: 'General Indications (Paternal)', hi: 'सामान्य संकेत (पितृपक्ष)' }, desc: { en: 'The Akshavedamsha chart reveals effects inherited from the paternal lineage. It shows the father\'s karmic legacy and how it shapes the native\'s destiny, character, and life opportunities.', hi: 'अक्षवेदांश चार्ट पितृवंश से विरासत में मिले प्रभावों को दर्शाता है। यह पिता की कार्मिक विरासत और जातक के भाग्य पर उसके प्रभाव को दर्शाता है।' } },
+  D60: { domain: { en: 'Past Life Karma & Overall Assessment', hi: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन' }, desc: { en: 'The Shashtiamsha is considered the most subtle and important divisional chart by Parashara. It reveals past life karmic patterns and their present-life fruition. Each of the 60 divisions has a specific deity and quality. Strong D60 confirms the promises of other charts.', hi: 'षष्ट्यंश को पराशर द्वारा सबसे सूक्ष्म और महत्वपूर्ण विभागीय चार्ट माना गया है। यह पूर्वजन्म के कार्मिक प्रारूपों और उनके वर्तमान जीवन में फलित होने को दर्शाता है।' } },
+};
+
+// ─── Core analysis ──────────────────────────────────────────────────────────
+
+function analyzeChart(
+  chartKey: string,
+  chart: { houses: number[][]; ascendantSign: number },
+  kundali: KundaliData,
+  locale: string,
+): VargaChartTippanni {
+  const domain = VARGA_DOMAINS[chartKey] || { domain: { en: chartKey, hi: chartKey }, desc: { en: '', hi: '' } };
+  const ascLord = signLord(chart.ascendantSign);
+  const ascLordName = PN[ascLord] || PN[0];
+  const ascRashi = rashiName(chart.ascendantSign, locale);
+
+  // Find lagna lord house
+  let ascLordHouse = 1;
+  for (let h = 0; h < 12; h++) {
+    if (chart.houses[h].includes(ascLord)) { ascLordHouse = h + 1; break; }
+  }
+
+  // Count benefics/malefics in key houses
+  let beneficInGood = 0, maleficInDusthana = 0, beneficInKendra = 0;
+  const planetHouseMap: Record<number, number> = {};
+  for (let h = 0; h < 12; h++) {
+    for (const pid of chart.houses[h]) {
+      planetHouseMap[pid] = h + 1;
+      if (BENEFICS.has(pid) && GOOD.has(h + 1)) beneficInGood++;
+      if (BENEFICS.has(pid) && KENDRAS.has(h + 1)) beneficInKendra++;
+      if (MALEFICS.has(pid) && DUSTHANAS.has(h + 1)) maleficInDusthana++;
+    }
+  }
+
+  const strength: 'strong' | 'moderate' | 'weak' = beneficInGood >= 3 ? 'strong' : beneficInGood >= 1 ? 'moderate' : 'weak';
+
+  // ─── Key findings ────────────────────────────────────────────
+  const findings: Bi[] = [];
+
+  // Lagna lord
+  findings.push({
+    en: `${chartKey} Ascendant: ${rashiName(chart.ascendantSign, 'en')} — Lagna lord ${ascLordName.en} placed in the ${ord(ascLordHouse)} house${GOOD.has(ascLordHouse) ? ' (favorable position)' : DUSTHANAS.has(ascLordHouse) ? ' (challenging — dusthana placement)' : ''}.`,
+    hi: `${chartKey} लग्न: ${rashiName(chart.ascendantSign, 'hi')} — लग्नेश ${ascLordName.hi} ${ascLordHouse}वें भाव में${GOOD.has(ascLordHouse) ? ' (अनुकूल स्थिति)' : DUSTHANAS.has(ascLordHouse) ? ' (चुनौतीपूर्ण — दुःस्थान)' : ''}।`,
+  });
+
+  // Planets in 1st house
+  const h1 = planetsIn(chart, 1);
+  if (h1.length > 0) {
+    const names = h1.map(p => PN[p]?.en || '').join(', ');
+    const namesHi = h1.map(p => PN[p]?.hi || '').join(', ');
+    const hasBenefic = h1.some(p => BENEFICS.has(p));
+    findings.push({
+      en: `${names} in ${chartKey} lagna — ${hasBenefic ? 'benefic influence strengthens this domain naturally' : 'malefic influence brings challenges requiring conscious effort'}.`,
+      hi: `${namesHi} ${chartKey} लग्न में — ${hasBenefic ? 'शुभ प्रभाव इस क्षेत्र को स्वाभाविक रूप से सशक्त करता है' : 'पाप प्रभाव चुनौतियाँ लाता है, सचेत प्रयास आवश्यक'}।`,
+    });
+  }
+
+  // Jupiter check
+  const jupHouse = planetHouseMap[4];
+  if (jupHouse && KENDRAS.has(jupHouse)) {
+    findings.push({
+      en: `Jupiter in ${ord(jupHouse)} house of ${chartKey} — powerful protection and growth. Jupiter's grace is active in this life area.`,
+      hi: `${chartKey} के ${jupHouse}वें भाव में गुरु — शक्तिशाली सुरक्षा और विकास। गुरु कृपा इस जीवन क्षेत्र में सक्रिय।`,
+    });
+  }
+
+  // Venus check (for D2, D16, D4)
+  const venHouse = planetHouseMap[5];
+  if (venHouse && ['D2', 'D4', 'D16'].includes(chartKey)) {
+    findings.push({
+      en: `Venus in ${ord(venHouse)} house — ${GOOD.has(venHouse) ? 'enhances material comforts and aesthetic pleasures' : 'material desires may face obstacles'}.`,
+      hi: `${venHouse}वें भाव में शुक्र — ${GOOD.has(venHouse) ? 'भौतिक सुख और सौंदर्य संवर्धन' : 'भौतिक इच्छाओं में बाधा संभव'}।`,
+    });
+  }
+
+  // Saturn check
+  const satHouse = planetHouseMap[6];
+  if (satHouse) {
+    findings.push({
+      en: `Saturn in ${ord(satHouse)} house — ${DUSTHANAS.has(satHouse) ? 'karmic delays in this area; patience and perseverance yield eventual results' : KENDRAS.has(satHouse) ? 'structured approach brings steady, long-term success' : 'moderate Saturn influence, disciplined effort helps'}.`,
+      hi: `${satHouse}वें भाव में शनि — ${DUSTHANAS.has(satHouse) ? 'इस क्षेत्र में कार्मिक विलंब; धैर्य और लगन से परिणाम' : KENDRAS.has(satHouse) ? 'व्यवस्थित दृष्टिकोण से दीर्घकालिक सफलता' : 'मध्यम शनि प्रभाव, अनुशासित प्रयास सहायक'}।`,
+    });
+  }
+
+  // Rahu-Ketu axis
+  const rahuH = planetHouseMap[7];
+  const ketuH = planetHouseMap[8];
+  if (rahuH && ketuH) {
+    findings.push({
+      en: `Rahu-Ketu axis in ${ord(rahuH)}-${ord(ketuH)} houses — karmic growth axis active in these domains. Rahu brings obsessive desire, Ketu brings detachment and spiritual insight.`,
+      hi: `राहु-केतु अक्ष ${rahuH}-${ketuH} भावों में — इन क्षेत्रों में कार्मिक विकास अक्ष सक्रिय। राहु तीव्र इच्छा, केतु वैराग्य और आध्यात्मिक अंतर्दृष्टि लाता है।`,
+    });
+  }
+
+  // ─── Overall Commentary ──────────────────────────────────────
+  const strengthWord = { strong: { en: 'strong', hi: 'बलवान' }, moderate: { en: 'moderate', hi: 'मध्यम' }, weak: { en: 'weak', hi: 'दुर्बल' } }[strength];
+
+  const overallCommentary: Bi = {
+    en: `${domain.desc.en}\n\nIn your chart, ${chartKey} shows ${strengthWord.en} strength with ${rashiName(chart.ascendantSign, 'en')} rising. The lagna lord ${ascLordName.en} is placed in the ${ord(ascLordHouse)} house${GOOD.has(ascLordHouse) ? ', which supports positive outcomes in this domain' : DUSTHANAS.has(ascLordHouse) ? ', suggesting challenges that require remedial measures and conscious effort' : ''}. ${beneficInKendra > 0 ? `With ${beneficInKendra} benefic(s) in kendras, there is inherent support for this area of life.` : 'The absence of benefics in kendras suggests that results in this domain come through sustained effort rather than natural fortune.'}${maleficInDusthana > 0 ? ` ${maleficInDusthana} malefic(s) in dusthanas here can actually be protective — malefics in the 6th house defeat enemies.` : ''}`,
+    hi: `${domain.desc.hi}\n\nआपके चार्ट में, ${chartKey} ${strengthWord.hi} बल दर्शाता है, ${rashiName(chart.ascendantSign, 'hi')} उदय हो रहा है। लग्नेश ${ascLordName.hi} ${ascLordHouse}वें भाव में स्थित हैं${GOOD.has(ascLordHouse) ? ', जो इस क्षेत्र में अनुकूल परिणामों का समर्थन करता है' : DUSTHANAS.has(ascLordHouse) ? ', जो चुनौतियों का संकेत है जिनके लिए उपचारात्मक उपाय आवश्यक हैं' : ''}। ${beneficInKendra > 0 ? `केंद्र में ${beneficInKendra} शुभ ग्रह से इस जीवन क्षेत्र में स्वाभाविक समर्थन मिलता है।` : 'केंद्र में शुभ ग्रहों की अनुपस्थिति बताती है कि इस क्षेत्र में परिणाम निरंतर प्रयास से आते हैं।'}`,
+  };
+
+  // ─── Prognosis (next 1-2 years) ──────────────────────────────
+  const currentDasha = findCurrentDasha(kundali.dashas);
+  let prognosisEn = '';
+  let prognosisHi = '';
+
+  if (currentDasha) {
+    const mahaPid = planetId(currentDasha.maha.planet);
+    const antarPid = currentDasha.antar ? planetId(currentDasha.antar.planet) : -1;
+    const mahaHouseInChart = planetHouseMap[mahaPid];
+    const antarHouseInChart = antarPid >= 0 ? planetHouseMap[antarPid] : undefined;
+
+    const mahaName = currentDasha.maha.planetName;
+    const antarName = currentDasha.antar?.planetName;
+
+    prognosisEn = `You are currently running ${mahaName.en} Mahadasha`;
+    prognosisHi = `वर्तमान में ${mahaName.hi} महादशा चल रही है`;
+
+    if (antarName) {
+      prognosisEn += ` / ${antarName.en} Antardasha`;
+      prognosisHi += ` / ${antarName.hi} अंतर्दशा`;
+    }
+
+    prognosisEn += `. In ${chartKey}, `;
+    prognosisHi += `। ${chartKey} में, `;
+
+    if (mahaHouseInChart) {
+      const mahaGood = GOOD.has(mahaHouseInChart) && !DUSTHANAS.has(mahaHouseInChart);
+      prognosisEn += `the Mahadasha lord ${mahaName.en} is placed in the ${ord(mahaHouseInChart)} house${mahaGood ? ' — this is a supportive placement, indicating positive developments in ' + domain.domain.en.toLowerCase() + ' over the next 1-2 years' : DUSTHANAS.has(mahaHouseInChart) ? ' (dusthana) — expect challenges and karmic tests in this area. Growth comes through overcoming obstacles' : ' — moderate influence on ' + domain.domain.en.toLowerCase()}.`;
+      prognosisHi += `महादशा स्वामी ${mahaName.hi} ${mahaHouseInChart}वें भाव में स्थित हैं${mahaGood ? ' — यह अनुकूल स्थिति है, अगले 1-2 वर्षों में ' + domain.domain.hi + ' में सकारात्मक विकास का संकेत' : DUSTHANAS.has(mahaHouseInChart) ? ' (दुःस्थान) — इस क्षेत्र में चुनौतियाँ और कार्मिक परीक्षा अपेक्षित। बाधाओं पर विजय से विकास' : ' — ' + domain.domain.hi + ' पर मध्यम प्रभाव'}।`;
+    } else {
+      prognosisEn += `the Mahadasha lord does not directly occupy this chart, so its influence on ${domain.domain.en.toLowerCase()} will be indirect — through aspect and lordship rather than direct occupation.`;
+      prognosisHi += `महादशा स्वामी इस चार्ट में सीधे स्थित नहीं हैं, अतः ${domain.domain.hi} पर प्रभाव अप्रत्यक्ष होगा — दृष्टि और स्वामित्व के माध्यम से।`;
+    }
+
+    if (antarHouseInChart) {
+      const antarGood = GOOD.has(antarHouseInChart);
+      prognosisEn += ` The current Antardasha lord ${antarName?.en} in ${ord(antarHouseInChart)} house ${antarGood ? 'brings immediate positive energy to this area' : 'brings short-term turbulence that resolves by the end of this sub-period'}.`;
+      prognosisHi += ` वर्तमान अंतर्दशा स्वामी ${antarName?.hi} ${antarHouseInChart}वें भाव में ${antarGood ? 'इस क्षेत्र में तत्काल सकारात्मक ऊर्जा लाते हैं' : 'अल्पकालिक उथल-पुथल लाते हैं जो इस उपकाल के अंत तक ठीक हो जाएगी'}।`;
+    }
+
+    // Add timing context
+    const antarEnd = currentDasha.antar?.endDate;
+    if (antarEnd) {
+      prognosisEn += ` This sub-period runs until ${antarEnd}.`;
+      prognosisHi += ` यह उपकाल ${antarEnd} तक चलेगा।`;
+    }
+  } else {
+    prognosisEn = `Dasha data not available for prognosis. Generate a kundali with accurate birth time for detailed timing predictions in ${domain.domain.en.toLowerCase()}.`;
+    prognosisHi = `प्रगति के लिए दशा डेटा उपलब्ध नहीं। ${domain.domain.hi} में विस्तृत समय पूर्वानुमान के लिए सटीक जन्म समय के साथ कुण्डली बनाएं।`;
+  }
+
+  // Determine chart meaning
+  const dcMeaning = (VARGA_DOMAINS[chartKey]?.domain) || { en: chartKey, hi: chartKey };
+  const dcLabel = VARGA_DOMAINS[chartKey]?.domain || { en: chartKey, hi: chartKey };
+
+  return {
+    chart: chartKey,
+    label: dcLabel,
+    meaning: dcMeaning,
+    strength,
+    overallCommentary,
+    prognosis: { en: prognosisEn, hi: prognosisHi },
+    keyFindings: findings,
+  };
+}
+
+// ─── Main export ────────────────────────────────────────────────────────────
+
 export function generateVargaTippanni(kundali: KundaliData, locale: Locale): VargaSynthesis {
-  const vargaInsights: VargaInsight[] = [];
-  const strongAreas: { en: string; hi: string }[] = [];
-  const weakAreas: { en: string; hi: string }[] = [];
+  const vargaInsights: VargaChartTippanni[] = [];
+  const strongAreas: Bi[] = [];
+  const weakAreas: Bi[] = [];
 
-  // D1 (Rashi)
-  const d1Assess = assessChartStrength(
-    { ...kundali.chart, division: 'D1', label: { en: 'D1', hi: 'D1', sa: 'D1' } },
-    kundali.planets
-  );
-  vargaInsights.push({
-    chart: 'D1',
-    label: { en: 'Rashi (D1)', hi: 'राशि (D1)' },
-    meaning: { en: 'Overall life, personality & general wellbeing', hi: 'समग्र जीवन, व्यक्तित्व एवं सामान्य कल्याण' },
-    strength: d1Assess.strength,
-    insights: generateChartInsights('D1', { ...kundali.chart, division: 'D1', label: { en: '', hi: '', sa: '' } }, kundali.planets, locale),
-  });
+  // D1
+  vargaInsights.push(analyzeChart('D1', kundali.chart, kundali, locale));
 
-  // D9 (Navamsha)
-  const d9Assess = assessChartStrength(
-    { ...kundali.navamshaChart, division: 'D9', label: { en: 'D9', hi: 'D9', sa: 'D9' } },
-    kundali.planets
-  );
-  vargaInsights.push({
-    chart: 'D9',
-    label: { en: 'Navamsha (D9)', hi: 'नवांश (D9)' },
-    meaning: { en: 'Marriage, dharma, inner self & the soul\'s purpose', hi: 'विवाह, धर्म, आंतरिक स्वरूप एवं आत्मा का उद्देश्य' },
-    strength: d9Assess.strength,
-    insights: generateChartInsights('D9', { ...kundali.navamshaChart, division: 'D9', label: { en: '', hi: '', sa: '' } }, kundali.planets, locale),
-  });
+  // Bhav Chalit
+  if (kundali.bhavChalitChart) {
+    vargaInsights.push(analyzeChart('BC', kundali.bhavChalitChart, kundali, locale));
+  }
 
-  // All divisional charts
+  // D9
+  vargaInsights.push(analyzeChart('D9', kundali.navamshaChart, kundali, locale));
+
+  // All other divisional charts
   if (kundali.divisionalCharts) {
     for (const [key, dc] of Object.entries(kundali.divisionalCharts)) {
-      const assess = assessChartStrength(dc, kundali.planets);
-      const insights = generateChartInsights(key, dc, kundali.planets, locale);
-      const meaning = (dc as DivisionalChart & { meaning?: { en: string; hi: string } }).meaning || { en: '', hi: '' };
-
-      vargaInsights.push({
-        chart: key,
-        label: { en: dc.label.en, hi: dc.label.hi },
-        meaning,
-        strength: assess.strength,
-        insights,
-      });
-
-      if (assess.strength === 'strong') {
-        strongAreas.push({ en: `${key}: ${meaning.en}`, hi: `${key}: ${meaning.hi}` });
-      } else if (assess.strength === 'weak') {
-        weakAreas.push({ en: `${key}: ${meaning.en}`, hi: `${key}: ${meaning.hi}` });
-      }
+      vargaInsights.push(analyzeChart(key, dc, kundali, locale));
     }
+  }
+
+  // Categorize
+  for (const v of vargaInsights) {
+    if (v.strength === 'strong') strongAreas.push(v.meaning);
+    else if (v.strength === 'weak') weakAreas.push(v.meaning);
   }
 
   // Synthesis
   const strongCount = vargaInsights.filter(v => v.strength === 'strong').length;
   const weakCount = vargaInsights.filter(v => v.strength === 'weak').length;
-  const totalCharts = vargaInsights.length;
+  const total = vargaInsights.length;
 
-  let overallEn = '';
-  let overallHi = '';
-  if (strongCount > totalCharts * 0.6) {
-    overallEn = 'The native has exceptional Varga strength. Multiple divisional charts show benefic dominance in kendras and trikonas, indicating a life blessed with positive karma across many domains. The D9 (marriage/dharma) and D10 (career) charts are particularly important to check for specific life outcomes.';
-    overallHi = 'जातक की वर्ग शक्ति उत्कृष्ट है। कई विभागीय चार्ट केंद्र और त्रिकोण में शुभ ग्रहों का प्रभुत्व दिखाते हैं, जो अनेक क्षेत्रों में सकारात्मक कर्म फल का संकेत है।';
-  } else if (weakCount > totalCharts * 0.4) {
-    overallEn = 'Several Varga charts show challenging placements. The native may face obstacles in multiple life areas but can overcome them through remedial measures, spiritual practice, and conscious effort. Focus on strengthening the weak chart areas through appropriate remedies.';
-    overallHi = 'कई वर्ग चार्ट चुनौतीपूर्ण स्थिति दिखाते हैं। जातक को कई जीवन क्षेत्रों में बाधाओं का सामना करना पड़ सकता है लेकिन उपचार, आध्यात्मिक साधना और सचेत प्रयास से उन्हें पार किया जा सकता है।';
+  let overallEn: string, overallHi: string;
+  if (strongCount > total * 0.5) {
+    overallEn = `Across ${total} divisional charts analyzed, ${strongCount} show strong varga strength — this is an excellent overall chart. The native has accumulated significant positive karma across multiple life domains. Key benefic placements in kendras and trikonas provide natural support. Focus particularly on D9 (marriage/dharma) and D10 (career) for the most impactful life outcomes. The D60 (Shashtiamsha) confirms the overall karmic trajectory.`;
+    overallHi = `विश्लेषित ${total} विभागीय चार्टों में ${strongCount} मजबूत वर्ग बल दिखाते हैं — यह उत्कृष्ट समग्र कुंडली है। जातक ने कई जीवन क्षेत्रों में महत्वपूर्ण सकारात्मक कर्म संचित किए हैं। D9 (विवाह/धर्म) और D10 (करियर) पर विशेष ध्यान दें।`;
+  } else if (weakCount > total * 0.4) {
+    overallEn = `The varga analysis reveals ${weakCount} out of ${total} charts showing weakness — this indicates karmic lessons across multiple areas. However, this is not deterministic; remedial measures, gemstones, mantras, and conscious effort can significantly mitigate challenges. The strong charts (${strongCount}) show areas of natural talent and support that can be leveraged. Past life karma (D60) shapes the foundation, but present actions (D1, D10) determine the outcome.`;
+    overallHi = `वर्ग विश्लेषण ${total} में से ${weakCount} चार्ट में दुर्बलता दर्शाता है — यह कई क्षेत्रों में कार्मिक शिक्षा का संकेत है। हालांकि, उपचारात्मक उपाय, रत्न, मंत्र और सचेत प्रयास चुनौतियों को काफी हद तक कम कर सकते हैं। मजबूत चार्ट (${strongCount}) प्राकृतिक प्रतिभा के क्षेत्र दर्शाते हैं।`;
   } else {
-    overallEn = 'The Varga analysis shows a balanced chart with both strengths and areas for growth. Some divisional charts show strong benefic influence while others indicate moderate challenges. This is a typical and workable chart — focus your attention on the specific areas highlighted below.';
-    overallHi = 'वर्ग विश्लेषण एक संतुलित कुंडली दर्शाता है जिसमें शक्तियां और विकास के क्षेत्र दोनों हैं। कुछ विभागीय चार्ट शुभ प्रभाव दिखाते हैं जबकि अन्य मध्यम चुनौतियां दर्शाते हैं।';
+    overallEn = `The varga analysis presents a balanced picture with ${strongCount} strong, ${total - strongCount - weakCount} moderate, and ${weakCount} weak charts out of ${total} total. This is a typical and workable configuration — most people have a mix of strengths and growth areas. The divisional charts that show strength indicate domains where results come naturally, while weaker charts point to areas requiring more conscious effort, remedial practices, or spiritual growth. The current dasha period will activate specific charts — check the prognosis section of each chart for timing insights.`;
+    overallHi = `वर्ग विश्लेषण ${total} में से ${strongCount} बलवान, ${total - strongCount - weakCount} मध्यम और ${weakCount} दुर्बल चार्टों के साथ संतुलित चित्र प्रस्तुत करता है। यह एक विशिष्ट और साध्य विन्यास है। शक्तिशाली चार्ट स्वाभाविक परिणामों के क्षेत्र दर्शाते हैं, जबकि कमजोर चार्ट अधिक प्रयास की आवश्यकता वाले क्षेत्र इंगित करते हैं।`;
   }
 
   return {

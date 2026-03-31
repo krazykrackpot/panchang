@@ -649,77 +649,110 @@ export default function KundaliPage() {
           {activeTab === 'varga' && (() => {
             const { generateVargaTippanni } = require('@/lib/tippanni/varga-tippanni');
             const synthesis = generateVargaTippanni(kundali, locale);
-            const strengthColors = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
-            const strengthLabels = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
+            type VCT = { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak'; overallCommentary: { en: string; hi: string }; prognosis: { en: string; hi: string }; keyFindings: { en: string; hi: string }[] };
+            const sC = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
+            const sL = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
+            const isHi = locale === 'hi';
             return (
               <div className="space-y-8">
                 {/* Overall Synthesis */}
                 <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
                   <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                    {locale === 'en' ? 'Varga Synthesis — All Divisional Charts' : 'वर्ग संश्लेषण — समस्त विभागीय चार्ट'}
+                    {isHi ? 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' : 'Varga Synthesis — All Divisional Charts'}
                   </h3>
-                  <p className="text-text-secondary text-sm leading-relaxed mb-4">{locale === 'hi' ? synthesis.overall.hi : synthesis.overall.en}</p>
-
-                  <div className="grid grid-cols-2 gap-4">
+                  <p className="text-text-secondary text-sm leading-relaxed mb-4">{isHi ? synthesis.overall.hi : synthesis.overall.en}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {synthesis.strongAreas.length > 0 && (
                       <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                        <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Strong Areas' : 'बलवान क्षेत्र'}</div>
+                        <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'बलवान क्षेत्र' : 'Strong Areas'}</div>
                         {synthesis.strongAreas.map((a: { en: string; hi: string }, i: number) => (
-                          <div key={i} className="text-emerald-300 text-xs mb-1">{locale === 'hi' ? a.hi : a.en}</div>
+                          <div key={i} className="text-emerald-300 text-xs mb-1">+ {isHi ? a.hi : a.en}</div>
                         ))}
                       </div>
                     )}
                     {synthesis.weakAreas.length > 0 && (
                       <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
-                        <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Areas Needing Attention' : 'ध्यान देने योग्य क्षेत्र'}</div>
+                        <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{isHi ? 'ध्यान देने योग्य' : 'Needs Attention'}</div>
                         {synthesis.weakAreas.map((a: { en: string; hi: string }, i: number) => (
-                          <div key={i} className="text-red-300 text-xs mb-1">{locale === 'hi' ? a.hi : a.en}</div>
+                          <div key={i} className="text-red-300 text-xs mb-1">- {isHi ? a.hi : a.en}</div>
                         ))}
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* Strength overview grid */}
+                {/* Strength grid */}
                 <div>
                   <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-                    {locale === 'en' ? 'Varga Strength Overview' : 'वर्ग बल अवलोकन'}
+                    {isHi ? 'वर्ग बल अवलोकन' : 'Varga Strength Overview'}
                   </h3>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                    {synthesis.vargaInsights.map((v: { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak' }, i: number) => (
-                      <div key={i} className={`rounded-xl p-3 border text-center ${strengthColors[v.strength]}`}>
-                        <div className="font-bold text-sm mb-0.5">{v.chart}</div>
-                        <div className="text-[9px] text-text-tertiary mb-1">{locale === 'hi' ? v.meaning.hi : v.meaning.en}</div>
-                        <div className="text-xs font-medium">{locale === 'hi' ? strengthLabels[v.strength].hi : strengthLabels[v.strength].en}</div>
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
+                    {synthesis.vargaInsights.map((v: VCT, i: number) => (
+                      <div key={i} className={`rounded-lg p-2 border text-center ${sC[v.strength]}`}>
+                        <div className="font-bold text-xs">{v.chart}</div>
+                        <div className="text-[8px] text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
+                        <div className="text-[10px] font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Per-chart detailed insights */}
+                {/* Per-chart: Overall Commentary + Prognosis */}
                 <div>
                   <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-                    {locale === 'en' ? 'Per-Chart Tippanni' : 'प्रति-चार्ट टिप्पणी'}
+                    {isHi ? 'प्रति-चार्ट विस्तृत टिप्पणी' : 'Detailed Per-Chart Commentary'}
                   </h3>
-                  <div className="space-y-3">
-                    {synthesis.vargaInsights.filter((v: { insights: { en: string; hi: string }[] }) => v.insights.length > 0).map((v: { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak'; insights: { en: string; hi: string }[] }, i: number) => (
-                      <div key={i} className="glass-card rounded-xl p-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <div>
-                            <span className="text-gold-light font-bold text-sm">{locale === 'hi' ? v.label.hi : v.label.en}</span>
-                            <span className="text-text-tertiary text-[10px] ml-2">{locale === 'hi' ? v.meaning.hi : v.meaning.en}</span>
+                  <div className="space-y-4">
+                    {synthesis.vargaInsights.map((v: VCT, i: number) => (
+                      <div key={i} className="glass-card rounded-2xl overflow-hidden">
+                        {/* Header */}
+                        <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[v.strength].split(' ').slice(1).join(' ')}`}>
+                          <div className="flex items-center gap-3">
+                            <span className="text-gold-light font-bold text-lg">{v.chart}</span>
+                            <span className="text-text-secondary text-xs">{isHi ? v.label.hi : v.label.en}</span>
                           </div>
-                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${strengthColors[v.strength]}`}>
-                            {locale === 'hi' ? strengthLabels[v.strength].hi : strengthLabels[v.strength].en}
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
+                            {isHi ? sL[v.strength].hi : sL[v.strength].en}
                           </span>
                         </div>
-                        <div className="space-y-1.5">
-                          {v.insights.map((ins: { en: string; hi: string }, j: number) => (
-                            <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
-                              <span className="text-gold-dark mt-0.5 shrink-0">•</span>
-                              <span>{locale === 'hi' ? ins.hi : ins.en}</span>
+
+                        <div className="p-5 space-y-4">
+                          {/* Overall Commentary */}
+                          <div>
+                            <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                              {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
                             </div>
-                          ))}
+                            <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
+                              {isHi ? v.overallCommentary.hi : v.overallCommentary.en}
+                            </div>
+                          </div>
+
+                          {/* Key Findings */}
+                          {v.keyFindings.length > 0 && (
+                            <div>
+                              <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                                {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
+                              </div>
+                              <div className="space-y-1">
+                                {v.keyFindings.map((f: { en: string; hi: string }, j: number) => (
+                                  <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
+                                    <span className="text-gold-dark mt-0.5 shrink-0">•</span>
+                                    <span>{isHi ? f.hi : f.en}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Prognosis */}
+                          <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+                            <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+                              {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
+                            </div>
+                            <div className="text-text-secondary text-xs leading-relaxed">
+                              {isHi ? v.prognosis.hi : v.prognosis.en}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ))}

@@ -188,6 +188,16 @@ export default function KundaliPage() {
   const [activeChart, setActiveChart] = useState<'D1' | 'D9' | 'bhav_chalit' | 'D3' | 'D10' | 'D12'>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
   const [showTransits, setShowTransits] = useState(false);
+  const [transitData, setTransitData] = useState<{ planets: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
+
+  // Fetch current transits when toggled on
+  useEffect(() => {
+    if (showTransits && !transitData) {
+      fetch('/api/panchang').then(r => r.json()).then(data => {
+        if (data.planets) setTransitData({ planets: data.planets });
+      }).catch(() => {});
+    }
+  }, [showTransits, transitData]);
 
   const handleGenerate = async (birthData: BirthData, style: ChartStyle) => {
     setLoading(true);
@@ -326,7 +336,7 @@ export default function KundaliPage() {
                 </button>
               </div>
 
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center gap-3 mb-4 flex-wrap">
                 <button onClick={() => setShowTransits(!showTransits)}
                   className={`px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 ${showTransits ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
                   <span className={`w-2 h-2 rounded-full ${showTransits ? 'bg-emerald-400' : 'bg-text-secondary/30'}`} />
@@ -334,9 +344,29 @@ export default function KundaliPage() {
                 </button>
               </div>
               {showTransits && (
-                <div className="text-center mb-4 p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                  <div className="text-emerald-400 text-xs font-medium mb-1">{locale === 'en' ? 'Transit planets shown with green markers on chart' : 'गोचर ग्रह चार्ट पर हरे चिह्नों से दर्शाए गए'}</div>
-                  <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Transits as of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')} के गोचर`}</div>
+                <div className="mb-4">
+                  <div className="text-center p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15 mb-3">
+                    <div className="text-emerald-400 text-xs font-medium mb-1">{locale === 'en' ? 'Current Transit Positions' : 'वर्तमान गोचर स्थितियाँ'}</div>
+                    <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
+                  </div>
+                  {transitData && (
+                    <div className="glass-card rounded-xl p-4 mb-4">
+                      <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
+                        {transitData.planets?.map((p: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }, i: number) => {
+                          const rashiName = RASHIS[p.rashi - 1]?.name[locale as Locale] || '';
+                          const natalPlanet = kundali.planets.find(np => np.planet.id === p.id);
+                          const isSameSign = natalPlanet && natalPlanet.sign === p.rashi;
+                          return (
+                            <div key={i} className={`text-center p-2 rounded-lg ${isSameSign ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-bg-secondary/50'}`}>
+                              <div className="text-gold-light text-xs font-bold">{p.name[locale as Locale]}</div>
+                              <div className="text-emerald-400 text-[10px] font-medium mt-0.5">{rashiName}</div>
+                              {p.isRetrograde && <div className="text-red-400 text-[9px]">℞</div>}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
               <p className="text-text-secondary/50 text-xs text-center mb-6">

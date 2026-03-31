@@ -16,6 +16,7 @@ export default function BabyNamesPage() {
 
   const [selectedNak, setSelectedNak] = useState(0);
   const [selectedPada, setSelectedPada] = useState(0); // 0 = all padas
+  const [nameFilter, setNameFilter] = useState('');
 
   const syllables = useMemo(() => {
     if (!selectedNak) return [];
@@ -120,8 +121,17 @@ export default function BabyNamesPage() {
                 <h3 className="text-gold-light text-xl font-bold mb-4 text-center" style={headingFont}>
                   {locale === 'en' ? 'Name Suggestions' : 'नाम सुझाव'}
                 </h3>
+                <div className="max-w-md mx-auto mb-4">
+                  <input
+                    type="text"
+                    value={nameFilter}
+                    onChange={e => setNameFilter(e.target.value)}
+                    placeholder={locale === 'en' ? 'Filter names...' : 'नाम खोजें...'}
+                    className="w-full px-4 py-2 rounded-xl bg-bg-secondary/50 border border-gold-primary/15 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40 placeholder:text-text-tertiary"
+                  />
+                </div>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {suggestedNames.map((name, i) => (
+                  {suggestedNames.filter(n => !nameFilter || n.toLowerCase().includes(nameFilter.toLowerCase())).map((name, i) => (
                     <motion.span key={name}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}

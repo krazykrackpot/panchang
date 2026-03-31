@@ -679,7 +679,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     [7, 8],  // Friday
     [2],     // Saturday
   ];
-  const durMuhurtam = DUR_MUHURTAM_INDICES[weekday].map(idx => {
+  const durMuhurtam = (DUR_MUHURTAM_INDICES[weekday] || [6]).map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;
     const e = s + muhurtaDuration;
     return { start: formatTime(s, tzOffset), end: formatTime(e, tzOffset) };
@@ -822,7 +822,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     5: { name: { en: 'Earth (Bhumi)', hi: 'भूमि पर',   sa: 'भूमौ' }, nature: 'auspicious' },
     6: { name: { en: 'Patala',        hi: 'पाताल में', sa: 'पाताले' }, nature: 'inauspicious' },
   };
-  const agniData = AGNI_VAAS_DATA[weekday];
+  const agniData = AGNI_VAAS_DATA[weekday] || AGNI_VAAS_DATA[0];
   // Next day sunrise as validity end
   const nextDaySunriseUT = approximateSunrise(jdSunrise + 1, lat, lng);
   const agniValidUntil = formatTime(nextDaySunriseUT, tzOffset);

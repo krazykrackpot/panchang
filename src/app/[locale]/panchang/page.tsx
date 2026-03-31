@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star } from 'lucide-react';
+import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import { Download } from 'lucide-react';
@@ -321,6 +321,24 @@ export default function PanchangPage() {
                 text={`Today's Vedic Panchang from Jyotish Panchang`}
                 className="!px-3 !py-1.5 !text-xs"
               />
+              <button
+                onClick={async () => {
+                  const { requestNotificationPermission, generatePanchangAlerts, scheduleAlerts } = await import('@/lib/notifications/panchang-alerts');
+                  const granted = await requestNotificationPermission();
+                  if (granted) {
+                    const alerts = generatePanchangAlerts(panchang, locale);
+                    scheduleAlerts(alerts);
+                    alert(locale === 'en' ? `${alerts.length} alert(s) scheduled for today` : `आज के लिए ${alerts.length} अलर्ट निर्धारित`);
+                  } else {
+                    alert(locale === 'en' ? 'Please allow notifications in browser settings' : 'कृपया ब्राउज़र सेटिंग्स में सूचनाएं अनुमति दें');
+                  }
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                aria-label="Set alerts"
+              >
+                <Bell className="w-3.5 h-3.5" />
+                {locale === 'en' ? 'Alerts' : 'अलर्ट'}
+              </button>
             </div>
           </div>
 

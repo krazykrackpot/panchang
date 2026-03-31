@@ -7,6 +7,7 @@
 import type { Locale } from '@/types/panchang';
 import type { KundaliData, DivisionalChart, PlanetPosition, DashaEntry } from '@/types/kundali';
 import { RASHIS } from '@/lib/constants/rashis';
+import { generateDashaPrognosis } from './dasha-prognosis';
 
 type Bi = { en: string; hi: string };
 
@@ -205,10 +206,9 @@ function analyzeChart(
     hi: `${domain.desc.hi}\n\nआपके चार्ट में, ${chartKey} ${strengthWord.hi} बल दर्शाता है, ${rashiName(chart.ascendantSign, 'hi')} उदय हो रहा है। लग्नेश ${ascLordName.hi} ${ascLordHouse}वें भाव में स्थित हैं${GOOD.has(ascLordHouse) ? ', जो इस क्षेत्र में अनुकूल परिणामों का समर्थन करता है' : DUSTHANAS.has(ascLordHouse) ? ', जो चुनौतियों का संकेत है जिनके लिए उपचारात्मक उपाय आवश्यक हैं' : ''}। ${beneficInKendra > 0 ? `केंद्र में ${beneficInKendra} शुभ ग्रह से इस जीवन क्षेत्र में स्वाभाविक समर्थन मिलता है।` : 'केंद्र में शुभ ग्रहों की अनुपस्थिति बताती है कि इस क्षेत्र में परिणाम निरंतर प्रयास से आते हैं।'}`,
   };
 
-  // ─── Prognosis (next 1-2 years) ──────────────────────────────
+  // ─── Prognosis (next 1-2 years) — layered domain-specific engine ─
   const currentDasha = findCurrentDasha(kundali.dashas);
-  let prognosisEn = '';
-  let prognosisHi = '';
+  let prognosis: Bi;
 
   if (currentDasha) {
     const mahaPid = planetId(currentDasha.maha.planet);
@@ -219,41 +219,28 @@ function analyzeChart(
     const mahaName = currentDasha.maha.planetName;
     const antarName = currentDasha.antar?.planetName;
 
-    prognosisEn = `You are currently running ${mahaName.en} Mahadasha`;
-    prognosisHi = `वर्तमान में ${mahaName.hi} महादशा चल रही है`;
-
-    if (antarName) {
-      prognosisEn += ` / ${antarName.en} Antardasha`;
-      prognosisHi += ` / ${antarName.hi} अंतर्दशा`;
-    }
-
-    prognosisEn += `. In ${chartKey}, `;
-    prognosisHi += `। ${chartKey} में, `;
-
-    if (mahaHouseInChart) {
-      const mahaGood = GOOD.has(mahaHouseInChart) && !DUSTHANAS.has(mahaHouseInChart);
-      prognosisEn += `the Mahadasha lord ${mahaName.en} is placed in the ${ord(mahaHouseInChart)} house${mahaGood ? ' — this is a supportive placement, indicating positive developments in ' + domain.domain.en.toLowerCase() + ' over the next 1-2 years' : DUSTHANAS.has(mahaHouseInChart) ? ' (dusthana) — expect challenges and karmic tests in this area. Growth comes through overcoming obstacles' : ' — moderate influence on ' + domain.domain.en.toLowerCase()}.`;
-      prognosisHi += `महादशा स्वामी ${mahaName.hi} ${mahaHouseInChart}वें भाव में स्थित हैं${mahaGood ? ' — यह अनुकूल स्थिति है, अगले 1-2 वर्षों में ' + domain.domain.hi + ' में सकारात्मक विकास का संकेत' : DUSTHANAS.has(mahaHouseInChart) ? ' (दुःस्थान) — इस क्षेत्र में चुनौतियाँ और कार्मिक परीक्षा अपेक्षित। बाधाओं पर विजय से विकास' : ' — ' + domain.domain.hi + ' पर मध्यम प्रभाव'}।`;
-    } else {
-      prognosisEn += `the Mahadasha lord does not directly occupy this chart, so its influence on ${domain.domain.en.toLowerCase()} will be indirect — through aspect and lordship rather than direct occupation.`;
-      prognosisHi += `महादशा स्वामी इस चार्ट में सीधे स्थित नहीं हैं, अतः ${domain.domain.hi} पर प्रभाव अप्रत्यक्ष होगा — दृष्टि और स्वामित्व के माध्यम से।`;
-    }
-
-    if (antarHouseInChart) {
-      const antarGood = GOOD.has(antarHouseInChart);
-      prognosisEn += ` The current Antardasha lord ${antarName?.en} in ${ord(antarHouseInChart)} house ${antarGood ? 'brings immediate positive energy to this area' : 'brings short-term turbulence that resolves by the end of this sub-period'}.`;
-      prognosisHi += ` वर्तमान अंतर्दशा स्वामी ${antarName?.hi} ${antarHouseInChart}वें भाव में ${antarGood ? 'इस क्षेत्र में तत्काल सकारात्मक ऊर्जा लाते हैं' : 'अल्पकालिक उथल-पुथल लाते हैं जो इस उपकाल के अंत तक ठीक हो जाएगी'}।`;
-    }
-
-    // Add timing context
-    const antarEnd = currentDasha.antar?.endDate;
-    if (antarEnd) {
-      prognosisEn += ` This sub-period runs until ${antarEnd}.`;
-      prognosisHi += ` यह उपकाल ${antarEnd} तक चलेगा।`;
-    }
+    prognosis = generateDashaPrognosis({
+      chartKey,
+      domainEn: domain.domain.en,
+      domainHi: domain.domain.hi,
+      mahaPlanetId: mahaPid,
+      mahaPlanetNameEn: mahaName.en,
+      mahaPlanetNameHi: mahaName.hi,
+      mahaHouse: mahaHouseInChart,
+      antarPlanetId: antarPid,
+      antarPlanetNameEn: antarName?.en || '',
+      antarPlanetNameHi: antarName?.hi || '',
+      antarHouse: antarHouseInChart,
+      antarEndDate: currentDasha.antar?.endDate,
+      ascendantSign: chart.ascendantSign,
+      beneficsInKendra: beneficInKendra,
+      maleficsInDusthana: maleficInDusthana,
+    });
   } else {
-    prognosisEn = `Dasha data not available for prognosis. Generate a kundali with accurate birth time for detailed timing predictions in ${domain.domain.en.toLowerCase()}.`;
-    prognosisHi = `प्रगति के लिए दशा डेटा उपलब्ध नहीं। ${domain.domain.hi} में विस्तृत समय पूर्वानुमान के लिए सटीक जन्म समय के साथ कुण्डली बनाएं।`;
+    prognosis = {
+      en: `Dasha data not available for prognosis. Generate a kundali with accurate birth time for detailed timing predictions in ${domain.domain.en.toLowerCase()}.`,
+      hi: `प्रगति के लिए दशा डेटा उपलब्ध नहीं। ${domain.domain.hi} में विस्तृत समय पूर्वानुमान के लिए सटीक जन्म समय के साथ कुण्डली बनाएं।`,
+    };
   }
 
   // Determine chart meaning
@@ -266,7 +253,7 @@ function analyzeChart(
     meaning: dcMeaning,
     strength,
     overallCommentary,
-    prognosis: { en: prognosisEn, hi: prognosisHi },
+    prognosis,
     keyFindings: findings,
   };
 }

@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MapPin, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import LocationSearch from '@/components/ui/LocationSearch';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -35,7 +37,8 @@ const L = {
     title: 'Muhurta AI', subtitle: 'Smart Muhurat Finder',
     desc: 'Multi-factor scoring engine that ranks time windows 0-100 for any activity. Combines Panchang, transits, hora, and choghadiya.',
     step1: 'Select Activity', step2: 'Date Range & Location',
-    startDate: 'Start Date', endDate: 'End Date', lat: 'Latitude', lng: 'Longitude', tz: 'Timezone',
+    startDate: 'Start Date', endDate: 'End Date',
+    location: 'Location', detecting: 'Detecting location...', changeLocation: 'Change',
     find: 'Find Best Muhurat', finding: 'Scanning Time Windows...',
     hero: 'Top Recommendation', score: 'Score', breakdown: 'Score Breakdown',
     panchang: 'Panchang', transit: 'Transit', timing: 'Timing', personal: 'Personal',
@@ -46,7 +49,8 @@ const L = {
     title: 'मुहूर्त AI', subtitle: 'स्मार्ट मुहूर्त खोजक',
     desc: 'बहु-कारक स्कोरिंग इंजन जो किसी भी गतिविधि के लिए 0-100 अंक देता है। पंचांग, गोचर, होरा और चौघड़िया।',
     step1: 'गतिविधि चुनें', step2: 'तिथि सीमा और स्थान',
-    startDate: 'आरम्भ तिथि', endDate: 'अन्तिम तिथि', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समयक्षेत्र',
+    startDate: 'आरम्भ तिथि', endDate: 'अन्तिम तिथि',
+    location: 'स्थान', detecting: 'स्थान खोज रहे हैं...', changeLocation: 'बदलें',
     find: 'सर्वोत्तम मुहूर्त खोजें', finding: 'समय खंड स्कैन हो रहे हैं...',
     hero: 'शीर्ष सिफारिश', score: 'अंक', breakdown: 'अंक विश्लेषण',
     panchang: 'पंचांग', transit: 'गोचर', timing: 'समय', personal: 'व्यक्तिगत',
@@ -57,7 +61,8 @@ const L = {
     title: 'मुहूर्तम् AI', subtitle: 'स्मार्टमुहूर्तखोजकम्',
     desc: 'बहुकारकाङ्कनयन्त्रम् यत् कस्यापि कर्मणः 0-100 अङ्कान् ददाति।',
     step1: 'कर्म चिनुत', step2: 'तिथिसीमा स्थानं च',
-    startDate: 'आरम्भतिथिः', endDate: 'अन्तिमतिथिः', lat: 'अक्षांशः', lng: 'देशान्तरः', tz: 'समयक्षेत्रम्',
+    startDate: 'आरम्भतिथिः', endDate: 'अन्तिमतिथिः',
+    location: 'स्थानम्', detecting: 'स्थानं खोजयति...', changeLocation: 'परिवर्तयतु',
     find: 'सर्वोत्तमं मुहूर्तं खोजयतु', finding: 'समयखण्डस्कैनम्...',
     hero: 'शीर्षसिफारिशः', score: 'अङ्कः', breakdown: 'अङ्कविश्लेषणम्',
     panchang: 'पञ्चाङ्गम्', transit: 'गोचरः', timing: 'समयः', personal: 'व्यक्तिगतम्',
@@ -97,11 +102,44 @@ export default function MuhurtaAIPage() {
   const [activity, setActivity] = useState<ExtendedActivityId | null>(null);
   const [startDate, setStartDate] = useState(fmt(today));
   const [endDate, setEndDate] = useState(fmt(nextMonth));
-  const [lat, setLat] = useState('28.6139');
-  const [lng, setLng] = useState('77.2090');
-  const [tz, setTz] = useState('5.5');
+  const [location, setLocation] = useState({ lat: 28.6139, lng: 77.2090, name: 'New Delhi, India', tz: 5.5 });
+  const [detectingLocation, setDetectingLocation] = useState(false);
+  const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [data, setData] = useState<MuhurtaAIResult | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if ('geolocation' in navigator) {
+      setDetectingLocation(true);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=10`);
+            const geoData = await res.json();
+            const city = geoData.address?.city || geoData.address?.town || geoData.address?.village || '';
+            const country = geoData.address?.country || '';
+            setLocation({ lat: latitude, lng: longitude, name: [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60 });
+          } catch {
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60 });
+          }
+          setDetectingLocation(false);
+        },
+        () => {
+          fetch('https://ipapi.co/json/')
+            .then(res => res.json())
+            .then(ipData => {
+              if (ipData.latitude && ipData.longitude) {
+                setLocation({ lat: ipData.latitude, lng: ipData.longitude, name: [ipData.city, ipData.country_name].filter(Boolean).join(', ') || 'Unknown', tz: ipData.utc_offset ? parseFloat(ipData.utc_offset) / 100 : -new Date().getTimezoneOffset() / 60 });
+              }
+            })
+            .catch(() => {})
+            .finally(() => setDetectingLocation(false));
+        },
+        { timeout: 8000 }
+      );
+    }
+  }, []);
 
   const handleFind = async () => {
     if (!activity) return;
@@ -110,7 +148,7 @@ export default function MuhurtaAIPage() {
       const res = await fetch('/api/muhurta-ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ activity, startDate, endDate, lat: parseFloat(lat), lng: parseFloat(lng), tz: parseFloat(tz) }),
+        body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);
@@ -147,7 +185,7 @@ export default function MuhurtaAIPage() {
       {/* Date Range */}
       <div className="glass-card rounded-2xl p-6 mb-8">
         <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step2}</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           <label className="block">
             <span className="text-text-secondary text-xs">{t.startDate}</span>
             <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}
@@ -158,21 +196,39 @@ export default function MuhurtaAIPage() {
             <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}
               className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
           </label>
-          <label className="block">
-            <span className="text-text-secondary text-xs">{t.lat}</span>
-            <input type="number" step="0.01" value={lat} onChange={e => setLat(e.target.value)}
-              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
-          </label>
-          <label className="block">
-            <span className="text-text-secondary text-xs">{t.lng}</span>
-            <input type="number" step="0.01" value={lng} onChange={e => setLng(e.target.value)}
-              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
-          </label>
-          <label className="block">
-            <span className="text-text-secondary text-xs">{t.tz}</span>
-            <input type="number" step="0.5" value={tz} onChange={e => setTz(e.target.value)}
-              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
-          </label>
+          <div className="block">
+            <span className="text-text-secondary text-xs">{t.location}</span>
+            {showLocationSearch ? (
+              <LocationSearch
+                value={location.name}
+                onSelect={(loc) => {
+                  const tzOffset = Math.round(loc.lng / 15 * 2) / 2;
+                  setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset });
+                  setShowLocationSearch(false);
+                }}
+                placeholder={locale === 'hi' ? 'शहर खोजें...' : locale === 'sa' ? 'नगरं खोजयतु...' : 'Search city...'}
+                className="mt-1"
+              />
+            ) : (
+              <div className="flex items-center gap-2 mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2">
+                {detectingLocation ? (
+                  <span className="flex items-center gap-2 text-text-secondary text-sm">
+                    <Loader2 className="w-4 h-4 animate-spin text-gold-primary" />
+                    {t.detecting}
+                  </span>
+                ) : (
+                  <>
+                    <MapPin className="w-4 h-4 text-gold-primary shrink-0" />
+                    <span className="text-text-primary text-sm truncate">{location.name}</span>
+                    <button onClick={() => setShowLocationSearch(true)}
+                      className="ml-auto text-gold-primary text-xs hover:text-gold-light whitespace-nowrap">
+                      {t.changeLocation}
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
         <div className="text-center mt-6">
           <motion.button onClick={handleFind} disabled={loading || !activity} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}

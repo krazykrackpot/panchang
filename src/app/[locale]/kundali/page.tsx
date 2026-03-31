@@ -15,7 +15,10 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
-import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart } from '@/types/kundali';
+import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
+import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
+import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
+import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -184,7 +187,7 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'jaimini'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -298,6 +301,10 @@ export default function KundaliPage() {
               { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
               { key: 'tippanni' as const, label: t('tippanni') },
               { key: 'varga' as const, label: locale === 'en' ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
+              { key: 'graha' as const, label: locale === 'en' ? 'Graha' : 'ग्रह' },
+              { key: 'yogas' as const, label: locale === 'en' ? 'Yogas' : 'योग' },
+              { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
+              { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
               { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
             ]).map((tab) => (
               <button
@@ -707,6 +714,26 @@ export default function KundaliPage() {
           {/* ===== VARGA ANALYSIS TAB ===== */}
           {activeTab === 'varga' && (
             <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+          )}
+
+          {/* ===== GRAHA TAB ===== */}
+          {activeTab === 'graha' && kundali.grahaDetails && (
+            <GrahaTab grahaDetails={kundali.grahaDetails} upagrahas={kundali.upagrahas || []} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+          )}
+
+          {/* ===== YOGAS TAB ===== */}
+          {activeTab === 'yogas' && kundali.yogasComplete && (
+            <YogasTab yogas={kundali.yogasComplete} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+          )}
+
+          {/* ===== SHADBALA TAB ===== */}
+          {activeTab === 'shadbala' && kundali.fullShadbala && (
+            <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+          )}
+
+          {/* ===== BHAVABALA TAB ===== */}
+          {activeTab === 'bhavabala' && kundali.bhavabala && (
+            <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
           )}
 
           {/* ===== JAIMINI TAB ===== */}
@@ -1640,6 +1667,473 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
           </div>
         </section>
       )}
+    </div>
+  );
+}
+
+// ===== GRAHA TAB COMPONENT =====
+function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont }: {
+  grahaDetails: GrahaDetail[];
+  upagrahas: UpagrahaPosition[];
+  locale: Locale;
+  isDevanagari: boolean;
+  headingFont: React.CSSProperties;
+}) {
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  return (
+    <div className="space-y-8">
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
+        {locale === 'en' ? 'Graha Details' : 'ग्रह विवरण'}
+      </h3>
+
+      {/* Graha Table */}
+      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+        <table className="w-full text-sm whitespace-nowrap">
+          <thead>
+            <tr className="text-text-secondary border-b border-gold-primary/15 text-xs uppercase tracking-wider">
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Graha' : 'ग्रह'}</th>
+              <th className="text-center py-3 px-1">R</th>
+              <th className="text-center py-3 px-1">C</th>
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Longitude' : 'भोगांश'}</th>
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Nakshatra / Swami' : 'नक्षत्र / स्वामी'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Raw L.' : 'कच्चा अं.'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Latitude' : 'अक्षांश'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'R.A.' : 'विषु.अं.'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Declination' : 'क्रान्ति'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Speed °/day' : 'गति °/दि'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {grahaDetails.map((g) => (
+              <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                <td className="py-2.5 px-2">
+                  <div className="flex items-center gap-2">
+                    <GrahaIconById id={g.planetId} size={20} />
+                    <span className="text-gold-light font-medium" style={bodyFont}>{g.planetName[locale]}</span>
+                  </div>
+                </td>
+                <td className="text-center py-2.5 px-1">
+                  {g.isRetrograde && <span className="text-red-400 font-bold text-xs">R</span>}
+                </td>
+                <td className="text-center py-2.5 px-1">
+                  {g.isCombust && <span className="text-orange-400 font-bold text-xs">C</span>}
+                </td>
+                <td className="py-2.5 px-2">
+                  <span className="text-text-primary">{g.signName[locale]}</span>
+                  <span className="text-text-secondary ml-1">{g.signDegree}</span>
+                </td>
+                <td className="py-2.5 px-2">
+                  <span className="text-text-primary" style={bodyFont}>{g.nakshatraName[locale]}</span>
+                  <span className="text-gold-dark ml-1 text-xs">P{g.nakshatraPada}</span>
+                  <span className="text-text-secondary/60 ml-1 text-xs">/ {g.nakshatraLord[locale]}</span>
+                </td>
+                <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.longitude.toFixed(2)}°</td>
+                <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.latitude.toFixed(4)}°</td>
+                <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.rightAscension.toFixed(2)}°</td>
+                <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.declination.toFixed(2)}°</td>
+                <td className="py-2.5 px-2 text-right font-mono text-xs">
+                  <span className={g.speed < 0 ? 'text-red-400' : 'text-text-secondary'}>{g.speed.toFixed(4)}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Upagrahas */}
+      {upagrahas.length > 0 && (
+        <div>
+          <h3 className="text-xl font-bold text-gold-gradient text-center mb-4" style={headingFont}>
+            {locale === 'en' ? 'Upagraha Positions' : 'उपग्रह स्थिति'}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            {upagrahas.map((u, i) => (
+              <div key={i} className="glass-card rounded-xl p-4 text-center">
+                <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{u.name[locale]}</p>
+                <RashiIconById id={u.sign} size={28} />
+                <p className="text-text-primary text-sm mt-1" style={bodyFont}>{u.signName[locale]} {u.degree}</p>
+                <p className="text-text-secondary/60 text-xs mt-0.5" style={bodyFont}>{u.nakshatra[locale]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ===== YOGAS TAB COMPONENT =====
+function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
+  yogas: YogaComplete[];
+  locale: Locale;
+  isDevanagari: boolean;
+  headingFont: React.CSSProperties;
+}) {
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const [filter, setFilter] = useState<'all' | 'present' | 'auspicious' | 'inauspicious'>('all');
+  const [expandedYoga, setExpandedYoga] = useState<string | null>(null);
+
+  const filtered = yogas.filter(y => {
+    if (filter === 'present') return y.present;
+    if (filter === 'auspicious') return y.isAuspicious;
+    if (filter === 'inauspicious') return !y.isAuspicious;
+    return true;
+  });
+
+  const presentCount = yogas.filter(y => y.present).length;
+  const auspiciousPresent = yogas.filter(y => y.present && y.isAuspicious).length;
+  const inauspiciousPresent = yogas.filter(y => y.present && !y.isAuspicious).length;
+
+  const CATEGORY_LABELS: Record<string, { en: string; hi: string }> = {
+    dosha: { en: 'Doshas', hi: 'दोष' },
+    mahapurusha: { en: 'Pancha Mahapurusha', hi: 'पंच महापुरुष' },
+    moon_based: { en: 'Moon-Based Yogas', hi: 'चन्द्र आधारित योग' },
+    sun_based: { en: 'Sun-Based Yogas', hi: 'सूर्य आधारित योग' },
+    raja: { en: 'Raja Yogas', hi: 'राजयोग' },
+    wealth: { en: 'Wealth Yogas', hi: 'धनयोग' },
+    inauspicious: { en: 'Inauspicious Yogas', hi: 'अशुभ योग' },
+    other: { en: 'Other Yogas', hi: 'अन्य योग' },
+  };
+
+  const categories = ['dosha', 'mahapurusha', 'moon_based', 'sun_based', 'raja', 'wealth', 'inauspicious', 'other'];
+
+  return (
+    <div className="space-y-6">
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
+        {locale === 'en' ? 'Yogas Analysis' : 'योग विश्लेषण'}
+      </h3>
+
+      {/* Summary badges */}
+      <div className="flex justify-center gap-4 text-sm">
+        <span className="px-3 py-1 rounded-full bg-gold-primary/10 text-gold-light border border-gold-primary/20">
+          {locale === 'en' ? `${presentCount} Present` : `${presentCount} उपस्थित`}
+        </span>
+        <span className="px-3 py-1 rounded-full bg-green-500/10 text-green-400 border border-green-500/20">
+          {locale === 'en' ? `${auspiciousPresent} Auspicious` : `${auspiciousPresent} शुभ`}
+        </span>
+        <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">
+          {locale === 'en' ? `${inauspiciousPresent} Inauspicious` : `${inauspiciousPresent} अशुभ`}
+        </span>
+      </div>
+
+      {/* Filters */}
+      <div className="flex justify-center gap-2 flex-wrap">
+        {([
+          { key: 'all' as const, label: locale === 'en' ? 'All' : 'सभी' },
+          { key: 'present' as const, label: locale === 'en' ? 'Present' : 'उपस्थित' },
+          { key: 'auspicious' as const, label: locale === 'en' ? 'Auspicious' : 'शुभ' },
+          { key: 'inauspicious' as const, label: locale === 'en' ? 'Inauspicious' : 'अशुभ' },
+        ]).map(f => (
+          <button key={f.key} onClick={() => setFilter(f.key)}
+            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${filter === f.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Yogas grouped by category */}
+      {categories.map(cat => {
+        const catYogas = filtered.filter(y => y.category === cat);
+        if (catYogas.length === 0) return null;
+        const catLabel = CATEGORY_LABELS[cat] || { en: cat, hi: cat };
+        return (
+          <div key={cat}>
+            <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-3 font-bold" style={bodyFont}>
+              {catLabel[locale === 'sa' ? 'hi' : locale]}
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {catYogas.map(y => (
+                <div key={y.id}
+                  className={`rounded-xl p-3 border transition-all cursor-pointer ${
+                    y.present
+                      ? 'border-gold-primary/30 bg-gold-primary/5'
+                      : 'border-gold-primary/5 bg-bg-primary/20 opacity-50'
+                  }`}
+                  onClick={() => setExpandedYoga(expandedYoga === y.id ? null : y.id)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gold-light font-medium text-sm" style={bodyFont}>{y.name[locale]}</span>
+                      {y.present && (
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                          y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
+                          y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
+                          'bg-orange-500/20 text-orange-400'
+                        }`}>
+                          {y.strength}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                        y.isAuspicious ? 'bg-green-500/15 text-green-400' : 'bg-red-500/15 text-red-400'
+                      }`}>
+                        {y.isAuspicious ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
+                      </span>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${y.present ? 'bg-gold-primary/20 text-gold-light' : 'bg-bg-primary/50 text-text-secondary/50'}`}>
+                        {y.present ? (locale === 'en' ? 'Present' : 'है') : (locale === 'en' ? 'Absent' : 'नहीं')}
+                      </span>
+                    </div>
+                  </div>
+                  {expandedYoga === y.id && (
+                    <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
+                      <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
+                      <p className="text-gold-dark text-[10px] italic" style={bodyFont}>
+                        {locale === 'en' ? 'Rule' : 'नियम'}: {y.formationRule[locale]}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ===== SHADBALA TAB COMPONENT =====
+function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
+  shadbala: ShadBalaComplete[];
+  locale: Locale;
+  isDevanagari: boolean;
+  headingFont: React.CSSProperties;
+}) {
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const PLANET_LABELS: Record<string, { en: string; hi: string }> = {
+    Sun: { en: 'Sun', hi: 'सूर्य' }, Moon: { en: 'Moon', hi: 'चन्द्र' },
+    Mars: { en: 'Mars', hi: 'मंगल' }, Mercury: { en: 'Mercury', hi: 'बुध' },
+    Jupiter: { en: 'Jupiter', hi: 'बृहस्पति' }, Venus: { en: 'Venus', hi: 'शुक्र' },
+    Saturn: { en: 'Saturn', hi: 'शनि' },
+  };
+
+  const ROW_LABELS: { key: string; en: string; hi: string }[] = [
+    { key: 'rank', en: 'Relative Rank', hi: 'सापेक्ष क्रम' },
+    { key: 'sthana', en: 'Sthana Bala', hi: 'स्थान बल' },
+    { key: 'disha', en: 'Dig Bala', hi: 'दिग्बल' },
+    { key: 'kala', en: 'Kala Bala', hi: 'कालबल' },
+    { key: 'chesta', en: 'Chesta Bala', hi: 'चेष्टाबल' },
+    { key: 'naisargika', en: 'Naisargika Bala', hi: 'नैसर्गिक बल' },
+    { key: 'drishti', en: 'Drik Bala', hi: 'दृक्बल' },
+    { key: 'divider1', en: '', hi: '' },
+    { key: 'total', en: 'Total Pinda', hi: 'कुल पिण्ड' },
+    { key: 'rupas', en: 'Rupas', hi: 'रूप' },
+    { key: 'minReq', en: 'Min. Required', hi: 'न्यूनतम' },
+    { key: 'ratio', en: 'Strength Ratio', hi: 'बल अनुपात' },
+    { key: 'divider2', en: '', hi: '' },
+    { key: 'ishta', en: 'Ishta Phala', hi: 'इष्ट फल' },
+    { key: 'kashta', en: 'Kashta Phala', hi: 'कष्ट फल' },
+  ];
+
+  function getValue(s: ShadBalaComplete, key: string): string {
+    switch (key) {
+      case 'rank': return String(s.rank);
+      case 'sthana': return s.sthanaBala.toFixed(2);
+      case 'disha': return s.digBala.toFixed(2);
+      case 'kala': return s.kalaBala.toFixed(2);
+      case 'chesta': return s.cheshtaBala.toFixed(2);
+      case 'naisargika': return s.naisargikaBala.toFixed(2);
+      case 'drishti': return (s.drikBala >= 0 ? '+' : '') + s.drikBala.toFixed(2);
+      case 'total': return s.totalPinda.toFixed(2);
+      case 'rupas': return s.rupas.toFixed(2);
+      case 'minReq': return s.minRequired.toFixed(2);
+      case 'ratio': return s.strengthRatio.toFixed(4);
+      case 'ishta': return s.ishtaPhala.toFixed(2);
+      case 'kashta': return s.kashtaPhala.toFixed(2);
+      default: return '';
+    }
+  }
+
+  function getColor(s: ShadBalaComplete, key: string): string {
+    if (key === 'ratio') {
+      return s.strengthRatio >= 1.5 ? 'text-green-400' : s.strengthRatio >= 1.0 ? 'text-gold-light' : 'text-red-400';
+    }
+    if (key === 'drishti') return s.drikBala >= 0 ? 'text-green-400' : 'text-red-400';
+    if (key === 'rank') return s.rank <= 2 ? 'text-green-400 font-bold' : 'text-text-secondary';
+    return 'text-text-secondary';
+  }
+
+  return (
+    <div className="space-y-6">
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
+        {locale === 'en' ? 'Shadbala — Six-Fold Strength' : 'षड्बल — छह प्रकार का बल'}
+      </h3>
+      <p className="text-text-secondary text-xs text-center max-w-2xl mx-auto" style={bodyFont}>
+        {locale === 'en'
+          ? 'Classical six-component planetary strength calculation. Values in Shashtiamshas (60ths of a Rupa). Strength Ratio above 1.0 indicates adequate strength.'
+          : 'शास्त्रीय षड्बल गणना। मान षष्ट्यंशों में। बल अनुपात 1.0 से अधिक पर्याप्त बल दर्शाता है।'}
+      </p>
+
+      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-gold-primary/20">
+              <th className="text-left py-3 px-2 text-text-secondary text-xs" style={bodyFont}></th>
+              {shadbala.map(s => {
+                const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
+                return (
+                  <th key={s.planetId} className="text-center py-3 px-2 min-w-[70px]">
+                    <GrahaIconById id={s.planetId} size={20} />
+                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[locale === 'sa' ? 'hi' : locale]}</p>
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {ROW_LABELS.map(row => {
+              if (row.key.startsWith('divider')) {
+                return <tr key={row.key}><td colSpan={8} className="py-1"><div className="border-t border-gold-primary/15" /></td></tr>;
+              }
+              const isSummary = ['total', 'rupas', 'ratio'].includes(row.key);
+              return (
+                <tr key={row.key} className={isSummary ? 'bg-gold-primary/5' : 'hover:bg-gold-primary/3'}>
+                  <td className={`py-2 px-2 text-xs ${isSummary ? 'text-gold-light font-bold' : 'text-text-secondary'}`} style={bodyFont}>
+                    {row[locale === 'sa' ? 'hi' : locale]}
+                  </td>
+                  {shadbala.map(s => (
+                    <td key={s.planetId} className={`py-2 px-2 text-center font-mono text-xs ${isSummary ? 'font-bold ' : ''}${getColor(s, row.key)}`}>
+                      {getValue(s, row.key)}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Strength Ratio Bar Chart */}
+      <div className="glass-card rounded-xl p-6">
+        <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-4 font-bold text-center" style={bodyFont}>
+          {locale === 'en' ? 'Strength Ratio (Min. Required = 1.0)' : 'बल अनुपात (न्यूनतम = 1.0)'}
+        </h4>
+        <div className="space-y-3">
+          {shadbala.map(s => {
+            const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
+            const pct = Math.min(100, (s.strengthRatio / 2) * 100);
+            const color = s.strengthRatio >= 1.5 ? '#4ade80' : s.strengthRatio >= 1.0 ? '#d4a853' : '#f87171';
+            return (
+              <div key={s.planetId} className="flex items-center gap-3">
+                <div className="w-20 text-right text-xs text-gold-light" style={bodyFont}>{label[locale === 'sa' ? 'hi' : locale]}</div>
+                <div className="flex-1 bg-bg-primary/60 rounded-full h-5 overflow-hidden">
+                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
+                </div>
+                <div className="w-14 text-right text-xs font-mono" style={{ color }}>{s.strengthRatio.toFixed(2)}</div>
+              </div>
+            );
+          })}
+          {/* Min line indicator */}
+          <div className="relative mt-1">
+            <div className="absolute left-[calc(50%+40px)] top-0 w-px h-3 bg-red-400/50" />
+            <p className="text-center text-[10px] text-red-400/50 ml-20">{locale === 'en' ? '1.0 = minimum adequate' : '1.0 = पर्याप्त'}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ===== BHAVABALA TAB COMPONENT =====
+function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
+  bhavabala: BhavaBalaResult[];
+  locale: Locale;
+  isDevanagari: boolean;
+  headingFont: React.CSSProperties;
+}) {
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const HOUSE_NAMES: Record<number, { en: string; hi: string }> = {
+    1: { en: 'Self / Lagna', hi: 'तनु / लग्न' },
+    2: { en: 'Wealth / Dhana', hi: 'धन' },
+    3: { en: 'Siblings / Sahaja', hi: 'सहज' },
+    4: { en: 'Mother / Sukha', hi: 'सुख / मातृ' },
+    5: { en: 'Children / Putra', hi: 'पुत्र / संतान' },
+    6: { en: 'Enemies / Ripu', hi: 'रिपु / शत्रु' },
+    7: { en: 'Spouse / Yuvati', hi: 'युवती / जाया' },
+    8: { en: 'Longevity / Randhra', hi: 'रन्ध्र / आयु' },
+    9: { en: 'Fortune / Dharma', hi: 'धर्म / भाग्य' },
+    10: { en: 'Career / Karma', hi: 'कर्म / राज्य' },
+    11: { en: 'Gains / Labha', hi: 'लाभ' },
+    12: { en: 'Loss / Vyaya', hi: 'व्यय' },
+  };
+
+  const maxTotal = Math.max(...bhavabala.map(b => b.total));
+
+  return (
+    <div className="space-y-6">
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
+        {locale === 'en' ? 'Bhavabala — House Strength' : 'भावबल — भाव शक्ति'}
+      </h3>
+
+      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="text-text-secondary border-b border-gold-primary/15 text-xs uppercase tracking-wider">
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Bhava' : 'भाव'}</th>
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Signification' : 'कारकत्व'}</th>
+              <th className="text-left py-3 px-2" style={bodyFont}>{locale === 'en' ? 'Lord' : 'स्वामी'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Lord Bala' : 'स्वामी बल'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Dig Bala' : 'दिग्बल'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Drishti' : 'दृष्टि'}</th>
+              <th className="text-right py-3 px-2">{locale === 'en' ? 'Total' : 'कुल'}</th>
+              <th className="text-right py-3 px-2">%</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bhavabala.map(b => {
+              const houseName = HOUSE_NAMES[b.bhava] || { en: `House ${b.bhava}`, hi: `भाव ${b.bhava}` };
+              const pct = b.strengthPercent;
+              const color = pct >= 120 ? 'text-green-400' : pct >= 90 ? 'text-gold-light' : 'text-red-400';
+              return (
+                <tr key={b.bhava} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                  <td className="py-2.5 px-2 text-gold-light font-bold">{b.bhava}</td>
+                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</td>
+                  <td className="py-2.5 px-2">
+                    {b.lordId <= 6 && <GrahaIconById id={b.lordId} size={16} />}
+                    <span className="text-text-primary text-xs ml-1">{b.lordName}</span>
+                  </td>
+                  <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{b.bhavadhipatiBala.toFixed(0)}</td>
+                  <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{b.bhavaDigBala.toFixed(0)}</td>
+                  <td className="py-2.5 px-2 text-right font-mono text-xs">
+                    <span className={b.bhavaDrishtiBala >= 0 ? 'text-green-400' : 'text-red-400'}>
+                      {b.bhavaDrishtiBala >= 0 ? '+' : ''}{b.bhavaDrishtiBala.toFixed(0)}
+                    </span>
+                  </td>
+                  <td className={`py-2.5 px-2 text-right font-mono text-xs font-bold ${color}`}>{b.total.toFixed(0)}</td>
+                  <td className={`py-2.5 px-2 text-right font-mono text-xs font-bold ${color}`}>{pct}%</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Visual bar chart */}
+      <div className="glass-card rounded-xl p-6">
+        <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-4 font-bold text-center" style={bodyFont}>
+          {locale === 'en' ? 'House Strength Distribution' : 'भाव बल वितरण'}
+        </h4>
+        <div className="space-y-2">
+          {bhavabala.map(b => {
+            const pct = Math.min(100, (b.total / maxTotal) * 100);
+            const color = b.strengthPercent >= 120 ? '#4ade80' : b.strengthPercent >= 90 ? '#d4a853' : '#f87171';
+            const houseName = HOUSE_NAMES[b.bhava] || { en: `H${b.bhava}`, hi: `भा${b.bhava}` };
+            return (
+              <div key={b.bhava} className="flex items-center gap-3">
+                <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
+                <div className="w-20 text-right text-[10px] text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
+                <div className="flex-1 bg-bg-primary/60 rounded-full h-4 overflow-hidden">
+                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
+                </div>
+                <div className="w-12 text-right text-xs font-mono" style={{ color }}>{b.strengthPercent}%</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

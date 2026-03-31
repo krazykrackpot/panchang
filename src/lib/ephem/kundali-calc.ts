@@ -3,11 +3,15 @@ import {
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
   getPlanetaryPositions, lahiriAyanamsha, normalizeDeg, formatDegrees,
 } from './astronomical';
+import { computeFullCoordinates, computeCombust } from './coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
-import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData } from '@/types/kundali';
+import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
+import { calculateFullShadbala } from '@/lib/kundali/shadbala';
+import { calculateBhavabala } from '@/lib/kundali/bhavabala';
+import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -599,6 +603,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
 
   // Planetary positions
   const rawPlanets = getPlanetaryPositions(jd);
+  const sunRawLong = toSidereal(rawPlanets.find(p => p.id === 0)!.longitude, jd);
   const planets: PlanetPosition[] = rawPlanets.map((p) => {
     const graha = GRAHAS[p.id];
     const sidLong = toSidereal(p.longitude, jd);
@@ -608,11 +613,12 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const house = getHouse(sidLong, cuspDegrees);
     const rashi = RASHIS[sign - 1];
     const nak = NAKSHATRAS[nakNum - 1];
+    const coords = computeFullCoordinates(p.id, sidLong, jd);
 
     return {
       planet: graha,
       longitude: sidLong,
-      latitude: 0,
+      latitude: coords.latitude,
       speed: p.speed,
       sign,
       signName: rashi.name,
@@ -621,7 +627,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
       pada,
       degree: formatDegrees(sidLong % 30),
       isRetrograde: p.isRetrograde,
-      isCombust: false,
+      isCombust: computeCombust(p.id, sidLong, sunRawLong),
       isExalted: EXALTATION[p.id] === sign,
       isDebilitated: DEBILITATION[p.id] === sign,
       isOwnSign: (OWN_SIGNS[p.id] || []).includes(sign),
@@ -682,8 +688,118 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const yoginiDashas = calculateYoginiDasha(moonSidLong, birthDate);
   const ashtottariDashas = calculateAshtottariDasha(moonSidLong, birthDate);
 
-  // Shadbala
+  // Shadbala (legacy simplified)
   const shadbala = calculateShadbala(planets);
+
+  // --- Extended calculations for new tabs ---
+
+  // Graha Details (with RA, Declination)
+  const grahaDetails: GrahaDetail[] = planets.map(p => {
+    const coords = computeFullCoordinates(p.planet.id, p.longitude, jd);
+    const nakData = NAKSHATRAS[getNakshatraNumber(p.longitude) - 1];
+    return {
+      planetId: p.planet.id,
+      planetName: p.planet.name,
+      isRetrograde: p.isRetrograde,
+      isCombust: p.isCombust,
+      longitude: p.longitude,
+      signDegree: p.degree,
+      sign: p.sign,
+      signName: p.signName,
+      nakshatra: getNakshatraNumber(p.longitude),
+      nakshatraName: p.nakshatra.name,
+      nakshatraLord: nakData.rulerName,
+      nakshatraPada: p.pada,
+      latitude: coords.latitude,
+      rightAscension: coords.rightAscension,
+      declination: coords.declination,
+      speed: p.speed,
+    };
+  });
+
+  // Upagrahas (based on birth Sun position)
+  const sunLong = planets.find(p => p.planet.id === 0)!.longitude;
+  const upagrahaCalcs = [
+    { nameEn: 'Dhuma', nameHi: 'धूम', nameSa: 'धूमः', long: normalizeDeg(sunLong + 133 + 20 / 60) },
+    { nameEn: 'Vyatipata', nameHi: 'व्यतीपात', nameSa: 'व्यतीपातः', long: 0 },
+    { nameEn: 'Parivesha', nameHi: 'परिवेष', nameSa: 'परिवेषः', long: 0 },
+    { nameEn: 'Chapa', nameHi: 'चाप', nameSa: 'चापः', long: 0 },
+    { nameEn: 'Upaketu', nameHi: 'उपकेतु', nameSa: 'उपकेतुः', long: 0 },
+  ];
+  upagrahaCalcs[1].long = normalizeDeg(360 - upagrahaCalcs[0].long);
+  upagrahaCalcs[2].long = normalizeDeg(upagrahaCalcs[1].long + 180);
+  upagrahaCalcs[3].long = normalizeDeg(360 - upagrahaCalcs[2].long);
+  upagrahaCalcs[4].long = normalizeDeg(upagrahaCalcs[3].long + 16 + 40 / 60);
+
+  const upagrahas: UpagrahaPosition[] = upagrahaCalcs.map(u => {
+    const sign = getRashiNumber(u.long);
+    const nakNum = getNakshatraNumber(u.long);
+    return {
+      name: { en: u.nameEn, hi: u.nameHi, sa: u.nameSa },
+      longitude: u.long,
+      sign,
+      signName: RASHIS[sign - 1].name,
+      degree: formatDegrees(u.long % 30),
+      nakshatra: NAKSHATRAS[nakNum - 1].name,
+    };
+  });
+
+  // Full Shadbala
+  const navChart = navamshaChart;
+  const fullShadbala = calculateFullShadbala({
+    planets: planets.filter(p => p.planet.id <= 6).map(p => {
+      // Compute navamsha sign for this planet
+      const sidLong = p.longitude;
+      const navamshaIndex = Math.floor((sidLong % 30) / (30 / 9));
+      const startSign = Math.floor(sidLong / 30);
+      const element = startSign % 4;
+      const navSign = ((element * 9 + navamshaIndex) % 12) + 1;
+      return {
+        id: p.planet.id,
+        longitude: p.longitude,
+        speed: p.speed,
+        house: p.house,
+        sign: p.sign,
+        isRetrograde: p.isRetrograde,
+        isExalted: p.isExalted,
+        isDebilitated: p.isDebilitated,
+        isOwnSign: p.isOwnSign,
+        navamshaSign: navSign,
+      };
+    }),
+    ascendantDeg: siderealAsc,
+    julianDay: jd,
+    birthDateObj: birthDate,
+    latitude: birthData.lat,
+    longitude: birthData.lng,
+    timezone: tzOffset,
+  });
+
+  // Bhavabala
+  const shadbalaRupas: Record<number, number> = {};
+  fullShadbala.forEach(s => { shadbalaRupas[s.planetId] = s.rupas; });
+  const bhavabala = calculateBhavabala({
+    houses: houses.map(h => ({ house: h.house, degree: h.degree, sign: h.sign, lord: h.lord })),
+    planets: planets.map(p => ({ id: p.planet.id, longitude: p.longitude, house: p.house, sign: p.sign, speed: p.speed })),
+    shadbalaRupas,
+    ascendantDeg: siderealAsc,
+  });
+
+  // Complete Yogas (50+)
+  const yogasComplete = detectAllYogas(
+    planets.map(p => ({
+      id: p.planet.id,
+      longitude: p.longitude,
+      house: p.house,
+      sign: p.sign,
+      speed: p.speed,
+      isRetrograde: p.isRetrograde,
+      isExalted: p.isExalted,
+      isDebilitated: p.isDebilitated,
+      isOwnSign: p.isOwnSign,
+    })),
+    ascSign
+  );
 
   return {
     birthData,
@@ -705,6 +821,11 @@ export function generateKundali(birthData: BirthData): KundaliData {
     shadbala,
     ayanamshaValue,
     julianDay: jd,
+    grahaDetails,
+    upagrahas,
+    fullShadbala,
+    bhavabala,
+    yogasComplete,
     jaimini: calculateJaimini(planets, ascSign, birthDate),
   };
 }

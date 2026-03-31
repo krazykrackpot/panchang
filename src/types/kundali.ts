@@ -81,6 +81,12 @@ export interface KundaliData {
   shadbala: ShadBala[];
   ayanamshaValue: number;
   julianDay: number;
+  // Extended data for new tabs
+  grahaDetails?: GrahaDetail[];
+  upagrahas?: UpagrahaPosition[];
+  fullShadbala?: import('@/lib/kundali/shadbala').ShadBalaComplete[];
+  bhavabala?: import('@/lib/kundali/bhavabala').BhavaBalaResult[];
+  yogasComplete?: import('@/lib/kundali/yogas-complete').YogaComplete[];
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };
@@ -102,3 +108,36 @@ export interface AshtakavargaData {
 }
 
 export type ChartStyle = 'north' | 'south';
+
+// Extended types for new tabs
+export type { ShadBalaComplete } from '@/lib/kundali/shadbala';
+export type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
+export type { YogaComplete } from '@/lib/kundali/yogas-complete';
+
+export interface GrahaDetail {
+  planetId: number;
+  planetName: Trilingual;
+  isRetrograde: boolean;
+  isCombust: boolean;
+  longitude: number;
+  signDegree: string;
+  sign: number;
+  signName: Trilingual;
+  nakshatra: number;
+  nakshatraName: Trilingual;
+  nakshatraLord: Trilingual;
+  nakshatraPada: number;
+  latitude: number;
+  rightAscension: number;
+  declination: number;
+  speed: number;
+}
+
+export interface UpagrahaPosition {
+  name: Trilingual;
+  longitude: number;
+  sign: number;
+  signName: Trilingual;
+  degree: string;
+  nakshatra: Trilingual;
+}

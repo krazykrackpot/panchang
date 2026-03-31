@@ -21,6 +21,7 @@ import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 
 // Planet colors for table highlights
@@ -187,7 +188,7 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -301,6 +302,7 @@ export default function KundaliPage() {
               { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
               { key: 'tippanni' as const, label: t('tippanni') },
               { key: 'varga' as const, label: locale === 'en' ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
+              { key: 'chat' as const, label: locale === 'en' ? 'Chat' : 'चैट' },
               { key: 'graha' as const, label: locale === 'en' ? 'Graha' : 'ग्रह' },
               { key: 'yogas' as const, label: locale === 'en' ? 'Yogas' : 'योग' },
               { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
@@ -734,6 +736,11 @@ export default function KundaliPage() {
           {/* ===== BHAVABALA TAB ===== */}
           {activeTab === 'bhavabala' && kundali.bhavabala && (
             <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+          )}
+
+          {/* ===== CHAT TAB ===== */}
+          {activeTab === 'chat' && (
+            <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
           )}
 
           {/* ===== JAIMINI TAB ===== */}

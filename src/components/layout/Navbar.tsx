@@ -101,6 +101,7 @@ export default function Navbar() {
         { href: '/muhurta-ai', label: t('muhurtaAi') },
         { href: '/kaal-nirnaya', label: t('kaalNirnaya') },
         { href: '/nivas-shool', label: t('nivasShool') },
+        { href: '/horoscope', label: t('horoscope') },
       ],
     },
     { href: '/learn', label: t('learn') },

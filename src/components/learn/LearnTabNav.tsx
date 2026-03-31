@@ -3,22 +3,29 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/lib/i18n/navigation';
-import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Menu, X } from 'lucide-react';
+import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, Grid3X3, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Crown, Shield, BarChart3, Compass, Menu, X } from 'lucide-react';
 
 const tabs = [
+  // Phase 1: The Sky
   { href: '/learn', key: 'foundations', icon: BookOpen },
   { href: '/learn/grahas', key: 'grahas', icon: Sun },
   { href: '/learn/rashis', key: 'rashis', icon: Orbit },
   { href: '/learn/nakshatras', key: 'nakshatras', icon: Star },
+  // Phase 2: The Panchang
   { href: '/learn/tithis', key: 'tithis', icon: Moon },
   { href: '/learn/yogas', key: 'yogas', icon: Timer },
   { href: '/learn/karanas', key: 'karanas', icon: Slice },
   { href: '/learn/muhurtas', key: 'muhurtas', icon: Clock },
+  // Phase 3: The Chart
   { href: '/learn/kundali', key: 'kundali', icon: FileSpreadsheet },
   { href: '/learn/bhavas', key: 'bhavas', icon: LayoutGrid },
+  { href: '/learn/vargas', key: 'vargas', icon: Grid3X3 },
   { href: '/learn/dashas', key: 'dashas', icon: CalendarClock },
   { href: '/learn/gochar', key: 'gochar', icon: ArrowRightLeft },
+  // Phase 4: Applied Jyotish
   { href: '/learn/matching', key: 'matching', icon: Heart },
+  { href: '/learn/yogas-detailed', key: 'yogasDetailed', icon: Crown },
+  { href: '/learn/doshas', key: 'doshas', icon: Shield },
   { href: '/learn/calculations', key: 'calculations', icon: Calculator },
   { href: '/learn/advanced', key: 'advanced', icon: Sparkles },
 ];

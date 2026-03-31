@@ -15,7 +15,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
-import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData } from '@/types/kundali';
+import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 
@@ -183,10 +183,10 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'jaimini'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'jaimini'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
-  const [activeChart, setActiveChart] = useState<'D1' | 'D9' | 'bhav_chalit' | 'D3' | 'D10' | 'D12'>('D1');
+  const [activeChart, setActiveChart] = useState<string>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
   const [showTransits, setShowTransits] = useState(false);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
@@ -296,6 +296,7 @@ export default function KundaliPage() {
               { key: 'dasha' as const, label: t('dashaTimeline') },
               { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
               { key: 'tippanni' as const, label: t('tippanni') },
+              { key: 'varga' as const, label: locale === 'en' ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
               { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
             ]).map((tab) => (
               <button
@@ -315,24 +316,48 @@ export default function KundaliPage() {
           {/* ===== CHART TAB ===== */}
           {activeTab === 'chart' && (
             <div>
-              {/* Chart type selector */}
-              <div className="flex flex-wrap justify-center gap-2 mb-4">
+              {/* Chart type selector — all Parashara vargas */}
+              <div className="flex flex-wrap justify-center gap-1.5 mb-4">
                 {([
-                  { key: 'D1' as const, label: t('birthChart') },
-                  { key: 'D9' as const, label: t('navamsha') },
-                  { key: 'bhav_chalit' as const, label: t('bhavChalit') },
-                  { key: 'D3' as const, label: t('drekkana') },
-                  { key: 'D10' as const, label: t('dasamsa') },
-                  { key: 'D12' as const, label: t('dwadasamsa') },
+                  { key: 'D1', label: locale === 'en' ? 'D1 Rashi' : 'D1 राशि' },
+                  { key: 'bhav_chalit', label: locale === 'en' ? 'BC' : 'भा.च.' },
+                  { key: 'D9', label: locale === 'en' ? 'D9 Navamsha' : 'D9 नवांश' },
+                  ...(kundali.divisionalCharts ? Object.entries(kundali.divisionalCharts).map(([key, dc]) => ({
+                    key,
+                    label: `${key}`,
+                  })) : []),
                 ]).map(c => (
                   <button key={c.key} onClick={() => setActiveChart(c.key)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                    className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
                       activeChart === c.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
                     }`}>
                     {c.label}
                   </button>
                 ))}
               </div>
+
+              {/* Chart meaning description */}
+              {activeChart !== 'D1' && activeChart !== 'bhav_chalit' && activeChart !== 'D9' && kundali.divisionalCharts?.[activeChart] && (
+                <div className="text-center mb-4 p-2 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
+                  <span className="text-gold-light text-xs font-bold">{kundali.divisionalCharts[activeChart].label[locale as Locale]}</span>
+                  <span className="text-text-secondary text-xs"> — </span>
+                  <span className="text-text-secondary text-xs">{(kundali.divisionalCharts[activeChart] as DivisionalChart & { meaning?: { en: string; hi: string } }).meaning?.[locale === 'hi' ? 'hi' : 'en'] || ''}</span>
+                </div>
+              )}
+              {activeChart === 'D9' && (
+                <div className="text-center mb-4 p-2 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
+                  <span className="text-gold-light text-xs font-bold">{t('navamsha')}</span>
+                  <span className="text-text-secondary text-xs"> — </span>
+                  <span className="text-text-secondary text-xs">{locale === 'en' ? 'Marriage, dharma & inner self — the most important divisional chart' : 'विवाह, धर्म एवं आंतरिक स्वरूप — सर्वाधिक महत्वपूर्ण वर्ग चार्ट'}</span>
+                </div>
+              )}
+              {activeChart === 'bhav_chalit' && (
+                <div className="text-center mb-4 p-2 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
+                  <span className="text-gold-light text-xs font-bold">{t('bhavChalit')}</span>
+                  <span className="text-text-secondary text-xs"> — </span>
+                  <span className="text-text-secondary text-xs">{locale === 'en' ? 'Mid-cusp house system — planets may shift houses compared to D1' : 'मध्य-शिखर भाव पद्धति — D1 की तुलना में ग्रह भाव बदल सकते हैं'}</span>
+                </div>
+              )}
 
               {/* Style toggle */}
               <div className="flex justify-center gap-4 mb-6">
@@ -619,6 +644,90 @@ export default function KundaliPage() {
 
           {/* ===== TIPPANNI TAB ===== */}
           {activeTab === 'tippanni' && <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />}
+
+          {/* ===== VARGA ANALYSIS TAB ===== */}
+          {activeTab === 'varga' && (() => {
+            const { generateVargaTippanni } = require('@/lib/tippanni/varga-tippanni');
+            const synthesis = generateVargaTippanni(kundali, locale);
+            const strengthColors = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
+            const strengthLabels = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
+            return (
+              <div className="space-y-8">
+                {/* Overall Synthesis */}
+                <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+                  <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Varga Synthesis — All Divisional Charts' : 'वर्ग संश्लेषण — समस्त विभागीय चार्ट'}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-4">{locale === 'hi' ? synthesis.overall.hi : synthesis.overall.en}</p>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {synthesis.strongAreas.length > 0 && (
+                      <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                        <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Strong Areas' : 'बलवान क्षेत्र'}</div>
+                        {synthesis.strongAreas.map((a: { en: string; hi: string }, i: number) => (
+                          <div key={i} className="text-emerald-300 text-xs mb-1">{locale === 'hi' ? a.hi : a.en}</div>
+                        ))}
+                      </div>
+                    )}
+                    {synthesis.weakAreas.length > 0 && (
+                      <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+                        <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Areas Needing Attention' : 'ध्यान देने योग्य क्षेत्र'}</div>
+                        {synthesis.weakAreas.map((a: { en: string; hi: string }, i: number) => (
+                          <div key={i} className="text-red-300 text-xs mb-1">{locale === 'hi' ? a.hi : a.en}</div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Strength overview grid */}
+                <div>
+                  <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Varga Strength Overview' : 'वर्ग बल अवलोकन'}
+                  </h3>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                    {synthesis.vargaInsights.map((v: { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak' }, i: number) => (
+                      <div key={i} className={`rounded-xl p-3 border text-center ${strengthColors[v.strength]}`}>
+                        <div className="font-bold text-sm mb-0.5">{v.chart}</div>
+                        <div className="text-[9px] text-text-tertiary mb-1">{locale === 'hi' ? v.meaning.hi : v.meaning.en}</div>
+                        <div className="text-xs font-medium">{locale === 'hi' ? strengthLabels[v.strength].hi : strengthLabels[v.strength].en}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Per-chart detailed insights */}
+                <div>
+                  <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Per-Chart Tippanni' : 'प्रति-चार्ट टिप्पणी'}
+                  </h3>
+                  <div className="space-y-3">
+                    {synthesis.vargaInsights.filter((v: { insights: { en: string; hi: string }[] }) => v.insights.length > 0).map((v: { chart: string; label: { en: string; hi: string }; meaning: { en: string; hi: string }; strength: 'strong' | 'moderate' | 'weak'; insights: { en: string; hi: string }[] }, i: number) => (
+                      <div key={i} className="glass-card rounded-xl p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <div>
+                            <span className="text-gold-light font-bold text-sm">{locale === 'hi' ? v.label.hi : v.label.en}</span>
+                            <span className="text-text-tertiary text-[10px] ml-2">{locale === 'hi' ? v.meaning.hi : v.meaning.en}</span>
+                          </div>
+                          <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${strengthColors[v.strength]}`}>
+                            {locale === 'hi' ? strengthLabels[v.strength].hi : strengthLabels[v.strength].en}
+                          </span>
+                        </div>
+                        <div className="space-y-1.5">
+                          {v.insights.map((ins: { en: string; hi: string }, j: number) => (
+                            <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
+                              <span className="text-gold-dark mt-0.5 shrink-0">•</span>
+                              <span>{locale === 'hi' ? ins.hi : ins.en}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* ===== JAIMINI TAB ===== */}
           {activeTab === 'jaimini' && kundali.jaimini && (

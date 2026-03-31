@@ -345,47 +345,90 @@ function calculateBhavChalit(planets: PlanetPosition[], ascDeg: number): ChartDa
 }
 
 /**
- * Generic Divisional Chart calculator
- * Maps each planet's sidereal longitude to a divisional sign
+ * Generic Divisional Chart calculator — Parashara Varga system
+ * Supports D2-D60 using classical Parashara rules
  */
+function getDivisionalSign(sidLong: number, division: number): number {
+  const signIndex = Math.floor(sidLong / 30); // 0-based sign (0=Aries)
+  const degInSign = sidLong % 30;
+  const partSize = 30 / division;
+  const part = Math.floor(degInSign / partSize);
+
+  switch (division) {
+    case 2: // Hora: odd sign → Sun(Leo=4)/Moon(Cancer=3); even → Moon/Sun
+      return signIndex % 2 === 0
+        ? (part === 0 ? 5 : 4) // odd sign: Leo then Cancer
+        : (part === 0 ? 4 : 5); // even sign: Cancer then Leo
+    case 3: { // Drekkana: 1st=same, 2nd=5th, 3rd=9th
+      const offsets = [0, 4, 8];
+      return ((signIndex + offsets[part]) % 12) + 1;
+    }
+    case 4: { // Chaturthamsha: movable→same, fixed→4th, dual→7th
+      const signType = signIndex % 3; // 0=movable, 1=fixed, 2=dual
+      const startOffset = [0, 3, 6][signType];
+      return ((signIndex + startOffset + part) % 12) + 1;
+    }
+    case 5: // Panchamsha (Rishi division) — simplified cyclic
+      return ((signIndex + part) % 12) + 1;
+    case 6: // Shashthamsha: odd from Aries(0), even from Libra(6)
+      return ((signIndex % 2 === 0 ? 0 : 6) + part) % 12 + 1;
+    case 7: // Saptamsha: odd from same sign, even from 7th
+      return ((signIndex % 2 === 0 ? signIndex : signIndex + 6) + part) % 12 + 1;
+    case 8: // Ashtamsha: movable→same, fixed→9th, dual→5th
+      return (((signIndex % 3 === 0 ? signIndex : signIndex % 3 === 1 ? signIndex + 8 : signIndex + 4) + part) % 12) + 1;
+    case 10: // Dasamsha: odd from same, even from 9th
+      return ((signIndex + (signIndex % 2 === 0 ? 0 : 8) + part) % 12) + 1;
+    case 12: // Dwadasamsha: from same sign
+      return ((signIndex + part) % 12) + 1;
+    case 16: { // Shodasamsha: movable→Aries, fixed→Leo, dual→Sagittarius
+      const start16 = [0, 4, 8][signIndex % 3];
+      return ((start16 + part) % 12) + 1;
+    }
+    case 20: { // Vimshamsha: movable→Aries, fixed→Sagittarius, dual→Leo
+      const start20 = [0, 8, 4][signIndex % 3];
+      return ((start20 + part) % 12) + 1;
+    }
+    case 24: // Chaturvimshamsha: odd from Leo(4), even from Cancer(3)
+      return ((signIndex % 2 === 0 ? 4 : 3) + part) % 12 + 1;
+    case 27: { // Nakshatramsha: fire→Aries, earth→Cancer, air→Libra, water→Capricorn
+      const elem27 = signIndex % 4;
+      const start27 = [0, 3, 6, 9][elem27];
+      return ((start27 + part) % 12) + 1;
+    }
+    case 30: { // Trimshamsha: unequal parts (5°,5°,8°,7°,5°) mapped to Mars,Sat,Jup,Merc,Ven signs
+      // Odd signs: Mars(Aries=0),Sat(Aqua=10),Jup(Sag=8),Merc(Gem=2),Ven(Libra=6)
+      // Even signs: Ven,Merc,Jup,Sat,Mars
+      const bounds = [5, 10, 18, 25, 30];
+      let p30 = 0;
+      for (let b = 0; b < bounds.length; b++) { if (degInSign < bounds[b]) { p30 = b; break; } }
+      const oddSigns = [1, 11, 9, 3, 7]; // 1-based
+      const evenSigns = [7, 3, 9, 11, 1];
+      return signIndex % 2 === 0 ? oddSigns[p30] : evenSigns[p30];
+    }
+    case 40: // Khavedamsha: odd from Aries, even from Libra
+      return ((signIndex % 2 === 0 ? 0 : 6) + part) % 12 + 1;
+    case 45: { // Akshavedamsha: movable→Aries, fixed→Leo, dual→Sagittarius
+      const start45 = [0, 4, 8][signIndex % 3];
+      return ((start45 + part) % 12) + 1;
+    }
+    case 60: // Shashtiamsha: from same sign (cyclic)
+      return ((signIndex + part) % 12) + 1;
+    default: // Generic cyclic from same sign
+      return ((signIndex + part) % 12) + 1;
+  }
+}
+
 function calculateDivisionalChart(
   planets: PlanetPosition[],
   ascDeg: number,
   division: number,
-  divisionType: 'drekkana' | 'dasamsa' | 'dwadasamsa'
 ): ChartData {
-  const getNavSign = (sidLong: number): number => {
-    const signIndex = Math.floor(sidLong / 30); // 0-based sign (0=Aries)
-    const degInSign = sidLong % 30;
-
-    if (divisionType === 'drekkana') {
-      // D3: 3 parts of 10° each
-      const part = Math.floor(degInSign / 10); // 0, 1, 2
-      // 1st=same sign, 2nd=5th from sign, 3rd=9th from sign
-      const offsets = [0, 4, 8];
-      return ((signIndex + offsets[part]) % 12) + 1;
-    }
-
-    if (divisionType === 'dasamsa') {
-      // D10: 10 parts of 3° each
-      const part = Math.floor(degInSign / 3); // 0-9
-      // Odd signs: start from same sign; Even signs: start from 9th
-      const startOffset = (signIndex % 2 === 0) ? 0 : 8; // 0-based sign
-      return ((signIndex + startOffset + part) % 12) + 1;
-    }
-
-    // D12: Dwadasamsa — 12 parts of 2.5° each, start from same sign
-    const part = Math.floor(degInSign / 2.5); // 0-11
-    return ((signIndex + part) % 12) + 1;
-  };
-
-  // Divisional ascendant
-  const divAscSign = getNavSign(normalizeDeg(ascDeg));
+  const divAscSign = getDivisionalSign(normalizeDeg(ascDeg), division);
   const divAscDeg = normalizeDeg(ascDeg * division);
 
   const houses: number[][] = Array.from({ length: 12 }, () => []);
   planets.forEach((p) => {
-    const divSign = getNavSign(p.longitude);
+    const divSign = getDivisionalSign(p.longitude, division);
     const houseNum = ((divSign - divAscSign + 12) % 12);
     houses[houseNum].push(p.planet.id);
   });
@@ -602,15 +645,31 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Bhav Chalit
   const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
 
-  // Divisional Charts
-  const d3 = calculateDivisionalChart(planets, siderealAsc, 3, 'drekkana');
-  const d10 = calculateDivisionalChart(planets, siderealAsc, 10, 'dasamsa');
-  const d12 = calculateDivisionalChart(planets, siderealAsc, 12, 'dwadasamsa');
-  const divisionalCharts: Record<string, DivisionalChart> = {
-    D3: { ...d3, division: 'D3', label: { en: 'Drekkana (D3)', hi: 'द्रेष्काण (D3)', sa: 'द्रेष्काणः (D3)' } },
-    D10: { ...d10, division: 'D10', label: { en: 'Dasamsa (D10)', hi: 'दशांश (D10)', sa: 'दशांशः (D10)' } },
-    D12: { ...d12, division: 'D12', label: { en: 'Dwadasamsa (D12)', hi: 'द्वादशांश (D12)', sa: 'द्वादशांशः (D12)' } },
-  };
+  // Divisional Charts — all 16 Parashara Shodashavarga + extras
+  const VARGA_DEFS: { key: string; div: number; label: { en: string; hi: string; sa: string }; meaning: { en: string; hi: string } }[] = [
+    { key: 'D2', div: 2, label: { en: 'Hora (D2)', hi: 'होरा (D2)', sa: 'होरा (D2)' }, meaning: { en: 'Wealth & financial prosperity', hi: 'धन एवं वित्तीय समृद्धि' } },
+    { key: 'D3', div: 3, label: { en: 'Drekkana (D3)', hi: 'द्रेष्काण (D3)', sa: 'द्रेष्काणः (D3)' }, meaning: { en: 'Siblings, courage & co-borns', hi: 'भाई-बहन, साहस एवं सहोदर' } },
+    { key: 'D4', div: 4, label: { en: 'Chaturthamsha (D4)', hi: 'चतुर्थांश (D4)', sa: 'चतुर्थांशः (D4)' }, meaning: { en: 'Property, fortune & fixed assets', hi: 'संपत्ति, भाग्य एवं स्थावर संपदा' } },
+    { key: 'D5', div: 5, label: { en: 'Panchamsha (D5)', hi: 'पंचमांश (D5)', sa: 'पञ्चमांशः (D5)' }, meaning: { en: 'Fame, authority & spiritual merit', hi: 'यश, अधिकार एवं पुण्य' } },
+    { key: 'D6', div: 6, label: { en: 'Shashthamsha (D6)', hi: 'षष्ठांश (D6)', sa: 'षष्ठांशः (D6)' }, meaning: { en: 'Health, disease & enemies', hi: 'स्वास्थ्य, रोग एवं शत्रु' } },
+    { key: 'D7', div: 7, label: { en: 'Saptamsha (D7)', hi: 'सप्तमांश (D7)', sa: 'सप्तमांशः (D7)' }, meaning: { en: 'Children & progeny', hi: 'संतान एवं वंशवृद्धि' } },
+    { key: 'D8', div: 8, label: { en: 'Ashtamsha (D8)', hi: 'अष्टमांश (D8)', sa: 'अष्टमांशः (D8)' }, meaning: { en: 'Longevity & unexpected events', hi: 'दीर्घायु एवं अप्रत्याशित घटनाएं' } },
+    { key: 'D10', div: 10, label: { en: 'Dasamsha (D10)', hi: 'दशांश (D10)', sa: 'दशांशः (D10)' }, meaning: { en: 'Career, profession & public life', hi: 'करियर, व्यवसाय एवं सार्वजनिक जीवन' } },
+    { key: 'D12', div: 12, label: { en: 'Dwadasamsha (D12)', hi: 'द्वादशांश (D12)', sa: 'द्वादशांशः (D12)' }, meaning: { en: 'Parents, ancestry & lineage', hi: 'माता-पिता, वंशावली' } },
+    { key: 'D16', div: 16, label: { en: 'Shodasamsha (D16)', hi: 'षोडशांश (D16)', sa: 'षोडशांशः (D16)' }, meaning: { en: 'Vehicles, comforts & luxuries', hi: 'वाहन, सुख एवं विलासिता' } },
+    { key: 'D20', div: 20, label: { en: 'Vimshamsha (D20)', hi: 'विंशांश (D20)', sa: 'विंशांशः (D20)' }, meaning: { en: 'Spiritual progress & upasana', hi: 'आध्यात्मिक प्रगति एवं उपासना' } },
+    { key: 'D24', div: 24, label: { en: 'Chaturvimshamsha (D24)', hi: 'चतुर्विंशांश (D24)', sa: 'चतुर्विंशांशः (D24)' }, meaning: { en: 'Education, learning & knowledge', hi: 'शिक्षा, विद्या एवं ज्ञान' } },
+    { key: 'D27', div: 27, label: { en: 'Nakshatramsha (D27)', hi: 'नक्षत्रांश (D27)', sa: 'नक्षत्रांशः (D27)' }, meaning: { en: 'Strengths, vitality & stamina', hi: 'बल, ओज एवं सहनशक्ति' } },
+    { key: 'D30', div: 30, label: { en: 'Trimshamsha (D30)', hi: 'त्रिंशांश (D30)', sa: 'त्रिंशांशः (D30)' }, meaning: { en: 'Misfortunes, evils & suffering', hi: 'दुर्भाग्य, पाप एवं कष्ट' } },
+    { key: 'D40', div: 40, label: { en: 'Khavedamsha (D40)', hi: 'खवेदांश (D40)', sa: 'खवेदांशः (D40)' }, meaning: { en: 'Auspicious/inauspicious (maternal)', hi: 'शुभाशुभ प्रभाव (मातृपक्ष)' } },
+    { key: 'D45', div: 45, label: { en: 'Akshavedamsha (D45)', hi: 'अक्षवेदांश (D45)', sa: 'अक्षवेदांशः (D45)' }, meaning: { en: 'General indications (paternal)', hi: 'सामान्य संकेत (पितृपक्ष)' } },
+    { key: 'D60', div: 60, label: { en: 'Shashtiamsha (D60)', hi: 'षष्ट्यंश (D60)', sa: 'षष्ट्यंशः (D60)' }, meaning: { en: 'Past life karma & overall assessment', hi: 'पूर्वजन्म कर्म एवं समग्र मूल्यांकन' } },
+  ];
+  const divisionalCharts: Record<string, DivisionalChart & { meaning?: { en: string; hi: string } }> = {};
+  for (const v of VARGA_DEFS) {
+    const chartData = calculateDivisionalChart(planets, siderealAsc, v.div);
+    divisionalCharts[v.key] = { ...chartData, division: v.key, label: v.label, meaning: v.meaning };
+  }
 
   // Ashtakavarga
   const ashtakavarga = calculateAshtakavarga(planets, ascSign);

@@ -90,8 +90,9 @@ export interface KundaliData {
 }
 
 export interface DivisionalChart extends ChartData {
-  division: string; // 'D1' | 'D3' | 'D9' | 'D10' | 'D12' | 'bhav_chalit'
+  division: string;
   label: { en: string; hi: string; sa: string };
+  meaning?: { en: string; hi: string };
 }
 
 export interface AshtakavargaData {

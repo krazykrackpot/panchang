@@ -443,6 +443,64 @@ export default function KundaliPage() {
                 );
               })()}
 
+              {/* ── Inline Chart Commentary ── */}
+              {(() => {
+                const vargaData = generateVargaTippanni(kundali, locale as Locale);
+                const chartInsight = vargaData.vargaInsights.find(v =>
+                  v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
+                );
+                if (!chartInsight) return null;
+                const isHi = locale === 'hi';
+                const sC: Record<string, string> = { strong: 'border-emerald-500/20', moderate: 'border-amber-500/20', weak: 'border-red-500/20' };
+                const sL: Record<string, string> = { strong: isHi ? 'बलवान' : 'Strong', moderate: isHi ? 'मध्यम' : 'Moderate', weak: isHi ? 'दुर्बल' : 'Weak' };
+                const sClr: Record<string, string> = { strong: 'text-emerald-400', moderate: 'text-amber-400', weak: 'text-red-400' };
+                return (
+                  <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={activeChart}
+                    className={`mt-8 glass-card rounded-2xl p-5 border ${sC[chartInsight.strength]}`}>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-gold-light font-bold text-sm" style={headingFont}>
+                        {chartInsight.chart} — {isHi ? chartInsight.meaning.hi : chartInsight.meaning.en}
+                      </h4>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[chartInsight.strength]} ${sClr[chartInsight.strength]}`}>
+                        {sL[chartInsight.strength]}
+                      </span>
+                    </div>
+
+                    {/* Overall Commentary */}
+                    <div className="text-text-secondary text-xs leading-relaxed mb-3 whitespace-pre-line">
+                      {isHi ? chartInsight.overallCommentary.hi : chartInsight.overallCommentary.en}
+                    </div>
+
+                    {/* Key Findings */}
+                    {chartInsight.keyFindings.length > 0 && (
+                      <div className="mb-3">
+                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1.5">
+                          {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
+                        </div>
+                        <div className="space-y-1">
+                          {chartInsight.keyFindings.map((f, j) => (
+                            <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
+                              <span className="text-gold-dark mt-0.5 shrink-0">•</span>
+                              <span>{isHi ? f.hi : f.en}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Prognosis */}
+                    <div className="p-3 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+                      <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                        {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
+                      </div>
+                      <div className="text-text-secondary text-xs leading-relaxed">
+                        {isHi ? chartInsight.prognosis.hi : chartInsight.prognosis.en}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
               {/* Planet legend below charts */}
               <div className="mt-8 glass-card rounded-xl p-5">
                 <h4 className="text-gold-dark text-xs uppercase tracking-wider mb-4 text-center">{locale === 'en' ? 'Planets in Chart' : 'कुण्डली में ग्रह'}</h4>

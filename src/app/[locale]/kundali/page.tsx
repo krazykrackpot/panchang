@@ -656,6 +656,10 @@ export default function KundaliPage() {
                   { key: 'vimshottari', label: locale === 'en' ? 'Vimshottari (120yr)' : 'विंशोत्तरी' },
                   ...(kundali.yoginiDashas ? [{ key: 'yogini', label: locale === 'en' ? 'Yogini (36yr)' : 'योगिनी' }] : []),
                   ...(kundali.ashtottariDashas ? [{ key: 'ashtottari', label: locale === 'en' ? 'Ashtottari (108yr)' : 'अष्टोत्तरी' }] : []),
+                  ...(kundali.narayanaDasha ? [{ key: 'narayana', label: locale === 'en' ? 'Narayana' : 'नारायण' }] : []),
+                  ...(kundali.kalachakraDasha ? [{ key: 'kalachakra', label: locale === 'en' ? 'Kalachakra' : 'कालचक्र' }] : []),
+                  ...(kundali.sthiraDasha ? [{ key: 'sthira', label: locale === 'en' ? 'Sthira' : 'स्थिर' }] : []),
+                  ...(kundali.shoolaDasha ? [{ key: 'shoola', label: locale === 'en' ? 'Shoola' : 'शूल' }] : []),
                 ].map(dt => (
                   <button key={dt.key} onClick={() => setDashaSystem(dt.key)}
                     className={`px-4 py-1.5 rounded-lg text-xs transition-all ${dashaSystem === dt.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary border border-transparent'}`}>
@@ -664,7 +668,36 @@ export default function KundaliPage() {
                 ))}
               </div>
               <h3 className="text-gold-gradient text-xl font-bold mb-6 text-center" style={headingFont}>{t('dashaTimeline')}</h3>
-              {(dashaSystem === 'yogini' ? kundali.yoginiDashas : dashaSystem === 'ashtottari' ? kundali.ashtottariDashas : kundali.dashas)?.map((dasha, i) => {
+              {(() => {
+                // Rasi dashas use signName instead of planetName
+                const rasiDashaKeys = ['narayana', 'kalachakra', 'sthira', 'shoola'];
+                if (rasiDashaKeys.includes(dashaSystem)) {
+                  const rasiData = dashaSystem === 'narayana' ? kundali.narayanaDasha
+                    : dashaSystem === 'kalachakra' ? kundali.kalachakraDasha
+                    : dashaSystem === 'sthira' ? kundali.sthiraDasha
+                    : kundali.shoolaDasha;
+                  return (rasiData || []).map((d: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }, i: number) => {
+                    const now = new Date();
+                    const start = new Date(d.startDate);
+                    const end = new Date(d.endDate);
+                    const isCurrent = now >= start && now <= end;
+                    const isPast = now > end;
+                    return (
+                      <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
+                        className={`glass-card rounded-xl p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
+                        <div className="flex items-center gap-3">
+                          <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
+                          <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
+                          <span className="text-text-tertiary text-xs">{d.years} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
+                        </div>
+                        <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
+                      </motion.div>
+                    );
+                  });
+                }
+                return null;
+              })()}
+              {!['narayana', 'kalachakra', 'sthira', 'shoola'].includes(dashaSystem) && (dashaSystem === 'yogini' ? kundali.yoginiDashas : dashaSystem === 'ashtottari' ? kundali.ashtottariDashas : kundali.dashas)?.map((dasha, i) => {
                 const now = new Date();
                 const start = new Date(dasha.startDate);
                 const end = new Date(dasha.endDate);

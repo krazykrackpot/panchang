@@ -14,6 +14,7 @@ import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
 import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
+import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, calculateKalachakraDasha, calculateSudarsanaDasha } from '@/lib/kundali/additional-dashas';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -830,6 +831,11 @@ export function generateKundali(birthData: BirthData): KundaliData {
     yogasComplete,
     jaimini: calculateJaimini(planets, ascSign, birthDate),
     vimshopakaBala: calculateVimshopakaBala(planets, chart, divisionalCharts),
+    narayanaDasha: calculateNarayanaDasha(ascSign, planets, birthDate),
+    shoolaDasha: calculateShoolaDasha(ascSign, birthDate),
+    sthiraDasha: calculateSthiraDasha(ascSign, birthDate),
+    kalachakraDasha: calculateKalachakraDasha(moonSidLong, birthDate),
+    sudarsanaDasha: calculateSudarsanaDasha(ascSign, planets.find(p => p.planet.id === 1)?.sign || 1, planets.find(p => p.planet.id === 0)?.sign || 1, year),
     specialLagnas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const sunDeg = sunP?.longitude || 0;

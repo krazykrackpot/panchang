@@ -89,6 +89,11 @@ export interface KundaliData {
   yogasComplete?: import('@/lib/kundali/yogas-complete').YogaComplete[];
   vimshopakaBala?: import('@/lib/kundali/vimshopaka').VimshopakaBala[];
   specialLagnas?: import('@/lib/kundali/special-lagnas').SpecialLagnas;
+  narayanaDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
+  shoolaDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
+  sthiraDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
+  kalachakraDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
+  sudarsanaDasha?: import('@/lib/kundali/additional-dashas').SudarsanaDashaEntry[];
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };

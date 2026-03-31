@@ -1,7 +1,7 @@
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, lahiriAyanamsha, normalizeDeg, formatDegrees,
+  getPlanetaryPositions, lahiriAyanamsha, normalizeDeg, formatDegrees, approximateSunrise,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -12,6 +12,8 @@ import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
+import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
+import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -827,5 +829,12 @@ export function generateKundali(birthData: BirthData): KundaliData {
     bhavabala,
     yogasComplete,
     jaimini: calculateJaimini(planets, ascSign, birthDate),
+    vimshopakaBala: calculateVimshopakaBala(planets, chart, divisionalCharts),
+    specialLagnas: (() => {
+      const sunP = planets.find(p => p.planet.id === 0);
+      const sunDeg = sunP?.longitude || 0;
+      const sunriseUTApprox = approximateSunrise(jd, birthData.lat, birthData.lng);
+      return calculateSpecialLagnas(siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign);
+    })(),
   };
 }

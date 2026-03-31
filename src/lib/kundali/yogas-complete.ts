@@ -1362,9 +1362,90 @@ function detectOtherYogas(planets: PlanetData[], ascSign: number): YogaComplete[
 // Main export
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Extended Doshas (Phase 2 additions)
+// ---------------------------------------------------------------------------
+
+function detectExtendedDoshas(planets: PlanetData[], ascSign: number): YogaComplete[] {
+  const results: YogaComplete[] = [];
+  const hOf = (id: number) => getP(planets, id).house;
+  const sOf = (id: number) => getP(planets, id).sign;
+
+  // Pitra Dosha: Sun conjunct Rahu/Ketu, or 9th house afflicted by malefics
+  const sunWithRahu = hOf(0) === hOf(7);
+  const sunWithKetu = hOf(0) === hOf(8);
+  const ninth = ((ascSign - 1 + 8) % 12) + 1;
+  const maleficsIn9 = planets.filter(p => p.house === 9 && isMalefic(p.id)).length;
+  const pitraPresent = sunWithRahu || sunWithKetu || maleficsIn9 >= 2;
+  results.push({
+    id: 'pitra_dosha', category: 'dosha', isAuspicious: false, present: pitraPresent,
+    strength: pitraPresent ? 'Strong' : 'Weak',
+    name: { en: 'Pitra Dosha', hi: 'पित्र दोष', sa: 'पितृदोषः' },
+    formationRule: { en: 'Sun with Rahu/Ketu, or 9th house heavily afflicted', hi: 'सूर्य राहु/केतु के साथ, या 9वां भाव पीड़ित', sa: '' },
+    description: { en: 'Ancestral karmic debt — difficulties with father, authority, or spiritual lineage. Remedy: Pitra Tarpan, Narayan Nagbali', hi: 'पूर्वजों का कार्मिक ऋण — पिता, अधिकार में कठिनाई। उपाय: पित्र तर्पण, नारायण नागबली', sa: '' },
+  });
+
+  // Shrapit Dosha: Saturn-Rahu conjunction
+  const shrapitPresent = hOf(6) === hOf(7);
+  results.push({
+    id: 'shrapit_dosha', category: 'dosha', isAuspicious: false, present: shrapitPresent,
+    strength: shrapitPresent ? 'Strong' : 'Weak',
+    name: { en: 'Shrapit Dosha', hi: 'श्रापित दोष', sa: 'श्रापितदोषः' },
+    formationRule: { en: 'Saturn conjunct Rahu in any house', hi: 'शनि-राहु युति किसी भी भाव में', sa: '' },
+    description: { en: 'Cursed from past life — chronic obstacles, delays, karmic suffering. Remedy: Rahu-Shani shanti, Mahamrityunjaya japa', hi: 'पूर्वजन्म का शाप — दीर्घकालिक बाधाएं, विलंब। उपाय: राहु-शनि शांति, महामृत्युंजय जप', sa: '' },
+  });
+
+  // Kalathra Dosha: 7th lord in 6/8/12, or malefics in 7th
+  const sign7 = ((ascSign - 1 + 6) % 12) + 1;
+  const lord7 = signLord(sign7);
+  const lord7House = hOf(lord7);
+  const maleficsIn7 = planets.filter(p => p.house === 7 && isMalefic(p.id)).length;
+  const kalathraPresent = [6,8,12].includes(lord7House) || maleficsIn7 >= 2;
+  results.push({
+    id: 'kalathra_dosha', category: 'dosha', isAuspicious: false, present: kalathraPresent,
+    strength: kalathraPresent ? 'Strong' : 'Weak',
+    name: { en: 'Kalathra Dosha', hi: 'कलत्र दोष', sa: 'कलत्रदोषः' },
+    formationRule: { en: '7th lord in dusthana, or malefics in 7th house', hi: '7वें भावेश दुःस्थान में, या 7वें भाव में पाप ग्रह', sa: '' },
+    description: { en: 'Marriage/partnership affliction — delays, disagreements, or separation in relationships. Venus strength can mitigate.', hi: 'विवाह/साझेदारी में कष्ट — देरी, मतभेद। शुक्र बल से शमन।', sa: '' },
+  });
+
+  // Marana Karaka Sthana: Planet in its death-like house
+  const MARANA: Record<number, number> = { 0:12, 1:8, 2:7, 3:4, 4:3, 5:6, 6:1, 7:9, 8:3 };
+  for (let pid = 0; pid <= 8; pid++) {
+    if (hOf(pid) === MARANA[pid]) {
+      const pName = planets.find(p => p.id === pid);
+      results.push({
+        id: `marana_karaka_${pid}`, category: 'dosha', isAuspicious: false, present: true,
+        strength: 'Moderate',
+        name: { en: `Marana Karaka Sthana (${['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'][pid]})`, hi: `मरण कारक स्थान`, sa: 'मरणकारकस्थानम्' },
+        formationRule: { en: `Planet in its death-signifying house (${MARANA[pid]}th)`, hi: `ग्रह अपने मृत्यु-सूचक भाव (${MARANA[pid]}वें) में`, sa: '' },
+        description: { en: 'Planet becomes extremely weak — like a person in a place of death. Significations of this planet suffer greatly.', hi: 'ग्रह अत्यंत दुर्बल — मृत्यु स्थान जैसा। इस ग्रह के कारकत्व बहुत पीड़ित।', sa: '' },
+      });
+    }
+  }
+
+  // Badhaka: Badhakesh in Lagna or aspecting Lagna
+  // For movable signs: 11th lord is Badhaka; Fixed: 9th; Dual: 7th
+  const signType = (ascSign - 1) % 3; // 0=movable, 1=fixed, 2=dual
+  const badhakHouse = signType === 0 ? 11 : signType === 1 ? 9 : 7;
+  const badhakSign = ((ascSign - 1 + badhakHouse - 1) % 12) + 1;
+  const badhakLord = signLord(badhakSign);
+  const badhakInLagna = hOf(badhakLord) === 1;
+  results.push({
+    id: 'badhaka', category: 'dosha', isAuspicious: false, present: badhakInLagna,
+    strength: badhakInLagna ? 'Strong' : 'Weak',
+    name: { en: 'Badhaka Dosha', hi: 'बाधक दोष', sa: 'बाधकदोषः' },
+    formationRule: { en: `Badhakesh (${badhakHouse}th lord) placed in Lagna`, hi: `बाधकेश (${badhakHouse}वें भावेश) लग्न में`, sa: '' },
+    description: { en: 'Badhaka lord in ascendant — mysterious obstacles, inexplicable setbacks, spiritual interference. Remedy: worship the deity of the Badhaka sign.', hi: 'बाधकेश लग्न में — रहस्यमय बाधाएं, अकथनीय विफलताएं। उपाय: बाधक राशि के देवता की पूजा।', sa: '' },
+  });
+
+  return results;
+}
+
 export function detectAllYogas(planets: PlanetData[], ascendantSign: number): YogaComplete[] {
   return [
     ...detectDoshaYogas(planets, ascendantSign),
+    ...detectExtendedDoshas(planets, ascendantSign),
     ...detectMahapurushaYogas(planets),
     ...detectMoonBasedYogas(planets),
     ...detectSunBasedYogas(planets),

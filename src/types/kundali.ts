@@ -87,6 +87,8 @@ export interface KundaliData {
   fullShadbala?: import('@/lib/kundali/shadbala').ShadBalaComplete[];
   bhavabala?: import('@/lib/kundali/bhavabala').BhavaBalaResult[];
   yogasComplete?: import('@/lib/kundali/yogas-complete').YogaComplete[];
+  vimshopakaBala?: import('@/lib/kundali/vimshopaka').VimshopakaBala[];
+  specialLagnas?: import('@/lib/kundali/special-lagnas').SpecialLagnas;
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };

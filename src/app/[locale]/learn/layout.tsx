@@ -29,9 +29,18 @@ export default function LearnLayout({ children }: { children: React.ReactNode })
 
       <GoldDivider />
 
-      <LearnTabNav />
+      {/* Desktop: sidebar + content. Mobile: collapsible dropdown + content. */}
+      <div className="lg:flex lg:gap-8 mt-6">
+        {/* Sidebar (desktop sticky) / Dropdown (mobile) */}
+        <div className="lg:w-56 lg:shrink-0 lg:sticky lg:top-20 lg:self-start">
+          <LearnTabNav />
+        </div>
 
-      {children}
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

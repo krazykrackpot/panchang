@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import UserMenu from '@/components/auth/UserMenu';
+import { useSubscription } from '@/hooks/useSubscription';
 import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
 
 interface DropdownItem {
@@ -65,6 +66,8 @@ function NavDropdown({ label, items, onNavigate }: { label: string; items: Dropd
 
 export default function Navbar() {
   const t = useTranslations('nav');
+  const locale = useLocale();
+  const { tier, isTrialing, trialDaysLeft } = useSubscription();
   const [isOpen, setIsOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
@@ -152,6 +155,16 @@ export default function Navbar() {
               <Moon className="w-4 h-4 hidden dark:block" />
             </button>
             <LocaleSwitcher />
+            {tier === 'free' && (
+              <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all">
+                {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
+              </a>
+            )}
+            {isTrialing && trialDaysLeft > 0 && (
+              <span className="text-gold-dark text-[10px]">
+                {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+              </span>
+            )}
             <UserMenu />
           </div>
 
@@ -212,6 +225,16 @@ export default function Navbar() {
               })}
               <div className="pt-3 mt-2 border-t border-gold-primary/10 flex items-center gap-3">
                 <LocaleSwitcher />
+                {tier === 'free' && (
+                  <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all">
+                    {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
+                  </a>
+                )}
+                {isTrialing && trialDaysLeft > 0 && (
+                  <span className="text-gold-dark text-[10px]">
+                    {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                  </span>
+                )}
                 <UserMenu />
               </div>
             </div>

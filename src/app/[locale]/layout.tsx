@@ -122,6 +122,13 @@ export default async function LocaleLayout({
             }),
           }}
         />
+        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>

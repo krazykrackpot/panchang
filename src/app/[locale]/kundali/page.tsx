@@ -23,6 +23,7 @@ import type { Locale } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
+import PaywallGate from '@/components/ui/PaywallGate';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -748,7 +749,9 @@ export default function KundaliPage() {
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
           {activeTab === 'varga' && (
-            <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+            <PaywallGate feature="varga_full" blurContent={<VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />}>
+              <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+            </PaywallGate>
           )}
 
           {/* ===== GRAHA TAB ===== */}
@@ -763,12 +766,16 @@ export default function KundaliPage() {
 
           {/* ===== SHADBALA TAB ===== */}
           {activeTab === 'shadbala' && kundali.fullShadbala && (
-            <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            <PaywallGate feature="shadbala_full" blurContent={<ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
+              <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            </PaywallGate>
           )}
 
           {/* ===== BHAVABALA TAB ===== */}
           {activeTab === 'bhavabala' && kundali.bhavabala && (
-            <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            <PaywallGate feature="shadbala_full" blurContent={<BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
+              <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            </PaywallGate>
           )}
 
           {/* ===== CHAT TAB ===== */}

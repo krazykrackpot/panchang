@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import { scanDateRange } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
+import { withUsageGate } from '@/lib/subscription/api-gate';
 import type { ExtendedActivityId, MuhurtaAIResult } from '@/types/muhurta-ai';
 
 export async function POST(request: Request) {
   try {
+    const gate = await withUsageGate(request, 'muhurta_ai', 'muhurta_scan_count');
+    if (!gate.allowed) return gate.error;
+
     const body = await request.json();
     const {
       activity,

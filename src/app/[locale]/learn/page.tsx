@@ -67,6 +67,9 @@ export default function LearnFoundationsPage() {
                 { id: '1-2', label: '1.2 Degrees & Signs' },
                 { id: '1-3', label: '1.3 Fixed Stars' },
                 { id: '2-1', label: '2.1 Nine Grahas' },
+                { id: '2-2', label: '2.2 Relationships' },
+                { id: '2-3', label: '2.3 Dignities' },
+                { id: '2-4', label: '2.4 Retrograde' },
               ].map(m => (
                 <Link key={m.id} href={`/learn/modules/${m.id}`}
                   className="text-[10px] px-2 py-1 rounded-lg bg-gold-primary/10 border border-gold-primary/15 text-gold-light hover:bg-gold-primary/20 transition-colors">

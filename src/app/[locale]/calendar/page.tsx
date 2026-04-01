@@ -396,7 +396,7 @@ export default function CalendarPage() {
                 selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}
             >
-              {locale === 'en' ? hm.en.slice(0, 4) : hm.hi.slice(0, 4)}
+              {locale === 'en' ? hm.en : hm.hi}
             </button>
           ))
         )}
@@ -419,18 +419,18 @@ export default function CalendarPage() {
 
       <GoldDivider />
 
-      {/* Festival list */}
+      {/* Festival & Vrat lists — separated */}
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
         </div>
-      ) : (
-        <div className="space-y-3 my-10">
-          {filteredFestivals.length === 0 ? (
-            <div className="text-center py-12 text-text-secondary">
-              {locale === 'en' ? 'No festivals found for this filter.' : 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।'}
-            </div>
-          ) : filteredFestivals.map((f, i) => {
+      ) : (() => {
+        const festivalItems = filteredFestivals.filter(f => f.type === 'major' || f.type === 'eclipse');
+        const vratItems = filteredFestivals.filter(f => f.type === 'vrat');
+        const showFestivals = filter === 'all' || filter === 'major' || filter === 'eclipse';
+        const showVrats = filter === 'all' || !['major', 'eclipse'].includes(filter);
+
+        const renderCard = (f: FestivalEntry, i: number) => {
             const dateObj = new Date(f.date + 'T00:00:00');
             const dayStr = dateObj.getDate();
             const monthStr = locale === 'en' ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
@@ -494,12 +494,48 @@ export default function CalendarPage() {
                 <ChevronDown className="w-4 h-4 text-gold-primary/40 flex-shrink-0 -rotate-90" />
               </motion.button>
             );
-          })}
-          <div className="text-center text-text-secondary text-sm mt-6">
-            {filteredFestivals.length} {locale === 'en' ? 'entries' : 'प्रविष्टियाँ'}
+          };
+
+        return (
+          <div className="my-10 space-y-10">
+            {filteredFestivals.length === 0 ? (
+              <div className="text-center py-12 text-text-secondary">
+                {locale === 'en' ? 'No festivals found for this filter.' : 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।'}
+              </div>
+            ) : (
+              <>
+                {/* ── Festivals Section ── */}
+                {showFestivals && festivalItems.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
+                      {locale === 'en' ? `Festivals (${festivalItems.length})` : `त्योहार (${festivalItems.length})`}
+                    </h3>
+                    <div className="space-y-3">
+                      {festivalItems.map((f, i) => renderCard(f, i))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Vrats Section ── */}
+                {showVrats && vratItems.length > 0 && (
+                  <div>
+                    <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
+                      {locale === 'en' ? `Vrats & Observances (${vratItems.length})` : `व्रत एवं अनुष्ठान (${vratItems.length})`}
+                    </h3>
+                    <div className="space-y-3">
+                      {vratItems.map((f, i) => renderCard(f, i))}
+                    </div>
+                  </div>
+                )}
+
+                <div className="text-center text-text-secondary text-sm mt-6">
+                  {filteredFestivals.length} {locale === 'en' ? 'entries' : 'प्रविष्टियाँ'}
+                </div>
+              </>
+            )}
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Detail Modal */}
       {selectedFestival && (

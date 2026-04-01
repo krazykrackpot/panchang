@@ -773,7 +773,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     const krishnaJd = dateToJD(krishnaDateParts[0], krishnaDateParts[1], krishnaDateParts[2], 6);
     const krishnaSunSid = normalizeDeg(toSidereal(sunLongitude(krishnaJd), krishnaJd));
     const krishnaSign = Math.floor(krishnaSunSid / 30) + 1;
-    const krishnaHinduMonth = getHinduMonth(krishnaSign);
+    const krishnaHinduMonth = getHinduMonth((krishnaSign % 12) + 1);
     const krishnaEkadashiDetail = getEkadashiName(krishnaHinduMonth, 'krishna');
 
     festivals.push({

@@ -234,108 +234,141 @@ export function buildYearlyTithiTable(
   const cached = tableCache.get(key);
   if (cached) return cached;
 
-  // Build lunar month calendar
-  const lunarMonths = buildLunarMonths(year, lat, lon, timezone);
-
-  // Start scanning from Dec 15 of previous year (to capture tithis spanning year boundary)
-  const startJd = dateToJD(year - 1, 12, 15, 0);
+  // ─── Phase 1: Build raw tithi entries (without lunar month assignment) ───
+  const startJd = dateToJD(year - 1, 12, 1, 0);
   const startSrUT = approximateSunrise(startJd, lat, lon);
-  let currentJd = dateToJD(year - 1, 12, 15, startSrUT);
+  let currentJd = dateToJD(year - 1, 12, 1, startSrUT);
+  const scanEndJd = dateToJD(year + 1, 2, 1, 12);
 
-  // End scanning at Jan 15 of next year
-  const endJd = dateToJD(year + 1, 1, 15, 12);
+  interface RawEntry {
+    number: number; startJd: number; endJd: number;
+    startDateStr: string; endDateStr: string;
+    startTimeStr: string; endTimeStr: string;
+    sunriseDate: string; isKshaya: boolean; paksha: 'shukla' | 'krishna';
+    name: Trilingual;
+  }
 
-  const entries: TithiEntry[] = [];
+  const rawEntries: RawEntry[] = [];
   let currentTithi = calculateTithi(currentJd).number;
 
-  while (currentJd < endJd) {
+  while (currentJd < scanEndJd) {
     const tithiEndJd = findTithiEndJd(currentJd, currentTithi);
     const tithiData = TITHIS[currentTithi - 1] || TITHIS[0];
-
-    // Determine local dates/times
     const startDateStr = jdToLocalDateStr(currentJd, timezone);
     const endDateStr = jdToLocalDateStr(tithiEndJd, timezone);
     const startTimeStr = jdToLocalTimeStr(currentJd, timezone);
     const endTimeStr = jdToLocalTimeStr(tithiEndJd, timezone);
 
-    // Find the sunrise date where this tithi prevails
-    // Check if tithi prevails at sunrise on start date or end date
+    // Find all sunrise dates where this tithi prevails + kshaya detection
     let sunriseDate = startDateStr;
-    const srJdStart = sunriseJdForDate(startDateStr, lat, lon);
-    const srJdEnd = sunriseJdForDate(endDateStr, lat, lon);
-
-    if (srJdStart >= currentJd && srJdStart < tithiEndJd) {
-      sunriseDate = startDateStr;
-    } else if (srJdEnd >= currentJd && srJdEnd < tithiEndJd) {
-      sunriseDate = endDateStr;
-    } else {
-      // Check the day between start and end dates
-      const startD = new Date(startDateStr);
-      const endD = new Date(endDateStr);
-      let found = false;
-      for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
-        const ds = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
-        const srJd = sunriseJdForDate(ds, lat, lon);
-        if (srJd >= currentJd && srJd < tithiEndJd) {
-          sunriseDate = ds;
-          found = true;
-          break;
-        }
-      }
-      if (!found) {
-        // Kshaya tithi — no sunrise falls within it
-        sunriseDate = startDateStr; // use start date
+    let isKshaya = true;
+    const sunriseDates: string[] = [];
+    const startD = new Date(startDateStr);
+    const endD = new Date(endDateStr);
+    for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+      const ds = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
+      const srJd = sunriseJdForDate(ds, lat, lon);
+      if (srJd >= currentJd && srJd < tithiEndJd) {
+        sunriseDates.push(ds);
+        isKshaya = false;
       }
     }
 
-    // Determine if kshaya
-    const isKshaya = (() => {
-      // Check if any sunrise falls within [currentJd, tithiEndJd]
-      const sd = new Date(startDateStr);
-      const ed = new Date(endDateStr);
-      for (let d = new Date(sd); d <= ed; d.setDate(d.getDate() + 1)) {
-        const ds = `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
-        const srJd = sunriseJdForDate(ds, lat, lon);
-        if (srJd >= currentJd && srJd < tithiEndJd) return false;
-      }
-      return true;
-    })();
+    // For Dwi-tithi (tithi spans 2+ sunrises), use the LAST sunrise date (Smarta rule)
+    if (sunriseDates.length > 0) {
+      sunriseDate = sunriseDates[sunriseDates.length - 1];
+    }
 
-    // Find lunar month
-    const tithiMidJd = (currentJd + tithiEndJd) / 2;
-    const tithiMidDate = jdToLocalDateStr(tithiMidJd, timezone);
+    rawEntries.push({
+      number: currentTithi,
+      startJd: currentJd,
+      endJd: tithiEndJd,
+      startDateStr,
+      endDateStr,
+      startTimeStr,
+      endTimeStr,
+      sunriseDate,
+      isKshaya,
+      paksha: currentTithi <= 15 ? 'shukla' : 'krishna',
+      name: tithiData.name,
+    });
+
+    currentJd = tithiEndJd;
+    currentTithi = calculateTithi(currentJd + 0.001).number;
+  }
+
+  // ─── Phase 2: Build lunar months from Amavasya entries in the raw table ───
+  // Amavasya = tithi 30. Each Amavasya marks the END of an Amanta month.
+  const amavasyaEntries = rawEntries.filter(e => e.number === 30);
+  const lunarMonths: LunarMonthInfo[] = [];
+
+  for (let i = 0; i < amavasyaEntries.length - 1; i++) {
+    const am1 = amavasyaEntries[i];
+    const am2 = amavasyaEntries[i + 1];
+
+    // Find exact new moon JD for accurate Sun rashi
+    const findNewMoon = (baseJd: number): number => {
+      let minDiff = 999; let bestJd = baseJd;
+      for (let h = -24; h <= 24; h++) {
+        const jd = baseJd + h / 24;
+        const diff = normalizeDeg(moonLongitude(jd) - sunLongitude(jd));
+        const adj = diff > 180 ? 360 - diff : diff;
+        if (adj < minDiff) { minDiff = adj; bestJd = jd; }
+      }
+      return bestJd;
+    };
+
+    const nmJd1 = findNewMoon(am1.startJd);
+    const nmJd2 = findNewMoon(am2.startJd);
+
+    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nmJd1), nmJd1));
+    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nmJd2), nmJd2));
+    const sign1 = Math.floor(sunSid1 / 30) + 1;
+    const sign2 = Math.floor(sunSid2 / 30) + 1;
+
+    const isAdhika = sign1 === sign2;
+    const monthName = getHinduMonth(sign1);
+
+    lunarMonths.push({
+      name: monthName,
+      isAdhika,
+      startDate: am1.sunriseDate,
+      endDate: am2.sunriseDate,
+    });
+  }
+
+  // ─── Phase 3: Assign lunar months to entries and build final table ───
+  const entries: TithiEntry[] = [];
+  for (const raw of rawEntries) {
+    // Only include entries that overlap with the target year
+    if (!raw.startDateStr.startsWith(`${year}`) && !raw.endDateStr.startsWith(`${year}`) && !raw.sunriseDate.startsWith(`${year}`)) {
+      continue;
+    }
+
+    // Find lunar month by matching the tithi's start date to a month boundary
     let lunarMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const lm of lunarMonths) {
-      if (tithiMidDate > lm.startDate && tithiMidDate <= lm.endDate) {
+      if (raw.sunriseDate > lm.startDate && raw.sunriseDate <= lm.endDate) {
         lunarMonth = lm;
         break;
       }
     }
 
-    const paksha: 'shukla' | 'krishna' = currentTithi <= 15 ? 'shukla' : 'krishna';
-
-    // Only include entries that overlap with the target year
-    if (startDateStr.startsWith(`${year}`) || endDateStr.startsWith(`${year}`) || sunriseDate.startsWith(`${year}`)) {
-      entries.push({
-        number: currentTithi,
-        name: tithiData.name,
-        paksha,
-        startJd: currentJd,
-        endJd: tithiEndJd,
-        startLocal: startTimeStr,
-        endLocal: endTimeStr,
-        startDate: startDateStr,
-        endDate: endDateStr,
-        isKshaya,
-        sunriseDate,
-        lunarMonth,
-        durationHours: (tithiEndJd - currentJd) * 24,
-      });
-    }
-
-    // Advance to next tithi
-    currentJd = tithiEndJd;
-    currentTithi = calculateTithi(currentJd + 0.001).number;
+    entries.push({
+      number: raw.number,
+      name: raw.name,
+      paksha: raw.paksha,
+      startJd: raw.startJd,
+      endJd: raw.endJd,
+      startLocal: raw.startTimeStr,
+      endLocal: raw.endTimeStr,
+      startDate: raw.startDateStr,
+      endDate: raw.endDateStr,
+      isKshaya: raw.isKshaya,
+      sunriseDate: raw.sunriseDate,
+      lunarMonth,
+      durationHours: (raw.endJd - raw.startJd) * 24,
+    });
   }
 
   const table: YearlyTithiTable = { year, lat, lon, timezone, entries, lunarMonths };

@@ -41,7 +41,7 @@ export async function GET(request: Request) {
       location: { lat, lon, timezone },
       totalEntries: table.entries.length,
       pakshaCount,
-      lunarMonths: table.lunarMonths.length,
+      lunarMonths: table.lunarMonths.map(lm => ({ name: lm.name, isAdhika: lm.isAdhika, start: lm.startDate, end: lm.endDate })),
       kshayaTithis: kshayaTithis.map(e => ({
         number: e.number,
         name: e.name.en,

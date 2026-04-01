@@ -18,6 +18,8 @@ export interface FestivalEntry {
   name: Trilingual;
   date: string;
   tithi?: string;
+  masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
+  paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
   description: Trilingual;
@@ -224,7 +226,9 @@ export function generateFestivalCalendarV2(
       festivals.push({
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: match.sunriseDate,
-        tithi: `${match.lunarMonth.name} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
+        tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
+        masa: match.masa,
+        paksha: match.paksha,
         type: 'major',
         category: 'festival',
         description: detail?.significance || { en: '', hi: '', sa: '' },
@@ -246,6 +250,8 @@ export function generateFestivalCalendarV2(
     festivals.push({
       name,
       date: ek.sunriseDate,
+      masa: ek.masa,
+      paksha: ek.paksha,
       type: 'vrat',
       category: 'ekadashi',
       description: detail?.benefit || { en: 'Fasting for Lord Vishnu', hi: 'विष्णु व्रत', sa: 'विष्णुव्रतम्' },
@@ -270,8 +276,10 @@ export function generateFestivalCalendarV2(
         : catDetail?.name || { en: def.slug, hi: def.slug, sa: def.slug };
 
       festivals.push({
-        name: catName,
+        name: def.name || catName,
         date: match.sunriseDate,
+        masa: match.masa,
+        paksha: match.paksha,
         type: 'vrat',
         category: def.category,
         description: catDetail?.significance || { en: '', hi: '', sa: '' },

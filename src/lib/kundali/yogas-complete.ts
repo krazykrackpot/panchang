@@ -1696,6 +1696,151 @@ function detectMiscYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
   return results;
 }
 
+// ---------------------------------------------------------------------------
+// Expanded Raja Yogas — per-house lord combinations
+// ---------------------------------------------------------------------------
+
+function detectExpandedRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[] {
+  const results: YogaComplete[] = [];
+  const hOf = (id: number) => getP(planets, id).house;
+  const lordOf = (h: number) => signLord(((ascSign - 1 + h - 1) % 12) + 1);
+
+  // Specific kendra-trikona pairs
+  const pairs: [number, number, string][] = [
+    [1, 5, 'Lagna-5th'], [1, 9, 'Lagna-9th'], [4, 5, '4th-5th'], [4, 9, '4th-9th'],
+    [7, 5, '7th-5th'], [7, 9, '7th-9th'], [10, 5, '10th-5th'], [10, 9, '10th-9th'],
+  ];
+
+  for (const [kh, th, label] of pairs) {
+    const kl = lordOf(kh), tl = lordOf(th);
+    if (kl === tl) continue;
+    const conjunct = hOf(kl) === hOf(tl);
+    if (conjunct) {
+      results.push({
+        id: `raja_${kh}_${th}`, category: 'raja', isAuspicious: true, present: true,
+        strength: [9,10].includes(kh) || [9].includes(th) ? 'Strong' : 'Moderate',
+        name: { en: `Raja Yoga (${label} lords)`, hi: `राज योग (${label})`, sa: '' },
+        formationRule: { en: `${kh}th lord and ${th}th lord conjunct`, hi: `${kh}वें और ${th}वें भावेश युत`, sa: '' },
+        description: { en: `Kendra-Trikona connection between houses ${kh} and ${th}. Power and fortune combine.`, hi: `केंद्र-त्रिकोण संबंध। शक्ति और भाग्य का मिलन।`, sa: '' },
+      });
+    }
+  }
+
+  // Exchange-based Raja Yogas (Parivartana between kendra-trikona)
+  for (const [kh, th] of [[4,9],[10,9],[7,5],[1,9]]) {
+    const kl = lordOf(kh), tl = lordOf(th);
+    if (kl === tl) continue;
+    const klSign = getP(planets, kl).sign;
+    const tlSign = getP(planets, tl).sign;
+    const klLord = signLord(klSign);
+    const tlLord = signLord(tlSign);
+    if (klLord === tl && tlLord === kl) {
+      results.push({
+        id: `raja_exchange_${kh}_${th}`, category: 'raja', isAuspicious: true, present: true, strength: 'Strong',
+        name: { en: `Raja Yoga (${kh}th-${th}th Exchange)`, hi: `राज योग (${kh}-${th} परिवर्तन)`, sa: '' },
+        formationRule: { en: `${kh}th and ${th}th lords exchange signs`, hi: `${kh}वें और ${th}वें भावेश राशि परिवर्तन`, sa: '' },
+        description: { en: 'Sign exchange between kendra-trikona lords — powerful Raja Yoga through mutual cooperation.', hi: 'केंद्र-त्रिकोण स्वामियों का राशि परिवर्तन — परस्पर सहयोग से शक्तिशाली राजयोग।', sa: '' },
+      });
+    }
+  }
+
+  return results;
+}
+
+// ---------------------------------------------------------------------------
+// Kartari Yogas (Scissors) for ALL houses + Moon
+// ---------------------------------------------------------------------------
+
+function detectKartariYogas(planets: PlanetData[]): YogaComplete[] {
+  const results: YogaComplete[] = [];
+  const moonH = getP(planets, 1).house;
+
+  // Shubha/Papa Kartari for Moon
+  const h2m = (moonH % 12) + 1;
+  const h12m = ((moonH - 2 + 12) % 12) + 1;
+  const b2m = planets.some(p => p.house === h2m && isBenefic(p.id));
+  const b12m = planets.some(p => p.house === h12m && isBenefic(p.id));
+  const m2m = planets.some(p => p.house === h2m && isMalefic(p.id));
+  const m12m = planets.some(p => p.house === h12m && isMalefic(p.id));
+
+  if (b2m && b12m) results.push({ id: 'shubha_kartari_moon', category: 'moon_based', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Shubha Kartari (Moon)', hi: 'शुभ कर्तरी (चन्द्र)', sa: '' }, formationRule: { en: 'Benefics hemming Moon from both sides', hi: 'शुभ ग्रह चन्द्र के दोनों ओर', sa: '' }, description: { en: 'Moon protected by benefics — emotional stability, mental peace, public support.', hi: 'चन्द्र शुभ ग्रहों से रक्षित — भावनात्मक स्थिरता, मानसिक शांति।', sa: '' } });
+  if (m2m && m12m) results.push({ id: 'papa_kartari_moon', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Papa Kartari (Moon)', hi: 'पाप कर्तरी (चन्द्र)', sa: '' }, formationRule: { en: 'Malefics hemming Moon from both sides', hi: 'पाप ग्रह चन्द्र के दोनों ओर', sa: '' }, description: { en: 'Moon hemmed by malefics — emotional distress, mental anxiety, public opposition.', hi: 'चन्द्र पाप ग्रहों के बीच — भावनात्मक कष्ट, चिंता।', sa: '' } });
+
+  return results;
+}
+
+// ---------------------------------------------------------------------------
+// Planet-in-House specific yogas
+// ---------------------------------------------------------------------------
+
+function detectPlanetHouseYogas(planets: PlanetData[], ascSign: number): YogaComplete[] {
+  const results: YogaComplete[] = [];
+  const hOf = (id: number) => getP(planets, id).house;
+
+  // Hamsa-like: any benefic in kendra in own/exalted (beyond Pancha Mahapurusha)
+  for (const pid of [1, 3]) { // Moon, Mercury (not in Mahapurusha)
+    const p = getP(planets, pid);
+    if ((p.isExalted || p.isOwnSign) && [1,4,7,10].includes(p.house)) {
+      const name = pid === 1 ? 'Chandra Kendra' : 'Budha Kendra';
+      results.push({ id: `${name.toLowerCase().replace(' ','_')}_yoga`, category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: `${name} Yoga`, hi: `${name} योग`, sa: '' }, formationRule: { en: `${pid === 1 ? 'Moon' : 'Mercury'} in own/exalted sign in kendra`, hi: `${pid === 1 ? 'चन्द्र' : 'बुध'} स्व/उच्च राशि में केंद्र में`, sa: '' }, description: { en: `${pid === 1 ? 'Emotional strength and public favor' : 'Intellectual brilliance and communication mastery'} from luminous placement.`, hi: '', sa: '' } });
+    }
+  }
+
+  // Jupiter in 1st = Guru Mangal Yoga (wisdom embodied)
+  if (hOf(4) === 1) results.push({ id: 'guru_lagna', category: 'other', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Guru in Lagna Yoga', hi: 'गुरु लग्न योग', sa: '' }, formationRule: { en: 'Jupiter in 1st house', hi: 'गुरु लग्न में', sa: '' }, description: { en: 'Jupiter in ascendant — wisdom, divine grace, generous nature, respected in society. One of the best placements.', hi: 'गुरु लग्न में — ज्ञान, दैवी कृपा, उदार स्वभाव।', sa: '' } });
+
+  // Venus in 7th = strong marriage indicator
+  if (hOf(5) === 7) results.push({ id: 'venus_7th', category: 'other', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Venus in 7th Yoga', hi: 'शुक्र सप्तम योग', sa: '' }, formationRule: { en: 'Venus in 7th house', hi: 'शुक्र 7वें भाव में', sa: '' }, description: { en: 'Venus (karaka of marriage) in the house of marriage — beautiful spouse, happy married life, artistic partner.', hi: 'शुक्र (विवाह कारक) विवाह भाव में — सुंदर जीवनसाथी, सुखी वैवाहिक जीवन।', sa: '' } });
+
+  // Saturn in 10th = Shasha-like career yoga (discipline → authority)
+  if (hOf(6) === 10 && !getP(planets, 6).isDebilitated) results.push({ id: 'shani_dasham', category: 'raja', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Shani Dasham Yoga', hi: 'शनि दशम योग', sa: '' }, formationRule: { en: 'Saturn in 10th house (not debilitated)', hi: 'शनि 10वें भाव में (नीच नहीं)', sa: '' }, description: { en: 'Saturn in house of career — slow but steady rise to authority through discipline, hard work, and public service.', hi: 'शनि करियर भाव में — अनुशासन और परिश्रम से धीमी लेकिन स्थिर उन्नति।', sa: '' } });
+
+  // Sun in 10th = Dig Bala (directional strength) + career authority
+  if (hOf(0) === 10) results.push({ id: 'surya_dasham', category: 'raja', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Surya Dasham Yoga', hi: 'सूर्य दशम योग', sa: '' }, formationRule: { en: 'Sun in 10th house (maximum Dig Bala)', hi: 'सूर्य 10वें भाव में (अधिकतम दिग्बल)', sa: '' }, description: { en: 'Sun at zenith — maximum directional strength. Government authority, leadership, fame in profession. Father may be prominent.', hi: 'सूर्य शिखर पर — अधिकतम दिग्बल। सरकारी अधिकार, नेतृत्व, व्यावसायिक यश।', sa: '' } });
+
+  // Mars in 10th = Dig Bala + career energy
+  if (hOf(2) === 10) results.push({ id: 'mangal_dasham', category: 'raja', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Mangal Dasham Yoga', hi: 'मंगल दशम योग', sa: '' }, formationRule: { en: 'Mars in 10th house', hi: 'मंगल 10वें भाव में', sa: '' }, description: { en: 'Mars with directional strength in career house — engineering, surgery, military, sports, property development careers favored.', hi: 'मंगल करियर भाव में दिग्बल — इंजीनियरिंग, शल्यक्रिया, सेना, खेल करियर।', sa: '' } });
+
+  // Rahu in 3rd = courage amplified (unconventional)
+  if (hOf(7) === 3) results.push({ id: 'rahu_third', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Rahu in 3rd Yoga', hi: 'राहु तृतीय योग', sa: '' }, formationRule: { en: 'Rahu in 3rd house (upachaya)', hi: 'राहु 3rd भाव में (उपचय)', sa: '' }, description: { en: 'Rahu in house of courage — extraordinary daring, unconventional communication, success through bold ventures. Good for media, technology.', hi: 'राहु साहस भाव में — असाधारण साहस, अपरंपरागत संचार, मीडिया/तकनीक।', sa: '' } });
+
+  // Ketu in 12th = Moksha yoga (spiritual liberation)
+  if (hOf(8) === 12) results.push({ id: 'ketu_twelfth', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Ketu in 12th (Moksha Yoga)', hi: 'केतु द्वादश (मोक्ष योग)', sa: '' }, formationRule: { en: 'Ketu in 12th house', hi: 'केतु 12वें भाव में', sa: '' }, description: { en: 'Ketu (detachment) in house of liberation — natural spiritual inclination, meditation ability, past-life spiritual merit. May indicate foreign residence.', hi: 'केतु मोक्ष भाव में — स्वाभाविक आध्यात्मिक प्रवृत्ति, ध्यान क्षमता।', sa: '' } });
+
+  // All benefics in kendras = extremely fortunate
+  const beneficsInKendras = planets.filter(p => isBenefic(p.id) && [1,4,7,10].includes(p.house)).length;
+  if (beneficsInKendras >= 3) results.push({ id: 'saubhagya', category: 'raja', isAuspicious: true, present: true, strength: 'Strong', name: { en: 'Saubhagya Yoga', hi: 'सौभाग्य योग', sa: '' }, formationRule: { en: `${beneficsInKendras} benefics in kendras`, hi: `${beneficsInKendras} शुभ ग्रह केंद्रों में`, sa: '' }, description: { en: 'Multiple benefics in angular houses — great fortune, divine protection, surrounded by goodness. Life flows smoothly.', hi: 'अनेक शुभ ग्रह केंद्रों में — महान भाग्य, दिव्य रक्षा।', sa: '' } });
+
+  // All malefics in upachayas (3,6,10,11) = Viparita-like strength
+  const maleficsInUpachaya = planets.filter(p => isMalefic(p.id) && [3,6,10,11].includes(p.house)).length;
+  if (maleficsInUpachaya >= 3) results.push({ id: 'duryoga_nivaran', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Malefics in Upachaya', hi: 'पाप उपचय योग', sa: '' }, formationRule: { en: `${maleficsInUpachaya} malefics in upachaya houses (3,6,10,11)`, hi: `${maleficsInUpachaya} पाप ग्रह उपचय (3,6,10,11) में`, sa: '' }, description: { en: 'Malefics perform well in upachaya houses — challenges overcome, enemies defeated, career through struggle, growing gains with age.', hi: 'पाप ग्रह उपचय में अच्छे — शत्रु पराजित, उम्र के साथ बढ़ता लाभ।', sa: '' } });
+
+  return results;
+}
+
+// ---------------------------------------------------------------------------
+// Retrograde-specific yogas
+// ---------------------------------------------------------------------------
+
+function detectRetroYogas(planets: PlanetData[]): YogaComplete[] {
+  const results: YogaComplete[] = [];
+
+  const retroCount = planets.filter(p => p.id >= 2 && p.id <= 6 && p.isRetrograde).length;
+  if (retroCount >= 3) {
+    results.push({ id: 'tri_vakri', category: 'other', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Tri-Vakri Yoga', hi: 'त्रि-वक्री योग', sa: '' }, formationRule: { en: `${retroCount} planets retrograde at birth`, hi: `जन्म पर ${retroCount} ग्रह वक्री`, sa: '' }, description: { en: 'Multiple retrograde planets — internalized energy, delayed results, unconventional life path. Karmic intensity from past lives.', hi: 'अनेक वक्री ग्रह — आंतरिक ऊर्जा, विलंबित परिणाम, अपरंपरागत जीवन पथ।', sa: '' } });
+  }
+
+  // Retrograde benefic in kendra = hidden strength
+  for (const pid of [3, 4, 5]) {
+    const p = getP(planets, pid);
+    if (p.isRetrograde && [1,4,7,10].includes(p.house)) {
+      results.push({ id: `vakri_${['','','','merc','jup','ven'][pid]}_kendra`, category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: `Vakri ${['','','','Mercury','Jupiter','Venus'][pid]} in Kendra`, hi: `वक्री ${['','','','बुध','गुरु','शुक्र'][pid]} केंद्र में`, sa: '' }, formationRule: { en: `Retrograde ${['','','','Mercury','Jupiter','Venus'][pid]} in house ${p.house}`, hi: '', sa: '' }, description: { en: 'Retrograde benefic in angular house — intensified inner power, unconventional but deep wisdom/beauty/skill.', hi: 'वक्री शुभ केंद्र में — तीव्र आंतरिक शक्ति।', sa: '' } });
+    }
+  }
+
+  return results;
+}
+
 export function detectAllYogas(planets: PlanetData[], ascendantSign: number): YogaComplete[] {
   return [
     ...detectDoshaYogas(planets, ascendantSign),
@@ -1713,5 +1858,9 @@ export function detectAllYogas(planets: PlanetData[], ascendantSign: number): Yo
     ...detectArishtaYogas(planets, ascendantSign),
     ...detectMoreDhanaYogas(planets, ascendantSign),
     ...detectMiscYogas(planets, ascendantSign),
+    ...detectExpandedRajaYogas(planets, ascendantSign),
+    ...detectKartariYogas(planets),
+    ...detectPlanetHouseYogas(planets, ascendantSign),
+    ...detectRetroYogas(planets),
   ];
 }

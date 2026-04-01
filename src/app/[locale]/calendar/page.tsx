@@ -15,6 +15,8 @@ interface FestivalEntry {
   name: Trilingual;
   date: string;
   tithi?: string;
+  masa?: { amanta: string; purnimanta: string; isAdhika: boolean };
+  paksha?: 'shukla' | 'krishna';
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
   description: Trilingual;
@@ -43,7 +45,17 @@ interface FestivalEntry {
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
 
-type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'eclipse';
+const HINDU_MONTHS = [
+  { en: 'Chaitra', hi: 'चैत्र' }, { en: 'Vaishakha', hi: 'वैशाख' },
+  { en: 'Jyeshtha', hi: 'ज्येष्ठ' }, { en: 'Ashadha', hi: 'आषाढ़' },
+  { en: 'Shravana', hi: 'श्रावण' }, { en: 'Bhadrapada', hi: 'भाद्रपद' },
+  { en: 'Ashwina', hi: 'आश्विन' }, { en: 'Kartika', hi: 'कार्तिक' },
+  { en: 'Margashirsha', hi: 'मार्गशीर्ष' }, { en: 'Pausha', hi: 'पौष' },
+  { en: 'Magha', hi: 'माघ' }, { en: 'Phalguna', hi: 'फाल्गुन' },
+];
+
+type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'vrat' | 'eclipse';
+type ViewMode = 'western' | 'lunar';
 
 interface LocationData { lat: number; lng: number; name: string; tz: number; timezone: string; }
 
@@ -54,6 +66,7 @@ export default function CalendarPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [year, setYear] = useState(new Date().getFullYear());
+  const [viewMode, setViewMode] = useState<ViewMode>('western');
   const [festivals, setFestivals] = useState<FestivalEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Filter>('all');
@@ -147,13 +160,22 @@ export default function CalendarPage() {
   }, [year, location]);
 
   const filteredFestivals = festivals.filter(f => {
+    // Category filter
     if (filter !== 'all') {
       if (filter === 'major' && f.type !== 'major') return false;
       if (filter !== 'major' && f.category !== filter) return false;
     }
+    // Month filter
     if (selectedMonth !== null) {
-      const m = parseInt(f.date.split('-')[1]);
-      if (m !== selectedMonth + 1) return false;
+      if (viewMode === 'western') {
+        const m = parseInt(f.date.split('-')[1]);
+        if (m !== selectedMonth + 1) return false;
+      } else {
+        // Lunar month filter — match against Purnimant month name
+        const hinduMonth = HINDU_MONTHS[selectedMonth]?.en.toLowerCase();
+        const festivalMasa = (f as { masa?: { purnimanta?: string } }).masa?.purnimanta;
+        if (!festivalMasa || festivalMasa !== hinduMonth) return false;
+      }
     }
     return true;
   });
@@ -218,12 +240,13 @@ export default function CalendarPage() {
 
   const filterButtons: { key: Filter; label: string; labelHi: string }[] = [
     { key: 'all', label: 'All', labelHi: 'सभी' },
-    { key: 'major', label: 'Major Festivals', labelHi: 'प्रमुख त्योहार' },
+    { key: 'major', label: 'Festivals', labelHi: 'त्योहार' },
     { key: 'ekadashi', label: 'Ekadashi', labelHi: 'एकादशी' },
     { key: 'purnima', label: 'Purnima', labelHi: 'पूर्णिमा' },
     { key: 'amavasya', label: 'Amavasya', labelHi: 'अमावस्या' },
     { key: 'chaturthi', label: 'Chaturthi', labelHi: 'चतुर्थी' },
     { key: 'pradosham', label: 'Pradosham', labelHi: 'प्रदोष' },
+    { key: 'vrat', label: 'Other Vrats', labelHi: 'अन्य व्रत' },
     { key: 'eclipse', label: 'Eclipses', labelHi: 'ग्रहण' },
   ];
 
@@ -318,6 +341,30 @@ export default function CalendarPage() {
         </div>
       )}
 
+      {/* View mode toggle: Western / Hindu Lunar */}
+      <div className="flex justify-center gap-1 mb-4">
+        <button
+          onClick={() => { setViewMode('western'); setSelectedMonth(null); }}
+          className={`px-4 py-2 rounded-l-lg text-xs font-bold transition-all border ${
+            viewMode === 'western'
+              ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40'
+              : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'
+          }`}
+        >
+          {locale === 'en' ? 'Western Months' : 'अंग्रेज़ी महीने'}
+        </button>
+        <button
+          onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
+          className={`px-4 py-2 rounded-r-lg text-xs font-bold transition-all border ${
+            viewMode === 'lunar'
+              ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40'
+              : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'
+          }`}
+        >
+          {locale === 'en' ? 'Hindu Lunar Months' : 'हिन्दू चान्द्र मास'}
+        </button>
+      </div>
+
       {/* Month tabs */}
       <div className="flex flex-wrap justify-center gap-2 mb-6">
         <button
@@ -326,19 +373,33 @@ export default function CalendarPage() {
             selectedMonth === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
-          {locale === 'en' ? 'All Months' : 'सभी महीने'}
+          {locale === 'en' ? 'All' : 'सभी'}
         </button>
-        {MONTH_NAMES.map((name, i) => (
-          <button
-            key={i}
-            onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
-            }`}
-          >
-            {locale === 'en' ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
-          </button>
-        ))}
+        {viewMode === 'western' ? (
+          MONTH_NAMES.map((name, i) => (
+            <button
+              key={i}
+              onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+              }`}
+            >
+              {locale === 'en' ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
+            </button>
+          ))
+        ) : (
+          HINDU_MONTHS.map((hm, i) => (
+            <button
+              key={i}
+              onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+              }`}
+            >
+              {locale === 'en' ? hm.en.slice(0, 4) : hm.hi.slice(0, 4)}
+            </button>
+          ))
+        )}
       </div>
 
       {/* Filter tabs */}
@@ -401,6 +462,11 @@ export default function CalendarPage() {
                     <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
                       {f.category.toUpperCase()}
                     </span>
+                    {f.masa && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full border border-gold-primary/10 text-gold-dark/60">
+                        {f.masa.purnimanta} {f.paksha || ''}
+                      </span>
+                    )}
                   </div>
                   <div className="text-text-secondary text-xs mt-1 line-clamp-1"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>

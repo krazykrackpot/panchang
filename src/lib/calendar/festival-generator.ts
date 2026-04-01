@@ -211,19 +211,13 @@ export function generateFestivalCalendarV2(
   // ── 1. Major Festivals from declarative definitions ───
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
-    // Festival defs use Purnimant/Drik month names.
-    // The relationship between Amanta and Purnimant varies with Adhika Masa.
-    // Instead of converting, try BOTH the def.masa AND the previous month.
-    // The correct entry is the one that actually exists in the table.
-    const masa1 = def.masa!;
-    const masa2 = getPreviousHinduMonth(def.masa!);
+    // Festival defs use Purnimant month names (same as Drik).
+    // Match against entry.masa.purnimanta — computed from Purnima boundaries.
     const matches = table.entries.filter(e =>
       e.number === tithiNum &&
-      (e.lunarMonth.name === masa1 || e.lunarMonth.name === masa2) &&
-      !e.lunarMonth.isAdhika
+      e.masa.purnimanta === def.masa &&
+      !e.masa.isAdhika
     );
-    // If both match (unlikely), prefer the one closer to the expected date
-    // by taking the first match in chronological order.
 
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];

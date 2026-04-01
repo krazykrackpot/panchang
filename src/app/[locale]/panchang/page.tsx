@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -20,6 +20,7 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { computeBalam } from '@/lib/panchang/balam';
+import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 
 // ──────────────────────────────────────────────────────────────
@@ -105,6 +106,9 @@ export default function PanchangPage() {
   const [birthRashi, setBirthRashi] = useState(0);
   const [balamResult, setBalamResult] = useState<BalamResult | null>(null);
   const [birthAutoDetected, setBirthAutoDetected] = useState(false);
+
+  // Compute Hindu months for current year (expensive, memoized)
+  const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(new Date().getFullYear()), []);
   const [now, setNow] = useState<Date>(new Date());
 
   // Auto-load birth nakshatra/rashi from store (persisted from kundali page)
@@ -1223,71 +1227,74 @@ export default function PanchangPage() {
               </div>
             </div>
 
-            {/* Hindu Months Reference */}
-            <div className="mt-6 glass-card rounded-2xl p-5">
-              <h4 className="text-gold-light font-bold text-sm mb-3 flex items-center gap-2" style={headingFont}>
-                <MasaIcon size={22} />
-                {locale === 'en' ? 'Hindu Months (Chandramana)' : 'हिन्दू मास (चान्द्रमान)'}
-              </h4>
-              <p className="text-text-secondary text-[10px] mb-3">
-                {locale === 'en'
-                  ? 'Hindu months are lunar (Chandramana) — they begin and end with the Moon phase. Purnimant months end on Purnima (Full Moon); Amant months end on Amavasya (New Moon). Approximate Gregorian mapping shown below.'
-                  : 'हिन्दू मास चान्द्रमान हैं — चंद्र कलाओं से आरम्भ और समाप्त। पूर्णिमान्त पूर्णिमा पर, अमान्त अमावस्या पर समाप्त। नीचे अनुमानित ग्रेगोरियन मानचित्रण।'}
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead>
-                    <tr className="border-b border-gold-primary/15">
-                      <th className="text-left py-2 px-2 text-gold-dark">#</th>
-                      <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Hindu Month' : 'हिन्दू मास'}</th>
-                      <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Sanskrit' : 'संस्कृत'}</th>
-                      <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Approx. Gregorian' : 'अनु. ग्रेगोरियन'}</th>
-                      <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Ritu (Season)' : 'ऋतु'}</th>
-                      <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Ayana' : 'अयन'}</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gold-primary/5">
-                    {[
-                      { n: 1, en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', greg: 'Mar–Apr', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                      { n: 2, en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', greg: 'Apr–May', ritu: { en: 'Vasanta (Spring)', hi: 'वसन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                      { n: 3, en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', greg: 'May–Jun', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                      { n: 4, en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', greg: 'Jun–Jul', ritu: { en: 'Grishma (Summer)', hi: 'ग्रीष्म' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 5, en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', greg: 'Jul–Aug', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 6, en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', greg: 'Aug–Sep', ritu: { en: 'Varsha (Monsoon)', hi: 'वर्षा' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 7, en: 'Ashvina', hi: 'आश्विन', sa: 'आश्विनः', greg: 'Sep–Oct', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 8, en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', greg: 'Oct–Nov', ritu: { en: 'Sharad (Autumn)', hi: 'शरद्' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 9, en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', greg: 'Nov–Dec', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त' }, ayana: { en: 'Dakshinayana', hi: 'दक्षिणायन' }, isCurrent: false },
-                      { n: 10, en: 'Pausha', hi: 'पौष', sa: 'पौषः', greg: 'Dec–Jan', ritu: { en: 'Hemanta (Pre-Winter)', hi: 'हेमन्त' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                      { n: 11, en: 'Magha', hi: 'माघ', sa: 'माघः', greg: 'Jan–Feb', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                      { n: 12, en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', greg: 'Feb–Mar', ritu: { en: 'Shishira (Winter)', hi: 'शिशिर' }, ayana: { en: 'Uttarayana', hi: 'उत्तरायण' }, isCurrent: false },
-                    ].map((m) => {
-                      // Highlight current month if it matches the panchang masa
-                      const currentMasa = (panchang.purnimantMasa || panchang.masa)?.[locale === 'en' ? 'en' : 'hi'] || '';
-                      const isHighlighted = currentMasa.toLowerCase().includes(m.en.toLowerCase().substring(0, 4)) ||
-                        currentMasa.includes(m.hi.substring(0, 3));
-                      return (
-                        <tr key={m.n} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''}`}>
-                          <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
-                          <td className="py-1.5 px-2 font-medium" style={headingFont}>
-                            <span className="text-gold-light">{locale === 'en' ? m.en : m.hi}</span>
-                            {isHighlighted && <span className="ml-1.5 text-[8px] px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
-                          </td>
-                          <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
-                          <td className="py-1.5 px-2 text-text-secondary">{m.greg}</td>
-                          <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ritu.en : m.ritu.hi}</td>
-                          <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ayana.en : m.ayana.hi}</td>
+            {/* Hindu Months Reference — computed for current year */}
+            {(() => {
+              const displayYear = new Date().getFullYear();
+              const hinduMonths = computeHinduMonthsMemo;
+              const currentMasa = (panchang.purnimantMasa || panchang.masa)?.[locale === 'en' ? 'en' : 'hi'] || '';
+              const todayStr = panchang.date;
+
+              return (
+                <div className="mt-6 glass-card rounded-2xl p-5">
+                  <h4 className="text-gold-light font-bold text-sm mb-3 flex items-center gap-2" style={headingFont}>
+                    <MasaIcon size={22} />
+                    {locale === 'en' ? `Hindu Months ${displayYear} (Amant)` : `हिन्दू मास ${displayYear} (अमान्त)`}
+                  </h4>
+                  <p className="text-text-secondary text-[10px] mb-3">
+                    {locale === 'en'
+                      ? `Exact Gregorian dates for Hindu lunar months in ${displayYear}. Each month begins on Amavasya (New Moon). Dates are computed from actual Moon-Sun positions.`
+                      : `${displayYear} में हिन्दू चान्द्र मासों की सटीक ग्रेगोरियन तिथियाँ। प्रत्येक मास अमावस्या (नवचंद्र) पर आरम्भ। चंद्र-सूर्य स्थिति से गणित।`}
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-gold-primary/15">
+                          <th className="text-left py-2 px-2 text-gold-dark">#</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Hindu Month' : 'हिन्दू मास'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Sanskrit' : 'संस्कृत'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Amant Start' : 'अमान्त आरम्भ'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Amant End' : 'अमान्त समाप्ति'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Purnimant Start' : 'पूर्णि. आरम्भ'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Ritu' : 'ऋतु'}</th>
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <p className="text-text-tertiary text-[9px] mt-2">
-                {locale === 'en'
-                  ? 'Note: Exact dates shift each year since Hindu months follow the lunar cycle (~29.5 days). Adhika Masa (intercalary month) is added every ~33 months to sync with the solar year. The year begins with Chaitra Shukla Pratipada (Ugadi/Gudi Padwa/Nav Samvatsar).'
-                  : 'नोट: चांद्र चक्र (~29.5 दिन) के कारण सटीक तिथियाँ प्रति वर्ष बदलती हैं। सौर वर्ष से समन्वय के लिए ~33 मास में अधिक मास जोड़ा जाता है। वर्ष चैत्र शुक्ल प्रतिपदा (उगादि/गुड़ी पड़वा) से आरम्भ होता है।'}
-              </p>
-            </div>
+                      </thead>
+                      <tbody className="divide-y divide-gold-primary/5">
+                        {hinduMonths.map((m) => {
+                          const isHighlighted = todayStr >= m.startDate && todayStr < m.endDate;
+                          return (
+                            <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
+                              <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
+                              <td className="py-1.5 px-2 font-medium" style={headingFont}>
+                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{locale === 'en' ? m.en : m.hi}</span>
+                                {isHighlighted && <span className="ml-1.5 text-[8px] px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                                {m.isAdhika && <span className="ml-1.5 text-[8px] px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'en' ? 'Intercalary' : 'अधिक'}</span>}
+                              </td>
+                              <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-tertiary font-mono text-[10px]">{(() => {
+                                // Purnimant starts ~15 days before Amant (from the preceding Purnima)
+                                const [y, mo, d] = m.startDate.split('-').map(Number);
+                                const purnimantDate = new Date(y, mo - 1, d);
+                                purnimantDate.setDate(purnimantDate.getDate() - 15);
+                                const pStr = `${purnimantDate.getFullYear()}-${(purnimantDate.getMonth()+1).toString().padStart(2,'0')}-${purnimantDate.getDate().toString().padStart(2,'0')}`;
+                                return formatMonthDate(pStr, locale);
+                              })()}</td>
+                              <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ritu.en : m.ritu.hi}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-text-tertiary text-[9px] mt-2">
+                    {locale === 'en'
+                      ? `Dates computed from actual New Moon positions for ${displayYear}. Adhika Masa (intercalary month, shown in purple) occurs when two New Moons fall in the same solar month. Hindu year begins with Chaitra Shukla Pratipada.`
+                      : `${displayYear} के वास्तविक अमावस्या स्थितियों से गणित। अधिक मास (बैंगनी में) तब होता है जब एक ही सौर मास में दो अमावस्याएं आती हैं। हिन्दू वर्ष चैत्र शुक्ल प्रतिपदा से आरम्भ।`}
+                  </p>
+                </div>
+              );
+            })()}
 
             {/* Epoch & Cosmic Time subsection */}
             <div className="mt-8">

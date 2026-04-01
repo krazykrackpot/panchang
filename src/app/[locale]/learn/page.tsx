@@ -48,6 +48,27 @@ export default function LearnFoundationsPage() {
         <p className="text-text-secondary">{t('foundationsSubtitle')}</p>
       </div>
 
+      {/* Interactive Course Module CTA */}
+      <div className="mb-8 glass-card rounded-2xl p-5 border border-indigo-500/20 bg-gradient-to-r from-indigo-500/5 to-gold-primary/5">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Interactive Course' : 'इंटरैक्टिव पाठ्यक्रम'}</div>
+            <h3 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+              {locale === 'en' ? 'Learn Jyotish — Module by Module' : 'ज्योतिष सीखें — मॉड्यूल दर मॉड्यूल'}
+            </h3>
+            <p className="text-text-secondary text-xs mt-1">
+              {locale === 'en'
+                ? 'Deep 10-15 minute lessons with diagrams, worked examples, and knowledge checks. Start with Module 1.1.'
+                : 'गहन 10-15 मिनट के पाठ — चित्र, उदाहरण और ज्ञान परीक्षा। मॉड्यूल 1.1 से शुरू करें।'}
+            </p>
+          </div>
+          <Link href="/learn/modules/1-1"
+            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold text-sm hover:bg-gold-light transition-colors">
+            {locale === 'en' ? 'Start Module 1.1 →' : 'मॉड्यूल 1.1 →'}
+          </Link>
+        </div>
+      </div>
+
       {/* Key terms */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-8">
         <SanskritTermCard term="Jyotish" devanagari="ज्योतिष" transliteration="Jyotiṣa" meaning="Science of Light / Astronomy" />

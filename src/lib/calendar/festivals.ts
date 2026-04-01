@@ -652,36 +652,41 @@ function buildLunarCalendar(year: number, lat: number, lon: number): LunarMonth[
     const [y1, m1, d1] = amavasyas[i].split('-').map(Number);
     const [y2, m2, d2] = amavasyas[i + 1].split('-').map(Number);
 
-    const jd1 = dateToJD(y1, m1, d1, 12);
-    const jd2 = dateToJD(y2, m2, d2, 12);
+    // Find exact new moon (conjunction) JD for each Amavasya using binary search
+    // The drik-panchanga formula uses raasi at the exact new moon, not at sunrise
+    function findNewMoonJd(approxJd: number): number {
+      // Scan hourly to find minimum Moon-Sun elongation
+      let minDiff = 999; let bestJd = approxJd;
+      for (let h = -24; h <= 24; h++) {
+        const jd = approxJd + h / 24;
+        const diff = normalizeDeg(moonLongitude(jd) - sunLongitude(jd));
+        const adj = diff > 180 ? 360 - diff : diff;
+        if (adj < minDiff) { minDiff = adj; bestJd = jd; }
+      }
+      return bestJd;
+    }
 
-    // Find which sidereal sign the Sun is in at each boundary
-    const sign1 = Math.floor(normalizeDeg(toSidereal(sunLongitude(jd1), jd1)) / 30) + 1;
-    const sign2 = Math.floor(normalizeDeg(toSidereal(sunLongitude(jd2), jd2)) / 30) + 1;
+    const nmJd1 = findNewMoonJd(dateToJD(y1, m1, d1, 12));
+    const nmJd2 = findNewMoonJd(dateToJD(y2, m2, d2, 12));
+
+    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(nmJd1), nmJd1));
+    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(nmJd2), nmJd2));
+
+    const sign1 = Math.floor(sunSid1 / 30) + 1;
+    const sign2 = Math.floor(sunSid2 / 30) + 1;
 
     // Per drik-panchanga open source: maasa = rashi(new_moon) + 1
-    // Drik numbering: 1=Chaitra..11=Magha,12=Phalguna
-    // Our getHinduMonth: sign 10=magha, sign 11=phalguna, sign 12=chaitra
-    // So Drik maasa 11 (Magha) = our getHinduMonth(10) = sign itself
-    // Therefore: getHinduMonth(sign1) gives the correct Amanta month name
+    // Our getHinduMonth(sign) gives the correct Amanta month name
     const monthName = getHinduMonth(sign1);
 
-    if (sign1 === sign2) {
-      // No Sankranti → Adhika Masa
-      months.push({
-        name: monthName,
-        isAdhika: true,
-        startDate: amavasyas[i],
-        endDate: amavasyas[i + 1],
-      });
-    } else {
-      months.push({
-        name: monthName,
-        isAdhika: false,
-        startDate: amavasyas[i],
-        endDate: amavasyas[i + 1],
-      });
-    }
+    const isAdhika = (sign1 === sign2);
+
+    months.push({
+      name: monthName,
+      isAdhika,
+      startDate: amavasyas[i],
+      endDate: amavasyas[i + 1],
+    });
   }
 
   return months;

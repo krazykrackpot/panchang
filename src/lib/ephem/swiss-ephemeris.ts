@@ -11,6 +11,29 @@
 let sweph: any = null;
 let swephChecked = false;
 
+// ─── Memoization cache for expensive SwEph calls ─────────────────────────
+// Key: JD rounded to 6 decimals (~0.1 second precision)
+// Same JD always produces same planetary positions, so safe to cache.
+const planetCache = new Map<string, { longitude: number; latitude: number; distance: number; speed: number }>();
+const allPlanetsCache = new Map<string, ReturnType<typeof swissAllPlanets>>();
+const ayanamshaCache = new Map<string, number>();
+const CACHE_MAX = 500; // Limit cache size to prevent memory leaks
+
+function cacheKey(jd: number, extra?: number): string {
+  return `${jd.toFixed(6)}${extra !== undefined ? `:${extra}` : ''}`;
+}
+
+function pruneCache(cache: Map<string, unknown>) {
+  if (cache.size > CACHE_MAX) {
+    const keys = cache.keys();
+    for (let i = 0; i < CACHE_MAX / 2; i++) {
+      const k = keys.next();
+      if (k.done) break;
+      cache.delete(k.value);
+    }
+  }
+}
+
 function getSweph() {
   if (swephChecked) return sweph;
   swephChecked = true;
@@ -43,13 +66,21 @@ export function swissJulDay(year: number, month: number, day: number, utHour: nu
 }
 
 /**
- * Get Lahiri ayanamsha for a given JD
+ * Get Lahiri ayanamsha for a given JD (memoized)
  */
 export function swissAyanamsha(jd: number): number {
+  const key = cacheKey(jd);
+  const cached = ayanamshaCache.get(key);
+  if (cached !== undefined) return cached;
+
   const se = getSweph();
   if (!se) return 0;
   se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
-  return se.get_ayanamsa_ut(jd);
+  const result = se.get_ayanamsa_ut(jd);
+
+  pruneCache(ayanamshaCache);
+  ayanamshaCache.set(key, result);
+  return result;
 }
 
 /**
@@ -62,6 +93,11 @@ export function swissPlanetLongitude(jd: number, planetId: number): {
   distance: number;
   speed: number;
 } {
+  // Check memoization cache
+  const key = cacheKey(jd, planetId);
+  const cached = planetCache.get(key);
+  if (cached) return cached;
+
   const se = getSweph();
   if (!se) return { longitude: 0, latitude: 0, distance: 0, speed: 0 };
 
@@ -91,10 +127,13 @@ export function swissPlanetLongitude(jd: number, planetId: number): {
   // Ketu = Rahu + 180
   if (planetId === 8) {
     longitude = (longitude + 180) % 360;
-    speed = -speed; // Ketu moves opposite to Rahu's reported speed
+    speed = -speed;
   }
 
-  return { longitude, latitude, distance, speed };
+  const value = { longitude, latitude, distance, speed };
+  pruneCache(planetCache);
+  planetCache.set(key, value);
+  return value;
 }
 
 /**
@@ -113,6 +152,11 @@ export function swissAllPlanets(jd: number): {
   planets: { id: number; tropical: number; sidereal: number; latitude: number; speed: number; isRetrograde: boolean }[];
   ayanamsha: number;
 } | null {
+  // Check memoization cache
+  const key = cacheKey(jd);
+  const cached = allPlanetsCache.get(key);
+  if (cached) return cached;
+
   const se = getSweph();
   if (!se) return null;
 
@@ -138,7 +182,10 @@ export function swissAllPlanets(jd: number): {
   const ketu = planets.find(p => p.id === 8);
   if (ketu) ketu.isRetrograde = true;
 
-  return { planets, ayanamsha: ayan };
+  const result = { planets, ayanamsha: ayan };
+  pruneCache(allPlanetsCache);
+  allPlanetsCache.set(key, result);
+  return result;
 }
 
 /**

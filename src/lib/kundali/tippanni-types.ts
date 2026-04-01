@@ -61,12 +61,21 @@ export interface YogaInsight {
   classicalReferences?: ClassicalReferencesSection | null;
 }
 
+export interface CancellationCondition {
+  condition: string;
+  met: boolean;
+  source?: string; // BPHS chapter reference
+}
+
 export interface DoshaInsight {
   name: string;
   present: boolean;
   severity: 'none' | 'mild' | 'moderate' | 'severe';
+  effectiveSeverity?: 'full' | 'partial' | 'cancelled';
   description: string;
   remedies: string;
+  cancellationConditions?: CancellationCondition[];
+  activeDasha?: string; // "This dosha activates during X Mahadasha"
   classicalReferences?: ClassicalReferencesSection | null;
 }
 

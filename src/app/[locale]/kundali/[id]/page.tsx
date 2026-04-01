@@ -1,31 +1,202 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
+import { useEffect, useState, useMemo } from 'react';
+import { useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Link } from '@/lib/i18n/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import type { KundaliData } from '@/types/kundali';
 
-export default function KundaliResultPage() {
+function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string } | null {
+  const name = params.get('n');
+  const date = params.get('d');
+  const time = params.get('t');
+  const lat = params.get('la');
+  const lng = params.get('lo');
+  const place = params.get('p');
+  if (!name || !date || !time || !lat || !lng) return null;
+  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '' };
+}
+
+export default function SharedKundaliPage() {
   const locale = useLocale() as Locale;
+  const searchParams = useSearchParams();
   const isDevanagari = locale !== 'en';
+  const headingFont = { fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
+
+  const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const chartData = useMemo(() => decodeChartParams(searchParams), [searchParams]);
+
+  useEffect(() => {
+    if (!chartData) {
+      setError('Invalid chart link. Missing birth data parameters.');
+      setLoading(false);
+      return;
+    }
+
+    const fetchKundali = async () => {
+      try {
+        const [year, month, day] = chartData.date.split('-').map(Number);
+        const [hour, minute] = chartData.time.split(':').map(Number);
+
+        const response = await fetch('/api/kundali', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: chartData.name,
+            year, month, day,
+            hour, minute,
+            lat: chartData.lat,
+            lng: chartData.lng,
+            place: chartData.place,
+            ayanamsa: 'lahiri',
+          }),
+        });
+
+        if (!response.ok) throw new Error('Failed to generate chart');
+        const data = await response.json();
+        setKundali(data);
+      } catch {
+        setError('Failed to generate chart from shared link.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchKundali();
+  }, [chartData]);
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shareUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-24 text-center">
+        <div className="animate-spin w-12 h-12 border-2 border-gold-primary border-t-transparent rounded-full mx-auto mb-4" />
+        <p className="text-text-secondary">{locale === 'en' ? 'Loading shared chart...' : 'साझा कुण्डली लोड हो रही है...'}</p>
+      </div>
+    );
+  }
+
+  if (error || !chartData) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8">
+          <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
+        </Link>
+        <div className="glass-card rounded-xl p-12 text-center">
+          <h1 className="text-3xl text-red-400 font-bold mb-4" style={headingFont}>
+            {locale === 'en' ? 'Invalid Chart Link' : 'अमान्य कुण्डली लिंक'}
+          </h1>
+          <p className="text-text-secondary">{error}</p>
+          <Link href="/kundali" className="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-semibold rounded-lg">
+            {locale === 'en' ? 'Create Your Own Chart' : 'अपनी कुण्डली बनाएं'}
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
-      </Link>
+      <div className="flex items-center justify-between mb-8">
+        <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light">
+          <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
+        </Link>
+        <div className="flex items-center gap-2">
+          <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-gold-primary hover:text-gold-light">
+            {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            {copied ? (locale === 'en' ? 'Copied!' : 'कॉपी!') : (locale === 'en' ? 'Copy Link' : 'लिंक कॉपी')}
+          </button>
+          {typeof navigator !== 'undefined' && 'share' in navigator && (
+            <button onClick={() => navigator.share({ title: `${chartData.name} - Kundali`, url: shareUrl })}
+              className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-gold-primary hover:text-gold-light">
+              <Share2 className="w-4 h-4" /> {locale === 'en' ? 'Share' : 'साझा'}
+            </button>
+          )}
+        </div>
+      </div>
 
-      <div className="glass-card rounded-xl p-12 text-center">
-        <h1 className="text-3xl text-gold-gradient font-bold mb-4" style={{ fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}>
-          {locale === 'en' ? 'Saved Charts Coming Soon' : 'सहेजी गई कुण्डलियाँ शीघ्र'}
-        </h1>
-        <p className="text-text-secondary">
-          {locale === 'en'
-            ? 'Chart results are currently displayed inline on the Kundali page. Database-backed saved charts will be available in a future update.'
-            : 'कुण्डली परिणाम वर्तमान में कुण्डली पृष्ठ पर प्रदर्शित हैं। डेटाबेस आधारित सहेजी गई कुण्डलियाँ भविष्य के अपडेट में उपलब्ध होंगी।'}
+      {/* Chart Header */}
+      <div className="glass-card rounded-xl p-8 mb-8">
+        <h1 className="text-3xl text-gold-gradient font-bold mb-2" style={headingFont}>{chartData.name}</h1>
+        <div className="flex flex-wrap gap-4 text-text-secondary text-sm">
+          <span>{chartData.date} at {chartData.time}</span>
+          {chartData.place && <span>{chartData.place}</span>}
+          <span>{chartData.lat.toFixed(4)}, {chartData.lng.toFixed(4)}</span>
+        </div>
+        {kundali && (
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
+              <p className="text-text-tertiary text-xs mb-1">{locale === 'en' ? 'Ascendant' : 'लग्न'}</p>
+              <p className="text-gold-light font-semibold">{kundali.ascendant.signName[locale]}</p>
+            </div>
+            <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
+              <p className="text-text-tertiary text-xs mb-1">{locale === 'en' ? 'Moon Sign' : 'चंद्र राशि'}</p>
+              <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 1)?.signName[locale] || '-'}</p>
+            </div>
+            <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
+              <p className="text-text-tertiary text-xs mb-1">{locale === 'en' ? 'Sun Sign' : 'सूर्य राशि'}</p>
+              <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 0)?.signName[locale] || '-'}</p>
+            </div>
+            <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
+              <p className="text-text-tertiary text-xs mb-1">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}</p>
+              <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.name?.[locale] || '-'}</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Planet Positions */}
+      {kundali && (
+        <div className="glass-card rounded-xl p-8 mb-8">
+          <h2 className="text-xl text-gold-gradient font-bold mb-6" style={headingFont}>
+            {locale === 'en' ? 'Planetary Positions' : 'ग्रह स्थिति'}
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gold-primary border-b border-gold-primary/10">
+                  <th className="text-left py-2 px-3">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                  <th className="text-left py-2 px-3">{locale === 'en' ? 'Sign' : 'राशि'}</th>
+                  <th className="text-right py-2 px-3">{locale === 'en' ? 'Degree' : 'अंश'}</th>
+                  <th className="text-center py-2 px-3">{locale === 'en' ? 'House' : 'भाव'}</th>
+                  <th className="text-center py-2 px-3">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kundali.planets.map((p, i) => (
+                  <tr key={i} className="border-b border-gold-primary/5 text-text-secondary">
+                    <td className="py-2 px-3 text-gold-light font-semibold">{p.planet.name[locale]}</td>
+                    <td className="py-2 px-3">{p.signName[locale]}</td>
+                    <td className="py-2 px-3 text-right font-mono">{(p.longitude % 30).toFixed(2)}°</td>
+                    <td className="py-2 px-3 text-center">{p.house}</td>
+                    <td className="py-2 px-3 text-center">{p.nakshatra?.name?.[locale] || '-'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* CTA */}
+      <div className="text-center mt-8">
+        <p className="text-text-secondary mb-4">
+          {locale === 'en' ? 'Want a full analysis with Dashas, Yogas, and more?' : 'पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?'}
         </p>
-        <Link href="/kundali" className="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-semibold rounded-lg hover:from-gold-primary hover:to-gold-light transition-all">
-          {locale === 'en' ? 'Go to Kundali Generator' : 'कुण्डली निर्माता पर जाएं'}
+        <Link href="/kundali" className="inline-block px-8 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-semibold rounded-lg hover:from-gold-primary hover:to-gold-light transition-all">
+          {locale === 'en' ? 'Generate Full Chart' : 'पूर्ण कुण्डली बनाएं'}
         </Link>
       </div>
     </div>

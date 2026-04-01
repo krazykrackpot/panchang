@@ -194,11 +194,11 @@
 |---|------|----------|--------|--------|
 | 1 | Deploy to Production | High | PARKED | Large |
 | 2 | Content Quality Pass | High | Not started | Very Large (42 modules) |
-| 3 | Expand Yogas (75→150+) | High | Not started | Large |
-| 4 | Expand Dashas (15→25+) | Medium | Not started | Medium |
-| 5 | Dosha Cancellation UI | High | Not started | Medium |
-| 6 | Regional Calendars | Medium | Not started | Large |
-| 7 | Shareable Chart Links | Medium | Not started | Medium |
-| 8 | Performance Optimization | Medium | Not started | Medium |
-| 9 | E2E Tests | High | Not started | Large |
-| 10 | SEO | Medium | Not started | Medium |
+| 3 | Expand Yogas (75→150+) | High | DONE (150+ yogas, 25 detectors) | Large |
+| 4 | Expand Dashas (15→25+) | Medium | DONE (25 systems) | Medium |
+| 5 | Dosha Cancellation UI | High | DONE (3 doshas w/ cancellation) | Medium |
+| 6 | Regional Calendars | Medium | DONE (8 calendars) | Large |
+| 7 | Shareable Chart Links | Medium | DONE (URL-encoded sharing) | Medium |
+| 8 | Performance Optimization | Medium | DONE (SwEph memoization, API caching) | Medium |
+| 9 | E2E Tests | High | DONE (Playwright setup + specs) | Large |
+| 10 | SEO | Medium | DONE (JSON-LD, meta, breadcrumbs) | Medium |

@@ -400,26 +400,45 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
   const planets = kundali.planets;
   const getP = (id: number) => planets.find(p => p.planet.id === id);
 
-  // Manglik Dosha
+  // Manglik Dosha with cancellation conditions
   const mars = getP(2);
+  const jupiter = getP(4);
+  const venus = getP(5);
+  const saturn = getP(6);
   const manglikHouses = [1, 2, 4, 7, 8, 12];
   const manglikPresent = !!(mars && manglikHouses.includes(mars.house));
   const manglikSeverity = !manglikPresent ? 'none' as const
     : [1, 7, 8].includes(mars!.house) ? 'severe' as const
     : [4, 12].includes(mars!.house) ? 'moderate' as const : 'mild' as const;
 
+  // Manglik cancellation conditions (BPHS)
+  const manglikCancellations: import('./tippanni-types').CancellationCondition[] = manglikPresent ? [
+    { condition: t(locale, 'Mars in own sign (Aries/Scorpio) or exalted (Capricorn)', 'मंगल स्वराशि या उच्च'), met: !!(mars && (mars.isOwnSign || mars.isExalted)), source: 'BPHS Ch.77' },
+    { condition: t(locale, 'Jupiter aspects Mars or 7th house', 'गुरु मंगल या 7वें भाव को देखे'), met: !!(jupiter && mars && (jupiter.house === mars.house || Math.abs(jupiter.house - 7) % 12 === 0 || [1,5,7,9].includes(((7 - jupiter.house + 12) % 12) + 1))), source: 'BPHS Ch.77' },
+    { condition: t(locale, 'Venus in kendra (1,4,7,10)', 'शुक्र केन्द्र में'), met: !!(venus && [1,4,7,10].includes(venus.house)), source: 'Phala Deepika' },
+    { condition: t(locale, 'Mars in Cancer or Leo sign', 'मंगल कर्क या सिंह राशि में'), met: !!(mars && [4,5].includes(mars.sign)), source: 'BPHS' },
+    { condition: t(locale, 'Saturn aspects Mars', 'शनि मंगल को देखे'), met: !!(saturn && mars && [1,3,7,10].includes(((mars.house - saturn.house + 12) % 12) + 1)), source: 'Lal Kitab' },
+    { condition: t(locale, 'Both partners are Manglik (mutual cancellation)', 'दोनों साथी मांगलिक (पारस्परिक निरसन)'), met: false, source: 'Traditional' },
+  ] : [];
+
+  const manglikMetCount = manglikCancellations.filter(c => c.met).length;
+  const manglikEffective = !manglikPresent ? undefined : manglikMetCount >= 2 ? 'cancelled' as const : manglikMetCount === 1 ? 'partial' as const : 'full' as const;
+
   doshas.push({
     name: t(locale, 'Manglik Dosha (Kuja Dosha)', 'मांगलिक दोष (कुज दोष)', 'माङ्गलिकदोषः'),
     present: manglikPresent, severity: manglikSeverity,
+    effectiveSeverity: manglikEffective,
+    cancellationConditions: manglikCancellations.length > 0 ? manglikCancellations : undefined,
+    activeDasha: manglikPresent ? t(locale, 'Activates strongly during Mars Mahadasha/Antardasha', 'मंगल महादशा/अंतर्दशा में तीव्र') : undefined,
     description: manglikPresent
       ? t(locale,
-          `Mars in house ${mars!.house} creates Manglik Dosha. This affects marriage timing and compatibility. Severity: ${manglikSeverity}. ${mars!.house === 1 ? 'Mars in 1st house creates high ego and aggression in relationships.' : mars!.house === 7 ? 'Mars in 7th house directly affects marriage — spouse may be dominating or conflicts arise.' : mars!.house === 8 ? 'Mars in 8th house creates obstacles in marital happiness and possible separation.' : mars!.house === 4 ? 'Mars in 4th house affects domestic peace and may cause property disputes.' : mars!.house === 12 ? 'Mars in 12th house increases expenses and may affect conjugal happiness.' : 'Mars in 2nd house can create harsh speech affecting family harmony.'}`,
-          `मंगल ${mars!.house}वें भाव में मांगलिक दोष बनाता है। तीव्रता: ${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'}। विवाह समय और अनुकूलता प्रभावित।`)
+          `Mars in house ${mars!.house} creates Manglik Dosha. ${manglikEffective === 'cancelled' ? 'However, multiple cancellation conditions are met — dosha is effectively neutralized.' : manglikEffective === 'partial' ? 'One cancellation condition is met — dosha is partially mitigated.' : ''} Severity: ${manglikSeverity}. ${mars!.house === 1 ? 'Mars in 1st house creates high ego and aggression in relationships.' : mars!.house === 7 ? 'Mars in 7th house directly affects marriage — spouse may be dominating or conflicts arise.' : mars!.house === 8 ? 'Mars in 8th house creates obstacles in marital happiness and possible separation.' : mars!.house === 4 ? 'Mars in 4th house affects domestic peace and may cause property disputes.' : mars!.house === 12 ? 'Mars in 12th house increases expenses and may affect conjugal happiness.' : 'Mars in 2nd house can create harsh speech affecting family harmony.'}`,
+          `मंगल ${mars!.house}वें भाव में मांगलिक दोष बनाता है। ${manglikEffective === 'cancelled' ? 'परन्तु, अनेक निरसन शर्तें पूर्ण — दोष प्रभावी रूप से निष्प्रभावित।' : manglikEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक रूप से कम।' : ''} तीव्रता: ${manglikSeverity === 'severe' ? 'गम्भीर' : manglikSeverity === 'moderate' ? 'मध्यम' : 'हल्का'}।`)
       : t(locale, 'No Manglik Dosha present. Mars is well-placed for harmonious marriage prospects.', 'मांगलिक दोष नहीं है। विवाह के लिए मंगल अनुकूल स्थिति में है।'),
     remedies: manglikPresent
       ? t(locale,
-          'Remedies: 1) Kumbh Vivah ceremony before marriage. 2) Mangal Shanti Puja. 3) Recite Hanuman Chalisa on Tuesdays. 4) Marry after 28 for natural mitigation. 5) Matching with another Manglik is recommended.',
-          'उपाय: 1) विवाह से पहले कुम्भ विवाह संस्कार। 2) मंगल शान्ति पूजा। 3) मंगलवार को हनुमान चालीसा पाठ। 4) 28 के बाद विवाह से स्वाभाविक शमन। 5) दूसरे मांगलिक से विवाह अनुशंसित।')
+          'Remedies: 1) Kumbh Vivah ceremony before marriage. 2) Mangal Shanti Puja. 3) Recite Hanuman Chalisa on Tuesdays. 4) Wear red coral (Moonga) on right ring finger. 5) Marry after 28 for natural mitigation. 6) Matching with another Manglik recommended.',
+          'उपाय: 1) विवाह से पहले कुम्भ विवाह। 2) मंगल शान्ति पूजा। 3) मंगलवार हनुमान चालीसा। 4) दाहिने हाथ की अनामिका में मूँगा धारण। 5) 28 के बाद विवाह। 6) दूसरे मांगलिक से मिलान।')
       : '',
   });
 
@@ -443,32 +462,58 @@ function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
     kaalSarpPresent = between1 || between2;
   }
 
+  // Kaal Sarp cancellation conditions
+  const ksCancellations: import('./tippanni-types').CancellationCondition[] = kaalSarpPresent ? [
+    { condition: t(locale, 'Any planet conjunct Rahu or Ketu (breaks the axis)', 'कोई ग्रह राहु या केतु के साथ (अक्ष तोड़ता है)'), met: planets.some(p => p.planet.id >= 0 && p.planet.id <= 6 && (p.house === rahu!.house || p.house === ketu!.house)), source: 'BPHS' },
+    { condition: t(locale, 'Jupiter aspects Rahu or Ketu', 'गुरु राहु या केतु को देखे'), met: !!(jupiter && rahu && ketu && ([1,5,7,9].includes(((rahu.house - jupiter.house + 12) % 12) + 1) || [1,5,7,9].includes(((ketu.house - jupiter.house + 12) % 12) + 1))), source: 'BPHS' },
+    { condition: t(locale, 'Rahu/Ketu in 3rd/6th/11th houses (upachaya)', 'राहु/केतु 3/6/11 में (उपचय)'), met: !!(rahu && ketu && ([3,6,11].includes(rahu.house) || [3,6,11].includes(ketu.house))), source: 'Phala Deepika' },
+  ] : [];
+
+  const ksMetCount = ksCancellations.filter(c => c.met).length;
+  const ksEffective = !kaalSarpPresent ? undefined : ksMetCount >= 2 ? 'cancelled' as const : ksMetCount === 1 ? 'partial' as const : 'full' as const;
+
   doshas.push({
     name: t(locale, 'Kaal Sarp Dosha', 'काल सर्प दोष', 'कालसर्पदोषः'),
     present: kaalSarpPresent,
     severity: kaalSarpPresent ? 'moderate' : 'none',
+    effectiveSeverity: ksEffective,
+    cancellationConditions: ksCancellations.length > 0 ? ksCancellations : undefined,
+    activeDasha: kaalSarpPresent ? t(locale, 'Intensifies during Rahu or Ketu Mahadasha/Antardasha', 'राहु या केतु महादशा/अंतर्दशा में तीव्र') : undefined,
     description: kaalSarpPresent
       ? t(locale,
-          `All planets are hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). This creates Kaal Sarp Dosha — a karmic pattern from past lives causing periodic obstacles, delays, and unexpected challenges. It intensifies during Rahu-Ketu transits. However, it also grants resilience, depth of character, and eventual triumph through perseverance.`,
-          `सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच घिरे हैं। यह काल सर्प दोष बनाता है — पूर्वजन्मों का कार्मिक पैटर्न जो आवधिक बाधाएँ, विलम्ब और अप्रत्याशित चुनौतियाँ लाता है। परन्तु यह लचीलापन और अन्ततः दृढ़ता से विजय भी प्रदान करता है।`)
-      : t(locale, 'No Kaal Sarp Dosha. Planets are not hemmed between Rahu-Ketu axis, allowing freer expression of planetary energies.', 'काल सर्प दोष नहीं। ग्रह राहु-केतु अक्ष के बीच नहीं घिरे, ग्रहीय ऊर्जाओं की स्वतन्त्र अभिव्यक्ति।'),
+          `All planets hemmed between Rahu (house ${rahu!.house}) and Ketu (house ${ketu!.house}). ${ksEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha is effectively neutralized.' : ksEffective === 'partial' ? 'One cancellation condition met — dosha is partially mitigated.' : ''} This karmic pattern causes periodic obstacles and delays but also grants resilience and depth of character.`,
+          `सभी ग्रह राहु (भाव ${rahu!.house}) और केतु (भाव ${ketu!.house}) के बीच। ${ksEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : ksEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — दोष आंशिक कम।' : ''} यह कार्मिक पैटर्न बाधाएँ लाता है पर लचीलापन भी देता है।`)
+      : t(locale, 'No Kaal Sarp Dosha. Planets are not hemmed between Rahu-Ketu axis.', 'काल सर्प दोष नहीं। ग्रह राहु-केतु अक्ष के बीच नहीं।'),
     remedies: kaalSarpPresent
-      ? t(locale, 'Remedies: 1) Kaal Sarp Dosha Nivaran Puja at Trimbakeshwar. 2) Nag Panchami worship. 3) Donate to snake conservation. 4) Recite Maha Mrityunjaya Mantra daily. 5) Visit Rahu-Ketu temples.', 'उपाय: 1) त्र्यम्बकेश्वर में काल सर्प दोष निवारण पूजा। 2) नाग पंचमी पूजा। 3) सर्प संरक्षण में दान। 4) महामृत्युंजय मन्त्र का दैनिक जप। 5) राहु-केतु मन्दिर दर्शन।')
+      ? t(locale, 'Remedies: 1) Kaal Sarp Nivaran Puja at Trimbakeshwar. 2) Nag Panchami worship. 3) Donate to snake conservation. 4) Maha Mrityunjaya Mantra daily. 5) Visit Rahu-Ketu temples.', 'उपाय: 1) त्र्यम्बकेश्वर में काल सर्प निवारण पूजा। 2) नाग पंचमी पूजा। 3) सर्प संरक्षण दान। 4) महामृत्युंजय मन्त्र। 5) राहु-केतु मन्दिर।')
       : '',
   });
 
-  // Pitra Dosha (Sun with Rahu or Saturn afflicting Sun)
+  // Pitra Dosha (Sun with Rahu or Saturn afflicting Sun) with cancellation
   const sun = getP(0);
-  const pitraPresent = !!(sun && rahu && sun.house === rahu.house) || !!(sun && getP(6) && sun.house === getP(6)!.house && sun.isDebilitated);
+  const pitraPresent = !!(sun && rahu && sun.house === rahu.house) || !!(sun && saturn && sun.house === saturn.house && sun.isDebilitated);
+
+  const pitraCancellations: import('./tippanni-types').CancellationCondition[] = pitraPresent ? [
+    { condition: t(locale, 'Jupiter aspects the Sun', 'गुरु सूर्य को देखे'), met: !!(jupiter && sun && [1,5,7,9].includes(((sun.house - jupiter.house + 12) % 12) + 1)), source: 'BPHS Ch.76' },
+    { condition: t(locale, 'Sun in own sign (Leo) or exalted (Aries)', 'सूर्य स्वराशि (सिंह) या उच्च (मेष) में'), met: !!(sun && (sun.isOwnSign || sun.isExalted)), source: 'BPHS' },
+    { condition: t(locale, '9th house lord is strong (exalted/own sign)', '9वें भाव का स्वामी बलवान'), met: (() => { const ascSign = kundali.ascendant.sign; const sign9 = ((ascSign - 1 + 8) % 12) + 1; const lordId = [2,5,3,1,0,3,5,2,4,6,6,4][sign9-1]; const lordP = getP(lordId); return !!(lordP && (lordP.isExalted || lordP.isOwnSign)); })(), source: 'Phala Deepika' },
+  ] : [];
+
+  const pitraMetCount = pitraCancellations.filter(c => c.met).length;
+  const pitraEffective = !pitraPresent ? undefined : pitraMetCount >= 2 ? 'cancelled' as const : pitraMetCount === 1 ? 'partial' as const : 'full' as const;
+
   doshas.push({
     name: t(locale, 'Pitra Dosha', 'पितृ दोष', 'पितृदोषः'),
     present: pitraPresent,
     severity: pitraPresent ? 'moderate' : 'none',
+    effectiveSeverity: pitraEffective,
+    cancellationConditions: pitraCancellations.length > 0 ? pitraCancellations : undefined,
+    activeDasha: pitraPresent ? t(locale, 'Activates during Sun Mahadasha or Rahu Antardasha', 'सूर्य महादशा या राहु अंतर्दशा में सक्रिय') : undefined,
     description: pitraPresent
-      ? t(locale, 'Sun afflicted by Rahu or Saturn indicates Pitra Dosha — ancestral karmic debts affecting current life. This may manifest as obstacles in career, strained relationship with father, or delayed recognition.', 'सूर्य पर राहु या शनि का दुष्प्रभाव पितृ दोष इंगित करता है — पैतृक कार्मिक ऋण जो वर्तमान जीवन को प्रभावित करते हैं। कैरियर में बाधाएँ, पिता से तनावपूर्ण सम्बन्ध।')
-      : t(locale, 'No significant Pitra Dosha. Sun is reasonably well-placed, suggesting good relationship with paternal lineage.', 'महत्वपूर्ण पितृ दोष नहीं। पैतृक वंश से अच्छा सम्बन्ध।'),
+      ? t(locale, `Sun afflicted by Rahu or Saturn — Pitra Dosha. ${pitraEffective === 'cancelled' ? 'Multiple cancellation conditions met — dosha neutralized.' : pitraEffective === 'partial' ? 'One cancellation condition met — partially mitigated.' : ''} Ancestral karmic debts may manifest as career obstacles or strained father relationship.`, `सूर्य पर राहु/शनि दुष्प्रभाव — पितृ दोष। ${pitraEffective === 'cancelled' ? 'अनेक निरसन शर्तें पूर्ण — दोष निष्प्रभावित।' : pitraEffective === 'partial' ? 'एक निरसन शर्त पूर्ण — आंशिक कम।' : ''} पैतृक कार्मिक ऋण।`)
+      : t(locale, 'No significant Pitra Dosha. Sun well-placed — good paternal lineage relationship.', 'पितृ दोष नहीं। पैतृक वंश से अच्छा सम्बन्ध।'),
     remedies: pitraPresent
-      ? t(locale, 'Remedies: 1) Perform Pitra Tarpan on Amavasya. 2) Shraddha ceremonies for ancestors. 3) Donate food to Brahmins. 4) Plant a Peepal tree. 5) Recite Surya mantra daily.', 'उपाय: 1) अमावस्या पर पितृ तर्पण। 2) पूर्वजों के लिए श्राद्ध संस्कार। 3) ब्राह्मणों को भोजन दान। 4) पीपल वृक्ष लगाएँ। 5) सूर्य मन्त्र का दैनिक जप।')
+      ? t(locale, 'Remedies: 1) Pitra Tarpan on Amavasya. 2) Shraddha ceremonies. 3) Donate food to Brahmins. 4) Plant a Peepal tree. 5) Surya mantra daily. 6) Wear Ruby (Manikya) if Sun is weak.', 'उपाय: 1) अमावस्या पर पितृ तर्पण। 2) श्राद्ध संस्कार। 3) ब्राह्मणों को भोजन दान। 4) पीपल लगाएँ। 5) सूर्य मन्त्र। 6) माणिक्य धारण।')
       : '',
   });
 

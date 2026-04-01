@@ -19,7 +19,9 @@ export async function POST(request: Request) {
 
     const kundali = generateKundali(body);
 
-    return NextResponse.json(kundali);
+    return NextResponse.json(kundali, {
+      headers: { 'Cache-Control': 'private, max-age=3600' }, // Cache kundali result for 1 hour
+    });
   } catch {
     return NextResponse.json(
       { error: 'Failed to generate kundali' },

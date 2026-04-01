@@ -290,6 +290,7 @@ export default function KundaliPage() {
               <ShareButton
                 title={`Kundali — ${kundali.birthData.name}`}
                 text={`Vedic birth chart for ${kundali.birthData.name} generated on Jyotish Panchang`}
+                url={typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali/shared?n=${encodeURIComponent(kundali.birthData.name)}&d=${kundali.birthData.date}&t=${kundali.birthData.time}&la=${kundali.birthData.lat}&lo=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}` : undefined}
               />
             </div>
           </div>
@@ -670,6 +671,15 @@ export default function KundaliPage() {
                   { key: 'satabdika', label: locale === 'en' ? 'Satabdika (100yr)' : 'शताब्दिका' },
                   { key: 'chaturaaseethi', label: locale === 'en' ? 'Chaturaaseethi (84yr)' : 'चतुराशीति' },
                   { key: 'shashtihayani', label: locale === 'en' ? 'Shashtihayani (60yr)' : 'षष्ठीहायनी' },
+                  { key: 'mandooka', label: locale === 'en' ? 'Mandooka (Frog)' : 'मण्डूक' },
+                  { key: 'drig', label: locale === 'en' ? 'Drig (Aspect)' : 'दृग्' },
+                  { key: 'moola', label: locale === 'en' ? 'Moola (121yr)' : 'मूल' },
+                  { key: 'navamsha_dasha', label: locale === 'en' ? 'Navamsha' : 'नवांश' },
+                  { key: 'naisargika', label: locale === 'en' ? 'Naisargika (Natural)' : 'नैसर्गिक' },
+                  { key: 'tara', label: locale === 'en' ? 'Tara (Star)' : 'तारा' },
+                  { key: 'tithi_ashtottari', label: locale === 'en' ? 'Tithi Ashtottari (108yr)' : 'तिथि अष्टोत्तरी' },
+                  { key: 'yoga_vimsottari', label: locale === 'en' ? 'Yoga Vimsottari' : 'योग विंशोत्तरी' },
+                  { key: 'buddhi_gathi', label: locale === 'en' ? 'Buddhi Gathi (100yr)' : 'बुद्धि गति' },
                 ].map(dt => (
                   <button key={dt.key} onClick={() => setDashaSystem(dt.key)}
                     className={`px-4 py-1.5 rounded-lg text-xs transition-all ${dashaSystem === dt.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary border border-transparent'}`}>
@@ -680,11 +690,14 @@ export default function KundaliPage() {
               <h3 className="text-gold-gradient text-xl font-bold mb-6 text-center" style={headingFont}>{t('dashaTimeline')}</h3>
               {(() => {
                 // Rasi dashas use signName instead of planetName
-                const rasiDashaKeys = ['narayana', 'kalachakra', 'sthira', 'shoola'];
-                if (rasiDashaKeys.includes(dashaSystem)) {
+                const rasiDashaKeysLocal = ['narayana', 'kalachakra', 'sthira', 'shoola', 'mandooka', 'drig', 'navamsha_dasha'];
+                if (rasiDashaKeysLocal.includes(dashaSystem)) {
                   const rasiData = dashaSystem === 'narayana' ? kundali.narayanaDasha
                     : dashaSystem === 'kalachakra' ? kundali.kalachakraDasha
                     : dashaSystem === 'sthira' ? kundali.sthiraDasha
+                    : dashaSystem === 'mandooka' ? kundali.mandookaDasha
+                    : dashaSystem === 'drig' ? kundali.drigDasha
+                    : dashaSystem === 'navamsha_dasha' ? kundali.navamshaDasha
                     : kundali.shoolaDasha;
                   return (rasiData || []).map((d: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }, i: number) => {
                     const now = new Date();
@@ -707,7 +720,27 @@ export default function KundaliPage() {
                 }
                 return null;
               })()}
-              {!['narayana', 'kalachakra', 'sthira', 'shoola'].includes(dashaSystem) && (dashaSystem === 'yogini' ? kundali.yoginiDashas : dashaSystem === 'ashtottari' ? kundali.ashtottariDashas : kundali.dashas)?.map((dasha, i) => {
+              {!['narayana', 'kalachakra', 'sthira', 'shoola', 'mandooka', 'drig', 'navamsha_dasha'].includes(dashaSystem) && (() => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const grahaDashaMap: Record<string, any[]> = {
+                  vimshottari: kundali.dashas || [],
+                  yogini: kundali.yoginiDashas || [],
+                  ashtottari: kundali.ashtottariDashas || [],
+                  shodasottari: kundali.shodasottariDasha || [],
+                  dwadasottari: kundali.dwadasottariDasha || [],
+                  panchottari: kundali.panchottariDasha || [],
+                  satabdika: kundali.satabdikaDasha || [],
+                  chaturaaseethi: kundali.chaturaaseethiDasha || [],
+                  shashtihayani: kundali.shashtihayaniDasha || [],
+                  moola: kundali.moolaDasha || [],
+                  naisargika: kundali.naisargikaDasha || [],
+                  tara: kundali.taraDasha || [],
+                  tithi_ashtottari: kundali.tithiAshtottariDasha || [],
+                  yoga_vimsottari: kundali.yogaVimsottariDasha || [],
+                  buddhi_gathi: kundali.buddhiGathiDasha || [],
+                };
+                return grahaDashaMap[dashaSystem] || kundali.dashas || [];
+              })().map((dasha: { planetName: Record<string, string>; startDate: string; endDate: string; subPeriods?: { planetName: Record<string, string>; startDate: string; endDate: string }[] }, i: number) => {
                 const now = new Date();
                 const start = new Date(dasha.startDate);
                 const end = new Date(dasha.endDate);
@@ -1708,18 +1741,46 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('doshas')}</h3>
         <div className="space-y-4">
-          {tip.doshas.map((dosha, i) => (
-            <div key={i} className={`p-4 rounded-lg border ${dosha.present ? 'border-red-500/20 bg-red-500/5' : 'border-green-500/10 bg-bg-primary/30'}`}>
+          {tip.doshas.map((dosha, i) => {
+            const effectiveColor = dosha.effectiveSeverity === 'cancelled' ? 'border-green-500/20 bg-green-500/5' : dosha.effectiveSeverity === 'partial' ? 'border-yellow-500/20 bg-yellow-500/5' : dosha.present ? 'border-red-500/20 bg-red-500/5' : 'border-green-500/10 bg-bg-primary/30';
+            return (
+            <div key={i} className={`p-4 rounded-lg border ${effectiveColor}`}>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gold-light font-semibold">{dosha.name}</span>
                 <div className="flex items-center gap-2">
                   {dosha.present && <span className={`text-xs px-2 py-0.5 rounded-full ${severityColors[dosha.severity]}`}>{dosha.severity}</span>}
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${dosha.present ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'}`}>
-                    {dosha.present ? tTip('present') : tTip('absent')}
-                  </span>
+                  {dosha.effectiveSeverity && (
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${dosha.effectiveSeverity === 'cancelled' ? 'bg-green-500/20 text-green-400' : dosha.effectiveSeverity === 'partial' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400'}`}>
+                      {dosha.effectiveSeverity === 'cancelled' ? (locale === 'en' ? 'Cancelled' : 'निरस्त') : dosha.effectiveSeverity === 'partial' ? (locale === 'en' ? 'Partial' : 'आंशिक') : (locale === 'en' ? 'Full' : 'पूर्ण')}
+                    </span>
+                  )}
+                  {!dosha.effectiveSeverity && (
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${dosha.present ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'}`}>
+                      {dosha.present ? tTip('present') : tTip('absent')}
+                    </span>
+                  )}
                 </div>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed">{dosha.description}</p>
+              {dosha.activeDasha && (
+                <p className="text-purple-400 text-xs mt-2">{dosha.activeDasha}</p>
+              )}
+              {dosha.present && dosha.cancellationConditions && dosha.cancellationConditions.length > 0 && (
+                <div className="mt-3 p-3 bg-bg-primary/40 rounded-lg border border-gold-primary/10">
+                  <p className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Cancellation Conditions (BPHS)' : 'निरसन शर्तें (बृहत्पाराशरहोराशास्त्र)'}</p>
+                  <div className="space-y-1.5">
+                    {dosha.cancellationConditions.map((cc, j) => (
+                      <div key={j} className="flex items-start gap-2 text-sm">
+                        <span className={`mt-0.5 w-4 h-4 flex-shrink-0 flex items-center justify-center rounded-full text-xs ${cc.met ? 'bg-green-500/20 text-green-400' : 'bg-red-500/10 text-red-400/60'}`}>
+                          {cc.met ? '✓' : '✗'}
+                        </span>
+                        <span className={`${cc.met ? 'text-green-400' : 'text-text-tertiary'}`}>{cc.condition}</span>
+                        {cc.source && <span className="text-text-tertiary/50 text-xs ml-auto flex-shrink-0">{cc.source}</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               {dosha.present && dosha.remedies && (
                 <div className="mt-3 p-3 bg-amber-500/5 rounded-lg border border-amber-500/10">
                   <p className="text-amber-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Remedial Measures' : 'उपचारात्मक उपाय'}</p>
@@ -1730,7 +1791,8 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                 <ClassicalReferencesBlock refs={dosha.classicalReferences} locale={locale} isDevanagari={isDevanagari} />
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 

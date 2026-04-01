@@ -14,7 +14,7 @@ import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
 import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
-import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, calculateKalachakraDasha, calculateSudarsanaDasha } from '@/lib/kundali/additional-dashas';
+import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, calculateKalachakraDasha, calculateSudarsanaDasha, calculateShodasottariDasha, calculateDwadasottariDasha, calculatePanchottariDasha, calculateSatabdikaDasha, calculateChaturaaseethiDasha, calculateShashtihayaniDasha, calculateMandookaDasha, calculateDrigDasha, calculateMoolaDasha, calculateNavamshaDasha, calculateNaisargikaDasha, calculateTaraDasha, calculateTithiAshtottariDasha, calculateYogaVimsottariDasha, calculateBuddhiGathiDasha } from '@/lib/kundali/additional-dashas';
 import { calculateAvasthas } from '@/lib/kundali/avasthas';
 import { calculateArgala } from '@/lib/kundali/argala';
 import { calculateSphutas } from '@/lib/kundali/sphutas';
@@ -839,6 +839,24 @@ export function generateKundali(birthData: BirthData): KundaliData {
     sthiraDasha: calculateSthiraDasha(ascSign, birthDate),
     kalachakraDasha: calculateKalachakraDasha(moonSidLong, birthDate),
     sudarsanaDasha: calculateSudarsanaDasha(ascSign, planets.find(p => p.planet.id === 1)?.sign || 1, planets.find(p => p.planet.id === 0)?.sign || 1, year),
+    shodasottariDasha: calculateShodasottariDasha(moonSidLong, birthDate),
+    dwadasottariDasha: calculateDwadasottariDasha(moonSidLong, birthDate),
+    panchottariDasha: calculatePanchottariDasha(moonSidLong, birthDate),
+    satabdikaDasha: calculateSatabdikaDasha(moonSidLong, birthDate),
+    chaturaaseethiDasha: calculateChaturaaseethiDasha(moonSidLong, birthDate),
+    shashtihayaniDasha: calculateShashtihayaniDasha(moonSidLong, birthDate),
+    mandookaDasha: calculateMandookaDasha(ascSign, birthDate),
+    drigDasha: calculateDrigDasha(ascSign, planets, birthDate),
+    moolaDasha: calculateMoolaDasha(moonSidLong, birthDate),
+    navamshaDasha: calculateNavamshaDasha(ascSign, moonSidLong, birthDate),
+    naisargikaDasha: calculateNaisargikaDasha(birthDate),
+    taraDasha: calculateTaraDasha(moonSidLong, birthDate),
+    tithiAshtottariDasha: calculateTithiAshtottariDasha(moonSidLong, birthDate),
+    yogaVimsottariDasha: calculateYogaVimsottariDasha(
+      planets.find(p => p.planet.id === 0)?.longitude || 0,
+      moonSidLong, birthDate
+    ),
+    buddhiGathiDasha: calculateBuddhiGathiDasha(moonSidLong, birthDate),
     specialLagnas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const sunDeg = sunP?.longitude || 0;

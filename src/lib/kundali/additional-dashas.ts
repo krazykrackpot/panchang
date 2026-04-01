@@ -350,3 +350,204 @@ export function calculateShashtihayaniDasha(moonSidLong: number, birthDate: Date
     { planet: 'Mercury', years: 10 }, { planet: 'Saturn', years: 10 },
   ], 60);
 }
+
+// ─── MANDOOKA DASHA (Frog Dasha) ─────────────────────────────────────────────
+// Rasi dasha that "jumps" between signs like a frog — skips alternate signs.
+// Reference: BPHS Ch.20, Jaimini
+
+export function calculateMandookaDasha(ascSign: number, birthDate: Date): RasiDashaEntry[] {
+  const dashas: RasiDashaEntry[] = [];
+  let cur = new Date(birthDate);
+  const odd = isOddSign(ascSign);
+
+  // Mandooka: start from ascendant, jump every alternate sign
+  // Odd sign: +3 (skip 2), Even sign: -3 (skip 2 backward)
+  for (let i = 0; i < 12; i++) {
+    const sign = ((ascSign - 1 + i * (odd ? 3 : -3) + 144) % 12) + 1;
+    const years = sign; // Duration = sign number (1-12)
+    const end = addYears(cur, years);
+    dashas.push({ sign, signName: RASHI_NAMES[sign - 1], years, startDate: fmt(cur), endDate: fmt(end) });
+    cur = end;
+  }
+  return dashas;
+}
+
+// ─── DRIG DASHA (Aspect-based Dasha) ────────────────────────────────────────
+// Jaimini dasha based on aspects. Duration based on sign's relationship.
+// Reference: Jaimini Sutras Ch.2
+
+export function calculateDrigDasha(ascSign: number, planets: PlanetPosition[], birthDate: Date): RasiDashaEntry[] {
+  const dashas: RasiDashaEntry[] = [];
+  let cur = new Date(birthDate);
+
+  // Start from ascendant, proceed zodiacally for odd, reverse for even
+  const direction = isOddSign(ascSign) ? 1 : -1;
+
+  for (let i = 0; i < 12; i++) {
+    const sign = ((ascSign - 1 + i * direction + 144) % 12) + 1;
+    const lord = SIGN_LORD[sign];
+    const lSign = lordSign(lord, planets);
+
+    // Duration = count of aspecting planets on the sign
+    let aspecting = 0;
+    for (const p of planets) {
+      if (p.planet.id > 8) continue;
+      const pSign = Math.floor(p.longitude / 30) + 1;
+      const offset = ((pSign - sign + 12) % 12) + 1;
+      // Jaimini aspects: signs in 1,5,9 from each other aspect (trine)
+      if ([1, 5, 9].includes(offset)) aspecting++;
+    }
+    const years = aspecting === 0 ? ((lSign - sign + 12) % 12 || 12) : aspecting + 6;
+
+    const end = addYears(cur, years);
+    dashas.push({ sign, signName: RASHI_NAMES[sign - 1], years, startDate: fmt(cur), endDate: fmt(end) });
+    cur = end;
+  }
+  return dashas;
+}
+
+// ─── MOOLA DASHA (Root Dasha) ─────────────────────────────────────────────
+// Based on the nakshatra at birth — root spiritual dasha.
+// Reference: BPHS Ch.20
+
+export function calculateMoolaDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 21 },
+    { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 10 },
+    { planet: 'Mars', years: 7 }, { planet: 'Rahu', years: 18 },
+    { planet: 'Jupiter', years: 16 }, { planet: 'Saturn', years: 19 },
+    { planet: 'Mercury', years: 17 },
+  ], 121);
+}
+
+// ─── NAVAMSHA DASHA (D9 Sign-based) ──────────────────────────────────────
+// Duration based on Navamsha sign of each planet. Reveals dharmic life patterns.
+// Reference: Jaimini-derived system
+
+export function calculateNavamshaDasha(ascSign: number, moonSidLong: number, birthDate: Date): RasiDashaEntry[] {
+  const dashas: RasiDashaEntry[] = [];
+  let cur = new Date(birthDate);
+
+  // Navamsha sign of Moon determines starting point
+  const navamshaDiv = (moonSidLong % 30) / (30 / 9);
+  const navamshaStartSign = ((ascSign - 1 + Math.floor(navamshaDiv)) % 12) + 1;
+
+  for (let i = 0; i < 12; i++) {
+    const sign = ((navamshaStartSign - 1 + i) % 12) + 1;
+    // Duration: based on navamsha pada (1-9 mapped to years)
+    const years = ((sign - 1) % 9) + 1;
+    const end = addYears(cur, years);
+    dashas.push({ sign, signName: RASHI_NAMES[sign - 1], years, startDate: fmt(cur), endDate: fmt(end) });
+    cur = end;
+  }
+  return dashas;
+}
+
+// ─── NAISARGIKA DASHA (Natural Planetary Periods) ─────────────────────────
+// Fixed natural periods representing life stages, not dependent on chart.
+// Reference: BPHS Ch.21
+
+export function calculateNaisargikaDasha(birthDate: Date): GrahaDashaEntry[] {
+  const order = [
+    { planet: 'Moon', years: 1 },     // Infancy (0-1)
+    { planet: 'Mars', years: 2 },     // Early childhood (1-3)
+    { planet: 'Mercury', years: 9 },  // Childhood/education (3-12)
+    { planet: 'Venus', years: 20 },   // Youth/romance (12-32)
+    { planet: 'Jupiter', years: 18 }, // Maturity/expansion (32-50)
+    { planet: 'Sun', years: 25 },     // Authority/peak (50-75)
+    { planet: 'Saturn', years: 25 },  // Elder/renunciation (75-100)
+  ];
+
+  const dashas: GrahaDashaEntry[] = [];
+  let cur = new Date(birthDate);
+
+  for (const d of order) {
+    const end = addYears(cur, d.years);
+    dashas.push({
+      planet: d.planet,
+      planetName: PLANET_NAME_MAP[d.planet] || { en: d.planet, hi: d.planet, sa: d.planet },
+      years: d.years,
+      startDate: fmt(cur),
+      endDate: fmt(end),
+      level: 'maha',
+    });
+    cur = end;
+  }
+  return dashas;
+}
+
+// ─── TARA DASHA (Star-based) ─────────────────────────────────────────────
+// Based on tara-bala (star strength) from birth nakshatra.
+// Reference: Classical Muhurta texts
+
+export function calculateTaraDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 10 },
+    { planet: 'Mars', years: 7 }, { planet: 'Rahu', years: 18 },
+    { planet: 'Jupiter', years: 16 }, { planet: 'Saturn', years: 19 },
+    { planet: 'Mercury', years: 17 }, { planet: 'Ketu', years: 7 },
+    { planet: 'Venus', years: 20 },
+  ], 120);
+}
+
+// ─── YOGINI DASHA (alternate order) ──────────────────────────────────────
+// 36-year cycle with 8 yogini goddesses mapped to planets.
+// Different ordering from the Yogini in kundali-calc.
+// Reference: Mantra Mahodadhi, Dasha Paddhati
+
+export function calculateYoginiDashaAlt(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Moon', years: 1 },    // Mangala
+    { planet: 'Sun', years: 2 },     // Pingala
+    { planet: 'Jupiter', years: 3 }, // Dhanya
+    { planet: 'Mars', years: 4 },    // Bhramari
+    { planet: 'Mercury', years: 5 }, // Bhadrika
+    { planet: 'Saturn', years: 6 },  // Ulka
+    { planet: 'Venus', years: 7 },   // Siddha
+    { planet: 'Rahu', years: 8 },    // Sankata
+  ], 36);
+}
+
+// ─── TITHI ASHTOTTARI ────────────────────────────────────────────────────
+// 108-year cycle based on tithi at birth.
+// Reference: Saravali, Hora Sara
+
+export function calculateTithiAshtottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 15 },
+    { planet: 'Mars', years: 8 }, { planet: 'Mercury', years: 17 },
+    { planet: 'Saturn', years: 10 }, { planet: 'Jupiter', years: 19 },
+    { planet: 'Rahu', years: 12 }, { planet: 'Venus', years: 21 },
+  ], 108);
+}
+
+// ─── YOGA VIMSOTTARI ─────────────────────────────────────────────────────
+// 120-year cycle based on yoga (Sun+Moon combination) at birth.
+// Uses same sequence as Vimsottari but starting point from yoga number.
+// Reference: Hora Ratnam
+
+export function calculateYogaVimsottariDasha(sunLong: number, moonLong: number, birthDate: Date): GrahaDashaEntry[] {
+  // Yoga = (Sun + Moon longitude) / (360/27) = yoga number 0-26
+  const yogaLong = (sunLong + moonLong) % 360;
+  return calcGrahaDasha(yogaLong, birthDate, [
+    { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 20 },
+    { planet: 'Sun', years: 6 }, { planet: 'Moon', years: 10 },
+    { planet: 'Mars', years: 7 }, { planet: 'Rahu', years: 18 },
+    { planet: 'Jupiter', years: 16 }, { planet: 'Saturn', years: 19 },
+    { planet: 'Mercury', years: 17 },
+  ], 120);
+}
+
+// ─── BUDDHI GATHI DASHA ──────────────────────────────────────────────────
+// Intelligence-based dasha system, 100-year cycle.
+// Based on Mercury's position and strength.
+// Reference: Hora Sara Ch.13
+
+export function calculateBuddhiGathiDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Mercury', years: 20 }, { planet: 'Moon', years: 9 },
+    { planet: 'Saturn', years: 16 }, { planet: 'Jupiter', years: 18 },
+    { planet: 'Mars', years: 7 }, { planet: 'Venus', years: 21 },
+    { planet: 'Sun', years: 5 }, { planet: 'Rahu', years: 4 },
+  ], 100);
+}

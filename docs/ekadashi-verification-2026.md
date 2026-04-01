@@ -125,3 +125,13 @@ For western hemisphere timezones (UTC-5 to UTC-12), tithis that start in the eve
 | Corseaux, CH | Europe/Zurich | Yes | 22/24 | +2-3 min | 2 off = Drik rule difference |
 | New Delhi, IN | Asia/Kolkata | No | 19/22 | +0-1 min | 3 off = Adhika boundary |
 | Seattle, US | America/Los_Angeles | Yes | 6/22 | +0-2 min | 16 off = west hemisphere date shift |
+
+### Tithi Start & End Time Variance (direct startTime/endTime from tithiTransition)
+
+**Bern/Corseaux (Europe/Zurich):** ALL 24 Ekadashis +0 to +1 minute on both begin and end.
+
+**New Delhi (Asia/Kolkata):** 18/19 Ekadashis +0 to +1 minute. One anomaly (Yogini Jul 10) in backward scan.
+
+**Seattle (America/Los_Angeles):** 6/10 sampled dates +0 to +1 minute. Remaining 4 show +31 to +174m due to start-time backward scan crossing day boundaries in negative UTC offsets.
+
+**Key finding:** The FORWARD scan (tithi END time) is highly accurate across all timezones. The BACKWARD scan (tithi START time) has edge cases in western hemisphere timezones where day boundaries interact with negative UTC offsets.

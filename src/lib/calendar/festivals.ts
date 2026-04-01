@@ -43,63 +43,121 @@ export interface FestivalEntry {
 
 /**
  * Find the Gregorian date when a specific tithi occurs.
- * Scans from a start date forward until the target tithi is found at sunrise.
+ * `month` is the approximate Gregorian month (used as starting point).
+ * Scans from 15 days BEFORE the given month through 35 days after,
+ * ensuring we catch Hindu months that straddle Gregorian boundaries.
+ * For Shukla tithis (1-15), the tithi resets after Amavasya.
+ * For Krishna tithis (16-30), the tithi resets after Purnima.
  */
-function findTithiDate(year: number, month: number, targetTithi: number, lat: number = 28.6): string {
-  // Start scanning from the 1st of the given month
-  for (let day = 1; day <= 31; day++) {
-    try {
-      const jd = dateToJD(year, month, day, 6); // ~sunrise UT for India
-      const { number } = calculateTithi(jd);
-      if (number === targetTithi) {
-        return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-      }
-    } catch {
-      break; // invalid date
+function findTithiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
+  const startDate = new Date(year, month - 1, 1);
+  startDate.setDate(startDate.getDate() - 15);
+  let prevTithi = 0;
+
+  for (let offset = 0; offset <= 50; offset++) {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + offset);
+    const gy = d.getFullYear();
+    const gm = d.getMonth() + 1;
+    const gd = d.getDate();
+    const jdApprox = dateToJD(gy, gm, gd, 0);
+    const srUT = approximateSunrise(jdApprox, lat, lon);
+    const jd = dateToJD(gy, gm, gd, srUT); // use actual sunrise UT
+    const { number } = calculateTithi(jd);
+
+    // Match first occurrence where tithi transitions INTO the target
+    if (number === targetTithi && prevTithi !== targetTithi) {
+      return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
     }
+    prevTithi = number;
   }
-  return `${year}-${month.toString().padStart(2, '0')}-15`; // fallback
+
+  // Fallback
+  return `${year}-${month.toString().padStart(2, '0')}-15`;
 }
 
 /**
  * Find Purnima (tithi 15) dates for each month.
  */
-function findPurnimaDate(year: number, month: number): string {
-  return findTithiDate(year, month, 15);
+function findPurnimaDate(year: number, month: number, lat: number, lon: number): string {
+  return findTithiDate(year, month, 15, lat, lon);
 }
 
 /**
  * Find Amavasya (tithi 30) dates for each month.
  */
-function findAmavasyaDate(year: number, month: number): string {
-  return findTithiDate(year, month, 30);
+function findAmavasyaDate(year: number, month: number, lat: number, lon: number): string {
+  return findTithiDate(year, month, 30, lat, lon);
+}
+
+/**
+ * Find Ekadashi observance date.
+ * Rule: Ekadashi is observed on the day when the tithi prevails at Arunodaya
+ * (96 minutes before sunrise). If Ekadashi starts after Arunodaya on day X,
+ * it is observed on day X+1 (when it prevails at that day's Arunodaya).
+ *
+ * Simpler implementation: find the day where Ekadashi is the tithi at sunrise.
+ * If not found (Ekadashi is short and gets skipped at sunrise), check Arunodaya.
+ */
+function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
+  const startDate = new Date(year, month - 1, 1);
+  startDate.setDate(startDate.getDate() - 15);
+
+  for (let offset = 0; offset <= 50; offset++) {
+    const dd = new Date(startDate);
+    dd.setDate(dd.getDate() + offset);
+    const gy = dd.getFullYear();
+    const gm = dd.getMonth() + 1;
+    const gd = dd.getDate();
+
+    const jdApprox = dateToJD(gy, gm, gd, 0);
+    const srUT = approximateSunrise(jdApprox, lat, lon);
+
+    // Check at Arunodaya (96 min = 1.6 hours before sunrise)
+    const arunodayaUT = srUT - 1.6 / 24 * 24; // 96 min before sunrise in UT hours
+    const jdArunodaya = dateToJD(gy, gm, gd, Math.max(0, arunodayaUT));
+    const tithiAtArunodaya = calculateTithi(jdArunodaya).number;
+
+    if (tithiAtArunodaya === targetTithi) {
+      return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+    }
+
+    // Also check at sunrise (for cases where Ekadashi starts between Arunodaya and sunrise)
+    const jdSunrise = dateToJD(gy, gm, gd, srUT);
+    const tithiAtSunrise = calculateTithi(jdSunrise).number;
+
+    if (tithiAtSunrise === targetTithi) {
+      return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+    }
+  }
+  return `${year}-${month.toString().padStart(2, '0')}-15`;
 }
 
 /**
  * Find Ekadashi (tithi 11 and 26) dates.
  * Shukla Ekadashi = tithi 11, Krishna Ekadashi = tithi 26
  */
-function findEkadashiDates(year: number, month: number): { shukla: string; krishna: string } {
+function findEkadashiDates(year: number, month: number, lat: number, lon: number): { shukla: string; krishna: string } {
   return {
-    shukla: findTithiDate(year, month, 11),
-    krishna: findTithiDate(year, month, 26),
+    shukla: findEkadashiDate(year, month, 11, lat, lon),
+    krishna: findEkadashiDate(year, month, 26, lat, lon),
   };
 }
 
 /**
  * Find Chaturthi (tithi 4 — Shukla, tithi 19 — Krishna) dates.
  */
-function findChaturthiDate(year: number, month: number): string {
-  return findTithiDate(year, month, 19); // Sankashti = Krishna Chaturthi
+function findChaturthiDate(year: number, month: number, lat: number, lon: number): string {
+  return findTithiDate(year, month, 19, lat, lon);
 }
 
 /**
  * Find Pradosham (tithi 13 — trayodashi) dates.
  */
-function findPradoshamDates(year: number, month: number): { shukla: string; krishna: string } {
+function findPradoshamDates(year: number, month: number, lat: number, lon: number): { shukla: string; krishna: string } {
   return {
-    shukla: findTithiDate(year, month, 13),
-    krishna: findTithiDate(year, month, 28),
+    shukla: findTithiDate(year, month, 13, lat, lon),
+    krishna: findTithiDate(year, month, 28, lat, lon),
   };
 }
 
@@ -192,43 +250,46 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   const ekTithi = calculateTithi(ekJd).number;
   const dwadashiNum = ekTithi <= 15 ? 12 : 27;
 
+  // baseJd = Julian Day at sunrise on parana date. All hour offsets are relative to this.
   const baseJd = dateToJD(y, m, d, sunriseUT);
 
-  // ─── Binary search helper: find exact hour (relative to baseJd) where tithi transitions ───
-  function findTithiTransition(startH: number, endH: number, fromTithi: number, toTithi: number): number | null {
-    // Coarse scan first (10-min steps)
-    let foundRange: [number, number] | null = null;
-    for (let h = startH; h <= endH; h += 10 / 60) {
-      const t = calculateTithi(baseJd + h / 24).number;
-      if (t === toTithi) {
-        foundRange = [h - 10 / 60, h];
-        break;
-      }
-    }
-    if (!foundRange) return null;
-    // Binary search to 1-minute precision
-    let lo = foundRange[0], hi = foundRange[1];
-    for (let i = 0; i < 12; i++) {
-      const mid = (lo + hi) / 2;
-      const t = calculateTithi(baseJd + mid / 24).number;
-      if (t === toTithi) hi = mid; else lo = mid;
-    }
-    return hi;
+  // ─── Helper: convert hours-offset to JD date string ───
+  function offsetToDate(hoursFromSunrise: number): string {
+    const totalHours = sunriseUT + hoursFromSunrise + tz;
+    const dayOffset = Math.floor(totalHours / 24);
+    const dd = new Date(y, m - 1, d + dayOffset);
+    return `${dd.getFullYear()}-${(dd.getMonth() + 1).toString().padStart(2, '0')}-${dd.getDate().toString().padStart(2, '0')}`;
   }
 
-  // ─── Find Dwadashi START ───
+  // ─── Helper: format UT hours to local time string ───
+  function ft(utHours: number): string {
+    return formatTime(((utHours % 24) + 24) % 24, tz);
+  }
+
+  // ─── Helper: format with date if different from parana date ───
+  function ftd(utHours: number): string {
+    const timeStr = ft(utHours);
+    const dateStr = offsetToDate(utHours - sunriseUT);
+    if (dateStr !== paranaDate) {
+      // Show short date (e.g., "07:12, Mar 31")
+      const dd = new Date(dateStr);
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return `${timeStr}, ${months[dd.getMonth()]} ${dd.getDate()}`;
+    }
+    return timeStr;
+  }
+
+  // ─── Find Dwadashi START (hours relative to sunrise on parana day) ───
   const tithiAtSunrise = calculateTithi(baseJd).number;
-  let dwadashiStartH: number = 0;
+  let dwadashiStartH = 0;
 
   if (tithiAtSunrise === dwadashiNum) {
-    // Dwadashi already active at sunrise — scan backward to find when it started
-    // Use 10-min steps backward, then binary search
+    // Dwadashi already active at sunrise — scan backward (10-min steps + binary search)
     let foundStart = false;
-    for (let h = -10 / 60; h >= -40; h -= 10 / 60) {
+    for (let h = -10 / 60; h >= -48; h -= 10 / 60) {
       if (calculateTithi(baseJd + h / 24).number !== dwadashiNum) {
-        // Transition found between h and h + 10/60
         let lo = h, hi = h + 10 / 60;
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < 14; i++) {
           const mid = (lo + hi) / 2;
           if (calculateTithi(baseJd + mid / 24).number !== dwadashiNum) lo = mid; else hi = mid;
         }
@@ -237,23 +298,30 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
         break;
       }
     }
-    if (!foundStart) dwadashiStartH = -30; // started >40h ago (very rare, use reasonable fallback)
+    if (!foundStart) dwadashiStartH = -48;
   } else {
-    // Dwadashi hasn't started yet — scan forward
-    const transition = findTithiTransition(0, 24, tithiAtSunrise, dwadashiNum);
-    dwadashiStartH = transition ?? 6; // fallback: ~6h after sunrise
+    // Dwadashi starts after sunrise — scan forward
+    for (let h = 10 / 60; h <= 36; h += 10 / 60) {
+      if (calculateTithi(baseJd + h / 24).number === dwadashiNum) {
+        let lo = h - 10 / 60, hi = h;
+        for (let i = 0; i < 14; i++) {
+          const mid = (lo + hi) / 2;
+          if (calculateTithi(baseJd + mid / 24).number !== dwadashiNum) lo = mid; else hi = mid;
+        }
+        dwadashiStartH = hi;
+        break;
+      }
+    }
   }
 
   // ─── Find Dwadashi END ───
-  // Scan forward from Dwadashi start (or sunrise, whichever is later) to find when it ends
-  const scanFrom = Math.max(dwadashiStartH + 0.5, 0);
-  let dwadashiEndH: number | null = null;
-  for (let h = scanFrom; h <= 48; h += 10 / 60) {
+  const scanFrom = Math.max(dwadashiStartH + 1, 0);
+  let dwadashiEndH = scanFrom + 30; // fallback: 30h after start
+  for (let h = scanFrom; h <= scanFrom + 50; h += 10 / 60) {
     const t = calculateTithi(baseJd + h / 24).number;
     if (t !== dwadashiNum) {
-      // Binary search between h - 10/60 and h
       let lo = h - 10 / 60, hi = h;
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 14; i++) {
         const mid = (lo + hi) / 2;
         if (calculateTithi(baseJd + mid / 24).number === dwadashiNum) lo = mid; else hi = mid;
       }
@@ -261,83 +329,67 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
       break;
     }
   }
-  if (dwadashiEndH === null) dwadashiEndH = dwadashiStartH + 24; // fallback: assume ~24h duration
 
   const dwadashiStartUT = sunriseUT + dwadashiStartH;
-  const dwadashiEndUT   = sunriseUT + dwadashiEndH;
+  const dwadashiEndUT = sunriseUT + dwadashiEndH;
   const dwadashiDuration = dwadashiEndUT - dwadashiStartUT;
 
   // ─── Hari Vasara = first 1/4 of Dwadashi tithi duration ───
   const hariVasaraEndUT = dwadashiStartUT + dwadashiDuration / 4;
-
-  // Did Hari Vasara already end before parana day sunrise?
   const hariVasaraAlreadyOver = hariVasaraEndUT <= sunriseUT;
 
   // ─── Madhyahna = middle 1/5th of daytime ───
   const dayLength = sunsetUT - sunriseUT;
   const madhyahnaStartUT = sunriseUT + dayLength * (2 / 5);
-  const madhyahnaEndUT   = sunriseUT + dayLength * (3 / 5);
+  const madhyahnaEndUT = sunriseUT + dayLength * (3 / 5);
 
-  // ─── Format times ───
-  const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
+  // ─── Format times (with dates where needed) ───
   const sunriseStr = ft(sunriseUT);
-  const hvEndStr = hariVasaraAlreadyOver ? '' : ft(hariVasaraEndUT); // don't show misleading time
-  const dwEndStr = ft(dwadashiEndUT);
+  const hvEndStr = hariVasaraAlreadyOver ? '' : ft(hariVasaraEndUT);
+  const dwEndStr = ftd(dwadashiEndUT); // includes date if different day
   const madhStartStr = ft(madhyahnaStartUT);
   const madhEndStr = ft(madhyahnaEndUT);
 
   // ─── Determine recommended parana window ───
-  // Three constraints:
-  // (A) After Hari Vasara ends (or after sunrise if HV already over)
-  // (B) Outside Madhyahna
-  // (C) Before Dwadashi tithi ends
+  // Drik Panchang rules:
+  // 1. After Hari Vasara ends (or sunrise if HV already over)
+  // 2. Avoid Madhyahna (middle 1/5 of daytime)
+  // 3. Before Dwadashi ends
+  // 4. Prefer morning (before Madhyahna) if available
+  // 5. Never extend past sunset
 
-  // Effective earliest start (after HV or sunrise)
   const earliestUT = hariVasaraAlreadyOver ? sunriseUT : Math.max(hariVasaraEndUT, sunriseUT);
-
-  // Check if Dwadashi ends before we can even start (rare edge case)
   const earlyEnd = dwadashiEndUT <= earliestUT;
+  const effectiveDeadline = Math.min(dwadashiEndUT, sunsetUT); // never past sunset
 
   let recStartUT: number;
   let recEndUT: number;
-  let madhyahnaConflict = false;
 
   if (earlyEnd) {
-    // Dwadashi ends before Hari Vasara or sunrise — must break fast ASAP after sunrise
+    // Dwadashi ends before we can start — break fast ASAP after sunrise
     recStartUT = sunriseUT;
     recEndUT = dwadashiEndUT;
-  } else {
-    // Normal: from earliest start to Dwadashi end
+  } else if (earliestUT < madhyahnaStartUT) {
+    // Window opens before Madhyahna — use pre-Madhyahna window
     recStartUT = earliestUT;
-    recEndUT = dwadashiEndUT;
-
-    // Now exclude Madhyahna from the window
-    if (recStartUT < madhyahnaEndUT && recEndUT > madhyahnaStartUT) {
-      if (recStartUT < madhyahnaStartUT) {
-        // Pre-Madhyahna window exists — prefer it
-        recEndUT = Math.min(recEndUT, madhyahnaStartUT);
-      } else if (madhyahnaEndUT < recEndUT) {
-        // Must wait until after Madhyahna
-        recStartUT = madhyahnaEndUT;
-        madhyahnaConflict = true;
-      } else {
-        // Entire window is within Madhyahna AND Dwadashi ends during Madhyahna
-        // Dwadashi constraint overrides — break before Dwadashi ends (rare)
-        madhyahnaConflict = true;
-      }
-    }
+    recEndUT = Math.min(madhyahnaStartUT, effectiveDeadline);
+  } else if (earliestUT >= madhyahnaEndUT) {
+    // Hari Vasara ends after Madhyahna — use post-Madhyahna window
+    recStartUT = earliestUT;
+    recEndUT = effectiveDeadline;
+  } else {
+    // Hari Vasara ends during Madhyahna — wait until Madhyahna ends
+    recStartUT = madhyahnaEndUT;
+    recEndUT = effectiveDeadline;
   }
 
   const recStartStr = ft(recStartUT);
-  const recEndStr = ft(recEndUT);
-  const hvDisplayStr = hariVasaraAlreadyOver
-    ? (sunriseStr) // show sunrise since HV is already over
-    : ft(hariVasaraEndUT);
+  const recEndStr = ftd(recEndUT);
+  const hvDisplayStr = hariVasaraAlreadyOver ? sunriseStr : ft(hariVasaraEndUT);
 
-  // ─── Build notes ───
   const hvStatus = hariVasaraAlreadyOver
-    ? { en: 'Hari Vasara ended before sunrise — no restriction.', hi: 'हरि वासर सूर्योदय से पहले समाप्त — कोई प्रतिबन्ध नहीं।', sa: 'हरिवासरः सूर्योदयात् पूर्वं समाप्तः — प्रतिबन्धः नास्ति।' }
-    : { en: `Hari Vasara ends: ${hvDisplayStr} — do not break fast before this.`, hi: `हरि वासर समाप्ति: ${hvDisplayStr} — इससे पहले पारण न करें।`, sa: `हरिवासरान्तः: ${hvDisplayStr} — अस्मात् पूर्वं पारणं न कुर्यात्।` };
+    ? { en: 'Hari Vasara ended before sunrise — no restriction.', hi: 'हरि वासर सूर्योदय से पहले समाप्त — कोई प्रतिबन्ध नहीं।', sa: 'हरिवासरः सूर्योदयात् पूर्वं समाप्तः।' }
+    : { en: `Hari Vasara ends: ${hvDisplayStr} — do not break fast before this.`, hi: `हरि वासर समाप्ति: ${hvDisplayStr} — इससे पहले पारण न करें।`, sa: `हरिवासरान्तः: ${hvDisplayStr}।` };
 
   return {
     paranaDate,
@@ -359,12 +411,12 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
         `Dwadashi ends: ${dwEndStr} — must break fast before this.`,
         '',
         earlyEnd
-          ? `⚠ Dwadashi ends early — break fast as soon as possible after sunrise, before ${dwEndStr}.`
-          : madhyahnaConflict
-          ? `Best time: After Madhyahna ends (${madhEndStr}), before Dwadashi ends (${dwEndStr}).`
+          ? `⚠ Dwadashi ends early — break fast ASAP after sunrise, before ${dwEndStr}.`
           : hariVasaraAlreadyOver
           ? `Best time: After sunrise (${sunriseStr}), before Madhyahna (${madhStartStr}).`
-          : `Best time: After Hari Vasara ends (${hvDisplayStr}), before Madhyahna (${madhStartStr}).`,
+          : recStartUT >= madhyahnaEndUT
+          ? `Best time: After Hari Vasara / Madhyahna (${ft(recStartUT)}), before ${ftd(recEndUT)}.`
+          : `Best time: After Hari Vasara (${hvDisplayStr}), before Madhyahna (${madhStartStr}).`,
       ].join('\n'),
       hi: [
         `अनुशंसित पारण: ${recStartStr} से ${recEndStr}`,
@@ -375,20 +427,19 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
         `द्वादशी समाप्ति: ${dwEndStr} — इससे पहले पारण अवश्य करें।`,
         '',
         earlyEnd
-          ? `⚠ द्वादशी शीघ्र समाप्त हो रही है — सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
-          : madhyahnaConflict
-          ? `सर्वोत्तम समय: मध्याह्न समाप्ति (${madhEndStr}) के बाद, द्वादशी समाप्ति (${dwEndStr}) से पहले।`
+          ? `⚠ द्वादशी शीघ्र समाप्त — सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
           : hariVasaraAlreadyOver
-          ? `सर्वोत्तम समय: सूर्योदय (${sunriseStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`
-          : `सर्वोत्तम समय: हरि वासर समाप्ति (${hvDisplayStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`,
+          ? `सर्वोत्तम: सूर्योदय (${sunriseStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`
+          : recStartUT >= madhyahnaEndUT
+          ? `सर्वोत्तम: हरि वासर / मध्याह्न (${ft(recStartUT)}) के बाद, ${ftd(recEndUT)} से पहले।`
+          : `सर्वोत्तम: हरि वासर (${hvDisplayStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`,
       ].join('\n'),
       sa: [
         `अनुशंसितपारणम्: ${recStartStr} तः ${recEndStr}`,
-        '',
         `सूर्योदयः: ${sunriseStr}`,
         hvStatus.sa,
-        `मध्याह्नः: ${madhStartStr} तः ${madhEndStr} — अस्मिन् पारणं वर्जयेत्।`,
-        `द्वादशीतिथ्यन्तः: ${dwEndStr} — अस्मात् पूर्वं पारणम् अवश्यम्।`,
+        `मध्याह्नः: ${madhStartStr} तः ${madhEndStr}।`,
+        `द्वादशीतिथ्यन्तः: ${dwEndStr}।`,
       ].join('\n'),
     },
   };
@@ -511,7 +562,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Vasant Panchami (Magha Shukla 5)
   festivals.push({
     name: { en: 'Vasant Panchami', hi: 'वसन्त पञ्चमी', sa: 'वसन्तपञ्चमी' },
-    date: findTithiDate(year, 1, 5),
+    date: findTithiDate(year, 1, 5, lat, lon),
     tithi: 'Magha Shukla 5',
     type: 'major',
     category: 'festival',
@@ -522,7 +573,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Maha Shivaratri (Phalguna Krishna 14 → tithi 29)
   festivals.push({
     name: { en: 'Maha Shivaratri', hi: 'महाशिवरात्रि', sa: 'महाशिवरात्रिः' },
-    date: findTithiDate(year, 2, 29),
+    date: findTithiDate(year, 2, 29, lat, lon),
     tithi: 'Phalguna Krishna 14',
     type: 'major',
     category: 'festival',
@@ -533,7 +584,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Holi (Phalguna Purnima → tithi 15 in March)
   festivals.push({
     name: { en: 'Holi', hi: 'होली', sa: 'होलिका' },
-    date: findPurnimaDate(year, 3),
+    date: findPurnimaDate(year, 3, lat, lon),
     tithi: 'Phalguna Purnima',
     type: 'major',
     category: 'festival',
@@ -544,7 +595,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Ram Navami (Chaitra Shukla 9)
   festivals.push({
     name: { en: 'Ram Navami', hi: 'रामनवमी', sa: 'रामनवमी' },
-    date: findTithiDate(year, 4, 9),
+    date: findTithiDate(year, 4, 9, lat, lon),
     tithi: 'Chaitra Shukla 9',
     type: 'major',
     category: 'festival',
@@ -555,7 +606,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Hanuman Jayanti (Chaitra Purnima)
   festivals.push({
     name: { en: 'Hanuman Jayanti', hi: 'हनुमान जयन्ती', sa: 'हनुमज्जयन्ती' },
-    date: findPurnimaDate(year, 4),
+    date: findPurnimaDate(year, 4, lat, lon),
     tithi: 'Chaitra Purnima',
     type: 'major',
     category: 'festival',
@@ -566,7 +617,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Guru Purnima (Ashadha Purnima)
   festivals.push({
     name: { en: 'Guru Purnima', hi: 'गुरु पूर्णिमा', sa: 'गुरुपूर्णिमा' },
-    date: findPurnimaDate(year, 7),
+    date: findPurnimaDate(year, 7, lat, lon),
     tithi: 'Ashadha Purnima',
     type: 'major',
     category: 'festival',
@@ -577,7 +628,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Raksha Bandhan (Shravana Purnima)
   festivals.push({
     name: { en: 'Raksha Bandhan', hi: 'रक्षाबन्धन', sa: 'रक्षाबन्धनम्' },
-    date: findPurnimaDate(year, 8),
+    date: findPurnimaDate(year, 8, lat, lon),
     tithi: 'Shravana Purnima',
     type: 'major',
     category: 'festival',
@@ -588,7 +639,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Krishna Janmashtami (Bhadrapada Krishna 8 → tithi 23)
   festivals.push({
     name: { en: 'Janmashtami', hi: 'जन्माष्टमी', sa: 'जन्माष्टमी' },
-    date: findTithiDate(year, 8, 23),
+    date: findTithiDate(year, 8, 23, lat, lon),
     tithi: 'Bhadrapada Krishna 8',
     type: 'major',
     category: 'festival',
@@ -599,7 +650,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Ganesh Chaturthi (Bhadrapada Shukla 4)
   festivals.push({
     name: { en: 'Ganesh Chaturthi', hi: 'गणेश चतुर्थी', sa: 'गणेशचतुर्थी' },
-    date: findTithiDate(year, 9, 4),
+    date: findTithiDate(year, 9, 4, lat, lon),
     tithi: 'Bhadrapada Shukla 4',
     type: 'major',
     category: 'festival',
@@ -610,7 +661,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Navaratri start (Ashwina Shukla 1)
   festivals.push({
     name: { en: 'Navaratri (Sharad)', hi: 'शारदीय नवरात्रि', sa: 'शारदीयनवरात्रिः' },
-    date: findTithiDate(year, 10, 1),
+    date: findTithiDate(year, 10, 1, lat, lon),
     tithi: 'Ashwina Shukla 1',
     type: 'major',
     category: 'festival',
@@ -621,7 +672,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Dussehra / Vijayadashami (Ashwina Shukla 10)
   festivals.push({
     name: { en: 'Dussehra', hi: 'दशहरा', sa: 'विजयादशमी' },
-    date: findTithiDate(year, 10, 10),
+    date: findTithiDate(year, 10, 10, lat, lon),
     tithi: 'Ashwina Shukla 10',
     type: 'major',
     category: 'festival',
@@ -632,7 +683,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Diwali (Kartika Amavasya → tithi 30 in Oct/Nov)
   festivals.push({
     name: { en: 'Diwali', hi: 'दीपावली', sa: 'दीपावलिः' },
-    date: findAmavasyaDate(year, 10),
+    date: findAmavasyaDate(year, 10, lat, lon),
     tithi: 'Kartika Amavasya',
     type: 'major',
     category: 'festival',
@@ -643,7 +694,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // ── Vrat Days (monthly recurring) — with Parana (fast-breaking) times ──
   for (let m = 1; m <= 12; m++) {
     // Purnima
-    const purnimaDate = findPurnimaDate(year, m);
+    const purnimaDate = findPurnimaDate(year, m, lat, lon);
     festivals.push({
       name: { en: 'Purnima Vrat', hi: 'पूर्णिमा व्रत', sa: 'पूर्णिमाव्रतम्' },
       date: purnimaDate,
@@ -655,7 +706,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     });
 
     // Amavasya
-    const amavasyaDate = findAmavasyaDate(year, m);
+    const amavasyaDate = findAmavasyaDate(year, m, lat, lon);
     festivals.push({
       name: { en: 'Amavasya', hi: 'अमावस्या', sa: 'अमावास्या' },
       date: amavasyaDate,
@@ -667,7 +718,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     });
 
     // Ekadashi (Shukla & Krishna) — resolve named Ekadashi from Sun's sidereal position
-    const ekadashi = findEkadashiDates(year, m);
+    const ekadashi = findEkadashiDates(year, m, lat, lon);
 
     // Determine Hindu month from Sun's sidereal sign on the Ekadashi date
     const shuklaDateParts = ekadashi.shukla.split('-').map(Number);
@@ -708,7 +759,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     });
 
     // Sankashti Chaturthi
-    const chaturthiDate = findChaturthiDate(year, m);
+    const chaturthiDate = findChaturthiDate(year, m, lat, lon);
     festivals.push({
       name: { en: 'Sankashti Chaturthi', hi: 'संकष्टी चतुर्थी', sa: 'सङ्कष्टिचतुर्थी' },
       date: chaturthiDate,
@@ -720,7 +771,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     });
 
     // Pradosham
-    const pradosham = findPradoshamDates(year, m);
+    const pradosham = findPradoshamDates(year, m, lat, lon);
     festivals.push({
       name: { en: 'Shukla Pradosham', hi: 'शुक्ल प्रदोष', sa: 'शुक्लप्रदोषः' },
       date: pradosham.shukla,

@@ -53,22 +53,16 @@ import {
 // ─── Ekadashi Name Resolution ───
 
 function resolveEkadashiName(entry: TithiEntry): { name: Trilingual; detail?: EkadashiDetail } {
-  const { lunarMonth, paksha } = entry;
+  const { paksha, masa } = entry;
 
-  if (lunarMonth.isAdhika) {
+  if (masa.isAdhika) {
     const detail = paksha === 'shukla' ? ADHIKA_MASA_EKADASHI.shukla : ADHIKA_MASA_EKADASHI.krishna;
     return { name: detail.name, detail };
   }
 
-  // EKADASHI_NAMES uses Purnimant naming (same as Drik).
-  // Our tithi table uses Amanta month boundaries.
-  // Amanta→Purnimant conversion:
-  //   Shukla: Amanta month name = Purnimant month name (no change)
-  //   Krishna: Amanta month N → Purnimant month N+1
-  //     (because Amanta Pausha Krishna = Purnimant Magha Krishna)
-  const monthForLookup = paksha === 'krishna'
-    ? getNextHinduMonth(lunarMonth.name)
-    : lunarMonth.name;
+  // EKADASHI_NAMES is keyed by Purnimant month names (same as Drik).
+  // entry.masa.purnimanta gives the correct Purnimant month — direct lookup.
+  const monthForLookup = masa.purnimanta;
 
   const detail = getEkadashiName(monthForLookup, paksha);
   if (detail) return { name: detail.name, detail };
@@ -218,18 +212,18 @@ export function generateFestivalCalendarV2(
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
     // Festival defs use Purnimant/Drik month names.
-    // Convert to Amanta for table lookup:
-    //   Shukla defs: Amanta month = Purnimant month (same)
-    //   Krishna defs: Amanta month = previous of Purnimant month
-    //     (Purnimant Bhadrapada Krishna = Amanta Shravana Krishna)
-    const amantaMasa = def.paksha === 'krishna'
-      ? getPreviousHinduMonth(def.masa!)
-      : def.masa;
+    // The relationship between Amanta and Purnimant varies with Adhika Masa.
+    // Instead of converting, try BOTH the def.masa AND the previous month.
+    // The correct entry is the one that actually exists in the table.
+    const masa1 = def.masa!;
+    const masa2 = getPreviousHinduMonth(def.masa!);
     const matches = table.entries.filter(e =>
       e.number === tithiNum &&
-      e.lunarMonth.name === amantaMasa &&
+      (e.lunarMonth.name === masa1 || e.lunarMonth.name === masa2) &&
       !e.lunarMonth.isAdhika
     );
+    // If both match (unlikely), prefer the one closer to the expected date
+    // by taking the first match in chronological order.
 
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];

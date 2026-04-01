@@ -189,7 +189,7 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -306,6 +306,9 @@ export default function KundaliPage() {
               { key: 'chat' as const, label: locale === 'en' ? 'Chat' : 'चैट' },
               { key: 'graha' as const, label: locale === 'en' ? 'Graha' : 'ग्रह' },
               { key: 'yogas' as const, label: locale === 'en' ? 'Yogas' : 'योग' },
+              { key: 'avasthas' as const, label: locale === 'en' ? 'Avasthas' : 'अवस्था' },
+              { key: 'argala' as const, label: locale === 'en' ? 'Argala' : 'अर्गला' },
+              { key: 'sphutas' as const, label: locale === 'en' ? 'Sphutas' : 'स्फुट' },
               { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
               { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
               { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
@@ -661,6 +664,12 @@ export default function KundaliPage() {
                   ...(kundali.kalachakraDasha ? [{ key: 'kalachakra', label: locale === 'en' ? 'Kalachakra' : 'कालचक्र' }] : []),
                   ...(kundali.sthiraDasha ? [{ key: 'sthira', label: locale === 'en' ? 'Sthira' : 'स्थिर' }] : []),
                   ...(kundali.shoolaDasha ? [{ key: 'shoola', label: locale === 'en' ? 'Shoola' : 'शूल' }] : []),
+                  { key: 'shodasottari', label: locale === 'en' ? 'Shodasottari (116yr)' : 'षोडशोत्तरी' },
+                  { key: 'dwadasottari', label: locale === 'en' ? 'Dwadasottari (112yr)' : 'द्वादशोत्तरी' },
+                  { key: 'panchottari', label: locale === 'en' ? 'Panchottari (105yr)' : 'पंचोत्तरी' },
+                  { key: 'satabdika', label: locale === 'en' ? 'Satabdika (100yr)' : 'शताब्दिका' },
+                  { key: 'chaturaaseethi', label: locale === 'en' ? 'Chaturaaseethi (84yr)' : 'चतुराशीति' },
+                  { key: 'shashtihayani', label: locale === 'en' ? 'Shashtihayani (60yr)' : 'षष्ठीहायनी' },
                 ].map(dt => (
                   <button key={dt.key} onClick={() => setDashaSystem(dt.key)}
                     className={`px-4 py-1.5 rounded-lg text-xs transition-all ${dashaSystem === dt.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary border border-transparent'}`}>
@@ -778,6 +787,133 @@ export default function KundaliPage() {
             </PaywallGate>
           )}
 
+          {/* ===== AVASTHAS TAB ===== */}
+          {activeTab === 'avasthas' && kundali.avasthas && (
+            <div className="space-y-6">
+              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                {locale === 'en' ? 'Planetary Avasthas (States)' : 'ग्रह अवस्थाएं'}
+              </h3>
+              <p className="text-text-secondary text-xs text-center mb-4">
+                {locale === 'en' ? 'HOW each planet expresses its energy — 5 classification systems from BPHS Ch.44-45' : 'प्रत्येक ग्रह अपनी ऊर्जा कैसे व्यक्त करता है — BPHS अ.44-45 से 5 वर्गीकरण'}
+              </p>
+              <div className="glass-card rounded-2xl overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-gold-primary/15">
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Baladi (Age)' : 'बालादि'}</th>
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Jagradadi (Wakefulness)' : 'जागृतादि'}</th>
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Deeptadi (Luminosity)' : 'दीप्तादि'}</th>
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Lajjitadi (Emotional)' : 'लज्जितादि'}</th>
+                      <th className="text-left py-3 px-3 text-gold-dark">{locale === 'en' ? 'Shayanadi (Activity)' : 'शयनादि'}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gold-primary/5">
+                    {kundali.avasthas.map((av) => {
+                      const pName = kundali.planets.find(p => p.planet.id === av.planetId)?.planet.name[locale as Locale] || `P${av.planetId}`;
+                      return (
+                        <tr key={av.planetId} className="hover:bg-gold-primary/3">
+                          <td className="py-2.5 px-3 text-gold-light font-bold" style={headingFont}>{pName}</td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.baladi.strength >= 70 ? 'bg-emerald-500/10 text-emerald-300' : av.baladi.strength >= 40 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.baladi.name[locale as Locale] || av.baladi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.jagradadi.quality === 'full' ? 'bg-emerald-500/10 text-emerald-300' : av.jagradadi.quality === 'half' ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.jagradadi.name[locale as Locale] || av.jagradadi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.deeptadi.luminosity >= 60 ? 'bg-emerald-500/10 text-emerald-300' : av.deeptadi.luminosity >= 30 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.deeptadi.name[locale as Locale] || av.deeptadi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.lajjitadi.effect === 'benefic' ? 'bg-emerald-500/10 text-emerald-300' : av.lajjitadi.effect === 'malefic' ? 'bg-red-500/10 text-red-400' : 'bg-amber-500/10 text-amber-300'}`}>{av.lajjitadi.name[locale as Locale] || av.lajjitadi.name.en}</span></td>
+                          <td className="py-2.5 px-3 text-text-secondary">{av.shayanadi.name[locale as Locale] || av.shayanadi.name.en}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* ===== ARGALA TAB ===== */}
+          {activeTab === 'argala' && kundali.argala && (
+            <div className="space-y-6">
+              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                {locale === 'en' ? 'Argala — Planetary Intervention' : 'अर्गला — ग्रह हस्तक्षेप'}
+              </h3>
+              <p className="text-text-secondary text-xs text-center mb-4">
+                {locale === 'en' ? 'Which planets support or obstruct each house (Jaimini system, BPHS Ch.31)' : 'कौन से ग्रह प्रत्येक भाव का समर्थन या अवरोध करते हैं (जैमिनी, BPHS अ.31)'}
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                {kundali.argala.map((ar) => (
+                  <div key={ar.house} className={`glass-card rounded-xl p-3 border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-gold-light font-bold text-sm">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</span>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
+                        {ar.netEffect === 'supported' ? (locale === 'en' ? 'Supported' : 'समर्थित') : ar.netEffect === 'obstructed' ? (locale === 'en' ? 'Obstructed' : 'अवरुद्ध') : (locale === 'en' ? 'Neutral' : 'तटस्थ')}
+                      </span>
+                    </div>
+                    {ar.argalas.length > 0 && (
+                      <div className="text-[10px] text-emerald-300 mb-1">
+                        {locale === 'en' ? 'Support:' : 'समर्थन:'} {ar.argalas.map(a => a.planetName[locale as Locale] || a.planetName.en).join(', ')}
+                      </div>
+                    )}
+                    {ar.virodha.length > 0 && (
+                      <div className="text-[10px] text-red-400">
+                        {locale === 'en' ? 'Counter:' : 'प्रतिकार:'} {ar.virodha.map(v => v.planetName[locale as Locale] || v.planetName.en).join(', ')}
+                      </div>
+                    )}
+                    {ar.argalas.length === 0 && ar.virodha.length === 0 && (
+                      <div className="text-[10px] text-text-tertiary">{locale === 'en' ? 'No intervention' : 'कोई हस्तक्षेप नहीं'}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ===== SPHUTAS TAB ===== */}
+          {activeTab === 'sphutas' && kundali.sphutas && (
+            <div className="space-y-6">
+              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                {locale === 'en' ? 'Sphutas — Sensitive Points' : 'स्फुट — संवेदनशील बिंदु'}
+              </h3>
+              <p className="text-text-secondary text-xs text-center mb-4">
+                {locale === 'en' ? 'Computed degrees indicating vitality, body, longevity, and benefic/malefic peaks (BPHS Ch.10)' : 'जीवन शक्ति, शरीर, दीर्घायु और शुभ/अशुभ शिखर दर्शाने वाले गणित अंश (BPHS अ.10)'}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { key: 'yogiPoint', label: { en: 'Yogi Point (Most Benefic)', hi: 'योगी बिंदु (सर्वाधिक शुभ)' }, data: kundali.sphutas.yogiPoint, color: 'border-emerald-500/20 bg-emerald-500/5', extra: `${locale === 'en' ? 'Yogi Planet' : 'योगी ग्रह'}: ${GRAHAS[kundali.sphutas.yogiPoint.yogiPlanet]?.name[locale as Locale] || ''}` },
+                  { key: 'avayogiPoint', label: { en: 'Avayogi Point (Most Challenging)', hi: 'अवयोगी बिंदु (सबसे चुनौतीपूर्ण)' }, data: kundali.sphutas.avayogiPoint, color: 'border-red-500/20 bg-red-500/5', extra: `${locale === 'en' ? 'Avayogi Planet' : 'अवयोगी ग्रह'}: ${GRAHAS[kundali.sphutas.avayogiPoint.avayogiPlanet]?.name[locale as Locale] || ''}` },
+                  { key: 'pranaSphuta', label: { en: 'Prana Sphuta (Vitality)', hi: 'प्राण स्फुट (जीवनशक्ति)' }, data: kundali.sphutas.pranaSphuta, color: 'border-gold-primary/20', extra: '' },
+                  { key: 'dehaSphuta', label: { en: 'Deha Sphuta (Body)', hi: 'देह स्फुट (शरीर)' }, data: kundali.sphutas.dehaSphuta, color: 'border-blue-500/20', extra: '' },
+                  { key: 'mrityuSphuta', label: { en: 'Mrityu Sphuta (Longevity)', hi: 'मृत्यु स्फुट (दीर्घायु)' }, data: kundali.sphutas.mrityuSphuta, color: 'border-violet-500/20', extra: '' },
+                  { key: 'triSphuta', label: { en: 'Tri Sphuta (Composite)', hi: 'त्रि स्फुट (समग्र)' }, data: kundali.sphutas.triSphuta, color: 'border-amber-500/20', extra: '' },
+                ].map(({ key, label, data, color, extra }) => (
+                  <div key={key} className={`glass-card rounded-xl p-4 border ${color}`}>
+                    <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{locale === 'hi' ? label.hi : label.en}</div>
+                    <div className="text-gold-light font-bold text-2xl font-mono">{data.degree.toFixed(2)}°</div>
+                    <div className="text-text-secondary text-xs mt-1">{locale === 'en' ? `Sign ${data.sign}, Nakshatra ${data.nakshatra}` : `राशि ${data.sign}, नक्षत्र ${data.nakshatra}`}</div>
+                    {extra && <div className="text-emerald-300 text-xs mt-1 font-medium">{extra}</div>}
+                    <div className="text-text-tertiary text-[10px] mt-2 leading-relaxed">{data.description[locale as Locale] || data.description.en}</div>
+                  </div>
+                ))}
+              </div>
+              {/* Bija/Kshetra */}
+              {(kundali.sphutas.bijaSphuta || kundali.sphutas.kshetraSphuta) && (
+                <div className="grid grid-cols-2 gap-3">
+                  {kundali.sphutas.bijaSphuta && (
+                    <div className="glass-card rounded-xl p-3 border border-blue-500/15 text-center">
+                      <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Bija Sphuta (Male Fertility)' : 'बीज स्फुट'}</div>
+                      <div className="text-gold-light font-bold font-mono">{kundali.sphutas.bijaSphuta.degree.toFixed(2)}°</div>
+                      <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Sign ${kundali.sphutas.bijaSphuta.sign}` : `राशि ${kundali.sphutas.bijaSphuta.sign}`}</div>
+                    </div>
+                  )}
+                  {kundali.sphutas.kshetraSphuta && (
+                    <div className="glass-card rounded-xl p-3 border border-pink-500/15 text-center">
+                      <div className="text-pink-300 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Kshetra Sphuta (Female Fertility)' : 'क्षेत्र स्फुट'}</div>
+                      <div className="text-gold-light font-bold font-mono">{kundali.sphutas.kshetraSphuta.degree.toFixed(2)}°</div>
+                      <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Sign ${kundali.sphutas.kshetraSphuta.sign}` : `राशि ${kundali.sphutas.kshetraSphuta.sign}`}</div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* ===== CHAT TAB ===== */}
           {activeTab === 'chat' && (
             <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
@@ -829,6 +965,25 @@ export default function KundaliPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Graha Arudhas */}
+              {kundali.jaimini && (kundali.jaimini as unknown as { grahaArudhas?: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas && (
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़'}
+                  </h3>
+                  <div className="glass-card rounded-2xl overflow-hidden">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
+                      {((kundali.jaimini as unknown as { grahaArudhas: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas || []).map((ga, i) => (
+                        <div key={i} className="p-3 text-center">
+                          <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{ga.planetName[locale as Locale] || ga.planetName.en}</div>
+                          <div className="text-gold-light font-bold text-sm mt-1" style={headingFont}>{ga.arudhaSignName[locale as Locale] || ga.arudhaSignName.en}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Chara Dasha */}
               <div>

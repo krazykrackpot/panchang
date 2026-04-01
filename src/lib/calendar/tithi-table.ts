@@ -40,7 +40,12 @@ export interface TithiEntry {
   endDate: string;
   isKshaya: boolean;
   sunriseDate: string;     // date where tithi prevails at sunrise
-  lunarMonth: LunarMonthInfo;
+  lunarMonth: LunarMonthInfo;  // Amanta month (boundaries: Amavasya to Amavasya)
+  masa: {
+    amanta: string;        // Amanta month name (e.g., 'pausha')
+    purnimanta: string;    // Purnimant month name (e.g., 'magha' for Krishna in Amanta Pausha)
+    isAdhika: boolean;
+  };
   durationHours: number;
 }
 
@@ -340,15 +345,44 @@ export function buildYearlyTithiTable(
     });
   }
 
-  // ─── Phase 3: Assign lunar months to entries and build final table ───
+  // ─── Phase 2b: Build Purnimant months from Purnima entries ───
+  // Purnimant months run from Purnima to Purnima.
+  // The month is named by the Sankranti (Sun entering new sign) that occurs within it.
+  const purnimaEntries = rawEntries.filter(e => e.number === 15); // tithi 15 = Purnima
+  const purnimantMonths: LunarMonthInfo[] = [];
+
+  for (let i = 0; i < purnimaEntries.length - 1; i++) {
+    const p1 = purnimaEntries[i];
+    const p2 = purnimaEntries[i + 1];
+
+    // Find Sun's rashi at the midpoint (approximate Sankranti location)
+    const midJd = (p1.endJd + p2.startJd) / 2;
+    const sunSidMid = normalizeDeg(toSidereal(sunLongitude(midJd), midJd));
+    const signMid = Math.floor(sunSidMid / 30) + 1;
+
+    // Check for Adhika (same sign at both Purnimas)
+    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(p1.endJd), p1.endJd));
+    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(p2.startJd), p2.startJd));
+    const sign1 = Math.floor(sunSid1 / 30) + 1;
+    const sign2 = Math.floor(sunSid2 / 30) + 1;
+    const isAdhika = sign1 === sign2;
+
+    purnimantMonths.push({
+      name: getHinduMonth(signMid),
+      isAdhika,
+      startDate: p1.sunriseDate,
+      endDate: p2.sunriseDate,
+    });
+  }
+
+  // ─── Phase 3: Assign BOTH month systems to entries ───
   const entries: TithiEntry[] = [];
   for (const raw of rawEntries) {
-    // Only include entries that overlap with the target year
     if (!raw.startDateStr.startsWith(`${year}`) && !raw.endDateStr.startsWith(`${year}`) && !raw.sunriseDate.startsWith(`${year}`)) {
       continue;
     }
 
-    // Find lunar month by matching the tithi's start date to a month boundary
+    // Find Amanta month
     let lunarMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
     for (const lm of lunarMonths) {
       if (raw.sunriseDate > lm.startDate && raw.sunriseDate <= lm.endDate) {
@@ -356,6 +390,18 @@ export function buildYearlyTithiTable(
         break;
       }
     }
+
+    // Find Purnimant month
+    let purnimantMonth: LunarMonthInfo = { name: 'chaitra', isAdhika: false, startDate: '', endDate: '' };
+    for (const pm of purnimantMonths) {
+      if (raw.sunriseDate > pm.startDate && raw.sunriseDate <= pm.endDate) {
+        purnimantMonth = pm;
+        break;
+      }
+    }
+
+    const amantaName = lunarMonth.name;
+    const purnimantaName = purnimantMonth.name;
 
     entries.push({
       number: raw.number,
@@ -370,6 +416,11 @@ export function buildYearlyTithiTable(
       isKshaya: raw.isKshaya,
       sunriseDate: raw.sunriseDate,
       lunarMonth,
+      masa: {
+        amanta: amantaName,
+        purnimanta: purnimantaName,
+        isAdhika: lunarMonth.isAdhika || purnimantMonth.isAdhika,
+      },
       durationHours: (raw.endJd - raw.startJd) * 24,
     });
   }

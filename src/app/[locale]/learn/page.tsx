@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { EclipticDiagram, ZodiacBeltDiagram, AyanamshaDiagram } from '@/components/learn/InteractiveDiagram';
+import { PhaseProgressCards, AchievementBadges } from '@/components/learn/LearnProgress';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
@@ -46,6 +47,12 @@ export default function LearnFoundationsPage() {
           {t('foundationsTitle')}
         </h2>
         <p className="text-text-secondary">{t('foundationsSubtitle')}</p>
+      </div>
+
+      {/* Progress overview */}
+      <div className="mb-8 space-y-4">
+        <PhaseProgressCards />
+        <AchievementBadges />
       </div>
 
       {/* Key terms */}

@@ -29,6 +29,8 @@ export interface FestivalEntry {
   paranaHariVasaraEnd?: string;   // HH:MM — end of Hari Vasara (1/4 daytime)
   paranaDwadashiEnd?: string;     // HH:MM — when Dwadashi tithi ends
   paranaEarlyEnd?: boolean;       // true if Dwadashi ends before Hari Vasara
+  paranaMadhyahnaStart?: string;  // HH:MM — start of Madhyahna (midday, avoid parana)
+  paranaMadhyahnaEnd?: string;    // HH:MM — end of Madhyahna
   // Eclipse info
   eclipseType?: 'solar' | 'lunar';
   eclipseMagnitude?: string; // 'total' | 'partial' | 'annular' | 'penumbral'
@@ -161,18 +163,22 @@ function approxMoonrise(tithiNum: number, sunriseUT: number, sunsetUT: number): 
 }
 
 /**
- * Compute Ekadashi parana window with precise Dwadashi end and Hari Vasara times.
+ * Compute Ekadashi parana window with precise Dwadashi end, Hari Vasara, and Madhyahna times.
  *
- * Rules:
+ * Rules (from Dharma Sindhu / Nirnaya Sindhu):
  * 1. Parana is done on Dwadashi (the day after Ekadashi)
  * 2. Must be done AFTER sunrise
- * 3. Hari Vasara = first 1/4 of remaining Dwadashi from sunrise — parana should be AFTER Hari Vasara ends
- * 4. Parana MUST be completed BEFORE Dwadashi tithi ends
- * 5. If Dwadashi ends before Hari Vasara ends, break fast before Dwadashi ends
+ * 3. Must AVOID Hari Vasara = first 1/4 of Dwadashi tithi duration (not 1/4 of daytime)
+ * 4. Must AVOID Madhyahna = the middle 1/5th of daytime (approx. local noon ± ~1.2 hours)
+ * 5. Parana MUST be completed BEFORE Dwadashi tithi ends
+ * 6. If Dwadashi ends before Hari Vasara ends, break fast before Dwadashi ends (exception)
+ * 7. If the only available window falls in Madhyahna, break fast after Madhyahna ends
+ *    but before Dwadashi ends
  */
 function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): {
   paranaDate: string; paranaStart: string; paranaEnd: string; paranaNote: Trilingual;
   paranaSunrise: string; paranaHariVasaraEnd: string; paranaDwadashiEnd: string; paranaEarlyEnd: boolean;
+  paranaMadhyahnaStart?: string; paranaMadhyahnaEnd?: string;
 } {
   const paranaDate = nextDay(ekadashiDate);
   const [y, m, d] = paranaDate.split('-').map(Number);
@@ -186,122 +192,203 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   const ekTithi = calculateTithi(ekJd).number;
   const dwadashiNum = ekTithi <= 15 ? 12 : 27;
 
-  // Find Dwadashi start and end times in UT (hours, relative to sunrise).
-  // Correct formula: hariVasara = dwadashiStart + (dwadashiEnd - dwadashiStart) / 4
-  // Sunrise is irrelevant to Hari Vasara — it is purely a function of the tithi.
-
   const baseJd = dateToJD(y, m, d, sunriseUT);
+
+  // ─── Binary search helper: find exact hour (relative to baseJd) where tithi transitions ───
+  function findTithiTransition(startH: number, endH: number, fromTithi: number, toTithi: number): number | null {
+    // Coarse scan first (10-min steps)
+    let foundRange: [number, number] | null = null;
+    for (let h = startH; h <= endH; h += 10 / 60) {
+      const t = calculateTithi(baseJd + h / 24).number;
+      if (t === toTithi) {
+        foundRange = [h - 10 / 60, h];
+        break;
+      }
+    }
+    if (!foundRange) return null;
+    // Binary search to 1-minute precision
+    let lo = foundRange[0], hi = foundRange[1];
+    for (let i = 0; i < 12; i++) {
+      const mid = (lo + hi) / 2;
+      const t = calculateTithi(baseJd + mid / 24).number;
+      if (t === toTithi) hi = mid; else lo = mid;
+    }
+    return hi;
+  }
+
+  // ─── Find Dwadashi START ───
   const tithiAtSunrise = calculateTithi(baseJd).number;
+  let dwadashiStartH: number = 0;
 
-  // Find Dwadashi START (hours relative to sunrise, may be negative = before sunrise)
-  let dwadashiStartHours: number;
   if (tithiAtSunrise === dwadashiNum) {
-    // Dwadashi already active at sunrise — scan backward
-    dwadashiStartHours = -24; // fallback
-    for (let h = -0.5; h >= -36; h -= 0.5) {
+    // Dwadashi already active at sunrise — scan backward to find when it started
+    // Use 10-min steps backward, then binary search
+    let foundStart = false;
+    for (let h = -10 / 60; h >= -40; h -= 10 / 60) {
       if (calculateTithi(baseJd + h / 24).number !== dwadashiNum) {
-        dwadashiStartHours = h + 0.5;
+        // Transition found between h and h + 10/60
+        let lo = h, hi = h + 10 / 60;
+        for (let i = 0; i < 12; i++) {
+          const mid = (lo + hi) / 2;
+          if (calculateTithi(baseJd + mid / 24).number !== dwadashiNum) lo = mid; else hi = mid;
+        }
+        dwadashiStartH = hi;
+        foundStart = true;
         break;
       }
     }
+    if (!foundStart) dwadashiStartH = -30; // started >40h ago (very rare, use reasonable fallback)
   } else {
-    // Dwadashi starts after sunrise (Ekadashi or other tithi still active)
-    dwadashiStartHours = 8; // fallback
-    let prev = tithiAtSunrise;
-    for (let h = 0.5; h <= 30; h += 0.5) {
-      const t = calculateTithi(baseJd + h / 24).number;
-      if (prev !== dwadashiNum && t === dwadashiNum) {
-        dwadashiStartHours = h;
-        break;
-      }
-      prev = t;
-    }
+    // Dwadashi hasn't started yet — scan forward
+    const transition = findTithiTransition(0, 24, tithiAtSunrise, dwadashiNum);
+    dwadashiStartH = transition ?? 6; // fallback: ~6h after sunrise
   }
 
-  // Find Dwadashi END (hours relative to sunrise, scanning forward)
-  let dwadashiEndHours = 14; // fallback
-  let foundDwadashiEnd = false;
-  {
-    let prev = tithiAtSunrise;
-    for (let h = 0.5; h <= 36; h += 0.5) {
-      const t = calculateTithi(baseJd + h / 24).number;
-      if (prev === dwadashiNum && t !== dwadashiNum) {
-        dwadashiEndHours = h;
-        foundDwadashiEnd = true;
-        break;
+  // ─── Find Dwadashi END ───
+  // Scan forward from Dwadashi start (or sunrise, whichever is later) to find when it ends
+  const scanFrom = Math.max(dwadashiStartH + 0.5, 0);
+  let dwadashiEndH: number | null = null;
+  for (let h = scanFrom; h <= 48; h += 10 / 60) {
+    const t = calculateTithi(baseJd + h / 24).number;
+    if (t !== dwadashiNum) {
+      // Binary search between h - 10/60 and h
+      let lo = h - 10 / 60, hi = h;
+      for (let i = 0; i < 12; i++) {
+        const mid = (lo + hi) / 2;
+        if (calculateTithi(baseJd + mid / 24).number === dwadashiNum) lo = mid; else hi = mid;
       }
-      prev = t;
+      dwadashiEndH = lo;
+      break;
     }
   }
+  if (dwadashiEndH === null) dwadashiEndH = dwadashiStartH + 24; // fallback: assume ~24h duration
 
-  const dwadashiStartUT = sunriseUT + dwadashiStartHours;
-  const dwadashiEndUT   = sunriseUT + dwadashiEndHours;
+  const dwadashiStartUT = sunriseUT + dwadashiStartH;
+  const dwadashiEndUT   = sunriseUT + dwadashiEndH;
+  const dwadashiDuration = dwadashiEndUT - dwadashiStartUT;
 
-  // Hari Vasara = first 1/4 of Dwadashi tithi duration
-  const hariVasaraEndUT = dwadashiStartUT + (dwadashiEndUT - dwadashiStartUT) / 4;
+  // ─── Hari Vasara = first 1/4 of Dwadashi tithi duration ───
+  const hariVasaraEndUT = dwadashiStartUT + dwadashiDuration / 4;
 
-  // Format all times in user's local timezone
+  // Did Hari Vasara already end before parana day sunrise?
+  const hariVasaraAlreadyOver = hariVasaraEndUT <= sunriseUT;
+
+  // ─── Madhyahna = middle 1/5th of daytime ───
+  const dayLength = sunsetUT - sunriseUT;
+  const madhyahnaStartUT = sunriseUT + dayLength * (2 / 5);
+  const madhyahnaEndUT   = sunriseUT + dayLength * (3 / 5);
+
+  // ─── Format times ───
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
   const sunriseStr = ft(sunriseUT);
-  const hvEndStr = ft(hariVasaraEndUT);
+  const hvEndStr = hariVasaraAlreadyOver ? '' : ft(hariVasaraEndUT); // don't show misleading time
   const dwEndStr = ft(dwadashiEndUT);
+  const madhStartStr = ft(madhyahnaStartUT);
+  const madhEndStr = ft(madhyahnaEndUT);
 
-  // Determine recommended parana window
+  // ─── Determine recommended parana window ───
+  // Three constraints:
+  // (A) After Hari Vasara ends (or after sunrise if HV already over)
+  // (B) Outside Madhyahna
+  // (C) Before Dwadashi tithi ends
+
+  // Effective earliest start (after HV or sunrise)
+  const earliestUT = hariVasaraAlreadyOver ? sunriseUT : Math.max(hariVasaraEndUT, sunriseUT);
+
+  // Check if Dwadashi ends before we can even start (rare edge case)
+  const earlyEnd = dwadashiEndUT <= earliestUT;
+
   let recStartUT: number;
   let recEndUT: number;
+  let madhyahnaConflict = false;
 
-  if (dwadashiEndUT <= hariVasaraEndUT) {
-    // Dwadashi ends before/within Hari Vasara — break fast before Dwadashi ends
-    recStartUT = sunriseUT;
-    recEndUT = dwadashiEndUT;
-  } else if (hariVasaraEndUT <= sunriseUT) {
-    // Hari Vasara ended before sunrise (Dwadashi started long before sunrise)
-    // Parana can start from sunrise
+  if (earlyEnd) {
+    // Dwadashi ends before Hari Vasara or sunrise — must break fast ASAP after sunrise
     recStartUT = sunriseUT;
     recEndUT = dwadashiEndUT;
   } else {
-    // Normal case: break fast after Hari Vasara, before Dwadashi ends
-    recStartUT = hariVasaraEndUT;
+    // Normal: from earliest start to Dwadashi end
+    recStartUT = earliestUT;
     recEndUT = dwadashiEndUT;
+
+    // Now exclude Madhyahna from the window
+    if (recStartUT < madhyahnaEndUT && recEndUT > madhyahnaStartUT) {
+      if (recStartUT < madhyahnaStartUT) {
+        // Pre-Madhyahna window exists — prefer it
+        recEndUT = Math.min(recEndUT, madhyahnaStartUT);
+      } else if (madhyahnaEndUT < recEndUT) {
+        // Must wait until after Madhyahna
+        recStartUT = madhyahnaEndUT;
+        madhyahnaConflict = true;
+      } else {
+        // Entire window is within Madhyahna AND Dwadashi ends during Madhyahna
+        // Dwadashi constraint overrides — break before Dwadashi ends (rare)
+        madhyahnaConflict = true;
+      }
+    }
   }
 
   const recStartStr = ft(recStartUT);
   const recEndStr = ft(recEndUT);
-  const earlyEnd = dwadashiEndUT <= hariVasaraEndUT;
+  const hvDisplayStr = hariVasaraAlreadyOver
+    ? (sunriseStr) // show sunrise since HV is already over
+    : ft(hariVasaraEndUT);
+
+  // ─── Build notes ───
+  const hvStatus = hariVasaraAlreadyOver
+    ? { en: 'Hari Vasara ended before sunrise — no restriction.', hi: 'हरि वासर सूर्योदय से पहले समाप्त — कोई प्रतिबन्ध नहीं।', sa: 'हरिवासरः सूर्योदयात् पूर्वं समाप्तः — प्रतिबन्धः नास्ति।' }
+    : { en: `Hari Vasara ends: ${hvDisplayStr} — do not break fast before this.`, hi: `हरि वासर समाप्ति: ${hvDisplayStr} — इससे पहले पारण न करें।`, sa: `हरिवासरान्तः: ${hvDisplayStr} — अस्मात् पूर्वं पारणं न कुर्यात्।` };
 
   return {
     paranaDate,
     paranaStart: recStartStr,
     paranaEnd: recEndStr,
     paranaSunrise: sunriseStr,
-    paranaHariVasaraEnd: hvEndStr,
+    paranaHariVasaraEnd: hvDisplayStr,
     paranaDwadashiEnd: dwEndStr,
     paranaEarlyEnd: earlyEnd,
+    paranaMadhyahnaStart: madhStartStr,
+    paranaMadhyahnaEnd: madhEndStr,
     paranaNote: {
       en: [
-        `Sunrise: ${sunriseStr}`,
-        `Hari Vasara ends: ${hvEndStr}`,
-        `Dwadashi tithi ends: ${dwEndStr}${!foundDwadashiEnd ? ' (approx.)' : ''}`,
         `Recommended Parana: ${recStartStr} to ${recEndStr}`,
+        '',
+        `Sunrise: ${sunriseStr}`,
+        hvStatus.en,
+        `Madhyahna: ${madhStartStr} to ${madhEndStr} — avoid parana during midday.`,
+        `Dwadashi ends: ${dwEndStr} — must break fast before this.`,
+        '',
         earlyEnd
-          ? `Note: Dwadashi ends before Hari Vasara — break fast as early as possible after sunrise, before ${dwEndStr}.`
-          : `Break fast after Hari Vasara ends (${hvEndStr}) and before Dwadashi ends (${dwEndStr}). Do not eat before ${hvEndStr}. Do not delay past ${dwEndStr}.`,
+          ? `⚠ Dwadashi ends early — break fast as soon as possible after sunrise, before ${dwEndStr}.`
+          : madhyahnaConflict
+          ? `Best time: After Madhyahna ends (${madhEndStr}), before Dwadashi ends (${dwEndStr}).`
+          : hariVasaraAlreadyOver
+          ? `Best time: After sunrise (${sunriseStr}), before Madhyahna (${madhStartStr}).`
+          : `Best time: After Hari Vasara ends (${hvDisplayStr}), before Madhyahna (${madhStartStr}).`,
       ].join('\n'),
       hi: [
-        `सूर्योदय: ${sunriseStr}`,
-        `हरि वासर समाप्ति: ${hvEndStr}`,
-        `द्वादशी तिथि समाप्ति: ${dwEndStr}${!foundDwadashiEnd ? ' (लगभग)' : ''}`,
         `अनुशंसित पारण: ${recStartStr} से ${recEndStr}`,
+        '',
+        `सूर्योदय: ${sunriseStr}`,
+        hvStatus.hi,
+        `मध्याह्न: ${madhStartStr} से ${madhEndStr} — दोपहर में पारण से बचें।`,
+        `द्वादशी समाप्ति: ${dwEndStr} — इससे पहले पारण अवश्य करें।`,
+        '',
         earlyEnd
-          ? `नोट: द्वादशी हरि वासर से पहले समाप्त हो रही है — सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
-          : `हरि वासर समाप्ति (${hvEndStr}) के बाद और द्वादशी समाप्ति (${dwEndStr}) से पहले पारण करें। ${hvEndStr} से पहले न खाएं। ${dwEndStr} के बाद विलम्ब न करें।`,
+          ? `⚠ द्वादशी शीघ्र समाप्त हो रही है — सूर्योदय के बाद ${dwEndStr} से पहले यथाशीघ्र पारण करें।`
+          : madhyahnaConflict
+          ? `सर्वोत्तम समय: मध्याह्न समाप्ति (${madhEndStr}) के बाद, द्वादशी समाप्ति (${dwEndStr}) से पहले।`
+          : hariVasaraAlreadyOver
+          ? `सर्वोत्तम समय: सूर्योदय (${sunriseStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`
+          : `सर्वोत्तम समय: हरि वासर समाप्ति (${hvDisplayStr}) के बाद, मध्याह्न (${madhStartStr}) से पहले।`,
       ].join('\n'),
       sa: [
-        `सूर्योदयः: ${sunriseStr}`,
-        `हरिवासरान्तः: ${hvEndStr}`,
-        `द्वादशीतिथ्यन्तः: ${dwEndStr}`,
         `अनुशंसितपारणम्: ${recStartStr} तः ${recEndStr}`,
-        `हरिवासरान्ते (${hvEndStr}) पारणं कुर्यात्, द्वादशीसमाप्तेः (${dwEndStr}) पूर्वम्।`,
+        '',
+        `सूर्योदयः: ${sunriseStr}`,
+        hvStatus.sa,
+        `मध्याह्नः: ${madhStartStr} तः ${madhEndStr} — अस्मिन् पारणं वर्जयेत्।`,
+        `द्वादशीतिथ्यन्तः: ${dwEndStr} — अस्मात् पूर्वं पारणम् अवश्यम्।`,
       ].join('\n'),
     },
   };

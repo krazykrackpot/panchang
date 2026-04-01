@@ -68,6 +68,13 @@ const phases: PhaseGroup[] = [
       { href: '/learn/advanced', key: 'advanced', icon: Sparkles },
     ],
   },
+  {
+    phase: '5',
+    label: { en: 'Classical Knowledge', hi: 'शास्त्रीय ज्ञान' },
+    tabs: [
+      { href: '/learn/classical-texts', key: 'classicalTexts', icon: BookOpen },
+    ],
+  },
 ];
 
 const allTabs = phases.flatMap(p => p.tabs);

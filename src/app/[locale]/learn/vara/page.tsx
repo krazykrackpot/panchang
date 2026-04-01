@@ -104,23 +104,177 @@ export default function VaraPage() {
         <p className="text-text-tertiary text-[10px] text-center mt-3">{isHi ? 'वार वर्तमान पृष्ठ पर प्रकाशित (हाइलाइट)' : 'Vara is highlighted — you are here'}</p>
       </div>
 
-      {/* Planet-day relationship diagram */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/10">
-        <h3 className="text-gold-light font-bold text-lg mb-4" style={headingFont}>
-          {isHi ? 'ग्रह-वार चक्र' : 'Planet-Day Cycle'}
+      {/* ═══ India's Contribution: Why This Order? ═══ */}
+      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+        <h3 className="text-gold-gradient font-bold text-xl mb-4" style={headingFont}>
+          {isHi ? 'भारत का योगदान: सप्ताह के दिनों का क्रम क्यों?' : "India's Gift to the World: Why This Weekday Order?"}
         </h3>
-        <p className="text-text-secondary text-xs mb-4 leading-relaxed">
+        <p className="text-text-secondary text-sm leading-relaxed mb-6">
           {isHi
-            ? 'सात वार सात दृश्य ग्रहों के नाम पर हैं। क्रम होरा (ग्रह घंटे) प्रणाली से आता है: प्रत्येक दिन का पहला घंटा उसके स्वामी ग्रह द्वारा शासित होता है। शनि → गुरु → मंगल → सूर्य → शुक्र → बुध → चन्द्र यह होरा क्रम है।'
-            : 'The seven days are named after the seven visible celestial bodies. The sequence comes from the Hora (planetary hour) system: each day\'s first hour is ruled by its governing planet. The Hora sequence — Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon — when sampled every 25th hour, gives the weekday order.'}
+            ? 'सोमवार के बाद मंगलवार क्यों? बुधवार के बाद गुरुवार क्यों? यह क्रम यादृच्छिक नहीं है — यह प्राचीन भारतीय खगोल विज्ञान से आता है। ग्रहों की कक्षीय गति और होरा (ग्रह घंटे) प्रणाली का यह अद्भुत गणितीय परिणाम है जो पूरी दुनिया ने अपनाया।'
+            : 'Why does Monday follow Sunday? Why Tuesday after Monday? This sequence is NOT random — it derives from ancient Indian astronomy. It is an elegant mathematical consequence of orbital speeds and the Hora (planetary hour) system. This Indian innovation was adopted by the entire world.'}
         </p>
-        <div className="flex flex-wrap justify-center gap-2">
-          {VARAS.map((v, i) => (
-            <div key={i} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border ${v.border} ${v.bg}`}>
-              <span className={`font-bold text-xs ${v.color}`}>{isHi ? v.hi.substring(0, 2) : v.en.substring(0, 3)}</span>
-              <span className="text-text-tertiary text-[10px]">= {isHi ? v.planet.hi : v.planet.en}</span>
+
+        {/* Step 1: Orbital Speed Order */}
+        <div className="mb-6">
+          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+            {isHi ? 'चरण 1: कक्षीय गति क्रम (सबसे धीमे से तेज़)' : 'Step 1: Orbital Speed Order (Slowest to Fastest)'}
+          </div>
+          <p className="text-text-secondary text-xs mb-3 leading-relaxed">
+            {isHi
+              ? 'प्राचीन भारतीय खगोलशास्त्रियों ने सात दृश्य ग्रहों (पंचग्रह + सूर्य + चन्द्र) को उनकी आभासी गति के आधार पर क्रमबद्ध किया। सबसे धीमा ग्रह (शनि, ~29 वर्ष) सबसे दूर माना गया, सबसे तेज़ (चन्द्र, ~27 दिन) सबसे निकट:'
+              : 'Ancient Indian astronomers ordered the seven visible celestial bodies by their apparent orbital period. The slowest (Saturn, ~29 years) was considered farthest, the fastest (Moon, ~27 days) nearest. This gave the "Chaldean order":'}
+          </p>
+          <div className="flex flex-wrap justify-center gap-1.5 mb-2">
+            {[
+              { name: { en: 'Saturn', hi: 'शनि' }, period: '29.5 yr', color: 'text-slate-300', border: 'border-slate-500/20' },
+              { name: { en: 'Jupiter', hi: 'गुरु' }, period: '11.9 yr', color: 'text-yellow-400', border: 'border-yellow-500/20' },
+              { name: { en: 'Mars', hi: 'मंगल' }, period: '1.88 yr', color: 'text-red-400', border: 'border-red-500/20' },
+              { name: { en: 'Sun', hi: 'सूर्य' }, period: '1 yr', color: 'text-amber-400', border: 'border-amber-500/20' },
+              { name: { en: 'Venus', hi: 'शुक्र' }, period: '225 d', color: 'text-pink-300', border: 'border-pink-500/20' },
+              { name: { en: 'Mercury', hi: 'बुध' }, period: '88 d', color: 'text-emerald-400', border: 'border-emerald-500/20' },
+              { name: { en: 'Moon', hi: 'चन्द्र' }, period: '27.3 d', color: 'text-blue-300', border: 'border-blue-500/20' },
+            ].map((p, i) => (
+              <div key={i} className="flex flex-col items-center">
+                {i > 0 && <span className="text-text-tertiary text-[10px] mb-0.5">→</span>}
+                <div className={`px-3 py-2 rounded-lg border ${p.border} text-center min-w-[70px]`}>
+                  <div className={`font-bold text-xs ${p.color}`}>{isHi ? p.name.hi : p.name.en}</div>
+                  <div className="text-text-tertiary text-[9px]">{p.period}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-text-tertiary text-[10px] text-center">{isHi ? 'शनि ← सबसे धीमा (दूर) | चन्द्र ← सबसे तेज़ (निकट)' : 'Saturn ← slowest (farthest) | Moon ← fastest (nearest)'}</p>
+        </div>
+
+        {/* Step 2: Hora System */}
+        <div className="mb-6">
+          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+            {isHi ? 'चरण 2: होरा प्रणाली — प्रत्येक घंटे का ग्रह स्वामी' : 'Step 2: The Hora System — Each Hour Has a Planetary Ruler'}
+          </div>
+          <p className="text-text-secondary text-xs mb-3 leading-relaxed">
+            {isHi
+              ? 'प्रत्येक दिन को 24 होराओं (घंटों) में विभाजित किया गया, प्रत्येक होरा ऊपर के क्रम में एक ग्रह द्वारा शासित। यह क्रम निरंतर चलता है — शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र, फिर शनि... अनंत।'
+              : 'Each day was divided into 24 horas (hours), each ruled by a planet in the orbital speed order above. This cycle repeats endlessly: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, Saturn, Jupiter...'}
+          </p>
+
+          {/* Hora table for Saturday-Sunday showing the derivation */}
+          <div className="overflow-x-auto mb-3">
+            <div className="glass-card rounded-xl p-4 border border-gold-primary/10">
+              <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शनिवार की 24 होराएं' : "Saturday's 24 Horas"}</div>
+              <div className="flex flex-wrap gap-1 text-[9px]">
+                {['Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma'].map((h, i) => (
+                  <span key={i} className={`px-1.5 py-0.5 rounded ${i === 0 ? 'bg-gold-primary/20 text-gold-light font-bold ring-1 ring-gold-primary/40' : 'bg-bg-secondary/50 text-text-tertiary'}`}>
+                    {i+1}:{h}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-2 text-[9px]">
+                <span className="text-text-tertiary">{isHi ? '25वीं होरा (= अगले दिन की पहली) =' : '25th hora (= next day\'s 1st) ='}</span>
+                <span className="text-amber-400 font-bold ml-1">{isHi ? 'सूर्य → इसलिए अगला दिन = रविवार!' : 'Sun → so the next day = Sunday!'}</span>
+              </div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* Step 3: The Derivation */}
+        <div className="mb-6">
+          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+            {isHi ? 'चरण 3: वार क्रम की उत्पत्ति' : 'Step 3: Deriving the Weekday Order'}
+          </div>
+          <p className="text-text-secondary text-xs mb-3 leading-relaxed">
+            {isHi
+              ? 'प्रत्येक दिन का नाम उसकी पहली होरा के स्वामी ग्रह पर रखा गया। 24 होरा बाद (अगला दिन), 7-ग्रह चक्र में 24 mod 7 = 3 कदम आगे बढ़ जाता है। इसलिए कक्षीय क्रम (शनि-गुरु-मंगल-सूर्य-शुक्र-बुध-चन्द्र) से हर 3 कदम छोड़कर पढ़ें:'
+              : 'Each day is named after its 1st hora\'s ruling planet. After 24 horas (next day), the 7-planet cycle advances by 24 mod 7 = 3 positions. So from the orbital order, skip every 3rd planet:'}
+          </p>
+
+          {/* Visual: the skip-3 derivation */}
+          <div className="glass-card rounded-xl p-4 border border-gold-primary/15">
+            <div className="text-center space-y-2 text-xs">
+              <div className="text-text-tertiary">{isHi ? 'कक्षीय क्रम:' : 'Orbital order:'} <span className="text-slate-300">Sa</span> <span className="text-yellow-400">Ju</span> <span className="text-red-400">Ma</span> <span className="text-amber-400">Su</span> <span className="text-pink-300">Ve</span> <span className="text-emerald-400">Me</span> <span className="text-blue-300">Mo</span> (repeat)</div>
+              <div className="text-text-secondary">{isHi ? '3 छोड़कर पढ़ें:' : 'Read every 3rd:'}</div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {[
+                  { name: 'Sa', full: { en: 'Saturn → Saturday', hi: 'शनि → शनिवार' }, color: 'text-slate-300', border: 'border-slate-500/25' },
+                  { name: 'Su', full: { en: 'Sun → Sunday', hi: 'सूर्य → रविवार' }, color: 'text-amber-400', border: 'border-amber-500/25' },
+                  { name: 'Mo', full: { en: 'Moon → Monday', hi: 'चन्द्र → सोमवार' }, color: 'text-blue-300', border: 'border-blue-500/25' },
+                  { name: 'Ma', full: { en: 'Mars → Tuesday', hi: 'मंगल → मंगलवार' }, color: 'text-red-400', border: 'border-red-500/25' },
+                  { name: 'Me', full: { en: 'Mercury → Wednesday', hi: 'बुध → बुधवार' }, color: 'text-emerald-400', border: 'border-emerald-500/25' },
+                  { name: 'Ju', full: { en: 'Jupiter → Thursday', hi: 'गुरु → गुरुवार' }, color: 'text-yellow-400', border: 'border-yellow-500/25' },
+                  { name: 'Ve', full: { en: 'Venus → Friday', hi: 'शुक्र → शुक्रवार' }, color: 'text-pink-300', border: 'border-pink-500/25' },
+                ].map((d, i) => (
+                  <div key={i} className="flex items-center gap-1">
+                    {i > 0 && <span className="text-gold-primary">→</span>}
+                    <div className={`px-2.5 py-1.5 rounded-lg border ${d.border}`}>
+                      <div className={`font-bold text-sm ${d.color}`}>{d.name}</div>
+                      <div className="text-[8px] text-text-tertiary">{isHi ? d.full.hi : d.full.en}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-gold-primary text-xs font-medium mt-2">
+                {isHi
+                  ? 'शनि → सूर्य → चन्द्र → मंगल → बुध → गुरु → शुक्र = शनिवार → रविवार → सोमवार → मंगलवार → बुधवार → गुरुवार → शुक्रवार!'
+                  : 'Sa → Su → Mo → Ma → Me → Ju → Ve = Saturday → Sunday → Monday → Tuesday → Wednesday → Thursday → Friday!'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Historical context */}
+        <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+          <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+            {isHi ? 'ऐतिहासिक संदर्भ' : 'Historical Context'}
+          </div>
+          <div className="text-text-secondary text-xs leading-relaxed space-y-2">
+            <p>{isHi
+              ? 'यह होरा-आधारित वार प्रणाली सूर्य सिद्धान्त (पहली शताब्दी ईस्वी से पूर्व) और वराहमिहिर के पञ्चसिद्धान्तिका (505 ई.) में प्रलेखित है। भारत से यह प्रणाली ग्रीस, रोम और फिर पूरी दुनिया में फैली।'
+              : 'This Hora-based weekday system is documented in the Surya Siddhanta (pre-1st century CE) and Varahamihira\'s Pancha Siddhantika (505 CE). From India, it spread to Greece, Rome, and then the entire world.'}</p>
+            <p>{isHi
+              ? 'सभी भाषाओं में दिनों के नाम ग्रहों से ही हैं: Sunday (Sun), Monday (Moon), Saturday (Saturn), Tuesday (Tiw/Mars), Wednesday (Woden/Mercury), Thursday (Thor/Jupiter), Friday (Freya/Venus)। मूल भारतीय नाम — रवि, सोम, मंगल, बुध, गुरु, शुक्र, शनि — सबसे प्रत्यक्ष हैं।'
+              : 'Every language names its days after planets: Sunday (Sun), Monday (Moon), Saturday (Saturn). The Germanic names use Norse gods mapped to planets: Tuesday (Tiw=Mars), Wednesday (Woden=Mercury), Thursday (Thor=Jupiter), Friday (Freya=Venus). The Indian names — Ravi, Soma, Mangal, Budha, Guru, Shukra, Shani — are the most direct and transparent.'}</p>
+            <p className="text-indigo-300 font-medium">{isHi
+              ? '💡 अगली बार जब कोई "Wednesday" कहे, याद रखें — यह बुधवार (बुध-वार = बुध का दिन) है, एक भारतीय खगोलीय खोज!'
+              : '💡 Next time someone says "Wednesday", remember — it\'s Budhavar (Budha-vara = Mercury\'s day), an Indian astronomical discovery!'}</p>
+          </div>
+        </div>
+
+        {/* Cross-cultural names table */}
+        <div className="mt-6 overflow-x-auto">
+          <h4 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>{isHi ? 'विश्व भर में ग्रह-आधारित दिन नाम' : 'Planet-Based Day Names Across the World'}</h4>
+          <table className="w-full text-[10px]">
+            <thead>
+              <tr className="border-b border-gold-primary/15">
+                <th className="text-left py-2 px-2 text-gold-dark">{isHi ? 'ग्रह' : 'Planet'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{isHi ? 'संस्कृत' : 'Sanskrit'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{isHi ? 'हिन्दी' : 'Hindi'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">English</th>
+                <th className="text-left py-2 px-2 text-gold-dark">Latin/French</th>
+                <th className="text-left py-2 px-2 text-gold-dark">Japanese</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gold-primary/5">
+              {[
+                { planet: 'Sun', sa: 'रविवासरः', hi: 'रविवार', en: 'Sunday', latin: 'Dies Solis / Dimanche', jp: '日曜日 (Nichiyōbi)' },
+                { planet: 'Moon', sa: 'सोमवासरः', hi: 'सोमवार', en: 'Monday', latin: 'Dies Lunae / Lundi', jp: '月曜日 (Getsuyōbi)' },
+                { planet: 'Mars', sa: 'मङ्गलवासरः', hi: 'मंगलवार', en: 'Tuesday', latin: 'Dies Martis / Mardi', jp: '火曜日 (Kayōbi)' },
+                { planet: 'Mercury', sa: 'बुधवासरः', hi: 'बुधवार', en: 'Wednesday', latin: 'Dies Mercurii / Mercredi', jp: '水曜日 (Suiyōbi)' },
+                { planet: 'Jupiter', sa: 'गुरुवासरः', hi: 'गुरुवार', en: 'Thursday', latin: 'Dies Jovis / Jeudi', jp: '木曜日 (Mokuyōbi)' },
+                { planet: 'Venus', sa: 'शुक्रवासरः', hi: 'शुक्रवार', en: 'Friday', latin: 'Dies Veneris / Vendredi', jp: '金曜日 (Kinyōbi)' },
+                { planet: 'Saturn', sa: 'शनिवासरः', hi: 'शनिवार', en: 'Saturday', latin: 'Dies Saturni / Samedi', jp: '土曜日 (Doyōbi)' },
+              ].map((row, i) => (
+                <tr key={i} className="hover:bg-gold-primary/3">
+                  <td className="py-1.5 px-2 text-gold-light font-medium">{row.planet}</td>
+                  <td className="py-1.5 px-2 text-text-secondary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{row.sa}</td>
+                  <td className="py-1.5 px-2 text-text-secondary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{row.hi}</td>
+                  <td className="py-1.5 px-2 text-text-secondary">{row.en}</td>
+                  <td className="py-1.5 px-2 text-text-secondary">{row.latin}</td>
+                  <td className="py-1.5 px-2 text-text-secondary">{row.jp}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="text-text-tertiary text-[9px] mt-2 text-center">{isHi ? 'जापानी नाम भी ग्रह तत्वों पर आधारित: 日=सूर्य, 月=चन्द्र, 火=अग्नि(मंगल), 水=जल(बुध), 木=काष्ठ(गुरु), 金=धातु(शुक्र), 土=पृथ्वी(शनि)' : 'Japanese names use elemental associations: 日=Sun, 月=Moon, 火=Fire(Mars), 水=Water(Mercury), 木=Wood(Jupiter), 金=Metal(Venus), 土=Earth(Saturn)'}</p>
         </div>
       </div>
 

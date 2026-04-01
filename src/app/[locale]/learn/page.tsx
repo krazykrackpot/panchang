@@ -58,9 +58,23 @@ export default function LearnFoundationsPage() {
             </h3>
             <p className="text-text-secondary text-xs mt-1">
               {locale === 'en'
-                ? 'Deep 10-15 minute lessons with diagrams, worked examples, and knowledge checks. Start with Module 1.1.'
-                : 'गहन 10-15 मिनट के पाठ — चित्र, उदाहरण और ज्ञान परीक्षा। मॉड्यूल 1.1 से शुरू करें।'}
+                ? 'Deep 10-15 minute lessons with diagrams, worked examples, and knowledge checks.'
+                : 'गहन 10-15 मिनट के पाठ — चित्र, उदाहरण और ज्ञान परीक्षा।'}
             </p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {[
+                { id: '1-1', label: '1.1 Night Sky' },
+                { id: '1-2', label: '1.2 Degrees & Signs' },
+                { id: '1-3', label: '1.3 Fixed Stars' },
+                { id: '2-1', label: '2.1 Nine Grahas' },
+              ].map(m => (
+                <Link key={m.id} href={`/learn/modules/${m.id}`}
+                  className="text-[10px] px-2 py-1 rounded-lg bg-gold-primary/10 border border-gold-primary/15 text-gold-light hover:bg-gold-primary/20 transition-colors">
+                  {m.label}
+                </Link>
+              ))}
+              <span className="text-text-tertiary text-[10px] px-2 py-1">{locale === 'en' ? '+ more coming...' : '+ और आ रहे...'}</span>
+            </div>
           </div>
           <Link href="/learn/modules/1-1"
             className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold text-sm hover:bg-gold-light transition-colors">

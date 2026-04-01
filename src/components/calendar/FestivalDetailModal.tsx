@@ -23,6 +23,8 @@ interface FestivalDetailModalProps {
   paranaHariVasaraEnd?: string;
   paranaDwadashiEnd?: string;
   paranaEarlyEnd?: boolean;
+  paranaMadhyahnaStart?: string;
+  paranaMadhyahnaEnd?: string;
   // Eclipse info
   eclipseType?: 'solar' | 'lunar';
   eclipseMagnitude?: string;
@@ -86,6 +88,8 @@ export default function FestivalDetailModal({
   paranaHariVasaraEnd,
   paranaDwadashiEnd,
   paranaEarlyEnd,
+  paranaMadhyahnaStart,
+  paranaMadhyahnaEnd,
   eclipseType,
   eclipseMagnitude,
   eclipseMaxTime,
@@ -271,9 +275,37 @@ export default function FestivalDetailModal({
                           </div>
                         </div>
 
-                        {/* Timeline: Sunrise → Hari Vasara → Dwadashi End */}
-                        {(paranaSunrise || paranaHariVasaraEnd || paranaDwadashiEnd) && (
+                        {/* ─── Three Rules Summary ─── */}
+                        <div className="rounded-lg bg-bg-tertiary/30 border border-gold-primary/10 p-3 mb-3">
+                          <div className="text-[10px] text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
+                            {locale === 'en' ? 'Three Rules of Parana' : locale === 'hi' ? 'पारण के तीन नियम' : 'पारणस्य त्रयो नियमाः'}
+                          </div>
+                          <div className="space-y-1 text-xs" style={bodyFont}>
+                            <div className="flex items-start gap-2">
+                              <span className="text-blue-400 font-bold mt-0.5">1.</span>
+                              <span className="text-text-secondary">
+                                {locale === 'en' ? 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)' : locale === 'hi' ? 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें' : 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्'}
+                              </span>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <span className="text-amber-400 font-bold mt-0.5">2.</span>
+                              <span className="text-text-secondary">
+                                {locale === 'en' ? 'Do NOT break fast during Madhyahna (midday period)' : locale === 'hi' ? 'मध्याह्न (दोपहर) में पारण न करें' : 'मध्याह्ने पारणं न कुर्यात्'}
+                              </span>
+                            </div>
+                            <div className="flex items-start gap-2">
+                              <span className="text-orange-400 font-bold mt-0.5">3.</span>
+                              <span className="text-text-secondary">
+                                {locale === 'en' ? 'MUST break fast before Dwadashi tithi ends' : locale === 'hi' ? 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें' : 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्'}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* ─── Timeline ─── */}
+                        {(paranaSunrise || paranaDwadashiEnd) && (
                           <div className="space-y-1.5 mb-3">
+                            {/* Sunrise */}
                             {paranaSunrise && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-bg-tertiary/40 px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
@@ -282,21 +314,45 @@ export default function FestivalDetailModal({
                                 <span className="text-amber-300 font-mono font-bold">{paranaSunrise}</span>
                               </div>
                             )}
+
+                            {/* Hari Vasara — show contextually */}
                             {paranaHariVasaraEnd && (
-                              <div className={`flex items-center justify-between text-xs rounded-lg px-3 py-2 ${paranaEarlyEnd ? 'bg-red-500/10 border border-red-500/20' : 'bg-blue-500/10 border border-blue-500/15'}`}>
-                                <span className={`font-medium ${paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'}`} style={bodyFont}>
-                                  {locale === 'en' ? 'Hari Vasara ends' : locale === 'hi' ? 'हरि वासर समाप्ति' : 'हरिवासरान्तः'}
-                                  {paranaEarlyEnd && (
-                                    <span className="ml-1 text-[10px] text-red-400 uppercase">{locale === 'en' ? '⚠ skip' : '⚠ छोड़ें'}</span>
-                                  )}
+                              <div className={`flex items-center justify-between text-xs rounded-lg px-3 py-2 ${
+                                paranaHariVasaraEnd === paranaSunrise
+                                  ? 'bg-emerald-500/10 border border-emerald-500/15'
+                                  : paranaEarlyEnd
+                                  ? 'bg-red-500/10 border border-red-500/20'
+                                  : 'bg-blue-500/10 border border-blue-500/15'
+                              }`}>
+                                <span className={`font-medium ${
+                                  paranaHariVasaraEnd === paranaSunrise ? 'text-emerald-300/80' : paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'
+                                }`} style={bodyFont}>
+                                  {paranaHariVasaraEnd === paranaSunrise
+                                    ? (locale === 'en' ? 'Hari Vasara — already over before sunrise' : locale === 'hi' ? 'हरि वासर — सूर्योदय से पहले समाप्त' : 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः')
+                                    : (locale === 'en' ? 'Hari Vasara ends (no food before)' : locale === 'hi' ? 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)' : 'हरिवासरान्तः')
+                                  }
                                 </span>
-                                <span className={`font-mono font-bold ${paranaEarlyEnd ? 'text-red-300' : 'text-blue-300'}`}>{paranaHariVasaraEnd}</span>
+                                {paranaHariVasaraEnd !== paranaSunrise && (
+                                  <span className={`font-mono font-bold ${paranaEarlyEnd ? 'text-red-300' : 'text-blue-300'}`}>{paranaHariVasaraEnd}</span>
+                                )}
                               </div>
                             )}
+
+                            {/* Madhyahna */}
+                            {paranaMadhyahnaStart && paranaMadhyahnaEnd && (
+                              <div className="flex items-center justify-between text-xs rounded-lg bg-amber-500/10 border border-amber-500/15 px-3 py-2">
+                                <span className="text-amber-300/80 font-medium" style={bodyFont}>
+                                  {locale === 'en' ? 'Madhyahna (no food during)' : locale === 'hi' ? 'मध्याह्न (इसमें भोजन वर्जित)' : 'मध्याह्नः (वर्जनीयः)'}
+                                </span>
+                                <span className="text-amber-300 font-mono font-bold">{paranaMadhyahnaStart}–{paranaMadhyahnaEnd}</span>
+                              </div>
+                            )}
+
+                            {/* Dwadashi end */}
                             {paranaDwadashiEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-orange-500/10 border border-orange-500/15 px-3 py-2">
                                 <span className="text-orange-300/80 font-medium" style={bodyFont}>
-                                  {locale === 'en' ? 'Dwadashi ends (deadline)' : locale === 'hi' ? 'द्वादशी समाप्ति (अंतिम समय)' : 'द्वादशीतिथ्यन्तः'}
+                                  {locale === 'en' ? 'Dwadashi ends (must eat before)' : locale === 'hi' ? 'द्वादशी समाप्ति (इससे पहले खाएँ)' : 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)'}
                                 </span>
                                 <span className="text-orange-300 font-mono font-bold">{paranaDwadashiEnd}</span>
                               </div>
@@ -304,28 +360,17 @@ export default function FestivalDetailModal({
                           </div>
                         )}
 
-                        {/* Special note for early-end case */}
+                        {/* Special notes */}
                         {paranaEarlyEnd && (
                           <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 mb-3">
                             <p className="text-red-300 text-xs leading-relaxed" style={bodyFont}>
                               {locale === 'en'
-                                ? 'Dwadashi ends before Hari Vasara — break fast immediately after sunrise, before Dwadashi ends.'
+                                ? 'Dwadashi ends very early — break fast immediately after sunrise. Hari Vasara restriction is overridden by Dwadashi deadline.'
                                 : locale === 'hi'
-                                ? 'द्वादशी हरि वासर से पहले समाप्त हो रही है — सूर्योदय के तुरंत बाद, द्वादशी समाप्त होने से पहले पारण करें।'
-                                : 'द्वादशी हरिवासरात् पूर्वं समाप्यते — सूर्योदयानन्तरं द्वादशीसमाप्तेः पूर्वं पारणं कुर्यात्।'}
+                                ? 'द्वादशी बहुत जल्दी समाप्त हो रही है — सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'
+                                : 'द्वादशी शीघ्रं समाप्यते — सूर्योदयानन्तरं तूर्णं पारणं कुर्यात्।'}
                             </p>
                           </div>
-                        )}
-
-                        {/* General instruction */}
-                        {!paranaEarlyEnd && paranaHariVasaraEnd && paranaDwadashiEnd && (
-                          <p className="text-text-primary/70 text-xs leading-relaxed" style={bodyFont}>
-                            {locale === 'en'
-                              ? `Fast may be broken only after Hari Vasara ends (${paranaHariVasaraEnd}). Do not delay past Dwadashi end (${paranaDwadashiEnd}).`
-                              : locale === 'hi'
-                              ? `हरि वासर समाप्ति (${paranaHariVasaraEnd}) के बाद ही पारण करें। द्वादशी समाप्ति (${paranaDwadashiEnd}) के बाद विलम्ब न करें।`
-                              : `हरिवासरान्ते (${paranaHariVasaraEnd}) पारणं कुर्यात्। द्वादशीसमाप्तेः (${paranaDwadashiEnd}) परं विलम्बः न कर्तव्यः।`}
-                          </p>
                         )}
                       </div>
                     )}

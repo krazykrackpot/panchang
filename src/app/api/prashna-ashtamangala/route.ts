@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { generatePrashnaResult } from '@/lib/prashna/ashtamangala';
 import { withFeatureGate } from '@/lib/subscription/api-gate';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { QuestionCategory } from '@/types/prashna';
 
 export async function POST(request: Request) {
@@ -14,14 +15,22 @@ export async function POST(request: Request) {
       category = 'fortune',
       lat = 28.6139,
       lng = 77.2090,
-      tz = 5.5,
+      tz: tzFallback = 5.5,
+      timezone,
     } = body as {
       numbers: [number, number, number];
       category?: QuestionCategory;
       lat?: number;
       lng?: number;
       tz?: number;
+      timezone?: string;
     };
+
+    // Resolve tz from IANA timezone string if provided
+    const now = new Date();
+    const tz = timezone
+      ? getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), timezone)
+      : tzFallback;
 
     if (!numbers || numbers.length !== 3) {
       return NextResponse.json(

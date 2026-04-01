@@ -82,7 +82,7 @@ export default function PrashnaAshtamangalaPage() {
       const res = await fetch('/api/prashna-ashtamangala', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ numbers, category, lat: 28.6139, lng: 77.2090, tz: 5.5 }),
+        body: JSON.stringify({ numbers, category, lat: 28.6139, lng: 77.2090, tz: 5.5, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getClaudeClient, DEFAULT_MODEL } from '@/lib/llm/llm-client';
 import { buildAllHoroscopePrompts, buildHoroscopePrompt, buildFallbackHoroscope } from '@/lib/llm/horoscope-prompt';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // In-memory cache: date → horoscopes
 const cache = new Map<string, { data: Record<number, string>; createdAt: number }>();
@@ -14,6 +15,7 @@ const querySchema = z.object({
   lat: z.coerce.number().min(-90).max(90).default(28.6139),
   lng: z.coerce.number().min(-180).max(180).default(77.209),
   tz: z.coerce.number().min(-12).max(14).default(5.5),
+  timezone: z.string().optional(),
 });
 
 export async function GET(request: Request) {
@@ -24,14 +26,18 @@ export async function GET(request: Request) {
     lat: searchParams.get('lat') || '28.6139',
     lng: searchParams.get('lng') || '77.209',
     tz: searchParams.get('tz') || '5.5',
+    timezone: searchParams.get('timezone') || undefined,
   });
 
   if (!parsed.success) {
     return NextResponse.json({ error: 'Invalid parameters' }, { status: 400 });
   }
 
-  const { sign, locale, lat, lng, tz } = parsed.data;
+  const { sign, locale, lat, lng, tz: tzFallback, timezone } = parsed.data;
   const now = new Date();
+  const tz = timezone
+    ? getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), timezone)
+    : tzFallback;
   const today = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
 
   // Check cache

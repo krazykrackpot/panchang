@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { scanDateRange } from '@/lib/muhurta/time-window-scanner';
 import { getExtendedActivity } from '@/lib/muhurta/activity-rules-extended';
 import { withUsageGate } from '@/lib/subscription/api-gate';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { ExtendedActivityId, MuhurtaAIResult } from '@/types/muhurta-ai';
 
 export async function POST(request: Request) {
@@ -16,7 +17,8 @@ export async function POST(request: Request) {
       endDate,
       lat = 28.6139,
       lng = 77.2090,
-      tz = 5.5,
+      tz: tzFallback = 5.5,
+      timezone,
     } = body as {
       activity: ExtendedActivityId;
       startDate: string;
@@ -24,7 +26,15 @@ export async function POST(request: Request) {
       lat?: number;
       lng?: number;
       tz?: number;
+      timezone?: string;
     };
+
+    // Resolve tz from IANA timezone string if provided, using startDate for offset
+    let tz = tzFallback;
+    if (timezone && startDate) {
+      const [y, m, d] = startDate.split('-').map(Number);
+      if (y && m && d) tz = getUTCOffsetForDate(y, m, d, timezone);
+    }
 
     if (!activity || !startDate || !endDate) {
       return NextResponse.json(

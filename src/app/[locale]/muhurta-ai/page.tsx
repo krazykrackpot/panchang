@@ -102,7 +102,7 @@ export default function MuhurtaAIPage() {
   const [activity, setActivity] = useState<ExtendedActivityId | null>(null);
   const [startDate, setStartDate] = useState(fmt(today));
   const [endDate, setEndDate] = useState(fmt(nextMonth));
-  const [location, setLocation] = useState({ lat: 28.6139, lng: 77.2090, name: 'New Delhi, India', tz: 5.5 });
+  const [location, setLocation] = useState({ lat: 28.6139, lng: 77.2090, name: 'New Delhi, India', tz: 5.5, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
   const [detectingLocation, setDetectingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [data, setData] = useState<MuhurtaAIResult | null>(null);
@@ -119,9 +119,9 @@ export default function MuhurtaAIPage() {
             const geoData = await res.json();
             const city = geoData.address?.city || geoData.address?.town || geoData.address?.village || '';
             const country = geoData.address?.country || '';
-            setLocation({ lat: latitude, lng: longitude, name: [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60 });
+            setLocation({ lat: latitude, lng: longitude, name: [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
           } catch {
-            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60 });
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: -new Date().getTimezoneOffset() / 60, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
           }
           setDetectingLocation(false);
         },
@@ -130,7 +130,7 @@ export default function MuhurtaAIPage() {
             .then(res => res.json())
             .then(ipData => {
               if (ipData.latitude && ipData.longitude) {
-                setLocation({ lat: ipData.latitude, lng: ipData.longitude, name: [ipData.city, ipData.country_name].filter(Boolean).join(', ') || 'Unknown', tz: ipData.utc_offset ? parseFloat(ipData.utc_offset) / 100 : -new Date().getTimezoneOffset() / 60 });
+                setLocation({ lat: ipData.latitude, lng: ipData.longitude, name: [ipData.city, ipData.country_name].filter(Boolean).join(', ') || 'Unknown', tz: ipData.utc_offset ? parseFloat(ipData.utc_offset) / 100 : -new Date().getTimezoneOffset() / 60, timezone: ipData.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone });
               }
             })
             .catch(() => {})
@@ -148,7 +148,7 @@ export default function MuhurtaAIPage() {
       const res = await fetch('/api/muhurta-ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz }),
+        body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz, timezone: location.timezone }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);
@@ -203,7 +203,7 @@ export default function MuhurtaAIPage() {
                 value={location.name}
                 onSelect={(loc) => {
                   const tzOffset = Math.round(loc.lng / 15 * 2) / 2;
-                  setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset });
+                  setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset, timezone: (loc as { timezone?: string }).timezone || Intl.DateTimeFormat().resolvedOptions().timeZone });
                   setShowLocationSearch(false);
                 }}
                 placeholder={locale === 'hi' ? 'शहर खोजें...' : locale === 'sa' ? 'नगरं खोजयतु...' : 'Search city...'}

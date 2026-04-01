@@ -43,3 +43,4 @@ next-env.d.ts
 
 # classical text source files (PDFs, raw text)
 /data/texts/
+ephe/

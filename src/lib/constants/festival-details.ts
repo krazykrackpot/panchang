@@ -287,6 +287,292 @@ export const FESTIVAL_DETAILS: Record<string, FestivalDetail> = {
     },
     deity: { en: 'Goddess Lakshmi, Lord Rama, Lord Ganesha', hi: 'देवी लक्ष्मी, भगवान राम, भगवान गणेश', sa: 'लक्ष्मीः, श्रीरामः, गणेशः' },
   },
+
+  // ── Additional Festivals ──
+
+  'ratha-saptami': {
+    name: { en: 'Ratha Saptami', hi: 'रथ सप्तमी', sa: 'रथसप्तमी' },
+    mythology: {
+      en: 'Ratha Saptami celebrates the birth of Surya, the Sun God, and marks the day he began his northward chariot journey across the sky drawn by seven horses representing the seven days of the week. The Bhavishya Purana describes this as the day Surya\'s radiance first illuminated the universe, dispelling primordial darkness.',
+      hi: 'रथ सप्तमी सूर्य देव के जन्म का उत्सव है। इस दिन सूर्य ने सात अश्वों वाले रथ पर उत्तर दिशा की यात्रा आरम्भ की। भविष्य पुराण के अनुसार इस दिन सूर्य की किरणों ने सर्वप्रथम ब्रह्माण्ड को प्रकाशित किया।',
+      sa: 'रथसप्तमी सूर्यस्य जन्मोत्सवः। अस्मिन् दिने सूर्यः सप्ताश्वरथेन उत्तरदिशायां यात्राम् आरभत। भविष्यपुराणानुसारं सूर्यरश्मयः सर्वप्रथमं ब्रह्माण्डम् अप्रकाशयन्।',
+    },
+    observance: {
+      en: 'Devotees rise before dawn and bathe with Arka (Calotropis) leaves placed on the head and shoulders, symbolizing purification by the Sun. Surya Namaskar is performed facing the rising sun. Offerings of red flowers, wheat, and jaggery are made. Many observe a fast and recite the Aditya Hridayam stotra.',
+      hi: 'भक्त सूर्योदय से पूर्व आक के पत्ते सिर और कन्धों पर रखकर स्नान करते हैं। सूर्य नमस्कार किया जाता है। लाल फूल, गेहूँ और गुड़ अर्पित करते हैं। आदित्य हृदयम् स्तोत्र का पाठ होता है।',
+      sa: 'भक्ताः प्रातः अर्कपत्रैः शिरसि स्कन्धयोः च स्थापयित्वा स्नानं कुर्वन्ति। सूर्यनमस्कारः क्रियते। रक्तपुष्पाणि गोधूमं गुडं च अर्प्यते।',
+    },
+    significance: {
+      en: 'Ratha Saptami marks the symbolic birthday of Surya and the quickening of spring. It is believed that bathing with Arka leaves absolves sins of seven lifetimes. The festival underscores the Sun\'s role as the sustainer of all life and the source of health and vitality.',
+      hi: 'रथ सप्तमी सूर्य के प्रतीकात्मक जन्मदिवस और वसन्त आगमन का सूचक है। आक के पत्तों से स्नान सात जन्मों के पापों का नाश करता है।',
+      sa: 'रथसप्तमी सूर्यस्य प्रतीकात्मकजन्मदिनं वसन्तागमनस्य च सूचकम्। अर्कपत्रस्नानेन सप्तजन्मनां पापानि नश्यन्ति।',
+    },
+    deity: { en: 'Surya (Sun God)', hi: 'सूर्य देव', sa: 'सूर्यदेवः' },
+  },
+
+  'bhishma-ashtami': {
+    name: { en: 'Bhishma Ashtami', hi: 'भीष्म अष्टमी', sa: 'भीष्माष्टमी' },
+    mythology: {
+      en: 'Bhishma Ashtami honours the great warrior Bhishma Pitamah of the Mahabharata, son of King Shantanu and Goddess Ganga. After being fatally wounded by Arjuna, Bhishma lay on a bed of arrows and chose to depart on this day during Uttarayana, exercising his boon of Iccha Mrityu (death at will). His selfless vow of lifelong celibacy (Bhishma Pratigya) and unwavering dharma make him one of the most revered figures in Hindu tradition.',
+      hi: 'भीष्म अष्टमी महाभारत के महान योद्धा भीष्म पितामह को समर्पित है। राजा शान्तनु और गंगा देवी के पुत्र भीष्म ने शर-शय्या पर उत्तरायण की प्रतीक्षा कर इच्छा मृत्यु का वरदान प्रयोग किया। उनकी आजीवन ब्रह्मचर्य प्रतिज्ञा और धर्मनिष्ठा अतुलनीय है।',
+      sa: 'भीष्माष्टमी महाभारतस्य महायोद्धारं भीष्मपितामहं सम्मानयति। शान्तनुनृपस्य गङ्गादेव्याः च पुत्रः भीष्मः शरशय्यायां उत्तरायणे इच्छामृत्युवरं प्रायुङ्क्त।',
+    },
+    observance: {
+      en: 'Devotees perform Tarpan (water libation) for Bhishma, even those without departed ancestors, as he died without progeny. Sesame seeds and water are offered while facing the north. Recitation of Bhishma Stuti and Vishnu Sahasranama — which Bhishma narrated from his deathbed — is considered highly meritorious.',
+      hi: 'भक्त भीष्म के लिए तर्पण करते हैं — यह बिना सन्तान के गये व्यक्ति के लिए भी किया जाता है। उत्तर दिशा की ओर मुख कर तिल और जल अर्पित करते हैं। भीष्म स्तुति और विष्णु सहस्रनाम का पाठ होता है।',
+      sa: 'भक्ताः भीष्मार्थं तर्पणं कुर्वन्ति। उत्तरदिशाभिमुखाः तिलजलम् अर्पयन्ति। भीष्मस्तुतिः विष्णुसहस्रनामपाठश्च क्रियते।',
+    },
+    significance: {
+      en: 'Bhishma Ashtami teaches the values of sacrifice, unwavering resolve, and adherence to one\'s vow (Pratigya). Offering Tarpan on this day is believed to be equivalent to offering it to all ancestors. It is the only day when Tarpan is offered to someone who was neither a father nor a direct ancestor.',
+      hi: 'भीष्म अष्टमी त्याग, दृढ़ संकल्प और प्रतिज्ञापालन का सन्देश देती है। इस दिन तर्पण करना सभी पितरों के तर्पण के समान माना जाता है।',
+      sa: 'भीष्माष्टमी त्यागस्य दृढसंकल्पस्य प्रतिज्ञापालनस्य च सन्देशं ददाति। अस्मिन् दिने तर्पणं सर्वेषां पितृणां तर्पणसमम्।',
+    },
+    deity: { en: 'Bhishma Pitamah, Lord Vishnu', hi: 'भीष्म पितामह, भगवान विष्णु', sa: 'भीष्मपितामहः, विष्णुः' },
+  },
+
+  'chaitra-navratri': {
+    name: { en: 'Chaitra Navratri', hi: 'चैत्र नवरात्रि', sa: 'चैत्रनवरात्रिः' },
+    mythology: {
+      en: 'Chaitra Navratri commemorates the nine nights of worship of Goddess Durga in the month of Chaitra. According to the Devi Mahatmyam, the Goddess manifested in nine forms (Navadurga) to vanquish the demon Mahishasura. This Navratri also marks the beginning of the Hindu new year (Vikram Samvat) and is when Lord Rama\'s birth is celebrated on the ninth day (Ram Navami).',
+      hi: 'चैत्र नवरात्रि चैत्र मास में देवी दुर्गा की नौ रातों की उपासना है। देवीमाहात्म्य के अनुसार देवी ने नवदुर्गा रूपों में महिषासुर का वध किया। यह हिन्दू नववर्ष (विक्रम संवत्) का आरम्भ भी है और नवमी को राम नवमी मनायी जाती है।',
+      sa: 'चैत्रनवरात्रिः चैत्रमासे दुर्गादेव्याः नवरात्रोपासना। देवीमाहात्म्यानुसारं देवी नवदुर्गारूपैः महिषासुरं निहतवती। नवम्यां श्रीरामजन्म उत्सवः।',
+    },
+    observance: {
+      en: 'On the first day (Pratipada), perform Ghatasthapana — install a sacred Kalash with mango leaves and a coconut, sow barley seeds in a pot of soil. Worship a different form of Navadurga each day. Recite Durga Saptashati. Many observe a strict nine-day fast. Conclude with Kanya Puja (honouring nine young girls) and Ram Navami celebrations.',
+      hi: 'प्रतिपदा को घटस्थापना करें — कलश में आम के पत्ते और नारियल स्थापित करें, मिट्टी में जौ बोएँ। प्रतिदिन नवदुर्गा के एक रूप की पूजा करें। दुर्गा सप्तशती का पाठ करें। नौ दिन व्रत रखें। कन्या पूजन से समापन करें।',
+      sa: 'प्रतिपदायां घटस्थापनं कुर्यात् — कलशे आम्रपत्राणि नारिकेलं च स्थापयेत्। प्रतिदिनं नवदुर्गायाः एकं रूपं पूजयेत्। दुर्गासप्तशतीपाठः।',
+    },
+    significance: {
+      en: 'Chaitra Navratri marks the beginning of the Hindu new year and the arrival of spring (Vasanta). It is considered the most auspicious time for new beginnings, spiritual practices, and invoking the Goddess\'s blessings. The nine nights represent the triumph of Shakti (divine feminine energy) over evil.',
+      hi: 'चैत्र नवरात्रि हिन्दू नववर्ष और वसन्त आगमन का प्रतीक है। नई शुरुआत, साधना और देवी कृपा के लिए सबसे शुभ समय माना जाता है।',
+      sa: 'चैत्रनवरात्रिः हिन्दूनवसंवत्सरस्य वसन्तागमनस्य च प्रतीकः। नवारम्भार्थं साधनार्थं च शुभतमः कालः।',
+    },
+    deity: { en: 'Goddess Durga (Navadurga)', hi: 'देवी दुर्गा (नवदुर्गा)', sa: 'दुर्गादेवी (नवदुर्गा)' },
+    isFast: true,
+    fastNote: { en: 'Nine-day fast on fruits, sabudana, and kuttu atta. Some fast only on first and last days. Break fast after Kanya Puja on Navami.', hi: 'नौ दिन फल, साबूदाना और कुट्टू का व्रत। कुछ लोग केवल पहले और अन्तिम दिन व्रत रखते हैं।', sa: 'नवदिनानि फलैः साबूदानेन च व्रतम्। केचित् प्रथमे अन्तिमे च दिने व्रतं धारयन्ति।' },
+  },
+
+  'akshaya-tritiya': {
+    name: { en: 'Akshaya Tritiya', hi: 'अक्षय तृतीया', sa: 'अक्षयतृतीया' },
+    mythology: {
+      en: 'On this day, Veda Vyasa began composing the Mahabharata with Lord Ganesha as his scribe. In the Puranas, this is when the Treta Yuga began and when Lord Parashurama — the sixth avatar of Vishnu — was born. It is also the day Kubera received his wealth from Lord Shiva, and Sudama visited Lord Krishna and received boundless prosperity.',
+      hi: 'इस दिन वेद व्यास ने गणेश जी को लिखाते हुए महाभारत की रचना आरम्भ की। इसी दिन त्रेतायुग का आरम्भ हुआ, परशुराम का जन्म हुआ, कुबेर को शिव से धन प्राप्त हुआ और सुदामा ने कृष्ण से अक्षय ऐश्वर्य पाया।',
+      sa: 'अस्मिन् दिने वेदव्यासः गणेशेन सह महाभारतरचनाम् आरभत। त्रेतायुगस्य आरम्भः, परशुरामजन्म, कुबेरस्य शिवात् धनप्राप्तिः, सुदाम्नः कृष्णात् अक्षयैश्वर्यलाभश्च अस्मिन् दिने अभवत्।',
+    },
+    observance: {
+      en: 'Purchase gold, silver, or new property — it is believed that anything acquired on this day grows infinitely (Akshaya means imperishable). Perform charity and donate food. Begin new ventures, investments, or griha pravesh. Offer prayers to Lord Vishnu and Goddess Lakshmi.',
+      hi: 'सोना, चाँदी या नयी सम्पत्ति खरीदें — इस दिन प्राप्त वस्तु अक्षय (अविनाशी) होती है। दान करें, अन्नदान करें। नए कार्य, निवेश या गृहप्रवेश आरम्भ करें।',
+      sa: 'सुवर्णं रजतं नवसम्पत्तिं वा क्रीणातु — अस्मिन् दिने प्राप्तं सर्वम् अक्षयं भवति। दानं अन्नदानं च कुर्यात्।',
+    },
+    significance: {
+      en: 'Akshaya Tritiya is one of the most auspicious days in the Hindu calendar — every moment is a Muhurta, requiring no separate auspicious time calculation. It is a self-auspicious (Swayam Siddha Muhurta) day. Any act of charity, worship, or new beginning on this day yields imperishable results.',
+      hi: 'अक्षय तृतीया हिन्दू कैलेंडर के सबसे शुभ दिनों में से एक है — प्रत्येक क्षण मुहूर्त है, अलग शुभ मुहूर्त की आवश्यकता नहीं। यह स्वयंसिद्ध मुहूर्त दिवस है।',
+      sa: 'अक्षयतृतीया हिन्दूपञ्चाङ्गस्य शुभतमेषु दिनेषु अन्यतमा — प्रत्येकं क्षणं मुहूर्तः। स्वयंसिद्धमुहूर्तदिनम्।',
+    },
+    deity: { en: 'Lord Vishnu, Goddess Lakshmi, Lord Parashurama', hi: 'भगवान विष्णु, देवी लक्ष्मी, परशुराम', sa: 'विष्णुः, लक्ष्मीः, परशुरामः' },
+  },
+
+  'buddha-purnima': {
+    name: { en: 'Buddha Purnima', hi: 'बुद्ध पूर्णिमा', sa: 'बुद्धपूर्णिमा' },
+    mythology: {
+      en: 'Buddha Purnima celebrates the three most significant events in Gautama Buddha\'s life — all of which occurred on a Vaishakha Purnima: his birth in Lumbini, his attainment of Bodhi (enlightenment) under the Bodhi tree in Bodh Gaya, and his Mahaparinirvana (passing) in Kushinagar. In Hindu tradition, Buddha is revered as the ninth avatar of Lord Vishnu.',
+      hi: 'बुद्ध पूर्णिमा गौतम बुद्ध के जीवन की तीन प्रमुख घटनाओं का उत्सव है — जन्म, बोधिप्राप्ति और महापरिनिर्वाण — तीनों वैशाख पूर्णिमा को हुईं। हिन्दू परम्परा में बुद्ध को विष्णु का नवम अवतार माना जाता है।',
+      sa: 'बुद्धपूर्णिमा गौतमबुद्धस्य जन्मबोधिमहापरिनिर्वाणत्रयस्य उत्सवः — सर्वाणि वैशाखपूर्णिमायां अभवन्। हिन्दूपरम्परायां बुद्धः विष्णोः नवमावतारः।',
+    },
+    observance: {
+      en: 'Visit Buddhist temples and monasteries. Offer prayers, light lamps, and meditate on the teachings of the Buddha. Devotees observe the Pancha Shila (five precepts) with particular devotion. In Hindu practice, worship Lord Vishnu in his Buddha avatar. Acts of compassion, charity, and non-violence are emphasised.',
+      hi: 'बौद्ध विहारों में दर्शन करें, दीप जलाएँ और ध्यान करें। पञ्चशील का विशेष पालन करें। हिन्दू परम्परा में बुद्ध अवतार की पूजा करें। करुणा, दान और अहिंसा पर बल दें।',
+      sa: 'बौद्धविहारेषु दर्शनं, दीपप्रज्वालनं, ध्यानं च कुर्यात्। पञ्चशीलं विशेषतः पालयेत्। करुणा दानं अहिंसा च आचरेत्।',
+    },
+    significance: {
+      en: 'Buddha Purnima celebrates the supreme embodiment of wisdom, compassion, and the middle path. It reminds humanity that enlightenment is attainable through right effort and meditation. The Vaishakha full moon is considered one of the most spiritually potent nights of the year.',
+      hi: 'बुद्ध पूर्णिमा ज्ञान, करुणा और मध्यम मार्ग का परम प्रतीक है। यह स्मरण कराती है कि सम्यक् प्रयास से बोधि प्राप्त हो सकती है।',
+      sa: 'बुद्धपूर्णिमा ज्ञानस्य करुणायाः मध्यममार्गस्य च परमप्रतीकः। सम्यक्प्रयासेन बोधिः प्राप्तुं शक्या इति स्मारयति।',
+    },
+    deity: { en: 'Gautama Buddha (Vishnu Avatar)', hi: 'गौतम बुद्ध (विष्णु अवतार)', sa: 'गौतमबुद्धः (विष्णावतारः)' },
+  },
+
+  'ganga-dussehra': {
+    name: { en: 'Ganga Dussehra', hi: 'गंगा दशहरा', sa: 'गङ्गादशहरा' },
+    mythology: {
+      en: 'Ganga Dussehra commemorates the descent of the sacred river Ganga from heaven to earth. King Bhagiratha performed intense tapas for thousands of years to bring Ganga down to liberate the souls of his sixty thousand ancestors (the sons of King Sagara) who had been reduced to ashes by Sage Kapila\'s gaze. Lord Shiva caught the mighty torrent of Ganga in his matted locks (Jata) to prevent the earth from being shattered by her force.',
+      hi: 'गंगा दशहरा गंगा नदी के स्वर्ग से पृथ्वी पर अवतरण का उत्सव है। राजा भगीरथ ने हज़ारों वर्ष तपस्या कर गंगा को पृथ्वी पर लाया, जिससे सगर पुत्रों की आत्माओं को मुक्ति मिले। शिव ने गंगा के प्रचण्ड प्रवाह को अपनी जटाओं में धारण किया।',
+      sa: 'गङ्गादशहरा गङ्गानद्याः स्वर्गात् पृथिवीम् अवतरणस्य उत्सवः। भगीरथनृपः सहस्रवर्षं तपः कृत्वा गङ्गां पृथिवीम् आनयत्। शिवः गङ्गाप्रवाहं स्वजटासु अधारयत्।',
+    },
+    observance: {
+      en: 'Bathe in the Ganga or any sacred river. Offer ten items (Dashahara means destroyer of ten sins): flowers, incense, lamps, sacred food, and more. Perform Ganga Aarti, especially at Haridwar, Varanasi, and Prayagraj. Donate food, clothes, and sesame seeds. Light floating diyas on the river.',
+      hi: 'गंगा या किसी पवित्र नदी में स्नान करें। दस वस्तुएँ अर्पित करें (दशहरा = दस पापों का नाश)। गंगा आरती करें। अन्न, वस्त्र और तिल का दान करें। नदी में दीप प्रवाहित करें।',
+      sa: 'गङ्गायां पवित्रनद्यां वा स्नानं कुर्यात्। दशवस्तूनि अर्पयेत्। गङ्गाआरतिं कुर्यात्। अन्नवस्त्रतिलदानं कुर्यात्।',
+    },
+    significance: {
+      en: 'Ganga Dussehra destroys ten types of sins (Dasha-hara). Bathing in the Ganga on this day is considered equivalent to bathing at all sacred tirthas. The festival celebrates the purifying power of the Ganga, whose waters are believed to bestow moksha and cleanse even the most grievous karmic debts.',
+      hi: 'गंगा दशहरा दस प्रकार के पापों का नाश करती है। इस दिन गंगा स्नान सभी तीर्थों के स्नान के समान माना जाता है। गंगा की पवित्रता और मोक्षदायिनी शक्ति का उत्सव है।',
+      sa: 'गङ्गादशहरा दशविधपापानि नाशयति। अस्मिन् दिने गङ्गास्नानं सर्वतीर्थस्नानसमम्। गङ्गायाः पवित्रता मोक्षदायिनीशक्तिश्च उत्सव्यते।',
+    },
+    deity: { en: 'Goddess Ganga, Lord Shiva', hi: 'देवी गंगा, भगवान शिव', sa: 'गङ्गादेवी, शिवः' },
+  },
+
+  'nag-panchami': {
+    name: { en: 'Nag Panchami', hi: 'नाग पञ्चमी', sa: 'नागपञ्चमी' },
+    mythology: {
+      en: 'Nag Panchami is rooted in the Puranic reverence for serpent deities (Nagas). In the Mahabharata, King Janamejaya performed a great Sarpa Satra (serpent sacrifice) to avenge his father Parikshit\'s death by Takshaka. The sage Astika intervened and stopped the sacrifice, saving the Naga race — this event is commemorated on Nag Panchami. Serpents are also revered as ornaments of Lord Shiva (Vasuki around his neck) and as the cosmic bed of Lord Vishnu (Shesha Naga).',
+      hi: 'नाग पञ्चमी नाग देवताओं की पूजा का पर्व है। महाभारत में राजा जनमेजय ने तक्षक से बदला लेने सर्प-यज्ञ किया, जिसे ऋषि आस्तीक ने रोककर नागवंश की रक्षा की। नाग शिव के आभूषण (वासुकि) और विष्णु की शय्या (शेषनाग) हैं।',
+      sa: 'नागपञ्चमी नागदेवतापूजनपर्वम्। महाभारते जनमेजयनृपः सर्पसत्रम् अकरोत्, आस्तीकमुनिः तत् अवारयत् नागवंशं च अरक्षत्। नागाः शिवस्य आभूषणं विष्णोः शय्या च।',
+    },
+    observance: {
+      en: 'Offer milk, turmeric, rice, and flowers at snake anthills or Naga idols. Draw serpent images on the doorstep with turmeric or sandalwood paste. Do not dig the earth or plough fields on this day. Recite Naga Stotras. Many women observe a fast and pray for the well-being of their families. Live snakes are venerated in some regions.',
+      hi: 'साँप की बाँबी या नाग प्रतिमा पर दूध, हल्दी, चावल और फूल चढ़ाएँ। द्वार पर हल्दी या चन्दन से नाग चित्र बनाएँ। इस दिन पृथ्वी न खोदें। नाग स्तोत्र पढ़ें। महिलाएँ परिवार कल्याण के लिए व्रत रखती हैं।',
+      sa: 'सर्पवल्मीके नागप्रतिमायां वा क्षीरं हरिद्रां तण्डुलं पुष्पाणि च अर्पयेत्। द्वारे हरिद्रया चन्दनेन वा नागचित्रं रचयेत्। भूमिं न खनेत्।',
+    },
+    significance: {
+      en: 'Nag Panchami honours the Nagas as protectors of the earth and keepers of the underworld (Patala). Snakes symbolize Kundalini energy, fertility, and cosmic power. Worshipping them is believed to protect from snakebite, grant progeny, and remove Kala Sarpa Dosha from one\'s horoscope.',
+      hi: 'नाग पञ्चमी नागों को पृथ्वी के रक्षक और पाताल के अधिपति के रूप में सम्मानित करती है। नाग कुण्डलिनी शक्ति और सन्तान का प्रतीक हैं। कालसर्प दोष निवारण में सहायक।',
+      sa: 'नागपञ्चमी नागान् पृथिव्याः रक्षकान् पातालाधिपतीन् च सम्मानयति। नागाः कुण्डलिनीशक्तेः सन्तानस्य च प्रतीकाः।',
+    },
+    deity: { en: 'Naga Devatas (Vasuki, Shesha, Takshaka)', hi: 'नाग देवता (वासुकि, शेष, तक्षक)', sa: 'नागदेवताः (वासुकिः, शेषः, तक्षकः)' },
+  },
+
+  'hariyali-teej': {
+    name: { en: 'Hariyali Teej', hi: 'हरियाली तीज', sa: 'हरितालिकातीजः' },
+    mythology: {
+      en: 'Hariyali Teej celebrates the reunion of Goddess Parvati with Lord Shiva after her intense penance. According to the Shiva Purana, Parvati performed severe austerities for years, refusing food and water, to win Shiva as her husband. Pleased by her devotion, Shiva accepted her, and they were married during the monsoon season. The festival also celebrates the lush green (Hariyali) splendour of the rainy season.',
+      hi: 'हरियाली तीज देवी पार्वती और शिव के पुनर्मिलन का उत्सव है। शिव पुराण के अनुसार पार्वती ने कठोर तपस्या कर शिव को पति रूप में प्राप्त किया। यह सावन की हरियाली और सुहाग का त्योहार है।',
+      sa: 'हरितालिकातीजः पार्वत्याः शिवेन सह पुनर्मिलनस्य उत्सवः। शिवपुराणानुसारं पार्वती कठोरतपसा शिवं पतित्वेन प्राप्तवती। श्रावणस्य हरितशोभायाः उत्सवः।',
+    },
+    observance: {
+      en: 'Married women dress in green attire and new bangles, apply mehndi (henna), and ride decorated swings. They observe a nirjala (waterless) fast for the longevity of their husbands. Worship Lord Shiva and Goddess Parvati with green leaves. Sing traditional Teej songs. Receive gifts (shringar) from their maternal home.',
+      hi: 'सुहागिन महिलाएँ हरे वस्त्र और नई चूड़ियाँ पहनें, मेहंदी लगाएँ, झूला झूलें। पति की दीर्घायु के लिए निर्जला व्रत रखें। शिव-पार्वती की पूजा करें। तीज के गीत गाएँ। मायके से शृंगार प्राप्त करें।',
+      sa: 'सुभागिन्यः हरितवस्त्राणि नवकङ्कणानि च धारयन्ति, मेहन्दीं लिम्पन्ति, दोलायां क्रीडन्ति। पत्युः दीर्घायुषे निर्जलव्रतं धारयन्ति।',
+    },
+    significance: {
+      en: 'Hariyali Teej celebrates marital bliss, devotion, and the bond between husband and wife. It is one of the most important festivals for married Hindu women in North India. The green colour symbolizes fertility, renewal, and the joy of the monsoon season that brings life to the parched earth.',
+      hi: 'हरियाली तीज दाम्पत्य सुख, भक्ति और पति-पत्नी के बन्धन का उत्सव है। उत्तर भारत की विवाहित महिलाओं का सबसे महत्त्वपूर्ण त्योहार। हरा रंग उर्वरता और सावन की खुशी का प्रतीक है।',
+      sa: 'हरितालिकातीजः दाम्पत्यसुखस्य भक्तेः पतिपत्नीबन्धनस्य च उत्सवः। हरितवर्णः उर्वरतायाः श्रावणानन्दस्य च प्रतीकः।',
+    },
+    deity: { en: 'Goddess Parvati, Lord Shiva', hi: 'देवी पार्वती, भगवान शिव', sa: 'पार्वतीदेवी, शिवः' },
+    isFast: true,
+    fastNote: { en: 'Strict nirjala (waterless) fast observed by married women for the longevity of their husbands. Break fast the next morning after puja.', hi: 'सुहागिन महिलाएँ पति की दीर्घायु के लिए निर्जला व्रत रखती हैं। अगली सुबह पूजा के बाद पारण।', sa: 'सुभागिन्यः पत्युः दीर्घायुषे निर्जलव्रतं धारयन्ति। प्रातः पूजानन्तरं पारणम्।' },
+  },
+
+  'anant-chaturdashi': {
+    name: { en: 'Anant Chaturdashi', hi: 'अनन्त चतुर्दशी', sa: 'अनन्तचतुर्दशी' },
+    mythology: {
+      en: 'Anant Chaturdashi is dedicated to Lord Vishnu in his Ananta (infinite) form — reclining on the cosmic serpent Shesha in the ocean of milk. In the Mahabharata, Lord Krishna narrated the Ananta Vrata Katha to Yudhishthira, explaining how King Sumanta and Queen Diksha regained their lost fortune by observing this vow. This day also marks the conclusion of the ten-day Ganesh Chaturthi festival, when Ganesh idols are immersed (Visarjan) in water.',
+      hi: 'अनन्त चतुर्दशी विष्णु के अनन्त (अनन्तशेष पर विराजमान) रूप को समर्पित है। महाभारत में कृष्ण ने युधिष्ठिर को अनन्त व्रत कथा सुनाई। यह गणेश चतुर्थी के दसवें दिन गणेश विसर्जन का भी दिन है।',
+      sa: 'अनन्तचतुर्दशी विष्णोः अनन्तरूपाय समर्पिता — शेषनागोपरि क्षीरसागरे शयानाय। महाभारते कृष्णः युधिष्ठिराय अनन्तव्रतकथाम् अकथयत्। गणेशविसर्जनस्यापि दिनम्।',
+    },
+    observance: {
+      en: 'Tie the Ananta thread (14-knotted sacred thread dyed in turmeric) on the right wrist while reciting the Ananta Vrata Katha. Offer 14 types of flowers, fruits, and sweets to Lord Vishnu. For Ganesh Visarjan, carry the idol in a procession with drums and devotional songs to a river, lake, or sea for immersion.',
+      hi: 'दाहिने हाथ पर हल्दी से रंगा 14 गाँठों वाला अनन्त धागा बाँधें। विष्णु को 14 प्रकार के फूल, फल और मिठाइयाँ अर्पित करें। गणेश प्रतिमा को ढोल-नगाड़ों के साथ जुलूस में ले जाकर जल में विसर्जित करें।',
+      sa: 'दक्षिणहस्ते हरिद्रारञ्जितम् अनन्तसूत्रं (चतुर्दशग्रन्थियुक्तम्) बध्नातु। विष्णवे चतुर्दशविधपुष्पफलमिष्टान्नानि अर्पयेत्। गणेशप्रतिमां जले विसर्जयेत्।',
+    },
+    significance: {
+      en: 'Anant Chaturdashi symbolizes the infinite and imperishable nature of Lord Vishnu. The 14 knots represent the 14 Lokas (realms) of the universe. Observing this vrata is said to bring enduring prosperity and remove past-life debts. The Ganesh Visarjan teaches non-attachment — accepting the cycle of arrival and departure.',
+      hi: 'अनन्त चतुर्दशी विष्णु की अनन्त और अविनाशी प्रकृति का प्रतीक है। 14 गाँठें 14 लोकों का प्रतीक हैं। गणेश विसर्जन अनासक्ति और आगमन-प्रस्थान चक्र की शिक्षा देता है।',
+      sa: 'अनन्तचतुर्दशी विष्णोः अनन्ताविनाशिस्वभावस्य प्रतीकः। चतुर्दशग्रन्थयः चतुर्दशलोकान् प्रतिनिधीकुर्वन्ति। गणेशविसर्जनम् अनासक्तिं शिक्षयति।',
+    },
+    deity: { en: 'Lord Vishnu (Ananta form), Lord Ganesha', hi: 'भगवान विष्णु (अनन्त रूप), भगवान गणेश', sa: 'विष्णुः (अनन्तरूपः), गणेशः' },
+  },
+
+  'dhanteras': {
+    name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धनत्रयोदशी' },
+    mythology: {
+      en: 'Dhanteras marks the emergence of Dhanvantari — the divine physician and an avatar of Lord Vishnu — from the Samudra Manthan (churning of the cosmic ocean), carrying the pot of Amrit (nectar of immortality) and the science of Ayurveda. On this same day, Goddess Lakshmi also emerged from the ocean. Another legend tells of young Hima, whose husband was destined to die on the fourth day of marriage; she piled gold and silver coins at the door and kept lamps lit all night, dazzling Yama (Death) and saving her husband.',
+      hi: 'धनतेरस पर समुद्र मन्थन से भगवान धन्वन्तरि (विष्णु अवतार) अमृत कलश और आयुर्वेद लेकर प्रकट हुए। इसी दिन लक्ष्मी भी सागर से प्रकट हुईं। एक अन्य कथा में हिमा ने सोने-चाँदी के सिक्के और दीप जलाकर यमराज को चकाचौंध कर अपने पति को बचाया।',
+      sa: 'धनत्रयोदश्यां समुद्रमन्थनात् धन्वन्तरिः (विष्णावतारः) अमृतकलशेन आयुर्वेदेन च प्राकट्यत। लक्ष्मीदेवी अपि सागरात् प्राकट्यत।',
+    },
+    observance: {
+      en: 'Purchase gold, silver, utensils, or new items for the home — this is considered the most auspicious shopping day. Light thirteen diyas in the evening facing south (to ward off untimely death). Worship Lord Dhanvantari for health and Lord Kubera and Goddess Lakshmi for wealth. Clean the home and adorn the entrance with rangoli.',
+      hi: 'सोना, चाँदी, बर्तन या घर के नए सामान खरीदें — खरीदारी का सबसे शुभ दिन। शाम को दक्षिण दिशा में तेरह दीप जलाएँ। स्वास्थ्य के लिए धन्वन्तरि और धन के लिए लक्ष्मी-कुबेर की पूजा करें।',
+      sa: 'सुवर्णं रजतं पात्राणि नवान् गृहोपकरणान् वा क्रीणातु। सायं दक्षिणदिशायां त्रयोदशदीपान् प्रज्वालयेत्। धन्वन्तरिं लक्ष्मीं कुबेरं च पूजयेत्।',
+    },
+    significance: {
+      en: 'Dhanteras is the first day of the five-day Diwali festival. "Dhan" means wealth and "Teras" is the thirteenth lunar day. It celebrates health (Dhanvantari), wealth (Lakshmi-Kubera), and prosperity. Lighting lamps facing south is uniquely associated with warding off Yama and untimely death.',
+      hi: 'धनतेरस दीपावली के पाँच दिवसीय उत्सव का पहला दिन है। "धन" का अर्थ सम्पत्ति और "तेरस" त्रयोदशी। यह स्वास्थ्य, धन और समृद्धि का उत्सव है।',
+      sa: 'धनत्रयोदशी दीपावलेः पञ्चदिवसीयोत्सवस्य प्रथमं दिनम्। "धन" इति सम्पत्तिः "त्रयोदशी" इति तिथिः। आरोग्यधनसमृद्धीनाम् उत्सवः।',
+    },
+    deity: { en: 'Lord Dhanvantari, Goddess Lakshmi, Lord Kubera', hi: 'भगवान धन्वन्तरि, देवी लक्ष्मी, कुबेर', sa: 'धन्वन्तरिः, लक्ष्मीः, कुबेरः' },
+  },
+
+  'narak-chaturdashi': {
+    name: { en: 'Narak Chaturdashi', hi: 'नरक चतुर्दशी', sa: 'नरकचतुर्दशी' },
+    mythology: {
+      en: 'Narak Chaturdashi celebrates Lord Krishna\'s victory over the demon Narakasura (Bhaumasura), who had imprisoned 16,100 princesses and terrorized the three worlds. Krishna, along with his wife Satyabhama, slew the demon in a fierce battle and freed all the captives. It is said that Krishna returned home before dawn, and the women bathed him with fragrant oils to wash off the blood of battle — the origin of the pre-dawn oil bath tradition. In some regions, this day is also observed as Kali Chaudas, honouring Goddess Kali\'s fierce form.',
+      hi: 'नरक चतुर्दशी कृष्ण द्वारा नरकासुर वध का उत्सव है। नरकासुर ने 16,100 राजकुमारियों को बन्दी बनाया था। कृष्ण ने सत्यभामा सहित युद्ध कर उसे मारा और सबको मुक्त किया। भोर में कृष्ण को सुगन्धित तेल से स्नान कराया गया। कुछ स्थानों पर इसे काली चौदस के रूप में मनाते हैं।',
+      sa: 'नरकचतुर्दशी कृष्णेन नरकासुरवधस्य उत्सवः। नरकासुरः षोडशसहस्रशतं राजकुमारीः अबध्नात्। कृष्णः सत्यभामया सह तं निहत्य सर्वाः अमोचयत्।',
+    },
+    observance: {
+      en: 'Rise before dawn and take an oil bath (Abhyanga Snan) with sesame oil and ubtan — this is one of the few days when bathing before sunrise is prescribed. Light fourteen diyas (representing the fourteen realms) in the evening. Burst firecrackers to celebrate Krishna\'s victory. Worship Lord Krishna and, in some traditions, Goddess Kali or Hanuman. Prepare special sweets.',
+      hi: 'भोर से पहले उठकर तिल के तेल और उबटन से अभ्यंग स्नान करें। शाम को चौदह दीप जलाएँ। पटाखे फोड़ें। कृष्ण और कुछ परम्पराओं में काली या हनुमान की पूजा करें। विशेष मिठाइयाँ बनाएँ।',
+      sa: 'प्रातः सूर्योदयात् पूर्वं तिलतैलेन उबटनेन च अभ्यङ्गस्नानं कुर्यात्। सायं चतुर्दशदीपान् प्रज्वालयेत्। कृष्णं पूजयेत्।',
+    },
+    significance: {
+      en: 'Narak Chaturdashi symbolizes the destruction of evil and the liberation of the oppressed. The pre-dawn bath washes away sins, and the lighting of fourteen diyas represents illuminating all fourteen Lokas. It is the second day of the five-day Diwali festival and is considered a day of purification before the main Diwali night.',
+      hi: 'नरक चतुर्दशी बुराई के नाश और पीड़ितों की मुक्ति का प्रतीक है। भोर का स्नान पापों को धोता है और चौदह दीप चौदह लोकों को प्रकाशित करते हैं। यह दीपावली से पूर्व शुद्धिकरण का दिन है।',
+      sa: 'नरकचतुर्दशी दुष्टनाशस्य पीडितमोचनस्य च प्रतीकः। प्रातःस्नानं पापानि क्षालयति। चतुर्दशदीपाः चतुर्दशलोकान् प्रकाशयन्ति।',
+    },
+    deity: { en: 'Lord Krishna, Goddess Kali', hi: 'भगवान कृष्ण, देवी काली', sa: 'श्रीकृष्णः, कालीदेवी' },
+  },
+
+  'govardhan-puja': {
+    name: { en: 'Govardhan Puja', hi: 'गोवर्धन पूजा', sa: 'गोवर्धनपूजा' },
+    mythology: {
+      en: 'Govardhan Puja commemorates the day young Lord Krishna lifted the mighty Govardhan Hill on his little finger to shelter the people and cattle of Vrindavan from the devastating rains unleashed by an angered Indra. The people of Vraja had, at Krishna\'s urging, stopped their annual Indra Yagna and instead worshipped Govardhan Hill as the true provider of grass, water, and sustenance. Humbled, Indra acknowledged Krishna\'s supremacy and sought forgiveness.',
+      hi: 'गोवर्धन पूजा उस दिन का स्मरण है जब बालकृष्ण ने गोवर्धन पर्वत को अपनी छोटी उँगली पर उठाकर वृन्दावन के लोगों और गौओं को इन्द्र की प्रलयकारी वर्षा से बचाया। कृष्ण के कहने पर व्रजवासियों ने इन्द्र यज्ञ बन्द कर गोवर्धन की पूजा की। पराजित इन्द्र ने कृष्ण से क्षमा माँगी।',
+      sa: 'गोवर्धनपूजा तद्दिनं स्मरति यदा बालकृष्णः गोवर्धनगिरिं कनिष्ठिकाङ्गुल्या उदतोलयत्, वृन्दावनस्य जनान् गाश्च इन्द्रस्य प्रलयवर्षात् अरक्षत्। इन्द्रः पराजितः कृष्णं क्षमाम् अयाचत।',
+    },
+    observance: {
+      en: 'Prepare a mountain of food (Annakut) — rice, dal, vegetables, sweets, and savouries — arranged in the shape of Govardhan Hill, and offer it to Lord Krishna. Worship cows and decorate them with garlands and colours. Some communities make cow-dung replicas of Govardhan Hill and circumambulate them. Visit temples for darshan of the Annakut display.',
+      hi: 'गोवर्धन पर्वत के आकार में अन्नकूट सजाएँ — चावल, दाल, सब्ज़ियाँ, मिठाइयाँ। कृष्ण को अर्पित करें। गौओं को सजाकर पूजा करें। गोबर से गोवर्धन बनाकर परिक्रमा करें। मन्दिर में अन्नकूट दर्शन करें।',
+      sa: 'गोवर्धनगिर्याकारे अन्नकूटम् — ओदनं दालं शाकानि मिष्टान्नानि च — सज्जयित्वा कृष्णाय अर्पयेत्। गाः अलङ्कृत्य पूजयेत्। गोमयेन गोवर्धनं रचयित्वा प्रदक्षिणां कुर्यात्।',
+    },
+    significance: {
+      en: 'Govardhan Puja teaches devotion to nature and self-reliance over ritualistic appeasement. Krishna showed that the hill, cows, and the natural environment that directly sustained the community deserved worship more than a distant deity demanding sacrifice. It is the fourth day of the Diwali festival, also known as Annakut or Padwa in different regions.',
+      hi: 'गोवर्धन पूजा प्रकृति-भक्ति और आत्मनिर्भरता की शिक्षा देती है। कृष्ण ने दिखाया कि समुदाय का पोषण करने वाला पर्वत और गौएँ पूजा के योग्य हैं। यह दीपावली का चौथा दिन है।',
+      sa: 'गोवर्धनपूजा प्रकृतिभक्तिं स्वावलम्बनं च शिक्षयति। कृष्णः अदर्शयत् यत् समुदायं पोषयन् गिरिः गावश्च पूजार्हाः। दीपावलेः चतुर्थं दिनम्।',
+    },
+    deity: { en: 'Lord Krishna', hi: 'भगवान कृष्ण', sa: 'श्रीकृष्णः' },
+  },
+
+  'bhai-dooj': {
+    name: { en: 'Bhai Dooj', hi: 'भाई दूज', sa: 'भ्रातृद्वितीया' },
+    mythology: {
+      en: 'Bhai Dooj is rooted in the story of Yama (the God of Death) and his twin sister Yamuna. After a long absence, Yama visited Yamuna on this day, and she welcomed him with an aarti, a tilak on his forehead, and a feast. Touched by her love, Yama granted a boon that any brother who receives a tilak from his sister on this day shall be freed from the fear of untimely death. Another tradition links it to Lord Krishna visiting his sister Subhadra after slaying Narakasura.',
+      hi: 'भाई दूज यमराज और उनकी बहन यमुना की कथा पर आधारित है। यमुना ने यमराज का आरती, तिलक और भोज से स्वागत किया। प्रसन्न होकर यम ने वरदान दिया कि इस दिन बहन से तिलक पाने वाला भाई अकाल मृत्यु से मुक्त रहेगा। एक अन्य परम्परा कृष्ण-सुभद्रा मिलन से जुड़ी है।',
+      sa: 'भ्रातृद्वितीया यमस्य तस्य भगिन्याः यमुनायाः कथायाम् आधृता। यमुना यमम् आरत्या तिलकेन भोजनेन च अस्वागत्। प्रसन्नः यमः वरम् अददात् — अस्मिन् दिने भगिन्याः तिलकं प्राप्तः भ्राता अकालमृत्योः मुक्तः भवति।',
+    },
+    observance: {
+      en: 'Sisters apply a ceremonial tilak of kumkum, rice, and sandalwood on their brother\'s forehead, perform his aarti, and pray for his long life. Brothers give gifts and sweets in return and vow to protect their sisters. Special foods and sweets are prepared. If a sister has no brother, she may worship Yama and the moon.',
+      hi: 'बहनें भाई के मस्तक पर कुमकुम, चावल और चन्दन का तिलक लगाएँ, आरती करें और दीर्घायु की कामना करें। भाई उपहार और मिठाइयाँ दें। विशेष पकवान बनाएँ।',
+      sa: 'भगिन्यः भ्रातुः ललाटे कुङ्कुमतिलकं चन्दनं चावलं च स्थापयन्ति, आरतिं कुर्वन्ति, दीर्घायुषं प्रार्थयन्ति। भ्रातरः उपहारान् मिष्टान्नानि च यच्छन्ति।',
+    },
+    significance: {
+      en: 'Bhai Dooj celebrates the sacred bond between brother and sister. It is the fifth and final day of the Diwali festival. The blessing of a sister is believed to be powerful enough to ward off Yama himself. It is observed across India by different names — Bhai Phota in Bengal, Bhai Tika in Nepal, and Bhai Bij in Gujarat.',
+      hi: 'भाई दूज भाई-बहन के पवित्र बन्धन का उत्सव है। यह दीपावली का पाँचवाँ और अन्तिम दिन है। बहन का आशीर्वाद यम को भी दूर रखने में समर्थ माना जाता है।',
+      sa: 'भ्रातृद्वितीया भ्रातृभगिन्योः पवित्रबन्धनस्य उत्सवः। दीपावलेः पञ्चमं अन्तिमं च दिनम्। भगिन्याः आशीर्वादः यमम् अपि निवारयितुं समर्थः।',
+    },
+    deity: { en: 'Yama, Yamuna', hi: 'यमराज, यमुना', sa: 'यमः, यमुना' },
+  },
+
+  'kartik-purnima': {
+    name: { en: 'Kartik Purnima', hi: 'कार्तिक पूर्णिमा', sa: 'कार्तिकपूर्णिमा' },
+    mythology: {
+      en: 'Kartik Purnima is celebrated as Dev Diwali — the festival of lights of the Gods. According to the Skanda Purana, the Devas descended to Varanasi on this night to bathe in the Ganga and celebrate Shiva\'s victory over the demon Tripurasura, whom he destroyed with a single arrow. This day also marks the birthday of Kartikeya (Skanda), the God of war, son of Shiva and Parvati. It falls in the period of Tulsi Vivah, the ceremonial marriage of Tulsi (Holy Basil) with Vishnu\'s Shaligrama form.',
+      hi: 'कार्तिक पूर्णिमा को देव दीपावली मनायी जाती है — देवताओं का दीपोत्सव। स्कन्द पुराण के अनुसार शिव ने त्रिपुरासुर का वध किया और देवता वाराणसी में गंगा स्नान करने आये। यह कार्तिकेय का जन्मदिन भी है। तुलसी विवाह काल भी इसी समय आता है।',
+      sa: 'कार्तिकपूर्णिमा देवदीपावलिः — देवानाम् उत्सवः। स्कन्दपुराणानुसारं शिवः त्रिपुरासुरं निजघान, देवाः वाराणस्यां गङ्गास्नानम् अकुर्वन्। कार्तिकेयस्य जन्मदिनम् अपि। तुलसीविवाहकालोऽपि।',
+    },
+    observance: {
+      en: 'Take a sacred bath in the Ganga or any river before sunrise (Kartik Snan). Light rows of deep diyas along ghats and river banks — the ghats of Varanasi illuminate spectacularly on this night. Worship Lord Shiva as Tripurari (destroyer of Tripurasura). Perform Tulsi Vivah by ceremonially marrying a Tulsi plant to a Shaligrama stone. Observe Satyanarayan Puja.',
+      hi: 'सूर्योदय से पहले गंगा या नदी में कार्तिक स्नान करें। घाटों पर दीपों की पंक्तियाँ जलाएँ — वाराणसी के घाट इस रात अलौकिक दिखते हैं। शिव की त्रिपुरारि रूप में पूजा करें। तुलसी विवाह कराएँ। सत्यनारायण पूजा करें।',
+      sa: 'सूर्योदयात् पूर्वं गङ्गायां नद्यां वा कार्तिकस्नानं कुर्यात्। घट्टेषु दीपपङ्क्तीः प्रज्वालयेत्। शिवं त्रिपुरारिरूपेण पूजयेत्। तुलसीविवाहं कारयेत्।',
+    },
+    significance: {
+      en: 'Kartik Purnima is considered the most sacred full moon of the year. A bath in the Ganga on this day earns the merit of a hundred Ashwamedha Yagyas. It is the culmination of the holy month of Kartik, during which daily Ganga baths and lamp offerings are observed. Dev Diwali signifies the Gods themselves celebrating light\'s victory over darkness.',
+      hi: 'कार्तिक पूर्णिमा वर्ष की सबसे पवित्र पूर्णिमा मानी जाती है। इस दिन गंगा स्नान सौ अश्वमेध यज्ञों का पुण्य देता है। पवित्र कार्तिक मास की पूर्णाहुति और देवताओं का दीपोत्सव।',
+      sa: 'कार्तिकपूर्णिमा वर्षस्य पवित्रतमा पूर्णिमा। अस्मिन् दिने गङ्गास्नानं शताश्वमेधयज्ञपुण्यसमम्। पवित्रकार्तिकमासस्य पूर्णाहुतिः देवानां दीपोत्सवश्च।',
+    },
+    deity: { en: 'Lord Shiva (Tripurari), Lord Vishnu, Kartikeya', hi: 'भगवान शिव (त्रिपुरारि), भगवान विष्णु, कार्तिकेय', sa: 'शिवः (त्रिपुरारिः), विष्णुः, कार्तिकेयः' },
+  },
 };
 
 /* ═══════════════════════════════════════════

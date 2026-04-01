@@ -94,6 +94,9 @@ export interface KundaliData {
   sthiraDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
   kalachakraDasha?: import('@/lib/kundali/additional-dashas').RasiDashaEntry[];
   sudarsanaDasha?: import('@/lib/kundali/additional-dashas').SudarsanaDashaEntry[];
+  avasthas?: import('@/lib/kundali/avasthas').PlanetAvasthas[];
+  argala?: import('@/lib/kundali/argala').ArgalaResult[];
+  sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };

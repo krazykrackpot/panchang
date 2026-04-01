@@ -15,6 +15,9 @@ import { detectAllYogas } from '@/lib/kundali/yogas-complete';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
 import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
 import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, calculateKalachakraDasha, calculateSudarsanaDasha } from '@/lib/kundali/additional-dashas';
+import { calculateAvasthas } from '@/lib/kundali/avasthas';
+import { calculateArgala } from '@/lib/kundali/argala';
+import { calculateSphutas } from '@/lib/kundali/sphutas';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -841,6 +844,18 @@ export function generateKundali(birthData: BirthData): KundaliData {
       const sunDeg = sunP?.longitude || 0;
       const sunriseUTApprox = approximateSunrise(jd, birthData.lat, birthData.lng);
       return calculateSpecialLagnas(siderealAsc, sunDeg, moonSidLong, sunriseUTApprox, utHour, ascSign);
+    })(),
+    avasthas: calculateAvasthas(planets),
+    argala: calculateArgala(planets, ascSign),
+    sphutas: (() => {
+      const sunP = planets.find(p => p.planet.id === 0);
+      const jupP = planets.find(p => p.planet.id === 4);
+      const venP = planets.find(p => p.planet.id === 5);
+      const marP = planets.find(p => p.planet.id === 2);
+      return calculateSphutas(
+        sunP?.longitude || 0, moonSidLong, siderealAsc,
+        jupP?.longitude || 0, venP?.longitude || 0, marP?.longitude || 0
+      );
     })(),
   };
 }

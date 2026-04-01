@@ -102,7 +102,7 @@ export default function MuhurtaAIPage() {
   const [activity, setActivity] = useState<ExtendedActivityId | null>(null);
   const [startDate, setStartDate] = useState(fmt(today));
   const [endDate, setEndDate] = useState(fmt(nextMonth));
-  const [location, setLocation] = useState({ lat: 28.6139, lng: 77.2090, name: 'New Delhi, India', tz: 5.5, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
+  const [location, setLocation] = useState({ lat: 0, lng: 0, name: '', tz: 0, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
   const [detectingLocation, setDetectingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [data, setData] = useState<MuhurtaAIResult | null>(null);

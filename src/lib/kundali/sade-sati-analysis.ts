@@ -400,6 +400,43 @@ function intensityLabel(score: number): { en: string; hi: string } {
   return { en: 'Intense', hi: 'तीव्र' };
 }
 
+function generateInactiveSummary(input: SadeSatiInput, allCycles: SadeSatiCycle[], currentCycleIndex: number): { en: string; hi: string } {
+  const moonEn = RASHI_EN[input.moonSign];
+  const moonHi = RASHI_HI[input.moonSign];
+  const ascEn = input.ascendantSign ? RASHI_EN[input.ascendantSign] : null;
+  const ascHi = input.ascendantSign ? RASHI_HI[input.ascendantSign] : null;
+
+  // Find next cycle
+  const now = new Date().getFullYear();
+  const nextCycle = allCycles.find(c => c.startYear > now);
+  // Find most recent past cycle
+  const pastCycles = allCycles.filter(c => c.endYear < now);
+  const lastCycle = pastCycles.length > 0 ? pastCycles[pastCycles.length - 1] : null;
+
+  let en = `Sade Sati is not currently active for your Moon in ${moonEn}. `;
+  let hi = `${moonHi} राशि के चन्द्रमा के लिए साढ़ेसाती वर्तमान में सक्रिय नहीं है। `;
+
+  if (lastCycle) {
+    en += `Your last Sade Sati ended in ${lastCycle.endYear}. `;
+    hi += `आपकी पिछली साढ़ेसाती ${lastCycle.endYear} में समाप्त हुई। `;
+  }
+
+  if (nextCycle) {
+    en += `The next Sade Sati cycle for ${moonEn} Moon begins approximately in ${nextCycle.startYear} and runs until about ${nextCycle.endYear}. `;
+    hi += `${moonHi} चन्द्र के लिए अगला साढ़ेसाती चक्र लगभग ${nextCycle.startYear} में आरम्भ होगा और ${nextCycle.endYear} तक चलेगा। `;
+  }
+
+  en += `This is a period free from Saturn's direct transit pressure on your Moon — use it for building foundations that will withstand the next cycle.`;
+  hi += `यह शनि के चन्द्रमा पर प्रत्यक्ष गोचर दबाव से मुक्त अवधि है — अगले चक्र के लिए मजबूत नींव बनाने में इसका उपयोग करें।`;
+
+  if (ascEn) {
+    en += ` With ${ascEn} ascendant, your natal Saturn relationship will shape how you experience future Sade Sati cycles.`;
+    hi += ` ${ascHi} लग्न के साथ, आपका जन्मकालिक शनि संबंध भविष्य की साढ़ेसाती के अनुभव को आकार देगा।`;
+  }
+
+  return { en, hi };
+}
+
 function generateSummary(input: SadeSatiInput, phase: 'rising' | 'peak' | 'setting' | null, intensity: number): { en: string; hi: string } {
   const label = intensityLabel(intensity);
   const moonEn = RASHI_EN[input.moonSign];
@@ -687,12 +724,17 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     if (cycle.startYear <= currentYear && currentYear <= cycle.endYear) {
       currentCycleIndex = i;
       cycle.isActive = true;
-      // Determine phase
+      // Determine phase — use month-level precision for progress
       for (const p of cycle.phases) {
         if (p.startYear <= currentYear && currentYear <= p.endYear) {
           currentPhase = p.phase;
-          const phaseDuration = p.endYear - p.startYear + 1;
-          phaseProgress = phaseDuration > 0 ? Math.min(100, ((currentYear - p.startYear + 0.5) / phaseDuration) * 100) : 50;
+          // Phase starts ~Jan of startYear and ends ~Dec of endYear
+          const phaseStartMonth = p.startYear * 12;
+          const phaseEndMonth = (p.endYear + 1) * 12; // end of endYear
+          const currentMonth = currentYear * 12 + now.getMonth();
+          const totalMonths = phaseEndMonth - phaseStartMonth;
+          const elapsedMonths = currentMonth - phaseStartMonth;
+          phaseProgress = totalMonths > 0 ? Math.min(100, Math.max(0, (elapsedMonths / totalMonths) * 100)) : 50;
           break;
         }
       }
@@ -707,31 +749,38 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
   // Get current Saturn sign for BAV lookup
   const saturnInfo = getCurrentSaturnSign();
 
-  // Intensity scoring
-  const f1 = scoreSaturnFunctionalNature(input.ascendantSign);
-  const f2 = scoreMoonStrength(input.moonSign, input.moonNakshatra);
-  const f3 = scorePhase(currentPhase);
-  const f4 = scoreAshtakavarga(input.ashtakavargaSaturnBindus, saturnInfo.sign);
-  const f5 = scoreDashaInterplay(input.currentDasha);
-  const f6 = scoreNatalSaturn(input);
+  // Intensity scoring — only meaningful when active
+  let intensityFactors: IntensityFactor[] = [];
+  let overallIntensity = 0;
 
-  const intensityFactors = [f1, f2, f3, f4, f5, f6];
-  const overallIntensity = Math.min(10, intensityFactors.reduce((sum, f) => sum + f.score, 0));
+  if (isActive) {
+    const f1 = scoreSaturnFunctionalNature(input.ascendantSign);
+    const f2 = scoreMoonStrength(input.moonSign, input.moonNakshatra);
+    const f3 = scorePhase(currentPhase);
+    const f4 = scoreAshtakavarga(input.ashtakavargaSaturnBindus, saturnInfo.sign);
+    const f5 = scoreDashaInterplay(input.currentDasha);
+    const f6 = scoreNatalSaturn(input);
+    intensityFactors = [f1, f2, f3, f4, f5, f6];
+    overallIntensity = Math.min(10, intensityFactors.reduce((sum, f) => sum + f.score, 0));
+  }
 
-  // Interpretation
+  // Interpretation — transit-specific sections only shown when active
+  const noTransit = { en: '', hi: '' };
   const interpretation = {
-    summary: generateSummary(input, currentPhase, overallIntensity),
-    phaseEffect: generatePhaseEffect(currentPhase),
+    summary: isActive
+      ? generateSummary(input, currentPhase, overallIntensity)
+      : generateInactiveSummary(input, allCycles, currentCycleIndex),
+    phaseEffect: isActive ? generatePhaseEffect(currentPhase) : noTransit,
     saturnNature: generateSaturnNature(input.ascendantSign),
     moonStrength: generateMoonStrength(input.moonSign, input.moonNakshatra),
-    dashaInterplay: generateDashaInterplay(input.currentDasha),
-    ashtakavargaInsight: generateAshtakavargaInsight(input.ashtakavargaSaturnBindus, saturnInfo.sign),
-    nakshatraTransit: generateNakshatraTransit(input.moonSign, input.moonNakshatra),
-    houseEffect: generateHouseEffect(input),
+    dashaInterplay: isActive ? generateDashaInterplay(input.currentDasha) : noTransit,
+    ashtakavargaInsight: isActive ? generateAshtakavargaInsight(input.ashtakavargaSaturnBindus, saturnInfo.sign) : noTransit,
+    nakshatraTransit: isActive ? generateNakshatraTransit(input.moonSign, input.moonNakshatra) : noTransit,
+    houseEffect: isActive ? generateHouseEffect(input) : noTransit,
   };
 
-  // Remedies
-  const remedies = generateRemedies(input, overallIntensity, currentPhase);
+  // Remedies — only generate active remedies when Sade Sati is active
+  const remedies = isActive ? generateRemedies(input, overallIntensity, currentPhase) : [];
 
   return {
     isActive,

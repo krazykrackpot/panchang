@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Clock, Loader2, ArrowRight } from 'lucide-react';
 import { MasaIcon, SamvatsaraIcon, MuhurtaIcon, TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
+import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 
 // ─── Inline trilingual helpers ─────────────────────────────────────────────
@@ -210,6 +211,9 @@ export default function KaalNirnayaPage() {
   const [kaalData, setKaalData] = useState<KaalData | null>(null);
   const [loadingKaal, setLoadingKaal] = useState(true);
 
+  // Detect user location
+  useEffect(() => { useLocationStore.getState().detect(); }, []);
+
   // Fetch today's kaal data from /api/panchang
   useEffect(() => {
     const d = new Date();
@@ -217,7 +221,11 @@ export default function KaalNirnayaPage() {
     const month = d.getMonth() + 1;
     const day = d.getDate();
     const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
-    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=28.6139&lng=77.209&timezone=${encodeURIComponent(ianaTimezone)}&location=Current+Location`)
+    const { lat: uLat, lng: uLng, name: uName } = useLocationStore.getState();
+    const lat = uLat ?? 0;
+    const lng = uLng ?? 0;
+    const locName = uName || 'Current Location';
+    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(locName)}`)
       .then(r => r.json())
       .then(data => {
         setKaalData({

@@ -86,7 +86,8 @@ export default function UpagrahaPage() {
 
   const upagrahas = useMemo(() => {
     const [y, m, d] = dateStr.split('-').map(Number);
-    const jd = dateToJD(y, m, d, 6); // noon IST ~ 6 UT
+    const tzOffset = -(new Date().getTimezoneOffset() / 60);
+    const jd = dateToJD(y, m, d, 12 - tzOffset); // noon local time in UT
     return computeUpagrahas(jd);
   }, [dateStr]);
 

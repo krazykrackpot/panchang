@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
+import LocationSearch from '@/components/ui/LocationSearch';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
@@ -56,17 +57,22 @@ export default function KPSystemPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
-  const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', place: 'Delhi', lat: '28.6139', lng: '77.2090', tz: '5.5', ayanamsha: 'lahiri' as const });
+  const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', ayanamsha: 'lahiri' as const });
+  const [placeName, setPlaceName] = useState('');
+  const [placeLat, setPlaceLat] = useState<number | null>(null);
+  const [placeLng, setPlaceLng] = useState<number | null>(null);
   const [data, setData] = useState<KPChartData | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    if (placeLat === null || placeLng === null) return;
     setLoading(true);
+    const tz = Math.round(placeLng / 15 * 2) / 2;
     try {
       const res = await fetch('/api/kp-system', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, lat: parseFloat(form.lat), lng: parseFloat(form.lng), timezone: form.tz }),
+        body: JSON.stringify({ ...form, place: placeName, lat: placeLat, lng: placeLng, timezone: String(tz) }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);
@@ -91,20 +97,17 @@ export default function KPSystemPage() {
 
       <div className="glass-card rounded-2xl p-6 mb-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {(['name', 'date', 'time', 'place'] as const).map(f => (
+          {(['name', 'date', 'time'] as const).map(f => (
             <label key={f} className="block">
               <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t[f]}</span>
               <input type={f === 'date' ? 'date' : f === 'time' ? 'time' : 'text'} value={form[f]} onChange={e => setForm({ ...form, [f]: e.target.value })}
                 className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
             </label>
           ))}
-          {(['lat', 'lng', 'tz'] as const).map(f => (
-            <label key={f} className="block">
-              <span className="text-text-secondary text-xs uppercase tracking-wider">{t[f as keyof typeof t]}</span>
-              <input type="number" step="0.01" value={form[f]} onChange={e => setForm({ ...form, [f]: e.target.value })}
-                className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
-            </label>
-          ))}
+          <label className="block">
+            <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+          </label>
         </div>
         <div className="text-center mt-6">
           <motion.button onClick={handleSubmit} disabled={loading} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}

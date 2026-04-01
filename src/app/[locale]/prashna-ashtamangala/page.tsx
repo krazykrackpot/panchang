@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { AshtamangalaIconById } from '@/components/icons/AshtamangalaIcons';
+import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
 
@@ -70,26 +71,31 @@ export default function PrashnaAshtamangalaPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
+  const locationStore = useLocationStore();
+
+  useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [category, setCategory] = useState<QuestionCategory | null>(null);
   const [numbers, setNumbers] = useState<[number, number, number]>([7, 21, 54]);
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleCast = useCallback(async () => {
-    if (!category) return;
+    if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
+    const tz = Math.round(locationStore.lng / 15 * 2) / 2;
     try {
       const res = await fetch('/api/prashna-ashtamangala', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ numbers, category, lat: 28.6139, lng: 77.2090, tz: 5.5, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
+        body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
     } catch (e) { console.error(e); }
     setLoading(false);
-  }, [category, numbers]);
+  }, [category, numbers, locationStore.lat, locationStore.lng]);
 
   const verdictColors = { favorable: 'text-green-400', unfavorable: 'text-red-400', mixed: 'text-yellow-400' };
   const objLabels = [t.primary, t.supporting, t.timingObj];

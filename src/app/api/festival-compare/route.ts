@@ -9,9 +9,9 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const year = parseInt(searchParams.get('year') || '2026');
-  const lat = parseFloat(searchParams.get('lat') || '28.6139');
-  const lon = parseFloat(searchParams.get('lon') || '77.2090');
-  const timezone = searchParams.get('timezone') || 'Asia/Kolkata';
+  const lat = parseFloat(searchParams.get('lat') || '0'); // DEPRECATED fallback: client should always provide location
+  const lon = parseFloat(searchParams.get('lon') || '0'); // DEPRECATED fallback: client should always provide location
+  const timezone = searchParams.get('timezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   try {
     const v1 = generateFestivalCalendar(year, lat, lon, timezone);

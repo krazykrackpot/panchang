@@ -12,9 +12,9 @@ const CACHE_TTL = 24 * 60 * 60 * 1000; // 24 hours
 const querySchema = z.object({
   sign: z.coerce.number().int().min(1).max(12).optional(),
   locale: z.enum(['en', 'hi', 'sa']).default('en'),
-  lat: z.coerce.number().min(-90).max(90).default(28.6139),
-  lng: z.coerce.number().min(-180).max(180).default(77.209),
-  tz: z.coerce.number().min(-12).max(14).default(5.5),
+  lat: z.coerce.number().min(-90).max(90).default(0), // DEPRECATED fallback: client should always provide location
+  lng: z.coerce.number().min(-180).max(180).default(0), // DEPRECATED fallback: client should always provide location
+  tz: z.coerce.number().min(-12).max(14).default(0), // DEPRECATED fallback: client should always provide timezone
   timezone: z.string().optional(),
 });
 
@@ -23,9 +23,9 @@ export async function GET(request: Request) {
   const parsed = querySchema.safeParse({
     sign: searchParams.get('sign'),
     locale: searchParams.get('locale') || 'en',
-    lat: searchParams.get('lat') || '28.6139',
-    lng: searchParams.get('lng') || '77.209',
-    tz: searchParams.get('tz') || '5.5',
+    lat: searchParams.get('lat') || '0',
+    lng: searchParams.get('lng') || '0',
+    tz: searchParams.get('tz') || '0',
     timezone: searchParams.get('timezone') || undefined,
   });
 

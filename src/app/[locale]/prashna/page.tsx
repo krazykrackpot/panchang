@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,6 +12,7 @@ import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
+import { useLocationStore } from '@/stores/location-store';
 import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysis';
 import type { PrashnaCategory, PrashnaAnalysis, PrashnaInsight } from '@/lib/prashna/horary-analysis';
 import type { Locale } from '@/types/panchang';
@@ -89,6 +90,10 @@ export default function PrashnaPage() {
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
+  const locationStore = useLocationStore();
+
+  useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const [question, setQuestion] = useState('');
   const [category, setCategory] = useState<PrashnaCategory>('general');
   const [kundali, setKundali] = useState<KundaliData | null>(null);
@@ -98,9 +103,11 @@ export default function PrashnaPage() {
   const [castTime, setCastTime] = useState('');
 
   const castPrashna = useCallback(async () => {
+    if (locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     const now = new Date();
     setCastTime(now.toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN'));
+    const tz = Math.round(locationStore.lng / 15 * 2) / 2;
 
     try {
       const res = await fetch('/api/kundali', {
@@ -110,10 +117,10 @@ export default function PrashnaPage() {
           name: locale === 'en' ? 'Prashna Chart' : 'प्रश्न कुण्डली',
           date: now.toISOString().split('T')[0],
           time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
-          place: 'Delhi, India',
-          lat: 28.6139,
-          lng: 77.2090,
-          timezone: '5.5',
+          place: locationStore.name || 'Current Location',
+          lat: locationStore.lat,
+          lng: locationStore.lng,
+          timezone: String(tz),
           ayanamsha: 'lahiri' as const,
         }),
       });
@@ -124,7 +131,7 @@ export default function PrashnaPage() {
       console.error('Prashna generation failed:', e);
     }
     setLoading(false);
-  }, [locale, category]);
+  }, [locale, category, locationStore.lat, locationStore.lng, locationStore.name]);
 
   const reset = () => {
     setKundali(null);

@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import LocationSearch from '@/components/ui/LocationSearch';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
 
@@ -47,6 +48,9 @@ export default function RectifyPage() {
   const [events, setEvents] = useState<EventEntry[]>([]);
   const [result, setResult] = useState<{ suggestedTime: string; confidence: number; lagna: string } | null>(null);
   const [showEvents, setShowEvents] = useState(false);
+  const [placeName, setPlaceName] = useState('');
+  const [placeLat, setPlaceLat] = useState<number | null>(null);
+  const [placeLng, setPlaceLng] = useState<number | null>(null);
 
   const addEvent = (eventKey: string) => {
     setEvents([...events, { eventKey, year: 2020, month: 1 }]);
@@ -56,10 +60,15 @@ export default function RectifyPage() {
   };
 
   const rectify = async () => {
+    if (placeLat === null || placeLng === null) {
+      alert(isHi ? 'कृपया जन्म स्थान चुनें' : 'Please select a birth place');
+      return;
+    }
     if (events.length < 2) {
       alert(isHi ? 'कम से कम 2 जीवन घटनाएँ दर्ज करें' : 'Please enter at least 2 life events');
       return;
     }
+    const tz = Math.round(placeLng / 15 * 2) / 2;
 
     // Try different times within uncertainty window and score each
     const results: { time: string; score: number; lagna: number }[] = [];
@@ -80,8 +89,8 @@ export default function RectifyPage() {
           body: JSON.stringify({
             year: birthYear, month: birthMonth, day: birthDay,
             hour: h, minute: Math.round(m),
-            lat: 28.6139, lng: 77.209, tz: 5.5,
-            name: 'Rectification', place: 'Delhi',
+            lat: placeLat, lng: placeLng, tz,
+            name: 'Rectification', place: placeName,
           }),
         });
         const data = await res.json();
@@ -178,6 +187,12 @@ export default function RectifyPage() {
                   <input type="number" min={1} max={6} value={uncertainty} onChange={e => setUncertainty(+e.target.value)} className="w-full px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 </div>
               </div>
+            </div>
+
+            {/* Birth place */}
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{isHi ? 'जन्म स्थान' : 'Birth Place'}</label>
+              <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); }} placeholder={isHi ? 'जन्म स्थान खोजें...' : 'Search birth place...'} />
             </div>
 
             {/* Life events */}

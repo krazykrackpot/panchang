@@ -7,6 +7,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import { RASHIS } from '@/lib/constants/rashis';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 
 const PLANET_COLORS: Record<number, string> = {
@@ -24,14 +25,21 @@ export default function GraphicTransitPage() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<{ day: number; planets: { id: number; rashi: number; isRetrograde: boolean }[] }[]>([]);
 
+  const locationStore = useLocationStore();
+
+  useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
+    const lat = locationStore.lat ?? 0;
+    const lng = locationStore.lng ?? 0;
+    const tzOffset = -(new Date().getTimezoneOffset() / 60);
     setLoading(true);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const results: typeof data = [];
 
     for (let d = 1; d <= daysInMonth; d++) {
       try {
-        const p = computePanchang({ year, month: month + 1, day: d, lat: 28.6139, lng: 77.209, tzOffset: 5.5, locationName: '' });
+        const p = computePanchang({ year, month: month + 1, day: d, lat, lng, tzOffset, locationName: locationStore.name || '' });
         results.push({
           day: d,
           planets: p.planets.map(pl => ({ id: pl.id, rashi: pl.rashi || 1, isRetrograde: pl.isRetrograde || false })),
@@ -40,7 +48,7 @@ export default function GraphicTransitPage() {
     }
     setData(results);
     setLoading(false);
-  }, [year, month]);
+  }, [year, month, locationStore.lat, locationStore.lng, locationStore.name]);
 
   const prevMonth = () => { if (month === 0) { setMonth(11); setYear(y => y - 1); } else setMonth(m => m - 1); };
   const nextMonth = () => { if (month === 11) { setMonth(0); setYear(y => y + 1); } else setMonth(m => m + 1); };

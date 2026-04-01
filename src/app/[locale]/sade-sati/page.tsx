@@ -14,6 +14,7 @@ import {
   type SadeSatiAnalysis,
   type SadeSatiInput,
 } from '@/lib/kundali/sade-sati-analysis';
+import LocationSearch from '@/components/ui/LocationSearch';
 
 // ---------------------------------------------------------------------------
 // Trilingual labels
@@ -136,9 +137,8 @@ export default function SadeSatiPage() {
   const [birthDate, setBirthDate] = useState('');
   const [birthTime, setBirthTime] = useState('');
   const [birthPlace, setBirthPlace] = useState('');
-  const [lat, setLat] = useState('');
-  const [lng, setLng] = useState('');
-  const [tz, setTz] = useState(() => String(-(new Date().getTimezoneOffset() / 60)));
+  const [birthLat, setBirthLat] = useState<number | null>(null);
+  const [birthLng, setBirthLng] = useState<number | null>(null);
 
   const saturnNow = useMemo(() => getCurrentSaturnSign(), []);
   const saturnSignName = RASHIS.find(r => r.id === saturnNow.sign)?.name;
@@ -153,9 +153,10 @@ export default function SadeSatiPage() {
 
   // Full mode analysis
   const handleFullAnalysis = async () => {
-    if (!birthDate || !birthTime || !lat || !lng) return;
+    if (!birthDate || !birthTime || !birthLat || !birthLng) return;
     setLoading(true);
     try {
+      const tzOffset = Math.round(birthLng / 15 * 2) / 2;
       const res = await fetch('/api/kundali', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -164,9 +165,9 @@ export default function SadeSatiPage() {
           date: birthDate,
           time: birthTime,
           place: birthPlace,
-          lat: parseFloat(lat),
-          lng: parseFloat(lng),
-          timezone: `Etc/GMT${parseFloat(tz) >= 0 ? '-' : '+'}${Math.abs(parseFloat(tz))}`,
+          lat: birthLat,
+          lng: birthLng,
+          timezone: String(tzOffset),
           ayanamsha: 'lahiri',
         }),
       });
@@ -283,29 +284,32 @@ export default function SadeSatiPage() {
       {tab === 'full' && (
         <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 glass-card rounded-2xl p-6 border border-gold-primary/10">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { label: LABELS.date, value: birthDate, set: setBirthDate, type: 'date' },
-              { label: LABELS.time, value: birthTime, set: setBirthTime, type: 'time' },
-              { label: LABELS.place, value: birthPlace, set: setBirthPlace, type: 'text' },
-              { label: LABELS.tz, value: tz, set: setTz, type: 'number' },
-              { label: LABELS.lat, value: lat, set: setLat, type: 'number' },
-              { label: LABELS.lng, value: lng, set: setLng, type: 'number' },
-            ].map((f) => (
-              <div key={f.label.en}>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(f.label, locale)}</label>
-                <input
-                  type={f.type}
-                  value={f.value}
-                  onChange={e => f.set(e.target.value)}
-                  className="w-full bg-bg-tertiary/40 border border-gold-primary/10 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/40 outline-none transition"
-                  step={f.type === 'number' ? 'any' : undefined}
-                />
-              </div>
-            ))}
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(LABELS.date, locale)}</label>
+              <input type="date" value={birthDate} onChange={e => setBirthDate(e.target.value)}
+                className="w-full bg-bg-tertiary/40 border border-gold-primary/10 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/40 outline-none transition" />
+            </div>
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(LABELS.time, locale)}</label>
+              <input type="time" value={birthTime} onChange={e => setBirthTime(e.target.value)}
+                className="w-full bg-bg-tertiary/40 border border-gold-primary/10 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/40 outline-none transition" />
+            </div>
+          </div>
+          <div className="mt-4">
+            <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(LABELS.place, locale)}</label>
+            <LocationSearch
+              value={birthPlace}
+              onSelect={(loc) => {
+                setBirthPlace(loc.name);
+                setBirthLat(loc.lat);
+                setBirthLng(loc.lng);
+              }}
+              placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+            />
           </div>
           <button
             onClick={handleFullAnalysis}
-            disabled={loading || !birthDate || !birthTime || !lat || !lng}
+            disabled={loading || !birthDate || !birthTime || !birthLat || !birthLng}
             className="mt-6 w-full py-3 rounded-xl font-bold text-sm bg-gold-primary/20 border border-gold-primary/40 text-gold-light hover:bg-gold-primary/30 transition disabled:opacity-40 disabled:cursor-not-allowed"
             style={bodyFont}
           >
@@ -333,12 +337,12 @@ export default function SadeSatiPage() {
                   <div className="h-2 rounded-full bg-bg-tertiary/40 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={{ width: `${Math.round(analysis.phaseProgress * 100)}%` }}
+                      animate={{ width: `${Math.min(100, Math.round(analysis.phaseProgress))}%` }}
                       transition={{ duration: 1, ease: 'easeOut' as const }}
                       className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     />
                   </div>
-                  <div className="text-text-secondary text-[10px] mt-1">{Math.round(analysis.phaseProgress * 100)}%</div>
+                  <div className="text-text-secondary text-[10px] mt-1">{Math.min(100, Math.round(analysis.phaseProgress))}%</div>
                 </div>
               </div>
             ) : (
@@ -356,8 +360,8 @@ export default function SadeSatiPage() {
               </div>
             )}
 
-            {/* 2. Intensity Meter (full mode only) */}
-            {isFullMode && (
+            {/* 2. Intensity Meter (full mode + active only) */}
+            {isFullMode && analysis.isActive && analysis.overallIntensity > 0 && (
               <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="my-10">
                 <h2 className="text-3xl font-bold text-gold-gradient mb-6 text-center" style={headingFont}>{t(LABELS.intensity, locale)}</h2>
                 <div className="glass-card rounded-2xl p-6 border border-gold-primary/10">
@@ -501,7 +505,8 @@ export default function SadeSatiPage() {
               </div>
             </div>
 
-            {/* 5. Remedies */}
+            {/* 5. Remedies — only when Sade Sati is active */}
+            {analysis.isActive && (<>
             <GoldDivider />
             <h2 className="text-3xl font-bold text-gold-gradient my-8 text-center" style={headingFont}>{t(LABELS.remedies, locale)}</h2>
 
@@ -552,6 +557,7 @@ export default function SadeSatiPage() {
                 ))}
               </div>
             )}
+            </>)}
           </motion.div>
         )}
       </AnimatePresence>

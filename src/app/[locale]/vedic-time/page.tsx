@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 function toVedicTime(date: Date) {
   // 1 day = 60 ghati = 3600 pala = 216000 vipala
   // 1 ghati = 24 minutes, 1 pala = 24 seconds, 1 vipala = 0.4 seconds
-  // Vedic day starts at sunrise (approximately 6:00 AM IST)
+  // Vedic day starts at sunrise (approximately 6:00 AM local time)
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const seconds = date.getSeconds();
@@ -74,7 +74,7 @@ export default function VedicTimePage() {
       {/* Modern time */}
       <div className="glass-card rounded-2xl p-8 text-center mb-8 border border-gold-primary/20">
         <div className="text-text-secondary text-xs uppercase tracking-[0.3em] mb-2">
-          {locale === 'en' ? 'Current Time (IST)' : 'वर्तमान समय (IST)'}
+          {locale === 'en' ? `Current Time (${Intl.DateTimeFormat().resolvedOptions().timeZone})` : `वर्तमान समय (${Intl.DateTimeFormat().resolvedOptions().timeZone})`}
         </div>
         <div className="text-gold-light text-5xl font-bold font-mono tracking-wider">
           {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}

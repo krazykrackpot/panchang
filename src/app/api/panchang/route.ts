@@ -36,8 +36,8 @@ export async function GET(request: Request) {
     year: searchParams.get('year') || now.getFullYear(),
     month: searchParams.get('month') || (now.getMonth() + 1),
     day: searchParams.get('day') || now.getDate(),
-    lat: searchParams.get('lat') || '28.6139',
-    lng: searchParams.get('lng') || '77.2090',
+    lat: searchParams.get('lat') || '0', // DEPRECATED fallback: client should always provide location
+    lng: searchParams.get('lng') || '0', // DEPRECATED fallback: client should always provide location
     tz: searchParams.get('tz') || undefined,
     timezone: searchParams.get('timezone') || undefined,
     location: searchParams.get('location') || 'New Delhi',

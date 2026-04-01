@@ -93,7 +93,7 @@ export default function PanchangPage() {
 
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [location, setLocation] = useState<LocationData>({ lat: 28.6139, lng: 77.209, name: 'New Delhi, India', tz: 5.5 });
+  const [location, setLocation] = useState<LocationData>({ lat: 0, lng: 0, name: '', tz: 0 });
   const [locationInput, setLocationInput] = useState('');
   const [searchingLocation, setSearchingLocation] = useState(false);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
@@ -158,7 +158,7 @@ export default function PanchangPage() {
             .then(res => res.json())
             .then(data => {
               if (data.latitude && data.longitude) {
-                setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: data.utc_offset ? parseFloat(data.utc_offset) / 100 : 5.5 });
+                setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: data.utc_offset ? parseFloat(data.utc_offset) / 100 : -(new Date().getTimezoneOffset() / 60) });
               }
             })
             .catch(() => {})

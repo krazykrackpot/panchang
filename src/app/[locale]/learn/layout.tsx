@@ -2,7 +2,6 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import LearnTabNav from '@/components/learn/LearnTabNav';
-import { LearnProgressBar } from '@/components/learn/LearnProgress';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
 import { BookOpen } from 'lucide-react';
@@ -39,7 +38,6 @@ export default function LearnLayout({ children }: { children: React.ReactNode })
 
         {/* Content */}
         <div className="flex-1 min-w-0">
-          <LearnProgressBar />
           {children}
         </div>
       </div>

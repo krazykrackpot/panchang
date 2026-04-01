@@ -3,15 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/lib/i18n/navigation';
-import { useEffect } from 'react';
-import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, Grid3X3, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Shield, RotateCcw, CheckCircle, Menu, X } from 'lucide-react';
-import { useLearnProgressStore } from '@/stores/learn-progress-store';
-
-function useLearnProgressStoreHook() {
-  const store = useLearnProgressStore();
-  useEffect(() => { store.loadFromStorage(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  return store;
-}
+import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, Grid3X3, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Shield, RotateCcw, Menu, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface TabDef {
@@ -91,7 +83,6 @@ export default function LearnTabNav() {
   const t = useTranslations('learn');
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { isCompleted, loaded, loadFromStorage } = useLearnProgressStoreHook();
 
   const isActive = (href: string) =>
     pathname === href || (href !== '/learn' && pathname.startsWith(href));
@@ -165,8 +156,7 @@ export default function LearnTabNav() {
                           : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'
                       }`}>
                       <Icon className="w-4 h-4 shrink-0" />
-                      <span className="flex-1">{t(tab.key)}</span>
-                      {loaded && isCompleted(tab.href) && <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />}
+                      {t(tab.key)}
                     </Link>
                   );
                 })}

@@ -23,6 +23,7 @@ export interface FestivalEntry {
   type: 'major' | 'vrat' | 'regional' | 'eclipse';
   category: string;
   description: Trilingual;
+  pujaMuhurat?: { start: string; end: string; name: string };
   slug?: string;
   paranaDate?: string;
   paranaStart?: string;
@@ -199,6 +200,75 @@ function computeSimpleParana(date: string, lat: number, lon: number, timezone: s
   return { paranaDate: date, paranaStart: ft(pujaEndUT % 24), paranaEnd: ft((pujaEndUT + 1) % 24) };
 }
 
+// ─── Puja Muhurat Calculation ───
+
+function computePujaMuhurat(
+  slug: string,
+  date: string,
+  lat: number,
+  lon: number,
+  timezone: string,
+): { start: string; end: string; name: string } | undefined {
+  const [y, m, d] = date.split('-').map(Number);
+  const tz = getUTCOffsetForDate(y, m, d, timezone);
+  const jd = dateToJD(y, m, d, 0);
+  const srUT = approximateSunrise(jd, lat, lon);
+  const ssUT = approximateSunset(jd, lat, lon);
+  const dayLen = ssUT - srUT;
+  const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
+
+  // Next day sunrise for night-length calculations
+  const jdNext = dateToJD(y, m, d + 1, 0);
+  const srNextUT = approximateSunrise(jdNext, lat, lon);
+  const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
+
+  switch (slug) {
+    case 'diwali': {
+      // Lakshmi Puja during Pradosh Kaal: sunset + 30min to sunset + 2h
+      const startUT = ssUT + 0.5;
+      const endUT = ssUT + 2.0;
+      return { start: ft(startUT), end: ft(endUT), name: 'Lakshmi Puja (Pradosh Kaal)' };
+    }
+    case 'dussehra': {
+      // Vijay Muhurat: Aparahna = 3/5 to 4/5 of daytime
+      const startUT = srUT + dayLen * (3 / 5);
+      const endUT = srUT + dayLen * (4 / 5);
+      return { start: ft(startUT), end: ft(endUT), name: 'Vijay Muhurat (Aparahna)' };
+    }
+    case 'ganesh-chaturthi': {
+      // Madhyahna: middle third of day
+      const startUT = srUT + dayLen / 3;
+      const endUT = srUT + (dayLen * 2) / 3;
+      return { start: ft(startUT), end: ft(endUT), name: 'Ganesh Puja (Madhyahna)' };
+    }
+    case 'navaratri': {
+      // Ghatasthapana: first 1/3 of daytime (Pratah Kaal)
+      const startUT = srUT;
+      const endUT = srUT + dayLen / 3;
+      return { start: ft(startUT), end: ft(endUT), name: 'Ghatasthapana (Pratah Kaal)' };
+    }
+    case 'maha-shivaratri': {
+      // First Prahara of night: sunset to sunset + nightLength/4
+      const endUT = ssUT + nightLen / 4;
+      return { start: ft(ssUT), end: ft(endUT), name: 'Shiva Puja (First Prahara)' };
+    }
+    case 'dhanteras': {
+      // Pradosh Kaal: sunset + 30min to sunset + 2h
+      const startUT = ssUT + 0.5;
+      const endUT = ssUT + 2.0;
+      return { start: ft(startUT), end: ft(endUT), name: 'Dhanteras Puja (Pradosh Kaal)' };
+    }
+    case 'ram-navami': {
+      // Madhyahna: middle third of day (birth time of Lord Rama)
+      const startUT = srUT + dayLen / 3;
+      const endUT = srUT + (dayLen * 2) / 3;
+      return { start: ft(startUT), end: ft(endUT), name: 'Ram Navami Puja (Madhyahna)' };
+    }
+    default:
+      return undefined;
+  }
+}
+
 // ─── Main Generator ───
 
 export function generateFestivalCalendarV2(
@@ -223,7 +293,7 @@ export function generateFestivalCalendarV2(
 
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];
-      festivals.push({
+      const entry: FestivalEntry = {
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: match.sunriseDate,
         tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
@@ -233,7 +303,15 @@ export function generateFestivalCalendarV2(
         category: 'festival',
         description: detail?.significance || { en: '', hi: '', sa: '' },
         slug: def.slug,
-      });
+      };
+
+      // Compute puja muhurat for key festivals
+      const muhurat = computePujaMuhurat(def.slug, match.sunriseDate, lat, lon, timezone);
+      if (muhurat) {
+        entry.pujaMuhurat = muhurat;
+      }
+
+      festivals.push(entry);
     }
   }
 

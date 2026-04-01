@@ -126,12 +126,11 @@ function findAmavasyaDate(year: number, month: number, lat: number, lon: number)
  * 3. This matches Drik Panchang behavior for all edge cases
  */
 function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
+  // Scan from the 1st of the target month. Ekadashi occurs around day 5-15 (Shukla)
+  // or day 19-29 (Krishna), so starting from day 1 always works.
   const startDate = new Date(year, month - 1, 1);
-  startDate.setDate(startDate.getDate() - 15);
 
-  // Scan for candidate days. Track whether match is at sunrise or only at midday.
-  type Candidate = { date: string; atSunrise: boolean };
-  const candidates: Candidate[] = [];
+  const candidates: string[] = [];
 
   for (let offset = 0; offset <= 50; offset++) {
     const dd = new Date(startDate);
@@ -147,19 +146,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     // Check at sunrise
     const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
     if (tithiAtSunrise === targetTithi) {
-      candidates.push({ date: dateStr, atSunrise: true });
-      continue;
-    }
-
-    // For Shukla Ekadashi only: also check midday to catch tithi starting after sunrise.
-    // Drik observes Shukla Ekadashi on the day it starts, even if not at sunrise.
-    // Krishna Ekadashi uses sunrise-only check.
-    if (targetTithi <= 15) {
-      const tithiAtMidDay = calculateTithi(dateToJD(gy, gm, gd, srUT + 6)).number;
-      if (tithiAtMidDay === targetTithi) {
-        candidates.push({ date: dateStr, atSunrise: false });
-        continue;
-      }
+      candidates.push(dateStr);
     }
   }
 
@@ -167,40 +154,20 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     return `${year}-${month.toString().padStart(2, '0')}-15`; // absolute fallback
   }
 
-  // Determine the observance date from the first cluster of candidates:
-  // - If only 1 candidate → that's it
-  // - If 2+ consecutive candidates AND both have tithi at sunrise → Dwi-Ekadashi → take SECOND
-  // - If first candidate is midday-only and second is at sunrise → take FIRST (tithi starts mid-day, normal case)
-  if (candidates.length === 1) return candidates[0].date;
+  if (candidates.length === 1) return candidates[0];
 
-  // Check first two candidates
-  const c0 = candidates[0];
-  const c1 = candidates[1];
-  const d0 = new Date(c0.date);
-  const d1 = new Date(c1.date);
+  // If tithi prevails at sunrise on 2+ consecutive days (Dwi-Ekadashi),
+  // observe the SECOND day (Smarta rule)
+  const d0 = new Date(candidates[0]);
+  const d1 = new Date(candidates[1]);
   const gap = (d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24);
 
   if (gap <= 1) {
-    if (c0.atSunrise && c1.atSunrise) {
-      // True Dwi-Ekadashi: tithi at sunrise both days → observe SECOND day
-      return c1.date;
-    }
-    if (!c0.atSunrise && c1.atSunrise) {
-      // Tithi starts mid-day on c0, prevails at sunrise on c1
-      // Drik rule: observe the day tithi STARTS (c0) — the fast begins that day
-      return c0.date;
-    }
-    if (c0.atSunrise && !c1.atSunrise) {
-      // Tithi at sunrise c0, only at midday c1 (fading)
-      // Observe c0 (the sunrise day)
-      return c0.date;
-    }
-    // Both midday-only (very rare) — take first
-    return c0.date;
+    // Dwi-Ekadashi → observe second day
+    return candidates[1];
   }
 
-  // Not consecutive — just take the first candidate
-  return c0.date;
+  return candidates[0];
 }
 
 /**
@@ -1062,5 +1029,15 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
   // Sort by date
   festivals.sort((a, b) => a.date.localeCompare(b.date));
 
-  return festivals;
+  // Deduplicate: remove duplicate entries with same date + category
+  const seen = new Set<string>();
+  const deduped = festivals.filter(f => {
+    const key = `${f.date}:${f.category}:${f.type}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  // Filter to only current year (remove prev/next year overflow)
+  return deduped.filter(f => f.date.startsWith(`${year}-`));
 }

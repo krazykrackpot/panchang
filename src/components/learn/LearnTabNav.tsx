@@ -134,7 +134,7 @@ export default function LearnTabNav() {
       </div>
 
       {/* ── Desktop: sidebar with phase headers ── */}
-      <nav className="hidden lg:block" id="learn-sidebar-nav">
+      <nav className="hidden lg:block lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto lg:pr-1" id="learn-sidebar-nav">
         <div className="space-y-4">
           {phases.map((phase) => (
             <div key={phase.phase}>

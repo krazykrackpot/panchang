@@ -222,7 +222,7 @@ export function generateFestivalCalendarV2(
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];
       festivals.push({
-        name: detail?.name || { en: def.slug, hi: def.slug, sa: def.slug },
+        name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
         date: match.sunriseDate,
         tithi: `${match.lunarMonth.name} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
         type: 'major',

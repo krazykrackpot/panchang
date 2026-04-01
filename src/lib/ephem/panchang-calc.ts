@@ -8,6 +8,7 @@ import {
   getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
 } from './astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
@@ -22,7 +23,8 @@ export interface PanchangInput {
   day: number;
   lat: number;
   lng: number;
-  tzOffset: number; // hours from UTC (e.g., 5.5 for IST)
+  tzOffset: number; // hours from UTC (e.g., 5.5 for IST) — resolved for this date
+  timezone?: string; // IANA timezone (e.g., 'Europe/Zurich') for per-JD DST resolution
   locationName?: string;
 }
 
@@ -88,6 +90,7 @@ function computeTransition(
   tzOffset: number,
   dataArray: { name: { en: string; hi: string; sa: string } }[],
   wrapMax: number, // e.g. 30 for tithi, 27 for nakshatra/yoga, 11 for karana
+  timezone?: string, // IANA timezone for per-JD DST resolution
 ): TransitionInfo | undefined {
   const step = 1 / 48; // ~30 min in JD
 
@@ -107,29 +110,36 @@ function computeTransition(
 
   if (!foundEnd) return undefined;
 
-  // ── Find START time: scan backward up to 36 hours ──
+  // ── Find START time: scan backward looking for the PREVIOUS value ──
+  // PyJHora approach: find when the previous tithi/nakshatra ended (= when ours started).
+  // The previous value is currentValue - 1 (with wrapping).
+  const prevValue = currentValue === 1 ? wrapMax : currentValue - 1;
   const minJd = jdSunrise - 1.5;
   let startJdResult = jdSunrise; // fallback
 
-  const valBeforeSunrise = getter(jdSunrise - step);
-  if (valBeforeSunrise !== currentValue) {
-    let lo = jdSunrise - step, hi = jdSunrise;
-    for (let i = 0; i < 30; i++) {
-      const mid = (lo + hi) / 2;
-      if (getter(mid) !== currentValue) lo = mid; else hi = mid;
-    }
-    startJdResult = (lo + hi) / 2;
-  } else {
-    for (let jd = jdSunrise - 2 * step; jd >= minJd; jd -= step) {
-      if (getter(jd) !== currentValue) {
-        let lo = jd, hi = jd + step;
-        for (let i = 0; i < 30; i++) {
-          const mid = (lo + hi) / 2;
-          if (getter(mid) !== currentValue) lo = mid; else hi = mid;
-        }
-        startJdResult = (lo + hi) / 2;
-        break;
+  // Scan backward for the previous value, then binary search the transition
+  for (let jd = jdSunrise - step; jd >= minJd; jd -= step) {
+    const val = getter(jd);
+    if (val === prevValue) {
+      // Found the previous value — transition is between here and the next step
+      let lo = jd, hi = jd + step;
+      for (let i = 0; i < 30; i++) {
+        const mid = (lo + hi) / 2;
+        if (getter(mid) !== currentValue) lo = mid; else hi = mid;
       }
+      startJdResult = (lo + hi) / 2;
+      break;
+    }
+    if (val !== currentValue && val !== prevValue) {
+      // Hit a value that's neither current nor previous — very short intermediate tithi.
+      // Binary search between here and sunrise for where current value starts.
+      let lo = jd, hi = jdSunrise;
+      for (let i = 0; i < 30; i++) {
+        const mid = (lo + hi) / 2;
+        if (getter(mid) !== currentValue) lo = mid; else hi = mid;
+      }
+      startJdResult = (lo + hi) / 2;
+      break;
     }
   }
 
@@ -138,11 +148,29 @@ function computeTransition(
   const nextIndex = nextValue - 1;
   const nextData = dataArray[nextIndex] || dataArray[0];
 
+  // Resolve timezone offset per-JD to handle DST transitions correctly
+  const resolveOffsetForJd = (jd: number): number => {
+    if (!timezone) return tzOffset;
+    // Convert JD to approximate date for timezone resolution
+    const localJd = jd + tzOffset / 24; // approximate local JD
+    const z = Math.floor(localJd + 0.5);
+    const a = z < 2299161 ? z : (() => { const alpha = Math.floor((z - 1867216.25) / 36524.25); return z + 1 + alpha - Math.floor(alpha / 4); })();
+    const b = a + 1524; const c = Math.floor((b - 122.1) / 365.25);
+    const d = Math.floor(365.25 * c); const e = Math.floor((b - d) / 30.6001);
+    const dy = b - d - Math.floor(30.6001 * e);
+    const mo = e < 14 ? e - 1 : e - 13;
+    const yr = mo > 2 ? c - 4716 : c - 4715;
+    return getUTCOffsetForDate(yr, mo, dy, timezone);
+  };
+
+  const startTz = resolveOffsetForJd(startJdResult);
+  const endTz = resolveOffsetForJd(endTransitionJd);
+
   return {
-    startTime: formatTime(jdToDecimalHoursUT(startJdResult, jdSunrise), tzOffset),
-    startDate: jdToLocalDate(startJdResult, tzOffset),
-    endTime: formatTime(jdToDecimalHoursUT(endTransitionJd, jdSunrise), tzOffset),
-    endDate: jdToLocalDate(endTransitionJd, tzOffset),
+    startTime: formatTime(jdToDecimalHoursUT(startJdResult, jdSunrise), startTz),
+    startDate: jdToLocalDate(startJdResult, startTz),
+    endTime: formatTime(jdToDecimalHoursUT(endTransitionJd, jdSunrise), endTz),
+    endDate: jdToLocalDate(endTransitionJd, endTz),
     nextName: nextData.name,
     nextNumber: nextValue,
   };
@@ -466,7 +494,7 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 };
 
 export function computePanchang(input: PanchangInput): PanchangData {
-  const { year, month, day, lat, lng, tzOffset, locationName } = input;
+  const { year, month, day, lat, lng, tzOffset, timezone, locationName } = input;
 
   // Compute Julian Day at midnight UT for this date
   const jd = dateToJD(year, month, day, 12 - tzOffset); // Convert local noon to UT
@@ -574,33 +602,33 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const samvatsaraIndex = getSamvatsara(year);
   const ayana = getAyana(sunSid);
 
-  // ── Transition times ──
+  // ── Transition times (with per-JD DST resolution) ──
   const tithiTransition = computeTransition(
     tithiResult.number,
     (jd) => calculateTithi(jd).number,
     findTithiTransition,
-    jdSunrise, tzOffset, TITHIS, 30,
+    jdSunrise, tzOffset, TITHIS, 30, timezone,
   );
 
   const nakshatraTransition = computeTransition(
     nakshatraNum,
     (jd) => getNakshatraNumber(toSidereal(moonLongitude(jd), jd)),
     findNakshatraTransition,
-    jdSunrise, tzOffset, NAKSHATRAS, 27,
+    jdSunrise, tzOffset, NAKSHATRAS, 27, timezone,
   );
 
   const yogaTransition = computeTransition(
     yogaNum,
     (jd) => calculateYoga(jd),
     findYogaTransition,
-    jdSunrise, tzOffset, YOGAS, 27,
+    jdSunrise, tzOffset, YOGAS, 27, timezone,
   );
 
   const karanaTransition = computeTransition(
     karanaNum,
     (jd) => calculateKarana(jd),
     findKaranaTransition,
-    jdSunrise, tzOffset, KARANAS, 11,
+    jdSunrise, tzOffset, KARANAS, 11, timezone,
   );
 
   // ── Choghadiya ──

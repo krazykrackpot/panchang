@@ -57,7 +57,7 @@ export async function GET(request: Request) {
 
   try {
     const panchang = computePanchang({
-      year, month, day, lat, lng, tzOffset, locationName: location || '',
+      year, month, day, lat, lng, tzOffset, timezone: timezone || undefined, locationName: location || '',
     });
 
     return NextResponse.json(panchang, {

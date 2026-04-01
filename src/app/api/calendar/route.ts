@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { generateFestivalCalendar } from '@/lib/calendar/festivals';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -17,9 +17,9 @@ export async function GET(request: Request) {
   const lon = parseFloat(lonParam);
 
   try {
-    const festivals = generateFestivalCalendar(year, lat, lon, timezoneParam);
+    const festivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
     return NextResponse.json({ year, festivals });
-  } catch {
-    return NextResponse.json({ error: 'Failed to generate calendar' }, { status: 500 });
+  } catch (err) {
+    return NextResponse.json({ error: 'Failed to generate calendar: ' + String(err) }, { status: 500 });
   }
 }

@@ -1,8 +1,16 @@
 /**
  * Core astronomical calculation functions.
- * Pure JavaScript implementation for Panchang calculations.
- * Based on Meeus "Astronomical Algorithms" and Surya Siddhanta formulas.
+ * Uses Swiss Ephemeris (sweph) when available for sub-arcsecond accuracy.
+ * Falls back to Meeus "Astronomical Algorithms" if sweph is not installed.
  */
+
+import {
+  isSwissEphAvailable,
+  swissAllPlanets,
+  swissAyanamsha,
+  swissJulDay,
+  swissPlanetLongitude,
+} from './swiss-ephemeris';
 
 // Julian Day Number from calendar date
 export function dateToJD(year: number, month: number, day: number, hour: number = 0): number {
@@ -57,33 +65,42 @@ function T(jd: number): number {
 }
 
 /**
- * Sun's mean longitude (geometric, referred to mean equinox of date)
- * Meeus Ch. 25
+ * Sun's tropical longitude.
+ * Swiss Ephemeris when available (~0.001° accuracy), Meeus fallback (~0.01°).
  */
 export function sunLongitude(jd: number): number {
+  if (isSwissEphAvailable()) {
+    return swissPlanetLongitude(jd, 0).longitude;
+  }
+  return _meesusSunLongitude(jd);
+}
+
+function _meesusSunLongitude(jd: number): number {
   const t = T(jd);
-  // Mean longitude
   const L0 = normalizeDeg(280.46646 + 36000.76983 * t + 0.0003032 * t * t);
-  // Mean anomaly
   const M = normalizeDeg(357.52911 + 35999.05029 * t - 0.0001537 * t * t);
   const Mrad = toRad(M);
-  // Equation of center
   const C = (1.914602 - 0.004817 * t - 0.000014 * t * t) * Math.sin(Mrad)
     + (0.019993 - 0.000101 * t) * Math.sin(2 * Mrad)
     + 0.000289 * Math.sin(3 * Mrad);
-  // Sun's true longitude
   const sunTrue = normalizeDeg(L0 + C);
-  // Apparent longitude (nutation + aberration)
   const omega = 125.04 - 1934.136 * t;
   const apparent = sunTrue - 0.00569 - 0.00478 * Math.sin(toRad(omega));
   return normalizeDeg(apparent);
 }
 
 /**
- * Moon's longitude — Full Meeus Ch. 47 (60 terms)
- * Accuracy: ~10 arcseconds (~0.003°), giving tithi times within 1-2 minutes.
+ * Moon's tropical longitude.
+ * Swiss Ephemeris when available (~0.001°), Meeus fallback (~0.5°).
  */
 export function moonLongitude(jd: number): number {
+  if (isSwissEphAvailable()) {
+    return swissPlanetLongitude(jd, 1).longitude;
+  }
+  return _meeusMoonLongitude(jd);
+}
+
+function _meeusMoonLongitude(jd: number): number {
   const t = T(jd);
 
   // Fundamental arguments (degrees)
@@ -156,9 +173,14 @@ export function moonLongitude(jd: number): number {
  * Accuracy: ~1 arcsecond for dates 1900-2100.
  */
 export function lahiriAyanamsha(jd: number): number {
-  const t = (jd - 2451545.0) / 36525.0; // centuries from J2000.0
-  // Polynomial fit to official Lahiri values (Indian Astronomical Ephemeris)
-  // Reference: ayanamsha = 23°51'11" at J2000.0 = 23.85306°
+  if (isSwissEphAvailable()) {
+    return swissAyanamsha(jd);
+  }
+  return _meeeusLahiriAyanamsha(jd);
+}
+
+function _meeeusLahiriAyanamsha(jd: number): number {
+  const t = (jd - 2451545.0) / 36525.0;
   return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
 }
 
@@ -314,47 +336,58 @@ export function calculateRahuKaal(sunrise: number, sunset: number, weekday: numb
 }
 
 /**
- * Approximate planetary longitudes for the 7 traditional + Rahu/Ketu
- * These are simplified mean longitudes good for display purposes
+ * All planetary positions (tropical longitudes) for the 9 Grahas.
+ * Swiss Ephemeris when available (sub-arcsecond), Meeus fallback (approximate).
  */
 export function getPlanetaryPositions(jd: number): {
   id: number; longitude: number; speed: number; isRetrograde: boolean
 }[] {
+  // Try Swiss Ephemeris first
+  if (isSwissEphAvailable()) {
+    const result = swissAllPlanets(jd);
+    if (result) {
+      return result.planets.map(p => ({
+        id: p.id,
+        longitude: p.tropical,
+        speed: p.speed,
+        isRetrograde: p.isRetrograde,
+      }));
+    }
+  }
+
+  // Meeus fallback
+  return _meeusPlanetaryPositions(jd);
+}
+
+function _meeusPlanetaryPositions(jd: number): {
+  id: number; longitude: number; speed: number; isRetrograde: boolean
+}[] {
   const t = T(jd);
 
-  // Mean longitudes (simplified)
-  const sun = sunLongitude(jd);
-  const moon = moonLongitude(jd);
+  const sun = _meesusSunLongitude(jd);
+  const moon = _meeusMoonLongitude(jd);
 
-  // Mars
   const marsL = normalizeDeg(355.433 + 19140.2993 * t);
   const marsM = normalizeDeg(319.839 + 19139.8585 * t);
   const mars = normalizeDeg(marsL + 6.4 * Math.sin(toRad(marsM)) + 1.0 * Math.sin(toRad(2 * marsM)));
 
-  // Mercury
   const mercL = normalizeDeg(252.251 + 149472.6746 * t);
   const mercM = normalizeDeg(174.795 + 149472.5153 * t);
   const mercury = normalizeDeg(mercL + 23.44 * Math.sin(toRad(mercM)) + 2.9 * Math.sin(toRad(2 * mercM)));
 
-  // Jupiter
   const jupL = normalizeDeg(34.351 + 3034.9057 * t);
   const jupM = normalizeDeg(20.020 + 3034.6872 * t);
   const jupiter = normalizeDeg(jupL + 5.55 * Math.sin(toRad(jupM)) + 0.17 * Math.sin(toRad(2 * jupM)));
 
-  // Venus
   const venL = normalizeDeg(181.979 + 58517.8157 * t);
   const venM = normalizeDeg(50.416 + 58517.8039 * t);
   const venus = normalizeDeg(venL + 0.78 * Math.sin(toRad(venM)));
 
-  // Saturn
   const satL = normalizeDeg(50.077 + 1222.1138 * t);
   const satM = normalizeDeg(317.021 + 1222.1116 * t);
   const saturn = normalizeDeg(satL + 6.4 * Math.sin(toRad(satM)) + 0.9 * Math.sin(toRad(2 * satM)));
 
-  // Rahu (Mean North Node - moves retrograde ~19.3°/year)
   const rahu = normalizeDeg(125.044 - 1934.1362 * t);
-
-  // Ketu (opposite of Rahu)
   const ketu = normalizeDeg(rahu + 180);
 
   return [

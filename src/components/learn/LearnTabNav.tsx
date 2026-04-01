@@ -42,9 +42,10 @@ const phases: PhaseGroup[] = [
   },
   {
     phase: '',
-    label: { en: 'Time Divisions', hi: 'काल विभाग' },
+    label: { en: 'Time & Calendar', hi: 'काल एवं पंचांग' },
     tabs: [
       { href: '/learn/muhurtas', key: 'muhurtas', icon: Clock },
+      { href: '/learn/masa', key: 'masa', icon: CalendarClock },
     ],
   },
   {

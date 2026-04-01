@@ -152,7 +152,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     }
   }
 
-  // If found at sunrise, apply Dwi-Ekadashi rule
+  // If found at sunrise, check rules
   if (sunriseDays.length >= 2) {
     const d0 = new Date(sunriseDays[0]);
     const d1 = new Date(sunriseDays[1]);
@@ -160,6 +160,7 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
       return sunriseDays[1]; // Dwi-Ekadashi → second day
     }
   }
+
   if (sunriseDays.length >= 1) return sunriseDays[0];
 
   // Pass 2: tithi not found at any sunrise — it starts and ends between two sunrises.

@@ -120,17 +120,20 @@ function findAmavasyaDate(year: number, month: number, lat: number, lon: number)
 }
 
 /**
- * Find Ekadashi observance date using Smarta/Drik rules:
- * 1. A day "has" the Ekadashi tithi if it prevails at sunrise OR starts during the day
- * 2. If Ekadashi is found on two consecutive days (Dwi-Ekadashi), observe the SECOND day
- * 3. This matches Drik Panchang behavior for all edge cases
+ * Find Ekadashi fasting date.
+ *
+ * Rules:
+ * 1. Normally, the fasting day is the day when the tithi prevails at sunrise.
+ * 2. If the tithi prevails at sunrise on TWO consecutive days (Dwi-Ekadashi),
+ *    observe the SECOND day.
+ * 3. If the tithi starts after sunrise on day X and ends before sunrise on day X+1
+ *    (i.e., it never prevails at ANY sunrise), observe day X — the day it started.
  */
 function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
-  // Scan from the 1st of the target month. Ekadashi occurs around day 5-15 (Shukla)
-  // or day 19-29 (Krishna), so starting from day 1 always works.
   const startDate = new Date(year, month - 1, 1);
 
-  const candidates: string[] = [];
+  // Pass 1: find all days where tithi prevails at sunrise
+  const sunriseDays: string[] = [];
 
   for (let offset = 0; offset <= 50; offset++) {
     const dd = new Date(startDate);
@@ -142,32 +145,58 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
 
     const jdApprox = dateToJD(gy, gm, gd, 0);
     const srUT = approximateSunrise(jdApprox, lat, lon);
-
-    // Check at sunrise
     const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
+
     if (tithiAtSunrise === targetTithi) {
-      candidates.push(dateStr);
+      sunriseDays.push(dateStr);
     }
   }
 
-  if (candidates.length === 0) {
-    return `${year}-${month.toString().padStart(2, '0')}-15`; // absolute fallback
+  // If found at sunrise, apply Dwi-Ekadashi rule
+  if (sunriseDays.length >= 2) {
+    const d0 = new Date(sunriseDays[0]);
+    const d1 = new Date(sunriseDays[1]);
+    if ((d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24) <= 1) {
+      return sunriseDays[1]; // Dwi-Ekadashi → second day
+    }
+  }
+  if (sunriseDays.length >= 1) return sunriseDays[0];
+
+  // Pass 2: tithi not found at any sunrise — it starts and ends between two sunrises.
+  // Find the day it starts by checking sunset (tithi present at sunset but not next sunrise).
+  for (let offset = 0; offset <= 50; offset++) {
+    const dd = new Date(startDate);
+    dd.setDate(dd.getDate() + offset);
+    const gy = dd.getFullYear();
+    const gm = dd.getMonth() + 1;
+    const gd = dd.getDate();
+
+    const jdApprox = dateToJD(gy, gm, gd, 0);
+    const srUT = approximateSunrise(jdApprox, lat, lon);
+    const ssUT = approximateSunset(jdApprox, lat, lon);
+
+    const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
+    const tithiAtSunset = calculateTithi(dateToJD(gy, gm, gd, ssUT)).number;
+
+    // Tithi starts after sunrise (not at sunrise) but is present at sunset
+    if (tithiAtSunrise !== targetTithi && tithiAtSunset === targetTithi) {
+      // Verify it ends before next sunrise (i.e., it's a "skipped sunrise" tithi)
+      const nextDay = new Date(dd);
+      nextDay.setDate(nextDay.getDate() + 1);
+      const ny = nextDay.getFullYear();
+      const nm = nextDay.getMonth() + 1;
+      const nd = nextDay.getDate();
+      const nextSrUT = approximateSunrise(dateToJD(ny, nm, nd, 0), lat, lon);
+      const tithiAtNextSunrise = calculateTithi(dateToJD(ny, nm, nd, nextSrUT)).number;
+
+      if (tithiAtNextSunrise !== targetTithi) {
+        // Tithi started after sunrise today and ended before next sunrise → observe today
+        return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+      }
+    }
   }
 
-  if (candidates.length === 1) return candidates[0];
-
-  // If tithi prevails at sunrise on 2+ consecutive days (Dwi-Ekadashi),
-  // observe the SECOND day (Smarta rule)
-  const d0 = new Date(candidates[0]);
-  const d1 = new Date(candidates[1]);
-  const gap = (d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24);
-
-  if (gap <= 1) {
-    // Dwi-Ekadashi → observe second day
-    return candidates[1];
-  }
-
-  return candidates[0];
+  return `${year}-${month.toString().padStart(2, '0')}-15`;
 }
 
 /**

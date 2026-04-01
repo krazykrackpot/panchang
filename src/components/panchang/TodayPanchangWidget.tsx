@@ -63,7 +63,7 @@ export default function TodayPanchangWidget() {
   // Format transition end time — always includes date
   const MONTHS = locale === 'en'
     ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    : ['जन','फर','मार','अप्रै','मई','जून','जुल','अग','सित','अक्टू','नव','दिस'];
+    : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
   const endTimeStr = (tr?: { endTime: string; endDate?: string }) => {
     if (!tr) return '';
     const prefix = locale === 'en' ? 'ends' : 'समाप्ति';

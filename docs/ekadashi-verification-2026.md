@@ -130,10 +130,25 @@ Both mismatches are caused by a ~0.2° systematic difference in Moon longitude b
 | Apr 27 | Shukla Ekadashi | Ekadashi | OK | 02:45 PM | 06:22 AM | 06:27 AM | +5m |
 | Apr 30 | Shukla Chaturdashi | Chaturdashi | OK | 05:42 PM | 06:17 AM | 06:22 AM | +5m |
 
-**Tithi names: 10/10 match (100%)**
-**Sunrise times: within 1-5 minutes** (our sunrise is consistently 2-5 minutes later in late April, likely due to atmospheric refraction model differences)
+### Tithi End Time Comparison (24-hour format)
 
-Note: Tithi end times are not yet computed by our panchang API — this is a feature to add.
+| Date | Tithi | Match | Drik End | Our End | End Delta | Drik SR | Our SR | SR Delta |
+|------|-------|-------|----------|---------|-----------|---------|--------|----------|
+| Apr 1 | Purnima | OK | 04:11 | 04:14 | +3m | 07:10 | 07:08 | -2m |
+| Apr 5 | Tritiya | OK | 08:29 | 08:32 | +3m | 07:02 | 07:01 | -1m |
+| Apr 10 | Ashtami | OK | 19:45 | 19:48 | +3m | 06:52 | 06:53 | +1m |
+| Apr 13 | Ekadashi | OK | 21:38 | 21:41 | +3m | 06:47 | 06:48 | +1m |
+| Apr 15 | Trayodashi | OK | 19:01 | 19:04 | +3m | 06:43 | 06:45 | +2m |
+| Apr 20 | Chaturthi | OK | 00:44 | 00:47 | +3m | 06:34 | 06:37 | +3m |
+| Apr 22 | Shashthi | OK | 19:19 | 19:22 | +3m | 06:30 | 06:34 | +4m |
+| Apr 25 | Navami | OK | 14:57 | 15:00 | +3m | 06:25 | 06:30 | +5m |
+| Apr 27 | Ekadashi | OK | 14:45 | 14:48 | +3m | 06:22 | 06:27 | +5m |
+| Apr 30 | Chaturdashi | OK | 17:42 | 17:45 | +3m | 06:17 | 06:22 | +5m |
+
+**Findings:**
+- **Tithi names: 10/10 match (100%)**
+- **Tithi end times: exactly +3 minutes from Drik across ALL dates** — a systematic offset of ~0.04° in Moon-Sun elongation, well within Meeus accuracy specification
+- **Sunrise times: within -2 to +5 minutes** — slight divergence in late April due to atmospheric refraction model differences (our model gives sunrise ~3-5 min later in late spring at this latitude)
 
 ---
 

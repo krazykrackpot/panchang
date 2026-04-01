@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { buildYearlyTithiTable, lookupTithiAtSunrise } from '@/lib/calendar/tithi-table';
+import { dateToJD, approximateSunrise } from '@/lib/ephem/astronomical';
 
 const panchangSchema = z.object({
   year: z.coerce.number().int().min(1900).max(2200),
@@ -60,7 +62,30 @@ export async function GET(request: Request) {
       year, month, day, lat, lng, tzOffset, timezone: timezone || undefined, locationName: location || '',
     });
 
-    return NextResponse.json(panchang, {
+    // Enrich with tithi table data (masa info, precise tithi times)
+    let tithiTableData: Record<string, unknown> | undefined;
+    try {
+      if (timezone) {
+        const table = buildYearlyTithiTable(year, lat, lng, timezone);
+        const jdApprox = dateToJD(year, month, day, 0);
+        const srUT = approximateSunrise(jdApprox, lat, lng);
+        const sunriseJd = dateToJD(year, month, day, srUT);
+        const entry = lookupTithiAtSunrise(table, sunriseJd);
+        if (entry) {
+          tithiTableData = {
+            masa: entry.masa,
+            tithiStart: entry.startLocal,
+            tithiEnd: entry.endLocal,
+            tithiStartDate: entry.startDate,
+            tithiEndDate: entry.endDate,
+            isKshaya: entry.isKshaya,
+            durationHours: Math.round(entry.durationHours * 10) / 10,
+          };
+        }
+      }
+    } catch { /* tithi table enrichment is optional — don't fail the API */ }
+
+    return NextResponse.json({ ...panchang, ...(tithiTableData ? { tithiTable: tithiTableData } : {}) }, {
       headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=300' },
     });
   } catch (err) {

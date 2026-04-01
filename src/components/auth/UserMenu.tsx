@@ -30,10 +30,10 @@ export default function UserMenu() {
       <>
         <button
           onClick={() => setShowAuth(true)}
-          className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+          className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium border border-gold-primary/30 text-gold-light rounded-lg hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300 whitespace-nowrap"
           aria-label="Sign in"
         >
-          <User className="w-3.5 h-3.5" />
+          <User className="w-3.5 h-3.5 shrink-0" />
           Sign In
         </button>
         <AuthModal isOpen={showAuth} onClose={() => setShowAuth(false)} />

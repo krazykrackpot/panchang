@@ -6,7 +6,8 @@ import { Link } from '@/lib/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import UserMenu from '@/components/auth/UserMenu';
 import { useSubscription } from '@/hooks/useSubscription';
-import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
+import { useLocationStore } from '@/stores/location-store';
+import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
 
 interface DropdownItem {
   href: string;
@@ -68,8 +69,12 @@ export default function Navbar() {
   const t = useTranslations('nav');
   const locale = useLocale();
   const { tier, isTrialing, trialDaysLeft } = useSubscription();
+  const locationStore = useLocationStore();
   const [isOpen, setIsOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  // Auto-detect location on mount
+  useEffect(() => { locationStore.detect(); }, []);
 
   const navItems: NavItem[] = [
     { href: '/', label: t('home') },
@@ -153,6 +158,13 @@ export default function Navbar() {
               )
             )}
             <div className="w-px h-6 bg-gold-primary/20" />
+            {/* Location display */}
+            {locationStore.confirmed && locationStore.name && (
+              <div className="flex items-center gap-1.5 text-text-secondary text-xs">
+                <MapPin className="w-3.5 h-3.5 text-gold-primary" />
+                <span className="max-w-[140px] truncate">{locationStore.name}</span>
+              </div>
+            )}
             <button
               onClick={() => {
                 const html = document.documentElement;

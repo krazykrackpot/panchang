@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/lib/i18n/navigation';
-import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, Grid3X3, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Crown, Shield, Menu, X } from 'lucide-react';
+import { BookOpen, Sun, Star, Moon, Timer, Orbit, Slice, Clock, FileSpreadsheet, LayoutGrid, Grid3X3, CalendarClock, ArrowRightLeft, Heart, Calculator, Sparkles, Shield, RotateCcw, Menu, X } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface TabDef {
@@ -26,6 +26,7 @@ const phases: PhaseGroup[] = [
       { href: '/learn', key: 'foundations', icon: BookOpen },
       { href: '/learn/grahas', key: 'grahas', icon: Sun },
       { href: '/learn/rashis', key: 'rashis', icon: Orbit },
+      { href: '/learn/ayanamsha', key: 'ayanamsha', icon: RotateCcw },
     ],
   },
   {

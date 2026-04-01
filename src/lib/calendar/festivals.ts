@@ -9,7 +9,7 @@
 
 import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, normalizeDeg, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
 import { generateEclipseCalendar } from '@/lib/calendar/eclipses';
-import { getHinduMonth, getEkadashiName } from '@/lib/constants/festival-details';
+import { getHinduMonth, getEkadashiName, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
 import type { Trilingual } from '@/types/panchang';
 
 export interface FestivalEntry {
@@ -583,10 +583,87 @@ function computePradoshamParana(pradoshamDate: string, lat = DEFAULT_LAT, lon = 
 }
 
 /**
+ * Detect Adhika Masa (intercalary month) for a given year.
+ *
+ * Classical rule (Surya Siddhanta Ch.5-6):
+ * A lunar month is Adhika if no Sankranti (Sun entering a new sidereal sign)
+ * occurs between the two Amavasyas that bound it.
+ *
+ * Returns an object mapping Gregorian month ranges to the Adhika month name,
+ * or null if no Adhika Masa occurs.
+ */
+function detectAdhikaMasa(year: number, lat: number, lon: number): {
+  adhikaMonth: string; // Hindu month name that is repeated
+  startDate: string;   // YYYY-MM-DD when Adhika Masa starts
+  endDate: string;     // YYYY-MM-DD when Adhika Masa ends
+} | null {
+  // Find all Amavasya dates for the year (and a few from prev/next year for boundaries)
+  const amavasyas: string[] = [];
+  for (let m = -1; m <= 13; m++) {
+    const gm = m <= 0 ? 12 + m : m > 12 ? m - 12 : m;
+    const gy = m <= 0 ? year - 1 : m > 12 ? year + 1 : year;
+    const d = findAmavasyaDate(gy, gm, lat, lon);
+    if (d && !amavasyas.includes(d)) amavasyas.push(d);
+  }
+  amavasyas.sort();
+
+  // For each pair of consecutive Amavasyas, check if Sun changes sidereal sign
+  for (let i = 0; i < amavasyas.length - 1; i++) {
+    const [y1, m1, d1] = amavasyas[i].split('-').map(Number);
+    const [y2, m2, d2] = amavasyas[i + 1].split('-').map(Number);
+
+    const jd1 = dateToJD(y1, m1, d1, 12);
+    const jd2 = dateToJD(y2, m2, d2, 12);
+
+    const sunSid1 = normalizeDeg(toSidereal(sunLongitude(jd1), jd1));
+    const sunSid2 = normalizeDeg(toSidereal(sunLongitude(jd2), jd2));
+
+    const sign1 = Math.floor(sunSid1 / 30) + 1;
+    const sign2 = Math.floor(sunSid2 / 30) + 1;
+
+    // If Sun is in the same sign at both Amavasyas → Adhika Masa
+    if (sign1 === sign2) {
+      const adhikaMonth = getHinduMonth(sign1);
+      // In Purnimant system:
+      // - Adhika Shukla paksha: from Purnima BEFORE first Amavasya to that Amavasya
+      // - Adhika Krishna paksha: from that Amavasya to the second Amavasya
+      // Find the Purnima before the first Amavasya (scan backward for tithi 15)
+      let purnimaBeforeStart = amavasyas[i]; // fallback
+      for (let d = 1; d <= 18; d++) {
+        const prevDate = new Date(y1, m1 - 1, d1 - d);
+        const pjd = dateToJD(prevDate.getFullYear(), prevDate.getMonth() + 1, prevDate.getDate(), 12);
+        if (calculateTithi(pjd).number === 15) {
+          purnimaBeforeStart = `${prevDate.getFullYear()}-${(prevDate.getMonth() + 1).toString().padStart(2, '0')}-${prevDate.getDate().toString().padStart(2, '0')}`;
+          break;
+        }
+      }
+      return {
+        adhikaMonth,
+        startDate: purnimaBeforeStart, // Shukla paksha starts after this Purnima
+        endDate: amavasyas[i + 1],     // Krishna paksha ends at this Amavasya
+      };
+    }
+  }
+
+  return null; // No Adhika Masa this year
+}
+
+/**
+ * Check if a given date falls within the Adhika Masa period.
+ */
+function isInAdhikaMasa(dateStr: string, adhika: { startDate: string; endDate: string } | null): boolean {
+  if (!adhika) return false;
+  return dateStr > adhika.startDate && dateStr <= adhika.endDate;
+}
+
+/**
  * Generate the full festival calendar for a year.
  */
 export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): FestivalEntry[] {
   const festivals: FestivalEntry[] = [];
+
+  // Detect Adhika Masa for the year
+  const adhikaMasa = detectAdhikaMasa(year, lat, lon);
 
   // ── Major Festivals ──
 
@@ -761,20 +838,33 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
     // Ekadashi (Shukla & Krishna) — resolve named Ekadashi from Sun's sidereal position
     const ekadashi = findEkadashiDates(year, m, lat, lon);
 
-    // Determine Hindu month from Sun's sidereal sign on the Ekadashi date
-    const shuklaDateParts = ekadashi.shukla.split('-').map(Number);
-    const shuklaJd = dateToJD(shuklaDateParts[0], shuklaDateParts[1], shuklaDateParts[2], 6);
-    const shuklaSunSid = normalizeDeg(toSidereal(sunLongitude(shuklaJd), shuklaJd));
-    const shuklaSign = Math.floor(shuklaSunSid / 30) + 1;
-    const shuklaHinduMonth = getHinduMonth(shuklaSign);
-    const shuklaEkadashiDetail = getEkadashiName(shuklaHinduMonth, 'shukla');
+    // Determine Hindu month, with Adhika Masa override
+    let shuklaEkadashiDetail;
+    if (isInAdhikaMasa(ekadashi.shukla, adhikaMasa)) {
+      shuklaEkadashiDetail = ADHIKA_MASA_EKADASHI.shukla;
+    } else {
+      const shuklaDateParts = ekadashi.shukla.split('-').map(Number);
+      const shuklaJd = dateToJD(shuklaDateParts[0], shuklaDateParts[1], shuklaDateParts[2], 6);
+      const shuklaSunSid = normalizeDeg(toSidereal(sunLongitude(shuklaJd), shuklaJd));
+      const shuklaSign = Math.floor(shuklaSunSid / 30) + 1;
+      // If Adhika Masa just ended and we're in Nija month, advance sign by 1
+      // to skip the Adhika month's sign (which was the same)
+      const shuklaHinduMonth = getHinduMonth(shuklaSign);
+      shuklaEkadashiDetail = getEkadashiName(shuklaHinduMonth, 'shukla');
+    }
 
-    const krishnaDateParts = ekadashi.krishna.split('-').map(Number);
-    const krishnaJd = dateToJD(krishnaDateParts[0], krishnaDateParts[1], krishnaDateParts[2], 6);
-    const krishnaSunSid = normalizeDeg(toSidereal(sunLongitude(krishnaJd), krishnaJd));
-    const krishnaSign = Math.floor(krishnaSunSid / 30) + 1;
-    const krishnaHinduMonth = getHinduMonth((krishnaSign % 12) + 1);
-    const krishnaEkadashiDetail = getEkadashiName(krishnaHinduMonth, 'krishna');
+    let krishnaEkadashiDetail;
+    if (isInAdhikaMasa(ekadashi.krishna, adhikaMasa)) {
+      krishnaEkadashiDetail = ADHIKA_MASA_EKADASHI.krishna;
+    } else {
+      const krishnaDateParts = ekadashi.krishna.split('-').map(Number);
+      const krishnaJd = dateToJD(krishnaDateParts[0], krishnaDateParts[1], krishnaDateParts[2], 6);
+      const krishnaSunSid = normalizeDeg(toSidereal(sunLongitude(krishnaJd), krishnaJd));
+      const krishnaSign = Math.floor(krishnaSunSid / 30) + 1;
+      // Krishna paksha in Purnimant = next month
+      const krishnaHinduMonth = getHinduMonth((krishnaSign % 12) + 1);
+      krishnaEkadashiDetail = getEkadashiName(krishnaHinduMonth, 'krishna');
+    }
 
     festivals.push({
       name: shuklaEkadashiDetail?.name || { en: 'Shukla Ekadashi', hi: 'शुक्ल एकादशी', sa: 'शुक्लैकादशी' },

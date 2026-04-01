@@ -431,6 +431,23 @@ export const CATEGORY_DETAILS: Record<string, FestivalDetail> = {
   },
 };
 
+/**
+ * Adhika Masa (intercalary month) Ekadashi names.
+ * During Adhika Masa, Ekadashis have special names dedicated to Lord Purushottama (Vishnu).
+ */
+export const ADHIKA_MASA_EKADASHI: { shukla: EkadashiDetail; krishna: EkadashiDetail } = {
+  shukla: {
+    name: { en: 'Padmini Ekadashi', hi: 'पद्मिनी एकादशी', sa: 'पद्मिनीएकादशी' },
+    story: { en: 'Described in the Skanda Purana. This Ekadashi falls in the Adhika (extra) month, also called Purushottama Masa. Lord Krishna told Yudhishthira that observing this rare Ekadashi grants merit equal to performing the Ashvamedha Yagna.', hi: 'स्कन्द पुराण में वर्णित। यह अधिक मास (पुरुषोत्तम मास) की एकादशी है। कृष्ण ने युधिष्ठिर को बताया कि इस दुर्लभ एकादशी का व्रत अश्वमेध यज्ञ के समान पुण्य देता है।', sa: 'स्कन्दपुराणे वर्णिता। अधिकमासस्य (पुरुषोत्तममासस्य) एकादशी। अश्वमेधयज्ञसमपुण्यम्।' },
+    benefit: { en: 'Grants merit of Ashvamedha Yagna. Removes sins accumulated over many lifetimes. Most auspicious Ekadashi of the Adhika Masa.', hi: 'अश्वमेध यज्ञ का पुण्य। अनेक जन्मों के पाप नष्ट। अधिक मास की सबसे शुभ एकादशी।', sa: 'अश्वमेधयज्ञपुण्यम्। अनेकजन्मपापनाशः।' },
+  },
+  krishna: {
+    name: { en: 'Parama Ekadashi', hi: 'परमा एकादशी', sa: 'परमैकादशी' },
+    story: { en: 'Described in the Brahma Vaivarta Purana. Lord Krishna narrated this to Arjuna. A king named Sumedha, who had committed grievous sins, observed this Ekadashi during Adhika Masa and was instantly purified. Parama = supreme.', hi: 'ब्रह्म वैवर्त पुराण में वर्णित। कृष्ण ने अर्जुन को सुनाया। सुमेध नामक राजा ने अधिक मास में इस एकादशी का व्रत किया और तुरन्त शुद्ध हुआ।', sa: 'ब्रह्मवैवर्तपुराणे वर्णिता। सुमेधनामकः राजा अधिकमासे एताम् एकादशीम् अवर्तयत्।' },
+    benefit: { en: 'Supreme purification. Removes the most grievous sins. Grants liberation to even the most fallen souls.', hi: 'परम शुद्धि। गम्भीरतम पापों का नाश। पतित आत्माओं को भी मुक्ति।', sa: 'परमशुद्धिः। गुरुतमपापनाशः। पतितात्मनामपि मुक्तिः।' },
+  },
+};
+
 /* ═══════════════════════════════════════════
    HELPERS
    ═══════════════════════════════════════════ */

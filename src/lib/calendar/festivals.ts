@@ -133,8 +133,10 @@ function findAmavasyaDate(year: number, month: number, lat: number, lon: number)
 function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
   const startDate = new Date(year, month - 1, 1);
 
-  // Pass 1: find all days where tithi prevails at sunrise
-  const sunriseDays: string[] = [];
+  // Single pass: check sunrise AND sunset for each day.
+  // Collect sunrise matches and kshaya (sunset-only) matches separately.
+  type Candidate = { date: string; type: 'sunrise' | 'kshaya' };
+  const candidates: Candidate[] = [];
 
   for (let offset = 0; offset <= 50; offset++) {
     const dd = new Date(startDate);
@@ -149,40 +151,16 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
 
     if (tithiAtSunrise === targetTithi) {
-      sunriseDays.push(dateStr);
+      candidates.push({ date: dateStr, type: 'sunrise' });
+      continue;
     }
-  }
 
-  // If found at sunrise, check rules
-  if (sunriseDays.length >= 2) {
-    const d0 = new Date(sunriseDays[0]);
-    const d1 = new Date(sunriseDays[1]);
-    if ((d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24) <= 1) {
-      return sunriseDays[1]; // Dwi-Ekadashi → second day
-    }
-  }
-
-  if (sunriseDays.length >= 1) return sunriseDays[0];
-
-  // Pass 2: tithi not found at any sunrise — it starts and ends between two sunrises.
-  // Find the day it starts by checking sunset (tithi present at sunset but not next sunrise).
-  for (let offset = 0; offset <= 50; offset++) {
-    const dd = new Date(startDate);
-    dd.setDate(dd.getDate() + offset);
-    const gy = dd.getFullYear();
-    const gm = dd.getMonth() + 1;
-    const gd = dd.getDate();
-
-    const jdApprox = dateToJD(gy, gm, gd, 0);
-    const srUT = approximateSunrise(jdApprox, lat, lon);
+    // Check for kshaya tithi: present at sunset but not at next sunrise
     const ssUT = approximateSunset(jdApprox, lat, lon);
-
-    const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
     const tithiAtSunset = calculateTithi(dateToJD(gy, gm, gd, ssUT)).number;
 
-    // Tithi starts after sunrise (not at sunrise) but is present at sunset
-    if (tithiAtSunrise !== targetTithi && tithiAtSunset === targetTithi) {
-      // Verify it ends before next sunrise (i.e., it's a "skipped sunrise" tithi)
+    if (tithiAtSunset === targetTithi) {
+      // Verify it ends before next sunrise
       const nextDay = new Date(dd);
       nextDay.setDate(nextDay.getDate() + 1);
       const ny = nextDay.getFullYear();
@@ -192,13 +170,31 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
       const tithiAtNextSunrise = calculateTithi(dateToJD(ny, nm, nd, nextSrUT)).number;
 
       if (tithiAtNextSunrise !== targetTithi) {
-        // Tithi started after sunrise today and ended before next sunrise → observe today
-        return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+        candidates.push({ date: dateStr, type: 'kshaya' });
       }
     }
   }
 
-  return `${year}-${month.toString().padStart(2, '0')}-15`;
+  if (candidates.length === 0) {
+    return `${year}-${month.toString().padStart(2, '0')}-15`;
+  }
+
+  // Return the FIRST candidate (kshaya or sunrise, in chronological order).
+  // For Dwi-Ekadashi (two consecutive sunrise matches), take the second.
+  const first = candidates[0];
+  if (first.type === 'kshaya') return first.date;
+
+  // Check for Dwi-Ekadashi among sunrise candidates
+  const sunriseCandidates = candidates.filter(c => c.type === 'sunrise');
+  if (sunriseCandidates.length >= 2) {
+    const d0 = new Date(sunriseCandidates[0].date);
+    const d1 = new Date(sunriseCandidates[1].date);
+    if ((d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24) <= 1) {
+      return sunriseCandidates[1].date; // Dwi-Ekadashi → second day
+    }
+  }
+
+  return first.date;
 }
 
 /**

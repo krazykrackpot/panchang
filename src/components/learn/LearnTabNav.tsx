@@ -26,16 +26,23 @@ const phases: PhaseGroup[] = [
       { href: '/learn', key: 'foundations', icon: BookOpen },
       { href: '/learn/grahas', key: 'grahas', icon: Sun },
       { href: '/learn/rashis', key: 'rashis', icon: Orbit },
-      { href: '/learn/nakshatras', key: 'nakshatras', icon: Star },
     ],
   },
   {
     phase: '2',
-    label: { en: 'The Panchang', hi: 'पञ्चाङ्ग' },
+    label: { en: 'Pancha Anga (5 Limbs)', hi: 'पञ्च अङ्ग' },
     tabs: [
       { href: '/learn/tithis', key: 'tithis', icon: Moon },
+      { href: '/learn/nakshatras', key: 'nakshatras', icon: Star },
       { href: '/learn/yogas', key: 'yogas', icon: Timer },
       { href: '/learn/karanas', key: 'karanas', icon: Slice },
+      { href: '/learn/vara', key: 'vara', icon: Sun },
+    ],
+  },
+  {
+    phase: '',
+    label: { en: 'Time Divisions', hi: 'काल विभाग' },
+    tabs: [
       { href: '/learn/muhurtas', key: 'muhurtas', icon: Clock },
     ],
   },
@@ -55,7 +62,6 @@ const phases: PhaseGroup[] = [
     label: { en: 'Applied Jyotish', hi: 'प्रयुक्त ज्योतिष' },
     tabs: [
       { href: '/learn/matching', key: 'matching', icon: Heart },
-      { href: '/learn/yogas-detailed', key: 'yogasDetailed', icon: Crown },
       { href: '/learn/doshas', key: 'doshas', icon: Shield },
       { href: '/learn/calculations', key: 'calculations', icon: Calculator },
       { href: '/learn/advanced', key: 'advanced', icon: Sparkles },

@@ -10,20 +10,20 @@ interface HouseHighlightChartProps {
   label?: string;
 }
 
-// Exact house paths from ChartNorth.tsx (500x500 viewBox)
+// House paths matching ChartNorth (500x500 viewBox, 30px inset)
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number }> = {
-  1:  { path: 'M 250 25 L 137 138 L 250 250 L 363 138 Z', cx: 250, cy: 130 },
-  2:  { path: 'M 25 25 L 137 138 L 250 25 Z', cx: 135, cy: 60 },
-  3:  { path: 'M 25 25 L 25 250 L 137 138 Z', cx: 60, cy: 135 },
-  4:  { path: 'M 25 250 L 137 138 L 250 250 L 137 363 Z', cx: 130, cy: 250 },
-  5:  { path: 'M 25 250 L 137 363 L 25 475 Z', cx: 60, cy: 365 },
-  6:  { path: 'M 25 475 L 137 363 L 250 475 Z', cx: 135, cy: 440 },
-  7:  { path: 'M 250 475 L 137 363 L 250 250 L 363 363 Z', cx: 250, cy: 370 },
-  8:  { path: 'M 250 475 L 363 363 L 475 475 Z', cx: 365, cy: 440 },
-  9:  { path: 'M 475 475 L 363 363 L 475 250 Z', cx: 440, cy: 365 },
-  10: { path: 'M 475 250 L 363 363 L 250 250 L 363 138 Z', cx: 370, cy: 250 },
-  11: { path: 'M 475 250 L 363 138 L 475 25 Z', cx: 440, cy: 135 },
-  12: { path: 'M 475 25 L 363 138 L 250 25 Z', cx: 365, cy: 60 },
+  1:  { path: 'M 250 30 L 140 140 L 250 250 L 360 140 Z', cx: 250, cy: 132 },
+  2:  { path: 'M 30 30 L 140 140 L 250 30 Z', cx: 138, cy: 62 },
+  3:  { path: 'M 30 30 L 30 250 L 140 140 Z', cx: 62, cy: 138 },
+  4:  { path: 'M 30 250 L 140 140 L 250 250 L 140 360 Z', cx: 132, cy: 250 },
+  5:  { path: 'M 30 250 L 140 360 L 30 470 Z', cx: 62, cy: 362 },
+  6:  { path: 'M 30 470 L 140 360 L 250 470 Z', cx: 138, cy: 438 },
+  7:  { path: 'M 250 470 L 140 360 L 250 250 L 360 360 Z', cx: 250, cy: 368 },
+  8:  { path: 'M 250 470 L 360 360 L 470 470 Z', cx: 362, cy: 438 },
+  9:  { path: 'M 470 470 L 360 360 L 470 250 Z', cx: 438, cy: 362 },
+  10: { path: 'M 470 250 L 360 360 L 250 250 L 360 140 Z', cx: 368, cy: 250 },
+  11: { path: 'M 470 250 L 360 140 L 470 30 Z', cx: 438, cy: 138 },
+  12: { path: 'M 470 30 L 360 140 L 250 30 Z', cx: 362, cy: 62 },
 };
 
 export default function HouseHighlightChart({
@@ -69,23 +69,24 @@ export default function HouseHighlightChart({
         </defs>
 
         {/* Background */}
-        <rect x="0" y="0" width="500" height="500" rx="16" fill={`url(#bg-${filterId})`} />
+        <rect x="0" y="0" width="500" height="500" rx="12" fill={`url(#bg-${filterId})`} />
 
-        {/* Outer border */}
-        <rect x="22" y="22" width="456" height="456" fill="none" stroke={`url(#gold-${filterId})`} strokeWidth="1.5" />
+        {/* Double border */}
+        <rect x="18" y="18" width="464" height="464" fill="none" stroke={`url(#gold-${filterId})`} strokeWidth="2" rx="6" />
+        <rect x="24" y="24" width="452" height="452" fill="none" stroke={`url(#gold-${filterId})`} strokeWidth="0.5" opacity="0.4" rx="4" />
 
         {/* Inner diamond */}
-        <polygon points="250,25 475,250 250,475 25,250" fill="none" stroke={`url(#gold-${filterId})`} strokeWidth="1" />
+        <polygon points="250,30 470,250 250,470 30,250" fill="none" stroke={`url(#gold-${filterId})`} strokeWidth="1.5" />
 
         {/* Diagonal lines */}
-        <line x1="25" y1="25" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.6" strokeOpacity="0.25" />
-        <line x1="475" y1="25" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.6" strokeOpacity="0.25" />
-        <line x1="25" y1="475" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.6" strokeOpacity="0.25" />
-        <line x1="475" y1="475" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.6" strokeOpacity="0.25" />
+        <line x1="30" y1="30" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.8" strokeOpacity="0.25" />
+        <line x1="470" y1="30" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.8" strokeOpacity="0.25" />
+        <line x1="30" y1="470" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.8" strokeOpacity="0.25" />
+        <line x1="470" y1="470" x2="250" y2="250" stroke="#d4a853" strokeWidth="0.8" strokeOpacity="0.25" />
 
-        {/* Midpoint lines */}
-        <line x1="25" y1="250" x2="475" y2="250" stroke="#d4a853" strokeWidth="0.4" strokeOpacity="0.15" />
-        <line x1="250" y1="25" x2="250" y2="475" stroke="#d4a853" strokeWidth="0.4" strokeOpacity="0.15" />
+        {/* Cross lines */}
+        <line x1="30" y1="250" x2="470" y2="250" stroke="#d4a853" strokeWidth="0.3" strokeOpacity="0.18" />
+        <line x1="250" y1="30" x2="250" y2="470" stroke="#d4a853" strokeWidth="0.3" strokeOpacity="0.18" />
 
         {/* House regions */}
         {Object.entries(HOUSE_PATHS).map(([num, { path, cx, cy }]) => {
@@ -125,17 +126,23 @@ export default function HouseHighlightChart({
           );
         })}
 
-        {/* Corner decorations */}
-        <circle cx="22" cy="22" r="3" fill="#d4a853" opacity="0.25" />
-        <circle cx="478" cy="22" r="3" fill="#d4a853" opacity="0.25" />
-        <circle cx="22" cy="478" r="3" fill="#d4a853" opacity="0.25" />
-        <circle cx="478" cy="478" r="3" fill="#d4a853" opacity="0.25" />
+        {/* Corner ornaments */}
+        <g opacity="0.4">
+          <line x1="18" y1="30" x2="18" y2="18" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="18" y1="18" x2="30" y2="18" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="470" y1="18" x2="482" y2="18" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="482" y1="18" x2="482" y2="30" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="18" y1="470" x2="18" y2="482" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="18" y1="482" x2="30" y2="482" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="470" y1="482" x2="482" y2="482" stroke="#d4a853" strokeWidth="1.5" />
+          <line x1="482" y1="482" x2="482" y2="470" stroke="#d4a853" strokeWidth="1.5" />
+        </g>
 
-        {/* Diamond corner dots */}
-        <circle cx="250" cy="25" r="2.5" fill="#d4a853" opacity="0.4" />
-        <circle cx="475" cy="250" r="2.5" fill="#d4a853" opacity="0.4" />
-        <circle cx="250" cy="475" r="2.5" fill="#d4a853" opacity="0.4" />
-        <circle cx="25" cy="250" r="2.5" fill="#d4a853" opacity="0.4" />
+        {/* Diamond points */}
+        <circle cx="250" cy="30" r="2.5" fill="#d4a853" opacity="0.5" />
+        <circle cx="470" cy="250" r="2.5" fill="#d4a853" opacity="0.5" />
+        <circle cx="250" cy="470" r="2.5" fill="#d4a853" opacity="0.5" />
+        <circle cx="30" cy="250" r="2.5" fill="#d4a853" opacity="0.5" />
       </svg>
     </motion.div>
   );

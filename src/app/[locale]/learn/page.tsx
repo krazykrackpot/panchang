@@ -24,6 +24,7 @@ const CURRICULUM = [
   { phase: 3, title: { en: 'The Chart', hi: 'कुण्डली', sa: 'कुण्डली' }, pages: [
     { name: { en: 'Kundali', hi: 'कुण्डली', sa: 'कुण्डली' }, href: '/learn/kundali', desc: { en: 'Birth chart basics, lagna, key concepts', hi: 'जन्म कुण्डली मूल बातें, लग्न', sa: 'जन्मकुण्डलीमूलतत्त्वानि, लग्नम्' } },
     { name: { en: 'Houses', hi: 'भाव', sa: 'भावाः' }, href: '/learn/bhavas', desc: { en: '12 houses, classifications, significations', hi: '12 भाव, वर्गीकरण, संकेत', sa: '12 भावाः, वर्गीकरणं, सङ्केताः' } },
+    { name: { en: 'Vargas', hi: 'वर्ग', sa: 'वर्गाः' }, href: '/learn/vargas', desc: { en: '16 divisional charts, Navamsha, interpretation', hi: '16 विभागीय कुण्डलियाँ, नवांश, व्याख्या', sa: '16 विभागकुण्डल्यः, नवांशः, व्याख्या' } },
     { name: { en: 'Dashas', hi: 'दशाएँ', sa: 'दशाः' }, href: '/learn/dashas', desc: { en: 'Vimshottari planetary periods, sub-periods', hi: 'विंशोत्तरी ग्रह अवधियाँ, उप-अवधियाँ', sa: 'विंशोत्तरीग्रहकालखण्डाः, उपकालखण्डाः' } },
     { name: { en: 'Transits', hi: 'गोचर', sa: 'गोचरः' }, href: '/learn/gochar', desc: { en: 'Gochar, Sade Sati, Jupiter transit, Balam', hi: 'गोचर, साढ़े साती, गुरु गोचर, बलम', sa: 'गोचरः, साढेसाती, गुरुगोचरः, बलम्' } },
   ]},
@@ -143,8 +144,8 @@ export default function LearnFoundationsPage() {
         </h2>
         <p className="text-text-secondary mb-6">
           {locale === 'en'
-            ? '15 progressive lessons across 4 phases — from stargazing to advanced predictive techniques'
-            : '4 चरणों में 15 क्रमिक पाठ — तारा-दर्शन से उन्नत भविष्यवाणी तकनीकों तक'}
+            ? '16 progressive lessons across 4 phases — from stargazing to advanced predictive techniques'
+            : '4 चरणों में 16 क्रमिक पाठ — तारा-दर्शन से उन्नत भविष्यवाणी तकनीकों तक'}
         </p>
 
         <div className="space-y-8">

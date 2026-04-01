@@ -1,0 +1,196 @@
+'use client';
+
+import { useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import type { Locale } from '@/types/panchang';
+
+const VARAS = [
+  { day: 0, en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः', planet: { en: 'Sun (Surya)', hi: 'सूर्य' }, color: 'text-amber-400', border: 'border-amber-500/20', bg: 'bg-amber-500/5',
+    deity: { en: 'Surya Deva', hi: 'सूर्य देव' },
+    nature: { en: 'Cruel (Krura)', hi: 'क्रूर' },
+    activities: { en: 'Government work, meeting authorities, starting leadership roles, Sun-related remedies, health matters, father-related activities', hi: 'सरकारी कार्य, अधिकारियों से मिलना, नेतृत्व, स्वास्थ्य, पिता संबंधी कार्य' },
+    avoid: { en: 'Travel to East (Disha Shool), starting new medicines, lending money', hi: 'पूर्व दिशा में यात्रा, नई दवाई, ऋण देना' },
+    hora: { en: 'Sun hora at sunrise, then Venus, Mercury, Moon, Saturn, Jupiter, Mars cycle', hi: 'सूर्योदय पर सूर्य होरा, फिर शुक्र, बुध, चंद्र, शनि, गुरु, मंगल' },
+    significance: { en: 'The Sun rules Sunday — the king of planets. This day carries solar energy: authority, vitality, self-expression. Government offices, temples of Surya, and activities requiring courage and initiative are favored. The Sun\'s hora (first hour after sunrise) is especially powerful for starting authoritative endeavors.', hi: 'सूर्य रविवार का स्वामी है — ग्रहों का राजा। इस दिन सौर ऊर्जा: अधिकार, जीवन शक्ति, आत्म-अभिव्यक्ति। सरकारी कार्यालय, सूर्य मंदिर और साहस के कार्य अनुकूल।' },
+  },
+  { day: 1, en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः', planet: { en: 'Moon (Chandra)', hi: 'चन्द्र' }, color: 'text-blue-300', border: 'border-blue-500/20', bg: 'bg-blue-500/5',
+    deity: { en: 'Lord Shiva', hi: 'भगवान शिव' },
+    nature: { en: 'Gentle (Saumya)', hi: 'सौम्य' },
+    activities: { en: 'Starting journeys, agriculture, dealing with public, water-related work, mother-related activities, white items, silver purchase', hi: 'यात्रा आरम्भ, कृषि, जन संपर्क, जल कार्य, मातृ संबंधी, चांदी खरीद' },
+    avoid: { en: 'Travel to East (Disha Shool), hair cutting (some traditions), starting construction', hi: 'पूर्व दिशा यात्रा, केश कटाना (कुछ परंपराओं में)' },
+    hora: { en: 'Moon hora at sunrise', hi: 'सूर्योदय पर चन्द्र होरा' },
+    significance: { en: 'Moon governs Monday — the mind, emotions, mother, and public perception. This gentle day favors activities involving water, nurturing, travel, and public dealings. Shiva temples are especially visited on Mondays. The waxing Moon (Shukla Paksha Monday) is more auspicious than waning.', hi: 'चंद्र सोमवार का स्वामी — मन, भावनाएं, माता। यह सौम्य दिन जल, यात्रा और जनसंपर्क के लिए अनुकूल। शिव मंदिर विशेष महत्वपूर्ण।' },
+  },
+  { day: 2, en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः', planet: { en: 'Mars (Mangal)', hi: 'मंगल' }, color: 'text-red-400', border: 'border-red-500/20', bg: 'bg-red-500/5',
+    deity: { en: 'Lord Hanuman / Kartikeya', hi: 'हनुमान / कार्तिकेय' },
+    nature: { en: 'Cruel (Krura)', hi: 'क्रूर' },
+    activities: { en: 'Property purchase, land dealings, surgery, weapons, fire-related work, competition, sports, legal battles', hi: 'संपत्ति खरीद, भूमि, शल्यक्रिया, अग्नि कार्य, प्रतियोगिता, खेल, कानूनी' },
+    avoid: { en: 'Travel to North (Disha Shool), marriage, starting gentle/creative work, lending', hi: 'उत्तर दिशा यात्रा, विवाह, कोमल/रचनात्मक कार्य' },
+    hora: { en: 'Mars hora at sunrise', hi: 'सूर्योदय पर मंगल होरा' },
+    significance: { en: 'Mars rules Tuesday — courage, aggression, property, and physical energy. This fiery day favors bold action: property transactions, surgery, competitive events, and overcoming enemies. Hanuman worship on Tuesday is considered extremely powerful for removing obstacles and building courage.', hi: 'मंगल मंगलवार का स्वामी — साहस, आक्रामकता, संपत्ति। इस अग्निमय दिन में साहसिक कार्य, संपत्ति, शल्यक्रिया अनुकूल। हनुमान पूजा अत्यंत शक्तिशाली।' },
+  },
+  { day: 3, en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः', planet: { en: 'Mercury (Budha)', hi: 'बुध' }, color: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-emerald-500/5',
+    deity: { en: 'Lord Vishnu / Ganesha', hi: 'विष्णु / गणेश' },
+    nature: { en: 'Mixed (depends on association)', hi: 'मिश्रित (संगति पर निर्भर)' },
+    activities: { en: 'Education, writing, commerce, communication, accounting, starting business, learning new skills, technology', hi: 'शिक्षा, लेखन, वाणिज्य, संचार, लेखांकन, व्यवसाय आरम्भ, नई कला सीखना' },
+    avoid: { en: 'Travel to North (Disha Shool), heavy physical labor', hi: 'उत्तर दिशा यात्रा, भारी शारीरिक श्रम' },
+    hora: { en: 'Mercury hora at sunrise', hi: 'सूर्योदय पर बुध होरा' },
+    significance: { en: 'Mercury governs Wednesday — intellect, speech, trade, and adaptability. This is the best day for intellectual pursuits: starting education, signing contracts, launching businesses, and any work involving communication or numbers. Mercury is called "Prince" (Kumara) among planets.', hi: 'बुध बुधवार का स्वामी — बुद्धि, वाणी, व्यापार। बौद्धिक कार्यों के लिए सर्वोत्तम: शिक्षा, अनुबंध, व्यवसाय।' },
+  },
+  { day: 4, en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः', planet: { en: 'Jupiter (Guru/Brihaspati)', hi: 'गुरु/बृहस्पति' }, color: 'text-yellow-400', border: 'border-yellow-500/20', bg: 'bg-yellow-500/5',
+    deity: { en: 'Lord Vishnu / Brihaspati', hi: 'विष्णु / बृहस्पति' },
+    nature: { en: 'Benefic (Shubha)', hi: 'शुभ' },
+    activities: { en: 'Religious ceremonies, education, marriage (excellent), starting new ventures, meeting teachers/gurus, charity, spiritual initiation', hi: 'धार्मिक अनुष्ठान, शिक्षा, विवाह (उत्कृष्ट), नए उपक्रम, गुरु मिलन, दान, दीक्षा' },
+    avoid: { en: 'Travel to South (Disha Shool), lending money, hair cutting', hi: 'दक्षिण दिशा यात्रा, ऋण देना, केश कटाना' },
+    hora: { en: 'Jupiter hora at sunrise', hi: 'सूर्योदय पर गुरु होरा' },
+    significance: { en: 'Jupiter rules Thursday — wisdom, dharma, expansion, and blessings. The most auspicious weekday for religious and educational activities. Marriage on Thursday is highly favored. Jupiter is the Guru (teacher) of the Devas, and his day carries the energy of grace, prosperity, and righteous expansion.', hi: 'गुरु गुरुवार का स्वामी — ज्ञान, धर्म, विस्तार। धार्मिक और शैक्षिक कार्यों के लिए सर्वाधिक शुभ। गुरुवार विवाह अत्यधिक अनुकूल।' },
+  },
+  { day: 5, en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः', planet: { en: 'Venus (Shukra)', hi: 'शुक्र' }, color: 'text-pink-300', border: 'border-pink-500/20', bg: 'bg-pink-500/5',
+    deity: { en: 'Goddess Lakshmi / Santoshi Maa', hi: 'लक्ष्मी / संतोषी माँ' },
+    nature: { en: 'Benefic (Shubha)', hi: 'शुभ' },
+    activities: { en: 'Marriage, romance, buying clothes/jewelry/vehicles, arts, music, dance, beauty treatments, entertainment, luxury purchases', hi: 'विवाह, प्रेम, वस्त्र/आभूषण/वाहन खरीद, कला, संगीत, नृत्य, सौंदर्य, मनोरंजन' },
+    avoid: { en: 'Travel to West (Disha Shool), austerities, fasting (unless for Santoshi Maa)', hi: 'पश्चिम दिशा यात्रा, तपस्या' },
+    hora: { en: 'Venus hora at sunrise', hi: 'सूर्योदय पर शुक्र होरा' },
+    significance: { en: 'Venus governs Friday — love, beauty, luxury, arts, and material pleasures. Excellent for marriage, buying vehicles/jewelry, artistic pursuits, and anything related to comfort and aesthetics. Venus is the Guru of the Asuras, and his day carries the energy of desire, creativity, and refinement.', hi: 'शुक्र शुक्रवार का स्वामी — प्रेम, सौंदर्य, विलासिता, कला। विवाह, वाहन/आभूषण खरीद, कला के लिए उत्कृष्ट।' },
+  },
+  { day: 6, en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः', planet: { en: 'Saturn (Shani)', hi: 'शनि' }, color: 'text-slate-300', border: 'border-slate-500/20', bg: 'bg-slate-500/5',
+    deity: { en: 'Lord Shani / Hanuman / Bhairav', hi: 'शनि देव / हनुमान / भैरव' },
+    nature: { en: 'Cruel (Krura)', hi: 'क्रूर' },
+    activities: { en: 'Iron/steel work, mining, oil industry, labor, servant hiring, property repair (not new), dealing with chronic matters', hi: 'लोहा/इस्पात कार्य, खनन, तेल उद्योग, श्रम, सेवक नियुक्ति, संपत्ति मरम्मत' },
+    avoid: { en: 'Travel to East (Disha Shool), starting new ventures, marriage, buying new items, auspicious ceremonies', hi: 'पूर्व दिशा यात्रा, नए उपक्रम, विवाह, नई वस्तु खरीद, शुभ कार्य' },
+    hora: { en: 'Saturn hora at sunrise', hi: 'सूर्योदय पर शनि होरा' },
+    significance: { en: 'Saturn rules Saturday — discipline, karma, delays, and hard work. The most feared but also the most just planet. Saturday is generally avoided for starting new ventures, but excellent for completing tasks, dealing with laborers/servants, and confronting karmic debts. Oil and iron-related activities are favored.', hi: 'शनि शनिवार का स्वामी — अनुशासन, कर्म, विलंब। सबसे भयंकर लेकिन न्यायप्रिय ग्रह। नए कार्य आरम्भ से बचें, लेकिन कार्य पूर्ण करने के लिए उत्तम।' },
+  },
+];
+
+export default function VaraPage() {
+  const locale = useLocale() as Locale;
+  const isHi = locale !== 'en';
+  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+
+  // Which day is today?
+  const todayDay = new Date().getDay();
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
+          {isHi ? 'वार — सप्ताह के सात दिन' : 'Vara — The Seven Weekdays'}
+        </h2>
+        <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">
+          {isHi
+            ? 'वार (वासर) पञ्चाङ्ग का पाँचवाँ अंग है। प्रत्येक दिन एक ग्रह द्वारा शासित होता है, जो उस दिन की ऊर्जा, शुभ कार्यों और वर्जनाओं को निर्धारित करता है। वार ज्ञान मुहूर्त शास्त्र का आधार है — सही दिन पर सही कार्य करना सफलता का मूल है।'
+            : 'Vara (weekday) is the 5th limb of the Panchang (पञ्च + अङ्ग = five limbs: Tithi, Nakshatra, Yoga, Karana, Vara). Each day is ruled by a planet, which determines the day\'s energy, favorable activities, and restrictions. Vara knowledge is foundational to Muhurta — choosing the right day for the right action is the essence of electional astrology.'}
+        </p>
+      </div>
+
+      {/* The 5 Angas visual */}
+      <div className="glass-card rounded-2xl p-5 border border-gold-primary/15">
+        <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">{isHi ? 'पञ्चाङ्ग — पाँच अंग' : 'Panchanga — The Five Limbs'}</h3>
+        <div className="flex flex-wrap justify-center gap-3">
+          {[
+            { name: { en: 'Tithi', hi: 'तिथि' }, desc: { en: 'Lunar day', hi: 'चंद्र दिन' }, color: 'text-amber-400' },
+            { name: { en: 'Nakshatra', hi: 'नक्षत्र' }, desc: { en: 'Lunar mansion', hi: 'चंद्र गृह' }, color: 'text-blue-300' },
+            { name: { en: 'Yoga', hi: 'योग' }, desc: { en: 'Sun+Moon sum', hi: 'सूर्य+चंद्र योग' }, color: 'text-emerald-400' },
+            { name: { en: 'Karana', hi: 'करण' }, desc: { en: 'Half tithi', hi: 'अर्ध तिथि' }, color: 'text-violet-400' },
+            { name: { en: 'Vara', hi: 'वार' }, desc: { en: 'Weekday', hi: 'सप्ताह दिन' }, color: 'text-gold-light' },
+          ].map((anga, i) => (
+            <div key={i} className={`px-4 py-3 rounded-xl border border-gold-primary/15 text-center min-w-[100px] ${i === 4 ? 'bg-gold-primary/10 border-gold-primary/30 ring-1 ring-gold-primary/20' : 'bg-bg-secondary/30'}`}>
+              <div className={`font-bold text-sm ${anga.color}`} style={headingFont}>{isHi ? anga.name.hi : anga.name.en}</div>
+              <div className="text-text-tertiary text-[10px] mt-0.5">{isHi ? anga.desc.hi : anga.desc.en}</div>
+            </div>
+          ))}
+        </div>
+        <p className="text-text-tertiary text-[10px] text-center mt-3">{isHi ? 'वार वर्तमान पृष्ठ पर प्रकाशित (हाइलाइट)' : 'Vara is highlighted — you are here'}</p>
+      </div>
+
+      {/* Planet-day relationship diagram */}
+      <div className="glass-card rounded-2xl p-5 border border-gold-primary/10">
+        <h3 className="text-gold-light font-bold text-lg mb-4" style={headingFont}>
+          {isHi ? 'ग्रह-वार चक्र' : 'Planet-Day Cycle'}
+        </h3>
+        <p className="text-text-secondary text-xs mb-4 leading-relaxed">
+          {isHi
+            ? 'सात वार सात दृश्य ग्रहों के नाम पर हैं। क्रम होरा (ग्रह घंटे) प्रणाली से आता है: प्रत्येक दिन का पहला घंटा उसके स्वामी ग्रह द्वारा शासित होता है। शनि → गुरु → मंगल → सूर्य → शुक्र → बुध → चन्द्र यह होरा क्रम है।'
+            : 'The seven days are named after the seven visible celestial bodies. The sequence comes from the Hora (planetary hour) system: each day\'s first hour is ruled by its governing planet. The Hora sequence — Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon — when sampled every 25th hour, gives the weekday order.'}
+        </p>
+        <div className="flex flex-wrap justify-center gap-2">
+          {VARAS.map((v, i) => (
+            <div key={i} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border ${v.border} ${v.bg}`}>
+              <span className={`font-bold text-xs ${v.color}`}>{isHi ? v.hi.substring(0, 2) : v.en.substring(0, 3)}</span>
+              <span className="text-text-tertiary text-[10px]">= {isHi ? v.planet.hi : v.planet.en}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Day detail cards */}
+      <div className="space-y-4">
+        {VARAS.map((vara, i) => {
+          const isToday = vara.day === todayDay;
+          return (
+            <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              className={`glass-card rounded-2xl border ${vara.border} overflow-hidden ${isToday ? 'ring-2 ring-gold-primary/30' : ''}`}>
+              {/* Header */}
+              <div className={`flex items-center justify-between px-5 py-3 ${vara.bg}`}>
+                <div className="flex items-center gap-3">
+                  <span className={`text-2xl font-black ${vara.color}`} style={headingFont}>{isHi ? vara.hi : vara.en}</span>
+                  {isHi && <span className="text-text-tertiary text-xs">({vara.en})</span>}
+                  <span className="text-text-secondary text-xs">{isHi ? vara.planet.hi : vara.planet.en}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {isToday && <span className="px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-light text-[10px] font-bold animate-pulse">{isHi ? 'आज' : 'TODAY'}</span>}
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full border ${vara.nature.en.includes('Cruel') ? 'border-red-500/20 text-red-400' : vara.nature.en.includes('Benefic') ? 'border-emerald-500/20 text-emerald-400' : 'border-amber-500/20 text-amber-400'}`}>
+                    {isHi ? vara.nature.hi : vara.nature.en}
+                  </span>
+                </div>
+              </div>
+
+              <div className="p-5 space-y-3">
+                {/* Significance */}
+                <p className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.significance.hi : vara.significance.en}</p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {/* Favourable */}
+                  <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                    <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'अनुकूल कार्य' : 'Favorable Activities'}</div>
+                    <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.activities.hi : vara.activities.en}</div>
+                  </div>
+                  {/* Avoid */}
+                  <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
+                    <div className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'वर्जित' : 'Avoid'}</div>
+                    <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.avoid.hi : vara.avoid.en}</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 text-[10px] text-text-tertiary">
+                  <span>{isHi ? 'देवता' : 'Deity'}: <span className="text-gold-light">{isHi ? vara.deity.hi : vara.deity.en}</span></span>
+                  <span>{isHi ? 'होरा' : 'Hora'}: <span className="text-text-secondary">{isHi ? vara.hora.hi : vara.hora.en}</span></span>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Vara in Muhurta */}
+      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={headingFont}>
+          {isHi ? 'मुहूर्त में वार का महत्व' : 'Vara in Muhurta Selection'}
+        </h3>
+        <div className="text-text-secondary text-xs leading-relaxed space-y-2">
+          <p>{isHi
+            ? 'मुहूर्त शास्त्र में वार पहला विचार है। कोई भी शुभ कार्य शुरू करने से पहले, वार की उपयुक्तता जाँचें। सामान्य नियम:'
+            : 'In Muhurta Shastra, Vara is the first consideration. Before starting any auspicious activity, check the suitability of the weekday. General rules:'}</p>
+          <ul className="space-y-1 ml-4">
+            <li>{isHi ? '• गुरुवार और शुक्रवार सर्वाधिक शुभ — लगभग सभी कार्यों के लिए' : '• Thursday and Friday are most auspicious — suitable for nearly all activities'}</li>
+            <li>{isHi ? '• बुधवार बौद्धिक और व्यावसायिक कार्यों के लिए उत्तम' : '• Wednesday is excellent for intellectual and commercial activities'}</li>
+            <li>{isHi ? '• सोमवार यात्रा और जन-संपर्क के लिए अच्छा' : '• Monday is good for travel and public dealings'}</li>
+            <li>{isHi ? '• रविवार, मंगलवार, शनिवार "क्रूर" वार — शुभ कार्यों में सावधानी' : '• Sunday, Tuesday, Saturday are "cruel" days — caution for auspicious work'}</li>
+            <li>{isHi ? '• वार + तिथि + नक्षत्र + योग + करण — पाँचों अंगों का समन्वय देखें' : '• Always check all 5 limbs together: Vara + Tithi + Nakshatra + Yoga + Karana'}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}

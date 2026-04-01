@@ -5,7 +5,60 @@
  * to generate the complete festival calendar. Replaces the scanning-based approach.
  */
 
-import { dateToJD, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunrise, approximateSunset, formatTime, normalizeDeg, toSidereal } from '@/lib/ephem/astronomical';
+
+/**
+ * Find when a sidereal sign occupies a specific horizon.
+ * `mode`:
+ *   'asc'  = scan the eastern horizon (ascendant / lagna)
+ *   'desc' = scan the western horizon (descendant / 7th cusp)
+ *
+ * For Diwali Lakshmi Puja, tradition prescribes "Vrishabha Lagna" — but at
+ * evening time Taurus (30°-60°) is setting in the west, not rising in the east.
+ * Drik Panchang's "Vrishabha Kaal" matches the period when the *descendant*
+ * (ascendant + 180°) transits Taurus.  Pass mode='desc' for this case.
+ */
+function findSthiraLagna(
+  startJd: number, lat: number, lon: number,
+  minDeg: number, maxDeg: number, scanHours: number,
+  mode: 'asc' | 'desc' = 'asc',
+): { startUT: number; endUT: number } | null {
+  // Ascendant calculation (same as kundali-calc)
+  function getAscendant(jd: number): number {
+    const T = (jd - 2451545.0) / 36525.0;
+    const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T;
+    const lst = normalizeDeg(gmst + lon);
+    const eps = 23.4393 - 0.013 * T;
+    const epsR = eps * Math.PI / 180;
+    const latR = lat * Math.PI / 180;
+    const lstR = lst * Math.PI / 180;
+    const y = -Math.cos(lstR);
+    const x = Math.sin(epsR) * Math.tan(latR) + Math.cos(epsR) * Math.sin(lstR);
+    let asc = Math.atan2(y, x) * 180 / Math.PI;
+    // Convert tropical to sidereal
+    const ayan = 23.85306 + 1.39722 * T;
+    return normalizeDeg(asc - ayan);
+  }
+
+  const step = 1 / (60 * 24); // 1 minute in JD for accurate lagna boundaries
+  let startFound: number | null = null;
+
+  for (let jd = startJd; jd < startJd + scanHours / 24; jd += step) {
+    const rawAsc = getAscendant(jd);
+    const point = mode === 'desc' ? normalizeDeg(rawAsc + 180) : rawAsc;
+    const inRange = point >= minDeg && point < maxDeg;
+
+    if (inRange && startFound === null) {
+      startFound = (jd - startJd) * 24; // hours from startJd
+    } else if (!inRange && startFound !== null) {
+      const endUT = (jd - startJd) * 24;
+      // Return UT hours relative to midnight of the start date
+      const baseUT = (startJd - Math.floor(startJd - 0.5) - 0.5) * 24;
+      return { startUT: baseUT + startFound, endUT: baseUT + endUT };
+    }
+  }
+  return null;
+}
 import { buildYearlyTithiTable, lookupAllTithiByNumber, getNextTithiEntry, type YearlyTithiTable, type TithiEntry } from './tithi-table';
 import { MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS, defToTithiNumber, type FestivalDef } from './festival-defs';
 import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
@@ -231,11 +284,14 @@ function computePujaMuhurat(
 
   switch (slug) {
     case 'diwali': {
-      // Lakshmi Puja during Pradosh Kaal: sunset to sunset + ~3h
-      // Drik uses Vrishabha Lagna for optimal time — approximate as sunset+17m to sunset+1h43m
-      const startUT = ssUT + 17 / 60;
-      const endUT = ssUT + 103 / 60;
-      return { start: ft(startUT), end: ft(endUT), name: 'Lakshmi Puja (Pradosh Kaal)' };
+      // Lakshmi Puja during Vrishabha Kaal — when Taurus (30°-60°) is on the
+      // western horizon (descendant / 7th cusp).  At evening time, the ascendant
+      // is in Scorpio; Taurus is the setting sign.  Drik's "Vrishabha Kaal"
+      // matches this descendant-based window.
+      const vr = findSthiraLagna(dateToJD(y, m, d, ssUT), lat, lon, 30, 60, 4, 'desc');
+      if (vr) return { start: ft(vr.startUT), end: ft(vr.endUT), name: 'Lakshmi Puja (Vrishabha Kaal)' };
+      // Fallback
+      return { start: ft(ssUT + 17 / 60), end: ft(ssUT + 103 / 60), name: 'Lakshmi Puja (Pradosh Kaal)' };
     }
     case 'dussehra': {
       // Vijay Muhurat: during Aparahna, specifically the 2nd quarter
@@ -256,20 +312,19 @@ function computePujaMuhurat(
       return { start: ft(startUT), end: ft(endUT), name: 'Ghatasthapana (Pratah Kaal)' };
     }
     case 'maha-shivaratri': {
-      // Nishita Kaal = the midnight muhurta (most auspicious for Shiva puja)
-      // It's the 8th muhurta of the night (night divided into 15 muhurtas)
-      // Approximately: midnight - 24min to midnight + 24min
-      // Midnight = (sunset + next_sunrise) / 2
-      const midnightUT = (ssUT + srNextUT + 24) / 2; // average of sunset and next sunrise
-      const nishitaStart = midnightUT - 0.46; // ~28 min before midnight
-      const nishitaEnd = midnightUT + 0.46;   // ~28 min after midnight
+      // Nishita Kaal = 8th muhurta of the night (night divided into 15 muhurtas)
+      // Night runs from sunset to next sunrise
+      const nightLen = (srNextUT + 24) - ssUT; // total night in hours
+      const muhurtaLen = nightLen / 15;
+      const nishitaStart = ssUT + 7 * muhurtaLen; // start of 8th muhurta
+      const nishitaEnd = ssUT + 8 * muhurtaLen;   // end of 8th muhurta
       return { start: ft(nishitaStart), end: ft(nishitaEnd), name: 'Nishita Kaal Puja' };
     }
     case 'dhanteras': {
-      // Pradosh Kaal: sunset+17m to sunset+1h43m (same as Diwali Vrishabha approximation)
-      const startUT = ssUT + 17 / 60;
-      const endUT = ssUT + 103 / 60;
-      return { start: ft(startUT), end: ft(endUT), name: 'Dhanteras Puja (Pradosh Kaal)' };
+      // Dhanteras Puja during Vrishabha Kaal (descendant in Taurus), same logic as Diwali
+      const vrD = findSthiraLagna(dateToJD(y, m, d, ssUT), lat, lon, 30, 60, 4, 'desc');
+      if (vrD) return { start: ft(vrD.startUT), end: ft(vrD.endUT), name: 'Dhanteras Puja (Vrishabha Kaal)' };
+      return { start: ft(ssUT + 17 / 60), end: ft(ssUT + 103 / 60), name: 'Dhanteras Puja (Pradosh Kaal)' };
     }
     case 'ram-navami': {
       // Madhyahna: middle 1/5 of daytime (Drik definition, birth time of Lord Rama)

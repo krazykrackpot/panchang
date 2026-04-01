@@ -90,11 +90,11 @@ export const MAJOR_FESTIVALS: FestivalDef[] = [
   { masa: 'ashwina', paksha: 'shukla',  tithi: 10, slug: 'dussehra',        type: 'major', category: 'festival' },
   { masa: 'ashwina', paksha: 'shukla',  tithi: 15, slug: 'sharad-purnima', type: 'major', category: 'festival',
     name: { en: 'Sharad Purnima', hi: 'शरद पूर्णिमा', sa: 'शारदपूर्णिमा' } },
-  { masa: 'ashwina', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival',
+  // Kartika — Diwali cluster (Dhanteras, Narak Chaturdashi are Kartika Krishna, NOT Ashwina)
+  { masa: 'kartika', paksha: 'krishna', tithi: 13, slug: 'dhanteras',       type: 'major', category: 'festival',
     name: { en: 'Dhanteras', hi: 'धनतेरस', sa: 'धन्वन्तरित्रयोदशी' } },
-  { masa: 'ashwina', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival',
+  { masa: 'kartika', paksha: 'krishna', tithi: 14, slug: 'narak-chaturdashi', type: 'major', category: 'festival',
     name: { en: 'Narak Chaturdashi', hi: 'नरक चतुर्दशी', sa: 'नरकचतुर्दशी' } },
-  // Kartika
   { masa: 'kartika', paksha: 'krishna', tithi: 15, slug: 'diwali',          type: 'major', category: 'festival' },
   { masa: 'kartika', paksha: 'shukla',  tithi: 1,  slug: 'govardhan-puja',  type: 'major', category: 'festival',
     name: { en: 'Govardhan Puja', hi: 'गोवर्धन पूजा', sa: 'गोवर्धनपूजा' } },

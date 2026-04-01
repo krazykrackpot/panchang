@@ -222,24 +222,32 @@ function computePujaMuhurat(
   const srNextUT = approximateSunrise(jdNext, lat, lon);
   const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
 
+  // Madhyahna = middle 1/5 of daytime (2/5 to 3/5) — matches Drik's definition
+  const madhStart = srUT + dayLen * (2 / 5);
+  const madhEnd = srUT + dayLen * (3 / 5);
+  // Aparahna = 3/5 to 4/5 of daytime
+  const aparStart = srUT + dayLen * (3 / 5);
+  const aparEnd = srUT + dayLen * (4 / 5);
+
   switch (slug) {
     case 'diwali': {
-      // Lakshmi Puja during Pradosh Kaal: sunset + 30min to sunset + 2h
-      const startUT = ssUT + 0.5;
-      const endUT = ssUT + 2.0;
+      // Lakshmi Puja during Pradosh Kaal: sunset to sunset + ~3h
+      // Drik uses Vrishabha Lagna for optimal time — approximate as sunset+17m to sunset+1h43m
+      const startUT = ssUT + 17 / 60;
+      const endUT = ssUT + 103 / 60;
       return { start: ft(startUT), end: ft(endUT), name: 'Lakshmi Puja (Pradosh Kaal)' };
     }
     case 'dussehra': {
-      // Vijay Muhurat: Aparahna = 3/5 to 4/5 of daytime
-      const startUT = srUT + dayLen * (3 / 5);
-      const endUT = srUT + dayLen * (4 / 5);
+      // Vijay Muhurat: during Aparahna, specifically the 2nd quarter
+      // Drik's window is ~43 minutes within Aparahna
+      const midApar = (aparStart + aparEnd) / 2;
+      const startUT = midApar - 0.36; // ~22 min before mid-aparahna
+      const endUT = midApar + 0.36;   // ~22 min after
       return { start: ft(startUT), end: ft(endUT), name: 'Vijay Muhurat (Aparahna)' };
     }
     case 'ganesh-chaturthi': {
-      // Madhyahna: middle third of day
-      const startUT = srUT + dayLen / 3;
-      const endUT = srUT + (dayLen * 2) / 3;
-      return { start: ft(startUT), end: ft(endUT), name: 'Ganesh Puja (Madhyahna)' };
+      // Madhyahna Puja: middle 1/5 of daytime (Drik's definition)
+      return { start: ft(madhStart), end: ft(madhEnd), name: 'Ganesh Puja (Madhyahna)' };
     }
     case 'navaratri': {
       // Ghatasthapana: first 1/3 of daytime (Pratah Kaal)
@@ -248,20 +256,25 @@ function computePujaMuhurat(
       return { start: ft(startUT), end: ft(endUT), name: 'Ghatasthapana (Pratah Kaal)' };
     }
     case 'maha-shivaratri': {
-      // First Prahara of night: sunset to sunset + nightLength/4
-      const endUT = ssUT + nightLen / 4;
-      return { start: ft(ssUT), end: ft(endUT), name: 'Shiva Puja (First Prahara)' };
+      // Nishita Kaal = the midnight muhurta (most auspicious for Shiva puja)
+      // It's the 8th muhurta of the night (night divided into 15 muhurtas)
+      // Approximately: midnight - 24min to midnight + 24min
+      // Midnight = (sunset + next_sunrise) / 2
+      const midnightUT = (ssUT + srNextUT + 24) / 2; // average of sunset and next sunrise
+      const nishitaStart = midnightUT - 0.46; // ~28 min before midnight
+      const nishitaEnd = midnightUT + 0.46;   // ~28 min after midnight
+      return { start: ft(nishitaStart), end: ft(nishitaEnd), name: 'Nishita Kaal Puja' };
     }
     case 'dhanteras': {
-      // Pradosh Kaal: sunset + 30min to sunset + 2h
-      const startUT = ssUT + 0.5;
-      const endUT = ssUT + 2.0;
+      // Pradosh Kaal: sunset+17m to sunset+1h43m (same as Diwali Vrishabha approximation)
+      const startUT = ssUT + 17 / 60;
+      const endUT = ssUT + 103 / 60;
       return { start: ft(startUT), end: ft(endUT), name: 'Dhanteras Puja (Pradosh Kaal)' };
     }
     case 'ram-navami': {
-      // Madhyahna: middle third of day (birth time of Lord Rama)
-      const startUT = srUT + dayLen / 3;
-      const endUT = srUT + (dayLen * 2) / 3;
+      // Madhyahna: middle 1/5 of daytime (Drik definition, birth time of Lord Rama)
+      const startUT = madhStart;
+      const endUT = madhEnd;
       return { start: ft(startUT), end: ft(endUT), name: 'Ram Navami Puja (Madhyahna)' };
     }
     default:

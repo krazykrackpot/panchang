@@ -279,9 +279,14 @@ export function buildYearlyTithiTable(
       }
     }
 
-    // For Dwi-tithi (tithi spans 2+ sunrises), use the LAST sunrise date (Smarta rule)
+    // For Dwi-tithi (tithi spans 2+ sunrises):
+    // - Ekadashi (11, 26): use LAST sunrise (Smarta Dwi-Ekadashi second-day rule)
+    // - All other tithis: use FIRST sunrise (standard Udayatithi rule)
     if (sunriseDates.length > 0) {
-      sunriseDate = sunriseDates[sunriseDates.length - 1];
+      const isEkadashi = currentTithi === 11 || currentTithi === 26;
+      sunriseDate = isEkadashi
+        ? sunriseDates[sunriseDates.length - 1]  // Ekadashi: second day
+        : sunriseDates[0];                        // Others: first day
     }
 
     rawEntries.push({

@@ -10,6 +10,8 @@ import {
   swissAyanamsha,
   swissJulDay,
   swissPlanetLongitude,
+  swissSunrise,
+  swissSunset,
 } from './swiss-ephemeris';
 
 // Julian Day Number from calendar date
@@ -287,29 +289,28 @@ export function calculateKarana(jd: number): number {
  * Returns hours from midnight (UT)
  */
 export function approximateSunrise(jd: number, lat: number, lng: number): number {
-  const t = T(jd);
-  // Simplified sunrise calculation
-  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(sunLongitude(jd)))));
+  if (isSwissEphAvailable()) {
+    return swissSunrise(jd, lat, lng);
+  }
+  // Meeus fallback
+  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(_meesusSunLongitude(jd)))));
   const cosH = (Math.sin(toRad(-0.833)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
-
-  if (cosH > 1 || cosH < -1) return 6; // Polar day/night fallback
-
+  if (cosH > 1 || cosH < -1) return 6;
   const H = toDeg(Math.acos(cosH));
-  const sunrise = 12 - H / 15 - lng / 15; // In UT hours
-  return ((sunrise % 24) + 24) % 24;
+  return (((12 - H / 15 - lng / 15) % 24) + 24) % 24;
 }
 
 export function approximateSunset(jd: number, lat: number, lng: number): number {
-  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(sunLongitude(jd)))));
+  if (isSwissEphAvailable()) {
+    return swissSunset(jd, lat, lng);
+  }
+  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(_meesusSunLongitude(jd)))));
   const cosH = (Math.sin(toRad(-0.833)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
-
   if (cosH > 1 || cosH < -1) return 18;
-
   const H = toDeg(Math.acos(cosH));
-  const sunset = 12 + H / 15 - lng / 15;
-  return ((sunset % 24) + 24) % 24;
+  return (((12 + H / 15 - lng / 15) % 24) + 24) % 24;
 }
 
 // Format decimal hours to HH:MM string

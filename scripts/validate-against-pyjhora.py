@@ -36,10 +36,20 @@ PLANETS = [
 def norm(deg):
     return ((deg % 360) + 360) % 360
 
-def get_swiss_eph(year, month, day, tz):
-    """Get Swiss Ephemeris positions (gold standard)"""
-    # JD at local sunrise (~6am local = 6-tz UT)
-    ut_hour = 6.0 - tz  # approximate sunrise in UT
+def get_swiss_eph(year, month, day, tz, lat=28.6139, lng=77.209):
+    """Get Swiss Ephemeris positions at the SAME sunrise JD as our engine"""
+    # Compute sunrise using same formula as our engine (Swiss Ephemeris Sun position)
+    jd_noon = swe.julday(year, month, day, 0.5)  # noon UT
+    sun_noon = swe.calc_ut(jd_noon, swe.SUN)[0][0]
+    eps = 23.4393 - 0.013 * ((jd_noon - 2451545.0) / 36525.0)
+    decl = math.degrees(math.asin(math.sin(math.radians(eps)) * math.sin(math.radians(sun_noon))))
+    cosH = (math.sin(math.radians(-0.833)) - math.sin(math.radians(lat)) * math.sin(math.radians(decl))) / (math.cos(math.radians(lat)) * math.cos(math.radians(decl)))
+    if abs(cosH) > 1:
+        ut_hour = 0.5
+    else:
+        H = math.degrees(math.acos(cosH))
+        ut_hour = 12 - H/15 - lng/15
+        ut_hour = ((ut_hour % 24) + 24) % 24
     jd = swe.julday(year, month, day, ut_hour)
     ayan = swe.get_ayanamsa_ut(jd)
 
@@ -119,7 +129,7 @@ for i, (yr, mo, dy, lat, lng, tz, name) in enumerate(TEST_CASES):
     print(f"\n[{i+1}/{len(TEST_CASES)}] {name} — {yr}-{mo:02d}-{dy:02d}")
     print("-" * 60)
 
-    se = get_swiss_eph(yr, mo, dy, tz)
+    se = get_swiss_eph(yr, mo, dy, tz, lat, lng)
     ours = get_ours(yr, mo, dy, lat, lng, tz)
 
     if 'error' in ours:

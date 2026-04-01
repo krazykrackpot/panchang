@@ -354,7 +354,7 @@ export const EKADASHI_NAMES: Record<string, { shukla: EkadashiDetail; krishna: E
     krishna: { name: { en: 'Kamika Ekadashi', hi: 'कामिका एकादशी', sa: 'कामिकैकादशी' }, story: { en: 'Lord Brahma narrated this Ekadashi\'s glory to Narada. Offering Tulsi leaves to Vishnu on this day equals donating ten million cows. Even the shadow of a Tulsi plant removes sins.', hi: 'ब्रह्मा ने नारद को इस एकादशी का महत्व बताया। इस दिन विष्णु को तुलसी पत्र अर्पण करना एक करोड़ गायों के दान के बराबर है।', sa: 'ब्रह्मा नारदाय एतस्याः एकादश्याः माहात्म्यम् अकथयत्।' }, benefit: { en: 'Offering Tulsi on this day multiplies merit infinitely. Removes fear of death.', hi: 'इस दिन तुलसी अर्पण करने से पुण्य अनन्तगुना बढ़ता है। मृत्यु का भय दूर होता है।', sa: 'तुलस्यर्पणेन पुण्यम् अनन्तगुणं वर्धते।' } },
   },
   bhadrapada: {
-    shukla: { name: { en: 'Parivartini Ekadashi', hi: 'परिवर्तिनी एकादशी', sa: 'परिवर्तिनीएकादशी' }, story: { en: 'Lord Vishnu turns on his side (Parivartini = turning) in his cosmic sleep. King Bali, in Patala, worships Vishnu on this day. Also called Parsva Ekadashi.', hi: 'विष्णु अपनी ब्रह्माण्डीय निद्रा में करवट बदलते हैं (परिवर्तिनी)। पाताल में राजा बलि इस दिन विष्णु की पूजा करते हैं।', sa: 'विष्णुः निद्रायां पार्श्वं परिवर्तयति।' }, benefit: { en: 'Grants the merit of Chaturmas vows. Lord Vishnu is especially gracious this day.', hi: 'चातुर्मास व्रतों का पुण्य प्राप्त होता है।', sa: 'चातुर्मासव्रतानां पुण्यं लभ्यते।' } },
+    shukla: { name: { en: 'Parsva Ekadashi', hi: 'पार्श्व एकादशी', sa: 'पार्श्वैकादशी' }, story: { en: 'Lord Vishnu turns on his side (Parivartini = turning) in his cosmic sleep. King Bali, in Patala, worships Vishnu on this day. Also called Parsva Ekadashi.', hi: 'विष्णु अपनी ब्रह्माण्डीय निद्रा में करवट बदलते हैं (परिवर्तिनी)। पाताल में राजा बलि इस दिन विष्णु की पूजा करते हैं।', sa: 'विष्णुः निद्रायां पार्श्वं परिवर्तयति।' }, benefit: { en: 'Grants the merit of Chaturmas vows. Lord Vishnu is especially gracious this day.', hi: 'चातुर्मास व्रतों का पुण्य प्राप्त होता है।', sa: 'चातुर्मासव्रतानां पुण्यं लभ्यते।' } },
     krishna: { name: { en: 'Aja Ekadashi', hi: 'अजा एकादशी', sa: 'अजैकादशी' }, story: { en: 'King Harishchandra, who lost his kingdom, wife, and son due to his truthfulness, was advised to observe this Ekadashi by Sage Gautama. All his sufferings ended and his kingdom was restored.', hi: 'राजा हरिश्चन्द्र ने सत्यवादिता से अपना राज्य, पत्नी और पुत्र खोया। ऋषि गौतम ने इस एकादशी का व्रत बताया। सभी कष्ट समाप्त हुए।', sa: 'हरिश्चन्द्रराजा सत्यवादित्वात् सर्वं नष्टवान्।' }, benefit: { en: 'Destroys accumulated suffering, restores lost fortune and honour', hi: 'संचित कष्टों का नाश, खोया सम्मान और भाग्य वापस', sa: 'सञ्चितदुःखनाशनम्, नष्टसम्मानभाग्यप्रत्यावर्तनम्' } },
   },
   ashwina: {
@@ -362,7 +362,7 @@ export const EKADASHI_NAMES: Record<string, { shukla: EkadashiDetail; krishna: E
     krishna: { name: { en: 'Indira Ekadashi', hi: 'इन्दिरा एकादशी', sa: 'इन्दिरैकादशी' }, story: { en: 'King Indrasena\'s deceased father appeared in his dream suffering in Yamaloka. Sage Narada advised the king to observe this Ekadashi to liberate his father\'s soul.', hi: 'राजा इन्द्रसेन के दिवंगत पिता उनके स्वप्न में यमलोक में कष्ट भोगते दिखे। नारद ने इस एकादशी का व्रत बताया।', sa: 'इन्द्रसेनराज्ञः दिवङ्गतपिता स्वप्ने यमलोके कष्टं भोक्तुं दृष्टः।' }, benefit: { en: 'Liberates ancestors from suffering. Grants peace to departed souls (Pitru Mukti).', hi: 'पूर्वजों को कष्ट से मुक्ति। दिवंगत आत्माओं को शान्ति (पितृ मुक्ति)।', sa: 'पितॄन् कष्टात् मोचयति। दिवंगतात्मभ्यः शान्तिः।' } },
   },
   kartika: {
-    shukla: { name: { en: 'Prabodhini Ekadashi', hi: 'प्रबोधिनी एकादशी', sa: 'प्रबोधिनीएकादशी' }, story: { en: 'Lord Vishnu awakens (Prabodhini = awakening) from his four-month cosmic sleep. This ends Chaturmas, and the auspicious season for marriages and ceremonies resumes. Also called Devutthani or Dev Prabodhini Ekadashi.', hi: 'विष्णु चार मास की ब्रह्माण्डीय निद्रा से जागते हैं (प्रबोधिनी = जागरण)। चातुर्मास समाप्त होता है, विवाह आदि शुभ कार्य पुनः आरम्भ होते हैं।', sa: 'विष्णुः चातुर्मासनिद्रातः जागर्ति। शुभकार्याणि पुनः आरभ्यन्ते।' }, benefit: { en: 'Marks the end of Chaturmas. Opening of the marriage season. Extremely auspicious.', hi: 'चातुर्मास का अन्त। विवाह ऋतु का आरम्भ। अत्यन्त शुभ।', sa: 'चातुर्मासान्तः। विवाहर्तोः आरम्भः।' } },
+    shukla: { name: { en: 'Devutthana Ekadashi', hi: 'देवुत्थान एकादशी', sa: 'देवोत्थानैकादशी' }, story: { en: 'Lord Vishnu awakens (Prabodhini = awakening) from his four-month cosmic sleep. This ends Chaturmas, and the auspicious season for marriages and ceremonies resumes. Also called Devutthani or Dev Prabodhini Ekadashi.', hi: 'विष्णु चार मास की ब्रह्माण्डीय निद्रा से जागते हैं (प्रबोधिनी = जागरण)। चातुर्मास समाप्त होता है, विवाह आदि शुभ कार्य पुनः आरम्भ होते हैं।', sa: 'विष्णुः चातुर्मासनिद्रातः जागर्ति। शुभकार्याणि पुनः आरभ्यन्ते।' }, benefit: { en: 'Marks the end of Chaturmas. Opening of the marriage season. Extremely auspicious.', hi: 'चातुर्मास का अन्त। विवाह ऋतु का आरम्भ। अत्यन्त शुभ।', sa: 'चातुर्मासान्तः। विवाहर्तोः आरम्भः।' } },
     krishna: { name: { en: 'Rama Ekadashi', hi: 'रमा एकादशी', sa: 'रमैकादशी' }, story: { en: 'Named after Rama (another name for Goddess Lakshmi). A pious king named Muchukunda was advised by the sage Valmiki to observe this fast, which grants more merit than bathing at all pilgrimage sites.', hi: 'रमा (लक्ष्मी का एक नाम) के नाम पर। राजा मुचुकुन्द को ऋषि वाल्मीकि ने यह व्रत बताया।', sa: 'रमायाः (लक्ष्म्याः) नाम्ना। मुचुकुन्दराजा वाल्मीकिमुनेः उपदेशं प्राप्तवान्।' }, benefit: { en: 'Grants Lakshmi\'s blessings, removes poverty. More meritorious than all pilgrimages.', hi: 'लक्ष्मी का आशीर्वाद, दरिद्रता दूर करती है। सभी तीर्थयात्राओं से अधिक पुण्यदायी।', sa: 'लक्ष्म्याः आशीर्वादम्, दारिद्र्यनिवारणम्।' } },
   },
   margashirsha: {
@@ -459,9 +459,20 @@ const SOLAR_MONTH_MAP: Record<number, string> = {
   9: 'pausha', 10: 'magha', 11: 'phalguna', 12: 'chaitra',
 };
 
-/** Get the Hindu month name from the Sun's sidereal sign number (1-12) */
-export function getHinduMonth(sunSign: number): string {
-  return SOLAR_MONTH_MAP[sunSign] || 'chaitra';
+/** Get the Hindu month name from a sign number (1-12, wraps for values >12) */
+export function getHinduMonth(signNum: number): string {
+  const wrapped = ((signNum - 1) % 12) + 1; // wrap 13→1, 14→2, etc.
+  return SOLAR_MONTH_MAP[wrapped] || 'chaitra';
+}
+
+/** Ordered list of Hindu months for cycling */
+const MONTH_ORDER = ['chaitra', 'vaishakha', 'jyeshtha', 'ashadha', 'shravana', 'bhadrapada', 'ashwina', 'kartika', 'margashirsha', 'pausha', 'magha', 'phalguna'];
+
+/** Get the NEXT Hindu month name (for Purnimant Krishna paksha conversion) */
+export function getNextHinduMonth(monthName: string): string {
+  const idx = MONTH_ORDER.indexOf(monthName);
+  if (idx === -1) return monthName;
+  return MONTH_ORDER[(idx + 1) % 12];
 }
 
 /** Get the specific Ekadashi name for a given Hindu month and paksha */

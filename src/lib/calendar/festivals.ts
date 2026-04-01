@@ -10,6 +10,7 @@
 import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, normalizeDeg, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
 import { generateEclipseCalendar } from '@/lib/calendar/eclipses';
 import { getHinduMonth, getNextHinduMonth, getEkadashiName, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Trilingual } from '@/types/panchang';
 
 export interface FestivalEntry {
@@ -259,6 +260,22 @@ function findSankrantiDate(year: number, targetSign: number): string {
 const DEFAULT_LAT = 28.6139; // New Delhi (fallback only)
 const DEFAULT_LON = 77.209;
 const DEFAULT_TZ = 5.5;
+const DEFAULT_TIMEZONE = 'Asia/Kolkata';
+
+/**
+ * Resolve timezone offset for a specific date.
+ * Accepts either an IANA timezone string (e.g., 'Europe/Zurich') or a numeric offset.
+ * IANA strings resolve DST correctly per-date. Numeric offsets are used as-is.
+ */
+function resolveTz(dateStr: string, timezone: string | number): number {
+  if (typeof timezone === 'number') return timezone;
+  // Try as IANA string first
+  const num = parseFloat(timezone);
+  if (!isNaN(num) && timezone === String(num)) return num; // Pure number passed as string
+  // IANA timezone — resolve per-date
+  const [y, m, d] = dateStr.split('-').map(Number);
+  return getUTCOffsetForDate(y, m, d, timezone);
+}
 
 /** Get next day string from a YYYY-MM-DD date */
 function nextDay(dateStr: string): string {
@@ -705,7 +722,7 @@ function findLunarMonth(dateStr: string, lunarCalendar: LunarMonth[]): LunarMont
 /**
  * Generate the full festival calendar for a year.
  */
-export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = DEFAULT_LON, tz = DEFAULT_TZ): FestivalEntry[] {
+export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = DEFAULT_LON, timezone: string | number = DEFAULT_TIMEZONE): FestivalEntry[] {
   const festivals: FestivalEntry[] = [];
 
   // Build complete lunar month calendar for proper Ekadashi naming
@@ -866,7 +883,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'purnima',
       description: { en: 'Full Moon fasting day', hi: 'पूर्णिमा का व्रत', sa: 'पूर्णिमायां व्रतम्' },
       slug: 'purnima',
-      ...computePurnimaParana(purnimaDate, lat, lon, tz),
+      ...computePurnimaParana(purnimaDate, lat, lon, resolveTz(purnimaDate, timezone)),
     });
 
     // Amavasya
@@ -878,7 +895,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'amavasya',
       description: { en: 'New Moon — ancestral offerings', hi: 'अमावस्या — पितृ तर्पण', sa: 'अमावास्या — पितृतर्पणम्' },
       slug: 'amavasya',
-      ...computeAmavasyaParana(amavasyaDate, lat, lon, tz),
+      ...computeAmavasyaParana(amavasyaDate, lat, lon, resolveTz(amavasyaDate, timezone)),
     });
 
     // Ekadashi (Shukla & Krishna) — named from lunar month calendar
@@ -916,7 +933,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
         ? shuklaEkadashiDetail.benefit
         : { en: 'Fasting for Lord Vishnu — Shukla Paksha', hi: 'विष्णु व्रत — शुक्ल पक्ष', sa: 'विष्णुव्रतम् — शुक्लपक्षे' },
       slug: 'ekadashi',
-      ...computeEkadashiParana(ekadashi.shukla, lat, lon, tz),
+      ...computeEkadashiParana(ekadashi.shukla, lat, lon, resolveTz(ekadashi.shukla, timezone)),
     });
     festivals.push({
       name: krishnaEkadashiDetail?.name || { en: 'Krishna Ekadashi', hi: 'कृष्ण एकादशी', sa: 'कृष्णैकादशी' },
@@ -927,7 +944,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
         ? krishnaEkadashiDetail.benefit
         : { en: 'Fasting for Lord Vishnu — Krishna Paksha', hi: 'विष्णु व्रत — कृष्ण पक्ष', sa: 'विष्णुव्रतम् — कृष्णपक्षे' },
       slug: 'ekadashi',
-      ...computeEkadashiParana(ekadashi.krishna, lat, lon, tz),
+      ...computeEkadashiParana(ekadashi.krishna, lat, lon, resolveTz(ekadashi.krishna, timezone)),
     });
 
     // Sankashti Chaturthi
@@ -939,7 +956,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'chaturthi',
       description: { en: 'Fasting for Lord Ganesha — moonrise ends fast', hi: 'गणेश व्रत — चन्द्रोदय पर व्रत समाप्त', sa: 'गणेशव्रतम् — चन्द्रोदये व्रतसमाप्तिः' },
       slug: 'chaturthi',
-      ...computeChaturthiParana(chaturthiDate, lat, lon, tz),
+      ...computeChaturthiParana(chaturthiDate, lat, lon, resolveTz(chaturthiDate, timezone)),
     });
 
     // Pradosham
@@ -951,7 +968,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'pradosham',
       description: { en: 'Twilight worship of Lord Shiva — Shukla Trayodashi', hi: 'शिव की संध्याकालीन पूजा — शुक्ल त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम् — शुक्लत्रयोदश्यां' },
       slug: 'pradosham',
-      ...computePradoshamParana(pradosham.shukla, lat, lon, tz),
+      ...computePradoshamParana(pradosham.shukla, lat, lon, resolveTz(pradosham.shukla, timezone)),
     });
     festivals.push({
       name: { en: 'Krishna Pradosham', hi: 'कृष्ण प्रदोष', sa: 'कृष्णप्रदोषः' },
@@ -960,7 +977,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       category: 'pradosham',
       description: { en: 'Twilight worship of Lord Shiva — Krishna Trayodashi', hi: 'शिव की संध्याकालीन पूजा — कृष्ण त्रयोदशी', sa: 'शिवस्य सन्ध्याकालपूजनम् — कृष्णत्रयोदश्यां' },
       slug: 'pradosham',
-      ...computePradoshamParana(pradosham.krishna, lat, lon, tz),
+      ...computePradoshamParana(pradosham.krishna, lat, lon, resolveTz(pradosham.krishna, timezone)),
     });
   }
 
@@ -999,7 +1016,8 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
 
     // Build phase timeline
     const phases: { name: Trilingual; time: string }[] = [];
-    const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
+    const eclipseTz = resolveTz(eclipse.date, timezone);
+    const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, eclipseTz);
 
     if (eclipse.type === 'solar') {
       phases.push({ name: { en: 'First Contact (Sparsha)', hi: 'प्रथम स्पर्श', sa: 'स्पर्शः' }, time: ft(eStartUT) });

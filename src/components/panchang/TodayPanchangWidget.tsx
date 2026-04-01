@@ -14,10 +14,10 @@ export default function TodayPanchangWidget() {
 
   useEffect(() => {
     const now = new Date();
-    const tzOffset = -now.getTimezoneOffset() / 60;
+    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
     const fetchWithLocation = (lat: number, lng: number, name: string) => {
-      fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&tz=${tzOffset}&location=${encodeURIComponent(name)}`)
+      fetch(`/api/panchang?year=${now.getFullYear()}&month=${now.getMonth() + 1}&day=${now.getDate()}&lat=${lat}&lng=${lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(name)}`)
         .then((res) => res.json())
         .then((data) => {
           setPanchang(data);

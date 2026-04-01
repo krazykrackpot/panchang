@@ -201,6 +201,12 @@ export default function KaalNirnayaPage() {
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
+  // Helper for bilingual objects (en/hi) — falls back to hi for sa, then en
+  const t2 = (obj: { en: string; hi: string }): string => {
+    if (locale === 'en') return obj.en;
+    return obj.hi; // hi serves as fallback for sa
+  };
+
   const [kaalData, setKaalData] = useState<KaalData | null>(null);
   const [loadingKaal, setLoadingKaal] = useState(true);
 
@@ -210,7 +216,8 @@ export default function KaalNirnayaPage() {
     const year = d.getFullYear();
     const month = d.getMonth() + 1;
     const day = d.getDate();
-    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=28.6139&lng=77.209&tz=5.5&location=New+Delhi`)
+    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=28.6139&lng=77.209&timezone=${encodeURIComponent(ianaTimezone)}&location=Current+Location`)
       .then(r => r.json())
       .then(data => {
         setKaalData({
@@ -384,25 +391,270 @@ export default function KaalNirnayaPage() {
           ))}
         </div>
 
-        {/* Mahayuga & Kalpa info */}
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          className="glass-card rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-r from-gold-primary/5 to-transparent">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            <div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Mahayuga' : 'महायुग'}</div>
-              <div className="text-gold-light text-2xl font-bold font-mono">4,320,000</div>
-              <div className="text-text-secondary text-xs">{locale === 'en' ? 'years (all 4 Yugas)' : 'वर्ष (चारों युग)'}</div>
+      </motion.section>
+
+      {/* ═══ SECTION 2B: COSMIC TIME HIERARCHY — Mahayuga to Brahma's Life ═══ */}
+      <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }} className="mb-20">
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-3">
+            <svg width={56} height={56} viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="cosmic-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#f0d48a" />
+                  <stop offset="100%" stopColor="#d4a853" />
+                </linearGradient>
+              </defs>
+              <circle cx="32" cy="32" r="28" stroke="url(#cosmic-grad)" strokeWidth="1" fill="none" opacity="0.2" />
+              <circle cx="32" cy="32" r="22" stroke="url(#cosmic-grad)" strokeWidth="1.5" fill="none" opacity="0.3" />
+              <circle cx="32" cy="32" r="16" stroke="url(#cosmic-grad)" strokeWidth="2" fill="none" opacity="0.4" />
+              <circle cx="32" cy="32" r="10" stroke="url(#cosmic-grad)" strokeWidth="2.5" fill="none" opacity="0.5" />
+              <circle cx="32" cy="32" r="4" fill="url(#cosmic-grad)" opacity="0.8" />
+            </svg>
+          </div>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
+            {locale === 'en' ? 'The Cosmic Time Hierarchy' : locale === 'hi' ? 'ब्रह्मांडीय काल पदानुक्रम' : 'ब्रह्माण्डीय काल पदानुक्रमः'}
+          </h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">
+            {locale === 'en'
+              ? 'Hindu cosmology describes time as a nested hierarchy of cycles within cycles — from a single Mahayuga all the way to the lifespan of Brahma, the Creator. Each level of the hierarchy has precise mathematical relationships defined in the Surya Siddhanta and Vishnu Purana.'
+              : 'हिन्दू ब्रह्मांड विज्ञान समय को चक्रों के भीतर चक्रों के एक नेस्टेड पदानुक्रम के रूप में वर्णित करता है — एक महायुग से लेकर सृष्टिकर्ता ब्रह्मा के जीवनकाल तक। पदानुक्रम का प्रत्येक स्तर सूर्य सिद्धांत और विष्णु पुराण में परिभाषित सटीक गणितीय संबंध रखता है।'}
+          </p>
+        </div>
+
+        {/* Hierarchy ladder */}
+        <div className="space-y-4 mb-10">
+          {[
+            {
+              level: 1,
+              name: { en: 'Mahayuga', hi: 'महायुग' },
+              sanskrit: 'महायुगम्',
+              value: '4,320,000',
+              unit: { en: 'years', hi: 'वर्ष' },
+              formula: { en: 'Satya (1.728M) + Treta (1.296M) + Dvapara (0.864M) + Kali (0.432M)', hi: 'सत्य (17.28 लाख) + त्रेता (12.96 लाख) + द्वापर (8.64 लाख) + कलि (4.32 लाख)' },
+              desc: {
+                en: 'One complete cycle of the four Yugas. The ratio between them is 4:3:2:1, reflecting the progressive decline of Dharma. Each Yuga also has a transitional dawn (Sandhya) and dusk (Sandhyamsha) period, which are included in the counts above.',
+                hi: 'चारों युगों का एक पूर्ण चक्र। उनके बीच का अनुपात 4:3:2:1 है, जो धर्म की क्रमिक गिरावट को दर्शाता है। प्रत्येक युग की एक संक्रमणकालीन प्रभात (संध्या) और सन्ध्यांश अवधि भी है।',
+              },
+              color: 'border-emerald-500/30',
+              dotColor: 'bg-emerald-400',
+            },
+            {
+              level: 2,
+              name: { en: 'Manvantara', hi: 'मन्वन्तर' },
+              sanskrit: 'मन्वन्तरम्',
+              value: '306,720,000',
+              unit: { en: 'years', hi: 'वर्ष' },
+              formula: { en: '71 Mahayugas = 71 × 4,320,000', hi: '71 महायुग = 71 × 43,20,000' },
+              desc: {
+                en: 'The reign of one Manu — the progenitor of humanity for that age. Each Manu establishes Dharma, law, and social order. There are 14 Manus in a Kalpa. We are in the 7th Manvantara under Vaivasvata Manu (also called Shraddhadeva), the 28th Mahayuga of this Manvantara.',
+                hi: 'एक मनु का शासनकाल — उस युग में मानवता के प्रजापिता। प्रत्येक मनु धर्म, विधि और सामाजिक व्यवस्था स्थापित करता है। एक कल्प में 14 मनु होते हैं। हम 7वें मन्वन्तर में वैवस्वत मनु (श्राद्धदेव) के अधीन हैं, इस मन्वन्तर के 28वें महायुग में।',
+              },
+              color: 'border-blue-500/30',
+              dotColor: 'bg-blue-400',
+            },
+            {
+              level: 3,
+              name: { en: 'Kalpa (Day of Brahma)', hi: 'कल्प (ब्रह्मा का दिन)' },
+              sanskrit: 'कल्पः',
+              value: '4,320,000,000',
+              unit: { en: 'years (4.32 billion)', hi: 'वर्ष (4.32 अरब)' },
+              formula: { en: '14 Manvantaras + 15 Sandhya gaps = 1,000 Mahayugas', hi: '14 मन्वन्तर + 15 संध्या अन्तराल = 1,000 महायुग' },
+              desc: {
+                en: 'One day of Brahma — the waking period when the universe exists. During a Kalpa, 14 Manus reign in succession, with a Sandhya (twilight dissolution) between each. At the end of the Kalpa, a partial dissolution (Naimittika Pralaya) occurs. The current Kalpa is called Shveta-Varaha Kalpa ("White Boar"), named after Vishnu\'s Varaha avatar.',
+                hi: 'ब्रह्मा का एक दिन — जागरण काल जब सृष्टि विद्यमान रहती है। एक कल्प में 14 मनु क्रमशः शासन करते हैं। कल्प के अंत में नैमित्तिक प्रलय होता है। वर्तमान कल्प को श्वेत-वराह कल्प कहते हैं — विष्णु के वराह अवतार के नाम पर।',
+              },
+              color: 'border-gold-primary/40',
+              dotColor: 'bg-gold-primary',
+              highlight: true,
+            },
+            {
+              level: 4,
+              name: { en: 'Night of Brahma (Pralaya)', hi: 'ब्रह्मा की रात्रि (प्रलय)' },
+              sanskrit: 'ब्रह्मरात्रिः (प्रलयः)',
+              value: '4,320,000,000',
+              unit: { en: 'years (equal to one Kalpa)', hi: 'वर्ष (एक कल्प के बराबर)' },
+              formula: { en: '1 Night = 1 Day = 4.32 billion years', hi: '1 रात्रि = 1 दिन = 4.32 अरब वर्ष' },
+              desc: {
+                en: 'When Brahma sleeps, the three worlds (Bhuloka, Bhuvarloka, Svargaloka) are submerged in the cosmic ocean. All living beings enter a state of suspended existence (Avyakta) within Brahma. The higher worlds (Maharloka and above) survive. When Brahma wakes, creation resumes from where it paused — this is Naimittika Pralaya (incidental dissolution), not total annihilation.',
+                hi: 'जब ब्रह्मा सोते हैं, तीनों लोक (भूलोक, भुवर्लोक, स्वर्गलोक) ब्रह्मांडीय जलप्रलय में डूब जाते हैं। सभी जीव ब्रह्मा के भीतर अव्यक्त अवस्था में प्रवेश करते हैं। उच्चतर लोक (महर्लोक और ऊपर) बचे रहते हैं। जब ब्रह्मा जागते हैं, सृष्टि वहीं से पुनः आरंभ होती है — यह नैमित्तिक प्रलय है, पूर्ण विनाश नहीं।',
+              },
+              color: 'border-purple-500/30',
+              dotColor: 'bg-purple-400',
+            },
+            {
+              level: 5,
+              name: { en: 'Day + Night of Brahma', hi: 'ब्रह्मा का एक अहोरात्र' },
+              sanskrit: 'ब्रह्माहोरात्रम्',
+              value: '8,640,000,000',
+              unit: { en: 'years (8.64 billion)', hi: 'वर्ष (8.64 अरब)' },
+              formula: { en: '1 Day (4.32B) + 1 Night (4.32B)', hi: '1 दिन (4.32 अ) + 1 रात्रि (4.32 अ)' },
+              desc: {
+                en: 'One complete day-night cycle of Brahma. The universe manifests during the day and dissolves during the night. This is remarkably close to modern estimates of the age of our observable universe (~13.8 billion years for half its projected lifespan).',
+                hi: 'ब्रह्मा का एक पूर्ण दिन-रात्रि चक्र। दिन में सृष्टि प्रकट होती है और रात्रि में विलीन। यह हमारे दृश्य ब्रह्मांड की आयु (~13.8 अरब वर्ष) के आधुनिक अनुमानों के उल्लेखनीय रूप से करीब है।',
+              },
+              color: 'border-indigo-500/30',
+              dotColor: 'bg-indigo-400',
+            },
+            {
+              level: 6,
+              name: { en: 'Year of Brahma', hi: 'ब्रह्मा का एक वर्ष' },
+              sanskrit: 'ब्रह्मवर्षम्',
+              value: '3,110,400,000,000',
+              unit: { en: 'years (3.11 trillion)', hi: 'वर्ष (3.11 खरब)' },
+              formula: { en: '360 Day-Night cycles × 8.64B', hi: '360 अहोरात्र चक्र × 8.64 अरब' },
+              desc: {
+                en: 'Brahma\'s year consists of 360 of his day-night cycles (using the divine calendar where there are no extra days). Each of these 360 days sees one complete creation and dissolution of the three worlds.',
+                hi: 'ब्रह्मा के वर्ष में उनके 360 अहोरात्र चक्र होते हैं। इन 360 दिनों में से प्रत्येक में तीनों लोकों की एक पूर्ण सृष्टि और विलय होती है।',
+              },
+              color: 'border-amber-500/30',
+              dotColor: 'bg-amber-400',
+            },
+            {
+              level: 7,
+              name: { en: 'Life of Brahma (Mahakalpa)', hi: 'ब्रह्मा का जीवनकाल (महाकल्प)' },
+              sanskrit: 'ब्रह्मायुः (महाकल्पः)',
+              value: '311,040,000,000,000',
+              unit: { en: 'years (311.04 trillion)', hi: 'वर्ष (311.04 खरब)' },
+              formula: { en: '100 Brahma Years × 3.11 trillion', hi: '100 ब्रह्मवर्ष × 3.11 खरब' },
+              desc: {
+                en: 'Brahma lives for 100 of his years. At the end of Brahma\'s life, Mahapralaya (the great dissolution) occurs — everything, including Brahma himself and all the Lokas, dissolves into the primordial Prakriti. Then, after an equal period of cosmic void, a new Brahma is born from Vishnu\'s navel, and the entire cycle begins again. According to the Puranas, the current Brahma is in his 51st year — meaning approximately half of total existence has elapsed.',
+                hi: 'ब्रह्मा 100 ब्रह्म-वर्ष जीते हैं। ब्रह्मा के जीवन के अंत में महाप्रलय होता है — ब्रह्मा स्वयं और सभी लोक सहित सब कुछ मूल प्रकृति में विलीन हो जाता है। फिर, समान अवधि के ब्रह्मांडीय शून्य के बाद, विष्णु की नाभि से नए ब्रह्मा का जन्म होता है, और सम्पूर्ण चक्र पुनः आरंभ होता है। पुराणों के अनुसार, वर्तमान ब्रह्मा अपने 51वें वर्ष में हैं — अर्थात कुल अस्तित्व का लगभग आधा बीत चुका है।',
+              },
+              color: 'border-rose-500/30',
+              dotColor: 'bg-rose-400',
+              highlight: true,
+            },
+          ].map((tier, i) => (
+            <motion.div
+              key={tier.level}
+              initial={{ opacity: 0, x: -16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, ease: 'easeOut' as const }}
+            >
+              <div className={`glass-card rounded-xl p-6 border-l-4 ${tier.color} ${tier.highlight ? 'bg-gold-primary/3' : ''}`}>
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+                  {/* Level badge + vertical dot */}
+                  <div className="flex items-center sm:flex-col sm:items-center gap-3 sm:gap-1 flex-shrink-0 sm:w-16">
+                    <div className={`w-3 h-3 rounded-full ${tier.dotColor}`} />
+                    <span className="text-text-secondary/40 text-xs font-mono uppercase">{locale === 'en' ? `Level ${tier.level}` : `स्तर ${tier.level}`}</span>
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    {/* Title row */}
+                    <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                      <h4 className="text-gold-light font-bold text-lg" style={headingFont}>{t2(tier.name)}</h4>
+                      <span className="text-gold-dark/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{tier.sanskrit}</span>
+                    </div>
+
+                    {/* Value */}
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <span className="text-gold-light text-2xl sm:text-3xl font-black font-mono">{tier.value}</span>
+                      <span className="text-text-secondary text-sm">{t2(tier.unit)}</span>
+                    </div>
+
+                    {/* Formula */}
+                    <div className="mb-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
+                      <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Formula' : 'सूत्र'}: </span>
+                      <span className="text-gold-light/70 font-mono text-xs">{t2(tier.formula)}</span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-text-secondary text-sm leading-relaxed">{t2(tier.desc)}</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Where are we now? */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="glass-card rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5"
+        >
+          <h3 className="text-xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
+            {locale === 'en' ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {[
+              { label: { en: 'Current Brahma', hi: 'वर्तमान ब्रह्मा' }, value: { en: '51st year (Dvitiya Parardha)', hi: '51वाँ वर्ष (द्वितीय परार्ध)' }, color: 'text-rose-300' },
+              { label: { en: 'Current Kalpa', hi: 'वर्तमान कल्प' }, value: { en: 'Shveta-Varaha Kalpa', hi: 'श्वेत-वराह कल्प' }, color: 'text-gold-light' },
+              { label: { en: 'Current Manu', hi: 'वर्तमान मनु' }, value: { en: '7th — Vaivasvata', hi: '7वें — वैवस्वत' }, color: 'text-blue-300' },
+              { label: { en: 'Current Mahayuga', hi: 'वर्तमान महायुग' }, value: { en: '28th of 71', hi: '71 में से 28वाँ' }, color: 'text-emerald-300' },
+              { label: { en: 'Current Yuga', hi: 'वर्तमान युग' }, value: { en: 'Kali Yuga (4th)', hi: 'कलियुग (4था)' }, color: 'text-red-300' },
+              { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष' }, color: 'text-amber-300' },
+            ].map((item) => (
+              <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
+                <div className="text-gold-dark/60 text-[10px] uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
+                <div className={`font-bold text-sm ${item.color}`}>{t2(item.value)}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Visual: Brahma's life progress */}
+          <div className="mb-4">
+            <div className="flex justify-between text-[10px] text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
+              <span>{locale === 'en' ? "Brahma's Life Progress" : 'ब्रह्मा के जीवन की प्रगति'}</span>
+              <span className="text-gold-primary">~50%</span>
             </div>
-            <div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Manvantara' : 'मन्वन्तर'}</div>
-              <div className="text-gold-light text-2xl font-bold font-mono">71</div>
-              <div className="text-text-secondary text-xs">{locale === 'en' ? 'Mahayugas (306.72M years)' : 'महायुग (30.672 करोड़ वर्ष)'}</div>
+            <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden relative">
+              <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/50 via-gold-primary/50 to-rose-500/50" style={{ width: '50.5%' }} />
+              <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
             </div>
-            <div>
-              <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Kalpa (Day of Brahma)' : 'कल्प (ब्रह्मा का एक दिन)'}</div>
-              <div className="text-gold-light text-2xl font-bold font-mono">4.32B</div>
-              <div className="text-text-secondary text-xs">{locale === 'en' ? 'years = 1,000 Mahayugas' : 'वर्ष = 1,000 महायुग'}</div>
+            <div className="flex justify-between text-[10px] text-text-secondary/50 mt-1 font-mono">
+              <span>{locale === 'en' ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
+              <span className="text-gold-light/60">{locale === 'en' ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
+              <span>{locale === 'en' ? 'Mahapralaya' : 'महाप्रलय'}</span>
             </div>
+          </div>
+
+          {/* Pralaya types */}
+          <div className="mt-6 pt-6 border-t border-gold-primary/15">
+            <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
+              {locale === 'en' ? 'The Four Types of Pralaya (Dissolution)' : 'प्रलय के चार प्रकार'}
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                {
+                  name: { en: 'Nitya Pralaya', hi: 'नित्य प्रलय' },
+                  desc: { en: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', hi: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।' },
+                  color: 'text-emerald-400', border: 'border-emerald-500/20',
+                },
+                {
+                  name: { en: 'Naimittika Pralaya', hi: 'नैमित्तिक प्रलय' },
+                  desc: { en: 'Brahma\'s nightly sleep — the three lower worlds dissolve, higher lokas survive. Occurs every Kalpa (4.32B years).', hi: 'ब्रह्मा की रात्रि निद्रा — तीन निचले लोक विलीन, उच्चतर लोक बचते हैं। प्रत्येक कल्प (4.32 अरब वर्ष) में होता है।' },
+                  color: 'text-blue-400', border: 'border-blue-500/20',
+                },
+                {
+                  name: { en: 'Prakritika Pralaya (Mahapralaya)', hi: 'प्राकृतिक प्रलय (महाप्रलय)' },
+                  desc: { en: 'Brahma\'s death — everything dissolves into Prakriti (primordial nature). Even Brahma ceases. Occurs after 100 Brahma years (311 trillion years).', hi: 'ब्रह्मा की मृत्यु — ब्रह्मा सहित सब कुछ प्रकृति में विलीन। 100 ब्रह्मवर्ष (311 खरब वर्ष) बाद होता है।' },
+                  color: 'text-rose-400', border: 'border-rose-500/20',
+                },
+                {
+                  name: { en: 'Atyantika Pralaya', hi: 'आत्यन्तिक प्रलय' },
+                  desc: { en: 'Individual liberation (Moksha) — the soul\'s personal dissolution from the cycle of rebirth. Not cosmic, but the ultimate goal of Jyotish and Vedanta.', hi: 'व्यक्तिगत मुक्ति (मोक्ष) — आत्मा का पुनर्जन्म चक्र से मुक्ति। ब्रह्मांडीय नहीं, लेकिन ज्योतिष और वेदान्त का अन्तिम लक्ष्य।' },
+                  color: 'text-gold-primary', border: 'border-gold-primary/20',
+                },
+              ].map((p) => (
+                <div key={p.name.en} className={`rounded-lg p-4 border ${p.border} bg-bg-primary/30`}>
+                  <div className={`font-bold text-sm mb-1 ${p.color}`}>{t2(p.name)}</div>
+                  <p className="text-text-secondary text-xs leading-relaxed">{t2(p.desc)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* After Mahapralaya */}
+          <div className="mt-6 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10 text-center">
+            <p className="text-text-secondary text-sm leading-relaxed italic">
+              {locale === 'en'
+                ? '"After Mahapralaya, for a period equal to Brahma\'s entire lifespan, nothing exists but Maha-Vishnu resting on the cosmic serpent Shesha upon the causal ocean. Then, from His navel springs a lotus, from which a new Brahma is born, and 311 trillion years of creation begin again." — Bhagavata Purana'
+                : '"महाप्रलय के बाद, ब्रह्मा के सम्पूर्ण जीवनकाल के बराबर अवधि तक, कारण सागर पर शेषनाग पर विश्राम करते महा-विष्णु के अतिरिक्त कुछ भी विद्यमान नहीं रहता। फिर, उनकी नाभि से एक कमल प्रकट होता है, जिससे नए ब्रह्मा का जन्म होता है, और 311 खरब वर्षों की सृष्टि पुनः आरंभ होती है।" — भागवत पुराण'}
+            </p>
           </div>
         </motion.div>
       </motion.section>

@@ -173,7 +173,8 @@ export default function PanchangPage() {
     if (!selectedDate) return;
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
-    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&tz=${location.tz}&location=${encodeURIComponent(location.name)}`)
+    const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+    fetch(`/api/panchang?year=${year}&month=${month}&day=${day}&lat=${location.lat}&lng=${location.lng}&timezone=${encodeURIComponent(ianaTimezone)}&location=${encodeURIComponent(location.name)}`)
       .then(res => res.json())
       .then(data => { setPanchang(data); setLoading(false); })
       .catch(() => setLoading(false));

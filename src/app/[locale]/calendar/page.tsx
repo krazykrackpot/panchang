@@ -28,6 +28,8 @@ interface FestivalEntry {
   paranaHariVasaraEnd?: string;
   paranaDwadashiEnd?: string;
   paranaEarlyEnd?: boolean;
+  paranaMadhyahnaStart?: string;
+  paranaMadhyahnaEnd?: string;
   // Eclipse
   eclipseType?: 'solar' | 'lunar';
   eclipseMagnitude?: string;
@@ -43,7 +45,7 @@ const MONTH_NAMES_HI = ['जनवरी','फरवरी','मार्च','�
 
 type Filter = 'all' | 'major' | 'ekadashi' | 'purnima' | 'amavasya' | 'chaturthi' | 'pradosham' | 'eclipse';
 
-interface LocationData { lat: number; lng: number; name: string; tz: number; }
+interface LocationData { lat: number; lng: number; name: string; tz: number; timezone: string; }
 
 export default function CalendarPage() {
   const t = useTranslations('calendar');
@@ -57,9 +59,9 @@ export default function CalendarPage() {
   const [filter, setFilter] = useState<Filter>('all');
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
 
-  // Location
-  const [location, setLocation] = useState<LocationData>({ lat: 28.6139, lng: 77.209, name: 'New Delhi, India', tz: 5.5 });
-  const [detectingLocation, setDetectingLocation] = useState(false);
+  // Location — null until resolved (no hardcoded default)
+  const [location, setLocation] = useState<LocationData | null>(null);
+  const [detectingLocation, setDetectingLocation] = useState(true);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [locationInput, setLocationInput] = useState('');
   const [searchingLocation, setSearchingLocation] = useState(false);
@@ -70,10 +72,26 @@ export default function CalendarPage() {
   const [modalDetail, setModalDetail] = useState<FestivalDetail | null>(null);
   const [modalEkadashi, setModalEkadashi] = useState<EkadashiDetail | null>(null);
 
-  // Auto-detect location on mount
+  // Auto-detect location on mount — NO hardcoded defaults. User MUST have a location.
   useEffect(() => {
+    const browserTz = -new Date().getTimezoneOffset() / 60;
+    const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+
+    const tryIPLookup = () => {
+      fetch('https://ipapi.co/json/')
+        .then(r => r.json())
+        .then(data => {
+          if (data.latitude && data.longitude) {
+            const ianaTz = data.timezone || browserTimezone;
+            setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: browserTz, timezone: ianaTz });
+          }
+          // If IP lookup also fails → location stays null → user is prompted to enter manually
+        })
+        .catch(() => {}) // location stays null
+        .finally(() => setDetectingLocation(false));
+    };
+
     if ('geolocation' in navigator) {
-      setDetectingLocation(true);
       navigator.geolocation.getCurrentPosition(
         async (pos) => {
           const { latitude, longitude } = pos.coords;
@@ -82,26 +100,18 @@ export default function CalendarPage() {
             const data = await res.json();
             const city = data.address?.city || data.address?.town || data.address?.village || data.address?.county || '';
             const country = data.address?.country || '';
-            const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`;
-            setLocation({ lat: latitude, lng: longitude, name, tz: -new Date().getTimezoneOffset() / 60 });
+            const name = [city, country].filter(Boolean).join(', ') || `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`;
+            setLocation({ lat: latitude, lng: longitude, name, tz: browserTz, timezone: browserTimezone });
           } catch {
-            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°N, ${longitude.toFixed(2)}°E`, tz: -new Date().getTimezoneOffset() / 60 });
+            setLocation({ lat: latitude, lng: longitude, name: `${latitude.toFixed(2)}°, ${longitude.toFixed(2)}°`, tz: browserTz, timezone: browserTimezone });
           }
           setDetectingLocation(false);
         },
-        () => {
-          fetch('https://ipapi.co/json/')
-            .then(r => r.json())
-            .then(data => {
-              if (data.latitude && data.longitude) {
-                setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: data.utc_offset ? parseFloat(data.utc_offset) / 100 : 5.5 });
-              }
-            })
-            .catch(() => {})
-            .finally(() => setDetectingLocation(false));
-        },
+        () => tryIPLookup(), // Geolocation denied — try IP
         { timeout: 5000 }
       );
+    } else {
+      tryIPLookup();
     }
   }, []);
 
@@ -114,8 +124,9 @@ export default function CalendarPage() {
       if (data && data[0]) {
         const lat = parseFloat(data[0].lat);
         const lng = parseFloat(data[0].lon);
-        const approxTz = Math.round(lng / 15 * 2) / 2;
-        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
+        const approxTz = -new Date().getTimezoneOffset() / 60;
+        const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+        setLocation({ lat, lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz, timezone: browserTimezone });
         setShowLocationSearch(false);
         setLocationInput('');
       }
@@ -124,8 +135,9 @@ export default function CalendarPage() {
   };
 
   useEffect(() => {
+    if (!location) return; // Don't fetch until location is resolved
     setLoading(true);
-    fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&tz=${location.tz}`)
+    fetch(`/api/calendar?year=${year}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}`)
       .then(res => res.json())
       .then(data => {
         setFestivals(data.festivals || []);
@@ -237,39 +249,74 @@ export default function CalendarPage() {
         </button>
       </div>
 
-      {/* Location bar */}
-      <div className="flex flex-col items-center gap-2 mb-6">
-        <button
-          onClick={() => setShowLocationSearch(v => !v)}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-bg-secondary/50 hover:bg-gold-primary/10 transition-all text-sm"
-        >
-          {detectingLocation
-            ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" />
-            : <MapPin className="w-4 h-4 text-gold-primary" />}
-          <span className="text-text-primary font-medium">{location.name}</span>
-          <span className="text-text-secondary text-xs">UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
-          <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
-        </button>
-        {showLocationSearch && (
-          <div className="flex items-center gap-2 w-full max-w-sm">
+      {/* Location — REQUIRED. If null and not detecting, force user to enter. */}
+      {detectingLocation ? (
+        <div className="flex flex-col items-center gap-3 mb-8 py-8">
+          <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
+          <p className="text-text-secondary text-sm">{locale === 'en' ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
+        </div>
+      ) : !location ? (
+        <div className="flex flex-col items-center gap-4 mb-8 py-8 glass-card rounded-2xl border-2 border-gold-primary/30 max-w-lg mx-auto px-6">
+          <MapPin className="w-10 h-10 text-gold-primary" />
+          <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
+            {locale === 'en' ? 'Location Required' : 'स्थान आवश्यक है'}
+          </h3>
+          <p className="text-text-secondary text-sm text-center">
+            {locale === 'en'
+              ? 'All festival dates, tithi timings, and parana windows depend on your location. Please enter your city to see accurate data.'
+              : 'सभी त्यौहार तिथियाँ, तिथि समय और पारण समय आपके स्थान पर निर्भर हैं। सटीक डेटा के लिए अपना शहर दर्ज करें।'}
+          </p>
+          <div className="flex items-center gap-2 w-full">
             <input
               type="text"
               value={locationInput}
               onChange={e => setLocationInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-              placeholder={locale === 'en' ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
-              className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/50"
+              placeholder={locale === 'en' ? 'Enter your city…' : 'अपना शहर दर्ज करें…'}
+              className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/60"
+              autoFocus
             />
             <button
               onClick={handleLocationSearch}
               disabled={searchingLocation}
-              className="p-2 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all"
+              className="px-4 py-3 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all border border-gold-primary/30"
             >
-              {searchingLocation ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" /> : <Search className="w-4 h-4 text-gold-primary" />}
+              {searchingLocation ? <Loader2 className="w-5 h-5 text-gold-primary animate-spin" /> : <Search className="w-5 h-5 text-gold-primary" />}
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center gap-2 mb-6">
+          <button
+            onClick={() => setShowLocationSearch(v => !v)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gold-primary/20 bg-bg-secondary/50 hover:bg-gold-primary/10 transition-all text-sm"
+          >
+            <MapPin className="w-4 h-4 text-gold-primary" />
+            <span className="text-text-primary font-medium">{location.name}</span>
+            <span className="text-text-secondary text-xs">UTC{location.tz >= 0 ? '+' : ''}{location.tz}</span>
+            <ChevronDown className={`w-3 h-3 text-text-secondary transition-transform ${showLocationSearch ? 'rotate-180' : ''}`} />
+          </button>
+          {showLocationSearch && (
+            <div className="flex items-center gap-2 w-full max-w-sm">
+              <input
+                type="text"
+                value={locationInput}
+                onChange={e => setLocationInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
+                placeholder={locale === 'en' ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
+                className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/50"
+              />
+              <button
+                onClick={handleLocationSearch}
+                disabled={searchingLocation}
+                className="p-2 rounded-lg bg-gold-primary/20 hover:bg-gold-primary/30 transition-all"
+              >
+                {searchingLocation ? <Loader2 className="w-4 h-4 text-gold-primary animate-spin" /> : <Search className="w-4 h-4 text-gold-primary" />}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Month tabs */}
       <div className="flex flex-wrap justify-center gap-2 mb-6">
@@ -407,6 +454,8 @@ export default function CalendarPage() {
           paranaHariVasaraEnd={selectedFestival.paranaHariVasaraEnd}
           paranaDwadashiEnd={selectedFestival.paranaDwadashiEnd}
           paranaEarlyEnd={selectedFestival.paranaEarlyEnd}
+          paranaMadhyahnaStart={selectedFestival.paranaMadhyahnaStart}
+          paranaMadhyahnaEnd={selectedFestival.paranaMadhyahnaEnd}
           eclipseType={selectedFestival.eclipseType}
           eclipseMagnitude={selectedFestival.eclipseMagnitude}
           eclipseMaxTime={selectedFestival.eclipseMaxTime}

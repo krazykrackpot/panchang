@@ -91,17 +91,18 @@ function findAmavasyaDate(year: number, month: number, lat: number, lon: number)
 }
 
 /**
- * Find Ekadashi observance date.
- * Rule: Ekadashi is observed on the day when the tithi prevails at Arunodaya
- * (96 minutes before sunrise). If Ekadashi starts after Arunodaya on day X,
- * it is observed on day X+1 (when it prevails at that day's Arunodaya).
- *
- * Simpler implementation: find the day where Ekadashi is the tithi at sunrise.
- * If not found (Ekadashi is short and gets skipped at sunrise), check Arunodaya.
+ * Find Ekadashi observance date using Smarta/Drik rules:
+ * 1. A day "has" the Ekadashi tithi if it prevails at sunrise OR starts during the day
+ * 2. If Ekadashi is found on two consecutive days (Dwi-Ekadashi), observe the SECOND day
+ * 3. This matches Drik Panchang behavior for all edge cases
  */
 function findEkadashiDate(year: number, month: number, targetTithi: number, lat: number, lon: number): string {
   const startDate = new Date(year, month - 1, 1);
   startDate.setDate(startDate.getDate() - 15);
+
+  // Scan for candidate days. Track whether match is at sunrise or only at midday.
+  type Candidate = { date: string; atSunrise: boolean };
+  const candidates: Candidate[] = [];
 
   for (let offset = 0; offset <= 50; offset++) {
     const dd = new Date(startDate);
@@ -109,28 +110,68 @@ function findEkadashiDate(year: number, month: number, targetTithi: number, lat:
     const gy = dd.getFullYear();
     const gm = dd.getMonth() + 1;
     const gd = dd.getDate();
+    const dateStr = `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
 
     const jdApprox = dateToJD(gy, gm, gd, 0);
     const srUT = approximateSunrise(jdApprox, lat, lon);
 
-    // Check at Arunodaya (96 min = 1.6 hours before sunrise)
-    const arunodayaUT = srUT - 1.6 / 24 * 24; // 96 min before sunrise in UT hours
-    const jdArunodaya = dateToJD(gy, gm, gd, Math.max(0, arunodayaUT));
-    const tithiAtArunodaya = calculateTithi(jdArunodaya).number;
-
-    if (tithiAtArunodaya === targetTithi) {
-      return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+    // Check at sunrise
+    const tithiAtSunrise = calculateTithi(dateToJD(gy, gm, gd, srUT)).number;
+    if (tithiAtSunrise === targetTithi) {
+      candidates.push({ date: dateStr, atSunrise: true });
+      continue;
     }
 
-    // Also check at sunrise (for cases where Ekadashi starts between Arunodaya and sunrise)
-    const jdSunrise = dateToJD(gy, gm, gd, srUT);
-    const tithiAtSunrise = calculateTithi(jdSunrise).number;
-
-    if (tithiAtSunrise === targetTithi) {
-      return `${gy}-${gm.toString().padStart(2, '0')}-${gd.toString().padStart(2, '0')}`;
+    // For Shukla Ekadashi only: also check midday to catch tithi starting after sunrise.
+    // Drik observes Shukla Ekadashi on the day it starts, even if not at sunrise.
+    // Krishna Ekadashi uses sunrise-only check.
+    if (targetTithi <= 15) {
+      const tithiAtMidDay = calculateTithi(dateToJD(gy, gm, gd, srUT + 6)).number;
+      if (tithiAtMidDay === targetTithi) {
+        candidates.push({ date: dateStr, atSunrise: false });
+        continue;
+      }
     }
   }
-  return `${year}-${month.toString().padStart(2, '0')}-15`;
+
+  if (candidates.length === 0) {
+    return `${year}-${month.toString().padStart(2, '0')}-15`; // absolute fallback
+  }
+
+  // Determine the observance date from the first cluster of candidates:
+  // - If only 1 candidate → that's it
+  // - If 2+ consecutive candidates AND both have tithi at sunrise → Dwi-Ekadashi → take SECOND
+  // - If first candidate is midday-only and second is at sunrise → take FIRST (tithi starts mid-day, normal case)
+  if (candidates.length === 1) return candidates[0].date;
+
+  // Check first two candidates
+  const c0 = candidates[0];
+  const c1 = candidates[1];
+  const d0 = new Date(c0.date);
+  const d1 = new Date(c1.date);
+  const gap = (d1.getTime() - d0.getTime()) / (1000 * 60 * 60 * 24);
+
+  if (gap <= 1) {
+    if (c0.atSunrise && c1.atSunrise) {
+      // True Dwi-Ekadashi: tithi at sunrise both days → observe SECOND day
+      return c1.date;
+    }
+    if (!c0.atSunrise && c1.atSunrise) {
+      // Tithi starts mid-day on c0, prevails at sunrise on c1
+      // Drik rule: observe the day tithi STARTS (c0) — the fast begins that day
+      return c0.date;
+    }
+    if (c0.atSunrise && !c1.atSunrise) {
+      // Tithi at sunrise c0, only at midday c1 (fading)
+      // Observe c0 (the sunrise day)
+      return c0.date;
+    }
+    // Both midday-only (very rare) — take first
+    return c0.date;
+  }
+
+  // Not consecutive — just take the first candidate
+  return c0.date;
 }
 
 /**

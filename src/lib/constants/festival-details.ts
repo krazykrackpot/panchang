@@ -350,7 +350,7 @@ export const EKADASHI_NAMES: Record<string, { shukla: EkadashiDetail; krishna: E
     },
   },
   shravana: {
-    shukla: { name: { en: 'Putrada Ekadashi', hi: 'पुत्रदा एकादशी', sa: 'पुत्रदैकादशी' }, story: { en: 'King Mahijita had no heir. Sage Lomasa advised observing this Ekadashi for a son. The king and queen fasted, and were blessed with a prince. Putrada = giver of sons.', hi: 'राजा महिजित के कोई सन्तान नहीं थी। ऋषि लोमश ने इस एकादशी का व्रत बताया। राजा-रानी ने व्रत रखा और पुत्र प्राप्त हुआ।', sa: 'महिजितराजा सन्तानहीनः आसीत्। लोमशऋषिः एताम् एकादशीम् अवदत्।' }, benefit: { en: 'Blesses with progeny, especially a son. Fulfils parental wishes.', hi: 'सन्तान, विशेषतः पुत्र का आशीर्वाद। माता-पिता की इच्छा पूर्ण करती है।', sa: 'सन्तानवरदानम्, पुत्रवरदानम्।' } },
+    shukla: { name: { en: 'Shravana Putrada Ekadashi', hi: 'श्रावण पुत्रदा एकादशी', sa: 'श्रावणपुत्रदैकादशी' }, story: { en: 'King Mahijita had no heir. Sage Lomasa advised observing this Ekadashi for a son. The king and queen fasted, and were blessed with a prince. Putrada = giver of sons. Also known as Pavitropana Ekadashi.', hi: 'राजा महिजित के कोई सन्तान नहीं थी। ऋषि लोमश ने इस एकादशी का व्रत बताया। राजा-रानी ने व्रत रखा और पुत्र प्राप्त हुआ। पवित्रोपना एकादशी भी कहलाती है।', sa: 'महिजितराजा सन्तानहीनः आसीत्। लोमशऋषिः एताम् एकादशीम् अवदत्।' }, benefit: { en: 'Blesses with progeny, especially a son. Fulfils parental wishes.', hi: 'सन्तान, विशेषतः पुत्र का आशीर्वाद। माता-पिता की इच्छा पूर्ण करती है।', sa: 'सन्तानवरदानम्, पुत्रवरदानम्।' } },
     krishna: { name: { en: 'Kamika Ekadashi', hi: 'कामिका एकादशी', sa: 'कामिकैकादशी' }, story: { en: 'Lord Brahma narrated this Ekadashi\'s glory to Narada. Offering Tulsi leaves to Vishnu on this day equals donating ten million cows. Even the shadow of a Tulsi plant removes sins.', hi: 'ब्रह्मा ने नारद को इस एकादशी का महत्व बताया। इस दिन विष्णु को तुलसी पत्र अर्पण करना एक करोड़ गायों के दान के बराबर है।', sa: 'ब्रह्मा नारदाय एतस्याः एकादश्याः माहात्म्यम् अकथयत्।' }, benefit: { en: 'Offering Tulsi on this day multiplies merit infinitely. Removes fear of death.', hi: 'इस दिन तुलसी अर्पण करने से पुण्य अनन्तगुना बढ़ता है। मृत्यु का भय दूर होता है।', sa: 'तुलस्यर्पणेन पुण्यम् अनन्तगुणं वर्धते।' } },
   },
   bhadrapada: {
@@ -468,11 +468,18 @@ export function getHinduMonth(signNum: number): string {
 /** Ordered list of Hindu months for cycling */
 const MONTH_ORDER = ['chaitra', 'vaishakha', 'jyeshtha', 'ashadha', 'shravana', 'bhadrapada', 'ashwina', 'kartika', 'margashirsha', 'pausha', 'magha', 'phalguna'];
 
-/** Get the NEXT Hindu month name (for Purnimant Krishna paksha conversion) */
+/** Get the NEXT Hindu month name */
 export function getNextHinduMonth(monthName: string): string {
   const idx = MONTH_ORDER.indexOf(monthName);
   if (idx === -1) return monthName;
   return MONTH_ORDER[(idx + 1) % 12];
+}
+
+/** Get the PREVIOUS Hindu month name */
+export function getPreviousHinduMonth(monthName: string): string {
+  const idx = MONTH_ORDER.indexOf(monthName);
+  if (idx === -1) return monthName;
+  return MONTH_ORDER[(idx + 11) % 12]; // +11 = -1 mod 12
 }
 
 /** Get the specific Ekadashi name for a given Hindu month and paksha */

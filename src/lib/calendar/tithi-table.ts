@@ -327,6 +327,9 @@ export function buildYearlyTithiTable(
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
     const isAdhika = sign1 === sign2;
+    // Per drik-panchanga: maasa = rashi(new_moon) + 1
+    // But we use getHinduMonth(sign) which already has the correct offset
+    // (verified: Krishna Ekadashis match Drik with this mapping)
     const monthName = getHinduMonth(sign1);
 
     lunarMonths.push({

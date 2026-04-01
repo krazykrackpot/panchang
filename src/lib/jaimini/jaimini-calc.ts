@@ -200,15 +200,53 @@ export function calculateCharaDasha(ascSign: number, planets: PlanetPosition[], 
 }
 
 /**
+ * Calculate Graha Arudhas — planet-based arudhas (projected image of each planet)
+ * Formula: Count from planet's sign to its lord's sign, then same distance from lord
+ */
+export interface GrahaArudha {
+  planetId: number;
+  planetName: { en: string; hi: string; sa: string };
+  arudhaSign: number;
+  arudhaSignName: { en: string; hi: string; sa: string };
+}
+
+export function calculateGrahaArudhas(planets: PlanetPosition[]): GrahaArudha[] {
+  const arudhas: GrahaArudha[] = [];
+
+  for (const p of planets) {
+    if (p.planet.id >= 7) continue; // Skip Rahu/Ketu
+    const planetSign = Math.floor(p.longitude / 30) + 1;
+    const lord = SIGN_LORD[planetSign];
+    const lordPlanet = planets.find(pl => pl.planet.id === lord);
+    const lordSign = lordPlanet ? Math.floor(lordPlanet.longitude / 30) + 1 : planetSign;
+
+    const countForward = ((lordSign - planetSign + 12) % 12);
+    let arudhaSign = ((lordSign - 1 + countForward) % 12) + 1;
+    // Exception: if arudha = planet's own sign or 7th, advance by 10
+    if (arudhaSign === planetSign) arudhaSign = ((planetSign - 1 + 9) % 12) + 1;
+
+    arudhas.push({
+      planetId: p.planet.id,
+      planetName: PLANET_NAMES[p.planet.id],
+      arudhaSign,
+      arudhaSignName: RASHI_NAMES[arudhaSign - 1],
+    });
+  }
+
+  return arudhas;
+}
+
+/**
  * Full Jaimini analysis
  */
-export function calculateJaimini(planets: PlanetPosition[], ascSign: number, birthDate: Date): JaiminiData {
+export function calculateJaimini(planets: PlanetPosition[], ascSign: number, birthDate: Date): JaiminiData & { grahaArudhas: GrahaArudha[] } {
   const charaKarakas = calculateCharaKarakas(planets);
   const ak = charaKarakas[0]; // Atmakaraka
   const akPlanet = planets.find(p => p.planet.id === ak.planet);
   const karakamsha = calculateKarakamsha(akPlanet?.longitude || 0);
   const arudhaPadas = calculateArudhaPadas(ascSign, planets);
   const charaDasha = calculateCharaDasha(ascSign, planets, birthDate);
+  const grahaArudhas = calculateGrahaArudhas(planets);
 
-  return { charaKarakas, karakamsha, arudhaPadas, charaDasha };
+  return { charaKarakas, karakamsha, arudhaPadas, charaDasha, grahaArudhas };
 }

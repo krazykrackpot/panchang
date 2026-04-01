@@ -8,7 +8,7 @@
 import { dateToJD, approximateSunrise, approximateSunset, formatTime } from '@/lib/ephem/astronomical';
 import { buildYearlyTithiTable, lookupAllTithiByNumber, getNextTithiEntry, type YearlyTithiTable, type TithiEntry } from './tithi-table';
 import { MAJOR_FESTIVALS, EKADASHI_DEFS, MONTHLY_VRATS, defToTithiNumber, type FestivalDef } from './festival-defs';
-import { getEkadashiName, getNextHinduMonth, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
+import { getEkadashiName, getNextHinduMonth, getPreviousHinduMonth, ADHIKA_MASA_EKADASHI } from '@/lib/constants/festival-details';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { generateEclipseCalendar } from './eclipses';
 import type { Trilingual } from '@/types/panchang';
@@ -60,8 +60,12 @@ function resolveEkadashiName(entry: TithiEntry): { name: Trilingual; detail?: Ek
     return { name: detail.name, detail };
   }
 
-  // For Shukla: use the Amanta month name directly
-  // For Krishna: use the Purnimant adjusted name (next month)
+  // EKADASHI_NAMES uses Purnimant naming (same as Drik).
+  // Our tithi table uses Amanta month boundaries.
+  // Amanta→Purnimant conversion:
+  //   Shukla: Amanta month name = Purnimant month name (no change)
+  //   Krishna: Amanta month N → Purnimant month N+1
+  //     (because Amanta Pausha Krishna = Purnimant Magha Krishna)
   const monthForLookup = paksha === 'krishna'
     ? getNextHinduMonth(lunarMonth.name)
     : lunarMonth.name;
@@ -213,10 +217,18 @@ export function generateFestivalCalendarV2(
   // ── 1. Major Festivals from declarative definitions ───
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
+    // Festival defs use Purnimant/Drik month names.
+    // Convert to Amanta for table lookup:
+    //   Shukla defs: Amanta month = Purnimant month (same)
+    //   Krishna defs: Amanta month = previous of Purnimant month
+    //     (Purnimant Bhadrapada Krishna = Amanta Shravana Krishna)
+    const amantaMasa = def.paksha === 'krishna'
+      ? getPreviousHinduMonth(def.masa!)
+      : def.masa;
     const matches = table.entries.filter(e =>
       e.number === tithiNum &&
-      e.lunarMonth.name === def.masa &&
-      !e.lunarMonth.isAdhika // skip Adhika months for major festivals
+      e.lunarMonth.name === amantaMasa &&
+      !e.lunarMonth.isAdhika
     );
 
     for (const match of matches) {

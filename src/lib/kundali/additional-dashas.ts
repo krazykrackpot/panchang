@@ -211,3 +211,142 @@ export function calculateSudarsanaDasha(
   }
   return entries;
 }
+
+// ─── Additional Graha (Nakshatra-based) Dasha Systems ────────────────────────
+
+const PLANET_NAME_MAP: Record<string, { en: string; hi: string; sa: string }> = {
+  'Sun': { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },
+  'Moon': { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
+  'Mars': { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' },
+  'Mercury': { en: 'Mercury', hi: 'बुध', sa: 'बुधः' },
+  'Jupiter': { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' },
+  'Venus': { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' },
+  'Saturn': { en: 'Saturn', hi: 'शनि', sa: 'शनिः' },
+  'Rahu': { en: 'Rahu', hi: 'राहु', sa: 'राहुः' },
+  'Ketu': { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
+};
+
+export interface GrahaDashaEntry {
+  planet: string;
+  planetName: { en: string; hi: string; sa: string };
+  years: number;
+  startDate: string;
+  endDate: string;
+  level: 'maha';
+}
+
+function calcGrahaDasha(
+  moonSidLong: number,
+  birthDate: Date,
+  dashaOrder: { planet: string; years: number }[],
+  totalYears: number,
+): GrahaDashaEntry[] {
+  const nakshatraIndex = Math.floor(moonSidLong / (360 / 27));
+  const nakshatraSpan = 360 / 27;
+  const posInNakshatra = (moonSidLong % nakshatraSpan) / nakshatraSpan;
+
+  // Map nakshatra to starting dasha lord
+  const startIdx = nakshatraIndex % dashaOrder.length;
+  const totalYearsFirst = dashaOrder[startIdx].years;
+  const remainingYears = totalYearsFirst * (1 - posInNakshatra);
+
+  const dashas: GrahaDashaEntry[] = [];
+  let cur = new Date(birthDate);
+
+  for (let i = 0; i < dashaOrder.length; i++) {
+    const idx = (startIdx + i) % dashaOrder.length;
+    const d = dashaOrder[idx];
+    const years = i === 0 ? remainingYears : d.years;
+    const end = new Date(cur);
+    end.setFullYear(end.getFullYear() + Math.floor(years));
+    end.setMonth(end.getMonth() + Math.floor((years % 1) * 12));
+
+    dashas.push({
+      planet: d.planet,
+      planetName: PLANET_NAME_MAP[d.planet] || { en: d.planet, hi: d.planet, sa: d.planet },
+      years: Math.round(years * 10) / 10,
+      startDate: cur.toISOString().split('T')[0],
+      endDate: end.toISOString().split('T')[0],
+      level: 'maha',
+    });
+    cur = new Date(end);
+  }
+  return dashas;
+}
+
+/**
+ * Shodasottari Dasha — 116-year cycle
+ * Used when Moon is in Pushya nakshatra at birth
+ */
+export function calculateShodasottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 11 }, { planet: 'Mars', years: 12 },
+    { planet: 'Jupiter', years: 13 }, { planet: 'Saturn', years: 14 },
+    { planet: 'Ketu', years: 15 }, { planet: 'Moon', years: 16 },
+    { planet: 'Mercury', years: 17 }, { planet: 'Venus', years: 18 },
+  ], 116);
+}
+
+/**
+ * Dwadasottari Dasha — 112-year cycle
+ * Used when Lagna is in Taurus
+ */
+export function calculateDwadasottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 7 }, { planet: 'Jupiter', years: 9 },
+    { planet: 'Ketu', years: 11 }, { planet: 'Mercury', years: 13 },
+    { planet: 'Rahu', years: 15 }, { planet: 'Mars', years: 17 },
+    { planet: 'Saturn', years: 19 }, { planet: 'Moon', years: 21 },
+  ], 112);
+}
+
+/**
+ * Panchottari Dasha — 105-year cycle
+ * Used when Lagna is in Cancer
+ */
+export function calculatePanchottariDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 12 }, { planet: 'Mercury', years: 13 },
+    { planet: 'Saturn', years: 14 }, { planet: 'Mars', years: 15 },
+    { planet: 'Venus', years: 16 }, { planet: 'Moon', years: 17 },
+    { planet: 'Rahu', years: 18 },
+  ], 105);
+}
+
+/**
+ * Satabdika Dasha — 100-year cycle
+ * Used when Lagna is in Sagittarius varga
+ */
+export function calculateSatabdikaDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 5 }, { planet: 'Moon', years: 5 },
+    { planet: 'Venus', years: 10 }, { planet: 'Mercury', years: 10 },
+    { planet: 'Jupiter', years: 20 }, { planet: 'Mars', years: 20 },
+    { planet: 'Saturn', years: 30 },
+  ], 100);
+}
+
+/**
+ * Chaturaaseethi Sama Dasha — 84-year cycle (equal 12-year periods)
+ * Each planet gets 12 years
+ */
+export function calculateChaturaaseethiDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Sun', years: 12 }, { planet: 'Moon', years: 12 },
+    { planet: 'Mars', years: 12 }, { planet: 'Mercury', years: 12 },
+    { planet: 'Jupiter', years: 12 }, { planet: 'Venus', years: 12 },
+    { planet: 'Saturn', years: 12 },
+  ], 84);
+}
+
+/**
+ * Shashtihayani Dasha — 60-year cycle
+ * Based on Indian lifespan in Kali Yuga
+ */
+export function calculateShashtihayaniDasha(moonSidLong: number, birthDate: Date): GrahaDashaEntry[] {
+  return calcGrahaDasha(moonSidLong, birthDate, [
+    { planet: 'Jupiter', years: 10 }, { planet: 'Sun', years: 10 },
+    { planet: 'Mars', years: 10 }, { planet: 'Moon', years: 10 },
+    { planet: 'Mercury', years: 10 }, { planet: 'Saturn', years: 10 },
+  ], 60);
+}

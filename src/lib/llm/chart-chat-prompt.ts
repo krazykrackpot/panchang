@@ -92,6 +92,39 @@ export function buildChartChatSystemPrompt(kundali: KundaliData, locale: string)
   }
   lines.push('');
 
+  // Avasthas (how planets express)
+  if (kundali.avasthas && kundali.avasthas.length > 0) {
+    lines.push('## Planetary Avasthas (States)');
+    for (const av of kundali.avasthas) {
+      const pName = kundali.planets.find(p => p.planet.id === av.planetId)?.planet.name.en || `P${av.planetId}`;
+      lines.push(`- ${pName}: ${av.baladi.name.en}, ${av.jagradadi.name.en}, ${av.deeptadi.name.en}`);
+    }
+    lines.push('');
+  }
+
+  // Sphutas (sensitive points)
+  if (kundali.sphutas) {
+    lines.push('## Sensitive Points (Sphutas)');
+    lines.push(`- Yogi Point: ${kundali.sphutas.yogiPoint.degree.toFixed(1)}° in sign ${kundali.sphutas.yogiPoint.sign} — MOST BENEFIC degree`);
+    lines.push(`- Yogi Planet: Planet ${kundali.sphutas.yogiPoint.yogiPlanet} (brings maximum good fortune)`);
+    lines.push(`- Avayogi Point: ${kundali.sphutas.avayogiPoint.degree.toFixed(1)}° — most challenging degree`);
+    lines.push(`- Prana Sphuta (vitality): ${kundali.sphutas.pranaSphuta.degree.toFixed(1)}°`);
+    lines.push(`- Mrityu Sphuta (longevity): ${kundali.sphutas.mrityuSphuta.degree.toFixed(1)}°`);
+    lines.push('');
+  }
+
+  // Argala (house support/obstruction)
+  if (kundali.argala) {
+    const supported = kundali.argala.filter(a => a.netEffect === 'supported').map(a => a.house);
+    const obstructed = kundali.argala.filter(a => a.netEffect === 'obstructed').map(a => a.house);
+    if (supported.length > 0 || obstructed.length > 0) {
+      lines.push('## Argala (Planetary Intervention)');
+      if (supported.length > 0) lines.push(`- Supported houses: ${supported.join(', ')} (benefic intervention active)`);
+      if (obstructed.length > 0) lines.push(`- Obstructed houses: ${obstructed.join(', ')} (malefic intervention active)`);
+      lines.push('');
+    }
+  }
+
   // Jaimini
   if (kundali.jaimini) {
     lines.push('## Jaimini Karakas');

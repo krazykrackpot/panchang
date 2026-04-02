@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: resolve(__dirname),
   },
+  // Include sweph native binary in serverless function bundles
+  outputFileTracingIncludes: {
+    '/api/**': ['./node_modules/sweph/**'],
+    '/\\[locale\\]/**': ['./node_modules/sweph/**'],
+  },
+  serverExternalPackages: ['sweph'],
 };
 
 export default withNextIntl(nextConfig);

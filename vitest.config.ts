@@ -11,7 +11,14 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx', 'tests/**/*.test.ts'],
-    exclude: ['node_modules', '.next', 'e2e'],
+    exclude: [
+      'node_modules', '.next', 'e2e',
+      // Legacy test files using custom runner (not Vitest format)
+      'src/lib/ephem/__tests__/panchang-calc.test.ts',
+      'src/lib/ephem/__tests__/astronomical.test.ts',
+      'src/lib/llm/__tests__/horoscope-prompt.test.ts',
+      'src/lib/llm/__tests__/chart-chat-prompt.test.ts',
+    ],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'text-summary', 'html', 'json-summary'],

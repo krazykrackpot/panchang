@@ -28,34 +28,50 @@ export function getSunTimes(
   latitude: number, longitude: number,
   timezoneOffset: number
 ): SunTimes {
-  const jd = dateToJD(year, month, day, 12, 0, 0); // Noon UTC
-  const T = julianCenturies(jd);
-  const solar = getSolarPosition(jd);
-  const eot = getEquationOfTime(jd);
-
-  const decl = degToRad(solar.declination);
   const lat = degToRad(latitude);
 
-  // Hour angle for sunrise/sunset (center of sun disk at horizon, with refraction)
-  const h0 = degToRad(-0.8333); // Standard altitude for sunrise/sunset
-  const cosH0 = (Math.sin(h0) - Math.sin(lat) * Math.sin(decl)) / (Math.cos(lat) * Math.cos(decl));
+  // Helper: compute hour angle for a given solar altitude threshold at a specific JD
+  function computeHourAngle(jd: number, altitudeDeg: number): number {
+    const solar = getSolarPosition(jd);
+    const decl = degToRad(solar.declination);
+    const h = degToRad(altitudeDeg);
+    const cosHA = (Math.sin(h) - Math.sin(lat) * Math.sin(decl)) / (Math.cos(lat) * Math.cos(decl));
+    return radToDeg(Math.acos(Math.max(-1, Math.min(1, cosHA))));
+  }
 
-  // Hour angle for civil twilight
-  const h1 = degToRad(-6);
-  const cosH1 = (Math.sin(h1) - Math.sin(lat) * Math.sin(decl)) / (Math.cos(lat) * Math.cos(decl));
+  // First pass: use noon for initial estimate
+  // EoT sign convention: getEquationOfTime returns (apparent - mean) solar time in minutes
+  // Solar noon formula: noon = 720 - 4*longitude + EoT + timezone*60
+  // (when EoT is negative, apparent sun is behind mean sun → noon comes later)
+  const jdNoon = dateToJD(year, month, day, 12, 0, 0); // Noon UTC
+  const eotNoon = getEquationOfTime(jdNoon);
+  const solarNoon = 720 - 4 * longitude - eotNoon + timezoneOffset * 60;
 
-  // Clamp for polar regions
-  const clampedH0 = Math.max(-1, Math.min(1, cosH0));
-  const clampedH1 = Math.max(-1, Math.min(1, cosH1));
+  const H0_initial = computeHourAngle(jdNoon, -0.8333);
+  let sunriseMinutes = solarNoon - 4 * H0_initial;
+  let sunsetMinutes = solarNoon + 4 * H0_initial;
 
-  const H0 = radToDeg(Math.acos(clampedH0)); // degrees
-  const H1 = radToDeg(Math.acos(clampedH1));
+  // Second pass: recalculate using declination at the estimated sunrise/sunset times
+  const sunriseUTCHours = (sunriseMinutes - timezoneOffset * 60) / 60;
+  const sunsetUTCHours = (sunsetMinutes - timezoneOffset * 60) / 60;
 
-  // Solar noon in minutes from midnight (local time)
-  const solarNoon = 720 - 4 * longitude - eot + timezoneOffset * 60;
+  const jdSunrise = dateToJD(year, month, day, sunriseUTCHours, 0, 0);
+  const jdSunset = dateToJD(year, month, day, sunsetUTCHours, 0, 0);
 
-  const sunriseMinutes = solarNoon - 4 * H0;
-  const sunsetMinutes = solarNoon + 4 * H0;
+  const eotSunrise = getEquationOfTime(jdSunrise);
+  const eotSunset = getEquationOfTime(jdSunset);
+
+  const H0_rise = computeHourAngle(jdSunrise, -0.8333);
+  const H0_set = computeHourAngle(jdSunset, -0.8333);
+
+  const solarNoonRise = 720 - 4 * longitude - eotSunrise + timezoneOffset * 60;
+  const solarNoonSet = 720 - 4 * longitude - eotSunset + timezoneOffset * 60;
+
+  sunriseMinutes = solarNoonRise - 4 * H0_rise;
+  sunsetMinutes = solarNoonSet + 4 * H0_set;
+
+  // Civil twilight (single-pass is fine — less precision needed)
+  const H1 = computeHourAngle(jdNoon, -6);
   const dawnMinutes = solarNoon - 4 * H1;
   const duskMinutes = solarNoon + 4 * H1;
 

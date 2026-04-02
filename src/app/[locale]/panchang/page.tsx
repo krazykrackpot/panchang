@@ -23,6 +23,11 @@ import { computeBalam } from '@/lib/panchang/balam';
 import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
+import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
+import { getRashiNumber } from '@/lib/ephem/astronomical';
+import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
 
 // ──────────────────────────────────────────────────────────────
 // Check if a transition endTime has already passed
@@ -107,6 +112,10 @@ export default function PanchangPage() {
   const [birthRashi, setBirthRashi] = useState(0);
   const [balamResult, setBalamResult] = useState<BalamResult | null>(null);
   const [birthAutoDetected, setBirthAutoDetected] = useState(false);
+
+  // Personal overlay state
+  const authUser = useAuthStore(s => s.user);
+  const [personalDay, setPersonalDay] = useState<PersonalizedDay | null>(null);
 
   // Compute Hindu months for current year (expensive, memoized)
   const computeHinduMonthsMemo = useMemo(() => computeHinduMonths(new Date().getFullYear()), []);
@@ -252,6 +261,34 @@ export default function PanchangPage() {
     const interval = setInterval(update, 60000);
     return () => clearInterval(interval);
   }, [panchang?.muhurtas]);
+
+  // Personal overlay — fetch snapshot and compute personalized day
+  useEffect(() => {
+    if (!authUser || !panchang) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.from('kundali_snapshots')
+      .select('moon_sign, moon_nakshatra, moon_nakshatra_pada, ascendant_sign, dasha_timeline, sade_sati')
+      .eq('user_id', authUser.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!data) return;
+        const todayNak = panchang.nakshatra?.id || 1;
+        const moonPlanet = panchang.planets?.find((p: { id: number }) => p.id === 1);
+        const todayMoonSign = moonPlanet?.rashi || 1;
+        const pd = computePersonalizedDay({
+          moonSign: data.moon_sign,
+          moonNakshatra: data.moon_nakshatra,
+          moonNakshatraPada: data.moon_nakshatra_pada,
+          sunSign: 1,
+          ascendantSign: data.ascendant_sign,
+          planetPositions: [],
+          dashaTimeline: data.dasha_timeline || [],
+          sadeSati: data.sade_sati || {},
+        }, todayNak, todayMoonSign);
+        setPersonalDay(pd);
+      });
+  }, [authUser, panchang]);
 
   // Compute balam when birth data changes — also persist manual selections
   useEffect(() => {
@@ -2023,6 +2060,45 @@ export default function PanchangPage() {
           <GoldDivider />
         </>
       ) : null}
+
+      {/* ═══ PERSONAL OVERLAY ═══ */}
+      {personalDay && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-6 mb-8 glass-card rounded-xl p-4 border border-gold-primary/20"
+        >
+          <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
+            {locale === 'en' ? 'Your Day' : locale === 'hi' ? 'आपका दिन' : 'भवतः दिवसः'}
+          </div>
+          <div className="flex items-center gap-4">
+            <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold ${
+              personalDay.dayQuality === 'excellent' ? 'bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30' :
+              personalDay.dayQuality === 'good' ? 'bg-gold-primary/20 text-gold-light ring-1 ring-gold-primary/30' :
+              personalDay.dayQuality === 'neutral' ? 'bg-slate-400/15 text-text-secondary ring-1 ring-slate-400/20' :
+              personalDay.dayQuality === 'caution' ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' :
+              'bg-red-500/20 text-red-400 ring-1 ring-red-500/30'
+            }`}>
+              {personalDay.dayQuality === 'excellent' ? (locale === 'en' ? 'A+' : '++') :
+               personalDay.dayQuality === 'good' ? (locale === 'en' ? 'A' : '+') :
+               personalDay.dayQuality === 'neutral' ? (locale === 'en' ? 'B' : '~') :
+               personalDay.dayQuality === 'caution' ? (locale === 'en' ? 'C' : '!') :
+               (locale === 'en' ? 'D' : '!!')}
+            </span>
+            <div className="flex-1 min-w-0">
+              <p className="text-gold-light text-sm font-bold">
+                {locale === 'en' ? 'Tara' : 'तारा'}: {personalDay.taraBala.taraName[locale] || personalDay.taraBala.taraName.en}
+                <span className={`ml-2 text-xs ${personalDay.taraBala.isFavorable ? 'text-emerald-400' : 'text-red-400'}`}>
+                  {personalDay.taraBala.isFavorable
+                    ? (locale === 'en' ? 'Favorable' : 'शुभ')
+                    : (locale === 'en' ? 'Caution' : 'सावधान')}
+                </span>
+              </p>
+              <p className="text-text-secondary text-xs truncate">{personalDay.taraBala.description[locale] || personalDay.taraBala.description.en}</p>
+            </div>
+          </div>
+        </motion.div>
+      )}
 
       {/* ═══ DEEP DIVE LINKS — BIG ICONS ═══ */}
       <div className="my-14">

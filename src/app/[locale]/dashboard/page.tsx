@@ -6,18 +6,23 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, Star, Moon, TrendingUp, AlertTriangle,
-  ArrowRight, Loader2, Calendar, Settings, Eye,
+  ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
+import { computeGochar } from '@/lib/personalization/gochar';
+import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
+import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
+import type { GocharResult } from '@/lib/personalization/gochar';
+import type { PersonalFestival } from '@/lib/personalization/festival-relevance';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import type { Locale } from '@/types/panchang';
-import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
+import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData } from '@/types/kundali';
 
 // ---------------------------------------------------------------------------
@@ -53,8 +58,23 @@ const LABELS = {
     fullChart: 'Full Birth Chart',
     sadeSati: 'Sade Sati Check',
     settings: 'Edit Profile',
+    transitAnalysis: 'Transit Analysis',
+    yourRemedies: 'Your Remedies',
     from: 'From',
     to: 'To',
+    gocharTitle: 'Gochar (Planetary Transits)',
+    gocharSubtitle: 'Current planetary positions relative to your birth chart',
+    planet: 'Planet',
+    transitSignCol: 'Transit Sign',
+    yourHouse: 'Your House',
+    effectCol: 'Effect',
+    retrograde: 'R',
+    enhancedAlerts: 'Transit Alerts',
+    recommendedFestivals: 'Recommended Festivals',
+    recommendedFestivalsSubtitle: 'Festivals most relevant to your chart',
+    relevance: 'Relevance',
+    positive: 'Positive',
+    mixed: 'Mixed',
   },
   hi: {
     title: 'मेरा डैशबोर्ड',
@@ -85,8 +105,23 @@ const LABELS = {
     fullChart: 'पूर्ण जन्म कुण्डली',
     sadeSati: 'साढ़े साती जाँच',
     settings: 'प्रोफ़ाइल संपादित करें',
+    transitAnalysis: 'गोचर विश्लेषण',
+    yourRemedies: 'आपके उपाय',
     from: 'से',
     to: 'तक',
+    gocharTitle: 'गोचर (ग्रह गोचर)',
+    gocharSubtitle: 'आपकी जन्म कुण्डली के सापेक्ष वर्तमान ग्रह स्थितियाँ',
+    planet: 'ग्रह',
+    transitSignCol: 'गोचर राशि',
+    yourHouse: 'आपका भाव',
+    effectCol: 'प्रभाव',
+    retrograde: 'व',
+    enhancedAlerts: 'गोचर सूचनाएँ',
+    recommendedFestivals: 'अनुशंसित त्योहार',
+    recommendedFestivalsSubtitle: 'आपकी कुण्डली के अनुसार सर्वाधिक प्रासंगिक त्योहार',
+    relevance: 'प्रासंगिकता',
+    positive: 'शुभ',
+    mixed: 'मिश्र',
   },
   sa: {
     title: 'मम पटलम्',
@@ -117,8 +152,23 @@ const LABELS = {
     fullChart: 'पूर्णा जन्मकुण्डली',
     sadeSati: 'साढ़ेसाती परीक्षा',
     settings: 'प्रोफ़ाइलसम्पादनम्',
+    transitAnalysis: 'गोचरविश्लेषणम्',
+    yourRemedies: 'भवतः उपायाः',
     from: 'आरभ्य',
     to: 'पर्यन्तम्',
+    gocharTitle: 'गोचरः (ग्रहगोचरः)',
+    gocharSubtitle: 'भवतः जन्मकुण्डल्याः सापेक्षं वर्तमानग्रहस्थितयः',
+    planet: 'ग्रहः',
+    transitSignCol: 'गोचरराशिः',
+    yourHouse: 'भवतः भावः',
+    effectCol: 'प्रभावः',
+    retrograde: 'व',
+    enhancedAlerts: 'गोचरसूचनाः',
+    recommendedFestivals: 'अनुशंसिताः उत्सवाः',
+    recommendedFestivalsSubtitle: 'भवतः कुण्डल्यनुसारं सर्वाधिकप्रासंगिकाः उत्सवाः',
+    relevance: 'प्रासंगिकता',
+    positive: 'शुभम्',
+    mixed: 'मिश्रम्',
   },
 };
 
@@ -153,6 +203,9 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [personalizedDay, setPersonalizedDay] = useState<PersonalizedDay | null>(null);
   const [chartData, setChartData] = useState<ChartData | null>(null);
+  const [gocharResults, setGocharResults] = useState<GocharResult[]>([]);
+  const [enhancedAlerts, setEnhancedAlerts] = useState<TransitAlert[]>([]);
+  const [recommendedFestivals, setRecommendedFestivals] = useState<PersonalFestival[]>([]);
   const [displayName, setDisplayName] = useState('');
   const [hasBirthData, setHasBirthData] = useState(false);
 
@@ -218,6 +271,39 @@ export default function DashboardPage() {
       if (fullSnap?.chart_data) {
         setChartData(fullSnap.chart_data as ChartData);
       }
+
+      // Compute Gochar (transit overlay)
+      try {
+        const gochar = computeGochar(userSnapshot.ascendantSign, userSnapshot.moonSign);
+        setGocharResults(gochar);
+      } catch { /* gochar computation is non-critical */ }
+
+      // Compute enhanced transit alerts
+      try {
+        const alerts = computeTransitAlerts(userSnapshot);
+        setEnhancedAlerts(alerts);
+      } catch { /* transit alerts are non-critical */ }
+
+      // Score festival relevance
+      try {
+        const festivalSlugs = [
+          { slug: 'maha-shivaratri', category: 'shiva' },
+          { slug: 'hanuman-jayanti', category: 'mars' },
+          { slug: 'guru-purnima', category: 'jupiter' },
+          { slug: 'vasant-panchami', category: 'venus' },
+          { slug: 'makar-sankranti', category: 'sun' },
+          { slug: 'karva-chauth', category: 'moon' },
+          { slug: 'ganesh-chaturthi', category: 'ketu' },
+          { slug: 'pradosham', category: 'shiva' },
+          { slug: 'chhath-puja', category: 'sun' },
+          { slug: 'nag-panchami', category: 'rahu' },
+        ];
+        const scored = festivalSlugs
+          .map(f => scoreFestivalRelevance(f.slug, f.category, userSnapshot))
+          .sort((a, b) => b.relevanceScore - a.relevanceScore)
+          .slice(0, 5);
+        setRecommendedFestivals(scored);
+      } catch { /* festival scoring is non-critical */ }
     } catch (err) {
       console.error('Dashboard load error:', err);
     } finally {
@@ -491,8 +577,52 @@ export default function DashboardPage() {
           </motion.div>
         )}
 
-        {/* Transit Alerts */}
-        {pd.transitAlerts.length > 0 && (
+        {/* Gochar (Transit Overlay) */}
+        {gocharResults.length > 0 && (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.33 }}
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Compass className="w-5 h-5 text-gold-primary" />
+              <h3 className="text-lg font-semibold text-text-primary">{L.gocharTitle}</h3>
+            </div>
+            <p className="text-text-secondary text-xs mb-4">{L.gocharSubtitle}</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-gold-primary/15">
+                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.planet}</th>
+                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.transitSignCol}</th>
+                    <th className="text-center text-gold-dark text-xs uppercase tracking-wider py-2 pr-3">{L.yourHouse}</th>
+                    <th className="text-left text-gold-dark text-xs uppercase tracking-wider py-2">{L.effectCol}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {gocharResults.map((g) => (
+                    <tr key={g.planetId} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                      <td className="py-2.5 pr-3">
+                        <span className="text-text-primary font-medium">{g.planetName[locale] || g.planetName.en}</span>
+                        {g.isRetrograde && <span className="ml-1 text-red-400 text-xs font-bold">({L.retrograde})</span>}
+                      </td>
+                      <td className="py-2.5 pr-3 text-gold-light">{g.transitSignName[locale] || g.transitSignName.en}</td>
+                      <td className="py-2.5 pr-3 text-center">
+                        <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold ${g.isPositive ? 'bg-emerald-500/15 text-emerald-400' : 'bg-amber-500/15 text-amber-400'}`}>
+                          {g.natalHouse}
+                        </span>
+                      </td>
+                      <td className="py-2.5 text-text-secondary text-xs">{g.effect[locale] || g.effect.en}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Enhanced Transit Alerts */}
+        {(enhancedAlerts.length > 0 || pd.transitAlerts.length > 0) && (
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.35 }}
@@ -500,20 +630,67 @@ export default function DashboardPage() {
           >
             <div className="flex items-center gap-2 mb-4">
               <AlertTriangle className="w-5 h-5 text-amber-400" />
-              <h3 className="text-lg font-semibold text-text-primary">{L.transitAlerts}</h3>
+              <h3 className="text-lg font-semibold text-text-primary">{L.enhancedAlerts}</h3>
             </div>
             <div className="space-y-3">
-              {pd.transitAlerts.map((alert, i) => (
+              {/* Show enhanced alerts first, then fall back to basic ones */}
+              {(enhancedAlerts.length > 0 ? enhancedAlerts : pd.transitAlerts).map((alert, i) => (
                 <div
                   key={i}
                   className={`p-3 rounded-xl border ${
                     alert.severity === 'significant' ? 'border-red-500/30 bg-red-500/10' :
                     alert.severity === 'notable' ? 'border-amber-500/30 bg-amber-500/10' :
-                    'border-slate-400/20 bg-slate-400/5'
+                    'border-blue-500/20 bg-blue-500/5'
                   }`}
                 >
-                  <p className="text-sm text-text-primary">
-                    {alert.description[locale] || alert.description.en}
+                  <div className="flex items-start gap-2">
+                    <span className={`mt-0.5 w-2 h-2 rounded-full shrink-0 ${
+                      alert.severity === 'significant' ? 'bg-red-400' :
+                      alert.severity === 'notable' ? 'bg-amber-400' :
+                      'bg-blue-400'
+                    }`} />
+                    <p className="text-sm text-text-primary">
+                      {alert.description[locale] || alert.description.en}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Recommended Festivals */}
+        {recommendedFestivals.length > 0 && (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.37 }}
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Calendar className="w-5 h-5 text-gold-primary" />
+              <h3 className="text-lg font-semibold text-text-primary">{L.recommendedFestivals}</h3>
+            </div>
+            <p className="text-text-secondary text-xs mb-4">{L.recommendedFestivalsSubtitle}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {recommendedFestivals.map((f) => (
+                <div
+                  key={f.festivalSlug}
+                  className={`p-4 rounded-xl border ${f.isRecommended ? 'border-emerald-500/25 bg-emerald-500/5' : 'border-gold-primary/10 bg-bg-primary/30'} transition-colors`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-text-primary font-semibold text-sm capitalize">
+                      {f.festivalSlug.replace(/-/g, ' ')}
+                    </span>
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                      f.relevanceScore >= 70 ? 'bg-emerald-500/20 text-emerald-400' :
+                      f.relevanceScore >= 50 ? 'bg-gold-primary/20 text-gold-light' :
+                      'bg-slate-500/15 text-text-secondary'
+                    }`}>
+                      {f.relevanceScore}%
+                    </span>
+                  </div>
+                  <p className="text-text-secondary text-xs leading-relaxed">
+                    {f.relevanceReason[locale] || f.relevanceReason.en}
                   </p>
                 </div>
               ))}
@@ -547,9 +724,11 @@ export default function DashboardPage() {
           className="mb-8"
         >
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { href: '/kundali' as const, label: L.fullChart, icon: Eye },
+              { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
+              { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

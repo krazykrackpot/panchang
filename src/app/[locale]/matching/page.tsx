@@ -197,12 +197,12 @@ export default function MatchingPage() {
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
                   <input type="date" value={boyBirth.date} onChange={(e) => setBoyBirth({ ...boyBirth, date: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
                 </div>
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
                   <input type="time" value={boyBirth.time} onChange={(e) => setBoyBirth({ ...boyBirth, time: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
                 </div>
               </div>
               <div>
@@ -265,12 +265,12 @@ export default function MatchingPage() {
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
                   <input type="date" value={girlBirth.date} onChange={(e) => setGirlBirth({ ...girlBirth, date: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
                 </div>
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
                   <input type="time" value={girlBirth.time} onChange={(e) => setGirlBirth({ ...girlBirth, time: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
+                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
                 </div>
               </div>
               <div>

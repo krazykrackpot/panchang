@@ -78,7 +78,7 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
             value={formData.date}
             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             required
-            className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
+            className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
           />
         </div>
 
@@ -90,7 +90,7 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
             value={formData.time}
             onChange={(e) => setFormData({ ...formData, time: e.target.value })}
             required
-            className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
+            className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
           />
         </div>
 

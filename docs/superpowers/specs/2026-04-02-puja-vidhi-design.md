@@ -337,19 +337,14 @@ Every mantra must be:
 
 ---
 
-## 8. Monetization Tie-in
+## 8. Monetization
 
-| Feature | Free | Pro | Jyotishi |
-|---------|------|-----|----------|
-| Puja Vidhi (basic 5 festivals) | Yes | Yes | Yes |
-| Full 30+ festival vidhis | No | Yes | Yes |
-| Computed muhurta for puja | No | Yes | Yes |
-| Mantra IAST romanization | Yes | Yes | Yes |
-| Stotra full texts | No | Yes | Yes |
-| Samagri checklist (interactive) | Yes | Yes | Yes |
-| PDF export of puja vidhi | No | Yes | Yes |
+**All puja vidhi content is free for all users — no paywall.** Festivals and devotional content are the high-traffic gateway that brings users to the app. Monetization happens on depth features (kundali analysis, AI chat, shadbala, varshaphal) not on devotional content.
 
-Free tier gets: Diwali, Ganesh Chaturthi, Maha Shivaratri, Navaratri, Holi (the 5 biggest festivals).
+Free puja vidhis serve as:
+- SEO magnets (high search volume for "Diwali puja vidhi", "Ganesh Chaturthi mantra", etc.)
+- Trust builders (users come for puja → discover kundali → convert to Pro)
+- Daily engagement drivers (monthly vrats keep users returning)
 
 ---
 

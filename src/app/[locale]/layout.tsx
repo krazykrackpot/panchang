@@ -99,34 +99,25 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
-        <Script id="theme-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}` }} />
         <link
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebApplication',
-              name: 'Dekho Panchang',
-              url: `${BASE_URL}/${locale}`,
-              description: 'Vedic astrology Panchang calculations, Kundali birth charts, and Jyotish tools with trilingual support.',
-              applicationCategory: 'LifestyleApplication',
-              operatingSystem: 'Web',
-              inLanguage: [locale],
-              offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-              creator: {
-                '@type': 'Organization',
-                name: 'Dekho Panchang',
-                url: BASE_URL,
-              },
-            }),
-          }}
-        />
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased">
+        <Script id="theme-init" strategy="beforeInteractive">{`try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}`}</Script>
+        <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebApplication',
+          name: 'Dekho Panchang',
+          url: `${BASE_URL}/${locale}`,
+          description: 'Vedic astrology Panchang calculations, Kundali birth charts, and Jyotish tools with trilingual support.',
+          applicationCategory: 'LifestyleApplication',
+          operatingSystem: 'Web',
+          inLanguage: [locale],
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          creator: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+        })}</Script>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {/* Skip to main content — accessibility */}
           <a

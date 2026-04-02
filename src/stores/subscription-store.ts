@@ -53,7 +53,7 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         .from('subscriptions')
         .select('*')
         .eq('user_id', user.id)
-        .single();
+        .maybeSingle();
 
       if (!sub) {
         set({ tier: 'free', status: 'inactive', isLoading: false, initialized: true });
@@ -92,16 +92,20 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
       const today = new Date().toISOString().slice(0, 10);
       const { data } = await supabase
         .from('daily_usage')
-        .select('feature, count')
+        .select('kundali_count, ai_chat_count, muhurta_scan_count, pdf_export_count')
         .eq('user_id', user.id)
-        .eq('date', today);
+        .eq('usage_date', today)
+        .single();
 
       if (data) {
-        const usage: Record<string, number> = {};
-        for (const row of data) {
-          usage[row.feature] = row.count;
-        }
-        set({ usage });
+        set({
+          usage: {
+            kundali_count: data.kundali_count ?? 0,
+            ai_chat_count: data.ai_chat_count ?? 0,
+            muhurta_scan_count: data.muhurta_scan_count ?? 0,
+            pdf_export_count: data.pdf_export_count ?? 0,
+          },
+        });
       }
     } catch {
       // silently fail — usage will default to 0

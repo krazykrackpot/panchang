@@ -95,7 +95,7 @@ export const useSubscriptionStore = create<SubscriptionState>((set, get) => ({
         .select('kundali_count, ai_chat_count, muhurta_scan_count, pdf_export_count')
         .eq('user_id', user.id)
         .eq('usage_date', today)
-        .single();
+        .maybeSingle();
 
       if (data) {
         set({

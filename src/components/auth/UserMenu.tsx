@@ -33,12 +33,13 @@ export default function UserMenu() {
     if (!supabase) return;
 
     supabase.from('user_profiles')
-      .select('default_location')
+      .select('default_location, date_of_birth')
       .eq('id', user.id)
-      .single()
-      .then(({ data }) => {
+      .maybeSingle()
+      .then(({ data, error }) => {
         setProfileChecked(true);
-        if (!data?.default_location) {
+        // Show onboarding if no profile, no birth data, or query failed
+        if (error || !data || (!data.default_location && !data.date_of_birth)) {
           setShowOnboarding(true);
         }
       });

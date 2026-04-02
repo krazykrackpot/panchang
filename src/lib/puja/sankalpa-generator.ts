@@ -3,10 +3,12 @@
  * with computed astronomical fields (tithi, nakshatra, yoga, vara, masa, etc.)
  */
 
-import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, getNakshatraNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
+import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
+import { KARANAS } from '@/lib/constants/karanas';
+import { RASHIS } from '@/lib/constants/rashis';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -17,10 +19,11 @@ export interface SankalpaInput {
   lat: number;
   lng: number;
   timezoneOffset: number; // hours from UTC (e.g. 5.5 for IST, 1 for CET)
-  userName?: string;      // Devanagari
-  gotra?: string;         // Devanagari
-  pujaDeity: string;      // Devanagari deity name
+  userName?: string;
+  gotra?: string;
+  pujaDeity: string;
   festivalSlug: string;
+  placeName?: string;     // City/town name for geographic context
 }
 
 export interface GeneratedSankalpa {
@@ -93,17 +96,55 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const varaIndex = date.getDay();
   const varaSa = VARA_NAMES_SA[varaIndex];
 
-  // 5. Assemble the sankalpa text in Devanagari
-  const nameField = userName || '______';
-  const gotraField = gotra || '______';
+  // Karana
+  const karanaNum = calculateKarana(jd);
+  const karanaData = KARANAS[karanaNum - 1];
+  const karanaSa = karanaData?.name?.sa || karanaData?.name?.hi || '';
+
+  // Moon & Sun rashis
+  const moonRashi = getRashiNumber(moonSid);
+  const sunRashi = getRashiNumber(sunSid);
+  const moonRashiSa = RASHIS[moonRashi - 1]?.name?.sa || RASHIS[moonRashi - 1]?.name?.hi || '';
+  const sunRashiSa = RASHIS[sunRashi - 1]?.name?.sa || RASHIS[sunRashi - 1]?.name?.hi || '';
+
+  // Vikram Samvat
+  const vikramSamvat = year + 57;
+
+  // 5. Assemble the full traditional sankalpa in Devanagari (Drik Panchang format)
+  const nameField = userName || '............';
+  const gotraField = gotra || '............';
+  const place = input.placeName || '............';
+
+  // Geographic context — Ganga reference based on latitude
+  const isIndia = input.lat >= 8 && input.lat <= 37 && input.lng >= 68 && input.lng <= 97;
+  const gangaRef = input.lat >= 25 ? 'उत्तरे' : 'दक्षिणे'; // North/South of Ganga (~25°N)
+
+  const geoPreamble = isIndia
+    ? `भूर्लोके भारतवर्षे जम्बूद्वीपे भरतखण्डे आर्यावर्तान्तर्गतब्रह्मावर्तस्य ${place} क्षेत्रे ${place} नाम्निनगरे श्रीगङ्गायाः ${gangaRef} दिग्भागे`
+    : `भूर्लोके भारतवर्षे जम्बूद्वीपे भरतखण्डे आर्यावर्तान्तर्गतब्रह्मावर्तस्य ${place} क्षेत्रे ${place} नाम्निनगरे`;
 
   const devanagari = [
-    'ॐ विष्णुर् विष्णुर् विष्णुः',
-    `${samvatsaraSa} नाम संवत्सरे ${ayanaSa} ${rituSa} ऋतौ`,
-    `${masaSa} मासे ${pakshaSa} पक्षे ${tithiSa} तिथौ`,
-    `${varaSa}वासरे ${nakshatraSa} नक्षत्रे ${yogaSa} योगे`,
-    `${nameField} ${gotraField} गोत्रस्य`,
-    `${pujaDeity} प्रीत्यर्थं पूजनम् अहं करिष्ये ॥`,
+    // Invocation
+    'ॐ विष्णुर्विष्णुर्विष्णुः।',
+    // Cosmic era
+    'श्रीमद्भगवतो महापुरुषस्य विष्णोराज्ञया प्रवर्तमानस्य अद्यैतस्य ब्रह्मणोह्नि द्वितीये परार्धे श्रीश्वेतवाराहकल्पे वैवस्वतमन्वन्तरे अष्टाविंशतितमे युगे कलियुगे कलि प्रथमचरणे',
+    // Geographic context
+    geoPreamble,
+    // Vikram era + Samvatsara
+    `देवब्राह्मणानां सन्निधौ श्रीमन्नृपतिवीरविक्रमादित्यसमयतः ${vikramSamvat} संख्या-परिमिते प्रवर्त्तमानसंवत्सरे प्रभवादिषष्ठि-संवत्सराणां मध्ये ${samvatsaraSa} नामसंवत्सरे`,
+    // Ayana, Ritu, Masa, Paksha, Tithi
+    `${ayanaSa.replace('म्', '')} अयने ${rituSa.replace('ः', '')} ऋतौ ${masaSa.replace('ः', '')} मासे ${pakshaSa} पक्षे ${tithiSa} तिथौ`,
+    // Vara, Nakshatra, Yoga, Karana
+    `${varaSa}वार वासरे ${nakshatraSa.replace('ः', '')} नक्षत्रे ${yogaSa.replace('ः', '')} योगे ${karanaSa.replace('ः', '')} करणे`,
+    // Graha positions
+    `${moonRashiSa} राशिस्थिते चन्द्रे ${sunRashiSa} राशिस्थितेश्रीसूर्ये शेषेशु ग्रहेषु यथायथा राशिस्थानस्थितेषु सत्सु`,
+    // Auspicious time declaration
+    'एवं ग्रहगुणविशेषणविशिष्टायां शुभपुण्यतिथौ',
+    // Person identity
+    `${gotraField} गोत्रोत्पन्नस्य ${nameField} सपरिवारस्य ममात्मनः`,
+    // Purpose with full traditional preamble
+    `श्रुति-स्मृति-पुराणोक्त-पुण्य-फलप्राप्त्यर्थं मम सकुटुम्बस्य सपरिवारस्य क्षेमस्थैर्यायुरारोग्यैश्वर्याभिवृद्ध्यर्थं धर्मार्थकाममोक्षफलप्राप्त्यर्थं`,
+    `${pujaDeity} देवस्य प्रीत्यर्थं पूजनम् अहं करिष्ये ॥`,
   ].join('\n');
 
   return {
@@ -118,6 +159,9 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
       vara: varaSa,
       nakshatra: nakshatraSa,
       yoga: yogaSa,
+      karana: karanaSa,
+      moonRashi: moonRashiSa,
+      sunRashi: sunRashiSa,
     },
   };
 }

@@ -11,6 +11,7 @@ const sankalpaSchema = z.object({
   lat: z.coerce.number().min(-90).max(90),
   lng: z.coerce.number().min(-180).max(180),
   timezone: z.string().max(100).optional(),
+  placeName: z.string().max(200).optional(),
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   purposeType: z.enum(['puja', 'vrat', 'custom']),
   purposeText: z.string().max(500),
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, gotra, lat, lng, timezone, date, purposeType, purposeText } = parsed.data;
+    const { name, gotra, lat, lng, timezone, placeName, date, purposeType, purposeText } = parsed.data;
     const [y, m, d] = date.split('-').map(Number);
     const dateObj = new Date(y, m - 1, d);
 
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
       gotra: gotra || undefined,
       pujaDeity,
       festivalSlug: 'custom',
+      placeName: placeName || undefined,
     });
 
     const iast = devanagariToIAST(generated.devanagari);

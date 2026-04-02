@@ -19,6 +19,10 @@ import { PRADOSHAM_PUJA } from './pradosham';
 import { SATYANARAYAN_PUJA } from './satyanarayan';
 import { KARVA_CHAUTH_PUJA } from './karva-chauth';
 import { NAG_PANCHAMI_PUJA } from './nag-panchami';
+import { AMAVASYA_TARPAN_PUJA } from './amavasya-tarpan';
+import { MASIK_SHIVARATRI_PUJA } from './masik-shivaratri';
+import { SOMVAR_VRAT_PUJA } from './somvar-vrat';
+import { MANGALVAR_VRAT_PUJA } from './mangalvar-vrat';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -41,6 +45,10 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'satyanarayan': SATYANARAYAN_PUJA,
   'karva-chauth': KARVA_CHAUTH_PUJA,
   'nag-panchami': NAG_PANCHAMI_PUJA,
+  'amavasya-tarpan': AMAVASYA_TARPAN_PUJA,
+  'masik-shivaratri': MASIK_SHIVARATRI_PUJA,
+  'somvar-vrat': SOMVAR_VRAT_PUJA,
+  'mangalvar-vrat': MANGALVAR_VRAT_PUJA,
 };
 
 export function getPujaVidhiBySlug(slug: string): PujaVidhi | undefined {

@@ -55,7 +55,7 @@ function PujaCard({
 }: {
   deity: { en: string; hi: string; sa: string };
   slug: string;
-  category: 'festival' | 'vrat';
+  category: string;
   locale: Locale;
   index: number;
   viewLabel: string;

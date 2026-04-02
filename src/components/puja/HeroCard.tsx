@@ -122,7 +122,7 @@ export default function HeroCard({
               muhurta={computedMuhurta}
               locale={locale}
               locationName={locationName}
-              timezone={timezone}
+              timezone={timezone || Intl.DateTimeFormat().resolvedOptions().timeZone}
             />
           </div>
         )}

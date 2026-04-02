@@ -459,13 +459,14 @@ export default function CalendarPage() {
             const dayStr = dateObj.getDate();
             const monthStr = locale === 'en' ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
 
+            const detailSlug = f.slug || f.category;
             return (
-              <motion.button
+              <motion.a
                 key={`${f.date}-${f.name.en}-${i}`}
+                href={`/${locale}/calendar/${detailSlug}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(i * 0.02, 0.5) }}
-                onClick={() => handleFestivalClick(f)}
                 className={`w-full text-left glass-card rounded-xl p-4 flex items-center gap-4 border cursor-pointer transition-all hover:scale-[1.01] hover:border-gold-primary/40 active:scale-[0.99] ${
                   f.type === 'major' ? 'border-gold-primary/20' : f.type === 'eclipse' ? 'border-red-500/20' : 'border-gold-primary/5'
                 }`}
@@ -516,7 +517,7 @@ export default function CalendarPage() {
 
                 {/* Click indicator */}
                 <ChevronDown className="w-4 h-4 text-gold-primary/40 flex-shrink-0 -rotate-90" />
-              </motion.button>
+              </motion.a>
             );
           };
 

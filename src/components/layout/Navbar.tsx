@@ -72,6 +72,10 @@ export default function Navbar() {
   const locationStore = useLocationStore();
   const [isOpen, setIsOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [hydrated, setHydrated] = useState(false);
+
+  // Mark as hydrated after mount to avoid SSR/client mismatch
+  useEffect(() => { setHydrated(true); }, []);
 
   // Auto-detect location on mount
   useEffect(() => { locationStore.detect(); }, []);
@@ -152,7 +156,7 @@ export default function Navbar() {
 
           {/* Right-side controls — separate container, above dropdown z-index */}
           <div className="hidden lg:flex items-center gap-3 relative z-[60]">
-            {locationStore.confirmed && locationStore.name && (
+            {hydrated && locationStore.confirmed && locationStore.name && (
               <div className="flex items-center gap-1.5 text-text-secondary text-xs">
                 <MapPin className="w-3.5 h-3.5 text-gold-primary" />
                 <span className="max-w-[140px] truncate">{locationStore.name}</span>
@@ -173,12 +177,12 @@ export default function Navbar() {
               <Moon className="w-4 h-4 hidden dark:block" />
             </button>
             <LocaleSwitcher />
-            {tier === 'free' && (
+            {hydrated && tier === 'free' && (
               <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all">
                 {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
               </a>
             )}
-            {isTrialing && trialDaysLeft > 0 && (
+            {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-[10px]">
                 {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>

@@ -1,0 +1,717 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import { useLocale } from 'next-intl';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Copy, Check, ChevronDown, Printer, Sparkles, ScrollText } from 'lucide-react';
+import LocationSearch from '@/components/ui/LocationSearch';
+import GoldDivider from '@/components/ui/GoldDivider';
+import { useLocationStore } from '@/stores/location-store';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import type { Locale } from '@/types/panchang';
+
+/* ── Types ──────────────────────────────────────────────────── */
+
+interface SankalpaResult {
+  devanagari: string;
+  iast: string;
+  english: string;
+  components: {
+    kalpaText: string;
+    samvatsara: string;
+    ayana: string;
+    ritu: string;
+    masa: string;
+    paksha: string;
+    tithi: string;
+    vara: string;
+    nakshatra: string;
+    desha: string;
+    kartaa: string;
+    purpose: string;
+  };
+  panchangDate: string;
+  vikramSamvat: number;
+}
+
+/* ── Trilingual Labels ──────────────────────────────────────── */
+
+const LABELS = {
+  en: {
+    title: 'Sankalpa Generator',
+    subtitle: 'Sacred Resolution for Puja & Vrata',
+    desc: 'Generate a personalized Sankalpa declaration with precise Panchang elements for your ritual, vow, or sacred intention.',
+    fullName: 'Full Name',
+    fullNamePlaceholder: 'Enter your name',
+    gotra: 'Gotra',
+    gotraPlaceholder: 'Select or type gotra',
+    place: 'Place',
+    date: 'Date',
+    purpose: 'Purpose',
+    forPuja: 'For a Puja',
+    forVrat: 'For a Vrat',
+    custom: 'Custom',
+    selectPuja: 'Select Puja',
+    vratName: 'Vrat name',
+    vratPlaceholder: 'e.g. Ekadashi Vrat',
+    customPurpose: 'Purpose',
+    customPlaceholder: 'e.g. For the well-being of my family',
+    generate: 'Generate Sankalpa',
+    generating: 'Computing Panchang...',
+    result: 'Your Sankalpa',
+    iast: 'IAST Transliteration',
+    meaning: 'English Meaning',
+    components: 'Panchang Components',
+    copied: 'Copied!',
+    copy: 'Copy Sankalpa',
+    print: 'Print',
+    vikramSamvat: 'Vikram Samvat',
+    samvatsara: 'Samvatsara',
+    ayana: 'Ayana',
+    ritu: 'Ritu',
+    masa: 'Masa',
+    paksha: 'Paksha',
+    tithi: 'Tithi',
+    vara: 'Vara',
+    nakshatra: 'Nakshatra',
+    desha: 'Desha',
+    kartaa: 'Kartaa',
+    purposeLabel: 'Purpose',
+  },
+  hi: {
+    title: 'संकल्प जनक',
+    subtitle: 'पूजा एवं व्रत हेतु पवित्र संकल्प',
+    desc: 'अपनी पूजा, व्रत या पवित्र संकल्प के लिए सटीक पंचांग तत्वों सहित व्यक्तिगत संकल्प वाक्य बनाएं।',
+    fullName: 'पूरा नाम',
+    fullNamePlaceholder: 'अपना नाम लिखें',
+    gotra: 'गोत्र',
+    gotraPlaceholder: 'गोत्र चुनें या लिखें',
+    place: 'स्थान',
+    date: 'तिथि',
+    purpose: 'प्रयोजन',
+    forPuja: 'पूजा हेतु',
+    forVrat: 'व्रत हेतु',
+    custom: 'अन्य',
+    selectPuja: 'पूजा चुनें',
+    vratName: 'व्रत का नाम',
+    vratPlaceholder: 'जैसे एकादशी व्रत',
+    customPurpose: 'प्रयोजन',
+    customPlaceholder: 'जैसे परिवार के कल्याण हेतु',
+    generate: 'संकल्प बनाएं',
+    generating: 'पंचांग गणना हो रही है...',
+    result: 'आपका संकल्प',
+    iast: 'IAST लिप्यन्तरण',
+    meaning: 'अंग्रेजी अर्थ',
+    components: 'पंचांग तत्त्व',
+    copied: 'कॉपी हुआ!',
+    copy: 'संकल्प कॉपी करें',
+    print: 'प्रिंट',
+    vikramSamvat: 'विक्रम संवत',
+    samvatsara: 'संवत्सर',
+    ayana: 'अयन',
+    ritu: 'ऋतु',
+    masa: 'मास',
+    paksha: 'पक्ष',
+    tithi: 'तिथि',
+    vara: 'वार',
+    nakshatra: 'नक्षत्र',
+    desha: 'देश',
+    kartaa: 'कर्ता',
+    purposeLabel: 'प्रयोजन',
+  },
+  sa: {
+    title: 'सङ्कल्पजनकम्',
+    subtitle: 'पूजाव्रतार्थं पवित्रसङ्कल्पः',
+    desc: 'स्वपूजायै व्रताय वा पवित्रसङ्कल्पार्थं सम्यक् पञ्चाङ्गतत्त्वैः सह व्यक्तिगतसङ्कल्पवाक्यं रचयतु।',
+    fullName: 'सम्पूर्णनाम',
+    fullNamePlaceholder: 'स्वनाम लिखतु',
+    gotra: 'गोत्रम्',
+    gotraPlaceholder: 'गोत्रं चिनुत',
+    place: 'स्थानम्',
+    date: 'दिनाङ्कः',
+    purpose: 'प्रयोजनम्',
+    forPuja: 'पूजार्थम्',
+    forVrat: 'व्रतार्थम्',
+    custom: 'अन्यत्',
+    selectPuja: 'पूजां चिनुत',
+    vratName: 'व्रतनाम',
+    vratPlaceholder: 'यथा एकादशीव्रतम्',
+    customPurpose: 'प्रयोजनम्',
+    customPlaceholder: 'यथा कुटुम्बकल्याणार्थम्',
+    generate: 'सङ्कल्पं रचयतु',
+    generating: 'पञ्चाङ्गगणना प्रवर्तते...',
+    result: 'भवतः सङ्कल्पः',
+    iast: 'IAST लिप्यन्तरणम्',
+    meaning: 'आङ्ग्लार्थः',
+    components: 'पञ्चाङ्गतत्त्वानि',
+    copied: 'प्रतिलिपितम्!',
+    copy: 'सङ्कल्पं प्रतिलिपिकुरुत',
+    print: 'मुद्रणम्',
+    vikramSamvat: 'विक्रमसंवत्',
+    samvatsara: 'संवत्सरः',
+    ayana: 'अयनम्',
+    ritu: 'ऋतुः',
+    masa: 'मासः',
+    paksha: 'पक्षः',
+    tithi: 'तिथिः',
+    vara: 'वासरः',
+    nakshatra: 'नक्षत्रम्',
+    desha: 'देशः',
+    kartaa: 'कर्ता',
+    purposeLabel: 'प्रयोजनम्',
+  },
+};
+
+const GOTRAS = [
+  { en: 'Bharadwaj', sa: 'भारद्वाज' },
+  { en: 'Kashyap', sa: 'कश्यप' },
+  { en: 'Vasishtha', sa: 'वशिष्ठ' },
+  { en: 'Gautam', sa: 'गौतम' },
+  { en: 'Atri', sa: 'अत्रि' },
+  { en: 'Vishwamitra', sa: 'विश्वामित्र' },
+  { en: 'Jamadagni', sa: 'जमदग्नि' },
+  { en: 'Agastya', sa: 'अगस्त्य' },
+  { en: 'Shandilya', sa: 'शाण्डिल्य' },
+  { en: 'Katyayan', sa: 'कात्यायन' },
+  { en: 'Angiras', sa: 'अंगिरस' },
+  { en: 'Bhrigu', sa: 'भृगु' },
+  { en: 'Parashara', sa: 'पराशर' },
+  { en: 'Kaundinya', sa: 'कौण्डिन्य' },
+  { en: 'Maudgalya', sa: 'मौद्गल्य' },
+];
+
+type PurposeTab = 'puja' | 'vrat' | 'custom';
+
+/* ── Puja options from PUJA_VIDHIS ──────────────────────────── */
+
+const PUJA_OPTIONS = Object.entries(PUJA_VIDHIS).map(([slug, puja]) => ({
+  slug,
+  label: puja.deity,
+}));
+
+/* ── Component badge labels ─────────────────────────────────── */
+
+const COMPONENT_KEYS: { key: string; componentKey: keyof SankalpaResult['components']; colorClass: string }[] = [
+  { key: 'samvatsara', componentKey: 'samvatsara', colorClass: 'bg-amber-500/15 border-amber-500/25 text-amber-300' },
+  { key: 'ayana', componentKey: 'ayana', colorClass: 'bg-sky-500/15 border-sky-500/25 text-sky-300' },
+  { key: 'ritu', componentKey: 'ritu', colorClass: 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' },
+  { key: 'masa', componentKey: 'masa', colorClass: 'bg-violet-500/15 border-violet-500/25 text-violet-300' },
+  { key: 'paksha', componentKey: 'paksha', colorClass: 'bg-rose-500/15 border-rose-500/25 text-rose-300' },
+  { key: 'tithi', componentKey: 'tithi', colorClass: 'bg-orange-500/15 border-orange-500/25 text-orange-300' },
+  { key: 'vara', componentKey: 'vara', colorClass: 'bg-cyan-500/15 border-cyan-500/25 text-cyan-300' },
+  { key: 'nakshatra', componentKey: 'nakshatra', colorClass: 'bg-fuchsia-500/15 border-fuchsia-500/25 text-fuchsia-300' },
+  { key: 'desha', componentKey: 'desha', colorClass: 'bg-teal-500/15 border-teal-500/25 text-teal-300' },
+  { key: 'kartaa', componentKey: 'kartaa', colorClass: 'bg-gold-primary/15 border-gold-primary/25 text-gold-light' },
+  { key: 'purposeLabel', componentKey: 'purpose', colorClass: 'bg-indigo-500/15 border-indigo-500/25 text-indigo-300' },
+];
+
+/* ── Main Page ──────────────────────────────────────────────── */
+
+export default function SankalpaPage() {
+  const locale = useLocale() as Locale;
+  const t = LABELS[locale] || LABELS.en;
+  const isDevanagari = locale !== 'en';
+  const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+
+  const locationStore = useLocationStore();
+
+  // Form state
+  const [fullName, setFullName] = useState('');
+  const [gotra, setGotra] = useState('');
+  const [gotraInput, setGotraInput] = useState('');
+  const [showGotraDropdown, setShowGotraDropdown] = useState(false);
+  const [placeName, setPlaceName] = useState(locationStore.name || '');
+  const [placeLat, setPlaceLat] = useState<number | null>(locationStore.lat);
+  const [placeLng, setPlaceLng] = useState<number | null>(locationStore.lng);
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(locationStore.timezone);
+  const [dateStr, setDateStr] = useState(() => {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  });
+  const [purposeTab, setPurposeTab] = useState<PurposeTab>('puja');
+  const [selectedPuja, setSelectedPuja] = useState('');
+  const [vratName, setVratName] = useState('');
+  const [customPurpose, setCustomPurpose] = useState('');
+
+  // Result state
+  const [result, setResult] = useState<SankalpaResult | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
+  const [showMeaning, setShowMeaning] = useState(false);
+
+  const resultRef = useRef<HTMLDivElement>(null);
+  const gotraRef = useRef<HTMLDivElement>(null);
+
+  // Derive the purpose text
+  const getPurposeText = (): string => {
+    if (purposeTab === 'puja' && selectedPuja) {
+      const puja = PUJA_VIDHIS[selectedPuja];
+      return puja ? puja.deity.sa : '';
+    }
+    if (purposeTab === 'vrat') return vratName;
+    return customPurpose;
+  };
+
+  const canSubmit = placeLat !== null && placeLng !== null && getPurposeText().trim().length > 0;
+
+  const handleGenerate = async () => {
+    if (!canSubmit) return;
+    setLoading(true);
+    setError('');
+    setResult(null);
+
+    try {
+      const res = await fetch('/api/sankalpa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: fullName,
+          gotra: gotra || gotraInput,
+          lat: placeLat,
+          lng: placeLng,
+          timezone: placeTimezone || undefined,
+          date: dateStr,
+          purposeType: purposeTab,
+          purposeText: getPurposeText(),
+          pujaSlug: purposeTab === 'puja' ? selectedPuja : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setResult(data);
+      setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to generate sankalpa');
+    }
+    setLoading(false);
+  };
+
+  const handleCopy = async () => {
+    if (!result) return;
+    try {
+      await navigator.clipboard.writeText(result.devanagari);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* ignore */ }
+  };
+
+  const handlePrint = () => {
+    if (!result) return;
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html><head><title>Sankalpa</title>
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&display=swap');
+        body { font-family: 'Tiro Devanagari Sanskrit', serif; max-width: 700px; margin: 40px auto; padding: 20px; text-align: center; color: #1a1a1a; }
+        .sankalpa { font-size: 22px; line-height: 2; white-space: pre-line; margin: 30px 0; padding: 30px; border: 2px solid #b8860b; border-radius: 12px; }
+        .iast { font-style: italic; color: #666; font-size: 14px; margin: 20px 0; }
+        .date { font-size: 12px; color: #999; margin-top: 30px; }
+        h1 { color: #b8860b; font-size: 28px; }
+        .om { font-size: 48px; color: #b8860b; margin-bottom: 10px; }
+      </style></head><body>
+      <div class="om">\u0950</div>
+      <h1>Sankalpa</h1>
+      <div class="sankalpa">${result.devanagari}</div>
+      <div class="iast">${result.iast}</div>
+      <div class="date">${result.panchangDate} | Vikram Samvat ${result.vikramSamvat}</div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
+  // Gotra filtering
+  const filteredGotras = gotraInput.length > 0
+    ? GOTRAS.filter(g =>
+        g.en.toLowerCase().includes(gotraInput.toLowerCase()) ||
+        g.sa.includes(gotraInput)
+      )
+    : GOTRAS;
+
+  const inputCls = 'w-full bg-bg-primary/60 border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none focus:ring-1 focus:ring-gold-primary/20 transition-all placeholder:text-text-secondary/30';
+  const labelCls = 'text-text-secondary text-xs uppercase tracking-wider mb-1.5 block';
+
+  return (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* ── Header ────────────────────────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-center mb-12"
+      >
+        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold-primary/10 border border-gold-primary/20 mb-6">
+          <ScrollText className="w-10 h-10 text-gold-primary" />
+        </div>
+        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+          <span className="text-gold-gradient">{t.title}</span>
+        </h1>
+        <p className="text-gold-primary/70 text-lg mb-2" style={bodyFont}>{t.subtitle}</p>
+        <p className="text-text-secondary text-sm max-w-2xl mx-auto" style={bodyFont}>{t.desc}</p>
+      </motion.div>
+
+      {/* ── Form Card ─────────────────────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="glass-card rounded-2xl p-6 sm:p-8 mb-8"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          {/* Full Name */}
+          <label className="block">
+            <span className={labelCls} style={bodyFont}>{t.fullName}</span>
+            <input
+              type="text"
+              value={fullName}
+              onChange={e => setFullName(e.target.value)}
+              placeholder={t.fullNamePlaceholder}
+              className={inputCls}
+              style={{ fontFamily: 'var(--font-devanagari-body)' }}
+            />
+          </label>
+
+          {/* Gotra with dropdown */}
+          <div className="block relative" ref={gotraRef}>
+            <span className={labelCls} style={bodyFont}>{t.gotra}</span>
+            <input
+              type="text"
+              value={gotra || gotraInput}
+              onChange={e => {
+                setGotraInput(e.target.value);
+                setGotra('');
+                setShowGotraDropdown(true);
+              }}
+              onFocus={() => setShowGotraDropdown(true)}
+              onBlur={() => setTimeout(() => setShowGotraDropdown(false), 200)}
+              placeholder={t.gotraPlaceholder}
+              className={inputCls}
+              style={{ fontFamily: 'var(--font-devanagari-body)' }}
+            />
+            <AnimatePresence>
+              {showGotraDropdown && filteredGotras.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  className="absolute z-30 top-full left-0 right-0 mt-1 max-h-48 overflow-y-auto rounded-xl border border-gold-primary/20 bg-[#0d1230]/95 backdrop-blur-lg shadow-2xl"
+                >
+                  {filteredGotras.map(g => (
+                    <button
+                      key={g.en}
+                      type="button"
+                      onMouseDown={e => {
+                        e.preventDefault();
+                        setGotra(g.sa);
+                        setGotraInput('');
+                        setShowGotraDropdown(false);
+                      }}
+                      className="w-full text-left px-4 py-2.5 text-sm hover:bg-gold-primary/10 transition-colors flex items-center justify-between"
+                    >
+                      <span className="text-gold-light" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{g.sa}</span>
+                      <span className="text-text-secondary/50 text-xs">{g.en}</span>
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Place */}
+          <label className="block">
+            <span className={labelCls} style={bodyFont}>{t.place}</span>
+            <LocationSearch
+              value={placeName}
+              onSelect={(loc) => {
+                setPlaceName(loc.name);
+                setPlaceLat(loc.lat);
+                setPlaceLng(loc.lng);
+                setPlaceTimezone(loc.timezone);
+              }}
+              placeholder={locale === 'en' ? 'Search city or place...' : 'स्थान खोजें...'}
+            />
+          </label>
+
+          {/* Date */}
+          <label className="block">
+            <span className={labelCls} style={bodyFont}>{t.date}</span>
+            <input
+              type="date"
+              value={dateStr}
+              onChange={e => setDateStr(e.target.value)}
+              className={inputCls}
+            />
+          </label>
+        </div>
+
+        {/* ── Purpose Tabs ──────────────────────────────────────── */}
+        <div className="mt-8">
+          <span className={`${labelCls} mb-3`} style={bodyFont}>{t.purpose}</span>
+          <div className="flex gap-2 mb-4">
+            {(['puja', 'vrat', 'custom'] as PurposeTab[]).map(tab => (
+              <button
+                key={tab}
+                onClick={() => setPurposeTab(tab)}
+                className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                  purposeTab === tab
+                    ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30 shadow-lg shadow-gold-primary/5'
+                    : 'text-text-secondary/60 hover:text-text-secondary border border-transparent hover:border-gold-primary/10'
+                }`}
+                style={bodyFont}
+              >
+                {tab === 'puja' ? t.forPuja : tab === 'vrat' ? t.forVrat : t.custom}
+              </button>
+            ))}
+          </div>
+
+          <AnimatePresence mode="wait">
+            {purposeTab === 'puja' && (
+              <motion.div
+                key="puja"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.15 }}
+              >
+                <select
+                  value={selectedPuja}
+                  onChange={e => setSelectedPuja(e.target.value)}
+                  className={`${inputCls} appearance-none cursor-pointer`}
+                  style={{ fontFamily: 'var(--font-devanagari-body)' }}
+                >
+                  <option value="" className="bg-[#0a0e27]">{t.selectPuja}</option>
+                  {PUJA_OPTIONS.map(p => (
+                    <option key={p.slug} value={p.slug} className="bg-[#0a0e27]">
+                      {p.label[locale]} ({p.label.en})
+                    </option>
+                  ))}
+                </select>
+              </motion.div>
+            )}
+
+            {purposeTab === 'vrat' && (
+              <motion.div
+                key="vrat"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.15 }}
+              >
+                <input
+                  type="text"
+                  value={vratName}
+                  onChange={e => setVratName(e.target.value)}
+                  placeholder={t.vratPlaceholder}
+                  className={inputCls}
+                  style={{ fontFamily: 'var(--font-devanagari-body)' }}
+                />
+              </motion.div>
+            )}
+
+            {purposeTab === 'custom' && (
+              <motion.div
+                key="custom"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.15 }}
+              >
+                <input
+                  type="text"
+                  value={customPurpose}
+                  onChange={e => setCustomPurpose(e.target.value)}
+                  placeholder={t.customPlaceholder}
+                  className={inputCls}
+                  style={{ fontFamily: 'var(--font-devanagari-body)' }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* ── Generate Button ───────────────────────────────────── */}
+        <div className="text-center mt-8">
+          {error && (
+            <p className="text-red-400 text-sm mb-4">{error}</p>
+          )}
+          <motion.button
+            onClick={handleGenerate}
+            disabled={loading || !canSubmit}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="px-12 py-4 bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border-2 border-gold-primary/40 rounded-2xl text-gold-light text-lg font-bold hover:bg-gold-primary/30 disabled:opacity-40 disabled:cursor-not-allowed transition-all inline-flex items-center gap-3"
+            style={headingFont}
+          >
+            {loading ? (
+              <>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' as const }}
+                >
+                  <Sparkles className="w-5 h-5" />
+                </motion.div>
+                {t.generating}
+              </>
+            ) : (
+              <>
+                <ScrollText className="w-5 h-5" />
+                {t.generate}
+              </>
+            )}
+          </motion.button>
+        </div>
+      </motion.div>
+
+      {/* ── Result ────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {result && (
+          <motion.div
+            ref={resultRef}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' as const }}
+            className="space-y-6"
+          >
+            <GoldDivider />
+
+            {/* Vikram Samvat badge */}
+            <div className="text-center">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium bg-gold-primary/10 border border-gold-primary/20 text-gold-primary/80">
+                {t.vikramSamvat} {result.vikramSamvat}
+              </span>
+            </div>
+
+            {/* Main Sankalpa Text */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="glass-card rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden"
+            >
+              {/* Decorative corner elements */}
+              <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-gold-primary/20 rounded-tl-2xl" />
+              <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-gold-primary/20 rounded-tr-2xl" />
+              <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-gold-primary/20 rounded-bl-2xl" />
+              <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-gold-primary/20 rounded-br-2xl" />
+
+              <h2 className="text-gold-primary text-sm uppercase tracking-[0.2em] mb-8 font-bold" style={bodyFont}>
+                {t.result}
+              </h2>
+
+              {/* Devanagari Sankalpa */}
+              <p
+                className="text-gold-light text-xl sm:text-2xl leading-loose whitespace-pre-line"
+                style={{ fontFamily: 'var(--font-devanagari-heading)', letterSpacing: '0.02em' }}
+              >
+                {result.devanagari}
+              </p>
+
+              {/* IAST */}
+              <div className="mt-8 pt-6 border-t border-gold-primary/10">
+                <p className="text-text-secondary/50 text-xs uppercase tracking-wider mb-2">{t.iast}</p>
+                <p className="text-text-secondary/70 text-sm italic leading-relaxed">
+                  {result.iast}
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-center gap-3 mt-8">
+                <motion.button
+                  onClick={handleCopy}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-gold-primary/15 hover:bg-gold-primary/25 border border-gold-primary/20 text-gold-light transition-all"
+                  style={bodyFont}
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {copied ? t.copied : t.copy}
+                </motion.button>
+                <motion.button
+                  onClick={handlePrint}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 text-text-secondary hover:text-text-primary transition-all"
+                >
+                  <Printer className="w-4 h-4" />
+                  {t.print}
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* English Meaning (Accordion) */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="glass-card rounded-xl overflow-hidden"
+            >
+              <button
+                onClick={() => setShowMeaning(!showMeaning)}
+                className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gold-primary/5 transition-colors"
+              >
+                <span className="text-gold-primary text-sm uppercase tracking-wider font-bold" style={bodyFont}>
+                  {t.meaning}
+                </span>
+                <ChevronDown className={`w-4 h-4 text-gold-primary/60 transition-transform duration-300 ${showMeaning ? 'rotate-180' : ''}`} />
+              </button>
+              <AnimatePresence>
+                {showMeaning && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25, ease: 'easeOut' as const }}
+                    className="overflow-hidden"
+                  >
+                    <p className="px-6 pb-5 text-text-secondary/80 text-sm leading-relaxed">
+                      {result.english}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            {/* Component Breakdown */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="glass-card rounded-xl p-6"
+            >
+              <h3 className="text-gold-primary text-sm uppercase tracking-wider font-bold mb-5" style={bodyFont}>
+                {t.components}
+              </h3>
+              <div className="flex flex-wrap gap-2.5">
+                {COMPONENT_KEYS.map(({ key, componentKey, colorClass }, idx) => {
+                  const label = (t as Record<string, string>)[key] || key;
+                  const value = result.components[componentKey];
+                  if (!value) return null;
+                  return (
+                    <motion.span
+                      key={key}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.4 + idx * 0.04 }}
+                      className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs border ${colorClass}`}
+                    >
+                      <span className="opacity-60 text-[10px] uppercase tracking-wider">{label}</span>
+                      <span
+                        className="font-semibold"
+                        style={{ fontFamily: 'var(--font-devanagari-body)' }}
+                      >
+                        {value}
+                      </span>
+                    </motion.span>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}

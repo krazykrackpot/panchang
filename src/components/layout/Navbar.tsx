@@ -109,6 +109,7 @@ export default function Navbar() {
         { href: '/vedic-time', label: t('vedicTime') },
         { href: '/upagraha', label: t('upagraha') },
         { href: '/puja', label: locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि' },
+        { href: '/sankalpa', label: locale === 'en' ? 'Sankalpa' : 'सङ्कल्प' },
         { href: '/devotional', label: t('devotional') },
         { href: '/varshaphal', label: t('varshaphal') },
         { href: '/kp-system', label: t('kpSystem') },

@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import MantraCard from '@/components/puja/MantraCard';
 import HeroCard from '@/components/puja/HeroCard';
+import PujaMode from '@/components/puja/PujaMode';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
@@ -208,6 +209,8 @@ export default function PujaVidhiPage() {
     try { localStorage.setItem(storageKey, JSON.stringify(samagriChecked)); } catch {}
   }, [samagriChecked, storageKey]);
 
+  const [pujaMode, setPujaMode] = useState(false);
+  const [quickMode, setQuickMode] = useState(false);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
   const [expandedSteps, setExpandedSteps] = useState<Set<number>>(
     () => new Set(puja?.vidhiSteps.map(s => s.step) ?? [])
@@ -289,6 +292,24 @@ export default function PujaVidhiPage() {
           locationName="Corseaux"
           timezone="CET"
         />
+
+        {/* Start Puja buttons */}
+        <motion.div {...fadeInUp} className="flex flex-col sm:flex-row items-center gap-3">
+          <button
+            onClick={() => { setQuickMode(false); setPujaMode(true); }}
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {locale === 'en' ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+          </button>
+          <button
+            onClick={() => { setQuickMode(true); setPujaMode(true); }}
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
+            style={{ fontFamily: 'var(--font-heading)' }}
+          >
+            {locale === 'en' ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+          </button>
+        </motion.div>
 
         <GoldDivider />
 
@@ -656,6 +677,17 @@ export default function PujaVidhiPage() {
           </Link>
         </div>
       </div>
+
+      <AnimatePresence>
+        {pujaMode && puja && (
+          <PujaMode
+            puja={puja}
+            locale={locale}
+            quickMode={quickMode}
+            onClose={() => setPujaMode(false)}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }

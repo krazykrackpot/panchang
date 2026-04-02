@@ -170,9 +170,9 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
   aarti: {
     name: { en: 'Raksha Bandhan Aarti', hi: 'रक्षा बन्धन आरती', sa: 'रक्षाबन्धनारात्रिकम्' },
     devanagari:
-      'ॐ जय भैया देवा, भाई जय भैया देवा।\nराखी का त्योहार आया, बहना सबसे पहले आया॥\nॐ जय भैया देवा॥\n\nरोली अक्षत से सजी थाली, दीपक भी है जलता।\nबहना का प्यार सदा ही, भैया के दिल में पलता॥\nॐ जय भैया देवा॥',
+      '॥ राखी की आरती ॥\n\nॐ जय श्री राखी माता, मैया जय श्री राखी माता।\nभाई बहन के प्रेम की, रक्षा का नाता॥\nॐ जय श्री राखी माता॥\n\nकलाई पर राखी सजाकर, टीका रोली लगाऊँ।\nमिठाई खिलाकर भैया को, स्नेह से गले लगाऊँ॥\nॐ जय श्री राखी माता॥\n\nरक्षासूत्र बाँधकर, मंगलकामना करती।\nभाई की दीर्घायु के लिए, प्रभु से प्रार्थना करती॥\nॐ जय श्री राखी माता॥\n\nराखी की आरती जो कोई, भाई बहन गावें।\nसुख सम्पत्ति समृद्धि, सदा ही पावें॥\nॐ जय श्री राखी माता॥',
     iast:
-      'oṃ jaya bhaiyā devā, bhāī jaya bhaiyā devā |\nrākhī kā tyohāra āyā, bahanā sabase pahale āyā ||\noṃ jaya bhaiyā devā ||\n\nrolī akṣata se sajī thālī, dīpaka bhī hai jalatā |\nbahanā kā pyāra sadā hī, bhaiyā ke dila meṃ palatā ||\noṃ jaya bhaiyā devā ||',
+      '|| rākhī kī āratī ||\n\noṃ jaya śrī rākhī mātā, maiyā jaya śrī rākhī mātā |\nbhāī bahana ke prema kī, rakṣā kā nātā ||\noṃ jaya śrī rākhī mātā ||\n\nkalāī para rākhī sajākara, ṭīkā rolī lagāūṃ |\nmiṭhāī khilākara bhaiyā ko, sneha se gale lagāūṃ ||\noṃ jaya śrī rākhī mātā ||\n\nrakṣāsūtra bāṃdhakara, maṅgalakāmanā karatī |\nbhāī kī dīrghāyu ke lie, prabhu se prārthanā karatī ||\noṃ jaya śrī rākhī mātā ||\n\nrākhī kī āratī jo koī, bhāī bahana gāveṃ |\nsukha sampatti samṛddhi, sadā hī pāveṃ ||\noṃ jaya śrī rākhī mātā ||',
   },
 
   naivedya: {

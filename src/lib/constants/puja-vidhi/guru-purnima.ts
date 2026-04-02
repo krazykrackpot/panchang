@@ -223,9 +223,9 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
   aarti: {
     name: { en: 'Guru Prayer (Aarti)', hi: 'गुरु प्रार्थना (आरती)', sa: 'गुरुप्रार्थना (आरात्रिकम्)' },
     devanagari:
-      'जय गुरुदेव हरे, ॐ जय गुरुदेव हरे।\nगुरुर्ब्रह्मा गुरुर्विष्णु, गुरु ही शिव है भारे॥\nॐ जय गुरुदेव हरे॥\n\nअज्ञान तिमिरान्धस्य, ज्ञानाञ्जन शलाकया।\nचक्षुरुन्मीलितं येन, तस्मै गुरु नमो नमः॥\nॐ जय गुरुदेव हरे॥',
+      '॥ श्री गुरु की आरती ॥\n\nॐ जय गुरु देवा, ॐ जय गुरु देवा।\nजग के तिमिर मिटाओ, सद्गुरु देवा॥\nॐ जय गुरु देवा॥\n\nअज्ञानता का अन्धकार, तुम ज्ञान से मिटाओ।\nमोक्ष का मारग दिखाओ, पथ भूले को लाओ॥\nॐ जय गुरु देवा॥\n\nब्रह्मा विष्णु महेश्वर, तुम सबके रूप।\nगुरुकृपा बिन ज्ञान नहीं, तुम ज्ञान स्वरूप॥\nॐ जय गुरु देवा॥\n\nगुरु की आरती जो कोई, नर नारी गावै।\nगुरुकृपा को प्राप्त कर, भवसागर तर जावै॥\nॐ जय गुरु देवा॥',
     iast:
-      'jaya gurudeva hare, oṃ jaya gurudeva hare |\ngururbrahmā gururviṣṇu, guru hī śiva hai bhāre ||\noṃ jaya gurudeva hare ||\n\najñāna timirāndhasya, jñānāñjana śalākayā |\ncakṣurunmīlitaṃ yena, tasmai guru namo namaḥ ||\noṃ jaya gurudeva hare ||',
+      '|| śrī guru kī āratī ||\n\noṃ jaya guru devā, oṃ jaya guru devā |\njaga ke timira miṭāo, sadguru devā ||\noṃ jaya guru devā ||\n\najñānatā kā andhakāra, tuma jñāna se miṭāo |\nmokṣa kā māraga dikhāo, patha bhūle ko lāo ||\noṃ jaya guru devā ||\n\nbrahmā viṣṇu maheśvara, tuma sabake rūpa |\ngurukṛpā bina jñāna nahīṃ, tuma jñāna svarūpa ||\noṃ jaya guru devā ||\n\nguru kī āratī jo koī, nara nārī gāvai |\ngurukṛpā ko prāpta kara, bhavasāgara tara jāvai ||\noṃ jaya guru devā ||',
   },
 
   naivedya: {

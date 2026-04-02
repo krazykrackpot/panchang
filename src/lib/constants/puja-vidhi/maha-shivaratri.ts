@@ -344,10 +344,68 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
 
   aarti: {
     name: { en: 'Om Jai Shiv Omkara', hi: 'ॐ जय शिव ओंकारा', sa: 'ॐ जय शिव ओंकारा' },
-    devanagari:
-      'ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।\nब्रह्मा विष्णु सदाशिव, अर्द्धाङ्गी धारा॥\nॐ जय शिव ओंकारा॥\n\nएकानन चतुरानन पञ्चानन राजे।\nहंसासन गरुड़ासन वृषवाहन साजे॥\nॐ जय शिव ओंकारा॥\n\nदो भुज चार चतुर्भुज दसभुज अति सोहे।\nतीनों रूप निरखता त्रिभुवन जन मोहे॥\nॐ जय शिव ओंकारा॥',
-    iast:
-      'oṃ jaya śiva oṃkārā, svāmī jaya śiva oṃkārā |\nbrahmā viṣṇu sadāśiva, arddhāṅgī dhārā ||\noṃ jaya śiva oṃkārā ||\n\nekānana caturānana pañcānana rāje |\nhaṃsāsana garuḍāsana vṛṣavāhana sāje ||\noṃ jaya śiva oṃkārā ||\n\ndo bhuja cāra caturbhuja dasabhuja ati sohe |\ntīnoṃ rūpa nirakhata tribhuvana jana mohe ||\noṃ jaya śiva oṃkārā ||',
+    devanagari: `ॐ जय शिव ओंकारा, स्वामी जय शिव ओंकारा।
+ब्रह्मा विष्णु सदाशिव, अर्द्धाङ्गी धारा॥
+ॐ जय शिव ओंकारा॥
+
+एकानन चतुरानन पञ्चानन राजे।
+हंसासन गरुड़ासन वृषवाहन साजे॥
+ॐ जय शिव ओंकारा॥
+
+दो भुज चार चतुर्भुज दसभुज अति सोहे।
+त्रिगुण रूप निरखता त्रिभुवन जन मोहे॥
+ॐ जय शिव ओंकारा॥
+
+अक्षमाला वनमाला मुण्डमाला धारी।
+त्रिपुरारी कंसारी कर माला धारी॥
+ॐ जय शिव ओंकारा॥
+
+श्वेताम्बर पीताम्बर बाघम्बर अङ्गे।
+सनकादिक गरुणादिक भूतादिक संगे॥
+ॐ जय शिव ओंकारा॥
+
+कर के मध्य कमण्डलु चक्र त्रिशूलधारी।
+सुखकारी दुखहारी जगपालनकारी॥
+ॐ जय शिव ओंकारा॥
+
+ब्रह्मा विष्णु सदाशिव जानत अविवेका।
+प्रणवाक्षर में शोभित ये तीनों एका॥
+ॐ जय शिव ओंकारा॥
+
+काशी में विश्वनाथ विराजे नन्दी ब्रह्मचारी।
+नित उठ दर्शन पावे महिमा अति भारी॥
+ॐ जय शिव ओंकारा॥`,
+    iast: `oṃ jaya śiva oṃkārā, svāmī jaya śiva oṃkārā |
+brahmā viṣṇu sadāśiva, arddhāṅgī dhārā ||
+oṃ jaya śiva oṃkārā ||
+
+ekānana caturānana pañcānana rāje |
+haṃsāsana garuḍāsana vṛṣavāhana sāje ||
+oṃ jaya śiva oṃkārā ||
+
+do bhuja cāra caturbhuja dasabhuja ati sohe |
+triguṇa rūpa nirakhatā tribhuvana jana mohe ||
+oṃ jaya śiva oṃkārā ||
+
+akṣamālā vanamālā muṇḍamālā dhārī |
+tripurārī kaṃsārī kara mālā dhārī ||
+oṃ jaya śiva oṃkārā ||
+
+śvetāmbara pītāmbara bāghambara aṅge |
+sanakādika garuṇādika bhūtādika saṅge ||
+oṃ jaya śiva oṃkārā ||
+
+kara ke madhya kamaṇḍalu cakra triśūladhārī |
+sukhakārī dukhahārī jagapālanakārī ||
+oṃ jaya śiva oṃkārā ||
+
+brahmā viṣṇu sadāśiva jānata avivekā |
+praṇavākṣara mẽ śobhita ye tīnõ ekā ||
+oṃ jaya śiva oṃkārā ||
+
+kāśī mẽ viśvanātha virāje nandī brahmacārī |
+nita uṭha darśana pāve mahimā ati bhārī ||
+oṃ jaya śiva oṃkārā ||`,
   },
 
   naivedya: {

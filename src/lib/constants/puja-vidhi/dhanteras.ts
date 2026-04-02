@@ -175,9 +175,9 @@ export const DHANTERAS_PUJA: PujaVidhi = {
   aarti: {
     name: { en: 'Dhanvantari Aarti', hi: 'धन्वन्तरि आरती', sa: 'धन्वन्तर्यारात्रिकम्' },
     devanagari:
-      'जय धन्वन्तरि देवा, ॐ जय धन्वन्तरि देवा।\nअमृत कलश लिये प्रकटे, सागर में लहरे लेवा॥\nॐ जय धन्वन्तरि देवा॥\n\nसकल रोग को हरने वाले, तुम ही एक उपाय।\nत्रिलोक में तेरो यश गावें, नित नित नाम ध्याय॥\nॐ जय धन्वन्तरि देवा॥',
+      '॥ श्री धन्वन्तरि आरती ॥\n\nॐ जय धन्वन्तरि देवा, ॐ जय धन्वन्तरि देवा।\nअमृतकलश कर धारा, आरत जन सेवा॥\nॐ जय धन्वन्तरि देवा॥\n\nसमुद्र मन्थन में प्रकटे, अमृत लेकर आए।\nदेवताओं को अमृत दे, असुरन को भगाए॥\nॐ जय धन्वन्तरि देवा॥\n\nआयुर्वेद के ज्ञाता, रोग हरण सुखकारी।\nनीलवर्ण चतुर्भुज, शंख चक्र धारी॥\nॐ जय धन्वन्तरि देवा॥\n\nधन्वन्तरि की आरती, जो कोई नर गावै।\nरोगमुक्त सुखसम्पन्न, सदा हर्ष पावै॥\nॐ जय धन्वन्तरि देवा॥',
     iast:
-      'jaya dhanvantari devā, oṃ jaya dhanvantari devā |\namṛta kalaśa liye prakaṭe, sāgara meṃ lahare levā ||\noṃ jaya dhanvantari devā ||\n\nsakala roga ko harane vāle, tuma hī eka upāya |\ntriloka meṃ tero yaśa gāveṃ, nita nita nāma dhyāya ||\noṃ jaya dhanvantari devā ||',
+      '|| śrī dhanvantari āratī ||\n\noṃ jaya dhanvantari devā, oṃ jaya dhanvantari devā |\namṛtakalaśa kara dhārā, ārata jana sevā ||\noṃ jaya dhanvantari devā ||\n\nsamudra manthana meṃ prakaṭe, amṛta lekara āye |\ndevatāoṃ ko amṛta de, asurana ko bhagāye ||\noṃ jaya dhanvantari devā ||\n\nāyurveda ke jñātā, roga haraṇa sukhakārī |\nnīlavarṇa caturbhuja, śaṅkha cakra dhārī ||\noṃ jaya dhanvantari devā ||\n\ndhanvantari kī āratī, jo koī nara gāvai |\nrogamukta sukhasampanna, sadā harṣa pāvai ||\noṃ jaya dhanvantari devā ||',
   },
 
   naivedya: {

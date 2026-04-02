@@ -186,9 +186,9 @@ export const DUSSEHRA_PUJA: PujaVidhi = {
   aarti: {
     name: { en: 'Shri Rama Aarti', hi: 'श्री राम आरती', sa: 'श्रीरामारात्रिकम्' },
     devanagari:
-      'आरती श्रीरामचन्द्र जी की, कीजे।\nदुश्ट दलन सीतापति, पद जल दीजे॥\nआरती श्रीरामचन्द्र जी की॥\n\nकोशल्या के नन्दन, दशरथ राजदुलारे।\nराम लखन सीता संग, पुलसित कपि रारे॥\nआरती श्रीरामचन्द्र जी की॥',
+      'आरती कीजे श्री रामचन्द्र जी की।\nदुष्ट दलन सीतापति जी की॥\n\nगल में सुशोभित कौस्तुभ माला।\nबाजूबन्द नवरत्न उजाला॥\nआरती कीजे श्री रामचन्द्र जी की॥\n\nशिर पर मुकुट बनत है साजे।\nदेखत मुख जन सकल रीझाजे॥\nआरती कीजे श्री रामचन्द्र जी की॥\n\nसियाजी साथ विराजत सुन्दर।\nछवि बनी रही नयन अभिरामा अन्तर॥\nआरती कीजे श्री रामचन्द्र जी की॥\n\nभक्त हनुमत चँवर डुलावें।\nश्री लक्ष्मण शत्रुघ्न भरत सुख गावें॥\nआरती कीजे श्री रामचन्द्र जी की॥\n\nकनक थार में बहुविधि भोगा।\nअरती करत शोभासिन्धु योगा॥\nआरती कीजे श्री रामचन्द्र जी की॥\n\nआरती कीजे श्री रामचन्द्र जी की।\nदुष्ट दलन सीतापति जी की॥\n\n॥ इति श्री रामचन्द्र आरती सम्पूर्णम् ॥',
     iast:
-      'āratī śrīrāmacandra jī kī, kīje |\nduśṭa dalana sītāpati, pada jala dīje ||\nāratī śrīrāmacandra jī kī ||\n\nkausalyā ke nandana, daśaratha rāja dulāre |\nrāma lakhana sītā saṅga, pulasita kapi rāre ||\nāratī śrīrāmacandra jī kī ||',
+      'āratī kīje śrī rāmacandra jī kī |\nduṣṭa dalana sītāpati jī kī ||\n\ngala meṃ suśobhita kaustubha mālā |\nbājūbanda navaratna ujālā ||\nāratī kīje śrī rāmacandra jī kī ||\n\nśira para mukuṭa banata hai sāje |\ndekhata mukha jana sakala rījhāje ||\nāratī kīje śrī rāmacandra jī kī ||\n\nsiyājī sātha virājata sundara |\nchavi banī rahī nayana abhirāmā antara ||\nāratī kīje śrī rāmacandra jī kī ||\n\nbhakta hanumata caṃvara ḍulāveṃ |\nśrī lakṣmaṇa śatrughna bharata sukha gāveṃ ||\nāratī kīje śrī rāmacandra jī kī ||\n\nkanaka thāra meṃ bahuvidhi bhogā |\naratī karata śobhāsindhu yogā ||\nāratī kīje śrī rāmacandra jī kī ||\n\nāratī kīje śrī rāmacandra jī kī |\nduṣṭa dalana sītāpati jī kī ||\n\n|| iti śrī rāmacandra āratī sampūrṇam ||',
   },
 
   naivedya: {

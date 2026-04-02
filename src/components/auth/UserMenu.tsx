@@ -25,6 +25,14 @@ export default function UserMenu() {
 
   if (!initialized) return null;
 
+  // Temporary debug — remove after auth is fixed
+  if (typeof window !== 'undefined') {
+    const sbKeys = Object.keys(localStorage).filter(k => k.includes('sb-'));
+    if (sbKeys.length > 0) {
+      console.log('[UserMenu] Found Supabase localStorage keys:', sbKeys);
+    }
+  }
+
   if (!user) {
     return (
       <>

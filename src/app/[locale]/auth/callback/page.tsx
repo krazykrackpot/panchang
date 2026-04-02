@@ -35,20 +35,17 @@ export default function AuthCallbackPage() {
         console.log('[Auth Callback] Token preview:', localStorage.getItem(lsKeys[0])?.substring(0, 80) + '...');
       }
 
-      setStatus(user ? `Signed in as ${user.email}! Redirecting...` : 'Completing authentication...');
+      // Show debug info ON THE PAGE so user can see it
+      const debugInfo = [
+        `User: ${user?.email ?? 'NONE'}`,
+        `LS keys: ${lsKeys.join(', ') || 'NONE'}`,
+        `Hash: ${window.location.hash ? 'YES (len=' + window.location.hash.length + ')' : 'NONE'}`,
+      ].join(' | ');
 
-      // If we got a session, redirect after a beat
-      if (user) {
-        setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
-      } else {
-        // Session not found yet — try once more after 2 seconds
-        setTimeout(async () => {
-          const { data: retry } = await supabase.auth.getSession();
-          console.log('[Auth Callback] Retry session:', retry.session?.user?.email ?? 'STILL NO SESSION');
-          setStatus(retry.session?.user ? `Signed in as ${retry.session.user.email}!` : 'Authentication may have failed');
-          setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
-        }, 2000);
-      }
+      setStatus(user ? `Signed in as ${user.email}! Redirecting in 5s... [${debugInfo}]` : `No session detected. Debug: ${debugInfo}`);
+
+      // Redirect after 5 seconds so user can read the debug info
+      setTimeout(() => { window.location.href = `/${locale}`; }, 5000);
     };
 
     // Listen for the SIGNED_IN event from hash exchange

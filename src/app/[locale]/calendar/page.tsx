@@ -3,7 +3,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download, Sparkles } from 'lucide-react';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
+import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 
@@ -84,6 +87,36 @@ export default function CalendarPage() {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<Filter>('all');
   const [selectedMonth, setSelectedMonth] = useState<number | null>(null);
+
+  // Personalized festival recommendations
+  const calUser = useAuthStore(s => s.user);
+  const [recommendedSlugs, setRecommendedSlugs] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    if (!calUser || festivals.length === 0) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    supabase.from('kundali_snapshots')
+      .select('moon_sign, moon_nakshatra, ascendant_sign, dasha_timeline, sade_sati')
+      .eq('user_id', calUser.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!data) return;
+        const snapshot = {
+          moonSign: data.moon_sign, moonNakshatra: data.moon_nakshatra,
+          moonNakshatraPada: 1, sunSign: 1, ascendantSign: data.ascendant_sign,
+          planetPositions: [], dashaTimeline: data.dasha_timeline || [], sadeSati: data.sade_sati || {},
+        };
+        const slugs = new Set<string>();
+        festivals.forEach(f => {
+          if (f.slug) {
+            const result = scoreFestivalRelevance(f.slug, f.category, snapshot);
+            if (result.isRecommended) slugs.add(f.slug);
+          }
+        });
+        setRecommendedSlugs(slugs);
+      });
+  }, [calUser, festivals]);
 
   // Location — null until resolved (no hardcoded default)
   const [location, setLocation] = useState<LocationData | null>(null);
@@ -511,6 +544,14 @@ export default function CalendarPage() {
                     {f.description[locale]}
                   </div>
                 </div>
+
+                {/* Recommended for you */}
+                {f.slug && recommendedSlugs.has(f.slug) && (
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
+                    <Sparkles className="w-3 h-3" />
+                    {locale === 'en' ? 'For You' : 'आपके लिए'}
+                  </span>
+                )}
 
                 {/* Puja Vidhi indicator */}
                 {hasPujaVidhi(f.slug) && (

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, Star, Moon, TrendingUp, AlertTriangle,
-  ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield,
+  ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield, Clock,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
@@ -726,9 +726,12 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { href: '/kundali' as const, label: L.fullChart, icon: Eye },
+              { href: '/dashboard/chart' as const, label: locale === 'en' ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
+              { href: '/dashboard/dashas' as const, label: locale === 'en' ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
+              { href: '/dashboard/muhurta' as const, label: locale === 'en' ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
+              { href: '/dashboard/saved-charts' as const, label: locale === 'en' ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

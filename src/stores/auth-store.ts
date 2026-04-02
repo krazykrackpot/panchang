@@ -24,16 +24,24 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   initialize: async () => {
     if (get().initialized) return;
+
+    // Listen for auth changes FIRST — catches OAuth redirect callbacks
+    supabase.auth.onAuthStateChange((event, session) => {
+      set({ session, user: session?.user ?? null });
+      if (event === 'SIGNED_IN' && session) {
+        // Clean up URL hash after OAuth redirect
+        if (window.location.hash.includes('access_token')) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+      }
+    });
+
+    // Then check existing session
     const { data } = await supabase.auth.getSession();
     set({
       session: data.session,
       user: data.session?.user ?? null,
       initialized: true,
-    });
-
-    // Listen for auth changes
-    supabase.auth.onAuthStateChange((_event, session) => {
-      set({ session, user: session?.user ?? null });
     });
   },
 

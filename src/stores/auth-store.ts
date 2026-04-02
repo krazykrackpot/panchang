@@ -31,6 +31,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return;
     }
 
+    // Check if we have an OAuth hash in the URL — exchange it first
+    if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
+      console.log('[Auth] Found access_token in URL hash — exchanging...');
+      // Supabase should auto-detect this, but let's give it a moment
+      await new Promise(r => setTimeout(r, 1000));
+    }
+
     // Listen for auth changes
     supabase.auth.onAuthStateChange((event, session) => {
       console.log('[Auth] onAuthStateChange:', event, session?.user?.email ?? 'no user');
@@ -80,14 +87,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       console.error('Supabase not configured');
       return;
     }
-    // Determine locale from current path
-    const pathParts = window.location.pathname.split('/');
-    const locale = ['en', 'hi', 'sa'].includes(pathParts[1]) ? pathParts[1] : 'en';
-    const callbackUrl = `${window.location.origin}/${locale}/auth/callback`;
-
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: callbackUrl },
+      options: {
+        redirectTo: window.location.origin + window.location.pathname,
+      },
     });
     if (error) {
       console.error('Google sign-in error:', error.message);

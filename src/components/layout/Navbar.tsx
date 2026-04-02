@@ -132,7 +132,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0">
+          <Link href="/" className="flex items-center gap-2 group shrink-0 mr-8">
             <div className="relative">
               <Sun className="w-6 h-6 text-gold-primary group-hover:text-gold-light transition-colors" />
               <Moon className="w-3 h-3 text-gold-light absolute -top-1 -right-1" />
@@ -143,7 +143,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-7">
             {navItems.map((item, i) =>
               item.children ? (
                 <NavDropdown key={i} label={item.label} items={item.children} />

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
 import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
@@ -416,6 +416,30 @@ export default function CalendarPage() {
           </button>
         ))}
       </div>
+
+      {/* Calendar Export */}
+      {location && (
+        <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
+          <span className="text-text-secondary text-xs mr-2 self-center">{locale === 'en' ? 'Subscribe:' : 'सदस्यता:'}</span>
+          {([
+            { cat: 'all', label: { en: 'All Events', hi: 'सभी' } },
+            { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार' } },
+            { cat: 'ekadashi', label: { en: 'Ekadashi', hi: 'एकादशी' } },
+            { cat: 'purnima', label: { en: 'Purnima', hi: 'पूर्णिमा' } },
+            { cat: 'amavasya', label: { en: 'Amavasya', hi: 'अमावस्या' } },
+          ] as const).map(e => (
+            <a
+              key={e.cat}
+              href={`/api/calendar/export?year=${year}&category=${e.cat}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}&locale=${locale}`}
+              download
+              className="text-[10px] px-2.5 py-1 rounded-full border border-gold-primary/15 text-gold-dark hover:text-gold-light hover:border-gold-primary/30 transition-all flex items-center gap-1"
+            >
+              <Download className="w-3 h-3" />
+              {e.label[locale === 'sa' ? 'hi' : locale]}
+            </a>
+          ))}
+        </div>
+      )}
 
       <GoldDivider />
 

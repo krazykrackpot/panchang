@@ -8,6 +8,7 @@ import { Copy, Check, ChevronDown, Printer, Sparkles, ScrollText } from 'lucide-
 import LocationSearch from '@/components/ui/LocationSearch';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
+import { useAuthStore } from '@/stores/auth-store';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { Locale } from '@/types/panchang';
 
@@ -164,21 +165,45 @@ const LABELS = {
 };
 
 const GOTRAS = [
+  // Saptarishi (7 primary)
+  { en: 'Atri', sa: 'अत्रि' },
   { en: 'Bharadwaj', sa: 'भारद्वाज' },
+  { en: 'Gautam', sa: 'गौतम' },
+  { en: 'Jamadagni', sa: 'जमदग्नि' },
   { en: 'Kashyap', sa: 'कश्यप' },
   { en: 'Vasishtha', sa: 'वशिष्ठ' },
-  { en: 'Gautam', sa: 'गौतम' },
-  { en: 'Atri', sa: 'अत्रि' },
   { en: 'Vishwamitra', sa: 'विश्वामित्र' },
-  { en: 'Jamadagni', sa: 'जमदग्नि' },
+  // Other major gotras (alphabetical)
   { en: 'Agastya', sa: 'अगस्त्य' },
-  { en: 'Shandilya', sa: 'शाण्डिल्य' },
-  { en: 'Katyayan', sa: 'कात्यायन' },
   { en: 'Angiras', sa: 'अंगिरस' },
+  { en: 'Baijavap', sa: 'बैजवाप' },
+  { en: 'Bandhu', sa: 'बन्धु' },
+  { en: 'Bhargava', sa: 'भार्गव' },
   { en: 'Bhrigu', sa: 'भृगु' },
-  { en: 'Parashara', sa: 'पराशर' },
+  { en: 'Chandilya', sa: 'चान्दिल्य' },
+  { en: 'Dhananjaya', sa: 'धनञ्जय' },
+  { en: 'Garga', sa: 'गर्ग' },
+  { en: 'Harita', sa: 'हारीत' },
+  { en: 'Kanva', sa: 'काण्व' },
+  { en: 'Katyayan', sa: 'कात्यायन' },
   { en: 'Kaundinya', sa: 'कौण्डिन्य' },
+  { en: 'Kaushik', sa: 'कौशिक' },
+  { en: 'Kutsa', sa: 'कुत्स' },
+  { en: 'Mandavya', sa: 'माण्डव्य' },
   { en: 'Maudgalya', sa: 'मौद्गल्य' },
+  { en: 'Mudgal', sa: 'मुद्गल' },
+  { en: 'Naidhruva', sa: 'नैधृव' },
+  { en: 'Parashara', sa: 'पराशर' },
+  { en: 'Sandilya', sa: 'शाण्डिल्य' },
+  { en: 'Sankritya', sa: 'सांकृत्य' },
+  { en: 'Savarni', sa: 'सावर्णि' },
+  { en: 'Shaunaka', sa: 'शौनक' },
+  { en: 'Srivatsa', sa: 'श्रीवत्स' },
+  { en: 'Upamanyu', sa: 'उपमन्यु' },
+  { en: 'Vatsa', sa: 'वत्स' },
+  { en: 'Vatsya', sa: 'वात्स्य' },
+  { en: 'Vishnu', sa: 'विष्णु' },
+  { en: 'Yaska', sa: 'यास्क' },
 ];
 
 type PurposeTab = 'puja' | 'vrat' | 'custom';
@@ -216,13 +241,19 @@ export default function SankalpaPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const locationStore = useLocationStore();
+  const authStore = useAuthStore();
   const searchParams = useSearchParams();
 
   // Pre-fill puja from URL param (e.g., /sankalpa?puja=Diwali)
   const pujaParam = searchParams.get('puja') || '';
 
+  // Pre-fill name from logged-in user
+  const userName = authStore.user?.user_metadata?.full_name
+    || authStore.user?.user_metadata?.name
+    || '';
+
   // Form state
-  const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState(userName);
   const [gotra, setGotra] = useState('');
   const [gotraInput, setGotraInput] = useState('');
   const [showGotraDropdown, setShowGotraDropdown] = useState(false);
@@ -239,6 +270,11 @@ export default function SankalpaPage() {
   const [selectedPuja, setSelectedPuja] = useState('');
   const [vratName, setVratName] = useState('');
   const [customPurpose, setCustomPurpose] = useState('');
+
+  // Pre-fill name when auth loads
+  useEffect(() => {
+    if (!fullName && userName) setFullName(userName);
+  }, [userName]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Pre-fill from URL param
   useEffect(() => {

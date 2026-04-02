@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,6 +8,8 @@ import { Check, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import MantraCard from '@/components/puja/MantraCard';
+import HeroCard from '@/components/puja/HeroCard';
+import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
 
@@ -188,9 +190,24 @@ export default function PujaVidhiPage() {
 
   const puja = useMemo(() => getPujaVidhiBySlug(slug), [slug]);
 
-  const [samagriChecked, setSamagriChecked] = useState<boolean[]>(
-    () => new Array(puja?.samagri.length ?? 0).fill(false)
-  );
+  const storageKey = `puja-samagri-${slug}-${new Date().getFullYear()}`;
+
+  const [samagriChecked, setSamagriChecked] = useState<boolean[]>(() => {
+    if (typeof window === 'undefined') return new Array(puja?.samagri.length ?? 0).fill(false);
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length === (puja?.samagri.length ?? 0)) return parsed;
+      }
+    } catch {}
+    return new Array(puja?.samagri.length ?? 0).fill(false);
+  });
+
+  useEffect(() => {
+    try { localStorage.setItem(storageKey, JSON.stringify(samagriChecked)); } catch {}
+  }, [samagriChecked, storageKey]);
+
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
   const [expandedSteps, setExpandedSteps] = useState<Set<number>>(
     () => new Set(puja?.vidhiSteps.map(s => s.step) ?? [])
@@ -204,6 +221,18 @@ export default function PujaVidhiPage() {
       m.set(mantra.id, mantra);
     }
     return m;
+  }, [puja]);
+
+  const computedMuhurta = useMemo(() => {
+    if (puja?.muhurtaType !== 'computed' || !puja.muhurtaWindow) return undefined;
+    const now = new Date();
+    try {
+      return computePujaMuhurta(
+        puja.muhurtaWindow.type,
+        now.getFullYear(), now.getMonth() + 1, now.getDate(),
+        46.46, 6.79, 1  // Default: Corseaux, Switzerland
+      );
+    } catch { return undefined; }
   }, [puja]);
 
   if (!puja) {
@@ -253,28 +282,13 @@ export default function PujaVidhiPage() {
     <main className="min-h-screen pt-28 pb-16 px-4">
       <div className="max-w-3xl mx-auto space-y-6">
         {/* Header */}
-        <motion.div {...fadeInUp} className="text-center mb-8">
-          <h1
-            className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-gold-light via-gold-primary to-gold-dark bg-clip-text text-transparent mb-3"
-            style={headingFont}
-          >
-            {puja.deity[locale]}
-          </h1>
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <span
-              className={`text-xs px-3 py-1 rounded-full font-semibold border ${
-                puja.category === 'festival'
-                  ? 'bg-amber-500/15 text-amber-400 border-amber-500/30'
-                  : 'bg-blue-500/15 text-blue-400 border-blue-500/30'
-              }`}
-            >
-              {puja.category === 'festival' ? l.festival : l.vrat}
-            </span>
-          </div>
-          <p className="text-text-secondary text-sm max-w-xl mx-auto">
-            {puja.muhurtaDescription[locale]}
-          </p>
-        </motion.div>
+        <HeroCard
+          puja={puja}
+          locale={locale}
+          computedMuhurta={computedMuhurta}
+          locationName="Corseaux"
+          timezone="CET"
+        />
 
         <GoldDivider />
 

@@ -234,6 +234,7 @@ export default function SankalpaPage() {
     const now = new Date();
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   });
+  const [masaSystem, setMasaSystem] = useState<'purnimant' | 'amant'>('purnimant');
   const [purposeTab, setPurposeTab] = useState<PurposeTab>('puja');
   const [selectedPuja, setSelectedPuja] = useState('');
   const [vratName, setVratName] = useState('');
@@ -296,10 +297,12 @@ export default function SankalpaPage() {
           lat: placeLat,
           lng: placeLng,
           timezone: placeTimezone || undefined,
+          placeName: placeName || undefined,
           date: dateStr,
           purposeType: purposeTab,
           purposeText: getPurposeText(),
           pujaSlug: purposeTab === 'puja' ? selectedPuja : undefined,
+          masaSystem,
         }),
       });
       const data = await res.json();
@@ -469,6 +472,41 @@ export default function SankalpaPage() {
               className={inputCls}
             />
           </label>
+
+          {/* Masa System Toggle */}
+          <div>
+            <span className={labelCls} style={bodyFont}>
+              {locale === 'en' ? 'Calendar System' : locale === 'hi' ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
+            </span>
+            <div className="flex gap-2 mt-2">
+              <button
+                onClick={() => setMasaSystem('purnimant')}
+                className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-medium border transition-all ${
+                  masaSystem === 'purnimant'
+                    ? 'bg-gold-primary/15 border-gold-primary/40 text-gold-light'
+                    : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
+                }`}
+              >
+                {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
+                <span className="block text-[10px] text-text-secondary/60 mt-0.5">
+                  {locale === 'en' ? 'North India' : 'उत्तर भारत'}
+                </span>
+              </button>
+              <button
+                onClick={() => setMasaSystem('amant')}
+                className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-medium border transition-all ${
+                  masaSystem === 'amant'
+                    ? 'bg-gold-primary/15 border-gold-primary/40 text-gold-light'
+                    : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
+                }`}
+              >
+                {locale === 'en' ? 'Amant' : 'अमान्त'}
+                <span className="block text-[10px] text-text-secondary/60 mt-0.5">
+                  {locale === 'en' ? 'South India' : 'दक्षिण भारत'}
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* ── Purpose Tabs ──────────────────────────────────────── */}

@@ -16,6 +16,7 @@ const sankalpaSchema = z.object({
   purposeType: z.enum(['puja', 'vrat', 'custom']),
   purposeText: z.string().max(500),
   pujaSlug: z.string().max(100).optional(),
+  masaSystem: z.enum(['purnimant', 'amant']).default('purnimant'),
 });
 
 export async function POST(request: Request) {
@@ -38,7 +39,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, gotra, lat, lng, timezone, placeName, date, purposeType, purposeText } = parsed.data;
+    const { name, gotra, lat, lng, timezone, placeName, date, purposeType, purposeText, masaSystem } = parsed.data;
     const [y, m, d] = date.split('-').map(Number);
     const dateObj = new Date(y, m - 1, d);
 
@@ -58,6 +59,7 @@ export async function POST(request: Request) {
       pujaDeity,
       festivalSlug: 'custom',
       placeName: placeName || undefined,
+      masaSystem: masaSystem || 'purnimant',
     });
 
     const iast = devanagariToIAST(generated.devanagari);

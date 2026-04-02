@@ -24,6 +24,7 @@ export interface SankalpaInput {
   pujaDeity: string;
   festivalSlug: string;
   placeName?: string;     // City/town name for geographic context
+  masaSystem?: 'purnimant' | 'amant'; // Calendar system (default: purnimant)
 }
 
 export interface GeneratedSankalpa {
@@ -38,6 +39,9 @@ export interface GeneratedSankalpa {
     vara: string;
     nakshatra: string;
     yoga: string;
+    karana: string;
+    moonRashi: string;
+    sunRashi: string;
   };
 }
 
@@ -72,9 +76,14 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const tithiResult = calculateTithi(jd);   // { number: 1-30, degree }
   const nakshatraNum = getNakshatraNumber(moonSid); // 1-27
   const yogaNum = calculateYoga(jd);         // 1-27
-  const masaIndex = getMasa(sunSid);          // 0-11
+  const purnimantMasaIndex = getMasa(sunSid);  // 0-11 (Purnimant: default, used in North India)
+  // Amant masa: in Krishna paksha (tithi > 15), the Amant month is the NEXT Purnimant month
+  const amantMasaIndex = tithiResult.number > 15 ? (purnimantMasaIndex + 1) % 12 : purnimantMasaIndex;
+  const useAmant = input.masaSystem === 'amant';
+  const masaIndex = useAmant ? amantMasaIndex : purnimantMasaIndex;
+
   const samvatsaraIndex = getSamvatsara(year); // 0-59
-  const rituIndex = getRitu(masaIndex);       // 0-5
+  const rituIndex = getRitu(purnimantMasaIndex); // Ritu always based on solar month
   const ayana = getAyana(sunSid);             // { en, hi, sa }
 
   // 4. Look up Sanskrit names

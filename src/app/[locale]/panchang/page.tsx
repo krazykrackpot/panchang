@@ -284,7 +284,7 @@ export default function PanchangPage() {
         <div className="glass-card rounded-xl p-4 inline-flex items-center gap-4">
           <label className="text-gold-dark text-sm">{t('selectDate')}</label>
           <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
+            className="bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-gold-primary/50" />
         </div>
         <div className="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center gap-3">
           <div className="flex items-center gap-2">

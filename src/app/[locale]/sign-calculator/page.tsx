@@ -87,7 +87,7 @@ export default function SignCalculatorPage() {
               {locale === 'en' ? 'Date of Birth' : 'जन्म तिथि'}
             </label>
             <input type="date" value={dateStr} onChange={e => setDateStr(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
+              className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50"
             />
           </div>
           <div>
@@ -95,7 +95,7 @@ export default function SignCalculatorPage() {
               {locale === 'en' ? 'Time of Birth' : 'जन्म समय'}
             </label>
             <input type="time" value={timeStr} onChange={e => setTimeStr(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
+              className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50"
             />
           </div>
         </div>

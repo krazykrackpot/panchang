@@ -8,6 +8,12 @@ import { JANMASHTAMI_PUJA } from './janmashtami';
 import { NAVARATRI_PUJA } from './navaratri';
 import { MAKAR_SANKRANTI_PUJA } from './makar-sankranti';
 import { VASANT_PANCHAMI_PUJA } from './vasant-panchami';
+import { HANUMAN_JAYANTI_PUJA } from './hanuman-jayanti';
+import { RAKSHA_BANDHAN_PUJA } from './raksha-bandhan';
+import { CHHATH_PUJA } from './chhath-puja';
+import { DHANTERAS_PUJA } from './dhanteras';
+import { DUSSEHRA_PUJA } from './dussehra';
+import { GURU_PURNIMA_PUJA } from './guru-purnima';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -19,6 +25,12 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'navaratri': NAVARATRI_PUJA,
   'makar-sankranti': MAKAR_SANKRANTI_PUJA,
   'vasant-panchami': VASANT_PANCHAMI_PUJA,
+  'hanuman-jayanti': HANUMAN_JAYANTI_PUJA,
+  'raksha-bandhan': RAKSHA_BANDHAN_PUJA,
+  'chhath-puja': CHHATH_PUJA,
+  'dhanteras': DHANTERAS_PUJA,
+  'dussehra': DUSSEHRA_PUJA,
+  'guru-purnima': GURU_PURNIMA_PUJA,
 };
 
 export function getPujaVidhiBySlug(slug: string): PujaVidhi | undefined {

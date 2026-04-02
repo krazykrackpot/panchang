@@ -190,12 +190,12 @@ export default function MuhurtaAIPage() {
           <label className="block">
             <span className="text-text-secondary text-xs">{t.startDate}</span>
             <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)}
-              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
           </label>
           <label className="block">
             <span className="text-text-secondary text-xs">{t.endDate}</span>
             <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)}
-              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
+              className="w-full mt-1 bg-bg-primary/60 border border-gold-primary/20 rounded-lg px-3 py-2 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none" />
           </label>
           <div className="block">
             <span className="text-text-secondary text-xs">{t.location}</span>

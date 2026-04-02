@@ -107,7 +107,7 @@ export default function UpagrahaPage() {
       {/* Date selector */}
       <div className="flex justify-center mb-10">
         <input type="date" value={dateStr} onChange={e => setDateStr(e.target.value)}
-          className="px-5 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light text-lg font-mono focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70"
+          className="px-5 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light text-lg font-mono focus:outline-none focus:border-gold-primary/50"
         />
       </div>
 

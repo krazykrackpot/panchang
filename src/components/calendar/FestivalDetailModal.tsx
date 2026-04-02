@@ -1,10 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon, ScrollText } from 'lucide-react';
+import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon, Check, Copy, ChevronDown } from 'lucide-react';
 import type { Locale, Trilingual } from '@/types/panchang';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 
 interface FestivalDetailModalProps {
   isOpen: boolean;
@@ -469,22 +471,155 @@ export default function FestivalDetailModal({
                   </div>
                 )}
 
-                {/* Puja Vidhi link */}
-                {hasPujaVidhi && (
-                  <a
-                    href={`/${locale}/puja/${festivalSlug}`}
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-gold-primary/15 to-gold-primary/5 border border-gold-primary/25 text-gold-light font-bold text-sm hover:from-gold-primary/25 hover:to-gold-primary/10 transition-all"
-                  >
-                    <ScrollText className="w-4 h-4" />
-                    {locale === 'en' ? 'View Complete Puja Vidhi' : locale === 'hi' ? 'सम्पूर्ण पूजा विधि देखें' : 'सम्पूर्णपूजाविधिं पश्यतु'}
-                  </a>
-                )}
+                {/* Puja Vidhi — inline */}
+                {hasPujaVidhi && <InlinePujaVidhi puja={PUJA_VIDHIS[festivalSlug!]} locale={locale} headingFont={headingFont} bodyFont={bodyFont} />}
               </div>
             </div>
           </motion.div>
         </>
       )}
     </AnimatePresence>
+  );
+}
+
+// ─── Inline Puja Vidhi (rendered inside the modal) ───────────────────────────
+
+function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale: Locale; bodyFont: React.CSSProperties }) {
+  const [copied, setCopied] = useState(false);
+  const lk = locale === 'sa' ? 'hi' : locale;
+  const copy = () => {
+    navigator.clipboard.writeText(mantra.devanagari).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    });
+  };
+  return (
+    <div className="rounded-lg bg-gold-primary/3 border border-gold-primary/10 p-3 relative">
+      <button onClick={copy} className="absolute top-2 right-2 p-1 rounded text-gold-primary/40 hover:text-gold-light" aria-label="Copy">
+        {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
+      </button>
+      <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{mantra.name[lk as keyof typeof mantra.name]}</p>
+      <p className="text-gold-light text-base leading-relaxed pr-6" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{mantra.devanagari}</p>
+      <p className="text-text-secondary/60 text-xs italic mt-1">{mantra.iast}</p>
+      <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{mantra.meaning[lk as keyof typeof mantra.meaning]}</p>
+      {mantra.japaCount && <span className="text-gold-primary/50 text-[10px] mt-1 inline-block">{mantra.japaCount}x</span>}
+    </div>
+  );
+}
+
+function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
+  const lk = locale === 'sa' ? 'hi' : locale;
+  const t = (tri: { en: string; hi: string; sa: string }) => tri[locale] || tri.en;
+
+  return (
+    <div className="space-y-4">
+      {/* Divider */}
+      <div className="flex items-center gap-3">
+        <div className="flex-1 h-px bg-gold-primary/20" />
+        <span className="text-gold-primary text-xs font-bold uppercase tracking-wider" style={headingFont}>
+          {locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि'}
+        </span>
+        <div className="flex-1 h-px bg-gold-primary/20" />
+      </div>
+
+      {/* Deity + Muhurta */}
+      <div className="flex items-center gap-3 text-sm">
+        <span className="text-gold-dark text-xs">{locale === 'en' ? 'Deity' : 'देवता'}:</span>
+        <span className="text-gold-light font-bold" style={bodyFont}>{t(puja.deity)}</span>
+        <span className="text-gold-primary/30">|</span>
+        <span className="text-gold-dark text-xs">{locale === 'en' ? 'Muhurta' : 'मुहूर्त'}:</span>
+        <span className="text-text-secondary text-xs" style={bodyFont}>{t(puja.muhurtaDescription)}</span>
+      </div>
+
+      {/* Samagri */}
+      <div className="rounded-xl bg-bg-tertiary/30 p-3">
+        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+          {locale === 'en' ? 'Materials (Samagri)' : 'सामग्री'}
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {puja.samagri.map((item, i) => (
+            <span key={i} className="text-[11px] px-2 py-0.5 rounded-full bg-gold-primary/8 border border-gold-primary/10 text-text-secondary" style={bodyFont}>
+              {t(item.name)}{item.quantity ? ` (${item.quantity})` : ''}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Vidhi Steps */}
+      <div>
+        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+          {locale === 'en' ? 'Procedure' : 'विधि'}
+        </p>
+        <div className="space-y-2">
+          {puja.vidhiSteps.map((step) => (
+            <div key={step.step} className="flex gap-2.5">
+              <span className="w-5 h-5 rounded-full bg-gold-primary/15 text-gold-primary text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                {step.step}
+              </span>
+              <div className="flex-1 min-w-0">
+                <span className="text-gold-light text-xs font-semibold" style={bodyFont}>{t(step.title)}</span>
+                <p className="text-text-secondary/70 text-[11px] leading-relaxed" style={bodyFont}>{t(step.description)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Mantras */}
+      <div>
+        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+          {locale === 'en' ? 'Mantras' : 'मन्त्र'}
+        </p>
+        <div className="space-y-2">
+          {puja.mantras.map((m) => (
+            <InlineMantra key={m.id} mantra={m} locale={locale} bodyFont={bodyFont} />
+          ))}
+        </div>
+      </div>
+
+      {/* Aarti */}
+      {puja.aarti && (
+        <div className="rounded-xl bg-orange-500/5 border border-orange-500/15 p-3">
+          <p className="text-orange-400 text-[10px] uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Aarti' : 'आरती'}</p>
+          <p className="text-gold-light text-sm whitespace-pre-line leading-relaxed" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
+            {puja.aarti.devanagari}
+          </p>
+        </div>
+      )}
+
+      {/* Naivedya */}
+      <div className="rounded-xl bg-bg-tertiary/30 p-3">
+        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
+        <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
+      </div>
+
+      {/* Precautions */}
+      <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 p-3">
+        <p className="text-amber-400 text-[10px] uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Precautions' : 'सावधानियाँ'}</p>
+        <ul className="space-y-1">
+          {puja.precautions.map((p, i) => (
+            <li key={i} className="flex gap-2 text-text-secondary text-[11px]" style={bodyFont}>
+              <AlertTriangle className="w-3 h-3 text-amber-400/60 flex-shrink-0 mt-0.5" />
+              <span>{t(p)}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Phala */}
+      <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-3">
+        <p className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Benefits (Phala)' : 'फल'}</p>
+        <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
+      </div>
+
+      {/* Visarjan */}
+      {puja.visarjan && (
+        <div className="rounded-xl bg-bg-tertiary/30 p-3">
+          <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
+          <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
+        </div>
+      )}
+    </div>
   );
 }
 

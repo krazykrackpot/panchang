@@ -85,7 +85,6 @@ export default function Navbar() {
       label: t('calendars'),
       children: [
         { href: '/calendar', label: t('festivals') },
-        { href: '/puja', label: locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि' },
         { href: '/transits', label: t('transits') },
         { href: '/retrograde', label: t('retrograde') },
         { href: '/eclipses', label: t('eclipses') },

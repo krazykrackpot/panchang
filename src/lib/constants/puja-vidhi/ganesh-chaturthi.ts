@@ -333,9 +333,9 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
   aarti: {
     name: { en: 'Jai Ganesh Jai Ganesh Deva', hi: 'जय गणेश जय गणेश देवा', sa: 'जय गणेश जय गणेश देवा' },
     devanagari:
-      'जय गणेश जय गणेश जय गणेश देवा।\nमाता जाकी पार्वती पिता महादेवा॥\n\nएक दन्त दयावन्त चार भुजा धारी।\nमाथे पर तिलक सोहे मूसे की सवारी॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\nपान चढ़े फूल चढ़े और चढ़े मेवा।\nलड्डुअन का भोग लगे सन्त करें सेवा॥\nजय गणेश जय गणेश जय गणेश देवा॥',
+      'जय गणेश जय गणेश जय गणेश देवा।\nमाता जाकी पार्वती पिता महादेवा॥\n\nएक दन्त दयावन्त चार भुजा धारी।\nमाथे पर तिलक सोहे मूसे की सवारी॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\nपान चढ़े फूल चढ़े और चढ़े मेवा।\nलड्डुअन का भोग लगे सन्त करें सेवा॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\nअन्धन को आँख देत कोढ़िन को काया।\nबाँझन को पुत्र देत निर्धन को माया॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\n\'सूर\' श्याम शरण आए सफल कीजे सेवा।\nमाता जाकी पार्वती पिता महादेवा॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\nदीनन की लाज रखो शम्भु सुतकारी।\nकामना को पूर्ण करो जग बलिहारी॥\nजय गणेश जय गणेश जय गणेश देवा॥\n\nजय गणेश जय गणेश जय गणेश देवा।\nमाता जाकी पार्वती पिता महादेवा॥\n॥ इति श्री गणेश आरती सम्पूर्णम् ॥',
     iast:
-      'jaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā |\nmātā jākī pārvatī pitā mahādevā ||\n\neka danta dayāvanta cāra bhujā dhārī |\nmāthe para tilaka sohe mūse kī savārī ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\npāna caḍhe phūla caḍhe aura caḍhe mevā |\nlaḍḍuana kā bhoga lage santa kareṃ sevā ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||',
+      'jaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā |\nmātā jākī pārvatī pitā mahādevā ||\n\neka danta dayāvanta cāra bhujā dhārī |\nmāthe para tilaka sohe mūse kī savārī ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\npāna caḍhe phūla caḍhe aura caḍhe mevā |\nlaḍḍuana kā bhoga lage santa kareṃ sevā ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\nandhana ko āṃkha deta koḍhina ko kāyā |\nbāṃjhana ko putra deta nirdhana ko māyā ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\n\'sūra\' śyāma śaraṇa āe saphala kīje sevā |\nmātā jākī pārvatī pitā mahādevā ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\ndīnana kī lāja rakho śambhu sutakārī |\nkāmanā ko pūrṇa karo jaga balihārī ||\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā ||\n\njaya gaṇeśa jaya gaṇeśa jaya gaṇeśa devā |\nmātā jākī pārvatī pitā mahādevā ||\n|| iti śrī gaṇeśa āratī sampūrṇam ||',
   },
 
   naivedya: {

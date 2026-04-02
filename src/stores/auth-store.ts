@@ -1,7 +1,7 @@
 'use client';
 
 import { create } from 'zustand';
-import { supabase } from '@/lib/supabase/client';
+import { getSupabase } from '@/lib/supabase/client';
 import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthState {
@@ -24,12 +24,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   initialize: async () => {
     if (get().initialized) return;
+    const supabase = getSupabase();
+    if (!supabase) {
+      set({ initialized: true });
+      return;
+    }
 
     // Listen for auth changes FIRST — catches OAuth redirect callbacks
     supabase.auth.onAuthStateChange((event, session) => {
       set({ session, user: session?.user ?? null });
       if (event === 'SIGNED_IN' && session) {
-        // Clean up URL hash after OAuth redirect
         if (window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
@@ -46,6 +50,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signInWithEmail: async (email, password) => {
+    const supabase = getSupabase();
+    if (!supabase) return { error: 'Auth not configured' };
     set({ loading: true });
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     set({ loading: false });
@@ -53,6 +59,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signUpWithEmail: async (email, password, name) => {
+    const supabase = getSupabase();
+    if (!supabase) return { error: 'Auth not configured' };
     set({ loading: true });
     const { error } = await supabase.auth.signUp({
       email,
@@ -64,6 +72,11 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   signInWithGoogle: async () => {
+    const supabase = getSupabase();
+    if (!supabase) {
+      console.error('Supabase not configured');
+      return;
+    }
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: window.location.href },
@@ -72,14 +85,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       console.error('Google sign-in error:', error.message);
       return;
     }
-    // Supabase returns the OAuth URL — redirect browser to it
     if (data?.url) {
       window.location.href = data.url;
     }
   },
 
   signOut: async () => {
-    await supabase.auth.signOut();
+    const supabase = getSupabase();
+    if (supabase) await supabase.auth.signOut();
     set({ user: null, session: null });
   },
 }));

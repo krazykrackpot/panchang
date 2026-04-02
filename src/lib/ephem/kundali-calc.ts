@@ -42,7 +42,7 @@ function calculateAscendant(jd: number, lat: number, lng: number): number {
   const y = -Math.cos(lstRad);
   const x = Math.sin(epsRad) * Math.tan(latRad) + Math.cos(epsRad) * Math.sin(lstRad);
   let asc = Math.atan2(y, x) * 180 / Math.PI;
-  asc = normalizeDeg(asc);
+  asc = normalizeDeg(asc + 180);
 
   return asc;
 }

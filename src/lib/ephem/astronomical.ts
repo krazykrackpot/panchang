@@ -535,11 +535,12 @@ export const SAMVATSARA_NAMES = [
   { en: 'Akshaya', hi: 'अक्षय', sa: 'अक्षयः' },
 ];
 
-// Get current Samvatsara (60-year Jupiter cycle)
+// Get current Vikram Samvatsara (60-year Jupiter cycle)
+// Used in Sankalpa. Vikram Samvat 2083 (2026 CE) = Siddharthi
 export function getSamvatsara(year: number): number {
-  // Approximate: Vikari samvatsara was 2019-2020
-  // The cycle: (year - reference) % 60
-  return ((year - 1987) % 60 + 60) % 60;
+  // Vikram Samvatsara: (gregorian_year + 6) % 60
+  // Verified: 2026 → (2026+6)%60 = 52 → Siddharthi (matches Drik Panchang)
+  return ((year + 6) % 60 + 60) % 60;
 }
 
 export function getRitu(masaIndex: number): number {

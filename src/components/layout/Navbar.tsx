@@ -114,16 +114,7 @@ export default function Navbar() {
     },
     {
       label: t('learn'),
-      children: [
-        { href: '/learn', label: locale === 'en' ? 'Foundations' : 'आधारभूत' },
-        { href: '/learn/grahas', label: locale === 'en' ? 'Grahas (Planets)' : 'ग्रह' },
-        { href: '/learn/yogas', label: locale === 'en' ? 'Yogas' : 'योग' },
-        { href: '/learn/doshas', label: locale === 'en' ? 'Doshas & Remedies' : 'दोष एवं उपाय' },
-        { href: '/learn/kundali', label: locale === 'en' ? 'Kundali (Chart)' : 'कुण्डली' },
-        { href: '/learn/vargas', label: locale === 'en' ? 'Divisional Charts' : 'वर्ग चार्ट' },
-        { href: '/learn/ayanamsha', label: locale === 'en' ? 'Ayanamsha' : 'अयनांश' },
-        { href: '/learn/classical-texts', label: locale === 'en' ? 'Classical Texts' : 'शास्त्रीय ग्रंथ' },
-      ],
+      href: '/learn',
     },
   ];
 

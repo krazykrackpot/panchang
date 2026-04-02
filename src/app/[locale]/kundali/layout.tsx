@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
@@ -29,10 +30,7 @@ export default async function KundaliLayout({ children, params }: { children: Re
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
-      />
+      <Script id="kundali-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify(softwareJsonLd)}</Script>
       {children}
     </>
   );

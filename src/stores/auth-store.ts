@@ -31,16 +31,13 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       return;
     }
 
-    // Check if we have an OAuth hash in the URL — exchange it first
+    // Check if we have an OAuth hash in the URL — give Supabase time to process it
     if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
-      console.log('[Auth] Found access_token in URL hash — exchanging...');
-      // Supabase should auto-detect this, but let's give it a moment
       await new Promise(r => setTimeout(r, 1000));
     }
 
     // Listen for auth changes
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log('[Auth] onAuthStateChange:', event, session?.user?.email ?? 'no user');
       set({ session, user: session?.user ?? null });
       if (event === 'SIGNED_IN' && session) {
         if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
@@ -50,8 +47,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     });
 
     // Check existing session
-    const { data, error } = await supabase.auth.getSession();
-    console.log('[Auth] getSession:', data.session ? `user=${data.session.user.email}` : 'no session', error?.message ?? '');
+    const { data } = await supabase.auth.getSession();
     set({
       session: data.session,
       user: data.session?.user ?? null,

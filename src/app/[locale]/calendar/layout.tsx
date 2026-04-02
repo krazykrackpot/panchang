@@ -3,9 +3,9 @@ import { getPageMetadata } from '@/lib/seo/metadata';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata('/matching', locale);
+  return getPageMetadata('/calendar', locale);
 }
 
-export default function MatchingLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }

@@ -1,31 +1,12 @@
 import type { Metadata } from 'next';
+import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-
-  const titles: Record<string, string> = {
-    en: 'Learn Vedic Astrology (Jyotish) — Foundations to Advanced',
-    hi: 'वैदिक ज्योतिष सीखें — आधार से उन्नत तक',
-    sa: 'वैदिकज्योतिषं पठतु — आधारात् उन्नतपर्यन्तम्',
-  };
-  const descriptions: Record<string, string> = {
-    en: 'Free interactive course on Vedic astrology: grahas, rashis, nakshatras, tithis, yogas, karanas, muhurtas, kundali, dashas, and more.',
-    hi: 'वैदिक ज्योतिष का नि:शुल्क पाठ्यक्रम: ग्रह, राशि, नक्षत्र, तिथि, योग, करण, मुहूर्त, कुण्डली, दशा आदि।',
-    sa: 'वैदिकज्योतिषस्य नि:शुल्कपाठ्यक्रमः: ग्रहाः, राशयः, नक्षत्राणि, तिथयः, योगाः, करणानि, मुहूर्ताः, कुण्डली, दशाः इत्यादि।',
-  };
-
-  return {
-    title: titles[locale] || titles.en,
-    description: descriptions[locale] || descriptions.en,
-    openGraph: {
-      title: titles[locale] || titles.en,
-      description: descriptions[locale] || descriptions.en,
-      url: `${BASE_URL}/${locale}/learn`,
-    },
-  };
+  return getPageMetadata('/learn', locale);
 }
 
 export default async function LearnLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {

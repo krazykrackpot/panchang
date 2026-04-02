@@ -125,11 +125,18 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
 
       const { error: updateError } = await supabase
         .from('user_profiles')
-        .update({
+        .upsert({
+          id: user.id,
           display_name: fullName.trim(),
           default_location: locationData,
-        })
-        .eq('id', user.id);
+          date_of_birth: birthDate,
+          time_of_birth: birthTime || null,
+          birth_time_known: !!birthTime,
+          birth_place: birthLocation.name,
+          birth_lat: birthLocation.lat,
+          birth_lng: birthLocation.lng,
+          birth_timezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+        }, { onConflict: 'id' });
 
       if (updateError) {
         setError(updateError.message);

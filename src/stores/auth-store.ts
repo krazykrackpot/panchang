@@ -26,22 +26,25 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     if (get().initialized) return;
     const supabase = getSupabase();
     if (!supabase) {
+      console.warn('[Auth] Supabase client not available');
       set({ initialized: true });
       return;
     }
 
-    // Listen for auth changes FIRST — catches OAuth redirect callbacks
+    // Listen for auth changes
     supabase.auth.onAuthStateChange((event, session) => {
+      console.log('[Auth] onAuthStateChange:', event, session?.user?.email ?? 'no user');
       set({ session, user: session?.user ?? null });
       if (event === 'SIGNED_IN' && session) {
-        if (window.location.hash.includes('access_token')) {
+        if (typeof window !== 'undefined' && window.location.hash.includes('access_token')) {
           window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       }
     });
 
-    // Then check existing session
-    const { data } = await supabase.auth.getSession();
+    // Check existing session
+    const { data, error } = await supabase.auth.getSession();
+    console.log('[Auth] getSession:', data.session ? `user=${data.session.user.email}` : 'no session', error?.message ?? '');
     set({
       session: data.session,
       user: data.session?.user ?? null,

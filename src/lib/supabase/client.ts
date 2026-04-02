@@ -2,24 +2,38 @@
 
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-
-// Create client eagerly — Supabase needs to detect OAuth hash fragments on page load
-const _supabase: SupabaseClient | null =
-  supabaseUrl && supabaseAnonKey
-    ? createClient(supabaseUrl, supabaseAnonKey, {
-        auth: {
-          detectSessionInUrl: true,
-          flowType: 'implicit',
-        },
-      })
-    : null;
+let _supabase: SupabaseClient | null = null;
+let _initialized = false;
 
 export function getSupabase(): SupabaseClient | null {
+  if (_initialized) return _supabase;
+  _initialized = true;
+
+  // Only create in browser
+  if (typeof window === 'undefined') return null;
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+  if (!url || !key) return null;
+
+  _supabase = createClient(url, key, {
+    auth: {
+      detectSessionInUrl: true,
+      flowType: 'implicit',
+      persistSession: true,
+      storageKey: 'dekho-panchang-auth',
+      autoRefreshToken: true,
+    },
+  });
+
   return _supabase;
 }
 
-// Direct export — no proxy, no lazy init
-// Components that import `supabase` must handle null checks
-export const supabase = _supabase as SupabaseClient;
+// For backward compat — always use getSupabase() for null safety
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_target, prop) {
+    const client = getSupabase();
+    if (!client) return undefined;
+    return (client as unknown as Record<string, unknown>)[prop as string];
+  },
+});

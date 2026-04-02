@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import type { BirthData, ChartStyle } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
@@ -32,6 +34,44 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
   });
 
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
+  const user = useAuthStore(s => s.user);
+
+  // Pre-fill from user profile if logged in
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+
+    supabase.from('user_profiles')
+      .select('display_name, date_of_birth, time_of_birth, birth_place, birth_lat, birth_lng, birth_timezone, default_location')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!data) return;
+        const loc = data.default_location as { lat?: number; lng?: number; name?: string; timezone?: string; birth_date?: string; birth_time?: string } | null;
+        const newData: Partial<typeof formData> = {};
+
+        if (data.display_name) newData.name = data.display_name;
+        if (data.date_of_birth) newData.date = data.date_of_birth;
+        if (data.time_of_birth) newData.time = data.time_of_birth.slice(0, 5); // HH:MM
+        if (data.birth_place) newData.place = data.birth_place;
+        if (data.birth_lat) newData.lat = Number(data.birth_lat);
+        if (data.birth_lng) newData.lng = Number(data.birth_lng);
+        if (data.birth_timezone) newData.timezone = data.birth_timezone;
+
+        // Fallback to default_location if birth columns are empty
+        if (!newData.place && loc?.name) newData.place = loc.name;
+        if (!newData.lat && loc?.lat) newData.lat = loc.lat;
+        if (!newData.lng && loc?.lng) newData.lng = loc.lng;
+        if (!newData.date && loc?.birth_date) newData.date = loc.birth_date;
+        if (!newData.time && loc?.birth_time) newData.time = loc.birth_time;
+        if (!newData.timezone && loc?.timezone) newData.timezone = loc.timezone;
+
+        if (Object.keys(newData).length > 0) {
+          setFormData(prev => ({ ...prev, ...newData }));
+        }
+      });
+  }, [user]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

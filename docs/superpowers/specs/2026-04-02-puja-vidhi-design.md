@@ -1,442 +1,702 @@
-# Puja Vidhi — Festival Ritual Procedures
+# Puja Vidhi & Ritual System — Differentiation Spec
 
 **Date:** 2026-04-02
-**Status:** Draft
+**Status:** Approved
+**Goal:** Build the most comprehensive, interactive, and personalized Hindu ritual guidance system on the web — making Drik Panchang's static festival pages obsolete.
 
 ---
 
-## 1. Overview
+## 1. Strategic Context
 
-Add detailed puja vidhi (ritual procedures) for major Hindu festivals. Each puja vidhi includes step-by-step instructions, mantras in Devanagari + IAST romanization, required materials (samagri), best muhurta timing, precautions, and phala (benefits). Content is trilingual (EN/HI/SA) and integrated into the festival calendar.
+Drik Panchang tells users **when**. We tell them **when, how, what to buy, what to chant, and why — personalized to their location, chart, and tradition.**
+
+Six layers of differentiation, each building on the last:
+
+| Layer | Summary | Drik Panchang | Us |
+|-------|---------|---------------|-----|
+| 1. Content Depth | 30 complete vidhis | Brief descriptions | Full step-by-step with mantras |
+| 2. Computed Muhurta | Exact puja window per location | Generic text | Countdown timer, timezone-aware |
+| 3. Puja Mode | Interactive guided ritual | Nothing | Step-by-step with japa counter |
+| 4. Smart Samagri | Categorized, substitutions, shareable | Nothing | Diaspora-friendly, printable |
+| 5. Personal Sankalpa | Astronomically correct, personalized | Nothing | Name + gotra + live tithi/nakshatra |
+| 6. Graha Shanti | Chart-connected remedial pujas | Nothing | Kundali affliction → remedy pipeline |
 
 ---
 
-## 2. What Each Puja Vidhi Contains
+## 2. Layer 1 — Content Depth (30 Vidhis)
 
-### 2.1 Structure per Festival
+### 2.1 Current State
 
-| Field | Description | Example (Ganesh Chaturthi) |
-|-------|-------------|---------------------------|
-| **Deity** | Primary deity being worshipped | Ganesha |
-| **Sankalpa** | Declaration of intent | "I perform this puja for removal of obstacles..." |
-| **Samagri (Materials)** | Complete list of required items | Modak, durva grass, red flowers, coconut, turmeric, kumkum, incense, ghee lamp, betel leaves, jaggery |
-| **Muhurta** | Best timing window | Madhyahna (midday) — computed from the kundali engine |
-| **Vidhi (Procedure)** | Step-by-step ritual instructions | 15-20 numbered steps |
-| **Mantras** | Key mantras with transliteration | Each mantra in Devanagari + IAST + meaning |
-| **Stotra/Path** | Recitation texts | Ganesh Atharvashirsha, Sankatanashana Stotra |
-| **Aarti** | Closing aarti text | "Jai Ganesh Jai Ganesh Deva..." |
-| **Naivedya (Offering)** | Food offering details | 21 modaks, fruits, coconut |
-| **Precautions** | Do's and Don'ts | "Do not look at the moon on Chaturthi", "Use only red/orange flowers" |
-| **Phala (Benefits)** | Spiritual benefits of the puja | "Removes obstacles, grants wisdom and success" |
-| **Visarjan (Immersion)** | Closing ritual if applicable | "Immerse idol on Anant Chaturdashi after 1.5/3/5/7/10 days" |
+10 vidhis written, only 3 exported in `index.ts`. 7 are orphaned (Navaratri, Holi, Ram Navami, Makar Sankranti, Hanuman Jayanti, Raksha Bandhan, Ekadashi).
 
-### 2.2 Mantra Format
+### 2.2 Tier 1 — Major Festivals (15 total)
 
-Each mantra entry:
+| Festival | Deity | Muhurta Type | Status |
+|----------|-------|-------------|--------|
+| Ganesh Chaturthi | Ganesha | madhyahna | Done |
+| Diwali | Lakshmi+Ganesha | pradosh | Done |
+| Maha Shivaratri | Shiva | nishita | Done |
+| Navaratri (9 forms) | Durga | computed per day | Done (orphaned) |
+| Holi / Holika Dahan | Krishna/Vishnu | pradosh | Done (orphaned) |
+| Ram Navami | Rama | madhyahna | Done (orphaned) |
+| Makar Sankranti | Surya | fixed (sunrise) | Done (orphaned) |
+| Hanuman Jayanti | Hanuman | fixed (sunrise) | Done (orphaned) |
+| Raksha Bandhan | Sibling bond | aparahna | Done (orphaned) |
+| Ekadashi (generic) | Vishnu | brahma_muhurta | Done (orphaned) |
+| Janmashtami | Krishna | nishita (midnight) | **Needs writing** |
+| Dussehra | Durga/Rama | aparahna | **Needs writing** |
+| Vasant Panchami | Saraswati | madhyahna | **Needs writing** |
+| Chhath Puja | Surya/Chhathi Maiya | fixed (sunrise/sunset) | **Needs writing** |
+| Dhanteras | Dhanvantari | pradosh | **Needs writing** |
 
-```typescript
-interface MantraDetail {
-  name: Trilingual;            // "Ganesh Beej Mantra"
-  devanagari: string;          // "ॐ गं गणपतये नमः"
-  iast: string;                // "oṃ gaṃ gaṇapataye namaḥ"
-  meaning: Trilingual;         // "Salutations to Lord Ganesha"
-  japaCount?: number;          // 108 (recommended repetitions)
-  usage: Trilingual;           // "Chant at the beginning of puja"
+### 2.3 Tier 2 — Vrat Vidhis (10 total)
+
+| Vrat | Deity | Key Feature |
+|------|-------|-------------|
+| Pradosham | Shiva | Trayodashi evening, Shiva+Nandi puja |
+| Sankashti Chaturthi | Ganesha | Monthly, moonrise timing critical for parana |
+| Karva Chauth | Shiva/Parvati | Sieve+moon sighting, karva, spousal fast |
+| Hartalika Teej | Shiva/Parvati | Sand idol making, nirjala fast |
+| Vat Savitri | Savitri | Banyan tree, thread wrapping, katha reading |
+| Ahoi Ashtami | Ahoi Mata | Star-watching, wall painting, mothers' vrat |
+| Tulsi Vivah | Tulsi/Vishnu | Tulsi-Shaligrama marriage ceremony |
+| Nag Panchami | Naga Devta | Serpent worship, milk offering, no digging rule |
+| Akshaya Tritiya | Lakshmi/Vishnu | Gold purchase, charity, no muhurta needed (entire day auspicious) |
+| Guru Purnima | Vyasa/Guru | Guru vandana, dakshina protocol |
+
+### 2.4 Tier 3 — Recurring Monthly (5 total)
+
+| Observance | Frequency | Content |
+|------------|-----------|---------|
+| Satyanarayan Katha | Purnima | Full katha text (5 chapters) + puja vidhi |
+| Amavasya Tarpan | Amavasya | Pitru tarpan procedure, til-water, darbha grass |
+| Masik Shivaratri | Monthly Chaturdashi | Abbreviated Shiva puja |
+| Somvar Vrat | Every Monday | Shiva fast protocol + abbreviated puja |
+| Mangalvar Vrat | Every Tuesday | Hanuman fast protocol + abbreviated puja |
+
+### 2.5 Content Structure Per Vidhi
+
+Same structure as existing (no type changes needed for this layer):
+
+```
+PujaVidhi {
+  festivalSlug, category, deity,
+  samagri[], muhurtaType, muhurtaDescription, muhurtaWindow?,
+  sankalpa, vidhiSteps[], mantras[], stotras?, aarti?,
+  naivedya, precautions[], phala, visarjan?
 }
 ```
 
-IAST (International Alphabet of Sanskrit Transliteration) uses diacritics: ā, ī, ū, ṛ, ṣ, ś, ṇ, ṃ, ḥ — this is the scholarly standard that maps 1:1 to Devanagari.
+Each Tier 1 festival: ~300-400 lines, 15-20 steps, 4-8 mantras.
+Each Tier 2 vrat: ~150-200 lines, 8-12 steps, 2-4 mantras.
+Each Tier 3 monthly: ~80-120 lines, 6-8 steps, 1-3 mantras.
 
 ---
 
-## 3. Festival Coverage
+## 3. Layer 2 — Computed Muhurta
 
-### 3.1 Tier 1 — Major Festivals with Full Puja Vidhi (15)
+### 3.1 The Problem
 
-These have the most elaborate rituals and highest user demand:
+`muhurtaType: 'computed'` exists on many vidhis but is never actually computed. The page just shows the `muhurtaDescription` text. Users in Zurich see "Pradosh Kaal" but not "7:42 PM - 10:06 PM CEST."
 
-| Festival | Deity | Key Mantras | Samagri Items | Steps |
-|----------|-------|-------------|---------------|-------|
-| **Ganesh Chaturthi** | Ganesha | Ganesh Beej, Ganesh Gayatri, Atharvashirsha | Modak, durva, red flowers, coconut | ~20 |
-| **Navaratri** (9 days) | Durga (9 forms) | Durga Beej, Navarna Mantra, Durga Suktam | Per-day varying (color, flower, bhog) | ~15 per day |
-| **Dussehra** | Durga/Rama | Rama Mantra, Aparajita Stotra | Shami leaves, weapons puja, blue flowers | ~12 |
-| **Diwali** | Lakshmi + Ganesha | Lakshmi Beej, Shri Suktam, Ganesh Mantra | New utensils, coins, lotus, rice | ~25 |
-| **Maha Shivaratri** | Shiva | Panchakshari, Rudram, Shiva Gayatri | Bel leaves, milk, water, bhang | ~18 |
-| **Holi** | Krishna/Vishnu | Narasimha Mantra, Vishnu Sahasranama | Cow dung cakes, grains, coconut, gulal | ~10 |
-| **Ram Navami** | Rama | Rama Taraka Mantra, Rama Raksha Stotra | Tulsi, flowers, fruits, panchamrit | ~15 |
-| **Janmashtami** | Krishna | Krishna Beej, Gopala Mantra | Makhan, mishri, tulsi, flute, cradle | ~20 |
-| **Makar Sankranti** | Surya | Surya Gayatri, Aditya Hridayam | Til (sesame), gur (jaggery), khichdi | ~10 |
-| **Vasant Panchami** | Saraswati | Saraswati Beej, Saraswati Vandana | White flowers, books, pen, yellow cloth | ~12 |
-| **Hanuman Jayanti** | Hanuman | Hanuman Beej, Hanuman Chalisa | Sindoor, jasmine oil, bananas, janeyu | ~12 |
-| **Raksha Bandhan** | Sibling bond | Raksha Sutra Mantra | Rakhi, roli, chawal, mishri, diya | ~8 |
-| **Chhath Puja** | Surya/Chhathi Maiya | Chhath Mantra, Surya Arghya | Thekua, fruits, sugarcane, bamboo soop | ~15 (2-day) |
-| **Dhanteras** | Dhanvantari/Lakshmi | Dhanvantari Mantra | Gold/silver, new utensils, diya | ~10 |
-| **Guru Purnima** | Guru/Vyasa | Guru Mantra, Guru Stotram | Flowers, fruits, dakshina, books | ~10 |
+### 3.2 Muhurta Window Calculations
 
-### 3.2 Tier 2 — Important Vrats with Puja Vidhi (10)
+All windows derive from sunrise/sunset, which we already compute per location.
 
-| Festival | Deity | Key Feature |
-|----------|-------|-------------|
-| **Ekadashi** (generic) | Vishnu | Common puja for all 24 Ekadashis + parana rules |
-| **Pradosham** | Shiva | Shiva puja during pradosh kaal |
-| **Chaturthi** (monthly) | Ganesha | Sankata Nashana puja |
-| **Karva Chauth** | Shiva/Parvati | Karva puja with sieve + moon sighting |
-| **Hartalika Teej** | Shiva/Parvati | Sand/clay Shiva-Parvati idols |
-| **Vat Savitri** | Savitri/Satyavan | Banyan tree puja, thread wrapping |
-| **Ahoi Ashtami** | Ahoi Mata | Star-watching, wall painting |
-| **Tulsi Vivah** | Tulsi/Vishnu | Tulsi-Shaligrama marriage |
-| **Nag Panchami** | Naga Devta | Serpent worship with milk |
-| **Akshaya Tritiya** | Lakshmi/Vishnu | Gold purchase, charity puja |
+| Window | Calculation | Festivals Using It |
+|--------|-------------|-------------------|
+| `brahma_muhurta` | sunrise - 96min to sunrise - 48min | Ekadashi, morning pujas |
+| `abhijit` | midday - ~24min to midday + ~24min | Auspicious starts |
+| `madhyahna` | sunrise + 2/5*(sunset-sunrise) to sunrise + 3/5*(sunset-sunrise) | Ganesh Chaturthi, Ram Navami |
+| `aparahna` | sunrise + 3/5*(sunset-sunrise) to sunrise + 4/5*(sunset-sunrise) | Raksha Bandhan, Dussehra |
+| `pradosh` | sunset to sunset + 2h24m | Diwali, Shivaratri, Pradosham |
+| `nishita` | local midnight - 24min to midnight + 24min | Janmashtami, Shivaratri |
 
-### 3.3 Tier 3 — Monthly/Recurring with Brief Vidhi (5)
+### 3.3 Implementation
 
-| Observance | Deity | Content |
-|------------|-------|---------|
-| **Purnima** | Satyanarayan | Satyanarayan Katha + puja |
-| **Amavasya** | Pitrs (ancestors) | Tarpan + shraddha vidhi |
-| **Masik Shivaratri** | Shiva | Abbreviated Shivaratri puja |
-| **Somvar Vrat** | Shiva | Monday fasting + Shiva puja |
-| **Mangalvar Vrat** | Hanuman | Tuesday Hanuman puja |
-
----
-
-## 4. Data Architecture
-
-### 4.1 New Type: PujaVidhi
+New utility function in `src/lib/ephem/` or `src/lib/muhurta/`:
 
 ```typescript
-interface PujaVidhi {
-  festivalSlug: string;                    // Links to FESTIVAL_DETAILS key
-  deity: Trilingual;
+function computePujaMuhurta(
+  muhurtaType: MuhurtaWindowType,
+  date: Date,
+  lat: number,
+  lng: number,
+  timezone: string
+): { start: Date; end: Date; label: string }
+```
 
-  // Materials
-  samagri: SamagriItem[];                  // Required materials
+Uses existing `getSunrise()` / `getSunset()` from `src/lib/astronomy/`.
 
-  // Timing
-  muhurtaType: 'computed' | 'fixed';       // 'computed' uses the engine, 'fixed' uses description
-  muhurtaDescription: Trilingual;          // "Madhyahna (midday)" or "Pradosh Kaal (evening twilight)"
-  muhurtaWindow?: {                        // For computed: which time window to use
-    type: 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'brahma_muhurta' | 'abhijit';
-  };
+### 3.4 Parana (Fast-Breaking) Computation
 
-  // Procedure
-  sankalpa: Trilingual;                    // Declaration text
-  vidpiSteps: VidpiStep[];                 // Numbered procedure
+For vrats, the parana time is critical and location-dependent.
 
-  // Mantras
-  mantras: MantraDetail[];                 // All mantras for this puja
+New type addition:
 
-  // Recitation texts
-  stotras?: StotraReference[];             // Stotras/paths to recite
-  aarti?: AartiText;                       // Closing aarti
-
-  // Offering
-  naivedya: Trilingual;                    // Food offering description
-
-  // Rules
-  precautions: Trilingual[];               // Do's and Don'ts (array of items)
-  phala: Trilingual;                       // Benefits
-
-  // Optional closing
-  visarjan?: Trilingual;                   // Immersion/conclusion ritual
+```typescript
+interface ParanaRule {
+  type: 'sunrise_plus_quarter' | 'moonrise' | 'next_sunrise' | 'tithi_end';
+  description: Trilingual;
 }
+```
 
-interface SamagriItem {
-  name: Trilingual;                        // "Coconut" / "नारियल" / "नारिकेलम्"
-  quantity?: string;                       // "1", "5 pieces", "handful"
-  note?: Trilingual;                       // "Must be unbroken"
-}
+| Vrat | Parana Rule | Computation |
+|------|------------|-------------|
+| Ekadashi | After sunrise, before Dwadashi ends or 1/4 of daytime | `sunrise + min(dwadashiEnd, dayDuration/4)` |
+| Karva Chauth | After moonrise + husband sighting | `moonrise` for location |
+| Sankashti | After moonrise | `moonrise` for location |
+| General vrats | Next sunrise | `nextDaySunrise` |
 
+### 3.5 UI Display
+
+On the puja detail page, when location is available:
+
+```
+━━━ Puja Muhurta ━━━━━━━━━━━━━━━━━━━━━━
+📍 Corseaux, Switzerland (CEST)
+Pradosh Kaal: 7:42 PM — 10:06 PM
+Starts in: 3h 28m [live countdown]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+When no location: show generic description + prompt to set location.
+
+For vrats with parana:
+
+```
+━━━ Parana (Fast Breaking) ━━━━━━━━━━━━━
+📍 Corseaux, Switzerland (CEST)
+Break fast: 6:48 AM — 9:12 AM (Apr 3)
+Dwadashi ends: 9:12 AM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## 4. Layer 3 — Puja Mode (Interactive Guided Ritual)
+
+### 4.1 Concept
+
+A "Start Puja" button on the detail page enters a focused, step-by-step guided mode. Like a cooking app's step-by-step mode, but for puja.
+
+### 4.2 Puja Mode UI
+
+- **Full-screen overlay** (covers navbar, footer)
+- **One step at a time** — large text, no scrolling
+- **Navigation**: Previous / Next buttons, step counter ("Step 7 of 18")
+- **Progress bar** at top
+- **Dark background** with gold accents (minimal distraction)
+- **Large Devanagari text** for mantras (~24px)
+- **Screen Wake Lock API** to prevent screen sleep
+
+### 4.3 Japa Counter
+
+When a step has `mantraRef` with `japaCount`, show an integrated counter:
+
+- Large circular counter display (like a mala/rosary)
+- Tap anywhere to increment
+- Haptic feedback on each tap (if device supports)
+- Chime/vibration at target count (108, 21, etc.)
+- "X of 108" display
+
+### 4.4 Quick Mode vs Full Mode
+
+Type addition to `VidhiStep`:
+
+```typescript
 interface VidhiStep {
   step: number;
-  title: Trilingual;                       // "Kalash Sthapana"
-  description: Trilingual;                 // Detailed instruction
-  mantraRef?: string;                      // ID linking to MantraDetail
-  duration?: string;                       // "5 minutes"
-}
-
-interface MantraDetail {
-  id: string;                              // Unique ID for cross-referencing
-  name: Trilingual;                        // "Ganesh Beej Mantra"
-  devanagari: string;                      // Full mantra in Devanagari
-  iast: string;                            // IAST romanization with diacritics
-  meaning: Trilingual;                     // Translation
-  japaCount?: number;                      // 108, 21, 11, etc.
-  usage: Trilingual;                       // When/how to use
-}
-
-interface StotraReference {
-  name: Trilingual;                        // "Ganesh Atharvashirsha"
-  text?: string;                           // Full Devanagari text (if short)
-  verseCount?: number;                     // Number of verses
-  duration?: string;                       // "10 minutes"
-  note?: Trilingual;                       // "Recite all 24 verses"
-}
-
-interface AartiText {
-  name: Trilingual;                        // "Jai Ganesh Deva"
-  devanagari: string;                      // Full aarti text
-  iast: string;                            // Romanization
+  title: Trilingual;
+  description: Trilingual;
+  mantraRef?: string;
+  duration?: string;
+  // NEW:
+  essential: boolean;  // true = included in Quick Mode, false = Full Mode only
 }
 ```
 
-### 4.2 File Structure
+- **Quick Mode**: Only `essential: true` steps (~8-10 steps, 10-15 min)
+- **Full Mode**: All steps (~15-20 steps, 30-60 min)
+- Toggle at the top of puja mode
+
+This is critical for diaspora users in apartments with limited time. Even a 10-minute focused puja with correct mantras is better than skipping it entirely.
+
+### 4.5 Step Type Hints
+
+```typescript
+interface VidhiStep {
+  // ... existing + essential ...
+  // NEW:
+  stepType?: 'preparation' | 'invocation' | 'offering' | 'mantra' | 'meditation' | 'conclusion';
+}
+```
+
+Each type gets a subtle visual treatment (icon + color accent) so the user knows what kind of action this step involves.
+
+---
+
+## 5. Layer 4 — Smart Samagri System
+
+### 5.1 Enhanced SamagriItem Type
+
+```typescript
+interface SamagriItem {
+  name: Trilingual;
+  quantity?: string;
+  note?: Trilingual;
+  // NEW:
+  category: 'flowers' | 'food' | 'puja_items' | 'clothing' | 'vessels' | 'other';
+  essential: boolean;        // true = must-have, false = enhancement
+  substitutions?: {
+    item: Trilingual;
+    note: Trilingual;        // "Available at most European grocery stores"
+  }[];
+  prepNote?: Trilingual;     // "Soak overnight" or "Make fresh on puja day"
+}
+```
+
+### 5.2 Grouped Display
+
+Instead of a flat checklist, group by category with headers:
+
+```
+ESSENTIALS (7 items)
+━━━━━━━━━━━━━━━━━
+☐ Modak — 21 pieces (make fresh or buy 1 day before)
+☐ Durva grass — 21 blades, 3-5 per bunch
+    ↳ Substitute: Fresh wheatgrass
+☐ Red hibiscus flowers — handful
+    ↳ Substitute: Any red flowers (roses, carnations)
+☐ Coconut — 1, unbroken
+☐ Incense sticks — 5
+☐ Ghee lamp — 1
+☐ Camphor — small piece
+
+ADDITIONAL (8 items)
+━━━━━━━━━━━━━━━━━
+☐ Paan leaves — 5
+☐ Supari — 5
+...
+
+Progress: 3/15 items ready ████░░░░░░░ 20%
+```
+
+### 5.3 Share & Print
+
+- **"Share List" button**: Generates a clean plain-text list (WhatsApp/SMS friendly)
+- **"Print List" button**: CSS print stylesheet — clean, no UI chrome
+- **Persistent checkmarks**: localStorage keyed by `festivalSlug + year`
+
+### 5.4 Substitution Database
+
+Critical for diaspora. Key substitutions to encode:
+
+| Original | Substitution | Availability |
+|----------|-------------|--------------|
+| Durva grass | Wheatgrass | Health food stores |
+| Tulsi leaves | Fresh basil (Ocimum basilicum) | Any grocery |
+| Bilva/Bel leaves | N/A (order online) | Amazon, Indian stores |
+| Supari (betel nut) | Order online | Indian grocery stores |
+| Camphor (bhimseni) | "Edible camphor" on Amazon | Online |
+| Kumkum | Available at Indian stores | Specialty stores |
+| Akshat (unbroken rice) | Any unbroken white rice | Any grocery |
+| Janeu/Yajnopavita | Order online | Indian stores, Amazon |
+| Sindoor | Vermillion powder, Indian stores | Specialty stores |
+| Cow dung cakes | Order online or skip | Amazon, Indian stores |
+
+---
+
+## 6. Layer 5 — Personal Sankalpa Generator
+
+### 6.1 Concept
+
+The sankalpa text spoken at puja start includes astronomical data (tithi, nakshatra, yoga, vara, samvatsara) plus personal data (name, gotra, location). We compute the astronomical parts and the user provides the personal parts.
+
+### 6.2 Computed Fields (from our engine)
+
+For a given date + location:
+- **Samvatsara**: Year name (e.g., "Shobhakrit")
+- **Ayana**: Uttarayana/Dakshinayana
+- **Ritu**: Season name (e.g., "Varsha")
+- **Masa**: Lunar month (e.g., "Bhadrapada")
+- **Paksha**: Shukla/Krishna
+- **Tithi**: Lunar day (e.g., "Chaturthi")
+- **Vara**: Weekday (e.g., "Mangalavara")
+- **Nakshatra**: Current nakshatra
+- **Yoga**: Current yoga
+
+### 6.3 User-Provided Fields
+
+- **Name** (Latin → Devanagari transliteration, or direct Devanagari input)
+- **Gotra** (dropdown of ~50 common gotras + "Other" free text)
+- **Purpose** (pre-filled from festival context, user can customize)
+
+### 6.4 Generated Output
+
+```
+ॐ विष्णुर् विष्णुर् विष्णुः
+श्रीमद्भगवतो महापुरुषस्य विष्णोराज्ञया
+प्रवर्तमानस्य अद्य ब्रह्मणः द्वितीयपरार्धे
+श्वेतवाराहकल्पे वैवस्वतमन्वन्तरे
+अष्टाविंशतितमे कलियुगे प्रथमचरणे
+
+[शोभकृत्] नाम संवत्सरे [दक्षिणायने] [वर्षा] ऋतौ
+[भाद्रपद] मासे [शुक्ल] पक्षे [चतुर्थी] तिथौ
+[मंगल] वासरे [रोहिणी] नक्षत्रे [शोभन] योगे
+
+[कोर्सो ग्राम, स्विट्जरलैण्ड] देशे
+[आदित्यकुमार] नामधेयस्य [कश्यप] गोत्रस्य
+श्रीगणेशप्रीत्यर्थं गणेशचतुर्थीव्रतपूजनम् अहं करिष्ये ॥
+```
+
+Brackets show computed/personalized fields. The rest is the traditional template (varies by festival).
+
+### 6.5 UI
+
+- Rendered in large Devanagari text
+- IAST transliteration below (toggle)
+- "Copy" button for the full sankalpa
+- One-time profile setup: name + gotra saved for all future pujas
+- Astronomical fields auto-computed from date + location
+
+### 6.6 Implementation
+
+New function:
+
+```typescript
+function generateSankalpa(
+  festivalSlug: string,
+  date: Date,
+  lat: number, lng: number, timezone: string,
+  userName: string,      // Devanagari
+  gotra: string,         // Devanagari
+  locale: string
+): { devanagari: string; iast: string }
+```
+
+Uses existing panchang calc for tithi/nakshatra/yoga/vara + existing samvatsara/masa calculations.
+
+---
+
+## 7. Layer 6 — Graha Shanti Vidhis
+
+### 7.1 Concept
+
+When a kundali shows an afflicted planet, link directly to a remedial puja vidhi. This bridges the chart analysis → ritual action gap.
+
+### 7.2 Nine Graha Shanti Vidhis
+
+Each follows the same `PujaVidhi` type but with `category: 'graha_shanti'` (new category value).
+
+| Graha | Trigger Conditions | Best Day | Key Samagri | Beej Mantra | Japa Count |
+|-------|--------------------|----------|-------------|-------------|------------|
+| Surya | Debilitated, combust, in 6/8/12 | Sunday | Wheat, jaggery, copper vessel, red flowers | oṃ hrāṃ hrīṃ hrauṃ saḥ sūryāya namaḥ | 7,000 |
+| Chandra | Weak (paksha bala), afflicted, in 6/8/12 | Monday | Rice, white flowers, silver, milk, white cloth | oṃ śrāṃ śrīṃ śrauṃ saḥ candrāya namaḥ | 11,000 |
+| Mangal | In 1/4/7/8/12, Mangal Dosha | Tuesday | Red lentils (masoor), red cloth, copper | oṃ krāṃ krīṃ krauṃ saḥ bhaūmāya namaḥ | 10,000 |
+| Budha | Combust, debilitated, with malefics | Wednesday | Moong dal, green cloth, bronze | oṃ brāṃ brīṃ brauṃ saḥ budhāya namaḥ | 9,000 |
+| Guru | Debilitated, retrograde in dusthana | Thursday | Chana dal, yellow cloth, gold, turmeric | oṃ grāṃ grīṃ grauṃ saḥ gurave namaḥ | 19,000 |
+| Shukra | Combust, debilitated, relationship issues | Friday | Rice, white cloth, silver, white flowers | oṃ drāṃ drīṃ drauṃ saḥ śukrāya namaḥ | 16,000 |
+| Shani | In dusthana, Sade Sati, Dhaiya | Saturday | Black sesame (til), iron, blue/black cloth | oṃ prāṃ prīṃ prauṃ saḥ śanaiścarāya namaḥ | 23,000 |
+| Rahu | In 1/5/7/8, Kaal Sarpa, with luminaries | Saturday (night) | Black sesame, coconut, blue cloth | oṃ bhṛāṃ bhṛīṃ bhṛauṃ saḥ rāhave namaḥ | 18,000 |
+| Ketu | Afflicting lagna/Moon, spiritual blocks | Tuesday (night) | Kusha grass, mixed 7 grains, grey cloth | oṃ srāṃ srīṃ srauṃ saḥ ketave namaḥ | 17,000 |
+
+### 7.3 Each Graha Shanti Vidhi Includes
+
+- **Samagri** specific to the planet (colors, metals, grains, flowers)
+- **Vidhi steps** (8-12 steps): Achamana → Sankalpa → Kalash → Graha Avahana → Beej Japa → Homa (if applicable) → Daan → Visarjan
+- **Beej mantra** with full Devanagari + IAST + meaning
+- **Gayatri mantra** for that planet
+- **Recommended daan** (donation): what item, to whom, when
+- **Dietary guidance** during remedy period
+- **Duration**: single-sitting (1-2 hours) vs extended (43-day daily japa protocol)
+
+### 7.4 Kundali Integration
+
+Add a new category value to `PujaVidhi`:
+
+```typescript
+category: 'festival' | 'vrat' | 'graha_shanti';
+```
+
+On the Kundali results page, in the Tippanni (interpretation) section, when a planet is afflicted:
+
+```
+━━━ Saturn — Afflicted ━━━━━━━━━━━━━━
+Position: 8th House, Aries (Debilitated)
+Sade Sati: Active (Phase 2)
+Shadbala: 62% (below threshold)
+
+Recommended Remedy:
+→ Shani Graha Shanti Puja [View Vidhi]
+→ Saturday fasting + til daan
+→ Shani Beej Mantra: 23,000 japa over 43 days
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+The `[View Vidhi]` link goes to `/puja/graha-shanti-shani`.
+
+### 7.5 Trigger Logic
+
+New function in `src/lib/kundali/` or alongside tippanni:
+
+```typescript
+function detectAfflictedPlanets(kundali: KundaliData): {
+  planetId: number;
+  severity: 'mild' | 'moderate' | 'severe';
+  reasons: string[];
+  remedySlug: string;  // e.g., 'graha-shanti-shani'
+}[]
+```
+
+Conditions checked:
+- Planet in 6th, 8th, or 12th house
+- Planet debilitated
+- Planet combust (too close to Sun)
+- Planet retrograde in dusthana
+- Shadbala below threshold (<60%)
+- Specific doshas (Mangal Dosha, Sade Sati, Kaal Sarpa)
+
+---
+
+## 8. Type Changes Summary
+
+### 8.1 Changes to Existing Types
+
+```typescript
+// In src/lib/constants/puja-vidhi/types.ts
+
+// UPDATE category to include graha_shanti
+interface PujaVidhi {
+  festivalSlug: string;
+  category: 'festival' | 'vrat' | 'graha_shanti';  // ADD graha_shanti
+  deity: Trilingual;
+  samagri: SamagriItem[];
+  muhurtaType: 'computed' | 'fixed';
+  muhurtaDescription: Trilingual;
+  muhurtaWindow?: {
+    type: 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'brahma_muhurta' | 'abhijit';
+  };
+  sankalpa: Trilingual;
+  vidhiSteps: VidhiStep[];
+  mantras: MantraDetail[];
+  stotras?: StotraReference[];
+  aarti?: AartiText;
+  naivedya: Trilingual;
+  precautions: Trilingual[];
+  phala: Trilingual;
+  visarjan?: Trilingual;
+  // NEW:
+  parana?: ParanaRule;
+}
+
+// UPDATE SamagriItem with categorization + substitutions
+interface SamagriItem {
+  name: Trilingual;
+  quantity?: string;
+  note?: Trilingual;
+  // NEW:
+  category?: 'flowers' | 'food' | 'puja_items' | 'clothing' | 'vessels' | 'other';
+  essential?: boolean;
+  substitutions?: { item: Trilingual; note: Trilingual }[];
+  prepNote?: Trilingual;
+}
+
+// UPDATE VidhiStep with essential flag + step type
+interface VidhiStep {
+  step: number;
+  title: Trilingual;
+  description: Trilingual;
+  mantraRef?: string;
+  duration?: string;
+  // NEW:
+  essential?: boolean;           // true = included in Quick Mode
+  stepType?: 'preparation' | 'invocation' | 'offering' | 'mantra' | 'meditation' | 'conclusion';
+}
+```
+
+### 8.2 New Types
+
+```typescript
+interface ParanaRule {
+  type: 'sunrise_plus_quarter' | 'moonrise' | 'next_sunrise' | 'tithi_end';
+  description: Trilingual;
+}
+
+interface ComputedMuhurta {
+  start: Date;
+  end: Date;
+  label: Trilingual;
+  type: string;
+}
+
+interface SankalpaProfile {
+  name: string;          // Devanagari
+  nameIast: string;      // IAST
+  gotra: string;         // Devanagari
+  gotraIast: string;     // IAST
+}
+
+interface GeneratedSankalpa {
+  devanagari: string;
+  iast: string;
+  computedFields: {
+    samvatsara: string;
+    ayana: string;
+    ritu: string;
+    masa: string;
+    paksha: string;
+    tithi: string;
+    vara: string;
+    nakshatra: string;
+    yoga: string;
+  };
+}
+```
+
+All new fields are optional (`?`) to maintain backward compatibility with existing 10 vidhis. They can be incrementally enriched.
+
+---
+
+## 9. New File Structure
 
 ```
 src/lib/constants/puja-vidhi/
-├── index.ts                    — Exports PUJA_VIDHIS Record<string, PujaVidhi>
-├── types.ts                    — Type definitions
-├── ganesh-chaturthi.ts         — Ganesh Chaturthi puja
-├── navaratri.ts                — 9-day Navaratri (9 sub-pujas)
-├── diwali.ts                   — Lakshmi-Ganesh puja
-├── maha-shivaratri.ts          — Shivaratri puja
-├── holi.ts                     — Holika Dahan vidhi
-├── ram-navami.ts               — Ram Navami puja
-├── janmashtami.ts              — Krishna Janmashtami
-├── makar-sankranti.ts          — Surya puja
-├── vasant-panchami.ts          — Saraswati puja
-├── hanuman-jayanti.ts          — Hanuman puja
-├── raksha-bandhan.ts           — Rakhi tying vidhi
-├── chhath-puja.ts              — Chhath (2-day)
-├── dhanteras.ts                — Dhanvantari puja
-├── guru-purnima.ts             — Guru vandana
-├── dussehra.ts                 — Vijaya Dashami puja
-├── ekadashi.ts                 — Generic Ekadashi vrat vidhi
-├── pradosham.ts                — Pradosham Shiva puja
-├── monthly-vrats.ts            — Chaturthi, Purnima, Amavasya
-└── additional-vrats.ts         — Karva Chauth, Teej, Nag Panchami, etc.
+├── types.ts                        ← UPDATE (new fields)
+├── index.ts                        ← UPDATE (export all 10, then expand)
+├── ganesh-chaturthi.ts             ← EXISTS
+├── diwali.ts                       ← EXISTS
+├── maha-shivaratri.ts              ← EXISTS
+├── navaratri.ts                    ← EXISTS (wire up)
+├── holi.ts                         ← EXISTS (wire up)
+├── ram-navami.ts                   ← EXISTS (wire up)
+├── makar-sankranti.ts              ← EXISTS (wire up)
+├── hanuman-jayanti.ts              ← EXISTS (wire up)
+├── raksha-bandhan.ts               ← EXISTS (wire up)
+├── ekadashi.ts                     ← EXISTS (wire up)
+├── janmashtami.ts                  ← NEW
+├── dussehra.ts                     ← NEW
+├── vasant-panchami.ts              ← NEW
+├── chhath-puja.ts                  ← NEW
+├── dhanteras.ts                    ← NEW
+├── pradosham.ts                    ← NEW
+├── sankashti-chaturthi.ts          ← NEW
+├── karva-chauth.ts                 ← NEW
+├── hartalika-teej.ts               ← NEW
+├── vat-savitri.ts                  ← NEW
+├── ahoi-ashtami.ts                 ← NEW
+├── tulsi-vivah.ts                  ← NEW
+├── nag-panchami.ts                 ← NEW
+├── akshaya-tritiya.ts              ← NEW
+├── guru-purnima.ts                 ← NEW
+├── satyanarayan-katha.ts           ← NEW
+├── amavasya-tarpan.ts              ← NEW
+├── masik-shivaratri.ts             ← NEW
+├── somvar-vrat.ts                  ← NEW
+├── mangalvar-vrat.ts               ← NEW
+├── graha-shanti/
+│   ├── index.ts                    ← NEW (exports all 9)
+│   ├── surya.ts                    ← NEW
+│   ├── chandra.ts                  ← NEW
+│   ├── mangal.ts                   ← NEW
+│   ├── budha.ts                    ← NEW
+│   ├── guru.ts                     ← NEW
+│   ├── shukra.ts                   ← NEW
+│   ├── shani.ts                    ← NEW
+│   ├── rahu.ts                     ← NEW
+│   └── ketu.ts                     ← NEW
+└── substitutions.ts                ← NEW (shared substitution database)
+
+src/lib/puja/
+├── muhurta-compute.ts              ← NEW (Layer 2: computed puja timing)
+├── parana-compute.ts               ← NEW (Layer 2: fast-breaking time)
+├── sankalpa-generator.ts           ← NEW (Layer 5: personalized sankalpa)
+└── affliction-detector.ts          ← NEW (Layer 6: kundali → remedy link)
+
+src/components/puja/
+├── MantraCard.tsx                   ← EXISTS
+├── PujaMode.tsx                     ← NEW (Layer 3: full-screen guided mode)
+├── JapaCounter.tsx                  ← NEW (Layer 3: tap counter for japa)
+├── SamagriList.tsx                  ← NEW (Layer 4: categorized + shareable)
+├── SankalpaDisplay.tsx              ← NEW (Layer 5: personalized sankalpa)
+├── MuhurtaCountdown.tsx             ← NEW (Layer 2: live countdown)
+└── ParanaDisplay.tsx                ← NEW (Layer 2: fast-breaking time)
 ```
 
-Each file is ~100-200 lines of pure data (no logic). Total: ~3,000-4,000 lines of content across all files.
+---
+
+## 10. Implementation Priority
+
+### Phase 1: Foundation (wire up + fix)
+1. Export 7 orphaned vidhis in `index.ts`
+2. Update types with new optional fields
+3. Implement `muhurta-compute.ts` (uses existing sunrise/sunset)
+4. Add `MuhurtaCountdown` component to puja detail page
+5. Persist samagri checkmarks in localStorage
+
+### Phase 2: New Content — Tier 1 Completion
+6. Write 5 remaining Tier 1 festival vidhis (Janmashtami, Dussehra, Vasant Panchami, Chhath, Dhanteras)
+7. Enrich existing 10 vidhis with `essential` flags on steps + `category`/`essential` on samagri
+
+### Phase 3: Puja Mode
+8. Build `PujaMode.tsx` full-screen guided experience
+9. Build `JapaCounter.tsx`
+10. Add Quick Mode / Full Mode toggle using `essential` flags
+
+### Phase 4: Smart Samagri
+11. Build `SamagriList.tsx` with grouping + substitutions
+12. Add share/print functionality
+13. Create `substitutions.ts` shared database
+14. Enrich existing vidhis with substitution data
+
+### Phase 5: Personal Sankalpa
+15. Build `sankalpa-generator.ts` (panchang calc integration)
+16. Build `SankalpaDisplay.tsx` with profile input
+17. Add gotra dropdown + name transliteration
+18. Integrate into puja detail page
+
+### Phase 6: Vrat Vidhis + Parana
+19. Write 10 Tier 2 vrat vidhis
+20. Implement `parana-compute.ts`
+21. Build `ParanaDisplay.tsx`
+22. Integrate parana into Ekadashi and other vrat pages
+
+### Phase 7: Graha Shanti
+23. Write 9 graha shanti vidhis
+24. Build `affliction-detector.ts`
+25. Integrate remedy suggestions into kundali tippanni
+26. Add graha shanti section to puja index page
+
+### Phase 8: Monthly Recurring + Polish
+27. Write 5 Tier 3 monthly vidhis
+28. Add regional variant toggle (future — just data structure for now)
+29. PDF export of puja vidhi
+30. Calendar integration badges
 
 ---
 
-## 5. Integration Points
+## 11. Content Sourcing
 
-### 5.1 Festival Detail Modal Enhancement
+All mantras and procedures sourced from:
+- **Puja Paddhati** (standard ritual manual)
+- **Dharma Sindhu** by Kasinath Upadhyaya
+- **Nirnaya Sindhu** by Kamalakara Bhatta
+- **Vrataraj** by Visvanatha
+- **Vedic texts**: Rig Veda, Yajur Veda (for core mantras)
+- **Puranic texts**: Shiva Purana, Vishnu Purana, Skanda Purana (for festival-specific content)
 
-Extend `src/components/calendar/FestivalDetailModal.tsx` to show puja vidhi:
-
-```
-Existing sections:
-  - Mythology
-  - Observance
-  - Significance
-
-New sections (if puja vidhi exists for this festival):
-  - Samagri (Materials) — checklist with checkboxes
-  - Muhurta (Timing) — computed window or description
-  - Puja Vidhi — numbered steps with expandable detail
-  - Mantras — Devanagari + IAST toggle, copy button
-  - Aarti — full text with Devanagari/Roman toggle
-  - Precautions — bullet list
-  - Phala (Benefits)
-```
-
-### 5.2 Dedicated Puja Vidhi Page
-
-New route: `/[locale]/puja/[slug]`
-
-Full-page puja vidhi with:
-- Festival header (name, deity, date from calendar)
-- Samagri checklist (interactive — user can check off items)
-- Muhurta timing (computed for user's location if available)
-- Step-by-step procedure with expandable steps
-- Mantras with Devanagari / IAST toggle and audio pronunciation (future)
-- Stotra texts (scrollable, with verse numbers)
-- Aarti text
-- Precautions
-- Benefits
-
-This page can be accessed from:
-- Festival modal → "View Full Puja Vidhi" button
-- Homepage tool cards (new "Puja Vidhi" card)
-- Direct URL sharing
-
-### 5.3 Puja Vidhi Index Page
-
-New route: `/[locale]/puja`
-
-Grid of all available puja vidhis as cards:
-- Grouped by: Upcoming (next 30 days), Major Festivals, Monthly Vrats
-- Each card: deity icon, festival name, date, "View Vidhi" link
-- Search/filter functionality
-
-### 5.4 Calendar Integration
-
-On the festival calendar page, festivals with puja vidhi get a special badge/icon indicating "Vidhi Available". Clicking opens the modal with the puja tab, or links to the full page.
-
-### 5.5 Muhurta Integration
-
-For festivals where `muhurtaType === 'computed'`, use the existing muhurta engine (`src/lib/muhurta/`) to compute the exact puja window based on:
-- User's location (lat/lng/timezone)
-- Festival date
-- Muhurta type (Madhyahna, Aparahna, Pradosh, etc.)
-
-The computed window shows: "Best time for puja: 11:42 AM — 1:18 PM" with countdown.
+Every mantra cross-checked against at least 2 published sources. IAST diacritics validated against Devanagari 1:1.
 
 ---
 
-## 6. Mantra Rendering
+## 12. Monetization
 
-### 6.1 Display Modes
+**All puja vidhi content is FREE.** No paywall on devotional content.
 
-| Mode | Shows | Use Case |
-|------|-------|----------|
-| **Devanagari** | ॐ गं गणपतये नमः | Default for Hindi/Sanskrit users |
-| **IAST** | oṃ gaṃ gaṇapataye namaḥ | For users who can't read Devanagari |
-| **Both** | Devanagari on top, IAST below | Learning mode |
-| **Meaning** | Below the mantra text | Always shown |
+Rationale:
+- High-traffic SEO gateway ("Diwali puja vidhi", "Ekadashi mantra" — massive search volume)
+- Trust builder → users discover kundali/AI features → convert to Pro
+- Daily engagement via monthly vrats
+- Graha Shanti vidhis naturally drive kundali usage (the trigger is chart analysis)
 
-### 6.2 Mantra Component
-
-```typescript
-<MantraCard
-  mantra={mantra}
-  displayMode="both"        // 'devanagari' | 'iast' | 'both'
-  showMeaning={true}
-  showJapaCount={true}
-  copyable={true}            // Copy button for text
-/>
-```
-
-### 6.3 Font Requirements
-
-- Devanagari: Already have `--font-devanagari-heading` and `--font-devanagari-body`
-- IAST: Needs a font that supports diacritics (ā, ī, ū, ṛ, ṣ, ś, ṇ, ṃ, ḥ). Most system fonts support this. Fallback: "Gentium Plus" or "Noto Sans" (already loaded via Google Fonts).
-
----
-
-## 7. Content Sourcing
-
-### 7.1 Authoritative Sources
-
-All puja vidhi content should be sourced from:
-
-1. **Classical texts**: Puja Paddhati, Dharma Sindhu, Nirnaya Sindhu
-2. **Regional traditions**: North Indian (UP/Bihar), South Indian (Tamil Nadu, Kerala), Marathi, Gujarati
-3. **Sanskrit originals**: Mantras from Vedas, Puranas, Agamas
-4. **Standard compilations**: Vrataraj, Vratarke, Hemadri's Chaturvarga Chintamani
-
-### 7.2 Regional Variations
-
-Some festivals have significantly different puja vidhis by region:
-- Navaratri: North (Durga Puja) vs South (Golu/Bommai) vs Gujarat (Garba)
-- Ganesh Chaturthi: Maharashtra vs Tamil Nadu vs North India
-- Chhath: Bihar/Jharkhand specific
-
-For now: document the most widely practiced (pan-Indian) version. Add regional variants as a future enhancement.
-
-### 7.3 Content Accuracy
-
-Every mantra must be:
-- Verified against published Sanskrit texts
-- Cross-checked with at least 2 authoritative sources
-- IAST romanization validated for correct diacritics
-- Meaning reviewed for accuracy
-
----
-
-## 8. Monetization
-
-**All puja vidhi content is free for all users — no paywall.** Festivals and devotional content are the high-traffic gateway that brings users to the app. Monetization happens on depth features (kundali analysis, AI chat, shadbala, varshaphal) not on devotional content.
-
-Free puja vidhis serve as:
-- SEO magnets (high search volume for "Diwali puja vidhi", "Ganesh Chaturthi mantra", etc.)
-- Trust builders (users come for puja → discover kundali → convert to Pro)
-- Daily engagement drivers (monthly vrats keep users returning)
-
----
-
-## 9. UI Design
-
-### 9.1 Puja Vidhi Page Layout
-
-```
-┌─────────────────────────────────────────┐
-│  [Deity Icon]  Festival Name            │
-│  Date: 25 Oct 2026  │  Deity: Lakshmi   │
-│  Muhurta: 6:12 PM — 8:45 PM (Pradosh)  │
-├─────────────────────────────────────────┤
-│                                         │
-│  ▼ SAMAGRI (Materials)                  │
-│  ☐ Coconut (1, unbroken)               │
-│  ☐ Red flowers (handful)               │
-│  ☐ Ghee lamp (1)                       │
-│  ☐ Incense sticks (5)                  │
-│  ...                                   │
-│                                         │
-│  ▼ PUJA VIDHI (Procedure)              │
-│  1. Achamana (Sipping water)           │
-│     Sip water 3 times reciting...      │
-│     ॐ अच्युताय नमः                      │
-│     oṃ acyutāya namaḥ                  │
-│                                         │
-│  2. Sankalpa (Declaration)             │
-│     Hold water, flowers, akshat...     │
-│     ...                                │
-│                                         │
-│  3. Kalash Sthapana                    │
-│     ...                                │
-│                                         │
-│  ▼ MANTRAS                             │
-│  ┌─────────────────────────┐           │
-│  │ Lakshmi Beej Mantra     │           │
-│  │ ॐ श्रीं महालक्ष्म्यै नमः  │           │
-│  │ oṃ śrīṃ mahālakṣmyai   │           │
-│  │ namaḥ                   │           │
-│  │ Japa: 108 times         │ [Copy]    │
-│  └─────────────────────────┘           │
-│                                         │
-│  ▼ AARTI                               │
-│  ॐ जय लक्ष्मी माता...                   │
-│  oṃ jaya lakṣmī mātā...               │
-│                                         │
-│  ▼ PRECAUTIONS                         │
-│  • Do not use broken coconut           │
-│  • Puja should face East               │
-│  • ...                                 │
-│                                         │
-│  ▼ PHALA (Benefits)                    │
-│  Performing this puja with devotion... │
-└─────────────────────────────────────────┘
-```
-
-### 9.2 Styling
-
-- Glass-card sections with gold headers (consistent with app)
-- Mantra text: larger font size (~18px Devanagari, ~14px IAST)
-- Steps: numbered with gold circles, expandable
-- Samagri: interactive checkboxes (state stored in localStorage)
-- Devanagari/Roman toggle: pill buttons at top of mantra section
-- Countdown timer to muhurta (if computed and within 24 hours)
-
----
-
-## 10. Implementation Order
-
-1. **Types + data structure** — `puja-vidhi/types.ts`
-2. **Content: 5 free-tier festivals** — Diwali, Ganesh Chaturthi, Shivaratri, Navaratri, Holi
-3. **MantraCard component** — Devanagari/IAST/Both display with copy
-4. **Puja page** — `/[locale]/puja/[slug]`
-5. **Puja index page** — `/[locale]/puja`
-6. **Festival modal integration** — "View Puja Vidhi" link
-7. **Content: remaining 10 Tier 1 festivals**
-8. **Content: Tier 2 vrats** (Ekadashi, Pradosham, etc.)
-9. **Computed muhurta integration**
-10. **Content: Tier 3 monthly observances**
-11. **Paywall gating** (free gets 5, Pro gets all)
-12. **PDF export** of puja vidhi
-
----
-
-## 11. Content Volume Estimate
-
-| Category | Festivals | Content per Festival | Total |
-|----------|-----------|---------------------|-------|
-| Tier 1 (full vidhi) | 15 | ~200 lines (~5KB) | ~75KB |
-| Tier 2 (vrat vidhi) | 10 | ~100 lines (~2.5KB) | ~25KB |
-| Tier 3 (brief vidhi) | 5 | ~50 lines (~1.2KB) | ~6KB |
-| **Total** | **30** | | **~106KB** |
-
-This is a content-heavy feature. The code infrastructure (~500 lines for types, components, pages) is small compared to the ~4,000 lines of ritual content.
+Revenue comes from depth features: AI chart chat, detailed tippanni, varshaphal, KP system, muhurta AI — not from telling people how to pray.

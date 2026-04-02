@@ -1,8 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
-import type { Locale } from '@/types/panchang';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 // ─── Module Metadata ────────────────────────────────────────────────────────
 
@@ -137,6 +135,8 @@ const QUESTIONS: ModuleQuestion[] = [
 // ─── Content Pages ──────────────────────────────────────────────────────────
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       {/* 1. Conceptual Introduction */}
@@ -174,6 +174,8 @@ function Page1() {
 }
 
 function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       {/* 3. Detailed Explanation */}
@@ -239,6 +241,8 @@ function Page2() {
 }
 
 function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       {/* The Zodiac Belt */}

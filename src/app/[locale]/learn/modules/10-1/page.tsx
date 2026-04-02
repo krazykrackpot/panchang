@@ -1,6 +1,6 @@
 'use client';
 
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 const META: ModuleMeta = {
   id: 'mod_10_1', phase: 3, topic: 'Vargas', moduleNumber: '10.1',
@@ -183,6 +183,8 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -215,8 +217,8 @@ function Page1() {
           ].map(v => (
             <div key={v.code} className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
               <span className="text-gold-light font-mono font-bold text-xs">{v.code}</span>
-              <span className="text-text-secondary text-xs ml-2">{v.name} ({v.nameHi})</span>
-              <p className="text-text-secondary/70 text-[11px] mt-1">{v.domain}</p>
+              <span className="text-text-secondary text-xs ml-2">{isHi ? v.nameHi : v.name}</span>
+              <p className="text-text-secondary/70 text-[11px] mt-1">{isHi ? v.domainHi : v.domain}</p>
             </div>
           ))}
         </div>
@@ -226,6 +228,8 @@ function Page1() {
 }
 
 function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -270,6 +274,8 @@ function Page2() {
 }
 
 function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>

@@ -1,6 +1,6 @@
 'use client';
 
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 const META: ModuleMeta = {
   id: 'mod_10_2', phase: 3, topic: 'Vargas', moduleNumber: '10.2',
@@ -183,6 +183,8 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -201,9 +203,9 @@ function Page1() {
               { element: 'Water', elementHi: 'जल', signs: 'Cancer, Scorpio, Pisces', signsHi: 'कर्क, वृश्चिक, मीन', start: 'Cancer', startHi: 'कर्क' },
             ].map(e => (
               <div key={e.element} className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
-                <span className="text-gold-light font-bold text-xs">{e.element} ({e.elementHi})</span>
-                <p className="text-text-secondary/70 text-[11px] mt-1">{e.signs}</p>
-                <p className="text-emerald-400 text-[11px] mt-1">Starts from: {e.start} ({e.startHi})</p>
+                <span className="text-gold-light font-bold text-xs">{isHi ? e.elementHi : e.element}</span>
+                <p className="text-text-secondary/70 text-[11px] mt-1">{isHi ? e.signsHi : e.signs}</p>
+                <p className="text-emerald-400 text-[11px] mt-1">{isHi ? `${e.startHi} से आरम्भ` : `Starts from: ${e.start}`}</p>
               </div>
             ))}
           </div>
@@ -227,6 +229,8 @@ function Page1() {
 }
 
 function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -257,8 +261,8 @@ function Page2() {
             { placement: 'In own/exalted sign', placementHi: 'स्वगृह/उच्च राशि में', result: 'Self-assured in relationships, natural harmony', resultHi: 'सम्बन्धों में आत्मविश्वासी, स्वाभाविक सौहार्द' },
           ].map((item, i) => (
             <div key={i} className="bg-bg-primary/40 rounded-lg px-3 py-2 border border-white/5">
-              <span className="text-gold-light text-[11px] font-medium">{item.placement}</span>
-              <span className="text-text-secondary/70 text-[11px] ml-2">→ {item.result}</span>
+              <span className="text-gold-light text-[11px] font-medium">{isHi ? item.placementHi : item.placement}</span>
+              <span className="text-text-secondary/70 text-[11px] ml-2">→ {isHi ? item.resultHi : item.result}</span>
             </div>
           ))}
         </div>
@@ -278,6 +282,8 @@ function Page2() {
 }
 
 function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -302,10 +308,10 @@ function Page3() {
           ].map(item => (
             <div key={item.type} className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
               <div className="flex items-center justify-between">
-                <span className="text-gold-light font-bold text-xs">{item.type} ({item.typeHi})</span>
+                <span className="text-gold-light font-bold text-xs">{isHi ? item.typeHi : item.type}</span>
                 <span className="text-emerald-400 font-mono text-[11px]">{item.range}</span>
               </div>
-              <p className="text-text-secondary/70 text-[11px] mt-1">{item.signs}</p>
+              <p className="text-text-secondary/70 text-[11px] mt-1">{isHi ? item.signsHi : item.signs}</p>
               <p className="text-text-secondary/50 text-[10px] mt-0.5">{item.note}</p>
             </div>
           ))}

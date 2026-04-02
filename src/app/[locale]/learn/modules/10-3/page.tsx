@@ -1,6 +1,6 @@
 'use client';
 
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 const META: ModuleMeta = {
   id: 'mod_10_3', phase: 3, topic: 'Vargas', moduleNumber: '10.3',
@@ -189,6 +189,8 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -237,6 +239,8 @@ function Page1() {
 }
 
 function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -264,8 +268,8 @@ function Page2() {
             { status: 'Jupiter in 6/8/12 of D7', statusHi: 'D7 के 6/8/12 में बृहस्पति', result: 'Obstacles to progeny; medical intervention may be needed; children may live at distance', resultHi: 'सन्तान में बाधाएँ; चिकित्सकीय हस्तक्षेप आवश्यक; सन्तान दूर रह सकती है' },
           ].map((item, i) => (
             <div key={i} className="bg-bg-primary/40 rounded-lg px-3 py-2 border border-white/5">
-              <span className="text-gold-light text-[11px] font-medium">{item.status}</span>
-              <p className="text-text-secondary/70 text-[11px] mt-0.5">{item.result}</p>
+              <span className="text-gold-light text-[11px] font-medium">{isHi ? item.statusHi : item.status}</span>
+              <p className="text-text-secondary/70 text-[11px] mt-0.5">{isHi ? item.resultHi : item.result}</p>
             </div>
           ))}
         </div>
@@ -285,6 +289,8 @@ function Page2() {
 }
 
 function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
@@ -312,8 +318,8 @@ function Page3() {
             { house: '10th House (Legacy)', houseHi: 'दशम भाव (विरासत)', desc: 'What the native does with inherited karma — continuation, transformation, or transcendence of family patterns', descHi: 'विरासत में मिले कर्म से जातक क्या करता है — पारिवारिक प्रतिरूपों की निरन्तरता, रूपान्तरण या पारगमन' },
           ].map((item, i) => (
             <div key={i} className="bg-bg-primary/40 rounded-lg px-3 py-2 border border-white/5">
-              <span className="text-gold-light text-[11px] font-medium">{item.house}</span>
-              <p className="text-text-secondary/70 text-[11px] mt-0.5">{item.desc}</p>
+              <span className="text-gold-light text-[11px] font-medium">{isHi ? item.houseHi : item.house}</span>
+              <p className="text-text-secondary/70 text-[11px] mt-0.5">{isHi ? item.descHi : item.desc}</p>
             </div>
           ))}
         </div>

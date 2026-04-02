@@ -1,6 +1,6 @@
 'use client';
 
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 const META: ModuleMeta = {
   id: 'mod_3_1', phase: 1, topic: 'Rashis', moduleNumber: '3.1',
@@ -28,6 +28,8 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>

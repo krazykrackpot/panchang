@@ -145,6 +145,18 @@ export interface PanchangData {
   tamilYoga?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' };
   mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual } };
   homahuti?: { direction: Trilingual; deity: Trilingual };
+  // Festivals & Vrats for this date
+  festivals?: {
+    name: Trilingual;
+    type: string;
+    category: string;
+    description: Trilingual;
+    slug?: string;
+    pujaMuhurat?: { start: string; end: string; name: string };
+    paranaStart?: string;
+    paranaEnd?: string;
+    paranaDate?: string;
+  }[];
 }
 
 export interface ChoghadiyaSlot {

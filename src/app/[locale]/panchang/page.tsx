@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell } from 'lucide-react';
+import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import { Download } from 'lucide-react';
@@ -284,7 +284,7 @@ export default function PanchangPage() {
         <div className="glass-card rounded-xl p-4 inline-flex items-center gap-4">
           <label className="text-gold-dark text-sm">{t('selectDate')}</label>
           <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-gold-primary/50" />
+            className="bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-2 text-text-primary focus:outline-none focus:border-gold-primary/50 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:opacity-70" />
         </div>
         <div className="glass-card rounded-xl p-4 flex flex-col sm:flex-row items-center gap-3">
           <div className="flex items-center gap-2">
@@ -365,6 +365,101 @@ export default function PanchangPage() {
               </button>
             </div>
           </div>
+
+          {/* ═══════════════════════════════════════════════════
+              FESTIVALS & VRATS FOR TODAY
+          ═══════════════════════════════════════════════════ */}
+          {panchang.festivals && panchang.festivals.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15 }}
+              className="mb-10"
+            >
+              {panchang.festivals.map((fest, idx) => {
+                const isMajor = fest.type === 'major';
+                const isEkadashi = fest.category === 'ekadashi';
+                return (
+                  <motion.div
+                    key={`${fest.slug}-${idx}`}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 + idx * 0.08 }}
+                    className={`rounded-2xl p-6 mb-4 border-2 ${
+                      isMajor
+                        ? 'border-gold-primary/50 bg-gradient-to-r from-gold-primary/15 via-amber-500/5 to-gold-primary/15'
+                        : isEkadashi
+                        ? 'border-emerald-500/40 bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10'
+                        : 'border-purple-500/30 bg-gradient-to-r from-purple-500/10 via-indigo-500/5 to-purple-500/10'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                        isMajor ? 'bg-gold-primary/20' : isEkadashi ? 'bg-emerald-500/20' : 'bg-purple-500/20'
+                      }`}>
+                        {isMajor ? (
+                          <Sparkles className={`w-6 h-6 ${isMajor ? 'text-gold-primary' : 'text-purple-400'}`} />
+                        ) : (
+                          <BookOpen className={`w-6 h-6 ${isEkadashi ? 'text-emerald-400' : 'text-purple-400'}`} />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <h3 className={`text-xl font-bold ${
+                            isMajor ? 'text-gold-light' : isEkadashi ? 'text-emerald-300' : 'text-purple-300'
+                          }`} style={headingFont}>
+                            {fest.name[locale]}
+                          </h3>
+                          <span className={`text-[10px] uppercase tracking-widest font-bold px-2.5 py-0.5 rounded-full ${
+                            isMajor
+                              ? 'bg-gold-primary/20 text-gold-primary'
+                              : isEkadashi
+                              ? 'bg-emerald-500/20 text-emerald-400'
+                              : 'bg-purple-500/20 text-purple-400'
+                          }`}>
+                            {isMajor
+                              ? (locale === 'en' ? 'Festival' : 'पर्व')
+                              : isEkadashi
+                              ? (locale === 'en' ? 'Ekadashi' : 'एकादशी')
+                              : (locale === 'en' ? 'Vrat' : 'व्रत')}
+                          </span>
+                        </div>
+                        {fest.description[locale] && (
+                          <p className="text-text-secondary text-sm mt-1.5 leading-relaxed line-clamp-2">
+                            {fest.description[locale]}
+                          </p>
+                        )}
+                        <div className="flex flex-wrap items-center gap-4 mt-3">
+                          {fest.pujaMuhurat && (
+                            <div className="flex items-center gap-1.5">
+                              <Clock className="w-3.5 h-3.5 text-gold-primary" />
+                              <span className="text-xs text-text-secondary">
+                                {fest.pujaMuhurat.name}:
+                              </span>
+                              <span className={`font-mono text-xs font-bold ${isMajor ? 'text-gold-light' : 'text-emerald-300'}`}>
+                                {fest.pujaMuhurat.start} — {fest.pujaMuhurat.end}
+                              </span>
+                            </div>
+                          )}
+                          {fest.paranaStart && (
+                            <div className="flex items-center gap-1.5">
+                              <Sun className="w-3.5 h-3.5 text-gold-primary" />
+                              <span className="text-xs text-text-secondary">
+                                {locale === 'en' ? 'Parana:' : 'पारण:'}
+                              </span>
+                              <span className={`font-mono text-xs font-bold ${isEkadashi ? 'text-emerald-300' : 'text-purple-300'}`}>
+                                {fest.paranaStart} — {fest.paranaEnd}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          )}
 
           {/* ═══════════════════════════════════════════════════
               SECTION 1: FIVE ELEMENTS (Pancha Anga)

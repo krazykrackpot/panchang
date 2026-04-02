@@ -4,6 +4,7 @@ import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { checkRateLimit, getClientIP } from '@/lib/api/rate-limit';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { buildYearlyTithiTable, lookupTithiAtSunrise } from '@/lib/calendar/tithi-table';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import { dateToJD, approximateSunrise } from '@/lib/ephem/astronomical';
 
 const panchangSchema = z.object({
@@ -85,7 +86,32 @@ export async function GET(request: Request) {
       }
     } catch { /* tithi table enrichment is optional — don't fail the API */ }
 
-    return NextResponse.json({ ...panchang, ...(tithiTableData ? { tithiTable: tithiTableData } : {}) }, {
+    // Enrich with festivals/vrats for this date
+    let festivals: { name: { en: string; hi: string; sa: string }; type: string; category: string; description: { en: string; hi: string; sa: string }; slug?: string; pujaMuhurat?: { start: string; end: string; name: string }; paranaStart?: string; paranaEnd?: string; paranaDate?: string }[] | undefined;
+    try {
+      if (timezone) {
+        const dateStr = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+        const allFestivals = generateFestivalCalendarV2(year, lat, lng, timezone);
+        const todayFestivals = allFestivals.filter(f => f.date === dateStr);
+        if (todayFestivals.length > 0) {
+          festivals = todayFestivals.map(f => ({
+            name: f.name,
+            type: f.type,
+            category: f.category,
+            description: f.description,
+            slug: f.slug,
+            ...(f.pujaMuhurat ? { pujaMuhurat: f.pujaMuhurat } : {}),
+            ...(f.paranaStart ? { paranaStart: f.paranaStart, paranaEnd: f.paranaEnd, paranaDate: f.paranaDate } : {}),
+          }));
+        }
+      }
+    } catch { /* festival enrichment is optional */ }
+
+    return NextResponse.json({
+      ...panchang,
+      ...(tithiTableData ? { tithiTable: tithiTableData } : {}),
+      ...(festivals ? { festivals } : {}),
+    }, {
       headers: { 'X-RateLimit-Remaining': remaining.toString(), 'Cache-Control': 'public, s-maxage=300' },
     });
   } catch (err) {

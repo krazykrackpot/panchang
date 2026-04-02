@@ -1,15 +1,17 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import { getPujaVidhiBySlug } from '@/lib/constants/puja-vidhi';
 import MantraCard from '@/components/puja/MantraCard';
 import HeroCard from '@/components/puja/HeroCard';
 import PujaMode from '@/components/puja/PujaMode';
+import SamagriList from '@/components/puja/SamagriList';
+import SankalpaDisplay from '@/components/puja/SankalpaDisplay';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
@@ -191,24 +193,6 @@ export default function PujaVidhiPage() {
 
   const puja = useMemo(() => getPujaVidhiBySlug(slug), [slug]);
 
-  const storageKey = `puja-samagri-${slug}-${new Date().getFullYear()}`;
-
-  const [samagriChecked, setSamagriChecked] = useState<boolean[]>(() => {
-    if (typeof window === 'undefined') return new Array(puja?.samagri.length ?? 0).fill(false);
-    try {
-      const stored = localStorage.getItem(storageKey);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length === (puja?.samagri.length ?? 0)) return parsed;
-      }
-    } catch {}
-    return new Array(puja?.samagri.length ?? 0).fill(false);
-  });
-
-  useEffect(() => {
-    try { localStorage.setItem(storageKey, JSON.stringify(samagriChecked)); } catch {}
-  }, [samagriChecked, storageKey]);
-
   const [pujaMode, setPujaMode] = useState(false);
   const [quickMode, setQuickMode] = useState(false);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
@@ -262,21 +246,11 @@ export default function PujaVidhiPage() {
     );
   }
 
-  const checkedCount = samagriChecked.filter(Boolean).length;
-
   const toggleStep = (step: number) => {
     setExpandedSteps((prev) => {
       const next = new Set(prev);
       if (next.has(step)) next.delete(step);
       else next.add(step);
-      return next;
-    });
-  };
-
-  const toggleSamagri = (idx: number) => {
-    setSamagriChecked((prev) => {
-      const next = [...prev];
-      next[idx] = !next[idx];
       return next;
     });
   };
@@ -319,57 +293,7 @@ export default function PujaVidhiPage() {
           subtitle={l.samagriSa}
           defaultOpen
         >
-          <div className="mb-3">
-            <span className="text-sm text-gold-primary/70">
-              {checkedCount} / {puja.samagri.length} {l.ready}
-            </span>
-            <div className="w-full h-1.5 rounded-full bg-gold-primary/10 mt-1.5 overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-gold-primary/60 to-gold-primary"
-                animate={{ width: `${(checkedCount / puja.samagri.length) * 100}%` }}
-                transition={{ duration: 0.3 }}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            {puja.samagri.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => toggleSamagri(idx)}
-                className={`flex items-start gap-3 p-3 rounded-lg text-left transition-colors border ${
-                  samagriChecked[idx]
-                    ? 'bg-emerald-500/10 border-emerald-500/20'
-                    : 'bg-gold-primary/[0.02] border-gold-primary/8 hover:bg-gold-primary/5'
-                }`}
-              >
-                <span
-                  className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center flex-shrink-0 border transition-colors ${
-                    samagriChecked[idx]
-                      ? 'bg-emerald-500 border-emerald-500'
-                      : 'border-gold-primary/30'
-                  }`}
-                >
-                  {samagriChecked[idx] && <Check className="w-3.5 h-3.5 text-white" />}
-                </span>
-                <div className="flex-1 min-w-0">
-                  <span
-                    className={`text-sm font-medium ${
-                      samagriChecked[idx] ? 'text-emerald-300 line-through opacity-70' : 'text-gold-light'
-                    }`}
-                    style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-                  >
-                    {item.name[locale]}
-                  </span>
-                  {item.quantity && (
-                    <span className="text-text-secondary/50 text-xs ml-2">({item.quantity})</span>
-                  )}
-                  {item.note && (
-                    <p className="text-text-secondary/40 text-xs mt-0.5">{item.note[locale]}</p>
-                  )}
-                </div>
-              </button>
-            ))}
-          </div>
+          <SamagriList items={puja.samagri} slug={slug} locale={locale} />
         </SectionAccordion>
 
         {/* 2. Sankalpa Section */}
@@ -378,14 +302,14 @@ export default function PujaVidhiPage() {
           subtitle={l.sankalpaSa}
           defaultOpen
         >
-          <div className="rounded-lg border border-gold-primary/15 bg-gold-primary/[0.04] p-4">
-            <p
-              className="text-gold-light/90 text-sm leading-relaxed"
-              style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-            >
-              {puja.sankalpa[locale]}
-            </p>
-          </div>
+          <SankalpaDisplay
+            puja={puja}
+            locale={locale}
+            date={new Date()}
+            lat={46.46}
+            lng={6.79}
+            timezoneOffset={1}
+          />
         </SectionAccordion>
 
         {/* 3. Puja Vidhi Section */}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 
@@ -17,8 +18,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const { signInWithEmail, signUpWithEmail, signInWithGoogle, loading } = useAuthStore();
+  const [mounted, setMounted] = useState(false);
+  const portalRef = useRef<HTMLElement | null>(null);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    portalRef.current = document.body;
+    setMounted(true);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,13 +52,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     }
   }
 
-  return (
-    <div className="fixed inset-0 z-[200] flex items-start justify-center p-4 pt-20 sm:pt-24 overflow-y-auto">
+  const modal = (
+    <div className="fixed inset-0 z-[9999] flex items-start justify-center p-4 pt-20 sm:pt-24 overflow-y-auto">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200]" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative z-[201] w-full max-w-md glass-card rounded-2xl p-8 border border-gold-primary/20 my-auto">
+      <div className="relative z-10 w-full max-w-md glass-card rounded-2xl p-8 border border-gold-primary/20">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-text-secondary hover:text-text-primary"
@@ -151,4 +159,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       </div>
     </div>
   );
+
+  return createPortal(modal, portalRef.current!);
 }

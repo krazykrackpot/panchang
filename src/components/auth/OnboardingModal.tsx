@@ -137,6 +137,31 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         return;
       }
 
+      // Compute kundali snapshot via API
+      try {
+        const session = await supabase.auth.getSession();
+        const token = session.data.session?.access_token;
+        if (token) {
+          await fetch('/api/user/profile', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              name: fullName.trim(),
+              dateOfBirth: birthDate,
+              timeOfBirth: birthTime || '12:00',
+              birthTimeKnown: !!birthTime,
+              birthPlace: birthLocation.name,
+              birthLat: birthLocation.lat,
+              birthLng: birthLocation.lng,
+              birthTimezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+            }),
+          });
+        }
+      } catch { /* snapshot is best-effort; profile already saved */ }
+
       // Also persist to localStorage for offline access
       try {
         localStorage.setItem('panchang_onboarding', JSON.stringify({

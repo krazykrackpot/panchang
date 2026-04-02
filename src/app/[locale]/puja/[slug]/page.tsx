@@ -192,7 +192,9 @@ export default function PujaVidhiPage() {
     () => new Array(puja?.samagri.length ?? 0).fill(false)
   );
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
-  const [expandedSteps, setExpandedSteps] = useState<Set<number>>(() => new Set([1]));
+  const [expandedSteps, setExpandedSteps] = useState<Set<number>>(
+    () => new Set(puja?.vidhiSteps.map(s => s.step) ?? [])
+  );
 
   // Mantra map for step references
   const mantraMap = useMemo(() => {

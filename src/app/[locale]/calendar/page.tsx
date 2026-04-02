@@ -582,6 +582,7 @@ export default function CalendarPage() {
           paranaEarlyEnd={selectedFestival.paranaEarlyEnd}
           paranaMadhyahnaStart={selectedFestival.paranaMadhyahnaStart}
           paranaMadhyahnaEnd={selectedFestival.paranaMadhyahnaEnd}
+          festivalSlug={selectedFestival.slug}
           eclipseType={selectedFestival.eclipseType}
           eclipseMagnitude={selectedFestival.eclipseMagnitude}
           eclipseMaxTime={selectedFestival.eclipseMaxTime}

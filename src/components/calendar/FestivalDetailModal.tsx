@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon } from 'lucide-react';
+import { X, BookOpen, Flame, Star, Clock, AlertTriangle, Sun, Moon, ScrollText } from 'lucide-react';
 import type { Locale, Trilingual } from '@/types/panchang';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 
 interface FestivalDetailModalProps {
   isOpen: boolean;
@@ -33,6 +34,7 @@ interface FestivalDetailModalProps {
   sutakEnd?: string;
   sutakApplicable?: boolean;
   eclipsePhases?: { name: Trilingual; time: string }[];
+  festivalSlug?: string;
 }
 
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -97,7 +99,9 @@ export default function FestivalDetailModal({
   sutakEnd,
   sutakApplicable,
   eclipsePhases,
+  festivalSlug,
 }: FestivalDetailModalProps) {
+  const hasPujaVidhi = festivalSlug ? !!PUJA_VIDHIS[festivalSlug] : false;
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {};
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
@@ -463,6 +467,17 @@ export default function FestivalDetailModal({
                       ? 'Detailed information for this event will be added soon.'
                       : 'इस आयोजन की विस्तृत जानकारी शीघ्र जोड़ी जाएगी।'}
                   </div>
+                )}
+
+                {/* Puja Vidhi link */}
+                {hasPujaVidhi && (
+                  <a
+                    href={`/${locale}/puja/${festivalSlug}`}
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-gold-primary/15 to-gold-primary/5 border border-gold-primary/25 text-gold-light font-bold text-sm hover:from-gold-primary/25 hover:to-gold-primary/10 transition-all"
+                  >
+                    <ScrollText className="w-4 h-4" />
+                    {locale === 'en' ? 'View Complete Puja Vidhi' : locale === 'hi' ? 'सम्पूर्ण पूजा विधि देखें' : 'सम्पूर्णपूजाविधिं पश्यतु'}
+                  </a>
                 )}
               </div>
             </div>

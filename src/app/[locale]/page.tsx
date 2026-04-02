@@ -185,6 +185,21 @@ const HERO_CARDS: { href: string; gradient: string; border: string; titleColor: 
     desc: { en: 'Horary astrology — instant answers to questions', hi: 'होरेरी ज्योतिष — प्रश्नों के तत्काल उत्तर' },
   },
   {
+    href: '/puja', gradient: 'from-[#4a1a0a]/35 via-[#2a0f05]/45 to-[#0a0e27]',
+    border: 'border-orange-500/10 hover:border-orange-500/30', titleColor: 'text-orange-400',
+    svg: <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      <ellipse cx="36" cy="56" rx="18" ry="4" fill="#fb923c" opacity={0.1} />
+      <rect x="30" y="20" width="12" height="32" rx="2" fill="none" stroke="#fb923c" strokeWidth="1.2" />
+      <path d="M36 20 Q36 8 28 12 Q36 6 36 20" fill="#fb923c" opacity={0.3} />
+      <path d="M36 20 Q36 8 44 12 Q36 6 36 20" fill="#fb923c" opacity={0.2} />
+      <circle cx="36" cy="14" r="3" fill="#fb923c" opacity={0.5} />
+      <line x1="36" y1="52" x2="36" y2="58" stroke="#fb923c" strokeWidth="1.5" />
+      <ellipse cx="36" cy="52" rx="8" ry="2" fill="none" stroke="#fb923c" strokeWidth="1" opacity={0.4} />
+    </svg>,
+    label: { en: 'Puja Vidhi', hi: 'पूजा विधि' },
+    desc: { en: 'Step-by-step rituals, mantras & aarti', hi: 'चरणबद्ध विधि, मन्त्र और आरती' },
+  },
+  {
     href: '/learn', gradient: 'from-[#3a2a10]/35 via-[#1a1508]/45 to-[#0a0e27]',
     border: 'border-gold-primary/10 hover:border-gold-primary/30', titleColor: 'text-gold-light',
     svg: <LearnSVG />,

@@ -15,10 +15,14 @@ export default function TodayPanchangWidget() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<{ name: string; lat: number; lng: number }[]>([]);
   const [searching, setSearching] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const locale = useLocale() as Locale;
   const t = useTranslations('panchang');
 
   const locationStore = useLocationStore();
+
+  // Prevent hydration mismatch — location store reads from localStorage
+  useEffect(() => { setHydrated(true); }, []);
 
   // Fetch panchang when location is confirmed
   const fetchPanchang = useCallback((lat: number, lng: number, name: string) => {
@@ -142,6 +146,15 @@ export default function TodayPanchangWidget() {
       )}
     </div>
   );
+
+  // ─── Not yet hydrated — show loading to match server render ────
+  if (!hydrated) {
+    return (
+      <div className="flex items-center justify-center py-16">
+        <div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   // ─── No location yet ───────────────────────────────────────────
   if (!locationStore.detecting && !locationStore.confirmed) {

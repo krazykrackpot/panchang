@@ -22,14 +22,33 @@ export default function AuthCallbackPage() {
       if (handled) return;
       handled = true;
 
+      // Wait a moment for Supabase to persist to localStorage
+      await new Promise(r => setTimeout(r, 500));
+
       // Verify session is actually stored
       const { data } = await supabase.auth.getSession();
       const user = data.session?.user;
-      console.log('[Auth Callback] Session after exchange:', user?.email ?? 'NO SESSION');
-      console.log('[Auth Callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-') || k.includes('supabase')));
+      const lsKeys = Object.keys(localStorage).filter(k => k.includes('sb-') || k.includes('supabase') || k.includes('auth'));
+      console.log('[Auth Callback] Session user:', user?.email ?? 'NO SESSION');
+      console.log('[Auth Callback] localStorage auth keys:', lsKeys);
+      if (lsKeys.length > 0) {
+        console.log('[Auth Callback] Token preview:', localStorage.getItem(lsKeys[0])?.substring(0, 80) + '...');
+      }
 
-      setStatus(user ? `Signed in as ${user.email}! Redirecting...` : 'Session exchange failed. Redirecting...');
-      setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
+      setStatus(user ? `Signed in as ${user.email}! Redirecting...` : 'Completing authentication...');
+
+      // If we got a session, redirect after a beat
+      if (user) {
+        setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
+      } else {
+        // Session not found yet — try once more after 2 seconds
+        setTimeout(async () => {
+          const { data: retry } = await supabase.auth.getSession();
+          console.log('[Auth Callback] Retry session:', retry.session?.user?.email ?? 'STILL NO SESSION');
+          setStatus(retry.session?.user ? `Signed in as ${retry.session.user.email}!` : 'Authentication may have failed');
+          setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
+        }, 2000);
+      }
     };
 
     // Listen for the SIGNED_IN event from hash exchange

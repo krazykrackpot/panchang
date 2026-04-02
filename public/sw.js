@@ -1,4 +1,4 @@
-const CACHE_NAME = 'panchang-v1';
+const CACHE_NAME = 'panchang-v2';
 
 // Static assets to cache on install
 const PRECACHE_URLS = [
@@ -29,8 +29,13 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET and API requests
-  if (request.method !== 'GET' || url.pathname.startsWith('/api/')) return;
+  // Skip non-GET, API requests, and analytics
+  if (
+    request.method !== 'GET' ||
+    url.pathname.startsWith('/api/') ||
+    url.hostname.includes('vercel') ||
+    url.hostname.includes('google')
+  ) return;
 
   // Static assets: cache-first
   if (
@@ -63,5 +68,56 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => caches.match(request))
+  );
+});
+
+// ─── Push Notifications ──────────────────────────────────────────────
+self.addEventListener('push', (event) => {
+  let data = { title: 'Dekho Panchang', body: 'Check today\'s Panchang!', url: '/en/panchang' };
+
+  if (event.data) {
+    try {
+      data = { ...data, ...event.data.json() };
+    } catch {
+      data.body = event.data.text();
+    }
+  }
+
+  const options = {
+    body: data.body,
+    icon: '/icon-192.png',
+    badge: '/favicon.svg',
+    vibrate: [100, 50, 100],
+    data: { url: data.url || '/en/panchang' },
+    actions: [
+      { action: 'open', title: 'View Panchang' },
+      { action: 'dismiss', title: 'Dismiss' },
+    ],
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
+});
+
+// Handle notification click
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+
+  if (event.action === 'dismiss') return;
+
+  const url = event.notification.data?.url || '/en/panchang';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+      // Focus existing tab if open
+      for (const client of clientList) {
+        if (client.url.includes('/panchang') && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      // Otherwise open new tab
+      return clients.openWindow(url);
+    })
   );
 });

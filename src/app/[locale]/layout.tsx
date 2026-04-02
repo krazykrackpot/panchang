@@ -8,6 +8,8 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import StarField from '@/components/layout/StarField';
 import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import '@/styles/globals.css';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
@@ -140,6 +142,8 @@ export default async function LocaleLayout({
           </main>
           <Footer />
           <ServiceWorkerRegistrar />
+          <Analytics />
+          <SpeedInsights />
           {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
             <Script
               async

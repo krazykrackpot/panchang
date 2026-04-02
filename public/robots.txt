@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jyotishpanchang.com/sitemap.xml
+Sitemap: https://www.dekhopanchang.com/sitemap.xml
 
 # Disallow API routes
 Disallow: /api/

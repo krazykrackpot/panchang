@@ -1,12 +1,14 @@
 {
-  "name": "Jyotish Panchang",
-  "short_name": "Panchang",
-  "description": "Vedic astrology Panchang, Kundali charts, and Jyotish tools",
+  "name": "Dekho Panchang — Vedic Astrology",
+  "short_name": "Dekho Panchang",
+  "description": "Daily Panchang, Kundali birth charts, and Jyotish tools with trilingual support",
   "start_url": "/en",
+  "id": "/",
   "display": "standalone",
   "background_color": "#0a0e27",
   "theme_color": "#0a0e27",
   "orientation": "any",
+  "scope": "/",
   "icons": [
     {
       "src": "/favicon.svg",
@@ -23,9 +25,25 @@
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Dekho Panchang Home"
     }
   ],
   "categories": ["lifestyle", "education"],
   "lang": "en",
-  "dir": "ltr"
+  "dir": "ltr",
+  "prefer_related_applications": false
 }

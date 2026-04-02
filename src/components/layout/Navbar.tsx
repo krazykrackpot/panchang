@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import UserMenu from '@/components/auth/UserMenu';
+import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import { useLocationStore } from '@/stores/location-store';
 import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
@@ -68,6 +69,7 @@ function NavDropdown({ label, items, onNavigate }: { label: string; items: Dropd
 export default function Navbar() {
   const t = useTranslations('nav');
   const locale = useLocale();
+  const { user } = useAuthStore();
   const { tier, isTrialing, trialDaysLeft } = useSubscription();
   const locationStore = useLocationStore();
   const [isOpen, setIsOpen] = useState(false);
@@ -140,8 +142,8 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-7">
-            {navItems.map((item, i) =>
-              item.children ? (
+            {navItems.map((item, i) => {
+              const rendered = item.children ? (
                 <NavDropdown key={i} label={item.label} items={item.children} />
               ) : (
                 <Link
@@ -151,8 +153,23 @@ export default function Navbar() {
                 >
                   {item.label}
                 </Link>
-              )
-            )}
+              );
+              // Insert Dashboard link after Home (index 0)
+              if (i === 0 && hydrated && user) {
+                return (
+                  <span key="__home_dash" className="contents">
+                    {rendered}
+                    <Link
+                      href="/dashboard"
+                      className="text-gold-light hover:text-gold-primary transition-colors duration-200 text-sm font-semibold"
+                    >
+                      {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'My Dashboard'}
+                    </Link>
+                  </span>
+                );
+              }
+              return rendered;
+            })}
           </div>
 
           {/* Right-side controls — separate container, above dropdown z-index */}
@@ -206,6 +223,15 @@ export default function Navbar() {
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-gold-primary/10 max-h-[80vh] overflow-y-auto">
             <div className="flex flex-col gap-1">
+              {hydrated && user && (
+                <Link
+                  href="/dashboard"
+                  className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'My Dashboard'}
+                </Link>
+              )}
               {navItems.map((item, i) => {
                 if (item.children) {
                   const isExpanded = mobileExpanded === item.label;

@@ -168,3 +168,48 @@ export async function POST(req: NextRequest) {
     },
   });
 }
+
+// ---------------------------------------------------------------------------
+// DELETE /api/user/profile — delete account and all associated data
+// ---------------------------------------------------------------------------
+export async function DELETE(req: NextRequest) {
+  const supabase = getServerSupabase();
+  if (!supabase) return NextResponse.json({ error: 'Not configured' }, { status: 503 });
+
+  const authHeader = req.headers.get('authorization');
+  if (!authHeader?.startsWith('Bearer ')) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const { data: { user }, error: authError } = await supabase.auth.getUser(authHeader.slice(7));
+  if (authError || !user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = user.id;
+
+  // Delete all user data from related tables
+  // Tables with 'user_id' column
+  for (const table of ['kundali_snapshots', 'saved_charts', 'daily_usage', 'subscriptions']) {
+    const { error } = await supabase.from(table).delete().eq('user_id', userId);
+    if (error && !error.message.includes('does not exist')) {
+      console.warn(`Failed to delete from ${table}:`, error.message);
+    }
+  }
+  // user_profiles uses 'id' as the primary key matching user id
+  {
+    const { error } = await supabase.from('user_profiles').delete().eq('id', userId);
+    if (error && !error.message.includes('does not exist')) {
+      console.warn('Failed to delete from user_profiles:', error.message);
+    }
+  }
+
+  // Delete the auth user via admin API (requires service role key)
+  const { error: deleteUserError } = await supabase.auth.admin.deleteUser(userId);
+  if (deleteUserError) {
+    console.error('Failed to delete auth user:', deleteUserError.message);
+    return NextResponse.json({ error: 'Failed to delete auth user' }, { status: 500 });
+  }
+
+  return NextResponse.json({ success: true });
+}

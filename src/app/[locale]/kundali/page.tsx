@@ -255,7 +255,9 @@ export default function KundaliPage() {
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
       </motion.div>
 
-      <BirthForm onSubmit={handleGenerate} loading={loading} />
+      {!kundali && (
+        <BirthForm onSubmit={handleGenerate} loading={loading} />
+      )}
 
       {kundali && (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
@@ -275,8 +277,16 @@ export default function KundaliPage() {
                 {locale === 'en' ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
               </span>
             </div>
-            {/* Export & Share */}
+            {/* Actions */}
             <div className="flex items-center justify-center gap-3 mt-4">
+              <button
+                onClick={() => setKundali(null)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+              >
+                {locale === 'en' ? 'New Chart' : 'नया चार्ट'}
+              </button>
+            </div>
+            <div className="flex items-center justify-center gap-3 mt-2">
               <button
                 onClick={async () => {
                   const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');

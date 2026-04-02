@@ -3,12 +3,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { User, LogOut, Save } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import AuthModal from './AuthModal';
+import OnboardingModal from './OnboardingModal';
 
 export default function UserMenu() {
   const { user, initialized, initialize, signOut } = useAuthStore();
   const [showAuth, setShowAuth] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [profileChecked, setProfileChecked] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,6 +26,23 @@ export default function UserMenu() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (!user || profileChecked) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+
+    supabase.from('user_profiles')
+      .select('default_location')
+      .eq('id', user.id)
+      .single()
+      .then(({ data }) => {
+        setProfileChecked(true);
+        if (!data?.default_location) {
+          setShowOnboarding(true);
+        }
+      });
+  }, [user, profileChecked]);
 
   if (!initialized) return null;
 
@@ -79,6 +100,13 @@ export default function UserMenu() {
           </button>
         </div>
       )}
+
+      <OnboardingModal
+        isOpen={showOnboarding}
+        onComplete={() => setShowOnboarding(false)}
+        userName={user.user_metadata?.name || user.user_metadata?.full_name}
+        userEmail={user.email}
+      />
     </div>
   );
 }

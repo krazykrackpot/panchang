@@ -7,6 +7,7 @@ import {
   getMasa, MASA_NAMES, RITU_NAMES, SAMVATSARA_NAMES,
   getSamvatsara, getRitu, getAyana, lahiriAyanamsha, normalizeDeg,
 } from './astronomical';
+import { getSunTimes } from '@/lib/astronomy/sunrise';
 import { TITHIS } from '@/lib/constants/tithis';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -498,18 +499,53 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 // ──────────────────────────────────────────────────────────────
 
 /**
- * Compute Moon's RA and Dec from ecliptic longitude (ecliptic latitude approximated as 0).
+ * Compute Moon's ecliptic latitude using Meeus Table 47.B (top 13 terms).
+ */
+function _meeusMoonLatitude(jdAt: number): number {
+  const _r = (d: number) => d * Math.PI / 180;
+  const _norm = (d: number) => ((d % 360) + 360) % 360;
+  const t = (jdAt - 2451545.0) / 36525;
+  const D = _r(_norm(297.8501921 + 445267.1114034 * t - 0.0018819 * t * t));
+  const M = _r(_norm(357.5291092 + 35999.0502909 * t - 0.0001536 * t * t));
+  const Mp = _r(_norm(134.9633964 + 477198.8675055 * t + 0.0087414 * t * t));
+  const F = _r(_norm(93.2720950 + 483202.0175233 * t - 0.0036539 * t * t));
+  const E = 1 - 0.002516 * t;
+
+  // Meeus Table 47.B — latitude terms [D, M, Mp, F, coeff (1e-6 deg)]
+  const sumB =
+    5128122 * Math.sin(F) +
+    280602 * Math.sin(Mp + F) +
+    277693 * Math.sin(Mp - F) +
+    173237 * Math.sin(2 * D - F) +
+    55413 * Math.sin(2 * D - Mp + F) +
+    46271 * Math.sin(2 * D - Mp - F) +
+    32573 * Math.sin(2 * D + F) +
+    17198 * Math.sin(2 * Mp + F) +
+    9266 * Math.sin(2 * D + Mp - F) +
+    8822 * Math.sin(2 * Mp - F) +
+    8216 * Math.sin(2 * D - M - F) * E +
+    4324 * Math.sin(2 * D - 2 * Mp - F) +
+    4200 * Math.sin(2 * D + Mp + F);
+
+  return sumB / 1000000; // degrees
+}
+
+/**
+ * Compute Moon's RA and Dec from ecliptic longitude and latitude.
  */
 function getMoonEquatorial(jdAt: number): { dec: number; ra: number } {
   const _toRad = (d: number) => d * Math.PI / 180;
   const _toDeg = (r: number) => r * 180 / Math.PI;
   const moonLon = moonLongitude(jdAt);
+  const moonLat = _meeusMoonLatitude(jdAt);
   const T = (jdAt - 2451545.0) / 36525;
   const obliquity = _toRad(23.4393 - 0.0130 * T);
   const lonRad = _toRad(moonLon);
-  const sinDec = Math.sin(obliquity) * Math.sin(lonRad);
+  const latRad = _toRad(moonLat);
+  // Full ecliptic → equatorial conversion with latitude
+  const sinDec = Math.sin(latRad) * Math.cos(obliquity) + Math.cos(latRad) * Math.sin(obliquity) * Math.sin(lonRad);
   const dec = Math.asin(sinDec);
-  const y = Math.sin(lonRad) * Math.cos(obliquity);
+  const y = Math.sin(lonRad) * Math.cos(obliquity) - Math.tan(latRad) * Math.sin(obliquity);
   const x = Math.cos(lonRad);
   let ra = Math.atan2(y, x);
   if (ra < 0) ra += 2 * Math.PI;
@@ -537,24 +573,25 @@ function moonAltitude(jdAt: number, latRad: number, lng: number): number {
  * Returns UT decimal hours from midnight, or null if Moon doesn't rise.
  */
 function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
-  // Standard moonrise altitude: 0.7275 * horizontal_parallax - 0.5667°
-  // With Moon's HP ≈ 0.95°, this gives ≈ 0.125° - 0.567° ≈ -0.125°
-  const h0 = -0.125;
+  // Standard moonrise altitude: 0.7275 * horizontal_parallax - 0°34' refraction
+  // Moon's HP ≈ 57' = 0.95°, so h0 ≈ 0.7275 * 0.95 - 0.5667 ≈ +0.125°
+  // Use positive value: moonrise = when Moon's center is 0.125° above geometric horizon
+  const h0 = 0.125;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
-  const step = 10 / (24 * 60); // 10-minute steps in JD
+  const step = 5 / (24 * 60); // 5-minute steps in JD for better precision
 
   let prevAlt = moonAltitude(jdMidnight, latRad, lng);
 
-  for (let i = 1; i <= 144; i++) { // 144 × 10min = 24 hours
+  for (let i = 1; i <= 288; i++) { // 288 × 5min = 24 hours
     const jdNow = jdMidnight + i * step;
     const alt = moonAltitude(jdNow, latRad, lng);
 
     if (prevAlt < h0 && alt >= h0) {
-      // Binary search for precise crossing
+      // Binary search for precise crossing (15 iterations → ~0.03s precision)
       let lo = jdNow - step;
       let hi = jdNow;
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 15; j++) {
         const mid = (lo + hi) / 2;
         if (moonAltitude(mid, latRad, lng) < h0) lo = mid;
         else hi = mid;
@@ -573,21 +610,21 @@ function calculateMoonriseUT(jd: number, lat: number, lng: number): number | nul
  * Returns UT decimal hours from midnight, or null if Moon doesn't set.
  */
 function calculateMoonsetUT(jd: number, lat: number, lng: number): number | null {
-  const h0 = -0.125;
+  const h0 = 0.125;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
-  const step = 10 / (24 * 60);
+  const step = 5 / (24 * 60);
 
   let prevAlt = moonAltitude(jdMidnight, latRad, lng);
 
-  for (let i = 1; i <= 144; i++) {
+  for (let i = 1; i <= 288; i++) {
     const jdNow = jdMidnight + i * step;
     const alt = moonAltitude(jdNow, latRad, lng);
 
     if (prevAlt >= h0 && alt < h0) {
       let lo = jdNow - step;
       let hi = jdNow;
-      for (let j = 0; j < 10; j++) {
+      for (let j = 0; j < 15; j++) {
         const mid = (lo + hi) / 2;
         if (moonAltitude(mid, latRad, lng) >= h0) lo = mid;
         else hi = mid;
@@ -607,9 +644,13 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Compute Julian Day at midnight UT for this date
   const jd = dateToJD(year, month, day, 12 - tzOffset); // Convert local noon to UT
 
-  // Sunrise and sunset (in UT decimal hours)
-  const sunriseUT = approximateSunrise(jd, lat, lng);
-  const sunsetUT = approximateSunset(jd, lat, lng);
+  // Sunrise and sunset — use 2-pass algorithm from astronomy module for accuracy
+  const sunTimes = getSunTimes(year, month, day, lat, lng, tzOffset);
+  const sunriseLocal = sunTimes.sunrise.getHours() + sunTimes.sunrise.getMinutes() / 60 + sunTimes.sunrise.getSeconds() / 3600;
+  const sunsetLocal = sunTimes.sunset.getHours() + sunTimes.sunset.getMinutes() / 60 + sunTimes.sunset.getSeconds() / 3600;
+  // Convert local time back to UT for internal calculations
+  const sunriseUT = sunriseLocal - tzOffset;
+  const sunsetUT = sunsetLocal - tzOffset;
 
   // Compute at local sunrise time
   const jdSunrise = dateToJD(year, month, day, sunriseUT);

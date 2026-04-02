@@ -77,9 +77,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       console.error('Supabase not configured');
       return;
     }
+    // Determine locale from current path
+    const pathParts = window.location.pathname.split('/');
+    const locale = ['en', 'hi', 'sa'].includes(pathParts[1]) ? pathParts[1] : 'en';
+    const callbackUrl = `${window.location.origin}/${locale}/auth/callback`;
+
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: window.location.href },
+      options: { redirectTo: callbackUrl },
     });
     if (error) {
       console.error('Google sign-in error:', error.message);

@@ -7,6 +7,7 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { AshtamangalaIconById } from '@/components/icons/AshtamangalaIcons';
 import { useLocationStore } from '@/stores/location-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
 
@@ -83,7 +84,9 @@ export default function PrashnaAshtamangalaPage() {
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
-    const tz = Math.round(locationStore.lng / 15 * 2) / 2;
+    const now = new Date();
+    const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
     try {
       const res = await fetch('/api/prashna-ashtamangala', {
         method: 'POST',

@@ -40,7 +40,7 @@ export async function GET(request: Request) {
     lng: searchParams.get('lng') || '0', // DEPRECATED fallback: client should always provide location
     tz: searchParams.get('tz') || undefined,
     timezone: searchParams.get('timezone') || undefined,
-    location: searchParams.get('location') || 'New Delhi',
+    location: searchParams.get('location') || undefined,
   });
 
   if (!parsed.success) {
@@ -55,7 +55,7 @@ export async function GET(request: Request) {
   // Resolve timezone: prefer IANA string, fall back to numeric offset, then default
   const tzOffset = timezone
     ? getUTCOffsetForDate(year, month, day, timezone)
-    : (tz ?? 5.5);
+    : (tz ?? 0);
 
   try {
     const panchang = computePanchang({

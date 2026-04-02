@@ -13,6 +13,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { useLocationStore } from '@/stores/location-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysis';
 import type { PrashnaCategory, PrashnaAnalysis, PrashnaInsight } from '@/lib/prashna/horary-analysis';
 import type { Locale } from '@/types/panchang';
@@ -107,7 +108,8 @@ export default function PrashnaPage() {
     setLoading(true);
     const now = new Date();
     setCastTime(now.toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN'));
-    const tz = Math.round(locationStore.lng / 15 * 2) / 2;
+    const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
     try {
       const res = await fetch('/api/kundali', {
@@ -121,6 +123,7 @@ export default function PrashnaPage() {
           lat: locationStore.lat,
           lng: locationStore.lng,
           timezone: String(tz),
+          ianaTimezone,
           ayanamsha: 'lahiri' as const,
         }),
       });

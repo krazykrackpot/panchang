@@ -9,6 +9,7 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
@@ -27,14 +28,14 @@ export default function SignCalculatorPage() {
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
 
   const result = useMemo(() => {
     if (!dateStr || !placeLat || !placeLng) return null;
     const [y, m, d] = dateStr.split('-').map(Number);
     const [h, min] = timeStr.split(':').map(Number);
     const decimalHour = h + min / 60;
-    // Compute timezone from longitude (rounded to nearest 0.5h)
-    const tzOffset = Math.round(placeLng / 15 * 2) / 2;
+    const tzOffset = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
     const utHour = decimalHour - tzOffset;
 
     const jd = dateToJD(y, m, d, utHour);
@@ -63,7 +64,7 @@ export default function SignCalculatorPage() {
       location: placeName,
       tzOffset,
     };
-  }, [dateStr, timeStr, placeLat, placeLng, placeName]);
+  }, [dateStr, timeStr, placeLat, placeLng, placeName, placeTimezone]);
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -108,6 +109,7 @@ export default function SignCalculatorPage() {
               setPlaceName(loc.name);
               setPlaceLat(loc.lat);
               setPlaceLng(loc.lng);
+              setPlaceTimezone(loc.timezone);
             }}
             placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />

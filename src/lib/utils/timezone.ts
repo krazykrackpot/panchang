@@ -67,6 +67,19 @@ export function getBrowserTimezone(): string {
 }
 
 /**
+ * Resolve a timezone value that may be a numeric string ("5.5"), IANA string ("Europe/Zurich"),
+ * or already a number. Returns a numeric UTC offset in hours for the given date.
+ */
+export function resolveTimezone(tz: string | number, year: number, month: number, day: number): number {
+  if (typeof tz === 'number') return tz;
+  // Try as numeric string first
+  const num = parseFloat(tz);
+  if (!isNaN(num) && tz.match(/^-?\d+\.?\d*$/)) return num;
+  // Try as IANA timezone string
+  return getUTCOffsetForDate(year, month, day, tz);
+}
+
+/**
  * Validate an IANA timezone string.
  */
 export function isValidTimezone(tz: string): boolean {

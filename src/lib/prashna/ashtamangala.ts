@@ -117,7 +117,7 @@ function getCurrentDateTime(tz: number | string): { date: string; time: string }
   const now = new Date();
 
   // Parse timezone offset
-  const tzOffset = (typeof tz === 'number' ? tz : parseFloat(tz)) || 5.5;
+  const tzOffset = (typeof tz === 'number' ? tz : parseFloat(tz)) || 0;
   const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
   const localMs = utcMs + tzOffset * 3600000;
   const local = new Date(localMs);

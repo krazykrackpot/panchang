@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Clock, ChevronDown, ChevronUp } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
 
@@ -51,6 +52,7 @@ export default function RectifyPage() {
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
 
   const addEvent = (eventKey: string) => {
     setEvents([...events, { eventKey, year: 2020, month: 1 }]);
@@ -68,7 +70,10 @@ export default function RectifyPage() {
       alert(isHi ? 'कम से कम 2 जीवन घटनाएँ दर्ज करें' : 'Please enter at least 2 life events');
       return;
     }
-    const tz = Math.round(placeLng / 15 * 2) / 2;
+    const [y, m, d] = [birthYear, birthMonth, birthDay];
+    const tz = placeTimezone
+      ? getUTCOffsetForDate(y, m, d, placeTimezone)
+      : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
 
     // Try different times within uncertainty window and score each
     const results: { time: string; score: number; lagna: number }[] = [];
@@ -192,7 +197,7 @@ export default function RectifyPage() {
             {/* Birth place */}
             <div>
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{isHi ? 'जन्म स्थान' : 'Birth Place'}</label>
-              <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); }} placeholder={isHi ? 'जन्म स्थान खोजें...' : 'Search birth place...'} />
+              <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone || null); }} placeholder={isHi ? 'जन्म स्थान खोजें...' : 'Search birth place...'} />
             </div>
 
             {/* Life events */}

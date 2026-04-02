@@ -253,10 +253,10 @@ function findSankrantiDate(year: number, targetSign: number): string {
 // Parana (fast-breaking) computation helpers
 // ──────────────────────────────────────────────────────────────
 
-const DEFAULT_LAT = 28.6139; // New Delhi (fallback only)
-const DEFAULT_LON = 77.209;
-const DEFAULT_TZ = 5.5;
-const DEFAULT_TIMEZONE = 'Asia/Kolkata';
+const DEFAULT_LAT = 0;
+const DEFAULT_LON = 0;
+const DEFAULT_TZ = 0;
+const DEFAULT_TIMEZONE = 'UTC';
 
 /**
  * Resolve timezone offset for a specific date.

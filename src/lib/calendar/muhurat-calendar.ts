@@ -123,8 +123,8 @@ export function findMuhuratDates(
   year: number,
   month: number,
   activity: MuhuratActivity,
-  lat: number = 28.6139, // Default Delhi
-  lng: number = 77.2090,
+  lat: number,
+  lng: number,
 ): MuhuratDate[] {
   const rules = ACTIVITY_RULES[activity];
   const results: MuhuratDate[] = [];

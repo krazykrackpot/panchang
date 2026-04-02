@@ -22,6 +22,7 @@ import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { computeBalam } from '@/lib/panchang/balam';
 import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // ──────────────────────────────────────────────────────────────
 // Check if a transition endTime has already passed
@@ -190,8 +191,9 @@ export default function PanchangPage() {
       const data = await res.json();
       if (data.length > 0) {
         const lng = parseFloat(data[0].lon);
-        // Approximate timezone from longitude (round to nearest 0.5h)
-        const approxTz = Math.round(lng / 15 * 2) / 2;
+        const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const now = new Date();
+        const approxTz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
         setLocation({ lat: parseFloat(data[0].lat), lng, name: data[0].display_name.split(',').slice(0, 3).join(', '), tz: approxTz });
         setShowLocationSearch(false);
         setLocationInput('');

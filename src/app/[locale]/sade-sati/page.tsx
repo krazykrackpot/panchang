@@ -15,6 +15,7 @@ import {
   type SadeSatiInput,
 } from '@/lib/kundali/sade-sati-analysis';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
 // ---------------------------------------------------------------------------
 // Trilingual labels
@@ -139,6 +140,7 @@ export default function SadeSatiPage() {
   const [birthPlace, setBirthPlace] = useState('');
   const [birthLat, setBirthLat] = useState<number | null>(null);
   const [birthLng, setBirthLng] = useState<number | null>(null);
+  const [birthTimezone, setBirthTimezone] = useState<string | null>(null);
 
   const saturnNow = useMemo(() => getCurrentSaturnSign(), []);
   const saturnSignName = RASHIS.find(r => r.id === saturnNow.sign)?.name;
@@ -156,7 +158,8 @@ export default function SadeSatiPage() {
     if (!birthDate || !birthTime || !birthLat || !birthLng) return;
     setLoading(true);
     try {
-      const tzOffset = Math.round(birthLng / 15 * 2) / 2;
+      const [y, m, d] = birthDate.split('-').map(Number);
+      const tzOffset = birthTimezone ? getUTCOffsetForDate(y, m, d, birthTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
       const res = await fetch('/api/kundali', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -303,6 +306,7 @@ export default function SadeSatiPage() {
                 setBirthPlace(loc.name);
                 setBirthLat(loc.lat);
                 setBirthLng(loc.lng);
+                setBirthTimezone(loc.timezone);
               }}
               placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
             />

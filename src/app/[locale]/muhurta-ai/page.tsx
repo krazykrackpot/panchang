@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -202,8 +203,10 @@ export default function MuhurtaAIPage() {
               <LocationSearch
                 value={location.name}
                 onSelect={(loc) => {
-                  const tzOffset = Math.round(loc.lng / 15 * 2) / 2;
-                  setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset, timezone: (loc as { timezone?: string }).timezone || Intl.DateTimeFormat().resolvedOptions().timeZone });
+                  const ianaTimezone = loc.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+                  const now = new Date();
+                  const tzOffset = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
+                  setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset, timezone: ianaTimezone });
                   setShowLocationSearch(false);
                 }}
                 placeholder={locale === 'hi' ? 'शहर खोजें...' : locale === 'sa' ? 'नगरं खोजयतु...' : 'Search city...'}

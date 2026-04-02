@@ -22,10 +22,10 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
     name: '',
     date: '1990-01-15',
     time: '06:00',
-    place: 'New Delhi, India',
-    lat: 28.6139,
-    lng: 77.209,
-    timezone: '5.5',
+    place: '',
+    lat: 0,
+    lng: 0,
+    timezone: typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC',
     ayanamsha: 'lahiri' as 'lahiri' | 'raman' | 'kp',
     chartStyle: 'north' as ChartStyle,
   });
@@ -143,20 +143,14 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
 
         {/* Timezone */}
         <div>
-          <label className="block text-gold-dark text-sm mb-2">Timezone (UTC offset)</label>
-          <select
+          <label className="block text-gold-dark text-sm mb-2">Timezone</label>
+          <input
+            type="text"
             value={formData.timezone}
             onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
+            placeholder="e.g., Asia/Kolkata or 5.5"
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
-          >
-            <option value="5.5">IST (UTC+5:30)</option>
-            <option value="0">UTC</option>
-            <option value="1">CET (UTC+1)</option>
-            <option value="-5">EST (UTC-5)</option>
-            <option value="-8">PST (UTC-8)</option>
-            <option value="8">CST China (UTC+8)</option>
-            <option value="9">JST (UTC+9)</option>
-          </select>
+          />
         </div>
 
         {/* Ayanamsha */}

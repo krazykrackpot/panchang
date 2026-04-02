@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
@@ -61,13 +62,15 @@ export default function KPSystemPage() {
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const [data, setData] = useState<KPChartData | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
-    const tz = Math.round(placeLng / 15 * 2) / 2;
+    const [y, m, d] = form.date.split('-').map(Number);
+    const tz = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
     try {
       const res = await fetch('/api/kp-system', {
         method: 'POST',
@@ -106,7 +109,7 @@ export default function KPSystemPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
         </div>
         <div className="text-center mt-6">

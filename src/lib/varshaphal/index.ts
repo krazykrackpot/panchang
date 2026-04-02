@@ -5,6 +5,7 @@
 
 import { generateKundali } from '@/lib/ephem/kundali-calc';
 import { sunLongitude, toSidereal, getNakshatraNumber, normalizeDeg } from '@/lib/ephem/astronomical';
+import { resolveTimezone } from '@/lib/utils/timezone';
 import { findSolarReturn } from './solar-return';
 import { calculateMuntha } from './muntha';
 import { determineVarsheshvara } from './varsheshvara';
@@ -21,7 +22,8 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const natalSunSidereal = natalChart.planets.find(p => p.planet.id === 0)!.longitude;
 
   // 2. Find solar return moment
-  const tzOffset = parseFloat(birthData.timezone) || 5.5;
+  const [by, bm, bd] = birthData.date.split('-').map(Number);
+  const tzOffset = resolveTimezone(birthData.timezone, by, bm, bd);
   const solarReturn = findSolarReturn(natalSunSidereal, year, birthData.lat, birthData.lng, tzOffset);
 
   // 3. Generate Varshaphal chart at solar return moment

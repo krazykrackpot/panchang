@@ -8,6 +8,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { KundaliData, BirthData, PlanetPosition, HouseCusp, ChartData, DashaEntry, ShadBala, DivisionalChart, AshtakavargaData, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
+import { resolveTimezone } from '@/lib/utils/timezone';
 import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
@@ -580,8 +581,8 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const [hour, minute] = birthData.time.split(':').map(Number);
   const decimalHour = hour + minute / 60;
 
-  // Convert local time to UT
-  const tzOffset = parseFloat(birthData.timezone) || 5.5;
+  // Convert local time to UT (supports both numeric "5.5" and IANA "Asia/Kolkata" timezone strings)
+  const tzOffset = resolveTimezone(birthData.timezone, year, month, day);
   const utHour = decimalHour - tzOffset;
 
   const jd = dateToJD(year, month, day, utHour);

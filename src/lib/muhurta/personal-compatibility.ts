@@ -7,6 +7,7 @@ import {
   dateToJD, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber,
 } from '@/lib/ephem/astronomical';
+import { resolveTimezone } from '@/lib/utils/timezone';
 import type { BirthData } from '@/types/kundali';
 import type { Trilingual } from '@/types/panchang';
 
@@ -36,7 +37,7 @@ export function computePersonalScore(
   // Parse birth data
   const [year, month, day] = birthData.date.split('-').map(Number);
   const [hour, minute] = birthData.time.split(':').map(Number);
-  const tz = parseFloat(birthData.timezone) || 5.5;
+  const tz = resolveTimezone(birthData.timezone, year, month, day);
   const birthJD = dateToJD(year, month, day, hour + minute / 60 - tz);
 
   // Birth Moon position

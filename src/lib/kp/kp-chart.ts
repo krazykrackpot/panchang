@@ -52,34 +52,16 @@ function birthDataToJD(bd: BirthData): number {
 
   // Convert local time to UT using the timezone string.
   // For simplicity we parse common Indian timezone offset (+05:30).
-  const utHour = hour - tzOffsetHours(bd.timezone);
+  const utHour = hour - tzOffsetHours(bd.timezone, year, month, day);
 
   return dateToJD(year, month, day, utHour);
 }
 
-/** Resolve timezone string to numeric offset in hours */
-function tzOffsetHours(tz: string): number {
-  // Quick map for common Indian timezone
-  const map: Record<string, number> = {
-    'Asia/Kolkata': 5.5,
-    'Asia/Calcutta': 5.5,
-    IST: 5.5,
-    UTC: 0,
-    GMT: 0,
-    'America/New_York': -5,
-    'America/Chicago': -6,
-    'America/Denver': -7,
-    'America/Los_Angeles': -8,
-    'Europe/London': 0,
-    'Europe/Berlin': 1,
-    'Europe/Paris': 1,
-    'Asia/Dubai': 4,
-    'Asia/Singapore': 8,
-    'Asia/Tokyo': 9,
-    'Australia/Sydney': 11,
-  };
-
-  if (map[tz] !== undefined) return map[tz];
+/** Resolve timezone string to numeric offset in hours (DST-aware when date is provided) */
+function tzOffsetHours(tz: string, year?: number, month?: number, day?: number): number {
+  // Try as numeric first
+  const num = parseFloat(tz);
+  if (!isNaN(num) && tz.match(/^-?\d+\.?\d*$/)) return num;
 
   // Try parsing "+HH:MM" / "-HH:MM" style
   const m = tz.match(/^([+-])(\d{1,2}):(\d{2})$/);
@@ -88,8 +70,41 @@ function tzOffsetHours(tz: string): number {
     return sign * (parseInt(m[2], 10) + parseInt(m[3], 10) / 60);
   }
 
-  // Default to IST
-  return 5.5;
+  // Try as IANA timezone string using Intl API (DST-aware)
+  if (year && month && day) {
+    try {
+      const date = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: tz,
+        timeZoneName: 'shortOffset',
+      });
+      const parts = formatter.formatToParts(date);
+      const tzPart = parts.find(p => p.type === 'timeZoneName');
+      if (tzPart) {
+        const match = tzPart.value.match(/GMT([+-]?)(\d{1,2})(?::(\d{2}))?/);
+        if (match) {
+          const sign = match[1] === '-' ? -1 : 1;
+          const hours = parseInt(match[2], 10);
+          const minutes = match[3] ? parseInt(match[3], 10) : 0;
+          return sign * (hours + minutes / 60);
+        }
+      }
+    } catch {
+      // Invalid timezone, fall through
+    }
+  }
+
+  // Last resort: try common names without DST (for backward compat)
+  const staticMap: Record<string, number> = {
+    'Asia/Kolkata': 5.5,
+    'Asia/Calcutta': 5.5,
+    IST: 5.5,
+    UTC: 0,
+    GMT: 0,
+  };
+  if (staticMap[tz] !== undefined) return staticMap[tz];
+
+  return 0; // Default to UTC, not IST
 }
 
 /** Get nakshatra pada (1-4) from sidereal longitude */

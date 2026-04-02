@@ -314,7 +314,7 @@ export function approximateSunset(jd: number, lat: number, lng: number): number 
 }
 
 // Format decimal hours to HH:MM string
-export function formatTime(decimalHours: number, tzOffsetHours: number = 5.5): string {
+export function formatTime(decimalHours: number, tzOffsetHours: number = 0): string {
   const totalHours = ((decimalHours + tzOffsetHours) % 24 + 24) % 24;
   const hours = Math.floor(totalHours);
   const minutes = Math.floor((totalHours - hours) * 60);

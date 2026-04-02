@@ -7,6 +7,7 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale } from '@/types/panchang';
@@ -66,6 +67,7 @@ export default function VarshaphalPage() {
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
   const [year, setYear] = useState(new Date().getFullYear());
   const [data, setData] = useState<VarshaphalData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -74,7 +76,8 @@ export default function VarshaphalPage() {
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
-    const tz = Math.round(placeLng / 15 * 2) / 2;
+    const [y, m, d] = form.date.split('-').map(Number);
+    const tz = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
     try {
       const res = await fetch('/api/varshaphal', {
         method: 'POST',
@@ -112,7 +115,7 @@ export default function VarshaphalPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider">{t.year}</span>

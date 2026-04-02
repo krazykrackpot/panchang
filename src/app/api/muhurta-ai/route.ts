@@ -17,7 +17,7 @@ export async function POST(request: Request) {
       endDate,
       lat = 0, // DEPRECATED fallback: client should always provide location
       lng = 0, // DEPRECATED fallback: client should always provide location
-      tz: tzFallback = 5.5,
+      tz: tzFallback = 0,
       timezone,
     } = body as {
       activity: ExtendedActivityId;

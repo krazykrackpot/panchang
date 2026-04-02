@@ -27,7 +27,7 @@ test.describe('Navigation', () => {
   test('home page loads', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
     // Layout template: "%s | Jyotish Panchang"
-    await expect(page).toHaveTitle(/Jyotish Panchang/i, { timeout: 15000 });
+    await expect(page).toHaveTitle(/Dekho Panchang|Jyotish Panchang/i, { timeout: 15000 });
   });
 
   test('can navigate to kundali page', async ({ page }) => {

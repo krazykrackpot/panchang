@@ -1,10 +1,19 @@
 'use client';
 
-import { useState, useEffect, type ReactNode } from 'react';
+import { useState, useEffect, createContext, useContext, type ReactNode } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen, HelpCircle } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+
+// ─── Bilingual text helper for module content ──────────────────────────────
+// Modules can import `useT` and call `t(en, hi)` to get the locale-appropriate string
+const ModuleLocaleContext = createContext<Locale>('en');
+export function useModuleLocale(): Locale { return useContext(ModuleLocaleContext); }
+export function T({ en, hi }: { en: string; hi: string }) {
+  const locale = useContext(ModuleLocaleContext);
+  return <>{locale === 'en' ? en : hi}</>;
+}
 
 // ─── Module Sequence (ordered) ───────────────────────────────────────────────
 
@@ -15,6 +24,12 @@ export const MODULE_SEQUENCE = [
   '10-3','11-1','11-2','11-3','12-1','12-2','12-3','13-1','13-2',
   '13-3','14-1','14-2','14-3','15-1','15-2','15-3','15-4','16-1','16-2','16-3',
   '17-1','17-2','17-3','17-4',
+  '18-1','18-2','18-3','18-4','18-5',
+  '19-1','19-2','19-3','19-4',
+  '20-1','20-2','20-3','20-4',
+  '21-1','21-2','21-3','21-4',
+  '22-1','22-2','22-3','22-4','22-5','22-6',
+  '23-1','23-2','23-3','23-4','23-5',
 ];
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -124,6 +139,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
   const passed = score >= passThreshold;
 
   return (
+    <ModuleLocaleContext.Provider value={locale}>
     <div className="space-y-6">
       {/* Module header */}
       <div className="glass-card rounded-2xl p-5 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
@@ -372,5 +388,6 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         );
       })()}
     </div>
+    </ModuleLocaleContext.Provider>
   );
 }

@@ -8,6 +8,10 @@ export interface SamagriItem {
   name: Trilingual;
   quantity?: string;
   note?: Trilingual;
+  category?: 'flowers' | 'food' | 'puja_items' | 'clothing' | 'vessels' | 'other';
+  essential?: boolean;
+  substitutions?: { item: Trilingual; note: Trilingual }[];
+  prepNote?: Trilingual;
 }
 
 export interface VidhiStep {
@@ -16,6 +20,8 @@ export interface VidhiStep {
   description: Trilingual;
   mantraRef?: string;       // ID linking to MantraDetail
   duration?: string;
+  essential?: boolean;
+  stepType?: 'preparation' | 'invocation' | 'offering' | 'mantra' | 'meditation' | 'conclusion';
 }
 
 export interface MantraDetail {
@@ -42,16 +48,23 @@ export interface AartiText {
   iast: string;
 }
 
+export interface ParanaRule {
+  type: 'sunrise_plus_quarter' | 'moonrise' | 'next_sunrise' | 'tithi_end';
+  description: Trilingual;
+}
+
+export type MuhurtaWindowType = 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'brahma_muhurta' | 'abhijit';
+
 export interface PujaVidhi {
   festivalSlug: string;
-  category: 'festival' | 'vrat';    // Key distinction: festival vs vrat
+  category: 'festival' | 'vrat' | 'graha_shanti';    // Key distinction: festival vs vrat vs graha shanti
   deity: Trilingual;
 
   samagri: SamagriItem[];
 
   muhurtaType: 'computed' | 'fixed';
   muhurtaDescription: Trilingual;
-  muhurtaWindow?: { type: 'madhyahna' | 'aparahna' | 'pradosh' | 'nishita' | 'brahma_muhurta' | 'abhijit' };
+  muhurtaWindow?: { type: MuhurtaWindowType };
 
   sankalpa: Trilingual;
   vidhiSteps: VidhiStep[];
@@ -64,4 +77,5 @@ export interface PujaVidhi {
   precautions: Trilingual[];
   phala: Trilingual;
   visarjan?: Trilingual;
+  parana?: ParanaRule;
 }

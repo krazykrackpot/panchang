@@ -498,20 +498,31 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
 // Moonrise / Moonset — iterative horizon-crossing calculation
 // ──────────────────────────────────────────────────────────────
 
+// ── Helpers for Moon position ──
+const _mr = (d: number) => d * Math.PI / 180;
+const _md = (r: number) => r * 180 / Math.PI;
+const _mn = (d: number) => ((d % 360) + 360) % 360;
+
+/**
+ * Compute Moon's fundamental arguments for Meeus Tables 47.A/B
+ */
+function _moonFundamentals(jdAt: number) {
+  const t = (jdAt - 2451545.0) / 36525;
+  return {
+    t,
+    D: _mr(_mn(297.8501921 + 445267.1114034 * t - 0.0018819 * t * t)),
+    M: _mr(_mn(357.5291092 + 35999.0502909 * t - 0.0001536 * t * t)),
+    Mp: _mr(_mn(134.9633964 + 477198.8675055 * t + 0.0087414 * t * t)),
+    F: _mr(_mn(93.2720950 + 483202.0175233 * t - 0.0036539 * t * t)),
+    E: 1 - 0.002516 * t,
+  };
+}
+
 /**
  * Compute Moon's ecliptic latitude using Meeus Table 47.B (top 13 terms).
  */
 function _meeusMoonLatitude(jdAt: number): number {
-  const _r = (d: number) => d * Math.PI / 180;
-  const _norm = (d: number) => ((d % 360) + 360) % 360;
-  const t = (jdAt - 2451545.0) / 36525;
-  const D = _r(_norm(297.8501921 + 445267.1114034 * t - 0.0018819 * t * t));
-  const M = _r(_norm(357.5291092 + 35999.0502909 * t - 0.0001536 * t * t));
-  const Mp = _r(_norm(134.9633964 + 477198.8675055 * t + 0.0087414 * t * t));
-  const F = _r(_norm(93.2720950 + 483202.0175233 * t - 0.0036539 * t * t));
-  const E = 1 - 0.002516 * t;
-
-  // Meeus Table 47.B — latitude terms [D, M, Mp, F, coeff (1e-6 deg)]
+  const { D, M, Mp, F, E } = _moonFundamentals(jdAt);
   const sumB =
     5128122 * Math.sin(F) +
     280602 * Math.sin(Mp + F) +
@@ -526,46 +537,81 @@ function _meeusMoonLatitude(jdAt: number): number {
     8216 * Math.sin(2 * D - M - F) * E +
     4324 * Math.sin(2 * D - 2 * Mp - F) +
     4200 * Math.sin(2 * D + Mp + F);
-
   return sumB / 1000000; // degrees
 }
 
 /**
+ * Compute Moon's horizontal parallax from distance (Meeus Table 47.A cosine terms).
+ * Returns parallax in degrees.
+ */
+function _meeusMoonParallax(jdAt: number): number {
+  const { D, M, Mp, F, E } = _moonFundamentals(jdAt);
+  const E2 = E * E;
+
+  // Table 47.A cosine (distance) terms — top 14 terms
+  // Each: [D, M, Mp, F, cosCoeff] where cosCoeff is in meters
+  let sumR = 0;
+  const DR: [number, number, number, number, number][] = [
+    [0,0,1,0,-20905355], [2,0,-1,0,-3699111], [2,0,0,0,-2955968], [0,0,2,0,-569925],
+    [0,1,0,0,48888], [0,0,0,2,-3149], [2,0,-2,0,246158], [2,-1,-1,0,-152138],
+    [2,0,1,0,-170733], [2,-1,0,0,-204586], [0,1,-1,0,-129620], [1,0,0,0,108743],
+    [0,1,1,0,104755], [2,0,0,-2,10321],
+  ];
+  for (const [cd, cm, cmp, cf, cr] of DR) {
+    const arg = cd * D + cm * M + cmp * Mp + cf * F;
+    let coeff = cr;
+    const absM = Math.abs(cm);
+    if (absM === 1) coeff *= E;
+    else if (absM === 2) coeff *= E2;
+    sumR += coeff * Math.cos(arg);
+  }
+
+  const distanceKm = 385000.56 + sumR / 1000; // km
+  // Horizontal parallax: sin(HP) = 6378.14 / distance
+  const hp = _md(Math.asin(6378.14 / distanceKm));
+  return hp;
+}
+
+/**
  * Compute Moon's RA and Dec from ecliptic longitude and latitude.
+ * Uses proper nutation-corrected obliquity.
  */
 function getMoonEquatorial(jdAt: number): { dec: number; ra: number } {
-  const _toRad = (d: number) => d * Math.PI / 180;
-  const _toDeg = (r: number) => r * 180 / Math.PI;
   const moonLon = moonLongitude(jdAt);
   const moonLat = _meeusMoonLatitude(jdAt);
-  const T = (jdAt - 2451545.0) / 36525;
-  const obliquity = _toRad(23.4393 - 0.0130 * T);
-  const lonRad = _toRad(moonLon);
-  const latRad = _toRad(moonLat);
-  // Full ecliptic → equatorial conversion with latitude
+  const t = (jdAt - 2451545.0) / 36525;
+  // Full obliquity with nutation (Meeus Ch. 22)
+  const eps0 = 23.0 + 26.0 / 60 + 21.448 / 3600
+    - (46.8150 / 3600) * t - (0.00059 / 3600) * t * t + (0.001813 / 3600) * t * t * t;
+  const omega = _mr(125.04 - 1934.136 * t);
+  const obliquity = _mr(eps0 + 0.00256 * Math.cos(omega)); // nutation in obliquity
+  const lonRad = _mr(moonLon);
+  const latRad = _mr(moonLat);
   const sinDec = Math.sin(latRad) * Math.cos(obliquity) + Math.cos(latRad) * Math.sin(obliquity) * Math.sin(lonRad);
   const dec = Math.asin(sinDec);
   const y = Math.sin(lonRad) * Math.cos(obliquity) - Math.tan(latRad) * Math.sin(obliquity);
   const x = Math.cos(lonRad);
   let ra = Math.atan2(y, x);
   if (ra < 0) ra += 2 * Math.PI;
-  return { dec: _toDeg(dec), ra: _toDeg(ra) };
+  return { dec: _md(dec), ra: _md(ra) };
 }
 
 /**
  * Compute Moon's altitude above the horizon at a given JD for a given location.
+ * Applies topocentric parallax correction for the Moon's proximity.
  */
 function moonAltitude(jdAt: number, latRad: number, lng: number): number {
-  const _toRad = (d: number) => d * Math.PI / 180;
-  const _toDeg = (r: number) => r * 180 / Math.PI;
   const { dec, ra } = getMoonEquatorial(jdAt);
-  const decRad = _toRad(dec);
+  const decRad = _mr(dec);
   const T = (jdAt - 2451545.0) / 36525;
   const gst = (280.46061837 + 360.98564736629 * (jdAt - 2451545.0) + 0.000387933 * T * T) % 360;
   const lst = ((gst + lng) % 360 + 360) % 360;
-  const ha = _toRad(lst - ra);
+  const ha = _mr(lst - ra);
   const sinAlt = Math.sin(latRad) * Math.sin(decRad) + Math.cos(latRad) * Math.cos(decRad) * Math.cos(ha);
-  return _toDeg(Math.asin(sinAlt));
+  const geoAlt = _md(Math.asin(sinAlt));
+  // Topocentric parallax correction: Moon appears lower by ~HP * cos(alt)
+  const hp = _meeusMoonParallax(jdAt);
+  return geoAlt - hp * Math.cos(_mr(geoAlt));
 }
 
 /**
@@ -573,10 +619,11 @@ function moonAltitude(jdAt: number, latRad: number, lng: number): number {
  * Returns UT decimal hours from midnight, or null if Moon doesn't rise.
  */
 function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
-  // Standard moonrise altitude: 0.7275 * horizontal_parallax - 0°34' refraction
-  // Moon's HP ≈ 57' = 0.95°, so h0 ≈ 0.7275 * 0.95 - 0.5667 ≈ +0.125°
-  // Use positive value: moonrise = when Moon's center is 0.125° above geometric horizon
-  const h0 = 0.125;
+  // Moonrise occurs when the Moon's upper limb appears at the horizon.
+  // Since moonAltitude() returns topocentric altitude (parallax already applied),
+  // we need: h₀ = Moon_semi_diameter - atmospheric_refraction = 16'/60 - 34'/60 ≈ -0.3°
+  // (Upper limb at horizon means center is 16' below; refraction lifts by 34'; net = -18')
+  const h0 = -0.3;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
   const step = 5 / (24 * 60); // 5-minute steps in JD for better precision
@@ -610,7 +657,7 @@ function calculateMoonriseUT(jd: number, lat: number, lng: number): number | nul
  * Returns UT decimal hours from midnight, or null if Moon doesn't set.
  */
 function calculateMoonsetUT(jd: number, lat: number, lng: number): number | null {
-  const h0 = 0.125;
+  const h0 = -0.3;
   const latRad = (lat * Math.PI) / 180;
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
   const step = 5 / (24 * 60);

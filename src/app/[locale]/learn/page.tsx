@@ -104,9 +104,61 @@ const PHASES = [
       { id: '17-4', title: { en: 'Education & Naming', hi: 'शिक्षा एवं नामकरण', sa: 'शिक्षा नामकरणं च' } },
     ]},
   ]},
+  { phase: 5, label: { en: 'Strength & Dignity', hi: 'बल एवं गरिमा', sa: 'बलं गरिमा च' }, color: 'violet', accent: 'border-violet-500/20 bg-violet-500/5', badge: 'bg-violet-500/20 text-violet-300', topics: [
+    { topic: { en: 'Planetary Strength', hi: 'ग्रह बल', sa: 'ग्रहबलम्' }, modules: [
+      { id: '18-1', title: { en: 'Shadbala — 6-Fold Strength', hi: 'षड्बल — छह प्रकार का बल', sa: 'षड्बलम्' } },
+      { id: '18-2', title: { en: 'Bhavabala — House Strength', hi: 'भावबल — भाव शक्ति', sa: 'भावबलम्' } },
+      { id: '18-3', title: { en: 'Ashtakavarga — Bindu Scoring', hi: 'अष्टकवर्ग — बिन्दु अंक', sa: 'अष्टकवर्गः' } },
+      { id: '18-4', title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएँ — ग्रह दशाएँ', sa: 'अवस्थाः' } },
+      { id: '18-5', title: { en: 'Vimshopaka — 20-Point Varga Strength', hi: 'विंशोपक बल', sa: 'विंशोपकबलम्' } },
+    ]},
+  ]},
+  { phase: 6, label: { en: 'Jaimini System', hi: 'जैमिनी पद्धति', sa: 'जैमिनीपद्धतिः' }, color: 'cyan', accent: 'border-cyan-500/20 bg-cyan-500/5', badge: 'bg-cyan-500/20 text-cyan-300', topics: [
+    { topic: { en: 'Jaimini Astrology', hi: 'जैमिनी ज्योतिष', sa: 'जैमिनीज्योतिषम्' }, modules: [
+      { id: '19-1', title: { en: 'Chara Karakas — 7 Variable Significators', hi: 'चर कारक', sa: 'चरकारकाः' } },
+      { id: '19-2', title: { en: 'Rashi Drishti — Sign-Based Aspects', hi: 'राशि दृष्टि', sa: 'राशिदृष्टिः' } },
+      { id: '19-3', title: { en: 'Argala — Intervention System', hi: 'अर्गला — हस्तक्षेप पद्धति', sa: 'अर्गला' } },
+      { id: '19-4', title: { en: 'Special Lagnas — Hora, Ghati, Varnada', hi: 'विशेष लग्न', sa: 'विशेषलग्नानि' } },
+    ]},
+  ]},
+  { phase: 7, label: { en: 'KP System', hi: 'केपी पद्धति', sa: 'केपी पद्धतिः' }, color: 'orange', accent: 'border-orange-500/20 bg-orange-500/5', badge: 'bg-orange-500/20 text-orange-300', topics: [
+    { topic: { en: 'Krishnamurti Paddhati', hi: 'कृष्णमूर्ति पद्धति', sa: 'कृष्णमूर्तिपद्धतिः' }, modules: [
+      { id: '20-1', title: { en: 'Placidus Houses', hi: 'प्लेसिडस भाव', sa: 'प्लेसिडसभावाः' } },
+      { id: '20-2', title: { en: '249 Sub-Lord Table', hi: '249 उप-स्वामी तालिका', sa: '249 उपस्वामिसारणी' } },
+      { id: '20-3', title: { en: 'Significators — 4-Level System', hi: 'कारक — चतुर्स्तर', sa: 'कारकाः — चतुर्स्तराः' } },
+      { id: '20-4', title: { en: 'Ruling Planets — Timing Method', hi: 'शासक ग्रह — समय विधि', sa: 'शासकग्रहाः — समयविधिः' } },
+    ]},
+  ]},
+  { phase: 8, label: { en: 'Varshaphal & Tajika', hi: 'वर्षफल एवं ताजिक', sa: 'वर्षफलं ताजिकं च' }, color: 'rose', accent: 'border-rose-500/20 bg-rose-500/5', badge: 'bg-rose-500/20 text-rose-300', topics: [
+    { topic: { en: 'Annual Horoscopy', hi: 'वार्षिक ज्योतिष', sa: 'वार्षिकज्योतिषम्' }, modules: [
+      { id: '21-1', title: { en: 'Tajika Aspects', hi: 'ताजिक दृष्टि', sa: 'ताजिकदृष्टिः' } },
+      { id: '21-2', title: { en: 'Sahams — Sensitive Points', hi: 'सहम — संवेदनशील बिन्दु', sa: 'सहमाः' } },
+      { id: '21-3', title: { en: 'Mudda Dasha', hi: 'मुद्दा दशा', sa: 'मुद्दादशा' } },
+      { id: '21-4', title: { en: 'Tithi Pravesha — Birthday Chart', hi: 'तिथि प्रवेश', sa: 'तिथिप्रवेशः' } },
+    ]},
+  ]},
+  { phase: 9, label: { en: 'Computational Astronomy', hi: 'गणनात्मक खगोल', sa: 'गणनात्मकखगोलम्' }, color: 'sky', accent: 'border-sky-500/20 bg-sky-500/5', badge: 'bg-sky-500/20 text-sky-300', topics: [
+    { topic: { en: 'How Our Engine Works', hi: 'हमारा इंजन कैसे काम करता', sa: 'अस्माकं यन्त्रं कथं कार्यं करोति' }, modules: [
+      { id: '22-1', title: { en: 'Julian Day — Universal Clock', hi: 'जूलियन दिन', sa: 'जूलियनदिनम्' } },
+      { id: '22-2', title: { en: 'Finding the Sun — Meeus Algorithm', hi: 'सूर्य खोज — Meeus गणित', sa: 'सूर्यान्वेषणम्' } },
+      { id: '22-3', title: { en: 'Finding the Moon — 60 Sine Terms', hi: 'चन्द्र खोज — 60 ज्या पद', sa: 'चन्द्रान्वेषणम्' } },
+      { id: '22-4', title: { en: 'Sunrise — 2-Pass Algorithm', hi: 'सूर्योदय — द्विचरणीय गणना', sa: 'सूर्योदयगणना' } },
+      { id: '22-5', title: { en: 'Moonrise — Parallax & Binary Search', hi: 'चन्द्रोदय — लम्बन एवं द्विभाजन', sa: 'चन्द्रोदयगणना' } },
+      { id: '22-6', title: { en: 'Equation of Time', hi: 'समय समीकरण', sa: 'समयसमीकरणम्' } },
+    ]},
+  ]},
+  { phase: 10, label: { en: 'Predictive Techniques', hi: 'भविष्यवाणी तकनीक', sa: 'भविष्यवाणीतन्त्रम्' }, color: 'fuchsia', accent: 'border-fuchsia-500/20 bg-fuchsia-500/5', badge: 'bg-fuchsia-500/20 text-fuchsia-300', topics: [
+    { topic: { en: 'Advanced Prediction', hi: 'उन्नत भविष्यवाणी', sa: 'उन्नतभविष्यवाणी' }, modules: [
+      { id: '23-1', title: { en: 'Eclipse Prediction', hi: 'ग्रहण भविष्यवाणी', sa: 'ग्रहणभविष्यवाणी' } },
+      { id: '23-2', title: { en: 'Retrograde & Combustion', hi: 'वक्री एवं अस्त', sa: 'वक्री अस्तं च' } },
+      { id: '23-3', title: { en: 'Chakra Systems', hi: 'चक्र पद्धतियाँ', sa: 'चक्रपद्धतयः' } },
+      { id: '23-4', title: { en: 'Sphutas — Yogi & Avayogi', hi: 'स्फुट — योगी एवं अवयोगी', sa: 'स्फुटाः' } },
+      { id: '23-5', title: { en: 'Prashna Yogas', hi: 'प्रश्न योग', sa: 'प्रश्नयोगाः' } },
+    ]},
+  ]},
 ];
 
-const STATS = { modules: 50, questions: 500, minutes: 650, phases: 4 };
+const STATS = { modules: 83, questions: 830, minutes: 1080, phases: 10 };
 
 export default function LearnPage() {
   const locale = useLocale() as Locale;

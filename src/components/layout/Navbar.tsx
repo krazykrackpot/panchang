@@ -157,14 +157,17 @@ export default function Navbar() {
                 </Link>
               )
             )}
-            <div className="w-px h-6 bg-gold-primary/20" />
-            {/* Location display */}
+          </div>
+
+          {/* Right-side controls — separate container, above dropdown z-index */}
+          <div className="hidden lg:flex items-center gap-3 relative z-[60]">
             {locationStore.confirmed && locationStore.name && (
               <div className="flex items-center gap-1.5 text-text-secondary text-xs">
                 <MapPin className="w-3.5 h-3.5 text-gold-primary" />
                 <span className="max-w-[140px] truncate">{locationStore.name}</span>
               </div>
             )}
+            <div className="w-px h-6 bg-gold-primary/20" />
             <button
               onClick={() => {
                 const html = document.documentElement;

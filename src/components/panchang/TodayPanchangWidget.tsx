@@ -65,18 +65,20 @@ export default function TodayPanchangWidget() {
     setSearchResults([]);
   };
 
-  // Format transition end time
+  // Format transition times
   const MONTHS = locale === 'en'
     ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
-  const endTimeStr = (tr?: { endTime: string; endDate?: string }) => {
-    if (!tr) return '';
-    const prefix = locale === 'en' ? 'ends' : 'समाप्ति';
-    if (tr.endDate) {
-      const [, m, d] = tr.endDate.split('-').map(Number);
-      return `${prefix} ${tr.endTime}, ${d} ${MONTHS[m - 1]}`;
-    }
-    return `${prefix} ${tr.endTime}`;
+  const fmtDateTime = (time: string, date?: string) => {
+    if (!date) return time;
+    const [, m, d] = date.split('-').map(Number);
+    return `${time}, ${d} ${MONTHS[m - 1]}`;
+  };
+  const timingStr = (tr?: { startTime: string; startDate?: string; endTime: string; endDate?: string }) => {
+    if (!tr) return null;
+    const start = fmtDateTime(tr.startTime, tr.startDate);
+    const end = fmtDateTime(tr.endTime, tr.endDate);
+    return { start, end };
   };
 
   // ─── Location Bar (below heading, for override) ────────────────
@@ -178,11 +180,11 @@ export default function TodayPanchangWidget() {
   if (!panchang) return <LocationBar />;
 
   const elements = [
-    { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: endTimeStr(panchang.tithiTransition), Icon: TithiIcon },
-    { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: panchang.nakshatra.deity[locale], timing: endTimeStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
-    { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], timing: endTimeStr(panchang.yogaTransition), Icon: YogaIcon },
-    { label: t('karana'), value: panchang.karana.name[locale], sub: '', timing: endTimeStr(panchang.karanaTransition), Icon: KaranaIcon },
-    { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], timing: '', Icon: VaraIcon },
+    { label: t('tithi'), value: panchang.tithi.name[locale], sub: panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna'), timing: timingStr(panchang.tithiTransition), Icon: TithiIcon },
+    { label: t('nakshatra'), value: panchang.nakshatra.name[locale], sub: panchang.nakshatra.deity[locale], timing: timingStr(panchang.nakshatraTransition), Icon: NakshatraIcon },
+    { label: t('yoga'), value: panchang.yoga.name[locale], sub: panchang.yoga.meaning[locale], timing: timingStr(panchang.yogaTransition), Icon: YogaIcon },
+    { label: t('karana'), value: panchang.karana.name[locale], sub: '', timing: timingStr(panchang.karanaTransition), Icon: KaranaIcon },
+    { label: t('vara'), value: panchang.vara.name[locale], sub: panchang.vara.ruler[locale], timing: null, Icon: VaraIcon },
   ];
 
   return (
@@ -207,7 +209,14 @@ export default function TodayPanchangWidget() {
               <div className="text-text-secondary text-sm mt-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
             )}
             {el.timing && (
-              <div className="font-mono text-xs text-gold-primary/70 mt-3">{el.timing}</div>
+              <div className="mt-3 space-y-0.5">
+                <div className="font-mono text-[10px] text-emerald-400/70">
+                  {locale === 'en' ? 'starts' : 'आरम्भ'} {el.timing.start}
+                </div>
+                <div className="font-mono text-[10px] text-red-400/70">
+                  {locale === 'en' ? 'ends' : 'समाप्ति'} {el.timing.end}
+                </div>
+              </div>
             )}
           </motion.div>
         ))}

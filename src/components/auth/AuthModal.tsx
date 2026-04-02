@@ -13,6 +13,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const { signInWithEmail, signUpWithEmail, signInWithGoogle, loading } = useAuthStore();
@@ -23,24 +24,33 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     e.preventDefault();
     setError('');
 
-    const result = mode === 'login'
-      ? await signInWithEmail(email, password)
-      : await signUpWithEmail(email, password, name);
+    if (mode === 'signup' && password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
 
-    if (result.error) {
-      setError(result.error);
-    } else {
-      onClose();
+    try {
+      const result = mode === 'login'
+        ? await signInWithEmail(email, password)
+        : await signUpWithEmail(email, password, name);
+
+      if (result.error) {
+        setError(result.error);
+      } else {
+        onClose();
+      }
+    } catch {
+      setError('Authentication service is not configured. Please try again later.');
     }
   }
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[90] flex items-start justify-center p-4 pt-20 sm:pt-24 overflow-y-auto">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative w-full max-w-md glass-card rounded-2xl p-8 border border-gold-primary/20">
+      <div className="relative w-full max-w-md glass-card rounded-2xl p-8 border border-gold-primary/20 my-auto">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-text-secondary hover:text-text-primary"
@@ -103,6 +113,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
             aria-label="Password"
           />
+          {mode === 'signup' && (
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength={6}
+              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
+              aria-label="Confirm Password"
+            />
+          )}
 
           {error && (
             <p className="text-red-400 text-sm">{error}</p>
@@ -120,7 +142,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         <p className="text-center text-text-secondary text-sm mt-6">
           {mode === 'login' ? "Don't have an account?" : 'Already have an account?'}{' '}
           <button
-            onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); }}
+            onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); setConfirmPassword(''); }}
             className="text-gold-primary hover:text-gold-light transition-colors"
           >
             {mode === 'login' ? 'Sign up' : 'Sign in'}

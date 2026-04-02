@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
+import LocationSearch from '@/components/ui/LocationSearch';
 import type { BirthData, ChartStyle } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
@@ -30,29 +31,7 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
     chartStyle: 'north' as ChartStyle,
   });
 
-  const [searchingPlace, setSearchingPlace] = useState(false);
-
-  const handlePlaceSearch = async () => {
-    if (!formData.place) return;
-    setSearchingPlace(true);
-    try {
-      const res = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(formData.place)}&limit=1`
-      );
-      const data = await res.json();
-      if (data.length > 0) {
-        setFormData((prev) => ({
-          ...prev,
-          lat: parseFloat(data[0].lat),
-          lng: parseFloat(data[0].lon),
-          place: data[0].display_name.split(',').slice(0, 3).join(', '),
-        }));
-      }
-    } catch {
-      // Geocoding failed, keep existing coords
-    }
-    setSearchingPlace(false);
-  };
+  const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -118,38 +97,19 @@ export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
         {/* Place of Birth */}
         <div className="md:col-span-2">
           <label className="block text-gold-dark text-sm mb-2">{t('placeOfBirth')}</label>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={formData.place}
-              onChange={(e) => setFormData({ ...formData, place: e.target.value })}
-              required
-              className="flex-1 bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
-              placeholder={locale === 'en' ? 'City, Country' : 'शहर, देश'}
-            />
-            <button
-              type="button"
-              onClick={handlePlaceSearch}
-              disabled={searchingPlace}
-              className="px-4 py-3 bg-bg-tertiary border border-gold-primary/20 rounded-lg text-gold-light hover:bg-gold-primary/10 transition-colors disabled:opacity-50"
-            >
-              {searchingPlace ? <Loader2 className="w-4 h-4 animate-spin" /> : '📍'}
-            </button>
-          </div>
-          <div className="text-text-secondary text-xs mt-1">
-            Lat: {formData.lat.toFixed(4)}, Lng: {formData.lng.toFixed(4)}
-          </div>
-        </div>
-
-        {/* Timezone */}
-        <div>
-          <label className="block text-gold-dark text-sm mb-2">Timezone</label>
-          <input
-            type="text"
-            value={formData.timezone}
-            onChange={(e) => setFormData({ ...formData, timezone: e.target.value })}
-            placeholder="e.g., Asia/Kolkata or 5.5"
-            className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
+          <LocationSearch
+            value={formData.place}
+            onSelect={(loc) => {
+              setFormData({
+                ...formData,
+                place: loc.name,
+                lat: loc.lat,
+                lng: loc.lng,
+                timezone: loc.timezone || formData.timezone,
+              });
+              setPlaceTimezone(loc.timezone || null);
+            }}
+            placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />
         </div>
 

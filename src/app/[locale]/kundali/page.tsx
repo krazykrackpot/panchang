@@ -279,7 +279,8 @@ export default function KundaliPage() {
               <button
                 onClick={async () => {
                   const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
-                  exportKundaliPDF(kundali, locale as Locale);
+                  const tip = generateTippanni(kundali, locale);
+                  exportKundaliPDF(kundali, locale as Locale, tip);
                 }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
                 aria-label="Download PDF report"

@@ -103,7 +103,7 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
     `${masaSa} मासे ${pakshaSa} पक्षे ${tithiSa} तिथौ`,
     `${varaSa}वासरे ${nakshatraSa} नक्षत्रे ${yogaSa} योगे`,
     `${nameField} ${gotraField} गोत्रस्य`,
-    `${pujaDeity}प्रीत्यर्थं पूजनम् अहं करिष्ये ॥`,
+    `${pujaDeity} प्रीत्यर्थं पूजनम् अहं करिष्ये ॥`,
   ].join('\n');
 
   return {

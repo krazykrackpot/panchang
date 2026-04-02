@@ -20,6 +20,7 @@ import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale } from '@/types/panchang';
+import type { SadeSatiAnalysis } from '@/lib/kundali/sade-sati-analysis';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -189,7 +190,7 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -313,6 +314,7 @@ export default function KundaliPage() {
               { key: 'sphutas' as const, label: locale === 'en' ? 'Sphutas' : 'स्फुट' },
               { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
               { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
+              { key: 'sadesati' as const, label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती' },
               { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
             ]).map((tab) => (
               <button
@@ -951,6 +953,11 @@ export default function KundaliPage() {
           {/* ===== CHAT TAB ===== */}
           {activeTab === 'chat' && (
             <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+          )}
+
+          {/* ===== SADE SATI TAB ===== */}
+          {activeTab === 'sadesati' && kundali.sadeSati && (
+            <SadeSatiTab sadeSati={kundali.sadeSati} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
           )}
 
           {/* ===== JAIMINI TAB ===== */}
@@ -2400,5 +2407,362 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
         </div>
       </div>
     </div>
+  );
+}
+
+// ─── Sade Sati Helpers ──────────────────────────────────────────────────────
+
+function intensityColor(v: number): string {
+  if (v < 3) return 'text-green-400';
+  if (v < 5) return 'text-gold-light';
+  if (v < 7) return 'text-orange-400';
+  return 'text-red-400';
+}
+
+function intensityLabel(v: number): { en: string; hi: string } {
+  if (v < 3) return { en: 'Mild', hi: 'हल्का' };
+  if (v < 5) return { en: 'Moderate', hi: 'मध्यम' };
+  if (v < 7) return { en: 'Challenging', hi: 'चुनौतीपूर्ण' };
+  return { en: 'Intense', hi: 'तीव्र' };
+}
+
+function intensityStrokeColor(v: number): string {
+  if (v < 3) return '#4ade80';
+  if (v < 5) return '#d4a853';
+  if (v < 7) return '#fb923c';
+  return '#f87171';
+}
+
+const SECTION_LABELS: Record<string, { en: string; hi: string }> = {
+  summary: { en: 'Summary', hi: 'सारांश' },
+  phaseEffect: { en: 'Phase Effect', hi: 'चरण प्रभाव' },
+  saturnNature: { en: "Saturn's Nature for Your Ascendant", hi: 'आपके लग्न के लिए शनि का स्वभाव' },
+  moonStrength: { en: 'Moon Strength', hi: 'चन्द्र बल' },
+  dashaInterplay: { en: 'Dasha Interplay', hi: 'दशा अन्तर्क्रिया' },
+  ashtakavargaInsight: { en: 'Ashtakavarga Insight', hi: 'अष्टकवर्ग अंतर्दृष्टि' },
+  nakshatraTransit: { en: 'Nakshatra Transit', hi: 'नक्षत्र गोचर' },
+  houseEffect: { en: 'House Effects', hi: 'भाव प्रभाव' },
+};
+
+const PHASE_LABELS: Record<string, { en: string; hi: string }> = {
+  rising: { en: 'Rising (12th House Transit)', hi: 'उदय (द्वादश भाव गोचर)' },
+  peak: { en: 'Peak (1st House Transit)', hi: 'शिखर (प्रथम भाव गोचर)' },
+  setting: { en: 'Setting (2nd House Transit)', hi: 'अस्त (द्वितीय भाव गोचर)' },
+};
+
+const PRIORITY_COLORS: Record<string, { bg: string; text: string; border: string }> = {
+  essential: { bg: 'bg-red-500/10', text: 'text-red-400', border: 'border-red-500/20' },
+  recommended: { bg: 'bg-gold-primary/10', text: 'text-gold-light', border: 'border-gold-primary/20' },
+  optional: { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20' },
+};
+
+const PRIORITY_LABELS: Record<string, { en: string; hi: string }> = {
+  essential: { en: 'Essential', hi: 'अनिवार्य' },
+  recommended: { en: 'Recommended', hi: 'अनुशंसित' },
+  optional: { en: 'Optional', hi: 'वैकल्पिक' },
+};
+
+function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
+  sadeSati: SadeSatiAnalysis;
+  locale: Locale;
+  isDevanagari: boolean;
+  headingFont: React.CSSProperties;
+}) {
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const lk = locale === 'sa' ? 'hi' : locale;
+  const [expandedSection, setExpandedSection] = useState<string>('summary');
+
+  const interp = sadeSati.interpretation;
+  const interpretationKeys = Object.keys(SECTION_LABELS).filter(k => {
+    const val = interp[k as keyof typeof interp];
+    return val && (val as { en: string; hi: string })[lk]?.trim();
+  });
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="space-y-8"
+    >
+      <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>
+        {locale === 'en' ? 'Sade Sati Analysis' : 'साढ़े साती विश्लेषण'}
+      </h3>
+
+      {/* ── Status Banner ── */}
+      {sadeSati.isActive ? (
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="glass-card rounded-2xl p-6 border border-red-500/30 bg-red-500/5"
+        >
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="w-14 h-14 rounded-full bg-red-500/15 border-2 border-red-500/40 flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 24 24" className="w-7 h-7 text-red-400" fill="none" stroke="currentColor" strokeWidth={2}>
+                <circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+              </svg>
+            </div>
+            <div className="flex-1 text-center sm:text-left">
+              <div className="text-red-400 text-lg font-bold uppercase tracking-wider" style={headingFont}>
+                {locale === 'en' ? 'Sade Sati Active' : 'साढ़े साती सक्रिय'}
+              </div>
+              <div className="text-text-secondary text-sm mt-1" style={bodyFont}>
+                {sadeSati.cycleStart} &mdash; {sadeSati.cycleEnd}
+                {sadeSati.currentPhase && (
+                  <span className="ml-2 text-gold-light">
+                    ({PHASE_LABELS[sadeSati.currentPhase]?.[lk] || sadeSati.currentPhase})
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Progress bar */}
+          <div className="mt-5">
+            <div className="flex justify-between text-[10px] text-text-secondary mb-1">
+              <span>{sadeSati.cycleStart}</span>
+              <span className="text-gold-light font-bold">{Math.round(sadeSati.phaseProgress * 100)}%</span>
+              <span>{sadeSati.cycleEnd}</span>
+            </div>
+            <div className="h-2.5 rounded-full bg-bg-primary/60 overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${sadeSati.phaseProgress * 100}%` }}
+                transition={{ duration: 1, ease: 'easeOut' as const }}
+                className="h-full rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-gold-primary"
+              />
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <div className="glass-card rounded-2xl p-6 border border-green-500/30 bg-green-500/5 text-center">
+          <div className="text-green-400 text-lg font-bold uppercase tracking-wider" style={headingFont}>
+            {locale === 'en' ? 'Not in Sade Sati' : 'साढ़े साती नहीं'}
+          </div>
+          {sadeSati.allCycles.length > 0 && (() => {
+            const nextCycle = sadeSati.allCycles.find(c => !c.isActive && c.startYear > new Date().getFullYear());
+            if (!nextCycle) return null;
+            return (
+              <div className="text-text-secondary text-sm mt-2" style={bodyFont}>
+                {locale === 'en' ? `Next cycle: ${nextCycle.startYear} — ${nextCycle.endYear}` : `अगला चक्र: ${nextCycle.startYear} — ${nextCycle.endYear}`}
+              </div>
+            );
+          })()}
+        </div>
+      )}
+
+      {/* ── Intensity Gauge (only if active) ── */}
+      {sadeSati.isActive && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="glass-card rounded-2xl p-6"
+        >
+          <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-6" style={bodyFont}>
+            {locale === 'en' ? 'Intensity Gauge' : 'तीव्रता मापक'}
+          </h4>
+
+          <div className="flex flex-col items-center gap-6">
+            {/* Circular SVG gauge */}
+            <div className="relative w-40 h-40">
+              <svg viewBox="0 0 120 120" className="w-full h-full">
+                {/* Background circle */}
+                <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" strokeWidth="8" className="text-bg-primary/60" strokeLinecap="round"
+                  strokeDasharray="235.6 78.5" transform="rotate(135 60 60)" />
+                {/* Value arc */}
+                <circle cx="60" cy="60" r="50" fill="none"
+                  stroke={intensityStrokeColor(sadeSati.overallIntensity)}
+                  strokeWidth="8" strokeLinecap="round"
+                  strokeDasharray={`${(sadeSati.overallIntensity / 10) * 235.6} ${314.16 - (sadeSati.overallIntensity / 10) * 235.6}`}
+                  transform="rotate(135 60 60)"
+                  className="transition-all duration-1000"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className={`text-3xl font-bold font-mono ${intensityColor(sadeSati.overallIntensity)}`}>
+                  {sadeSati.overallIntensity.toFixed(1)}
+                </span>
+                <span className="text-text-secondary text-[10px] uppercase tracking-wider" style={bodyFont}>
+                  {intensityLabel(sadeSati.overallIntensity)[lk]}
+                </span>
+              </div>
+            </div>
+
+            {/* Intensity factors as bars */}
+            {sadeSati.intensityFactors.length > 0 && (
+              <div className="w-full max-w-md space-y-2.5">
+                {sadeSati.intensityFactors.map((f, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-28 text-right text-[11px] text-text-secondary truncate" style={bodyFont}>
+                      {f.description[lk]}
+                    </div>
+                    <div className="flex-1 bg-bg-primary/60 rounded-full h-3 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(f.score / 10) * 100}%` }}
+                        transition={{ duration: 0.8, delay: 0.1 * i, ease: 'easeOut' as const }}
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: intensityStrokeColor(f.score) }}
+                      />
+                    </div>
+                    <span className={`w-6 text-right text-xs font-mono font-bold ${intensityColor(f.score)}`}>
+                      {f.score.toFixed(0)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </motion.div>
+      )}
+
+      {/* ── Interpretation Sections (expandable cards) ── */}
+      {interpretationKeys.length > 0 && (
+        <div className="space-y-3">
+          <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-2" style={bodyFont}>
+            {locale === 'en' ? 'Detailed Interpretation' : 'विस्तृत व्याख्या'}
+          </h4>
+          {interpretationKeys.map((key) => {
+            const label = SECTION_LABELS[key];
+            const text = (interp[key as keyof typeof interp] as { en: string; hi: string })[lk];
+            const isOpen = expandedSection === key;
+            return (
+              <motion.div
+                key={key}
+                className="glass-card rounded-xl border border-gold-primary/10 overflow-hidden"
+                layout
+              >
+                <button
+                  onClick={() => setExpandedSection(isOpen ? '' : key)}
+                  className="w-full flex items-center justify-between px-5 py-3.5 text-left hover:bg-gold-primary/5 transition-colors"
+                >
+                  <span className="text-gold-light text-sm font-bold" style={headingFont}>
+                    {label[lk]}
+                  </span>
+                  <svg className={`w-4 h-4 text-gold-dark/50 transition-transform ${isOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-4 text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+                        {text}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── Timeline ── */}
+      {sadeSati.allCycles.length > 0 && (
+        <div className="glass-card rounded-2xl p-6">
+          <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-5" style={bodyFont}>
+            {locale === 'en' ? 'Sade Sati Timeline' : 'साढ़े साती समयरेखा'}
+          </h4>
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-5 top-0 bottom-0 w-px bg-gold-primary/20" />
+            <div className="space-y-4">
+              {sadeSati.allCycles.map((cycle, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
+                  className={`flex items-start gap-4 pl-2 ${cycle.isActive ? '' : 'opacity-60'}`}
+                >
+                  <div className={`mt-1 w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                    cycle.isActive ? 'border-gold-primary bg-gold-primary/20' : 'border-gold-primary/30 bg-bg-primary/40'
+                  }`}>
+                    {cycle.isActive && <div className="w-2.5 h-2.5 rounded-full bg-gold-primary animate-pulse" />}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className={`font-bold font-mono text-sm ${cycle.isActive ? 'text-gold-light' : 'text-text-secondary'}`}>
+                        {cycle.startYear} &mdash; {cycle.endYear}
+                      </span>
+                      {cycle.isActive && (
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-light border border-gold-primary/30">
+                          {locale === 'en' ? 'Active' : 'सक्रिय'}
+                        </span>
+                      )}
+                    </div>
+                    {cycle.phases.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-1.5">
+                        {cycle.phases.map((ph, j) => (
+                          <span key={j} className={`text-[10px] px-2 py-0.5 rounded border ${
+                            cycle.isActive && sadeSati.currentPhase === ph.phase
+                              ? 'bg-gold-primary/15 text-gold-light border-gold-primary/30 font-bold'
+                              : 'text-text-tertiary border-gold-primary/10'
+                          }`}>
+                            {ph.phase === 'rising' ? (locale === 'en' ? 'Rising' : 'उदय') :
+                             ph.phase === 'peak' ? (locale === 'en' ? 'Peak' : 'शिखर') :
+                             (locale === 'en' ? 'Setting' : 'अस्त')}
+                            {' '}{ph.startYear}-{ph.endYear}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Remedies (only if active) ── */}
+      {sadeSati.isActive && sadeSati.remedies.length > 0 && (
+        <div className="glass-card rounded-2xl p-6">
+          <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-5" style={bodyFont}>
+            {locale === 'en' ? 'Remedies' : 'उपाय'}
+          </h4>
+          {(['essential', 'recommended', 'optional'] as const).map(priority => {
+            const items = sadeSati.remedies.filter(r => r.priority === priority);
+            if (items.length === 0) return null;
+            const pc = PRIORITY_COLORS[priority];
+            return (
+              <div key={priority} className="mb-5 last:mb-0">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${pc.bg} ${pc.text} ${pc.border}`}>
+                    {PRIORITY_LABELS[priority][lk]}
+                  </span>
+                </div>
+                <div className="space-y-2.5">
+                  {items.map((r, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 * i }}
+                      className={`rounded-xl p-4 border ${pc.border} ${pc.bg}`}
+                    >
+                      <div className={`font-bold text-sm mb-1 ${pc.text}`} style={headingFont}>
+                        {r.title[lk]}
+                      </div>
+                      <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
+                        {r.description[lk]}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </motion.div>
   );
 }

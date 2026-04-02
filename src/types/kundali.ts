@@ -109,6 +109,7 @@ export interface KundaliData {
   tithiAshtottariDasha?: import('@/lib/kundali/additional-dashas').GrahaDashaEntry[];
   yogaVimsottariDasha?: import('@/lib/kundali/additional-dashas').GrahaDashaEntry[];
   buddhiGathiDasha?: import('@/lib/kundali/additional-dashas').GrahaDashaEntry[];
+  sadeSati?: import('@/lib/kundali/sade-sati-analysis').SadeSatiAnalysis;
   avasthas?: import('@/lib/kundali/avasthas').PlanetAvasthas[];
   argala?: import('@/lib/kundali/argala').ArgalaResult[];
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;

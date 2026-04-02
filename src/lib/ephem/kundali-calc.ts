@@ -13,6 +13,7 @@ import { calculateJaimini } from '@/lib/jaimini/jaimini-calc';
 import { calculateFullShadbala } from '@/lib/kundali/shadbala';
 import { calculateBhavabala } from '@/lib/kundali/bhavabala';
 import { detectAllYogas } from '@/lib/kundali/yogas-complete';
+import { analyzeSadeSati } from '@/lib/kundali/sade-sati-analysis';
 import { calculateSpecialLagnas } from '@/lib/kundali/special-lagnas';
 import { calculateVimshopakaBala } from '@/lib/kundali/vimshopaka';
 import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, calculateKalachakraDasha, calculateSudarsanaDasha, calculateShodasottariDasha, calculateDwadasottariDasha, calculatePanchottariDasha, calculateSatabdikaDasha, calculateChaturaaseethiDasha, calculateShashtihayaniDasha, calculateMandookaDasha, calculateDrigDasha, calculateMoolaDasha, calculateNavamshaDasha, calculateNaisargikaDasha, calculateTaraDasha, calculateTithiAshtottariDasha, calculateYogaVimsottariDasha, calculateBuddhiGathiDasha } from '@/lib/kundali/additional-dashas';
@@ -808,6 +809,30 @@ export function generateKundali(birthData: BirthData): KundaliData {
     ascSign
   );
 
+  // Sade Sati analysis
+  const moonP = planets.find(p => p.planet.id === 1);
+  const saturnP = planets.find(p => p.planet.id === 6);
+  const currentMahaDasha = dashas.find(d => {
+    const now = new Date();
+    return new Date(d.startDate) <= now && now <= new Date(d.endDate);
+  });
+  const currentAntarDasha = currentMahaDasha?.subPeriods?.find(s => {
+    const now = new Date();
+    return new Date(s.startDate) <= now && now <= new Date(s.endDate);
+  });
+  const sadeSati = analyzeSadeSati({
+    moonSign: moonP?.sign || 1,
+    moonNakshatra: moonP ? getNakshatraNumber(moonP.longitude) : undefined,
+    moonDegree: moonP?.longitude,
+    ascendantSign: ascSign,
+    saturnSign: saturnP?.sign,
+    saturnHouse: saturnP?.house,
+    saturnRetrograde: saturnP?.isRetrograde,
+    ashtakavargaSaturnBindus: ashtakavarga?.bpiTable?.[6],
+    currentDasha: currentMahaDasha ? { planet: currentMahaDasha.planet, startDate: currentMahaDasha.startDate, endDate: currentMahaDasha.endDate } : undefined,
+    currentAntar: currentAntarDasha ? { planet: currentAntarDasha.planet, startDate: currentAntarDasha.startDate, endDate: currentAntarDasha.endDate } : undefined,
+  });
+
   return {
     birthData,
     ascendant: {
@@ -833,6 +858,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     fullShadbala,
     bhavabala,
     yogasComplete,
+    sadeSati,
     jaimini: calculateJaimini(planets, ascSign, birthDate),
     vimshopakaBala: calculateVimshopakaBala(planets, chart, divisionalCharts),
     narayanaDasha: calculateNarayanaDasha(ascSign, planets, birthDate),

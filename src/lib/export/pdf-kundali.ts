@@ -717,6 +717,119 @@ function renderPage9(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   addPageFooter(doc, pageNum);
 }
 
+// ─── Sade Sati Analysis ─────────────────────────────────────────────────────
+
+function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
+  doc.addPage();
+  pageNum++;
+  addPageBackground(doc);
+  let y = addContinuationHeader(doc);
+
+  y = goldHeading(doc, 'Sade Sati Analysis', y);
+
+  const ss = kundali.sadeSati!;
+  const lk = locale === 'sa' ? 'hi' : locale;
+
+  // Status
+  if (ss.isActive) {
+    const phaseLabel = ss.currentPhase === 'rising' ? 'Rising' : ss.currentPhase === 'peak' ? 'Peak' : 'Setting';
+    y = subHeading(doc, `Status: ACTIVE — ${phaseLabel} Phase`, y);
+    doc.setFontSize(8);
+    doc.setTextColor(232, 230, 227);
+    doc.text(`Cycle: ${ss.cycleStart} — ${ss.cycleEnd}  |  Progress: ${Math.round(ss.phaseProgress * 100)}%`, MARGIN + 2, y);
+    y += 7;
+
+    // Intensity
+    y = ensureSpace(doc, y, 12);
+    y = subHeading(doc, `Intensity: ${ss.overallIntensity.toFixed(1)} / 10`, y);
+
+    if (ss.intensityFactors.length > 0) {
+      ss.intensityFactors.forEach(f => {
+        y = ensureSpace(doc, y, 5);
+        doc.setFontSize(7);
+        doc.setTextColor(155, 151, 160);
+        doc.text(`  ${f.description[lk]}  —  ${f.score.toFixed(0)}/10`, MARGIN + 2, y);
+        y += 4.5;
+      });
+      y += 3;
+    }
+  } else {
+    y = subHeading(doc, 'Status: Not Active', y);
+    const nextCycle = ss.allCycles.find(c => !c.isActive && c.startYear > new Date().getFullYear());
+    if (nextCycle) {
+      doc.setFontSize(8);
+      doc.setTextColor(232, 230, 227);
+      doc.text(`Next cycle: ${nextCycle.startYear} — ${nextCycle.endYear}`, MARGIN + 2, y);
+      y += 7;
+    }
+  }
+
+  // Summary interpretation
+  const summary = ss.interpretation.summary[lk];
+  if (summary) {
+    y = ensureSpace(doc, y, 15);
+    y = subHeading(doc, 'Summary', y);
+    y = drawWrappedText(doc, summary, y, CONTENT_W - 4, 7.5, TEXT_PRIMARY);
+    y += 4;
+  }
+
+  // Saturn nature + moon strength (if active)
+  if (ss.isActive) {
+    const saturnText = ss.interpretation.saturnNature[lk];
+    if (saturnText) {
+      y = ensureSpace(doc, y, 15);
+      y = subHeading(doc, "Saturn's Nature for Ascendant", y);
+      y = drawWrappedText(doc, saturnText, y, CONTENT_W - 4, 7.5, TEXT_PRIMARY);
+      y += 4;
+    }
+    const moonText = ss.interpretation.moonStrength[lk];
+    if (moonText) {
+      y = ensureSpace(doc, y, 15);
+      y = subHeading(doc, 'Moon Strength', y);
+      y = drawWrappedText(doc, moonText, y, CONTENT_W - 4, 7.5, TEXT_PRIMARY);
+      y += 4;
+    }
+  }
+
+  // Timeline — compact
+  if (ss.allCycles.length > 0) {
+    y = ensureSpace(doc, y, 15);
+    y = subHeading(doc, 'Timeline', y);
+    ss.allCycles.forEach(cycle => {
+      y = ensureSpace(doc, y, 5);
+      doc.setFontSize(7.5);
+      const activePhase = cycle.isActive && ss.currentPhase ? ` [ACTIVE - ${ss.currentPhase.charAt(0).toUpperCase() + ss.currentPhase.slice(1)}]` : '';
+      if (cycle.isActive) {
+        doc.setTextColor(212, 168, 83);
+      } else {
+        doc.setTextColor(155, 151, 160);
+      }
+      doc.text(`${cycle.startYear} — ${cycle.endYear}${activePhase}`, MARGIN + 2, y);
+      y += 5;
+    });
+    y += 3;
+  }
+
+  // Remedies (if active)
+  if (ss.isActive && ss.remedies.length > 0) {
+    y = ensureSpace(doc, y, 15);
+    y = subHeading(doc, 'Remedies', y);
+
+    for (const r of ss.remedies) {
+      y = ensureSpace(doc, y, 12);
+      const priorityTag = `[${r.priority.toUpperCase()}]`;
+      doc.setFontSize(7.5);
+      doc.setTextColor(240, 212, 138);
+      doc.text(`${priorityTag} ${r.title[lk]}`, MARGIN + 2, y);
+      y += 4.5;
+      y = drawWrappedText(doc, r.description[lk], y, CONTENT_W - 8, 7, TEXT_SECONDARY);
+      y += 2;
+    }
+  }
+
+  addPageFooter(doc, pageNum);
+}
+
 // ─── Page 10+: Tippanni (Interpretations) ───────────────────────────────────
 
 function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
@@ -976,6 +1089,11 @@ export function exportKundaliPDF(
 
   // Page 9: Jaimini System
   renderPage9(doc, kundali, locale);
+
+  // Sade Sati Analysis
+  if (kundali.sadeSati) {
+    renderSadeSati(doc, kundali, locale);
+  }
 
   // Page 10+: Tippanni (Interpretations)
   if (tippanni) {

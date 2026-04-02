@@ -29,6 +29,7 @@ import { VAT_SAVITRI_PUJA } from './vat-savitri';
 import { AKSHAYA_TRITIYA_PUJA } from './akshaya-tritiya';
 import { TULSI_VIVAH_PUJA } from './tulsi-vivah';
 import { AHOI_ASHTAMI_PUJA } from './ahoi-ashtami';
+import { GRAHA_SHANTI_VIDHIS } from './graha-shanti';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -61,6 +62,7 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'akshaya-tritiya': AKSHAYA_TRITIYA_PUJA,
   'tulsi-vivah': TULSI_VIVAH_PUJA,
   'ahoi-ashtami': AHOI_ASHTAMI_PUJA,
+  ...GRAHA_SHANTI_VIDHIS,
 };
 
 export function getPujaVidhiBySlug(slug: string): PujaVidhi | undefined {

@@ -70,6 +70,28 @@ const routes = [
   '/horoscope',
   '/kaal-nirnaya',
   '/nivas-shool',
+  // Kundali sub-pages
+  '/kundali/compare',
+  '/kundali/rectify',
+  // Learn modules (structured curriculum)
+  '/learn/modules',
+  '/learn/modules/1-1', '/learn/modules/1-2', '/learn/modules/1-3',
+  '/learn/modules/2-1', '/learn/modules/2-2', '/learn/modules/2-3', '/learn/modules/2-4',
+  '/learn/modules/3-1', '/learn/modules/3-2', '/learn/modules/3-3',
+  '/learn/modules/4-1', '/learn/modules/4-2', '/learn/modules/4-3',
+  '/learn/modules/5-1', '/learn/modules/5-2', '/learn/modules/5-3',
+  '/learn/modules/6-1', '/learn/modules/6-2', '/learn/modules/6-3', '/learn/modules/6-4',
+  '/learn/modules/7-1', '/learn/modules/7-2', '/learn/modules/7-3',
+  '/learn/modules/8-1',
+  '/learn/modules/9-1', '/learn/modules/9-2', '/learn/modules/9-3', '/learn/modules/9-4',
+  '/learn/modules/10-1', '/learn/modules/10-2', '/learn/modules/10-3',
+  '/learn/modules/11-1', '/learn/modules/11-2', '/learn/modules/11-3',
+  '/learn/modules/12-1', '/learn/modules/12-2', '/learn/modules/12-3',
+  '/learn/modules/13-1', '/learn/modules/13-2', '/learn/modules/13-3',
+  '/learn/modules/14-1', '/learn/modules/14-2', '/learn/modules/14-3',
+  '/learn/modules/15-1', '/learn/modules/15-2', '/learn/modules/15-3', '/learn/modules/15-4',
+  '/learn/modules/16-1', '/learn/modules/16-2', '/learn/modules/16-3',
+  '/learn/modules/17-1', '/learn/modules/17-2', '/learn/modules/17-3', '/learn/modules/17-4',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

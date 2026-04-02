@@ -292,25 +292,58 @@ export function approximateSunrise(jd: number, lat: number, lng: number): number
   if (isSwissEphAvailable()) {
     return swissSunrise(jd, lat, lng);
   }
-  // Meeus fallback
-  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(_meesusSunLongitude(jd)))));
-  const cosH = (Math.sin(toRad(-0.833)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
+  // Meeus improved: actual obliquity + EoT correction
+  const T = (jd - 2451545.0) / 36525;
+  const obliquity = 23.4393 - 0.0130 * T;
+  const sunLong = _meesusSunLongitude(jd);
+  const decl = toDeg(Math.asin(Math.sin(toRad(obliquity)) * Math.sin(toRad(sunLong))));
+
+  const cosH = (Math.sin(toRad(-0.8333)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
   if (cosH > 1 || cosH < -1) return 6;
   const H = toDeg(Math.acos(cosH));
-  return (((12 - H / 15 - lng / 15) % 24) + 24) % 24;
+
+  // Equation of Time (simplified Meeus)
+  const y2 = Math.tan(toRad(obliquity / 2)) ** 2;
+  const L0 = toRad(280.46646 + 36000.76983 * T);
+  const M = toRad(357.52911 + 35999.05029 * T);
+  const e = 0.016708634 - 0.000042037 * T;
+  const eot = toDeg(y2 * Math.sin(2 * L0) - 2 * e * Math.sin(M)
+    + 4 * e * y2 * Math.sin(M) * Math.cos(2 * L0)
+    - 0.5 * y2 * y2 * Math.sin(4 * L0)
+    - 1.25 * e * e * Math.sin(2 * M)) * 4; // in minutes
+
+  const solarNoon = (720 - 4 * lng - eot) / 60; // in hours UT
+  return ((solarNoon - H / 15) % 24 + 24) % 24;
 }
 
 export function approximateSunset(jd: number, lat: number, lng: number): number {
   if (isSwissEphAvailable()) {
     return swissSunset(jd, lat, lng);
   }
-  const decl = toDeg(Math.asin(Math.sin(toRad(23.44)) * Math.sin(toRad(_meesusSunLongitude(jd)))));
-  const cosH = (Math.sin(toRad(-0.833)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
+  // Meeus improved: actual obliquity + EoT correction
+  const T = (jd - 2451545.0) / 36525;
+  const obliquity = 23.4393 - 0.0130 * T;
+  const sunLong = _meesusSunLongitude(jd);
+  const decl = toDeg(Math.asin(Math.sin(toRad(obliquity)) * Math.sin(toRad(sunLong))));
+
+  const cosH = (Math.sin(toRad(-0.8333)) - Math.sin(toRad(lat)) * Math.sin(toRad(decl)))
     / (Math.cos(toRad(lat)) * Math.cos(toRad(decl)));
   if (cosH > 1 || cosH < -1) return 18;
   const H = toDeg(Math.acos(cosH));
-  return (((12 + H / 15 - lng / 15) % 24) + 24) % 24;
+
+  // Equation of Time (simplified Meeus)
+  const y2 = Math.tan(toRad(obliquity / 2)) ** 2;
+  const L0 = toRad(280.46646 + 36000.76983 * T);
+  const M = toRad(357.52911 + 35999.05029 * T);
+  const e = 0.016708634 - 0.000042037 * T;
+  const eot = toDeg(y2 * Math.sin(2 * L0) - 2 * e * Math.sin(M)
+    + 4 * e * y2 * Math.sin(M) * Math.cos(2 * L0)
+    - 0.5 * y2 * y2 * Math.sin(4 * L0)
+    - 1.25 * e * e * Math.sin(2 * M)) * 4; // in minutes
+
+  const solarNoon = (720 - 4 * lng - eot) / 60; // in hours UT
+  return ((solarNoon + H / 15) % 24 + 24) % 24;
 }
 
 // Format decimal hours to HH:MM string

@@ -493,6 +493,114 @@ const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
   6: new Set([4, 8, 11, 14, 18, 22, 24, 27]),    // Saturday
 };
 
+// ──────────────────────────────────────────────────────────────
+// Moonrise / Moonset — iterative horizon-crossing calculation
+// ──────────────────────────────────────────────────────────────
+
+/**
+ * Compute Moon's RA and Dec from ecliptic longitude (ecliptic latitude approximated as 0).
+ */
+function getMoonEquatorial(jdAt: number): { dec: number; ra: number } {
+  const _toRad = (d: number) => d * Math.PI / 180;
+  const _toDeg = (r: number) => r * 180 / Math.PI;
+  const moonLon = moonLongitude(jdAt);
+  const T = (jdAt - 2451545.0) / 36525;
+  const obliquity = _toRad(23.4393 - 0.0130 * T);
+  const lonRad = _toRad(moonLon);
+  const sinDec = Math.sin(obliquity) * Math.sin(lonRad);
+  const dec = Math.asin(sinDec);
+  const y = Math.sin(lonRad) * Math.cos(obliquity);
+  const x = Math.cos(lonRad);
+  let ra = Math.atan2(y, x);
+  if (ra < 0) ra += 2 * Math.PI;
+  return { dec: _toDeg(dec), ra: _toDeg(ra) };
+}
+
+/**
+ * Compute Moon's altitude above the horizon at a given JD for a given location.
+ */
+function moonAltitude(jdAt: number, latRad: number, lng: number): number {
+  const _toRad = (d: number) => d * Math.PI / 180;
+  const _toDeg = (r: number) => r * 180 / Math.PI;
+  const { dec, ra } = getMoonEquatorial(jdAt);
+  const decRad = _toRad(dec);
+  const T = (jdAt - 2451545.0) / 36525;
+  const gst = (280.46061837 + 360.98564736629 * (jdAt - 2451545.0) + 0.000387933 * T * T) % 360;
+  const lst = ((gst + lng) % 360 + 360) % 360;
+  const ha = _toRad(lst - ra);
+  const sinAlt = Math.sin(latRad) * Math.sin(decRad) + Math.cos(latRad) * Math.cos(decRad) * Math.cos(ha);
+  return _toDeg(Math.asin(sinAlt));
+}
+
+/**
+ * Calculate moonrise time for a given date and location.
+ * Returns UT decimal hours from midnight, or null if Moon doesn't rise.
+ */
+function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
+  // Standard moonrise altitude: 0.7275 * horizontal_parallax - 0.5667°
+  // With Moon's HP ≈ 0.95°, this gives ≈ 0.125° - 0.567° ≈ -0.125°
+  const h0 = -0.125;
+  const latRad = (lat * Math.PI) / 180;
+  const jdMidnight = Math.floor(jd - 0.5) + 0.5;
+  const step = 10 / (24 * 60); // 10-minute steps in JD
+
+  let prevAlt = moonAltitude(jdMidnight, latRad, lng);
+
+  for (let i = 1; i <= 144; i++) { // 144 × 10min = 24 hours
+    const jdNow = jdMidnight + i * step;
+    const alt = moonAltitude(jdNow, latRad, lng);
+
+    if (prevAlt < h0 && alt >= h0) {
+      // Binary search for precise crossing
+      let lo = jdNow - step;
+      let hi = jdNow;
+      for (let j = 0; j < 10; j++) {
+        const mid = (lo + hi) / 2;
+        if (moonAltitude(mid, latRad, lng) < h0) lo = mid;
+        else hi = mid;
+      }
+      const riseJd = (lo + hi) / 2;
+      return ((riseJd - jdMidnight) * 24 + 24) % 24;
+    }
+    prevAlt = alt;
+  }
+
+  return null; // Moon doesn't rise today
+}
+
+/**
+ * Calculate moonset time for a given date and location.
+ * Returns UT decimal hours from midnight, or null if Moon doesn't set.
+ */
+function calculateMoonsetUT(jd: number, lat: number, lng: number): number | null {
+  const h0 = -0.125;
+  const latRad = (lat * Math.PI) / 180;
+  const jdMidnight = Math.floor(jd - 0.5) + 0.5;
+  const step = 10 / (24 * 60);
+
+  let prevAlt = moonAltitude(jdMidnight, latRad, lng);
+
+  for (let i = 1; i <= 144; i++) {
+    const jdNow = jdMidnight + i * step;
+    const alt = moonAltitude(jdNow, latRad, lng);
+
+    if (prevAlt >= h0 && alt < h0) {
+      let lo = jdNow - step;
+      let hi = jdNow;
+      for (let j = 0; j < 10; j++) {
+        const mid = (lo + hi) / 2;
+        if (moonAltitude(mid, latRad, lng) >= h0) lo = mid;
+        else hi = mid;
+      }
+      const setJd = (lo + hi) / 2;
+      return ((setJd - jdMidnight) * 24 + 24) % 24;
+    }
+    prevAlt = alt;
+  }
+
+  return null; // Moon doesn't set today
+}
+
 export function computePanchang(input: PanchangInput): PanchangData {
   const { year, month, day, lat, lng, tzOffset, timezone, locationName } = input;
 
@@ -941,8 +1049,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     vara: { day: weekday, name: varaData.name, ruler: varaData.ruler },
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
-    moonrise: formatTime(((sunriseUT + (tithiResult.number - 1) * (24 / 29.53)) % 24 + 24) % 24, tzOffset),
-    moonset: formatTime(((sunriseUT + (tithiResult.number - 1) * (24 / 29.53) + 12.4) % 24 + 24) % 24, tzOffset),
+    moonrise: (() => { const mr = calculateMoonriseUT(jd, lat, lng); return mr !== null ? formatTime(mr, tzOffset) : '--:--'; })(),
+    moonset: (() => { const ms = calculateMoonsetUT(jd, lat, lng); return ms !== null ? formatTime(ms, tzOffset) : '--:--'; })(),
     rahuKaal: { start: formatTime(rahuKaal.start, tzOffset), end: formatTime(rahuKaal.end, tzOffset) },
     yamaganda: { start: formatTime(yamaganda.start, tzOffset), end: formatTime(yamaganda.end, tzOffset) },
     gulikaKaal: { start: formatTime(gulikaKaal.start, tzOffset), end: formatTime(gulikaKaal.end, tzOffset) },

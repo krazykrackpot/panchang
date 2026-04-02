@@ -12,18 +12,18 @@ interface GateResult {
 }
 
 async function extractUserId(req: Request): Promise<string | null> {
+  const supabase = getServerSupabase();
+  if (!supabase) return null; // Supabase not configured — skip auth
+
   const authHeader = req.headers.get('authorization');
   if (authHeader?.startsWith('Bearer ')) {
     const token = authHeader.slice(7);
-    const supabase = getServerSupabase()!;
     const { data } = await supabase.auth.getUser(token);
     return data.user?.id ?? null;
   }
   // Try cookie-based auth for same-origin requests
   const cookie = req.headers.get('cookie');
   if (cookie) {
-    const supabase = getServerSupabase()!;
-    // Try to extract user from the sb-access-token cookie
     const match = cookie.match(/sb-[^=]+-auth-token=([^;]+)/);
     if (match) {
       try {

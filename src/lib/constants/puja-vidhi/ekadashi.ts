@@ -6,18 +6,18 @@ export const EKADASHI_PUJA: PujaVidhi = {
   deity: { en: 'Lord Vishnu', hi: 'भगवान विष्णु', sa: 'श्रीविष्णुः' },
 
   samagri: [
-    { name: { en: 'Vishnu idol or image', hi: 'विष्णु मूर्ति या चित्र', sa: 'विष्णुमूर्तिः अथवा चित्रम्' } },
-    { name: { en: 'Tulsi leaves (holy basil)', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, note: { en: 'Essential — Vishnu is not worshipped without Tulsi', hi: 'अनिवार्य — तुलसी के बिना विष्णु पूजा अधूरी है', sa: 'अनिवार्यम् — तुलसीं विना विष्णुपूजा न सम्पूर्णा' } },
-    { name: { en: 'Yellow flowers (marigold preferred)', hi: 'पीले फूल (गेंदे के फूल)', sa: 'पीतपुष्पाणि (स्थालपद्मानि)' } },
-    { name: { en: 'Fruits (banana, pomegranate)', hi: 'फल (केला, अनार)', sa: 'फलानि (कदलीफलम्, दाडिमम्)' } },
-    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं, दधि, घृतं, मधु, शर्करा)' } },
-    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Water (for abhishek and achamana)', hi: 'जल (अभिषेक और आचमन के लिए)', sa: 'जलम् (अभिषेकाचमनार्थम्)' } },
-    { name: { en: 'Akshat (unbroken rice — for sankalpa only, NOT for offering)', hi: 'अक्षत (साबुत चावल — केवल संकल्प हेतु, भोग नहीं)', sa: 'अक्षताः (सङ्कल्पार्थमेव, न नैवेद्यम्)' } },
-    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Yellow cloth', hi: 'पीला कपड़ा', sa: 'पीतवस्त्रम्' } },
+    { name: { en: 'Vishnu idol or image', hi: 'विष्णु मूर्ति या चित्र', sa: 'विष्णुमूर्तिः अथवा चित्रम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Tulsi leaves (holy basil)', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, note: { en: 'Essential — Vishnu is not worshipped without Tulsi', hi: 'अनिवार्य — तुलसी के बिना विष्णु पूजा अधूरी है', sa: 'अनिवार्यम् — तुलसीं विना विष्णुपूजा न सम्पूर्णा' } , category: 'flowers', essential: true },
+    { name: { en: 'Yellow flowers (marigold preferred)', hi: 'पीले फूल (गेंदे के फूल)', sa: 'पीतपुष्पाणि (स्थालपद्मानि)' } , category: 'flowers', essential: true },
+    { name: { en: 'Fruits (banana, pomegranate)', hi: 'फल (केला, अनार)', sa: 'फलानि (कदलीफलम्, दाडिमम्)' } , category: 'food', essential: true },
+    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं, दधि, घृतं, मधु, शर्करा)' } , category: 'food', essential: true },
+    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' } , category: 'puja_items', essential: true },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Water (for abhishek and achamana)', hi: 'जल (अभिषेक और आचमन के लिए)', sa: 'जलम् (अभिषेकाचमनार्थम्)' } , category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice — for sankalpa only, NOT for offering)', hi: 'अक्षत (साबुत चावल — केवल संकल्प हेतु, भोग नहीं)', sa: 'अक्षताः (सङ्कल्पार्थमेव, न नैवेद्यम्)' }, category: 'puja_items', essential: false },
+    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } , category: 'puja_items', essential: false },
+    { name: { en: 'Yellow cloth', hi: 'पीला कपड़ा', sa: 'पीतवस्त्रम्' } , category: 'clothing', essential: false },
   ],
 
   muhurtaType: 'fixed',
@@ -44,6 +44,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'दशम्याः सायं (एकादश्याः पूर्वदिने) सूर्यास्तात् प्राक् लघु सात्त्विकं भोजनं कुर्यात्। गुरुतामसिकाहारं त्यजेत्। मनसा व्रतसङ्कल्पं कुर्यात्। पूजास्थलं शोधयेत् सामग्रीं च सज्जयेत्।',
       },
       duration: '30 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -54,6 +56,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'सूर्योदयात् प्राक् उत्तिष्ठेत्। शुद्धिस्नानं कुर्यात्, गङ्गाजलबिन्दूनां योजनं श्रेष्ठम्। शुचिपीतश्वेतवस्त्रं धारयेत्। वेद्याः पुरतः उपविश्य दक्षिणहस्ते जलाक्षतान् गृहीत्वा तिथिप्रयोजनदेवतानामोच्चारणपूर्वकं सङ्कल्पं कुर्यात्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 3,
@@ -65,6 +69,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
       },
       mantraRef: 'vishnu-dvadashakshari',
       duration: '30 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 4,
@@ -75,6 +81,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'तुलसीं विशेषतः पूजयेत् — सा विष्णोः प्रियतमा वृन्दादेवी। तुलसीं जलेन सिञ्चेत्, मूले कुङ्कुमहरिद्रां लिम्पेत्, पुष्पाणि अर्पयेत्, तुलसीसमीपे दीपं प्रज्वालयेत्। तुलसीं त्रिवारं प्रदक्षिणां कुर्यात्।',
       },
       duration: '10 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -86,6 +94,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
       },
       mantraRef: 'vishnu-sahasranama-opening',
       duration: '45 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 6,
@@ -96,6 +106,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'श्रीविष्णोः कृष्णस्य रामस्य वा स्तुतौ भजनकीर्तनानि गायेत्। "हरे कृष्ण महामन्त्रम्", "श्रीरामजयराम", "अच्युतं केशवम्" इत्यादीनि प्रसिद्धानि। एकाकिना वा समूहेन वा कुर्यात्।',
       },
       duration: '30 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 7,
@@ -106,6 +118,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'घृतदीपकर्पूराभ्यां श्रीविष्णोः सायमारात्रिकं कुर्यात्। "ॐ जय जगदीश हरे" इति विष्णोः सार्वभौमिकम् आरात्रिकं गायेत्। घण्टां वादयेत् सर्वपरिजनेभ्यः ज्योतिं प्रदर्शयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 8,
@@ -116,6 +130,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'विष्णुकथाश्रवणभजनगायनभगवद्गीतापठनध्यानादिना सर्वां रात्रिं जागृयात् (जागरणम्)। एतद् ऐच्छिकं किन्तु व्रतपुण्यं बहु वर्धयति। अर्धरात्रिपर्यन्तं जागरणमपि पुण्यप्रदम्।',
       },
       duration: 'Overnight',
+      essential: false,
+      stepType: 'meditation',
     },
     {
       step: 9,
@@ -126,6 +142,8 @@ export const EKADASHI_PUJA: PujaVidhi = {
         sa: 'द्वादश्यां प्रातः प्रातःकर्माणि संक्षिप्तविष्णुपूजनं च कुर्यात्। पारणं सूर्योदयानन्तरं पारणकाले एव (प्रायः दिनस्य प्रथमचतुर्थांशात् प्राक्) कुर्यात्। प्रथमं तुलसीजलम्, ततः फलानि, ततो लघुभोजनम् ग्रहणीयम्। स्वभोजनात् प्राक् ब्राह्मणभोजनं महापुण्यप्रदम्।',
       },
       duration: '20 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

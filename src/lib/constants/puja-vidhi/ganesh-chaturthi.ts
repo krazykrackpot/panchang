@@ -6,21 +6,21 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
   deity: { en: 'Ganesha', hi: 'गणेश', sa: 'गणेशः' },
 
   samagri: [
-    { name: { en: 'Clay/eco-friendly Ganesha idol', hi: 'मिट्टी की गणेश प्रतिमा', sa: 'मृण्मयी गणेशमूर्तिः' } },
-    { name: { en: 'Modak (sweet dumplings)', hi: 'मोदक', sa: 'मोदकम्' }, quantity: '21' },
-    { name: { en: 'Durva grass', hi: 'दूर्वा घास', sa: 'दूर्वा' }, note: { en: 'Must have 3 or 5 blades', hi: '3 या 5 पत्तियों वाली होनी चाहिए', sa: 'त्रिपत्रा पञ्चपत्रा वा भवेत्' } },
-    { name: { en: 'Red flowers (hibiscus)', hi: 'लाल फूल (गुड़हल)', sa: 'रक्तपुष्पाणि (जपाकुसुमम्)' } },
-    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1' },
-    { name: { en: 'Supari (betel nut)', hi: 'सुपारी', sa: 'पूगीफलम्' }, quantity: '5' },
-    { name: { en: 'Paan leaves (betel)', hi: 'पान के पत्ते', sa: 'ताम्बूलपत्राणि' }, quantity: '5' },
-    { name: { en: 'Turmeric', hi: 'हल्दी', sa: 'हरिद्रा' } },
-    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' } },
-    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1' },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Banana', hi: 'केला', sa: 'कदलीफलम्' } },
+    { name: { en: 'Clay/eco-friendly Ganesha idol', hi: 'मिट्टी की गणेश प्रतिमा', sa: 'मृण्मयी गणेशमूर्तिः' } , category: 'puja_items', essential: true },
+    { name: { en: 'Modak (sweet dumplings)', hi: 'मोदक', sa: 'मोदकम्' }, quantity: '21' , category: 'food', essential: true },
+    { name: { en: 'Durva grass', hi: 'दूर्वा घास', sa: 'दूर्वा' }, note: { en: 'Must have 3 or 5 blades', hi: '3 या 5 पत्तियों वाली होनी चाहिए', sa: 'त्रिपत्रा पञ्चपत्रा वा भवेत्' } , category: 'flowers', essential: true },
+    { name: { en: 'Red flowers (hibiscus)', hi: 'लाल फूल (गुड़हल)', sa: 'रक्तपुष्पाणि (जपाकुसुमम्)' } , category: 'flowers', essential: true },
+    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1' , category: 'food', essential: true },
+    { name: { en: 'Supari (betel nut)', hi: 'सुपारी', sa: 'पूगीफलम्' }, quantity: '5' , category: 'puja_items', essential: false },
+    { name: { en: 'Paan leaves (betel)', hi: 'पान के पत्ते', sa: 'ताम्बूलपत्राणि' }, quantity: '5' , category: 'puja_items', essential: false },
+    { name: { en: 'Turmeric', hi: 'हल्दी', sa: 'हरिद्रा' } , category: 'puja_items', essential: true },
+    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } , category: 'puja_items', essential: false },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1' , category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } , category: 'puja_items', essential: true },
+    { name: { en: 'Banana', hi: 'केला', sa: 'कदलीफलम्' } , category: 'food', essential: false },
   ],
 
   muhurtaType: 'computed',
@@ -47,6 +47,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'दक्षिणकरे त्रिवारं जलं गृहीत्वा केशव-नारायण-माधवनामोच्चारणेन आचमनं कुर्यात्।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -57,6 +59,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'दक्षिणहस्ते जलाक्षतान् गृहीत्वा तिथिस्थानपूजाप्रयोजनं वदेत् ततो जलं विसृजेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 3,
@@ -67,6 +71,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'गजाननं चतुर्बाहुं पाशाङ्कुशमोदकवरदमुद्राधारिणं पद्मासनस्थं मूषकवाहनं श्रीगणेशं ध्यायेत्।',
       },
       duration: '3 min',
+      essential: false,
+      stepType: 'meditation',
     },
     {
       step: 4,
@@ -78,6 +84,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       },
       mantraRef: 'ganesh-beej',
       duration: '2 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 5,
@@ -88,6 +96,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'मूर्त्याधारे अक्षतान् निधाय श्रीगणेशाय आसनं समर्पयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -98,6 +108,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'सपुष्पजलेन मूर्तेः पादौ प्रक्षाल्य पाद्यं समर्पयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -108,6 +120,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'चन्दनाक्षतपुष्पमिश्रितजलं अञ्जलौ गृहीत्वा श्रीगणेशाय अर्घ्यं दद्यात्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -118,6 +132,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'पञ्चामृतेन (क्षीर-दधि-घृत-मधु-शर्करा) मूर्तिं स्नापयेत् ततः शुद्धजलेन प्रक्षाल्य पुनः स्थापयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 9,
@@ -128,6 +144,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'नूतनवस्त्रं रक्तवर्णं वा मूर्तये समर्पयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 10,
@@ -138,6 +156,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'मूर्तौ यज्ञोपवीतं समर्पयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 11,
@@ -148,6 +168,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'मूर्तौ चन्दनं कुङ्कुमं च लेपयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 12,
@@ -158,6 +180,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'दूर्वाङ्कुरान् (एकविंशतिः, त्रिकपञ्चकसमूहैः) रक्तपुष्पाणि (जपाकुसुमानि) च गणेशाय समर्पयेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 13,
@@ -168,6 +192,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'धूपं प्रज्वाल्य मूर्तेः पुरतः प्रदक्षिणक्रमेण भ्रामयेत्।',
       },
       duration: '1 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 14,
@@ -178,6 +204,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'घृतदीपं प्रज्वाल्य मूर्तेः पुरतः आरात्रिकं कुर्यात् — त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, ततः सप्तवारं सम्पूर्णमूर्तेः परितः।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 15,
@@ -188,6 +216,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'एकविंशतिमोदकान् फलानि नारिकेलं गुडं च श्रीगणेशाय निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत् नैवेद्यमन्त्रं च जपेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 16,
@@ -198,6 +228,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
         sa: 'ताम्बूलपत्राणि पूगीफलानि च ताम्बूलरूपेण श्रीगणेशाय समर्पयेत्।',
       },
       duration: '1 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 17,
@@ -209,6 +241,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       },
       mantraRef: 'ganesh-beej',
       duration: '3 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 18,
@@ -220,6 +254,8 @@ export const GANESH_CHATURTHI_PUJA: PujaVidhi = {
       },
       mantraRef: 'ganesh-pushpanjali',
       duration: '3 min',
+      essential: false,
+      stepType: 'conclusion',
     },
   ],
 

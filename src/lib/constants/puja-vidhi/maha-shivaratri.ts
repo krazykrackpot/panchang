@@ -6,21 +6,21 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
   deity: { en: 'Shiva', hi: 'शिव', sa: 'शिवः' },
 
   samagri: [
-    { name: { en: 'Shivlinga', hi: 'शिवलिंग', sa: 'शिवलिङ्गम्' } },
-    { name: { en: 'Bilva (Bel) leaves', hi: 'बिल्व (बेल) पत्र', sa: 'बिल्वपत्राणि' }, note: { en: 'Three-leaf clusters, must be unbroken', hi: 'तीन पत्तियों के गुच्छे, बिना टूटे हों', sa: 'त्रिदलानि, अभग्नानि भवेयुः' } },
-    { name: { en: 'Milk', hi: 'दूध', sa: 'क्षीरम्' } },
-    { name: { en: 'Water (Ganga Jal preferred)', hi: 'जल (गंगा जल श्रेष्ठ)', sa: 'जलम् (गङ्गाजलं श्रेष्ठम्)' } },
-    { name: { en: 'Honey', hi: 'शहद', sa: 'मधु' } },
-    { name: { en: 'Curd (yogurt)', hi: 'दही', sa: 'दधि' } },
-    { name: { en: 'Ghee (clarified butter)', hi: 'घी', sa: 'घृतम्' } },
-    { name: { en: 'Sugar', hi: 'शक्कर', sa: 'शर्करा' } },
-    { name: { en: 'Dhatura flowers', hi: 'धतूरे के फूल', sa: 'धत्तूरपुष्पाणि' } },
-    { name: { en: 'White flowers', hi: 'सफेद फूल', sa: 'श्वेतपुष्पाणि' } },
-    { name: { en: 'Bhasma (sacred ash)', hi: 'भस्म (विभूति)', sa: 'भस्म (विभूतिः)' } },
-    { name: { en: 'Rudraksha', hi: 'रुद्राक्ष', sa: 'रुद्राक्षः' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Bhang (cannabis paste, optional)', hi: 'भाँग (वैकल्पिक)', sa: 'भङ्गा (वैकल्पिकम्)' }, note: { en: 'Traditional offering; check local laws', hi: 'पारम्परिक अर्पण; स्थानीय कानून जाँचें', sa: 'पारम्परिकं समर्पणम्; स्थानीयनियमान् परीक्षेत्' } },
-    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीर-दधि-घृत-मधु-शर्करा)' } },
+    { name: { en: 'Shivlinga', hi: 'शिवलिंग', sa: 'शिवलिङ्गम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Bilva (Bel) leaves', hi: 'बिल्व (बेल) पत्र', sa: 'बिल्वपत्राणि' }, note: { en: 'Three-leaf clusters, must be unbroken', hi: 'तीन पत्तियों के गुच्छे, बिना टूटे हों', sa: 'त्रिदलानि, अभग्नानि भवेयुः' } , category: 'flowers', essential: true },
+    { name: { en: 'Milk', hi: 'दूध', sa: 'क्षीरम्' } , category: 'food', essential: true },
+    { name: { en: 'Water (Ganga Jal preferred)', hi: 'जल (गंगा जल श्रेष्ठ)', sa: 'जलम् (गङ्गाजलं श्रेष्ठम्)' } , category: 'puja_items', essential: true },
+    { name: { en: 'Honey', hi: 'शहद', sa: 'मधु' } , category: 'food', essential: true },
+    { name: { en: 'Curd (yogurt)', hi: 'दही', sa: 'दधि' } , category: 'food', essential: true },
+    { name: { en: 'Ghee (clarified butter)', hi: 'घी', sa: 'घृतम्' } , category: 'food', essential: true },
+    { name: { en: 'Sugar', hi: 'शक्कर', sa: 'शर्करा' } , category: 'food', essential: false },
+    { name: { en: 'Dhatura flowers', hi: 'धतूरे के फूल', sa: 'धत्तूरपुष्पाणि' } , category: 'flowers', essential: false },
+    { name: { en: 'White flowers', hi: 'सफेद फूल', sa: 'श्वेतपुष्पाणि' } , category: 'flowers', essential: false },
+    { name: { en: 'Bhasma (sacred ash)', hi: 'भस्म (विभूति)', sa: 'भस्म (विभूतिः)' } , category: 'puja_items', essential: true },
+    { name: { en: 'Rudraksha', hi: 'रुद्राक्ष', sa: 'रुद्राक्षः' } , category: 'puja_items', essential: false },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } , category: 'puja_items', essential: true },
+    { name: { en: 'Bhang (cannabis paste, optional)', hi: 'भाँग (वैकल्पिक)', sa: 'भङ्गा (वैकल्पिकम्)' }, note: { en: 'Traditional offering; check local laws', hi: 'पारम्परिक अर्पण; स्थानीय कानून जाँचें', sa: 'पारम्परिकं समर्पणम्; स्थानीयनियमान् परीक्षेत्' } , category: 'food', essential: false },
+    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीर-दधि-घृत-मधु-शर्करा)' } , category: 'food', essential: true },
   ],
 
   muhurtaType: 'computed',
@@ -47,6 +47,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'प्रातः उपवासम् आरभेत। स्नात्वा शुचिवस्त्राणि धारयेत् शिवलिङ्गे शिवरात्रिव्रतस्य औपचारिकसङ्कल्पं कुर्यात्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -57,6 +59,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'शुद्ध्यर्थम् आचमनं कुर्यात्, ततः मनःशान्त्यर्थं त्रिवारं प्राणायामं कुर्यात्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -67,6 +71,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'त्रिनेत्रं चन्द्रमौलिं नीलकण्ठं त्रिशूलडमरुवरदमुद्राधारिणं कैलासपर्वते नन्दिसहितं श्रीशिवं ध्यायेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'meditation',
     },
     {
       step: 4,
@@ -78,6 +84,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       },
       mantraRef: 'panchakshari',
       duration: '45 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -89,6 +97,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       },
       mantraRef: 'rudra-gayatri',
       duration: '45 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -100,6 +110,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       },
       mantraRef: 'maha-mrityunjaya',
       duration: '45 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -111,6 +123,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       },
       mantraRef: 'shiva-dhyana',
       duration: '45 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -122,6 +136,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
       },
       mantraRef: 'shiva-gayatri',
       duration: 'Ongoing',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 9,
@@ -132,6 +148,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'प्रतिप्रहरे शिवलिङ्गस्य पुरतः धूपं समर्पयेत्। प्राकृतिकं धूपं कर्पूरं वा उपयोजयेत्।',
       },
       duration: '2 min per prahar',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 10,
@@ -142,6 +160,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'शिवलिङ्गसमीपे सर्वां रात्रिं घृतदीपं ज्वालयेत्। निर्वाणे सति पुनः प्रज्वालयेत्।',
       },
       duration: 'Continuous',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 11,
@@ -152,6 +172,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'फलानि बिल्वपानकं शीतलपानकं शुष्कफलानि च नैवेद्यरूपेण निवेदयेत्। परम्परया केचित् भङ्गां समर्पयन्ति।',
       },
       duration: '3 min per prahar',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 12,
@@ -162,6 +184,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'शक्ये सति यजुर्वेदस्य रुद्रम् (नमकं चमकं च) पठेत्। इदं शिवपूजायाः सर्वोत्कृष्टं स्वरूपम्।',
       },
       duration: '30 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 13,
@@ -172,6 +196,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'प्रतिप्रहरपूजानन्तरं कर्पूरघृतदीपेन "ॐ जय शिव ओंकारा" गायन्ती आरात्रिकं कुर्यात्।',
       },
       duration: '5 min per prahar',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 14,
@@ -182,6 +208,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'शिवलिङ्गस्य प्रदक्षिणां कुर्यात् — परन्तु परम्परया शिवस्य जलधारां (अर्घाम्) न लङ्घयेत्। अर्धं गत्वा अन्यस्मात् पार्श्वात् प्रत्यागच्छेत्।',
       },
       duration: '3 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 15,
@@ -192,6 +220,8 @@ export const MAHA_SHIVARATRI_PUJA: PujaVidhi = {
         sa: 'चतुर्थप्रहरपूजानन्तरं सूर्योदये अन्तिमां पूजां सम्पादयेत्। सूर्योदयानन्तरं सात्त्विकाहारेण — फलैः, क्षीरेण, सादशाकाहारेण वा व्रतं भिन्द्यात्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

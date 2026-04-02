@@ -18,12 +18,18 @@ export default function AuthCallbackPage() {
 
     let handled = false;
 
-    const handleAuth = () => {
+    const handleAuth = async () => {
       if (handled) return;
       handled = true;
-      setStatus('Signed in! Redirecting...');
-      // Use window.location.href for a full page reload — ensures fresh state
-      setTimeout(() => { window.location.href = `/${locale}`; }, 500);
+
+      // Verify session is actually stored
+      const { data } = await supabase.auth.getSession();
+      const user = data.session?.user;
+      console.log('[Auth Callback] Session after exchange:', user?.email ?? 'NO SESSION');
+      console.log('[Auth Callback] localStorage keys:', Object.keys(localStorage).filter(k => k.includes('sb-') || k.includes('supabase')));
+
+      setStatus(user ? `Signed in as ${user.email}! Redirecting...` : 'Session exchange failed. Redirecting...');
+      setTimeout(() => { window.location.href = `/${locale}`; }, 1000);
     };
 
     // Listen for the SIGNED_IN event from hash exchange

@@ -1,6 +1,6 @@
 /**
  * Sankalpa Generator — assembles a personalized ritual declaration
- * with computed astronomical fields (tithi, nakshatra, yoga, vara, masa, etc.)
+ * with computed astronomical fields (tithi, nakshatra, yoga, karana, vara, masa, etc.)
  */
 
 import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';

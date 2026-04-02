@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { getNakshatraNumber, getNakshatraPada } from '@/lib/ephem/astronomical';
+import { getNakshatraNumber, getNakshatraPada, getMasa, dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga, MASA_NAMES } from '@/lib/ephem/astronomical';
+import { RASHIS } from '@/lib/constants/rashis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { TITHIS } from '@/lib/constants/tithis';
+import { YOGAS } from '@/lib/constants/yogas';
 
 // ---------------------------------------------------------------------------
 // GET /api/user/profile — fetch profile + snapshot summary
@@ -32,11 +36,104 @@ export async function GET(req: NextRequest) {
 
   const { data: snapshot } = await supabase
     .from('kundali_snapshots')
-    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, computed_at')
+    .select('ascendant_sign, moon_sign, moon_nakshatra, moon_nakshatra_pada, sun_sign, chart_data, sade_sati, dasha_timeline, computed_at')
     .eq('user_id', user.id)
     .single();
 
-  return NextResponse.json({ profile, snapshot: snapshot || null });
+  // Compute birth panchang from profile birth data
+  let birthPanchang = null;
+  if (profile?.date_of_birth && profile?.birth_timezone) {
+    try {
+      // date_of_birth is DATE (YYYY-MM-DD), time_of_birth is TIME (HH:MM or HH:MM:SS)
+      const dobStr = String(profile.date_of_birth);
+      const tobStr = String(profile.time_of_birth || '12:00');
+      const dateParts = dobStr.split('-').map(Number);
+      const timeParts = tobStr.split(':').map(Number);
+      const year = dateParts[0], month = dateParts[1], day = dateParts[2];
+      const hour = timeParts[0] || 0, minute = timeParts[1] || 0;
+
+      // Resolve timezone offset from IANA name
+      // Use a fixed reference date to get the offset for the birth timezone
+      const refDate = new Date(year, month - 1, day, hour, minute);
+      let tzOffsetHours = 0;
+      try {
+        const tzFormatter = new Intl.DateTimeFormat('en-US', {
+          timeZone: profile.birth_timezone,
+          timeZoneName: 'longOffset',
+        });
+        const formatted = tzFormatter.format(refDate);
+        // Output like "4/2/2026, GMT+05:30" or "4/2/2026, GMT-08:00"
+        const gmtMatch = formatted.match(/GMT([+-])(\d{1,2}):?(\d{2})?/);
+        if (gmtMatch) {
+          const sign = gmtMatch[1] === '-' ? -1 : 1;
+          const hrs = parseInt(gmtMatch[2], 10);
+          const mins = parseInt(gmtMatch[3] || '0', 10);
+          tzOffsetHours = sign * (hrs + mins / 60);
+        }
+      } catch {
+        // Fallback: try to get offset from JS Date
+        const localDate = new Date(refDate.toLocaleString('en-US', { timeZone: profile.birth_timezone }));
+        const utcDate = new Date(refDate.toLocaleString('en-US', { timeZone: 'UTC' }));
+        tzOffsetHours = (localDate.getTime() - utcDate.getTime()) / 3600000;
+      }
+
+      const utHour = hour + minute / 60 - tzOffsetHours;
+      const jd = dateToJD(year, month, day, utHour);
+
+      const tithiResult = calculateTithi(jd);
+      const yogaNum = calculateYoga(jd);
+      const sunSid = toSidereal(sunLongitude(jd), jd);
+      const masaIndex = getMasa(sunSid);
+
+      const tithiData = TITHIS[tithiResult.number - 1];
+      const yogaData = YOGAS[yogaNum - 1];
+      const masaData = MASA_NAMES[masaIndex];
+
+      birthPanchang = {
+        tithi: { number: tithiResult.number, name: tithiData?.name, paksha: tithiData?.paksha },
+        yoga: { number: yogaNum, name: yogaData?.name, meaning: yogaData?.meaning },
+        masa: { index: masaIndex, name: masaData },
+      };
+    } catch (err) {
+      console.error('Birth panchang computation failed:', err);
+    }
+  }
+
+  // Resolve trilingual names for snapshot fields
+  let snapshotEnriched = null;
+  if (snapshot) {
+    const moonRashi = RASHIS[snapshot.moon_sign - 1];
+    const sunRashi = RASHIS[snapshot.sun_sign - 1];
+    const lagnaRashi = RASHIS[snapshot.ascendant_sign - 1];
+    const moonNak = NAKSHATRAS[snapshot.moon_nakshatra - 1];
+
+    // Find current running dasha
+    let currentDasha = null;
+    if (snapshot.dasha_timeline && Array.isArray(snapshot.dasha_timeline)) {
+      const now = new Date().toISOString();
+      const mahaDasha = (snapshot.dasha_timeline as { startDate: string; endDate: string; planetName?: { en: string; hi: string; sa: string }; planet?: string; subPeriods?: { startDate: string; endDate: string; planetName?: { en: string; hi: string; sa: string }; planet?: string }[] }[])
+        .find(d => d.startDate <= now && d.endDate >= now);
+      if (mahaDasha) {
+        const antarDasha = mahaDasha.subPeriods?.find(s => s.startDate <= now && s.endDate >= now);
+        currentDasha = {
+          maha: { planet: mahaDasha.planet, planetName: mahaDasha.planetName, startDate: mahaDasha.startDate, endDate: mahaDasha.endDate },
+          antar: antarDasha ? { planet: antarDasha.planet, planetName: antarDasha.planetName, startDate: antarDasha.startDate, endDate: antarDasha.endDate } : null,
+        };
+      }
+    }
+
+    snapshotEnriched = {
+      ...snapshot,
+      moonRashiName: moonRashi?.name,
+      sunRashiName: sunRashi?.name,
+      lagnaRashiName: lagnaRashi?.name,
+      moonNakshatraName: moonNak?.name,
+      moonNakshatraRuler: moonNak?.rulerName,
+      currentDasha,
+    };
+  }
+
+  return NextResponse.json({ profile, snapshot: snapshotEnriched, birthPanchang });
 }
 
 // ---------------------------------------------------------------------------

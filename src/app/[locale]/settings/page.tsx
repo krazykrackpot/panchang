@@ -210,6 +210,7 @@ export default function SettingsPage() {
         }
         setLoading(false);
       });
+
   }, [initialized, user]);
 
   if (!initialized) return null;
@@ -604,32 +605,26 @@ export default function SettingsPage() {
           )}
         </motion.div>
 
-        {/* Section 4: Danger Zone */}
+        {/* Section 4: Account Actions */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="rounded-2xl border border-red-500/20 bg-red-500/5 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/10 bg-bg-secondary/20 backdrop-blur-sm overflow-hidden"
         >
-          <div className="px-6 py-4 border-b border-red-500/10">
-            <h2 className="text-lg font-semibold text-red-400 flex items-center gap-2">
-              <Trash2 className="w-5 h-5" />
-              {L.dangerZone}
-            </h2>
-          </div>
           <div className="px-6 py-5 space-y-3">
             <button
               onClick={handleSignOut}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gold-primary/20 text-text-secondary hover:text-gold-light hover:border-gold-primary/40 transition-all text-sm font-medium"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all text-sm font-medium"
             >
               <LogOut className="w-4 h-4" />
               {L.signOut}
             </button>
             <button
               onClick={() => setShowDeleteConfirm(true)}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 hover:border-red-500/50 transition-all text-sm font-medium"
+              className="w-full flex items-center gap-2 px-4 py-2 text-xs text-text-secondary/50 hover:text-red-400/70 transition-colors justify-center"
             >
-              <Trash2 className="w-4 h-4" />
+              <Trash2 className="w-3 h-3" />
               {L.deleteAccount}
             </button>
           </div>

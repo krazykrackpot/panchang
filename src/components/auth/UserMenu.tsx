@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { User, LogOut, Save, Settings } from 'lucide-react';
+import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -88,18 +88,18 @@ export default function UserMenu() {
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
           </div>
           <a
-            href={`/${locale}/kundali`}
+            href={`/${locale}/profile`}
             className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
-            <Save className="w-3.5 h-3.5" />
-            Saved Charts
+            <User className="w-3.5 h-3.5" />
+            {locale === 'hi' ? 'मेरी कुंडली' : locale === 'sa' ? 'मम कुण्डली' : 'My Profile'}
           </a>
           <a
             href={`/${locale}/settings`}
             className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <Settings className="w-3.5 h-3.5" />
-            Settings
+            {locale === 'hi' ? 'सेटिंग्स' : locale === 'sa' ? 'सेटिंग्स' : 'Settings'}
           </a>
           <button
             onClick={() => { signOut(); setMenuOpen(false); }}

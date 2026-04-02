@@ -1,6 +1,7 @@
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
 import type { Metadata } from 'next';
 import { locales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
@@ -9,7 +10,7 @@ import StarField from '@/components/layout/StarField';
 import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
 import '@/styles/globals.css';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jyotishpanchang.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: {
       default: title,
-      template: `%s | Jyotish Panchang`,
+      template: `%s | Dekho Panchang`,
     },
     description,
     metadataBase: new URL(BASE_URL),
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title,
       description,
       url,
-      siteName: 'Jyotish Panchang',
+      siteName: 'Dekho Panchang',
       locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
       type: 'website',
       images: [
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `${BASE_URL}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: 'Jyotish Panchang — Vedic Astrology',
+          alt: 'Dekho Panchang — Vedic Astrology',
         },
       ],
     },
@@ -107,7 +108,7 @@ export default async function LocaleLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
-              name: 'Jyotish Panchang',
+              name: 'Dekho Panchang',
               url: `${BASE_URL}/${locale}`,
               description: 'Vedic astrology Panchang calculations, Kundali birth charts, and Jyotish tools with trilingual support.',
               applicationCategory: 'LifestyleApplication',
@@ -116,19 +117,12 @@ export default async function LocaleLayout({
               offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
               creator: {
                 '@type': 'Organization',
-                name: 'Jyotish Panchang',
+                name: 'Dekho Panchang',
                 url: BASE_URL,
               },
             }),
           }}
         />
-        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased">
         <NextIntlClientProvider locale={locale} messages={messages}>
@@ -146,6 +140,14 @@ export default async function LocaleLayout({
           </main>
           <Footer />
           <ServiceWorkerRegistrar />
+          {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
+            <Script
+              async
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
+              crossOrigin="anonymous"
+              strategy="lazyOnload"
+            />
+          )}
         </NextIntlClientProvider>
       </body>
     </html>

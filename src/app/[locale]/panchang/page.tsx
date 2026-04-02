@@ -342,7 +342,7 @@ export default function PanchangPage() {
               </button>
               <ShareButton
                 title={`Panchang — ${panchang.date}`}
-                text={`Today's Vedic Panchang from Jyotish Panchang`}
+                text={`Today's Vedic Panchang from Dekho Panchang`}
                 className="!px-3 !py-1.5 !text-xs"
               />
               <button

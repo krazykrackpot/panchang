@@ -138,7 +138,7 @@ export default function Navbar() {
               <Moon className="w-3 h-3 text-gold-light absolute -top-1 -right-1" />
             </div>
             <span className="text-lg font-semibold text-gold-gradient" style={{ fontFamily: 'var(--font-heading)' }}>
-              Jyotish Panchang
+              Dekho Panchang
             </span>
           </Link>
 

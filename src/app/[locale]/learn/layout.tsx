@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jyotishpanchang.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -54,7 +54,7 @@ export default async function LearnLayout({ children, params }: { children: Reac
     description: 'Free interactive course covering foundations of Vedic astrology: grahas, rashis, nakshatras, tithis, yogas, karanas, muhurtas, kundali, and dashas.',
     provider: {
       '@type': 'Organization',
-      name: 'Jyotish Panchang',
+      name: 'Dekho Panchang',
       url: BASE_URL,
     },
     url: `${BASE_URL}/${locale}/learn`,

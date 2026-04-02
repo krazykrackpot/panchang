@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://jyotishpanchang.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -44,7 +44,7 @@ export default async function PanchangLayout({ children, params }: { children: R
     url: `${BASE_URL}/${locale}/panchang`,
     organizer: {
       '@type': 'Organization',
-      name: 'Jyotish Panchang',
+      name: 'Dekho Panchang',
       url: BASE_URL,
     },
     location: {

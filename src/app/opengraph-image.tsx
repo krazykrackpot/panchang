@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Jyotish Panchang — Vedic Astrology';
+export const alt = 'Dekho Panchang — Vedic Astrology';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -94,7 +94,7 @@ export default async function Image() {
             display: 'flex',
           }}
         >
-          Jyotish Panchang
+          Dekho Panchang
         </div>
 
         {/* Divider */}

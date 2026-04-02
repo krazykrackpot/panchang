@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Jyotish Panchang — The Science of Indian Astronomy",
+    "title": "Dekho Panchang — The Science of Indian Astronomy",
     "description": "Explore the scientific foundations of the Indian Panchang system, generate your Kundali, and receive detailed Tippanni commentary."
   },
   "nav": {
@@ -228,7 +228,7 @@
     "hideRemedies": "Hide Remedies"
   },
   "about": {
-    "title": "About Jyotish Panchang",
+    "title": "About Dekho Panchang",
     "subtitle": "The science behind India's astronomical heritage"
   },
   "common": {
@@ -239,7 +239,7 @@
     "next": "Next",
     "viewDetails": "View Details",
     "learnMore": "Learn More",
-    "copyright": "Jyotish Panchang"
+    "copyright": "Dekho Panchang"
   },
   "learn": {
     "title": "Learn Jyotish",

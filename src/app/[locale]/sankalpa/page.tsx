@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Check, ChevronDown, Printer, Sparkles, ScrollText } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -215,6 +216,10 @@ export default function SankalpaPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const locationStore = useLocationStore();
+  const searchParams = useSearchParams();
+
+  // Pre-fill puja from URL param (e.g., /sankalpa?puja=Diwali)
+  const pujaParam = searchParams.get('puja') || '';
 
   // Form state
   const [fullName, setFullName] = useState('');
@@ -233,6 +238,25 @@ export default function SankalpaPage() {
   const [selectedPuja, setSelectedPuja] = useState('');
   const [vratName, setVratName] = useState('');
   const [customPurpose, setCustomPurpose] = useState('');
+
+  // Pre-fill from URL param
+  useEffect(() => {
+    if (pujaParam) {
+      setPurposeTab('puja');
+      // Try to match a puja slug by deity name
+      const matchedPuja = PUJA_OPTIONS.find(p =>
+        p.label.en.toLowerCase().includes(pujaParam.toLowerCase()) ||
+        p.label.hi.includes(pujaParam)
+      );
+      if (matchedPuja) {
+        setSelectedPuja(matchedPuja.slug);
+      } else {
+        // Fall back to custom with the puja name
+        setPurposeTab('custom');
+        setCustomPurpose(pujaParam);
+      }
+    }
+  }, [pujaParam]);
 
   // Result state
   const [result, setResult] = useState<SankalpaResult | null>(null);

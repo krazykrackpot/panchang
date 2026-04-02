@@ -285,17 +285,23 @@ export default function PujaVidhiPage() {
           </button>
         </motion.div>
 
-        {/* Calendar link */}
-        {puja.festivalSlug && (
-          <motion.div {...fadeInUp} className="flex items-center justify-center gap-4">
+        {/* Quick links: Calendar + Sankalpa */}
+        <motion.div {...fadeInUp} className="flex flex-wrap items-center justify-center gap-3">
+          {puja.festivalSlug && (
             <Link
               href={`/${locale}/calendar/${puja.festivalSlug}`}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-gold-primary/15 text-gold-primary/80 text-sm hover:text-gold-light hover:bg-gold-primary/5 transition-colors"
             >
               {locale === 'en' ? 'View dates in Calendar' : locale === 'hi' ? 'कैलेंडर में तिथियाँ देखें' : 'पञ्चाङ्गे तिथीः पश्यतु'} &rarr;
             </Link>
-          </motion.div>
-        )}
+          )}
+          <Link
+            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[locale === 'en' ? 'en' : 'hi'])}`}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm hover:bg-amber-500/10 transition-colors"
+          >
+            {locale === 'en' ? 'Generate Sankalpa' : locale === 'hi' ? 'सङ्कल्प बनाएं' : 'सङ्कल्पं रचयतु'} &rarr;
+          </Link>
+        </motion.div>
 
         <GoldDivider />
 

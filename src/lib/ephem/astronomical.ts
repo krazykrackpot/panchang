@@ -547,10 +547,13 @@ export function getRitu(masaIndex: number): number {
 }
 
 export function getAyana(sunSidLong: number): { en: string; hi: string; sa: string } {
-  if (sunSidLong >= 0 && sunSidLong < 180) {
-    return { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायणम्' };
+  // Uttarayana: Sun moves northward from Makar Sankranti (Capricorn, ~270°)
+  // to Karka Sankranti (Cancer, ~90°). i.e., 270° → 360°/0° → 90°
+  // Dakshinayana: Sun moves southward from Cancer (90°) to Capricorn (270°)
+  if (sunSidLong >= 90 && sunSidLong < 270) {
+    return { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायनम्' };
   }
-  return { en: 'Dakshinayana', hi: 'दक्षिणायन', sa: 'दक्षिणायनम्' };
+  return { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायणम्' };
 }
 
 // Format degrees as DD°MM'SS"

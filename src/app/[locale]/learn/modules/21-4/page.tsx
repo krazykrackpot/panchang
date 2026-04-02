@@ -1,6 +1,6 @@
 'use client';
 
-import ModuleContainer, { type ModuleMeta, type ModuleQuestion } from '@/components/learn/ModuleContainer';
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 
 const META: ModuleMeta = {
   id: 'mod_21_4', phase: 8, topic: 'Varshaphal', moduleNumber: '21.4',
@@ -184,33 +184,34 @@ const QUESTIONS: ModuleQuestion[] = [
 ];
 
 function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          What Is Tithi Pravesha? / तिथि प्रवेश क्या है?
+          {isHi ? 'तिथि प्रवेश क्या है?' : 'What Is Tithi Pravesha?'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Tithi Pravesha is an annual chart cast for the moment when the Sun-Moon angular relationship at birth (the natal tithi) recurs each year. While Varshaphal (solar return) tracks the Sun&apos;s return to its exact natal longitude, Tithi Pravesha tracks the return of the Sun-Moon RELATIONSHIP — the same tithi, in the same solar month. This is deeply rooted in Hindu tradition where a person&apos;s &quot;real&quot; birthday is their Janma Tithi (birth tithi), not the Gregorian date.
-        </p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          तिथि प्रवेश एक वार्षिक कुण्डली है जो उस क्षण के लिए बनाई जाती है जब जन्म का सूर्य-चन्द्र कोणीय सम्बन्ध (जन्म तिथि) प्रत्येक वर्ष पुनरावृत्त होता है। जहाँ वर्षफल (सौर प्रत्यावर्तन) सूर्य के अपने यथार्थ जन्म भोगांश पर लौटने को ट्रैक करता है, वहीं तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध के लौटने को — वही तिथि, उसी सौर मास में। यह हिन्दू परम्परा में गहराई से निहित है जहाँ व्यक्ति का &quot;वास्तविक&quot; जन्मदिन उसकी जन्म तिथि है, ग्रेगोरियन तिथि नहीं।
-        </p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          For example, if you were born on Shukla Panchami (5th tithi of the bright half) when the Sun was in Taurus, your Tithi Pravesha each year is the moment when the Moon-Sun elongation again reaches the Panchami value (48-60 degrees) while the Sun is in Taurus. This moment may fall a few days before or after your Gregorian birthday.
+          {isHi
+            ? <>तिथि प्रवेश एक वार्षिक कुण्डली है जो उस क्षण के लिए बनाई जाती है जब जन्म का सूर्य-चन्द्र कोणीय सम्बन्ध (जन्म तिथि) प्रत्येक वर्ष पुनरावृत्त होता है। जहाँ वर्षफल (सौर प्रत्यावर्तन) सूर्य के अपने यथार्थ जन्म भोगांश पर लौटने को ट्रैक करता है, वहीं तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध के लौटने को — वही तिथि, उसी सौर मास में। यह हिन्दू परम्परा में गहराई से निहित है जहाँ व्यक्ति का &quot;वास्तविक&quot; जन्मदिन उसकी जन्म तिथि है, ग्रेगोरियन तिथि नहीं।</>
+            : <>Tithi Pravesha is an annual chart cast for the moment when the Sun-Moon angular relationship at birth (the natal tithi) recurs each year. While Varshaphal (solar return) tracks the Sun&apos;s return to its exact natal longitude, Tithi Pravesha tracks the return of the Sun-Moon RELATIONSHIP — the same tithi, in the same solar month. This is deeply rooted in Hindu tradition where a person&apos;s &quot;real&quot; birthday is their Janma Tithi (birth tithi), not the Gregorian date.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          उदाहरणार्थ, यदि आपका जन्म शुक्ल पंचमी (शुक्ल पक्ष की 5वीं तिथि) पर हुआ जब सूर्य वृषभ में था, तो आपका प्रत्येक वर्ष का तिथि प्रवेश वह क्षण है जब चन्द्र-सूर्य विस्तार पुनः पंचमी मान (48-60 अंश) पर पहुँचता है जबकि सूर्य वृषभ में हो। यह क्षण आपके ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है।
+          {isHi
+            ? 'उदाहरणार्थ, यदि आपका जन्म शुक्ल पंचमी (शुक्ल पक्ष की 5वीं तिथि) पर हुआ जब सूर्य वृषभ में था, तो आपका प्रत्येक वर्ष का तिथि प्रवेश वह क्षण है जब चन्द्र-सूर्य विस्तार पुनः पंचमी मान (48-60 अंश) पर पहुँचता है जबकि सूर्य वृषभ में हो। यह क्षण आपके ग्रेगोरियन जन्मदिन से कुछ दिन पहले या बाद में पड़ सकता है।'
+            : 'For example, if you were born on Shukla Panchami (5th tithi of the bright half) when the Sun was in Taurus, your Tithi Pravesha each year is the moment when the Moon-Sun elongation again reaches the Panchami value (48-60 degrees) while the Sun is in Taurus. This moment may fall a few days before or after your Gregorian birthday.'}
         </p>
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin / शास्त्रीय उत्पत्ति</h4>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">
-          Tithi Pravesha has deep roots in the Vedic tradition of celebrating birthdays by tithi rather than solar date. The Dharmashastra texts prescribe rituals on the Janma Tithi (birth tithi) each year. The astrological application — casting a predictive chart for the TP moment — was championed by Sanjay Rath and other modern Jyotish scholars who argued that the tithi-based return honors the lunar essence of Vedic astrology better than the purely solar Varshaphal. The TP technique draws from both Parashari principles (houses, lordships) and Tajika methodology (annual chart interpretation).
-        </p>
+        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+          {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
+        </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
-          तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।
+          {isHi
+            ? 'तिथि प्रवेश की जड़ें सौर तिथि के बजाय तिथि द्वारा जन्मदिन मनाने की वैदिक परम्परा में गहरी हैं। धर्मशास्त्र ग्रन्थ प्रत्येक वर्ष जन्म तिथि पर अनुष्ठान निर्धारित करते हैं। ज्योतिषीय अनुप्रयोग — TP क्षण के लिए भविष्यवाणी कुण्डली बनाना — संजय रथ और अन्य आधुनिक ज्योतिष विद्वानों द्वारा प्रचारित किया गया जिन्होंने तर्क दिया कि तिथि-आधारित प्रत्यावर्तन विशुद्ध सौर वर्षफल से बेहतर वैदिक ज्योतिष के चान्द्र सार का सम्मान करता है। TP तकनीक पाराशरी सिद्धान्तों (भाव, स्वामित्व) और ताजिक पद्धति (वार्षिक कुण्डली व्याख्या) दोनों से ग्रहण करती है।'
+            : 'Tithi Pravesha has deep roots in the Vedic tradition of celebrating birthdays by tithi rather than solar date. The Dharmashastra texts prescribe rituals on the Janma Tithi (birth tithi) each year. The astrological application — casting a predictive chart for the TP moment — was championed by Sanjay Rath and other modern Jyotish scholars who argued that the tithi-based return honors the lunar essence of Vedic astrology better than the purely solar Varshaphal. The TP technique draws from both Parashari principles (houses, lordships) and Tajika methodology (annual chart interpretation).'}
         </p>
       </section>
     </div>
@@ -218,33 +219,34 @@ function Page1() {
 }
 
 function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          Computing Tithi Pravesha / तिथि प्रवेश गणना
+          {isHi ? 'तिथि प्रवेश गणना' : 'Computing Tithi Pravesha'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Computing the Tithi Pravesha moment requires finding the Julian Day (JD) when two conditions simultaneously hold: (1) the Moon-Sun elongation (Moon&apos;s longitude minus Sun&apos;s longitude) equals the natal elongation, AND (2) the Sun is within the same zodiacal sign as at birth. The first condition ensures the same tithi; the second ensures it occurs in the correct annual cycle (not at any random time during the year when the tithi recurs).
-        </p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          तिथि प्रवेश क्षण की गणना के लिए वह जूलियन दिन (JD) ज्ञात करना आवश्यक है जब दो शर्तें एक साथ पूरी हों: (1) चन्द्र-सूर्य विस्तार (चन्द्र भोगांश घटा सूर्य भोगांश) जन्म विस्तार के बराबर हो, और (2) सूर्य जन्म की ही राशि में हो। पहली शर्त वही तिथि सुनिश्चित करती है; दूसरी सुनिश्चित करती है कि यह सही वार्षिक चक्र में घटे (वर्ष में किसी भी यादृच्छिक समय पर जब तिथि पुनरावृत्त हो, वहाँ नहीं)।
-        </p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Since the tithi recurs roughly every lunar month (~29.5 days), there are about 12-13 occurrences of your birth tithi each year. The Sun-sign condition filters this down to exactly ONE occurrence — the one when the Sun is in the same sign as at your birth. This is your annual Tithi Pravesha moment.
+          {isHi
+            ? <>तिथि प्रवेश क्षण की गणना के लिए वह जूलियन दिन (JD) ज्ञात करना आवश्यक है जब दो शर्तें एक साथ पूरी हों: (1) चन्द्र-सूर्य विस्तार (चन्द्र भोगांश घटा सूर्य भोगांश) जन्म विस्तार के बराबर हो, और (2) सूर्य जन्म की ही राशि में हो। पहली शर्त वही तिथि सुनिश्चित करती है; दूसरी सुनिश्चित करती है कि यह सही वार्षिक चक्र में घटे (वर्ष में किसी भी यादृच्छिक समय पर जब तिथि पुनरावृत्त हो, वहाँ नहीं)।</>
+            : <>Computing the Tithi Pravesha moment requires finding the Julian Day (JD) when two conditions simultaneously hold: (1) the Moon-Sun elongation (Moon&apos;s longitude minus Sun&apos;s longitude) equals the natal elongation, AND (2) the Sun is within the same zodiacal sign as at birth. The first condition ensures the same tithi; the second ensures it occurs in the correct annual cycle (not at any random time during the year when the tithi recurs).</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
-          चूँकि तिथि लगभग प्रत्येक चान्द्र मास (~29.5 दिन) में पुनरावृत्त होती है, वर्ष में आपकी जन्म तिथि के लगभग 12-13 अवसर होते हैं। सूर्य-राशि शर्त इसे ठीक एक अवसर तक सीमित करती है — वह जब सूर्य जन्म की ही राशि में हो। यह आपका वार्षिक तिथि प्रवेश क्षण है।
+          {isHi
+            ? 'चूँकि तिथि लगभग प्रत्येक चान्द्र मास (~29.5 दिन) में पुनरावृत्त होती है, वर्ष में आपकी जन्म तिथि के लगभग 12-13 अवसर होते हैं। सूर्य-राशि शर्त इसे ठीक एक अवसर तक सीमित करती है — वह जब सूर्य जन्म की ही राशि में हो। यह आपका वार्षिक तिथि प्रवेश क्षण है।'
+            : 'Since the tithi recurs roughly every lunar month (~29.5 days), there are about 12-13 occurrences of your birth tithi each year. The Sun-sign condition filters this down to exactly ONE occurrence — the one when the Sun is in the same sign as at your birth. This is your annual Tithi Pravesha moment.'}
         </p>
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example / कार्यान्वित उदाहरण</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Born April 15 — Sun at 1 degree Aries, Moon at 55 degrees (25 degrees Taurus):</span> Natal elongation = 55 - 1 = 54 degrees (Shukla Panchami). For the 2026 Tithi Pravesha: find the moment when (a) Moon - Sun = 54 degrees AND (b) Sun is in Aries (0-30 degrees). The Sun enters Aries around April 14 and leaves around May 14. During this window, the Moon-Sun elongation of 54 degrees will occur once — perhaps on April 17 at 3:42 AM. That&apos;s the TP moment. Cast the chart for that moment at the native&apos;s location.
-        </p>
+        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
+        </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">15 अप्रैल को जन्म — सूर्य 1 अंश मेष, चन्द्र 55 अंश (25 अंश वृषभ):</span> जन्म विस्तार = 55 - 1 = 54 अंश (शुक्ल पंचमी)। 2026 तिथि प्रवेश के लिए: वह क्षण ज्ञात करें जब (क) चन्द्र - सूर्य = 54 अंश और (ख) सूर्य मेष (0-30 अंश) में हो। सूर्य लगभग 14 अप्रैल को मेष में प्रवेश करता है और लगभग 14 मई को निकलता है। इस खिड़की में 54 अंश का चन्द्र-सूर्य विस्तार एक बार होगा — सम्भवतः 17 अप्रैल प्रातः 3:42 पर। यही TP क्षण है। जातक के स्थान पर उस क्षण की कुण्डली बनाएँ।
+          {isHi
+            ? <><span className="text-gold-light font-medium">15 अप्रैल को जन्म — सूर्य 1 अंश मेष, चन्द्र 55 अंश (25 अंश वृषभ):</span> जन्म विस्तार = 55 - 1 = 54 अंश (शुक्ल पंचमी)। 2026 तिथि प्रवेश के लिए: वह क्षण ज्ञात करें जब (क) चन्द्र - सूर्य = 54 अंश और (ख) सूर्य मेष (0-30 अंश) में हो। सूर्य लगभग 14 अप्रैल को मेष में प्रवेश करता है और लगभग 14 मई को निकलता है। इस खिड़की में 54 अंश का चन्द्र-सूर्य विस्तार एक बार होगा — सम्भवतः 17 अप्रैल प्रातः 3:42 पर। यही TP क्षण है। जातक के स्थान पर उस क्षण की कुण्डली बनाएँ।</>
+            : <><span className="text-gold-light font-medium">Born April 15 — Sun at 1 degree Aries, Moon at 55 degrees (25 degrees Taurus):</span> Natal elongation = 55 - 1 = 54 degrees (Shukla Panchami). For the 2026 Tithi Pravesha: find the moment when (a) Moon - Sun = 54 degrees AND (b) Sun is in Aries (0-30 degrees). The Sun enters Aries around April 14 and leaves around May 14. During this window, the Moon-Sun elongation of 54 degrees will occur once — perhaps on April 17 at 3:42 AM. That&apos;s the TP moment. Cast the chart for that moment at the native&apos;s location.</>}
         </p>
       </section>
     </div>
@@ -252,17 +254,18 @@ function Page2() {
 }
 
 function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          TP vs Varshaphal: Complementary Perspectives / TP बनाम वर्षफल: पूरक दृष्टिकोण
+          {isHi ? 'TP बनाम वर्षफल: पूरक दृष्टिकोण' : 'TP vs Varshaphal: Complementary Perspectives'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          Varshaphal tracks the Sun&apos;s return — pure solar energy. The Sun represents the soul (atma), career, authority, and the external projection of self. Therefore, Varshaphal excels at predicting career changes, public recognition, authority shifts, and external life events. Tithi Pravesha tracks the Sun-Moon relationship — the interplay of solar and lunar energy. The Moon represents the mind (mana), emotions, mother, and domestic sphere. Therefore, TP excels at predicting emotional wellbeing, family dynamics, relationship changes, mental health, and domestic matters.
-        </p>
-        <p className="text-text-secondary text-sm leading-relaxed mb-3">
-          वर्षफल सूर्य के प्रत्यावर्तन को — विशुद्ध सौर ऊर्जा को ट्रैक करता है। सूर्य आत्मा, करियर, अधिकार और स्व के बाह्य प्रक्षेपण का प्रतिनिधित्व करता है। अतः वर्षफल करियर परिवर्तन, सार्वजनिक मान्यता, अधिकार परिवर्तन और बाह्य जीवन घटनाओं की भविष्यवाणी में उत्कृष्ट है। तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध — सौर और चान्द्र ऊर्जा की परस्पर क्रिया को ट्रैक करता है। चन्द्रमा मन (मनस), भावनाओं, माता और घरेलू क्षेत्र का प्रतिनिधित्व करता है। अतः TP भावनात्मक कल्याण, पारिवारिक गतिशीलता, सम्बन्ध परिवर्तन, मानसिक स्वास्थ्य और घरेलू विषयों की भविष्यवाणी में उत्कृष्ट है।
+          {isHi
+            ? <>वर्षफल सूर्य के प्रत्यावर्तन को — विशुद्ध सौर ऊर्जा को ट्रैक करता है। सूर्य आत्मा, करियर, अधिकार और स्व के बाह्य प्रक्षेपण का प्रतिनिधित्व करता है। अतः वर्षफल करियर परिवर्तन, सार्वजनिक मान्यता, अधिकार परिवर्तन और बाह्य जीवन घटनाओं की भविष्यवाणी में उत्कृष्ट है। तिथि प्रवेश सूर्य-चन्द्र सम्बन्ध — सौर और चान्द्र ऊर्जा की परस्पर क्रिया को ट्रैक करता है। चन्द्रमा मन (मनस), भावनाओं, माता और घरेलू क्षेत्र का प्रतिनिधित्व करता है। अतः TP भावनात्मक कल्याण, पारिवारिक गतिशीलता, सम्बन्ध परिवर्तन, मानसिक स्वास्थ्य और घरेलू विषयों की भविष्यवाणी में उत्कृष्ट है।</>
+            : <>Varshaphal tracks the Sun&apos;s return — pure solar energy. The Sun represents the soul (atma), career, authority, and the external projection of self. Therefore, Varshaphal excels at predicting career changes, public recognition, authority shifts, and external life events. Tithi Pravesha tracks the Sun-Moon relationship — the interplay of solar and lunar energy. The Moon represents the mind (mana), emotions, mother, and domestic sphere. Therefore, TP excels at predicting emotional wellbeing, family dynamics, relationship changes, mental health, and domestic matters.</>}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           Many modern astrologers use BOTH charts for a comprehensive annual forecast. When both Varshaphal and TP independently point to the same event (e.g., both indicate a change of residence), the prediction confidence is very high. Our engine computes both charts, allowing users to see where the solar and lunar annual perspectives converge and diverge.
@@ -270,22 +273,24 @@ function Page3() {
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions / सामान्य भ्रान्तियाँ</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          <span className="text-gold-light font-medium">Misconception:</span> &quot;Tithi Pravesha is the same as Varshaphal.&quot; They are fundamentally different. Varshaphal is cast when the Sun returns to its natal degree (a solar event). Tithi Pravesha is cast when the Sun-Moon elongation returns to its natal value (a lunisolar event). They occur on DIFFERENT dates, produce DIFFERENT charts, and emphasize DIFFERENT life areas. Confusing them leads to mixing up predictions.
-        </p>
+        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
+        </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          <span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;तिथि प्रवेश वर्षफल के समान ही है।&quot; ये मूलभूत रूप से भिन्न हैं। वर्षफल तब बनता है जब सूर्य अपने जन्म अंश पर लौटता है (सौर घटना)। तिथि प्रवेश तब बनता है जब सूर्य-चन्द्र विस्तार अपने जन्म मान पर लौटता है (सौर-चान्द्र घटना)। ये भिन्न तिथियों पर घटते हैं, भिन्न कुण्डलियाँ बनाते हैं, और भिन्न जीवन क्षेत्रों पर बल देते हैं। इन्हें मिलाने से फलादेश गड्डमड्ड होते हैं।
+          {isHi
+            ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;तिथि प्रवेश वर्षफल के समान ही है।&quot; ये मूलभूत रूप से भिन्न हैं। वर्षफल तब बनता है जब सूर्य अपने जन्म अंश पर लौटता है (सौर घटना)। तिथि प्रवेश तब बनता है जब सूर्य-चन्द्र विस्तार अपने जन्म मान पर लौटता है (सौर-चान्द्र घटना)। ये भिन्न तिथियों पर घटते हैं, भिन्न कुण्डलियाँ बनाते हैं, और भिन्न जीवन क्षेत्रों पर बल देते हैं। इन्हें मिलाने से फलादेश गड्डमड्ड होते हैं।</>
+            : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Tithi Pravesha is the same as Varshaphal.&quot; They are fundamentally different. Varshaphal is cast when the Sun returns to its natal degree (a solar event). Tithi Pravesha is cast when the Sun-Moon elongation returns to its natal value (a lunisolar event). They occur on DIFFERENT dates, produce DIFFERENT charts, and emphasize DIFFERENT life areas. Confusing them leads to mixing up predictions.</>}
         </p>
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance / आधुनिक प्रासंगिकता</h4>
-        <p className="text-text-secondary text-xs leading-relaxed mb-2">
-          Computing the exact Tithi Pravesha moment manually requires iterative calculation — finding when the Moon-Sun elongation precisely matches the natal value while the Sun is in the correct sign. This is mathematically intensive. Our engine solves this automatically using the same Meeus-based lunar and solar position algorithms that power the daily Panchang, finding the TP moment to arc-second precision. Users get both the Varshaphal and Tithi Pravesha charts side by side, with house-by-house comparison showing where the solar and lunar annual perspectives agree — these convergence points are the year&apos;s most reliable predictions.
-        </p>
+        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
+        </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
-          तिथि प्रवेश के सटीक क्षण की मैनुअल गणना के लिए पुनरावर्ती गणना आवश्यक है — ज्ञात करना कि चन्द्र-सूर्य विस्तार जन्म मान से कब यथार्थतः मेल खाता है जबकि सूर्य सही राशि में हो। यह गणितीय रूप से गहन है। हमारा इंजन उसी मीयस-आधारित चान्द्र और सौर स्थिति एल्गोरिदम का उपयोग करके स्वचालित रूप से हल करता है जो दैनिक पंचांग को शक्ति प्रदान करता है, TP क्षण को कला-विकला सटीकता तक ज्ञात करता है। उपयोगकर्ताओं को वर्षफल और तिथि प्रवेश दोनों कुण्डलियाँ साथ-साथ मिलती हैं, भाव-दर-भाव तुलना सहित जो दिखाती है कि सौर और चान्द्र वार्षिक दृष्टिकोण कहाँ सहमत हैं — ये अभिसरण बिन्दु वर्ष के सबसे विश्वसनीय फलादेश हैं।
+          {isHi
+            ? <>तिथि प्रवेश के सटीक क्षण की मैनुअल गणना के लिए पुनरावर्ती गणना आवश्यक है — ज्ञात करना कि चन्द्र-सूर्य विस्तार जन्म मान से कब यथार्थतः मेल खाता है जबकि सूर्य सही राशि में हो। यह गणितीय रूप से गहन है। हमारा इंजन उसी मीयस-आधारित चान्द्र और सौर स्थिति एल्गोरिदम का उपयोग करके स्वचालित रूप से हल करता है जो दैनिक पंचांग को शक्ति प्रदान करता है, TP क्षण को कला-विकला सटीकता तक ज्ञात करता है। उपयोगकर्ताओं को वर्षफल और तिथि प्रवेश दोनों कुण्डलियाँ साथ-साथ मिलती हैं, भाव-दर-भाव तुलना सहित जो दिखाती है कि सौर और चान्द्र वार्षिक दृष्टिकोण कहाँ सहमत हैं — ये अभिसरण बिन्दु वर्ष के सबसे विश्वसनीय फलादेश हैं।</>
+            : <>Computing the exact Tithi Pravesha moment manually requires iterative calculation — finding when the Moon-Sun elongation precisely matches the natal value while the Sun is in the correct sign. This is mathematically intensive. Our engine solves this automatically using the same Meeus-based lunar and solar position algorithms that power the daily Panchang, finding the TP moment to arc-second precision. Users get both the Varshaphal and Tithi Pravesha charts side by side, with house-by-house comparison showing where the solar and lunar annual perspectives agree — these convergence points are the year&apos;s most reliable predictions.</>}
         </p>
       </section>
     </div>

@@ -58,7 +58,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   signInWithGoogle: async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/en/kundali` },
+      options: { redirectTo: window.location.href },
     });
   },
 

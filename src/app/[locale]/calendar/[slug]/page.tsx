@@ -90,7 +90,16 @@ export default function FestivalDetailPage() {
 
   // Look up data
   const detail: FestivalDetail | undefined = FESTIVAL_DETAILS[slug] || CATEGORY_DETAILS[slug];
-  const puja: PujaVidhi | undefined = PUJA_VIDHIS[slug];
+  // Puja lookup: try exact slug, then common mappings for mismatched slugs
+  const PUJA_SLUG_MAP: Record<string, string> = {
+    'vat-savitri-vrat': 'vat-savitri',
+    'amavasya': 'amavasya-tarpan',
+    'pradosham-shukla': 'pradosham',
+    'pradosham-krishna': 'pradosham',
+    'masik-shivaratri': 'masik-shivaratri',
+    'sankashti-chaturthi-shukla': 'sankashti-chaturthi',
+  };
+  const puja: PujaVidhi | undefined = PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || ''];
 
   // Determine category from slug or puja
   const category = puja?.category === 'vrat' ? 'vrat'

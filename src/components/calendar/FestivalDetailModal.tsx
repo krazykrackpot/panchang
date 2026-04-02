@@ -103,7 +103,16 @@ export default function FestivalDetailModal({
   eclipsePhases,
   festivalSlug,
 }: FestivalDetailModalProps) {
-  const hasPujaVidhi = festivalSlug ? !!PUJA_VIDHIS[festivalSlug] : false;
+  // Puja lookup with slug mapping for mismatches
+  const PUJA_SLUG_MAP: Record<string, string> = {
+    'vat-savitri-vrat': 'vat-savitri',
+    'amavasya': 'amavasya-tarpan',
+    'pradosham-shukla': 'pradosham',
+    'pradosham-krishna': 'pradosham',
+    'sankashti-chaturthi-shukla': 'sankashti-chaturthi',
+  };
+  const resolvedPujaSlug = festivalSlug ? (PUJA_VIDHIS[festivalSlug] ? festivalSlug : PUJA_SLUG_MAP[festivalSlug] || festivalSlug) : undefined;
+  const hasPujaVidhi = resolvedPujaSlug ? !!PUJA_VIDHIS[resolvedPujaSlug] : false;
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {};
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
@@ -472,7 +481,7 @@ export default function FestivalDetailModal({
                 )}
 
                 {/* Puja Vidhi — inline */}
-                {hasPujaVidhi && <InlinePujaVidhi puja={PUJA_VIDHIS[festivalSlug!]} locale={locale} headingFont={headingFont} bodyFont={bodyFont} />}
+                {hasPujaVidhi && resolvedPujaSlug && <InlinePujaVidhi puja={PUJA_VIDHIS[resolvedPujaSlug]} locale={locale} headingFont={headingFont} bodyFont={bodyFont} />}
               </div>
             </div>
           </motion.div>

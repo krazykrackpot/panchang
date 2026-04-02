@@ -5,6 +5,19 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Download } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+
+const PUJA_SLUG_MAP: Record<string, string> = {
+  'vat-savitri-vrat': 'vat-savitri',
+  'amavasya': 'amavasya-tarpan',
+  'pradosham-shukla': 'pradosham',
+  'pradosham-krishna': 'pradosham',
+  'sankashti-chaturthi-shukla': 'sankashti-chaturthi',
+};
+function hasPujaVidhi(slug?: string): boolean {
+  if (!slug) return false;
+  return !!(PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || '']);
+}
 import { MasaIcon } from '@/components/icons/PanchangIcons';
 import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
@@ -498,6 +511,13 @@ export default function CalendarPage() {
                     {f.description[locale]}
                   </div>
                 </div>
+
+                {/* Puja Vidhi indicator */}
+                {hasPujaVidhi(f.slug) && (
+                  <span className="hidden sm:inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
+                    {locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि'}
+                  </span>
+                )}
 
                 {/* Parana time indicator */}
                 {f.paranaStart && (

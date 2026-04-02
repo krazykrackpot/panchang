@@ -285,6 +285,18 @@ export default function PujaVidhiPage() {
           </button>
         </motion.div>
 
+        {/* Calendar link */}
+        {puja.festivalSlug && (
+          <motion.div {...fadeInUp} className="flex items-center justify-center gap-4">
+            <Link
+              href={`/${locale}/calendar/${puja.festivalSlug}`}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-gold-primary/15 text-gold-primary/80 text-sm hover:text-gold-light hover:bg-gold-primary/5 transition-colors"
+            >
+              {locale === 'en' ? 'View dates in Calendar' : locale === 'hi' ? 'कैलेंडर में तिथियाँ देखें' : 'पञ्चाङ्गे तिथीः पश्यतु'} &rarr;
+            </Link>
+          </motion.div>
+        )}
+
         <GoldDivider />
 
         {/* 1. Samagri Section */}

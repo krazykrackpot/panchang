@@ -15,6 +15,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
+import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
@@ -1579,6 +1580,26 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
   // Use RAG-enhanced data if available, otherwise fall back to base
   const tip = ragTip || baseTip;
 
+  // Detect afflicted planets for graha shanti recommendations
+  const afflictedPlanets = useMemo<AfflictedPlanet[]>(() => {
+    if (!kundali.planets) return [];
+    const strengthMap = new Map<number, number>();
+    tip.strengthOverview.forEach(s => {
+      const planet = kundali.planets.find(p => p.planet.name[locale] === s.planetName || p.planet.name.en === s.planetName);
+      if (planet) strengthMap.set(planet.planet.id, s.strength);
+    });
+    const planetInputs = kundali.planets.map(p => ({
+      id: p.planet.id,
+      name: p.planet.name.en,
+      house: p.house,
+      isDebilitated: p.isDebilitated,
+      isCombust: p.isCombust,
+      isRetrograde: p.isRetrograde,
+      shadbalaPercent: strengthMap.get(p.planet.id),
+    }));
+    return detectAfflictedPlanets(planetInputs);
+  }, [kundali.planets, tip.strengthOverview, locale]);
+
   const severityColors: Record<string, string> = {
     severe: 'bg-red-500/20 text-red-400',
     moderate: 'bg-orange-500/20 text-orange-400',
@@ -1946,6 +1967,58 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                 </div>
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {/* ===== GRAHA SHANTI PUJA RECOMMENDATIONS ===== */}
+      {afflictedPlanets.length > 0 && (
+        <section className="glass-card rounded-xl p-6 sm:p-8">
+          <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>
+            {locale === 'en' ? 'Recommended Graha Shanti Pujas' : locale === 'hi' ? 'अनुशंसित ग्रह शान्ति पूजा' : 'अनुशंसित ग्रहशान्तिपूजाः'}
+          </h3>
+          <p className="text-text-secondary text-sm mb-6">
+            {locale === 'en'
+              ? 'Based on your chart analysis, the following planets are afflicted and may benefit from graha shanti rituals.'
+              : 'आपकी कुण्डली विश्लेषण के अनुसार, निम्नलिखित ग्रह पीड़ित हैं और ग्रह शान्ति पूजा से लाभ हो सकता है।'}
+          </p>
+          <div className="space-y-4">
+            {afflictedPlanets.map((ap) => {
+              const severityConfig = {
+                severe: { border: 'border-rose-500/20', bg: 'bg-rose-500/8', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-400', label: locale === 'en' ? 'Severe' : 'गम्भीर' },
+                moderate: { border: 'border-amber-500/20', bg: 'bg-amber-500/8', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-400', label: locale === 'en' ? 'Moderate' : 'मध्यम' },
+                mild: { border: 'border-blue-500/20', bg: 'bg-blue-500/8', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: locale === 'en' ? 'Mild' : 'साधारण' },
+              }[ap.severity];
+              const planetData = kundali.planets.find(p => p.planet.id === ap.planetId);
+              const planetName = planetData?.planet.name[locale] || ap.planetName;
+              return (
+                <div key={ap.planetId} className={`p-4 rounded-xl border ${severityConfig.border} ${severityConfig.bg}`}>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-3">
+                      <GrahaIconById id={ap.planetId} size={32} />
+                      <span className={`text-lg font-bold ${severityConfig.text}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
+                        {planetName}
+                      </span>
+                    </div>
+                    <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${severityConfig.badge}`}>
+                      {severityConfig.label}
+                    </span>
+                  </div>
+                  <p className="text-text-secondary text-sm mb-3">{ap.reasons.join(', ')}</p>
+                  <a
+                    href={`/${locale}/puja/${ap.remedySlug}`}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-gold-primary hover:text-gold-light transition-colors"
+                  >
+                    {locale === 'en'
+                      ? `${planetName} Graha Shanti Puja`
+                      : `${planetName} ग्रह शान्ति पूजा`}
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </section>
       )}

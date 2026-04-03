@@ -5,7 +5,16 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { Compass, BookOpen } from 'lucide-react';
-import TodayPanchangWidget from '@/components/panchang/TodayPanchangWidget';
+import dynamic from 'next/dynamic';
+
+const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center py-16">
+      <div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent" />
+    </div>
+  ),
+});
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },

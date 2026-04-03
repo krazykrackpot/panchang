@@ -955,7 +955,13 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
 
   const getPlanetName = (karaka: any): string => {
     if (!karaka) return isHi ? 'अज्ञात' : 'Unknown';
-    return karaka.planet || karaka.planetName?.en || (isHi ? karaka.planetName?.hi : karaka.planetName?.en) || 'Unknown';
+    // planetName is a Trilingual object {en, hi, sa} — use it first
+    // karaka.planet is a numeric ID (0-8) — never display it directly
+    if (karaka.planetName) {
+      return isHi ? (karaka.planetName.hi || karaka.planetName.en) : karaka.planetName.en;
+    }
+    if (typeof karaka.planet === 'string') return karaka.planet;
+    return isHi ? 'अज्ञात' : 'Unknown';
   };
 
   const akPlanet = getPlanetName(atmakaraka);

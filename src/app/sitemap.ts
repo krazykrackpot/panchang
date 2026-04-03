@@ -62,6 +62,9 @@ const routes = [
   '/learn/career',
   '/learn/marriage',
   '/learn/wealth',
+  '/learn/health',
+  '/learn/children',
+  '/learn/retrograde-effects',
   // Calendars
   '/calendar',
   '/transits',

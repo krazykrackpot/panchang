@@ -400,6 +400,22 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['wealth astrology', 'dhana yoga', '2nd house', '11th house', 'lakshmi yoga'],
   },
 
+  '/learn/health': {
+    title: { en: 'Medical Astrology — Planet-Body Mapping & Health Prediction', hi: 'चिकित्सा ज्योतिष — ग्रह-शरीर मानचित्रण', sa: 'चिकित्साज्योतिषम्' },
+    description: { en: 'Zodiac body map, planet-disease correlations, health per lagna sign, Ayurvedic constitution from chart, timing of health events.', hi: 'राशि शरीर मानचित्र, ग्रह-रोग सम्बन्ध, लग्न अनुसार स्वास्थ्य, आयुर्वेदिक प्रकृति।', sa: 'राशिशरीरमानचित्रं ग्रहरोगसम्बन्धाः।' },
+    keywords: ['medical astrology', 'health prediction', 'zodiac body parts', 'ayurvedic astrology'],
+  },
+  '/learn/children': {
+    title: { en: 'Children Prediction — 5th House, D7 & Fertility Analysis', hi: 'सन्तान भविष्यवाणी — 5वां भाव, D7', sa: 'सन्तानभविष्यवाणी' },
+    description: { en: 'Predict children from your chart: 5th house, Jupiter, D7 Saptamsha, Putrakaraka, fertility sphutas, timing of childbirth.', hi: 'कुण्डली से सन्तान भविष्यवाणी: 5वां भाव, बृहस्पति, D7, पुत्रकारक, प्रजनन।', sa: 'कुण्डल्या सन्तानभविष्यवाणी।' },
+    keywords: ['children prediction', '5th house', 'saptamsha', 'fertility astrology'],
+  },
+  '/learn/retrograde-effects': {
+    title: { en: 'Retrograde Planets — Natal & Transit Effects for All 5', hi: 'वक्री ग्रह — जन्म एवं गोचर प्रभाव', sa: 'वक्रीग्रहाः — जन्मगोचरप्रभावाः' },
+    description: { en: 'Mercury, Venus, Mars, Jupiter, Saturn retrograde effects in birth chart and transit. Orbital mechanics, Cheshta Bala, practical dos and don\'ts.', hi: 'बुध, शुक्र, मंगल, बृहस्पति, शनि वक्री प्रभाव — जन्म कुण्डली और गोचर में।', sa: 'बुधशुक्रमङ्गलबृहस्पतिशनिवक्रीप्रभावाः।' },
+    keywords: ['retrograde planets', 'mercury retrograde', 'vakri graha', 'retrograde effects'],
+  },
+
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
     title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },

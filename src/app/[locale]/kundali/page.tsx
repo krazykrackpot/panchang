@@ -2170,30 +2170,36 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('yogas')}</h3>
         <div className="space-y-3">
-          {[...tip.yogas].sort((a, b) => (a.present === b.present ? 0 : a.present ? -1 : 1)).map((yoga, i) => (
+          {tip.yogas.filter(y => y.present).map((yoga, i) => {
+            const isInauspicious = yoga.type === 'Arishta' || yoga.type === 'Dosha';
+            const borderColor = isInauspicious ? 'border-rose-500/20 bg-rose-500/5 hover:border-rose-500/30' : 'border-green-500/20 bg-green-500/5 hover:border-green-500/30';
+            const badgeColor = isInauspicious ? 'bg-rose-500/20 text-rose-400' : 'bg-green-500/20 text-green-400';
+            const strengthColor = yoga.strength === 'Strong' ? badgeColor : 'bg-yellow-500/20 text-yellow-400';
+            return (
             <div key={i}>
               <motion.div
                 onClick={() => setExpandedYoga(expandedYoga === i ? null : i)}
-                className={`p-4 rounded-lg border cursor-pointer transition-all ${yoga.present ? 'border-green-500/20 bg-green-500/5 hover:border-green-500/30' : 'border-gold-primary/5 bg-bg-primary/30 hover:border-gold-primary/15'}`}
+                className={`p-4 rounded-lg border cursor-pointer transition-all ${borderColor}`}
                 whileHover={{ scale: 1.005 }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-gold-light font-semibold">{yoga.name}</span>
                   <div className="flex items-center gap-2">
-                    {yoga.present && <span className={`text-xs px-2 py-0.5 rounded-full ${yoga.strength === 'Strong' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'}`}>{yoga.strength}</span>}
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${yoga.present ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'}`}>
-                      {yoga.present ? tTip('present') : tTip('absent')}
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${strengthColor}`}>{yoga.strength}</span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${badgeColor}`}>
+                      {isInauspicious ? (locale === 'en' ? 'Inauspicious' : 'अशुभ') : (locale === 'en' ? 'Auspicious' : 'शुभ')}
                     </span>
+                    <span className={`text-xs px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary/70`}>{yoga.type}</span>
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm">{yoga.description}</p>
               </motion.div>
               <AnimatePresence>
-                {expandedYoga === i && yoga.present && yoga.implications && (
+                {expandedYoga === i && yoga.implications && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                     <div className="ml-4 mt-1 space-y-2">
-                      <div className="p-3 bg-green-500/5 rounded-lg border border-green-500/10">
-                        <p className="text-green-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'What This Means For You' : 'आपके लिए इसका अर्थ'}</p>
+                      <div className={`p-3 rounded-lg border ${isInauspicious ? 'bg-rose-500/5 border-rose-500/10' : 'bg-green-500/5 border-green-500/10'}`}>
+                        <p className={`text-xs uppercase tracking-wider mb-1 ${isInauspicious ? 'text-rose-400' : 'text-green-400'}`}>{locale === 'en' ? 'What This Means For You' : 'आपके लिए इसका अर्थ'}</p>
                         <p className="text-text-secondary text-sm">{yoga.implications}</p>
                       </div>
                       {yoga.classicalReferences && (
@@ -2204,7 +2210,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                 )}
               </AnimatePresence>
             </div>
-          ))}
+          );})}
         </div>
       </section>
 
@@ -2235,7 +2241,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('doshas')}</h3>
         <div className="space-y-4">
-          {[...tip.doshas].sort((a, b) => (a.present === b.present ? 0 : a.present ? -1 : 1)).map((dosha, i) => {
+          {tip.doshas.filter(d => d.present).map((dosha, i) => {
             const effectiveColor = dosha.effectiveSeverity === 'cancelled' ? 'border-green-500/20 bg-green-500/5' : dosha.effectiveSeverity === 'partial' ? 'border-yellow-500/20 bg-yellow-500/5' : dosha.present ? 'border-red-500/20 bg-red-500/5' : 'border-green-500/10 bg-bg-primary/30';
             return (
             <div key={i} className={`p-4 rounded-lg border ${effectiveColor}`}>

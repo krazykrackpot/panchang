@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
@@ -416,9 +417,9 @@ export default function KundaliPage() {
                         ? `Birth Moon is in ${nakName} nakshatra (Pada ${moonP?.pada}) — a Ganda Mula nakshatra at a water-fire sign junction. A Ganda Mula Shanti Puja is recommended. See Tippanni tab for detailed analysis and remedies.`
                         : `जन्म चन्द्रमा ${nakName} नक्षत्र (पाद ${moonP?.pada}) में — जल-अग्नि राशि सन्धि का गण्ड मूल नक्षत्र। गण्ड मूल शान्ति पूजा अनुशंसित। विस्तृत विश्लेषण और उपायों के लिए टिप्पणी टैब देखें।`}
                     </p>
-                    <a href={`/${locale}/learn/modules/24-1`} className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2">
+                    <Link href="/learn/modules/24-1" className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2" tabIndex={-1}>
                       {locale === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -2268,9 +2269,9 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                   ? 'The Moon at birth is in a Ganda Mula nakshatra — one of 6 nakshatras at the water-fire sign junctions. This requires a Ganda Mula Shanti Puja. See the dosha details below for specific remedies.'
                   : 'जन्म के समय चन्द्रमा गण्ड मूल नक्षत्र में है — जल-अग्नि राशि सन्धि के 6 नक्षत्रों में से एक। गण्ड मूल शान्ति पूजा आवश्यक है। विशिष्ट उपायों के लिए नीचे दोष विवरण देखें।'}
               </p>
-              <a href={`/${locale}/learn/modules/24-1`} className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2">
+              <Link href="/learn/modules/24-1" className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2" tabIndex={-1}>
                 {locale === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

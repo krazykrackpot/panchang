@@ -711,35 +711,46 @@ export default function KundaliPage() {
               {/* Dasha system selector */}
               <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
                 {[
-                  { key: 'vimshottari', label: locale === 'en' ? 'Vimshottari (120yr)' : 'विंशोत्तरी' },
-                  ...(kundali.yoginiDashas ? [{ key: 'yogini', label: locale === 'en' ? 'Yogini (36yr)' : 'योगिनी' }] : []),
-                  ...(kundali.ashtottariDashas ? [{ key: 'ashtottari', label: locale === 'en' ? 'Ashtottari (108yr)' : 'अष्टोत्तरी' }] : []),
-                  ...(kundali.narayanaDasha ? [{ key: 'narayana', label: locale === 'en' ? 'Narayana' : 'नारायण' }] : []),
-                  ...(kundali.kalachakraDasha ? [{ key: 'kalachakra', label: locale === 'en' ? 'Kalachakra' : 'कालचक्र' }] : []),
-                  ...(kundali.sthiraDasha ? [{ key: 'sthira', label: locale === 'en' ? 'Sthira' : 'स्थिर' }] : []),
-                  ...(kundali.shoolaDasha ? [{ key: 'shoola', label: locale === 'en' ? 'Shoola' : 'शूल' }] : []),
-                  { key: 'shodasottari', label: locale === 'en' ? 'Shodasottari (116yr)' : 'षोडशोत्तरी' },
-                  { key: 'dwadasottari', label: locale === 'en' ? 'Dwadasottari (112yr)' : 'द्वादशोत्तरी' },
-                  { key: 'panchottari', label: locale === 'en' ? 'Panchottari (105yr)' : 'पंचोत्तरी' },
-                  { key: 'satabdika', label: locale === 'en' ? 'Satabdika (100yr)' : 'शताब्दिका' },
-                  { key: 'chaturaaseethi', label: locale === 'en' ? 'Chaturaaseethi (84yr)' : 'चतुराशीति' },
-                  { key: 'shashtihayani', label: locale === 'en' ? 'Shashtihayani (60yr)' : 'षष्ठीहायनी' },
-                  { key: 'mandooka', label: locale === 'en' ? 'Mandooka (Frog)' : 'मण्डूक' },
-                  { key: 'drig', label: locale === 'en' ? 'Drig (Aspect)' : 'दृग्' },
-                  { key: 'moola', label: locale === 'en' ? 'Moola (121yr)' : 'मूल' },
-                  { key: 'navamsha_dasha', label: locale === 'en' ? 'Navamsha' : 'नवांश' },
-                  { key: 'naisargika', label: locale === 'en' ? 'Naisargika (Natural)' : 'नैसर्गिक' },
-                  { key: 'tara', label: locale === 'en' ? 'Tara (Star)' : 'तारा' },
-                  { key: 'tithi_ashtottari', label: locale === 'en' ? 'Tithi Ashtottari (108yr)' : 'तिथि अष्टोत्तरी' },
-                  { key: 'yoga_vimsottari', label: locale === 'en' ? 'Yoga Vimsottari' : 'योग विंशोत्तरी' },
-                  { key: 'buddhi_gathi', label: locale === 'en' ? 'Buddhi Gathi (100yr)' : 'बुद्धि गति' },
+                  { key: 'vimshottari', label: locale === 'en' ? 'Vimshottari' : 'विंशोत्तरी', desc: locale === 'en' ? '120yr cycle based on Moon nakshatra — most widely used' : 'चन्द्र नक्षत्र आधारित 120 वर्ष — सर्वाधिक प्रचलित' },
+                  ...(kundali.yoginiDashas ? [{ key: 'yogini', label: locale === 'en' ? 'Yogini' : 'योगिनी', desc: locale === 'en' ? '36yr cycle — fast-moving, good for timing events' : '36 वर्ष — तीव्र, घटनाओं के समय हेतु' }] : []),
+                  ...(kundali.ashtottariDashas ? [{ key: 'ashtottari', label: locale === 'en' ? 'Ashtottari' : 'अष्टोत्तरी', desc: locale === 'en' ? '108yr cycle — used when Rahu is in a kendra/trikona' : '108 वर्ष — राहु केन्द्र/त्रिकोण में हो तब' }] : []),
+                  ...(kundali.narayanaDasha ? [{ key: 'narayana', label: locale === 'en' ? 'Narayana' : 'नारायण', desc: locale === 'en' ? 'Sign-based — shows external life events and environment' : 'राशि आधारित — बाह्य जीवन घटनाएँ' }] : []),
+                  ...(kundali.kalachakraDasha ? [{ key: 'kalachakra', label: locale === 'en' ? 'Kalachakra' : 'कालचक्र', desc: locale === 'en' ? 'Wheel of Time — navamsha-based, complex and precise' : 'कालचक्र — नवांश आधारित, सूक्ष्म' }] : []),
+                  ...(kundali.sthiraDasha ? [{ key: 'sthira', label: locale === 'en' ? 'Sthira' : 'स्थिर', desc: locale === 'en' ? 'Fixed sign dasha — for longevity analysis' : 'स्थिर राशि — आयु विश्लेषण हेतु' }] : []),
+                  ...(kundali.shoolaDasha ? [{ key: 'shoola', label: locale === 'en' ? 'Shoola' : 'शूल', desc: locale === 'en' ? 'Pain/death indicator — used in medical astrology' : 'कष्ट/मृत्यु सूचक — चिकित्सा ज्योतिष' }] : []),
+                  { key: 'shodasottari', label: locale === 'en' ? 'Shodasottari' : 'षोडशोत्तरी', desc: locale === 'en' ? '116yr — for night births in Krishna Paksha' : '116 वर्ष — कृष्ण पक्ष रात्रि जन्म हेतु' },
+                  { key: 'dwadasottari', label: locale === 'en' ? 'Dwadasottari' : 'द्वादशोत्तरी', desc: locale === 'en' ? '112yr — for Shukla Paksha births with Venus in lagna' : '112 वर्ष — शुक्ल पक्ष, शुक्र लग्न में' },
+                  { key: 'panchottari', label: locale === 'en' ? 'Panchottari' : 'पंचोत्तरी', desc: locale === 'en' ? '105yr — for Cancer lagna births' : '105 वर्ष — कर्क लग्न हेतु' },
+                  { key: 'satabdika', label: locale === 'en' ? 'Satabdika' : 'शताब्दिका', desc: locale === 'en' ? '100yr — for Vargottama lagna births' : '100 वर्ष — वर्गोत्तम लग्न हेतु' },
+                  { key: 'chaturaaseethi', label: locale === 'en' ? 'Chaturaaseethi' : 'चतुराशीति', desc: locale === 'en' ? '84yr — for day births in Shukla Paksha' : '84 वर्ष — शुक्ल पक्ष दिवस जन्म' },
+                  { key: 'shashtihayani', label: locale === 'en' ? 'Shashtihayani' : 'षष्ठीहायनी', desc: locale === 'en' ? '60yr — Sun in lagna, alternative timing' : '60 वर्ष — सूर्य लग्न में' },
+                  { key: 'mandooka', label: locale === 'en' ? 'Mandooka' : 'मण्डूक', desc: locale === 'en' ? 'Frog leap dasha — signs jump in sequence' : 'मण्डूक — राशियाँ कूदकर चलतीं' },
+                  { key: 'drig', label: locale === 'en' ? 'Drig' : 'दृग्', desc: locale === 'en' ? 'Aspect-based — signs with most aspects activate' : 'दृष्टि आधारित — सर्वाधिक दृष्ट राशि' },
+                  { key: 'moola', label: locale === 'en' ? 'Moola' : 'मूल', desc: locale === 'en' ? '121yr — based on Moola Trikona positions' : '121 वर्ष — मूल त्रिकोण आधारित' },
+                  { key: 'navamsha_dasha', label: locale === 'en' ? 'Navamsha' : 'नवांश', desc: locale === 'en' ? 'D9 chart based — for marriage and dharma timing' : 'D9 आधारित — विवाह और धर्म समय' },
+                  { key: 'naisargika', label: locale === 'en' ? 'Naisargika' : 'नैसर्गिक', desc: locale === 'en' ? 'Natural order — fixed planetary periods by nature' : 'प्राकृतिक क्रम — नैसर्गिक ग्रह काल' },
+                  { key: 'tara', label: locale === 'en' ? 'Tara' : 'तारा', desc: locale === 'en' ? 'Star-based — nakshatra lord sequences' : 'तारा — नक्षत्र स्वामी क्रम' },
+                  { key: 'tithi_ashtottari', label: locale === 'en' ? 'Tithi Ashtottari' : 'तिथि अष्टोत्तरी', desc: locale === 'en' ? '108yr — based on birth tithi lord' : '108 वर्ष — जन्म तिथि स्वामी आधारित' },
+                  { key: 'yoga_vimsottari', label: locale === 'en' ? 'Yoga Vimsottari' : 'योग विंशोत्तरी', desc: locale === 'en' ? 'Based on birth yoga — Sun+Moon combination' : 'जन्म योग आधारित — सूर्य+चन्द्र' },
+                  { key: 'buddhi_gathi', label: locale === 'en' ? 'Buddhi Gathi' : 'बुद्धि गति', desc: locale === 'en' ? '100yr — intellectual development timing' : '100 वर्ष — बौद्धिक विकास समय' },
                 ].map(dt => (
-                  <button key={dt.key} onClick={() => setDashaSystem(dt.key)}
+                  <button key={dt.key} onClick={() => setDashaSystem(dt.key)} title={dt.desc}
                     className={`px-4 py-1.5 rounded-lg text-xs transition-all ${dashaSystem === dt.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary hover:text-text-primary border border-transparent'}`}>
                     {dt.label}
                   </button>
                 ))}
               </div>
+              {/* Selected dasha description */}
+              {(() => {
+                const allSystems = [
+                  { key: 'vimshottari', desc: { en: 'The most widely used dasha system in Vedic astrology. Based on the Moon\'s nakshatra at birth, it divides life into 9 planetary periods totaling 120 years. Each planet\'s dasha activates its significations in your chart.', hi: 'वैदिक ज्योतिष में सर्वाधिक प्रचलित दशा पद्धति। जन्म के चन्द्र नक्षत्र पर आधारित, 120 वर्षों में 9 ग्रह काल। प्रत्येक ग्रह की दशा उसके कुण्डली-संकेतों को सक्रिय करती है।' } },
+                  { key: 'yogini', desc: { en: 'A fast 36-year cycle with 8 yogini periods. Excellent for timing specific events. Preferred by some astrologers for its simplicity and accuracy in predicting short-term events.', hi: '8 योगिनी कालों का तीव्र 36 वर्षीय चक्र। विशिष्ट घटनाओं के समय निर्धारण में उत्कृष्ट।' } },
+                  { key: 'narayana', desc: { en: 'A sign-based (rashi) dasha from Jaimini astrology. Shows external life events — career changes, relocations, relationship milestones — based on which sign is activated.', hi: 'जैमिनी ज्योतिष से राशि-आधारित दशा। बाह्य जीवन घटनाएँ — कैरियर, स्थानान्तरण, सम्बन्ध — कौन-सी राशि सक्रिय है।' } },
+                ];
+                const found = allSystems.find(s => s.key === dashaSystem);
+                if (!found) return null;
+                return <p className="text-text-secondary/60 text-xs text-center mb-4 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{found.desc[locale === 'en' ? 'en' : 'hi']}</p>;
+              })()}
               <h3 className="text-gold-gradient text-xl font-bold mb-6 text-center" style={headingFont}>{t('dashaTimeline')}</h3>
               {(() => {
                 // Rasi dashas use signName instead of planetName
@@ -792,45 +803,151 @@ export default function KundaliPage() {
                   yoga_vimsottari: kundali.yogaVimsottariDasha || [],
                   buddhi_gathi: kundali.buddhiGathiDasha || [],
                 };
-                return grahaDashaMap[dashaSystem] || kundali.dashas || [];
-              })().map((dasha: { planetName: Record<string, string>; startDate: string; endDate: string; subPeriods?: { planetName: Record<string, string>; startDate: string; endDate: string }[] }, i: number) => {
-                const now = new Date();
-                const start = new Date(dasha.startDate);
-                const end = new Date(dasha.endDate);
-                const isCurrent = now >= start && now <= end;
-                const isPast = now > end;
+                const dashaList = grahaDashaMap[dashaSystem] || kundali.dashas || [];
+
+                // Planet colors and dasha significations
+                const PLANET_COLORS: Record<string, string> = {
+                  Sun: '#e67e22', Moon: '#ecf0f1', Mars: '#e74c3c', Mercury: '#2ecc71',
+                  Jupiter: '#f39c12', Venus: '#e8e6e3', Saturn: '#3498db', Rahu: '#8e44ad', Ketu: '#95a5a6',
+                };
+                const DASHA_MEANING: Record<string, { en: string; hi: string }> = {
+                  Sun: { en: 'Authority, career, father, government, health vitality, soul purpose', hi: 'अधिकार, कैरियर, पिता, सरकार, स्वास्थ्य, आत्म उद्देश्य' },
+                  Moon: { en: 'Mind, emotions, mother, home, public life, mental peace', hi: 'मन, भावनाएँ, माता, घर, सार्वजनिक जीवन, मानसिक शान्ति' },
+                  Mars: { en: 'Energy, courage, property, siblings, surgery, disputes', hi: 'ऊर्जा, साहस, सम्पत्ति, भाई-बहन, शल्य, विवाद' },
+                  Mercury: { en: 'Intellect, communication, business, education, skills', hi: 'बुद्धि, संवाद, व्यापार, शिक्षा, कौशल' },
+                  Jupiter: { en: 'Wisdom, children, wealth, spirituality, guru, expansion', hi: 'ज्ञान, सन्तान, धन, आध्यात्मिकता, गुरु, विस्तार' },
+                  Venus: { en: 'Love, marriage, luxury, arts, vehicles, comfort', hi: 'प्रेम, विवाह, विलासिता, कला, वाहन, सुख' },
+                  Saturn: { en: 'Discipline, karma, delays, service, longevity, hard work', hi: 'अनुशासन, कर्म, विलम्ब, सेवा, दीर्घायु, परिश्रम' },
+                  Rahu: { en: 'Ambition, foreign, unconventional, obsession, technology', hi: 'महत्वाकांक्षा, विदेश, अपारम्परिक, जुनून, प्रौद्योगिकी' },
+                  Ketu: { en: 'Spirituality, detachment, past karma, liberation, isolation', hi: 'आध्यात्मिकता, वैराग्य, पूर्व कर्म, मोक्ष, एकान्त' },
+                };
+
+                // Calculate full timeline span for the progress bar
+                const firstStart = dashaList.length > 0 ? new Date(dashaList[0].startDate).getTime() : 0;
+                const lastEnd = dashaList.length > 0 ? new Date(dashaList[dashaList.length - 1].endDate).getTime() : 1;
+                const totalSpan = lastEnd - firstStart;
+                const nowMs = Date.now();
+
                 return (
-                  <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}
-                    className={`glass-card rounded-xl p-5 ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-50' : ''}`}>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <span className={`w-3 h-3 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark'}`} />
-                        <span className="text-gold-light font-semibold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{dasha.planetName[locale]}</span>
-                        {isCurrent && <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full">{tTip('currentPeriod')}</span>}
-                      </div>
-                      <span className="text-text-secondary text-sm font-mono">{dasha.startDate} &rarr; {dasha.endDate}</span>
-                    </div>
-                    {isCurrent && dasha.subPeriods && (
-                      <div className="mt-4 pl-6 border-l border-gold-primary/20 space-y-2">
-                        {dasha.subPeriods.map((sub, j) => {
-                          const subStart = new Date(sub.startDate);
-                          const subEnd = new Date(sub.endDate);
-                          const isSubCurrent = now >= subStart && now <= subEnd;
-                          return (
-                            <div key={j} className={`flex items-center justify-between text-sm py-1 ${isSubCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
-                              <span className="flex items-center gap-2">
-                                {isSubCurrent && <span className="w-2 h-2 rounded-full bg-gold-primary" />}
-                                <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sub.planetName[locale]}</span>
-                              </span>
-                              <span className="font-mono text-xs">{sub.startDate} &rarr; {sub.endDate}</span>
+                  <>
+                    {/* Visual timeline bar */}
+                    <div className="rounded-lg overflow-hidden h-8 flex mb-8 border border-gold-primary/10">
+                      {dashaList.map((d: { planetName: Record<string, string>; startDate: string; endDate: string; planet?: string }, idx: number) => {
+                        const s = new Date(d.startDate).getTime();
+                        const e = new Date(d.endDate).getTime();
+                        const widthPct = ((e - s) / totalSpan) * 100;
+                        const isCur = nowMs >= s && nowMs <= e;
+                        const planetEn = d.planetName?.en || d.planet || '';
+                        const color = PLANET_COLORS[planetEn] || '#d4a853';
+                        return (
+                          <div key={idx} className="relative group" style={{ width: `${widthPct}%`, backgroundColor: `${color}${isCur ? '40' : '18'}`, borderRight: '1px solid rgba(10,14,39,0.5)' }}>
+                            {isCur && (
+                              <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${color}30, ${color}50)` }}>
+                                <div className="absolute left-0 top-0 bottom-0 bg-gold-primary/30" style={{ width: `${Math.min(100, ((nowMs - s) / (e - s)) * 100)}%` }} />
+                              </div>
+                            )}
+                            <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-white/70 truncate px-1">
+                              {widthPct > 4 ? (planetEn.substring(0, 3)) : ''}
+                            </span>
+                            {/* Tooltip */}
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-bg-primary/95 border border-gold-primary/20 rounded text-xs text-gold-light whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                              {d.planetName[locale]} ({d.startDate.substring(0, 4)}–{d.endDate.substring(0, 4)})
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </motion.div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Dasha cards with meaning */}
+                    {dashaList.map((dasha: { planetName: Record<string, string>; planet?: string; startDate: string; endDate: string; subPeriods?: { planetName: Record<string, string>; planet?: string; startDate: string; endDate: string }[] }, i: number) => {
+                      const now = new Date();
+                      const start = new Date(dasha.startDate);
+                      const end = new Date(dasha.endDate);
+                      const isCurrent = now >= start && now <= end;
+                      const isPast = now > end;
+                      const planetEn = dasha.planetName?.en || dasha.planet || '';
+                      const color = PLANET_COLORS[planetEn] || '#d4a853';
+                      const meaning = DASHA_MEANING[planetEn];
+                      const durationYears = ((end.getTime() - start.getTime()) / (365.25 * 24 * 3600000)).toFixed(1);
+                      const progressPct = isCurrent ? Math.min(100, ((now.getTime() - start.getTime()) / (end.getTime() - start.getTime())) * 100) : isPast ? 100 : 0;
+
+                      return (
+                        <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
+                          className={`glass-card rounded-xl overflow-hidden ${isCurrent ? 'border-2 ring-1 ring-gold-primary/20' : ''} ${isPast ? 'opacity-40' : ''}`}
+                          style={{ borderColor: isCurrent ? `${color}60` : undefined }}>
+                          {/* Progress bar at top */}
+                          <div className="h-1" style={{ backgroundColor: `${color}15` }}>
+                            <div className="h-full transition-all duration-500" style={{ width: `${progressPct}%`, backgroundColor: color }} />
+                          </div>
+
+                          <div className="p-5">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="flex items-center gap-3">
+                                <div className="w-4 h-4 rounded-full" style={{ backgroundColor: color, opacity: isPast ? 0.3 : 0.8 }} />
+                                <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                                  {dasha.planetName[locale]}
+                                </span>
+                                <span className="text-text-secondary/50 text-xs">{durationYears} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
+                                {isCurrent && <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-[10px] rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                              </div>
+                              <span className="text-text-secondary text-xs font-mono">{dasha.startDate.substring(0, 7)} → {dasha.endDate.substring(0, 7)}</span>
+                            </div>
+
+                            {/* Dasha meaning */}
+                            {meaning && !isPast && (
+                              <p className="text-text-secondary/70 text-xs mt-1 ml-7 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                {locale === 'en' ? meaning.en : meaning.hi}
+                              </p>
+                            )}
+
+                            {/* Current dasha progress detail */}
+                            {isCurrent && (
+                              <div className="mt-3 ml-7 text-xs text-gold-primary/70">
+                                {Math.round(progressPct)}% {locale === 'en' ? 'complete' : 'पूर्ण'} — {locale === 'en' ? 'ends' : 'समाप्ति'} {end.toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
+                              </div>
+                            )}
+
+                            {/* Sub-periods (Antar Dasha) — show for current maha dasha */}
+                            {isCurrent && dasha.subPeriods && (
+                              <div className="mt-4 ml-4 pl-4 border-l-2 space-y-1.5" style={{ borderColor: `${color}30` }}>
+                                <div className="text-[10px] uppercase tracking-wider text-text-secondary/40 mb-2">{locale === 'en' ? 'Antar Dasha (Sub-periods)' : 'अन्तर दशा'}</div>
+                                {dasha.subPeriods.map((sub, j) => {
+                                  const subStart = new Date(sub.startDate);
+                                  const subEnd = new Date(sub.endDate);
+                                  const isSubCurrent = now >= subStart && now <= subEnd;
+                                  const isSubPast = now > subEnd;
+                                  const subPlanetEn = sub.planetName?.en || sub.planet || '';
+                                  const subColor = PLANET_COLORS[subPlanetEn] || '#d4a853';
+                                  const subMeaning = DASHA_MEANING[subPlanetEn];
+                                  return (
+                                    <div key={j} className={`rounded-lg p-2.5 ${isSubCurrent ? 'bg-gold-primary/5 border border-gold-primary/15' : isSubPast ? 'opacity-30' : ''}`}>
+                                      <div className="flex items-center justify-between">
+                                        <span className="flex items-center gap-2">
+                                          <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: isSubCurrent ? subColor : `${subColor}40` }} />
+                                          <span className={`text-sm ${isSubCurrent ? 'text-gold-light font-semibold' : 'text-text-secondary'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                            {sub.planetName[locale]}
+                                          </span>
+                                          {isSubCurrent && <span className="text-[9px] px-1.5 py-0.5 bg-gold-primary/15 text-gold-primary rounded-full">{locale === 'en' ? 'active' : 'सक्रिय'}</span>}
+                                        </span>
+                                        <span className="font-mono text-[10px] text-text-secondary/50">{sub.startDate.substring(0, 7)} → {sub.endDate.substring(0, 7)}</span>
+                                      </div>
+                                      {isSubCurrent && subMeaning && (
+                                        <p className="text-text-secondary/60 text-[11px] mt-1 ml-5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                          {planetEn}–{subPlanetEn}: {locale === 'en' ? subMeaning.en : subMeaning.hi}
+                                        </p>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </>
                 );
-              })}
+              })()}
             </div>
           )}
 

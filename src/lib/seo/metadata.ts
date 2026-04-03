@@ -376,6 +376,13 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
   },
 
+  // ─── Cosmology ───────────────────────────────────────────
+  '/learn/cosmology': {
+    title: { en: 'Hindu Cosmology — Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — युगाः कल्पाः ब्रह्मणः 311 लक्षकोटिवर्षायुः' },
+    description: { en: 'From Truti (29.6μs) to Brahma\'s lifespan (311 trillion years). The only ancient civilization to think in billions of years — matching modern cosmology. Yugas, Manvantaras, Kalpas explained.', hi: 'त्रुटि (29.6μs) से ब्रह्मा के जीवनकाल (311 ट्रिलियन वर्ष) तक। अरबों वर्षों में सोचने वाली एकमात्र प्राचीन सभ्यता।', sa: 'त्रुटितः (29.6μs) ब्रह्मायुः (311 लक्षकोटिवर्षाणि) पर्यन्तम्।' },
+    keywords: ['hindu cosmology', 'yugas', 'kalpa', 'manvantara', 'brahma lifespan', 'vedic time', 'kali yuga'],
+  },
+
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
     title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },

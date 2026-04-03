@@ -58,6 +58,7 @@ const routes = [
   '/learn/planet-in-house',
   '/learn/aspects',
   '/learn/remedies',
+  '/learn/cosmology',
   // Calendars
   '/calendar',
   '/transits',

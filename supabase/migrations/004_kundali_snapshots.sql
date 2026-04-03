@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS kundali_snapshots (
 );
 
 ALTER TABLE kundali_snapshots ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Users can read own snapshot" ON kundali_snapshots;
+DROP POLICY IF EXISTS "Service role manages snapshots" ON kundali_snapshots;
 CREATE POLICY "Users can read own snapshot" ON kundali_snapshots FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Service role manages snapshots" ON kundali_snapshots FOR ALL USING (auth.role() = 'service_role');
 

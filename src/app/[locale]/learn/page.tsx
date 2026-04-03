@@ -164,10 +164,13 @@ const PHASES = [
       { id: '23-4', title: { en: 'Sphutas — Yogi & Avayogi', hi: 'स्फुट — योगी एवं अवयोगी', sa: 'स्फुटाः' } },
       { id: '23-5', title: { en: 'Prashna Yogas', hi: 'प्रश्न योग', sa: 'प्रश्नयोगाः' } },
     ]},
+    { topic: { en: 'Nakshatra Deep Dives', hi: 'नक्षत्र गहन अध्ययन', sa: 'नक्षत्रगहनाध्ययनम्' }, modules: [
+      { id: '24-1', title: { en: 'Ganda Mula Nakshatras', hi: 'गण्ड मूल नक्षत्र', sa: 'गण्डमूलनक्षत्राणि' } },
+    ]},
   ]},
 ];
 
-const STATS = { modules: 88, questions: 880, minutes: 1114, phases: 11 };
+const STATS = { modules: 89, questions: 890, minutes: 1124, phases: 11 };
 
 export default function LearnPage() {
   const locale = useLocale() as Locale;

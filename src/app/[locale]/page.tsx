@@ -456,21 +456,26 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/panchang" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
-                  <div className="mb-5"><PanchangPillarIcon /></div>
-                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
-                    {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
-                  </h3>
-                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
+                  <div className="mb-6"><PanchangPillarIcon /></div>
+                  {/* Shirorekha heading — Roman text with Devanagari headline bar */}
+                  <div className="mb-1">
+                    <div className="border-t-2 border-gold-primary/60 inline-block">
+                      <h3 className="text-gold-light text-2xl sm:text-3xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
+                        {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-gold-primary/70 text-sm font-medium italic mb-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en' ? 'Know Your Day' : locale === 'hi' ? 'अपना दिन जानें' : 'स्वदिनं जानातु'}
                   </p>
-                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                  <p className="text-text-secondary/70 text-[13px] leading-[1.8] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en'
-                      ? <>Precise <span className="text-gold-primary/90">tithi, nakshatra, yoga</span> and <span className="text-gold-primary/90">karana</span> timings for your location. Festival calendar with <span className="text-gold-primary/90">step-by-step puja vidhis</span>, mantras in Devanagari, and <span className="text-gold-primary/90">Ekadashi parana</span> computed with Hari Vasara rules. Find the <span className="text-gold-primary/90">perfect muhurat</span> for any of 20 life activities.</>
-                      : <>आपके स्थान के लिए सटीक <span className="text-gold-primary/90">तिथि, नक्षत्र, योग</span> और <span className="text-gold-primary/90">करण</span> समय। <span className="text-gold-primary/90">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-gold-primary/90">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-gold-primary/90">शुभ मुहूर्त</span> खोजें।</>
+                      ? <>Precise <span className="text-gold-primary/90 not-italic font-semibold">tithi, nakshatra, yoga</span> and <span className="text-gold-primary/90 not-italic font-semibold">karana</span> timings for your location. Festival calendar with <span className="text-gold-primary/90 not-italic font-semibold">step-by-step puja vidhis</span>, mantras in Devanagari, and <span className="text-gold-primary/90 not-italic font-semibold">Ekadashi parana</span> computed with Hari Vasara rules. Find the <span className="text-gold-primary/90 not-italic font-semibold">perfect muhurat</span> for any of 20 life activities.</>
+                      : <>आपके स्थान के लिए सटीक <span className="text-gold-primary/90 font-semibold">तिथि, नक्षत्र, योग</span> और <span className="text-gold-primary/90 font-semibold">करण</span> समय। <span className="text-gold-primary/90 font-semibold">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-gold-primary/90 font-semibold">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-gold-primary/90 font-semibold">शुभ मुहूर्त</span> खोजें।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
+                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
                     </span>
                   </div>
@@ -482,21 +487,25 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/kundali" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
-                  <div className="mb-5"><KundaliPillarIcon /></div>
-                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
-                    {locale === 'en' ? 'Kundali' : 'कुण्डली'}
-                  </h3>
-                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
+                  <div className="mb-6"><KundaliPillarIcon /></div>
+                  <div className="mb-1">
+                    <div className="border-t-2 border-gold-primary/60 inline-block">
+                      <h3 className="text-gold-light text-2xl sm:text-3xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
+                        {locale === 'en' ? 'Kundali' : 'कुण्डली'}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-gold-primary/70 text-sm font-medium italic mb-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en' ? 'Know Yourself' : locale === 'hi' ? 'स्वयं को जानें' : 'आत्मानं जानातु'}
                   </p>
-                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                  <p className="text-text-secondary/70 text-[13px] leading-[1.8] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en'
-                      ? <>Your complete birth chart with <span className="text-gold-primary/90">150+ yogas</span>, shadbala strength, and <span className="text-gold-primary/90">period-by-period dasha forecasts</span> across Mahadasha, Antardasha, and Pratyantardasha. <span className="text-gold-primary/90">36-Guna compatibility</span> matching, annual predictions via Varshaphal, and advanced systems — <span className="text-gold-primary/90">KP, Jaimini, Prashna</span>.</>
-                      : <>आपकी पूर्ण जन्म कुण्डली — <span className="text-gold-primary/90">150+ योग</span>, षड्बल और <span className="text-gold-primary/90">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-gold-primary/90">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-gold-primary/90">केपी, जैमिनी, प्रश्न</span>।</>
+                      ? <>Your complete birth chart with <span className="text-gold-primary/90 not-italic font-semibold">150+ yogas</span>, shadbala strength, and <span className="text-gold-primary/90 not-italic font-semibold">period-by-period dasha forecasts</span> across Mahadasha, Antardasha, and Pratyantardasha. <span className="text-gold-primary/90 not-italic font-semibold">36-Guna compatibility</span> matching, annual predictions via Varshaphal, and advanced systems — <span className="text-gold-primary/90 not-italic font-semibold">KP, Jaimini, Prashna</span>.</>
+                      : <>आपकी पूर्ण जन्म कुण्डली — <span className="text-gold-primary/90 font-semibold">150+ योग</span>, षड्बल और <span className="text-gold-primary/90 font-semibold">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-gold-primary/90 font-semibold">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-gold-primary/90 font-semibold">केपी, जैमिनी, प्रश्न</span>।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
+                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
                     </span>
                   </div>
@@ -508,21 +517,25 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/learn" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
-                  <div className="mb-5"><JyotishPillarIcon /></div>
-                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
-                    {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
-                  </h3>
-                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
+                  <div className="mb-6"><JyotishPillarIcon /></div>
+                  <div className="mb-1">
+                    <div className="border-t-2 border-gold-primary/60 inline-block">
+                      <h3 className="text-gold-light text-2xl sm:text-3xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
+                        {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="text-gold-primary/70 text-sm font-medium italic mb-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en' ? 'Master the Science' : locale === 'hi' ? 'विज्ञान में निपुणता' : 'विज्ञानं वशीकुर्यात्'}
                   </p>
-                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                  <p className="text-text-secondary/70 text-[13px] leading-[1.8] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {locale === 'en'
-                      ? <><span className="text-gold-primary/90">89 structured modules</span> taking you from the foundations — Grahas, Rashis, Nakshatras — through <span className="text-gold-primary/90">Dashas, Yogas, Shadbala</span>, to advanced systems like <span className="text-gold-primary/90">KP, Jaimini, and Tajika</span>. Interactive diagrams, classical Sanskrit references, and the computational astronomy behind every calculation.</>
-                      : <><span className="text-gold-primary/90">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-gold-primary/90">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-gold-primary/90">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
+                      ? <><span className="text-gold-primary/90 not-italic font-semibold">89 structured modules</span> taking you from the foundations — Grahas, Rashis, Nakshatras — through <span className="text-gold-primary/90 not-italic font-semibold">Dashas, Yogas, Shadbala</span>, to advanced systems like <span className="text-gold-primary/90 not-italic font-semibold">KP, Jaimini, and Tajika</span>. Interactive diagrams, classical Sanskrit references, and the computational astronomy behind every calculation.</>
+                      : <><span className="text-gold-primary/90 font-semibold">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-gold-primary/90 font-semibold">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-gold-primary/90 font-semibold">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
+                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? 'Start Learning →' : 'सीखना शुरू करें →'}
                     </span>
                   </div>

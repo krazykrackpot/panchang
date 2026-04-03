@@ -83,11 +83,32 @@ export default function Navbar() {
   // Auto-detect location on mount
   useEffect(() => { locationStore.detect(); }, []);
 
+  const ritualsLabel = locale === 'en' ? 'Rituals' : locale === 'hi' ? 'अनुष्ठान' : 'अनुष्ठानानि';
+
   const navItems: NavItem[] = [
     { href: '/', label: t('home') },
     { href: '/panchang', label: t('panchang') },
-    { href: '/kundali', label: t('kundali') },
-    { href: '/matching', label: t('matching') },
+    {
+      label: t('kundali'),
+      children: [
+        { href: '/kundali', label: t('kundali') },
+        { href: '/matching', label: t('matching') },
+        { href: '/varshaphal', label: t('varshaphal') },
+        { href: '/kp-system', label: t('kpSystem') },
+        { href: '/sade-sati', label: t('sadeSati') },
+        { href: '/horoscope', label: t('horoscope') },
+      ],
+    },
+    {
+      label: ritualsLabel,
+      children: [
+        { href: '/puja', label: locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि' },
+        { href: '/sankalpa', label: locale === 'en' ? 'Sankalpa' : 'सङ्कल्प' },
+        { href: '/devotional', label: t('devotional') },
+        { href: '/shraddha', label: t('shraddha') },
+        { href: '/muhurta-ai', label: t('muhurtaAi') },
+      ],
+    },
     {
       label: t('calendars'),
       children: [
@@ -103,22 +124,13 @@ export default function Navbar() {
       label: t('tools'),
       children: [
         { href: '/sign-calculator', label: t('signCalculator') },
-        { href: '/sade-sati', label: t('sadeSati') },
-        { href: '/prashna', label: t('prashna') },
         { href: '/baby-names', label: t('babyNames') },
-        { href: '/shraddha', label: t('shraddha') },
         { href: '/vedic-time', label: t('vedicTime') },
-        { href: '/upagraha', label: t('upagraha') },
-        { href: '/puja', label: locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि' },
-        { href: '/sankalpa', label: locale === 'en' ? 'Sankalpa' : 'सङ्कल्प' },
-        { href: '/devotional', label: t('devotional') },
-        { href: '/varshaphal', label: t('varshaphal') },
-        { href: '/kp-system', label: t('kpSystem') },
+        { href: '/prashna', label: t('prashna') },
         { href: '/prashna-ashtamangala', label: t('ashtamangala') },
-        { href: '/muhurta-ai', label: t('muhurtaAi') },
+        { href: '/upagraha', label: t('upagraha') },
         { href: '/kaal-nirnaya', label: t('kaalNirnaya') },
         { href: '/nivas-shool', label: t('nivasShool') },
-        { href: '/horoscope', label: t('horoscope') },
       ],
     },
     {

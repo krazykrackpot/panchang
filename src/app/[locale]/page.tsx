@@ -433,39 +433,93 @@ export default function HomePage() {
 
       <GoldDivider />
 
-      {/* Big Bold Cards — Primary Tools */}
+      {/* Three Pillars — Value Propositions */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={stagger}
-        >
-          <motion.div variants={fadeInUp} className="text-center mb-12">
+        <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={stagger}>
+          <motion.div variants={fadeInUp} className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
-              <span className="text-gold-gradient">{t('exploreTools')}</span>
+              <span className="text-gold-gradient">{locale === 'en' ? 'Three Pillars of Vedic Wisdom' : locale === 'hi' ? 'वैदिक ज्ञान के तीन स्तम्भ' : 'वैदिकज्ञानस्य त्रयः स्तम्भाः'}</span>
             </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto" style={bf}>{t('exploreToolsDesc')}</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {HERO_CARDS.map((card) => (
-              <motion.div key={card.href} variants={fadeInUp}>
-                <Link href={card.href} className="block group">
-                  <div className={`relative rounded-2xl bg-gradient-to-br ${card.gradient} border ${card.border} p-5 sm:p-6 min-h-[200px] sm:min-h-[220px] flex flex-col items-center justify-center text-center transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-lg group-hover:shadow-black/20 overflow-hidden`}>
-                    <div className="mb-4 transition-transform duration-300 group-hover:scale-110">
-                      {card.svg}
-                    </div>
-                    <h3 className={`${card.titleColor} font-bold text-base sm:text-lg mb-1.5`} style={bf}>
-                      {card.label[locale === 'sa' ? 'hi' : (locale as 'en' | 'hi')]}
-                    </h3>
-                    <p className="text-white/40 text-[11px] sm:text-xs leading-relaxed max-w-[180px]" style={bf}>
-                      {card.desc[locale === 'sa' ? 'hi' : (locale as 'en' | 'hi')]}
-                    </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* ── Pillar 1: Panchang ── */}
+            <motion.div variants={fadeInUp}>
+              <Link href="/panchang" className="block group h-full">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                  <div className="mb-5"><CalendarSVG /></div>
+                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
+                    {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
+                  </h3>
+                  <p className="text-gold-primary/70 text-sm font-semibold mb-4" style={bf}>
+                    {locale === 'en' ? 'Know Your Day' : locale === 'hi' ? 'अपना दिन जानें' : 'स्वदिनं जानातु'}
+                  </p>
+                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
+                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Daily panchang with precise 24h timings' : 'सटीक 24h समय के साथ दैनिक पंचांग'}</li>
+                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Festival calendar with puja vidhis & mantras' : 'पूजा विधि और मन्त्रों के साथ त्योहार पंचांग'}</li>
+                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Ekadashi parana with Hari Vasara rules' : 'हरि वासर नियमों के साथ एकादशी पारण'}</li>
+                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Muhurat finder for 20 activities' : '20 गतिविधियों के लिए मुहूर्त खोजक'}</li>
+                  </ul>
+                  <div className="mt-6 pt-4 border-t border-gold-primary/10">
+                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
+                      {locale === 'en' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
+                    </span>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* ── Pillar 2: Kundali ── */}
+            <motion.div variants={fadeInUp}>
+              <Link href="/kundali" className="block group h-full">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#1a2a5a]/40 via-[#0a1530]/50 to-[#0a0e27] border border-blue-500/15 hover:border-blue-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/10 overflow-hidden">
+                  <div className="mb-5"><KundaliSVG /></div>
+                  <h3 className="text-blue-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
+                    {locale === 'en' ? 'Kundali' : 'कुण्डली'}
+                  </h3>
+                  <p className="text-blue-400/70 text-sm font-semibold mb-4" style={bf}>
+                    {locale === 'en' ? 'Know Yourself' : locale === 'hi' ? 'स्वयं को जानें' : 'आत्मानं जानातु'}
+                  </p>
+                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Birth chart with 150+ yogas & shadbala' : '150+ योग और षड्बल के साथ जन्म कुण्डली'}</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Dasha forecast — period-by-period life predictions' : 'दशा पूर्वानुमान — काल-दर-काल जीवन भविष्यवाणी'}</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Compatibility matching (36-Guna Milan)' : 'गुण मिलान (36 गुण अनुकूलता)'}</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Varshaphal, KP System & Prashna' : 'वर्षफल, केपी पद्धति और प्रश्न'}</li>
+                  </ul>
+                  <div className="mt-6 pt-4 border-t border-blue-500/10">
+                    <span className="text-blue-400 text-sm font-bold group-hover:text-blue-300 transition-colors">
+                      {locale === 'en' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* ── Pillar 3: Jyotish (Learn) ── */}
+            <motion.div variants={fadeInUp}>
+              <Link href="/learn" className="block group h-full">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#3a2a10]/40 via-[#1a1508]/50 to-[#0a0e27] border border-amber-500/15 hover:border-amber-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-amber-500/10 overflow-hidden">
+                  <div className="mb-5"><LearnSVG /></div>
+                  <h3 className="text-amber-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
+                    {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
+                  </h3>
+                  <p className="text-amber-400/70 text-sm font-semibold mb-4" style={bf}>
+                    {locale === 'en' ? 'Master the Science' : locale === 'hi' ? 'विज्ञान में निपुणता' : 'विज्ञानं वशीकुर्यात्'}
+                  </p>
+                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
+                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? '89 structured modules — foundation to advanced' : '89 संरचित पाठ्यक्रम — आधार से उन्नत तक'}</li>
+                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Grahas, Rashis, Nakshatras, Dashas & Yogas' : 'ग्रह, राशि, नक्षत्र, दशा और योग'}</li>
+                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'KP System, Jaimini & Tajika techniques' : 'केपी पद्धति, जैमिनी और ताजिक तकनीक'}</li>
+                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Interactive diagrams & classical references' : 'इंटरैक्टिव आरेख और शास्त्रीय सन्दर्भ'}</li>
+                  </ul>
+                  <div className="mt-6 pt-4 border-t border-amber-500/10">
+                    <span className="text-amber-400 text-sm font-bold group-hover:text-amber-300 transition-colors">
+                      {locale === 'en' ? 'Start Learning →' : 'सीखना शुरू करें →'}
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           </div>
         </motion.div>
       </section>

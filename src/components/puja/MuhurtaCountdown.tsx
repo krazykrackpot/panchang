@@ -158,15 +158,20 @@ export default function MuhurtaCountdown({
         </span>
       </div>
 
-      {/* Countdown for upcoming */}
-      {status === 'upcoming' && (
-        <div className="mt-4 pt-3 border-t border-gold-primary/10">
-          <span className="text-xs text-text-secondary/50">{LABELS.startsIn[loc]}: </span>
-          <span className="text-sm font-bold text-gold-primary">
-            {formatCountdown(muhurta.start.getTime() - now.getTime())}
-          </span>
-        </div>
-      )}
+      {/* Countdown — only show if within 24 hours */}
+      {status === 'upcoming' && (() => {
+        const msUntil = muhurta.start.getTime() - now.getTime();
+        const isWithin24h = msUntil > 0 && msUntil < 24 * 60 * 60 * 1000;
+        if (!isWithin24h) return null;
+        return (
+          <div className="mt-4 pt-3 border-t border-gold-primary/10">
+            <span className="text-xs text-text-secondary/50">{LABELS.startsIn[loc]}: </span>
+            <span className="text-sm font-bold text-gold-primary">
+              {formatCountdown(msUntil)}
+            </span>
+          </div>
+        );
+      })()}
     </div>
   );
 }

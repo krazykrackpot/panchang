@@ -238,20 +238,7 @@ export default function PujaVidhiPage() {
     return m;
   }, [puja]);
 
-  const computedMuhurta = useMemo(() => {
-    if (puja?.muhurtaType !== 'computed' || !puja.muhurtaWindow) return undefined;
-    if (!userLat || !userLng) return undefined;
-    const now = new Date();
-    try {
-      return computePujaMuhurta(
-        puja.muhurtaWindow.type,
-        now.getFullYear(), now.getMonth() + 1, now.getDate(),
-        userLat, userLng, timezoneOffset
-      );
-    } catch { return undefined; }
-  }, [puja, userLat, userLng, timezoneOffset]);
-
-  // Compute the next festival date for this puja
+  // Compute the next festival date for this puja (MUST be before computedMuhurta)
   const festivalDate = useMemo(() => {
     if (!puja || !userLat || !userLng) return undefined;
     // Skip graha_shanti — those are done on demand, not on a fixed date
@@ -309,6 +296,19 @@ export default function PujaVidhiPage() {
     }
     return undefined;
   }, [puja, userLat, userLng, userTimezone]);
+
+  // Compute muhurta for the ACTUAL festival date, not today
+  const computedMuhurta = useMemo(() => {
+    if (puja?.muhurtaType !== 'computed' || !puja.muhurtaWindow) return undefined;
+    if (!userLat || !userLng || !festivalDate) return undefined;
+    try {
+      return computePujaMuhurta(
+        puja.muhurtaWindow.type,
+        festivalDate.getFullYear(), festivalDate.getMonth() + 1, festivalDate.getDate(),
+        userLat, userLng, timezoneOffset
+      );
+    } catch { return undefined; }
+  }, [puja, userLat, userLng, timezoneOffset, festivalDate]);
 
   if (!puja) {
     return (

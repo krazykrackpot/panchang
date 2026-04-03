@@ -8,6 +8,7 @@ import UserMenu from '@/components/auth/UserMenu';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import { useLocationStore } from '@/stores/location-store';
+import NotificationBell from '@/components/notifications/NotificationBell';
 import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
 
 interface DropdownItem {
@@ -181,6 +182,7 @@ export default function Navbar() {
                 <span className="max-w-[140px] truncate">{locationStore.name}</span>
               </div>
             )}
+            {hydrated && user && <NotificationBell />}
             <div className="w-px h-6 bg-gold-primary/20" />
             <button
               onClick={() => {

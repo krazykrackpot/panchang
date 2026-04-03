@@ -693,6 +693,42 @@ export default function PanchangPage() {
             );
           })()}
 
+          {/* Current Hora — Best Activity Now */}
+          {panchang.hora && panchang.hora.length > 0 && (() => {
+            const now = new Date();
+            const nowMinutes = now.getHours() * 60 + now.getMinutes();
+            const currentHora = panchang.hora.find((h: { startTime: string; endTime: string; planetId: number }) => {
+              const [sh, sm] = h.startTime.split(':').map(Number);
+              const [eh, em] = h.endTime.split(':').map(Number);
+              return nowMinutes >= sh * 60 + sm && nowMinutes < eh * 60 + em;
+            });
+            const HORA_ACTIVITIES: Record<number, { en: string; hi: string }> = {
+              0: { en: 'Government work, authority matters, health', hi: 'सरकारी कार्य, अधिकार, स्वास्थ्य' },
+              1: { en: 'Travel, liquids, public relations', hi: 'यात्रा, तरल पदार्थ, जनसंपर्क' },
+              2: { en: 'Property, machinery, legal battles', hi: 'संपत्ति, मशीनरी, कानूनी कार्य' },
+              3: { en: 'Communication, trade, learning', hi: 'संचार, व्यापार, शिक्षा' },
+              4: { en: 'Education, finance, spiritual practice', hi: 'शिक्षा, वित्त, आध्यात्मिक साधना' },
+              5: { en: 'Romance, arts, luxury purchases', hi: 'प्रेम, कला, विलासिता' },
+              6: { en: 'Labor, iron work, mining, discipline', hi: 'श्रम, लोहा, खनन, अनुशासन' },
+            };
+            if (!currentHora) return null;
+            const activity = HORA_ACTIVITIES[currentHora.planetId] || HORA_ACTIVITIES[0];
+            return (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+                className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5 text-center mb-10">
+                <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
+                  {locale === 'en' ? 'Current Hora — Best Activity Now' : 'वर्तमान होरा — अभी सर्वोत्तम कार्य'}
+                </div>
+                <div className="text-amber-300 font-bold text-xl font-mono">
+                  {currentHora.startTime} – {currentHora.endTime}
+                </div>
+                <div className="text-text-secondary text-sm mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {locale === 'en' ? activity.en : activity.hi}
+                </div>
+              </motion.div>
+            );
+          })()}
+
           <GoldDivider />
 
           {/* ═══ TIMES — BOLD ═══ */}

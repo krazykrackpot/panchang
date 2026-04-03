@@ -228,41 +228,7 @@ export default function TodayPanchangWidget() {
         ))}
       </div>
 
-      {/* Hora-based quick activity planner */}
-      {panchang.hora && panchang.hora.length > 0 && (() => {
-        const now = new Date();
-        const nowMinutes = now.getHours() * 60 + now.getMinutes();
-        const currentHora = panchang.hora.find((h: { startTime: string; endTime: string; planetId: number }) => {
-          const [sh, sm] = h.startTime.split(':').map(Number);
-          const [eh, em] = h.endTime.split(':').map(Number);
-          const start = sh * 60 + sm;
-          const end = eh * 60 + em;
-          return nowMinutes >= start && nowMinutes < end;
-        });
-        const HORA_ACTIVITIES: Record<number, { en: string; hi: string }> = {
-          0: { en: 'Government work, authority matters, health', hi: 'सरकारी कार्य, स्वास्थ्य' },
-          1: { en: 'Travel, liquids, public relations', hi: 'यात्रा, तरल पदार्थ, जनसंपर्क' },
-          2: { en: 'Property, machinery, legal battles', hi: 'संपत्ति, मशीनरी, कानूनी कार्य' },
-          3: { en: 'Communication, trade, learning', hi: 'संचार, व्यापार, शिक्षा' },
-          4: { en: 'Education, finance, spiritual practice', hi: 'शिक्षा, वित्त, आध्यात्मिक' },
-          5: { en: 'Romance, arts, luxury purchases', hi: 'प्रेम, कला, विलासिता' },
-          6: { en: 'Labor, iron work, mining, discipline', hi: 'श्रम, लोहा, खनन, अनुशासन' },
-        };
-        if (!currentHora) return null;
-        const activity = HORA_ACTIVITIES[currentHora.planetId] || HORA_ACTIVITIES[0];
-        return (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-            className="mt-6 glass-card rounded-xl p-4 text-center border border-gold-primary/15">
-            <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1">
-              {locale === 'en' ? 'Current Hora — Best Activity Now' : 'वर्तमान होरा — अभी सर्वोत्तम कार्य'}
-            </div>
-            <div className="text-gold-light font-bold text-lg" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
-              {currentHora.startTime} – {currentHora.endTime}
-            </div>
-            <div className="text-text-secondary text-xs mt-1">{locale === 'en' ? activity.en : activity.hi}</div>
-          </motion.div>
-        );
-      })()}
+      {/* Hora section moved to panchang page */}
     </div>
   );
 }

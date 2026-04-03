@@ -29,6 +29,8 @@ const LABELS = {
     pobPlaceholder: 'Search your birth city...',
     submit: 'Continue',
     saving: 'Saving...',
+    skip: 'Skip for now',
+    skipHint: 'You can add birth details later in Settings',
   },
   hi: {
     title: 'देखो पंचांग में आपका स्वागत है!',
@@ -43,6 +45,8 @@ const LABELS = {
     pobPlaceholder: 'अपना जन्म शहर खोजें...',
     submit: 'जारी रखें',
     saving: 'सहेज रहे हैं...',
+    skip: 'अभी छोड़ें',
+    skipHint: 'जन्म विवरण बाद में सेटिंग्स में जोड़ सकते हैं',
   },
   sa: {
     title: 'देखो पञ्चाङ्गे स्वागतम्!',
@@ -57,6 +61,8 @@ const LABELS = {
     pobPlaceholder: 'स्वजन्मनगरं अन्विष्यतु...',
     submit: 'अग्रे गच्छतु',
     saving: 'सञ्चिनोति...',
+    skip: 'अधुना त्यजतु',
+    skipHint: 'जन्मविवरणं पश्चात् सेटिंग्स मध्ये योजयितुं शक्यते',
   },
 };
 
@@ -92,15 +98,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     setError('');
 
     if (!fullName.trim()) {
-      setError('Please enter your name');
+      setError(locale === 'en' ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
       return;
     }
-    if (!birthDate) {
-      setError('Please enter your date of birth');
-      return;
-    }
-    if (!birthLocation) {
-      setError('Please select a birth place from the suggestions');
+    // DOB and POB are optional — user can skip
+    if (birthDate && !birthLocation) {
+      setError(locale === 'en' ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
       return;
     }
 
@@ -114,29 +117,33 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         return;
       }
 
-      const locationData = {
-        lat: birthLocation.lat,
-        lng: birthLocation.lng,
-        name: birthLocation.name,
-        timezone: birthLocation.timezone,
-        birth_date: birthDate,
-        birth_time: birthTime || null,
+      // Build profile data — birth fields only if provided
+      const profileData: Record<string, unknown> = {
+        id: user.id,
+        display_name: fullName.trim(),
       };
+
+      if (birthDate && birthLocation) {
+        profileData.default_location = {
+          lat: birthLocation.lat,
+          lng: birthLocation.lng,
+          name: birthLocation.name,
+          timezone: birthLocation.timezone,
+          birth_date: birthDate,
+          birth_time: birthTime || null,
+        };
+        profileData.date_of_birth = birthDate;
+        profileData.time_of_birth = birthTime || null;
+        profileData.birth_time_known = !!birthTime;
+        profileData.birth_place = birthLocation.name;
+        profileData.birth_lat = birthLocation.lat;
+        profileData.birth_lng = birthLocation.lng;
+        profileData.birth_timezone = birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+      }
 
       const { error: updateError } = await supabase
         .from('user_profiles')
-        .upsert({
-          id: user.id,
-          display_name: fullName.trim(),
-          default_location: locationData,
-          date_of_birth: birthDate,
-          time_of_birth: birthTime || null,
-          birth_time_known: !!birthTime,
-          birth_place: birthLocation.name,
-          birth_lat: birthLocation.lat,
-          birth_lng: birthLocation.lng,
-          birth_timezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
-        }, { onConflict: 'id' });
+        .upsert(profileData, { onConflict: 'id' });
 
       if (updateError) {
         setError(updateError.message);
@@ -144,30 +151,32 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         return;
       }
 
-      // Compute kundali snapshot via API
-      try {
-        const session = await supabase.auth.getSession();
-        const token = session.data.session?.access_token;
-        if (token) {
-          await fetch('/api/user/profile', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-              name: fullName.trim(),
-              dateOfBirth: birthDate,
-              timeOfBirth: birthTime || '12:00',
-              birthTimeKnown: !!birthTime,
-              birthPlace: birthLocation.name,
-              birthLat: birthLocation.lat,
-              birthLng: birthLocation.lng,
-              birthTimezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
-            }),
-          });
-        }
-      } catch { /* snapshot is best-effort; profile already saved */ }
+      // Compute kundali snapshot via API — only if birth data provided
+      if (birthDate && birthLocation) {
+        try {
+          const session = await supabase.auth.getSession();
+          const token = session.data.session?.access_token;
+          if (token) {
+            await fetch('/api/user/profile', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              },
+              body: JSON.stringify({
+                name: fullName.trim(),
+                dateOfBirth: birthDate,
+                timeOfBirth: birthTime || '12:00',
+                birthTimeKnown: !!birthTime,
+                birthPlace: birthLocation.name,
+                birthLat: birthLocation.lat,
+                birthLng: birthLocation.lng,
+                birthTimezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+              }),
+            });
+          }
+        } catch { /* snapshot is best-effort; profile already saved */ }
+      }
 
       // Also persist to localStorage for offline access
       try {
@@ -229,7 +238,6 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               type="date"
               value={birthDate}
               onChange={(e) => setBirthDate(e.target.value)}
-              required
               className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary focus:border-gold-primary/40 focus:outline-none text-sm [color-scheme:dark]"
             />
           </div>
@@ -279,6 +287,35 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               L.submit
             )}
           </button>
+
+          {/* Skip button */}
+          <button
+            type="button"
+            onClick={async () => {
+              if (!fullName.trim()) {
+                setError(locale === 'en' ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
+                return;
+              }
+              setSaving(true);
+              try {
+                const supabase = getSupabase();
+                if (supabase && user) {
+                  await supabase.from('user_profiles').upsert({
+                    id: user.id,
+                    display_name: fullName.trim(),
+                  }, { onConflict: 'id' });
+                }
+                onComplete();
+              } catch {
+                onComplete();
+              }
+            }}
+            disabled={saving}
+            className="w-full py-2.5 text-text-secondary/60 text-sm hover:text-text-secondary transition-colors"
+          >
+            {L.skip}
+          </button>
+          <p className="text-text-secondary/30 text-[10px] text-center">{L.skipHint}</p>
         </form>
       </div>
     </div>

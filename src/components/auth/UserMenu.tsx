@@ -15,6 +15,7 @@ export default function UserMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [profileChecked, setProfileChecked] = useState(false);
+  const [profileIncomplete, setProfileIncomplete] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,14 +36,22 @@ export default function UserMenu() {
     if (!supabase) return;
 
     supabase.from('user_profiles')
-      .select('default_location, date_of_birth')
+      .select('default_location, date_of_birth, display_name')
       .eq('id', user.id)
       .maybeSingle()
       .then(({ data, error }) => {
         setProfileChecked(true);
-        // Show onboarding if no profile, no birth data, or query failed
-        if (error || !data || (!data.default_location && !data.date_of_birth)) {
+        if (error || !data) {
+          // No profile at all — show onboarding
           setShowOnboarding(true);
+        } else if (!data.date_of_birth && !data.default_location) {
+          // Profile exists but no birth data — could be skipped onboarding
+          if (!data.display_name) {
+            setShowOnboarding(true);
+          } else {
+            // Has name but no birth data — show nudge, not onboarding
+            setProfileIncomplete(true);
+          }
         }
       });
   }, [user, profileChecked]);
@@ -86,6 +95,11 @@ export default function UserMenu() {
           <div className="px-4 py-2 border-b border-gold-primary/10">
             <p className="text-text-primary text-sm font-medium truncate">{displayName}</p>
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
+            {profileIncomplete && (
+              <a href={`/${locale}/settings`} className="block mt-1.5 px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/15 text-amber-400 text-[10px] leading-tight hover:bg-amber-500/15 transition-colors">
+                {locale === 'en' ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
+              </a>
+            )}
           </div>
           <a
             href={`/${locale}/profile`}

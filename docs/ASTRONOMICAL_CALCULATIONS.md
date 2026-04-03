@@ -364,28 +364,55 @@ Meaning: moonrise occurs when the Moon's center is 0.3° below the geometric hor
 
 ## 7. Ayanamsha (Precession)
 
-**File:** `src/lib/ephem/astronomical.ts` → `lahiriAyanamsha()`
-**Reference:** Lahiri/Chitrapaksha system (IAU precession)
+**File:** `src/lib/ephem/astronomical.ts` → `getAyanamsha()`, `lahiriAyanamsha()`
+**Reference:** IAU precession + multiple ayanamsha systems
 
-Vedic astrology uses the **sidereal zodiac**, which accounts for the precession of the equinoxes. The ayanamsha is the difference between tropical and sidereal zodiacs.
+Vedic astrology uses the **sidereal zodiac**, which accounts for the precession of the equinoxes. The ayanamsha is the accumulated angular difference between tropical (season-fixed) and sidereal (star-fixed) zodiacs.
 
-### Lahiri Ayanamsha
+### Precession Physics
 
-The most widely used system in India. Defined by fixing the star Spica (Chitra) at exactly 180° sidereal longitude.
+Earth's rotational axis traces a cone in space over **25,772 years** due to the gravitational torque from the Sun and Moon on Earth's equatorial bulge. Rate: **50.29 arcseconds/year** (≈ 1° every 71.6 years).
 
-```
-ayanamsha = 24.042 + 1.3968·T + 0.0005·T²    (approximate)
-```
+Historical milestones:
+- **Hipparchus (c. 150 BCE):** First measured precession — estimated 36"/year
+- **Surya Siddhanta (c. 400 CE):** Described precession but used incorrect trepidation (oscillating) model
+- **Varahamihira (505 CE):** Compared 5 astronomical systems in Pancha Siddhantika
+- **Bhaskaracharya II (1150 CE):** Gave precession rate close to modern value
+- **Meghnad Saha Committee (1955):** Officially adopted Lahiri for India's National Calendar
 
-For April 2, 2026: ayanamsha ≈ 24.22°
+### Supported Ayanamsha Systems
+
+Our app implements 6 ayanamsha systems via `getAyanamsha(jd, type)`:
+
+| System | Formula (T = centuries from J2000.0) | Value at 2026 | Anchor | Zero Ayanamsha Date |
+|--------|--------------------------------------|---------------|--------|---------------------|
+| **Lahiri (Chitrapaksha)** | 23.853 + 1.397·T + 0.0002·T² | **24.22°** | Spica at 180° | ~285 CE |
+| **KP (Krishnamurti)** | 23.761 + 1.397·T + 0.0002·T² | **24.12°** | Spica (refined) | ~291 CE |
+| **CV Raman** | 22.460 + 1.385·T + 0.0002·T² | **22.82°** | — | ~397 CE |
+| **BV Raman** | 22.378 + 1.383·T + 0.0002·T² | **22.74°** | — | ~400 CE |
+| **Sri Yukteshwar** | 21.767 + 1.385·T | **22.13°** | — | ~499 CE |
+| **JN Bhasin** | 23.152 + 1.397·T + 0.0002·T² | **23.52°** | — | ~334 CE |
+
+### Why the Choice Matters — Real Example
+
+**Birth: 14 May 1988, 06:00 IST, Delhi**
+
+| Planet | Lahiri (23.69°) | Raman (22.30°) | Impact |
+|--------|----------------|----------------|--------|
+| **Sun** | Aries 29.75° | **Taurus 1.14°** | **Sign changed** — Sun sign, lordship, all Sun yogas differ |
+| **Venus** | Mrigashira Nak. | **Ardra Nak.** | **Nakshatra changed** — affects matching (Melapaka) |
+| **Ketu** | Purva Phalguni | **Uttara Phalguni** | **Nakshatra changed** — shifts spiritual karma patterns |
+| Other 6 | Same signs | Same nakshatras | Not near boundaries |
+
+A 1.39° ayanamsha difference creates 3 changes in one chart. For planets near 0° or 30° of any sign, the system choice determines the entire interpretation.
 
 ### Conversion
 
 ```
-sidereal_longitude = tropical_longitude - ayanamsha
+sidereal_longitude = tropical_longitude - ayanamsha(JD, system)
 ```
 
-This shifts all planet positions, signs, nakshatras by ~24° from the Western (tropical) system.
+The kundali generator applies the selected ayanamsha (Lahiri/Raman/KP) to ALL planet positions, ascendant, and divisional charts.
 
 ---
 

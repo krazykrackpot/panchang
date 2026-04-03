@@ -1,7 +1,7 @@
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  getPlanetaryPositions, lahiriAyanamsha, normalizeDeg, formatDegrees, approximateSunrise,
+  getPlanetaryPositions, lahiriAyanamsha, getAyanamsha, normalizeDeg, formatDegrees, approximateSunrise,
 } from './astronomical';
 import { computeFullCoordinates, computeCombust } from './coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -587,11 +587,14 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const utHour = decimalHour - tzOffset;
 
   const jd = dateToJD(year, month, day, utHour);
-  const ayanamshaValue = lahiriAyanamsha(jd);
+  // Use selected ayanamsha system (default: lahiri)
+  const ayanamshaType = (birthData.ayanamsha === 'raman' || birthData.ayanamsha === 'kp')
+    ? birthData.ayanamsha : 'lahiri';
+  const ayanamshaValue = getAyanamsha(jd, ayanamshaType);
 
-  // Ascendant
+  // Ascendant — apply selected ayanamsha
   const tropicalAsc = calculateAscendant(jd, birthData.lat, birthData.lng);
-  const siderealAsc = toSidereal(tropicalAsc, jd);
+  const siderealAsc = normalizeDeg(tropicalAsc - ayanamshaValue);
   const ascSign = getRashiNumber(siderealAsc);
 
   // House cusps
@@ -611,10 +614,12 @@ export function generateKundali(birthData: BirthData): KundaliData {
 
   // Planetary positions
   const rawPlanets = getPlanetaryPositions(jd);
-  const sunRawLong = toSidereal(rawPlanets.find(p => p.id === 0)!.longitude, jd);
+  // Use selected ayanamsha for all sidereal conversions
+  const toSid = (tropLong: number) => normalizeDeg(tropLong - ayanamshaValue);
+  const sunRawLong = toSid(rawPlanets.find(p => p.id === 0)!.longitude);
   const planets: PlanetPosition[] = rawPlanets.map((p) => {
     const graha = GRAHAS[p.id];
-    const sidLong = toSidereal(p.longitude, jd);
+    const sidLong = toSid(p.longitude);
     const sign = getRashiNumber(sidLong);
     const nakNum = getNakshatraNumber(sidLong);
     const pada = getNakshatraPada(sidLong);

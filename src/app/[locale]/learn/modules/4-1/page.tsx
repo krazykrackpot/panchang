@@ -370,6 +370,59 @@ function Page2() {
             : 'A mere 0.88-degree difference in ayanamsha pushes the planet from Aries to Pisces — a completely different sign, different ruler, different interpretation. This problem arises when a planet is near any sign boundary (0-2 degrees or 28-30 degrees of any sign).'}
         </p>
       </section>
+
+      {/* Real-World Comparison */}
+      <section className="glass-card rounded-xl p-5 border border-violet-500/15">
+        <h4 className="text-violet-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'वास्तविक उदाहरण — लहिरी बनाम रमन' : 'Real Chart Comparison — Lahiri vs Raman'}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-3">
+          {isHi
+            ? 'जन्म: 14 मई 1988, 06:00 IST, दिल्ली। लहिरी अयनांश: 23.69°। रमन अयनांश: 22.30°। अन्तर: 1.39°। यह छोटा सा अन्तर तीन प्रमुख परिवर्तन लाता है:'
+            : 'Birth: 14 May 1988, 06:00 IST, Delhi. Lahiri ayanamsha: 23.69°. Raman ayanamsha: 22.30°. Difference: 1.39°. This seemingly small gap causes THREE major changes:'}
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-violet-500/20">
+                <th className="text-left text-text-tertiary py-2 pr-3">{isHi ? 'ग्रह' : 'Planet'}</th>
+                <th className="text-left text-gold-light py-2 pr-3">{isHi ? 'लहिरी' : 'Lahiri'}</th>
+                <th className="text-left text-cyan-300 py-2 pr-3">{isHi ? 'रमन' : 'Raman'}</th>
+                <th className="text-left text-red-400 py-2">{isHi ? 'परिवर्तन' : 'Changed?'}</th>
+              </tr>
+            </thead>
+            <tbody className="text-text-secondary">
+              <tr className="border-b border-white/5 bg-red-500/5">
+                <td className="py-2 pr-3 font-medium text-gold-light">{isHi ? 'सूर्य' : 'Sun'}</td>
+                <td className="py-2 pr-3">{isHi ? 'मेष 29.75°' : 'Aries 29.75°'}</td>
+                <td className="py-2 pr-3">{isHi ? 'वृषभ 1.14°' : 'Taurus 1.14°'}</td>
+                <td className="py-2 text-red-400 font-bold">{isHi ? 'राशि बदली!' : 'SIGN CHANGED!'}</td>
+              </tr>
+              <tr className="border-b border-white/5 bg-amber-500/5">
+                <td className="py-2 pr-3 font-medium text-gold-light">{isHi ? 'शुक्र' : 'Venus'}</td>
+                <td className="py-2 pr-3">{isHi ? 'मृगशिरा नक्षत्र' : 'Mrigashira Nak.'}</td>
+                <td className="py-2 pr-3">{isHi ? 'आर्द्रा नक्षत्र' : 'Ardra Nak.'}</td>
+                <td className="py-2 text-amber-400 font-bold">{isHi ? 'नक्षत्र बदला!' : 'NAK. CHANGED!'}</td>
+              </tr>
+              <tr className="border-b border-white/5 bg-amber-500/5">
+                <td className="py-2 pr-3 font-medium text-gold-light">{isHi ? 'केतु' : 'Ketu'}</td>
+                <td className="py-2 pr-3">{isHi ? 'पूर्वा फाल्गुनी' : 'P. Phalguni Nak.'}</td>
+                <td className="py-2 pr-3">{isHi ? 'उत्तरा फाल्गुनी' : 'U. Phalguni Nak.'}</td>
+                <td className="py-2 text-amber-400 font-bold">{isHi ? 'नक्षत्र बदला!' : 'NAK. CHANGED!'}</td>
+              </tr>
+              <tr className="border-b border-white/5">
+                <td className="py-2 pr-3 text-text-tertiary">{isHi ? 'अन्य 6 ग्रह' : 'Other 6 planets'}</td>
+                <td className="py-2" colSpan={3}>{isHi ? 'समान राशि, समान नक्षत्र (सीमा से दूर)' : 'Same signs, same nakshatras (not near boundaries)'}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-text-secondary text-xs leading-relaxed mt-3">
+          {isHi
+            ? 'सूर्य का मेष से वृषभ में जाना एक बड़ा परिवर्तन है — सूर्य राशि, सूर्य का स्वामी, और सूर्य से जुड़े सभी योग प्रभावित होते हैं। शुक्र का नक्षत्र बदलना विवाह अनुकूलता (मेलापक) गणना को प्रभावित करता है। एक ही जन्म डेटा — दो अलग-अलग जीवन कथाएँ, केवल अयनांश चयन के कारण।'
+            : 'The Sun moving from Aries to Taurus is a MAJOR shift — the Sun sign, its lordship, and all Sun-related yogas change entirely. Venus changing nakshatras affects marriage compatibility (Melapaka) calculations. Ketu changing nakshatras shifts spiritual karmic patterns. Same birth data — two different life narratives, just from the ayanamsha choice.'}
+        </p>
+      </section>
     </div>
   );
 }

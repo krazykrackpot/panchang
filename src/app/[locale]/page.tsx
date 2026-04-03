@@ -475,7 +475,7 @@ export default function HomePage() {
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
                     </span>
                   </div>
@@ -505,7 +505,7 @@ export default function HomePage() {
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
                     </span>
                   </div>
@@ -535,7 +535,7 @@ export default function HomePage() {
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
-                    <span className="text-gold-primary text-sm font-semibold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                    <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                       {locale === 'en' ? 'Start Learning →' : 'सीखना शुरू करें →'}
                     </span>
                   </div>

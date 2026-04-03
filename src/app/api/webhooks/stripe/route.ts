@@ -4,7 +4,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { invalidateTierCache } from '@/lib/subscription/check-access';
 
 function getStripe() {
-  return new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+  return new Stripe((process.env.STRIPE_SECRET_KEY || '').trim(), {
     apiVersion: '2025-03-31.basil' as Stripe.LatestApiVersion,
     httpClient: Stripe.createFetchHttpClient(),
     maxNetworkRetries: 3,
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.text();
     const sig = req.headers.get('stripe-signature') || '';
-    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
 
     if (!webhookSecret) {
       return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 });

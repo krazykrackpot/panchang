@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     if (currency === 'USD') {
       // Stripe checkout
-      const secretKey = process.env.STRIPE_SECRET_KEY;
+      const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
       if (!secretKey) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }
@@ -70,8 +70,8 @@ export async function POST(req: Request) {
 
     if (currency === 'INR') {
       // Razorpay checkout
-      const keyId = process.env.RAZORPAY_KEY_ID;
-      const keySecret = process.env.RAZORPAY_KEY_SECRET;
+      const keyId = process.env.RAZORPAY_KEY_ID?.trim();
+      const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
       if (!keyId || !keySecret) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }

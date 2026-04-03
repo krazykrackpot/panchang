@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.text();
     const sig = req.headers.get('x-razorpay-signature') || '';
-    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET;
+    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET?.trim();
 
     if (!webhookSecret) {
       return NextResponse.json({ error: 'Webhook not configured' }, { status: 503 });

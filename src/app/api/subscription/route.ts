@@ -80,7 +80,7 @@ export async function POST(req: Request) {
       // Optionally cancel with provider
       if (subscription.provider === 'stripe' && subscription.provider_subscription_id) {
         try {
-          const secretKey = process.env.STRIPE_SECRET_KEY;
+          const secretKey = process.env.STRIPE_SECRET_KEY?.trim();
           if (secretKey) {
             const { default: Stripe } = await import('stripe');
             const stripe = new Stripe(secretKey, {

@@ -384,9 +384,24 @@ function generateOverview(events: YearEvent[], quarters: QuarterForecast[], loca
   }
 
   // Mixed year
+  const mixedQ = 4 - favorableQ - challengingQ;
+  const enParts: string[] = [];
+  if (favorableQ > 0) enParts.push(`${favorableQ} quarter${favorableQ > 1 ? 's' : ''} look${favorableQ === 1 ? 's' : ''} favorable`);
+  if (challengingQ > 0) enParts.push(`${challengingQ} may require extra effort`);
+  if (mixedQ > 0 && favorableQ === 0 && challengingQ === 0) enParts.push('all quarters show a blend of opportunities and challenges');
+  else if (mixedQ > 0) enParts.push(`${mixedQ} show${mixedQ === 1 ? 's' : ''} a mix of both`);
+  const enSummary = enParts.join(', while ');
+
+  const hiParts: string[] = [];
+  if (favorableQ > 0) hiParts.push(`${favorableQ} तिमाही अनुकूल`);
+  if (challengingQ > 0) hiParts.push(`${challengingQ} में अतिरिक्त प्रयास आवश्यक`);
+  if (mixedQ > 0 && favorableQ === 0 && challengingQ === 0) hiParts.push('सभी तिमाहियों में अवसरों और चुनौतियों का मिश्रण');
+  else if (mixedQ > 0) hiParts.push(`${mixedQ} में दोनों का मिश्रण`);
+  const hiSummary = hiParts.join(', जबकि ');
+
   return t(locale,
-    `This year presents a blend of planetary influences requiring both initiative and caution. ${favorableQ} quarter${favorableQ !== 1 ? 's' : ''} look favorable while ${challengingQ} may require extra effort. Transit dynamics between major planets create a year of transformation and growth through diverse experiences. Balance ambition with wisdom, and action with patience.`,
-    `इस वर्ष ग्रहीय प्रभावों का मिश्रण है जिसमें पहल और सावधानी दोनों आवश्यक हैं। ${favorableQ} तिमाही अनुकूल जबकि ${challengingQ} में अतिरिक्त प्रयास की आवश्यकता हो सकती है। प्रमुख ग्रहों के गोचर विविध अनुभवों से परिवर्तन और विकास का वर्ष बनाते हैं।`
+    `This year presents a blend of planetary influences requiring both initiative and caution. ${enSummary}. Transit dynamics between major planets create a year of transformation and growth through diverse experiences. Balance ambition with wisdom, and action with patience.`,
+    `इस वर्ष ग्रहीय प्रभावों का मिश्रण है जिसमें पहल और सावधानी दोनों आवश्यक हैं। ${hiSummary}। प्रमुख ग्रहों के गोचर विविध अनुभवों से परिवर्तन और विकास का वर्ष बनाते हैं। महत्वाकांक्षा और ज्ञान में, क्रिया और धैर्य में सन्तुलन बनाएं।`
   );
 }
 

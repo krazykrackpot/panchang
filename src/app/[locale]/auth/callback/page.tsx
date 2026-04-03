@@ -3,16 +3,18 @@
 import { useEffect, useState } from 'react';
 import { getSupabase } from '@/lib/supabase/client';
 import { useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
 
 export default function AuthCallbackPage() {
   const locale = useLocale();
-  const [status, setStatus] = useState('Completing sign in...');
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading');
+  const [userName, setUserName] = useState('');
 
   useEffect(() => {
     const supabase = getSupabase();
     if (!supabase) {
-      setStatus('Auth not configured');
-      setTimeout(() => { window.location.href = `/${locale}`; }, 2000);
+      setStatus('error');
+      setTimeout(() => { window.location.href = `/${locale}`; }, 3000);
       return;
     }
 
@@ -22,50 +24,35 @@ export default function AuthCallbackPage() {
       if (handled) return;
       handled = true;
 
-      // Wait a moment for Supabase to persist to localStorage
       await new Promise(r => setTimeout(r, 500));
 
-      // Verify session is actually stored
       const { data } = await supabase.auth.getSession();
       const user = data.session?.user;
-      const lsKeys = Object.keys(localStorage).filter(k => k.includes('sb-') || k.includes('supabase') || k.includes('auth'));
-      console.log('[Auth Callback] Session user:', user?.email ?? 'NO SESSION');
-      console.log('[Auth Callback] localStorage auth keys:', lsKeys);
-      if (lsKeys.length > 0) {
-        console.log('[Auth Callback] Token preview:', localStorage.getItem(lsKeys[0])?.substring(0, 80) + '...');
+
+      if (user) {
+        setUserName(user.user_metadata?.name || user.email?.split('@')[0] || '');
+        setStatus('success');
+        // Redirect to profile after 2 seconds
+        setTimeout(() => { window.location.href = `/${locale}/profile`; }, 2500);
+      } else {
+        setStatus('error');
+        setTimeout(() => { window.location.href = `/${locale}`; }, 3000);
       }
-
-      // Show debug info ON THE PAGE so user can see it
-      const debugInfo = [
-        `User: ${user?.email ?? 'NONE'}`,
-        `LS keys: ${lsKeys.join(', ') || 'NONE'}`,
-        `Hash: ${window.location.hash ? 'YES (len=' + window.location.hash.length + ')' : 'NONE'}`,
-      ].join(' | ');
-
-      setStatus(user ? `Signed in as ${user.email}! Redirecting in 5s... [${debugInfo}]` : `No session detected. Debug: ${debugInfo}`);
-
-      // Redirect after 5 seconds so user can read the debug info
-      setTimeout(() => { window.location.href = `/${locale}`; }, 5000);
     };
 
-    // Listen for the SIGNED_IN event from hash exchange
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         handleAuth();
       }
     });
 
-    // Check if session already exists
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        handleAuth();
-      }
+      if (data.session) handleAuth();
     });
 
-    // Fallback: redirect after 8 seconds regardless
     const timeout = setTimeout(() => {
       if (!handled) {
-        setStatus('Redirecting...');
+        setStatus('error');
         window.location.href = `/${locale}`;
       }
     }, 8000);
@@ -77,11 +64,63 @@ export default function AuthCallbackPage() {
   }, [locale]);
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent mx-auto mb-4" />
-        <p className="text-text-secondary text-sm">{status}</p>
-      </div>
+    <div className="min-h-[60vh] flex items-center justify-center px-4">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="text-center max-w-md"
+      >
+        {status === 'loading' && (
+          <>
+            <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent mx-auto mb-6" />
+            <p className="text-text-secondary text-lg">
+              {locale === 'en' ? 'Completing sign in...' : 'साइन इन पूर्ण हो रहा है...'}
+            </p>
+          </>
+        )}
+
+        {status === 'success' && (
+          <>
+            <div className="w-16 h-16 rounded-full bg-emerald-500/15 flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold text-gold-light mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+              {locale === 'en' ? 'Welcome' : 'स्वागतम्'}{userName ? `, ${userName}` : ''}!
+            </h2>
+            <p className="text-text-secondary">
+              {locale === 'en'
+                ? 'Your email is verified. Taking you to your profile...'
+                : 'आपका ईमेल सत्यापित हो गया। प्रोफ़ाइल पर ले जा रहे हैं...'}
+            </p>
+            <div className="mt-4 h-1 bg-bg-secondary rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 2.5, ease: 'linear' }}
+                className="h-full bg-gradient-to-r from-gold-dark to-gold-primary rounded-full"
+              />
+            </div>
+          </>
+        )}
+
+        {status === 'error' && (
+          <>
+            <div className="w-16 h-16 rounded-full bg-red-500/15 flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-bold text-text-primary mb-2">
+              {locale === 'en' ? 'Something went wrong' : 'कुछ गलत हो गया'}
+            </h2>
+            <p className="text-text-secondary text-sm">
+              {locale === 'en' ? 'Redirecting to home page...' : 'मुख्य पृष्ठ पर ले जा रहे हैं...'}
+            </p>
+          </>
+        )}
+      </motion.div>
     </div>
   );
 }

@@ -113,6 +113,38 @@ export default function NakshatraDetailPage() {
         ))}
       </div>
 
+      {/* Ganda Mula Notice */}
+      {[1, 9, 10, 18, 19, 27].includes(id) && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-6 rounded-xl border border-amber-500/20 bg-amber-500/5 p-5"
+        >
+          <div className="flex items-start gap-3">
+            <div className="w-8 h-8 rounded-full bg-amber-500/15 flex items-center justify-center shrink-0 mt-0.5">
+              <span className="text-amber-400 font-bold text-sm">!</span>
+            </div>
+            <div>
+              <h4 className="text-amber-300 font-semibold text-sm mb-1" style={headingFont}>
+                {locale === 'en' ? 'Ganda Mula Nakshatra' : 'गण्ड मूल नक्षत्र'}
+              </h4>
+              <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
+                {locale === 'en'
+                  ? `${nak.name.en} is one of the 6 Ganda Mula nakshatras — positioned at a water-fire sign junction. Birth in this nakshatra may require a Ganda Mula Shanti Puja. The effects and remedies depend on the birth pada.`
+                  : `${nak.name.hi} 6 गण्ड मूल नक्षत्रों में से एक है — जल-अग्नि राशि सन्धि पर स्थित। इस नक्षत्र में जन्म के लिए गण्ड मूल शान्ति पूजा आवश्यक हो सकती है। प्रभाव और उपाय जन्म पाद पर निर्भर करते हैं।`}
+              </p>
+              <Link
+                href="/learn/modules/24-1"
+                className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2"
+              >
+                {locale === 'en' ? 'Learn about Ganda Mula Nakshatras & Remedies →' : 'गण्ड मूल नक्षत्र और उपाय जानें →'}
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       <GoldDivider />
 
       {/* Content Sections */}

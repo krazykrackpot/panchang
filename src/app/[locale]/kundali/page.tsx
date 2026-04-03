@@ -1785,6 +1785,29 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       </section>
 
       {/* ===== DOSHAS ===== */}
+      {/* Ganda Mula Banner — prominent alert if detected */}
+      {tip.doshas.some(d => d.name.includes('Ganda Mula') && d.present) && (
+        <div className="rounded-xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-4">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-full bg-amber-500/15 flex items-center justify-center shrink-0 mt-0.5">
+              <span className="text-amber-400 text-lg font-bold">!</span>
+            </div>
+            <div>
+              <h4 className="text-amber-300 font-bold text-base mb-1">
+                {locale === 'en' ? 'Ganda Mula Nakshatra Detected' : 'गण्ड मूल नक्षत्र पाया गया'}
+              </h4>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {locale === 'en'
+                  ? 'The Moon at birth is in a Ganda Mula nakshatra — one of 6 nakshatras at the water-fire sign junctions. This requires a Ganda Mula Shanti Puja. See the dosha details below for specific remedies.'
+                  : 'जन्म के समय चन्द्रमा गण्ड मूल नक्षत्र में है — जल-अग्नि राशि सन्धि के 6 नक्षत्रों में से एक। गण्ड मूल शान्ति पूजा आवश्यक है। विशिष्ट उपायों के लिए नीचे दोष विवरण देखें।'}
+              </p>
+              <a href={`/${locale}/learn/modules/24-1`} className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2">
+                {locale === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('doshas')}</h3>
         <div className="space-y-4">

@@ -1543,16 +1543,17 @@ export default function KundaliPage() {
                     return (
                     <div key={i} className={`glass-card rounded-xl p-4 border ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/8'}`}>
                       <div className="flex items-start gap-4">
-                        <div className="shrink-0 w-12 text-center">
-                          <div className="text-gold-primary font-bold text-lg">{ck.karaka}</div>
-                          <div className="text-text-secondary/40 text-[9px]">{ck.degree.toFixed(1)}°</div>
+                        <div className="shrink-0 w-14 text-center pt-1">
+                          <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
+                          <div className="text-gold-primary/40 font-mono text-[10px]">{ck.karaka} &middot; {ck.degree.toFixed(1)}°</div>
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-gold-light font-bold text-base" style={headingFont}>{ck.planetName[locale]}</span>
-                            <span className="text-text-secondary/50 text-xs">—</span>
-                            <span className="text-gold-primary/80 text-sm font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {info?.meaning?.[locale === 'en' ? 'en' : 'hi'] || ck.karakaName[locale]}
+                          <div className="flex items-baseline gap-2 mb-1 flex-wrap">
+                            <span className="text-gold-primary font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {info?.full?.[locale === 'en' ? 'en' : 'hi'] || ck.karakaName[locale]}
+                            </span>
+                            <span className="text-text-secondary/50 text-xs">
+                              ({info?.meaning?.[locale === 'en' ? 'en' : 'hi'] || ck.karakaName[locale]})
                             </span>
                           </div>
                           {info?.governs && (

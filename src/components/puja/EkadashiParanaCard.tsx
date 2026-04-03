@@ -350,8 +350,8 @@ export default function EkadashiParanaCard({
             {paranaEnd}
           </span>
         </div>
-        <p className="text-emerald-300/60 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {ll.breakFast}
+        <p className="text-emerald-200 text-sm font-bold" style={headingFont}>
+          {fmtShortDate(paranaDate)} — {ll.breakFast}
         </p>
       </div>
 

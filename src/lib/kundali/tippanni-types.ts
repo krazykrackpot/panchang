@@ -1,4 +1,5 @@
 import type { Locale } from '@/types/panchang';
+import type { DashaSynthesis } from '@/lib/tippanni/dasha-synthesis-types';
 
 // ============================================================
 // Classical References (RAG)
@@ -156,6 +157,8 @@ export interface TippanniContent {
   dashaInsight: DashaInsightSection;
   remedies: RemedySection;
   strengthOverview: StrengthEntry[];
+
+  dashaSynthesis?: DashaSynthesis;
 
   // RAG metadata
   ragEnabled?: boolean;

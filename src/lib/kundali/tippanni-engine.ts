@@ -8,6 +8,7 @@ import type { Locale } from '@/types/panchang';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { LAGNA_DEEP } from './tippanni-lagna';
+import { generateDashaSynthesis } from '@/lib/tippanni/dasha-synthesis';
 import { PLANET_HOUSE_DEPTH, DIGNITY_EFFECTS, DASHA_EFFECTS } from './tippanni-planets';
 import type {
   TippanniContent, PersonalitySection, PlanetInsight, YogaInsight,
@@ -723,5 +724,6 @@ export function generateTippanni(kundali: KundaliData, locale: Locale): Tippanni
     dashaInsight: generateDashaInsight(kundali, locale),
     remedies: generateRemedies(kundali, locale),
     strengthOverview: generateStrengthOverview(kundali, locale),
+    dashaSynthesis: generateDashaSynthesis(kundali, locale),
   };
 }

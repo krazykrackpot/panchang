@@ -432,7 +432,7 @@ export default function HomePage() {
           {/* Tamaso Ma Jyotirgamaya — bold gold, elegant */}
           <motion.p
             variants={fadeInUp}
-            className="text-gold-primary/60 text-xs sm:text-sm font-bold"
+            className="text-gold-primary/60 text-sm sm:text-lg font-bold tracking-wide"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}
           >
             असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्मा अमृतं गमय।

@@ -19,7 +19,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
-import type { TippanniContent } from '@/lib/kundali/tippanni-types';
+import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
@@ -243,6 +243,9 @@ export default function KundaliPage() {
       }).catch(() => {});
     }
   }, [showTransits, transitData]);
+
+  // Tippanni insights for planet commentary in Planets & Graha tabs
+  const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
 
   const handleGenerate = async (birthData: BirthData, style: ChartStyle) => {
     setLoading(true);
@@ -772,6 +775,40 @@ export default function KundaliPage() {
                             <p className="text-text-secondary font-mono">{p.latitude.toFixed(4)}°</p>
                           </div>
                         </div>
+                        {/* Commentary from tippanni */}
+                        {tip && (() => {
+                          const insight = tip.planetInsights.find(pi => pi.planetId === p.planet.id);
+                          if (!insight) return null;
+                          return (
+                            <div className="mt-4 space-y-3">
+                              <p className="text-text-secondary text-sm leading-relaxed">{insight.description}</p>
+                              {insight.dignity && (
+                                <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
+                                  <p className="text-gold-dark text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Dignity' : 'गरिमा'}</p>
+                                  <p className="text-text-secondary text-sm">{insight.dignity}</p>
+                                </div>
+                              )}
+                              {insight.retrogradeEffect && (
+                                <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/10">
+                                  <p className="text-red-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Retrograde Effect' : 'वक्री प्रभाव'}</p>
+                                  <p className="text-text-secondary text-sm">{insight.retrogradeEffect}</p>
+                                </div>
+                              )}
+                              {insight.implications && (
+                                <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/10">
+                                  <p className="text-blue-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Life Impact' : 'जीवन प्रभाव'}</p>
+                                  <p className="text-text-secondary text-sm">{insight.implications}</p>
+                                </div>
+                              )}
+                              {insight.prognosis && (
+                                <div className="p-3 rounded-lg bg-purple-500/5 border border-purple-500/10">
+                                  <p className="text-purple-400 text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Prognosis' : 'पूर्वानुमान'}</p>
+                                  <p className="text-text-secondary text-sm">{insight.prognosis}</p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })()}
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -1043,7 +1080,7 @@ export default function KundaliPage() {
 
           {/* ===== GRAHA TAB ===== */}
           {activeTab === 'graha' && kundali.grahaDetails && (
-            <GrahaTab grahaDetails={kundali.grahaDetails} upagrahas={kundali.upagrahas || []} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            <GrahaTab grahaDetails={kundali.grahaDetails} upagrahas={kundali.upagrahas || []} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} planetInsights={tip?.planetInsights} />
           )}
 
           {/* ===== YOGAS TAB ===== */}
@@ -2488,12 +2525,13 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 }
 
 // ===== GRAHA TAB COMPONENT =====
-function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont }: {
+function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, planetInsights }: {
   grahaDetails: GrahaDetail[];
   upagrahas: UpagrahaPosition[];
   locale: Locale;
   isDevanagari: boolean;
   headingFont: React.CSSProperties;
+  planetInsights?: PlanetInsight[];
 }) {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   return (
@@ -2556,24 +2594,67 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont }
         </table>
       </div>
 
-      {/* Upagrahas */}
-      {upagrahas.length > 0 && (
-        <div>
-          <h3 className="text-xl font-bold text-gold-gradient text-center mb-4" style={headingFont}>
-            {locale === 'en' ? 'Upagraha Positions' : 'उपग्रह स्थिति'}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-            {upagrahas.map((u, i) => (
-              <div key={i} className="glass-card rounded-xl p-4 text-center">
-                <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{u.name[locale]}</p>
-                <RashiIconById id={u.sign} size={28} />
-                <p className="text-text-primary text-sm mt-1" style={bodyFont}>{u.signName[locale]} {u.degree}</p>
-                <p className="text-text-secondary/60 text-xs mt-0.5" style={bodyFont}>{u.nakshatra[locale]}</p>
-              </div>
-            ))}
+      {/* Planetary Interpretations */}
+      {planetInsights && planetInsights.length > 0 && (
+        <div className="mt-8">
+          <h4 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+            {locale === 'en' ? 'Planetary Interpretations' : 'ग्रह व्याख्या'}
+          </h4>
+          <div className="space-y-3">
+            {grahaDetails.map((g) => {
+              const insight = planetInsights.find(pi => pi.planetId === g.planetId);
+              if (!insight) return null;
+              return (
+                <div key={g.planetId} className="p-4 rounded-lg border border-gold-primary/10 bg-gold-primary/[0.02]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <GrahaIconById id={g.planetId} size={24} />
+                    <span className="text-gold-light font-semibold" style={bodyFont}>{g.planetName[locale]}</span>
+                    <span className="text-text-secondary/50 text-xs">{locale === 'en' ? 'in' : 'में'} {g.signName[locale]} — {locale === 'en' ? 'House' : 'भाव'} {insight.house}</span>
+                  </div>
+                  <p className="text-text-secondary text-sm leading-relaxed">{insight.description}</p>
+                  {insight.implications && (
+                    <p className="text-text-secondary/70 text-sm mt-2 italic">{insight.implications}</p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
+
+      {/* Upagrahas */}
+      {upagrahas.length > 0 && (() => {
+        const UPAGRAHA_NOTES: Record<string, { en: string; hi: string }> = {
+          'Dhuma': { en: 'Smoke of the Sun — indicates obstacles and hidden enemies when afflicted', hi: 'सूर्य का धूम — पीड़ित होने पर बाधाएँ और छिपे शत्रु' },
+          'Vyatipata': { en: 'Calamity point — sensitive degree that can trigger sudden events', hi: 'आपत्ति बिन्दु — अचानक घटनाओं को उत्प्रेरित करने वाला संवेदनशील अंश' },
+          'Parivesha': { en: 'Halo of the Moon — spiritual awareness and intuitive perception', hi: 'चन्द्र का परिवेश — आध्यात्मिक जागरूकता और अन्तर्ज्ञान' },
+          'Indrachapa': { en: 'Indra\'s bow — rainbow point indicating divine grace and protection', hi: 'इन्द्रचाप — दिव्य कृपा और सुरक्षा का सूचक इन्द्रधनुष बिन्दु' },
+          'Upaketu': { en: 'Sub-Ketu — deepens Ketu\'s spiritual and detachment effects', hi: 'उपकेतु — केतु के आध्यात्मिक और वैराग्य प्रभावों को गहन करता है' },
+          'Kala': { en: 'Time — indicates karmic timing and fateful periods in life', hi: 'काल — कार्मिक समय और जीवन के भाग्यपूर्ण काल का सूचक' },
+          'Mrityu': { en: 'Death point — sensitive degree related to health vulnerabilities', hi: 'मृत्यु बिन्दु — स्वास्थ्य कमजोरियों से सम्बन्धित संवेदनशील अंश' },
+          'Ardhaprahara': { en: 'Half-watch — indicates midpoint energy and balance in the chart', hi: 'अर्धप्रहर — कुण्डली में मध्यबिन्दु ऊर्जा और सन्तुलन का सूचक' },
+          'Gulika': { en: 'Son of Saturn — malefic point indicating chronic issues and karmic debts', hi: 'शनि पुत्र — दीर्घकालिक समस्याओं और कार्मिक ऋणों का अशुभ बिन्दु' },
+          'Mandi': { en: 'Son of Saturn — similar to Gulika, indicates delays and karmic blocks', hi: 'शनि पुत्र — गुलिक के समान, विलम्ब और कार्मिक अवरोधों का सूचक' },
+        };
+        return (
+          <div>
+            <h3 className="text-xl font-bold text-gold-gradient text-center mb-4" style={headingFont}>
+              {locale === 'en' ? 'Upagraha Positions' : 'उपग्रह स्थिति'}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {upagrahas.map((u, i) => (
+                <div key={i} className="glass-card rounded-xl p-4 text-center">
+                  <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{u.name[locale]}</p>
+                  <RashiIconById id={u.sign} size={28} />
+                  <p className="text-text-primary text-sm mt-1" style={bodyFont}>{u.signName[locale]} {u.degree}</p>
+                  <p className="text-text-secondary/60 text-xs mt-0.5" style={bodyFont}>{u.nakshatra[locale]}</p>
+                  <p className="text-text-secondary/50 text-xs mt-1 leading-relaxed">{UPAGRAHA_NOTES[u.name.en]?.[locale === 'en' ? 'en' : 'hi'] || ''}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }

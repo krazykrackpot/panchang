@@ -1,4 +1,166 @@
-# Panchang — Product Roadmap
+# Dekho Panchang — Product Roadmap
+
+**Last updated:** 2026-04-03
+
+---
+
+## Completed
+
+### Core Platform
+- [x] Daily Panchang with location-aware calculations (no hardcoded defaults)
+- [x] Kundali generator with 11 tabs (Chart, Planets, Dasha, Ashtakavarga, Tippanni, Varga, Jaimini, Graha, Yogas, Shadbala/Bhavabala, Sade Sati)
+- [x] 10+ page comprehensive PDF export
+- [x] 50+ pages across 3 locales (EN/HI/SA)
+- [x] 20 complete Puja Vidhis with mantras (Devanagari + IAST), aartis, samagri lists
+- [x] Festival detail pages with inline puja vidhi
+- [x] ICS calendar exports (festivals, ekadashi, purnima, amavasya)
+- [x] Advanced tools: Varshaphal, KP System, Prashna, Muhurta AI, Sade Sati, Baby Names, Shraddha
+- [x] Homepage with Style A illustrated gradient cards
+- [x] Global location store (auto-detect + override, no Delhi fallback)
+- [x] Timezone handling with DST awareness
+
+### Personalization System (Phases 1-5)
+- [x] Phase 1: Google OAuth + Supabase auth + onboarding + kundali snapshot storage
+- [x] Phase 2: Dashboard (Your Day, Tara/Chandra Bala, day quality, current dasha)
+- [x] Phase 3: Gochar engine, transit alerts, festival relevance scoring, panchang overlay
+- [x] Phase 4: Personal muhurta, remedies, saved charts, dasha timeline
+- [x] Phase 5: In-app notification system with daily cron
+
+### Monetization
+- [x] 3-tier system (Free/Pro/Jyotishi) with usage gating
+- [x] PaywallGate + UpgradePrompt components
+- [x] Pricing page with INR/USD toggle
+- [x] Stripe checkout + webhook handlers (LIVE)
+- [x] Google AdSense integration (component ready, needs account)
+
+### Infrastructure
+- [x] Supabase (auth, profiles, snapshots, subscriptions, usage, notifications)
+- [x] Automated migrations (supabase db push on every Vercel deploy)
+- [x] 231 tests (136 unit Vitest + 95 E2E Playwright)
+- [x] Settings page with full profile CRUD + kundali recompute
+
+---
+
+## Next Up
+
+### 1. Email Notifications (Resend) — NEXT
+**Priority:** High | **Impact:** Retention + re-engagement
+
+Transactional and engagement emails via Resend:
+
+**Transactional:**
+- Welcome email after signup (with birth chart summary)
+- Subscription confirmation / upgrade
+- Password reset (if email auth used)
+
+**Engagement:**
+- Weekly personalized digest every Monday 6 AM:
+  - This week's day quality forecast (Tara Bala for each day)
+  - Current dasha period with interpretation
+  - Upcoming festivals with personal relevance
+  - Transit alerts for the week
+- Dasha transition alerts (30 days before antardasha change)
+- Sade Sati onset/phase change notification
+- Festival reminders (3 days before personally relevant festivals)
+
+**Technical:**
+- Resend SDK for email delivery
+- React Email templates (branded, responsive, dark theme matching app)
+- Unsubscribe per category (uses existing notification_prefs JSONB)
+- Cron job: weekly digest on Mondays, daily check for dasha/festival alerts
+- Rate limiting: max 3 emails/user/week
+- Email preference management in Settings page
+
+**Files:**
+- `src/lib/email/resend-client.ts` — Resend SDK wrapper
+- `src/lib/email/templates/` — React Email templates (welcome, digest, alert)
+- `src/app/api/cron/weekly-digest/route.ts` — Weekly cron
+- `src/app/api/cron/email-alerts/route.ts` — Daily dasha/festival email check
+- Update Settings page with email preferences
+
+**Env vars:** `RESEND_API_KEY`, `EMAIL_FROM=noreply@dekhopanchang.com`
+
+---
+
+### 2. PWA Improvements — AFTER EMAIL
+**Priority:** High | **Impact:** Mobile engagement, app-like experience
+
+**Install Experience:**
+- Custom install prompt (not browser default) — appears after 2nd visit
+- "Add to Home Screen" banner with app icon + description
+- Splash screen with Dekho Panchang branding
+
+**Offline Support:**
+- Service worker caches: app shell, fonts, static assets, icons
+- Offline-first for pages that don't need live data: Learn, About, Puja Vidhi content
+- Cached panchang data for last viewed date
+- Offline indicator banner when network is down
+- Background sync: queue actions when offline, sync when back
+
+**Push Notifications (Web Push):**
+- Browser push permission prompt
+- Push for: festival reminders, dasha transitions, significant transits
+- Uses existing notification_prefs for opt-in/out
+- Service worker handles push events
+
+**App Manifest:**
+- Proper icons (192x192, 512x512) in gold/navy theme
+- Screenshots for app store listing
+- Shortcuts: "Today's Panchang", "My Dashboard", "Generate Kundali"
+
+---
+
+### 3. Razorpay Activation (India Payments)
+**Priority:** High | **Impact:** Revenue from India (80% of audience)
+
+Enable UPI, net banking, wallets for Indian users. Code already written — just needs Razorpay account + API keys.
+
+**Env vars needed:** `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`, 4 plan IDs.
+
+---
+
+### 4. SEO + Analytics
+**Priority:** High | **Impact:** Organic traffic growth
+
+- JSON-LD structured data per page type (HowTo for puja, Event for festivals)
+- Dynamic OG images per page
+- Google Search Console setup
+- Custom analytics events (kundali generated, chart exported, subscription started)
+- Funnel tracking: visit → sign up → onboarding → paid
+
+---
+
+### 5. More Puja Vidhis
+**Priority:** Medium | **Impact:** Content depth, SEO
+
+**Tier 3 Monthly Vrats (5):** Amavasya Tarpan, Somvar Vrat, Mangalvar Vrat, Masik Shivaratri, Purnima Satyanarayan
+
+**Regional Variants:** Navaratri (Gujarat/Bengal/South), Ganesh Chaturthi (Maharashtra/TN), Chhath (Bihar), Onam (Kerala)
+
+**Graha Shanti Pujas (9):** One per planet, linked from remedies page
+
+---
+
+### 6. Kundali Comparison
+**Priority:** Medium | **Impact:** User engagement
+
+Side-by-side chart comparison beyond Guna matching: dual D1 display, aspect overlay, dasha compatibility, composite chart, PDF comparison report.
+
+---
+
+### 7. Birth Time Rectification
+**Priority:** Low | **Impact:** Professional users
+
+For unknown birth times: input life events → algorithm tests different times → suggests most likely birth time with confidence scoring.
+
+---
+
+### 8. Astrologer Marketplace
+**Priority:** Low (Future) | **Impact:** New revenue stream
+
+Connect users with verified Vedic astrologers: profiles, booking (video/chat/written), reviews, revenue share (15-20%).
+
+---
 
 ## Competitive Landscape
 

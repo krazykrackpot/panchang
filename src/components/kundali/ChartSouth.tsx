@@ -155,9 +155,9 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
               <text
                 x={px + 8}
                 y={py + 16}
-                fill={isAscendant ? '#f0d48a' : 'rgba(212,168,83,0.55)'}
-                fontSize={isAscendant ? '11' : '10'}
-                fontWeight={isAscendant ? '700' : '500'}
+                fill={isAscendant ? '#f0d48a' : 'rgba(212,168,83,0.7)'}
+                fontSize={isAscendant ? '12' : '11'}
+                fontWeight={isAscendant ? '700' : '600'}
                 style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
               >
                 {rashi?.name[locale]}
@@ -167,8 +167,9 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
               <text
                 x={px + cell - 8}
                 y={py + 14}
-                fill="rgba(212,168,83,0.2)"
-                fontSize="8"
+                fill={isAscendant ? 'rgba(240,212,138,0.6)' : 'rgba(212,168,83,0.4)'}
+                fontSize="9"
+                fontWeight="600"
                 textAnchor="end"
                 dominantBaseline="middle"
               >

@@ -159,9 +159,9 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
               <text
                 x={signX}
                 y={signY}
-                fill={isAsc ? '#f0d48a' : 'rgba(212,168,83,0.55)'}
-                fontSize={isAsc ? '12' : '10'}
-                fontWeight={isAsc ? '700' : '500'}
+                fill={isAsc ? '#f0d48a' : 'rgba(212,168,83,0.7)'}
+                fontSize={isAsc ? '13' : '11'}
+                fontWeight={isAsc ? '700' : '600'}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 letterSpacing="0.5"
@@ -170,12 +170,13 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 {rashi?.name[locale]}
               </text>
 
-              {/* House number — very subtle */}
+              {/* House number */}
               <text
                 x={signX}
-                y={signY + (isAsc || parseInt(houseNum) === 7 ? 13 : parseInt(houseNum) <= 3 || parseInt(houseNum) >= 10 ? 12 : -12)}
-                fill="rgba(212,168,83,0.2)"
-                fontSize="8"
+                y={signY + (isAsc || parseInt(houseNum) === 7 ? 14 : parseInt(houseNum) <= 3 || parseInt(houseNum) >= 10 ? 13 : -13)}
+                fill={isAsc ? 'rgba(240,212,138,0.6)' : 'rgba(212,168,83,0.4)'}
+                fontSize="9"
+                fontWeight="600"
                 textAnchor="middle"
                 dominantBaseline="middle"
               >

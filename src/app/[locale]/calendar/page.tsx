@@ -562,9 +562,10 @@ export default function CalendarPage() {
 
                 {/* Parana time indicator */}
                 {f.paranaStart && (
-                  <div className="hidden sm:block text-right flex-shrink-0">
+                  <div className="text-right flex-shrink-0">
                     <div className="text-text-secondary text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Parana' : 'पारण'}</div>
-                    <div className="text-emerald-400 text-xs font-mono">{f.paranaStart}</div>
+                    <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
+                    {f.paranaDate && <div className="text-text-secondary/40 text-[9px]">{f.paranaDate}</div>}
                   </div>
                 )}
 

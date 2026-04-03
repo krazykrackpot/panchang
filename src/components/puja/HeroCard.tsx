@@ -71,7 +71,7 @@ export default function HeroCard({
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' as const }}
-      className="glass-card rounded-2xl border border-gold-primary/15 overflow-hidden"
+      className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 overflow-hidden"
     >
       {/* Gold gradient top band */}
       <div className="h-1.5 bg-gradient-to-r from-gold-light via-gold-primary to-gold-dark" />

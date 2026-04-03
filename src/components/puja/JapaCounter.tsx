@@ -10,9 +10,9 @@ interface JapaCounterProps {
   onComplete?: () => void;
 }
 
-const SIZE = 200;
+const VIEWBOX_SIZE = 200;
 const STROKE_WIDTH = 6;
-const RADIUS = (SIZE - STROKE_WIDTH) / 2;
+const RADIUS = (VIEWBOX_SIZE - STROKE_WIDTH) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 export default function JapaCounter({
@@ -61,15 +61,13 @@ export default function JapaCounter({
         aria-label={`Japa counter: ${count} of ${target}. Tap to increment.`}
       >
         <svg
-          width={SIZE}
-          height={SIZE}
-          viewBox={`0 0 ${SIZE} ${SIZE}`}
-          className="block"
+          viewBox={`0 0 ${VIEWBOX_SIZE} ${VIEWBOX_SIZE}`}
+          className="block w-[160px] h-[160px] sm:w-[200px] sm:h-[200px]"
         >
           {/* Background ring */}
           <circle
-            cx={SIZE / 2}
-            cy={SIZE / 2}
+            cx={VIEWBOX_SIZE / 2}
+            cy={VIEWBOX_SIZE / 2}
             r={RADIUS}
             fill="none"
             stroke="rgba(212, 168, 83, 0.1)"
@@ -77,8 +75,8 @@ export default function JapaCounter({
           />
           {/* Progress ring */}
           <motion.circle
-            cx={SIZE / 2}
-            cy={SIZE / 2}
+            cx={VIEWBOX_SIZE / 2}
+            cy={VIEWBOX_SIZE / 2}
             r={RADIUS}
             fill="none"
             stroke={isComplete ? '#34d399' : '#d4a853'}
@@ -87,7 +85,7 @@ export default function JapaCounter({
             strokeDasharray={CIRCUMFERENCE}
             animate={{ strokeDashoffset: dashOffset }}
             transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            transform={`rotate(-90 ${SIZE / 2} ${SIZE / 2})`}
+            transform={`rotate(-90 ${VIEWBOX_SIZE / 2} ${VIEWBOX_SIZE / 2})`}
           />
         </svg>
 

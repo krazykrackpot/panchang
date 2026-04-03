@@ -223,7 +223,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
 
             {/* Step title */}
             <h2
-              className="text-center text-3xl font-black text-gold-primary sm:text-4xl"
+              className="text-center text-2xl font-black text-gold-primary sm:text-4xl break-words"
               style={{ fontFamily: locale !== 'en' ? 'var(--font-devanagari-heading)' : undefined }}
             >
               {currentStep.title[locale]}
@@ -252,7 +252,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                   <button
                     type="button"
                     onClick={() => pronounce(linkedMantra.iast)}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-gold-primary/10 hover:bg-gold-primary/20 border border-gold-primary/15 flex items-center justify-center transition-colors"
+                    className="absolute top-2 right-2 w-11 h-11 rounded-lg bg-gold-primary/10 hover:bg-gold-primary/20 border border-gold-primary/15 flex items-center justify-center transition-colors"
                     aria-label={speaking ? 'Stop pronunciation' : 'Pronounce mantra'}
                   >
                     {speaking ? (
@@ -301,15 +301,15 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
         </AnimatePresence>
       </div>
 
-      {/* Bottom navigation */}
-      <div className="flex items-center justify-between border-t border-gold-primary/10 px-4 py-4 sm:px-6">
+      {/* Bottom navigation — extra pb for iPhone home indicator */}
+      <div className="flex items-center justify-between border-t border-gold-primary/10 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6">
         <button
           type="button"
           onClick={goPrev}
           disabled={currentIndex <= 0}
-          className="inline-flex items-center gap-1.5 rounded-full border border-gold-primary/20 px-4 py-2 text-sm text-gold-light transition-colors hover:border-gold-primary/40 disabled:opacity-30 disabled:pointer-events-none"
+          className="inline-flex items-center justify-center rounded-full border border-gold-primary/20 w-11 h-11 text-sm text-gold-light transition-colors hover:border-gold-primary/40 disabled:opacity-30 disabled:pointer-events-none"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-5 w-5" />
         </button>
 
         <span className="text-sm font-medium text-text-secondary/50">
@@ -320,9 +320,9 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
           type="button"
           onClick={goNext}
           disabled={currentIndex >= totalSteps - 1}
-          className="inline-flex items-center gap-1.5 rounded-full border border-gold-primary/20 px-4 py-2 text-sm text-gold-light transition-colors hover:border-gold-primary/40 disabled:opacity-30 disabled:pointer-events-none"
+          className="inline-flex items-center justify-center rounded-full border border-gold-primary/20 w-11 h-11 text-sm text-gold-light transition-colors hover:border-gold-primary/40 disabled:opacity-30 disabled:pointer-events-none"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-5 w-5" />
         </button>
       </div>
     </div>

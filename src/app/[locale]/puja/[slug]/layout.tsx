@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 
+export function generateStaticParams() {
+  return Object.keys(PUJA_VIDHIS).map(slug => ({ slug }));
+}
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

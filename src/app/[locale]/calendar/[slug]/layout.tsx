@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 
+export function generateStaticParams() {
+  return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
+}
+
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

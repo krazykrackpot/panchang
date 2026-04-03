@@ -30,6 +30,16 @@ import { AKSHAYA_TRITIYA_PUJA } from './akshaya-tritiya';
 import { TULSI_VIVAH_PUJA } from './tulsi-vivah';
 import { AHOI_ASHTAMI_PUJA } from './ahoi-ashtami';
 import { GRAHA_SHANTI_VIDHIS } from './graha-shanti';
+import { GOVARDHAN_PUJA } from './govardhan-puja';
+import { BHAI_DOOJ_PUJA } from './bhai-dooj';
+import { BUDDHA_PURNIMA_PUJA } from './buddha-purnima';
+import { CHAITRA_NAVRATRI_PUJA } from './chaitra-navratri';
+import { DURGA_ASHTAMI_PUJA } from './durga-ashtami';
+import { HOLIKA_DAHAN_PUJA } from './holika-dahan';
+import { ANANT_CHATURDASHI_PUJA } from './anant-chaturdashi';
+import { GURU_NANAK_JAYANTI_PUJA } from './guru-nanak-jayanti';
+import { MAHA_NAVAMI_PUJA } from './maha-navami';
+import { PURNIMA_VRAT_PUJA } from './purnima-vrat';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -62,6 +72,16 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'akshaya-tritiya': AKSHAYA_TRITIYA_PUJA,
   'tulsi-vivah': TULSI_VIVAH_PUJA,
   'ahoi-ashtami': AHOI_ASHTAMI_PUJA,
+  'govardhan-puja': GOVARDHAN_PUJA,
+  'bhai-dooj': BHAI_DOOJ_PUJA,
+  'buddha-purnima': BUDDHA_PURNIMA_PUJA,
+  'chaitra-navratri': CHAITRA_NAVRATRI_PUJA,
+  'durga-ashtami': DURGA_ASHTAMI_PUJA,
+  'holika-dahan': HOLIKA_DAHAN_PUJA,
+  'anant-chaturdashi': ANANT_CHATURDASHI_PUJA,
+  'guru-nanak-jayanti': GURU_NANAK_JAYANTI_PUJA,
+  'maha-navami': MAHA_NAVAMI_PUJA,
+  'purnima-vrat': PURNIMA_VRAT_PUJA,
   ...GRAHA_SHANTI_VIDHIS,
 };
 

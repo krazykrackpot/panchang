@@ -22,7 +22,7 @@ export const TIER_CONFIG: Record<Tier, TierConfig> = {
   free: {
     daily: { kundali_count: 2, ai_chat_count: 2, pdf_export_count: 2 },
     monthly: { muhurta_scan_count: 2 },
-    total: { saved_charts: 3 },
+    total: { saved_charts: 4 },
     features: new Set<Feature>(['kundali', 'ai_chat', 'pdf_export', 'muhurta_ai', 'varshaphal']),
   },
   pro: {

@@ -9,7 +9,9 @@ import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
-import { Download } from 'lucide-react';
+import { Download, Save, Check } from 'lucide-react';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
@@ -196,6 +198,35 @@ export default function KundaliPage() {
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const user = useAuthStore(s => s.user);
+
+  const handleSaveChart = async () => {
+    if (!user || !kundali) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+    setSaving(true);
+    try {
+      await supabase.from('saved_charts').insert({
+        user_id: user.id,
+        label: kundali.birthData.name || 'Chart',
+        birth_data: {
+          name: kundali.birthData.name,
+          date: kundali.birthData.date,
+          time: kundali.birthData.time,
+          place: kundali.birthData.place,
+          lat: kundali.birthData.lat,
+          lng: kundali.birthData.lng,
+          timezone: kundali.birthData.timezone,
+        },
+        is_primary: false,
+      });
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    } catch { /* silently fail */ }
+    setSaving(false);
+  };
   const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
@@ -307,6 +338,25 @@ export default function KundaliPage() {
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                 {locale === 'en' ? 'Edit Details' : locale === 'hi' ? 'विवरण सम्पादित करें' : 'विवरणं सम्पादयतु'}
               </button>
+              {user && (
+                <button
+                  onClick={handleSaveChart}
+                  disabled={saving || saved}
+                  className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-300 ${
+                    saved
+                      ? 'border-emerald-500/30 text-emerald-400 bg-emerald-500/10'
+                      : 'border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60'
+                  }`}
+                >
+                  {saved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+                  {saved
+                    ? (locale === 'en' ? 'Saved' : 'सहेजा गया')
+                    : saving
+                      ? (locale === 'en' ? 'Saving...' : 'सहेज रहे...')
+                      : (locale === 'en' ? 'Save Chart' : 'चार्ट सहेजें')
+                  }
+                </button>
+              )}
               <button
                 onClick={() => { setKundali(null); setEditing(false); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"

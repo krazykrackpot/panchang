@@ -99,7 +99,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ error: 'Invalid currency' }, { status: 400 });
   } catch (err) {
-    console.error('Checkout error:', err);
-    return NextResponse.json({ error: 'Failed to create checkout session' }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error('Checkout error:', msg, err);
+    return NextResponse.json({ error: msg || 'Failed to create checkout session' }, { status: 500 });
   }
 }

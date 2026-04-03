@@ -367,36 +367,35 @@ export default function PanchangPage() {
         </div>
       ) : panchang ? (
         <>
-          {/* Location banner */}
-          <div className="text-center mb-10">
-            <p className="text-text-secondary text-sm">
-              <MapPin className="w-3.5 h-3.5 inline mr-1" />
-              {locale === 'en' ? 'Panchang for' : 'पंचांग —'}{' '}
-              <span className="text-gold-light font-medium">{panchang.location.name}</span>
-              {' · '}{panchang.date}
-            </p>
-            <div className="flex items-center justify-center gap-3 mt-3">
+          {/* Location + Actions — compact row */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+            <span className="text-text-secondary/60 text-xs">
+              <MapPin className="w-3 h-3 inline mr-0.5" />
+              {panchang.location.name} &middot; {panchang.date}
+            </span>
+            <div className="w-px h-4 bg-gold-primary/15 mx-1 hidden sm:block" />
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={async () => {
                   const { exportPanchangPDF } = await import('@/lib/export/pdf-panchang');
                   exportPanchangPDF(panchang, locale as Locale);
                 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                 aria-label="Download PDF"
               >
-                <Download className="w-3.5 h-3.5" />
+                <Download className="w-3 h-3" />
                 PDF
               </button>
               <PrintButton
                 contentRef={panchangContentRef}
                 title={`Panchang — ${panchang.date}`}
                 label={locale === 'en' ? 'Print' : 'प्रिंट'}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
               />
               <ShareButton
                 title={`Panchang — ${panchang.date}`}
                 text={`Today's Vedic Panchang from Dekho Panchang`}
-                className="!px-3 !py-1.5 !text-xs"
+                className="!px-2.5 !py-1 !text-[11px] !rounded-md"
               />
               <button
                 onClick={async () => {
@@ -410,10 +409,10 @@ export default function PanchangPage() {
                     alert(locale === 'en' ? 'Please allow notifications in browser settings' : 'कृपया ब्राउज़र सेटिंग्स में सूचनाएं अनुमति दें');
                   }
                 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                 aria-label="Set alerts"
               >
-                <Bell className="w-3.5 h-3.5" />
+                <Bell className="w-3 h-3" />
                 {locale === 'en' ? 'Alerts' : 'अलर्ट'}
               </button>
             </div>

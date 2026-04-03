@@ -349,6 +349,33 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Complete yearly Panchang calendar with daily Tithi, Nakshatra, and festivals for every month.', hi: 'प्रत्येक मास की दैनिक तिथि, नक्षत्र और त्योहारों के साथ पूर्ण वार्षिक पंचांग।', sa: 'प्रत्येकमासस्य दैनिकतिथिनक्षत्रपर्वभिः सह सम्पूर्णं वार्षिकपञ्चाङ्गम्।' },
     keywords: ['yearly panchang', 'annual calendar', 'monthly panchang', 'panchang 2026'],
   },
+  // ─── Interactive Labs ─────────────────────────────────────
+  '/learn/labs/panchang': {
+    title: { en: 'Interactive Lab: Compute Your Panchang Step by Step', hi: 'इंटरैक्टिव लैब: अपना पंचांग चरणबद्ध गणना करें', sa: 'अन्तरक्रियात्मकप्रयोगशाला: पञ्चाङ्गं क्रमशः गणयतु' },
+    description: { en: 'Enter a date and location — watch the engine compute Julian Day, Sun/Moon positions, Tithi, Nakshatra, Yoga, Karana, and Vara with intermediate values.', hi: 'तिथि और स्थान दर्ज करें — इंजन को जूलियन दिन, सूर्य/चन्द्र स्थिति, तिथि, नक्षत्र, योग, करण और वार गणना करते देखें।', sa: 'दिनाङ्कं स्थानं च दत्तवान् — यन्त्रस्य गणनां पश्यतु।' },
+    keywords: ['panchang calculator', 'tithi calculation', 'interactive astrology', 'vedic astronomy lab'],
+  },
+  '/learn/labs/moon': {
+    title: { en: 'Interactive Lab: Trace the Moon — 60 Sine Terms', hi: 'इंटरैक्टिव लैब: चन्द्र खोज — 60 ज्या पद', sa: 'अन्तरक्रियात्मकप्रयोगशाला: चन्द्रान्वेषणम्' },
+    description: { en: 'Trace how the Meeus algorithm finds the Moon using 60 sine terms. See fundamental arguments, individual term contributions, and final longitude.', hi: 'देखें कि Meeus एल्गोरिथ्म 60 ज्या पदों से चन्द्रमा को कैसे खोजता है।', sa: 'Meeus गणितेन ६० ज्यापदैः चन्द्रं कथम् अन्विष्यति इति पश्यतु।' },
+    keywords: ['moon position calculator', 'meeus algorithm', 'lunar longitude', 'astronomical computation'],
+  },
+  '/learn/labs/dasha': {
+    title: { en: 'Interactive Lab: Your Vimshottari Dasha Timeline', hi: 'इंटरैक्टिव लैब: आपकी विंशोत्तरी दशा समयरेखा', sa: 'अन्तरक्रियात्मकप्रयोगशाला: विंशोत्तरीदशासमयरेखा' },
+    description: { en: 'Enter birth details to generate your 120-year Vimshottari Dasha timeline. See Moon nakshatra, starting planet, balance calculation, and colored timeline.', hi: 'जन्म विवरण दर्ज करें और अपनी 120 वर्षीय दशा समयरेखा बनाएं।', sa: 'जन्मविवरणं दत्तवान् स्वस्य १२० वर्षीयदशासमयरेखां रचयतु।' },
+    keywords: ['dasha calculator', 'vimshottari dasha', 'planetary periods', 'dasha timeline'],
+  },
+  '/learn/labs/shadbala': {
+    title: { en: 'Interactive Lab: Shadbala — 6-Fold Planetary Strength', hi: 'इंटरैक्टिव लैब: षड्बल विश्लेषण', sa: 'अन्तरक्रियात्मकप्रयोगशाला: षड्बलविश्लेषणम्' },
+    description: { en: 'Generate your birth chart and see all 6 strengths per planet — Sthana, Dig, Kala, Cheshta, Naisargika, Drig. Find your chart captain.', hi: 'अपनी जन्म कुण्डली बनाएं और प्रत्येक ग्रह की 6 शक्तियाँ देखें।', sa: 'स्वजन्मकुण्डलीं रचयतु प्रतिग्रहस्य ६ शक्तीः पश्यतु।' },
+    keywords: ['shadbala calculator', 'planetary strength', 'vedic astrology strength', 'chart analysis'],
+  },
+  '/learn/labs/kp': {
+    title: { en: 'Interactive Lab: KP Sub-Lord Lookup', hi: 'इंटरैक्टिव लैब: केपी उप-स्वामी खोज', sa: 'अन्तरक्रियात्मकप्रयोगशाला: केपी उपस्वामिखोजः' },
+    description: { en: 'Enter any degree (0-360) and see the Sign Lord, Star Lord, and Sub Lord hierarchy with 249 sub-division table and visual ring.', hi: 'कोई भी अंश (0-360) दर्ज करें और राशि स्वामी, नक्षत्र स्वामी और उप-स्वामी देखें।', sa: 'कमपि अंशं (०-३६०) दत्तवान् राशिस्वामिनं नक्षत्रस्वामिनम् उपस्वामिनं च पश्यतु।' },
+    keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

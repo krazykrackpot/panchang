@@ -302,9 +302,10 @@ export default function VedicTimePage() {
     const weekday = new Date(y, m - 1, d).getDay();
     const varaData = VARA_DATA[weekday];
 
-    // Shaka Samvat: Gregorian year - 78 (before Chaitra) or -77 (after Chaitra)
-    // Simplified: for Chaitra onwards (roughly April), year - 78; before that, year - 79
-    const shakaSamvat = masaIndex === 0 ? y - 78 : (masaIndex >= 1 ? y - 78 : y - 79);
+    // Shaka Samvat: Gregorian year - 78 (Chaitra onwards), year - 79 (before Chaitra)
+    const shakaSamvat = masaIndex >= 0 ? y - 78 : y - 79;
+    // Vikram Samvat: Gregorian year + 57 (Chaitra onwards), year + 56 (before Chaitra)
+    const vikramSamvat = masaIndex >= 0 ? y + 57 : y + 56;
 
     return {
       tithi: tithiData,
@@ -313,6 +314,7 @@ export default function VedicTimePage() {
       vara: varaData,
       samvatsara: samvatsaraData,
       shakaSamvat,
+      vikramSamvat,
       gregorianDate: new Date(y, m - 1, d),
     };
   }, [sunTimes, tzOffset]);
@@ -436,7 +438,7 @@ export default function VedicTimePage() {
               ? (locale === 'en' ? 'Krishna' : 'कृष्ण')
               : (locale === 'en' ? 'Shukla' : 'शुक्ल')}{' '}
             {panchangCtx.tithi?.name?.[locale] || panchangCtx.tithi?.name?.en},{' '}
-            {panchangCtx.shakaSamvat} {locale === 'en' ? 'Shaka Samvat' : 'शक संवत्'}
+            {panchangCtx.vikramSamvat} {locale === 'en' ? 'Vikram' : 'विक्रम'} / {panchangCtx.shakaSamvat} {locale === 'en' ? 'Shaka' : 'शक'}
           </div>
           <div className="text-text-secondary/60 text-xs mt-1">
             {panchangCtx.vara?.name?.[locale] || panchangCtx.vara?.name?.en}

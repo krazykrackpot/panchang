@@ -1,10 +1,14 @@
 'use client';
 
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
-import { Compass, BookOpen } from 'lucide-react';
+import { Compass, BookOpen, ArrowRight } from 'lucide-react';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
+import { RashiIconById } from '@/components/icons/RashiIcons';
 import dynamic from 'next/dynamic';
 
 const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), {
@@ -217,12 +221,60 @@ const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string }; gradie
   { href: '/kp-system', label: { en: 'KP System', hi: 'केपी पद्धति' }, gradient: 'from-indigo-500/8 to-transparent', border: 'border-indigo-500/10 hover:border-indigo-500/25' },
 ];
 
+interface ProfileBannerData {
+  display_name: string;
+  moon_sign: number;
+  ascendant_sign: number;
+  moonRashiName: { en: string; hi: string; sa: string } | null;
+  lagnaRashiName: { en: string; hi: string; sa: string } | null;
+  moonNakshatraName: { en: string; hi: string; sa: string } | null;
+  currentDasha: { maha: { planetName: { en: string; hi: string; sa: string } } } | null;
+  spiActive: boolean;
+}
+
+function useProfileBanner() {
+  const { user, initialized } = useAuthStore();
+  const [data, setData] = useState<ProfileBannerData | null>(null);
+
+  const fetchProfile = useCallback(async () => {
+    const supabase = getSupabase();
+    if (!supabase) return;
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) return;
+    try {
+      const res = await fetch('/api/user/profile', {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      if (!json.snapshot) return;
+      setData({
+        display_name: json.profile?.display_name || '',
+        moon_sign: json.snapshot.moon_sign,
+        ascendant_sign: json.snapshot.ascendant_sign,
+        moonRashiName: json.snapshot.moonRashiName,
+        lagnaRashiName: json.snapshot.lagnaRashiName,
+        moonNakshatraName: json.snapshot.moonNakshatraName,
+        currentDasha: json.snapshot.currentDasha,
+        spiActive: json.snapshot.sade_sati?.isActive || false,
+      });
+    } catch { /* silent */ }
+  }, []);
+
+  useEffect(() => {
+    if (initialized && user) fetchProfile();
+  }, [initialized, user, fetchProfile]);
+
+  return data;
+}
+
 export default function HomePage() {
   const t = useTranslations('home');
   const locale = useLocale();
   const isDevanagari = locale === 'hi' || locale === 'sa';
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const profileBanner = useProfileBanner();
 
   return (
     <div className="relative">
@@ -321,6 +373,63 @@ export default function HomePage() {
           </div>
         </motion.div>
       </section>
+
+      {/* Profile Banner — logged-in users with birth data */}
+      {profileBanner && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/profile" className="block group">
+              <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] hover:border-gold-primary/30 transition-all px-6 py-4">
+                <div className="flex items-center gap-4">
+                  {/* Rashi icon */}
+                  <div className="shrink-0">
+                    <RashiIconById id={profileBanner.moon_sign} size={44} />
+                  </div>
+
+                  {/* Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gold-light font-semibold text-sm truncate" style={bf}>
+                        {profileBanner.display_name || (locale === 'en' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
+                      </span>
+                      {profileBanner.spiActive && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
+                          {locale === 'en' ? 'Sade Sati' : 'साढ़े साती'}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 mt-0.5 text-xs text-text-secondary/70" style={bf}>
+                      <span>
+                        {locale === 'en' ? 'Moon' : 'चन्द्र'}: <span className="text-gold-primary/80">{profileBanner.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.moonRashiName?.en}</span>
+                      </span>
+                      <span className="text-gold-primary/20">|</span>
+                      <span>
+                        {locale === 'en' ? 'Lagna' : 'लग्न'}: <span className="text-gold-primary/80">{profileBanner.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.lagnaRashiName?.en}</span>
+                      </span>
+                      {profileBanner.currentDasha && (
+                        <>
+                          <span className="text-gold-primary/20">|</span>
+                          <span>
+                            {locale === 'en' ? 'Dasha' : 'दशा'}: <span className="text-gold-primary/80">{profileBanner.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.currentDasha.maha.planetName?.en}</span>
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <ArrowRight className="w-4 h-4 text-text-secondary/30 group-hover:text-gold-primary/60 transition-colors shrink-0" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </section>
+      )}
 
       <GoldDivider />
 

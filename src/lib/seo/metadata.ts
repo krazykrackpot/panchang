@@ -383,6 +383,23 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['hindu cosmology', 'yugas', 'kalpa', 'manvantara', 'brahma lifespan', 'vedic time', 'kali yuga'],
   },
 
+  // ─── Prediction Guides ────────────────────────────────────
+  '/learn/career': {
+    title: { en: 'Career Prediction — 10th House, D10 & Amatyakaraka Guide', hi: 'कैरियर भविष्यवाणी — 10वां भाव, D10 एवं अमात्यकारक', sa: 'व्यवसायभविष्यवाणी' },
+    description: { en: 'Predict career from your Vedic chart: 10th house sign, lord placement, D10 Dasamsha, Amatyakaraka, and career timing through dashas and transits.', hi: 'वैदिक कुण्डली से कैरियर भविष्यवाणी: 10वां भाव, स्वामी, D10, अमात्यकारक, दशा-गोचर।', sa: 'वैदिककुण्डल्या व्यवसायभविष्यवाणी।' },
+    keywords: ['career astrology', '10th house', 'dasamsha', 'vedic career prediction'],
+  },
+  '/learn/marriage': {
+    title: { en: 'Marriage Prediction — 7th House, D9 Navamsha & Timing', hi: 'विवाह भविष्यवाणी — 7वां भाव, D9 नवांश', sa: 'विवाहभविष्यवाणी' },
+    description: { en: 'Predict marriage from your chart: 7th house, Venus, Navamsha (D9), Darakaraka, timing through dashas, delay indicators, and Mangal Dosha analysis.', hi: 'कुण्डली से विवाह भविष्यवाणी: 7वां भाव, शुक्र, नवांश, दारकारक, समय निर्धारण।', sa: 'कुण्डल्या विवाहभविष्यवाणी।' },
+    keywords: ['marriage prediction', '7th house', 'navamsha', 'marriage timing', 'mangal dosha'],
+  },
+  '/learn/wealth': {
+    title: { en: 'Wealth Prediction — Dhana Yogas, 2nd/11th House Analysis', hi: 'धन भविष्यवाणी — धन योग, 2/11 भाव', sa: 'धनभविष्यवाणी' },
+    description: { en: 'Predict wealth from your chart: 2nd/11th house analysis, Dhana Yogas, Lakshmi Yoga, wealth timing, Ashtakavarga scoring, and poverty remedies.', hi: 'कुण्डली से धन भविष्यवाणी: 2/11 भाव, धन योग, लक्ष्मी योग, अष्टकवर्ग।', sa: 'कुण्डल्या धनभविष्यवाणी।' },
+    keywords: ['wealth astrology', 'dhana yoga', '2nd house', '11th house', 'lakshmi yoga'],
+  },
+
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
     title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },

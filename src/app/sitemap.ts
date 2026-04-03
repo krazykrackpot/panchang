@@ -59,6 +59,9 @@ const routes = [
   '/learn/aspects',
   '/learn/remedies',
   '/learn/cosmology',
+  '/learn/career',
+  '/learn/marriage',
+  '/learn/wealth',
   // Calendars
   '/calendar',
   '/transits',

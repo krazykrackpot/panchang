@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
@@ -63,6 +65,8 @@ export default function VarshaphalPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
+  const user = useAuthStore(s => s.user);
+
   const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', ayanamsha: 'lahiri' as const });
   const [placeName, setPlaceName] = useState('');
   const [placeLat, setPlaceLat] = useState<number | null>(null);
@@ -72,6 +76,35 @@ export default function VarshaphalPage() {
   const [data, setData] = useState<VarshaphalData | null>(null);
   const [loading, setLoading] = useState(false);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
+
+  // Pre-populate form from user profile
+  useEffect(() => {
+    if (!user) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+
+    supabase.from('user_profiles')
+      .select('default_location')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data: profile }) => {
+        if (profile?.default_location) {
+          const loc = typeof profile.default_location === 'string'
+            ? JSON.parse(profile.default_location)
+            : profile.default_location;
+          setForm(prev => ({
+            ...prev,
+            date: loc.birth_date && prev.date === '1990-01-15' ? loc.birth_date : prev.date,
+            time: loc.birth_time && prev.time === '08:00' ? loc.birth_time : prev.time,
+          }));
+          if (loc.name && !placeName) setPlaceName(loc.name);
+          if (loc.lat != null && placeLat === null) setPlaceLat(loc.lat);
+          if (loc.lng != null && placeLng === null) setPlaceLng(loc.lng);
+          if (loc.timezone && !placeTimezone) setPlaceTimezone(loc.timezone);
+        }
+      });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;

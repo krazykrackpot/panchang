@@ -17,10 +17,11 @@ import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
-import { GRAHAS } from '@/lib/constants/grahas';
+import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
+import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
@@ -2011,6 +2012,9 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 }) {
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);
   const [expandedYoga, setExpandedYoga] = useState<number | null>(null);
+  const [expandedAntar, setExpandedAntar] = useState<number | null>(null);
+  const [expandedPratyantar, setExpandedPratyantar] = useState<string | null>(null);
+  const [selectedMahaTimeline, setSelectedMahaTimeline] = useState<number | null>(null);
 
   // Client-side base tippanni (renders immediately, memoized)
   const baseTip = useMemo(() => generateTippanni(kundali, locale), [kundali, locale]);
@@ -2364,8 +2368,409 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         </div>
       </section>
 
-      {/* ===== DASHA INSIGHT ===== */}
-      {tip.dashaInsight.currentMaha && (
+      {/* ===== DASHA SYNTHESIS (new) ===== */}
+      {tip.dashaSynthesis?.currentMaha && (() => {
+        const ds = tip.dashaSynthesis!;
+        const cm = ds.currentMaha!;
+        const NAME_TO_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
+        const ASSESSMENT_COLORS: Record<PeriodAssessment, { bg: string; border: string; text: string; bar: string }> = {
+          very_favorable: { bg: 'bg-emerald-500/15', border: 'border-emerald-500/25', text: 'text-emerald-400', bar: 'bg-emerald-500' },
+          favorable: { bg: 'bg-green-500/15', border: 'border-green-500/25', text: 'text-green-400', bar: 'bg-green-500' },
+          mixed: { bg: 'bg-amber-500/15', border: 'border-amber-500/25', text: 'text-amber-400', bar: 'bg-amber-500' },
+          challenging: { bg: 'bg-orange-500/15', border: 'border-orange-500/25', text: 'text-orange-400', bar: 'bg-orange-500' },
+          difficult: { bg: 'bg-rose-500/15', border: 'border-rose-500/25', text: 'text-rose-400', bar: 'bg-rose-500' },
+        };
+        const ASSESSMENT_LABELS: Record<PeriodAssessment, { en: string; hi: string }> = {
+          very_favorable: { en: 'Very Favorable', hi: 'अत्यन्त शुभ' },
+          favorable: { en: 'Favorable', hi: 'शुभ' },
+          mixed: { en: 'Mixed', hi: 'मिश्रित' },
+          challenging: { en: 'Challenging', hi: 'चुनौतीपूर्ण' },
+          difficult: { en: 'Difficult', hi: 'कठिन' },
+        };
+        const lifeAreaArrow = (text: string): string => {
+          if (/favorable|strong|excellent|growth|success|gains|flourish|prosper|expand/i.test(text)) return '\u2191';
+          if (/challenge|difficult|obstacle|strain|loss|conflict|stress|caution|decline/i.test(text)) return '\u2193';
+          return '\u2192';
+        };
+        const lifeAreaColor = (arrow: string) => arrow === '\u2191' ? 'text-emerald-400' : arrow === '\u2193' ? 'text-rose-400' : 'text-amber-400';
+        const fmtYear = (d: string) => d.slice(0, 4);
+        const fmtDate = (d: string) => { const p = d.split('-'); return `${p[2]}/${p[1]}/${p[0].slice(2)}`; };
+        const loc = locale === 'sa' ? 'hi' : locale;
+
+        return (
+          <section className="space-y-6">
+            {/* ── Section 1: Lifetime Timeline ── */}
+            <div className="glass-card rounded-xl p-6 sm:p-8">
+              <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
+                {locale === 'en' ? 'Dasha Period Analysis' : locale === 'hi' ? 'दशा काल विश्लेषण' : 'दशाकालविश्लेषणम्'}
+              </h3>
+              <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-thin scrollbar-thumb-gold-primary/30">
+                {ds.lifetimeSummary.map((md, i) => {
+                  const pid = NAME_TO_ID[md.planet] ?? 0;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedMahaTimeline(selectedMahaTimeline === i ? null : i)}
+                      className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border transition-all duration-200 ${
+                        md.isCurrent
+                          ? 'bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border-gold-primary/50 scale-105 shadow-lg shadow-gold-primary/10'
+                          : md.isPast
+                            ? 'bg-bg-primary/20 border-gold-primary/10 opacity-40'
+                            : 'bg-bg-primary/30 border-gold-primary/15 hover:border-gold-primary/30'
+                      } ${selectedMahaTimeline === i ? 'ring-1 ring-gold-primary/40' : ''}`}
+                    >
+                      <GrahaIconById id={pid} size={16} />
+                      <span className={`text-xs font-medium whitespace-nowrap ${md.isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}
+                        style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {md.planetName[locale]}
+                      </span>
+                      <span className="text-[10px] text-text-secondary/60 whitespace-nowrap">
+                        {fmtYear(md.startDate)}-{fmtYear(md.endDate).slice(2)}
+                      </span>
+                      {md.isCurrent && <span className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />}
+                    </button>
+                  );
+                })}
+              </div>
+              <AnimatePresence mode="wait">
+                {selectedMahaTimeline !== null && ds.lifetimeSummary[selectedMahaTimeline] && (
+                  <motion.div
+                    key={selectedMahaTimeline}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mt-4 p-4 rounded-lg bg-bg-primary/30 border border-gold-primary/10 overflow-hidden"
+                  >
+                    <p className="text-text-secondary text-sm leading-relaxed">{ds.lifetimeSummary[selectedMahaTimeline].theme}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* ── Section 2: Current Mahadasha Card ── */}
+            <div className="glass-card rounded-xl p-6 sm:p-8">
+              <div className="flex items-center gap-4 mb-6">
+                <GrahaIconById id={NAME_TO_ID[cm.planet] ?? 0} size={40} />
+                <div>
+                  <h3 className="text-xl text-gold-light font-bold" style={headingFont}>
+                    {cm.planetName[locale]} {locale === 'en' ? 'Mahadasha' : 'महादशा'}
+                  </h3>
+                  <p className="text-text-secondary text-sm">{fmtDate(cm.startDate)} — {fmtDate(cm.endDate)} ({cm.years} {locale === 'en' ? 'years' : 'वर्ष'})</p>
+                </div>
+              </div>
+
+              <p className="text-text-secondary text-sm leading-relaxed mb-6 whitespace-pre-line">{cm.overview}</p>
+
+              {/* Activated Yogas */}
+              {cm.yogasActivated.length > 0 && (
+                <div className="mb-4">
+                  <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Activated Yogas' : 'सक्रिय योग'}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {cm.yogasActivated.map((y, i) => {
+                      const isAuspicious = /raja|dhana|mahapurusha|pancha|lakshmi|saraswati|budhaditya|gajakesari/i.test(y.type);
+                      return (
+                        <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
+                          isAuspicious ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-rose-500/10 border-rose-500/20 text-rose-400'
+                        }`} title={y.effect}>
+                          {y.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Activated Doshas */}
+              {cm.doshasActivated.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Activated Doshas' : 'सक्रिय दोष'}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {cm.doshasActivated.map((d, i) => (
+                      <span key={i} className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
+                        d.severity === 'high' ? 'bg-rose-500/10 border-rose-500/20 text-rose-400' : 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                      }`} title={d.effect}>
+                        {d.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Divisional Insights Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {(['D1', 'D9', 'D10', 'D2'] as const).map((key) => (
+                  <div key={key} className="p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
+                    <span className="text-gold-primary text-xs font-bold">{key}</span>
+                    <p className="text-text-secondary text-xs mt-1 leading-relaxed">{cm.divisionalInsights[key]}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Section 3: Antardasha Stack ── */}
+            <div className="glass-card rounded-xl p-6 sm:p-8">
+              <h3 className="text-lg text-gold-light font-semibold mb-5" style={headingFont}>
+                {locale === 'en' ? 'Antardasha Periods' : locale === 'hi' ? 'अन्तर्दशा काल' : 'अन्तर्दशाकालाः'}
+              </h3>
+              <div className="space-y-3 max-h-[800px] overflow-y-auto scrollbar-thin scrollbar-thumb-gold-primary/20 pr-1">
+                {cm.antardashas.map((ad, ai) => {
+                  const aColors = ASSESSMENT_COLORS[ad.netAssessment];
+                  const aLabel = ASSESSMENT_LABELS[ad.netAssessment];
+                  const isExpanded = expandedAntar === ai;
+                  const adPlanetId = NAME_TO_ID[ad.planet] ?? 0;
+                  const lifeKeys = ['career', 'relationships', 'health', 'finance', 'spirituality'] as const;
+                  const LIFE_ICONS: Record<string, string> = { career: '\u{1F4BC}', relationships: '\u2764', health: '\u2695', finance: '\u{1F4B0}', spirituality: '\u2728' };
+                  const LIFE_LABELS: Record<string, { en: string; hi: string }> = {
+                    career: { en: 'Career', hi: 'करियर' },
+                    relationships: { en: 'Relations', hi: 'सम्बन्ध' },
+                    health: { en: 'Health', hi: 'स्वास्थ्य' },
+                    finance: { en: 'Finance', hi: 'वित्त' },
+                    spirituality: { en: 'Spirit', hi: 'आध्यात्म' },
+                  };
+
+                  return (
+                    <div key={ai} className={`rounded-xl border transition-all duration-200 ${
+                      ad.isCurrent ? 'border-gold-primary/40 shadow-lg shadow-gold-primary/5' : 'border-gold-primary/10'
+                    } ${aColors.bg}`}>
+                      {/* Collapsed Header */}
+                      <button
+                        onClick={() => { setExpandedAntar(isExpanded ? null : ai); setExpandedPratyantar(null); }}
+                        className="w-full p-4 text-left"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-3">
+                            <GrahaIconById id={adPlanetId} size={28} />
+                            <div>
+                              <span className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                                {ad.planetName[locale]}
+                              </span>
+                              {ad.isCurrent && <span className="ml-2 w-1.5 h-1.5 inline-block rounded-full bg-gold-primary animate-pulse" />}
+                              <p className="text-text-secondary/60 text-xs">
+                                {fmtDate(ad.startDate)} — {fmtDate(ad.endDate)} ({ad.durationMonths} {locale === 'en' ? 'mo' : 'मा'})
+                              </p>
+                            </div>
+                          </div>
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${aColors.bg} ${aColors.border} ${aColors.text}`}>
+                            {aLabel[loc as 'en' | 'hi']}
+                          </span>
+                        </div>
+                        {/* Life area arrows */}
+                        <div className="flex gap-3 mt-1">
+                          {lifeKeys.map(k => {
+                            const arrow = lifeAreaArrow(ad.lifeAreas[k]);
+                            return (
+                              <span key={k} className="flex items-center gap-0.5 text-[10px]">
+                                <span className="text-text-secondary/50">{LIFE_LABELS[k][loc as 'en' | 'hi']}</span>
+                                <span className={`font-bold ${lifeAreaColor(arrow)}`}>{arrow}</span>
+                              </span>
+                            );
+                          })}
+                        </div>
+                        <p className="text-text-secondary text-xs mt-2 line-clamp-1">{ad.summary}</p>
+                      </button>
+
+                      {/* Expanded Content */}
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' as const }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-4 pb-4 space-y-4 border-t border-gold-primary/10 pt-4">
+                              {/* Lord Analysis */}
+                              <div>
+                                <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Lord Analysis' : 'स्वामी विश्लेषण'}</h5>
+                                <p className="text-text-secondary text-sm leading-relaxed">{ad.lordAnalysis}</p>
+                              </div>
+
+                              {/* Interaction */}
+                              <div>
+                                <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Interaction' : 'परस्पर सम्बन्ध'}</h5>
+                                <p className="text-text-secondary text-sm leading-relaxed">{ad.interaction}</p>
+                              </div>
+
+                              {/* Yogas & Doshas */}
+                              {ad.yogasTriggered.length > 0 && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Yogas Triggered' : 'योग सक्रिय'}</h5>
+                                  <p className="text-emerald-400/80 text-xs">{ad.yogasTriggered.join(', ')}</p>
+                                </div>
+                              )}
+                              {ad.doshasTriggered.length > 0 && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Doshas Triggered' : 'दोष सक्रिय'}</h5>
+                                  <p className="text-rose-400/80 text-xs">{ad.doshasTriggered.join(', ')}</p>
+                                </div>
+                              )}
+
+                              {/* Houses Activated */}
+                              {ad.housesActivated.length > 0 && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Houses Activated' : 'भाव सक्रिय'}</h5>
+                                  <div className="flex flex-wrap gap-2">
+                                    {ad.housesActivated.map((h, hi) => (
+                                      <span key={hi} className="px-2 py-0.5 rounded bg-bg-primary/40 border border-gold-primary/10 text-xs text-text-secondary">
+                                        <span className="text-gold-light font-medium">H{h.house}</span> {h.theme}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Transit Context */}
+                              {ad.transitContext && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Transit Context' : 'गोचर सन्दर्भ'}</h5>
+                                  <p className="text-text-secondary text-sm">{ad.transitContext}</p>
+                                </div>
+                              )}
+
+                              {/* Life Areas */}
+                              <div>
+                                <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Life Areas' : 'जीवन क्षेत्र'}</h5>
+                                <div className="space-y-2">
+                                  {lifeKeys.map(k => {
+                                    const arrow = lifeAreaArrow(ad.lifeAreas[k]);
+                                    return (
+                                      <div key={k} className="flex items-start gap-2">
+                                        <span className={`font-bold mt-0.5 ${lifeAreaColor(arrow)}`}>{arrow}</span>
+                                        <div>
+                                          <span className="text-gold-light text-xs font-medium">{LIFE_LABELS[k][loc as 'en' | 'hi']}</span>
+                                          <p className="text-text-secondary text-xs leading-relaxed">{ad.lifeAreas[k]}</p>
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+
+                              {/* Divisional Insights */}
+                              <div>
+                                <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Divisional Insights' : 'वर्ग दृष्टि'}</h5>
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                  {(['D1', 'D9', 'D10', 'D2'] as const).map(dk => (
+                                    <div key={dk} className="p-2 rounded bg-bg-primary/40 border border-gold-primary/10">
+                                      <span className="text-gold-primary text-[10px] font-bold">{dk}</span>
+                                      <p className="text-text-secondary text-[11px] mt-0.5">{ad.divisionalInsights[dk]}</p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+
+                              {/* Advice */}
+                              <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/15">
+                                <h5 className="text-amber-400 text-xs font-semibold mb-1">{locale === 'en' ? 'Advice' : 'सलाह'}</h5>
+                                <p className="text-text-secondary text-sm leading-relaxed">{ad.advice}</p>
+                              </div>
+
+                              {/* Key Dates */}
+                              {ad.keyDates.length > 0 && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Key Dates' : 'महत्त्वपूर्ण तिथियाँ'}</h5>
+                                  <div className="flex flex-wrap gap-2">
+                                    {ad.keyDates.map((kd, ki) => (
+                                      <span key={ki} className="px-2 py-0.5 rounded bg-bg-primary/40 border border-gold-primary/10 text-xs text-text-secondary font-mono">{kd}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {/* Section 4: Pratyantardasha Blocks */}
+                              {ad.pratyantardashas.length > 0 && (
+                                <div>
+                                  <h5 className="text-gold-primary text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Pratyantardasha Periods' : 'प्रत्यन्तर्दशा'}</h5>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {ad.pratyantardashas.map((pd, pi) => {
+                                      const pColors = ASSESSMENT_COLORS[pd.netAssessment];
+                                      const ppid = NAME_TO_ID[pd.planet] ?? 0;
+                                      const abbr = GRAHA_ABBREVIATIONS[ppid] || pd.planet.slice(0, 2);
+                                      const pratyKey = `${ai}-${pi}`;
+                                      const isPratyExpanded = expandedPratyantar === pratyKey;
+
+                                      return (
+                                        <div key={pi} className="flex flex-col items-center">
+                                          <button
+                                            onClick={(e) => { e.stopPropagation(); setExpandedPratyantar(isPratyExpanded ? null : pratyKey); }}
+                                            className={`relative w-10 h-10 rounded-lg flex items-center justify-center border text-xs font-bold transition-all ${pColors.bg} ${pColors.border} ${pColors.text} hover:scale-110`}
+                                            title={`${pd.planetName[locale]} | ${fmtDate(pd.startDate)}-${fmtDate(pd.endDate)} | ${pd.keyTheme}`}
+                                          >
+                                            {abbr}
+                                            {pd.isCritical && (
+                                              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-gold-primary" />
+                                            )}
+                                          </button>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                  {/* Expanded pratyantardasha detail */}
+                                  <AnimatePresence>
+                                    {expandedPratyantar?.startsWith(`${ai}-`) && (() => {
+                                      const pIdx = parseInt(expandedPratyantar.split('-')[1]);
+                                      const pd = ad.pratyantardashas[pIdx];
+                                      if (!pd) return null;
+                                      const pColors = ASSESSMENT_COLORS[pd.netAssessment];
+                                      const pLabel = ASSESSMENT_LABELS[pd.netAssessment];
+                                      return (
+                                        <motion.div
+                                          key={expandedPratyantar}
+                                          initial={{ height: 0, opacity: 0 }}
+                                          animate={{ height: 'auto', opacity: 1 }}
+                                          exit={{ height: 0, opacity: 0 }}
+                                          transition={{ duration: 0.2 }}
+                                          className="overflow-hidden"
+                                        >
+                                          <div className={`mt-3 p-3 rounded-lg border ${pColors.bg} ${pColors.border}`}>
+                                            <div className="flex items-center justify-between mb-2">
+                                              <div className="flex items-center gap-2">
+                                                <GrahaIconById id={NAME_TO_ID[pd.planet] ?? 0} size={20} />
+                                                <span className="text-gold-light text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                                                  {pd.planetName[locale]}
+                                                </span>
+                                                <span className="text-text-secondary/50 text-xs">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
+                                              </div>
+                                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
+                                            </div>
+                                            <p className="text-text-secondary text-xs mb-1"><span className="text-gold-primary font-medium">{locale === 'en' ? 'Theme' : 'विषय'}:</span> {pd.keyTheme}</p>
+                                            <p className="text-text-secondary text-xs"><span className="text-gold-primary font-medium">{locale === 'en' ? 'Advice' : 'सलाह'}:</span> {pd.advice}</p>
+                                            {pd.expanded && (
+                                              <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
+                                                <p className="text-text-secondary text-xs">{pd.expanded.lordAnalysis}</p>
+                                                <div className="flex gap-2">
+                                                  <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D1:</span> {pd.expanded.divisionalInsights.D1}</span>
+                                                  {pd.expanded.divisionalInsights.D9 && <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D9:</span> {pd.expanded.divisionalInsights.D9}</span>}
+                                                  {pd.expanded.divisionalInsights.D10 && <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D10:</span> {pd.expanded.divisionalInsights.D10}</span>}
+                                                </div>
+                                                {pd.expanded.warning && (
+                                                  <p className="text-rose-400 text-xs mt-1 p-2 rounded bg-rose-500/5 border border-rose-500/10">{pd.expanded.warning}</p>
+                                                )}
+                                              </div>
+                                            )}
+                                          </div>
+                                        </motion.div>
+                                      );
+                                    })()}
+                                  </AnimatePresence>
+                                </div>
+                              )}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        );
+      })()}
+
+      {/* ===== DASHA INSIGHT (fallback when synthesis unavailable) ===== */}
+      {!tip.dashaSynthesis && tip.dashaInsight.currentMaha && (
         <section className="glass-card rounded-xl p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('dashaAnalysis')}</h3>
           <div className="space-y-4">

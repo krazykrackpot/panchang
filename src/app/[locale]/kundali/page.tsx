@@ -1777,7 +1777,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('yogas')}</h3>
         <div className="space-y-3">
-          {tip.yogas.map((yoga, i) => (
+          {[...tip.yogas].sort((a, b) => (a.present === b.present ? 0 : a.present ? -1 : 1)).map((yoga, i) => (
             <div key={i}>
               <motion.div
                 onClick={() => setExpandedYoga(expandedYoga === i ? null : i)}
@@ -1842,7 +1842,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <section className="glass-card rounded-xl p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('doshas')}</h3>
         <div className="space-y-4">
-          {tip.doshas.map((dosha, i) => {
+          {[...tip.doshas].sort((a, b) => (a.present === b.present ? 0 : a.present ? -1 : 1)).map((dosha, i) => {
             const effectiveColor = dosha.effectiveSeverity === 'cancelled' ? 'border-green-500/20 bg-green-500/5' : dosha.effectiveSeverity === 'partial' ? 'border-yellow-500/20 bg-yellow-500/5' : dosha.present ? 'border-red-500/20 bg-red-500/5' : 'border-green-500/10 bg-bg-primary/30';
             return (
             <div key={i} className={`p-4 rounded-lg border ${effectiveColor}`}>

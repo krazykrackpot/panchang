@@ -544,6 +544,28 @@ export default function CalendarPage() {
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                     {f.description[locale]}
                   </div>
+                  {/* Parana info for ekadashis */}
+                  {f.paranaStart && f.paranaDate && (
+                    <div className="flex items-center gap-2 mt-1.5">
+                      <span className="text-xs font-bold text-amber-400">
+                        {locale === 'en' ? 'Parana' : 'पारण'}:
+                      </span>
+                      <span className="font-mono text-xs font-bold text-gold-light">
+                        {f.paranaStart} — {f.paranaEnd}
+                      </span>
+                      <span className="text-xs font-bold text-gold-primary">
+                        {(() => {
+                          const [y, m, d] = f.paranaDate.split('-').map(Number);
+                          const date = new Date(y, m - 1, d);
+                          const months = locale === 'en'
+                            ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+                            : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
+                          return `${d} ${months[m - 1]}`;
+                        })()}
+                      </span>
+                      <span className="text-[8px] text-text-secondary/30">24h</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Recommended for you */}

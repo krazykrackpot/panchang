@@ -108,34 +108,24 @@ export default function FestivalDetailPage() {
   };
   const puja: PujaVidhi | undefined = PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || ''];
 
-  // Determine category from slug or puja
-  const category = puja?.category === 'vrat' ? 'vrat'
+  // Determine category from slug or puja — ekadashi slug check FIRST (before vrat)
+  const category = slug.includes('ekadashi') ? 'ekadashi'
+    : puja?.category === 'vrat' ? 'vrat'
     : puja?.category === 'graha_shanti' ? 'vrat'
-    : slug.includes('ekadashi') ? 'ekadashi'
     : slug.includes('purnima') ? 'purnima'
     : slug.includes('amavasya') ? 'amavasya'
     : slug.includes('chaturthi') ? 'chaturthi'
     : slug.includes('pradosham') ? 'pradosham'
     : 'festival';
 
-  // Ekadashi detail lookup
+  // Ekadashi detail lookup — deferred until after ekadashiParana is available
+  // (the specific ekadashi name comes from the festival calendar entry)
   let ekadashiDetail: EkadashiDetail | null = null;
-  if (category === 'ekadashi') {
-    // Try to find matching ekadashi by slug
-    for (const monthKey of Object.keys(EKADASHI_NAMES)) {
-      const monthData = EKADASHI_NAMES[monthKey];
-      const shuklaSlug = monthData.shukla.name.en.toLowerCase().replace(/\s+/g, '-');
-      const krishnaSlug = monthData.krishna.name.en.toLowerCase().replace(/\s+/g, '-');
-      if (shuklaSlug === slug) { ekadashiDetail = monthData.shukla; break; }
-      if (krishnaSlug === slug) { ekadashiDetail = monthData.krishna; break; }
-    }
-  }
 
   // Derive the deity from detail or puja
   const deity = detail?.deity || puja?.deity;
 
-  // Derive festival name — prefer specific ekadashi name from calendar if available
-  const festivalName: Trilingual | null = detail?.name || ekadashiDetail?.name || puja ? (puja?.deity ? { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug } : null) : null;
+  // festivalName is derived after ekadashiDetail is populated (below)
 
   // specificEkadashiName is derived after ekadashiParana memo below
 
@@ -183,7 +173,28 @@ export default function FestivalDetailPage() {
     return null;
   }, [category, slug, dateParam, userLat, userLng, userTimezone]);
 
-  const hasContent = detail || ekadashiDetail || puja;
+  // Now that ekadashiParana is available, look up specific ekadashi detail by name
+  if (category === 'ekadashi') {
+    // First try matching by slug
+    for (const monthKey of Object.keys(EKADASHI_NAMES)) {
+      const monthData = EKADASHI_NAMES[monthKey];
+      const shuklaSlug = monthData.shukla.name.en.toLowerCase().replace(/\s+/g, '-');
+      const krishnaSlug = monthData.krishna.name.en.toLowerCase().replace(/\s+/g, '-');
+      if (shuklaSlug === slug) { ekadashiDetail = monthData.shukla; break; }
+      if (krishnaSlug === slug) { ekadashiDetail = monthData.krishna; break; }
+    }
+    // If not found by slug, try matching by the specific name from calendar entry
+    if (!ekadashiDetail && ekadashiParana?.name) {
+      const specificName = (ekadashiParana.name as { en: string }).en;
+      for (const monthKey of Object.keys(EKADASHI_NAMES)) {
+        const monthData = EKADASHI_NAMES[monthKey];
+        if (monthData.shukla.name.en === specificName) { ekadashiDetail = monthData.shukla; break; }
+        if (monthData.krishna.name.en === specificName) { ekadashiDetail = monthData.krishna; break; }
+      }
+    }
+  }
+
+  const hasContent = detail || ekadashiDetail || puja || ekadashiParana;
 
   // ─── Not Found ───
   if (!hasContent) {
@@ -264,6 +275,30 @@ export default function FestivalDetailPage() {
               </div>
             </div>
           </motion.div>
+
+          {/* ═══ Ekadashi Parana — TOP of page ═══ */}
+          {ekadashiParana && (
+            <motion.div {...fadeInUp}>
+              <EkadashiParanaCard
+                paranaDate={ekadashiParana.paranaDate!}
+                paranaStart={ekadashiParana.paranaStart!}
+                paranaEnd={ekadashiParana.paranaEnd!}
+                paranaSunrise={ekadashiParana.paranaSunrise!}
+                paranaHariVasaraEnd={ekadashiParana.paranaHariVasaraEnd!}
+                paranaDwadashiEnd={ekadashiParana.paranaDwadashiEnd!}
+                paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
+                paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
+                paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
+                ekadashiStart={ekadashiParana.ekadashiStart}
+                ekadashiStartDate={ekadashiParana.ekadashiStartDate}
+                ekadashiEnd={ekadashiParana.ekadashiEnd}
+                ekadashiEndDate={ekadashiParana.ekadashiEndDate}
+                dwadashiEndTime={ekadashiParana.dwadashiEndTime}
+                dwadashiEndDate={ekadashiParana.dwadashiEndDate}
+                locale={locale}
+              />
+            </motion.div>
+          )}
 
           {/* ═══ Section 1: About ═══ */}
           {detail && (
@@ -370,29 +405,7 @@ export default function FestivalDetailPage() {
             </motion.div>
           )}
 
-          {/* ═══ Section 4: Ekadashi Parana ═══ */}
-          {ekadashiParana && (
-            <motion.div {...fadeInUp}>
-              <EkadashiParanaCard
-                paranaDate={ekadashiParana.paranaDate!}
-                paranaStart={ekadashiParana.paranaStart!}
-                paranaEnd={ekadashiParana.paranaEnd!}
-                paranaSunrise={ekadashiParana.paranaSunrise!}
-                paranaHariVasaraEnd={ekadashiParana.paranaHariVasaraEnd!}
-                paranaDwadashiEnd={ekadashiParana.paranaDwadashiEnd!}
-                paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
-                paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
-                paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
-                ekadashiStart={ekadashiParana.ekadashiStart}
-                ekadashiStartDate={ekadashiParana.ekadashiStartDate}
-                ekadashiEnd={ekadashiParana.ekadashiEnd}
-                ekadashiEndDate={ekadashiParana.ekadashiEndDate}
-                dwadashiEndTime={ekadashiParana.dwadashiEndTime}
-                dwadashiEndDate={ekadashiParana.dwadashiEndDate}
-                locale={locale}
-              />
-            </motion.div>
-          )}
+          {/* Ekadashi Parana card moved to top — see after title */}
         </motion.div>
       </div>
 

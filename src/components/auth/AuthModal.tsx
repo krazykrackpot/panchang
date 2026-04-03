@@ -17,6 +17,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
   const { signInWithEmail, signUpWithEmail, signInWithGoogle, loading } = useAuthStore();
   const [mounted, setMounted] = useState(false);
   const portalRef = useRef<HTMLElement | null>(null);
@@ -44,6 +45,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
       if (result.error) {
         setError(result.error);
+      } else if (mode === 'signup') {
+        setSuccessMsg('Check your email for a confirmation link to complete signup.');
       } else {
         onClose();
       }
@@ -108,6 +111,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="email"
             className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
             aria-label="Email"
           />
@@ -118,6 +122,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
             className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
             aria-label="Password"
           />
@@ -129,6 +134,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
               minLength={6}
+              autoComplete="new-password"
               className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
               aria-label="Confirm Password"
             />
@@ -136,6 +142,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
           {error && (
             <p className="text-red-400 text-sm">{error}</p>
+          )}
+          {successMsg && (
+            <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+              <p className="text-emerald-400 text-sm">{successMsg}</p>
+            </div>
           )}
 
           <button
@@ -150,7 +161,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         <p className="text-center text-text-secondary text-sm mt-6">
           {mode === 'login' ? "Don't have an account?" : 'Already have an account?'}{' '}
           <button
-            onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); setConfirmPassword(''); }}
+            onClick={() => { setMode(mode === 'login' ? 'signup' : 'login'); setError(''); setSuccessMsg(''); setConfirmPassword(''); }}
             className="text-gold-primary hover:text-gold-light transition-colors"
           >
             {mode === 'login' ? 'Sign up' : 'Sign in'}

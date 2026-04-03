@@ -473,20 +473,89 @@ function Page3() {
         </ul>
       </section>
 
-      {/* The Ongoing Debate */}
+      {/* WHY Everyone Disagrees */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {isHi ? 'अनवरत वाद-विवाद' : 'The Ongoing Debate'}
+          {isHi ? 'सब असहमत क्यों हैं — मूल समस्या' : 'Why Everyone Disagrees — The Root Problem'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? 'कोई भी अयनांश "सिद्ध रूप से सही" नहीं है — चुनाव इस पर निर्भर करता है कि आप किस सन्दर्भ तारे या युग पर विश्वास करते हैं। लहिरी भारत में प्रमुख है (~90% ज्योतिषी)। के.पी. पद्धति एक बहुत निकट संस्करण प्रयोग करती है (मात्र ~2 कला अन्तर)। रमण एक महत्त्वपूर्ण अल्पसंख्यक द्वारा प्रयुक्त है। पश्चिमी निरयन ज्योतिषी फ़गन-ब्रैडली प्रयोग करते हैं।'
-            : 'No ayanamsha is "proven correct" — the choice depends on which reference star or epoch you trust. Lahiri is dominant in India (roughly 90 percent of practitioners). The KP system uses a very close variant (only about 2 arcminutes difference). Raman is used by a significant minority. Western siderealists use Fagan-Bradley.'}
+            ? 'अयनांश विवाद को समझने के लिए आपको मूल समस्या समझनी होगी: कोई नहीं जानता कि सायन और निरयन राशिचक्र ठीक कब संरेखित थे। यह "शून्य अयनांश तिथि" है — वह क्षण जब वसन्त सम्पात 0° मेष निरयन के साथ मेल खाता था। लेकिन तीन बाधाएँ हैं:'
+            : 'To understand the ayanamsha debate, you need to understand the root problem: nobody knows the EXACT date when the tropical and sidereal zodiacs were aligned. This is called the "zero ayanamsha date" — the moment when the vernal equinox coincided with 0° Aries sidereal. But there are three fundamental obstacles:'}
+        </p>
+        <ul className="text-text-secondary text-sm leading-relaxed space-y-3 ml-4 mb-3">
+          <li className="flex items-start gap-2">
+            <span className="text-red-400 mt-1 shrink-0 font-bold">1.</span>
+            <span>
+              {isHi
+                ? 'सम्पात बिन्दु अदृश्य है — यह वह गणितीय बिन्दु है जहाँ क्रान्तिवृत्त तल भूमध्यरेखीय तल को काटता है। आप इसे "देख" नहीं सकते। आकाश में कोई चिह्न नहीं है।'
+                : 'The equinox is INVISIBLE — it\'s a mathematical point where the ecliptic plane intersects the equatorial plane. You can\'t "see" it. There\'s no marker in the sky.'}
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-red-400 mt-1 shrink-0 font-bold">2.</span>
+            <span>
+              {isHi
+                ? '0° मेष निरयन अलग-अलग परिभाषित है — तारामंडलों की तीक्ष्ण सीमाएँ नहीं होतीं। "मेष" कहाँ समाप्त होता है और "मीन" कहाँ आरम्भ होता है? तारे लेबल के साथ नहीं आते। प्रत्येक प्रणाली एक भिन्न "लंगर तारा" चुनती है।'
+                : '"0° Aries sidereal" is defined differently by each system — constellations don\'t have sharp edges. Where does "Aries" end and "Pisces" begin? Stars don\'t come with labels. Each system chose a DIFFERENT anchor star to define this boundary.'}
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="text-red-400 mt-1 shrink-0 font-bold">3.</span>
+            <span>
+              {isHi
+                ? 'प्राचीन खगोलशास्त्रियों ने सापेक्ष स्थिति मापी, निरपेक्ष नहीं — "ग्रह X तारा Y से 30° दूर है" — इसे निरपेक्ष सन्दर्भ ढाँचे में रूपान्तरित करने के लिए एक लंगर तारा चुनना आवश्यक है।'
+                : 'Ancient astronomers measured RELATIVE positions, not absolute — "planet X is 30° from star Y." Converting these to an absolute reference frame requires choosing an anchor star — and that choice is a human convention.'}
+            </span>
+          </li>
+        </ul>
+      </section>
+
+      {/* Each System's Anchor Logic */}
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'प्रत्येक प्रणाली ने अपना लंगर कैसे चुना' : 'How Each System Chose Its Anchor'}
+        </h4>
+        <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
+          <p><span className="text-gold-light font-bold">Lahiri:</span> {isHi ? 'स्पाइका (चित्रा, α Virginis) को ठीक 180° निरयन पर स्थिर किया। चित्रा चमकीला (प्रथम कोटि), आसानी से प्रेक्षणीय, और 180° गणितीय रूप से स्वच्छ है (0° मेष के ठीक विपरीत)। स्पाइका की ज्ञात गति से पीछे गणना करने पर → शून्य तिथि ≈ 285 ई.।' : 'Fixed Spica (Chitra, α Virginis) at exactly 180° sidereal. Spica is bright (magnitude 1.0), easily observable, and 180° is mathematically clean (exactly opposite 0° Aries). Working backward from Spica\'s known proper motion → zero date ≈ 285 CE.'}</p>
+          <p><span className="text-gold-light font-bold">BV Raman:</span> {isHi ? 'रेवती (ζ Piscium) को 359°50\' निरयन पर लंगर के रूप में प्रयोग किया, सूर्य सिद्धान्त के सन्दर्भों के आधार पर। भिन्न तारा → भिन्न शून्य → शून्य तिथि ≈ 397 ई.।' : 'Used Revati (ζ Piscium) as anchor at 359°50\' sidereal, based on Surya Siddhanta references. Different star → different zero → zero date ≈ 397 CE.'}</p>
+          <p><span className="text-gold-light font-bold">KP (Krishnamurti):</span> {isHi ? 'लहिरी से आरम्भ किया लेकिन दशा समय की सटीकता के अपने प्रेक्षणों के आधार पर एक छोटा सुधार लागू किया। विचार: जो अयनांश विंशोत्तरी दशा भविष्यवाणियों को सबसे सटीक बनाए, वही "सही" है। प्रायोगिक समायोजन → शून्य ≈ 291 ई.।' : 'Started from Lahiri but applied a small correction based on his own observations of dasha timing accuracy. The idea: whichever ayanamsha makes Vimshottari dasha predictions MOST accurate is the "correct" one. Empirical tuning → zero ≈ 291 CE.'}</p>
+          <p><span className="text-gold-light font-bold">Fagan-Bradley:</span> {isHi ? 'सिरिल फ़गन (आयरिश) ने अल्डेबैरन (α Tauri) को ठीक 15° वृषभ और एन्टेयर्स (α Scorpii) को ठीक 15° वृश्चिक में दोहरे लंगर के रूप में प्रयोग किया। दोहरा सत्यापन, भिन्न तारे → शून्य ≈ 221 ई.।' : 'Cyril Fagan (Irish) used Aldebaran (α Tauri) at exactly 15° Taurus AND Antares (α Scorpii) at exactly 15° Scorpio as dual anchors. Double verification with two opposite stars → zero ≈ 221 CE.'}</p>
+          <p><span className="text-gold-light font-bold">Yukteshwar:</span> {isHi ? 'श्री युक्तेश्वर गिरि (योगानन्द के गुरु) ने अपनी पुस्तक "The Holy Science" (1894) में पुरस्सरण सिद्धान्त से गणना की। एक अद्वितीय शून्य तिथि ~499 ई. प्राप्त की।' : 'Sri Yukteshwar Giri (Yogananda\'s guru) calculated from precessional theory in "The Holy Science" (1894). Derived a unique zero date of ~499 CE.'}</p>
+        </div>
+      </section>
+
+      {/* Why Can't We Just Measure It? */}
+      <section className="glass-card rounded-xl p-5 border border-cyan-500/15">
+        <h4 className="text-cyan-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'क्या हम इसे माप नहीं सकते?' : 'Why Can\'t We Just Measure It?'}
+        </h4>
+        <p className="text-text-secondary text-xs leading-relaxed mb-2">
+          {isHi
+            ? 'क्योंकि पुरस्सरण सतत है और "सही" शून्य बिन्दु इस पर निर्भर करता है कि आप तारामंडल की सीमा कहाँ खींचते हैं — जो एक मानवीय परम्परा है, भौतिक तथ्य नहीं। IAU (अन्तर्राष्ट्रीय खगोलीय संघ) की तारामंडल सीमाएँ परम्परागत 30°-प्रति-राशि विभाजनों से मेल नहीं खातीं।'
+            : 'Because precession is continuous and the "correct" zero point depends on WHERE you draw the constellation boundary — which is a human convention, not a physical fact. The IAU (International Astronomical Union) constellation boundaries don\'t even match the traditional 30°-per-sign equal divisions.'}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed">
+          {isHi
+            ? 'यह किसी शहर की सीमा चुनने जैसा है — "दिल्ली" रेलवे स्टेशन पर समाप्त होती है या हवाई अड्डे पर? दोनों उत्तर वैध हैं, दोनों मानवीय चुनाव हैं, और दोनों एक सुसंगत मानचित्र देते हैं — बस थोड़ा अलग। अयनांश का चुनाव ठीक ऐसा ही है।'
+            : 'Think of it like choosing a city boundary — does "Delhi" end at the railway station or the airport? Both answers are valid, both are human choices, and both give you a consistent map — just slightly different. The ayanamsha choice is exactly like this.'}
+        </p>
+      </section>
+
+      {/* The Ongoing Debate */}
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {isHi ? 'कौन सा चुनें?' : 'Which One Should You Use?'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'लहिरी भारत में प्रमुख है (~90% ज्योतिषी)। के.पी. पद्धति एक बहुत निकट संस्करण प्रयोग करती है। रमण एक महत्त्वपूर्ण अल्पसंख्यक द्वारा प्रयुक्त है। पश्चिमी निरयन ज्योतिषी फ़गन-ब्रैडली प्रयोग करते हैं। हमारा सुझाव: लहिरी से आरम्भ करें (सबसे व्यापक, सबसे अधिक सत्यापित)। यदि आपके गुरु या परम्परा कोई अन्य पद्धति प्रयोग करती है, उसे चुनें। हमारा ऐप तीनों (लहिरी/रमन/केपी) का समर्थन करता है।'
+            : 'Lahiri is dominant in India (roughly 90 percent of practitioners). KP uses a very close variant. Raman is used by a significant minority. Our recommendation: START with Lahiri (most widely used, most validated). If your guru or tradition uses a different system, choose that one. Our app supports all three (Lahiri/Raman/KP) — you can generate the same chart with different systems and compare.'}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
-            ? 'व्यावहारिक प्रभाव: यदि आपका ग्रह किसी राशि की सीमा के 2° के भीतर (0°-2° या 28°-30°) है, तो अयनांश का चुनाव महत्त्वपूर्ण है — यह ग्रह की राशि, नक्षत्र या पाद बदल सकता है। राशि के मध्य में स्थित ग्रहों के लिए सभी अयनांश पद्धतियाँ सहमत हैं।'
-            : 'Practical impact for you: if your planet is within 2 degrees of a sign boundary (0-2 degrees or 28-30 degrees of any sign), the ayanamsha choice matters — it could change your planet\'s sign, nakshatra, or pada. For planets in the middle of a sign, all ayanamsha systems agree.'}
+            ? 'व्यावहारिक प्रभाव: यदि आपका ग्रह किसी राशि की सीमा के 2° के भीतर है, तो अयनांश का चुनाव महत्त्वपूर्ण है। राशि के मध्य में स्थित ग्रहों के लिए सभी पद्धतियाँ सहमत हैं।'
+            : 'Practical impact: if your planet is within 2 degrees of a sign boundary, the ayanamsha choice matters. For planets in the middle of a sign, all systems agree.'}
         </p>
       </section>
 

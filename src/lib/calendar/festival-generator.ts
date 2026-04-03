@@ -164,10 +164,14 @@ function computeEkadashiParanaFromTable(
   const jdSunrise = dateToJD(py, pm, pday, sunriseUT);
   const hvAlreadyOver = hvEndJd <= jdSunrise;
 
-  // Madhyahna = middle 1/5 of daytime
+  // Day division (5 parts of daytime, per Dharma Sindhu):
+  // Pratahkala (1/5), Sangava (1/5), Madhyahna (1/5), Aparahna (1/5), Sayahna (1/5)
+  // Madhyahna = 3rd fifth of daytime. Parana MUST avoid this period.
+  // Ideal parana = first 1/5 of daytime (Pratahkala) = Drik Panchang standard.
   const dayLen = sunsetUT - sunriseUT;
-  const madhStartUT = sunriseUT + dayLen * (2 / 5);
-  const madhEndUT = sunriseUT + dayLen * (3 / 5);
+  const pratahEndUT = sunriseUT + dayLen / 5;         // End of first 1/5 — ideal parana deadline
+  const madhStartUT = sunriseUT + dayLen * (2 / 5);   // Madhyahna start — hard avoid
+  const madhEndUT = sunriseUT + dayLen * (3 / 5);     // Madhyahna end
 
   const ft = (ut: number) => formatTime(((ut % 24) + 24) % 24, tz);
 
@@ -183,15 +187,23 @@ function computeEkadashiParanaFromTable(
   let recEndUT: number;
 
   if (dwEndUTHours <= earliestUT) {
+    // Dwadashi ends before we can even start — break fast ASAP at sunrise
     recStartUT = sunriseUT;
     recEndUT = dwEndUTHours;
+  } else if (earliestUT < pratahEndUT) {
+    // Ideal case: parana within Pratahkala (first 1/5 of day)
+    recStartUT = earliestUT;
+    recEndUT = Math.min(pratahEndUT, effectiveDeadline);
   } else if (earliestUT < madhStartUT) {
+    // HV ended after Pratahkala but before Madhyahna — use window up to Madhyahna
     recStartUT = earliestUT;
     recEndUT = Math.min(madhStartUT, effectiveDeadline);
   } else if (earliestUT >= madhEndUT) {
+    // HV ended after Madhyahna — use window after Madhyahna
     recStartUT = earliestUT;
     recEndUT = effectiveDeadline;
   } else {
+    // HV ends during Madhyahna — wait until Madhyahna ends
     recStartUT = madhEndUT;
     recEndUT = effectiveDeadline;
   }

@@ -162,10 +162,13 @@ export default function EkadashiParanaCard({
           24h
         </span>
       </div>
-      <p className="text-text-secondary/50 text-xs mb-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+      <p className="text-text-secondary/50 text-xs mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {ll.subtitle}
       </p>
-      <p className="text-text-secondary/70 text-sm mb-5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+      <p
+        className="text-xl sm:text-2xl font-black text-gold-light mb-5"
+        style={headingFont}
+      >
         {dateFormatted}
       </p>
 

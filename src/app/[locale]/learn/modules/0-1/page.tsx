@@ -227,8 +227,18 @@ function Page2() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
-            ? 'ये दो पूरी तरह से अलग प्रणालियाँ हैं। यहाँ मुख्य अन्तर हैं:'
-            : 'These are two completely different systems. Here are the key differences:'}
+            ? 'जब कोई पश्चिमी देश में कहता है "मेरी राशि मिथुन है" और एक भारतीय कहता है "मेरी राशि वृषभ है" — दोनों सही हो सकते हैं। वे दो पूरी तरह से भिन्न प्रणालियों का उपयोग कर रहे हैं। समझिए कैसे।'
+            : 'When someone in the West says "I\'m a Gemini" and an Indian says "My rashi is Vrishabha (Taurus)" — both can be correct. They\'re using two completely different systems. Here\'s why.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'पश्चिमी ज्योतिष "ट्रॉपिकल" राशिचक्र का उपयोग करता है जो ऋतुओं (विषुव) से जुड़ा है। वैदिक ज्योतिष "साइडरियल" (निरयन) राशिचक्र का उपयोग करता है जो वास्तविक तारों से जुड़ा है। पृथ्वी की अक्षीय पुरस्सरण (precession) के कारण ये दोनों प्रणालियाँ प्रतिवर्ष ~50 आर्कसेकण्ड खिसकती जा रही हैं। आज यह अन्तर लगभग 24° है — जिसका अर्थ है कि आपकी वैदिक राशि प्रायः आपकी पश्चिमी राशि से एक राशि पीछे होगी।'
+            : 'Western astrology uses the "Tropical" zodiac, anchored to the seasons (equinoxes). Vedic astrology uses the "Sidereal" (Nirayana) zodiac, anchored to the actual fixed stars. Due to Earth\'s axial precession, these two systems are drifting apart at ~50 arcseconds per year. Today the gap is about 24° — meaning your Vedic sign is usually one sign behind your Western sign.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'लेकिन अन्तर केवल राशिचक्र का नहीं है। वैदिक ज्योतिष के पास ऐसे शक्तिशाली उपकरण हैं जिनका पश्चिमी ज्योतिष में कोई समकक्ष नहीं — 27 नक्षत्र प्रणाली, दशा समय पद्धति (जो बताती है कब क्या होगा, न कि केवल क्या हो सकता है), और मुहूर्त चयन (शुभ समय ज्ञात करने की विस्तृत विधि)। नीचे दी गई तालिका में प्रमुख अन्तर देखें:'
+            : 'But the differences go far beyond the zodiac. Vedic Jyotish has powerful tools with no Western equivalent — the 27 Nakshatra system, the Dasha timing system (which predicts WHEN events unfold, not just what might happen), and Muhurta selection (an elaborate method for finding auspicious times). The table below highlights the key differences:'}
         </p>
 
         {/* Comparison table */}

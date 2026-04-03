@@ -13,6 +13,7 @@ interface AuthState {
   signInWithEmail: (email: string, password: string) => Promise<{ error?: string }>;
   signUpWithEmail: (email: string, password: string, name?: string) => Promise<{ error?: string }>;
   signInWithGoogle: () => Promise<void>;
+  resetPassword: (email: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
 }
 
@@ -68,12 +69,26 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     const supabase = getSupabase();
     if (!supabase) return { error: 'Auth not configured' };
     set({ loading: true });
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { data: { name } },
     });
     set({ loading: false });
+    if (error) return { error: error.message };
+    // Supabase returns an empty identities array if the email already exists
+    if (data.user && data.user.identities?.length === 0) {
+      return { error: 'An account with this email already exists. Please sign in instead.' };
+    }
+    return {};
+  },
+
+  resetPassword: async (email) => {
+    const supabase = getSupabase();
+    if (!supabase) return { error: 'Auth not configured' };
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/en/settings`,
+    });
     return error ? { error: error.message } : {};
   },
 

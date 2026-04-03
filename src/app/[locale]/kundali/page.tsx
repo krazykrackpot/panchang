@@ -15,6 +15,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { getPlanetaryPositions, toSidereal, dateToJD } from '@/lib/ephem/astronomical';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
@@ -1032,41 +1033,118 @@ export default function KundaliPage() {
           )}
 
           {/* ===== ARGALA TAB ===== */}
-          {activeTab === 'argala' && kundali.argala && (
+          {activeTab === 'argala' && kundali.argala && (() => {
+            const HOUSE_SIGNIFICATIONS: { en: string; hi: string }[] = [
+              { en: 'Self, body, personality, health', hi: 'आत्म, शरीर, व्यक्तित्व, स्वास्थ्य' },
+              { en: 'Wealth, family, speech, food', hi: 'धन, परिवार, वाणी, भोजन' },
+              { en: 'Courage, siblings, communication', hi: 'साहस, भाई-बहन, संवाद' },
+              { en: 'Home, mother, comfort, property', hi: 'घर, माता, सुख, सम्पत्ति' },
+              { en: 'Children, intelligence, education', hi: 'सन्तान, बुद्धि, शिक्षा' },
+              { en: 'Enemies, disease, debts, service', hi: 'शत्रु, रोग, ऋण, सेवा' },
+              { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
+              { en: 'Longevity, transformation, occult', hi: 'दीर्घायु, परिवर्तन, गुप्त' },
+              { en: 'Dharma, father, fortune, guru', hi: 'धर्म, पिता, भाग्य, गुरु' },
+              { en: 'Career, status, authority, fame', hi: 'कैरियर, प्रतिष्ठा, अधिकार, यश' },
+              { en: 'Gains, income, friends, wishes', hi: 'लाभ, आय, मित्र, इच्छाएँ' },
+              { en: 'Expenses, liberation, foreign, loss', hi: 'व्यय, मोक्ष, विदेश, हानि' },
+            ];
+            const OBSTRUCTION_REMEDIES: { en: string; hi: string }[] = [
+              { en: 'Strengthen lagna lord — wear its gemstone, chant its mantra', hi: 'लग्नेश को बलवान करें — रत्न धारण, मन्त्र जाप' },
+              { en: 'Donate food and support family harmony', hi: 'भोजन दान करें, पारिवारिक सामंजस्य बनाएँ' },
+              { en: 'Practice courage, support siblings, write/communicate more', hi: 'साहस का अभ्यास, भाई-बहनों का समर्थन, लेखन/संवाद' },
+              { en: 'Serve mother, maintain home sanctity, perform Vastu puja', hi: 'माता की सेवा, घर की पवित्रता, वास्तु पूजा' },
+              { en: 'Worship Saraswati/Jupiter, educate children, creative pursuits', hi: 'सरस्वती/गुरु पूजा, सन्तान शिक्षा, सृजनात्मक कार्य' },
+              { en: 'Serve the sick/poor, chant Hanuman Chalisa, stay debt-free', hi: 'रोगी/गरीबों की सेवा, हनुमान चालीसा, ऋणमुक्त रहें' },
+              { en: 'Strengthen Venus, respect spouse, practice compromise', hi: 'शुक्र को बलवान करें, जीवनसाथी का सम्मान, समझौता' },
+              { en: 'Chant Maha Mrityunjaya, embrace change, study occult wisely', hi: 'महामृत्युंजय जाप, परिवर्तन स्वीकार, गुप्त विद्या' },
+              { en: 'Respect guru/father, visit temples, practice dharma', hi: 'गुरु/पिता का सम्मान, मन्दिर दर्शन, धर्म आचरण' },
+              { en: 'Work diligently, respect authority, perform Surya Namaskar', hi: 'परिश्रम, अधिकार का सम्मान, सूर्य नमस्कार' },
+              { en: 'Donate to charities, network wisely, support friends', hi: 'दान, बुद्धिमत्ता से सम्बन्ध, मित्रों का समर्थन' },
+              { en: 'Practice detachment, meditate, visit pilgrimages', hi: 'वैराग्य, ध्यान, तीर्थ यात्रा' },
+            ];
+            const supported = kundali.argala.filter(a => a.netEffect === 'supported');
+            const obstructed = kundali.argala.filter(a => a.netEffect === 'obstructed');
+
+            return (
             <div className="space-y-6">
-              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
+              <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
                 {locale === 'en' ? 'Argala — Planetary Intervention' : 'अर्गला — ग्रह हस्तक्षेप'}
               </h3>
-              <p className="text-text-secondary text-xs text-center mb-4">
-                {locale === 'en' ? 'Which planets support or obstruct each house (Jaimini system, BPHS Ch.31)' : 'कौन से ग्रह प्रत्येक भाव का समर्थन या अवरोध करते हैं (जैमिनी, BPHS अ.31)'}
+              <p className="text-text-secondary/70 text-sm text-center mb-2 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {locale === 'en'
+                  ? 'Argala (from Jaimini Sutras / BPHS Ch.31) shows which planets actively intervene in each house\'s affairs — either supporting its significations or obstructing them. Planets in the 2nd, 4th, and 11th from a house create positive Argala; planets in the 3rd, 10th, and 12th create Virodha (counter-intervention).'
+                  : 'अर्गला (जैमिनी सूत्र / BPHS अ.31) दर्शाती है कि कौन से ग्रह प्रत्येक भाव में सक्रिय हस्तक्षेप करते हैं — समर्थन या अवरोध। 2, 4, 11वें भाव के ग्रह शुभ अर्गला बनाते हैं; 3, 10, 12वें भाव के ग्रह विरोध अर्गला।'}
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {kundali.argala.map((ar) => (
-                  <div key={ar.house} className={`glass-card rounded-xl p-3 border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-gold-light font-bold text-sm">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</span>
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
+
+              {/* Summary */}
+              <div className="flex justify-center gap-4 text-xs">
+                <span className="text-emerald-400">{supported.length} {locale === 'en' ? 'supported' : 'समर्थित'}</span>
+                <span className="text-red-400">{obstructed.length} {locale === 'en' ? 'obstructed' : 'अवरुद्ध'}</span>
+                <span className="text-amber-400">{12 - supported.length - obstructed.length} {locale === 'en' ? 'neutral' : 'तटस्थ'}</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {kundali.argala.map((ar) => {
+                  const sig = HOUSE_SIGNIFICATIONS[ar.house - 1];
+                  const remedy = OBSTRUCTION_REMEDIES[ar.house - 1];
+                  return (
+                  <div key={ar.house} className={`glass-card rounded-xl overflow-hidden border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
+                    {/* Header */}
+                    <div className={`px-4 py-2.5 flex items-center justify-between ${ar.netEffect === 'supported' ? 'bg-emerald-500/5' : ar.netEffect === 'obstructed' ? 'bg-red-500/5' : 'bg-bg-secondary/30'}`}>
+                      <div>
+                        <span className="text-gold-light font-bold text-sm">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</span>
+                        <span className="text-text-secondary/50 text-[10px] ml-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {sig[locale === 'en' ? 'en' : 'hi']}
+                        </span>
+                      </div>
+                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
                         {ar.netEffect === 'supported' ? (locale === 'en' ? 'Supported' : 'समर्थित') : ar.netEffect === 'obstructed' ? (locale === 'en' ? 'Obstructed' : 'अवरुद्ध') : (locale === 'en' ? 'Neutral' : 'तटस्थ')}
                       </span>
                     </div>
-                    {ar.argalas.length > 0 && (
-                      <div className="text-[10px] text-emerald-300 mb-1">
-                        {locale === 'en' ? 'Support:' : 'समर्थन:'} {ar.argalas.map(a => a.planetName[locale as Locale] || a.planetName.en).join(', ')}
-                      </div>
-                    )}
-                    {ar.virodha.length > 0 && (
-                      <div className="text-[10px] text-red-400">
-                        {locale === 'en' ? 'Counter:' : 'प्रतिकार:'} {ar.virodha.map(v => v.planetName[locale as Locale] || v.planetName.en).join(', ')}
-                      </div>
-                    )}
-                    {ar.argalas.length === 0 && ar.virodha.length === 0 && (
-                      <div className="text-[10px] text-text-tertiary">{locale === 'en' ? 'No intervention' : 'कोई हस्तक्षेप नहीं'}</div>
-                    )}
+                    <div className="px-4 py-3 space-y-2">
+                      {ar.argalas.length > 0 && (
+                        <div className="text-xs">
+                          <span className="text-emerald-400/60">{locale === 'en' ? 'Support:' : 'समर्थन:'}</span>{' '}
+                          <span className="text-emerald-300">{ar.argalas.map(a => a.planetName[locale as Locale] || a.planetName.en).join(', ')}</span>
+                        </div>
+                      )}
+                      {ar.virodha.length > 0 && (
+                        <div className="text-xs">
+                          <span className="text-red-400/60">{locale === 'en' ? 'Counter:' : 'प्रतिकार:'}</span>{' '}
+                          <span className="text-red-400">{ar.virodha.map(v => v.planetName[locale as Locale] || v.planetName.en).join(', ')}</span>
+                        </div>
+                      )}
+                      {ar.argalas.length === 0 && ar.virodha.length === 0 && (
+                        <div className="text-[10px] text-text-tertiary">{locale === 'en' ? 'No planetary intervention on this house.' : 'इस भाव पर कोई ग्रह हस्तक्षेप नहीं।'}</div>
+                      )}
+                      {/* Implication */}
+                      {ar.netEffect === 'supported' && (
+                        <p className="text-emerald-400/50 text-[10px] leading-relaxed mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {locale === 'en'
+                            ? `Positive: ${sig.en.split(',')[0]} matters receive planetary support — expect growth and ease in these areas.`
+                            : `शुभ: ${sig.hi.split(',')[0]} विषयों को ग्रह समर्थन — इन क्षेत्रों में वृद्धि और सहजता।`}
+                        </p>
+                      )}
+                      {ar.netEffect === 'obstructed' && (
+                        <div className="mt-1">
+                          <p className="text-red-400/50 text-[10px] leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            {locale === 'en'
+                              ? `Challenge: ${sig.en.split(',')[0]} matters face obstruction — delays or difficulties likely.`
+                              : `चुनौती: ${sig.hi.split(',')[0]} विषयों में अवरोध — विलम्ब या कठिनाइयाँ सम्भावित।`}
+                          </p>
+                          <p className="text-amber-400/40 text-[10px] mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            {locale === 'en' ? 'Upaya: ' : 'उपाय: '}{remedy[locale === 'en' ? 'en' : 'hi']}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
-          )}
+            );
+          })()}
 
           {/* ===== SPHUTAS TAB ===== */}
           {activeTab === 'sphutas' && kundali.sphutas && (
@@ -1237,32 +1315,65 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   const weakSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.name[locale]);
   const weakSignIds = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.id);
 
-  // Approximate transit periods for slow planets through weak signs
-  // Saturn ~2.5yr/sign, Jupiter ~1yr/sign, Rahu ~1.5yr/sign (retrograde)
-  // Current approx positions (2026): Saturn in Pisces(12), Jupiter in Cancer(4), Rahu in Pisces(12)
-  const SLOW_PLANETS = [
-    { name: { en: 'Saturn', hi: 'शनि' }, currentSign: 12, yearsPerSign: 2.5 },
-    { name: { en: 'Jupiter', hi: 'बृहस्पति' }, currentSign: 4, yearsPerSign: 1.0 },
-    { name: { en: 'Rahu', hi: 'राहु' }, currentSign: 12, yearsPerSign: 1.5 },
-  ];
-  const weakTransits: { planet: string; sign: string; approxYear: string }[] = [];
-  const currentYear = new Date().getFullYear();
-  for (const planet of SLOW_PLANETS) {
-    for (const weakId of weakSignIds) {
-      // How many signs ahead is the weak sign?
-      let stepsAhead = (weakId - planet.currentSign + 12) % 12;
-      if (stepsAhead === 0) stepsAhead = 0; // currently in it
-      const approxYearStart = currentYear + Math.round(stepsAhead * planet.yearsPerSign);
-      const approxYearEnd = approxYearStart + Math.round(planet.yearsPerSign);
-      if (approxYearStart <= currentYear + 15) { // only show next 15 years
-        weakTransits.push({
-          planet: planet.name[locale === 'en' ? 'en' : 'hi'],
-          sign: RASHIS[weakId - 1].name[locale],
-          approxYear: `~${approxYearStart}–${approxYearEnd}`,
-        });
+  // Compute accurate transit windows for slow planets through weak signs
+  // Scan monthly from now for 15 years using actual ephemeris
+  const weakTransits = useMemo(() => {
+    if (weakSignIds.length === 0) return [];
+    const results: { planet: string; sign: string; period: string }[] = [];
+    // Planet IDs: Saturn=6, Jupiter=4, Rahu=7
+    const slowPlanets = [
+      { id: 6, name: { en: 'Saturn', hi: 'शनि' } },
+      { id: 4, name: { en: 'Jupiter', hi: 'बृहस्पति' } },
+      { id: 7, name: { en: 'Rahu', hi: 'राहु' } },
+    ];
+    const now = new Date();
+    const startJd = dateToJD(now.getFullYear(), now.getMonth() + 1, 15, 12);
+    const monthsToScan = 180; // 15 years
+
+    for (const planet of slowPlanets) {
+      for (const weakId of weakSignIds) {
+        let entryMonth: string | null = null;
+        let lastInSign = false;
+
+        for (let m = 0; m <= monthsToScan; m++) {
+          const jd = startJd + m * 30.44; // ~1 month
+          const positions = getPlanetaryPositions(jd);
+          const pos = positions.find(p => p.id === planet.id);
+          if (!pos) continue;
+          const sidLon = toSidereal(pos.longitude, jd);
+          const sign = Math.floor(sidLon / 30) + 1;
+          const inWeakSign = sign === weakId;
+
+          if (inWeakSign && !lastInSign) {
+            // Entry into weak sign
+            const d = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
+            entryMonth = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+          }
+          if (!inWeakSign && lastInSign && entryMonth) {
+            // Exit from weak sign
+            const d = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
+            const exitMonth = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+            results.push({
+              planet: planet.name[locale === 'en' ? 'en' : 'hi'],
+              sign: RASHIS[weakId - 1].name[locale],
+              period: `${entryMonth} – ${exitMonth}`,
+            });
+            entryMonth = null;
+          }
+          lastInSign = inWeakSign;
+        }
+        // If still in sign at end of scan
+        if (lastInSign && entryMonth) {
+          results.push({
+            planet: planet.name[locale === 'en' ? 'en' : 'hi'],
+            sign: RASHIS[weakId - 1].name[locale],
+            period: `${entryMonth} – ...`,
+          });
+        }
       }
     }
-  }
+    return results;
+  }, [weakSignIds, locale]);
   const totalBindu = ashtakavarga.savTable.reduce((a, b) => a + b, 0);
 
   return (
@@ -1301,12 +1412,9 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                     {weakTransits.map((wt, idx) => (
                       <p key={idx} className="text-red-400/50 text-xs flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-red-400/40 shrink-0" />
-                        {wt.planet} {locale === 'en' ? 'in' : ''} {wt.sign} {wt.approxYear}
+                        <span className="font-medium text-red-400/70">{wt.planet}</span> {locale === 'en' ? 'in' : ''} {wt.sign}: <span className="font-mono">{wt.period}</span>
                       </p>
                     ))}
-                    <p className="text-text-secondary/30 text-[10px] italic mt-1">
-                      {locale === 'en' ? '* Approximate periods based on average transit speeds' : '* औसत गोचर गति के आधार पर अनुमानित अवधि'}
-                    </p>
                   </div>
                 )}
               </div>

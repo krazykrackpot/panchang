@@ -455,98 +455,6 @@ export default function HomePage() {
 
       <GoldDivider />
 
-      {/* Today's Panchang — bigger cards */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12" style={hf}>
-            <span className="text-gold-gradient">{t('todayPanchang')}</span>
-          </h2>
-          <TodayPanchangWidget />
-
-          {/* CTA buttons — moved below Today's Panchang */}
-          <div className="flex flex-wrap gap-4 justify-center mt-10">
-            <Link
-              href="/panchang"
-              className="group px-10 py-4 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-bold text-lg rounded-xl hover:from-gold-primary hover:to-gold-light transition-all duration-300 flex items-center gap-3"
-            >
-              <Compass className="w-6 h-6" />
-              {t('explorePanchang')}
-            </Link>
-            <Link
-              href="/kundali"
-              className="px-10 py-4 border-2 border-gold-primary/30 text-gold-light font-bold text-lg rounded-xl hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300 flex items-center gap-3"
-            >
-              <BookOpen className="w-6 h-6" />
-              {t('generateKundali')}
-            </Link>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Profile Banner — logged-in users with birth data */}
-      {profileBanner && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link href="/profile" className="block group">
-              <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] hover:border-gold-primary/30 transition-all px-6 py-4">
-                <div className="flex items-center gap-4">
-                  {/* Rashi icon */}
-                  <div className="shrink-0">
-                    <RashiIconById id={profileBanner.moon_sign} size={44} />
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-gold-light font-semibold text-sm truncate" style={bf}>
-                        {profileBanner.display_name || (locale === 'en' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
-                      </span>
-                      {profileBanner.spiActive && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
-                          {locale === 'en' ? 'Sade Sati' : 'साढ़े साती'}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-3 mt-0.5 text-xs text-text-secondary/70" style={bf}>
-                      <span>
-                        {locale === 'en' ? 'Moon' : 'चन्द्र'}: <span className="text-gold-primary/80">{profileBanner.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.moonRashiName?.en}</span>
-                      </span>
-                      <span className="text-gold-primary/20">|</span>
-                      <span>
-                        {locale === 'en' ? 'Lagna' : 'लग्न'}: <span className="text-gold-primary/80">{profileBanner.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.lagnaRashiName?.en}</span>
-                      </span>
-                      {profileBanner.currentDasha && (
-                        <>
-                          <span className="text-gold-primary/20">|</span>
-                          <span>
-                            {locale === 'en' ? 'Dasha' : 'दशा'}: <span className="text-gold-primary/80">{profileBanner.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.currentDasha.maha.planetName?.en}</span>
-                          </span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Arrow */}
-                  <ArrowRight className="w-4 h-4 text-text-secondary/30 group-hover:text-gold-primary/60 transition-colors shrink-0" />
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        </section>
-      )}
-
-      <GoldDivider />
-
       {/* Three Pillars — Value Propositions */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={stagger}>
@@ -565,15 +473,15 @@ export default function HomePage() {
                   <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
                   </h3>
-                  <p className="text-gold-primary/70 text-sm font-semibold mb-4" style={bf}>
+                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
                     {locale === 'en' ? 'Know Your Day' : locale === 'hi' ? 'अपना दिन जानें' : 'स्वदिनं जानातु'}
                   </p>
-                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
-                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Daily panchang with precise 24h timings' : 'सटीक 24h समय के साथ दैनिक पंचांग'}</li>
-                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Festival calendar with puja vidhis & mantras' : 'पूजा विधि और मन्त्रों के साथ त्योहार पंचांग'}</li>
-                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Ekadashi parana with Hari Vasara rules' : 'हरि वासर नियमों के साथ एकादशी पारण'}</li>
-                    <li className="flex items-start gap-2"><span className="text-gold-primary mt-0.5">&#9670;</span> {locale === 'en' ? 'Muhurat finder for 20 activities' : '20 गतिविधियों के लिए मुहूर्त खोजक'}</li>
-                  </ul>
+                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                    {locale === 'en'
+                      ? <>Precise <span className="text-gold-primary/90">tithi, nakshatra, yoga</span> and <span className="text-gold-primary/90">karana</span> timings for your location. Festival calendar with <span className="text-gold-primary/90">step-by-step puja vidhis</span>, mantras in Devanagari, and <span className="text-gold-primary/90">Ekadashi parana</span> computed with Hari Vasara rules. Find the <span className="text-gold-primary/90">perfect muhurat</span> for any of 20 life activities.</>
+                      : <>आपके स्थान के लिए सटीक <span className="text-gold-primary/90">तिथि, नक्षत्र, योग</span> और <span className="text-gold-primary/90">करण</span> समय। <span className="text-gold-primary/90">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-gold-primary/90">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-gold-primary/90">शुभ मुहूर्त</span> खोजें।</>
+                    }
+                  </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
                     <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
                       {locale === 'en' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
@@ -586,22 +494,22 @@ export default function HomePage() {
             {/* ── Pillar 2: Kundali ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/kundali" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#1a2a5a]/40 via-[#0a1530]/50 to-[#0a0e27] border border-blue-500/15 hover:border-blue-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-5"><KundaliPillarIcon /></div>
-                  <h3 className="text-blue-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
+                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Kundali' : 'कुण्डली'}
                   </h3>
-                  <p className="text-blue-400/70 text-sm font-semibold mb-4" style={bf}>
+                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
                     {locale === 'en' ? 'Know Yourself' : locale === 'hi' ? 'स्वयं को जानें' : 'आत्मानं जानातु'}
                   </p>
-                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Birth chart with 150+ yogas & shadbala' : '150+ योग और षड्बल के साथ जन्म कुण्डली'}</li>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Dasha forecast — period-by-period life predictions' : 'दशा पूर्वानुमान — काल-दर-काल जीवन भविष्यवाणी'}</li>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Compatibility matching (36-Guna Milan)' : 'गुण मिलान (36 गुण अनुकूलता)'}</li>
-                    <li className="flex items-start gap-2"><span className="text-blue-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Varshaphal, KP System & Prashna' : 'वर्षफल, केपी पद्धति और प्रश्न'}</li>
-                  </ul>
-                  <div className="mt-6 pt-4 border-t border-blue-500/10">
-                    <span className="text-blue-400 text-sm font-bold group-hover:text-blue-300 transition-colors">
+                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                    {locale === 'en'
+                      ? <>Your complete birth chart with <span className="text-gold-primary/90">150+ yogas</span>, shadbala strength, and <span className="text-gold-primary/90">period-by-period dasha forecasts</span> across Mahadasha, Antardasha, and Pratyantardasha. <span className="text-gold-primary/90">36-Guna compatibility</span> matching, annual predictions via Varshaphal, and advanced systems — <span className="text-gold-primary/90">KP, Jaimini, Prashna</span>.</>
+                      : <>आपकी पूर्ण जन्म कुण्डली — <span className="text-gold-primary/90">150+ योग</span>, षड्बल और <span className="text-gold-primary/90">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-gold-primary/90">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-gold-primary/90">केपी, जैमिनी, प्रश्न</span>।</>
+                    }
+                  </p>
+                  <div className="mt-6 pt-4 border-t border-gold-primary/10">
+                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
                       {locale === 'en' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
                     </span>
                   </div>
@@ -612,22 +520,22 @@ export default function HomePage() {
             {/* ── Pillar 3: Jyotish (Learn) ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/learn" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#3a2a10]/40 via-[#1a1508]/50 to-[#0a0e27] border border-amber-500/15 hover:border-amber-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-amber-500/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-5"><JyotishPillarIcon /></div>
-                  <h3 className="text-amber-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
+                  <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
                   </h3>
-                  <p className="text-amber-400/70 text-sm font-semibold mb-4" style={bf}>
+                  <p className="text-gold-primary/80 text-base font-semibold mb-5" style={hf}>
                     {locale === 'en' ? 'Master the Science' : locale === 'hi' ? 'विज्ञान में निपुणता' : 'विज्ञानं वशीकुर्यात्'}
                   </p>
-                  <ul className="space-y-2.5 text-text-secondary text-sm flex-1" style={bf}>
-                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? '89 structured modules — foundation to advanced' : '89 संरचित पाठ्यक्रम — आधार से उन्नत तक'}</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Grahas, Rashis, Nakshatras, Dashas & Yogas' : 'ग्रह, राशि, नक्षत्र, दशा और योग'}</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'KP System, Jaimini & Tajika techniques' : 'केपी पद्धति, जैमिनी और ताजिक तकनीक'}</li>
-                    <li className="flex items-start gap-2"><span className="text-amber-400 mt-0.5">&#9670;</span> {locale === 'en' ? 'Interactive diagrams & classical references' : 'इंटरैक्टिव आरेख और शास्त्रीय सन्दर्भ'}</li>
-                  </ul>
-                  <div className="mt-6 pt-4 border-t border-amber-500/10">
-                    <span className="text-amber-400 text-sm font-bold group-hover:text-amber-300 transition-colors">
+                  <p className="text-text-secondary/80 text-sm leading-relaxed flex-1" style={bf}>
+                    {locale === 'en'
+                      ? <><span className="text-gold-primary/90">89 structured modules</span> taking you from the foundations — Grahas, Rashis, Nakshatras — through <span className="text-gold-primary/90">Dashas, Yogas, Shadbala</span>, to advanced systems like <span className="text-gold-primary/90">KP, Jaimini, and Tajika</span>. Interactive diagrams, classical Sanskrit references, and the computational astronomy behind every calculation.</>
+                      : <><span className="text-gold-primary/90">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-gold-primary/90">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-gold-primary/90">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
+                    }
+                  </p>
+                  <div className="mt-6 pt-4 border-t border-gold-primary/10">
+                    <span className="text-gold-primary text-sm font-bold group-hover:text-gold-light transition-colors">
                       {locale === 'en' ? 'Start Learning →' : 'सीखना शुरू करें →'}
                     </span>
                   </div>
@@ -640,44 +548,66 @@ export default function HomePage() {
 
       <GoldDivider />
 
-      {/* Why Panchang is Science */}
+      {/* Today's Panchang */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div
-          initial="initial"
-          whileInView="animate"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          variants={stagger}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
-              <span className="text-gold-gradient">{t('scienceTitle')}</span>
-            </h2>
-            <p className="text-text-secondary max-w-2xl mx-auto" style={bf}>
-              {t('scienceDesc')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: t('sciencePoint1Title'), desc: t('sciencePoint1'), gradient: 'from-indigo-500/8', icon: (
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="18" stroke="#6366f1" strokeWidth="1" opacity={0.4} /><circle cx="22" cy="22" r="8" stroke="#6366f1" strokeWidth="1.2" /><circle cx="22" cy="4" r="2" fill="#6366f1" opacity={0.6} /><line x1="22" y1="14" x2="22" y2="30" stroke="#6366f1" strokeWidth="0.8" opacity={0.3} /><line x1="14" y1="22" x2="30" y2="22" stroke="#6366f1" strokeWidth="0.8" opacity={0.3} /></svg>
-              ) },
-              { title: t('sciencePoint2Title'), desc: t('sciencePoint2'), gradient: 'from-amber-500/8', icon: (
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="14" fill="none" stroke="#d4a853" strokeWidth="1.2" /><circle cx="22" cy="22" r="14" fill="#d4a853" opacity={0.05} /><path d="M22 8 A14 14 0 0 1 22 36" fill="#d4a853" opacity={0.1} /><circle cx="22" cy="22" r="4" fill="#d4a853" opacity={0.3} /></svg>
-              ) },
-              { title: t('sciencePoint3Title'), desc: t('sciencePoint3'), gradient: 'from-violet-500/8', icon: (
-                <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" stroke="#8b5cf6" strokeWidth="1" opacity={0.3} /><circle cx="22" cy="22" r="10" fill="#8b5cf6" opacity={0.06} /><circle cx="22" cy="22" r="10" stroke="#8b5cf6" strokeWidth="1.2" /><circle cx="14" cy="22" r="3" fill="#0a0e27" stroke="#8b5cf6" strokeWidth="0.8" /></svg>
-              ) },
-            ].map((item, i) => (
-              <motion.div key={i} variants={fadeInUp} className={`glass-card rounded-2xl p-8 bg-gradient-to-br ${item.gradient} to-transparent`}>
-                <div className="mb-5">{item.icon}</div>
-                <h3 className="text-gold-light text-lg font-semibold mb-3" style={hf}>{item.title}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12" style={hf}>
+            <span className="text-gold-gradient">{t('todayPanchang')}</span>
+          </h2>
+          <TodayPanchangWidget />
         </motion.div>
       </section>
+
+      {/* Profile Banner — logged-in users with birth data */}
+      {profileBanner && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/profile" className="block group">
+              <div className="rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] hover:border-gold-primary/30 transition-all px-6 py-4">
+                <div className="flex items-center gap-4">
+                  <div className="shrink-0">
+                    <RashiIconById id={profileBanner.moon_sign} size={44} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gold-light font-semibold text-sm truncate" style={bf}>
+                        {profileBanner.display_name || (locale === 'en' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
+                      </span>
+                      {profileBanner.spiActive && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
+                          {locale === 'en' ? 'Sade Sati' : 'साढ़े साती'}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 mt-0.5 text-xs text-text-secondary/70" style={bf}>
+                      <span>{locale === 'en' ? 'Moon' : 'चन्द्र'}: <span className="text-gold-primary/80">{profileBanner.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.moonRashiName?.en}</span></span>
+                      <span className="text-gold-primary/20">|</span>
+                      <span>{locale === 'en' ? 'Lagna' : 'लग्न'}: <span className="text-gold-primary/80">{profileBanner.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.lagnaRashiName?.en}</span></span>
+                      {profileBanner.currentDasha && (
+                        <>
+                          <span className="text-gold-primary/20">|</span>
+                          <span>{locale === 'en' ? 'Dasha' : 'दशा'}: <span className="text-gold-primary/80">{profileBanner.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.currentDasha.maha.planetName?.en}</span></span>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-text-secondary/30 group-hover:text-gold-primary/60 transition-colors shrink-0" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </section>
+      )}
     </div>
   );
 }

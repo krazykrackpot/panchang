@@ -8,3 +8,18 @@ Disallow: /api/
 
 # Disallow internal Next.js paths
 Disallow: /_next/
+
+# Disallow private user pages
+Disallow: /*/auth/
+Disallow: /*/settings/
+Disallow: /*/profile/
+
+# Disallow AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /

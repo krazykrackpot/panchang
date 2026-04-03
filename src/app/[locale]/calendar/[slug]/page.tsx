@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -13,6 +13,9 @@ import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja
 import type { Locale, Trilingual } from '@/types/panchang';
 import SamagriList from '@/components/puja/SamagriList';
 import PujaMode from '@/components/puja/PujaMode';
+import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
+import { useLocationStore } from '@/stores/location-store';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 /* ═══════════════════════════════════════════
    LABELS
@@ -135,6 +138,42 @@ export default function FestivalDetailPage() {
   // PujaMode state
   const [pujaMode, setPujaMode] = useState(false);
   const [quickMode, setQuickMode] = useState(false);
+
+  // Location store for Ekadashi parana
+  const locationStore = useLocationStore();
+  useEffect(() => {
+    if (category === 'ekadashi' && !locationStore.confirmed && !locationStore.detecting) {
+      locationStore.detect();
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const userLat = locationStore.lat;
+  const userLng = locationStore.lng;
+  const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  // Compute Ekadashi parana from festival calendar
+  const ekadashiParana = useMemo(() => {
+    if (category !== 'ekadashi' || !userLat || !userLng) return null;
+    try {
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const year = now.getFullYear();
+      const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
+      let entry = festivals.find(f => f.slug === slug && f.date >= todayStr);
+      if (!entry) {
+        // Try matching any ekadashi with matching slug prefix
+        entry = festivals.find(f => f.slug?.includes('ekadashi') && f.slug === slug);
+      }
+      if (!entry) {
+        const nextYearFestivals = generateFestivalCalendarV2(year + 1, userLat, userLng, userTimezone);
+        entry = nextYearFestivals.find(f => f.slug === slug);
+      }
+      if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
+        return entry;
+      }
+    } catch { /* fail silently */ }
+    return null;
+  }, [category, slug, userLat, userLng, userTimezone]);
 
   const hasContent = detail || ekadashiDetail || puja;
 
@@ -305,6 +344,24 @@ export default function FestivalDetailPage() {
                 bodyFont={bodyFont}
                 highlight
                 accentColor="emerald"
+              />
+            </motion.div>
+          )}
+
+          {/* ═══ Section 4: Ekadashi Parana ═══ */}
+          {ekadashiParana && (
+            <motion.div {...fadeInUp}>
+              <EkadashiParanaCard
+                paranaDate={ekadashiParana.paranaDate!}
+                paranaStart={ekadashiParana.paranaStart!}
+                paranaEnd={ekadashiParana.paranaEnd!}
+                paranaSunrise={ekadashiParana.paranaSunrise!}
+                paranaHariVasaraEnd={ekadashiParana.paranaHariVasaraEnd!}
+                paranaDwadashiEnd={ekadashiParana.paranaDwadashiEnd!}
+                paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
+                paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
+                paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
+                locale={locale}
               />
             </motion.div>
           )}

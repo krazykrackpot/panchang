@@ -13,6 +13,7 @@ import PujaMode from '@/components/puja/PujaMode';
 import SamagriList from '@/components/puja/SamagriList';
 import SankalpaDisplay from '@/components/puja/SankalpaDisplay';
 import ParanaDisplay from '@/components/puja/ParanaDisplay';
+import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
@@ -310,6 +311,23 @@ export default function PujaVidhiPage() {
     } catch { return undefined; }
   }, [puja, userLat, userLng, timezoneOffset, festivalDate]);
 
+  // Ekadashi parana data from the festival calendar
+  const ekadashiParana = useMemo(() => {
+    if (!puja || !festivalDate || !userLat || !userLng) return null;
+    // Only for ekadashi vrats
+    if (!puja.festivalSlug.includes('ekadashi')) return null;
+    try {
+      const year = festivalDate.getFullYear();
+      const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
+      const dateStr = `${year}-${(festivalDate.getMonth() + 1).toString().padStart(2, '0')}-${festivalDate.getDate().toString().padStart(2, '0')}`;
+      const entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date === dateStr);
+      if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
+        return entry;
+      }
+    } catch { /* fail silently */ }
+    return null;
+  }, [puja, festivalDate, userLat, userLng, userTimezone]);
+
   if (!puja) {
     return (
       <main className="min-h-screen pt-28 pb-16 px-4">
@@ -357,7 +375,20 @@ export default function PujaVidhiPage() {
         />
 
         {/* Parana display for vrats */}
-        {puja.parana && userLat && userLng && (
+        {ekadashiParana ? (
+          <EkadashiParanaCard
+            paranaDate={ekadashiParana.paranaDate!}
+            paranaStart={ekadashiParana.paranaStart!}
+            paranaEnd={ekadashiParana.paranaEnd!}
+            paranaSunrise={ekadashiParana.paranaSunrise!}
+            paranaHariVasaraEnd={ekadashiParana.paranaHariVasaraEnd!}
+            paranaDwadashiEnd={ekadashiParana.paranaDwadashiEnd!}
+            paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
+            paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
+            paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
+            locale={locale}
+          />
+        ) : puja.parana && userLat && userLng ? (
           <ParanaDisplay
             parana={puja.parana}
             vratDate={new Date()}
@@ -368,7 +399,7 @@ export default function PujaVidhiPage() {
             timezone={userTimezone}
             locale={locale}
           />
-        )}
+        ) : null}
 
         {/* Start Puja buttons */}
         <motion.div {...fadeInUp} className="flex flex-col sm:flex-row items-center gap-3">

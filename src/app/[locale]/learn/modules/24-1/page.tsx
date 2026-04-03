@@ -202,6 +202,242 @@ const GANDA_MULA = [
   },
 ];
 
+/* ─── Zodiac Wheel Diagram ──────────────────────────────────────── */
+const SIGNS = [
+  { en: 'Ari', hi: 'मेष', element: 'fire' },
+  { en: 'Tau', hi: 'वृष', element: 'earth' },
+  { en: 'Gem', hi: 'मिथु', element: 'air' },
+  { en: 'Can', hi: 'कर्क', element: 'water' },
+  { en: 'Leo', hi: 'सिंह', element: 'fire' },
+  { en: 'Vir', hi: 'कन्या', element: 'earth' },
+  { en: 'Lib', hi: 'तुला', element: 'air' },
+  { en: 'Sco', hi: 'वृश्चि', element: 'water' },
+  { en: 'Sag', hi: 'धनु', element: 'fire' },
+  { en: 'Cap', hi: 'मकर', element: 'earth' },
+  { en: 'Aqu', hi: 'कुम्भ', element: 'air' },
+  { en: 'Pis', hi: 'मीन', element: 'water' },
+] as const;
+
+const ELEMENT_STYLES: Record<string, { fill: string; stroke: string }> = {
+  fire:  { fill: 'rgba(239, 68, 68, 0.15)',  stroke: 'rgba(239, 68, 68, 0.3)' },
+  earth: { fill: 'rgba(16, 185, 129, 0.1)',  stroke: 'rgba(16, 185, 129, 0.2)' },
+  air:   { fill: 'rgba(14, 165, 233, 0.1)',  stroke: 'rgba(14, 165, 233, 0.2)' },
+  water: { fill: 'rgba(59, 130, 246, 0.15)', stroke: 'rgba(59, 130, 246, 0.3)' },
+};
+
+const JUNCTIONS = [
+  { fromIdx: 11, toIdx: 0, naksEn: 'Revati | Ashwini', naksHi: 'रेवती | अश्विनी' },
+  { fromIdx: 3, toIdx: 4, naksEn: 'Ashlesha | Magha', naksHi: 'आश्लेषा | मघा' },
+  { fromIdx: 7, toIdx: 8, naksEn: 'Jyeshtha | Moola', naksHi: 'ज्येष्ठा | मूल' },
+];
+
+function ZodiacWheel({ locale }: { locale: string }) {
+  const cx = 200, cy = 200, outerR = 170, innerR = 95, midR = (outerR + innerR) / 2;
+  const segAngle = (2 * Math.PI) / 12;
+  // Aries at 12 o'clock: segment 0 starts at -90deg offset
+  const startOffset = -Math.PI / 2 - segAngle / 2;
+
+  function arcPath(i: number, r1: number, r2: number) {
+    const a1 = startOffset + i * segAngle;
+    const a2 = a1 + segAngle;
+    const x1o = cx + r2 * Math.cos(a1), y1o = cy + r2 * Math.sin(a1);
+    const x2o = cx + r2 * Math.cos(a2), y2o = cy + r2 * Math.sin(a2);
+    const x2i = cx + r1 * Math.cos(a2), y2i = cy + r1 * Math.sin(a2);
+    const x1i = cx + r1 * Math.cos(a1), y1i = cy + r1 * Math.sin(a1);
+    return `M${x1o},${y1o} A${r2},${r2} 0 0,1 ${x2o},${y2o} L${x2i},${y2i} A${r1},${r1} 0 0,0 ${x1i},${y1i} Z`;
+  }
+
+  function labelPos(i: number) {
+    const a = startOffset + (i + 0.5) * segAngle;
+    return { x: cx + midR * Math.cos(a), y: cy + midR * Math.sin(a) };
+  }
+
+  function junctionPos(fromIdx: number) {
+    // Junction is at the boundary between fromIdx and fromIdx+1
+    const a = startOffset + (fromIdx + 1) * segAngle;
+    return {
+      markerX: cx + outerR * Math.cos(a),
+      markerY: cy + outerR * Math.sin(a),
+      labelX: cx + (outerR + 30) * Math.cos(a),
+      labelY: cy + (outerR + 30) * Math.sin(a),
+    };
+  }
+
+  const legendItems = [
+    { label: locale === 'en' ? 'Fire' : 'अग्नि', color: 'rgba(239, 68, 68, 0.5)' },
+    { label: locale === 'en' ? 'Earth' : 'पृथ्वी', color: 'rgba(16, 185, 129, 0.4)' },
+    { label: locale === 'en' ? 'Air' : 'वायु', color: 'rgba(14, 165, 233, 0.4)' },
+    { label: locale === 'en' ? 'Water' : 'जल', color: 'rgba(59, 130, 246, 0.5)' },
+  ];
+
+  return (
+    <svg viewBox="0 0 400 400" className="w-full max-w-md mx-auto" role="img" aria-label="Zodiac wheel showing Ganda Mula junctions">
+      <defs>
+        <filter id="glow-gold">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {/* Segments */}
+      {SIGNS.map((sign, i) => {
+        const es = ELEMENT_STYLES[sign.element];
+        const lp = labelPos(i);
+        return (
+          <g key={i}>
+            <path d={arcPath(i, innerR, outerR)} fill={es.fill} stroke={es.stroke} strokeWidth={1} />
+            <text x={lp.x} y={lp.y} textAnchor="middle" dominantBaseline="central"
+              fill="#f0d48a" fontSize={locale === 'en' ? 11 : 10} fontWeight="600">
+              {sign[locale === 'en' ? 'en' : 'hi']}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* Center label */}
+      <circle cx={cx} cy={cy} r={innerR - 5} fill="rgba(10, 14, 39, 0.8)" stroke="rgba(212, 168, 83, 0.2)" strokeWidth={1} />
+      <text x={cx} y={cy - 8} textAnchor="middle" fill="#d4a853" fontSize={12} fontWeight="700">
+        {locale === 'en' ? 'Ganda Mula' : 'गण्ड मूल'}
+      </text>
+      <text x={cx} y={cy + 8} textAnchor="middle" fill="#8a8478" fontSize={10}>
+        {locale === 'en' ? 'Junctions' : 'सन्धि'}
+      </text>
+
+      {/* Junction markers */}
+      {JUNCTIONS.map((j, i) => {
+        const pos = junctionPos(j.fromIdx);
+        // Determine text-anchor based on position relative to center
+        const dx = pos.labelX - cx;
+        const anchor = Math.abs(dx) < 5 ? 'middle' : dx > 0 ? 'start' : 'end';
+        return (
+          <g key={`j-${i}`}>
+            {/* Glowing gold diamond marker */}
+            <polygon
+              points={`${pos.markerX},${pos.markerY - 7} ${pos.markerX + 5},${pos.markerY} ${pos.markerX},${pos.markerY + 7} ${pos.markerX - 5},${pos.markerY}`}
+              fill="#d4a853" stroke="#f0d48a" strokeWidth={1}
+              filter="url(#glow-gold)"
+            />
+            {/* Nakshatra label */}
+            <text x={pos.labelX} y={pos.labelY} textAnchor={anchor} dominantBaseline="central"
+              fill="#f0d48a" fontSize={8} fontWeight="500">
+              {locale === 'en' ? j.naksEn : j.naksHi}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* Legend */}
+      {legendItems.map((item, i) => (
+        <g key={`leg-${i}`}>
+          <rect x={10 + i * 90} y={380} width={10} height={10} rx={2} fill={item.color} />
+          <text x={24 + i * 90} y={389} fill="#8a8478" fontSize={9}>{item.label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+/* ─── Junction Flow Diagram ─────────────────────────────────────── */
+const JUNCTION_DATA = [
+  {
+    waterEn: 'Pisces', waterHi: 'मीन', fireEn: 'Aries', fireHi: 'मेष',
+    naksEn: 'Revati (27) | Ashwini (1)', naksHi: 'रेवती (27) | अश्विनी (1)',
+    labelEn: 'Junction 1', labelHi: 'सन्धि 1',
+  },
+  {
+    waterEn: 'Cancer', waterHi: 'कर्क', fireEn: 'Leo', fireHi: 'सिंह',
+    naksEn: 'Ashlesha (9) | Magha (10)', naksHi: 'आश्लेषा (9) | मघा (10)',
+    labelEn: 'Junction 2', labelHi: 'सन्धि 2',
+  },
+  {
+    waterEn: 'Scorpio', waterHi: 'वृश्चिक', fireEn: 'Sagittarius', fireHi: 'धनु',
+    naksEn: 'Jyeshtha (18) | Moola (19)', naksHi: 'ज्येष्ठा (18) | मूल (19)',
+    labelEn: 'Junction 3', labelHi: 'सन्धि 3',
+  },
+];
+
+function JunctionFlow({ locale }: { locale: string }) {
+  const isEn = locale === 'en';
+  const rowH = 90, padY = 20;
+  const svgH = JUNCTION_DATA.length * rowH + padY * 2;
+  const waterX = 40, waterW = 110, fireX = 250, fireW = 110, arrowY = 28;
+
+  return (
+    <svg viewBox={`0 0 400 ${svgH}`} className="w-full max-w-lg mx-auto" role="img" aria-label="Junction flow diagram showing water to fire transitions">
+      <defs>
+        <linearGradient id="water-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
+          <stop offset="100%" stopColor="rgba(59, 130, 246, 0.1)" />
+        </linearGradient>
+        <linearGradient id="fire-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="rgba(239, 68, 68, 0.1)" />
+          <stop offset="100%" stopColor="rgba(239, 68, 68, 0.3)" />
+        </linearGradient>
+        <filter id="spark-glow">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
+      </defs>
+
+      {JUNCTION_DATA.map((j, i) => {
+        const y = padY + i * rowH;
+        const arrowStartX = waterX + waterW + 6;
+        const arrowEndX = fireX - 6;
+        const arrowMidX = (arrowStartX + arrowEndX) / 2;
+        const boxH = 38;
+
+        return (
+          <g key={i}>
+            {/* Junction label */}
+            <text x={200} y={y} textAnchor="middle" fill="#8a8478" fontSize={10} fontWeight="600" letterSpacing="0.05em">
+              {isEn ? j.labelEn : j.labelHi}
+            </text>
+
+            {/* Water box */}
+            <rect x={waterX} y={y + 10} width={waterW} height={boxH} rx={8}
+              fill="url(#water-grad)" stroke="rgba(59, 130, 246, 0.3)" strokeWidth={1} />
+            {/* Water element indicator (small circle) */}
+            <circle cx={waterX + 16} cy={y + arrowY + 2} r={5} fill="rgba(59, 130, 246, 0.5)" />
+            <text x={waterX + waterW / 2 + 8} y={y + arrowY + 3} textAnchor="middle" dominantBaseline="central"
+              fill="rgba(147, 197, 253, 1)" fontSize={13} fontWeight="600">
+              {isEn ? j.waterEn : j.waterHi}
+            </text>
+
+            {/* Arrow line */}
+            <line x1={arrowStartX} y1={y + arrowY + 2} x2={arrowEndX - 8} y2={y + arrowY + 2}
+              stroke="rgba(212, 168, 83, 0.4)" strokeWidth={1.5} strokeDasharray="4 3" />
+            {/* Arrowhead */}
+            <polygon
+              points={`${arrowEndX - 8},${y + arrowY - 2} ${arrowEndX},${y + arrowY + 2} ${arrowEndX - 8},${y + arrowY + 6}`}
+              fill="rgba(212, 168, 83, 0.6)" />
+            {/* Gold spark at center of arrow */}
+            <polygon
+              points={`${arrowMidX},${y + arrowY - 5} ${arrowMidX + 4},${y + arrowY + 2} ${arrowMidX},${y + arrowY + 9} ${arrowMidX - 4},${y + arrowY + 2}`}
+              fill="#d4a853" filter="url(#spark-glow)" />
+
+            {/* Fire box */}
+            <rect x={fireX} y={y + 10} width={fireW} height={boxH} rx={8}
+              fill="url(#fire-grad)" stroke="rgba(239, 68, 68, 0.3)" strokeWidth={1} />
+            {/* Fire element indicator (small triangle) */}
+            <polygon
+              points={`${fireX + 16},${y + arrowY - 3} ${fireX + 21},${y + arrowY + 5} ${fireX + 11},${y + arrowY + 5}`}
+              fill="rgba(239, 68, 68, 0.5)" />
+            <text x={fireX + fireW / 2 + 8} y={y + arrowY + 3} textAnchor="middle" dominantBaseline="central"
+              fill="rgba(252, 165, 165, 1)" fontSize={13} fontWeight="600">
+              {isEn ? j.fireEn : j.fireHi}
+            </text>
+
+            {/* Nakshatra names below */}
+            <text x={200} y={y + boxH + 20} textAnchor="middle" fill="#f0d48a" fontSize={10}>
+              {isEn ? j.naksEn : j.naksHi}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 export default function GandaMulaModule() {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
@@ -267,6 +503,17 @@ export default function GandaMulaModule() {
             )}
           </div>
         </div>
+      </motion.section>
+
+      <GoldDivider />
+
+      {/* Diagrams Section */}
+      <motion.section {...fadeInUp} className="my-10 space-y-8">
+        <h2 className="text-2xl font-bold text-gold-light text-center" style={hf}>
+          {locale === 'en' ? 'The Three Water-Fire Junctions' : 'तीन जल-अग्नि सन्धियाँ'}
+        </h2>
+        <ZodiacWheel locale={locale} />
+        <JunctionFlow locale={locale} />
       </motion.section>
 
       <GoldDivider />

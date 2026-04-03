@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, BookOpen, Flame, Star, AlertTriangle, Check, Copy, Clock, Sparkles, Gift, Shield } from 'lucide-react';
 import Link from 'next/link';
@@ -87,7 +87,9 @@ const categoryBadgeColors: Record<string, string> = {
 export default function FestivalDetailPage() {
   const locale = useLocale() as Locale;
   const params = useParams();
+  const searchParams = useSearchParams();
   const slug = params.slug as string;
+  const dateParam = searchParams.get('date'); // e.g., "2026-04-13" for specific ekadashi
 
   const isDevanagari = locale !== 'en';
   const headingFont: React.CSSProperties = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
@@ -132,8 +134,10 @@ export default function FestivalDetailPage() {
   // Derive the deity from detail or puja
   const deity = detail?.deity || puja?.deity;
 
-  // Derive festival name
+  // Derive festival name — prefer specific ekadashi name from calendar if available
   const festivalName: Trilingual | null = detail?.name || ekadashiDetail?.name || puja ? (puja?.deity ? { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug } : null) : null;
+
+  // specificEkadashiName is derived after ekadashiParana memo below
 
   // PujaMode state
   const [pujaMode, setPujaMode] = useState(false);
@@ -152,28 +156,32 @@ export default function FestivalDetailPage() {
   const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   // Compute Ekadashi parana from festival calendar
+  // If dateParam is present (e.g., ?date=2026-04-13), find that SPECIFIC ekadashi
   const ekadashiParana = useMemo(() => {
     if (category !== 'ekadashi' || !userLat || !userLng) return null;
     try {
+      const targetDate = dateParam; // specific date from URL, e.g., "2026-04-13"
       const now = new Date();
       const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
-      const year = now.getFullYear();
-      const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
-      let entry = festivals.find(f => f.slug === slug && f.date >= todayStr);
-      if (!entry) {
-        // Try matching any ekadashi with matching slug prefix
-        entry = festivals.find(f => f.slug?.includes('ekadashi') && f.slug === slug);
-      }
-      if (!entry) {
-        const nextYearFestivals = generateFestivalCalendarV2(year + 1, userLat, userLng, userTimezone);
-        entry = nextYearFestivals.find(f => f.slug === slug);
-      }
-      if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
-        return entry;
+
+      // Search current year and next year
+      for (const yr of [now.getFullYear(), now.getFullYear() + 1]) {
+        const festivals = generateFestivalCalendarV2(yr, userLat, userLng, userTimezone);
+        let entry;
+        if (targetDate) {
+          // Find the exact ekadashi on this date
+          entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date === targetDate && f.paranaStart);
+        } else {
+          // No date param — find next upcoming ekadashi
+          entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date >= todayStr && f.paranaStart);
+        }
+        if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
+          return entry;
+        }
       }
     } catch { /* fail silently */ }
     return null;
-  }, [category, slug, userLat, userLng, userTimezone]);
+  }, [category, slug, dateParam, userLat, userLng, userTimezone]);
 
   const hasContent = detail || ekadashiDetail || puja;
 
@@ -203,8 +211,9 @@ export default function FestivalDetailPage() {
     );
   }
 
-  // ─── Display name ───
-  const displayName = detail?.name || ekadashiDetail?.name || { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug };
+  // ─── Display name — prefer specific ekadashi name from calendar entry ───
+  const specificEkadashiName = ekadashiParana?.name as { en: string; hi: string; sa: string } | undefined;
+  const displayName = specificEkadashiName || detail?.name || ekadashiDetail?.name || { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug };
 
   return (
     <div className="min-h-screen pb-20">
@@ -229,6 +238,19 @@ export default function FestivalDetailPage() {
                 >
                   {l(displayName, locale)}
                 </h1>
+                {/* Show specific date for date-parameterized pages (e.g., ekadashi?date=2026-04-13) */}
+                {(dateParam || ekadashiParana?.date) && (
+                  <p className="text-xl sm:text-2xl font-black text-gold-light mb-3" style={headingFont}>
+                    {(() => {
+                      const d = dateParam || ekadashiParana?.date || '';
+                      const [y, m, day] = d.split('-').map(Number);
+                      const date = new Date(y, m - 1, day);
+                      const loc = locale === 'hi' ? 'hi-IN' : locale === 'sa' ? 'sa-IN' : 'en-US';
+                      try { return date.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
+                      catch { return d; }
+                    })()}
+                  </p>
+                )}
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className={`text-xs px-3 py-1 rounded-full border font-bold uppercase tracking-wider ${categoryBadgeColors[category] || 'bg-gold-primary/10 border-gold-primary/20 text-gold-dark'}`}>
                     {category}

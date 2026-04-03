@@ -506,10 +506,11 @@ export default function CalendarPage() {
             const monthStr = locale === 'en' ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
 
             const detailSlug = f.slug || f.category;
+            const dateParam = f.slug?.includes('ekadashi') || f.category === 'ekadashi' ? `?date=${f.date}` : '';
             return (
               <motion.a
                 key={`${f.date}-${f.name.en}-${i}`}
-                href={`/${locale}/calendar/${detailSlug}`}
+                href={`/${locale}/calendar/${detailSlug}${dateParam}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: Math.min(i * 0.02, 0.5) }}

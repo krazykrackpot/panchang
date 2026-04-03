@@ -98,6 +98,12 @@ const routes = [
   '/learn/modules/21-1', '/learn/modules/21-2', '/learn/modules/21-3', '/learn/modules/21-4',
   '/learn/modules/22-1', '/learn/modules/22-2', '/learn/modules/22-3', '/learn/modules/22-4', '/learn/modules/22-5', '/learn/modules/22-6',
   '/learn/modules/23-1', '/learn/modules/23-2', '/learn/modules/23-3', '/learn/modules/23-4', '/learn/modules/23-5',
+  // Interactive Labs
+  '/learn/labs/panchang',
+  '/learn/labs/moon',
+  '/learn/labs/dasha',
+  '/learn/labs/shadbala',
+  '/learn/labs/kp',
   // Puja & Sankalpa
   '/puja',
   '/sankalpa',

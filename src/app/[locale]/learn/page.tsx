@@ -336,6 +336,38 @@ export default function LearnPage() {
         ))}
       </div>
 
+      {/* ── Interactive Labs ── */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg">
+            &#9881;
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gold-gradient" style={hf}>
+              {locale === 'en' ? 'Interactive Labs' : locale === 'hi' ? 'इंटरैक्टिव प्रयोगशाला' : 'अन्तरक्रियात्मकप्रयोगशाला'}
+            </h2>
+            <p className="text-text-secondary text-sm" style={bf}>
+              {locale === 'en' ? 'Input your data, watch the engine calculate step by step' : locale === 'hi' ? 'अपना डेटा दें, इंजन को चरणबद्ध गणना करते देखें' : 'स्वदत्तांशं दत्तवान् यन्त्रस्य क्रमशः गणनां पश्यतु'}
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[
+            { href: '/learn/labs/panchang', title: { en: 'Compute Your Panchang', hi: 'अपना पंचांग गणना करें', sa: 'स्वपञ्चाङ्गं गणयतु' }, desc: { en: 'Date → JD → Sun/Moon → Tithi, Nakshatra, Yoga', hi: 'तिथि → जूलियन दिन → सूर्य/चन्द्र → तिथि, नक्षत्र, योग', sa: 'तिथिः → JD → सूर्यचन्द्रौ → तिथिनक्षत्रयोगाः' }, color: 'amber' },
+            { href: '/learn/labs/moon', title: { en: 'Trace Your Moon', hi: 'अपना चन्द्र खोजें', sa: 'स्वचन्द्रम् अन्विष्यतु' }, desc: { en: '60 sine terms → Moon longitude → Rashi & Nakshatra', hi: '60 ज्या पद → चन्द्र देशान्तर → राशि एवं नक्षत्र', sa: '60 ज्यापदानि → चन्द्रदेशान्तरः → राशिनक्षत्रम्' }, color: 'indigo' },
+            { href: '/learn/labs/dasha', title: { en: 'Your Dasha Timeline', hi: 'आपकी दशा समयरेखा', sa: 'भवतः दशासमयरेखा' }, desc: { en: 'Birth Moon → Nakshatra → 120-year Vimshottari timeline', hi: 'जन्म चन्द्र → नक्षत्र → 120 वर्षीय विंशोत्तरी', sa: 'जन्मचन्द्रः → नक्षत्रम् → 120 वर्षीयविंशोत्तरी' }, color: 'violet' },
+            { href: '/learn/labs/shadbala', title: { en: 'Shadbala Breakdown', hi: 'षड्बल विश्लेषण', sa: 'षड्बलविश्लेषणम्' }, desc: { en: '6 strengths per planet — find your chart\'s captain', hi: 'प्रति ग्रह 6 शक्तियाँ — अपनी कुण्डली का कप्तान खोजें', sa: 'प्रतिग्रहं 6 शक्तयः — कुण्डल्याः सेनापतिं अन्विष्यतु' }, color: 'emerald' },
+            { href: '/learn/labs/kp', title: { en: 'KP Sub-Lord Lookup', hi: 'केपी उप-स्वामी खोज', sa: 'केपी उपस्वामिखोजः' }, desc: { en: 'Degree → Sign Lord → Star Lord → Sub Lord', hi: 'अंश → राशि स्वामी → नक्षत्र स्वामी → उप-स्वामी', sa: 'अंशः → राशिस्वामी → नक्षत्रस्वामी → उपस्वामी' }, color: 'cyan' },
+          ].map(lab => (
+            <Link key={lab.href} href={lab.href}
+              className={`glass-card rounded-xl p-4 border border-${lab.color}-500/20 bg-${lab.color}-500/5 hover:border-${lab.color}-500/40 transition-all group`}>
+              <h3 className={`text-${lab.color}-300 font-bold text-sm mb-1 group-hover:text-${lab.color}-200`} style={bf}>{lab.title[locale]}</h3>
+              <p className="text-text-secondary/70 text-xs" style={bf}>{lab.desc[locale]}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+
       {/* ── Reference Library ── */}
       <div>
         <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={hf}>{l.refTitle}</h2>

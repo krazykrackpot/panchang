@@ -367,13 +367,8 @@ export default function PanchangPage() {
         </div>
       ) : panchang ? (
         <>
-          {/* Location + Actions — compact row */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-            <span className="text-text-secondary/60 text-xs">
-              <MapPin className="w-3 h-3 inline mr-0.5" />
-              {panchang.location.name} &middot; {panchang.date}
-            </span>
-            <div className="w-px h-4 bg-gold-primary/15 mx-1 hidden sm:block" />
+          {/* Actions — compact row */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 mb-8">
             <div className="flex items-center gap-1.5">
               <button
                 onClick={async () => {

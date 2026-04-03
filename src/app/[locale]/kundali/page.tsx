@@ -316,6 +316,37 @@ export default function KundaliPage() {
             </div>
           </div>
 
+          {/* Ganda Mula Alert — visible on ALL tabs */}
+          {(() => {
+            const moonP = kundali.planets.find(p => p.planet.id === 1);
+            const gandaMulaIds = [1, 9, 10, 18, 19, 27];
+            const moonNakId = moonP?.nakshatra?.id;
+            if (!moonNakId || !gandaMulaIds.includes(moonNakId)) return null;
+            const nakName = moonP?.nakshatra?.name?.[locale] || moonP?.nakshatra?.name?.en;
+            return (
+              <div className="rounded-xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-amber-500/15 flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-amber-400 text-lg font-bold">!</span>
+                  </div>
+                  <div>
+                    <h4 className="text-amber-300 font-bold text-base mb-1">
+                      {locale === 'en' ? `Ganda Mula — Moon in ${nakName}` : `गण्ड मूल — चन्द्रमा ${nakName} में`}
+                    </h4>
+                    <p className="text-text-secondary text-sm leading-relaxed">
+                      {locale === 'en'
+                        ? `Birth Moon is in ${nakName} nakshatra (Pada ${moonP?.pada}) — a Ganda Mula nakshatra at a water-fire sign junction. A Ganda Mula Shanti Puja is recommended. See Tippanni tab for detailed analysis and remedies.`
+                        : `जन्म चन्द्रमा ${nakName} नक्षत्र (पाद ${moonP?.pada}) में — जल-अग्नि राशि सन्धि का गण्ड मूल नक्षत्र। गण्ड मूल शान्ति पूजा अनुशंसित। विस्तृत विश्लेषण और उपायों के लिए टिप्पणी टैब देखें।`}
+                    </p>
+                    <a href={`/${locale}/learn/modules/24-1`} className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2">
+                      {locale === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* Tab navigation */}
           <div className="flex flex-wrap gap-2 mb-8 justify-center">
             {([

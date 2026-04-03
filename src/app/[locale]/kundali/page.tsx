@@ -1232,9 +1232,49 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
 }) {
   const [viewMode, setViewMode] = useState<'sav' | 'bpi'>('sav');
 
+  // Compute insights from SAV
+  const strongSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] >= 28).map(r => r.name[locale]);
+  const weakSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.name[locale]);
+  const totalBindu = ashtakavarga.savTable.reduce((a, b) => a + b, 0);
+
   return (
     <div className="space-y-8">
       <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{t('ashtakavarga')}</h3>
+
+      {/* What is Ashtakavarga */}
+      <div className="text-center text-text-secondary/70 text-sm max-w-2xl mx-auto leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+        {locale === 'en'
+          ? 'Ashtakavarga is a point-based transit prediction system. Each planet contributes "bindu" (beneficial points) to signs. Signs with more bindus give better results during transits. SAV (Sarvashtakavarga) shows the total strength per sign; BPI (Bhinnashtakavarga) shows each planet\'s individual contribution.'
+          : 'अष्टकवर्ग एक बिन्दु-आधारित गोचर फल पद्धति है। प्रत्येक ग्रह राशियों को "बिन्दु" (शुभ अंक) देता है। अधिक बिन्दु वाली राशियों में गोचर शुभ फल देते हैं। SAV कुल बल दर्शाता है; BPI प्रत्येक ग्रह का व्यक्तिगत योगदान।'}
+      </div>
+
+      {/* Quick insight */}
+      {(strongSigns.length > 0 || weakSigns.length > 0) && (
+        <div className="glass-card rounded-xl p-5 border border-gold-primary/10">
+          <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{locale === 'en' ? 'Quick Insight' : 'संक्षिप्त अन्तर्दृष्टि'}</h4>
+          <div className="space-y-2 text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {strongSigns.length > 0 && (
+              <p className="text-emerald-400/80">
+                {locale === 'en'
+                  ? `Strong signs (28+ bindu): ${strongSigns.join(', ')} — planets transiting these signs bring favorable results.`
+                  : `बलवान राशियाँ (28+ बिन्दु): ${strongSigns.join(', ')} — इन राशियों में गोचर शुभ फल देते हैं।`}
+              </p>
+            )}
+            {weakSigns.length > 0 && (
+              <p className="text-red-400/70">
+                {locale === 'en'
+                  ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
+                  : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
+              </p>
+            )}
+            <p className="text-text-secondary/50 text-xs">
+              {locale === 'en'
+                ? `Total SAV: ${totalBindu} (average: ${Math.round(totalBindu / 12)} per sign). Values above 28 are strong, below 22 are weak.`
+                : `कुल SAV: ${totalBindu} (औसत: ${Math.round(totalBindu / 12)} प्रति राशि)। 28 से ऊपर बलवान, 22 से नीचे दुर्बल।`}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="flex justify-center gap-3 mb-6">
         <button onClick={() => setViewMode('sav')}

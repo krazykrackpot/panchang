@@ -252,7 +252,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: upsertError.message }, { status: 500 });
   }
 
-  // 4. Return summary
+  // 4. Send welcome email (best-effort, don't block response)
+  try {
+    const { sendEmail } = await import('@/lib/email/resend-client');
+    const { welcomeEmail } = await import('@/lib/email/templates/welcome');
+    if (user.email) {
+      const moonRashi = RASHIS[snapshotRow.moon_sign - 1]?.name?.en || '';
+      const nakshatra = NAKSHATRAS[snapshotRow.moon_nakshatra - 1]?.name?.en || '';
+      const ascendant = RASHIS[snapshotRow.ascendant_sign - 1]?.name?.en || '';
+      const email = welcomeEmail({ name: name || 'Friend', moonSign: moonRashi, nakshatra, ascendant });
+      sendEmail({ to: user.email, ...email }).catch(() => {}); // fire and forget
+    }
+  } catch { /* email is best-effort */ }
+
+  // 5. Return summary
   return NextResponse.json({
     profile: { ...profileUpdate, id: user.id },
     snapshot: {

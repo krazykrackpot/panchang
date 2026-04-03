@@ -74,12 +74,13 @@ export default function NotificationBell() {
     }
   }, [session?.access_token]);
 
-  // Fetch on mount and poll every 60 seconds
+  // Fetch on mount and poll every 60 seconds — only when authenticated
   useEffect(() => {
+    if (!session?.access_token) return;
     fetchNotifications();
     const interval = setInterval(fetchNotifications, 60_000);
     return () => clearInterval(interval);
-  }, [fetchNotifications]);
+  }, [fetchNotifications, session?.access_token]);
 
   // Close dropdown on outside click
   useEffect(() => {

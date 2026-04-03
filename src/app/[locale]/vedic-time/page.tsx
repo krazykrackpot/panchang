@@ -8,7 +8,11 @@ import { useLocationStore } from '@/stores/location-store';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import type { Locale } from '@/types/panchang';
 
-// 30 Muhurta names (sunrise to next sunrise) — traditional sequence
+// ─── Constants ──────────────────────────────────────────────────
+
+type ClockMode = '60' | '30';
+
+// 30 Muhurta names — traditional sequence from sunrise
 const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' }[] = [
   { en: 'Rudra', hi: 'रुद्र', nature: 'bad' },
   { en: 'Ahi', hi: 'अहि', nature: 'bad' },
@@ -42,81 +46,177 @@ const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' 
   { en: 'Samudram', hi: 'समुद्रम्', nature: 'mixed' },
 ];
 
-// 8 Prahar names — 4 day (sunrise→sunset) + 4 night (sunset→sunrise)
-const PRAHAR_NAMES: { en: string; hi: string }[] = [
-  { en: 'Pratah Kaal', hi: 'प्रातःकाल' },         // 1 — early morning
-  { en: 'Sangava Kaal', hi: 'सङ्गवकाल' },         // 2 — forenoon
-  { en: 'Madhyahna Kaal', hi: 'मध्याह्नकाल' },     // 3 — midday
-  { en: 'Aparahna Kaal', hi: 'अपराह्णकाल' },       // 4 — afternoon
-  { en: 'Sayahna Kaal', hi: 'सायंकाल' },           // 5 — evening
-  { en: 'Pradosha Kaal', hi: 'प्रदोषकाल' },         // 6 — early night
-  { en: 'Nisha Kaal', hi: 'निशाकाल' },             // 7 — midnight
-  { en: 'Usha Kaal', hi: 'ऊषाकाल' },               // 8 — pre-dawn
+// 5 Dinamana Kalas — day divided into 5 × 6 ghati (30-ghati clock only)
+const DINAMANA_KALAS: { en: string; hi: string; sa: string }[] = [
+  { en: 'Pratah Kala', hi: 'प्रातःकाल', sa: 'प्रातःकालः' },
+  { en: 'Sangava Kala', hi: 'सङ्गवकाल', sa: 'सङ्गवकालः' },
+  { en: 'Madhyahna', hi: 'मध्याह्न', sa: 'मध्याह्नः' },
+  { en: 'Aparahna', hi: 'अपराह्ण', sa: 'अपराह्णः' },
+  { en: 'Sayana Kala', hi: 'सायंकाल', sa: 'सायंकालः' },
 ];
 
-/**
- * Vedic Time calculation from sunrise/sunset.
- *
- * Ghati (Ishtakala clock): sunrise→next sunrise = 60 ghati (each ~24 min)
- * Prahar: ahoratra / 8 (each = 7.5 ghati)
- * Muhurta: ahoratra / 30 (each = 2 ghati)
- * Pala: 1/60 of ghati, Vipala: 1/60 of pala
- */
-function computeVedicTime(now: Date, sunriseDate: Date, sunsetDate: Date, nextSunriseDate: Date) {
+// 5 Ratrimana Kalas — night divided into 5 × 6 ghati
+const RATRIMANA_KALAS: { en: string; hi: string; sa: string }[] = [
+  { en: 'Pradosha Kala', hi: 'प्रदोषकाल', sa: 'प्रदोषकालः' },
+  { en: 'Nisha Kala', hi: 'निशाकाल', sa: 'निशाकालः' },
+  { en: 'Madhya Ratri', hi: 'मध्यरात्रि', sa: 'मध्यरात्रिः' },
+  { en: 'Aparatri Kala', hi: 'अपरात्रिकाल', sa: 'अपरात्रिकालः' },
+  { en: 'Usha Kala', hi: 'ऊषाकाल', sa: 'ऊषाकालः' },
+];
+
+// 8 Prahar names (used in 60-ghati Ishtakala clock)
+const PRAHAR_NAMES: { en: string; hi: string }[] = [
+  { en: 'Pratah Kaal', hi: 'प्रातःकाल' },
+  { en: 'Sangava Kaal', hi: 'सङ्गवकाल' },
+  { en: 'Madhyahna Kaal', hi: 'मध्याह्नकाल' },
+  { en: 'Aparahna Kaal', hi: 'अपराह्णकाल' },
+  { en: 'Sayahna Kaal', hi: 'सायंकाल' },
+  { en: 'Pradosha Kaal', hi: 'प्रदोषकाल' },
+  { en: 'Nisha Kaal', hi: 'निशाकाल' },
+  { en: 'Usha Kaal', hi: 'ऊषाकाल' },
+];
+
+// ─── Computation ────────────────────────────────────────────────
+
+interface VedicTimeResult {
+  ghati: number; pala: number; vipala: number;
+  prahar: number; muhurta: number;
+  praharName: { en: string; hi: string } | undefined;
+  muhurtaName: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' } | undefined;
+  kalaName: { en: string; hi: string; sa: string } | undefined;
+  isDaytime: boolean;
+  praharDurationMin: number;
+  muhurtaDurationMin: number;
+  ghatiDurationSec: number;
+  dinamanaGhati: number; // 30-ghati: sunset position
+  sunriseStr: string;
+  sunsetStr: string;
+}
+
+function computeVedicTime(
+  now: Date, sunriseDate: Date, sunsetDate: Date, nextSunriseDate: Date, mode: ClockMode,
+): VedicTimeResult {
   const nowMs = now.getTime();
   const sunriseMs = sunriseDate.getTime();
   const sunsetMs = sunsetDate.getTime();
   const nextSunriseMs = nextSunriseDate.getTime();
 
-  // Full ahoratra (sunrise to next sunrise) for Ishtakala
+  const dayMs = sunsetMs - sunriseMs;
+  const nightMs = nextSunriseMs - sunsetMs;
   const ahoratraMs = nextSunriseMs - sunriseMs;
-
-  // Elapsed since sunrise
-  let elapsedMs = nowMs - sunriseMs;
-  if (elapsedMs < 0) elapsedMs += 24 * 3600 * 1000; // before sunrise today → count from yesterday's sunrise
-
-  // Ghati/Pala/Vipala — 60 ghatis in the full ahoratra
-  const ghatiDurationMs = ahoratraMs / 60;
-  const totalGhati = elapsedMs / ghatiDurationMs;
-  const ghati = Math.floor(totalGhati);
-  const palaFraction = (totalGhati - ghati) * 60;
-  const pala = Math.floor(palaFraction);
-  const vipala = Math.floor((palaFraction - pala) * 60);
-
-  // Ishtakala system — all units divide the full ahoratra equally
-  // Prahar: 8 per ahoratra (each = 7.5 ghati)
-  const praharDurationMs = ahoratraMs / 8;
-  const prahar = Math.min(Math.floor(elapsedMs / praharDurationMs) + 1, 8);
-
-  // Muhurta: 30 per ahoratra (each = 2 ghati)
-  const muhurtaDurationMs = ahoratraMs / 30;
-  const muhurta = Math.min(Math.floor(elapsedMs / muhurtaDurationMs) + 1, 30);
-
   const isDaytime = nowMs >= sunriseMs && nowMs < sunsetMs;
 
-  const muhurtaInfo = MUHURTA_NAMES[muhurta - 1];
-  const praharInfo = PRAHAR_NAMES[prahar - 1];
+  let ghati: number, pala: number, vipala: number;
+  let ghatiDurationMs: number;
+
+  if (mode === '60') {
+    // ── 60-Ghati Ishtakala: sunrise→next sunrise = 60 equal ghati ──
+    ghatiDurationMs = ahoratraMs / 60;
+    let elapsedMs = nowMs - sunriseMs;
+    if (elapsedMs < 0) elapsedMs += 24 * 3600 * 1000;
+
+    const totalGhati = elapsedMs / ghatiDurationMs;
+    ghati = Math.floor(totalGhati);
+    const pF = (totalGhati - ghati) * 60;
+    pala = Math.floor(pF);
+    vipala = Math.floor((pF - pala) * 60);
+  } else {
+    // ── 30-Ghati: day = 30 ghati, night = 30 ghati ──
+    // Sunrise = 00:00:00, Sunset = 30:00:00
+    if (isDaytime) {
+      ghatiDurationMs = dayMs / 30;
+      const elapsedMs = nowMs - sunriseMs;
+      const totalGhati = elapsedMs / ghatiDurationMs;
+      ghati = Math.floor(totalGhati);
+      const pF = (totalGhati - ghati) * 60;
+      pala = Math.floor(pF);
+      vipala = Math.floor((pF - pala) * 60);
+    } else {
+      ghatiDurationMs = nightMs / 30;
+      const nightElapsed = nowMs >= sunsetMs ? nowMs - sunsetMs : nowMs - sunsetMs + 24 * 3600 * 1000;
+      const totalGhati = nightElapsed / ghatiDurationMs;
+      ghati = 30 + Math.floor(totalGhati); // 30-59 for night
+      const pF = (totalGhati - Math.floor(totalGhati)) * 60;
+      pala = Math.floor(pF);
+      vipala = Math.floor((pF - pala) * 60);
+    }
+  }
+
+  // Elapsed from sunrise for prahar/muhurta (always based on full ahoratra for 60-ghati)
+  let elapsedForPM = nowMs - sunriseMs;
+  if (elapsedForPM < 0) elapsedForPM += 24 * 3600 * 1000;
+
+  // Prahar & Muhurta
+  let prahar: number, muhurta: number;
+  let praharDurationMs: number, muhurtaDurationMs: number;
+
+  if (mode === '60') {
+    // Equal divisions of ahoratra
+    praharDurationMs = ahoratraMs / 8;
+    muhurtaDurationMs = ahoratraMs / 30;
+    prahar = Math.min(Math.floor(elapsedForPM / praharDurationMs) + 1, 8);
+    muhurta = Math.min(Math.floor(elapsedForPM / muhurtaDurationMs) + 1, 30);
+  } else {
+    // Day and night divided separately
+    if (isDaytime) {
+      praharDurationMs = dayMs / 4;
+      muhurtaDurationMs = dayMs / 15;
+      const dayElapsed = nowMs - sunriseMs;
+      prahar = Math.min(Math.floor(dayElapsed / praharDurationMs) + 1, 4);
+      muhurta = Math.min(Math.floor(dayElapsed / muhurtaDurationMs) + 1, 15);
+    } else {
+      praharDurationMs = nightMs / 4;
+      muhurtaDurationMs = nightMs / 15;
+      const nightElapsed = nowMs >= sunsetMs ? nowMs - sunsetMs : nowMs - sunsetMs + 24 * 3600 * 1000;
+      prahar = Math.min(Math.floor(nightElapsed / praharDurationMs) + 5, 8);
+      muhurta = Math.min(Math.floor(nightElapsed / muhurtaDurationMs) + 16, 30);
+    }
+  }
+
+  // Kala name (30-ghati clock: 5 kalas of 6 ghati each for day & night)
+  let kalaName: { en: string; hi: string; sa: string } | undefined;
+  if (mode === '30') {
+    if (isDaytime) {
+      const dayElapsed = nowMs - sunriseMs;
+      const kalaIdx = Math.min(Math.floor(dayElapsed / (dayMs / 5)), 4);
+      kalaName = DINAMANA_KALAS[kalaIdx];
+    } else {
+      const nightElapsed = nowMs >= sunsetMs ? nowMs - sunsetMs : nowMs - sunsetMs + 24 * 3600 * 1000;
+      const kalaIdx = Math.min(Math.floor(nightElapsed / (nightMs / 5)), 4);
+      kalaName = RATRIMANA_KALAS[kalaIdx];
+    }
+  }
+
+  // Dinamana in ghati (30-ghati clock: sunset position varies; 60-ghati: sunset floats)
+  const dinamanaGhati = mode === '30' ? 30 : Math.round((dayMs / ahoratraMs) * 60 * 10) / 10;
 
   return {
     ghati, pala, vipala,
     prahar, muhurta,
-    praharName: praharInfo,
-    muhurtaName: muhurtaInfo,
+    praharName: PRAHAR_NAMES[prahar - 1],
+    muhurtaName: MUHURTA_NAMES[muhurta - 1],
+    kalaName,
     isDaytime,
     praharDurationMin: Math.round(praharDurationMs / 60000),
     muhurtaDurationMin: Math.round(muhurtaDurationMs / 60000),
+    ghatiDurationSec: Math.round(ghatiDurationMs / 1000),
+    dinamanaGhati,
     sunriseStr: sunriseDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
     sunsetStr: sunsetDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
   };
 }
 
+// ─── Component ──────────────────────────────────────────────────
+
 export default function VedicTimePage() {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
   const locationStore = useLocationStore();
   const [time, setTime] = useState(new Date());
+  const [clockMode, setClockMode] = useState<ClockMode>('60');
 
   useEffect(() => {
     if (!locationStore.confirmed && !locationStore.detecting) {
@@ -129,7 +229,6 @@ export default function VedicTimePage() {
     return () => clearInterval(interval);
   }, []);
 
-  // Compute timezone offset from IANA name
   const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
   const tzOffset = useMemo(() => {
     try {
@@ -142,43 +241,36 @@ export default function VedicTimePage() {
     }
   }, [userTimezone]);
 
-  // Get sunrise/sunset for today and tomorrow's sunrise
   const sunTimes = useMemo(() => {
     const lat = locationStore.lat;
     const lng = locationStore.lng;
     if (lat == null || lng == null) return null;
-
     const now = new Date();
     const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
     const today = getSunTimes(y, m, d, lat, lng, tzOffset);
-
-    // Tomorrow for next sunrise
     const tomorrow = new Date(y, m - 1, d + 1);
-    const ty = tomorrow.getFullYear(), tm = tomorrow.getMonth() + 1, td = tomorrow.getDate();
-    const tomorrowTimes = getSunTimes(ty, tm, td, lat, lng, tzOffset);
-
-    return {
-      sunrise: today.sunrise,
-      sunset: today.sunset,
-      nextSunrise: tomorrowTimes.sunrise,
-    };
+    const tomorrowTimes = getSunTimes(tomorrow.getFullYear(), tomorrow.getMonth() + 1, tomorrow.getDate(), lat, lng, tzOffset);
+    return { sunrise: today.sunrise, sunset: today.sunset, nextSunrise: tomorrowTimes.sunrise };
   }, [locationStore.lat, locationStore.lng, tzOffset]);
 
   const vedic = sunTimes
-    ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise)
+    ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise, clockMode)
     : null;
-
-  const timeUnits = vedic ? [
-    { label: { en: 'Ghati', hi: 'घटी', sa: 'घटी' }, value: vedic.ghati, max: 60, desc: { en: '= 24 min (avg)', hi: '= ~24 मिनट' } },
-    { label: { en: 'Pala', hi: 'पल', sa: 'पलम्' }, value: vedic.pala, max: 60, desc: { en: '= 24 sec (avg)', hi: '= ~24 सेकंड' } },
-    { label: { en: 'Vipala', hi: 'विपल', sa: 'विपलम्' }, value: vedic.vipala, max: 60, desc: { en: '= 0.4 sec (avg)', hi: '= ~0.4 सेकंड' } },
-  ] : [];
 
   const locationName = locationStore.name || userTimezone;
 
+  // Gauge data
+  const gaugeMax = clockMode === '60' ? 60 : 60;
+  const timeUnits = vedic ? [
+    { label: { en: 'Ghati', hi: 'घटी' }, value: vedic.ghati, max: clockMode === '60' ? 60 : 60, desc: { en: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, hi: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट` } },
+    { label: { en: 'Pala', hi: 'पल' }, value: vedic.pala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, hi: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड` } },
+    { label: { en: 'Vipala', hi: 'विपल' }, value: vedic.vipala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} sec`, hi: `= ${(vedic.ghatiDurationSec / 3600).toFixed(2)} सेकंड` } },
+  ] : [];
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
+      {/* Header */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{locale === 'en' ? 'Vedic Time' : 'वैदिक समय'}</span>
         </h1>
@@ -187,10 +279,37 @@ export default function VedicTimePage() {
             ? 'The ancient Indian time system — Ghati, Pala, Vipala'
             : 'प्राचीन भारतीय समय पद्धति — घटी, पल, विपल'}
         </p>
-        {locationName && (
-          <p className="text-text-secondary/50 text-sm mt-2">{locationName}</p>
-        )}
+        {locationName && <p className="text-text-secondary/50 text-sm mt-2">{locationName}</p>}
       </motion.div>
+
+      {/* Clock mode toggle */}
+      <div className="flex justify-center mb-6">
+        <div className="inline-flex rounded-xl border border-gold-primary/20 overflow-hidden text-sm">
+          <button
+            onClick={() => setClockMode('60')}
+            className={`px-5 py-2.5 font-medium transition-all ${clockMode === '60' ? 'bg-gold-primary/15 text-gold-light border-r border-gold-primary/20' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5 border-r border-gold-primary/20'}`}
+          >
+            {locale === 'en' ? '60-Ghati (Ishtakala)' : '60-घटी (इष्टकाल)'}
+          </button>
+          <button
+            onClick={() => setClockMode('30')}
+            className={`px-5 py-2.5 font-medium transition-all ${clockMode === '30' ? 'bg-gold-primary/15 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+          >
+            {locale === 'en' ? '30-Ghati (Muhurta)' : '30-घटी (मुहूर्त)'}
+          </button>
+        </div>
+      </div>
+
+      {/* Clock description */}
+      <div className="text-center text-xs text-text-secondary/60 mb-6 max-w-xl mx-auto">
+        {clockMode === '60'
+          ? (locale === 'en'
+            ? 'Sunrise → Next Sunrise = 60 equal Ghati. Sunset floats. Preferred for Kundali / Astrology.'
+            : 'सूर्योदय → अगला सूर्योदय = 60 समान घटी। सूर्यास्त परिवर्तनशील। कुण्डली/ज्योतिष हेतु उपयुक्त।')
+          : (locale === 'en'
+            ? 'Dinamana (day) = 30 Ghati, Ratrimana (night) = 30 Ghati. Sunset fixed at 30:00:00. Preferred for Muhurta / Rituals.'
+            : 'दिनमान = 30 घटी, रात्रिमान = 30 घटी। सूर्यास्त = 30:00:00। मुहूर्त/कर्मकाण्ड हेतु उपयुक्त।')}
+      </div>
 
       {/* Modern time */}
       <div className="glass-card rounded-2xl p-8 text-center mb-4 border border-gold-primary/20">
@@ -203,7 +322,9 @@ export default function VedicTimePage() {
         {vedic && (
           <div className="flex justify-center gap-6 mt-3 text-xs text-text-secondary/60">
             <span>{locale === 'en' ? 'Sunrise' : 'सूर्योदय'} {vedic.sunriseStr}</span>
-            <span>{locale === 'en' ? 'Sunset' : 'सूर्यास्त'} {vedic.sunsetStr}</span>
+            <span>{locale === 'en' ? 'Sunset' : 'सूर्यास्त'} {vedic.sunsetStr}
+              {clockMode === '60' && <span className="text-gold-primary/40 ml-1">({vedic.dinamanaGhati}G)</span>}
+            </span>
           </div>
         )}
       </div>
@@ -222,7 +343,11 @@ export default function VedicTimePage() {
           <div className="glass-card rounded-2xl p-8 my-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 to-transparent">
             <div className="text-center mb-6">
               <div className="text-gold-dark text-xs uppercase tracking-[0.3em] mb-3">
-                {locale === 'en' ? 'Vedic Time (Ishtakala from Sunrise)' : 'वैदिक समय (इष्टकाल — सूर्योदय से)'}
+                {clockMode === '60'
+                  ? (locale === 'en' ? 'Ishtakala (60-Ghati Clock)' : 'इष्टकाल (60-घटी घड़ी)')
+                  : (locale === 'en'
+                    ? `${vedic.isDaytime ? 'Dinamana' : 'Ratrimana'} (30-Ghati Clock)`
+                    : `${vedic.isDaytime ? 'दिनमान' : 'रात्रिमान'} (30-घटी घड़ी)`)}
               </div>
               <div className="text-gold-light text-6xl font-bold" style={headingFont}>
                 {String(vedic.ghati).padStart(2, '0')}
@@ -231,15 +356,30 @@ export default function VedicTimePage() {
                 <span className="text-gold-primary/50 mx-1">:</span>
                 {String(vedic.vipala).padStart(2, '0')}
               </div>
-              <div className="text-text-secondary text-sm mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              <div className="text-text-secondary text-sm mt-2" style={bodyFont}>
                 {locale === 'en' ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
               </div>
+
+              {/* Kala name — 30-ghati clock only */}
+              {clockMode === '30' && vedic.kalaName && (
+                <div className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-gold-primary/10 border border-gold-primary/15">
+                  <span className="text-gold-light text-sm font-semibold" style={bodyFont}>
+                    {locale === 'sa' ? vedic.kalaName.sa : locale === 'hi' ? vedic.kalaName.hi : vedic.kalaName.en}
+                  </span>
+                  <span className="text-text-secondary/50 text-xs ml-2">
+                    ({vedic.isDaytime
+                      ? (locale === 'en' ? 'Dinamana' : 'दिनमान')
+                      : (locale === 'en' ? 'Ratrimana' : 'रात्रिमान')})
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Circular gauges */}
             <div className="grid grid-cols-3 gap-6 mt-8">
               {timeUnits.map((unit, i) => {
-                const pct = (unit.value / unit.max) * 100;
+                const displayMax = i === 0 ? (clockMode === '30' ? 60 : 60) : 60;
+                const pct = Math.min((unit.value / displayMax) * 100, 100);
                 const radius = 45;
                 const circumference = 2 * Math.PI * radius;
                 const dashOffset = circumference - (pct / 100) * circumference;
@@ -260,12 +400,12 @@ export default function VedicTimePage() {
                           {unit.value}
                         </text>
                         <text x="50" y="68" textAnchor="middle" dominantBaseline="middle" fill="rgba(255,255,255,0.4)" fontSize="9">
-                          /{unit.max}
+                          /{displayMax}
                         </text>
                       </svg>
                     </div>
                     <div className="text-gold-light text-sm font-bold mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {unit.label[locale === 'sa' ? 'sa' : locale]}
+                      {unit.label[locale === 'en' ? 'en' : 'hi']}
                     </div>
                     <div className="text-text-secondary/50 text-xs">{locale === 'en' ? unit.desc.en : unit.desc.hi}</div>
                   </motion.div>
@@ -285,9 +425,7 @@ export default function VedicTimePage() {
                 </div>
               )}
               <div className="text-text-secondary/50 text-xs mt-0.5">
-                {locale === 'en'
-                  ? `${vedic.praharDurationMin} min each`
-                  : `${vedic.praharDurationMin} मिनट प्रत्येक`}
+                {locale === 'en' ? `${vedic.praharDurationMin} min each` : `${vedic.praharDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
             <div className="glass-card rounded-xl p-5 text-center border border-gold-primary/10">
@@ -305,12 +443,38 @@ export default function VedicTimePage() {
                 </div>
               )}
               <div className="text-text-secondary/50 text-xs mt-0.5">
-                {locale === 'en'
-                  ? `${vedic.muhurtaDurationMin} min each`
-                  : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
+                {locale === 'en' ? `${vedic.muhurtaDurationMin} min each` : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
           </div>
+
+          {/* 30-Ghati: Dinamana / Ratrimana Kala breakdown */}
+          {clockMode === '30' && (
+            <div className="glass-card rounded-xl p-5 mt-4 border border-gold-primary/10">
+              <div className="text-gold-dark text-xs uppercase tracking-wider mb-3 text-center">
+                {vedic.isDaytime
+                  ? (locale === 'en' ? 'Dinamana — 5 Kalas (6 Ghati each)' : 'दिनमान — 5 काल (6-6 घटी)')
+                  : (locale === 'en' ? 'Ratrimana — 5 Kalas (6 Ghati each)' : 'रात्रिमान — 5 काल (6-6 घटी)')}
+              </div>
+              <div className="grid grid-cols-5 gap-2">
+                {(vedic.isDaytime ? DINAMANA_KALAS : RATRIMANA_KALAS).map((kala, i) => {
+                  const isActive = vedic.kalaName?.en === kala.en;
+                  return (
+                    <div key={i} className={`text-center p-2 rounded-lg text-xs transition-all ${
+                      isActive
+                        ? 'bg-gold-primary/15 border border-gold-primary/30 text-gold-light'
+                        : 'bg-bg-secondary/30 border border-gold-primary/5 text-text-secondary/50'
+                    }`}>
+                      <div className="font-semibold" style={bodyFont}>
+                        {locale === 'sa' ? kala.sa : locale === 'hi' ? kala.hi : kala.en}
+                      </div>
+                      <div className="text-[10px] mt-0.5 opacity-60">{i * 6}–{(i + 1) * 6}G</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </>
       )}
 
@@ -319,17 +483,17 @@ export default function VedicTimePage() {
         <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
           {locale === 'en' ? 'Vedic Time Units' : 'वैदिक समय इकाइयाँ'}
         </h3>
-        <div className="space-y-2 text-sm text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+        <div className="space-y-2 text-sm text-text-secondary" style={bodyFont}>
           {[
             { en: '1 Truti = 29.6 microseconds', hi: '1 त्रुटि = 29.6 माइक्रोसेकंड' },
             { en: '1 Tatpara = 100 Truti', hi: '1 तत्पर = 100 त्रुटि' },
             { en: '1 Nimesha = 45 Tatpara (blink of an eye)', hi: '1 निमेष = 45 तत्पर (पलक झपकना)' },
             { en: '1 Kashtha = 18 Nimesha', hi: '1 काष्ठ = 18 निमेष' },
             { en: '1 Kala = 30 Kashtha', hi: '1 कला = 30 काष्ठ' },
-            { en: '1 Nadika/Ghati = 15 Kala = ~24 minutes', hi: '1 नाड़िका/घटी = 15 कला = ~24 मिनट' },
-            { en: '1 Muhurta = 2 Ghati (15 day + 15 night = 30/day)', hi: '1 मुहूर्त = 2 घटी (15 दिन + 15 रात = 30/दिन)' },
-            { en: '1 Prahar/Yama = 7.5 Ghati (4 day + 4 night = 8/day)', hi: '1 प्रहर/याम = 7.5 घटी (4 दिन + 4 रात = 8/दिन)' },
-            { en: '1 Ahoratra (day) = 60 Ghati = 30 Muhurta = 8 Prahar', hi: '1 अहोरात्र (दिन) = 60 घटी = 30 मुहूर्त = 8 प्रहर' },
+            { en: '1 Nadika/Ghati = 15 Kala ≈ 24 minutes', hi: '1 नाड़िका/घटी = 15 कला ≈ 24 मिनट' },
+            { en: '1 Muhurta = 2 Ghati ≈ 48 minutes', hi: '1 मुहूर्त = 2 घटी ≈ 48 मिनट' },
+            { en: '1 Prahar/Yama = 7.5 Ghati ≈ 3 hours', hi: '1 प्रहर/याम = 7.5 घटी ≈ 3 घण्टे' },
+            { en: '1 Ahoratra = 60 Ghati = 30 Muhurta = 8 Prahar', hi: '1 अहोरात्र = 60 घटी = 30 मुहूर्त = 8 प्रहर' },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className="text-gold-primary/40 mt-0.5">&#9672;</span>

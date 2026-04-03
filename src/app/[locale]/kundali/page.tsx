@@ -29,6 +29,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
+import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation } from '@/components/kundali/InterpretationHelpers';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -194,6 +195,7 @@ export default function KundaliPage() {
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
   const [loading, setLoading] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
@@ -259,11 +261,26 @@ export default function KundaliPage() {
         <p className="text-text-secondary text-lg">{t('subtitle')}</p>
       </motion.div>
 
-      {!kundali && (
-        <BirthForm onSubmit={handleGenerate} loading={loading} />
+      {(!kundali || editing) && (
+        <BirthForm
+          onSubmit={(data, style) => {
+            setEditing(false);
+            handleGenerate(data, style);
+          }}
+          loading={loading}
+          initialData={editing && kundali ? {
+            name: kundali.birthData.name,
+            date: kundali.birthData.date,
+            time: kundali.birthData.time,
+            place: kundali.birthData.place,
+            lat: kundali.birthData.lat,
+            lng: kundali.birthData.lng,
+            timezone: kundali.birthData.timezone,
+          } : undefined}
+        />
       )}
 
-      {kundali && (
+      {kundali && !editing && (
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mt-16">
           <GoldDivider />
 
@@ -284,7 +301,14 @@ export default function KundaliPage() {
             {/* Actions */}
             <div className="flex items-center justify-center gap-3 mt-4">
               <button
-                onClick={() => setKundali(null)}
+                onClick={() => setEditing(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                {locale === 'en' ? 'Edit Details' : locale === 'hi' ? 'विवरण सम्पादित करें' : 'विवरणं सम्पादयतु'}
+              </button>
+              <button
+                onClick={() => { setKundali(null); setEditing(false); }}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               >
                 {locale === 'en' ? 'New Chart' : 'नया चार्ट'}
@@ -974,20 +998,29 @@ export default function KundaliPage() {
 
           {/* ===== YOGAS TAB ===== */}
           {activeTab === 'yogas' && kundali.yogasComplete && (
-            <YogasTab yogas={kundali.yogasComplete} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            <div className="space-y-6">
+              <YogasTab yogas={kundali.yogasComplete} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+              <YogasInterpretation yogas={kundali.yogasComplete} locale={locale} />
+            </div>
           )}
 
           {/* ===== SHADBALA TAB ===== */}
           {activeTab === 'shadbala' && kundali.fullShadbala && (
             <PaywallGate feature="shadbala_full" blurContent={<ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
-              <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+              <div className="space-y-6">
+                <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+                <ShadbalaInterpretation shadbala={kundali.fullShadbala} planets={kundali.planets} locale={locale} />
+              </div>
             </PaywallGate>
           )}
 
           {/* ===== BHAVABALA TAB ===== */}
           {activeTab === 'bhavabala' && kundali.bhavabala && (
             <PaywallGate feature="shadbala_full" blurContent={<BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
-              <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+              <div className="space-y-6">
+                <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+                <BhavabalaInterpretation bhavabala={kundali.bhavabala} locale={locale} />
+              </div>
             </PaywallGate>
           )}
 
@@ -1029,6 +1062,7 @@ export default function KundaliPage() {
                   </tbody>
                 </table>
               </div>
+              <AvasthasInterpretation avasthas={kundali.avasthas} planets={kundali.planets} locale={locale} />
             </div>
           )}
 

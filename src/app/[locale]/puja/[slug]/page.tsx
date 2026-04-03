@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,8 +12,10 @@ import HeroCard from '@/components/puja/HeroCard';
 import PujaMode from '@/components/puja/PujaMode';
 import SamagriList from '@/components/puja/SamagriList';
 import SankalpaDisplay from '@/components/puja/SankalpaDisplay';
+import ParanaDisplay from '@/components/puja/ParanaDisplay';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
@@ -193,6 +195,31 @@ export default function PujaVidhiPage() {
 
   const puja = useMemo(() => getPujaVidhiBySlug(slug), [slug]);
 
+  // Location store
+  const locationStore = useLocationStore();
+
+  useEffect(() => {
+    if (!locationStore.confirmed && !locationStore.detecting) {
+      locationStore.detect();
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const userLat = locationStore.lat;
+  const userLng = locationStore.lng;
+  const userLocationName = locationStore.name || '';
+  const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  const timezoneOffset = useMemo(() => {
+    try {
+      const now = new Date();
+      const utcDate = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
+      const localDate = new Date(now.toLocaleString('en-US', { timeZone: userTimezone }));
+      return (localDate.getTime() - utcDate.getTime()) / (1000 * 60 * 60);
+    } catch {
+      return new Date().getTimezoneOffset() / -60;
+    }
+  }, [userTimezone]);
+
   const [pujaMode, setPujaMode] = useState(false);
   const [quickMode, setQuickMode] = useState(false);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
@@ -212,15 +239,16 @@ export default function PujaVidhiPage() {
 
   const computedMuhurta = useMemo(() => {
     if (puja?.muhurtaType !== 'computed' || !puja.muhurtaWindow) return undefined;
+    if (!userLat || !userLng) return undefined;
     const now = new Date();
     try {
       return computePujaMuhurta(
         puja.muhurtaWindow.type,
         now.getFullYear(), now.getMonth() + 1, now.getDate(),
-        46.46, 6.79, 1  // Default: Corseaux, Switzerland
+        userLat, userLng, timezoneOffset
       );
     } catch { return undefined; }
-  }, [puja]);
+  }, [puja, userLat, userLng, timezoneOffset]);
 
   if (!puja) {
     return (
@@ -263,9 +291,23 @@ export default function PujaVidhiPage() {
           puja={puja}
           locale={locale}
           computedMuhurta={computedMuhurta}
-          locationName="Corseaux"
-          timezone="CET"
+          locationName={userLocationName}
+          timezone={userTimezone}
         />
+
+        {/* Parana display for vrats */}
+        {puja.parana && userLat && userLng && (
+          <ParanaDisplay
+            parana={puja.parana}
+            vratDate={new Date()}
+            lat={userLat}
+            lng={userLng}
+            timezoneOffset={timezoneOffset}
+            locationName={userLocationName}
+            timezone={userTimezone}
+            locale={locale}
+          />
+        )}
 
         {/* Start Puja buttons */}
         <motion.div {...fadeInUp} className="flex flex-col sm:flex-row items-center gap-3">
@@ -320,14 +362,20 @@ export default function PujaVidhiPage() {
           subtitle={l.sankalpaSa}
           defaultOpen
         >
-          <SankalpaDisplay
-            puja={puja}
-            locale={locale}
-            date={new Date()}
-            lat={46.46}
-            lng={6.79}
-            timezoneOffset={1}
-          />
+          {userLat && userLng ? (
+            <SankalpaDisplay
+              puja={puja}
+              locale={locale}
+              date={new Date()}
+              lat={userLat}
+              lng={userLng}
+              timezoneOffset={timezoneOffset}
+            />
+          ) : (
+            <p className="text-text-secondary/50 text-sm">
+              {locale === 'en' ? 'Detecting your location...' : locale === 'hi' ? 'आपका स्थान खोज रहे हैं...' : 'भवतः स्थानं अन्विष्यते...'}
+            </p>
+          )}
         </SectionAccordion>
 
         {/* 3. Puja Vidhi Section */}

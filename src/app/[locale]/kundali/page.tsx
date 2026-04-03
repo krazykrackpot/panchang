@@ -8,7 +8,9 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
+import PrintButton from '@/components/ui/PrintButton';
 import { Download } from 'lucide-react';
+import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -300,6 +302,12 @@ export default function KundaliPage() {
                 <Download className="w-4 h-4" />
                 PDF Report
               </button>
+              <PrintButton
+                contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
+                title={`Kundali — ${kundali.birthData.name}`}
+                label={locale === 'en' ? 'Print' : 'प्रिंट'}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+              />
               <ShareButton
                 title={`Kundali — ${kundali.birthData.name}`}
                 text={`Vedic birth chart for ${kundali.birthData.name} generated on Dekho Panchang`}

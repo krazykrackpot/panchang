@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { MapPin, Loader2, Search, Clock, Sun, Moon, ChevronDown, ChevronUp, Compass, Calendar, Star, Bell, Sparkles, BookOpen } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
+import PrintButton from '@/components/ui/PrintButton';
 import { Download } from 'lucide-react';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon, MuhurtaIcon, GrahanIcon, RashiIcon, MasaIcon, SamvatsaraIcon, SunriseIcon, SunsetIcon, MoonriseIcon, RituIcon, AyanaIcon } from '@/components/icons/PanchangIcons';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -105,6 +106,7 @@ export default function PanchangPage() {
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [detectingLocation, setDetectingLocation] = useState(false);
 
+  const panchangContentRef = useRef<HTMLDivElement>(null);
   const [showAllMuhurtas, setShowAllMuhurtas] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
   const [currentMuhurtaIdx, setCurrentMuhurtaIdx] = useState(-1);
@@ -351,6 +353,7 @@ export default function PanchangPage() {
         )}
       </div>
 
+      <div ref={panchangContentRef}>
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
@@ -377,6 +380,12 @@ export default function PanchangPage() {
                 <Download className="w-3.5 h-3.5" />
                 PDF
               </button>
+              <PrintButton
+                contentRef={panchangContentRef}
+                title={`Panchang — ${panchang.date}`}
+                label={locale === 'en' ? 'Print' : 'प्रिंट'}
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+              />
               <ShareButton
                 title={`Panchang — ${panchang.date}`}
                 text={`Today's Vedic Panchang from Dekho Panchang`}
@@ -2099,6 +2108,8 @@ export default function PanchangPage() {
           </div>
         </motion.div>
       )}
+
+      </div>{/* end panchangContentRef */}
 
       {/* ═══ DEEP DIVE LINKS — BIG ICONS ═══ */}
       <div className="my-14">

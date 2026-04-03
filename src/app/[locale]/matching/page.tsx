@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Calendar, Star } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -104,6 +105,7 @@ export default function MatchingPage() {
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
+  const matchResultRef = useRef<HTMLDivElement>(null);
 
   const handleMatch = useCallback(async () => {
     const bNak = mode === 'birth' ? boyComputed?.nakshatra : boyNakshatra;
@@ -336,6 +338,7 @@ export default function MatchingPage() {
             exit={{ opacity: 0, y: -20 }}
           >
             <GoldDivider />
+            <div ref={matchResultRef}>
 
             {/* Score Circle */}
             <div className="my-12 text-center">
@@ -417,6 +420,15 @@ export default function MatchingPage() {
                   </div>
                 </motion.div>
               ))}
+            </div>
+            </div>
+            {/* Print / PDF button */}
+            <div className="text-center mt-8">
+              <PrintButton
+                contentRef={matchResultRef}
+                title={locale === 'en' ? 'Kundali Matching Results' : 'कुण्डली मिलान परिणाम'}
+                label={locale === 'en' ? 'Print / PDF' : 'प्रिंट / PDF'}
+              />
             </div>
           </motion.div>
         )}

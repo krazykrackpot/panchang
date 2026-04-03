@@ -22,7 +22,8 @@ export function exportPanchangPDF(data: PanchangData, locale: Locale = 'en') {
   // Date & location
   doc.setFontSize(11);
   doc.setTextColor(240, 212, 138);
-  doc.text(`${data.date} | ${data.location}`, 105, 33, { align: 'center' });
+  const locationStr = typeof data.location === 'string' ? data.location : data.location?.name || '';
+  doc.text(`${data.date} | ${locationStr}`, 105, 33, { align: 'center' });
 
   // Divider
   doc.setDrawColor(212, 168, 83);

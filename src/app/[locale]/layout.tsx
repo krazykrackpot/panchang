@@ -2,7 +2,6 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
-import dynamic from 'next/dynamic';
 import type { Metadata } from 'next';
 import { locales, type Locale } from '@/lib/i18n/config';
 import Navbar from '@/components/layout/Navbar';
@@ -13,8 +12,8 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import '@/styles/globals.css';
 
-const InstallPrompt = dynamic(() => import('@/components/pwa/InstallPrompt'), { ssr: false });
-const OfflineBanner = dynamic(() => import('@/components/pwa/OfflineBanner'), { ssr: false });
+import InstallPrompt from '@/components/pwa/InstallPrompt';
+import OfflineBanner from '@/components/pwa/OfflineBanner';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 

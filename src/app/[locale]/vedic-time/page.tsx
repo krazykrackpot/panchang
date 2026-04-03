@@ -8,12 +8,58 @@ import { useLocationStore } from '@/stores/location-store';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import type { Locale } from '@/types/panchang';
 
+// 30 Muhurta names (sunrise to next sunrise) — traditional sequence
+const MUHURTA_NAMES: { en: string; hi: string; nature: 'good' | 'bad' | 'mixed' }[] = [
+  { en: 'Rudra', hi: 'रुद्र', nature: 'bad' },
+  { en: 'Ahi', hi: 'अहि', nature: 'bad' },
+  { en: 'Mitra', hi: 'मित्र', nature: 'good' },
+  { en: 'Pitri', hi: 'पितृ', nature: 'bad' },
+  { en: 'Vasu', hi: 'वसु', nature: 'good' },
+  { en: 'Vara', hi: 'वाराह', nature: 'good' },
+  { en: 'Vishvedeva', hi: 'विश्वदेव', nature: 'good' },
+  { en: 'Vidhi', hi: 'विधि', nature: 'good' },
+  { en: 'Satamukhi', hi: 'शतमुखी', nature: 'good' },
+  { en: 'Puruhuta', hi: 'पुरुहूत', nature: 'good' },
+  { en: 'Vahini', hi: 'वाहिनी', nature: 'bad' },
+  { en: 'Naktanakara', hi: 'नक्तनकर', nature: 'bad' },
+  { en: 'Varuna', hi: 'वरुण', nature: 'good' },
+  { en: 'Aryaman', hi: 'अर्यमन्', nature: 'good' },
+  { en: 'Bhaga', hi: 'भग', nature: 'bad' },
+  { en: 'Girisha', hi: 'गिरीश', nature: 'bad' },
+  { en: 'Ajapada', hi: 'अजपाद', nature: 'bad' },
+  { en: 'Ahirbudhnya', hi: 'अहिर्बुध्न्य', nature: 'good' },
+  { en: 'Pusha', hi: 'पूषन्', nature: 'good' },
+  { en: 'Ashvini', hi: 'अश्विनी', nature: 'good' },
+  { en: 'Yama', hi: 'यम', nature: 'bad' },
+  { en: 'Agni', hi: 'अग्नि', nature: 'good' },
+  { en: 'Vidhata', hi: 'विधाता', nature: 'good' },
+  { en: 'Kanda', hi: 'कण्ड', nature: 'good' },
+  { en: 'Aditi', hi: 'अदिति', nature: 'good' },
+  { en: 'Jiva', hi: 'जीव', nature: 'good' },
+  { en: 'Vishnu', hi: 'विष्णु', nature: 'good' },
+  { en: 'Dyumadgadyuti', hi: 'द्युमद्गद्युति', nature: 'good' },
+  { en: 'Brahma', hi: 'ब्रह्म', nature: 'good' },
+  { en: 'Samudram', hi: 'समुद्रम्', nature: 'mixed' },
+];
+
+// 8 Prahar names — 4 day (sunrise→sunset) + 4 night (sunset→sunrise)
+const PRAHAR_NAMES: { en: string; hi: string }[] = [
+  { en: 'Pratah Kaal', hi: 'प्रातःकाल' },         // 1 — early morning
+  { en: 'Sangava Kaal', hi: 'सङ्गवकाल' },         // 2 — forenoon
+  { en: 'Madhyahna Kaal', hi: 'मध्याह्नकाल' },     // 3 — midday
+  { en: 'Aparahna Kaal', hi: 'अपराह्णकाल' },       // 4 — afternoon
+  { en: 'Sayahna Kaal', hi: 'सायंकाल' },           // 5 — evening
+  { en: 'Pradosha Kaal', hi: 'प्रदोषकाल' },         // 6 — early night
+  { en: 'Nisha Kaal', hi: 'निशाकाल' },             // 7 — midnight
+  { en: 'Usha Kaal', hi: 'ऊषाकाल' },               // 8 — pre-dawn
+];
+
 /**
  * Vedic Time calculation from sunrise/sunset.
  *
  * Ghati (Ishtakala clock): sunrise→next sunrise = 60 ghati (each ~24 min)
- * Prahar: day (sunrise→sunset) / 4 + night (sunset→sunrise) / 4 = 8
- * Muhurta: day / 15 + night / 15 = 30
+ * Prahar: ahoratra / 8 (each = 7.5 ghati)
+ * Muhurta: ahoratra / 30 (each = 2 ghati)
  * Pala: 1/60 of ghati, Vipala: 1/60 of pala
  */
 function computeVedicTime(now: Date, sunriseDate: Date, sunsetDate: Date, nextSunriseDate: Date) {
@@ -48,9 +94,14 @@ function computeVedicTime(now: Date, sunriseDate: Date, sunsetDate: Date, nextSu
 
   const isDaytime = nowMs >= sunriseMs && nowMs < sunsetMs;
 
+  const muhurtaInfo = MUHURTA_NAMES[muhurta - 1];
+  const praharInfo = PRAHAR_NAMES[prahar - 1];
+
   return {
     ghati, pala, vipala,
     prahar, muhurta,
+    praharName: praharInfo,
+    muhurtaName: muhurtaInfo,
     isDaytime,
     praharDurationMin: Math.round(praharDurationMs / 60000),
     muhurtaDurationMin: Math.round(muhurtaDurationMs / 60000),
@@ -228,19 +279,35 @@ export default function VedicTimePage() {
             <div className="glass-card rounded-xl p-5 text-center border border-gold-primary/10">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Prahar' : 'प्रहर'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.prahar}<span className="text-text-secondary text-sm">/8</span></div>
-              <div className="text-text-secondary text-xs mt-1">
+              {vedic.praharName && (
+                <div className="text-gold-primary text-sm font-semibold mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                  {locale === 'en' ? vedic.praharName.en : vedic.praharName.hi}
+                </div>
+              )}
+              <div className="text-text-secondary/50 text-xs mt-0.5">
                 {locale === 'en'
-                  ? `= ${vedic.praharDurationMin} min each`
-                  : `= ${vedic.praharDurationMin} मिनट प्रत्येक`}
+                  ? `${vedic.praharDurationMin} min each`
+                  : `${vedic.praharDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
             <div className="glass-card rounded-xl p-5 text-center border border-gold-primary/10">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Muhurta' : 'मुहूर्त'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.muhurta}<span className="text-text-secondary text-sm">/30</span></div>
-              <div className="text-text-secondary text-xs mt-1">
+              {vedic.muhurtaName && (
+                <div className="mt-1 flex items-center justify-center gap-1.5">
+                  <span className="text-gold-primary text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                    {locale === 'en' ? vedic.muhurtaName.en : vedic.muhurtaName.hi}
+                  </span>
+                  <span className={`inline-block w-2 h-2 rounded-full ${
+                    vedic.muhurtaName.nature === 'good' ? 'bg-emerald-400' :
+                    vedic.muhurtaName.nature === 'bad' ? 'bg-red-400' : 'bg-amber-400'
+                  }`} title={vedic.muhurtaName.nature} />
+                </div>
+              )}
+              <div className="text-text-secondary/50 text-xs mt-0.5">
                 {locale === 'en'
-                  ? `= ${vedic.muhurtaDurationMin} min each`
-                  : `= ${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
+                  ? `${vedic.muhurtaDurationMin} min each`
+                  : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
           </div>

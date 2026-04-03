@@ -13,24 +13,25 @@ import type { Locale } from '@/types/panchang';
 interface BirthFormProps {
   onSubmit: (data: BirthData, style: ChartStyle) => void;
   loading: boolean;
+  initialData?: Partial<BirthData & { ayanamsha?: string; chartStyle?: ChartStyle }>;
 }
 
-export default function BirthForm({ onSubmit, loading }: BirthFormProps) {
+export default function BirthForm({ onSubmit, loading, initialData }: BirthFormProps) {
   const t = useTranslations('kundali');
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [formData, setFormData] = useState({
-    name: '',
-    date: '1990-01-15',
-    time: '06:00',
-    place: '',
-    lat: 0,
-    lng: 0,
-    timezone: typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC',
-    ayanamsha: 'lahiri' as 'lahiri' | 'raman' | 'kp',
-    chartStyle: 'north' as ChartStyle,
+    name: initialData?.name || '',
+    date: initialData?.date || '1990-01-15',
+    time: initialData?.time || '06:00',
+    place: initialData?.place || '',
+    lat: initialData?.lat || 0,
+    lng: initialData?.lng || 0,
+    timezone: initialData?.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC'),
+    ayanamsha: (initialData?.ayanamsha || 'lahiri') as 'lahiri' | 'raman' | 'kp',
+    chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
   });
 
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);

@@ -45,57 +45,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         sa: `/sa/puja/${slug}`,
       },
     },
+    other: {
+      'script:ld+json': JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: `${deityEn} Puja Vidhi`,
+        description,
+        step: puja.vidhiSteps.map((s, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: s.title.en,
+          text: s.description.en,
+        })),
+      }),
+    },
   };
 }
 
-export default function PujaSlugLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  // We need to resolve params synchronously in the render — use a wrapper
-  return <PujaSlugLayoutInner params={params}>{children}</PujaSlugLayoutInner>;
-}
-
-async function PujaSlugLayoutInner({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  const { slug } = await params;
-  const puja = PUJA_VIDHIS[slug];
-
-  if (!puja) {
-    return <>{children}</>;
-  }
-
-  const deity = puja.deity.en;
-  const description = `Complete ${deity} puja vidhi with step-by-step procedure, mantras, samagri list, and auspicious timing. ${puja.muhurtaDescription.en}`.slice(0, 160);
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: `${deity} Puja Vidhi`,
-    description,
-    step: puja.vidhiSteps.map((s, i) => ({
-      '@type': 'HowToStep',
-      position: i + 1,
-      name: s.title.en,
-      text: s.description.en,
-    })),
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+export default function PujaSlugLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

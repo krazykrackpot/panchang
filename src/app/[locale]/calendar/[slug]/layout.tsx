@@ -48,57 +48,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function CalendarSlugLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  return <CalendarSlugLayoutInner params={params}>{children}</CalendarSlugLayoutInner>;
-}
-
-async function CalendarSlugLayoutInner({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string; slug: string }>;
-}) {
-  const { slug } = await params;
-  const festival = FESTIVAL_DETAILS[slug];
-
-  if (!festival) {
-    return <>{children}</>;
-  }
-
-  const nameEn = festival.name.en;
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: nameEn,
-    description: `${nameEn}: ${festival.significance.en}`.slice(0, 300),
-    about: {
-      '@type': 'Thing',
-      name: nameEn,
-      description: festival.mythology.en.slice(0, 200),
-    },
-    ...(festival.deity && {
-      organizer: {
-        '@type': 'Thing',
-        name: festival.deity.en,
-      },
-    }),
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+export default function CalendarSlugLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

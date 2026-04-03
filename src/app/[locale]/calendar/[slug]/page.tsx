@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, BookOpen, Flame, Star, AlertTriangle, Check, Copy, Clock, Sparkles, Gift, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES } from '@/lib/constants/festival-details';
@@ -11,6 +11,8 @@ import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-de
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 import type { Locale, Trilingual } from '@/types/panchang';
+import SamagriList from '@/components/puja/SamagriList';
+import PujaMode from '@/components/puja/PujaMode';
 
 /* ═══════════════════════════════════════════
    LABELS
@@ -129,6 +131,10 @@ export default function FestivalDetailPage() {
 
   // Derive festival name
   const festivalName: Trilingual | null = detail?.name || ekadashiDetail?.name || puja ? (puja?.deity ? { en: slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '), hi: slug, sa: slug } : null) : null;
+
+  // PujaMode state
+  const [pujaMode, setPujaMode] = useState(false);
+  const [quickMode, setQuickMode] = useState(false);
 
   const hasContent = detail || ekadashiDetail || puja;
 
@@ -255,6 +261,25 @@ export default function FestivalDetailPage() {
           {puja && (
             <motion.div {...fadeInUp} className="space-y-6">
               <SectionHeading icon={<Flame className="w-5 h-5" />} title={LABELS.pujaVidhi[locale]} headingFont={headingFont} />
+
+              {/* Start Puja / Quick Mode buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <button
+                  onClick={() => { setQuickMode(false); setPujaMode(true); }}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
+                  style={headingFont}
+                >
+                  {locale === 'en' ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+                </button>
+                <button
+                  onClick={() => { setQuickMode(true); setPujaMode(true); }}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
+                  style={headingFont}
+                >
+                  {locale === 'en' ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+                </button>
+              </div>
+
               <FullPujaVidhi puja={puja} locale={locale} headingFont={headingFont} bodyFont={bodyFont} />
             </motion.div>
           )}
@@ -285,6 +310,18 @@ export default function FestivalDetailPage() {
           )}
         </motion.div>
       </div>
+
+      {/* PujaMode fullscreen overlay */}
+      <AnimatePresence>
+        {pujaMode && puja && (
+          <PujaMode
+            puja={puja}
+            locale={locale}
+            quickMode={quickMode}
+            onClose={() => setPujaMode(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -400,16 +437,6 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
 
 function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
   const t = (tri: Trilingual) => tri[locale] || tri.en;
-  const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
-
-  const toggleItem = (idx: number) => {
-    setCheckedItems(prev => {
-      const next = new Set(prev);
-      if (next.has(idx)) next.delete(idx);
-      else next.add(idx);
-      return next;
-    });
-  };
 
   return (
     <div className="space-y-6">
@@ -425,39 +452,15 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
         <p className="text-text-primary/90 text-base leading-relaxed" style={bodyFont}>{t(puja.muhurtaDescription)}</p>
       </div>
 
-      {/* ─── Samagri ─── */}
+      {/* ─── Samagri (shared component) ─── */}
       <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2.5">
-            <Gift className="w-5 h-5 text-gold-primary" />
-            <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
-              {LABELS.samagri[locale]}
-            </h3>
-          </div>
-          <span className="text-xs text-text-secondary px-3 py-1 rounded-full bg-bg-tertiary/50 border border-gold-primary/10">
-            {checkedItems.size}/{puja.samagri.length} {LABELS.itemsSelected[locale]}
-          </span>
+        <div className="flex items-center gap-2.5 mb-4">
+          <Gift className="w-5 h-5 text-gold-primary" />
+          <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
+            {LABELS.samagri[locale]}
+          </h3>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {puja.samagri.map((item, i) => {
-            const isChecked = checkedItems.has(i);
-            return (
-              <button
-                key={i}
-                onClick={() => toggleItem(i)}
-                className={`text-sm px-3 py-1.5 rounded-full border transition-all duration-200 ${
-                  isChecked
-                    ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 line-through opacity-70'
-                    : 'bg-gold-primary/8 border-gold-primary/10 text-text-secondary hover:border-gold-primary/30'
-                }`}
-                style={bodyFont}
-              >
-                {isChecked && <Check className="w-3 h-3 inline mr-1" />}
-                {t(item.name)}{item.quantity ? ` (${item.quantity})` : ''}
-              </button>
-            );
-          })}
-        </div>
+        <SamagriList items={puja.samagri} slug={puja.festivalSlug} locale={locale} />
       </div>
 
       {/* ─── Sankalpa ─── */}

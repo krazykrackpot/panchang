@@ -4,7 +4,11 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { invalidateTierCache } from '@/lib/subscription/check-access';
 
 function getStripe() {
-  return new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2025-03-31.basil' as Stripe.LatestApiVersion });
+  return new Stripe(process.env.STRIPE_SECRET_KEY || '', {
+    apiVersion: '2025-03-31.basil' as Stripe.LatestApiVersion,
+    httpClient: Stripe.createFetchHttpClient(),
+    maxNetworkRetries: 3,
+  });
 }
 
 export async function POST(req: Request) {

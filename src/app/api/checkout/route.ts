@@ -38,7 +38,10 @@ export async function POST(req: Request) {
       }
 
       const { default: Stripe } = await import('stripe');
-      const stripe = new Stripe(secretKey);
+      const stripe = new Stripe(secretKey, {
+        httpClient: Stripe.createFetchHttpClient(),
+        maxNetworkRetries: 3,
+      });
 
       const priceMap: Record<string, string | undefined> = {
         'pro_monthly': process.env.STRIPE_PRICE_PRO_MONTHLY,

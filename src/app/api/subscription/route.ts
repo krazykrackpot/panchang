@@ -83,7 +83,10 @@ export async function POST(req: Request) {
           const secretKey = process.env.STRIPE_SECRET_KEY;
           if (secretKey) {
             const { default: Stripe } = await import('stripe');
-            const stripe = new Stripe(secretKey);
+            const stripe = new Stripe(secretKey, {
+              httpClient: Stripe.createFetchHttpClient(),
+              maxNetworkRetries: 3,
+            });
             await stripe.subscriptions.update(subscription.provider_subscription_id, {
               cancel_at_period_end: true,
             });

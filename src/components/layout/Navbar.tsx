@@ -96,7 +96,6 @@ export default function Navbar() {
         { href: '/varshaphal', label: t('varshaphal') },
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/sade-sati', label: t('sadeSati') },
-        { href: '/horoscope', label: t('horoscope') },
       ],
     },
     {

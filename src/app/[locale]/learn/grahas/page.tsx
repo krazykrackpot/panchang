@@ -79,6 +79,18 @@ const L = {
     hi: 'विंशोत्तरी दशा प्रणाली प्रत्येक ग्रह को एक विशिष्ट अवधि प्रदान करती है जिसमें वह व्यक्ति के जीवन पर प्रमुख प्रभाव डालता है। कुल चक्र 120 वर्ष का होता है। आरम्भिक दशा जन्म समय चन्द्र के नक्षत्र से निर्धारित होती है। महादशा काल में ग्रह की जन्म कुण्डली में स्थिति — राशि, भाव, दृष्टि, बल — सक्रिय हो जाती है।',
     sa: 'विंशोत्तरीदशापद्धतिः प्रत्येकस्मै ग्रहाय विशिष्टकालं ददाति यस्मिन् सः जीवने प्रमुखप्रभावः भवति।'
   },
+  upagrahaTitle: { en: 'Upagrahas — Shadow Sub-Planets', hi: 'उपग्रह — छाया उपग्रह', sa: 'उपग्रहाः — छायोपग्रहाः' },
+  upagrahaContent: {
+    en: 'Beyond the nine Grahas, Vedic astrology recognizes five mathematical points called Upagrahas (sub-planets). These are not physical bodies but calculated points derived from the Sun\'s longitude. They add subtle layers of influence — especially in muhurta (electional) and prashna (horary) astrology. Classical texts like BPHS give them specific significations that refine chart analysis.',
+    hi: 'नौ ग्रहों से परे, वैदिक ज्योतिष पाँच गणितीय बिन्दुओं को मान्यता देता है जिन्हें उपग्रह कहते हैं। ये भौतिक पिण्ड नहीं हैं बल्कि सूर्य के भोगांश से व्युत्पन्न गणनात्मक बिन्दु हैं। ये सूक्ष्म प्रभाव की परतें जोड़ते हैं — विशेषकर मुहूर्त और प्रश्न ज्योतिष में।',
+    sa: 'नवग्रहेभ्यः परम्, वैदिकज्योतिषं पञ्चगणितीयबिन्दून् मान्यतां ददाति ये उपग्रहाः उच्यन्ते।'
+  },
+  aspectStrengthTitle: { en: 'Aspect Strength — Full, Three-Quarter, Half, Quarter', hi: 'दृष्टि बल — पूर्ण, तीन-चौथाई, अर्ध, चतुर्थांश', sa: 'दृष्टिबलम् — पूर्णं, त्रिपादं, अर्धं, पादम्' },
+  aspectStrengthContent: {
+    en: 'Not all special aspects carry equal strength. Classical texts assign fractional Drishti values: Full aspect (100%) on the 7th house for all planets. Mars: full on 4th and 8th, three-quarter (75%) on some reckonings. Jupiter: full on 5th and 9th. Saturn: full on 3rd and 10th. The practical significance: a full aspect has the power to significantly modify a house\'s results, while a partial aspect adds a subtle influence. In chart interpretation, always prioritize full aspects over partial ones.',
+    hi: 'सभी विशेष दृष्टियाँ समान बल नहीं रखतीं। शास्त्रीय ग्रन्थ आंशिक दृष्टि मान प्रदान करते हैं: सभी ग्रहों की 7वें भाव पर पूर्ण दृष्टि (100%)। मंगल: 4थे और 8वें पर पूर्ण। बृहस्पति: 5वें और 9वें पर पूर्ण। शनि: 3रे और 10वें पर पूर्ण।',
+    sa: 'सर्वाः विशेषदृष्टयः न समानबलाः। शास्त्रीयग्रन्थाः आंशिकदृष्टिमानानि प्रददति।'
+  },
   crossRefTitle: { en: 'Related Learning Modules', hi: 'सम्बन्धित अध्ययन', sa: 'सम्बद्धपाठाः' },
   significanceContent: {
     en: 'The Navagraha form the foundation of all Jyotish analysis. In a Kundali (birth chart), each Graha occupies a specific Rashi and Nakshatra, creating a unique celestial fingerprint for the moment of birth. The Vimshottari Dasha system uses the Moon\'s Nakshatra lord to unfold a 120-year predictive timeline. The Grahas are not merely astronomical objects — they represent cosmic forces that influence human life according to Vedic tradition.',
@@ -233,6 +245,15 @@ const SPECIAL_ASPECTS = [
   { planet: 'Ketu / केतु', aspects: '5th, 7th, 9th', desc: { en: 'Ketu\'s aspects mirror Rahu\'s — 5th, 7th, 9th — but with a spiritual, detaching, and karmic quality. Ketu\'s influence strips away material attachment from the houses it aspects.', hi: 'केतु की दृष्टि राहु जैसी (5, 7, 9) होती है किन्तु आध्यात्मिक, वैरागिक और कार्मिक गुण के साथ।' } },
 ];
 
+/* ── Upagraha data ───────────────────────────────────────────────── */
+const UPAGRAHAS = [
+  { name: { en: 'Dhuma', hi: 'धूम', sa: 'धूमः' }, formula: { en: 'Sun + 133°20\'', hi: 'सूर्य + 133°20\'', sa: 'सूर्यः + 133°20\'' }, signifies: { en: 'Smoke, pollution, confusion, inauspiciousness. Dhuma in a house creates haze and unclear outcomes. Associated with obstacles from hidden enemies and confusion in decisions.', hi: 'धुआँ, प्रदूषण, भ्रम, अशुभता। धूम किसी भाव में धुंध और अस्पष्ट परिणाम बनाता है। छिपे शत्रुओं से बाधा और निर्णयों में भ्रम से जुड़ा।', sa: 'धूमः, प्रदूषणम्, भ्रमः, अशुभता।' } },
+  { name: { en: 'Vyatipata', hi: 'व्यतीपात', sa: 'व्यतीपातः' }, formula: { en: '360° - Dhuma', hi: '360° - धूम', sa: '360° - धूमः' }, signifies: { en: 'Calamity, extreme misfortune. Vyatipata is considered one of the most inauspicious Upagrahas. Its placement shows where sudden reversals and unexpected disasters may occur. Particularly feared in muhurta calculations.', hi: 'आपदा, अत्यधिक दुर्भाग्य। व्यतीपात सबसे अशुभ उपग्रहों में से एक माना जाता है। इसका स्थान दर्शाता है कहाँ अचानक उलटफेर हो सकते हैं।', sa: 'विपत्तिः, अत्यधिकदुर्भाग्यम्।' } },
+  { name: { en: 'Parivesha', hi: 'परिवेश', sa: 'परिवेषः' }, formula: { en: 'Vyatipata + 180°', hi: 'व्यतीपात + 180°', sa: 'व्यतीपातः + 180°' }, signifies: { en: 'Halo, encirclement, boundary. Parivesha can indicate being surrounded by obstacles or protective boundaries. It sometimes shows a sense of entrapment but also divine protection through circles of grace.', hi: 'प्रभामण्डल, परिवेष्टन, सीमा। परिवेश बाधाओं से घिरे होने या रक्षात्मक सीमाओं को दर्शा सकता है।', sa: 'प्रभामण्डलम्, परिवेष्टनम्, सीमा।' } },
+  { name: { en: 'Indra Chapa (Indra Dhanus)', hi: 'इन्द्र चाप', sa: 'इन्द्रचापः' }, formula: { en: '360° - Parivesha', hi: '360° - परिवेश', sa: '360° - परिवेषः' }, signifies: { en: 'Rainbow, Indra\'s bow. Associated with sudden fortune or disaster depending on dignity. Can indicate government favor or punishment, dramatic turns of fate, and encounters with authority. Named after Indra, king of the Devas.', hi: 'इन्द्रधनुष, इन्द्र का धनुष। स्थिति के अनुसार अचानक सौभाग्य या आपदा। सरकारी कृपा या दण्ड, भाग्य के नाटकीय मोड़ दर्शा सकता है।', sa: 'इन्द्रधनुः। स्थित्यनुसारं आकस्मिकसौभाग्यम् आपदा वा।' } },
+  { name: { en: 'Upaketu', hi: 'उपकेतु', sa: 'उपकेतुः' }, formula: { en: 'Indra Chapa + 16°40\'', hi: 'इन्द्र चाप + 16°40\'', sa: 'इन्द्रचापः + 16°40\'' }, signifies: { en: 'Sub-Ketu, secondary shadow. Functions like a minor Ketu — bringing detachment, spiritual inclination, and sudden events. Upaketu in a house can indicate unexpected losses but also sudden spiritual insights. Its effects are more subtle than Ketu but in a similar vein.', hi: 'उप-केतु, द्वितीयक छाया। लघु केतु जैसा कार्य करता है — वैराग्य, आध्यात्मिक प्रवृत्ति और अचानक घटनाएँ लाता है।', sa: 'उपकेतुः, द्वितीयकच्छाया। लघुकेतुवत् कार्यं करोति — वैराग्यम्, आध्यात्मिकप्रवृत्तिम्, आकस्मिकघटनाश्च आनयति।' } },
+];
+
 /* ── Cross-reference links ────────────────────────────────────────── */
 const CROSS_REFS = [
   { href: '/learn/nakshatras', label: { en: 'Nakshatras — 27 Lunar Mansions', hi: 'नक्षत्र — 27 चन्द्र गृह' }, desc: { en: 'Each Nakshatra is ruled by a specific Graha', hi: 'प्रत्येक नक्षत्र एक विशिष्ट ग्रह द्वारा शासित' } },
@@ -240,6 +261,7 @@ const CROSS_REFS = [
   { href: '/learn/bhavas', label: { en: 'Bhavas — The 12 Houses', hi: 'भाव — 12 भाव' }, desc: { en: 'The houses that Grahas occupy and influence', hi: 'वे भाव जिनमें ग्रह स्थित होते हैं और प्रभावित करते हैं' } },
   { href: '/learn/dashas', label: { en: 'Dashas — Planetary Periods', hi: 'दशा — ग्रह काल' }, desc: { en: 'How planetary periods unfold across life', hi: 'ग्रह काल जीवन में कैसे प्रकट होते हैं' } },
   { href: '/learn/yogas', label: { en: 'Yogas — Planetary Combinations', hi: 'योग — ग्रह संयोग' }, desc: { en: 'Special combinations formed by Grahas', hi: 'ग्रहों द्वारा बनने वाले विशेष संयोग' } },
+  { href: '/learn/sade-sati', label: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का गोचर' }, desc: { en: 'Saturn\'s transit over your Moon sign', hi: 'आपकी चन्द्र राशि पर शनि का गोचर' } },
 ];
 
 export default function LearnGrahasPage() {
@@ -454,6 +476,67 @@ export default function LearnGrahasPage() {
                 <span className="text-gold-primary/70 text-xs font-mono px-2 py-0.5 rounded bg-gold-primary/10">{locale === 'en' ? 'Aspects:' : 'दृष्टि:'} {item.aspects}</span>
               </div>
               <p className="text-text-secondary text-sm">{item.desc[loc]}</p>
+            </motion.div>
+          ))}
+        </div>
+      </LessonSection>
+
+      {/* ── Section 7b: Aspect Strength ─────────────────────────── */}
+      <LessonSection title={L.aspectStrengthTitle[locale]} variant="formula">
+        <p>{L.aspectStrengthContent[locale]}</p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="border-b border-gold-primary/20">
+                <th className="text-left py-2 px-3 text-gold-light font-semibold">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">3rd</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">4th</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">5th</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">7th</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">8th</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">9th</th>
+                <th className="text-center py-2 px-3 text-gold-light font-semibold">10th</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { planet: 'All Planets', h3: '25%', h4: '75%', h5: '50%', h7: '100%', h8: '25%', h9: '50%', h10: '25%' },
+                { planet: 'Mars / मंगल', h3: '25%', h4: '100%', h5: '50%', h7: '100%', h8: '100%', h9: '50%', h10: '25%' },
+                { planet: 'Jupiter / बृहस्पति', h3: '25%', h4: '75%', h5: '100%', h7: '100%', h8: '25%', h9: '100%', h10: '25%' },
+                { planet: 'Saturn / शनि', h3: '100%', h4: '75%', h5: '50%', h7: '100%', h8: '25%', h9: '50%', h10: '100%' },
+              ].map((row) => (
+                <tr key={row.planet} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                  <td className="py-2 px-3 text-gold-light font-medium text-xs">{row.planet}</td>
+                  {[row.h3, row.h4, row.h5, row.h7, row.h8, row.h9, row.h10].map((val, j) => (
+                    <td key={j} className={`py-2 px-3 text-center text-xs font-mono ${val === '100%' ? 'text-gold-primary font-bold' : 'text-text-secondary/60'}`}>
+                      {val}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </LessonSection>
+
+      {/* ── Section 7c: Upagrahas ────────────────────────────────── */}
+      <LessonSection title={L.upagrahaTitle[locale]}>
+        <p>{L.upagrahaContent[locale]}</p>
+        <div className="mt-4 space-y-3">
+          {UPAGRAHAS.map((upa, i) => (
+            <motion.div
+              key={upa.name.en}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="glass-card rounded-lg p-4 border border-gold-primary/10"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-gold-light font-semibold">{upa.name[locale]}</span>
+                <span className="text-gold-primary/50 text-xs font-mono px-2 py-0.5 rounded bg-gold-primary/5">{upa.formula[loc]}</span>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed">{upa.signifies[locale]}</p>
             </motion.div>
           ))}
         </div>

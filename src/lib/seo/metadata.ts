@@ -376,6 +376,53 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
   },
 
+  // ─── Kundali Deep Dives ───────────────────────────────────
+  '/learn/planets': {
+    title: { en: 'Planetary Positions — Reading Your Birth Chart', hi: 'ग्रह स्थिति — जन्म कुण्डली पढ़ना', sa: 'ग्रहस्थितयः — जन्मकुण्डलीपठनम्' },
+    description: { en: 'Understand planet positions in Vedic astrology: signs, houses, nakshatras, padas, retrogrades, and dignities. Complete guide to reading the planets table.', hi: 'वैदिक ज्योतिष में ग्रह स्थिति: राशि, भाव, नक्षत्र, पाद, वक्री और गरिमा।', sa: 'वैदिकज्योतिषे ग्रहस्थितयः — राशिभावनक्षत्रपादवक्रीगरिमाः।' },
+    keywords: ['planet positions', 'vedic astrology', 'birth chart reading', 'planetary dignities'],
+  },
+  '/learn/ashtakavarga': {
+    title: { en: 'Ashtakavarga — 8-Fold Bindu Scoring System', hi: 'अष्टकवर्ग — 8 स्रोत बिन्दु अंक पद्धति', sa: 'अष्टकवर्गः — अष्टस्रोतबिन्दुपद्धतिः' },
+    description: { en: 'Complete guide to Ashtakavarga: BAV, SAV, bindu scoring, transit prediction, Trikona Shodhana, and Kakshya divisions.', hi: 'अष्टकवर्ग: BAV, SAV, बिन्दु अंक, गोचर भविष्यवाणी, त्रिकोण शोधन।', sa: 'अष्टकवर्गः — BAV, SAV, बिन्दुअङ्कः, गोचरभविष्यवाणी।' },
+    keywords: ['ashtakavarga', 'bindu', 'transit prediction', 'sarvashtakavarga'],
+  },
+  '/learn/shadbala': {
+    title: { en: 'Shadbala — Six-Fold Planetary Strength', hi: 'षड्बल — छह प्रकार का ग्रह बल', sa: 'षड्बलम् — षड्विधग्रहबलम्' },
+    description: { en: 'Complete Shadbala guide: Sthana, Dig, Kala, Cheshta, Naisargika, Drig Bala with minimum thresholds and chart captain identification.', hi: 'षड्बल: स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग् बल। न्यूनतम सीमा और चार्ट कप्तान।', sa: 'षड्बलम् — स्थानदिग्कालचेष्टानैसर्गिकदृग्बलानि।' },
+    keywords: ['shadbala', 'planetary strength', 'vedic astrology', 'chart analysis'],
+  },
+  '/learn/bhavabala': {
+    title: { en: 'Bhavabala — House Strength Analysis', hi: 'भावबल — भाव शक्ति विश्लेषण', sa: 'भावबलम् — भावशक्तिविश्लेषणम्' },
+    description: { en: 'House strength in Vedic astrology: Bhavadhipati, Bhava Dig, and Bhava Drishti Bala. 12 house significations and remedies.', hi: 'वैदिक ज्योतिष में भाव शक्ति: भावाधिपति, भाव दिग्, भाव दृष्टि बल।', sa: 'वैदिकज्योतिषे भावशक्तिः — भावाधिपतिदिग्दृष्टिबलानि।' },
+    keywords: ['bhavabala', 'house strength', 'vedic houses', '12 bhavas'],
+  },
+  '/learn/avasthas': {
+    title: { en: 'Avasthas — Planetary States & Moods', hi: 'अवस्थाएँ — ग्रह दशाएँ', sa: 'अवस्थाः — ग्रहदशाः' },
+    description: { en: 'All 5 avastha systems from BPHS: Baladi, Jagradadi, Deeptadi, Lajjitadi, Shayanadi. How planets deliver results.', hi: 'BPHS से 5 अवस्था प्रणालियाँ: बालादि, जागृतादि, दीप्तादि, लज्जितादि, शयनादि।', sa: 'BPHS तः 5 अवस्थाप्रणाल्यः — बालादिजागृतादिदीप्तादिलज्जितादिशयनादयः।' },
+    keywords: ['avasthas', 'planetary states', 'baladi', 'deeptadi', 'lajjitadi'],
+  },
+  '/learn/sphutas': {
+    title: { en: 'Sphutas — Sensitive Points (Yogi, Prana, Mrityu)', hi: 'स्फुट — संवेदनशील बिन्दु', sa: 'स्फुटाः — संवेदनशीलबिन्दवः' },
+    description: { en: 'Yogi & Avayogi Points, Prana Sphuta, Deha Sphuta, Mrityu Sphuta, fertility sphutas. Cosmic GPS coordinates in your chart.', hi: 'योगी, अवयोगी बिन्दु, प्राण, देह, मृत्यु स्फुट। कुण्डली के संवेदनशील बिन्दु।', sa: 'योग्यवयोगिबिन्दू प्राणदेहमृत्युस्फुटाः।' },
+    keywords: ['sphutas', 'yogi point', 'avayogi', 'prana sphuta', 'sensitive points'],
+  },
+  '/learn/argala': {
+    title: { en: 'Argala — Planetary Intervention System (Jaimini)', hi: 'अर्गला — ग्रह हस्तक्षेप पद्धति', sa: 'अर्गला — ग्रहहस्तक्षेपपद्धतिः' },
+    description: { en: 'Argala (bolt) and Virodha Argala: how planets intervene in house affairs. Dhana, Sukha, Labha, Putra Argala explained.', hi: 'अर्गला और विरोध अर्गला: ग्रह भाव मामलों में कैसे हस्तक्षेप करते हैं।', sa: 'अर्गला विरोधार्गला च — ग्रहाः भावकार्येषु कथं हस्तक्षेपं कुर्वन्ति।' },
+    keywords: ['argala', 'virodha argala', 'jaimini', 'planetary intervention'],
+  },
+  '/learn/jaimini': {
+    title: { en: 'Jaimini Astrology — Sign-Based System', hi: 'जैमिनी ज्योतिष — राशि आधारित', sa: 'जैमिनीज्योतिषम् — राश्याधारितम्' },
+    description: { en: 'Jaimini system: Chara Karakas, Atmakaraka, Rashi Drishti, Arudha Padas, Karakamsha, and Chara Dasha.', hi: 'जैमिनी: चर कारक, आत्मकारक, राशि दृष्टि, आरूढ़ पद, कारकांश और चर दशा।', sa: 'जैमिनीपद्धतिः — चरकारकाः आत्मकारकः राशिदृष्टिः आरूढपदानि कारकांशः चरदशा च।' },
+    keywords: ['jaimini astrology', 'chara karaka', 'atmakaraka', 'rashi drishti', 'arudha pada'],
+  },
+  '/learn/sade-sati': {
+    title: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का 7.5 वर्ष गोचर', sa: 'साडेसाती — शनेः सार्धसप्तवर्षीयगोचरः' },
+    description: { en: 'Complete Sade Sati guide: 3 phases, severity factors, life cycle patterns, remedies, and myths debunked.', hi: 'साढ़े साती: 3 चरण, तीव्रता कारक, जीवन चक्र, उपाय और मिथक।', sa: 'साडेसाती — त्रयः चरणाः तीव्रताकारकाः जीवनचक्रम् उपायाः मिथकाश्च।' },
+    keywords: ['sade sati', 'saturn transit', 'shani sade sati', 'saturn 7.5 years'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

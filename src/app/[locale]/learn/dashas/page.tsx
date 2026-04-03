@@ -76,6 +76,51 @@ const L = {
   preferenceTitle: { en: 'When to Use Which Dasha System', hi: 'कौन सी दशा प्रणाली कब प्रयोग करें', sa: 'कदा कां दशापद्धतिं प्रयोजयेत्' },
   modulesTitle: { en: 'Related Lesson Modules', hi: 'सम्बन्धित पाठ मॉड्यूल', sa: 'सम्बद्धपाठखण्डाः' },
   tryIt: { en: 'See Your Dasha Periods in Kundali', hi: 'अपनी दशा अवधियाँ कुण्डली में देखें', sa: 'स्वदशाकालखण्डान् कुण्डल्यां पश्यतु' },
+
+  findYourTitle: { en: 'Finding Your Current Dasha', hi: 'अपनी वर्तमान दशा खोजना', sa: 'स्ववर्तमानदशां ज्ञातुम्' },
+  findYourContent: {
+    en: 'To find your current Dasha, generate your Kundali on this site and navigate to the Dashas tab. The system automatically calculates your complete Vimshottari Dasha timeline from birth based on your Moon\'s Nakshatra position. The currently active Maha Dasha is highlighted, along with the running Antardasha within it. You can see past periods and future ones stretching across your entire 120-year cycle.',
+    hi: 'अपनी वर्तमान दशा जानने के लिए इस साइट पर कुण्डली बनाएँ और दशा टैब पर जाएँ। प्रणाली स्वचालित रूप से आपके चन्द्र नक्षत्र की स्थिति से जन्म से पूर्ण विंशोत्तरी दशा समयरेखा गणना करती है। वर्तमान सक्रिय महादशा और उसमें चल रही अन्तर्दशा हाइलाइट की जाती है।',
+    sa: 'स्ववर्तमानदशां ज्ञातुं अत्र कुण्डलीं जनयतु दशापत्रं च गच्छतु। पद्धतिः स्वयमेव चन्द्रनक्षत्रस्थित्या जन्मतः पूर्णां विंशोत्तरीदशासमयरेखां गणयति।'
+  },
+  findYourContent2: {
+    en: 'Pay attention to the transition dates between Maha Dashas and between Antardashas — these are the periods of maximum change and adjustment. If you are near a Dasha transition (within 6-12 months), the themes of both the outgoing and incoming Dasha lord will be active simultaneously, creating a blended period.',
+    hi: 'महादशाओं और अन्तर्दशाओं के बीच संक्रमण तिथियों पर ध्यान दें — ये अधिकतम परिवर्तन और समायोजन की अवधियाँ हैं। यदि आप दशा संक्रमण के निकट (6-12 माह के भीतर) हैं, तो जाने वाली और आने वाली दशा दोनों के स्वामी के विषय एक साथ सक्रिय होंगे।',
+    sa: 'महादशान्तर्दशानां मध्ये सङ्क्रमणतिथिषु अवधानं ददातु — एते अधिकतमपरिवर्तनस्य कालाः।'
+  },
+
+  antardashaCalcTitle: { en: 'Antardasha Calculation — A Worked Example', hi: 'अन्तर्दशा गणना — एक कार्यशील उदाहरण', sa: 'अन्तर्दशागणना — कार्यशीलोदाहरणम्' },
+  antardashaCalcContent: {
+    en: 'Each Maha Dasha is divided into 9 Antardashas proportional to each planet\'s total Dasha years. The formula is: Antardasha duration = (Maha Dasha years x Antardasha planet years) / 120. The sequence starts with the Maha Dasha lord\'s own Antardasha, then follows the Vimshottari order.',
+    hi: 'प्रत्येक महादशा 9 अन्तर्दशाओं में विभाजित होती है जो प्रत्येक ग्रह के कुल दशा वर्षों के अनुपात में होती हैं। सूत्र: अन्तर्दशा अवधि = (महादशा वर्ष x अन्तर्दशा ग्रह वर्ष) / 120। क्रम महादशा स्वामी की अपनी अन्तर्दशा से शुरू होता है।',
+    sa: 'प्रत्येका महादशा 9 अन्तर्दशासु विभज्यते। सूत्रम्: अन्तर्दशाकालः = (महादशावर्षाणि x अन्तर्दशाग्रहवर्षाणि) / 120।'
+  },
+
+  mahadashaThemesTitle: { en: 'Life Themes During Each Maha Dasha', hi: 'प्रत्येक महादशा के जीवन विषय', sa: 'प्रत्येकमहादशायाः जीवनविषयाः' },
+  mahadashaThemesContent: {
+    en: 'Each Maha Dasha lord activates its core significations. The actual results depend on the planet\'s chart placement, but these are the universal themes each planet tends to emphasize during its rule:',
+    hi: 'प्रत्येक महादशा स्वामी अपने मूल संकेतों को सक्रिय करता है। वास्तविक परिणाम ग्रह की कुण्डली स्थिति पर निर्भर हैं, लेकिन ये सार्वभौमिक विषय हैं जो प्रत्येक ग्रह अपने शासनकाल में प्रभावित करता है:',
+    sa: 'प्रत्येकमहादशास्वामी स्वमूलसङ्केतान् सक्रियान् करोति।'
+  },
+
+  sandhiTitle: { en: 'Dasha Sandhi — The Turbulent Transition Zone', hi: 'दशा सन्धि — अशान्त संक्रमण क्षेत्र', sa: 'दशासन्धिः — अशान्तसङ्क्रमणक्षेत्रम्' },
+  sandhiContent: {
+    en: 'Dasha Sandhi (junction) is the transition period between two Maha Dashas — typically the last few months of the outgoing Dasha and the first few months of the incoming one. This period is often turbulent because the native is simultaneously experiencing the winding down of one planetary energy and the activation of a completely different one. The contrast can be disorienting.',
+    hi: 'दशा सन्धि दो महादशाओं के बीच का संक्रमण काल है — सामान्यतः जाने वाली दशा के अन्तिम कुछ माह और आने वाली के पहले कुछ माह। यह काल अक्सर अशान्त होता है क्योंकि व्यक्ति एक साथ एक ग्रह ऊर्जा के समापन और दूसरी के आरम्भ का अनुभव करता है।',
+    sa: 'दशासन्धिः द्वयोः महादशयोः मध्ये सङ्क्रमणकालः — गच्छत्याः दशायाः अन्तिमाः मासाः आगच्छन्त्याश्च प्रथमाः मासाः। एषः कालः प्रायः अशान्तः।'
+  },
+  sandhiContent2: {
+    en: 'The degree of turbulence depends on how different the two Dasha lords are. A transition from Jupiter to Saturn (wisdom to discipline) or from Venus to Sun (luxury to authority) creates more friction than Jupiter to Mercury (both intellectual planets). During Sandhi, avoid major life decisions if possible — let the new energy settle before committing to irreversible choices.',
+    hi: 'अशान्ति की मात्रा इस पर निर्भर करती है कि दोनों दशा स्वामी कितने भिन्न हैं। गुरु से शनि (ज्ञान से अनुशासन) या शुक्र से सूर्य (विलास से अधिकार) का संक्रमण गुरु से बुध (दोनों बौद्धिक) की तुलना में अधिक घर्षण पैदा करता है। सन्धि काल में यदि सम्भव हो तो बड़े जीवन निर्णय टालें।',
+    sa: 'अशान्तेः मात्रा दशास्वामिनोः भिन्नतायां निर्भरा। सन्धिकाले यदि शक्यं प्रमुखजीवननिर्णयान् परिहरेत्।'
+  },
+
+  eventTimingTitle: { en: 'Event Timing — Which Dasha Brings What', hi: 'घटना समय — कौन सी दशा क्या लाती है', sa: 'घटनाकालनिर्धारणम् — का दशा किं आनयति' },
+  eventTimingContent: {
+    en: 'Certain life events are strongly correlated with specific Dasha periods. While the exact outcome depends on the chart, experienced astrologers look for these classical combinations when timing events:',
+    hi: 'कुछ जीवन घटनाएँ विशिष्ट दशा अवधियों से दृढ़ता से सम्बन्धित हैं। सटीक परिणाम कुण्डली पर निर्भर है, लेकिन अनुभवी ज्योतिषी घटनाओं का समय निर्धारण करते समय इन शास्त्रीय संयोजनों को देखते हैं:',
+    sa: 'कानिचित् जीवनघटनानि विशिष्टदशाकालखण्डैः दृढं सम्बद्धानि। अनुभवीज्योतिषिणः एतानि शास्त्रीयसंयोजनानि पश्यन्ति:'
+  },
 };
 
 const DASHA_PERIODS = [
@@ -119,6 +164,39 @@ const OTHER_DASHA_SYSTEMS = [
     desc: { en: 'An extremely complex sign-based dasha that moves in a serpentine (savya/apsavya) pattern through the zodiac. Considered highly accurate by scholars but difficult to compute manually. Based on the Moon\'s Navamsa position.', hi: 'अत्यन्त जटिल राशि-आधारित दशा जो सर्पाकार (सव्य/अपसव्य) पैटर्न में चलती है। विद्वानों द्वारा अत्यन्त सटीक माना जाता है।', sa: 'अत्यन्तजटिला राश्याधारिता दशा या सर्पाकारपद्धत्या चलति।' },
     when: { en: 'Advanced practitioners, when other systems give contradictory results', hi: 'उन्नत अभ्यासकर्ता, जब अन्य प्रणालियाँ विरोधाभासी परिणाम दें', sa: 'उन्नतप्रयोक्तारः' },
   },
+];
+
+const MAHADASHA_THEMES = [
+  { planet: 'Ketu', planetHi: 'केतु', years: 7, color: '#9ca3af', themes: { en: 'Spiritual awakening, detachment, loss and letting go, past-life karma surfacing, sudden changes, isolation, research, occult interests. Often starts life with confusion about direction.', hi: 'आध्यात्मिक जागृति, वैराग्य, हानि, पूर्वजन्म कर्म, अचानक परिवर्तन, एकान्त, शोध, गूढ़ रुचियाँ।' } },
+  { planet: 'Venus', planetHi: 'शुक्र', years: 20, color: '#ec4899', themes: { en: 'Romance, marriage, luxury, artistic pursuits, vehicles, comfort, financial gains, beauty, partnerships. The longest Dasha — often defines the prime creative and romantic years.', hi: 'रोमांस, विवाह, विलास, कलात्मक गतिविधियाँ, वाहन, आराम, वित्तीय लाभ, सौन्दर्य। सबसे लम्बी दशा — प्रमुख रचनात्मक और रोमांटिक वर्षों को परिभाषित करती है।' } },
+  { planet: 'Sun', planetHi: 'सूर्य', years: 6, color: '#f59e0b', themes: { en: 'Career authority, government connections, father-related events, self-confidence, leadership, health vitality, ego development, recognition. Short but impactful.', hi: 'करियर अधिकार, सरकारी सम्पर्क, पिता सम्बन्धित घटनाएँ, आत्मविश्वास, नेतृत्व, स्वास्थ्य, मान्यता। छोटी लेकिन प्रभावशाली।' } },
+  { planet: 'Moon', planetHi: 'चन्द्र', years: 10, color: '#e2e8f0', themes: { en: 'Emotional growth, mother-related events, mental peace (or disturbance if afflicted), travel, public life, nurturing, domestic changes, intuition development.', hi: 'भावनात्मक विकास, माता सम्बन्धित घटनाएँ, मानसिक शान्ति, यात्रा, सार्वजनिक जीवन, पोषण, घरेलू परिवर्तन, अन्तर्ज्ञान।' } },
+  { planet: 'Mars', planetHi: 'मंगल', years: 7, color: '#ef4444', themes: { en: 'Property, land, siblings, courage, surgery, competition, physical energy, technical skills, disputes, construction. High-energy period with risk of accidents if afflicted.', hi: 'सम्पत्ति, भूमि, भाई-बहन, साहस, शल्य, प्रतियोगिता, शारीरिक ऊर्जा, तकनीकी कौशल, विवाद। उच्च-ऊर्जा काल।' } },
+  { planet: 'Rahu', planetHi: 'राहु', years: 18, color: '#6366f1', themes: { en: 'Foreign connections, unconventional paths, technology, obsessive desires, material ambition, illusions, sudden rise or fall, breaking taboos, innovation. Can give extraordinary worldly success or deep confusion.', hi: 'विदेश सम्पर्क, अपरम्परागत मार्ग, प्रौद्योगिकी, जुनूनी इच्छाएँ, भौतिक महत्वाकांक्षा, माया, अचानक उत्थान या पतन। असाधारण सांसारिक सफलता या गहरा भ्रम।' } },
+  { planet: 'Jupiter', planetHi: 'गुरु', years: 16, color: '#f0d48a', themes: { en: 'Wisdom, children, education, dharma, wealth expansion, marriage (for women), spiritual growth, teaching, legal matters, optimism. Generally the most auspicious period.', hi: 'ज्ञान, संतान, शिक्षा, धर्म, धन विस्तार, विवाह (महिलाओं के लिए), आध्यात्मिक वृद्धि, शिक्षण। सामान्यतः सर्वाधिक शुभ काल।' } },
+  { planet: 'Saturn', planetHi: 'शनि', years: 19, color: '#3b82f6', themes: { en: 'Hard work, discipline, career structure, service, longevity, chronic health matters, karma, delays that build character, responsibility, democratic values, justice. Slow but lasting results.', hi: 'कठिन परिश्रम, अनुशासन, करियर संरचना, सेवा, दीर्घायु, दीर्घकालिक स्वास्थ्य, कर्म, चरित्र निर्माण, उत्तरदायित्व। धीमे लेकिन स्थायी परिणाम।' } },
+  { planet: 'Mercury', planetHi: 'बुध', years: 17, color: '#22c55e', themes: { en: 'Business, commerce, communication, writing, learning, friendships, intellectual pursuits, adaptability, travel for education, maternal uncle. Period of mental agility and versatility.', hi: 'व्यापार, वाणिज्य, संवाद, लेखन, विद्या, मित्रता, बौद्धिक गतिविधियाँ, अनुकूलनशीलता। मानसिक चपलता और बहुमुखता का काल।' } },
+];
+
+const VENUS_ANTARDASHA_EXAMPLE = [
+  { planet: 'Venus', planetHi: 'शुक्र', years: 20, duration: '(20x20)/120 = 3y 4m', durationHi: '(20x20)/120 = 3 वर्ष 4 माह' },
+  { planet: 'Sun', planetHi: 'सूर्य', years: 6, duration: '(20x6)/120 = 1y 0m', durationHi: '(20x6)/120 = 1 वर्ष 0 माह' },
+  { planet: 'Moon', planetHi: 'चन्द्र', years: 10, duration: '(20x10)/120 = 1y 8m', durationHi: '(20x10)/120 = 1 वर्ष 8 माह' },
+  { planet: 'Mars', planetHi: 'मंगल', years: 7, duration: '(20x7)/120 = 1y 2m', durationHi: '(20x7)/120 = 1 वर्ष 2 माह' },
+  { planet: 'Rahu', planetHi: 'राहु', years: 18, duration: '(20x18)/120 = 3y 0m', durationHi: '(20x18)/120 = 3 वर्ष 0 माह' },
+  { planet: 'Jupiter', planetHi: 'गुरु', years: 16, duration: '(20x16)/120 = 2y 8m', durationHi: '(20x16)/120 = 2 वर्ष 8 माह' },
+  { planet: 'Saturn', planetHi: 'शनि', years: 19, duration: '(20x19)/120 = 3y 2m', durationHi: '(20x19)/120 = 3 वर्ष 2 माह' },
+  { planet: 'Mercury', planetHi: 'बुध', years: 17, duration: '(20x17)/120 = 2y 10m', durationHi: '(20x17)/120 = 2 वर्ष 10 माह' },
+  { planet: 'Ketu', planetHi: 'केतु', years: 7, duration: '(20x7)/120 = 1y 2m', durationHi: '(20x7)/120 = 1 वर्ष 2 माह' },
+];
+
+const EVENT_TIMING = [
+  { event: { en: 'Marriage', hi: 'विवाह' }, dashas: { en: 'Venus Dasha, Jupiter Dasha (for women), 7th lord Dasha, Venus Antardasha in any benefic Dasha', hi: 'शुक्र दशा, गुरु दशा (महिलाओं के लिए), 7वें स्वामी की दशा, किसी शुभ दशा में शुक्र अन्तर्दशा' }, color: '#ec4899' },
+  { event: { en: 'Career Rise', hi: 'करियर उन्नति' }, dashas: { en: 'Sun Dasha, Saturn Dasha (10th lord), 10th lord Dasha, Yogakaraka Dasha. Saturn-Sun or Sun-Saturn periods for government positions.', hi: 'सूर्य दशा, शनि दशा (10वाँ स्वामी), 10वें स्वामी की दशा, योगकारक दशा। सरकारी पदों के लिए शनि-सूर्य या सूर्य-शनि।' }, color: '#f59e0b' },
+  { event: { en: 'Children', hi: 'संतान' }, dashas: { en: 'Jupiter Dasha (primary karaka for children), 5th lord Dasha, Venus Antardasha in Jupiter Dasha, Putrakaraka Dasha (Jaimini).', hi: 'गुरु दशा (संतान का प्रमुख कारक), 5वें स्वामी की दशा, गुरु दशा में शुक्र अन्तर्दशा।' }, color: '#f0d48a' },
+  { event: { en: 'Education', hi: 'शिक्षा' }, dashas: { en: 'Mercury Dasha, Jupiter Dasha, 4th/5th/9th lord Dasha. Higher education peaks during Jupiter periods; technical skills during Mercury or Mars.', hi: 'बुध दशा, गुरु दशा, 4/5/9वें स्वामी की दशा। उच्च शिक्षा गुरु काल में; तकनीकी कौशल बुध या मंगल में।' }, color: '#22c55e' },
+  { event: { en: 'Foreign Travel/Settlement', hi: 'विदेश यात्रा/बसना' }, dashas: { en: 'Rahu Dasha (primary), 12th lord Dasha, Moon Dasha (if 12th lord or in 12th), Ketu Dasha for spiritual pilgrimages abroad.', hi: 'राहु दशा (प्रमुख), 12वें स्वामी की दशा, चन्द्र दशा (12वें स्वामी या 12वें में हो), आध्यात्मिक विदेश यात्रा के लिए केतु दशा।' }, color: '#6366f1' },
+  { event: { en: 'Health Crisis', hi: 'स्वास्थ्य संकट' }, dashas: { en: 'Dasha of planets in 6th/8th house, Dasha of debilitated planets, Saturn Dasha (chronic conditions), Mars Dasha (surgery, accidents), Ketu Dasha (mysterious ailments).', hi: '6/8वें भाव के ग्रह की दशा, नीच ग्रह की दशा, शनि दशा (दीर्घकालिक), मंगल दशा (शल्य), केतु दशा (रहस्यमय रोग)।' }, color: '#ef4444' },
 ];
 
 export default function LearnDashasPage() {
@@ -387,8 +465,136 @@ export default function LearnDashasPage() {
         </div>
       </LessonSection>
 
-      {/* Section 10: Related modules */}
-      <LessonSection number={10} title={L.modulesTitle[locale]}>
+      {/* Section 10: Finding Your Current Dasha */}
+      <LessonSection number={10} title={L.findYourTitle[locale]}>
+        <p style={bodyFont}>{L.findYourContent[locale]}</p>
+        <p className="mt-3" style={bodyFont}>{L.findYourContent2[locale]}</p>
+        <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
+          <p className="text-gold-light font-mono text-sm mb-2">
+            {locale === 'en' ? 'How to find it:' : 'कैसे खोजें:'}
+          </p>
+          <div className="space-y-1 text-gold-light/80 font-mono text-xs">
+            <p>1. {locale === 'en' ? 'Go to /kundali and enter your birth details' : '/kundali पर जाएँ और जन्म विवरण दर्ज करें'}</p>
+            <p>2. {locale === 'en' ? 'Click on the "Dashas" tab in the results' : 'परिणामों में "दशा" टैब पर क्लिक करें'}</p>
+            <p>3. {locale === 'en' ? 'The highlighted row is your current Maha Dasha' : 'हाइलाइट पंक्ति आपकी वर्तमान महादशा है'}</p>
+            <p>4. {locale === 'en' ? 'Expand it to see Antardashas — the highlighted sub-row is your current Antardasha' : 'इसे विस्तार करें अन्तर्दशाएँ देखने के लिए — हाइलाइट उप-पंक्ति आपकी वर्तमान अन्तर्दशा है'}</p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* Section 11: Antardasha Calculation */}
+      <LessonSection number={11} title={L.antardashaCalcTitle[locale]}>
+        <p style={bodyFont}>{L.antardashaCalcContent[locale]}</p>
+
+        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+          <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
+            {locale === 'en' ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
+          </p>
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="border-b border-gold-primary/10">
+                <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Antardasha' : 'अन्तर्दशा'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Calculation' : 'गणना'}</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gold-primary/5">
+              {VENUS_ANTARDASHA_EXAMPLE.map((ad) => (
+                <tr key={ad.planet} className="hover:bg-gold-primary/3">
+                  <td className="py-2 px-2 font-medium text-text-secondary">
+                    {locale === 'en' ? `Venus-${ad.planet}` : `शुक्र-${ad.planetHi}`}
+                  </td>
+                  <td className="py-2 px-2 text-text-secondary font-mono">
+                    {isHi ? ad.durationHi : ad.duration}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="mt-2 text-text-tertiary text-[10px] font-mono">
+            {locale === 'en' ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
+          </p>
+        </div>
+      </LessonSection>
+
+      {/* Section 12: Maha Dasha Themes */}
+      <LessonSection number={12} title={L.mahadashaThemesTitle[locale]}>
+        <p style={bodyFont}>{L.mahadashaThemesContent[locale]}</p>
+        <div className="mt-4 space-y-3">
+          {MAHADASHA_THEMES.map((md, i) => (
+            <motion.div
+              key={md.planet}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="glass-card rounded-xl p-4 border border-gold-primary/10"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: md.color }} />
+                <span className="font-bold text-sm" style={{ color: md.color, ...headingFont }}>
+                  {isHi ? md.planetHi : md.planet}
+                </span>
+                <span className="text-text-tertiary text-[10px] font-mono">{md.years} {locale === 'en' ? 'years' : 'वर्ष'}</span>
+              </div>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
+                {isHi ? md.themes.hi : md.themes.en}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </LessonSection>
+
+      {/* Section 13: Dasha Sandhi */}
+      <LessonSection number={13} title={L.sandhiTitle[locale]} variant="highlight">
+        <p style={bodyFont}>{L.sandhiContent[locale]}</p>
+        <p className="mt-3" style={bodyFont}>{L.sandhiContent2[locale]}</p>
+
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { from: { en: 'Jupiter → Saturn', hi: 'गुरु → शनि' }, friction: { en: 'High', hi: 'उच्च' }, desc: { en: 'Expansion → contraction. Optimism to reality check. Career restructuring.', hi: 'विस्तार → संकुचन। आशावाद से वास्तविकता जाँच। करियर पुनर्गठन।' }, color: 'border-red-400/20 bg-red-400/5' },
+            { from: { en: 'Venus → Sun', hi: 'शुक्र → सूर्य' }, friction: { en: 'High', hi: 'उच्च' }, desc: { en: 'Pleasure → duty. Partnership focus to individual authority. Lifestyle shift.', hi: 'आनन्द → कर्तव्य। साझेदारी से व्यक्तिगत अधिकार। जीवनशैली बदलाव।' }, color: 'border-red-400/20 bg-red-400/5' },
+            { from: { en: 'Saturn → Mercury', hi: 'शनि → बुध' }, friction: { en: 'Medium', hi: 'मध्यम' }, desc: { en: 'Heavy → light. Slow and deep to fast and versatile. Relief period.', hi: 'भारी → हल्का। धीमा और गहरा से तेज़ और बहुमुखी। राहत काल।' }, color: 'border-amber-400/20 bg-amber-400/5' },
+            { from: { en: 'Mercury → Ketu', hi: 'बुध → केतु' }, friction: { en: 'High', hi: 'उच्च' }, desc: { en: 'Rational → mystical. Worldly activity to spiritual withdrawal. Confusion possible.', hi: 'तर्कसंगत → रहस्यमय। सांसारिक गतिविधि से आध्यात्मिक वापसी। भ्रम सम्भव।' }, color: 'border-red-400/20 bg-red-400/5' },
+          ].map((item) => (
+            <div key={item.from.en} className={`rounded-lg p-3 border ${item.color}`}>
+              <div className="text-gold-light text-sm font-bold mb-1" style={headingFont}>
+                {isHi ? item.from.hi : item.from.en}
+              </div>
+              <div className="text-text-tertiary text-[10px] font-mono mb-1">
+                {locale === 'en' ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
+              </div>
+              <div className="text-text-secondary text-xs" style={bodyFont}>{isHi ? item.desc.hi : item.desc.en}</div>
+            </div>
+          ))}
+        </div>
+      </LessonSection>
+
+      {/* Section 14: Event Timing */}
+      <LessonSection number={14} title={L.eventTimingTitle[locale]}>
+        <p style={bodyFont}>{L.eventTimingContent[locale]}</p>
+        <div className="mt-4 space-y-3">
+          {EVENT_TIMING.map((et, i) => (
+            <motion.div
+              key={et.event.en}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="flex gap-3 items-start"
+            >
+              <div className="w-28 flex-shrink-0 text-right text-sm font-bold pt-0.5" style={{ color: et.color, ...headingFont }}>
+                {isHi ? et.event.hi : et.event.en}
+              </div>
+              <div className="text-text-secondary text-xs leading-relaxed flex-1" style={bodyFont}>
+                {isHi ? et.dashas.hi : et.dashas.en}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </LessonSection>
+
+      {/* Section 15: Related modules */}
+      <LessonSection number={15} title={L.modulesTitle[locale]}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/11-1', label: { en: 'Lesson 11-1: Vimshottari Dasha System', hi: 'पाठ 11-1: विंशोत्तरी दशा प्रणाली' } },

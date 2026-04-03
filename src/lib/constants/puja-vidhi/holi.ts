@@ -6,20 +6,20 @@ export const HOLI_PUJA: PujaVidhi = {
   deity: { en: 'Krishna / Vishnu (Narasimha)', hi: 'कृष्ण / विष्णु (नरसिंह)', sa: 'कृष्णः / विष्णुः (नृसिंहः)' },
 
   samagri: [
-    { name: { en: 'Cow dung cakes', hi: 'गोबर के उपले', sa: 'गोमयोपलाः' }, quantity: '10-15' },
-    { name: { en: 'Wood logs', hi: 'लकड़ी के लट्ठे', sa: 'काष्ठखण्डाः' } },
-    { name: { en: 'Whole coconut', hi: 'साबुत नारियल', sa: 'सम्पूर्णनारिकेलम्' }, quantity: '1' },
-    { name: { en: 'New harvest wheat', hi: 'नई फसल का गेहूँ', sa: 'नवगोधूमाः' } },
-    { name: { en: 'New harvest barley', hi: 'नई फसल का जौ', sa: 'नवयवाः' } },
-    { name: { en: 'Roasted gram (chana)', hi: 'भुने चने', sa: 'भर्जितचणकाः' } },
-    { name: { en: 'Gulal (natural colors)', hi: 'गुलाल (प्राकृतिक रंग)', sa: 'गुलालम् (प्राकृतिकवर्णाः)' } },
-    { name: { en: 'Water pot (for parikrama)', hi: 'जल का लोटा (परिक्रमा हेतु)', sa: 'जलकुम्भः (प्रदक्षिणार्थम्)' } },
-    { name: { en: 'Gujiya / sweets', hi: 'गुजिया / मिठाई', sa: 'मिष्टान्नानि' } },
-    { name: { en: 'Garland of flowers', hi: 'फूलों की माला', sa: 'पुष्पमाला' } },
-    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1' },
-    { name: { en: 'Raw cotton thread (sutli)', hi: 'कच्चा सूती धागा (सूतली)', sa: 'कार्पाससूत्रम्' } },
+    { name: { en: 'Cow dung cakes', hi: 'गोबर के उपले', sa: 'गोमयोपलाः' }, quantity: '10-15', category: 'puja_items', essential: true },
+    { name: { en: 'Wood logs', hi: 'लकड़ी के लट्ठे', sa: 'काष्ठखण्डाः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Whole coconut', hi: 'साबुत नारियल', sa: 'सम्पूर्णनारिकेलम्' }, quantity: '1', category: 'food', essential: true },
+    { name: { en: 'New harvest wheat', hi: 'नई फसल का गेहूँ', sa: 'नवगोधूमाः' }, category: 'food', essential: true },
+    { name: { en: 'New harvest barley', hi: 'नई फसल का जौ', sa: 'नवयवाः' }, category: 'food', essential: false },
+    { name: { en: 'Roasted gram (chana)', hi: 'भुने चने', sa: 'भर्जितचणकाः' }, category: 'food', essential: false },
+    { name: { en: 'Gulal (natural colors)', hi: 'गुलाल (प्राकृतिक रंग)', sa: 'गुलालम् (प्राकृतिकवर्णाः)' }, category: 'other', essential: false },
+    { name: { en: 'Water pot (for parikrama)', hi: 'जल का लोटा (परिक्रमा हेतु)', sa: 'जलकुम्भः (प्रदक्षिणार्थम्)' }, category: 'vessels', essential: true },
+    { name: { en: 'Gujiya / sweets', hi: 'गुजिया / मिठाई', sa: 'मिष्टान्नानि' }, category: 'food', essential: false },
+    { name: { en: 'Garland of flowers', hi: 'फूलों की माला', sa: 'पुष्पमाला' }, category: 'flowers', essential: false },
+    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1', category: 'puja_items', essential: true },
+    { name: { en: 'Raw cotton thread (sutli)', hi: 'कच्चा सूती धागा (सूतली)', sa: 'कार्पाससूत्रम्' }, category: 'puja_items', essential: true },
   ],
 
   muhurtaType: 'computed',
@@ -46,6 +46,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'गोमयोपलान् काष्ठखण्डान् शुष्कशाखाश्च सङ्कलयेत्। विवृतक्षेत्रे चितां रचयेत्, मध्ये काष्ठस्तम्भं प्रह्लादप्रतीकरूपेण स्थापयेत्। कार्पाससूत्रेण चितां वेष्टयेत्।',
       },
       duration: '30 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -56,6 +58,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'चितासमीपे जलकुम्भं स्थापयेत्। स्थालिकायां कुङ्कुमं अक्षतान् पुष्पाणि नारिकेलं चान्यां सामग्रीं सज्जयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -66,6 +70,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'दक्षिणहस्ते जलाक्षतान् गृहीत्वा तिथिस्थानहोलिकादहनप्रयोजनं वदेत् ततो जलं विसृजेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 4,
@@ -76,6 +82,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'होलिकाचितायाः त्रिवारं पञ्चवारं सप्तवारं वा प्रदक्षिणक्रमेण प्रदक्षिणां कुर्यात्, कुम्भात् अविच्छिन्नजलधारां सिञ्चन्। चितायां कुङ्कुमं लेपयेत् अक्षतांश्च समर्पयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -87,6 +95,8 @@ export const HOLI_PUJA: PujaVidhi = {
       },
       mantraRef: 'narasimha',
       duration: '3 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -98,6 +108,8 @@ export const HOLI_PUJA: PujaVidhi = {
       },
       mantraRef: 'holika-dahan',
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -108,6 +120,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'पवित्राग्नौ नवधान्यानि — गोधूमान् यवान् भर्जितचणकान् — सम्पूर्णनारिकेलं च समर्पयेत्। एतानि ऋतोः प्रथमोपजस्य देवार्पणानि।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -119,6 +133,8 @@ export const HOLI_PUJA: PujaVidhi = {
       },
       mantraRef: 'prahlada-prayer',
       duration: '3 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 9,
@@ -129,6 +145,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'अग्नेः शमने सति अङ्गारेषु नवधान्यानि (गोधूमशिलीमुखान् यवान्) भर्जयेत्। एतानि भर्जितधान्यानि प्रसादरूपेण कुटुम्बिनां प्रतिवेशिनां च मध्ये वितरेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 10,
@@ -139,6 +157,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'घृतदीपेन होलिकाग्नेः आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत् — श्रीकृष्णस्य आरात्रिकम्, होलिकायाः दिव्यलीलोत्सवः।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 11,
@@ -149,6 +169,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'सर्वेभ्यः उपस्थितेभ्यः गुजियामिष्टान्नानि भर्जितधान्यानि च प्रसादरूपेण वितरेत्। रक्षार्थं होलिकाग्नेः पवित्रभस्म (विभूतिम्) ललाटे लेपयेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 12,
@@ -159,6 +181,8 @@ export const HOLI_PUJA: PujaVidhi = {
         sa: 'अग्रिमप्रातः (धूलिवन्दनम् / रङ्गपञ्चमी): परस्परं गुलालं प्राकृतिकवर्णांश्च लेपयेत्, नृत्येत्, वृन्दावने श्रीकृष्णस्य गोपीभिः सह लीलां स्मरन् होलिकागीतानि गायेत्। जलयन्त्रैः (पिचकारीभिः) रङ्गितजलेन च क्रीडेत्।',
       },
       duration: 'All day',
+      essential: false,
+      stepType: 'conclusion',
     },
   ],
 

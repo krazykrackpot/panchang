@@ -6,20 +6,20 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
   deity: { en: 'Hanuman', hi: 'हनुमान', sa: 'हनुमान्' },
 
   samagri: [
-    { name: { en: 'Hanuman idol or image', hi: 'हनुमान मूर्ति या चित्र', sa: 'हनुमन्मूर्तिः अथवा चित्रम्' } },
-    { name: { en: 'Sindoor (vermilion)', hi: 'सिन्दूर', sa: 'सिन्दूरम्' }, note: { en: 'Most important offering for Hanuman', hi: 'हनुमान जी का सबसे प्रिय अर्पण', sa: 'हनुमतः प्रियतमम् अर्पणम्' } },
-    { name: { en: 'Jasmine / Chameli oil', hi: 'चमेली का तेल', sa: 'चमेलीतैलम्' } },
-    { name: { en: 'Janeyu (sacred thread)', hi: 'जनेऊ (यज्ञोपवीत)', sa: 'यज्ञोपवीतम्' } },
-    { name: { en: 'Bananas', hi: 'केले', sa: 'कदलीफलानि' }, quantity: '5' },
-    { name: { en: 'Boondi Laddoo', hi: 'बूँदी के लड्डू', sa: 'बून्दीमोदकानि' }, quantity: '5' },
-    { name: { en: 'Red flowers (hibiscus preferred)', hi: 'लाल फूल (गुड़हल श्रेष्ठ)', sa: 'रक्तपुष्पाणि (जपापुष्पं श्रेष्ठम्)' } },
-    { name: { en: 'Betel leaves (paan)', hi: 'पान के पत्ते', sa: 'ताम्बूलपत्राणि' }, quantity: '5' },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1' },
-    { name: { en: 'Red cloth', hi: 'लाल कपड़ा', sa: 'रक्तवस्त्रम्' } },
+    { name: { en: 'Hanuman idol or image', hi: 'हनुमान मूर्ति या चित्र', sa: 'हनुमन्मूर्तिः अथवा चित्रम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sindoor (vermilion)', hi: 'सिन्दूर', sa: 'सिन्दूरम्' }, note: { en: 'Most important offering for Hanuman', hi: 'हनुमान जी का सबसे प्रिय अर्पण', sa: 'हनुमतः प्रियतमम् अर्पणम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Jasmine / Chameli oil', hi: 'चमेली का तेल', sa: 'चमेलीतैलम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Janeyu (sacred thread)', hi: 'जनेऊ (यज्ञोपवीत)', sa: 'यज्ञोपवीतम्' }, category: 'clothing', essential: false },
+    { name: { en: 'Bananas', hi: 'केले', sa: 'कदलीफलानि' }, quantity: '5', category: 'food', essential: true },
+    { name: { en: 'Boondi Laddoo', hi: 'बूँदी के लड्डू', sa: 'बून्दीमोदकानि' }, quantity: '5', category: 'food', essential: true },
+    { name: { en: 'Red flowers (hibiscus preferred)', hi: 'लाल फूल (गुड़हल श्रेष्ठ)', sa: 'रक्तपुष्पाणि (जपापुष्पं श्रेष्ठम्)' }, category: 'flowers', essential: true },
+    { name: { en: 'Betel leaves (paan)', hi: 'पान के पत्ते', sa: 'ताम्बूलपत्राणि' }, quantity: '5', category: 'puja_items', essential: false },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1', category: 'food', essential: true },
+    { name: { en: 'Red cloth', hi: 'लाल कपड़ा', sa: 'रक्तवस्त्रम्' }, category: 'clothing', essential: false },
   ],
 
   muhurtaType: 'fixed',
@@ -45,6 +45,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'सूर्योदयात् पूर्वम् उत्तिष्ठेत्। स्नात्वा शुचिवस्त्राणि (रक्तकाषायवर्णानि श्रेष्ठानि) धारयेत्। पूजास्थलं शोधयेत् वेदिकायां रक्तवस्त्रं विस्तारयेत्। हनुमन्मूर्तिं दक्षिणाभिमुखीं स्थापयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -55,6 +57,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'शुद्ध्यर्थं त्रिवारं जलम् आचामेत्। दक्षिणहस्ते जलाक्षतान् गृहीत्वा पूजासङ्कल्पं वदेत् ततो जलं विसृजेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 3,
@@ -65,6 +69,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'निर्विघ्नपूजनार्थं गणेशस्य सङ्क्षिप्तवन्दनां कुर्यात्। अक्षतान् एकं पुष्पं च समर्पयेत्।',
       },
       duration: '2 min',
+      essential: false,
+      stepType: 'invocation',
     },
     {
       step: 4,
@@ -75,6 +81,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'हनुमन्मूर्तौ प्रचुरं सिन्दूरं लेपयेत् — इदम् हनुमत्पूजायाः सर्वप्रधानम् अनुष्ठानम्। ततः चमेलीतैलेन अभिषिञ्चेत्। सिन्दूरं सीतायाः प्रति हनुमतो भक्तेः प्रतीकम्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -85,6 +93,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'हनुमते यज्ञोपवीतं समर्पयेत्। मूर्तिं रक्तवस्त्रेण शोभयेत् अथवा रक्तपुष्पाणि समर्पयेत्।',
       },
       duration: '2 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -95,6 +105,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'रक्तपुष्पाणि (जपापुष्पानि, रक्तपाटलानि) ताम्बूलपत्राणि च समर्पयेत्। हनुमन्नामभिः अष्टोत्तरशतनामभिः वा अर्चनां कुर्यात्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -105,6 +117,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'धूपं प्रज्वाल्य मूर्तेः पुरतः भ्रामयेत्। घृतदीपं प्रज्वाल्य दीपदर्शनं कुर्यात्।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -116,6 +130,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
       },
       mantraRef: 'hanuman-beej',
       duration: '10 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 9,
@@ -126,6 +142,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'सम्पूर्णां हनुमच्चालीसां (चत्वारिंशत् चौपाईः) पठेत्। इदम् हनुमज्जयन्तीपूजायाः केन्द्रबिन्दुः। परिपूर्णभक्त्या पठेत्।',
       },
       duration: '15 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 10,
@@ -136,6 +154,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'बून्दीमोदकानि कदलीफलानि नारिकेलं च नैवेद्यरूपेण निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 11,
@@ -146,6 +166,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: '"आरती कीजे हनुमान लला की" इति गायन्ती कर्पूरघृतदीपेन आरात्रिकं कुर्यात्। घण्टां वादयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 12,
@@ -156,6 +178,8 @@ export const HANUMAN_JAYANTI_PUJA: PujaVidhi = {
         sa: 'पूजास्थलस्य त्रिवारं प्रदक्षिणां कुर्यात्। मूर्तेः पुरतः साष्टाङ्गप्रणामं कुर्यात् बलशौर्यभक्तिं च प्रार्थयेत्। भक्तेभ्यः सिन्दूरप्रसादं वितरेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

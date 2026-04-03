@@ -180,6 +180,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'अग्रिमदिवसे दधिहाण्डीम् उत्सवयेत् — दधिनवनीतफलपूर्णां हाण्डीम् उच्चैः लम्बयेत् दलेषु च भञ्जयेत्, गोकुले बालकृष्णस्य विनोदनवनीतचौर्यलीलाः पुनः अभिनयन्।',
       },
       duration: 'All day',
+      essential: false,
+      stepType: 'conclusion',
     },
   ],
 

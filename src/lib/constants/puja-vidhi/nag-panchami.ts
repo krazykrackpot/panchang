@@ -6,18 +6,18 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
   deity: { en: 'Naga Devta (Serpent Deities)', hi: 'नाग देवता', sa: 'नागदेवताः' },
 
   samagri: [
-    { name: { en: 'Nag image (drawn on wall with turmeric or clay idol)', hi: 'नाग चित्र (दीवार पर हल्दी से बनाया या मिट्टी की मूर्ति)', sa: 'नागचित्रम् (भित्तौ हरिद्रया रचितं मृन्मूर्तिः वा)' }, note: { en: 'Draw a five-hooded or seven-hooded serpent on a wooden board or wall', hi: 'लकड़ी के तख्ते या दीवार पर पाँच या सात फन वाला नाग बनाएँ', sa: 'काष्ठफलके भित्तौ वा पञ्चफणं सप्तफणं वा नागं रचयेत्' } },
-    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, note: { en: 'For offering to the Nag — do NOT feed milk to live snakes', hi: 'नाग को अर्पित करने के लिए — जीवित साँपों को दूध न पिलाएँ', sa: 'नागाय अर्पणार्थम् — जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात्' } },
-    { name: { en: 'Flowers (white and yellow)', hi: 'फूल (सफ़ेद और पीले)', sa: 'पुष्पाणि (श्वेतपीतानि)' } },
-    { name: { en: 'Durva grass (doob grass)', hi: 'दूर्वा घास (दूब)', sa: 'दूर्वा' } },
-    { name: { en: 'Turmeric (haldi)', hi: 'हल्दी', sa: 'हरिद्रा' }, note: { en: 'For drawing the nag image and for tilak', hi: 'नाग चित्र बनाने और तिलक के लिए', sa: 'नागचित्ररचनाय तिलकार्थं च' } },
-    { name: { en: 'Laddoo (sweet balls — especially besan laddoo)', hi: 'लड्डू (विशेषतः बेसन के लड्डू)', sa: 'लड्डुकानि (विशेषतः चणकसत्तुलड्डुकानि)' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' } },
-    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम', sa: 'कुङ्कुमम्' } },
-    { name: { en: 'Kheer (rice pudding) or pua (fried sweet bread)', hi: 'खीर या पुआ', sa: 'क्षीरान्नम् अथवा पूआ' } },
+    { name: { en: 'Nag image (drawn on wall with turmeric or clay idol)', hi: 'नाग चित्र (दीवार पर हल्दी से बनाया या मिट्टी की मूर्ति)', sa: 'नागचित्रम् (भित्तौ हरिद्रया रचितं मृन्मूर्तिः वा)' }, note: { en: 'Draw a five-hooded or seven-hooded serpent on a wooden board or wall', hi: 'लकड़ी के तख्ते या दीवार पर पाँच या सात फन वाला नाग बनाएँ', sa: 'काष्ठफलके भित्तौ वा पञ्चफणं सप्तफणं वा नागं रचयेत्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, note: { en: 'For offering to the Nag — do NOT feed milk to live snakes', hi: 'नाग को अर्पित करने के लिए — जीवित साँपों को दूध न पिलाएँ', sa: 'नागाय अर्पणार्थम् — जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात्' }, category: 'food', essential: true },
+    { name: { en: 'Flowers (white and yellow)', hi: 'फूल (सफ़ेद और पीले)', sa: 'पुष्पाणि (श्वेतपीतानि)' }, category: 'flowers', essential: true },
+    { name: { en: 'Durva grass (doob grass)', hi: 'दूर्वा घास (दूब)', sa: 'दूर्वा' }, category: 'flowers', essential: true },
+    { name: { en: 'Turmeric (haldi)', hi: 'हल्दी', sa: 'हरिद्रा' }, note: { en: 'For drawing the nag image and for tilak', hi: 'नाग चित्र बनाने और तिलक के लिए', sa: 'नागचित्ररचनाय तिलकार्थं च' }, category: 'puja_items', essential: true },
+    { name: { en: 'Laddoo (sweet balls — especially besan laddoo)', hi: 'लड्डू (विशेषतः बेसन के लड्डू)', sa: 'लड्डुकानि (विशेषतः चणकसत्तुलड्डुकानि)' }, category: 'food', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' }, category: 'puja_items', essential: false },
+    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम', sa: 'कुङ्कुमम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Kheer (rice pudding) or pua (fried sweet bread)', hi: 'खीर या पुआ', sa: 'क्षीरान्नम् अथवा पूआ' }, category: 'food', essential: true },
   ],
 
   muhurtaType: 'fixed',
@@ -44,6 +44,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'सूर्योदयानन्तरं प्रातः स्नानं कुर्यात्। शुचिवस्त्रं धारयेत्। मुख्यद्वारसमीपे पूजाकक्षे वा पूजास्थलं शोधयेत्। यदि वल्मीके (नागबिले) पूजा कर्तव्या तर्हि स्नानानन्तरं तत्र गच्छेत्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -54,6 +56,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'भित्तौ काष्ठफलके वा हरिद्रालेपेन चन्दनलेपेन वा सर्पचित्रं रचयेत्। पारम्पर्येण पञ्चफणं (पञ्चफणिनम्) सप्तफणं (सप्तफणिनम्) वा नागं रचयन्ति। वैकल्पिकरूपेण मृन्नागमूर्तिम् उपयोजयेत्। शुचिवेदिकायां श्वेतपीतवस्त्रोपरि स्थापयेत्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -65,6 +69,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
       },
       mantraRef: 'nag-mantra',
       duration: '10 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 4,
@@ -75,6 +81,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'नागचित्रोपरि तन्मूले वा शनैः अपक्वं क्षीरं सिञ्चेत्। एतत् नागपञ्चम्याः प्रधानम् अर्पणम्। अवधेयम्: क्षीरं चित्राय/मूर्तये एव अर्पयेत् — जीवद्भ्यः सर्पेभ्यः क्षीरं न दद्यात् यतः तेभ्यः हानिकरम् (सर्पाः दुग्धशर्करां न सहन्ते)। वल्मीके पूजायां प्रवेशद्वारे क्षीरं सिञ्चेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -85,6 +93,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'नागचित्राय नवीनानि पुष्पाणि (श्वेतपीतानि), दूर्वां, चन्दनं च अर्पयेत्। सर्पचित्रे हरिद्राकुङ्कुमतिलकं कुर्यात्। मूले अक्षतान् स्थापयेत्। धूपं घृतदीपं च प्रज्वालयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -96,6 +106,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
       },
       mantraRef: 'nag-mantra',
       duration: '20 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 7,
@@ -106,6 +118,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'नागदेवताभ्यः लड्डुकानि (विशेषतः चणकसत्तुलड्डुकानि), क्षीरान्नं, पूआं च अर्पयेत्। एतानि नागपञ्चम्याः पारम्परिकनैवेद्यपदार्थानि। नागचित्रस्य पुरतः कदलीपत्रे शुचिपात्रे वा स्थापयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -116,6 +130,8 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
         sa: 'नागचित्रस्य त्रिवारं प्रदक्षिणां कुर्यात्। पूर्णं नमस्कारं (दण्डवत्प्रणामम्) कुर्यात्। प्रार्थयेत् नागदेवताः गृहं सर्पविषजन्तुभ्यः रक्षन्तु। प्रसादं (लड्डुकानि, क्षीरान्नम्) परिजनेभ्यः प्रतिवासिभ्यश्च वितरेत्। सर्वपरिजनानां ललाटे हरिद्रातिलकं कुर्यात्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

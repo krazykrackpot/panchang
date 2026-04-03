@@ -6,19 +6,19 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
   deity: { en: 'Lord Shiva', hi: 'भगवान शिव', sa: 'श्रीशिवः' },
 
   samagri: [
-    { name: { en: 'Shivlinga or Shiva image', hi: 'शिवलिंग या शिव चित्र', sa: 'शिवलिङ्गम् अथवा शिवचित्रम्' } },
-    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' } },
-    { name: { en: 'Water (Ganga water preferred)', hi: 'जल (गंगाजल श्रेष्ठ)', sa: 'जलम् (गङ्गाजलं श्रेष्ठम्)' } },
-    { name: { en: 'Bel/Bilva leaves (trifoliate)', hi: 'बेल के पत्ते (तीन पत्ती वाले)', sa: 'बिल्वपत्राणि (त्रिदलानि)' }, note: { en: 'Most sacred offering to Shiva — each leaf represents the three eyes', hi: 'शिव को सबसे पवित्र अर्पण — प्रत्येक पत्ती तीन नेत्रों का प्रतीक', sa: 'शिवस्य पवित्रतमम् अर्पणम् — प्रतिपत्रं त्रिनेत्रप्रतीकम्' } },
-    { name: { en: 'White flowers (jasmine, white lotus)', hi: 'सफ़ेद फूल (चमेली, सफ़ेद कमल)', sa: 'श्वेतपुष्पाणि (मल्लिका, श्वेतकमलम्)' } },
-    { name: { en: 'Dhatura (thorn apple fruit and flowers)', hi: 'धतूरा (फल और फूल)', sa: 'धत्तूरम् (फलानि पुष्पाणि च)' }, note: { en: 'Sacred to Shiva — handle carefully, poisonous to ingest', hi: 'शिव को प्रिय — सावधानी से लें, खाने पर विषैला', sa: 'शिवप्रियम् — सावधानं गृह्णीयात्, भक्षणे विषम्' } },
-    { name: { en: 'Vibhuti/Bhasma (sacred ash)', hi: 'विभूति/भस्म', sa: 'विभूतिः/भस्म' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Fruits (banana, apple)', hi: 'फल (केला, सेब)', sa: 'फलानि (कदलीफलम्, सेवफलम्)' } },
+    { name: { en: 'Shivlinga or Shiva image', hi: 'शिवलिंग या शिव चित्र', sa: 'शिवलिङ्गम् अथवा शिवचित्रम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Milk (raw, unboiled)', hi: 'दूध (कच्चा, बिना उबला)', sa: 'क्षीरम् (अपक्वम्)' }, category: 'food', essential: true },
+    { name: { en: 'Water (Ganga water preferred)', hi: 'जल (गंगाजल श्रेष्ठ)', sa: 'जलम् (गङ्गाजलं श्रेष्ठम्)' }, category: 'other', essential: true },
+    { name: { en: 'Bel/Bilva leaves (trifoliate)', hi: 'बेल के पत्ते (तीन पत्ती वाले)', sa: 'बिल्वपत्राणि (त्रिदलानि)' }, note: { en: 'Most sacred offering to Shiva — each leaf represents the three eyes', hi: 'शिव को सबसे पवित्र अर्पण — प्रत्येक पत्ती तीन नेत्रों का प्रतीक', sa: 'शिवस्य पवित्रतमम् अर्पणम् — प्रतिपत्रं त्रिनेत्रप्रतीकम्' }, category: 'flowers', essential: true },
+    { name: { en: 'White flowers (jasmine, white lotus)', hi: 'सफ़ेद फूल (चमेली, सफ़ेद कमल)', sa: 'श्वेतपुष्पाणि (मल्लिका, श्वेतकमलम्)' }, category: 'flowers', essential: true },
+    { name: { en: 'Dhatura (thorn apple fruit and flowers)', hi: 'धतूरा (फल और फूल)', sa: 'धत्तूरम् (फलानि पुष्पाणि च)' }, note: { en: 'Sacred to Shiva — handle carefully, poisonous to ingest', hi: 'शिव को प्रिय — सावधानी से लें, खाने पर विषैला', sa: 'शिवप्रियम् — सावधानं गृह्णीयात्, भक्षणे विषम्' }, category: 'flowers', essential: false },
+    { name: { en: 'Vibhuti/Bhasma (sacred ash)', hi: 'विभूति/भस्म', sa: 'विभूतिः/भस्म' }, category: 'puja_items', essential: true },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Ghee lamp (diya)', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' }, category: 'puja_items', essential: false },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Fruits (banana, apple)', hi: 'फल (केला, सेब)', sa: 'फलानि (कदलीफलम्, सेवफलम्)' }, category: 'food', essential: false },
   ],
 
   muhurtaType: 'fixed',
@@ -45,6 +45,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'त्रयोदश्यां दिने सर्वं व्रतम् आचरेत्। कठोरव्रतिनः निर्जलं (जलं विना) कुर्वन्ति, अपरे फलानि क्षीरं जलं च ग्रहणीयम्। आंशिकव्रते सूर्यास्तात् प्राक् एकं भोजनं कुर्यात्। दिनं शिवस्मरणभक्त्या यापयेत्।',
       },
       duration: 'Full day',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -55,6 +57,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'सूर्यास्तात् प्राक् शुद्धिस्नानं कुर्यात्। शुचिश्वेतवस्त्रं रुद्राक्षमालां वा धारयेत्। पूजास्थले शिवलिङ्गं शिवचित्रं वा स्थापयेत्। सर्वसामग्रीं — क्षीरं, जलं, बिल्वपत्राणि, श्वेतपुष्पाणि, धत्तूरं, विभूतिं, दीपं, धूपं च — सज्जयेत्।',
       },
       duration: '20 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -65,6 +69,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'सूर्यास्ते प्रदोषकालारम्भे घृतदीपं धूपं च प्रज्वालयेत्। आचमनं कुर्यात् (त्रिवारं जलं पिबेत्)। दक्षिणहस्ते जलाक्षतपुष्पान् गृहीत्वा तिथिस्थानप्रयोजनवचनपूर्वकं सङ्कल्पं कुर्यात्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'invocation',
     },
     {
       step: 4,
@@ -76,6 +82,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       },
       mantraRef: 'panchakshari',
       duration: '15 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -86,6 +94,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'शिवलिङ्गोपरि नवीनानि त्रिदलबिल्वपत्राणि अर्पयेत् — श्लक्ष्णपृष्ठम् ऊर्ध्वं वृन्तम् आत्मनः दिशि स्थापयेत्। धत्तूरफलपुष्पाणि अर्पयेत्। लिङ्गं परितः श्वेतपुष्पाणि (मल्लिकां श्वेतकमलं वा) स्थापयेत्। चन्दनं विभूतिं च लिम्पेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -97,6 +107,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       },
       mantraRef: 'maha-mrityunjaya',
       duration: '30 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 7,
@@ -108,6 +120,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
       },
       mantraRef: 'shiva-tandava-opening',
       duration: '20 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 8,
@@ -118,6 +132,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'घृतदीपकर्पूराभ्याम् "ॐ जय शिव ओंकारा" इति गायन् आरात्रिकं कुर्यात्। दीपं शिवलिङ्गस्य पुरतः दक्षिणावर्तं भ्रामयेत्। आरात्रिकानन्तरं शिवलिङ्गस्य प्रदक्षिणां कुर्यात् — अवधेयम्: शिवलिङ्गस्य अर्धप्रदक्षिणां कुर्यात् (वामतो दक्षिणं गत्वा तेनैव मार्गेण प्रत्यागच्छेत्, अभिषेकनालिकां न लङ्घयेत्)।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 9,
@@ -128,6 +144,8 @@ export const PRADOSHAM_PUJA: PujaVidhi = {
         sa: 'श्रीशिवाय नैवेद्यम् (फलानि, मिष्टान्नानि, क्षीरम्) अर्पयेत्। शिवप्रसादरूपेण ललाटे विभूतिं (भस्म) धारयेत्। सर्वप्राणिनां कल्याणार्थं प्रार्थयेत्। पूजासमाप्त्यनन्तरं सात्त्विकभोजनेन व्रतं भञ्जयेत्। प्रदोषकालसमाप्तेः प्राक् पूजा समापनीया।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

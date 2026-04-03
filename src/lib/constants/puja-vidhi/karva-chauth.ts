@@ -6,18 +6,18 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
   deity: { en: 'Shiva-Parvati & Karva Mata', hi: 'शिव-पार्वती एवं करवा माता', sa: 'शिवपार्वती करवामाता च' },
 
   samagri: [
-    { name: { en: 'Karva (small earthen pot with lid)', hi: 'करवा (ढक्कनदार छोटा मिट्टी का बर्तन)', sa: 'करवा (सकपाटं लघुमृत्पात्रम्)' }, note: { en: 'The namesake item — fill with water and offer to the moon', hi: 'इसी से व्रत का नाम है — जल भरकर चन्द्रमा को अर्पित करें', sa: 'अस्मात् व्रतस्य नाम — जलपूर्णं चन्द्राय अर्पयेत्' } },
-    { name: { en: 'Chalni (sieve/strainer)', hi: 'छलनी', sa: 'चालनी' }, note: { en: 'For sighting the moon and husband\'s face', hi: 'चन्द्रमा और पति का चेहरा देखने के लिए', sa: 'चन्द्रं पतिमुखं च दर्शनार्थम्' } },
-    { name: { en: 'Diya (earthen lamp with ghee/oil)', hi: 'दीया (घी/तेल का मिट्टी का दीपक)', sa: 'दीपः (घृत/तैलमृद्दीपः)' } },
-    { name: { en: 'Henna/Mehendi', hi: 'मेहँदी', sa: 'मेन्धिका' } },
-    { name: { en: 'Bangles (red/green)', hi: 'चूड़ियाँ (लाल/हरी)', sa: 'कङ्कणानि (रक्तहरितानि)' } },
-    { name: { en: 'Sindoor (vermilion)', hi: 'सिन्दूर', sa: 'सिन्दूरम्' } },
-    { name: { en: 'Sweets (mathri, namkeen, laddoo)', hi: 'मिठाई (मठरी, नमकीन, लड्डू)', sa: 'मिष्टान्नानि (मठरी, लड्डुकम्)' } },
-    { name: { en: 'Fruits (apple, pomegranate, banana)', hi: 'फल (सेब, अनार, केला)', sa: 'फलानि (सेवफलम्, दाडिमम्, कदलीफलम्)' } },
-    { name: { en: 'Water (for arghya to moon)', hi: 'जल (चन्द्रमा को अर्घ्य के लिए)', sa: 'जलम् (चन्द्रार्घ्यार्थम्)' } },
-    { name: { en: 'Aarti thali (plate with diya, kumkum, akshat, flowers)', hi: 'आरती की थाली (दीपक, कुमकुम, अक्षत, फूल सहित)', sa: 'आरात्रिकपात्रम् (दीपकुङ्कुमाक्षतपुष्पसहितम्)' } },
-    { name: { en: 'Karva Chauth Katha book', hi: 'करवा चौथ कथा पुस्तक', sa: 'करवाचौथकथापुस्तकम्' } },
-    { name: { en: 'Gaur Mata idol (clay image of Parvati)', hi: 'गौर माता की मूर्ति (पार्वती की मिट्टी की मूर्ति)', sa: 'गौरीमातुः मूर्तिः (पार्वत्याः मृन्मूर्तिः)' } },
+    { name: { en: 'Karva (small earthen pot with lid)', hi: 'करवा (ढक्कनदार छोटा मिट्टी का बर्तन)', sa: 'करवा (सकपाटं लघुमृत्पात्रम्)' }, note: { en: 'The namesake item — fill with water and offer to the moon', hi: 'इसी से व्रत का नाम है — जल भरकर चन्द्रमा को अर्पित करें', sa: 'अस्मात् व्रतस्य नाम — जलपूर्णं चन्द्राय अर्पयेत्' }, category: 'vessels', essential: true },
+    { name: { en: 'Chalni (sieve/strainer)', hi: 'छलनी', sa: 'चालनी' }, note: { en: 'For sighting the moon and husband\'s face', hi: 'चन्द्रमा और पति का चेहरा देखने के लिए', sa: 'चन्द्रं पतिमुखं च दर्शनार्थम्' }, category: 'other', essential: true },
+    { name: { en: 'Diya (earthen lamp with ghee/oil)', hi: 'दीया (घी/तेल का मिट्टी का दीपक)', sa: 'दीपः (घृत/तैलमृद्दीपः)' }, category: 'puja_items', essential: true },
+    { name: { en: 'Henna/Mehendi', hi: 'मेहँदी', sa: 'मेन्धिका' }, category: 'other', essential: false },
+    { name: { en: 'Bangles (red/green)', hi: 'चूड़ियाँ (लाल/हरी)', sa: 'कङ्कणानि (रक्तहरितानि)' }, category: 'clothing', essential: false },
+    { name: { en: 'Sindoor (vermilion)', hi: 'सिन्दूर', sa: 'सिन्दूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sweets (mathri, namkeen, laddoo)', hi: 'मिठाई (मठरी, नमकीन, लड्डू)', sa: 'मिष्टान्नानि (मठरी, लड्डुकम्)' }, category: 'food', essential: true },
+    { name: { en: 'Fruits (apple, pomegranate, banana)', hi: 'फल (सेब, अनार, केला)', sa: 'फलानि (सेवफलम्, दाडिमम्, कदलीफलम्)' }, category: 'food', essential: true },
+    { name: { en: 'Water (for arghya to moon)', hi: 'जल (चन्द्रमा को अर्घ्य के लिए)', sa: 'जलम् (चन्द्रार्घ्यार्थम्)' }, category: 'other', essential: true },
+    { name: { en: 'Aarti thali (plate with diya, kumkum, akshat, flowers)', hi: 'आरती की थाली (दीपक, कुमकुम, अक्षत, फूल सहित)', sa: 'आरात्रिकपात्रम् (दीपकुङ्कुमाक्षतपुष्पसहितम्)' }, category: 'vessels', essential: true },
+    { name: { en: 'Karva Chauth Katha book', hi: 'करवा चौथ कथा पुस्तक', sa: 'करवाचौथकथापुस्तकम्' }, category: 'vessels', essential: true },
+    { name: { en: 'Gaur Mata idol (clay image of Parvati)', hi: 'गौर माता की मूर्ति (पार्वती की मिट्टी की मूर्ति)', sa: 'गौरीमातुः मूर्तिः (पार्वत्याः मृन्मूर्तिः)' }, category: 'puja_items', essential: true },
   ],
 
   muhurtaType: 'computed',
@@ -43,6 +43,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'सूर्योदयात् प्राक् (प्रायः प्रभातचतुर्थपञ्चमवादने) श्वश्रूः सर्गीं ददाति — व्रतपूर्वभोजनं यत्र मिष्टान्नानि, फलानि, शुष्कफलानि, क्षीरं, सेवइयाः च। पत्नी एतत् भोजनं प्रभातात् प्राक् भक्षयति यतः चन्द्रोदयपर्यन्तम् एतत् अन्तिमम् अन्नजलम्। एषा श्वश्र्वाः स्नेहभावना।',
       },
       duration: '30 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -53,6 +55,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'सर्ग्यनन्तरं सर्वं दिनं कठोरं निर्जलव्रतम् (जलं विना) आचरेत्। न अन्नम्, न जलम्, एकम् अपि बिन्दुं न — सायं चन्द्रदर्शनपर्यन्तम्। दिनं प्रार्थनायां वधूवत् श्रृङ्गारे मेन्धिकालेपने च यापयेत्। विवाहिताः स्त्रियः प्रायः विवाहवस्त्रं कङ्कणानि सिन्दूरम् आभूषणानि च धारयन्ति।',
       },
       duration: 'Full day',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -63,6 +67,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'सायंकाले (चन्द्रोदयात् प्राक्) अन्याभिः विवाहिताभिः स्त्रीभिः सह मिलेत्। गौरीमातुः (पार्वत्याः) मूर्तिं स्थापयेत्। दीपकुङ्कुमाक्षतपुष्पैः आरात्रिकपात्रं सज्जयेत्। सर्वाः स्त्रियः गौरीमातुः मूर्तिं परितः वृत्ताकारम् उपविशेयुः। ज्येष्ठा अनुभवशालिनी वा स्त्री पूजां नयेत्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 4,
@@ -73,6 +79,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'करवाचौथकथां शृणुयात् — वीरवतीराज्ञ्याः कथा या भ्रमेण करवाचौथव्रतं भङ्क्त्वा पतिमरणम् अनुभवति, किन्तु स्वभक्त्या तपसा च यमं प्रसाद्य पतिं पुनर्जीवयति। कथापठनकाले आरात्रिकपात्रं एकस्याः स्त्रियाः अपरां प्रति वृत्ते प्रसारयेत्। प्रत्येका स्त्री सप्तवारं भ्रामयित्वा प्रसारयेत्।',
       },
       duration: '20 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 5,
@@ -83,6 +91,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'कथापूजानन्तरं धैर्येण चन्द्रोदयं प्रतीक्षेत्। करवाचौथे चन्द्रोदयकालः स्थानवर्षानुसारं प्रायः रात्रौ अष्टमवादनात् दशमवादनपर्यन्तं भवति। करवां जलपूर्णां, चालनीं, आरात्रिकपात्रं च सज्जं रक्षेत्। पतिः अपि उपस्थितः सुसज्जः च स्यात्।',
       },
       duration: 'Variable',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 6,
@@ -93,6 +103,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'यदा चन्द्रः दृश्यते, चालनीं गृहीत्वा तस्याः आर-पारं चन्द्रं पश्येत्। एतत् चन्द्रप्रकाशं चालयति, प्रतीकं यत् पत्नी संसारं स्वभक्त्या पश्यति। चालन्याः पृष्ठतः आरात्रिकपात्रे दीपं स्थापयेत् यथा चन्द्रः तज्ज्योतिषा परिवेष्टितः दृश्यते।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -103,6 +115,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'चालन्या चन्द्रदर्शनानन्तरं तत्क्षणं चालनीं पत्युः दिशि परिवर्तयेत् तस्याः आर-पारं पतिमुखं पश्येत्। एतत् करवाचौथस्य सर्वभावुकतमः क्षणः — पत्नी चालन्या पतिमुखं दृष्ट्वा दीर्घायुषम् आशिषति। पतिः सस्मितं पत्न्याः पुरतः तिष्ठेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -113,6 +127,8 @@ export const KARVA_CHAUTH_PUJA: PujaVidhi = {
         sa: 'पतिः करवातः जलं गृहीत्वा पत्न्यै पातुं ददाति — एतेन विधिवत् निर्जलव्रतं भज्यते। ततः पत्न्यै प्रथमं ग्रासं (मिष्टान्नं फलं वा) ददाति। एषा क्रिया पत्युः परिचर्यां पत्न्याः त्यागाय कृतज्ञतां च प्रतीकयति। अनन्तरं पत्नी पूर्णभोजनं कर्तुं शक्नोति। धन्यवादरूपेण करवातः चन्द्राय अर्घ्यं (जलम्) अर्पयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

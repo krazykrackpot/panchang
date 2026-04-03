@@ -180,6 +180,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'श्रीरामाय फलानि क्षीरान्नं पञ्जीरीं नारिकेलं सात्त्विकाहारं च निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत् नैवेद्यमन्त्रं च जपेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 13,
@@ -191,6 +193,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       },
       mantraRef: 'rama-dhun',
       duration: '5 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 

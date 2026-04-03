@@ -6,19 +6,19 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
   deity: { en: 'Guru / Vyasa', hi: 'गुरु / व्यास', sa: 'गुरुः / व्यासः' },
 
   samagri: [
-    { name: { en: 'Guru\'s photo or Paduka (sandals)', hi: 'गुरु का चित्र या पादुका (चरण पादुका)', sa: 'गुरोः चित्रम् अथवा पादुकौ' }, note: { en: 'If no personal guru, use an image of Veda Vyasa', hi: 'यदि कोई व्यक्तिगत गुरु नहीं, तो वेदव्यास का चित्र उपयोग करें', sa: 'यदि व्यक्तिगतगुरुः नास्ति, वेदव्यासस्य चित्रम् उपयोजयेत्' } },
-    { name: { en: 'Flowers (white and yellow preferred)', hi: 'फूल (सफेद और पीले श्रेष्ठ)', sa: 'पुष्पाणि (श्वेतपीतानि श्रेष्ठानि)' } },
-    { name: { en: 'Fruits', hi: 'फल', sa: 'फलानि' } },
-    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' } },
-    { name: { en: 'Dakshina (monetary offering)', hi: 'दक्षिणा (धन अर्पण)', sa: 'दक्षिणा (धनार्पणम्)' }, note: { en: 'Offered to the guru or donated to a worthy cause', hi: 'गुरु को अर्पित या किसी योग्य कार्य में दान', sa: 'गुरवे अर्प्यते अथवा सत्कार्ये दीयते' } },
-    { name: { en: 'Books (sacred texts or study material)', hi: 'पुस्तकें (धार्मिक ग्रन्थ या अध्ययन सामग्री)', sa: 'पुस्तकानि (धर्मग्रन्थाः अध्ययनसामग्री वा)' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Sweets', hi: 'मिठाई', sa: 'मिष्टान्नानि' } },
-    { name: { en: 'Water for Padya (foot washing)', hi: 'पाद्य (चरण प्रक्षालन) के लिए जल', sa: 'पाद्यार्थं जलम्' } },
+    { name: { en: 'Guru\'s photo or Paduka (sandals)', hi: 'गुरु का चित्र या पादुका (चरण पादुका)', sa: 'गुरोः चित्रम् अथवा पादुकौ' }, note: { en: 'If no personal guru, use an image of Veda Vyasa', hi: 'यदि कोई व्यक्तिगत गुरु नहीं, तो वेदव्यास का चित्र उपयोग करें', sa: 'यदि व्यक्तिगतगुरुः नास्ति, वेदव्यासस्य चित्रम् उपयोजयेत्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Flowers (white and yellow preferred)', hi: 'फूल (सफेद और पीले श्रेष्ठ)', sa: 'पुष्पाणि (श्वेतपीतानि श्रेष्ठानि)' }, category: 'flowers', essential: true },
+    { name: { en: 'Fruits', hi: 'फल', sa: 'फलानि' }, category: 'food', essential: true },
+    { name: { en: 'Sandalwood paste', hi: 'चन्दन का लेप', sa: 'चन्दनम्' }, category: 'puja_items', essential: false },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Dakshina (monetary offering)', hi: 'दक्षिणा (धन अर्पण)', sa: 'दक्षिणा (धनार्पणम्)' }, note: { en: 'Offered to the guru or donated to a worthy cause', hi: 'गुरु को अर्पित या किसी योग्य कार्य में दान', sa: 'गुरवे अर्प्यते अथवा सत्कार्ये दीयते' }, category: 'other', essential: true },
+    { name: { en: 'Books (sacred texts or study material)', hi: 'पुस्तकें (धार्मिक ग्रन्थ या अध्ययन सामग्री)', sa: 'पुस्तकानि (धर्मग्रन्थाः अध्ययनसामग्री वा)' }, category: 'other', essential: false },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sweets', hi: 'मिठाई', sa: 'मिष्टान्नानि' }, category: 'food', essential: true },
+    { name: { en: 'Water for Padya (foot washing)', hi: 'पाद्य (चरण प्रक्षालन) के लिए जल', sa: 'पाद्यार्थं जलम्' }, category: 'other', essential: true },
   ],
 
   muhurtaType: 'fixed',
@@ -44,6 +44,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'प्रभाते उत्थाय स्नात्वा शुचिश्वेतवस्त्राणि मन्दवर्णानि वा धारयेत्। पूजास्थलं शोधयेत् शुचिवस्त्रे गुरोः चित्रं पादुकौ वा स्थापयेत्। वेद्याः समीपे पुस्तकानि अध्ययनसामग्रीं च स्थापयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -54,6 +56,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरोः चित्रस्य पुरतः ध्यानमुद्रायां उपविशेत्। नेत्रे निमील्य स्वगुरोः स्वरूपं शिक्षाः कृपां च ध्यायेत्। गुरुपरम्पराम् (गुरूणां वंशपरम्पराम्) स्मरेत्।',
       },
       duration: '10 min',
+      essential: false,
+      stepType: 'meditation',
     },
     {
       step: 3,
@@ -65,6 +69,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       },
       mantraRef: 'guru-mantra',
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 4,
@@ -75,6 +81,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरोः चित्रे पादुकायां वा चन्दनं कुङ्कुमं च लेपयेत्। श्वेतपीतपुष्पाणि समर्पयेत् अक्षतान् च विकिरेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -86,6 +94,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       },
       mantraRef: 'guru-mantra',
       duration: '10 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 6,
@@ -97,6 +107,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
       },
       mantraRef: 'vyasa-vandana',
       duration: '5 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 7,
@@ -107,6 +119,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरवे दक्षिणां (धनोपहारम्) समर्पयेत्, अथवा यदि गृहे पूजयति, दानसङ्कल्पेन गुरोः पादुकायां दक्षिणां निधद्यात्। मिष्टान्नानि फलानि नारिकेलं च नैवेद्यरूपेण निवेदयेत्।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -117,6 +131,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरोः चित्रस्य पुरतः कर्पूरघृतदीपेन आरात्रिकं कुर्यात्। गुरुप्रार्थनाम् आरात्रिकरूपेण गायेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 9,
@@ -127,6 +143,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'गुरोः चित्रस्य पुरतः साष्टाङ्गप्रणामं कृत्वा ज्ञानविवेकस्य आशीर्वादं याचेत्। अस्मिन् दिने किमपि नवं पठितुम् अध्येतुं वा आरभेत् — नवं शास्त्रम्, नवं कौशलम्, नवं विषयं वा — गुरवे अर्पणरूपेण।',
       },
       duration: '15 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 10,
@@ -137,6 +155,8 @@ export const GURU_PURNIMA_PUJA: PujaVidhi = {
         sa: 'सर्वेभ्यः उपस्थितेभ्यः प्रसादं वितरेत्। आध्यात्मिकप्रसादरूपेण अन्येभ्यो ज्ञानं शिक्षां वा विभजेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'conclusion',
     },
   ],
 

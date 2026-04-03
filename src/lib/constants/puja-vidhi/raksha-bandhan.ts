@@ -6,16 +6,16 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
   deity: { en: 'Sibling Bond (no specific deity)', hi: 'भाई-बहन का बन्धन (कोई विशेष देवता नहीं)', sa: 'भ्रातृभगिनीबन्धनम् (विशिष्टदेवता नास्ति)' },
 
   samagri: [
-    { name: { en: 'Rakhi (sacred thread)', hi: 'राखी', sa: 'रक्षासूत्रम्' } },
-    { name: { en: 'Roli / Kumkum (vermilion)', hi: 'रोली / कुमकुम', sa: 'रोली / कुङ्कुमम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Diya (oil/ghee lamp)', hi: 'दीपक (तेल/घी)', sa: 'दीपः (तैल/घृत)' } },
-    { name: { en: 'Mishri (rock sugar)', hi: 'मिश्री', sa: 'खण्डशर्करा' } },
-    { name: { en: 'Aarti plate (thali)', hi: 'आरती की थाली', sa: 'आरात्रिकपात्रम्' } },
-    { name: { en: 'Sweets', hi: 'मिठाई', sa: 'मिष्टान्नानि' } },
-    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1' },
-    { name: { en: 'Flowers', hi: 'फूल', sa: 'पुष्पाणि' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
+    { name: { en: 'Rakhi (sacred thread)', hi: 'राखी', sa: 'रक्षासूत्रम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Roli / Kumkum (vermilion)', hi: 'रोली / कुमकुम', sa: 'रोली / कुङ्कुमम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Diya (oil/ghee lamp)', hi: 'दीपक (तेल/घी)', sa: 'दीपः (तैल/घृत)' }, category: 'puja_items', essential: true },
+    { name: { en: 'Mishri (rock sugar)', hi: 'मिश्री', sa: 'खण्डशर्करा' }, category: 'food', essential: true },
+    { name: { en: 'Aarti plate (thali)', hi: 'आरती की थाली', sa: 'आरात्रिकपात्रम्' }, category: 'vessels', essential: true },
+    { name: { en: 'Sweets', hi: 'मिठाई', sa: 'मिष्टान्नानि' }, category: 'food', essential: true },
+    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '1', category: 'food', essential: false },
+    { name: { en: 'Flowers', hi: 'फूल', sa: 'पुष्पाणि' }, category: 'flowers', essential: false },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: false },
   ],
 
   muhurtaType: 'computed',
@@ -42,6 +42,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भगिनी आरात्रिकपात्रं प्रज्वलितदीपेन रोल्या अक्षतैः खण्डशर्करया पुष्पेण रक्षासूत्रेण च सज्जयति। भ्राता भगिनी च स्नात्वा शुचिशुभवस्त्राणि धारयेताम्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -52,6 +54,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भगिनी प्रज्वलितदीपपात्रं भ्रातुः मुखस्य परितः त्रिवारं प्रदक्षिणक्रमेण भ्रामयन्ती आरात्रिकं करोति।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 3,
@@ -62,6 +66,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भगिनी अनामिकया भ्रातुः ललाटे रोलीतिलकं करोति, ततः तिलके अक्षतान् निधद्यात्। इदं शुभाशीर्वादस्य चिह्नम्।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 4,
@@ -73,6 +79,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
       },
       mantraRef: 'raksha-sutra',
       duration: '3 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -83,6 +91,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भगिनी भ्रातरे खण्डशर्करां मिष्टान्नं वा ददाति, भ्राता अपि भगिन्यै मिष्टान्नं ददाति। अनेन बन्धनं मधुरं भवति।',
       },
       duration: '2 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -93,6 +103,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भ्राता भगिन्यै उपहारं (परम्परया धनं सुवर्णं वा) ददाति आजीवनं तस्याः रक्षणस्य प्रतिज्ञां करोति। आशीर्वादरूपेण तस्याः पादौ शिरो वा स्पृशति।',
       },
       duration: '3 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 7,
@@ -103,6 +115,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'कुटुम्बं मिलित्वा मिष्टान्नानि वितरति उत्सवं करोति च। प्रतिवासिभ्यः बन्धुभ्यः च मिष्टान्नानि वितरेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 8,
@@ -113,6 +127,8 @@ export const RAKSHA_BANDHAN_PUJA: PujaVidhi = {
         sa: 'भ्राता भगिनी च मिलित्वा परस्परं कल्याणदीर्घायुसुखार्थं प्रार्थयेताम्। भगिनी भ्रातुः रक्षां प्रार्थयते; भ्राता भगिन्याः समृद्धिं प्रार्थयते।',
       },
       duration: '2 min',
+      essential: false,
+      stepType: 'conclusion',
     },
   ],
 

@@ -108,7 +108,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased" suppressHydrationWarning>
-        <Script id="theme-init" strategy="beforeInteractive">{`try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark');document.documentElement.classList.add('light')}}catch(e){}`}</Script>
+        <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
         <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebApplication',

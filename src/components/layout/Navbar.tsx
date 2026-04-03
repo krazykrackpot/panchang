@@ -129,21 +129,24 @@ export default function Navbar() {
 
   return (
     <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-gold-primary/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group shrink-0 mr-8">
+      <div className="w-full px-6 lg:px-10">
+        <div className="flex items-center h-16">
+          {/* Left — Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
             <div className="relative">
-              <Sun className="w-6 h-6 text-gold-primary group-hover:text-gold-light transition-colors" />
-              <Moon className="w-3 h-3 text-gold-light absolute -top-1 -right-1" />
+              <Sun className="w-7 h-7 text-gold-primary group-hover:text-gold-light transition-colors" />
+              <Moon className="w-3.5 h-3.5 text-gold-light absolute -top-1 -right-1" />
             </div>
-            <span className="text-lg font-semibold text-gold-gradient" style={{ fontFamily: 'var(--font-heading)' }}>
+            <span className="text-xl font-bold text-gold-gradient hidden sm:inline" style={{ fontFamily: 'var(--font-heading)' }}>
               Dekho Panchang
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-7">
+          {/* Spacer — small gap between logo and nav */}
+          <div className="min-w-6 lg:min-w-10" />
+
+          {/* Center — Nav links */}
+          <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item, i) => {
               const rendered = item.children ? (
                 <NavDropdown key={i} label={item.label} items={item.children} />
@@ -151,7 +154,7 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href!}
-                  className="text-text-secondary hover:text-gold-light transition-colors duration-200 text-sm font-medium"
+                  className="text-text-secondary hover:text-gold-light transition-colors duration-200 text-sm font-medium whitespace-nowrap"
                 >
                   {item.label}
                 </Link>
@@ -163,9 +166,9 @@ export default function Navbar() {
                     {rendered}
                     <Link
                       href="/dashboard"
-                      className="text-gold-light hover:text-gold-primary transition-colors duration-200 text-sm font-semibold"
+                      className="text-gold-light hover:text-gold-primary transition-colors duration-200 text-sm font-semibold whitespace-nowrap"
                     >
-                      {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'My Dashboard'}
+                      {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'Dashboard'}
                     </Link>
                   </span>
                 );
@@ -174,37 +177,27 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Right-side controls — separate container, above dropdown z-index */}
-          <div className="hidden lg:flex items-center gap-3 relative z-[60]">
+          {/* Spacer */}
+          <div className="flex-1 min-w-4 lg:min-w-8" />
+
+          {/* Right — Controls */}
+          <div className="hidden lg:flex items-center gap-3 shrink-0">
             {hydrated && locationStore.confirmed && locationStore.name && (
               <div className="flex items-center gap-1.5 text-text-secondary text-xs">
                 <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-                <span className="max-w-[140px] truncate">{locationStore.name}</span>
+                <span className="max-w-[120px] truncate">{locationStore.name}</span>
               </div>
             )}
             {hydrated && user && <NotificationBell />}
-            <div className="w-px h-6 bg-gold-primary/20" />
-            <button
-              onClick={() => {
-                const html = document.documentElement;
-                html.classList.toggle('light');
-                html.classList.toggle('dark');
-                localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
-              }}
-              className="text-text-secondary hover:text-gold-light transition-colors p-1.5 rounded-lg hover:bg-gold-primary/10"
-              aria-label="Toggle theme"
-            >
-              <Sun className="w-4 h-4 dark:hidden" />
-              <Moon className="w-4 h-4 hidden dark:block" />
-            </button>
+            <div className="w-px h-5 bg-gold-primary/15" />
             <LocaleSwitcher />
             {hydrated && tier === 'free' && (
-              <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all">
+              <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all whitespace-nowrap">
                 {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
               </a>
             )}
             {hydrated && isTrialing && trialDaysLeft > 0 && (
-              <span className="text-gold-dark text-[10px]">
+              <span className="text-gold-dark text-[10px] whitespace-nowrap">
                 {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>
             )}

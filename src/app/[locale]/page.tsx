@@ -423,7 +423,7 @@ export default function HomePage() {
           {/* Subtitle — small, one line */}
           <motion.p
             variants={fadeInUp}
-            className="text-text-secondary/60 text-sm sm:text-base max-w-lg mx-auto mb-3 italic"
+            className="text-gold-primary/70 text-base sm:text-xl max-w-2xl mx-auto mb-3 italic font-medium tracking-wide"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             {t('subtitle')}

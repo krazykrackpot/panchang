@@ -467,3 +467,125 @@ Tier definitions: `src/lib/subscription/tiers.ts`
 - [ ] Configure Razorpay credentials
 - [ ] Set up Resend API key
 - [ ] Generate and set `CRON_SECRET`
+
+---
+
+## 13. Cohere (Vector Embeddings for RAG)
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Semantic search embeddings for classical Jyotish text retrieval |
+| **Status** | Optional — RAG features degrade gracefully without it |
+| **Package** | N/A (REST API via fetch) |
+| **Model** | `embed-multilingual-v3.0` (supports Sanskrit, Hindi, English) |
+| **Dimensions** | 1024 |
+| **Files** | `src/lib/rag/embeddings.ts`, `src/lib/rag/retriever.ts` |
+
+| Variable | Required |
+|----------|----------|
+| `COHERE_API_KEY` | Optional |
+| `EMBEDDING_PROVIDER` | Optional (default: `cohere`, alternative: `openai`) |
+
+---
+
+## 14. OpenAI (Alternative Embedding Provider)
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Alternative to Cohere for vector embeddings |
+| **Status** | Optional — only if `EMBEDDING_PROVIDER=openai` |
+| **Model** | `text-embedding-3-small` |
+| **Files** | `src/lib/rag/embeddings.ts` |
+
+| Variable | Required |
+|----------|----------|
+| `OPENAI_API_KEY` | Optional |
+
+---
+
+## 15. Nominatim / OpenStreetMap (Geocoding)
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Forward geocoding (city search → lat/lng) and reverse geocoding (lat/lng → city name) |
+| **Endpoints** | `nominatim.openstreetmap.org/search` and `/reverse` |
+| **Auth** | None (public API, 1 req/sec policy) |
+| **Files** | `src/components/ui/LocationSearch.tsx`, `src/stores/location-store.ts` |
+
+---
+
+## 16. ipapi.co (IP Geolocation Fallback)
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | Detect user location from IP when browser geolocation denied |
+| **Endpoint** | `https://ipapi.co/json/` |
+| **Returns** | latitude, longitude, city, country_name, timezone (IANA) |
+| **Auth** | None (free tier: 1000 req/day) |
+| **Files** | `src/stores/location-store.ts` |
+
+---
+
+## 17. Swiss Ephemeris (Astronomy Engine)
+
+| Field | Value |
+|-------|-------|
+| **Purpose** | High-precision planetary position calculations |
+| **Package** | `sweph@^2.10.3-b-1` (native Node.js binding) |
+| **Accuracy** | ~0.001° longitude (vs Meeus fallback ~0.01° Sun, ~0.3° Moon) |
+| **Files** | `src/lib/ephem/swiss-ephemeris.ts`, `next.config.ts` (native bundling) |
+| **Fallback** | Pure JS Meeus algorithms — app works without SwEph |
+
+---
+
+## 18. Browser APIs Used
+
+| API | Purpose | Files |
+|-----|---------|-------|
+| `Intl.DateTimeFormat` | DST-aware timezone resolution | `src/lib/utils/timezone.ts` |
+| `navigator.geolocation` | GPS location detection | `src/stores/location-store.ts` |
+| `Notification API` | Rahu Kaal / festival alerts | `src/lib/notifications/` |
+| `Service Worker` | PWA offline support | `public/sw.js` |
+| `localStorage` | Location, theme, birth data persistence | Multiple stores |
+| `window.print()` | PDF export via browser print | `src/components/ui/PrintButton.tsx` |
+
+---
+
+## 19. Key npm Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `next` | 16.2.1 | React framework (App Router) |
+| `react` | 19.x | UI library |
+| `tailwindcss` | 4.x | Utility-first CSS |
+| `framer-motion` | ^12.38.0 | Animations |
+| `d3` | ^7.9.0 | Data visualization |
+| `zustand` | ^5.0.12 | State management |
+| `zod` | ^4.3.6 | Schema validation |
+| `next-intl` | ^4.8.3 | i18n (en/hi/sa) |
+| `jspdf` | ^4.2.1 | PDF generation |
+| `lucide-react` | ^0.511.0 | Icon library |
+| `sweph` | ^2.10.3-b-1 | Swiss Ephemeris bindings |
+| `stripe` | ^21.0.1 | Stripe payments SDK |
+| `razorpay` | ^2.9.6 | Razorpay payments SDK |
+| `resend` | ^6.10.0 | Email delivery |
+| `@anthropic-ai/sdk` | ^0.80.0 | Claude AI SDK |
+| `@vercel/analytics` | ^2.0.1 | Analytics |
+| `@vercel/speed-insights` | ^2.0.0 | Core Web Vitals |
+
+---
+
+## 20. App Statistics (as of April 3, 2026)
+
+| Metric | Value |
+|--------|-------|
+| Total pages | 520+ |
+| Learn modules | 83 (10 phases) |
+| Interactive labs | 5 |
+| Puja vidhis | 40 (30 festivals/vrats + 10 new) |
+| Graha shanti pujas | 9 |
+| Sankalpa generator | 1 (with Amant/Purnimant toggle) |
+| API routes | 22 |
+| Tests | 73 (kundali + panchang + timezone validation) |
+| Locales | 3 (English, Hindi, Sanskrit) |
+| Supported timezones | All IANA (DST-aware) |

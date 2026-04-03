@@ -16,6 +16,7 @@ import ParanaDisplay from '@/components/puja/ParanaDisplay';
 import { computePujaMuhurta } from '@/lib/puja/muhurta-compute';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 import type { Locale } from '@/types/panchang';
 
 type DisplayMode = 'devanagari' | 'iast' | 'both';
@@ -250,6 +251,65 @@ export default function PujaVidhiPage() {
     } catch { return undefined; }
   }, [puja, userLat, userLng, timezoneOffset]);
 
+  // Compute the next festival date for this puja
+  const festivalDate = useMemo(() => {
+    if (!puja || !userLat || !userLng) return undefined;
+    // Skip graha_shanti — those are done on demand, not on a fixed date
+    if (puja.category === 'graha_shanti') return undefined;
+
+    // Weekly vrats: compute next occurrence of that weekday
+    const weeklyVrats: Record<string, number> = {
+      'somvar-vrat': 1,    // Monday
+      'mangalvar-vrat': 2, // Tuesday
+    };
+    const weekday = weeklyVrats[puja.festivalSlug];
+    if (weekday !== undefined) {
+      const now = new Date();
+      const today = now.getDay(); // 0=Sun, 1=Mon, ...
+      const daysUntil = (weekday - today + 7) % 7 || 7; // next occurrence (not today)
+      const next = new Date(now);
+      next.setDate(next.getDate() + daysUntil);
+      return next;
+    }
+
+    try {
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const year = now.getFullYear();
+
+      // Map puja festivalSlug to the slug used in festival-generator output
+      // Most match directly; some monthly vrats have different slug patterns
+      const slugMap: Record<string, string> = {
+        'sankashti-chaturthi': 'chaturthi',
+        'amavasya-tarpan': 'amavasya',
+        'purnima-vrat': 'purnima',
+        'masik-shivaratri': 'masik-shivaratri',
+        'satyanarayan': 'purnima', // Satyanarayan Puja is done on Purnima
+        'vat-savitri': 'vat-savitri-vrat',
+      };
+      const lookupSlug = slugMap[puja.festivalSlug] || puja.festivalSlug;
+
+      // Generate current year's festivals
+      const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
+      // Find the next occurrence on or after today
+      let match = festivals.find(f => f.slug === lookupSlug && f.date >= todayStr);
+
+      // If not found in current year, try next year
+      if (!match) {
+        const nextYearFestivals = generateFestivalCalendarV2(year + 1, userLat, userLng, userTimezone);
+        match = nextYearFestivals.find(f => f.slug === lookupSlug && f.date >= todayStr);
+      }
+
+      if (match) {
+        const [y, m, d] = match.date.split('-').map(Number);
+        return new Date(y, m - 1, d);
+      }
+    } catch {
+      // Fail silently — date is optional
+    }
+    return undefined;
+  }, [puja, userLat, userLng, userTimezone]);
+
   if (!puja) {
     return (
       <main className="min-h-screen pt-28 pb-16 px-4">
@@ -291,6 +351,7 @@ export default function PujaVidhiPage() {
           puja={puja}
           locale={locale}
           computedMuhurta={computedMuhurta}
+          festivalDate={festivalDate}
           locationName={userLocationName}
           timezone={userTimezone}
         />

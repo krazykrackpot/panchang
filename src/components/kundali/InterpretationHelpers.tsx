@@ -6,6 +6,7 @@ import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { PlanetAvasthas } from '@/lib/kundali/avasthas';
+import HouseVisual, { HouseBadge } from './HouseVisual';
 
 // ─── Planet metadata ────────────────────────────────────────────────────────
 
@@ -518,26 +519,32 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
       {/* Strongest house */}
       <SectionCard border="border-emerald-500/15">
         <SectionHeading>{isHi ? 'सबसे बलवान जीवन क्षेत्र' : 'Strongest Life Area'}</SectionHeading>
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-lg shrink-0">
-            {strongest.bhava}
+        <div className="flex items-start gap-4">
+          <HouseVisual highlight={strongest.bhava} color="emerald" size="md" label={isHi ? 'बलवान' : 'Strong'} />
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <HouseBadge house={strongest.bhava} locale={locale} color="emerald" />
+              <span className="text-emerald-300 text-xs font-bold">{strongest.total.toFixed(1)} {isHi ? 'अंक' : 'pts'}</span>
+            </div>
+            <p className="text-sm text-gray-200 leading-relaxed">
+              {isHi
+                ? `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है। इस भाव से जुड़े कार्यों में आपको स्वाभाविक सफलता मिलती है।`
+                : `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you. Activities related to this house bring natural success with less effort.`}
+            </p>
           </div>
-          <p className="text-sm text-gray-200 leading-relaxed">
-            {isHi
-              ? `आपका सबसे बलवान भाव ${strongest.bhava}वां भाव है (${strongSig?.hi ?? ''})। यही वह क्षेत्र है जहां जीवन सबसे सहज रूप से आता है।`
-              : `Your strongest house is House ${strongest.bhava} (${strongSig?.en ?? ''}). This is where life comes most easily to you.`}
-          </p>
         </div>
       </SectionCard>
 
       {/* Weakest house */}
       <SectionCard border="border-amber-500/15">
         <SectionHeading>{isHi ? 'सबसे कमजोर जीवन क्षेत्र' : 'Weakest Life Area'}</SectionHeading>
-        <div className="flex items-start gap-3">
-          <div className="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-bold text-lg shrink-0">
-            {weakest.bhava}
-          </div>
+        <div className="flex items-start gap-4">
+          <HouseVisual highlight={weakest.bhava} color="amber" size="md" label={isHi ? 'कमजोर' : 'Weak'} />
           <div>
+            <div className="flex items-center gap-2 mb-1">
+              <HouseBadge house={weakest.bhava} locale={locale} color="amber" />
+              <span className="text-amber-300 text-xs font-bold">{weakest.total.toFixed(1)} {isHi ? 'अंक' : 'pts'}</span>
+            </div>
             <p className="text-sm text-gray-200 leading-relaxed">
               {isHi
                 ? `आपका सबसे कमजोर भाव ${weakest.bhava}वां भाव है (${weakSig?.hi ?? ''})। इस क्षेत्र में सचेत प्रयास की आवश्यकता है।`
@@ -551,6 +558,33 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
         </div>
       </SectionCard>
 
+      {/* Visual overview — all 12 houses */}
+      <SectionCard border="border-sky-500/15">
+        <SectionHeading>{isHi ? 'भाव बल दृश्य अवलोकन' : 'House Strength Visual Overview'}</SectionHeading>
+        <p className="text-xs text-gray-400 mb-3">
+          {isHi ? 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर। प्रत्येक भाव जीवन के एक क्षेत्र को दर्शाता है।' : 'Green = strong, Yellow = moderate, Red = weak. Each house represents a life area.'}
+        </p>
+        <div className="flex flex-wrap gap-2 justify-center">
+          {sorted.map(h => {
+            const sig = HOUSE_SIGNIFICATIONS[h.bhava];
+            const strength = h.total;
+            const max = sorted[0].total;
+            const pct = max > 0 ? strength / max : 0;
+            const barColor = pct >= 0.7 ? 'bg-emerald-500' : pct >= 0.4 ? 'bg-amber-500' : 'bg-red-500';
+            return (
+              <div key={h.bhava} className="glass-card rounded-lg p-2 w-[72px] text-center border border-gold-primary/10">
+                <div className="text-gold-light font-bold text-sm">H{h.bhava}</div>
+                <div className="text-text-tertiary text-[9px]">{isHi ? sig?.hi : sig?.en}</div>
+                <div className="w-full h-1.5 bg-bg-tertiary/50 rounded-full mt-1.5 overflow-hidden">
+                  <div className={`h-full rounded-full ${barColor}`} style={{ width: `${pct * 100}%` }} />
+                </div>
+                <div className="text-[9px] text-text-tertiary mt-0.5">{strength.toFixed(0)}</div>
+              </div>
+            );
+          })}
+        </div>
+      </SectionCard>
+
       {/* House ranking */}
       <SectionCard>
         <SectionHeading>{isHi ? 'भाव बल क्रमांकन' : 'House Strength Ranking'}</SectionHeading>
@@ -561,9 +595,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
             return (
               <div key={bh.bhava} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
                 <span className="w-6 text-center text-xs text-gray-500 font-mono">{i + 1}</span>
-                <span className={`w-20 font-semibold text-sm ${isTop ? 'text-emerald-400' : 'text-gray-400'}`}>
-                  {isHi ? `भाव ${bh.bhava}` : `House ${bh.bhava}`}
-                </span>
+                <HouseBadge house={bh.bhava} locale={locale} color={isTop ? 'emerald' : 'gold'} />
                 <span className="w-16 text-xs text-gray-400 font-mono">{bh.total.toFixed(1)}</span>
                 <span className="text-xs text-gray-400 flex-1">{isHi ? sig?.hi : sig?.en}</span>
               </div>

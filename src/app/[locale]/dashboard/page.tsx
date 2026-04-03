@@ -249,7 +249,7 @@ export default function DashboardPage() {
 
       // Extract today's nakshatra and moon sign from panchang
       const todayNakshatra = panchangData?.nakshatra?.id || 1;
-      const todayMoonSign = panchangData?.moonSign || 1;
+      const todayMoonSign = panchangData?.moonSign?.rashi || panchangData?.moonSign || 1;
 
       // Build UserSnapshot
       const userSnapshot: UserSnapshot = {
@@ -427,15 +427,16 @@ export default function DashboardPage() {
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.1 }}
-          className="mb-8 p-6 rounded-2xl border border-gold-primary/20 bg-gradient-to-r from-gold-primary/10 to-transparent backdrop-blur-sm"
+          className="mb-6 px-6 py-4 rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] backdrop-blur-sm"
         >
-          <h2 className="text-xl md:text-2xl font-bold text-text-primary" style={{ fontFamily: 'var(--font-heading)' }}>
-            {L.welcome}, {displayName || user?.email?.split('@')[0] || ''}
+          <p className="text-xs uppercase tracking-widest text-text-secondary/50 mb-1">{L.welcome}</p>
+          <h2 className="text-xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
+            {displayName || user?.email?.split('@')[0] || ''}
           </h2>
           {pd.currentDasha && (
-            <p className="text-text-secondary mt-1">
+            <p className="text-text-secondary/70 text-sm mt-1">
               {L.mahadasha}{' '}
-              <span className="text-gold-light font-semibold">
+              <span className="text-gold-primary font-semibold">
                 {pd.currentDasha.maha.planetName[locale] || pd.currentDasha.maha.planetName.en}
               </span>{' '}
               {L.mahadashaOf}
@@ -467,24 +468,26 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.2 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-4">
               <Star className="w-5 h-5 text-gold-primary" />
               <h3 className="text-lg font-semibold text-text-primary">{L.taraBala}</h3>
             </div>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="text-3xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-                {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
-              </span>
-              <span className="text-text-secondary text-sm">
-                ({L.tara} #{pd.taraBala.taraNumber})
-              </span>
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
+                <span className="text-2xl font-bold text-gold-light">{pd.taraBala.taraNumber}</span>
+              </div>
+              <div>
+                <p className="text-gold-light font-semibold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
+                  {pd.taraBala.taraName[locale] || pd.taraBala.taraName.en}
+                </p>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                  {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
+                </span>
+              </div>
             </div>
-            <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${pd.taraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-              {pd.taraBala.isFavorable ? L.favorable : L.unfavorable}
-            </span>
-            <p className="text-text-secondary text-sm mt-3">
+            <p className="text-text-secondary text-sm leading-relaxed">
               {pd.taraBala.description[locale] || pd.taraBala.description.en}
             </p>
           </motion.div>
@@ -493,21 +496,24 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.25 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-4">
               <Moon className="w-5 h-5 text-gold-primary" />
               <h3 className="text-lg font-semibold text-text-primary">{L.chandraBala}</h3>
             </div>
-            <div className="flex items-baseline gap-3 mb-2">
-              <span className="text-3xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
-                {L.houseFromMoon}: {pd.chandraBala.houseFromMoon}
-              </span>
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-14 h-14 rounded-xl bg-bg-secondary/60 border border-gold-primary/10 flex items-center justify-center">
+                <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || '—'}</span>
+              </div>
+              <div>
+                <p className="text-text-secondary/60 text-xs">{L.houseFromMoon}</p>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                  {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
+                </span>
+              </div>
             </div>
-            <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-              {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
-            </span>
-            <p className="text-text-secondary text-sm mt-3">
+            <p className="text-text-secondary text-sm leading-relaxed">
               {pd.chandraBala.description[locale] || pd.chandraBala.description.en}
             </p>
           </motion.div>

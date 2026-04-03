@@ -10,6 +10,7 @@ import { useSubscription } from '@/hooks/useSubscription';
 import { useLocationStore } from '@/stores/location-store';
 import NotificationBell from '@/components/notifications/NotificationBell';
 import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
+import SearchModal from '@/components/search/SearchModal';
 
 interface DropdownItem {
   href: string;
@@ -200,6 +201,7 @@ export default function Navbar() {
               </div>
             )}
             {hydrated && user && <NotificationBell />}
+            <SearchModal />
             <div className="w-px h-5 bg-gold-primary/15" />
             <LocaleSwitcher />
             {hydrated && tier === 'free' && (

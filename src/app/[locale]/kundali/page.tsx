@@ -1272,53 +1272,186 @@ export default function KundaliPage() {
           })()}
 
           {/* ===== SPHUTAS TAB ===== */}
-          {activeTab === 'sphutas' && kundali.sphutas && (
+          {activeTab === 'sphutas' && kundali.sphutas && (() => {
+            const isHi = locale !== 'en';
+            const yogiPlanetName = GRAHAS[kundali.sphutas.yogiPoint.yogiPlanet]?.name[locale as Locale] || '';
+            const avayogiPlanetName = GRAHAS[kundali.sphutas.avayogiPoint.avayogiPlanet]?.name[locale as Locale] || '';
+            const RASHI_FULL = ['','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+            const RASHI_HI = ['','मेष','वृषभ','मिथुन','कर्क','सिंह','कन्या','तुला','वृश्चिक','धनु','मकर','कुम्भ','मीन'];
+            const signName = (s: number) => isHi ? RASHI_HI[s] || '' : RASHI_FULL[s] || '';
+
+            return (
             <div className="space-y-6">
-              <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                {locale === 'en' ? 'Sphutas — Sensitive Points' : 'स्फुट — संवेदनशील बिंदु'}
+              <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                {isHi ? 'स्फुट — संवेदनशील बिंदु' : 'Sphutas — Sensitive Points in Your Chart'}
               </h3>
-              <p className="text-text-secondary text-xs text-center mb-4">
-                {locale === 'en' ? 'Computed degrees indicating vitality, body, longevity, and benefic/malefic peaks (BPHS Ch.10)' : 'जीवन शक्ति, शरीर, दीर्घायु और शुभ/अशुभ शिखर दर्शाने वाले गणित अंश (BPHS अ.10)'}
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { key: 'yogiPoint', label: { en: 'Yogi Point (Most Benefic)', hi: 'योगी बिंदु (सर्वाधिक शुभ)' }, data: kundali.sphutas.yogiPoint, color: 'border-emerald-500/20 bg-emerald-500/5', extra: `${locale === 'en' ? 'Yogi Planet' : 'योगी ग्रह'}: ${GRAHAS[kundali.sphutas.yogiPoint.yogiPlanet]?.name[locale as Locale] || ''}` },
-                  { key: 'avayogiPoint', label: { en: 'Avayogi Point (Most Challenging)', hi: 'अवयोगी बिंदु (सबसे चुनौतीपूर्ण)' }, data: kundali.sphutas.avayogiPoint, color: 'border-red-500/20 bg-red-500/5', extra: `${locale === 'en' ? 'Avayogi Planet' : 'अवयोगी ग्रह'}: ${GRAHAS[kundali.sphutas.avayogiPoint.avayogiPlanet]?.name[locale as Locale] || ''}` },
-                  { key: 'pranaSphuta', label: { en: 'Prana Sphuta (Vitality)', hi: 'प्राण स्फुट (जीवनशक्ति)' }, data: kundali.sphutas.pranaSphuta, color: 'border-gold-primary/20', extra: '' },
-                  { key: 'dehaSphuta', label: { en: 'Deha Sphuta (Body)', hi: 'देह स्फुट (शरीर)' }, data: kundali.sphutas.dehaSphuta, color: 'border-blue-500/20', extra: '' },
-                  { key: 'mrityuSphuta', label: { en: 'Mrityu Sphuta (Longevity)', hi: 'मृत्यु स्फुट (दीर्घायु)' }, data: kundali.sphutas.mrityuSphuta, color: 'border-violet-500/20', extra: '' },
-                  { key: 'triSphuta', label: { en: 'Tri Sphuta (Composite)', hi: 'त्रि स्फुट (समग्र)' }, data: kundali.sphutas.triSphuta, color: 'border-amber-500/20', extra: '' },
-                ].map(({ key, label, data, color, extra }) => (
-                  <div key={key} className={`glass-card rounded-xl p-4 border ${color}`}>
-                    <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{locale === 'hi' ? label.hi : label.en}</div>
-                    <div className="text-gold-light font-bold text-2xl font-mono">{data.degree.toFixed(2)}°</div>
-                    <div className="text-text-secondary text-xs mt-1">{locale === 'en' ? `Sign ${data.sign}, Nakshatra ${data.nakshatra}` : `राशि ${data.sign}, नक्षत्र ${data.nakshatra}`}</div>
-                    {extra && <div className="text-emerald-300 text-xs mt-1 font-medium">{extra}</div>}
-                    <div className="text-text-tertiary text-[10px] mt-2 leading-relaxed">{data.description[locale as Locale] || data.description.en}</div>
-                  </div>
-                ))}
+
+              {/* Beginner explanation */}
+              <div className="glass-card rounded-xl p-5 border border-sky-500/15">
+                <h4 className="text-sky-300 text-[10px] uppercase tracking-widest font-bold mb-2">
+                  {isHi ? 'ये क्या हैं?' : 'What are Sphutas?'}
+                </h4>
+                <p className="text-text-secondary text-sm leading-relaxed mb-2">
+                  {isHi
+                    ? 'स्फुट ("सटीक बिंदु") आपकी कुण्डली में गणितीय रूप से निर्धारित संवेदनशील अंश हैं। ये वास्तविक ग्रह नहीं हैं — ये गणना किए गए बिंदु हैं जो आपके जीवन के विशिष्ट पहलुओं को दर्शाते हैं। इन्हें "कॉस्मिक GPS कोऑर्डिनेट्स" समझें — प्रत्येक आपके जीवन के एक अलग आयाम (जीवनशक्ति, शरीर, दीर्घायु) को इंगित करता है।'
+                    : 'Sphutas ("precise points") are mathematically computed sensitive degrees in your chart. They are NOT actual planets — they are calculated points that indicate specific aspects of your life. Think of them as "cosmic GPS coordinates" — each one pinpoints a different dimension of your existence (vitality, body, longevity). When a transiting planet crosses one of these points, that life dimension gets activated.'}
+                </p>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  {isHi
+                    ? 'सबसे महत्वपूर्ण दो हैं: योगी बिंदु (आपका सबसे शुभ बिंदु — जब बृहस्पति इस पर गोचर करता है तो बड़ी सकारात्मक घटना होती है) और अवयोगी बिंदु (आपका सबसे चुनौतीपूर्ण बिंदु — जब शनि इस पर गोचर करता है तो कठिनाई आती है)।'
+                    : 'The two MOST important ones are: the Yogi Point (your most auspicious degree — when Jupiter transits this point, expect a major positive event) and the Avayogi Point (your most challenging degree — when Saturn transits this, expect difficulty). The rest (Prana, Deha, Mrityu, Tri) describe your constitutional nature.'}
+                </p>
               </div>
+
+              {/* YOGI & AVAYOGI — the key pair */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Yogi Point */}
+                <div className="glass-card rounded-xl p-5 border border-emerald-500/20 bg-emerald-500/5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">&#9733;</span>
+                    <div>
+                      <div className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold">{isHi ? 'योगी बिंदु — आपका शुभ बिंदु' : 'Yogi Point — Your Lucky Degree'}</div>
+                    </div>
+                  </div>
+                  <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas.yogiPoint.degree.toFixed(2)}°</div>
+                  <div className="text-emerald-300 text-sm font-bold mb-2">{signName(kundali.sphutas.yogiPoint.sign)}</div>
+                  <div className="text-emerald-400 text-xs font-medium mb-3">
+                    {isHi ? `योगी ग्रह: ${yogiPlanetName}` : `Yogi Planet: ${yogiPlanetName}`}
+                  </div>
+                  <div className="text-text-secondary text-xs leading-relaxed">
+                    {isHi
+                      ? `यह आपकी कुण्डली का सबसे शुभ बिंदु है। ${yogiPlanetName} आपका योगी ग्रह है — इसकी दशा/अन्तर्दशा में सर्वोत्तम परिणाम मिलते हैं। जब बृहस्पति इस अंश (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}) पर गोचर करता है, तो जीवन में बड़ी सकारात्मक घटना होती है। इस ग्रह को बलवान रखें — इसका रत्न, मंत्र, या दान करें।`
+                      : `This is the single most auspicious degree in your entire chart. ${yogiPlanetName} is your Yogi Planet — its dasha/antardasha brings the BEST results in your life. When Jupiter transits over this degree (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}), expect a major positive event — promotion, marriage, windfall, or breakthrough. Keep this planet strong — wear its gemstone, chant its mantra, make donations on its day.`}
+                  </div>
+                </div>
+
+                {/* Avayogi Point */}
+                <div className="glass-card rounded-xl p-5 border border-red-500/20 bg-red-500/5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-lg">&#9888;</span>
+                    <div>
+                      <div className="text-red-300 text-[10px] uppercase tracking-widest font-bold">{isHi ? 'अवयोगी बिंदु — आपका चुनौतीपूर्ण बिंदु' : 'Avayogi Point — Your Challenging Degree'}</div>
+                    </div>
+                  </div>
+                  <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas.avayogiPoint.degree.toFixed(2)}°</div>
+                  <div className="text-red-300 text-sm font-bold mb-2">{signName(kundali.sphutas.avayogiPoint.sign)}</div>
+                  <div className="text-red-400 text-xs font-medium mb-3">
+                    {isHi ? `अवयोगी ग्रह: ${avayogiPlanetName}` : `Avayogi Planet: ${avayogiPlanetName}`}
+                  </div>
+                  <div className="text-text-secondary text-xs leading-relaxed">
+                    {isHi
+                      ? `यह आपका सबसे चुनौतीपूर्ण बिंदु है। ${avayogiPlanetName} आपका अवयोगी ग्रह है — इसकी दशा में बाधाएँ और विलम्ब आ सकते हैं। जब शनि इस अंश पर गोचर करता है, सावधान रहें। उपाय: ${avayogiPlanetName} के शमन मंत्र, शनिवार को तिल/तेल दान, और इस ग्रह की दशा में अतिरिक्त सावधानी।`
+                      : `This is your most challenging degree. ${avayogiPlanetName} is your Avayogi Planet — its dasha may bring obstacles, delays, and setbacks. When Saturn transits over this degree (${kundali.sphutas.avayogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.avayogiPoint.sign)}), be cautious with major decisions. Remedies: chant the pacification mantra for ${avayogiPlanetName}, donate sesame/oil on Saturdays, exercise extra caution during this planet's dasha period.`}
+                  </div>
+                </div>
+              </div>
+
+              {/* CONSTITUTIONAL SPHUTAS */}
+              <div>
+                <h4 className="text-gold-light text-sm font-bold mb-3 text-center" style={headingFont}>
+                  {isHi ? 'शारीरिक संरचना स्फुट — आपकी प्रकृति' : 'Constitutional Sphutas — Your Nature'}
+                </h4>
+                <p className="text-text-secondary text-xs text-center mb-4 max-w-2xl mx-auto">
+                  {isHi
+                    ? 'ये बिंदु आपकी शारीरिक और प्राणिक संरचना को दर्शाते हैं। ये चिकित्सा ज्योतिष और आयुर्वेदिक विश्लेषण में प्रयुक्त होते हैं।'
+                    : 'These points describe your physical and vital constitution. They are used in medical astrology (Ayurvedic analysis) and longevity assessment. The sign and nakshatra where each falls indicates the quality of that life dimension.'}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { data: kundali.sphutas.pranaSphuta, label: isHi ? 'प्राण स्फुट' : 'Prana Sphuta', sublabel: isHi ? 'जीवन शक्ति' : 'Vitality & Life Force', color: 'border-gold-primary/20', icon: '&#9829;',
+                      explain: isHi ? 'आपकी समग्र जीवन शक्ति और ऊर्जा स्तर। सूर्य + चन्द्र + लग्न से गणित। शुभ राशि/नक्षत्र = प्रबल जीवनशक्ति, अच्छा स्वास्थ्य।' : 'Your overall vitality and energy level. Computed from Sun + Moon + Lagna. A benefic sign/nakshatra = strong life force, good health, resilience. A malefic placement = watch your energy levels, prioritize rest.' },
+                    { data: kundali.sphutas.dehaSphuta, label: isHi ? 'देह स्फुट' : 'Deha Sphuta', sublabel: isHi ? 'शारीरिक संरचना' : 'Physical Body', color: 'border-blue-500/20', icon: '&#9775;',
+                      explain: isHi ? 'आपकी शारीरिक संरचना और काया। यह बताता है कि आपका शरीर किस प्रकार का है। अग्नि/पृथ्वी राशि = मजबूत, मांसल। वायु/जल = हल्का, लचीला।' : 'Your physical constitution and body type. This indicates your natural build. Fire/Earth signs = strong, muscular frame. Air/Water = lighter, more flexible. The nakshatra adds specifics about health tendencies.' },
+                    { data: kundali.sphutas.mrityuSphuta, label: isHi ? 'मृत्यु स्फुट' : 'Mrityu Sphuta', sublabel: isHi ? 'दीर्घायु सूचक' : 'Longevity Indicator', color: 'border-violet-500/20', icon: '&#8734;',
+                      explain: isHi ? 'दीर्घायु और स्वास्थ्य जोखिम का सूचक। यह "मृत्यु" का भविष्यवाणी नहीं करता — यह दर्शाता है कि शरीर के कौन से क्षेत्र ध्यान माँगते हैं। जब गोचर ग्रह इस अंश पर आते हैं, स्वास्थ्य पर ध्यान दें।' : 'Indicator of longevity and health vulnerability. This does NOT predict death — it shows which body areas need attention. When transit planets (especially Saturn or Mars) cross this degree, pay extra attention to health. The sign indicates the body part: Aries=head, Taurus=throat, etc.' },
+                    { data: kundali.sphutas.triSphuta, label: isHi ? 'त्रि स्फुट' : 'Tri Sphuta', sublabel: isHi ? 'समग्र संकेतक' : 'Composite Indicator', color: 'border-amber-500/20', icon: '&#9651;',
+                      explain: isHi ? 'तीनों स्फुटों (प्राण + देह + मृत्यु) का संयुक्त बिंदु। यह आपकी समग्र शारीरिक-प्राणिक स्थिति का एकल सूचक है।' : 'Composite of all three sphutas (Prana + Deha + Mrityu). This gives a single-point summary of your overall physical-vital condition. Its sign/nakshatra placement summarizes your constitutional strength.' },
+                  ].map(({ data, label, sublabel, color, icon, explain }) => (
+                    <div key={label} className={`glass-card rounded-xl p-4 border ${color}`}>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-gold-primary text-lg" dangerouslySetInnerHTML={{ __html: icon }} />
+                        <div>
+                          <div className="text-gold-light text-sm font-bold">{label}</div>
+                          <div className="text-text-secondary/60 text-[10px]">{sublabel}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span className="text-gold-light font-bold text-xl font-mono">{data.degree.toFixed(2)}°</span>
+                        <span className="text-text-secondary text-xs">{signName(data.sign)}</span>
+                      </div>
+                      <p className="text-text-secondary text-xs leading-relaxed">{explain}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Bija/Kshetra */}
               {(kundali.sphutas.bijaSphuta || kundali.sphutas.kshetraSphuta) && (
-                <div className="grid grid-cols-2 gap-3">
-                  {kundali.sphutas.bijaSphuta && (
-                    <div className="glass-card rounded-xl p-3 border border-blue-500/15 text-center">
-                      <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Bija Sphuta (Male Fertility)' : 'बीज स्फुट'}</div>
-                      <div className="text-gold-light font-bold font-mono">{kundali.sphutas.bijaSphuta.degree.toFixed(2)}°</div>
-                      <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Sign ${kundali.sphutas.bijaSphuta.sign}` : `राशि ${kundali.sphutas.bijaSphuta.sign}`}</div>
-                    </div>
-                  )}
-                  {kundali.sphutas.kshetraSphuta && (
-                    <div className="glass-card rounded-xl p-3 border border-pink-500/15 text-center">
-                      <div className="text-pink-300 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Kshetra Sphuta (Female Fertility)' : 'क्षेत्र स्फुट'}</div>
-                      <div className="text-gold-light font-bold font-mono">{kundali.sphutas.kshetraSphuta.degree.toFixed(2)}°</div>
-                      <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `Sign ${kundali.sphutas.kshetraSphuta.sign}` : `राशि ${kundali.sphutas.kshetraSphuta.sign}`}</div>
-                    </div>
-                  )}
+                <div>
+                  <h4 className="text-gold-light text-sm font-bold mb-3 text-center" style={headingFont}>
+                    {isHi ? 'प्रजनन स्फुट' : 'Fertility Sphutas'}
+                  </h4>
+                  <p className="text-text-secondary text-xs text-center mb-4 max-w-xl mx-auto">
+                    {isHi
+                      ? 'ये बिंदु प्रजनन क्षमता और सन्तान योग का आकलन करते हैं। विषम राशि/नक्षत्र = अनुकूल।'
+                      : 'These points assess fertility and progeny potential. Odd signs and benefic nakshatras = favorable. Used alongside 5th house and Jupiter analysis for childbirth timing.'}
+                  </p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {kundali.sphutas.bijaSphuta && (
+                      <div className="glass-card rounded-xl p-4 border border-blue-500/15">
+                        <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'बीज स्फुट (पुरुष प्रजनन)' : 'Bija Sphuta (Male Fertility)'}</div>
+                        <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.bijaSphuta.degree.toFixed(2)}°</div>
+                        <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.bijaSphuta.sign)}</div>
+                        <p className="text-text-secondary/70 text-[10px] mt-2 leading-relaxed">
+                          {isHi ? 'सूर्य + शुक्र + बृहस्पति से गणित। विषम राशि और शुभ नक्षत्र = बलवान।' : 'Computed from Sun + Venus + Jupiter. Odd sign + benefic nakshatra = strong male fertility factor.'}
+                        </p>
+                      </div>
+                    )}
+                    {kundali.sphutas.kshetraSphuta && (
+                      <div className="glass-card rounded-xl p-4 border border-pink-500/15">
+                        <div className="text-pink-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'क्षेत्र स्फुट (स्त्री प्रजनन)' : 'Kshetra Sphuta (Female Fertility)'}</div>
+                        <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.kshetraSphuta.degree.toFixed(2)}°</div>
+                        <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.kshetraSphuta.sign)}</div>
+                        <p className="text-text-secondary/70 text-[10px] mt-2 leading-relaxed">
+                          {isHi ? 'चन्द्र + मंगल + बृहस्पति से गणित। सम राशि और शुभ नक्षत्र = बलवान।' : 'Computed from Moon + Mars + Jupiter. Even sign + benefic nakshatra = strong female fertility factor.'}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
+
+              {/* How to use this */}
+              <div className="glass-card rounded-xl p-5 border border-emerald-500/15">
+                <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+                  {isHi ? 'इसका उपयोग कैसे करें' : 'How to Use This Information'}
+                </h4>
+                <ul className="text-text-secondary text-xs leading-relaxed space-y-2">
+                  <li>
+                    {isHi
+                      ? `✦ अपने योगी ग्रह (${yogiPlanetName}) को बलवान रखें — इसका रत्न धारण करें, इसके दिन उपवास/दान करें।`
+                      : `✦ Keep your Yogi Planet (${yogiPlanetName}) strong — wear its gemstone, fast/donate on its day.`}
+                  </li>
+                  <li>
+                    {isHi
+                      ? `✦ अवयोगी ग्रह (${avayogiPlanetName}) की दशा/गोचर में सावधान रहें — बड़े निर्णयों से पहले सोचें।`
+                      : `✦ Be cautious during Avayogi Planet (${avayogiPlanetName}) dasha/transit — think twice before major decisions.`}
+                  </li>
+                  <li>
+                    {isHi
+                      ? '✦ जब बृहस्पति आपके योगी बिंदु के ±5° के भीतर गोचर करे, तो नए कार्य आरम्भ करें — यह आपका सबसे शुभ काल है।'
+                      : '✦ When Jupiter transits within ±5° of your Yogi Point, start new ventures — this is your MOST auspicious transit window.'}
+                  </li>
+                  <li>
+                    {isHi
+                      ? '✦ मृत्यु स्फुट = मृत्यु नहीं। यह केवल शारीरिक संवेदनशीलता का बिंदु है। स्वास्थ्य जांच और सावधानी बरतें।'
+                      : '✦ Mrityu Sphuta ≠ death prediction. It only indicates a health-sensitive degree. Get regular checkups and practice preventive care when planets transit this point.'}
+                  </li>
+                </ul>
+              </div>
             </div>
-          )}
+          );
+          })()}
 
           {/* ===== CHAT TAB ===== */}
           {activeTab === 'chat' && (

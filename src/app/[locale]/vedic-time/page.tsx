@@ -6,6 +6,14 @@ import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { useLocationStore } from '@/stores/location-store';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import {
+  dateToJD, sunLongitude, toSidereal, calculateTithi, calculateYoga,
+  getMasa, getSamvatsara, MASA_NAMES, SAMVATSARA_NAMES,
+} from '@/lib/ephem/astronomical';
+import { TITHIS } from '@/lib/constants/tithis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { YOGAS } from '@/lib/constants/yogas';
+import { VARA_DATA } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 
 // ─── Constants ──────────────────────────────────────────────────
@@ -88,7 +96,8 @@ interface VedicTimeResult {
   praharDurationMin: number;
   muhurtaDurationMin: number;
   ghatiDurationSec: number;
-  dinamanaGhati: number; // 30-ghati: sunset position
+  sunriseVedic: string;
+  sunsetVedic: string;
   sunriseStr: string;
   sunsetStr: string;
 }
@@ -187,8 +196,21 @@ function computeVedicTime(
     }
   }
 
-  // Dinamana in ghati (30-ghati clock: sunset position varies; 60-ghati: sunset floats)
-  const dinamanaGhati = mode === '30' ? 30 : Math.round((dayMs / ahoratraMs) * 60 * 10) / 10;
+  // Sunrise/Sunset in vedic ghati format
+  // 60-ghati: sunrise = 00:00:00, sunset floats
+  // 30-ghati: sunrise = 00:00:00, sunset = 30:00:00
+  let sunriseVedic = '00:00:00';
+  let sunsetVedic: string;
+  if (mode === '30') {
+    sunsetVedic = '30:00:00';
+  } else {
+    const sunsetFrac = (dayMs / ahoratraMs) * 60;
+    const sG = Math.floor(sunsetFrac);
+    const sPF = (sunsetFrac - sG) * 60;
+    const sP = Math.floor(sPF);
+    const sV = Math.floor((sPF - sP) * 60);
+    sunsetVedic = `${String(sG).padStart(2, '0')}:${String(sP).padStart(2, '0')}:${String(sV).padStart(2, '0')}`;
+  }
 
   return {
     ghati, pala, vipala,
@@ -200,9 +222,10 @@ function computeVedicTime(
     praharDurationMin: Math.round(praharDurationMs / 60000),
     muhurtaDurationMin: Math.round(muhurtaDurationMs / 60000),
     ghatiDurationSec: Math.round(ghatiDurationMs / 1000),
-    dinamanaGhati,
-    sunriseStr: sunriseDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
-    sunsetStr: sunsetDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: false }),
+    sunriseVedic,
+    sunsetVedic,
+    sunriseStr: sunriseDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
+    sunsetStr: sunsetDate.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
   };
 }
 
@@ -257,10 +280,44 @@ export default function VedicTimePage() {
     ? computeVedicTime(time, sunTimes.sunrise, sunTimes.sunset, sunTimes.nextSunrise, clockMode)
     : null;
 
-  const locationName = locationStore.name || userTimezone;
+  // Panchang context — tithi, vara, masa, samvatsara at sunrise
+  const panchangCtx = useMemo(() => {
+    if (!sunTimes) return null;
+    const sr = sunTimes.sunrise;
+    const y = sr.getFullYear(), m = sr.getMonth() + 1, d = sr.getDate();
+    const srHour = sr.getHours() + sr.getMinutes() / 60 + sr.getSeconds() / 3600;
+    const utHour = srHour - tzOffset;
+    const jd = dateToJD(y, m, d, utHour);
 
-  // Gauge data
-  const gaugeMax = clockMode === '60' ? 60 : 60;
+    const tithiResult = calculateTithi(jd);
+    const tithiData = TITHIS[tithiResult.number - 1];
+    const yogaNum = calculateYoga(jd);
+    const yogaData = YOGAS[yogaNum - 1];
+    const sunSid = toSidereal(sunLongitude(jd), jd);
+    const masaIndex = getMasa(sunSid);
+    const masaData = MASA_NAMES[masaIndex];
+    const samvatsaraIndex = getSamvatsara(y);
+    const samvatsaraData = SAMVATSARA_NAMES[samvatsaraIndex];
+
+    const weekday = new Date(y, m - 1, d).getDay();
+    const varaData = VARA_DATA[weekday];
+
+    // Shaka Samvat: Gregorian year - 78 (before Chaitra) or -77 (after Chaitra)
+    // Simplified: for Chaitra onwards (roughly April), year - 78; before that, year - 79
+    const shakaSamvat = masaIndex === 0 ? y - 78 : (masaIndex >= 1 ? y - 78 : y - 79);
+
+    return {
+      tithi: tithiData,
+      yoga: yogaData,
+      masa: masaData,
+      vara: varaData,
+      samvatsara: samvatsaraData,
+      shakaSamvat,
+      gregorianDate: new Date(y, m - 1, d),
+    };
+  }, [sunTimes, tzOffset]);
+
+  const locationName = locationStore.name || userTimezone;
   const timeUnits = vedic ? [
     { label: { en: 'Ghati', hi: 'घटी' }, value: vedic.ghati, max: clockMode === '60' ? 60 : 60, desc: { en: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} min`, hi: `= ${Math.round(vedic.ghatiDurationSec / 60 * 10) / 10} मिनट` } },
     { label: { en: 'Pala', hi: 'पल' }, value: vedic.pala, max: 60, desc: { en: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} sec`, hi: `= ${(vedic.ghatiDurationSec / 60).toFixed(1)} सेकंड` } },
@@ -311,27 +368,85 @@ export default function VedicTimePage() {
             : 'दिनमान = 30 घटी, रात्रिमान = 30 घटी। सूर्यास्त = 30:00:00। मुहूर्त/कर्मकाण्ड हेतु उपयुक्त।')}
       </div>
 
-      {/* Modern time */}
-      <div className="glass-card rounded-2xl p-8 text-center mb-4 border border-gold-primary/20">
-        <div className="text-text-secondary text-xs uppercase tracking-[0.3em] mb-2">
-          {locale === 'en' ? `Current Time (${userTimezone})` : `वर्तमान समय (${userTimezone})`}
-        </div>
-        <div className="text-gold-light text-5xl font-bold font-mono tracking-wider">
-          {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
-        </div>
-        {vedic && (
-          <div className="flex justify-center gap-6 mt-3 text-xs text-text-secondary/60">
-            <span>{locale === 'en' ? 'Sunrise' : 'सूर्योदय'} {vedic.sunriseStr}</span>
-            <span>{locale === 'en' ? 'Sunset' : 'सूर्यास्त'} {vedic.sunsetStr}
-              {clockMode === '60' && <span className="text-gold-primary/40 ml-1">({vedic.dinamanaGhati}G)</span>}
-            </span>
+      {/* Dual time display — Vedic + Gregorian side by side */}
+      {vedic ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+          {/* Vedic Clock */}
+          <div className="glass-card rounded-2xl p-6 text-center border border-gold-primary/20">
+            <div className="text-gold-dark text-[10px] uppercase tracking-[0.3em] mb-2">
+              {locale === 'en' ? 'Vedic Time' : 'वैदिक समय'}
+            </div>
+            <div className="text-gold-light text-4xl font-bold" style={headingFont}>
+              {String(vedic.ghati).padStart(2, '0')}
+              <span className="text-gold-primary/40">:</span>
+              {String(vedic.pala).padStart(2, '0')}
+              <span className="text-gold-primary/40">:</span>
+              {String(vedic.vipala).padStart(2, '0')}
+            </div>
+            <div className="text-text-secondary/50 text-xs mt-1">
+              {locale === 'en' ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-gold-light font-mono font-semibold">{vedic.sunriseVedic}</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-gold-light font-mono font-semibold">{vedic.sunsetVedic}</div>
+              </div>
+            </div>
           </div>
-        )}
-      </div>
 
-      {!vedic && (
+          {/* Gregorian Clock */}
+          <div className="glass-card rounded-2xl p-6 text-center border border-gold-primary/10">
+            <div className="text-text-secondary/50 text-[10px] uppercase tracking-[0.3em] mb-2">
+              {locale === 'en' ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
+            </div>
+            <div className="text-gold-light text-4xl font-bold font-mono tracking-wider">
+              {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
+            </div>
+            <div className="text-text-secondary/50 text-xs mt-1">
+              {locale === 'en' ? 'Hours : Minutes : Seconds' : 'घंटे : मिनट : सेकंड'}
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-primary font-mono font-semibold">{vedic.sunriseStr}</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-primary font-mono font-semibold">{vedic.sunsetStr}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
         <div className="text-center py-8 text-text-secondary/50 text-sm">
           {locale === 'en' ? 'Detecting your location for accurate sunrise/sunset...' : 'सटीक सूर्योदय/सूर्यास्त के लिए स्थान खोज रहे हैं...'}
+        </div>
+      )}
+
+      {/* Panchang context — Tithi, Vara, Masa, Samvatsara */}
+      {panchangCtx && (
+        <div className="glass-card rounded-xl px-5 py-3 mb-4 border border-gold-primary/10 text-center" style={bodyFont}>
+          <div className="text-gold-light text-sm font-semibold">
+            {panchangCtx.masa?.[locale] || panchangCtx.masa?.en},{' '}
+            {panchangCtx.tithi?.paksha === 'krishna'
+              ? (locale === 'en' ? 'Krishna' : 'कृष्ण')
+              : (locale === 'en' ? 'Shukla' : 'शुक्ल')}{' '}
+            {panchangCtx.tithi?.name?.[locale] || panchangCtx.tithi?.name?.en},{' '}
+            {panchangCtx.shakaSamvat} {locale === 'en' ? 'Shaka Samvat' : 'शक संवत्'}
+          </div>
+          <div className="text-text-secondary/60 text-xs mt-1">
+            {panchangCtx.vara?.name?.[locale] || panchangCtx.vara?.name?.en}
+            {' — '}
+            {panchangCtx.samvatsara?.[locale] || panchangCtx.samvatsara?.en}{' '}
+            {locale === 'en' ? 'Samvatsara' : 'संवत्सर'}
+          </div>
+          <div className="text-text-secondary/40 text-xs mt-0.5">
+            {panchangCtx.gregorianDate.toLocaleDateString(locale === 'en' ? 'en-GB' : 'hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+          </div>
         </div>
       )}
 

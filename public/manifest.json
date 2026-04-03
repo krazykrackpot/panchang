@@ -1,7 +1,7 @@
 {
   "name": "Dekho Panchang — Vedic Astrology",
   "short_name": "Dekho Panchang",
-  "description": "Daily Panchang, Kundali birth charts, and Jyotish tools with trilingual support",
+  "description": "Daily Panchang, Kundali birth charts, personalized predictions, and Jyotish tools with trilingual support",
   "start_url": "/en",
   "id": "/",
   "display": "standalone",
@@ -33,13 +33,30 @@
       "purpose": "maskable"
     }
   ],
-  "screenshots": [
+  "shortcuts": [
     {
-      "src": "/og-image.png",
-      "sizes": "1200x630",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Dekho Panchang Home"
+      "name": "Today's Panchang",
+      "short_name": "Panchang",
+      "url": "/en/panchang",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "My Dashboard",
+      "short_name": "Dashboard",
+      "url": "/en/dashboard",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Generate Kundali",
+      "short_name": "Kundali",
+      "url": "/en/kundali",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Festival Calendar",
+      "short_name": "Calendar",
+      "url": "/en/calendar",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
     }
   ],
   "categories": ["lifestyle", "education"],

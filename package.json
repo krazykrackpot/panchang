@@ -6,7 +6,7 @@
     "dev": "next dev --webpack -p 3000",
     "dev:turbo": "NODE_OPTIONS='--max-old-space-size=8192' next dev --turbopack -p 3000",
     "dev:clean": "rm -rf .next && next dev --webpack -p 3000",
-    "build": "next build",
+    "build": "npx supabase db push --project-ref qtxbbeyjvkhvciseswpr 2>/dev/null || true && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",

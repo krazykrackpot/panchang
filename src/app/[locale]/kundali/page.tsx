@@ -1464,49 +1464,163 @@ export default function KundaliPage() {
           )}
 
           {/* ===== JAIMINI TAB ===== */}
-          {activeTab === 'jaimini' && kundali.jaimini && (
+          {activeTab === 'jaimini' && kundali.jaimini && (() => {
+            // Karaka explanations
+            const KARAKA_INFO: Record<string, { full: { en: string; hi: string }; meaning: { en: string; hi: string }; governs: { en: string; hi: string } }> = {
+              AK: { full: { en: 'Atmakaraka', hi: 'आत्मकारक' }, meaning: { en: 'Soul Significator', hi: 'आत्मा का कारक' }, governs: { en: 'Your soul\'s deepest desire and life purpose. The king of your chart — all other karakas serve this planet\'s agenda.', hi: 'आत्मा की गहनतम इच्छा और जीवन उद्देश्य। कुण्डली का राजा — सभी अन्य कारक इस ग्रह की सेवा करते हैं।' } },
+              AmK: { full: { en: 'Amatyakaraka', hi: 'अमात्यकारक' }, meaning: { en: 'Minister/Career', hi: 'मन्त्री/कैरियर' }, governs: { en: 'Career direction, profession, how you serve society. The minister who executes the soul\'s purpose through worldly work.', hi: 'कैरियर दिशा, पेशा, समाज सेवा। मन्त्री जो सांसारिक कार्य से आत्मा के उद्देश्य को पूर्ण करता है।' } },
+              BK: { full: { en: 'Bhratrikaraka', hi: 'भ्रातृकारक' }, meaning: { en: 'Sibling Significator', hi: 'भाई-बहन कारक' }, governs: { en: 'Siblings, close friends, courage, and support network. Shows the nature of your peer relationships.', hi: 'भाई-बहन, निकट मित्र, साहस और सहायता। सहकर्मी सम्बन्धों की प्रकृति।' } },
+              MK: { full: { en: 'Matrikaraka', hi: 'मातृकारक' }, meaning: { en: 'Mother Significator', hi: 'माता कारक' }, governs: { en: 'Mother, home, emotional security, property, and inner comfort. The nurturing force in your life.', hi: 'माता, घर, भावनात्मक सुरक्षा, सम्पत्ति। जीवन में पोषण शक्ति।' } },
+              PK: { full: { en: 'Putrakaraka', hi: 'पुत्रकारक' }, meaning: { en: 'Children Significator', hi: 'सन्तान कारक' }, governs: { en: 'Children, creativity, intelligence, disciples, and merit from past lives (Poorva Punya).', hi: 'सन्तान, सृजनशीलता, बुद्धि, शिष्य और पूर्व पुण्य।' } },
+              GK: { full: { en: 'Gnatikaraka', hi: 'ज्ञातिकारक' }, meaning: { en: 'Rival/Disease', hi: 'शत्रु/रोग कारक' }, governs: { en: 'Enemies, diseases, obstacles, and litigation. Shows the nature of challenges you face and must overcome.', hi: 'शत्रु, रोग, बाधाएँ और मुकदमे। चुनौतियों की प्रकृति जिन्हें जीतना है।' } },
+              DK: { full: { en: 'Darakaraka', hi: 'दारकारक' }, meaning: { en: 'Spouse Significator', hi: 'जीवनसाथी कारक' }, governs: { en: 'Spouse, business partners, and significant relationships. The planet with the lowest degree reveals your partner\'s nature.', hi: 'जीवनसाथी, व्यापार साझेदार। सबसे कम अंश वाला ग्रह साथी का स्वभाव बताता है।' } },
+              Atmakaraka: { full: { en: 'Atmakaraka', hi: 'आत्मकारक' }, meaning: { en: 'Soul Significator', hi: 'आत्मा का कारक' }, governs: { en: 'Your soul\'s deepest desire and life purpose.', hi: 'आत्मा की गहनतम इच्छा और जीवन उद्देश्य।' } },
+              Amatyakaraka: { full: { en: 'Amatyakaraka', hi: 'अमात्यकारक' }, meaning: { en: 'Minister/Career', hi: 'मन्त्री/कैरियर' }, governs: { en: 'Career direction and profession.', hi: 'कैरियर दिशा और पेशा।' } },
+              Bhratrikaraka: { full: { en: 'Bhratrikaraka', hi: 'भ्रातृकारक' }, meaning: { en: 'Sibling Significator', hi: 'भाई-बहन कारक' }, governs: { en: 'Siblings and support network.', hi: 'भाई-बहन और सहायता।' } },
+              Matrikaraka: { full: { en: 'Matrikaraka', hi: 'मातृकारक' }, meaning: { en: 'Mother Significator', hi: 'माता कारक' }, governs: { en: 'Mother, home, emotional security.', hi: 'माता, घर, भावनात्मक सुरक्षा।' } },
+              Putrakaraka: { full: { en: 'Putrakaraka', hi: 'पुत्रकारक' }, meaning: { en: 'Children Significator', hi: 'सन्तान कारक' }, governs: { en: 'Children, creativity, intelligence.', hi: 'सन्तान, सृजनशीलता, बुद्धि।' } },
+              Gnatikaraka: { full: { en: 'Gnatikaraka', hi: 'ज्ञातिकारक' }, meaning: { en: 'Rival/Disease', hi: 'शत्रु/रोग कारक' }, governs: { en: 'Enemies, diseases, obstacles.', hi: 'शत्रु, रोग, बाधाएँ।' } },
+              Darakaraka: { full: { en: 'Darakaraka', hi: 'दारकारक' }, meaning: { en: 'Spouse Significator', hi: 'जीवनसाथी कारक' }, governs: { en: 'Spouse and partnerships.', hi: 'जीवनसाथी और साझेदारी।' } },
+            };
+
+            // Karakamsha sign implications
+            const KARAKAMSHA_MEANING: Record<number, { en: string; hi: string }> = {
+              1: { en: 'Aries — Independent, pioneering soul. Drawn to leadership, military, sports, or entrepreneurship. Must learn patience.', hi: 'मेष — स्वतन्त्र, अग्रणी आत्मा। नेतृत्व, सेना, खेल या उद्यमिता की ओर। धैर्य सीखना आवश्यक।' },
+              2: { en: 'Taurus — Soul seeks stability, beauty, and material comfort. Drawn to arts, finance, agriculture, and luxury.', hi: 'वृषभ — स्थिरता, सौन्दर्य और भौतिक सुख की खोज। कला, वित्त, कृषि और विलासिता।' },
+              3: { en: 'Gemini — Intellectual soul seeking knowledge and communication. Drawn to writing, teaching, trade, and media.', hi: 'मिथुन — ज्ञान और संवाद की खोज करने वाली बौद्धिक आत्मा। लेखन, शिक्षण, मीडिया।' },
+              4: { en: 'Cancer — Nurturing soul seeking emotional fulfillment. Drawn to caregiving, home, cooking, psychology.', hi: 'कर्क — भावनात्मक पूर्णता चाहने वाली पोषक आत्मा। देखभाल, गृह, मनोविज्ञान।' },
+              5: { en: 'Leo — Royal soul seeking recognition and creative expression. Drawn to politics, performance, and authority.', hi: 'सिंह — मान्यता और सृजनात्मक अभिव्यक्ति चाहने वाली राजसी आत्मा। राजनीति, प्रदर्शन।' },
+              6: { en: 'Virgo — Service-oriented soul seeking perfection. Drawn to healing, analysis, craftsmanship, and detail work.', hi: 'कन्या — पूर्णता चाहने वाली सेवा-उन्मुख आत्मा। उपचार, विश्लेषण, शिल्प।' },
+              7: { en: 'Libra — Soul seeking balance, beauty, and harmony. Drawn to law, diplomacy, arts, and partnerships.', hi: 'तुला — सन्तुलन, सौन्दर्य और सामंजस्य की खोज। कानून, कूटनीति, कला।' },
+              8: { en: 'Scorpio — Transformative soul seeking deep truth. Drawn to research, occult, medicine, and investigation.', hi: 'वृश्चिक — गहन सत्य खोजने वाली परिवर्तनकारी आत्मा। शोध, गुप्त विद्या, चिकित्सा।' },
+              9: { en: 'Sagittarius — Dharmic soul seeking wisdom and higher learning. Drawn to philosophy, religion, law, and travel.', hi: 'धनु — ज्ञान और उच्च शिक्षा चाहने वाली धार्मिक आत्मा। दर्शन, धर्म, कानून।' },
+              10: { en: 'Capricorn — Ambitious soul seeking lasting achievement. Drawn to governance, structure, tradition, and legacy.', hi: 'मकर — स्थायी उपलब्धि चाहने वाली महत्वाकांक्षी आत्मा। शासन, परम्परा, विरासत।' },
+              11: { en: 'Aquarius — Humanitarian soul seeking universal truth. Drawn to science, technology, social reform, and innovation.', hi: 'कुम्भ — सार्वभौमिक सत्य चाहने वाली मानवतावादी आत्मा। विज्ञान, समाज सुधार।' },
+              12: { en: 'Pisces — Spiritual soul seeking liberation. Drawn to meditation, healing, charity, and transcendence. Moksha-oriented.', hi: 'मीन — मोक्ष चाहने वाली आध्यात्मिक आत्मा। ध्यान, उपचार, दान। मोक्ष-उन्मुख।' },
+            };
+
+            // Arudha Pada implications
+            const ARUDHA_MEANING: Record<number, { en: string; hi: string }> = {
+              1: { en: 'Arudha Lagna (AL) — How the world perceives you. Your public image and reputation.', hi: 'आरूढ़ लग्न (AL) — विश्व आपको कैसे देखता है। सार्वजनिक छवि।' },
+              2: { en: 'A2 — Perceived wealth and family status.', hi: 'A2 — प्रत्यक्ष धन और पारिवारिक स्थिति।' },
+              3: { en: 'A3 — Image of courage and siblings.', hi: 'A3 — साहस और भाई-बहनों की छवि।' },
+              4: { en: 'A4 — Perceived happiness and property.', hi: 'A4 — सुख और सम्पत्ति की छवि।' },
+              5: { en: 'A5 — Image of intelligence and children.', hi: 'A5 — बुद्धि और सन्तान की छवि।' },
+              6: { en: 'A6 — Perceived enemies and debts.', hi: 'A6 — शत्रुओं और ऋणों की छवि।' },
+              7: { en: 'Darapada (A7) — How others see your marriage/partnerships. Spouse\'s public image.', hi: 'दारपद (A7) — विवाह/साझेदारी कैसी दिखती है। जीवनसाथी की सार्वजनिक छवि।' },
+              8: { en: 'A8 — Perceived longevity and hidden matters.', hi: 'A8 — दीर्घायु और गुप्त विषयों की छवि।' },
+              9: { en: 'A9 — Image of fortune and dharma.', hi: 'A9 — भाग्य और धर्म की छवि।' },
+              10: { en: 'Rajapada (A10) — How your career/authority is perceived. Professional reputation.', hi: 'राजपद (A10) — कैरियर/अधिकार कैसा दिखता है। पेशेवर प्रतिष्ठा।' },
+              11: { en: 'Labha Pada (A11) — Perceived gains, income, and social network.', hi: 'लाभपद (A11) — लाभ, आय और सामाजिक नेटवर्क की छवि।' },
+              12: { en: 'Upapada (UL/A12) — The image of your spouse. Critical for marriage analysis.', hi: 'उपपद (UL/A12) — जीवनसाथी की छवि। विवाह विश्लेषण में महत्वपूर्ण।' },
+            };
+
+            return (
             <div className="space-y-8">
+              {/* System intro */}
+              <div className="text-center">
+                <h3 className="text-gold-gradient text-2xl font-bold mb-3" style={headingFont}>
+                  {locale === 'en' ? 'Jaimini Astrology' : 'जैमिनी ज्योतिष'}
+                </h3>
+                <p className="text-text-secondary/70 text-sm max-w-2xl mx-auto leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {locale === 'en'
+                    ? 'Jaimini system uses Chara Karakas (variable significators) — planets ranked by degree to determine who plays what role in your life. Unlike Parashara where planet roles are fixed, Jaimini assigns roles based on your unique chart. The planet with the highest degree becomes your Atmakaraka (soul significator), the next becomes Amatyakaraka (career), and so on.'
+                    : 'जैमिनी पद्धति चर कारकों का उपयोग करती है — ग्रह अंश के अनुसार क्रमबद्ध होकर निर्धारित करते हैं कि आपके जीवन में कौन क्या भूमिका निभाता है। पाराशर से भिन्न जहाँ ग्रह भूमिकाएँ निश्चित हैं, जैमिनी आपकी अद्वितीय कुण्डली के आधार पर भूमिकाएँ देती है।'}
+                </p>
+              </div>
+
               {/* Chara Karakas */}
               <div>
-                <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                  {locale === 'en' ? 'Chara Karakas (Variable Significators)' : 'चर कारक'}
+                <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Chara Karakas (Variable Significators)' : 'चर कारक (परिवर्तनशील कारक)'}
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                  {kundali.jaimini.charaKarakas.map((ck, i) => (
-                    <div key={i} className={`glass-card rounded-xl p-4 ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : ''}`}>
-                      <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{ck.karaka}</div>
-                      <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
-                      <div className="text-text-secondary text-xs mt-1">{ck.karakaName[locale]}</div>
-                      <div className="text-text-tertiary text-[10px] mt-1">{ck.degree.toFixed(2)}° {locale === 'en' ? 'in sign' : 'अंश'}</div>
+                <p className="text-text-secondary/50 text-xs text-center mb-4">
+                  {locale === 'en' ? 'Planets ranked by degree — highest to lowest — each assigned a life role' : 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका'}
+                </p>
+                <div className="space-y-3">
+                  {kundali.jaimini.charaKarakas.map((ck, i) => {
+                    const info = KARAKA_INFO[ck.karaka];
+                    return (
+                    <div key={i} className={`glass-card rounded-xl p-4 border ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/8'}`}>
+                      <div className="flex items-start gap-4">
+                        <div className="shrink-0 w-12 text-center">
+                          <div className="text-gold-primary font-bold text-lg">{ck.karaka}</div>
+                          <div className="text-text-secondary/40 text-[9px]">{ck.degree.toFixed(1)}°</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-gold-light font-bold text-base" style={headingFont}>{ck.planetName[locale]}</span>
+                            <span className="text-text-secondary/50 text-xs">—</span>
+                            <span className="text-gold-primary/80 text-sm font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {info?.meaning?.[locale === 'en' ? 'en' : 'hi'] || ck.karakaName[locale]}
+                            </span>
+                          </div>
+                          {info?.governs && (
+                            <p className="text-text-secondary/60 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {info.governs[locale === 'en' ? 'en' : 'hi']}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
               {/* Karakamsha */}
-              <div className="text-center">
-                <div className="inline-block glass-card rounded-2xl p-6 border border-gold-primary/20">
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Karakamsha' : 'कारकांश'}</div>
-                  <div className="text-gold-light font-bold text-2xl" style={headingFont}>{kundali.jaimini.karakamsha.signName[locale]}</div>
-                  <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Navamsha sign of Atmakaraka — key to soul purpose' : 'आत्मकारक का नवांश — आत्मा के उद्देश्य की कुंजी'}</div>
+              <div>
+                <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Karakamsha' : 'कारकांश'}
+                </h3>
+                <p className="text-text-secondary/50 text-xs text-center mb-4">
+                  {locale === 'en' ? 'The Navamsha sign of your Atmakaraka — reveals your soul\'s ultimate destination' : 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य'}
+                </p>
+                <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 max-w-lg mx-auto">
+                  <div className="text-center mb-3">
+                    <RashiIconById id={kundali.jaimini.karakamsha.sign} size={48} />
+                    <div className="text-gold-light font-bold text-2xl mt-2" style={headingFont}>{kundali.jaimini.karakamsha.signName[locale]}</div>
+                  </div>
+                  {KARAKAMSHA_MEANING[kundali.jaimini.karakamsha.sign] && (
+                    <p className="text-text-secondary text-sm text-center leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {KARAKAMSHA_MEANING[kundali.jaimini.karakamsha.sign][locale === 'en' ? 'en' : 'hi']}
+                    </p>
+                  )}
                 </div>
               </div>
 
               {/* Arudha Padas */}
               <div>
-                <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                  {locale === 'en' ? 'Arudha Padas (Image Points)' : 'आरूढ़ पद'}
+                <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Arudha Padas (Image Points)' : 'आरूढ़ पद (छवि बिन्दु)'}
                 </h3>
-                <div className="glass-card rounded-2xl overflow-hidden">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 divide-x divide-y divide-gold-primary/10">
-                    {kundali.jaimini.arudhaPadas.map((ap, i) => (
-                      <div key={i} className={`p-3 text-center ${i === 0 ? 'bg-gold-primary/5' : ''}`}>
-                        <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">A{ap.house}</div>
-                        <div className="text-gold-light font-bold text-sm mt-1" style={headingFont}>{ap.signName[locale]}</div>
-                        <div className="text-text-tertiary text-[9px] mt-1 leading-tight">{ap.label[locale]}</div>
+                <p className="text-text-secondary/50 text-xs text-center mb-4">
+                  {locale === 'en' ? 'How the world perceives each area of your life — the "maya" or illusion projected outward' : 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"'}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {kundali.jaimini.arudhaPadas.map((ap, i) => {
+                    const meaning = ARUDHA_MEANING[ap.house];
+                    return (
+                      <div key={i} className={`glass-card rounded-xl p-3 border ${i === 0 || ap.house === 7 || ap.house === 10 || ap.house === 12 ? 'border-gold-primary/20 bg-gold-primary/[0.03]' : 'border-gold-primary/5'}`}>
+                        <div className="flex items-center gap-3">
+                          <div className="shrink-0 w-10 h-10 rounded-lg bg-bg-secondary/50 flex items-center justify-center">
+                            <span className="text-gold-primary font-bold text-sm">A{ap.house}</span>
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ap.signName[locale]}</span>
+                              <span className="text-text-secondary/30 text-[10px]">{ap.label[locale]}</span>
+                            </div>
+                            {meaning && (
+                              <p className="text-text-secondary/50 text-[10px] leading-relaxed mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                {meaning[locale === 'en' ? 'en' : 'hi']}
+                              </p>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    ))}
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -1556,7 +1670,8 @@ export default function KundaliPage() {
               </div>
               <JaiminiInterpretation jaimini={kundali.jaimini} locale={locale} />
             </div>
-          )}
+            );
+          })()}
         </motion.div>
       )}
     </div>

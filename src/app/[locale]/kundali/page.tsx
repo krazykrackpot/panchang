@@ -2671,16 +2671,28 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
   const [filter, setFilter] = useState<'all' | 'present' | 'auspicious' | 'inauspicious'>('all');
   const [expandedYoga, setExpandedYoga] = useState<string | null>(null);
 
-  const filtered = yogas.filter(y => {
+  // Deduplicate yogas by ID — keep the one that's present, or first occurrence
+  const deduped = useMemo(() => {
+    const seen = new Map<string, YogaComplete>();
+    for (const y of yogas) {
+      const existing = seen.get(y.id);
+      if (!existing || (y.present && !existing.present)) {
+        seen.set(y.id, y);
+      }
+    }
+    return [...seen.values()];
+  }, [yogas]);
+
+  const filtered = deduped.filter(y => {
     if (filter === 'present') return y.present;
     if (filter === 'auspicious') return y.isAuspicious;
     if (filter === 'inauspicious') return !y.isAuspicious;
     return true;
   });
 
-  const presentCount = yogas.filter(y => y.present).length;
-  const auspiciousPresent = yogas.filter(y => y.present && y.isAuspicious).length;
-  const inauspiciousPresent = yogas.filter(y => y.present && !y.isAuspicious).length;
+  const presentCount = deduped.filter(y => y.present).length;
+  const auspiciousPresent = deduped.filter(y => y.present && y.isAuspicious).length;
+  const inauspiciousPresent = deduped.filter(y => y.present && !y.isAuspicious).length;
 
   const CATEGORY_LABELS: Record<string, { en: string; hi: string }> = {
     dosha: { en: 'Doshas', hi: 'दोष' },

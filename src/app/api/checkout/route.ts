@@ -50,7 +50,7 @@ export async function POST(req: Request) {
         'jyotishi_annual': process.env.STRIPE_PRICE_JYOTISHI_ANNUAL,
       };
 
-      const priceId = priceMap[`${tier}_${billing}`];
+      const priceId = priceMap[`${tier}_${billing}`]?.trim();
       if (!priceId) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }
@@ -86,7 +86,7 @@ export async function POST(req: Request) {
         'jyotishi_annual': process.env.RAZORPAY_PLAN_JYOTISHI_ANNUAL,
       };
 
-      const planId = planMap[`${tier}_${billing}`];
+      const planId = planMap[`${tier}_${billing}`]?.trim();
       if (!planId) {
         return NextResponse.json({ error: 'Payment not configured' }, { status: 503 });
       }

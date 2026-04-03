@@ -6,21 +6,21 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
   deity: { en: 'Krishna (Bal Gopal)', hi: 'कृष्ण (बाल गोपाल)', sa: 'कृष्णः (बालगोपालः)' },
 
   samagri: [
-    { name: { en: 'Baby Krishna idol (Bal Gopal)', hi: 'बाल कृष्ण मूर्ति (बाल गोपाल)', sa: 'बालकृष्णमूर्तिः (बालगोपालः)' } },
-    { name: { en: 'Jhula (cradle/swing)', hi: 'झूला (पालना)', sa: 'हिन्दोलम् (डोलः)' } },
-    { name: { en: 'Makhan (fresh butter)', hi: 'माखन (ताजा मक्खन)', sa: 'नवनीतम्' } },
-    { name: { en: 'Mishri (rock sugar)', hi: 'मिश्री (खड़ी शक्कर)', sa: 'खण्डशर्करा' } },
-    { name: { en: 'Tulsi leaves', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' } },
-    { name: { en: 'Peacock feather (mor pankh)', hi: 'मोर पंख', sa: 'मयूरपिच्छम्' } },
-    { name: { en: 'Flute (bansuri)', hi: 'बाँसुरी', sa: 'वंशी' } },
-    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं दधि घृतं मधु शर्करा)' } },
-    { name: { en: 'Fresh fruits', hi: 'ताजे फल', sa: 'नवफलानि' } },
-    { name: { en: 'Milk', hi: 'दूध', sa: 'क्षीरम्' }, quantity: '1 litre' },
-    { name: { en: 'Curd (dahi)', hi: 'दही', sa: 'दधि' } },
-    { name: { en: 'Honey', hi: 'शहद', sa: 'मधु' } },
-    { name: { en: 'Ghee (clarified butter)', hi: 'घी', sa: 'घृतम्' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
+    { name: { en: 'Baby Krishna idol (Bal Gopal)', hi: 'बाल कृष्ण मूर्ति (बाल गोपाल)', sa: 'बालकृष्णमूर्तिः (बालगोपालः)' }, category: 'puja_items', essential: true },
+    { name: { en: 'Jhula (cradle/swing)', hi: 'झूला (पालना)', sa: 'हिन्दोलम् (डोलः)' }, category: 'other', essential: true },
+    { name: { en: 'Makhan (fresh butter)', hi: 'माखन (ताजा मक्खन)', sa: 'नवनीतम्' }, category: 'food', essential: true },
+    { name: { en: 'Mishri (rock sugar)', hi: 'मिश्री (खड़ी शक्कर)', sa: 'खण्डशर्करा' }, category: 'food', essential: true },
+    { name: { en: 'Tulsi leaves', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, category: 'flowers', essential: true },
+    { name: { en: 'Peacock feather (mor pankh)', hi: 'मोर पंख', sa: 'मयूरपिच्छम्' }, category: 'other', essential: false },
+    { name: { en: 'Flute (bansuri)', hi: 'बाँसुरी', sa: 'वंशी' }, category: 'other', essential: false },
+    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं दधि घृतं मधु शर्करा)' }, category: 'food', essential: true },
+    { name: { en: 'Fresh fruits', hi: 'ताजे फल', sa: 'नवफलानि' }, category: 'food', essential: true },
+    { name: { en: 'Milk', hi: 'दूध', sa: 'क्षीरम्' }, quantity: '1 litre', category: 'food', essential: true },
+    { name: { en: 'Curd (dahi)', hi: 'दही', sa: 'दधि' }, category: 'food', essential: true },
+    { name: { en: 'Honey', hi: 'शहद', sa: 'मधु' }, category: 'food', essential: true },
+    { name: { en: 'Ghee (clarified butter)', hi: 'घी', sa: 'घृतम्' }, category: 'food', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
   ],
 
   muhurtaType: 'computed',
@@ -47,6 +47,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'सूर्योदयात् सम्पूर्णम् उपवासं कुर्यात्। कठिनव्रतिनः निर्जलं (जलरहितम्) कुर्वन्ति, अन्ये फलाहारं (फलानि क्षीरं शुष्कफलानि) ग्रहीतुं शक्नुवन्ति। उपवासो मध्यरात्रिपूजानन्तरं पर्यन्तं चलति।',
       },
       duration: 'All day',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -57,6 +59,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'हिन्दोलं पुष्पैः आम्रपत्रैः वर्णवस्त्रैश्च अलङ्कुर्यात्। अन्तः लघुशय्यां उपधानं च स्थापयेत्। इदं मध्यरात्रौ बालकृष्णस्य शयनं भविष्यति।',
       },
       duration: '20 min',
+      essential: false,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -67,6 +71,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'कृष्णमूर्त्या मयूरपिच्छेन वंश्या प्रसादेन च पूजाक्षेत्रं सज्जयेत्। वेद्याः समीपे हिन्दोलं स्थापयेत्। पञ्चामृतसामग्रीं नवनीतखण्डशर्करां फलानि च सज्जयेत्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 4,
@@ -77,6 +83,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'सूर्यास्ते दीपान् प्रज्वालयेत् सन्ध्यापूजां च आरभेत्। कृष्णाय धूपं दीपं च समर्पयेत्। भगवद्गीतायाः कृष्णलीलाकथानां वा पाठम् आरभेत्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -88,6 +96,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
       },
       mantraRef: 'mahamantra',
       duration: 'Until midnight',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 6,
@@ -98,6 +108,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'ठीकनिशीथकाले (मध्यरात्रौ) बालकृष्णमूर्तिं पञ्चामृतेन स्नापयेत् — प्रथमं क्षीरेण, ततो दध्ना, ततो घृतेन, ततो मधुना, ततो शर्करोदकेन — ततः शुद्धजलेन। शङ्खं वादयेत्, घण्टां वादयेत्, "नन्दगृहे आनन्दो ऽभवत्, जयो बालकृष्णस्य!" इति उद्घोषयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -108,6 +120,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'अभिषेकानन्तरं बालकृष्णं नूतनवस्त्रैः आच्छादयेत्, चन्दनतिलकं लेपयेत्, मुकुटे मयूरपिच्छं स्थापयेत्, हस्ते वंशीं दद्यात्। अलङ्कृतहिन्दोले मृदुलं स्थापयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 8,
@@ -118,6 +132,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत् — बालकृष्णार्थं लालनागीतानि। प्रत्येकं कुटुम्बसदस्यं पर्यायेण डोलम् आन्दोलयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 9,
@@ -128,6 +144,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'बालकृष्णाय नवं नवनीतं खण्डशर्करया मिश्रितं समर्पयेत् — तस्य सर्वप्रियं भोजनम्। क्षीरं दधि फलानि पञ्चामृतं तुलसीपत्राणि च निवेदयेत्। नैवेद्यस्य परितः जलं सिञ्चेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 10,
@@ -138,6 +156,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'कर्पूरघृतदीपाभ्यां बालकृष्णस्य आरात्रिकं कुर्यात्। "आरती कुञ्जबिहारिणः" गायेत् — श्रीकृष्णस्य सर्वप्रसिद्धम् आरात्रिकम्। सर्वत्र घण्टां शङ्खं च वादयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 11,
@@ -148,6 +168,8 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
         sa: 'मध्यरात्रिपूजायाः आरात्रिकनैवेद्ययोः अनन्तरं प्रथमं पञ्चामृतप्रसादं ततो नवनीतखण्डशर्करां ततो फलानि अन्यं सात्त्विकाहारं च ग्रहीत्वा उपवासं भञ्जयेत्।',
       },
       duration: '10 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 12,
@@ -243,6 +265,7 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
     {
       name: { en: 'Srimad Bhagavatam — Dashama Skandha (10th Canto — Krishna Birth)', hi: 'श्रीमद्भागवत — दशम स्कन्ध (कृष्ण जन्म)', sa: 'श्रीमद्भागवतम् — दशमस्कन्धः (कृष्णजन्मम्)' },
+      verseCount: 90,
       duration: '30 min',
       note: {
         en: 'The 10th Canto of Bhagavatam describes Krishna\'s birth in Mathura, Vasudeva carrying him across the Yamuna, and his childhood leelas in Gokul-Vrindavan.',

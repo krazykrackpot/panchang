@@ -6,21 +6,21 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
   deity: { en: 'Rama', hi: 'राम', sa: 'रामः' },
 
   samagri: [
-    { name: { en: 'Rama idol/image (with Sita, Lakshman, Hanuman)', hi: 'राम मूर्ति/चित्र (सीता, लक्ष्मण, हनुमान सहित)', sa: 'राममूर्तिः/चित्रम् (सीतालक्ष्मणहनुमत्सहितम्)' } },
-    { name: { en: 'Tulsi leaves', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' } },
-    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं दधि घृतं मधु शर्करा)' } },
-    { name: { en: 'Red and yellow flowers', hi: 'लाल और पीले फूल', sa: 'रक्तपीतपुष्पाणि' } },
-    { name: { en: 'Fresh fruits', hi: 'ताजे फल', sa: 'नवफलानि' } },
-    { name: { en: 'Whole coconut', hi: 'साबुत नारियल', sa: 'सम्पूर्णनारिकेलम्' }, quantity: '1' },
-    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' } },
-    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' } },
-    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1' },
-    { name: { en: 'Cradle for baby Rama (jhula)', hi: 'बालराम के लिए पालना (झूला)', sa: 'बालरामार्थं डोला (हिन्दोलम्)' } },
-    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Yellow cloth (pitambar)', hi: 'पीला वस्त्र (पीताम्बर)', sa: 'पीताम्बरम्' } },
-    { name: { en: 'Kalash (sacred pot) with mango leaves', hi: 'आम के पत्तों सहित कलश', sa: 'आम्रपत्रसहितकलशः' } },
+    { name: { en: 'Rama idol/image (with Sita, Lakshman, Hanuman)', hi: 'राम मूर्ति/चित्र (सीता, लक्ष्मण, हनुमान सहित)', sa: 'राममूर्तिः/चित्रम् (सीतालक्ष्मणहनुमत्सहितम्)' }, category: 'puja_items', essential: true },
+    { name: { en: 'Tulsi leaves', hi: 'तुलसी के पत्ते', sa: 'तुलसीपत्राणि' }, category: 'flowers', essential: true },
+    { name: { en: 'Panchamrit (milk, curd, ghee, honey, sugar)', hi: 'पंचामृत (दूध, दही, घी, शहद, शक्कर)', sa: 'पञ्चामृतम् (क्षीरं दधि घृतं मधु शर्करा)' }, category: 'food', essential: true },
+    { name: { en: 'Red and yellow flowers', hi: 'लाल और पीले फूल', sa: 'रक्तपीतपुष्पाणि' }, category: 'flowers', essential: true },
+    { name: { en: 'Fresh fruits', hi: 'ताजे फल', sa: 'नवफलानि' }, category: 'food', essential: true },
+    { name: { en: 'Whole coconut', hi: 'साबुत नारियल', sa: 'सम्पूर्णनारिकेलम्' }, quantity: '1', category: 'food', essential: true },
+    { name: { en: 'Kumkum (vermilion)', hi: 'कुमकुम (सिन्दूर)', sa: 'कुङ्कुमम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Sandalwood paste (chandan)', hi: 'चन्दन का लेप', sa: 'चन्दनम्' }, category: 'puja_items', essential: false },
+    { name: { en: 'Ghee lamp', hi: 'घी का दीपक', sa: 'घृतदीपः' }, quantity: '1', category: 'puja_items', essential: true },
+    { name: { en: 'Cradle for baby Rama (jhula)', hi: 'बालराम के लिए पालना (झूला)', sa: 'बालरामार्थं डोला (हिन्दोलम्)' }, category: 'other', essential: false },
+    { name: { en: 'Incense sticks', hi: 'अगरबत्ती', sa: 'धूपम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Yellow cloth (pitambar)', hi: 'पीला वस्त्र (पीताम्बर)', sa: 'पीताम्बरम्' }, category: 'clothing', essential: false },
+    { name: { en: 'Kalash (sacred pot) with mango leaves', hi: 'आम के पत्तों सहित कलश', sa: 'आम्रपत्रसहितकलशः' }, category: 'vessels', essential: true },
   ],
 
   muhurtaType: 'computed',
@@ -47,6 +47,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'प्रातः उत्थाय गङ्गाजलेन (उपलभ्ये सति) पवित्रस्नानं कुर्यात्। शुद्धानि पीतकाषायवस्त्राणि धारयेत्। मध्याह्नपूजापर्यन्तं उपवासं कुर्यात्।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -57,6 +59,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'ताम्रपीतलकलशं जलेन पूरयेत्, उपरि पञ्चाम्रपत्राणि सम्पूर्णनारिकेलं च स्थापयेत्। कलशे कुङ्कुमेन स्वस्तिकं लिखेत्। इदं सर्वपवित्रनदीनाम् आवाहनम्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -67,6 +71,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'राममूर्तिं चित्रं वा (यथासम्भवं सीतालक्ष्मणहनुमत्सहितम्) पूर्वाभिमुखं शुद्धपीठे स्थापयेत्। अधस्तात् पीताम्बरं विस्तारयेत्। बालरामसंस्कारार्थं समीपे डोलं स्थापयेत्।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 4,
@@ -78,6 +84,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
       },
       mantraRef: 'rama-taraka',
       duration: '20 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -88,6 +96,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'राममूर्तिं पञ्चामृतेन (क्षीरं दधि घृतं मधु शर्करा) यथाक्रमं स्नापयेत्, ततो गङ्गाजलेन शुद्धजलेन वा। मृदुलं प्रमार्ज्य पुनः वेद्यां स्थापयेत्।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -98,6 +108,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'मूर्तिं पीताम्बरेण आच्छादयेत्। चन्दनकुङ्कुमतिलकं लेपयेत्। तुलसीमालां रक्तपीतपुष्पाणि च समर्पयेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 7,
@@ -108,6 +120,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'बहुपरम्परासु रामसीतयोः विवाहः (सीताकल्याणम्) आनुष्ठानिकरूपेण प्रदर्श्यते — रामसीतामूर्तयोः मालाविनिमयः रामायणवर्णितदिव्यमिलनस्य प्रतीकः।',
       },
       duration: '10 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 8,
@@ -118,6 +132,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'मध्याह्ने (ठीक मध्याह्नकाले — रामजन्मक्षणे) अलङ्कृतडोले लघुबालराममूर्तिं स्थापयेत्। भक्तिगीतानि गायन् डोलं मृदुलं आन्दोलयेत्। जन्मोत्सवं अभिनन्दितुं शङ्खं घण्टां च वादयेत्।',
       },
       duration: '10 min',
+      essential: false,
+      stepType: 'mantra',
     },
     {
       step: 9,
@@ -128,6 +144,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'रामायणात् चितानि अध्यायानि पठेत् — विशेषतः तुलसीदासरामचरितमानसात् वाल्मीकिरामायणात् वा बालकाण्डम् (जन्माध्यायम्)। बहवो भक्ताः हनुमदनुग्रहार्थं सुन्दरकाण्डं पठन्ति।',
       },
       duration: '30 min',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 10,
@@ -138,6 +156,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'धूपं प्रज्वाल्य मूर्तेः पुरतः भ्रामयेत्। ततो घृतदीपं प्रज्वाल्य आरात्रिकं कुर्यात् — त्रिवारं पादयोः, द्विवारं नाभौ, एकवारं मुखे, सप्तवारं सम्पूर्णमूर्तेः परितः।',
       },
       duration: '5 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 11,
@@ -148,6 +168,8 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
         sa: 'कर्पूरदीपेन "आरती श्रीरामचन्द्रस्य" गायन् श्रीरामस्य आरात्रिकं कुर्यात्। आरात्रिककाले अविरतं घण्टां वादयेत्।',
       },
       duration: '5 min',
+      essential: false,
+      stepType: 'conclusion',
     },
     {
       step: 12,
@@ -227,6 +249,7 @@ export const RAM_NAVAMI_PUJA: PujaVidhi = {
   stotras: [
     {
       name: { en: 'Ramcharitmanas — Bal Kanda (Birth section)', hi: 'रामचरितमानस — बालकाण्ड (जन्म प्रसंग)', sa: 'रामचरितमानसम् — बालकाण्डम् (जन्मप्रसङ्गः)' },
+      verseCount: 50,
       duration: '20 min',
       note: {
         en: 'Recite the verses describing Rama\'s birth from Tulsidas\'s Ramcharitmanas, Bal Kanda — "Bhaye pragat kripala deen dayala..."',

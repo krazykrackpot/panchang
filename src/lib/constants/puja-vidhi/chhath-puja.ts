@@ -6,21 +6,21 @@ export const CHHATH_PUJA: PujaVidhi = {
   deity: { en: 'Surya & Chhathi Maiya', hi: 'सूर्य एवं छठी मइया', sa: 'सूर्यः छठीमाता च' },
 
   samagri: [
-    { name: { en: 'Bamboo Soop (winnowing fan)', hi: 'बाँस का सूप', sa: 'वंशसूर्पम्' }, note: { en: 'Essential vessel for offerings — must be new', hi: 'अर्पण के लिए आवश्यक पात्र — नया होना चाहिए', sa: 'अर्पणार्थम् अनिवार्यं पात्रम् — नवं भवेत्' } },
-    { name: { en: 'Thekua (wheat flour sweets)', hi: 'ठेकुआ (गेहूँ के आटे की मिठाई)', sa: 'गोधूमचूर्णमिष्टान्नम् (ठेकुआ)' }, note: { en: 'Prepared without onion/garlic, with jaggery, ghee, dry fruits', hi: 'प्याज/लहसुन रहित, गुड़, घी, मेवों से बनाया जाता है', sa: 'पलाण्डुलशुनरहितं गुडघृतशुष्कफलैः निर्मितम्' } },
-    { name: { en: 'Sugarcane', hi: 'गन्ना', sa: 'इक्षुदण्डः' }, quantity: '5-7' },
-    { name: { en: 'Bananas', hi: 'केले', sa: 'कदलीफलानि' }, quantity: '1 bunch' },
-    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '5' },
-    { name: { en: 'Sweet lime (Mausambi)', hi: 'मौसम्बी', sa: 'मधुरनिम्बूकम् (मौसम्बी)' }, quantity: '5-7' },
-    { name: { en: 'Fresh ginger', hi: 'अदरक', sa: 'आर्द्रकम्' } },
-    { name: { en: 'Fresh turmeric roots', hi: 'कच्ची हल्दी', sa: 'आर्द्रहरिद्रा' } },
-    { name: { en: 'Earthen lamps (diyas)', hi: 'मिट्टी के दीपक', sa: 'मृत्तिकादीपाः' }, quantity: '5-7' },
-    { name: { en: 'New clothes for the Vratti', hi: 'व्रती के लिए नए वस्त्र', sa: 'व्रतिनः नववस्त्राणि' } },
-    { name: { en: 'Red/yellow cloth', hi: 'लाल/पीला कपड़ा', sa: 'रक्तपीतवस्त्रम्' } },
-    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' } },
-    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' } },
-    { name: { en: 'Radish and other seasonal vegetables', hi: 'मूली और अन्य मौसमी सब्जियाँ', sa: 'मूलकम् अन्यानि ऋतुशाकानि च' } },
-    { name: { en: 'Rice flour laddoo', hi: 'चावल के आटे के लड्डू', sa: 'तण्डुलचूर्णमोदकानि' } },
+    { name: { en: 'Bamboo Soop (winnowing fan)', hi: 'बाँस का सूप', sa: 'वंशसूर्पम्' }, note: { en: 'Essential vessel for offerings — must be new', hi: 'अर्पण के लिए आवश्यक पात्र — नया होना चाहिए', sa: 'अर्पणार्थम् अनिवार्यं पात्रम् — नवं भवेत्' }, category: 'vessels', essential: true },
+    { name: { en: 'Thekua (wheat flour sweets)', hi: 'ठेकुआ (गेहूँ के आटे की मिठाई)', sa: 'गोधूमचूर्णमिष्टान्नम् (ठेकुआ)' }, note: { en: 'Prepared without onion/garlic, with jaggery, ghee, dry fruits', hi: 'प्याज/लहसुन रहित, गुड़, घी, मेवों से बनाया जाता है', sa: 'पलाण्डुलशुनरहितं गुडघृतशुष्कफलैः निर्मितम्' }, category: 'food', essential: true },
+    { name: { en: 'Sugarcane', hi: 'गन्ना', sa: 'इक्षुदण्डः' }, quantity: '5-7', category: 'food', essential: true },
+    { name: { en: 'Bananas', hi: 'केले', sa: 'कदलीफलानि' }, quantity: '1 bunch', category: 'food', essential: true },
+    { name: { en: 'Coconut', hi: 'नारियल', sa: 'नारिकेलम्' }, quantity: '5', category: 'food', essential: true },
+    { name: { en: 'Sweet lime (Mausambi)', hi: 'मौसम्बी', sa: 'मधुरनिम्बूकम् (मौसम्बी)' }, quantity: '5-7', category: 'food', essential: true },
+    { name: { en: 'Fresh ginger', hi: 'अदरक', sa: 'आर्द्रकम्' }, category: 'food', essential: false },
+    { name: { en: 'Fresh turmeric roots', hi: 'कच्ची हल्दी', sa: 'आर्द्रहरिद्रा' }, category: 'food', essential: false },
+    { name: { en: 'Earthen lamps (diyas)', hi: 'मिट्टी के दीपक', sa: 'मृत्तिकादीपाः' }, quantity: '5-7', category: 'puja_items', essential: true },
+    { name: { en: 'New clothes for the Vratti', hi: 'व्रती के लिए नए वस्त्र', sa: 'व्रतिनः नववस्त्राणि' }, category: 'clothing', essential: true },
+    { name: { en: 'Red/yellow cloth', hi: 'लाल/पीला कपड़ा', sa: 'रक्तपीतवस्त्रम्' }, category: 'clothing', essential: false },
+    { name: { en: 'Akshat (unbroken rice)', hi: 'अक्षत (साबुत चावल)', sa: 'अक्षताः' }, category: 'puja_items', essential: true },
+    { name: { en: 'Camphor', hi: 'कपूर', sa: 'कर्पूरम्' }, category: 'puja_items', essential: true },
+    { name: { en: 'Radish and other seasonal vegetables', hi: 'मूली और अन्य मौसमी सब्जियाँ', sa: 'मूलकम् अन्यानि ऋतुशाकानि च' }, category: 'food', essential: false },
+    { name: { en: 'Rice flour laddoo', hi: 'चावल के आटे के लड्डू', sa: 'तण्डुलचूर्णमोदकानि' }, category: 'food', essential: true },
   ],
 
   muhurtaType: 'fixed',
@@ -46,6 +46,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'व्रती सूर्योदयकाले नद्यां तडागे वा पवित्रस्नानं करोति। मृत्तिकाचूल्लौ अलाबूशाकं चणकदालं तण्डुलं च सात्विकभोजनं पचित्वा भुङ्क्ते। गृहं सम्यक् शोधयति। अस्मात् भोजनात् परं कठोरा शुद्धिः पालनीया।',
       },
       duration: '2-3 hours',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 2,
@@ -56,6 +58,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'व्रती सम्पूर्णं दिनं निर्जलं उपवसति। सायं सूर्यास्तानन्तरं गुडक्षीरपायसेन चपात्या च व्रतं भङ्क्ते। इदं पायसप्रसादं प्रथमं छठीमात्रे अर्प्यते ततः कुटुम्बे वितर्यते। अस्मात् भोजनात् परं षट्त्रिंशद्होरापर्यन्तं निर्जलव्रतम् आरभते।',
       },
       duration: '4-5 hours',
+      essential: true,
+      stepType: 'preparation',
     },
     {
       step: 3,
@@ -66,6 +70,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'सर्वाणि अर्पणद्रव्याणि सज्जयेत्: ठेकुआ, तण्डुलमोदकानि, फलानि (कदलीफलानि, नारिकेलानि, मौसम्बी), इक्षुदण्डान्, अन्यानि च वंशसूर्पे। व्रती नववस्त्राणि धृत्वा सूर्यास्तात् पूर्वं नदीतटं जलाशयं वा गच्छति। कटिपर्यन्तं जले स्थित्वा, व्रती अस्तगतसूर्याय अर्घ्यं ददाति — सूर्पेण सूर्यदिशि जलं क्षीरं च अर्पयति। कुटुम्बं समुदायश्च छठलोकगीतानि गायन्ति। सूर्पे मृत्तिकादीपान् प्रज्वालयन्ति।',
       },
       duration: '2-3 hours',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 4,
@@ -76,6 +82,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'सन्ध्यार्घ्यानन्तरं गृहे विशेषं कोसीकर्म कर्तुं शक्यते — पञ्चेक्षुदण्डैः चन्दनिका निर्मीयते तदधः मृत्तिकादीपाः प्रज्वाल्यन्ते। व्रती रात्रौ निर्जलव्रतं पालयति, प्रभातार्घ्यस्य सज्जतां करोति।',
       },
       duration: 'Overnight',
+      essential: false,
+      stepType: 'offering',
     },
     {
       step: 5,
@@ -86,6 +94,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'सूर्योदयात् पूर्वं व्रती वंशसूर्पे नवार्पणद्रव्याणि गृहीत्वा तमेव जलाशयं गच्छति। जले स्थित्वा क्षितिजे उदयमानसूर्याय अर्घ्यं ददाति। सूर्पेण जलं क्षीरं च अर्पयति। समुदायजनाः छठगीतानि गायन्ति। इदं सम्पूर्णछठपूजायाः चरमक्षणम्।',
       },
       duration: '1-2 hours',
+      essential: true,
+      stepType: 'offering',
     },
     {
       step: 6,
@@ -97,6 +107,8 @@ export const CHHATH_PUJA: PujaVidhi = {
       },
       mantraRef: 'surya-arghya',
       duration: '5 min',
+      essential: true,
+      stepType: 'mantra',
     },
     {
       step: 7,
@@ -107,6 +119,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'ऊषार्घ्यानन्तरं व्रती गृहं प्रत्यागच्छति। अर्घ्यजलं (प्रसादम्) पीत्वा ठेकुआप्रसादं च भुक्त्वा व्रतं भङ्क्ते। कुटुम्बस्य वृद्धाः व्रतिनम् आशिषन्ति। षट्त्रिंशद्होरानिर्जलव्रतं समाप्यते।',
       },
       duration: '30 min',
+      essential: true,
+      stepType: 'conclusion',
     },
     {
       step: 8,
@@ -117,6 +131,8 @@ export const CHHATH_PUJA: PujaVidhi = {
         sa: 'छठप्रसादं (ठेकुआ, फलानि, तण्डुलमोदकानि) सर्वेषां कुटुम्बजनानां प्रतिवासिनां समुदायस्य च मध्ये वितरेत्। इदं प्रसादम् अतीव पवित्रं मन्यते।',
       },
       duration: '15 min',
+      essential: true,
+      stepType: 'conclusion',
     },
   ],
 
@@ -170,8 +186,6 @@ export const CHHATH_PUJA: PujaVidhi = {
       },
     },
   ],
-
-  aarti: undefined,
 
   naivedya: {
     en: 'Thekua (wheat-jaggery-ghee sweet), rice flour laddoo, bananas, coconut, sweet lime, sugarcane, fresh turmeric, ginger, and seasonal fruits — all arranged in the bamboo soop',

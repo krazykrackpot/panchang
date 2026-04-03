@@ -150,9 +150,21 @@ export default function PricingPage() {
       return;
     }
     try {
+      // Get auth token for the API call
+      const supabase = (await import('@/lib/supabase/client')).getSupabase();
+      const session = await supabase?.auth.getSession();
+      const token = session?.data.session?.access_token;
+      if (!token) {
+        alert(locale === 'en' ? 'Please sign in first' : 'पहले साइन इन करें');
+        return;
+      }
+
       const res = await fetch('/api/checkout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
         body: JSON.stringify({ tier, billing, currency }),
       });
       const data = await res.json();

@@ -574,3 +574,414 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
     </div>
   );
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 5. PLANETS INTERPRETATION — Beginner-friendly chart overview
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const LAGNA_SKETCHES: Record<number, { en: string; hi: string }> = {
+  1:  { en: 'Bold, independent, action-oriented leader', hi: 'साहसी, स्वतंत्र, कर्मप्रधान नेता' },
+  2:  { en: 'Stable, patient, values comfort and security', hi: 'स्थिर, धैर्यवान, सुख और सुरक्षा को महत्व देने वाले' },
+  3:  { en: 'Curious, communicative, intellectually agile', hi: 'जिज्ञासु, संवादशील, बौद्धिक रूप से चुस्त' },
+  4:  { en: 'Nurturing, emotionally deep, home-oriented', hi: 'पोषणकर्ता, भावनात्मक रूप से गहरे, गृह-केंद्रित' },
+  5:  { en: 'Charismatic, confident, creative, seeks recognition', hi: 'करिश्माई, आत्मविश्वासी, रचनात्मक, मान्यता के इच्छुक' },
+  6:  { en: 'Analytical, detail-oriented, service-minded', hi: 'विश्लेषणात्मक, विस्तार-उन्मुख, सेवा-भावी' },
+  7:  { en: 'Diplomatic, relationship-focused, aesthetic sense', hi: 'कूटनीतिक, संबंध-केंद्रित, सौंदर्य बोध' },
+  8:  { en: 'Intense, transformative, deep researcher', hi: 'तीव्र, परिवर्तनकारी, गहन शोधकर्ता' },
+  9:  { en: 'Adventurous, philosophical, freedom-loving', hi: 'साहसिक, दार्शनिक, स्वतंत्रता-प्रेमी' },
+  10: { en: 'Disciplined, ambitious, practical, career-focused', hi: 'अनुशासित, महत्वाकांक्षी, व्यावहारिक, करियर-केंद्रित' },
+  11: { en: 'Innovative, humanitarian, independent thinker', hi: 'नवोन्मेषी, मानवतावादी, स्वतंत्र विचारक' },
+  12: { en: 'Intuitive, spiritual, compassionate, creative', hi: 'अंतर्ज्ञानी, आध्यात्मिक, करुणामय, रचनात्मक' },
+};
+
+const RASHI_NAMES_EN = ['', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+const RASHI_NAMES_HI = ['', 'मेष', 'वृषभ', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'];
+
+const PLANET_NAMES_FULL_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+const PLANET_NAMES_FULL_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+
+function pNameFull(id: number, isHi: boolean): string {
+  return isHi ? (PLANET_NAMES_FULL_HI[id] ?? `ग्रह ${id}`) : (PLANET_NAMES_FULL_EN[id] ?? `Planet ${id}`);
+}
+
+interface PlanetsInterpretationProps {
+  planets: PlanetPosition[];
+  ascendant: { sign: number; signName: { en: string; hi: string } };
+  locale: string;
+}
+
+export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInterpretationProps) {
+  const isHi = locale !== 'en';
+
+  const moonPlanet = planets.find(p => p.planet.id === 1);
+  const exalted = planets.filter(p => p.isExalted);
+  const debilitated = planets.filter(p => p.isDebilitated);
+  const retrograde = planets.filter(p => p.isRetrograde);
+  const ownSign = planets.filter(p => p.isOwnSign);
+  const combust = planets.filter(p => p.isCombust);
+
+  const lagnaSketch = LAGNA_SKETCHES[ascendant.sign];
+  const lagnaName = isHi ? ascendant.signName.hi : ascendant.signName.en;
+
+  return (
+    <div className="space-y-4 mt-6">
+      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
+        {isHi ? 'ग्रह विश्लेषण' : 'Planets Interpretation'}
+      </h3>
+
+      {/* Intro */}
+      <SectionCard>
+        <SectionHeading>{isHi ? 'आपकी कुंडली एक नज़र में' : 'Your Chart at a Glance'}</SectionHeading>
+        <InfoParagraph>
+          {isHi
+            ? 'यह आपकी जन्म कुंडली की प्रमुख विशेषताओं का सरल सारांश है। यह समझने का सबसे आसान तरीका है कि आपके ग्रह क्या कहते हैं।'
+            : 'This is a beginner-friendly summary of your birth chart\'s key features. It\'s the simplest way to understand what your planets are telling you.'}
+        </InfoParagraph>
+      </SectionCard>
+
+      {/* Lagna */}
+      <SectionCard border="border-emerald-500/15">
+        <SectionHeading>{isHi ? 'लग्न (उदय राशि)' : 'Lagna (Ascendant)'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed">
+          {isHi
+            ? `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको ऐसे देखती है। ${lagnaSketch?.hi ?? ''}`
+            : `Your Lagna is ${lagnaName}. This is your 'rising sign' — how the world sees you. ${lagnaSketch?.en ?? ''}`}
+        </p>
+      </SectionCard>
+
+      {/* Moon Sign */}
+      {moonPlanet && (
+        <SectionCard border="border-sky-500/15">
+          <SectionHeading>{isHi ? 'चन्द्र राशि' : 'Moon Sign (Rashi)'}</SectionHeading>
+          <p className="text-sm text-gray-200 leading-relaxed">
+            {isHi
+              ? `आपका चन्द्रमा ${RASHI_NAMES_HI[moonPlanet.sign] ?? moonPlanet.signName.hi} राशि में है। यह आपका भावनात्मक केंद्र है — आप कैसा महसूस करते हैं, क्या आपको सुकून देता है। ${LAGNA_SKETCHES[moonPlanet.sign]?.hi ?? ''}`
+              : `Your Moon is in ${RASHI_NAMES_EN[moonPlanet.sign] ?? moonPlanet.signName.en}. This is your emotional core — how you FEEL, what gives you comfort. ${LAGNA_SKETCHES[moonPlanet.sign]?.en ?? ''}`}
+          </p>
+        </SectionCard>
+      )}
+
+      {/* Key Dignities */}
+      {(exalted.length > 0 || debilitated.length > 0 || retrograde.length > 0 || ownSign.length > 0) && (
+        <SectionCard border="border-sky-500/15">
+          <SectionHeading>{isHi ? 'प्रमुख गरिमाएं' : 'Key Dignities'}</SectionHeading>
+          <div className="space-y-3">
+            {exalted.map(p => (
+              <div key={`ex-${p.planet.id}`} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-semibold text-emerald-400">{pNameFull(p.planet.id, isHi)}</span>
+                  {isHi
+                    ? ` उच्च है — अत्यंत बलवान। ${pNameFull(p.planet.id, true)} के कारकत्वों से उत्कृष्ट परिणाम अपेक्षित हैं।`
+                    : ` is exalted — extremely strong. Expect excellent results from ${pNameFull(p.planet.id, false)}'s significations.`}
+                </p>
+              </div>
+            ))}
+            {debilitated.map(p => (
+              <div key={`deb-${p.planet.id}`} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-semibold text-amber-400">{pNameFull(p.planet.id, isHi)}</span>
+                  {isHi
+                    ? ` नीच है — चुनौतीपूर्ण। ${pNameFull(p.planet.id, true)} के विषयों में बाधाएं आ सकती हैं। नीच भंग (निरस्तीकरण) की जांच करें।`
+                    : ` is debilitated — challenged. ${pNameFull(p.planet.id, false)}'s themes may face obstacles. Check for Neecha Bhanga (cancellation).`}
+                </p>
+              </div>
+            ))}
+            {ownSign.map(p => (
+              <div key={`own-${p.planet.id}`} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-semibold text-emerald-400">{pNameFull(p.planet.id, isHi)}</span>
+                  {isHi
+                    ? ` अपनी ही राशि में है — सहज और स्वाभाविक। मजबूत, विश्वसनीय परिणाम।`
+                    : ` is in its own sign — comfortable and natural. Strong, reliable results.`}
+                </p>
+              </div>
+            ))}
+            {retrograde.map(p => (
+              <div key={`ret-${p.planet.id}`} className="p-3 rounded-lg bg-sky-500/5 border border-sky-500/10">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-semibold text-sky-400">{pNameFull(p.planet.id, isHi)}</span>
+                  {isHi
+                    ? ` वक्री है — आंतरिक ऊर्जा। परिणाम पुनर्विचार, पुनरावलोकन और गहन प्रयास से आते हैं।`
+                    : ` is retrograde — internalized energy. Results come through revisiting, rethinking, and deeper effort.`}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      )}
+
+      {/* Combustion warning */}
+      {combust.length > 0 && (
+        <SectionCard border="border-amber-500/15">
+          <SectionHeading>{isHi ? 'अस्त ग्रह चेतावनी' : 'Combustion Warning'}</SectionHeading>
+          <div className="space-y-2">
+            {combust.map(p => (
+              <div key={`comb-${p.planet.id}`} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                <p className="text-sm text-gray-200 leading-relaxed">
+                  <span className="font-semibold text-amber-400">{pNameFull(p.planet.id, isHi)}</span>
+                  {isHi
+                    ? ` सूर्य के बहुत निकट है (अस्त) — इसके कारकत्व सूर्य की छाया में आ सकते हैं।`
+                    : ` is too close to the Sun (combust) — its significations may be overshadowed.`}
+                </p>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 6. DASHA INTERPRETATION — Current life chapter
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const MAHADASHA_THEMES: Record<string, { en: string; hi: string }> = {
+  Ketu:    { en: 'Spiritual growth, detachment from material pursuits, past karma resolving. You may feel restless or disconnected. Embrace meditation, spiritual practices, and letting go.', hi: 'आध्यात्मिक विकास, भौतिक सुखों से वैराग्य, पिछले कर्मों का फल। आप बेचैन या अलग-थलग महसूस कर सकते हैं। ध्यान, आध्यात्मिक साधना और त्याग को अपनाएं।' },
+  Venus:   { en: 'Relationships, marriage, luxury, creativity flourish. This is a time for partnerships, artistic pursuits, and enjoying life\'s comforts. Invest in relationships.', hi: 'संबंध, विवाह, विलासिता, रचनात्मकता फलती-फूलती है। यह साझेदारी, कलात्मक कार्यों और जीवन के सुखों का समय है। संबंधों में निवेश करें।' },
+  Sun:     { en: 'Career recognition, authority, leadership. Father-related matters prominent. Focus on your public role and professional growth.', hi: 'करियर में मान्यता, अधिकार, नेतृत्व। पिता से संबंधित मामले प्रमुख। अपनी सार्वजनिक भूमिका और पेशेवर विकास पर ध्यान दें।' },
+  Moon:    { en: 'Emotional depth, mother\'s influence, travel, public image. Nurture your mental health, connect with family, explore new places.', hi: 'भावनात्मक गहराई, माता का प्रभाव, यात्रा, सार्वजनिक छवि। मानसिक स्वास्थ्य का ध्यान रखें, परिवार से जुड़ें, नए स्थानों की खोज करें।' },
+  Mars:    { en: 'Action, property, courage, technical pursuits. Energy is high. Good for real estate, sports, engineering. Watch for conflicts and impatience.', hi: 'कार्यवाही, संपत्ति, साहस, तकनीकी कार्य। ऊर्जा उच्च है। अचल संपत्ति, खेल, इंजीनियरिंग के लिए अच्छा। संघर्ष और अधीरता से बचें।' },
+  Rahu:    { en: 'Unconventional growth, foreign connections, technology, ambition. Life may feel chaotic but opportunities abound. Embrace change, avoid shortcuts.', hi: 'अपरंपरागत विकास, विदेशी संबंध, प्रौद्योगिकी, महत्वाकांक्षा। जीवन अराजक लग सकता है लेकिन अवसर प्रचुर हैं। परिवर्तन अपनाएं, शॉर्टकट से बचें।' },
+  Jupiter: { en: 'Wisdom, education, children, spiritual growth, wealth. The most benevolent period. Teach, learn, expand. Good for higher studies and dharma.', hi: 'ज्ञान, शिक्षा, संतान, आध्यात्मिक विकास, धन। सबसे शुभ काल। पढ़ाएं, सीखें, विस्तार करें। उच्च शिक्षा और धर्म के लिए उत्तम।' },
+  Saturn:  { en: 'Discipline, hard work, career building, responsibility. Slow but lasting results. Build structures, face karma, earn respect through effort.', hi: 'अनुशासन, कठिन परिश्रम, करियर निर्माण, जिम्मेदारी। धीमे लेकिन स्थायी परिणाम। संरचनाएं बनाएं, कर्म का सामना करें, प्रयास से सम्मान अर्जित करें।' },
+  Mercury: { en: 'Business, communication, intellect, skills. Start ventures, write, network. Good for education, commerce, and analytical work.', hi: 'व्यापार, संवाद, बुद्धि, कौशल। उद्यम शुरू करें, लिखें, नेटवर्क बनाएं। शिक्षा, वाणिज्य और विश्लेषणात्मक कार्य के लिए अच्छा।' },
+};
+
+const DASHA_DURATIONS: Record<string, number> = {
+  Ketu: 7, Venus: 20, Sun: 6, Moon: 10, Mars: 7, Rahu: 18, Jupiter: 16, Saturn: 19, Mercury: 17,
+};
+
+interface DashaInterpretationProps {
+  dashas: any[];
+  planets: PlanetPosition[];
+  locale: string;
+}
+
+export function DashaInterpretation({ dashas, planets, locale }: DashaInterpretationProps) {
+  const isHi = locale !== 'en';
+
+  const { currentMaha, currentAntar, nextMaha } = useMemo(() => {
+    const now = new Date();
+    let maha: any = null;
+    let antar: any = null;
+    let next: any = null;
+
+    for (let i = 0; i < dashas.length; i++) {
+      const d = dashas[i];
+      const start = new Date(d.startDate);
+      const end = new Date(d.endDate);
+      if (now >= start && now <= end) {
+        maha = d;
+        if (d.subPeriods && Array.isArray(d.subPeriods)) {
+          for (const sub of d.subPeriods) {
+            const sStart = new Date(sub.startDate);
+            const sEnd = new Date(sub.endDate);
+            if (now >= sStart && now <= sEnd) {
+              antar = sub;
+              break;
+            }
+          }
+        }
+        if (i + 1 < dashas.length) {
+          next = dashas[i + 1];
+        }
+        break;
+      }
+    }
+    return { currentMaha: maha, currentAntar: antar, nextMaha: next };
+  }, [dashas]);
+
+  if (!currentMaha) return null;
+
+  const mahaPlanet = currentMaha.planet || (isHi ? currentMaha.planetName?.hi : currentMaha.planetName?.en) || 'Unknown';
+  const mahaTheme = MAHADASHA_THEMES[mahaPlanet];
+  const mahaDuration = DASHA_DURATIONS[mahaPlanet] ?? '?';
+
+  const formatDate = (dateStr: string) => {
+    try {
+      const d = new Date(dateStr);
+      return d.toLocaleDateString(isHi ? 'hi-IN' : 'en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+    } catch { return dateStr; }
+  };
+
+  return (
+    <div className="space-y-4 mt-6">
+      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
+        {isHi ? 'दशा विश्लेषण' : 'Dasha Interpretation'}
+      </h3>
+
+      {/* Current Chapter */}
+      <SectionCard border="border-emerald-500/15">
+        <SectionHeading>{isHi ? 'आपका वर्तमान अध्याय' : 'Your Current Chapter'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed mb-3">
+          {isHi
+            ? `आप वर्तमान में ${mahaPlanet} महादशा में हैं (${formatDate(currentMaha.startDate)} से ${formatDate(currentMaha.endDate)})। यह ${mahaDuration} वर्षों की अवधि है जो ${mahaPlanet} के विषयों से प्रभावित है।`
+            : `You are currently in ${mahaPlanet} Mahadasha (${formatDate(currentMaha.startDate)} to ${formatDate(currentMaha.endDate)}). This is a ${mahaDuration}-year period dominated by ${mahaPlanet}'s themes.`}
+        </p>
+      </SectionCard>
+
+      {/* What this means */}
+      {mahaTheme && (
+        <SectionCard border="border-sky-500/15">
+          <SectionHeading>{isHi ? 'आपके लिए इसका क्या अर्थ है' : 'What this means for you'}</SectionHeading>
+          <p className="text-sm text-gray-200 leading-relaxed">
+            {isHi ? mahaTheme.hi : mahaTheme.en}
+          </p>
+        </SectionCard>
+      )}
+
+      {/* Current Antardasha */}
+      {currentAntar && (
+        <SectionCard border="border-sky-500/15">
+          <SectionHeading>{isHi ? 'वर्तमान अन्तर्दशा' : 'Current Antardasha'}</SectionHeading>
+          <p className="text-sm text-gray-200 leading-relaxed">
+            {(() => {
+              const antarPlanet = currentAntar.planet || (isHi ? currentAntar.planetName?.hi : currentAntar.planetName?.en) || 'Unknown';
+              const antarTheme = MAHADASHA_THEMES[antarPlanet];
+              return isHi
+                ? `इसमें, आप ${mahaPlanet}-${antarPlanet} अन्तर्दशा में हैं (${formatDate(currentAntar.startDate)} से ${formatDate(currentAntar.endDate)})। ${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi.split('.')[0]}.` : '।'}`
+                : `Within this, you're in ${mahaPlanet}-${antarPlanet} Antardasha (${formatDate(currentAntar.startDate)} to ${formatDate(currentAntar.endDate)}). ${antarPlanet}'s energy blends with ${mahaPlanet}'s broader themes${antarTheme ? `: ${antarTheme.en.split('.')[0]}.` : '.'}`;
+            })()}
+          </p>
+        </SectionCard>
+      )}
+
+      {/* Next Transition */}
+      {nextMaha && (
+        <SectionCard border="border-amber-500/15">
+          <SectionHeading>{isHi ? 'अगला परिवर्तन' : 'Next Transition'}</SectionHeading>
+          <p className="text-sm text-gray-200 leading-relaxed">
+            {(() => {
+              const nextPlanet = nextMaha.planet || (isHi ? nextMaha.planetName?.hi : nextMaha.planetName?.en) || 'Unknown';
+              return isHi
+                ? `आपकी अगली महादशा: ${nextPlanet} ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।`
+                : `Your next Mahadasha change: ${nextPlanet} starts on ${formatDate(nextMaha.startDate)}. Prepare for a shift in life themes.`;
+            })()}
+          </p>
+        </SectionCard>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// 7. JAIMINI INTERPRETATION — Soul's purpose via Chara Karakas
+// ═══════════════════════════════════════════════════════════════════════════════
+
+const AK_THEMES: Record<string, { en: string; hi: string }> = {
+  Sun:     { en: 'Your soul seeks recognition, authority, and self-expression', hi: 'आपकी आत्मा मान्यता, अधिकार और आत्म-अभिव्यक्ति चाहती है' },
+  Moon:    { en: 'Your soul seeks emotional connection, nurturing, and peace', hi: 'आपकी आत्मा भावनात्मक संबंध, पोषण और शांति चाहती है' },
+  Mars:    { en: 'Your soul seeks courage, action, and the ability to protect', hi: 'आपकी आत्मा साहस, कार्यवाही और रक्षा की क्षमता चाहती है' },
+  Mercury: { en: 'Your soul seeks knowledge, communication, and intellectual mastery', hi: 'आपकी आत्मा ज्ञान, संवाद और बौद्धिक निपुणता चाहती है' },
+  Jupiter: { en: 'Your soul seeks wisdom, teaching, and spiritual growth', hi: 'आपकी आत्मा ज्ञान, शिक्षण और आध्यात्मिक विकास चाहती है' },
+  Venus:   { en: 'Your soul seeks love, beauty, and harmonious relationships', hi: 'आपकी आत्मा प्रेम, सौंदर्य और सामंजस्यपूर्ण संबंध चाहती है' },
+  Saturn:  { en: 'Your soul seeks discipline, service, and karmic completion', hi: 'आपकी आत्मा अनुशासन, सेवा और कार्मिक पूर्णता चाहती है' },
+};
+
+const AMK_THEMES: Record<string, { en: string; hi: string }> = {
+  Sun:     { en: 'Government, leadership, administration', hi: 'सरकार, नेतृत्व, प्रशासन' },
+  Moon:    { en: 'Public service, nursing, hospitality, psychology', hi: 'जनसेवा, नर्सिंग, आतिथ्य, मनोविज्ञान' },
+  Mars:    { en: 'Military, engineering, surgery, real estate', hi: 'सेना, इंजीनियरिंग, शल्य चिकित्सा, अचल संपत्ति' },
+  Mercury: { en: 'Writing, business, accounting, IT, teaching', hi: 'लेखन, व्यापार, लेखाकरण, आईटी, शिक्षण' },
+  Jupiter: { en: 'Teaching, law, priesthood, counseling', hi: 'शिक्षण, कानून, पुरोहित, परामर्श' },
+  Venus:   { en: 'Arts, entertainment, luxury goods, fashion', hi: 'कला, मनोरंजन, विलासिता सामग्री, फैशन' },
+  Saturn:  { en: 'Labor, mining, agriculture, social work', hi: 'श्रम, खनन, कृषि, सामाजिक कार्य' },
+};
+
+const DK_THEMES: Record<string, { en: string; hi: string }> = {
+  Sun:     { en: 'Authoritative, career-oriented, dignified spouse', hi: 'अधिकारपूर्ण, करियर-उन्मुख, प्रतिष्ठित जीवनसाथी' },
+  Moon:    { en: 'Nurturing, emotional, caring spouse', hi: 'पोषणकारी, भावनात्मक, देखभाल करने वाले जीवनसाथी' },
+  Mars:    { en: 'Energetic, assertive, passionate spouse', hi: 'ऊर्जावान, मुखर, जुनूनी जीवनसाथी' },
+  Mercury: { en: 'Intellectual, communicative, youthful spouse', hi: 'बुद्धिमान, संवादशील, युवा जीवनसाथी' },
+  Jupiter: { en: 'Wise, religious, generous, well-educated spouse', hi: 'बुद्धिमान, धार्मिक, उदार, सुशिक्षित जीवनसाथी' },
+  Venus:   { en: 'Beautiful, artistic, romantic, luxury-loving spouse', hi: 'सुंदर, कलात्मक, रोमांटिक, विलासिता-प्रेमी जीवनसाथी' },
+  Saturn:  { en: 'Mature, responsible, hardworking, older spouse', hi: 'परिपक्व, जिम्मेदार, मेहनती, बड़ी उम्र के जीवनसाथी' },
+};
+
+interface JaiminiInterpretationProps {
+  jaimini: any;
+  locale: string;
+}
+
+export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretationProps) {
+  const isHi = locale !== 'en';
+
+  if (!jaimini) return null;
+
+  const karakas = jaimini.charaKarakas || jaimini.karakas || [];
+  const findKaraka = (role: string) => {
+    if (Array.isArray(karakas)) {
+      return karakas.find((k: any) => k.karaka === role || k.role === role || k.type === role);
+    }
+    return karakas[role] ?? null;
+  };
+
+  const atmakaraka = findKaraka('Atmakaraka') || findKaraka('AK');
+  const amatyakaraka = findKaraka('Amatyakaraka') || findKaraka('AmK');
+  const darakaraka = findKaraka('Darakaraka') || findKaraka('DK');
+
+  const getPlanetName = (karaka: any): string => {
+    if (!karaka) return isHi ? 'अज्ञात' : 'Unknown';
+    return karaka.planet || karaka.planetName?.en || (isHi ? karaka.planetName?.hi : karaka.planetName?.en) || 'Unknown';
+  };
+
+  const akPlanet = getPlanetName(atmakaraka);
+  const amkPlanet = getPlanetName(amatyakaraka);
+  const dkPlanet = getPlanetName(darakaraka);
+
+  return (
+    <div className="space-y-4 mt-6">
+      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
+        {isHi ? 'जैमिनी विश्लेषण' : 'Jaimini Interpretation'}
+      </h3>
+
+      {/* Atmakaraka */}
+      <SectionCard border="border-emerald-500/15">
+        <SectionHeading>{isHi ? 'आपकी आत्मा का उद्देश्य (आत्मकारक)' : 'Your Soul\'s Purpose (Atmakaraka)'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+          {isHi
+            ? `आपका आत्मकारक ${akPlanet} है — आपकी कुंडली में सबसे ऊंचे अंश वाला ग्रह। यह इस जन्म में आपकी आत्मा की सबसे गहरी इच्छा को दर्शाता है।`
+            : `Your Atmakaraka is ${akPlanet} — the planet with the highest degree in your chart. This represents your soul's deepest desire in this life.`}
+        </p>
+        {AK_THEMES[akPlanet] && (
+          <p className="text-sm text-emerald-400 leading-relaxed italic">
+            {isHi ? AK_THEMES[akPlanet].hi : AK_THEMES[akPlanet].en}
+          </p>
+        )}
+      </SectionCard>
+
+      {/* Amatyakaraka */}
+      <SectionCard border="border-sky-500/15">
+        <SectionHeading>{isHi ? 'अमात्यकारक (करियर)' : 'Amatya Karaka (Career)'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+          {isHi
+            ? `आपका अमात्यकारक ${amkPlanet} है — यह आपकी स्वाभाविक करियर दिशा का संकेत देता है।`
+            : `Your Amatya Karaka is ${amkPlanet} — indicating your natural career direction.`}
+        </p>
+        {AMK_THEMES[amkPlanet] && (
+          <p className="text-sm text-sky-400 leading-relaxed">
+            {isHi
+              ? `करियर संकेत: ${AMK_THEMES[amkPlanet].hi}`
+              : `Career direction: ${AMK_THEMES[amkPlanet].en}`}
+          </p>
+        )}
+      </SectionCard>
+
+      {/* Darakaraka */}
+      <SectionCard border="border-sky-500/15">
+        <SectionHeading>{isHi ? 'दारकारक (जीवनसाथी)' : 'Dara Karaka (Spouse)'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+          {isHi
+            ? `आपका दारकारक ${dkPlanet} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव का संकेत देता है।`
+            : `Your Dara Karaka is ${dkPlanet} — the planet with the lowest degree. This indicates your spouse's nature.`}
+        </p>
+        {DK_THEMES[dkPlanet] && (
+          <p className="text-sm text-sky-400 leading-relaxed">
+            {isHi ? DK_THEMES[dkPlanet].hi : DK_THEMES[dkPlanet].en}
+          </p>
+        )}
+      </SectionCard>
+    </div>
+  );
+}

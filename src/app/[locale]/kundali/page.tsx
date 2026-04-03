@@ -32,7 +32,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
-import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation } from '@/components/kundali/InterpretationHelpers';
+import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation, JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -815,6 +815,7 @@ export default function KundaliPage() {
                   </AnimatePresence>
                 </motion.div>
               ))}
+              <PlanetsInterpretation planets={kundali.planets} ascendant={kundali.ascendant} locale={locale} />
             </div>
           )}
 
@@ -1061,6 +1062,7 @@ export default function KundaliPage() {
                   </>
                 );
               })()}
+              <DashaInterpretation dashas={kundali.dashas} planets={kundali.planets} locale={locale} />
             </div>
           )}
 
@@ -1418,6 +1420,7 @@ export default function KundaliPage() {
                   })}
                 </div>
               </div>
+              <JaiminiInterpretation jaimini={kundali.jaimini} locale={locale} />
             </div>
           )}
         </motion.div>

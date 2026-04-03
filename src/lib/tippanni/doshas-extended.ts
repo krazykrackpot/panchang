@@ -20,6 +20,67 @@ function getP(planets: PlanetPosition[], id: number): PlanetPosition | undefined
   return planets.find(p => p.planet.id === id);
 }
 
+// ─── Ganda Mula Nakshatra Data ──────────────────────────────────
+// 6 nakshatras at water-fire sign junctions — birth in these requires shanti
+const GANDA_MULA_NAKSHATRAS: {
+  id: number;
+  name: { en: string; hi: string; sa: string };
+  junction: string;
+  ruler: string;
+  affectedRelation: { en: string; hi: string };
+  effect: { en: string; hi: string };
+  criticalPadas: number[]; // Most inauspicious padas
+}[] = [
+  {
+    id: 1, name: { en: 'Ashwini', hi: 'अश्विनी', sa: 'अश्विनी' },
+    junction: 'Pisces→Aries (water→fire)',
+    ruler: 'Ketu',
+    affectedRelation: { en: 'father', hi: 'पिता' },
+    effect: { en: 'May cause health concerns for father. The native is dynamic but restless, prone to impulsive decisions.', hi: 'पिता के स्वास्थ्य में चिन्ता। जातक गतिशील किन्तु अस्थिर, आवेगपूर्ण निर्णय की प्रवृत्ति।' },
+    criticalPadas: [1, 2],
+  },
+  {
+    id: 9, name: { en: 'Ashlesha', hi: 'आश्लेषा', sa: 'आश्लेषा' },
+    junction: 'Cancer→Leo (water→fire)',
+    ruler: 'Mercury',
+    affectedRelation: { en: 'mother-in-law', hi: 'सास' },
+    effect: { en: 'Associated with serpent energy (Naga). May create tension with in-laws. Native has deep intuition but can be manipulative or secretive.', hi: 'सर्प ऊर्जा (नाग) से सम्बद्ध। ससुराल में तनाव। जातक में गहन अन्तर्ज्ञान किन्तु छलपूर्ण या गोपनीय प्रवृत्ति।' },
+    criticalPadas: [3, 4],
+  },
+  {
+    id: 10, name: { en: 'Magha', hi: 'मघा', sa: 'मघा' },
+    junction: 'Cancer→Leo (water→fire)',
+    ruler: 'Ketu',
+    affectedRelation: { en: 'mother', hi: 'माता' },
+    effect: { en: 'Royal nakshatra with ancestral karma. May cause health concerns for mother. Native carries strong past-life imprints and authority issues.', hi: 'पूर्वज कर्म वाला राजसी नक्षत्र। माता के स्वास्थ्य में चिन्ता। जातक में दृढ़ पूर्वजन्म संस्कार और अधिकार सम्बन्धी विषय।' },
+    criticalPadas: [1, 2],
+  },
+  {
+    id: 18, name: { en: 'Jyeshtha', hi: 'ज्येष्ठा', sa: 'ज्येष्ठा' },
+    junction: 'Scorpio→Sagittarius (water→fire)',
+    ruler: 'Mercury',
+    affectedRelation: { en: 'elder brother/sister', hi: 'बड़ा भाई/बहन' },
+    effect: { en: 'The "eldest" nakshatra. May create rivalry with elder siblings or separation from them. Native is fiercely independent with leadership qualities.', hi: '"ज्येष्ठ" नक्षत्र। बड़े भाई-बहन से प्रतिद्वंद्विता या अलगाव। जातक में प्रबल स्वतन्त्रता और नेतृत्व गुण।' },
+    criticalPadas: [3, 4],
+  },
+  {
+    id: 19, name: { en: 'Moola', hi: 'मूल', sa: 'मूलम्' },
+    junction: 'Scorpio→Sagittarius (water→fire)',
+    ruler: 'Ketu',
+    affectedRelation: { en: 'father / family prosperity', hi: 'पिता / पारिवारिक समृद्धि' },
+    effect: { en: 'The "root" nakshatra ruled by Nirriti (goddess of destruction). Most feared among Ganda Mula. May bring hardship to father or family wealth in early years. However, natives become deeply philosophical, truth-seeking, and often achieve great spiritual heights.', hi: '"मूल" नक्षत्र, निर्ऋति (विनाश की देवी) द्वारा शासित। गण्ड मूल में सबसे भयंकर। प्रारम्भिक वर्षों में पिता या पारिवारिक सम्पत्ति में कठिनाई। परन्तु जातक गहन दार्शनिक, सत्यान्वेषी और प्रायः महान आध्यात्मिक ऊँचाई प्राप्त करते हैं।' },
+    criticalPadas: [1], // Pada 1 is especially inauspicious
+  },
+  {
+    id: 27, name: { en: 'Revati', hi: 'रेवती', sa: 'रेवती' },
+    junction: 'Pisces→Aries (water→fire)',
+    ruler: 'Mercury',
+    affectedRelation: { en: 'younger sibling', hi: 'छोटा भाई/बहन' },
+    effect: { en: 'The gentlest among Ganda Mula. Associated with Pushan (nourisher). May delay younger siblings\' welfare. Native is compassionate, creative, and spiritually inclined.', hi: 'गण्ड मूल में सबसे सौम्य। पूषन (पोषक) से सम्बद्ध। छोटे भाई-बहन के कल्याण में विलम्ब। जातक दयालु, सृजनशील और आध्यात्मिक प्रवृत्ति।' },
+    criticalPadas: [4],
+  },
+];
+
 export function detectExtendedDoshas(
   planets: PlanetPosition[],
   houses: HouseCusp[],
@@ -212,6 +273,44 @@ export function detectExtendedDoshas(
             'उपाय: 1) शनिवार को हनुमान चालीसा पाठ। 2) काले तिल और सरसों तेल दान। 3) शनिवार को पीपल वृक्ष के नीचे सरसों तेल का दीपक। 4) बुजुर्गों की सेवा। 5) सावधानीपूर्ण परीक्षण के बाद नीलम धारण।')
         : '',
     });
+  }
+
+  // --- Ganda Mula Nakshatra Dosha ---
+  // Check if Moon's birth nakshatra is one of the 6 Ganda Mula nakshatras
+  if (moon) {
+    const moonNakId = moon.nakshatra?.id;
+    const moonPada = moon.pada;
+    const gandaMula = GANDA_MULA_NAKSHATRAS.find(gm => gm.id === moonNakId);
+
+    if (gandaMula) {
+      const isCriticalPada = gandaMula.criticalPadas.includes(moonPada);
+      const severity = isCriticalPada ? 'severe' as const : 'moderate' as const;
+
+      doshas.push({
+        name: t(locale,
+          `Ganda Mula Dosha (${gandaMula.name.en})`,
+          `गण्ड मूल दोष (${gandaMula.name.hi})`,
+          `गण्डमूलदोषः (${gandaMula.name.sa})`),
+        present: true,
+        severity,
+        description: t(locale,
+          `Moon is in ${gandaMula.name.en} nakshatra (Pada ${moonPada}) — one of the 6 Ganda Mula nakshatras at the ${gandaMula.junction} junction. ${gandaMula.effect.en}${isCriticalPada ? ` Pada ${moonPada} is particularly sensitive — Ganda Mula Shanti Puja is strongly recommended within the first year of birth.` : ' The impact is moderate at this pada, but shanti puja is still advisable.'}`,
+          `चन्द्रमा ${gandaMula.name.hi} नक्षत्र (पाद ${moonPada}) में — ${gandaMula.junction} सन्धि के 6 गण्ड मूल नक्षत्रों में से एक। ${gandaMula.effect.hi}${isCriticalPada ? ` पाद ${moonPada} विशेष रूप से संवेदनशील — जन्म के प्रथम वर्ष में गण्ड मूल शान्ति पूजा अत्यन्त अनुशंसित।` : ' इस पाद पर प्रभाव मध्यम है, किन्तु शान्ति पूजा उचित।'}`),
+        remedies: t(locale,
+          `Remedies for Ganda Mula (${gandaMula.name.en}): 1) Perform Ganda Mula Shanti Puja — ideally on the 27th day after birth or at the earliest opportunity. 2) Recite ${gandaMula.ruler === 'Ketu' ? 'Ketu Beej Mantra (Om Sram Sreem Sroum Sah Ketave Namah) 17,000 times' : 'Budh Beej Mantra (Om Bram Breem Broum Sah Budhaye Namah) 9,000 times'}. 3) Donate ${gandaMula.ruler === 'Ketu' ? 'blanket, seven grains (saptadhanya), and a cow' : 'green cloth, moong dal, and books'}. 4) Perform Nakshatra Shanti Havan with ${gandaMula.name.en} specific mantras. 5) Worship ${gandaMula.ruler === 'Ketu' ? 'Lord Ganesha' : 'Lord Vishnu'} — especially on the day ruled by the nakshatra lord. 6) Affected relation (${gandaMula.affectedRelation.en}) should avoid seeing the newborn for ${isCriticalPada ? '27 days' : '12 days'} after birth (traditional).`,
+          `गण्ड मूल उपाय (${gandaMula.name.hi}): 1) गण्ड मूल शान्ति पूजा — जन्म के 27वें दिन या शीघ्रातिशीघ्र। 2) ${gandaMula.ruler === 'Ketu' ? 'केतु बीज मन्त्र (ॐ स्रां स्रीं स्रौं सः केतवे नमः) 17,000 बार' : 'बुध बीज मन्त्र (ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः) 9,000 बार'}। 3) ${gandaMula.ruler === 'Ketu' ? 'कम्बल, सप्तधान्य और गाय का दान' : 'हरा वस्त्र, मूंग दाल और पुस्तकों का दान'}। 4) ${gandaMula.name.hi} विशेष मन्त्रों के साथ नक्षत्र शान्ति हवन। 5) ${gandaMula.ruler === 'Ketu' ? 'भगवान गणेश' : 'भगवान विष्णु'} की पूजा। 6) प्रभावित सम्बन्धी (${gandaMula.affectedRelation.hi}) को जन्म के ${isCriticalPada ? '27 दिनों' : '12 दिनों'} तक नवजात को न देखें (पारम्परिक)।`),
+      });
+    } else {
+      doshas.push({
+        name: t(locale, 'Ganda Mula Dosha', 'गण्ड मूल दोष', 'गण्डमूलदोषः'),
+        present: false,
+        severity: 'none',
+        description: t(locale,
+          'Moon is not in a Ganda Mula nakshatra. No special nakshatra-based dosha is present at birth.',
+          'चन्द्रमा गण्ड मूल नक्षत्र में नहीं। जन्म में कोई विशेष नक्षत्र-आधारित दोष नहीं।'),
+        remedies: '',
+      });
+    }
   }
 
   return doshas;

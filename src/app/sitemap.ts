@@ -113,27 +113,84 @@ const routes = [
   '/dashboard',
 ];
 
+// Puja Vidhi slugs (from PUJA_VIDHIS)
+const pujaVidhiSlugs = [
+  'ganesh-chaturthi', 'diwali', 'maha-shivaratri', 'holi', 'ram-navami',
+  'janmashtami', 'navaratri', 'makar-sankranti', 'vasant-panchami',
+  'hanuman-jayanti', 'raksha-bandhan', 'chhath-puja', 'dhanteras',
+  'dussehra', 'guru-purnima', 'ekadashi', 'pradosham', 'satyanarayan',
+  'karva-chauth', 'nag-panchami', 'amavasya-tarpan', 'masik-shivaratri',
+  'somvar-vrat', 'mangalvar-vrat', 'sankashti-chaturthi', 'hartalika-teej',
+  'vat-savitri', 'akshaya-tritiya', 'tulsi-vivah', 'ahoi-ashtami',
+  'govardhan-puja', 'bhai-dooj', 'buddha-purnima', 'chaitra-navratri',
+  'durga-ashtami', 'holika-dahan', 'anant-chaturdashi', 'guru-nanak-jayanti',
+  'maha-navami', 'purnima-vrat',
+  // Graha Shanti
+  'graha-shanti-surya', 'graha-shanti-chandra', 'graha-shanti-mangal',
+  'graha-shanti-budha', 'graha-shanti-guru', 'graha-shanti-shukra',
+  'graha-shanti-shani', 'graha-shanti-rahu', 'graha-shanti-ketu',
+];
+
+// Festival/Calendar detail slugs (from FESTIVAL_DETAILS — includes items without puja vidhi)
+const festivalDetailSlugs = [
+  'makar-sankranti', 'vasant-panchami', 'maha-shivaratri', 'holi',
+  'ram-navami', 'hanuman-jayanti', 'guru-purnima', 'raksha-bandhan',
+  'janmashtami', 'ganesh-chaturthi', 'navaratri', 'dussehra', 'diwali',
+  'ratha-saptami', 'bhishma-ashtami', 'chaitra-navratri', 'akshaya-tritiya',
+  'buddha-purnima', 'ganga-dussehra', 'nag-panchami', 'hariyali-teej',
+  'anant-chaturdashi', 'dhanteras', 'narak-chaturdashi', 'govardhan-puja',
+  'bhai-dooj', 'kartik-purnima',
+];
+
+// Deduplicated calendar slugs (union of puja + festival slugs)
+const calendarSlugs = Array.from(new Set([...festivalDetailSlugs, ...pujaVidhiSlugs]));
+
+function addEntries(
+  entries: MetadataRoute.Sitemap,
+  route: string,
+  opts: { changeFrequency: 'daily' | 'weekly' | 'monthly'; priority: number },
+) {
+  for (const locale of locales) {
+    const url = `${BASE_URL}/${locale}${route}`;
+    const alternates: Record<string, string> = {};
+    for (const alt of locales) {
+      alternates[alt] = `${BASE_URL}/${alt}${route}`;
+    }
+    entries.push({
+      url,
+      lastModified: new Date(),
+      changeFrequency: opts.changeFrequency,
+      priority: opts.priority,
+      alternates: { languages: alternates },
+    });
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
+  // Static routes
   for (const route of routes) {
-    for (const locale of locales) {
-      const url = `${BASE_URL}/${locale}${route}`;
-      const alternates: Record<string, string> = {};
-      for (const alt of locales) {
-        alternates[alt] = `${BASE_URL}/${alt}${route}`;
-      }
+    addEntries(entries, route, {
+      changeFrequency: route === '' || route === '/panchang' ? 'daily' : 'weekly',
+      priority: route === '' ? 1.0 : route === '/panchang' ? 0.9 : route === '/kundali' ? 0.8 : 0.6,
+    });
+  }
 
-      entries.push({
-        url,
-        lastModified: new Date(),
-        changeFrequency: route === '' || route === '/panchang' ? 'daily' : 'weekly',
-        priority: route === '' ? 1.0 : route === '/panchang' ? 0.9 : route === '/kundali' ? 0.8 : 0.6,
-        alternates: {
-          languages: alternates,
-        },
-      });
-    }
+  // Puja detail routes (/puja/[slug])
+  for (const slug of pujaVidhiSlugs) {
+    addEntries(entries, `/puja/${slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    });
+  }
+
+  // Calendar/festival detail routes (/calendar/[slug])
+  for (const slug of calendarSlugs) {
+    addEntries(entries, `/calendar/${slug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    });
   }
 
   return entries;

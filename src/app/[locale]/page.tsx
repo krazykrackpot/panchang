@@ -392,60 +392,47 @@ export default function HomePage() {
 
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center px-4 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/5 blur-3xl" />
+      {/* Hero Section — compact */}
+      <section className="relative pt-24 pb-10 sm:pt-28 sm:pb-12 px-4 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-gold-primary/5 via-transparent to-gold-dark/5 blur-3xl" />
 
         <motion.div
           initial="initial"
           animate="animate"
           variants={stagger}
-          className="text-center max-w-4xl mx-auto relative z-10"
+          className="text-center max-w-3xl mx-auto relative z-10"
         >
-          {/* Gayatri Mantra — full */}
-          <motion.div variants={fadeInUp} className="mb-8">
-            <p
-              className="text-gold-dark text-lg sm:text-xl md:text-2xl tracking-wide leading-relaxed"
-              style={{ fontFamily: 'var(--font-devanagari-heading)' }}
-            >
-              ॐ भूर्भुवः स्वः
-            </p>
-            <p
-              className="text-gold-dark text-lg sm:text-xl md:text-2xl tracking-wide leading-relaxed"
-              style={{ fontFamily: 'var(--font-devanagari-heading)' }}
-            >
-              तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि
-            </p>
-            <p
-              className="text-gold-dark text-lg sm:text-xl md:text-2xl tracking-wide leading-relaxed"
-              style={{ fontFamily: 'var(--font-devanagari-heading)' }}
-            >
-              धियो यो नः प्रचोदयात्
-            </p>
-          </motion.div>
+          {/* Gayatri Mantra — compact single block */}
+          <motion.p
+            variants={fadeInUp}
+            className="text-gold-dark/70 text-xs sm:text-sm tracking-widest leading-relaxed mb-5"
+            style={{ fontFamily: 'var(--font-devanagari-heading)' }}
+          >
+            ॐ भूर्भुवः स्वः । तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि । धियो यो नः प्रचोदयात् ॥
+          </motion.p>
 
           {/* Main tagline */}
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight"
             style={hf}
           >
             <span className="text-gold-gradient">{t('tagline')}</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle — tighter */}
           <motion.p
             variants={fadeInUp}
-            className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto mb-6 leading-relaxed"
+            className="text-text-secondary text-sm sm:text-base max-w-xl mx-auto mb-4 leading-relaxed"
             style={bf}
           >
             {t('subtitle')}
           </motion.p>
 
-          {/* Tamaso Ma Jyotirgamaya */}
+          {/* Tamaso Ma Jyotirgamaya — small, elegant */}
           <motion.p
             variants={fadeInUp}
-            className="text-gold-primary/60 text-base sm:text-lg italic mb-10"
+            className="text-gold-primary/40 text-xs italic"
             style={{ fontFamily: 'var(--font-devanagari-body)' }}
           >
             असतो मा सद्गमय। तमसो मा ज्योतिर्गमय। मृत्योर्मा अमृतं गमय।
@@ -456,7 +443,7 @@ export default function HomePage() {
       <GoldDivider />
 
       {/* Three Pillars — Value Propositions */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
         <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={stagger}>
           <motion.div variants={fadeInUp} className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
@@ -464,11 +451,11 @@ export default function HomePage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-7">
             {/* ── Pillar 1: Panchang ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/panchang" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-5"><PanchangPillarIcon /></div>
                   <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
@@ -494,7 +481,7 @@ export default function HomePage() {
             {/* ── Pillar 2: Kundali ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/kundali" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-5"><KundaliPillarIcon /></div>
                   <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Kundali' : 'कुण्डली'}
@@ -520,7 +507,7 @@ export default function HomePage() {
             {/* ── Pillar 3: Jyotish (Learn) ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/learn" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[340px] sm:min-h-[380px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-5"><JyotishPillarIcon /></div>
                   <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}

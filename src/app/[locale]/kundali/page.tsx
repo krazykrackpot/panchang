@@ -1235,6 +1235,34 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   // Compute insights from SAV
   const strongSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] >= 28).map(r => r.name[locale]);
   const weakSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.name[locale]);
+  const weakSignIds = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.id);
+
+  // Approximate transit periods for slow planets through weak signs
+  // Saturn ~2.5yr/sign, Jupiter ~1yr/sign, Rahu ~1.5yr/sign (retrograde)
+  // Current approx positions (2026): Saturn in Pisces(12), Jupiter in Cancer(4), Rahu in Pisces(12)
+  const SLOW_PLANETS = [
+    { name: { en: 'Saturn', hi: 'शनि' }, currentSign: 12, yearsPerSign: 2.5 },
+    { name: { en: 'Jupiter', hi: 'बृहस्पति' }, currentSign: 4, yearsPerSign: 1.0 },
+    { name: { en: 'Rahu', hi: 'राहु' }, currentSign: 12, yearsPerSign: 1.5 },
+  ];
+  const weakTransits: { planet: string; sign: string; approxYear: string }[] = [];
+  const currentYear = new Date().getFullYear();
+  for (const planet of SLOW_PLANETS) {
+    for (const weakId of weakSignIds) {
+      // How many signs ahead is the weak sign?
+      let stepsAhead = (weakId - planet.currentSign + 12) % 12;
+      if (stepsAhead === 0) stepsAhead = 0; // currently in it
+      const approxYearStart = currentYear + Math.round(stepsAhead * planet.yearsPerSign);
+      const approxYearEnd = approxYearStart + Math.round(planet.yearsPerSign);
+      if (approxYearStart <= currentYear + 15) { // only show next 15 years
+        weakTransits.push({
+          planet: planet.name[locale === 'en' ? 'en' : 'hi'],
+          sign: RASHIS[weakId - 1].name[locale],
+          approxYear: `~${approxYearStart}–${approxYearEnd}`,
+        });
+      }
+    }
+  }
   const totalBindu = ashtakavarga.savTable.reduce((a, b) => a + b, 0);
 
   return (
@@ -1261,11 +1289,27 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
               </p>
             )}
             {weakSigns.length > 0 && (
-              <p className="text-red-400/70">
-                {locale === 'en'
-                  ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
-                  : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
-              </p>
+              <div>
+                <p className="text-red-400/70">
+                  {locale === 'en'
+                    ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
+                    : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
+                </p>
+                {weakTransits.length > 0 && (
+                  <div className="mt-2 ml-2 space-y-1">
+                    <p className="text-text-secondary/40 text-xs">{locale === 'en' ? 'Upcoming challenging transits:' : 'आगामी चुनौतीपूर्ण गोचर:'}</p>
+                    {weakTransits.map((wt, idx) => (
+                      <p key={idx} className="text-red-400/50 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400/40 shrink-0" />
+                        {wt.planet} {locale === 'en' ? 'in' : ''} {wt.sign} {wt.approxYear}
+                      </p>
+                    ))}
+                    <p className="text-text-secondary/30 text-[10px] italic mt-1">
+                      {locale === 'en' ? '* Approximate periods based on average transit speeds' : '* औसत गोचर गति के आधार पर अनुमानित अवधि'}
+                    </p>
+                  </div>
+                )}
+              </div>
             )}
             <p className="text-text-secondary/50 text-xs">
               {locale === 'en'

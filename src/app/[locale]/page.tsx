@@ -30,7 +30,121 @@ const stagger = {
   animate: { transition: { staggerChildren: 0.08 } },
 };
 
-// SVG illustrations for each card — inline for zero-dependency rendering
+// ─── Bold Pillar Icons with gold gradients + glow ───
+function PanchangPillarIcon() {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="pg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f0d48a" />
+          <stop offset="50%" stopColor="#d4a853" />
+          <stop offset="100%" stopColor="#8a6d2b" />
+        </linearGradient>
+        <filter id="pg1g"><feGaussianBlur stdDeviation="2.5" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      {/* Sun arc at top */}
+      <path d="M20 38 Q40 8 60 38" stroke="url(#pg1)" strokeWidth="2.5" fill="none" filter="url(#pg1g)" />
+      {/* Sun rays */}
+      {[0,1,2,3,4].map(i => {
+        const angle = -140 + i * 35;
+        const r = angle * Math.PI / 180;
+        return <line key={i} x1={40 + 16 * Math.cos(r)} y1={30 + 16 * Math.sin(r)} x2={40 + 24 * Math.cos(r)} y2={30 + 24 * Math.sin(r)} stroke="#f0d48a" strokeWidth="1.5" strokeLinecap="round" opacity={0.6} />;
+      })}
+      {/* Sun disc */}
+      <circle cx="40" cy="30" r="10" fill="url(#pg1)" opacity={0.15} />
+      <circle cx="40" cy="30" r="6" fill="url(#pg1)" opacity={0.3} />
+      <circle cx="40" cy="30" r="2.5" fill="#f0d48a" />
+      {/* Horizon line */}
+      <line x1="10" y1="42" x2="70" y2="42" stroke="#d4a853" strokeWidth="1" opacity={0.3} />
+      {/* Moon crescent bottom-right */}
+      <circle cx="58" cy="56" r="10" fill="none" stroke="url(#pg1)" strokeWidth="1.5" opacity={0.4} />
+      <circle cx="62" cy="52" r="8" fill="#0a0e27" />
+      {/* Stars */}
+      <circle cx="18" cy="54" r="1.5" fill="#f0d48a" opacity={0.5} />
+      <circle cx="28" cy="62" r="1" fill="#d4a853" opacity={0.4} />
+      <circle cx="48" cy="68" r="1.2" fill="#f0d48a" opacity={0.3} />
+      {/* Tithi marks along bottom */}
+      {[0,1,2,3,4,5,6].map(i => (
+        <rect key={i} x={18 + i * 7} y={72} width={4} height={2} rx={1} fill="#d4a853" opacity={i === 3 ? 0.8 : 0.15} />
+      ))}
+    </svg>
+  );
+}
+
+function KundaliPillarIcon() {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="kg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#93c5fd" />
+          <stop offset="50%" stopColor="#60a5fa" />
+          <stop offset="100%" stopColor="#2563eb" />
+        </linearGradient>
+        <filter id="kg1g"><feGaussianBlur stdDeviation="2" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      {/* North Indian chart — diamond */}
+      <rect x="12" y="12" width="56" height="56" rx="2" stroke="url(#kg1)" strokeWidth="2" fill="none" filter="url(#kg1g)" />
+      {/* Diagonals forming 12 houses */}
+      <line x1="12" y1="12" x2="68" y2="68" stroke="#60a5fa" strokeWidth="1" opacity={0.3} />
+      <line x1="68" y1="12" x2="12" y2="68" stroke="#60a5fa" strokeWidth="1" opacity={0.3} />
+      <line x1="40" y1="12" x2="40" y2="68" stroke="#60a5fa" strokeWidth="0.8" opacity={0.2} />
+      <line x1="12" y1="40" x2="68" y2="40" stroke="#60a5fa" strokeWidth="0.8" opacity={0.2} />
+      {/* Center diamond */}
+      <path d="M40 22 L58 40 L40 58 L22 40Z" stroke="#60a5fa" strokeWidth="1.5" fill="rgba(96,165,250,0.05)" />
+      {/* Planets as glowing dots in various houses */}
+      <circle cx="26" cy="22" r="4" fill="#60a5fa" opacity={0.15} />
+      <circle cx="26" cy="22" r="2" fill="#93c5fd" filter="url(#kg1g)" />
+      <circle cx="54" cy="18" r="3" fill="#60a5fa" opacity={0.12} />
+      <circle cx="54" cy="18" r="1.5" fill="#93c5fd" />
+      <circle cx="62" cy="34" r="3.5" fill="#60a5fa" opacity={0.12} />
+      <circle cx="62" cy="34" r="1.8" fill="#93c5fd" />
+      <circle cx="48" cy="52" r="3" fill="#2563eb" opacity={0.15} />
+      <circle cx="48" cy="52" r="1.5" fill="#60a5fa" />
+      <circle cx="18" cy="48" r="2.5" fill="#60a5fa" opacity={0.1} />
+      <circle cx="18" cy="48" r="1.2" fill="#93c5fd" />
+      {/* Ascendant marker */}
+      <path d="M40 14 L43 20 L37 20Z" fill="#93c5fd" opacity={0.7} />
+      {/* "Lagna" text hint */}
+      <text x="36" y="43" fill="#60a5fa" fontSize="7" fontWeight="bold" opacity={0.4}>La</text>
+    </svg>
+  );
+}
+
+function JyotishPillarIcon() {
+  return (
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="jg1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fcd34d" />
+          <stop offset="50%" stopColor="#f59e0b" />
+          <stop offset="100%" stopColor="#b45309" />
+        </linearGradient>
+        <filter id="jg1g"><feGaussianBlur stdDeviation="2" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+      </defs>
+      {/* Open book / scroll */}
+      <path d="M12 20 Q12 16 20 16 L38 16 Q40 16 40 18 L40 62 Q40 64 38 64 L20 64 Q12 64 12 60Z" stroke="url(#jg1)" strokeWidth="1.5" fill="rgba(245,158,11,0.04)" />
+      <path d="M68 20 Q68 16 60 16 L42 16 Q40 16 40 18 L40 62 Q40 64 42 64 L60 64 Q68 64 68 60Z" stroke="url(#jg1)" strokeWidth="1.5" fill="rgba(245,158,11,0.04)" />
+      {/* Spine */}
+      <line x1="40" y1="16" x2="40" y2="64" stroke="#f59e0b" strokeWidth="1.5" opacity={0.4} />
+      {/* Text lines - left page */}
+      {[0,1,2,3,4,5].map(i => (
+        <line key={`l${i}`} x1="18" y1={26 + i * 7} x2={32 - i * 1.5} y2={26 + i * 7} stroke="#f59e0b" strokeWidth="1.2" strokeLinecap="round" opacity={0.15 + i * 0.03} />
+      ))}
+      {/* Sanskrit OM symbol — right page */}
+      <text x="46" y="38" fill="url(#jg1)" fontSize="18" fontWeight="bold" opacity={0.5} filter="url(#jg1g)">&#x0950;</text>
+      {/* Stars of knowledge around the book */}
+      <circle cx="8" cy="14" r="1.5" fill="#fcd34d" opacity={0.4} />
+      <circle cx="72" cy="12" r="2" fill="#f59e0b" opacity={0.3} />
+      <circle cx="74" cy="52" r="1.5" fill="#fcd34d" opacity={0.25} />
+      <circle cx="6" cy="56" r="1" fill="#f59e0b" opacity={0.3} />
+      {/* Flame of knowledge at top */}
+      <path d="M40 6 Q42 2 40 0 Q38 2 36 6 Q38 8 40 6Z" fill="#fcd34d" opacity={0.5} />
+      <path d="M40 10 Q43 4 40 0 Q37 4 34 10 Q37 12 40 10Z" fill="none" stroke="#f59e0b" strokeWidth="0.8" opacity={0.3} />
+    </svg>
+  );
+}
+
+// Legacy SVG references kept for secondary usage
 function KundaliSVG() {
   return (
     <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
@@ -447,7 +561,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/panchang" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
-                  <div className="mb-5"><CalendarSVG /></div>
+                  <div className="mb-5"><PanchangPillarIcon /></div>
                   <h3 className="text-gold-light text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
                   </h3>
@@ -473,7 +587,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/kundali" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#1a2a5a]/40 via-[#0a1530]/50 to-[#0a0e27] border border-blue-500/15 hover:border-blue-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-blue-500/10 overflow-hidden">
-                  <div className="mb-5"><KundaliSVG /></div>
+                  <div className="mb-5"><KundaliPillarIcon /></div>
                   <h3 className="text-blue-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Kundali' : 'कुण्डली'}
                   </h3>
@@ -499,7 +613,7 @@ export default function HomePage() {
             <motion.div variants={fadeInUp}>
               <Link href="/learn" className="block group h-full">
                 <div className="relative rounded-2xl bg-gradient-to-br from-[#3a2a10]/40 via-[#1a1508]/50 to-[#0a0e27] border border-amber-500/15 hover:border-amber-500/40 p-7 sm:p-8 h-full flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-amber-500/10 overflow-hidden">
-                  <div className="mb-5"><LearnSVG /></div>
+                  <div className="mb-5"><JyotishPillarIcon /></div>
                   <h3 className="text-amber-300 text-xl sm:text-2xl font-black mb-1" style={hf}>
                     {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
                   </h3>

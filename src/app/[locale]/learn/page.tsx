@@ -8,6 +8,15 @@ import type { Locale } from '@/types/panchang';
 
 // ── Full 50-module curriculum ──────────────────────────────────
 const PHASES = [
+  { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार', sa: 'पूर्वाधारः' }, color: 'gold', accent: 'border-gold-primary/20 bg-gold-primary/5', badge: 'bg-gold-primary/20 text-gold-light', topics: [
+    { topic: { en: 'Getting Started', hi: 'आरम्भ', sa: 'आरम्भः' }, modules: [
+      { id: '0-1', title: { en: 'What is Jyotish? (And What It Isn\'t)', hi: 'ज्योतिष क्या है? (और क्या नहीं है)', sa: 'ज्योतिषं किम्? (किं न च)' } },
+      { id: '0-2', title: { en: 'The Hindu Calendar — Why It\'s Different', hi: 'हिन्दू पंचांग — यह अलग क्यों है', sa: 'हिन्दूपञ्चाङ्गम् — कथं भिन्नम्' } },
+      { id: '0-3', title: { en: 'Your Cosmic Address — Sun, Moon, Nakshatra', hi: 'आपका ब्रह्माण्डीय पता — सूर्य, चन्द्र, नक्षत्र', sa: 'भवतः ब्रह्माण्डीयसङ्केतः' } },
+      { id: '0-4', title: { en: 'Reading Today\'s Panchang', hi: 'आज का पंचांग पढ़ना', sa: 'अद्यपञ्चाङ्गपठनम्' } },
+      { id: '0-5', title: { en: 'What is a Kundali (Birth Chart)?', hi: 'कुण्डली क्या है?', sa: 'कुण्डली किम्?' } },
+    ]},
+  ]},
   { phase: 1, label: { en: 'The Sky', hi: 'आकाश', sa: 'आकाशः' }, color: 'blue', accent: 'border-blue-500/20 bg-blue-500/5', badge: 'bg-blue-500/20 text-blue-300', topics: [
     { topic: { en: 'Foundations', hi: 'आधार', sa: 'आधारः' }, modules: [
       { id: '1-1', title: { en: 'The Night Sky & Ecliptic', hi: 'रात्रि आकाश एवं क्रान्तिवृत्त', sa: 'रात्र्याकाशः क्रान्तिवृत्तं च' } },
@@ -158,7 +167,7 @@ const PHASES = [
   ]},
 ];
 
-const STATS = { modules: 83, questions: 830, minutes: 1080, phases: 10 };
+const STATS = { modules: 88, questions: 880, minutes: 1114, phases: 11 };
 
 export default function LearnPage() {
   const locale = useLocale() as Locale;

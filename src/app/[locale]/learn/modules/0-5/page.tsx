@@ -1,0 +1,389 @@
+'use client';
+
+import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+
+const META: ModuleMeta = {
+  id: 'mod_0_5', phase: 0, topic: 'Foundations', moduleNumber: '0.5',
+  title: { en: 'What is a Kundali (Birth Chart)?', hi: 'कुण्डली (जन्म कुण्डली) क्या है?' },
+  subtitle: {
+    en: 'A snapshot of the sky at your exact birth moment — houses, planets, and how to read them',
+    hi: 'आपके जन्म क्षण का आकाशीय चित्र — भाव, ग्रह, और उन्हें कैसे पढ़ें',
+  },
+  estimatedMinutes: 12,
+  crossRefs: [
+    { label: { en: 'Module 0-6: Rituals & Astronomy', hi: 'मॉड्यूल 0-6: कर्मकाण्ड और खगोलशास्त्र' }, href: '/learn/modules/0-6' },
+    { label: { en: 'Generate Your Kundali', hi: 'अपनी कुण्डली बनाएँ' }, href: '/kundali' },
+    { label: { en: 'Module 9-1: Houses Deep Dive', hi: 'मॉड्यूल 9-1: भाव विस्तार' }, href: '/learn/modules/9-1' },
+    { label: { en: 'Module 11-1: Dasha System', hi: 'मॉड्यूल 11-1: दशा पद्धति' }, href: '/learn/modules/11-1' },
+  ],
+};
+
+const QUESTIONS: ModuleQuestion[] = [
+  {
+    id: 'q0_5_01', type: 'mcq',
+    question: {
+      en: 'What is the Lagna (Ascendant) in a Kundali?',
+      hi: 'कुण्डली में लग्न (उदय राशि) क्या है?',
+    },
+    options: [
+      { en: 'The Sun\'s position at birth', hi: 'जन्म के समय सूर्य की स्थिति' },
+      { en: 'The sign rising on the eastern horizon at birth', hi: 'जन्म के समय पूर्वी क्षितिज पर उदय होती राशि' },
+      { en: 'The Moon\'s nakshatra at birth', hi: 'जन्म के समय चन्द्रमा का नक्षत्र' },
+      { en: 'The strongest planet in the chart', hi: 'कुण्डली में सबसे बलवान ग्रह' },
+    ],
+    correctAnswer: 1,
+    explanation: {
+      en: 'The Lagna (Ascendant) is the zodiac sign rising on the eastern horizon at the exact moment of birth. It changes approximately every 2 hours, which is why precise birth time matters.',
+      hi: 'लग्न (उदय राशि) जन्म के ठीक क्षण पर पूर्वी क्षितिज पर उदय हो रही राशि है। यह लगभग हर 2 घण्टे बदलती है, इसीलिए सटीक जन्म समय महत्त्वपूर्ण है।',
+    },
+  },
+  {
+    id: 'q0_5_02', type: 'mcq',
+    question: {
+      en: 'How many houses (bhavas) are in a Kundali?',
+      hi: 'कुण्डली में कितने भाव होते हैं?',
+    },
+    options: [
+      { en: '9', hi: '9' },
+      { en: '10', hi: '10' },
+      { en: '12', hi: '12' },
+      { en: '27', hi: '27' },
+    ],
+    correctAnswer: 2,
+    explanation: {
+      en: '12 houses, each governing an area of life: self, wealth, siblings, mother/home, children, enemies/disease, marriage, longevity, luck/dharma, career, gains, and loss/spirituality.',
+      hi: '12 भाव, प्रत्येक जीवन के एक क्षेत्र का शासक: स्व, धन, भ्रातृ, मातृ/गृह, सन्तान, शत्रु/रोग, विवाह, आयु, भाग्य/धर्म, कर्म, लाभ, और व्यय/मोक्ष।',
+    },
+  },
+  {
+    id: 'q0_5_03', type: 'true_false',
+    question: {
+      en: 'The Lagna (Ascendant) changes approximately every 2 hours, which is why astrologers insist on accurate birth time.',
+      hi: 'लग्न (उदय राशि) लगभग हर 2 घण्टे बदलता है, इसीलिए ज्योतिषी सटीक जन्म समय पर बल देते हैं।',
+    },
+    correctAnswer: true,
+    explanation: {
+      en: 'True. Aryabhata calculated the ascendant moves at ~1° every 4 minutes. A 10-minute birth time error can shift the lagna by 2.5° — potentially changing the entire chart interpretation.',
+      hi: 'सत्य। आर्यभट ने गणना की कि लग्न ~1° प्रत्येक 4 मिनट में चलता है। 10 मिनट की जन्म समय त्रुटि लग्न को 2.5° तक खिसका सकती है — जिससे सम्पूर्ण कुण्डली व्याख्या बदल सकती है।',
+    },
+  },
+  {
+    id: 'q0_5_04', type: 'mcq',
+    question: {
+      en: 'In the North Indian chart style, what is always at the top?',
+      hi: 'उत्तर भारतीय कुण्डली शैली में सबसे ऊपर सदैव क्या होता है?',
+    },
+    options: [
+      { en: 'Aries (Mesha)', hi: 'मेष राशि' },
+      { en: 'The Lagna (Ascendant)', hi: 'लग्न (उदय राशि)' },
+      { en: 'The Moon', hi: 'चन्द्रमा' },
+      { en: 'The Sun', hi: 'सूर्य' },
+    ],
+    correctAnswer: 1,
+    explanation: {
+      en: 'In the North Indian diamond chart, the house positions are FIXED and the Lagna is always at the top. Signs rotate around the fixed house positions. In the South Indian style, it\'s the opposite — signs are fixed and houses rotate.',
+      hi: 'उत्तर भारतीय हीरे की कुण्डली में, भाव स्थान स्थिर हैं और लग्न सदैव ऊपर है। राशियाँ स्थिर भाव स्थानों के चारों ओर घूमती हैं। दक्षिण भारतीय शैली में उलटा है — राशियाँ स्थिर हैं और भाव घूमते हैं।',
+    },
+  },
+  {
+    id: 'q0_5_05', type: 'mcq',
+    question: {
+      en: 'Your Moon sign (Rashi) represents your:',
+      hi: 'आपकी चन्द्र राशि आपके किस पक्ष का प्रतिनिधित्व करती है?',
+    },
+    options: [
+      { en: 'Career path', hi: 'व्यावसायिक मार्ग' },
+      { en: 'Physical appearance', hi: 'शारीरिक रूप' },
+      { en: 'Emotional core and mind', hi: 'भावनात्मक मूल और मन' },
+      { en: 'Financial prospects', hi: 'आर्थिक सम्भावनाएँ' },
+    ],
+    correctAnswer: 2,
+    explanation: {
+      en: 'The Moon sign (Rashi) represents your emotional nature, mental disposition, and instinctive reactions. In Vedic astrology, the Moon sign is often considered MORE important than the Sun sign for personality analysis.',
+      hi: 'चन्द्र राशि आपकी भावनात्मक प्रकृति, मानसिक स्वभाव और सहज प्रतिक्रियाओं का प्रतिनिधित्व करती है। वैदिक ज्योतिष में, व्यक्तित्व विश्लेषण के लिए चन्द्र राशि को प्रायः सूर्य राशि से अधिक महत्त्वपूर्ण माना जाता है।',
+    },
+  },
+  {
+    id: 'q0_5_06', type: 'true_false',
+    question: {
+      en: 'The North Indian and South Indian chart styles display different astrological data.',
+      hi: 'उत्तर भारतीय और दक्षिण भारतीय कुण्डली शैलियाँ भिन्न ज्योतिषीय डेटा प्रदर्शित करती हैं।',
+    },
+    correctAnswer: false,
+    explanation: {
+      en: 'False. Both styles display the SAME data — same planets, same houses, same signs. They are just different visual conventions, like metric vs imperial. Once you learn one, the other is just a rotation.',
+      hi: 'असत्य। दोनों शैलियाँ एक ही डेटा प्रदर्शित करती हैं — वही ग्रह, वही भाव, वही राशियाँ। ये केवल भिन्न दृश्य परम्पराएँ हैं, जैसे मीट्रिक बनाम इम्पीरियल। एक सीखने पर दूसरी केवल घुमाव है।',
+    },
+  },
+  {
+    id: 'q0_5_07', type: 'mcq',
+    question: {
+      en: 'How many planets (grahas) does Vedic astrology use?',
+      hi: 'वैदिक ज्योतिष कितने ग्रहों का उपयोग करता है?',
+    },
+    options: [
+      { en: '7', hi: '7' },
+      { en: '8', hi: '8' },
+      { en: '9', hi: '9' },
+      { en: '12', hi: '12' },
+    ],
+    correctAnswer: 2,
+    explanation: {
+      en: '9 grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn (7 visible), plus Rahu and Ketu (the Moon\'s north and south nodes — mathematical points where eclipses occur).',
+      hi: '9 ग्रह: सूर्य, चन्द्र, मंगल, बुध, गुरु, शुक्र, शनि (7 दृश्य), और राहु तथा केतु (चन्द्रमा के उत्तर और दक्षिण पात — गणितीय बिन्दु जहाँ ग्रहण होते हैं)।',
+    },
+  },
+  {
+    id: 'q0_5_08', type: 'mcq',
+    question: {
+      en: 'Parashara\'s Brihat Hora Shastra describes approximately how many yogas (planetary combinations)?',
+      hi: 'पराशर की बृहत्होरा शास्त्र में लगभग कितने योग (ग्रह संयोग) वर्णित हैं?',
+    },
+    options: [
+      { en: 'About 30', hi: 'लगभग 30' },
+      { en: 'About 100', hi: 'लगभग 100' },
+      { en: 'About 300+', hi: 'लगभग 300+' },
+      { en: 'About 1000', hi: 'लगभग 1000' },
+    ],
+    correctAnswer: 2,
+    explanation: {
+      en: 'Brihat Hora Shastra describes 300+ yogas across its 97 chapters — wealth yogas (Dhana), spiritual yogas (Raja), inauspicious yogas (Daridra), and more. It is the most comprehensive astrological text ever written in any civilization.',
+      hi: 'बृहत्होरा शास्त्र अपने 97 अध्यायों में 300+ योगों का वर्णन करता है — धन योग, राजयोग, दारिद्र्य योग, आदि। यह किसी भी सभ्यता में लिखा गया सबसे व्यापक ज्योतिष ग्रन्थ है।',
+    },
+  },
+  {
+    id: 'q0_5_09', type: 'true_false',
+    question: {
+      en: 'A Kundali is deterministic — it fixes your destiny with no room for free will.',
+      hi: 'कुण्डली नियतिवादी है — यह आपके भाग्य को निश्चित करती है, स्वतन्त्र इच्छा के लिए कोई स्थान नहीं।',
+    },
+    correctAnswer: false,
+    explanation: {
+      en: 'False. A Kundali is like a weather forecast — it shows tendencies and seasons, but you choose what to do. Dashas show WHEN themes activate. It\'s about preparation, not fatalism.',
+      hi: 'असत्य। कुण्डली मौसम पूर्वानुमान के समान है — यह प्रवृत्तियाँ और ऋतुएँ दिखाती है, पर आप स्वयं चुनते हैं क्या करना है। दशाएँ बताती हैं कब विषय सक्रिय होते हैं। यह तैयारी है, नियतिवाद नहीं।',
+    },
+  },
+  {
+    id: 'q0_5_10', type: 'mcq',
+    question: {
+      en: 'The Indian equal-house system (each house = 30°) has been in continuous use for approximately:',
+      hi: 'भारतीय समभाव पद्धति (प्रत्येक भाव = 30°) लगभग कितने वर्षों से निरन्तर प्रयोग में है?',
+    },
+    options: [
+      { en: '500 years', hi: '500 वर्ष' },
+      { en: '1000 years', hi: '1000 वर्ष' },
+      { en: '2000+ years', hi: '2000+ वर्ष' },
+      { en: '200 years', hi: '200 वर्ष' },
+    ],
+    correctAnswer: 2,
+    explanation: {
+      en: 'The Indian equal-house system has been used continuously for 2000+ years. The West adopted unequal house systems (Placidus, Koch) only in the 17th century. KP astrology bridges both traditions by using Placidus houses with Vedic nakshatras.',
+      hi: 'भारतीय समभाव पद्धति 2000+ वर्षों से निरन्तर प्रयोग में है। पश्चिम ने असमान भाव पद्धतियाँ (प्लासिडस, कोख) केवल 17वीं शताब्दी में अपनाईं। KP ज्योतिष वैदिक नक्षत्रों के साथ प्लासिडस भावों का उपयोग करके दोनों परम्पराओं को जोड़ता है।',
+    },
+  },
+];
+
+function Page1() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {isHi ? 'आकाश का एक चित्र, आपके जन्म के ठीक क्षण का' : 'A Snapshot of the Sky, at Your Exact Birth Moment'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'कल्पना करें कि आपके जन्म के ठीक सेकण्ड पर पूरा आकाश जम जाए। कौन-सी राशि पूर्वी क्षितिज पर उदय हो रही थी? ग्रह कहाँ थे? यही आपकी कुण्डली है — आपके जीवन के प्रथम क्षण का खगोलीय मानचित्र।'
+            : 'Imagine freezing the entire sky at the second you were born. Which sign was rising on the eastern horizon? Where were the planets? That\'s your Kundali \u2014 an astronomical map of the first moment of your life.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'लग्न (उदय राशि)' : 'The Lagna (Ascendant)'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'लग्न = जन्म के समय पूर्वी क्षितिज पर उदय हो रही राशि। यह लगभग हर ~2 घण्टे बदलती है — इसीलिए जन्म समय महत्त्वपूर्ण है, केवल तिथि नहीं। लग्न आपका "व्यक्तित्व लेंस" है — आप संसार को कैसे देखते हैं और संसार आपको कैसे देखता है।'
+            : 'The Lagna = which sign was rising on the eastern horizon at birth. It changes every ~2 hours \u2014 this is why birth TIME matters, not just date. The Lagna is your "personality lens" \u2014 how you see the world and how the world sees you.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? '12 भाव — आकाश के 12 टुकड़े' : '12 Houses — 12 Slices of Sky'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'प्रत्येक भाव जीवन का एक क्षेत्र शासित करता है: 1. स्व (व्यक्तित्व), 2. धन, 3. भ्रातृ, 4. मातृ/गृह, 5. सन्तान/विद्या, 6. शत्रु/रोग, 7. विवाह/साझेदारी, 8. आयु/रहस्य, 9. भाग्य/धर्म, 10. कर्म/व्यवसाय, 11. लाभ, 12. व्यय/मोक्ष। 9 ग्रह इन भावों में रखे जाते हैं = आपके जीवन को आकार देने वाली शक्तियाँ।'
+            : 'Each house governs an area of life: 1. Self (personality), 2. Wealth, 3. Siblings, 4. Mother/Home, 5. Children/Education, 6. Enemies/Disease, 7. Marriage/Partnership, 8. Longevity/Secrets, 9. Luck/Dharma, 10. Career, 11. Gains, 12. Loss/Spirituality. 9 planets placed in these houses = the forces shaping your life.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+          {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'आर्यभट ने गणना की कि लग्न लगभग 1° प्रत्येक 4 मिनट में चलता है — जो आधुनिक खगोलीय गणना से बिल्कुल मेल खाता है। 10 मिनट की जन्म समय त्रुटि लग्न को 2.5° खिसका सकती है — जो सम्भवतः पूरी कुण्डली बदल दे। इसीलिए वैदिक ज्योतिषी मिनट तक जन्म समय की सटीकता पर बल देते हैं।'
+            : 'Aryabhata calculated that the Lagna moves at approximately 1\u00B0 every 4 minutes \u2014 which matches modern astronomical computation exactly. A 10-minute birth time error can shift the lagna by 2.5\u00B0 \u2014 potentially changing the entire chart. This is why Vedic astrologers insist on birth time accuracy to the minute.'}
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function Page2() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {isHi ? 'कुण्डली शैलियाँ और पहले क्या देखें' : 'Chart Styles & What to Look for First'}
+        </h3>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'उत्तर भारतीय बनाम दक्षिण भारतीय कुण्डली' : 'North Indian vs South Indian Chart'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'उत्तर भारतीय (हीरा): भाव स्थिर हैं, राशियाँ घूमती हैं। लग्न सदैव ऊपर है। दक्षिण भारतीय (ग्रिड): राशियाँ स्थिर हैं, भाव घूमते हैं। मेष सदैव ऊपर-बाएँ है। एक ही डेटा, भिन्न दृश्य परम्पराएँ — जैसे मीट्रिक बनाम इम्पीरियल। एक सीखने पर दूसरी केवल घुमाव है।'
+            : 'North Indian (diamond): houses are FIXED positions, signs rotate. Lagna is always at the top. South Indian (grid): signs are FIXED positions, houses rotate. Aries is always top-left. SAME DATA, different visual conventions \u2014 like metric vs imperial. Once you learn one, the other is just a rotation.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'अपनी कुण्डली में पहले क्या देखें' : 'What to Look for First in YOUR Chart'}
+        </h4>
+        <div className="space-y-2">
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '1. आपकी लग्न राशि — आपका व्यक्तित्व लेंस। यह वह "चश्मा" है जिससे आप संसार देखते हैं।'
+              : '1. Your Lagna sign \u2014 your personality lens. This is the "glasses" through which you see the world.'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '2. चन्द्र राशि — आपका भावनात्मक मूल (यही आपकी "राशि" है जो भारत में पूछी जाती है)।'
+              : '2. Moon sign \u2014 your emotional core (this is your "rashi" that people ask about in India).'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '3. सबसे बलवान ग्रह (षड्बल द्वारा) — आपके जीवन में प्रमुख शक्ति।'
+              : '3. Strongest planet (by Shadbala) \u2014 the dominant force in your life.'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '4. प्रथम भाव में कोई ग्रह — वे सीधे आपके व्यक्तित्व पर छाप छोड़ते हैं।'
+              : '4. Any planets in the 1st house \u2014 they directly stamp your personality.'}
+          </p>
+        </div>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+          {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'भारतीय समभाव पद्धति (प्रत्येक भाव = 30°) 2000+ वर्षों से निरन्तर प्रयोग में है। पश्चिम ने असमान भाव पद्धतियाँ (प्लासिडस, कोख) केवल 17वीं शताब्दी में अपनाईं। KP ज्योतिष प्लासिडस भावों का उपयोग करता है — दोनों परम्पराओं का संगम।'
+            : 'The Indian equal-house system (each house = 30\u00B0) has been used continuously for 2000+ years. The West adopted unequal house systems (Placidus, Koch) only in the 17th century. KP astrology uses Placidus houses \u2014 combining both traditions.'}
+        </p>
+      </section>
+    </div>
+  );
+}
+
+function Page3() {
+  const locale = useModuleLocale();
+  const isHi = locale !== 'en';
+  return (
+    <div className="space-y-6">
+      <section>
+        <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+          {isHi ? 'अपनी कुण्डली बनाएँ — व्यावहारिक मार्गदर्शिका' : 'Generate YOUR Kundali — Practical Guide'}
+        </h3>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'हमारे ऐप पर कुण्डली पृष्ठ पर जाएँ। अपना जन्म विवरण भरें (तिथि, समय, स्थान)। ऐप सब कुछ गणित करता है: ग्रह स्थितियाँ, भाव, दशाएँ, योग। कोई बाहरी API नहीं — शुद्ध गणित।'
+            : 'Head to the Kundali page on our app. Enter your birth details (date, time, place). The app computes everything: planetary positions, houses, dashas, yogas. No external APIs \u2014 pure mathematics.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'टैब क्या दिखाते हैं' : 'What the Tabs Show'}
+        </h4>
+        <div className="space-y-2">
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '• चार्ट — दृश्य कुण्डली (उत्तर भारतीय हीरा शैली)। राशियाँ और ग्रह भावों में रखे दिखते हैं।'
+              : '• Chart \u2014 the visual Kundali (North Indian diamond style). Signs and planets placed in houses.'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '• ग्रह — प्रत्येक ग्रह की सटीक स्थिति (राशि, अंश, नक्षत्र, भाव)।'
+              : '• Planets \u2014 exact position of each planet (sign, degree, nakshatra, house).'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '• दशाएँ — जीवन काल चक्र (महादशा → अन्तर्दशा → प्रत्यन्तर दशा)। दर्शाती हैं कि जीवन में कब कौन-से विषय सक्रिय होंगे।'
+              : '• Dashas \u2014 life timing cycles (Mahadasha \u2192 Antardasha \u2192 Pratyantardasha). Shows WHEN themes activate in life.'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '• योग — ग्रह संयोग जो विशेष फल देते हैं (राजयोग, धनयोग, आदि)।'
+              : '• Yogas \u2014 planetary combinations that produce special results (Raja Yoga, Dhana Yoga, etc.).'}
+          </p>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? '• बल — षड्बल (छह प्रकार के बल) दिखाता है कि कौन-सा ग्रह सबसे प्रभावशाली है।'
+              : '• Strength \u2014 Shadbala (six types of strength) showing which planet is most influential.'}
+          </p>
+        </div>
+        <p className="text-text-secondary text-sm leading-relaxed mt-3">
+          {isHi
+            ? 'सब कुछ एक साथ समझने की कोशिश न करें — लग्न + चन्द्र + सबसे बलवान ग्रह से शुरू करें।'
+            : 'Don\'t try to interpret everything at once \u2014 start with lagna + Moon + strongest planet.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-red-400/20 bg-gradient-to-br from-red-900/10 to-transparent">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? 'भ्रान्ति निवारण' : 'Common Misconception'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? '"कुण्डली भाग्य है" — नहीं! यह नियतिवादी नहीं है। इसे मौसम पूर्वानुमान समझें: यह प्रवृत्तियाँ और ऋतुएँ दिखाता है, पर आप स्वयं चुनते हैं क्या करना है। दशाएँ बताती हैं कब विषय सक्रिय होते हैं — यह तैयारी है, नियतिवाद नहीं।'
+            : '"Kundali is destiny" \u2014 NOT deterministic. Think of it as a weather forecast: it shows tendencies and seasons, but you still choose what to do. The dashas show WHEN themes activate \u2014 preparation, not fatalism.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+          {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'पराशर की बृहत्होरा शास्त्र (लगभग दूसरी शताब्दी ई.) जन्म कुण्डली गणना, ग्रह गरिमा, 300+ योग और उपचार — सब 97 अध्यायों में वर्णित करती है। यह किसी भी सभ्यता में लिखा गया सबसे व्यापक ज्योतिष ग्रन्थ है, और हमारा ऐप इसके अल्गोरिद्म लागू करता है।'
+            : 'Parashara\'s Brihat Hora Shastra (c. 2nd century CE) describes how to compute a birth chart, planetary dignities, 300+ yogas, and remedial measures \u2014 all in 97 chapters. It\'s the most comprehensive astrological text ever written in any civilization, and our app implements its algorithms.'}
+        </p>
+      </section>
+    </div>
+  );
+}
+
+export default function Module0_5() {
+  return (
+    <ModuleContainer
+      meta={META}
+      pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]}
+      questions={QUESTIONS}
+    />
+  );
+}

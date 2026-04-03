@@ -75,6 +75,8 @@ const routes = [
   '/kundali/rectify',
   // Learn modules (structured curriculum)
   '/learn/modules',
+  '/learn/modules/0-1', '/learn/modules/0-2', '/learn/modules/0-3',
+  '/learn/modules/0-4', '/learn/modules/0-5', '/learn/modules/0-6',
   '/learn/modules/1-1', '/learn/modules/1-2', '/learn/modules/1-3',
   '/learn/modules/2-1', '/learn/modules/2-2', '/learn/modules/2-3', '/learn/modules/2-4',
   '/learn/modules/3-1', '/learn/modules/3-2', '/learn/modules/3-3',

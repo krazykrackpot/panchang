@@ -7,6 +7,15 @@ import { BookOpen, ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 const PHASES = [
+  { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार' }, color: 'border-gold-primary/20', topics: [
+    { topic: 'Getting Started', modules: [
+      { id: '0-1', title: { en: 'What is Jyotish? (And What It Isn\'t)', hi: 'ज्योतिष क्या है?' } },
+      { id: '0-2', title: { en: 'The Hindu Calendar — Why It\'s Different', hi: 'हिन्दू पंचांग — यह अलग क्यों है' } },
+      { id: '0-3', title: { en: 'Your Cosmic Address — Sun, Moon, Nakshatra', hi: 'आपका ब्रह्माण्डीय पता' } },
+      { id: '0-4', title: { en: 'Reading Today\'s Panchang', hi: 'आज का पंचांग पढ़ना' } },
+      { id: '0-5', title: { en: 'What is a Kundali?', hi: 'कुण्डली क्या है?' } },
+    ]},
+  ]},
   { phase: 1, label: { en: 'The Sky', hi: 'आकाश' }, color: 'border-blue-500/20', topics: [
     { topic: 'Foundations', modules: [
       { id: '1-1', title: { en: 'The Night Sky & Ecliptic', hi: 'रात्रि आकाश एवं क्रान्तिवृत्त' } },

@@ -55,9 +55,11 @@ export default function NotificationBell() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const authFailedRef = useRef(false);
 
   // ---- Fetch notifications ----
   const fetchNotifications = useCallback(async () => {
+    if (authFailedRef.current) return;
     const token = session?.access_token;
     if (!token) return;
 
@@ -65,6 +67,12 @@ export default function NotificationBell() {
       const res = await fetch('/api/notifications', {
         headers: { Authorization: `Bearer ${token}` },
       });
+      if (res.status === 401) {
+        authFailedRef.current = true;
+        setNotifications([]);
+        setUnreadCount(0);
+        return;
+      }
       if (!res.ok) return;
       const data = await res.json();
       setNotifications(data.notifications || []);
@@ -76,6 +84,7 @@ export default function NotificationBell() {
 
   // Fetch on mount and poll every 60 seconds — only when authenticated
   useEffect(() => {
+    authFailedRef.current = false; // reset on new session
     if (!session?.access_token) return;
     fetchNotifications();
     const interval = setInterval(fetchNotifications, 60_000);

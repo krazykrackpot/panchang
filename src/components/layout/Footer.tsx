@@ -1,69 +1,47 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
-import GoldDivider from '@/components/ui/GoldDivider';
 
 export default function Footer() {
-  const t = useTranslations();
+  const locale = useLocale();
 
   return (
-    <footer className="relative z-10 mt-20">
-      <GoldDivider />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div>
-            <h3 className="text-gold-gradient text-lg font-semibold mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-              {t('common.copyright')}
-            </h3>
-            <p className="text-text-secondary text-sm leading-relaxed">
-              {t('metadata.description')}
-            </p>
+    <footer className="relative z-10 mt-16 border-t border-gold-primary/8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Left — brand */}
+          <div className="flex items-center gap-2">
+            <span className="text-gold-primary/60 text-sm font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
+              Dekho Panchang
+            </span>
+            <span className="text-text-secondary/30 text-xs">&copy; 2026</span>
           </div>
 
-          {/* Panchang Links */}
-          <div>
-            <h4 className="text-gold-light text-sm font-semibold mb-3 uppercase tracking-wider">
-              {t('nav.panchang')}
-            </h4>
-            <div className="flex flex-col gap-2">
-              {['tithi', 'nakshatra', 'yoga', 'karana', 'muhurta', 'grahan', 'rashi'].map((item) => (
-                <Link
-                  key={item}
-                  href={`/panchang/${item}`}
-                  className="text-text-secondary hover:text-gold-light text-sm transition-colors"
-                >
-                  {t(`nav.${item}`)}
-                </Link>
-              ))}
-            </div>
+          {/* Center — links */}
+          <div className="flex items-center gap-4 text-xs text-text-secondary/50">
+            <Link href="/panchang" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'Panchang' : 'पंचांग'}
+            </Link>
+            <Link href="/kundali" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'Kundali' : 'कुण्डली'}
+            </Link>
+            <Link href="/calendar" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'Calendar' : 'पंचांग'}
+            </Link>
+            <Link href="/learn" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'Learn' : 'सीखें'}
+            </Link>
+            <Link href="/about" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'About' : 'परिचय'}
+            </Link>
+            <Link href="/pricing" className="hover:text-gold-light transition-colors">
+              {locale === 'en' ? 'Pricing' : 'मूल्य'}
+            </Link>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-gold-light text-sm font-semibold mb-3 uppercase tracking-wider">
-              Quick Links
-            </h4>
-            <div className="flex flex-col gap-2">
-              <Link href="/panchang" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-                {t('nav.panchang')}
-              </Link>
-              <Link href="/kundali" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-                {t('nav.kundali')}
-              </Link>
-              <Link href="/about" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
-                {t('nav.about')}
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        <div className="gold-divider mt-8 mb-6" />
-
-        <div className="text-center text-text-secondary text-xs">
-          <p>&copy; 2026 {t('common.copyright')}. Built with astronomical precision.</p>
-          <p className="mt-1 text-gold-dark" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
+          {/* Right — Sanskrit tagline */}
+          <p className="text-gold-dark/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             ॐ ज्योतिषां ज्योतिः
           </p>
         </div>

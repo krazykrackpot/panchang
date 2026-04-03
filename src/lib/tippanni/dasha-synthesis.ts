@@ -732,7 +732,39 @@ export function generateDashaSynthesis(
 
     // ── Pratyantardasha ──────────────────────────────────────────────
 
-    const pratyantardashas: PratyantardashaSynthesis[] = (antar.subPeriods || []).map(praty => {
+    // Compute pratyantardasha periods if not already in the data
+    // Formula: P_duration = (Antar_lord_years × Pratyantar_lord_years / 120) × (Antar_actual_duration / Antar_lord_years)
+    const DASHA_SEQ = [
+      { planet: 'Ketu', years: 7 }, { planet: 'Venus', years: 20 }, { planet: 'Sun', years: 6 },
+      { planet: 'Moon', years: 10 }, { planet: 'Mars', years: 7 }, { planet: 'Rahu', years: 18 },
+      { planet: 'Jupiter', years: 16 }, { planet: 'Saturn', years: 19 }, { planet: 'Mercury', years: 17 },
+    ];
+    const antarLordSeqIdx = DASHA_SEQ.findIndex(d => d.planet === antar.planet);
+    let pratySubPeriods = antar.subPeriods || [];
+    if (pratySubPeriods.length === 0 && antarLordSeqIdx >= 0 && startD && endD) {
+      // Compute on the fly
+      const antarActualMs = endD.getTime() - startD.getTime();
+      const antarLordYears = DASHA_SEQ[antarLordSeqIdx].years;
+      let pratyStart = new Date(startD.getTime());
+      pratySubPeriods = [];
+      for (let pi = 0; pi < 9; pi++) {
+        const pratySeqIdx = (antarLordSeqIdx + pi) % 9;
+        const pratyLord = DASHA_SEQ[pratySeqIdx];
+        const pratyFrac = (antarLordYears * pratyLord.years) / (120 * antarLordYears);
+        const pratyMs = antarActualMs * pratyFrac;
+        const pratyEnd = new Date(pratyStart.getTime() + pratyMs);
+        pratySubPeriods.push({
+          planet: pratyLord.planet,
+          planetName: PLANET_NAMES[NAME_TO_ID[pratyLord.planet]] || { en: pratyLord.planet, hi: pratyLord.planet, sa: pratyLord.planet },
+          startDate: pratyStart.toISOString().split('T')[0],
+          endDate: pratyEnd.toISOString().split('T')[0],
+          level: 'pratyantar' as const,
+        });
+        pratyStart = pratyEnd;
+      }
+    }
+
+    const pratyantardashas: PratyantardashaSynthesis[] = pratySubPeriods.map(praty => {
       const pratyLordId = NAME_TO_ID[praty.planet];
       const pratyLordPlanet = pratyLordId !== undefined ? getPlanetById(kundali.planets, pratyLordId) : undefined;
       const pratyDignity = pratyLordPlanet && pratyLordId !== undefined

@@ -55,6 +55,9 @@ const routes = [
   '/learn/argala',
   '/learn/jaimini',
   '/learn/sade-sati',
+  '/learn/planet-in-house',
+  '/learn/aspects',
+  '/learn/remedies',
   // Calendars
   '/calendar',
   '/transits',

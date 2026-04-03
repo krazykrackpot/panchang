@@ -376,6 +376,23 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
   },
 
+  // ─── Practitioner References ──────────────────────────────
+  '/learn/planet-in-house': {
+    title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },
+    description: { en: 'What does each planet mean in each house? Interactive guide to all 108 planet-house combinations with career, relationship, and health implications.', hi: 'प्रत्येक ग्रह प्रत्येक भाव में क्या अर्थ रखता है? 108 ग्रह-भाव संयोजनों की इंटरैक्टिव मार्गदर्शिका।', sa: 'प्रत्येकः ग्रहः प्रत्येकस्मिन् भावे किमर्थं करोति? 108 ग्रहभावसंयोजनानां मार्गदर्शिका।' },
+    keywords: ['planet in house', 'vedic astrology interpretation', 'mars in 7th house', 'jupiter in 10th'],
+  },
+  '/learn/aspects': {
+    title: { en: 'Planetary Aspects (Drishti) — Visual Guide', hi: 'ग्रह दृष्टि — दृश्य मार्गदर्शिका', sa: 'ग्रहदृष्टिः — दृश्यमार्गदर्शिका' },
+    description: { en: 'Interactive aspect wheel showing Jupiter, Mars, Saturn special aspects. Strength percentages, key combinations, and practical effects.', hi: 'बृहस्पति, मंगल, शनि विशेष दृष्टि। शक्ति प्रतिशत, प्रमुख संयोजन और प्रभाव।', sa: 'बृहस्पतिमङ्गलशनिविशेषदृष्टयः। शक्तिप्रतिशतं प्रमुखसंयोजनानि प्रभावाश्च।' },
+    keywords: ['planetary aspects', 'drishti', 'jupiter aspect', 'saturn aspect', 'mars aspect'],
+  },
+  '/learn/remedies': {
+    title: { en: 'Vedic Remedies — Gemstones, Mantras, Charity for All 9 Planets', hi: 'वैदिक उपाय — सभी 9 ग्रहों के रत्न, मंत्र, दान', sa: 'वैदिकोपायाः — सर्वेषां 9 ग्रहाणां रत्नमन्त्रदानानि' },
+    description: { en: 'Complete remedial reference for all 9 Vedic planets: gemstones, beej mantras, deity worship, fasting days, charity items, and colors. Includes remedy selection flowchart.', hi: 'सभी 9 ग्रहों का पूर्ण उपचार: रत्न, बीज मंत्र, देवता पूजा, उपवास, दान और रंग।', sa: 'सर्वेषां 9 ग्रहाणां सम्पूर्णोपचारः — रत्नानि बीजमन्त्राः देवतापूजा उपवासः दानं वर्णाश्च।' },
+    keywords: ['vedic remedies', 'gemstone astrology', 'planet mantras', 'jyotish remedies', 'graha shanti'],
+  },
+
   // ─── Kundali Deep Dives ───────────────────────────────────
   '/learn/planets': {
     title: { en: 'Planetary Positions — Reading Your Birth Chart', hi: 'ग्रह स्थिति — जन्म कुण्डली पढ़ना', sa: 'ग्रहस्थितयः — जन्मकुण्डलीपठनम्' },

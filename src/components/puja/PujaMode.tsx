@@ -6,6 +6,7 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { PujaVidhi, MantraDetail, VidhiStep } from '@/lib/constants/puja-vidhi/types';
 import type { Locale } from '@/types/panchang';
 import JapaCounter from './JapaCounter';
+import { useMantraPronounce } from './MantraCard';
 
 interface PujaModeProps {
   puja: PujaVidhi;
@@ -27,6 +28,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
   const wakeLockRef = useRef<WakeLockSentinel | null>(null);
 
   const labels = LABELS[locale];
+  const { speaking, pronounce, supported: speechSupported } = useMantraPronounce();
 
   // Build mantra lookup map
   const mantraMap = useMemo(() => {
@@ -244,7 +246,29 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
 
             {/* Linked mantra card */}
             {linkedMantra && (
-              <div className="w-full rounded-xl border border-gold-primary/15 bg-gold-primary/[0.04] p-5">
+              <div className="relative w-full rounded-xl border border-gold-primary/15 bg-gold-primary/[0.04] p-5">
+                {/* Pronounce button */}
+                {speechSupported && (
+                  <button
+                    type="button"
+                    onClick={() => pronounce(linkedMantra.iast)}
+                    className="absolute top-3 right-3 w-8 h-8 rounded-lg bg-gold-primary/10 hover:bg-gold-primary/20 border border-gold-primary/15 flex items-center justify-center transition-colors"
+                    aria-label={speaking ? 'Stop pronunciation' : 'Pronounce mantra'}
+                  >
+                    {speaking ? (
+                      <svg className="w-4 h-4 text-gold-primary animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+                        <line x1="23" y1="9" x2="17" y2="15" strokeLinecap="round" strokeLinejoin="round" />
+                        <line x1="17" y1="9" x2="23" y2="15" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-gold-primary/60 hover:text-gold-primary/90 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5L6 9H2v6h4l5 4V5z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.08" />
+                      </svg>
+                    )}
+                  </button>
+                )}
                 <p
                   className="text-center text-2xl leading-relaxed text-gold-light sm:text-3xl"
                   style={{ fontFamily: 'var(--font-devanagari-heading)' }}

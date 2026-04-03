@@ -555,11 +555,11 @@ export default function PanchangPage() {
                     </div>
                     {tithiTr && (
                       <>
-                        <div className="font-mono text-[10px] text-text-secondary/60 mt-1">
-                          {fmt(tithiTr.startTime, tithiTr.startDate)} —
-                        </div>
-                        <div className="font-mono text-xs text-gold-primary">
-                          {fmt(tithiTr.endTime, tithiTr.endDate)}
+                        <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                          <div className="font-mono text-sm text-gold-light font-bold">
+                            {fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}
+                          </div>
+                          <div className="text-[8px] text-text-secondary/30 mt-0.5">24h</div>
                         </div>
                       </>
                     )}
@@ -573,7 +573,7 @@ export default function PanchangPage() {
                       <div className="text-text-secondary text-[10px] mt-0.5">
                         {nextTithiData.paksha === 'shukla' ? t('shukla') : t('krishna')}
                       </div>
-                      <div className="font-mono text-xs text-gold-primary mt-1.5">
+                      <div className="font-mono text-sm text-gold-light font-bold mt-1.5">
                         {fmt(tithiTr.endTime, tithiTr.endDate)} {onwards}
                       </div>
                     </div>
@@ -600,14 +600,12 @@ export default function PanchangPage() {
                       {panchang.nakshatra.pada ? ` · ${locale === 'en' ? 'Pada' : 'पाद'} ${panchang.nakshatra.pada}` : ''}
                     </div>
                     {nakTr && (
-                      <>
-                        <div className="font-mono text-[10px] text-text-secondary/60 mt-1">
-                          {fmt(nakTr.startTime, nakTr.startDate)} —
+                      <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                        <div className="font-mono text-sm text-gold-light font-bold">
+                          {fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}
                         </div>
-                        <div className="font-mono text-xs text-gold-primary">
-                          {fmt(nakTr.endTime, nakTr.endDate)}
-                        </div>
-                      </>
+                        <div className="text-[8px] text-text-secondary/30 mt-0.5">24h</div>
+                      </div>
                     )}
                   </div>
                   {/* Second nakshatra (after transition) */}
@@ -619,7 +617,7 @@ export default function PanchangPage() {
                       <div className="text-text-secondary text-[10px] mt-0.5">
                         {nextNakData.deity[locale]}
                       </div>
-                      <div className="font-mono text-xs text-gold-primary mt-1.5">
+                      <div className="font-mono text-sm text-gold-light font-bold mt-1.5">
                         {fmt(nakTr.endTime, nakTr.endDate)} {onwards}
                       </div>
                     </div>
@@ -640,8 +638,8 @@ export default function PanchangPage() {
                   <div className="text-text-secondary text-xs mt-2">{activeYoga.meaning[locale]}</div>
                   {panchang.yogaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
-                      <div className="font-mono text-[10px] text-text-secondary/60">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} —</div>
-                      <div className="font-mono text-xs text-gold-primary">{fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
+                      <div className="font-mono text-sm text-gold-light font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
+                      <div className="text-[8px] text-text-secondary/30">24h</div>
                       {!yogaPassed && (
                         <div className="text-[10px] text-text-secondary mt-1">
                           {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.yogaTransition.nextName[locale]}</span>
@@ -667,8 +665,8 @@ export default function PanchangPage() {
                   </div>
                   {panchang.karanaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
-                      <div className="font-mono text-[10px] text-text-secondary/60">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} —</div>
-                      <div className="font-mono text-xs text-gold-primary">{fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
+                      <div className="font-mono text-sm text-gold-light font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
+                      <div className="text-[8px] text-text-secondary/30">24h</div>
                       {!karanaPassed && (
                         <div className="text-[10px] text-text-secondary mt-1">
                           {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.karanaTransition.nextName[locale]}</span>

@@ -209,13 +209,19 @@ export default function TodayPanchangWidget() {
               <div className="text-text-secondary text-sm mt-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
             )}
             {el.timing && (
-              <div className="mt-3 space-y-0.5">
-                <div className="font-mono text-[10px] text-emerald-400/70">
-                  {locale === 'en' ? 'starts' : 'आरम्भ'} {el.timing.start}
+              <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
+                <div className="flex items-center justify-center gap-3">
+                  <div className="text-center">
+                    <div className="text-[9px] uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Starts' : 'आरम्भ'}</div>
+                    <div className="font-mono text-sm font-bold text-emerald-400">{el.timing.start}</div>
+                  </div>
+                  <span className="text-text-secondary/20 text-lg">→</span>
+                  <div className="text-center">
+                    <div className="text-[9px] uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Ends' : 'समाप्ति'}</div>
+                    <div className="font-mono text-sm font-bold text-rose-400">{el.timing.end}</div>
+                  </div>
                 </div>
-                <div className="font-mono text-[10px] text-red-400/70">
-                  {locale === 'en' ? 'ends' : 'समाप्ति'} {el.timing.end}
-                </div>
+                <div className="text-[8px] text-text-secondary/30 text-center mt-1">24h</div>
               </div>
             )}
           </motion.div>

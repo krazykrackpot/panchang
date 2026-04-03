@@ -21,7 +21,9 @@ export async function POST(request: Request) {
     }
 
     const result = computeAshtaKuta(boy, girl);
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: { 'Cache-Control': 'private, max-age=3600' },
+    });
   } catch {
     return NextResponse.json(
       { error: 'Failed to compute matching' },

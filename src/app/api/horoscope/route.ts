@@ -45,9 +45,13 @@ export async function GET(request: Request) {
   const cached = cache.get(cacheKey);
   if (cached && Date.now() - cached.createdAt < CACHE_TTL) {
     if (sign) {
-      return NextResponse.json({ sign, signName: getSignName(sign), forecast: cached.data[sign] || '', date: today, cached: true });
+      return NextResponse.json({ sign, signName: getSignName(sign), forecast: cached.data[sign] || '', date: today, cached: true }, {
+        headers: { 'Cache-Control': 'public, s-maxage=86400' },
+      });
     }
-    return NextResponse.json({ date: today, horoscopes: cached.data, cached: true });
+    return NextResponse.json({ date: today, horoscopes: cached.data, cached: true }, {
+      headers: { 'Cache-Control': 'public, s-maxage=86400' },
+    });
   }
 
   // Compute today's panchang for transit data
@@ -104,9 +108,13 @@ export async function GET(request: Request) {
   }
 
   if (sign) {
-    return NextResponse.json({ sign, signName: getSignName(sign), forecast: horoscopes[sign] || '', date: today, cached: false });
+    return NextResponse.json({ sign, signName: getSignName(sign), forecast: horoscopes[sign] || '', date: today, cached: false }, {
+      headers: { 'Cache-Control': 'public, s-maxage=86400' },
+    });
   }
-  return NextResponse.json({ date: today, horoscopes, cached: false });
+  return NextResponse.json({ date: today, horoscopes, cached: false }, {
+    headers: { 'Cache-Control': 'public, s-maxage=86400' },
+  });
 }
 
 function getSignName(sign: number): string {

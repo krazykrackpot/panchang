@@ -7,7 +7,9 @@ export async function GET(request: Request) {
 
   try {
     const events = generateTransitCalendar(year);
-    return NextResponse.json({ year, events });
+    return NextResponse.json({ year, events }, {
+      headers: { 'Cache-Control': 'public, s-maxage=3600' },
+    });
   } catch {
     return NextResponse.json({ error: 'Failed to generate transit calendar' }, { status: 500 });
   }

@@ -86,7 +86,9 @@ export async function POST(request: Request) {
     const cacheKey = getCacheKey(kundali, locale, ragEnabled);
     const cached = memoryCache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-      return NextResponse.json(cached.data);
+      return NextResponse.json(cached.data, {
+        headers: { 'Cache-Control': 'private, max-age=3600' },
+      });
     }
 
     // Step 1: Generate base deterministic tippanni
@@ -105,14 +107,18 @@ export async function POST(request: Request) {
       // Use demo classical references so the UI works without external services
       const result = enhanceWithDemoData(kundali, baseTippanni);
       cacheSet(cacheKey, result);
-      return NextResponse.json(result);
+      return NextResponse.json(result, {
+        headers: { 'Cache-Control': 'private, max-age=3600' },
+      });
     }
 
     // Step 3: RAG enhancement
     try {
       const enhanced = await enhanceWithRAG(kundali, baseTippanni, ragSections);
       cacheSet(cacheKey, enhanced);
-      return NextResponse.json(enhanced);
+      return NextResponse.json(enhanced, {
+        headers: { 'Cache-Control': 'private, max-age=3600' },
+      });
     } catch (ragError) {
       console.error('RAG enhancement failed, falling back:', ragError);
       const result: TippanniContent = {
@@ -121,7 +127,9 @@ export async function POST(request: Request) {
         ragError: 'Classical reference lookup temporarily unavailable',
       };
       cacheSet(cacheKey, result);
-      return NextResponse.json(result);
+      return NextResponse.json(result, {
+        headers: { 'Cache-Control': 'private, max-age=3600' },
+      });
     }
   } catch (err) {
     console.error('Tippanni API error:', err);

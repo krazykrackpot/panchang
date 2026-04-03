@@ -40,7 +40,9 @@ export async function POST(request: Request) {
     }
 
     const result = generatePrashnaResult(numbers, category, lat, lng, tz);
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: { 'Cache-Control': 'private, max-age=1800' },
+    });
   } catch {
     return NextResponse.json(
       { error: 'Failed to generate Ashtamangala Prashna' },

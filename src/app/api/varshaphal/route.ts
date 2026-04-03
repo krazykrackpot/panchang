@@ -26,7 +26,9 @@ export async function POST(request: Request) {
     }
 
     const result = generateVarshaphal(birthData, year);
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: { 'Cache-Control': 'private, max-age=3600' },
+    });
   } catch {
     return NextResponse.json(
       { error: 'Failed to generate Varshaphal chart' },

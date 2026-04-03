@@ -51,6 +51,8 @@ export async function GET(request: Request) {
       })),
       ekadashis: ekadashiDetails,
       ekadashiCount: ekadashiDetails.length,
+    }, {
+      headers: { 'Cache-Control': 'public, s-maxage=3600' },
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

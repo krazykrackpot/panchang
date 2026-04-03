@@ -11,5 +11,7 @@ export async function GET(req: NextRequest) {
 
   const dates = findMuhuratDates(year, month, activity, lat, lng);
   const activities = getAllActivities();
-  return NextResponse.json({ year, month, activity, dates, activities });
+  return NextResponse.json({ year, month, activity, dates, activities }, {
+    headers: { 'Cache-Control': 'public, s-maxage=3600' },
+  });
 }

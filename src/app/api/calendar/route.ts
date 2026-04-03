@@ -18,7 +18,9 @@ export async function GET(request: Request) {
 
   try {
     const festivals = generateFestivalCalendarV2(year, lat, lon, timezoneParam);
-    return NextResponse.json({ year, festivals });
+    return NextResponse.json({ year, festivals }, {
+      headers: { 'Cache-Control': 'public, s-maxage=3600' },
+    });
   } catch (err) {
     return NextResponse.json({ error: 'Failed to generate calendar: ' + String(err) }, { status: 500 });
   }

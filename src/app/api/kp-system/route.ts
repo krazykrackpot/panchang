@@ -18,7 +18,9 @@ export async function POST(request: Request) {
     }
 
     const result = generateKPChart(body);
-    return NextResponse.json(result);
+    return NextResponse.json(result, {
+      headers: { 'Cache-Control': 'private, max-age=3600' },
+    });
   } catch {
     return NextResponse.json(
       { error: 'Failed to generate KP chart' },

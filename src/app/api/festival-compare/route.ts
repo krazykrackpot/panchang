@@ -49,6 +49,8 @@ export async function GET(request: Request) {
         const v1Match = v1Maj.find(v => v.name === m.name);
         return { v2: m, v1: v1Match || null, match: v1Match?.date === m.date };
       }),
+    }, {
+      headers: { 'Cache-Control': 'public, s-maxage=86400' },
     });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

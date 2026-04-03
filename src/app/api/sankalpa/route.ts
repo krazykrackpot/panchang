@@ -94,6 +94,8 @@ export async function POST(request: Request) {
       },
       panchangDate: date,
       vikramSamvat,
+    }, {
+      headers: { 'Cache-Control': 'private, max-age=1800' },
     });
   } catch (err) {
     console.error('Sankalpa API error:', err);

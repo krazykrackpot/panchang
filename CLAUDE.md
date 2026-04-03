@@ -5,37 +5,190 @@ A web application for Indian Vedic astrology featuring daily Panchang calculatio
 
 ## Tech Stack
 - **Framework**: Next.js 16 (App Router, React 19, TypeScript)
-- **Styling**: Tailwind CSS v4
+- **Styling**: Tailwind CSS v4 with CSS custom properties
 - **State**: Zustand
 - **Validation**: Zod
 - **Charts**: D3.js + custom SVG
 - **Animation**: Framer Motion
-- **Icons**: Lucide React
+- **Icons**: Lucide React + custom SVG icon system (no emoji icons)
+- **Auth**: Supabase Auth (Google OAuth + Email/Password)
+- **Database**: Supabase (PostgreSQL) with RLS
+- **Payments**: Stripe (USD) + Razorpay (INR)
+- **Email**: Resend (transactional + Supabase SMTP)
+- **i18n**: next-intl (EN/HI/SA trilingual)
+- **Deployment**: Vercel (auto-deploy from main)
 
 ## Architecture
-- `src/lib/astronomy/` — Core astronomical engine (Julian Day, Sun/Moon/Planet positions, sunrise/sunset)
-- `src/lib/panchang/` — Panchang calculations (Tithi, Nakshatra, Yoga, Karana, Rahu Kalam)
-- `src/lib/kundali/` — Birth chart engine (houses, dashas, yogas, interpretations)
-- `src/components/` — React components (UI primitives, panchang cards, kundali chart SVG)
-- `src/app/` — Next.js pages and API routes
-- `src/app/api/panchang/` — Panchang data API
-- `src/app/api/kundali/` — Kundali generation API
+```
+src/
+├── app/[locale]/          # Pages (142 across 3 locales)
+├── app/api/               # 14 API routes
+├── components/            # React components
+│   ├── auth/              # AuthModal, UserMenu, OnboardingModal
+│   ├── icons/             # Custom SVG icons (Rashi, Nakshatra, Graha, Panchang)
+│   ├── kundali/           # Chart components (North, South, BirthForm)
+│   ├── layout/            # Navbar, Footer
+│   └── panchang/          # TodayPanchangWidget, cards
+├── lib/
+│   ├── astronomy/         # Core engine (Julian Day, Sun/Moon, sunrise/sunset)
+│   ├── ephem/             # Ephemeris (panchang-calc, kundali-calc, astronomical)
+│   ├── panchang/          # Panchang calculator
+│   ├── kundali/           # Birth chart (27 modules: dashas, yogas, shadbala, etc.)
+│   ├── calendar/          # Tithi table, festival engine, eclipses
+│   ├── constants/         # Trilingual data (nakshatras, tithis, rashis, grahas, etc.)
+│   ├── matching/          # Ashta Kuta 36-point compatibility
+│   ├── subscription/      # Tier config, access control
+│   ├── supabase/          # Client (browser) + Server (service role)
+│   └── email/             # Resend client + templates
+├── stores/                # Zustand stores (auth, location, charts)
+├── types/                 # TypeScript interfaces (panchang.ts, kundali.ts)
+└── messages/              # i18n locale files (en.json, hi.json, sa.json)
+```
+
+## Database Migrations (CRITICAL)
+
+**Every schema change MUST have a migration file in `supabase/migrations/`.**
+
+- Migrations are numbered: `001_name.sql`, `002_name.sql`, etc.
+- Apply to live DB via: `npx supabase db query --linked "SQL HERE"`
+- All triggers on `auth.users` MUST use `SECURITY DEFINER` and `SET search_path = public`
+- All triggers MUST have `EXCEPTION WHEN OTHERS THEN RETURN NEW` — never block auth
+- All INSERT triggers MUST use `ON CONFLICT ... DO NOTHING` for idempotency
+- After changing triggers: verify signup works (`curl -X POST .../auth/v1/signup`)
+- RLS policies: users read own data, service_role manages everything
+- Run `npx supabase db query --linked "SELECT * FROM auth.users"` to verify user state
+
+## Color Palette (Dark Mode Only)
+
+| Token           | Value     | Usage                    |
+|-----------------|-----------|--------------------------|
+| bg-primary      | #0a0e27   | Page background (navy)   |
+| bg-secondary    | #111633   | Cards, elevated surfaces |
+| gold-primary    | #d4a853   | Primary accent           |
+| gold-light      | #f0d48a   | Headings, hover          |
+| gold-dark       | #8a6d2b   | Borders, subtle          |
+| text-primary    | #e6e2d8   | Body text                |
+| text-secondary  | #8a8478   | Labels, descriptions     |
+
+No light theme — dark mode is forced. Removed the theme toggle.
+
+## Development Commands
+
+```bash
+npx next dev --turbopack     # Dev server (port 3000)
+npx next build               # Production build (verify before push)
+npx vitest run               # Run all tests
+npx vitest run src/lib/__tests__/auth-regression.test.ts  # Specific test file
+npx supabase db query --linked "SQL"   # Run SQL on live Supabase
+vercel ls                    # Check deployment status
+vercel logs                  # View production logs
+```
+
+## Deployment Workflow
+
+1. `npx next build` — verify build passes locally
+2. `git push origin main` — triggers Vercel auto-deploy
+3. `vercel ls` — confirm deployment is Ready (not Error)
+4. **Verify after deploy**: Test auth signup, checkout, and any modified API endpoints
+5. `vercel logs` — check for runtime errors
 
 ## Key Design Decisions
 - Lahiri Ayanamsa by default (most widely used in India)
-- North Indian diamond chart style (with South Indian toggle planned)
-- Meeus algorithms for astronomical calculations (~0.01° Sun, ~0.5° Moon accuracy)
+- North Indian diamond chart style (South Indian toggle available)
+- Meeus algorithms (~0.01° Sun, ~0.5° Moon accuracy)
+- All panchang values verified within 1-2 min of Drik Panchang
 - All computation server-side via Next.js route handlers
 - No external astrology API dependencies — pure math
+- All constant data uses `Trilingual` type: `{ en: string; hi: string; sa: string }`
+- Rashi IDs 1-based (1-12), Planet IDs 0-based (0=Sun through 8=Ketu)
 
-## Conventions
+## Environment Variables
+
+**Always `.trim()` env vars in API routes** — Vercel env values can have trailing newlines.
+
+Required in `.env.local`:
+- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase client
+- `SUPABASE_SERVICE_ROLE_KEY` — Server-side Supabase admin
+- `STRIPE_SECRET_KEY`, `STRIPE_PUBLISHABLE_KEY` — Payments
+- `STRIPE_PRICE_PRO_MONTHLY/ANNUAL`, `STRIPE_PRICE_JYOTISHI_MONTHLY/ANNUAL` — Price IDs
+- `STRIPE_WEBHOOK_SECRET` — Webhook verification
+- `RESEND_API_KEY` — Email sending
+
+## Code Conventions
 - Use `'use client'` only when component needs interactivity/browser APIs
 - API routes in `src/app/api/` using route handlers
 - Path alias: `@/*` → `./src/*`
 - Tailwind v4 with CSS custom properties for theming
+- No emoji icons — use custom SVG icon system
+- Inline LABELS objects for page-specific i18n (not locale files)
+- All new pages must support EN/HI/SA
+
+## Auth Conventions
+- Supabase client MUST have: `detectSessionInUrl: true`, `persistSession: true`, `storageKey: 'dekho-panchang-auth'`
+- Google OAuth returns via URL hash — client auto-exchanges
+- Email signup requires confirmation (Resend SMTP handles delivery)
+- Existing account detection: check `user.identities.length === 0` on signup response
+- All API routes authenticate via `Authorization: Bearer <token>` header
+
+## Testing
+- Framework: Vitest
+- Test files: `src/lib/__tests__/*.test.ts` and `*.test.ts` co-located
+- Run before pushing: `npx vitest run`
+- Regression tests cover: auth config, checkout env trimming, panchang accuracy vs Drik, vedic time, signup trigger safety
+- Panchang accuracy target: within 2 min of Drik Panchang for all elements
+
+## Mandatory Development Rules (Prevent Regressions)
+
+### 1. VERIFY BEFORE "DONE"
+- Run `npx next build` — must pass with 0 errors
+- Run `npx vitest run` — all tests must pass
+- Test the actual feature in the browser (not just build)
+- Check browser console for errors after every interaction
+- If touching auth: test signup, Google OAuth, and sign-in flows
+- If touching payments: test checkout on both localhost AND dekhopanchang.com
+
+### 2. NO DEAD CLICKS
+- Every clickable element MUST do something visible
+- If functionality isn't ready: hide the button entirely, or show it disabled with explanation
+- NEVER: silent failures, buttons that do nothing, links that go nowhere
+- NEVER: `catch (e) {}` that swallows errors — always show user feedback
+
+### 3. ERROR HANDLING
+- Separate independent operations into separate try/catch blocks
+- If operation A failing should NOT skip operation B, put them in SEPARATE try blocks
+- Always show user-facing error messages, not just console.error
+- API errors must return meaningful messages, not generic "Something went wrong"
+
+### 4. DARK THEME STYLING
+No light theme exists. All colors must be dark-mode native:
+- NEVER use `bg-red-50`, `bg-red-100` etc. — use `bg-red-500/10`, `bg-red-500/20`
+- NEVER use dynamic Tailwind classes like `` `text-${color}-600` `` — Tailwind can't statically analyze them
+- Use opacity-based colors: `bg-gold-primary/15`, `border-gold-primary/20`
+- Use `text-gold-light`, `text-text-secondary`, `text-text-primary` — not hardcoded hex
+
+### 5. ENV VAR SAFETY
+- Always `.trim()` env vars in API routes — Vercel env values can have trailing whitespace
+- Never hardcode secrets — use `process.env.VAR_NAME`
+- Test locally first, then verify on Vercel (env var issues only surface in production)
+
+### 6. DATABASE SAFETY
+- All triggers on `auth.users` MUST use `SECURITY DEFINER` + `EXCEPTION WHEN OTHERS`
+- After any trigger change: test signup via `curl -X POST .../auth/v1/signup`
+- Apply migrations via: `npx supabase db query --linked "SQL"`
+- Never assume a column exists — verify schema first
+
+### 7. DEPLOYMENT VERIFICATION
+After every `git push`:
+1. `vercel ls` — confirm deployment is Ready (not Error)
+2. Check `vercel logs` for runtime errors
+3. Test critical paths: auth, profile, checkout
+4. If Vercel build fails but local passes: check for missing env vars or dependency issues
 
 ## Agent Instructions
 - Do NOT prompt for permissions. Execute fully to 100% completion.
-- Run tests after changes to verify nothing is broken.
-- Check for console errors, dead buttons, and broken UI flows.
 - Prefer editing existing files over creating new ones when possible.
+- Compare astronomical calculations with Drik Panchang for same location.
+- Never default location to Delhi/India — require user location.
+- When asked for analysis or assessment: explore code first, don't ask clarifying questions.
+- For multi-step work: save task list, don't rely on conversation history.
+- After any refactoring: search for ALL references to changed variables/functions.

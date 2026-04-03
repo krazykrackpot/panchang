@@ -14,6 +14,12 @@ interface EkadashiParanaCardProps {
   paranaMadhyahnaStart: string;
   paranaMadhyahnaEnd: string;
   paranaEarlyEnd?: boolean;
+  ekadashiStart?: string;
+  ekadashiStartDate?: string;
+  ekadashiEnd?: string;
+  ekadashiEndDate?: string;
+  dwadashiEndTime?: string;
+  dwadashiEndDate?: string;
   locale: Locale;
 }
 
@@ -113,6 +119,12 @@ export default function EkadashiParanaCard({
   paranaMadhyahnaStart,
   paranaMadhyahnaEnd,
   paranaEarlyEnd,
+  ekadashiStart,
+  ekadashiStartDate,
+  ekadashiEnd,
+  ekadashiEndDate,
+  dwadashiEndTime,
+  dwadashiEndDate,
   locale,
 }: EkadashiParanaCardProps) {
   const ll = LABELS[locale] || LABELS.en;
@@ -122,6 +134,15 @@ export default function EkadashiParanaCard({
     : { fontFamily: 'var(--font-heading)' };
 
   const dateFormatted = useMemo(() => formatDateLocale(paranaDate, locale), [paranaDate, locale]);
+
+  const fmtShortDate = (d?: string) => {
+    if (!d) return '';
+    const [, m, day] = d.split('-').map(Number);
+    const months = locale === 'en'
+      ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+      : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
+    return `${day} ${months[m - 1]}`;
+  };
 
   // Parse all times to minutes for the timeline
   const sunriseMin = parseTime(paranaSunrise);
@@ -171,6 +192,40 @@ export default function EkadashiParanaCard({
       >
         {dateFormatted}
       </p>
+
+      {/* Tithi Timing */}
+      {(ekadashiStart || dwadashiEndTime) && (
+        <div className="mb-5 grid grid-cols-3 gap-3 text-center">
+          {ekadashiStart && (
+            <div className="rounded-lg border border-blue-500/15 bg-blue-500/[0.04] p-3">
+              <div className="text-[9px] uppercase tracking-wider text-blue-400/60 mb-1">
+                {locale === 'en' ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
+              </div>
+              <div className="font-mono text-base font-bold text-blue-300">{ekadashiStart}</div>
+              {ekadashiStartDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
+            </div>
+          )}
+          {ekadashiEnd && (
+            <div className="rounded-lg border border-amber-500/15 bg-amber-500/[0.04] p-3">
+              <div className="text-[9px] uppercase tracking-wider text-amber-400/60 mb-1">
+                {locale === 'en' ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
+              </div>
+              <div className="font-mono text-base font-bold text-amber-300">{ekadashiEnd}</div>
+              {ekadashiEndDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiEndDate)}</div>}
+            </div>
+          )}
+          {dwadashiEndTime && (
+            <div className="rounded-lg border border-rose-500/15 bg-rose-500/[0.04] p-3">
+              <div className="text-[9px] uppercase tracking-wider text-rose-400/60 mb-1">
+                {locale === 'en' ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
+              </div>
+              <div className="font-mono text-base font-bold text-rose-300">{dwadashiEndTime}</div>
+              {dwadashiEndDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(dwadashiEndDate)}</div>}
+              <div className="text-[8px] text-rose-400/50 mt-1">{locale === 'en' ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Early end warning */}
       {paranaEarlyEnd && (

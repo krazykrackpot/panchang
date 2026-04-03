@@ -97,6 +97,12 @@ export interface FestivalEntry {
   eclipsePhases?: { name: Trilingual; time: string }[];
   paranaMadhyahnaStart2?: string;
   paranaMadhyahnaEnd2?: string;
+  ekadashiStart?: string;
+  ekadashiStartDate?: string;
+  ekadashiEnd?: string;
+  ekadashiEndDate?: string;
+  dwadashiEndTime?: string;
+  dwadashiEndDate?: string;
 }
 
 // ─── Festival Detail Imports ───
@@ -217,6 +223,16 @@ function computeEkadashiParanaFromTable(
     dwEndStr = `${dwEndStr}, ${months[dd.getMonth()]} ${dd.getDate()}`;
   }
 
+  // Ekadashi tithi times (from the ekadashi entry itself)
+  const ekadashiStartLocal = ekadashiEntry.startLocal;
+  const ekadashiStartDate = ekadashiEntry.startDate;
+  const ekadashiEndLocal = ekadashiEntry.endLocal;
+  const ekadashiEndDate = ekadashiEntry.endDate;
+
+  // Dwadashi end with full date
+  const dwadashiEndDate = dwadashiEntry.endDate;
+  const dwadashiEndTime = dwadashiEntry.endLocal;
+
   return {
     paranaDate: paranaDayStr,
     paranaStart: ft(recStartUT),
@@ -227,6 +243,13 @@ function computeEkadashiParanaFromTable(
     paranaEarlyEnd: dwEndUTHours <= earliestUT,
     paranaMadhyahnaStart: ft(madhStartUT),
     paranaMadhyahnaEnd: ft(madhEndUT),
+    // Tithi timing data
+    ekadashiStart: ekadashiStartLocal,
+    ekadashiStartDate,
+    ekadashiEnd: ekadashiEndLocal,
+    ekadashiEndDate,
+    dwadashiEndTime,
+    dwadashiEndDate,
     paranaNote: {
       en: `Parana: ${ft(recStartUT)} to ${ft(recEndUT)}. Sunrise: ${ft(sunriseUT)}.`,
       hi: `पारण: ${ft(recStartUT)} से ${ft(recEndUT)}। सूर्योदय: ${ft(sunriseUT)}।`,

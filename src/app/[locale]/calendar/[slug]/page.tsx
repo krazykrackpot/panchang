@@ -361,6 +361,12 @@ export default function FestivalDetailPage() {
                 paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
                 paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
                 paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
+                ekadashiStart={ekadashiParana.ekadashiStart}
+                ekadashiStartDate={ekadashiParana.ekadashiStartDate}
+                ekadashiEnd={ekadashiParana.ekadashiEnd}
+                ekadashiEndDate={ekadashiParana.ekadashiEndDate}
+                dwadashiEndTime={ekadashiParana.dwadashiEndTime}
+                dwadashiEndDate={ekadashiParana.dwadashiEndDate}
                 locale={locale}
               />
             </motion.div>

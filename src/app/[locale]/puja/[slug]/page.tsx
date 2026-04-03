@@ -313,20 +313,25 @@ export default function PujaVidhiPage() {
 
   // Ekadashi parana data from the festival calendar
   const ekadashiParana = useMemo(() => {
-    if (!puja || !festivalDate || !userLat || !userLng) return null;
-    // Only for ekadashi vrats
+    if (!puja || !userLat || !userLng) return null;
     if (!puja.festivalSlug.includes('ekadashi')) return null;
     try {
-      const year = festivalDate.getFullYear();
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+      const year = now.getFullYear();
       const festivals = generateFestivalCalendarV2(year, userLat, userLng, userTimezone);
-      const dateStr = `${year}-${(festivalDate.getMonth() + 1).toString().padStart(2, '0')}-${festivalDate.getDate().toString().padStart(2, '0')}`;
-      const entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date === dateStr);
+      // Find next upcoming ekadashi (any ekadashi) on or after today
+      let entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date >= todayStr && f.paranaStart);
+      if (!entry) {
+        const nextYear = generateFestivalCalendarV2(year + 1, userLat, userLng, userTimezone);
+        entry = nextYear.find(f => f.slug?.includes('ekadashi') && f.paranaStart);
+      }
       if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
         return entry;
       }
     } catch { /* fail silently */ }
     return null;
-  }, [puja, festivalDate, userLat, userLng, userTimezone]);
+  }, [puja, userLat, userLng, userTimezone]);
 
   if (!puja) {
     return (
@@ -386,6 +391,12 @@ export default function PujaVidhiPage() {
             paranaMadhyahnaStart={ekadashiParana.paranaMadhyahnaStart!}
             paranaMadhyahnaEnd={ekadashiParana.paranaMadhyahnaEnd!}
             paranaEarlyEnd={ekadashiParana.paranaEarlyEnd}
+            ekadashiStart={ekadashiParana.ekadashiStart}
+            ekadashiStartDate={ekadashiParana.ekadashiStartDate}
+            ekadashiEnd={ekadashiParana.ekadashiEnd}
+            ekadashiEndDate={ekadashiParana.ekadashiEndDate}
+            dwadashiEndTime={ekadashiParana.dwadashiEndTime}
+            dwadashiEndDate={ekadashiParana.dwadashiEndDate}
             locale={locale}
           />
         ) : puja.parana && userLat && userLng ? (

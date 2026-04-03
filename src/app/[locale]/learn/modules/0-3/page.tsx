@@ -141,6 +141,11 @@ function Page1() {
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
+            ? 'एक पार्टी ट्रिक: अगली बार जब कोई पूछे "आपकी राशि क्या है?", दो उत्तर दीजिए। "पश्चिमी प्रणाली में मैं मिथुन हूँ, लेकिन मेरी वैदिक चन्द्र राशि वृषभ है।" उनकी उलझन देखिए — और फिर समझाइए क्यों।'
+            : 'Here\'s a party trick: next time someone asks "What\'s your sign?", give them TWO answers. "In the Western system I\'m a Gemini, but my Vedic Moon sign is Taurus." Watch their confusion — and then explain why.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
             ? 'यदि कोई पश्चिमी मित्र पूछे, आप कह सकते हैं "मैं मिथुन (Gemini) हूँ" — सूर्य जन्म के समय मिथुन में था, ट्रॉपिकल राशिचक्र में। किन्तु यदि कोई भारतीय ज्योतिषी पूछे, उत्तर हो सकता है "मेरी राशि वृषभ है" — चन्द्रमा जन्म के समय वृषभ में था, साइडरियल राशिचक्र में।'
             : 'If a Western friend asks, you might say "I\'m a Gemini" — the Sun was in Gemini at birth, in the tropical zodiac. But if an Indian astrologer asks, the answer might be "My rashi is Vrishabha (Taurus)" — the Moon was in Taurus at birth, in the sidereal zodiac.'}
         </p>
@@ -166,6 +171,12 @@ function Page1() {
             </p>
           </div>
         </div>
+
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'वैदिक ज्योतिष चन्द्रमा को प्रमुख क्यों मानता है? चन्द्रमा हर 2.25 दिन में राशि बदलता है। सूर्य को 30 दिन लगते हैं। इसका अर्थ है कि एक ही महीने में जन्मे सभी लोगों की सूर्य राशि एक ही होती है — लेकिन चन्द्र राशि हर 2 दिन बदलती है, 12 गुना अधिक विशिष्टता देते हुए। इसमें नक्षत्र जोड़िए (जो हर 24 घण्टे बदलता है) और पद (हर 6 घण्टे), और आपको एक ब्रह्माण्डीय फिंगरप्रिंट मिलता है जो पश्चिमी सूर्य राशि से कहीं अधिक अनूठा है। आपकी वैदिक कुण्डली एक हाई-रेज़ फ़ोटो जैसी है जहाँ पश्चिमी एक थम्बनेल है। आपका नक्षत्र एक ब्रह्माण्डीय पिन कोड जैसा है — राशि चिह्न से कहीं अधिक विशिष्ट।'
+            : 'Why does Vedic use the MOON as primary? The Moon changes sign every 2.25 days. The Sun takes 30 days to change sign. That means everyone born in a given month has the same Sun sign — but Moon sign changes every 2 days, giving 12x more specificity. Add the nakshatra (which changes every 24 hours) and pada (every 6 hours), and you get a cosmic fingerprint far more unique than Western sun signs. Your Vedic chart is like a hi-res photo where Western is a thumbnail. Your nakshatra is like a cosmic ZIP code — way more specific than a zodiac sign.'}
+        </p>
       </section>
 
       {/* Classical Origin — Gold card */}
@@ -221,6 +232,11 @@ function Page2() {
             </div>
           ))}
         </div>
+        <p className="text-text-secondary text-sm leading-relaxed mt-4 mb-3">
+          {isHi
+            ? 'एक बात जो लोगों को चौंका देती है: आपका जन्म नक्षत्र पारम्परिक रूप से आपके नाम का पहला अक्षर निर्धारित करता है। हस्त नक्षत्र पद 1 = "पू" ध्वनि। पद 2 = "ष"। पद 3 = "ण"। पद 4 = "ठ"। यह मनमाना नहीं — यह आपके नाम और आपके जन्म के ब्रह्माण्डीय क्षण के बीच एक स्मरण-सूत्र बनाता है। जब एक पण्डित आपका नाम पूछते हैं कुण्डली बनाने के लिए, तो नाम स्वयं खगोलीय जानकारी को कोड करता है। यह 3,000 वर्ष पुराना QR कोड जैसा है।'
+            : 'Here\'s something that blows people\'s minds: your birth nakshatra traditionally determines the FIRST SYLLABLE of your name. Hasta nakshatra pada 1 = "Pu" sounds. Pada 2 = "Sha". Pada 3 = "Na". Pada 4 = "Tha". This isn\'t arbitrary — it creates a mnemonic link between your name and your cosmic moment of birth. When a pandit asks for your name to cast your chart, the NAME ITSELF encodes astronomical information. It\'s like a QR code from 3,000 years ago.'}
+        </p>
       </section>
 
       <section>
@@ -298,6 +314,15 @@ function Page3() {
             </p>
           </div>
 
+          <div className="glass-card rounded-lg p-4 border border-emerald-500/15">
+            <p className="text-emerald-400 text-sm font-bold mb-2">{isHi ? '120 वर्ष की समय-रेखा' : 'THE 120-YEAR TIMELINE'}</p>
+            <p className="text-text-secondary text-xs leading-relaxed">
+              {isHi
+                ? 'आपका जन्म नक्षत्र आपका सम्पूर्ण विंशोत्तरी दशा क्रम निर्धारित करता है — ग्रहीय कालों की 120 वर्षीय समय-रेखा। रोहिणी में जन्म? चन्द्र महादशा शुरू। अश्विनी में जन्म? केतु शुरू। यह एकमात्र डेटा बिन्दु — जन्म के समय चन्द्रमा किस तारे से मिल रहा था — आपके पूरे जीवन के ग्रहीय अध्यायों की घड़ी सेट करता है। दुनिया की किसी अन्य ज्योतिष प्रणाली में इस स्तर की कालिक विशिष्टता नहीं है। इसे ऐसे सोचिए: Spotify Wrapped — लेकिन आपके पूरे जीवन के लिए।'
+                : 'Your birth nakshatra determines your ENTIRE Vimshottari Dasha sequence — a 120-year timeline of planetary periods. Born in Rohini? Moon Mahadasha starts. Born in Ashwini? Ketu starts. This single data point — which star the Moon was visiting when you were born — sets the clock for your entire life\'s planetary chapters. No other astrological system in the world has this level of temporal specificity. Think of it as Spotify Wrapped — but for your entire life.'}
+            </p>
+          </div>
+
           <div className="glass-card rounded-lg p-4 border border-gold-primary/10">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'जन्म नक्षत्र दिवस' : 'JANMA NAKSHATRA DAY'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
@@ -351,6 +376,11 @@ function Page3() {
           {isHi
             ? 'हमारा ऐप आपकी सटीक चन्द्र राशि, नक्षत्र और पद की गणना शुद्ध गणित से करता है — वही खगोलीय कलनविधि जो NASA उपयोग करता है। अपना राशि कैलकुलेटर अभी आज़माएँ और अपना ब्रह्माण्डीय पता खोजें!'
             : 'Our app calculates your exact Moon sign, nakshatra, and pada using pure mathematics — the same astronomical algorithms NASA uses. Try our Sign Calculator now and discover your cosmic address!'}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mt-3">
+          {isHi
+            ? 'कालजैविकी (Chronobiology) — जैविक घड़ियों का अध्ययन — को 2017 का नोबेल पुरस्कार मिला। शोधकर्ताओं ने पाया कि आपके शरीर की हर कोशिका में बाहरी प्रकाश चक्रों से जुड़ी एक घड़ी है। नक्षत्र प्रणाली, अपने मूल में, 27-चरणीय चान्द्र घड़ी है जिसे प्राचीन भारतीयों ने मानव स्वभाव, स्वास्थ्य और जीवन प्रतिरूपों से सहसम्बन्धित किया। क्या ये सहसम्बन्ध आधुनिक सांख्यिकीय जाँच में टिकते हैं — यह एक खुला शोध प्रश्न है — लेकिन ढाँचा वैज्ञानिक रूप से सुसंगत है। आपके फ़ोन का GPS उन्हीं कक्षीय यान्त्रिकी का उपयोग करता है जो ये गणनाएँ करती हैं।'
+            : 'Chronobiology (the study of biological clocks) earned the 2017 Nobel Prize. The researchers found that every cell in your body has a clock tuned to external light cycles. The nakshatra system is, at its core, a 27-phase lunar clock that ancient Indians correlated with human temperament, health, and life patterns. Whether the correlations hold up to modern statistical scrutiny is an open research question — but the framework is scientifically coherent. Your phone\'s GPS uses the same orbital mechanics that power these calculations.'}
         </p>
       </section>
     </div>

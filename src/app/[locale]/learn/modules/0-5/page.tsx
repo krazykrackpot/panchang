@@ -188,6 +188,14 @@ function Page1() {
   const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent mb-2">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'आपका Spotify Wrapped आपके सुनने के डेटा से साल का सारांश देता है। आपका Instagram प्रोफ़ाइल आपका क्यूरेटेड स्व कैप्चर करता है। लेकिन कल्पना करें ऐसी पद्धति जो आपकी पहली साँस के ठीक सेकण्ड पर ब्रह्माण्ड की सम्पूर्ण स्थिति कैप्चर करे — हर ग्रह की स्थिति, हर भाव का संरेखण, हर कोणीय सम्बन्ध — एक ही चित्र में जमा हुआ। यही आपकी कुण्डली है। यह किसी भी ज्योतिषीय परम्परा में सर्वाधिक सूचना-सघन व्यक्तिगत दस्तावेज़ है।'
+            : 'Your Spotify Wrapped summarizes your year based on listening data. Your Instagram profile captures your curated self. But imagine a system that captures the ENTIRE state of the cosmos at the exact second you took your first breath \u2014 every planet\'s position, every house alignment, every angular relationship \u2014 frozen in a single diagram. That\'s your Kundali. It\'s the most information-dense personal document in any astrological tradition.'}
+        </p>
+      </section>
+
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {isHi ? 'आकाश का एक चित्र, आपके जन्म के ठीक क्षण का' : 'A Snapshot of the Sky, at Your Exact Birth Moment'}
@@ -218,6 +226,14 @@ function Page1() {
           {isHi
             ? 'प्रत्येक भाव जीवन का एक क्षेत्र शासित करता है: 1. स्व (व्यक्तित्व), 2. धन, 3. भ्रातृ, 4. मातृ/गृह, 5. सन्तान/विद्या, 6. शत्रु/रोग, 7. विवाह/साझेदारी, 8. आयु/रहस्य, 9. भाग्य/धर्म, 10. कर्म/व्यवसाय, 11. लाभ, 12. व्यय/मोक्ष। 9 ग्रह इन भावों में रखे जाते हैं = आपके जीवन को आकार देने वाली शक्तियाँ।'
             : 'Each house governs an area of life: 1. Self (personality), 2. Wealth, 3. Siblings, 4. Mother/Home, 5. Children/Education, 6. Enemies/Disease, 7. Marriage/Partnership, 8. Longevity/Secrets, 9. Luck/Dharma, 10. Career, 11. Gains, 12. Loss/Spirituality. 9 planets placed in these houses = the forces shaping your life.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'यही कारण है कि जन्म समय इतना महत्त्वपूर्ण है: लग्न (उदय राशि) लगभग हर 2 घण्टे बदलता है। इसका मतलब 3 घण्टे के अन्तर से जन्मे जुड़वाँ बच्चों की कुण्डली बिल्कुल अलग हो सकती है — भिन्न लग्न, भिन्न भाव स्वामी, भिन्न जीवन कहानी। आर्यभट ने इस दर (1° हर 4 मिनट) की गणना 499 ई. में की, और आधुनिक खगोलीय गणना दशमलव तक इसकी पुष्टि करती है। इसीलिए वैदिक ज्योतिषी उन ग्राहकों को मना कर देते हैं जिन्हें जन्म समय नहीं पता — बिना इसके कुण्डली अविश्वसनीय है।'
+            : 'Here\'s why birth TIME is so critical: the Lagna (ascendant sign) changes approximately every 2 hours. That means twins born 3 hours apart can have COMPLETELY different charts \u2014 different lagna, different house rulers, different life story. Aryabhata calculated this rate (1\u00B0 every 4 minutes) in 499 CE, and modern astronomical computation confirms it to decimal precision. This is why Vedic astrologers will turn away clients who don\'t know their birth time \u2014 without it, the chart is unreliable.'}
         </p>
       </section>
 
@@ -285,6 +301,14 @@ function Page2() {
         </div>
       </section>
 
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'दृश्य जटिलता से घबराएँ नहीं। कुण्डली बस एक नक्शा है। उत्तर भारतीय शैली = सड़क के नक्शे जैसा जहाँ स्थान (भाव) स्थिर हैं और आप शुरुआती बिन्दु घुमाते हैं। दक्षिण भारतीय शैली = GPS जैसा जहाँ ग्रिड स्थिर है और आप उस पर अपना स्थान रखते हैं। एक ही क्षेत्र, भिन्न नेविगेशन शैली। एक चुनें और उसी से शुरू करें — दूसरी बाद में सीख सकते हैं।'
+            : 'Don\'t let the visual complexity intimidate you. A Kundali chart is just a MAP. North Indian style = like a road map where landmarks (houses) are fixed and you rotate the starting point. South Indian style = like a GPS where the grid is fixed and you place yourself on it. Same territory, different navigation style. Pick one and stick with it \u2014 you can always learn the other later.'}
+        </p>
+      </section>
+
       <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
@@ -350,6 +374,17 @@ function Page3() {
           {isHi
             ? 'सब कुछ एक साथ समझने की कोशिश न करें — लग्न + चन्द्र + सबसे बलवान ग्रह से शुरू करें।'
             : 'Don\'t try to interpret everything at once \u2014 start with lagna + Moon + strongest planet.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
+          {isHi ? '3-मिनट की शुरुआती रीडिंग' : 'The Beginner\'s 3-Minute Reading'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'जब आप हमारे ऐप पर पहली बार अपनी कुण्डली बनाएँ, तो सब कुछ एक साथ पढ़ने की कोशिश न करें। यहाँ शुरुआती 3-मिनट रीडिंग है: (1) मेरा लग्न क्या है? यह आपकी "उदय राशि" है — संसार आपको कैसे देखता है। (2) मेरा चन्द्रमा कहाँ है? यह आपका भावनात्मक मूल है और आपकी "वैदिक राशि।" (3) दशा टैब देखें — आप वर्तमान में किस महादशा में हैं? उस ग्रह के विषय आपके जीवन का प्रमुख संगीत हैं अभी। ये तीन चीज़ें अकेले आपको अधिकांश व्यक्तित्व परीक्षणों से अधिक आत्म-ज्ञान देती हैं।'
+            : 'When you generate your first Kundali on our app, resist the urge to read everything at once. Here\'s the beginner\'s 3-minute reading: (1) What\'s my lagna? This is your "rising sign" \u2014 how the world sees you. (2) Where\'s my Moon? This is your emotional core and your "Vedic sign." (3) Look at the Dashas tab \u2014 what Mahadasha are you currently in? That planet\'s themes are the dominant soundtrack of your life right now. These three things alone give you more self-insight than most personality tests.'}
         </p>
       </section>
 

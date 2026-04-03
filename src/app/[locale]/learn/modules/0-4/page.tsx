@@ -200,6 +200,14 @@ function Page1() {
         </p>
       </section>
 
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'पंचांग को एक ब्रह्माण्डीय मौसम ऐप समझें। जैसे मौसम ऐप बताता है "धूप, 25°C, UV इण्डेक्स उच्च — सनस्क्रीन लगाएँ," वैसे ही पंचांग बताता है "शुक्ल दशमी, हस्त नक्षत्र, शुभ योग — नई शुरुआत के लिए अच्छा दिन, राहु काल में यात्रा आरम्भ न करें।" करोड़ों भारतीय हर सुबह यह देखते हैं, ठीक वैसे जैसे आप मौसम देखते हैं।'
+            : 'Think of the Panchang as a cosmic weather app. Just as a weather app tells you "sunny, 25\u00B0C, UV index high \u2014 wear sunscreen," the Panchang tells you "Shukla Dashami, Hasta Nakshatra, Shubh Yoga \u2014 good day for new beginnings, avoid starting travel during Rahu Kaal." Millions of Indians check this EVERY morning, just like you check the weather.'}
+        </p>
+      </section>
+
       <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? '1. तिथि — "चन्द्रमा किस कला में है?"' : '1. Tithi — "What Moon phase are we in?"'}
@@ -227,6 +235,14 @@ function Page1() {
         </p>
       </section>
 
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'यहाँ एक चौंकाने वाला सम्बन्ध है: अंग्रेजी सप्ताह के दिन उसी ग्रह पद्धति से आते हैं। Sunday = Sun-day (रविवार)। Monday = Moon-day (सोमवार)। Saturday = Saturn-day (शनिवार)। Tuesday = Tiw\'s day (नॉर्स मंगल = मंगलवार)। यह संयोग नहीं है — 7-दिवसीय ग्रह सप्ताह भारत से बेबीलोन होते हुए रोम तक पहुँचा। जब भी आप "Monday" कहते हैं, आप भारतीय खगोलशास्त्र का प्रयोग कर रहे हैं।'
+            : 'Here\'s a mind-blowing connection: the English days of the week come from the SAME planetary system. Sunday = Sun-day (Ravivara). Monday = Moon-day (Somavara). Saturday = Saturn-day (Shanivara). Tuesday = Tiw\'s day (Norse Mars = Mangalavara). This isn\'t coincidence \u2014 the 7-day planetary week was transmitted from India through Babylon to Rome. You\'re already using Indian astronomy every time you say "Monday."'}
+        </p>
+      </section>
+
       <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
@@ -250,6 +266,14 @@ function Page2() {
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {isHi ? 'शेष तीन पंचांग तत्त्व' : 'The Remaining Three Panchang Elements'}
         </h3>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'अब यहाँ पंचांग विशिष्ट रूप से भारतीय हो जाता है। पश्चिमी कैलेंडर "आज कौन-सा दिन है?" पर रुक जाता है। पंचांग ब्रह्माण्डीय जानकारी के चार और आयाम जोड़ता है — ऐसे आयाम जिनका कोई पश्चिमी समकक्ष नहीं है।'
+            : 'Now here\'s where the Panchang gets uniquely Indian. Western calendars stop at "what day is it?" The Panchang adds FOUR more dimensions of cosmic information \u2014 dimensions that have no Western equivalent.'}
+        </p>
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
@@ -340,6 +364,17 @@ function Page3() {
           {isHi
             ? 'चौघड़िया: प्रत्येक अर्ध-दिवस में 8 समय-खण्ड, प्रत्येक एक भिन्न गुण से शासित (अमृत = सर्वोत्तम, काल = सबसे खराब)। मुहूर्त: प्रतिदिन 30 समय विभाजन (प्रत्येक ~48 मिनट)। मध्याह्न के आसपास अभिजित मुहूर्त = सार्वभौमिक रूप से शुभ — विष्णु शासित, सभी कार्यों के लिए उत्तम।'
             : 'Choghadiya: 8 time slots per half-day, each ruled by a different quality (Amrit = best, Kaal = worst). Muhurta: 30 time divisions per day (each ~48 minutes). Abhijit Muhurta around noon = universally auspicious \u2014 ruled by Vishnu, good for all activities.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
+          {isHi ? 'शुरुआती सलाह' : 'Pro Tip for Beginners'}
+        </h4>
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'पहले दिन ही सभी 5 तत्त्व समझने की ज़रूरत नहीं। केवल दो से शुरू करें: तिथि (चन्द्रमा बढ़ रहा है या घट रहा?) और राहु काल (किस 90-मिनट की अवधि में महत्त्वपूर्ण शुरुआत से बचना चाहिए?)। ये दो अकेले आपको 80% व्यावहारिक पंचांग उपयोग से जोड़ देंगे।'
+            : 'You don\'t need to understand all 5 elements on day one. Start with just TWO: the Tithi (is the Moon waxing or waning?) and Rahu Kaal (what 90-minute window should I avoid for important starts?). These two alone will connect you to 80% of practical Panchang usage.'}
         </p>
       </section>
 

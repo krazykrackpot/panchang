@@ -173,6 +173,16 @@ function Page1() {
               : '— Mundane astrology: weather, agriculture, national events, natural omens.'}
           </li>
         </ul>
+        <p className="text-text-secondary text-sm leading-relaxed mt-4 mb-3">
+          {isHi
+            ? 'इसे ऐसे समझिए: सिद्धान्त दूरबीन बनाने जैसा है। होरा उससे अपने जीवन को देखने जैसा है। संहिता उससे समाज के लिए मौसम की भविष्यवाणी करने जैसा है।'
+            : 'Think of it this way: Siddhanta is like building the telescope. Hora is like looking through it at your life. Samhita is like using it to forecast weather for society.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'एक चौंकाने वाला तथ्य: आपके फ़ोन पर हर अंक — 0, 1, 2, 3... 9 — भारत में खगोलीय गणनाओं के लिए आविष्कार किया गया था। पश्चिम इन्हें "अरबी अंक" कहता है, लेकिन अरबी विद्वान इन्हें "हिन्दू अंक" (अल-अरक़ाम अल-हिन्दिय्या) कहते थे। शून्य की अवधारणा? वह ब्रह्मगुप्त की है — एक खगोलशास्त्र की पुस्तक में।'
+            : 'Here\'s a mind-blowing fact: every number on your phone — 0, 1, 2, 3... 9 — was invented in India, originally for astronomical calculations. The West calls them "Arabic numerals" but Arabic scholars called them "Hindu numerals" (al-arqam al-hindiyyah). The concept of zero? That\'s Brahmagupta, in an astronomy textbook.'}
+        </p>
       </section>
 
       {/* Classical Origin — Gold card */}
@@ -211,6 +221,11 @@ function Page1() {
               : '— gave the first rules for zero and negative numbers — in an ASTRONOMY text (Brahmasphutasiddhanta)!'}
           </li>
         </ul>
+        <p className="text-text-secondary text-sm leading-relaxed mt-4">
+          {isHi
+            ? 'आर्यभट ने केवल पृथ्वी की परिधि नहीं गणित की — उन्होंने कहा कि पृथ्वी अपनी धुरी पर घूमती है। 499 ई. में। कोपर्निकस ने यूरोप में यह प्रस्ताव 1543 तक नहीं रखा — एक हज़ार वर्ष बाद। और "कलनविधि" (algorithm) शब्द? यह अल-ख़्वारिज़्मी से आया — जिन्होंने भारतीय गणित से सीखा।'
+            : 'Aryabhata didn\'t just calculate Earth\'s circumference — he stated that Earth ROTATES on its axis. In 499 CE. Copernicus wouldn\'t propose this in Europe until 1543 — over a THOUSAND years later. And the word "algorithm"? It traces back to al-Khwarizmi, who learned from Indian mathematics.'}
+        </p>
       </section>
     </div>
   );
@@ -284,6 +299,17 @@ function Page2() {
             </tbody>
           </table>
         </div>
+
+        <p className="text-text-secondary text-sm leading-relaxed mt-4 mb-3">
+          {isHi
+            ? 'व्यावहारिक अन्तर इस प्रकार है: एक पश्चिमी ज्योतिषी से पूछिए "मेरा विवाह कब होगा?" — वे कहेंगे "जब शुक्र आपके सप्तम भाव में गोचर करेगा।" एक वैदिक ज्योतिषी से वही प्रश्न पूछिए — वे कहेंगे "आपकी शुक्र महादशा में, विशेष रूप से गुरु अन्तर्दशा में, जब गुरु चन्द्रमा से सप्तम भाव में गोचर करेगा — सम्भवतः मार्च और अगस्त 2028 के बीच।" दशा प्रणाली एक समय-रेखा जोड़ती है जो पश्चिमी ज्योतिष के पास बस नहीं है। इसे ऐसे सोचिए: Spotify Wrapped — लेकिन आपके पूरे जीवन के लिए।'
+            : 'Here\'s the practical difference: ask a Western astrologer "When will I get married?" and they\'ll say "when Venus transits your 7th house." Ask a Vedic astrologer the same question and they\'ll say "During your Venus Mahadasha, specifically in the Jupiter Antardasha, triggered when Jupiter transits your 7th from Moon — likely between March and August 2028." The Dasha system adds a TIMELINE that Western astrology simply cannot. Think of it as Spotify Wrapped — but for your entire life.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'केरल गणित सम्प्रदाय (14वीं-16वीं शताब्दी ई.) ने π और त्रिकोणमितीय फलनों के लिए अनन्त श्रेणियाँ विकसित कीं — न्यूटन और लाइब्निट्ज़ से 300 वर्ष पहले — विशेष रूप से ज्योतिष के लिए खगोलीय गणनाओं को सुधारने के लिए। कलनगणित (calculus) का आविष्कार बेहतर कुण्डलियों के लिए हुआ था।'
+            : 'The Kerala School of Mathematics (14th-16th century CE) developed infinite series for pi and trigonometric functions — 300 years before Newton and Leibniz — specifically to improve astronomical calculations for Jyotish. Calculus was literally invented for better horoscopes.'}
+        </p>
       </section>
 
       {/* Emerald fact card */}
@@ -378,6 +404,15 @@ function Page3() {
               ? 'वे भिन्न राशिचक्र, भिन्न प्राथमिक ज्योति (चन्द्रमा बनाम सूर्य), और पूर्णतया भिन्न उपकरण (नक्षत्र, दशा, मुहूर्त) का उपयोग करते हैं। "आपकी राशि क्या है?" का उत्तर दोनों प्रणालियों में भिन्न होता है।'
               : 'They use different zodiacs, different primary luminaries (Moon vs Sun), and entirely different tools (nakshatras, dashas, muhurtas). The answer to "what\'s your sign?" DIFFERS between the two systems.'}
           </p>
+          <p className="mt-3">
+            <span className="text-red-300 font-bold">{isHi ? 'भ्रान्ति:' : 'Misconception:'}</span>{' '}
+            {isHi ? '"गणनाएँ अवैज्ञानिक हैं"' : '"The calculations are unscientific"'}
+            <br />
+            <span className="text-emerald-300">{isHi ? 'वास्तविकता:' : 'Reality:'}</span>{' '}
+            {isHi
+              ? 'एक परीक्षण: हमारा ऐप दिल्ली के लिए सूर्योदय सटीक मिनट तक गणित करता है, ड्रिक पंचांग से मिलान करता है। यह चन्द्रमा की स्थिति 6ठी शताब्दी की कलनविधि से 60 sine पदों का उपयोग करके गणित करता है। गणित सत्यापन योग्य, पुनरुत्पादनीय है, और NASA के JPL पंचांग से मिलान करता है। आप व्याख्यात्मक परम्परा में विश्वास करें या न करें — यह अलग प्रश्न है — लेकिन गणनाओं को "अवैज्ञानिक" कहना तथ्यात्मक रूप से गलत है।'
+              : 'Here\'s a test: our app computes sunrise for Delhi to the exact MINUTE, matching Drik Panchang. It calculates the Moon\'s position using 60 sine terms from a 6th-century algorithm. The mathematics is verifiable, reproducible, and matches NASA\'s JPL ephemeris. Whether you believe in the interpretive tradition is a separate question — but calling the calculations "unscientific" is simply incorrect.'}
+          </p>
         </div>
       </section>
 
@@ -395,6 +430,11 @@ function Page3() {
           {isHi
             ? 'दुनिया भर में अरबों हिन्दू दैनिक पंचांग से त्योहारों, विवाह, गृहप्रवेश और अनुष्ठानों का समय निर्धारित करते हैं। यह सिखाना ज्योतिष का एक व्यावहारिक, सांस्कृतिक साक्षरता कौशल है।'
             : 'Billions of Hindus worldwide use the daily Panchang to time festivals, weddings, housewarmings, and rituals. Learning this is a practical, cultural literacy skill — not a mystical pursuit.'}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mt-3">
+          {isHi
+            ? '2017 का चिकित्सा में नोबेल पुरस्कार शरीर की आन्तरिक घड़ी — सर्केडियन लय — पर शोध के लिए दिया गया, जो प्रकाश-अन्धकार चक्रों पर प्रतिक्रिया करती है। यह मूलतः वही है जो मुहूर्त प्रणाली 3,000 वर्षों से ट्रैक कर रही है: आकाशीय चक्रों के आधार पर विभिन्न गतिविधियों के लिए इष्टतम समय। विज्ञान उसे समझ रहा है जो वराहमिहिर ने 6वीं शताब्दी में प्रलेखित किया था।'
+            : 'The 2017 Nobel Prize in Physiology/Medicine was awarded for research on circadian rhythms — the body\'s internal clock that responds to light-dark cycles. This is essentially what the Muhurta system has been tracking for 3,000 years: optimal times for different activities based on celestial cycles. Science is catching up to what Varahamihira documented in the 6th century.'}
         </p>
       </section>
     </div>

@@ -189,6 +189,14 @@ function Page1() {
   const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'यह बात आपको चौंका सकती है: आपके दादा-दादी जो भी हिन्दू कर्मकाण्ड करते हैं, उसके नीचे एक खगोलीय गणना चल रही है। जब आपकी माँ दिवाली पर सूर्यास्त में दीप जलाती हैं, वे कार्तिक अमावस्या पर सटीक सौर स्थिति चिह्नित कर रही हैं। जब पण्डित आपकी शादी की तारीख चुनता है, वह 7 खगोलीय मापदण्डों पर बहु-चर अनुकूलन समस्या हल कर रहा है। जब आप एकादशी का व्रत रखते हैं, आप एक विशिष्ट चन्द्र-सूर्य कोणीय सम्बन्ध पर प्रतिक्रिया दे रहे हैं। इनमें कुछ भी यादृच्छिक परम्परा नहीं है — यह व्यावहारिक खगोलशास्त्र है।'
+            : 'Here\'s something that might surprise you: every Hindu ritual your grandparents perform has an astronomical calculation running underneath it. When your mother lights a lamp at sunset during Diwali, she\'s marking the exact solar position on Kartik Amavasya. When a pandit picks your wedding date, he\'s solving a multi-variable optimization problem across 7 astronomical parameters. When you fast on Ekadashi, you\'re responding to a specific Moon-Sun angular relationship. None of this is random tradition \u2014 it\'s applied astronomy.'}
+        </p>
+      </section>
+
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {isHi ? 'प्रत्येक हिन्दू कर्मकाण्ड का खगोलीय आधार है' : 'Every Hindu Ritual Has an Astronomical Basis'}
@@ -208,6 +216,14 @@ function Page1() {
           {isHi
             ? 'जब चन्द्र-सूर्य कोण 120°-132° होता है, चन्द्रमा का गुरुत्वाकर्षण पृथ्वी के जल पर एक विशेष चरण में होता है। आयुर्वेद इसे पाचन परिवर्तनों से जोड़ता है — उपवास सहायक होता है। तन्त्र स्वीकार करें या न करें, समय खगोलीय रूप से सटीक है।'
             : 'When Moon-Sun elongation reaches 120\u00B0-132\u00B0, the Moon\'s gravitational pull on Earth\'s water is at a specific phase. Ayurveda links this to digestive changes \u2014 fasting helps. Whether you accept the mechanism or not, the timing is astronomically precise.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'आधुनिक कालजीवविज्ञान (chronobiology) — जैविक प्रक्रियाओं और समय चक्रों के सम्बन्ध का अध्ययन — ने 2017 में चिकित्सा/शरीरविज्ञान का नोबेल पुरस्कार जीता। शोधकर्ताओं (हॉल, रोसबैश, यंग) ने सिद्ध किया कि हर कोशिका में बाहरी चक्रों से समन्वित एक आणविक घड़ी है। एकादशी व्रत परम्परा मूलतः कहती है: "चन्द्र चक्र के इस विशिष्ट बिन्दु पर (120°-132° चन्द्र-सूर्य कोण), आपका पाचन तन्त्र भिन्न रूप से काम करता है — इसलिए उपवास करें।" यह विशिष्ट दावा चिकित्सकीय परीक्षणों में अपरीक्षित है, लेकिन ढाँचा — कि जैविक लय ब्रह्माण्डीय चक्रों से सम्बद्ध हैं — अब नोबेल पुरस्कार विजेता विज्ञान है।'
+            : 'Modern chronobiology \u2014 the study of how biological processes relate to time cycles \u2014 earned the 2017 Nobel Prize in Physiology/Medicine. The researchers (Hall, Rosbash, Young) proved that every cell has a molecular clock synchronized to external cycles. The Ekadashi fasting tradition essentially says: "At this specific point in the lunar cycle (120\u00B0-132\u00B0 Moon-Sun elongation), your digestive system operates differently \u2014 so fast." Whether this specific claim holds up to clinical trials is untested, but the FRAMEWORK \u2014 that biological rhythms correlate with celestial cycles \u2014 is now Nobel-winning science.'}
         </p>
       </section>
 
@@ -277,6 +293,14 @@ function Page2() {
           {isHi
             ? 'शनि अनुशासन, कर्म, कठिनाई का शासक है। शनि मन्दिर दर्शन = शनि के पाठों को स्वीकार करना। यह भय नहीं, सम्मान है — ठीक वैसे जैसे कठोर शिक्षक का सम्मान करते हैं जिसने आपको सबसे अधिक सिखाया।'
             : 'Saturn rules discipline, karma, hardship. Shani temple visits on Saturday = acknowledging Saturn\'s lessons. Not fear, but respect \u2014 like respecting a tough teacher who taught you the most.'}
+        </p>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'सोचिए: आप पहले से बिना जाने ग्रह जागरूकता का अभ्यास करते हैं। आप "Monday blues" कहते हैं (Moon-day = भावनात्मक, चिन्तनशील)। आप "TGIF" कहते हैं क्योंकि Friday (Venus-day = शुक्रवार) हल्का, अधिक सामाजिक लगता है। "Saturday night" (Saturn-day = अनुशासन ढीला) में आप छुट्टी मनाते हैं। सप्ताह के दिनों के नाम बनाने वाली ग्रह होरा पद्धति ठीक वही होरा पद्धति है जो ज्योतिष में है। आप जीवन भर व्यावहारिक ज्योतिष करते रहे हैं — बस संस्कृत शब्द नहीं जानते थे।'
+            : 'Think about it: you already practice planetary awareness without realizing it. You call it "Monday blues" (Moon-day = emotional, reflective). You say "TGIF" because Friday (Venus-day = Shukravara) feels lighter, more social. "Saturday night" (Saturn-day = discipline relaxes) is when you let loose. The planetary hour system that created our weekday names is EXACTLY the Hora system in Jyotish. You\'ve been doing applied Jyotish your whole life \u2014 you just didn\'t know the Sanskrit terms.'}
         </p>
       </section>
 
@@ -370,6 +394,14 @@ function Page3() {
               : '• Learn Jyotish \u2192 understand the science behind all of it'}
           </p>
         </div>
+      </section>
+
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+        <p className="text-text-secondary text-sm leading-relaxed">
+          {isHi
+            ? 'ज्योतिष की सुन्दरता यह है: आपको भाग्य में विश्वास करने की आवश्यकता नहीं कि यह उपयोगी हो। पंचांग को एक सचेत दैनिक जाँच के रूप में उपयोग करें। अपनी कुण्डली को आत्म-चिन्तन के ढाँचे के रूप में। मुहूर्त को निर्णय-सहायता उपकरण के रूप में। संकल्प को किसी भी महत्त्वपूर्ण कार्य से पहले संकल्प-स्थापना के क्षण के रूप। खगोलीय गणनाएँ सटीक विज्ञान हैं। व्याख्या की परत सांस्कृतिक ज्ञान है। जो गूँजे वह लें, जो न गूँजे छोड़ दें — लेकिन कम से कम समझें कि आपके दादा-दादी क्या जानते थे, उसे खारिज करने से पहले।'
+            : 'Here\'s the beautiful thing about Jyotish: you don\'t have to believe in destiny to find it useful. Use the Panchang as a mindful daily check-in. Use your Kundali as a framework for self-reflection. Use Muhurta as a decision-support tool. Use the Sankalpa as a moment of intention-setting before anything important. The astronomical calculations are exact science. The interpretive layer is cultural wisdom. Take what resonates, leave what doesn\'t \u2014 but at least understand what your grandparents knew before dismissing it.'}
+        </p>
       </section>
 
       <section className="glass-card rounded-xl p-5 border border-emerald-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">

@@ -145,6 +145,16 @@ function Page1() {
         </p>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
+            ? 'क्या आपने कभी सोचा है कि दीवाली कभी अक्टूबर में क्यों होती है और कभी नवम्बर में? या आपकी दादी क्यों कहती हैं कि एकादशी का व्रत एक विशिष्ट सूर्योदय से शुरू होना चाहिए? उत्तर मानव जाति की सबसे परिष्कृत पंचांग प्रणालियों में से एक में छिपा है — और भारत का संस्करण सम्भवतः सबसे सुन्दर है।'
+            : 'Have you ever wondered why Diwali is sometimes in October and sometimes in November? Or why your grandmother insists that Ekadashi fasting must start at a specific sunrise? The answer lies in one of humanity\'s most sophisticated calendar systems — and India\'s version is arguably the most elegant.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'हिन्दू चान्द्र-सौर पंचांग की प्रतिभा यह है: यह चन्द्रमा को ट्रैक करता है (जो ज्वार, कृषि और जैविक लय को नियन्त्रित करता है) और साथ ही सूर्य (जो ऋतुओं को नियन्त्रित करता है) से संरेखित रहता है। शुद्ध चान्द्र पंचांग जैसे इस्लामी पंचांग प्रति वर्ष 11 दिन खिसकते हैं — इसीलिए रमज़ान सभी ऋतुओं में घूमता है। हिन्दू पंचांग हर ~33 मास में अधिक मास (लीप मास) डालकर इससे बचता है। यह ब्रह्माण्ड के लिए ऑटो-करेक्ट जैसा है।'
+            : 'Here\'s what\'s genius about the Hindu lunisolar calendar: it tracks the Moon (which governs tides, agriculture, and biological rhythms) while staying aligned with the Sun (which governs seasons). Pure lunar calendars like the Islamic calendar drift 11 days per year — which is why Ramadan moves through all seasons. The Hindu calendar avoids this by inserting an Adhika Masa (leap month) every ~33 months. It\'s like auto-correct for the cosmos. Think of the Panchang as a cosmic weather app — except it\'s been running for 3,000 years.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
             ? 'दुनिया में तीन मुख्य पंचांग प्रणालियाँ हैं:'
             : 'There are three main calendar systems in the world:'}
         </p>
@@ -248,6 +258,11 @@ function Page2() {
           {isHi
             ? 'एक ही एकादशी उत्तर भारत में "चैत्र" और दक्षिण भारत में "वैशाख" हो सकती है। हमारा ऐप दोनों प्रणालियों का समर्थन करता है — एक टॉगल से बदलें।'
             : 'The same Ekadashi might be "Chaitra" in the North but "Vaishakha" in the South. Our app supports BOTH systems — switch with a toggle.'}
+        </p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-3">
+          {isHi
+            ? 'यह आपके लिए क्यों मायने रखता है? यदि आप त्योहार पंचांग का पालन कर रहे हैं, तो अमान्त/पूर्णिमान्त अन्तर का अर्थ है कि आपकी एकादशी दूसरे राज्य के किसी व्यक्ति से भिन्न नामित मास में पड़ सकती है — भले ही वह एक ही खगोलीय दिन हो। हमारा ऐप इसे टॉगल से सम्भालता है, जिससे आप सदा अपनी परम्परा के अनुसार सही मास देखें।'
+            : 'Why does this matter to YOU? If you\'re following a festival calendar, the Amanta/Purnimanta difference can mean your Ekadashi falls in a different named month than someone from another state — even though it\'s the SAME astronomical day. Our app handles this with a toggle, so you always see the correct month for your tradition.'}
         </p>
       </section>
 
@@ -359,6 +374,11 @@ function Page3() {
           {isHi
             ? 'आज, चान्द्र-सौर प्रणाली सम्पूर्ण भारतीय उपमहाद्वीप, नेपाल, श्रीलंका और दक्षिण-पूर्व एशिया के बड़े भागों में प्रयोग होती है। प्रत्येक विवाह, गृहप्रवेश, नामकरण और अन्तिम संस्कार का समय पंचांग से निर्धारित होता है। यह ज्ञान व्यावहारिक सांस्कृतिक साक्षरता है।'
             : 'Today, the lunisolar system is used across the entire Indian subcontinent, Nepal, Sri Lanka, and large parts of Southeast Asia. Every wedding, housewarming, naming ceremony, and funeral is timed using the Panchang. This knowledge is practical cultural literacy.'}
+        </p>
+        <p className="text-text-secondary text-xs leading-relaxed mt-3">
+          {isHi
+            ? 'सूर्य सिद्धान्त में समय की सबसे छोटी इकाई "त्रुटि" है — लगभग 29.6 माइक्रोसेकण्ड। सबसे बड़ी "कल्प" है — 4.32 अरब वर्ष। तुलना के लिए, आधुनिक अनुमान पृथ्वी की आयु 4.54 अरब वर्ष रखते हैं। भारतीय खगोलशास्त्री इस पैमाने पर सोच रहे थे — माइक्रोसेकण्ड से अरबों वर्ष तक — जबकि अधिकांश सभ्यताएँ अभी भी यह बहस कर रही थीं कि पृथ्वी चपटी है या नहीं। पिंगल (300 ई.पू.) ने संस्कृत छन्द पर अपने कार्य में द्विआधारी संख्याओं (binary numbers) का वर्णन किया — लाइब्निट्ज़ से 2,000 वर्ष पहले।'
+            : 'The smallest time unit in the Surya Siddhanta is the "truti" — approximately 29.6 microseconds. The largest is the "Kalpa" — 4.32 BILLION years. For comparison, modern estimates put Earth\'s age at 4.54 billion years. Indian astronomers were thinking on this scale — from microseconds to billions of years — while most civilizations were still arguing about whether Earth was flat. And Pingala (300 BCE) described binary numbers in his work on Sanskrit meter — 2,000 years before Leibniz.'}
         </p>
       </section>
     </div>

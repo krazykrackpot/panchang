@@ -310,6 +310,15 @@ oṃ jaya śiva oṃkārā ||`,
     },
   ],
 
+  parana: {
+    type: 'next_sunrise' as const,
+    description: {
+      en: 'Break fast after sunrise next day',
+      hi: 'अगले दिन सूर्योदय के बाद व्रत खोलें',
+      sa: 'परदिने सूर्योदयानन्तरं व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Pradosh vrat destroys all sins and bestows Shiva\'s grace. It grants longevity, health, wealth, and ultimately moksha. The Skanda Purana states that Pradosh vrat pleases Shiva more than even a month-long fast, because the Pradosh Kaal is when Shiva is in his most benevolent mood.',
     hi: 'प्रदोष व्रत सभी पापों को नष्ट करता है और शिव की कृपा प्रदान करता है। यह दीर्घायु, स्वास्थ्य, धन और अन्ततः मोक्ष प्रदान करता है। स्कन्द पुराण के अनुसार प्रदोष व्रत शिव को एक मास के उपवास से भी अधिक प्रसन्न करता है, क्योंकि प्रदोष काल वह समय है जब शिव सर्वाधिक कृपालु होते हैं।',

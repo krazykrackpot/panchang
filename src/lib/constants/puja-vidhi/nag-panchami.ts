@@ -222,6 +222,15 @@ export const NAG_PANCHAMI_PUJA: PujaVidhi = {
     },
   ],
 
+  parana: {
+    type: 'next_sunrise' as const,
+    description: {
+      en: 'Break fast after sunrise next day',
+      hi: 'अगले दिन सूर्योदय के बाद व्रत खोलें',
+      sa: 'परदिने सूर्योदयानन्तरं व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Nag Panchami worship removes the fear of snakes and snake bites, neutralizes Kaal Sarpa Dosha in the horoscope, and grants the protection of the Naga Devtas. The Garuda Purana states that those who worship Nagas on Panchami are protected from serpent-related harm for the entire year. It also grants fertility, prosperity, and the blessings of Lord Vishnu (who reclines on Shesha Nag).',
     hi: 'नाग पंचमी पूजा साँपों और सर्पदंश के भय को दूर करती है, कुण्डली में काल सर्प दोष को शान्त करती है, और नाग देवताओं की रक्षा प्रदान करती है। गरुड़ पुराण के अनुसार जो पंचमी पर नागों की पूजा करते हैं वे पूरे वर्ष सर्प सम्बन्धी हानि से सुरक्षित रहते हैं। यह सन्तान सुख, समृद्धि और भगवान विष्णु (जो शेषनाग पर विराजमान हैं) का आशीर्वाद भी प्रदान करती है।',

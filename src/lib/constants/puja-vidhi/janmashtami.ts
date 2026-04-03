@@ -319,6 +319,15 @@ export const JANMASHTAMI_PUJA: PujaVidhi = {
     },
   ],
 
+  parana: {
+    type: 'next_sunrise' as const,
+    description: {
+      en: 'Break fast after sunrise on Navami, after puja completion',
+      hi: 'नवमी को सूर्योदय के बाद, पूजा पूर्ण होने पर व्रत खोलें',
+      sa: 'नवम्यां सूर्योदयानन्तरं पूजासमाप्त्यनन्तरं व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Supreme devotion (Prema Bhakti) to Lord Krishna, liberation from the cycle of birth and death (Moksha), destruction of all sins accumulated over lifetimes, attainment of Goloka (Krishna\'s eternal abode), and the divine grace of Bhagavan Shri Krishna — the Purna Avatar',
     hi: 'भगवान कृष्ण के प्रति परम भक्ति (प्रेम भक्ति), जन्म-मृत्यु के चक्र से मुक्ति (मोक्ष), जन्मों-जन्मों के संचित पापों का नाश, गोलोक (कृष्ण का शाश्वत धाम) की प्राप्ति, और भगवान श्री कृष्ण — पूर्ण अवतार — की दिव्य कृपा',

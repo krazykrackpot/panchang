@@ -238,6 +238,15 @@ karavā cautha kī āratī ||`,
     },
   ],
 
+  parana: {
+    type: 'moonrise' as const,
+    description: {
+      en: 'Break fast after sighting moon through sieve, then husband\'s face',
+      hi: 'छलनी से चन्द्रमा देखने के बाद, फिर पति का चेहरा देखकर व्रत खोलें',
+      sa: 'चालन्या चन्द्रं दृष्ट्वा ततः पतिमुखं विलोक्य व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Karva Chauth vrat grants the husband a long and healthy life, strengthens the marital bond, and brings good fortune to the household. The Brahma Vaivarta Purana states that Parvati herself observed this vrat for Shiva, and women who observe it with devotion receive the blessings of Gauri and the longevity of their husbands like that of Shiva — eternal.',
     hi: 'करवा चौथ व्रत पति को दीर्घ और स्वस्थ जीवन प्रदान करता है, वैवाहिक बन्धन को मज़बूत करता है, और घर में सौभाग्य लाता है। ब्रह्मवैवर्त पुराण के अनुसार स्वयं पार्वती ने शिव के लिए यह व्रत रखा था, और जो महिलाएँ भक्तिपूर्वक इसे करती हैं उन्हें गौरी का आशीर्वाद और शिव जैसी — शाश्वत — पति की दीर्घायु प्राप्त होती है।',

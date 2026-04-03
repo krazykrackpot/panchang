@@ -221,6 +221,15 @@ export const CHHATH_PUJA: PujaVidhi = {
     },
   ],
 
+  parana: {
+    type: 'next_sunrise' as const,
+    description: {
+      en: 'Break fast after sunrise arghya on the last day',
+      hi: 'अन्तिम दिन सूर्योदय अर्घ्य के बाद व्रत खोलें',
+      sa: 'अन्तिमदिने सूर्योदयार्घ्यानन्तरं व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Blessings of Surya Devta for health, vitality, and longevity of the family; protection of children; cure of skin and eye ailments; fulfilment of heartfelt wishes; and the grace of Chhathi Maiya for prosperity and progeny',
     hi: 'परिवार के स्वास्थ्य, ऊर्जा और दीर्घायु के लिए सूर्य देवता का आशीर्वाद; सन्तानों की रक्षा; त्वचा और नेत्र रोगों का निवारण; मनोकामनाओं की पूर्ति; और समृद्धि व सन्तान के लिए छठी मइया की कृपा',

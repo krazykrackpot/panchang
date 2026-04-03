@@ -442,6 +442,15 @@ oṃ jaya śiva oṃkārā ||`,
     },
   ],
 
+  parana: {
+    type: 'next_sunrise' as const,
+    description: {
+      en: 'Break fast after sunrise on Chaturdashi',
+      hi: 'चतुर्दशी को सूर्योदय के बाद व्रत खोलें',
+      sa: 'चतुर्दश्यां सूर्योदयानन्तरं व्रतं भञ्जेत्',
+    },
+  },
+
   phala: {
     en: 'Moksha (liberation from the cycle of birth and death), complete destruction of accumulated sins (Papa Nashana), Shiva\'s direct grace and darshan, fulfillment of all righteous wishes, and spiritual awakening',
     hi: 'मोक्ष (जन्म-मरण के चक्र से मुक्ति), संचित पापों का पूर्ण नाश (पापनाशन), शिव की प्रत्यक्ष कृपा और दर्शन, सभी धार्मिक मनोकामनाओं की पूर्ति, और आध्यात्मिक जागृति',

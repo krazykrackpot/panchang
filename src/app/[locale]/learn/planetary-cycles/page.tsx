@@ -38,8 +38,8 @@ const L = {
     sec6intro: 'Rahu and Ketu are not physical bodies -- they are the two points where the Moon\'s tilted orbit crosses the ecliptic (the Sun\'s apparent path). The Moon\'s orbit is inclined ~5.1° to the ecliptic, creating two intersection points that slowly regress westward, completing a full cycle in 18.613 years.',
     sec6how: 'How Eclipses Happen',
     sec6howText: 'An eclipse requires THREE alignments: (1) New Moon or Full Moon (Sun-Moon conjunction/opposition), (2) Moon must be NEAR a node (Rahu or Ketu), and (3) The angular distance from the node must be within the eclipse limit (~18° for solar, ~12° for lunar). When all three conditions align, the Moon\'s shadow falls on Earth (solar eclipse) or Earth\'s shadow falls on the Moon (lunar eclipse).',
-    sec6saros: 'The Saros Cycle',
-    sec6sarosText: 'The Saros = 223 synodic months = 242 draconic months = 239 anomalistic months. This triple near-coincidence means that after 18 years, 11 days, 8 hours, the Sun, Moon, and nodes return to nearly the same relative geometry -- producing a similar eclipse. The Surya Siddhanta encodes this as the Rahu-Ketu period.',
+    sec6saros: 'The Saros Cycle -- What Exactly Repeats?',
+    sec6sarosText: 'Eclipses happen 4-7 times every year (solar and lunar combined) -- they are not rare. What IS rare is a SPECIFIC TYPE of eclipse at a SPECIFIC LOCATION. The Saros cycle answers: "When will THIS particular eclipse happen again in nearly the same way?"\n\nAfter exactly 18 years, 11 days, and 8 hours, three cosmic clocks realign simultaneously: (1) the Moon returns to the same phase (new/full), (2) the Moon is at the same distance from Earth (same apparent size), and (3) the Moon is near the same node (Rahu or Ketu). This means the SAME eclipse geometry repeats -- same type (total/partial/annular), similar duration, similar path on Earth (shifted ~120° west due to the extra 8 hours).\n\nThe Surya Siddhanta encoded this as the Rahu-Ketu nodal period (18.6 years). The slight difference (18.03 vs 18.61 years) means each Saros repetition drifts slightly, and after ~1,200-1,500 years, a Saros series ends.',
     sec6types: [
       { type: 'Solar (Surya Grahan)', desc: 'New Moon at node. Moon blocks the Sun. Shadow on Earth = 100-170 km wide.' },
       { type: 'Lunar (Chandra Grahan)', desc: 'Full Moon at node. Earth blocks sunlight. The Moon turns copper-red (Rayleigh scattering).' },
@@ -153,8 +153,8 @@ const L = {
     sec6intro: 'राहु और केतु भौतिक पिंड नहीं हैं -- ये वे दो बिन्दु हैं जहाँ चन्द्रमा की झुकी कक्षा क्रान्तिवृत्त (सूर्य का दृश्य पथ) को काटती है। चन्द्र कक्षा क्रान्तिवृत्त से ~5.1° झुकी है, जिससे दो प्रतिच्छेदन बिन्दु बनते हैं जो धीरे-धीरे पश्चिम की ओर सरकते हैं, 18.613 वर्ष में पूर्ण चक्र पूरा करते हैं।',
     sec6how: 'ग्रहण कैसे होते हैं',
     sec6howText: 'ग्रहण के लिए तीन संरेखण आवश्यक हैं: (1) अमावस्या या पूर्णिमा (सूर्य-चन्द्र युति/प्रतियुति), (2) चन्द्रमा किसी पात (राहु या केतु) के निकट हो, (3) पात से कोणीय दूरी ग्रहण सीमा के भीतर हो (~18° सूर्य ग्रहण, ~12° चन्द्र ग्रहण)।',
-    sec6saros: 'सारोस चक्र',
-    sec6sarosText: 'सारोस = 223 सिनोडिक मास = 242 ड्रैकोनिक मास = 239 विषम मास। यह त्रिगुण लगभग-संयोग = 18 वर्ष, 11 दिन, 8 घंटे के बाद सूर्य, चन्द्र और पात लगभग उसी सापेक्ष ज्यामिति में लौटते हैं -- समान ग्रहण उत्पन्न करते हैं। सूर्य सिद्धान्त इसे राहु-केतु काल के रूप में कूटबद्ध करता है।',
+    sec6saros: 'सारोस चक्र -- वास्तव में क्या दोहराता है?',
+    sec6sarosText: 'ग्रहण हर वर्ष 4-7 बार होते हैं (सूर्य और चन्द्र मिलाकर) -- ये दुर्लभ नहीं हैं। दुर्लभ यह है कि एक विशिष्ट प्रकार का ग्रहण किसी विशिष्ट स्थान पर हो। सारोस चक्र बताता है: "यही ग्रहण लगभग उसी रूप में कब दोहराएगा?"\n\nठीक 18 वर्ष, 11 दिन, 8 घंटे बाद तीन ब्रह्माण्डीय घड़ियाँ एक साथ पुनःसंरेखित होती हैं: (1) चन्द्रमा उसी कला में लौटता है (अमावस्या/पूर्णिमा), (2) चन्द्रमा पृथ्वी से उतनी ही दूरी पर होता है (समान दृश्य आकार), (3) चन्द्रमा उसी पात (राहु/केतु) के निकट होता है। अर्थात वही ग्रहण ज्यामिति दोहराती है -- वही प्रकार, समान अवधि, समान पथ (8 घंटे के कारण ~120° पश्चिम खिसका)।\n\nसूर्य सिद्धान्त ने इसे राहु-केतु पातीय काल (18.6 वर्ष) के रूप में कूटबद्ध किया। 18.03 और 18.61 वर्ष का अन्तर = प्रत्येक सारोस दोहराव थोड़ा खिसकता है, और ~1200-1500 वर्षों बाद एक सारोस श्रृंखला समाप्त हो जाती है।',
     sec6types: [
       { type: 'सूर्य ग्रहण', desc: 'अमावस्या को पात पर। चन्द्रमा सूर्य को ढकता है। पृथ्वी पर छाया = 100-170 किमी चौड़ी।' },
       { type: 'चन्द्र ग्रहण', desc: 'पूर्णिमा को पात पर। पृथ्वी सूर्य का प्रकाश रोकती है। चन्द्रमा ताम्रवर्ण हो जाता है।' },
@@ -834,8 +834,8 @@ export default function PlanetaryCyclesPage() {
           <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6intro}</p>
         </div>
 
-        {/* Nodal Diagram */}
-        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
+        {/* Nodal Diagram — tight container */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-4 py-3 max-w-2xl mx-auto">
           <NodalDiagram isHi={isHi} />
         </div>
 
@@ -861,7 +861,9 @@ export default function PlanetaryCyclesPage() {
         {/* Saros Cycle */}
         <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-4">
           <h3 className="text-lg font-bold text-gold-light" style={hf}>{l.sec6saros}</h3>
-          <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6sarosText}</p>
+          <div className="text-text-secondary text-sm leading-relaxed space-y-3" style={bf}>
+            {l.sec6sarosText.split('\n\n').map((para, i) => <p key={i}>{para}</p>)}
+          </div>
 
           {/* Saros Timeline */}
           <SarosTimeline isHi={isHi} />

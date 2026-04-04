@@ -9,6 +9,14 @@ import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import RashiNakshatraWheel from '@/components/learn/RashiNakshatraWheel';
+import { NAKSHATRA_ICONS } from '@/components/icons/NakshatraIcons';
+
+/** Format decimal degrees as D°M' (e.g. 13.333 → "13°20'") */
+function fmtDeg(d: number): string {
+  const deg = Math.floor(d);
+  const min = Math.round((d - deg) * 60);
+  return min === 0 ? `${deg}°` : `${deg}°${min}'`;
+}
 
 /* ───── Inline bilingual labels ───── */
 const L = {
@@ -171,13 +179,17 @@ export default function LearnNakshatrasPage() {
         <div className="mt-4 rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
           {lo === 'en' ? (
             <>
-              <p className="mb-2"><strong className="text-gold-light">How is the mapping done?</strong> The 9 planets are assigned to nakshatras in a fixed repeating cycle: <span className="text-gold-primary">Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury</span>, then back to Ketu. This cycle repeats 3 times across 27 nakshatras (9 × 3 = 27), so each planet rules exactly 3 nakshatras.</p>
-              <p>This sequence is NOT random — it follows the <strong>Vimshottari Dasha order</strong>, which is based on the planets&apos; orbital periods and their relative influence over human life. The dasha years assigned to each planet (Ketu=7, Venus=20, Sun=6, etc.) total exactly 120 years — the ideal human lifespan according to the Vedas.</p>
+              <p className="mb-2"><strong className="text-gold-light">Starting point:</strong> The mapping begins at <strong className="text-gold-primary">Ashwini</strong> — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). <strong className="text-gold-primary">Ketu</strong> is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order:</p>
+              <p className="my-2 text-gold-primary font-mono text-xs text-center tracking-wide">Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury</p>
+              <p className="mb-2">So the first 9 nakshatras are: <span className="text-text-primary">Ashwini = <strong>Ketu</strong>, Bharani = <strong>Venus</strong>, Krittika = <strong>Sun</strong>, Rohini = <strong>Moon</strong>, Mrigashira = <strong>Mars</strong>, Ardra = <strong>Rahu</strong>, Punarvasu = <strong>Jupiter</strong>, Pushya = <strong>Saturn</strong>, Ashlesha = <strong>Mercury</strong></span>. Then the cycle restarts: Magha (#10) = Ketu again, and so on for a third round from Moola (#19). Three complete rounds × 9 planets = 27 nakshatras covered, each planet ruling exactly 3.</p>
+              <p><strong>Why this order and starting point?</strong> This is the <strong>Vimshottari Dasha sequence</strong> — derived by ancient rishis from the relationship between planets and the lunar nodes (Rahu-Ketu). Ketu begins the cycle because it represents the karmic starting point (past life). The dasha years (Ketu=7, Venus=20, Sun=6, Moon=10, Mars=7, Rahu=18, Jupiter=16, Saturn=19, Mercury=17) total exactly <strong>120 years</strong> — the ideal human lifespan per the Vedas. Your birth Moon&apos;s nakshatra lord determines which dasha you&apos;re born into.</p>
             </>
           ) : (
             <>
-              <p className="mb-2"><strong className="text-gold-light">यह मैपिंग कैसे होती है?</strong> 9 ग्रह एक निश्चित दोहराव चक्र में नक्षत्रों को सौंपे जाते हैं: <span className="text-gold-primary">केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → गुरु → शनि → बुध</span>, फिर वापस केतु। यह चक्र 27 नक्षत्रों में 3 बार दोहराता है (9 × 3 = 27), इसलिए प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है।</p>
-              <p>यह क्रम यादृच्छिक नहीं — यह <strong>विंशोत्तरी दशा क्रम</strong> का अनुसरण करता है। प्रत्येक ग्रह को सौंपे गए दशा वर्ष (केतु=7, शुक्र=20, सूर्य=6 आदि) कुल 120 वर्ष होते हैं — वेदों के अनुसार आदर्श मानव जीवनकाल।</p>
+              <p className="mb-2"><strong className="text-gold-light">प्रारम्भ बिन्दु:</strong> मैपिंग <strong className="text-gold-primary">अश्विनी</strong> — प्रथम नक्षत्र (0° मेष, नाक्षत्र राशिचक्र का आरम्भ) से शुरू होती है। <strong className="text-gold-primary">केतु</strong> अश्विनी को सौंपा जाता है। उसके बाद शेष 8 ग्रह राशिचक्र में आगे बढ़ते हुए एक निश्चित क्रम में आते हैं:</p>
+              <p className="my-2 text-gold-primary font-mono text-xs text-center tracking-wide">केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → गुरु → शनि → बुध</p>
+              <p className="mb-2">प्रथम 9 नक्षत्र: <span className="text-text-primary">अश्विनी = <strong>केतु</strong>, भरणी = <strong>शुक्र</strong>, कृत्तिका = <strong>सूर्य</strong>, रोहिणी = <strong>चन्द्र</strong>, मृगशिरा = <strong>मंगल</strong>, आर्द्रा = <strong>राहु</strong>, पुनर्वसु = <strong>गुरु</strong>, पुष्य = <strong>शनि</strong>, आश्लेषा = <strong>बुध</strong></span>। फिर चक्र पुनः आरम्भ: मघा (#10) = केतु, और तीसरा चक्र मूल (#19) से। तीन चक्र × 9 ग्रह = 27 नक्षत्र।</p>
+              <p><strong>यह क्रम और प्रारम्भ बिन्दु क्यों?</strong> यह <strong>विंशोत्तरी दशा क्रम</strong> है — ऋषियों ने चान्द्र नोड्स (राहु-केतु) से ग्रहों के सम्बन्ध से निकाला। केतु चक्र आरम्भ करता है क्योंकि वह कार्मिक प्रारम्भ बिन्दु (पूर्वजन्म) का प्रतिनिधित्व करता है। दशा वर्ष कुल <strong>120 वर्ष</strong> = वैदिक आदर्श जीवनकाल। जन्म चन्द्र का नक्षत्र स्वामी निर्धारित करता है कि आप किस दशा में जन्मे।</p>
             </>
           )}
         </div>
@@ -372,7 +384,7 @@ export default function LearnNakshatrasPage() {
                 return (
                   <tr key={n.id} className="border-b border-gold-primary/5 text-text-secondary/80">
                     <td className="py-1.5 px-2 text-gold-light/90 font-medium whitespace-nowrap">
-                      <span className="mr-1.5">{n.symbol}</span>
+                      <span className="inline-flex w-5 h-5 mr-1.5 align-middle">{(() => { const Icon = NAKSHATRA_ICONS[n.id]; return Icon ? <Icon size={20} /> : null; })()}</span>
                       {n.name[lo === 'hi' ? 'hi' : 'en']}
                     </td>
                     {syllables.map((s, si) => (
@@ -461,17 +473,19 @@ export default function LearnNakshatrasPage() {
               transition={{ delay: i * 0.03 }}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3"
             >
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-lg">{n.symbol}</span>
+              <div className="flex items-center gap-2.5 mb-1.5">
+                <div className="w-8 h-8 flex-shrink-0">
+                  {(() => { const Icon = NAKSHATRA_ICONS[n.id]; return Icon ? <Icon size={32} /> : <span className="text-lg">{n.symbol}</span>; })()}
+                </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-gold-light font-semibold text-sm truncate">
                     {n.id}. {n.name[locale]}
                   </div>
                   {locale !== 'en' && <div className="text-text-secondary/60 text-xs truncate">{n.name.en}</div>}
                 </div>
-                <span className="text-text-secondary/50 text-xs font-mono flex-shrink-0">{n.startDeg.toFixed(1)}\u00b0</span>
+                <span className="text-text-secondary/50 text-xs font-mono flex-shrink-0">{fmtDeg(n.startDeg)} – {fmtDeg(n.endDeg)}</span>
               </div>
-              <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70">
+              <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70 ml-[42px]">
                 <span>{n.deity[locale]}</span>
                 <span className="text-text-secondary/30">|</span>
                 <span>{n.rulerName[locale]}</span>

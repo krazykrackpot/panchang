@@ -119,7 +119,7 @@ export default function UpagrahaPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="glass-card rounded-xl p-6 border border-gold-primary/15"
+            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/15"
           >
             <div className="flex items-start gap-4">
               <RashiIconById id={u.sign} size={44} />
@@ -145,7 +145,7 @@ export default function UpagrahaPage() {
       </div>
 
       {/* Formula explanation */}
-      <div className="glass-card rounded-xl p-6 mt-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mt-6 border border-gold-primary/10">
         <h3 className="text-gold-light text-lg font-bold mb-3" style={headingFont}>
           {locale === 'en' ? 'Derivation Formulae' : 'व्युत्पत्ति सूत्र'}
         </h3>

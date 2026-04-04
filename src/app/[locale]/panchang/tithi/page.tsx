@@ -312,7 +312,7 @@ export default function TithiPage() {
       {/* Sun-Moon Angular Separation Diagram */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>{t('scientificBasis')}</h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <SunMoonDiagram locale={locale} />
           <div className="mt-8 text-text-secondary leading-relaxed">
             <p className="text-lg">
@@ -341,7 +341,7 @@ export default function TithiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Interactive Lunar Phase Wheel' : locale === 'hi' ? 'इंटरैक्टिव चन्द्र कला चक्र' : 'संवादात्मकं चन्द्रकलाचक्रम्'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           {mounted ? <AnimatedTithiWheel locale={locale} onSelect={setSelectedTithi} /> : (
             <div className="flex justify-center py-20">
               <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent" />
@@ -356,7 +356,7 @@ export default function TithiPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="mt-8 glass-card rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
+                className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-gold-light text-lg font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -390,7 +390,7 @@ export default function TithiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Moon Phase Progression' : locale === 'hi' ? 'चन्द्र कला क्रम' : 'चन्द्रकलाक्रमः'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="flex flex-wrap justify-center gap-3">
             {Array.from({ length: 30 }, (_, i) => {
               const phase = i / 30;
@@ -436,7 +436,7 @@ export default function TithiPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
               whileHover={{ scale: 1.05, borderColor: 'rgba(212,168,83,0.4)' }}
-              className="glass-card rounded-lg p-4 text-center cursor-pointer"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center cursor-pointer"
               onClick={() => setSelectedTithi(i)}
             >
               <div className="text-gold-primary text-2xl mb-1">{i + 1}</div>
@@ -463,7 +463,7 @@ export default function TithiPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
               whileHover={{ scale: 1.05, borderColor: 'rgba(138,109,43,0.4)' }}
-              className="glass-card rounded-lg p-4 text-center cursor-pointer"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center cursor-pointer"
               onClick={() => setSelectedTithi(i + 15)}
             >
               <div className="text-gold-dark text-2xl mb-1">{i + 1}</div>
@@ -531,7 +531,7 @@ export default function TithiPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -4 }}
-              className="glass-card rounded-xl p-6 border border-gold-primary/10 hover:border-gold-primary/30 transition-all"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/10 hover:border-gold-primary/30 transition-all"
             >
               <div className="mb-3">{special.svgIcon}</div>
               <h3 className="text-gold-light font-bold text-lg mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>

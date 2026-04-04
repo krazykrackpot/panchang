@@ -315,7 +315,7 @@ export default function YogaPage() {
       {/* Scientific Basis with animated diagram */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>{t('scientificBasis')}</h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <SunMoonSumDiagram locale={locale} />
           <div className="mt-8 prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
@@ -344,7 +344,7 @@ export default function YogaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Interactive Yoga Wheel' : locale === 'hi' ? 'इंटरैक्टिव योग चक्र' : 'संवादात्मकं योगचक्रम्'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedYogaWheel locale={locale} onSelect={setSelectedYoga} />
 
           {/* Selected yoga detail */}
@@ -355,7 +355,7 @@ export default function YogaPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="mt-8 glass-card rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
+                className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
               >
                 <div className="flex items-center justify-between mb-3">
                   <h3 className="text-gold-light text-lg font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
@@ -403,7 +403,7 @@ export default function YogaPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.02 }}
               whileHover={{ scale: 1.05, borderColor: 'rgba(212,168,83,0.4)' }}
-              className={`glass-card rounded-lg p-4 text-center border cursor-pointer ${natureBorder(yoga.nature)}`}
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center border cursor-pointer ${natureBorder(yoga.nature)}`}
               onClick={() => setSelectedYoga(i)}
             >
               <div className="text-gold-primary text-2xl mb-1">{yoga.number}</div>

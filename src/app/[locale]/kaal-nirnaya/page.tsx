@@ -278,7 +278,7 @@ export default function KaalNirnayaPage() {
           <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.kaalMaanDesc[locale]}</p>
         </div>
 
-        <div className="glass-card rounded-2xl overflow-hidden">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -690,7 +690,7 @@ export default function KaalNirnayaPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'What is Precession?' : 'अग्रगमन क्या है?'}
             </h3>
@@ -699,7 +699,7 @@ export default function KaalNirnayaPage() {
                 ? 'Earth\'s rotational axis slowly wobbles like a spinning top, completing one full circle in ~25,772 years. This causes the vernal equinox to slowly "drift" through the constellations at ~50.3 arcseconds per year.'
                 : 'पृथ्वी की घूर्णन धुरी एक कताई की तरह धीरे-धीरे डोलती है, ~25,772 वर्षों में एक पूर्ण चक्र पूरा करती है। इससे विषुव बिंदु प्रति वर्ष ~50.3 चाप-सेकंड की गति से नक्षत्रों में "विचलित" होता है।'}
             </p>
-            <div className="glass-card rounded-lg p-4 bg-gold-primary/5 border border-gold-primary/10">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div>
                   <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Rate' : 'दर'}</div>
@@ -713,7 +713,7 @@ export default function KaalNirnayaPage() {
             </div>
           </div>
 
-          <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'Ayanamsha Systems' : 'अयनांश प्रणालियाँ'}
             </h3>
@@ -826,7 +826,7 @@ export default function KaalNirnayaPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? '30 Muhurtas in a Day' : 'दिन में 30 मुहूर्त'}
             </h3>
@@ -841,7 +841,7 @@ export default function KaalNirnayaPage() {
                 { label: locale === 'en' ? 'Day Muhurtas' : 'दिवा मुहूर्त', value: '15' },
                 { label: locale === 'en' ? 'Duration each' : 'प्रत्येक की अवधि', value: '~48m' },
               ].map(item => (
-                <div key={item.label} className="glass-card rounded-lg p-3">
+                <div key={item.label} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
                   <div className="text-gold-light font-bold text-2xl font-mono">{item.value}</div>
                   <div className="text-text-secondary text-[10px] mt-1">{item.label}</div>
                 </div>
@@ -849,7 +849,7 @@ export default function KaalNirnayaPage() {
             </div>
           </div>
 
-          <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'Key Auspicious Muhurtas' : 'प्रमुख शुभ मुहूर्त'}
             </h3>
@@ -919,12 +919,12 @@ export default function KaalNirnayaPage() {
         </div>
 
         {loadingKaal ? (
-          <div className="glass-card rounded-2xl p-12 text-center">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-12 text-center">
             <Loader2 className="w-10 h-10 animate-spin text-gold-primary mx-auto mb-3" />
             <div className="text-text-secondary text-sm">{locale === 'en' ? 'Calculating astronomical data...' : 'खगोलशास्त्रीय डेटा की गणना हो रही है...'}</div>
           </div>
         ) : (
-          <div className="glass-card rounded-2xl overflow-hidden border border-gold-primary/20">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-2 md:grid-cols-3 divide-x divide-y divide-gold-primary/10">
               {([
                 {

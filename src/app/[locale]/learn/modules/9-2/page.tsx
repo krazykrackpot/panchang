@@ -147,7 +147,7 @@ function Page1() {
             { n: '11th', hi: 'एकादश', name: 'Labha', desc: 'Gains, income, friends, elder siblings, wishes', hiDesc: 'लाभ, आय, मित्र, बड़े भाई-बहन, इच्छाएँ' },
             { n: '12th', hi: 'द्वादश', name: 'Vyaya', desc: 'Loss, expenses, foreign travel, moksha', hiDesc: 'हानि, व्यय, विदेश यात्रा, मोक्ष' },
           ].map(h => (
-            <div key={h.n} className="glass-card rounded-lg p-2.5 border border-white/5">
+            <div key={h.n} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2.5 border border-white/5">
               <span className="text-gold-light font-bold">{h.n}</span> <span className="text-gold-dark">({h.name})</span>
               <span className="text-text-tertiary ml-1">{isHi ? h.hi : ''}</span>
               <p className="text-text-tertiary mt-0.5">{isHi ? <>{h.hiDesc}</> : <>{h.desc}</>}</p>
@@ -156,7 +156,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>भाव सूचकताएँ BPHS अध्याय 11-12, फलदीपिका अध्याय 2, और सारावली में वर्णित हैं। पराशर ने व्यवस्थित रूप से प्रत्येक भाव के शासन क्षेत्र सूचीबद्ध किए, और बाद के टीकाकारों जैसे वराहमिहिर और मन्त्रेश्वर ने इन सूचियों को परिष्कृत और विस्तारित किया। 12-भाव प्रणाली दो सहस्राब्दियों से उल्लेखनीय रूप से स्थिर रही है।</> : <>The house significations are described in BPHS Chapters 11-12, Phaladeepika Chapter 2, and Saravali. Parashara systematically lists what each house governs, and later commentators like Varahamihira and Mantreshwara refined and expanded these lists. The 12-house system has remained remarkably stable for over two millennia.</>}</p>
       </section>
@@ -178,26 +178,26 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>भावों को कार्यात्मक श्रेणियों में बाँटा जाता है जो निर्धारित करती हैं कि उनके स्वामी कुण्डली में कैसा व्यवहार करते हैं। यह वर्गीकरण अत्यंत महत्वपूर्ण है — त्रिकोण भाव का स्वामी स्वभावतः शुभ होता है, जबकि दुःस्थान भाव का स्वामी चुनौतियाँ लाता है। ये समूह योगों (ग्रह संयोजन) का आधार बनाते हैं।</> : <>Houses are grouped into functional categories that determine how their lords behave in the chart. This classification is crucial — a planet ruling a Trikona house is inherently auspicious, while a planet ruling a Dusthana house carries challenges. These groupings form the foundation of yogas (planetary combinations).</>}</p>
 
         <div className="space-y-3">
-          <div className="glass-card rounded-lg p-3 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10">
             <p className="text-gold-light font-bold text-sm">Kendra (Pillars) — 1, 4, 7, 10 / केन्द्र (स्तम्भ)</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>चार कोणीय भाव संरचनात्मक रीढ़ हैं। ये जीवन के चार स्तम्भ दर्शाते हैं: आत्म, गृह, संबंध, कर्म। केन्द्र में ग्रह केन्द्र बल प्राप्त करते हैं। केन्द्र में शुभ ग्रह पूरी कुण्डली को उन्नत करते हैं।</> : <>The four angular houses form the structural backbone. They represent the four pillars of life: self, home, relationships, career. Planets in Kendras gain Kendra Bala (angular strength). Benefics in Kendras uplift the entire chart.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">
             <p className="text-emerald-400 font-bold text-sm">Trikona (Fortune) — 1, 5, 9 / त्रिकोण (भाग्य)</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>त्रिकोण भाव लक्ष्मी स्थान हैं — दैवी कृपा के आसन। प्रथम भाव केन्द्र और त्रिकोण दोनों है (इसलिए लग्न स्वामी सदैव शुभ है)। पंचम पूर्व पुण्य (पूर्वजन्म का पुण्य), और नवम भाग्य और धर्म पर शासन करता है। त्रिकोण स्वामी सदैव शुभ कारक ग्रह होते हैं।</> : <>The trine houses are Lakshmi Sthanas — seats of divine grace. The 1st house is both Kendra and Trikona (hence the Lagna lord is always auspicious). The 5th governs Purva Punya (past-life merit), and the 9th governs Bhagya (fortune and dharma). Trikona lords are always benefic functional planets.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">Dusthana (Challenges) — 6, 8, 12 / दुःस्थान (चुनौतियाँ)</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>ये भाव बाधाओं से जुड़े हैं, लेकिन परिवर्तन से भी। षष्ठ प्रयास से शत्रुओं और रोग पर विजय देता है। अष्टम संकट से परिवर्तित करता है और गुप्त ज्ञान प्रदान करता है। द्वादश अहंकार को विलीन करके मोक्ष का मार्ग खोलता है। प्राकृतिक पापग्रह यहाँ वास्तव में अच्छा प्रदर्शन कर सकते हैं।</> : <>These houses deal with obstacles, but also transformation. The 6th gives the ability to overcome enemies and disease through effort. The 8th transforms through crisis and grants hidden knowledge. The 12th dissolves ego and opens the path to moksha. Natural malefics can actually thrive here.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-blue-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-blue-500/10">
             <p className="text-blue-300 font-bold text-sm">Upachaya (Growth) — 3, 6, 10, 11 / उपचय (वृद्धि)</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>इन भावों में परिणाम आयु और प्रयास के साथ सुधरते हैं। पापग्रह (सूर्य, मंगल, शनि, राहु) यहाँ स्थित होकर उत्पादक बनते हैं — वे अपनी आक्रामक ऊर्जा को साहस (तृतीय), प्रतिस्पर्धा पर विजय (षष्ठ), कर्म महत्वाकांक्षा (दशम), और भौतिक लाभ (एकादश) में प्रवाहित करते हैं।</> : <>Results in these houses improve with age and effort. Malefic planets (Sun, Mars, Saturn, Rahu) placed here become productive — they channel their aggressive energy into courage (3rd), defeating competition (6th), career ambition (10th), and material gains (11th).</>}</p>
           </div>
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'केन्द्र + त्रिकोण = राजयोग क्यों' : 'Why Kendra + Trikona = Raja Yoga'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>केन्द्र विष्णु (धारण शक्ति) और त्रिकोण लक्ष्मी (भाग्य, कृपा) का प्रतिनिधित्व करते हैं। जब उनके स्वामी एक साथ आते हैं — युति, परस्पर दृष्टि, या राशि परिवर्तन से — शक्ति और भाग्य का मिलन राजयोग बनाता है, अर्थात &quot;राजसी संयोजन।&quot; यह पाराशरी ज्योतिष का सबसे महत्वपूर्ण योग सिद्धांत है।</> : <>Kendras represent Vishnu (sustaining power) and Trikonas represent Lakshmi (fortune, grace). When their lords come together — by conjunction, mutual aspect, or sign exchange — the union of power and fortune creates Raja Yoga, literally &quot;royal combination.&quot; This is the single most important yoga principle in Parashari Jyotish.</>}</p>
       </section>
@@ -220,18 +220,18 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>मुख्य सिद्धांत: <strong className="text-gold-light">प्रथम भाव स्वामी दशम में</strong> = आत्म (प्रथम) कर्म और सार्वजनिक जीवन (दशम) की ओर — स्वाभाविक नेता। <strong className="text-gold-light">सप्तम स्वामी द्वादश में</strong> = विवाह (सप्तम) का विदेश (द्वादश) से संबंध — अक्सर विदेशी जीवनसाथी या विवाह के बाद विदेश बसना। <strong className="text-gold-light">नवम स्वामी पंचम में</strong> = पिता का भाग्य (नवम) संतान/शिक्षा (पंचम) की ओर — सौभाग्यशाली पालन-पोषण, सशक्त उच्च शिक्षा।</> : <>Key principle: <strong className="text-gold-light">The lord of the 1st house placed in the 10th house</strong> = the self (1st) directed toward career and public life (10th) — a natural leader. <strong className="text-gold-light">The lord of the 7th in the 12th</strong> = marriage (7th) connecting to foreign lands (12th) — often a foreign spouse or settling abroad after marriage. <strong className="text-gold-light">The lord of the 9th in the 5th</strong> = father&apos;s fortune (9th) flowing to children/education (5th) — privileged upbringing, strong higher education.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">मेष लग्न:</span> मंगल प्रथम (मेष) और अष्टम (वृश्चिक) दोनों का स्वामी है। शुक्र द्वितीय (वृषभ) और सप्तम (तुला) का स्वामी है। बृहस्पति नवम (धनु) और द्वादश (मीन) का स्वामी है। यहाँ बृहस्पति नवम स्वामी के रूप में सर्वाधिक शुभ ग्रह है — यदि यह लग्न पर दृष्टि डाले या केन्द्र में बैठे, तो पूरी कुण्डली उन्नत होती है।</> : <><span className="text-gold-light font-medium">Aries Lagna:</span> Mars owns both the 1st (Aries) and 8th (Scorpio). Venus owns the 2nd (Taurus) and 7th (Libra). Jupiter owns the 9th (Sagittarius) and 12th (Pisces). Here, Jupiter as 9th lord is the most benefic planet — if it aspects the Lagna or sits in a Kendra, it uplifts the entire chart.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">कर्क लग्न:</span> चन्द्र प्रथम, सूर्य द्वितीय, मंगल पंचम और दशम का स्वामी है (अतः मंगल कर्क लग्न के लिए राजयोगकारक है क्योंकि यह त्रिकोण और केन्द्र दोनों का स्वामी है)। बृहस्पति षष्ठ और नवम का स्वामी है। शनि सप्तम और अष्टम का स्वामी है (मारक ग्रह — संभावित हानि)।</> : <><span className="text-gold-light font-medium">Cancer Lagna:</span> Moon rules the 1st, Sun rules the 2nd, Mars rules the 5th and 10th (hence Mars forms Raja Yoga for Cancer Lagna as it rules both a Trikona and a Kendra). Jupiter rules the 6th and 9th. Saturn rules the 7th and 8th (a Maraka planet — potential harm).</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;बृहस्पति सदैव शुभ और शनि सदैव अशुभ है।&quot; यह मूलतः गलत है। कारक स्वभाव स्वामित्व पर निर्भर करता है। वृषभ लग्न के लिए बृहस्पति अष्टम और एकादश का स्वामी है — विशेष शुभ नहीं। शनि नवम और दशम का स्वामी है — कुण्डली का सर्वश्रेष्ठ ग्रह जो योगकारक बनता है। प्राकृतिक शुभ ग्रह दुःस्थान का स्वामी होने पर हानिकारक बनते हैं; प्राकृतिक पापग्रह त्रिकोण का स्वामी होने पर सहायक बनते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;Jupiter is always good and Saturn is always bad.&quot; This is fundamentally wrong. Functional nature depends on lordship. For Taurus Lagna, Jupiter rules the 8th and 11th — not especially benefic. Saturn rules the 9th and 10th — the best planet in the chart forming Yoga Karaka. Natural benefics owning Dusthanas become harmful; natural malefics owning Trikonas become helpful.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन लग्न राशि और समभाव पद्धति के आधार पर प्रत्येक कुण्डली के भाव स्वामियों की स्वचालित गणना करता है। टिप्पणी (व्याख्यात्मक भाष्य) प्रत्येक भाव स्वामी की स्थिति का विश्लेषण करती है, योगों की पहचान करती है, शक्ति का मूल्यांकन करती है, और जीवन-क्षेत्र भविष्यवाणियाँ प्रदान करती है।</> : <>Our Kundali engine automatically calculates house lords for every chart based on the Lagna sign and the Equal House system. The tippanni (interpretive commentary) analyzes each house lord&apos;s placement, identifying yogas, evaluating strength, and providing life-area predictions. You can generate your chart and see exactly which planet rules each house in your life.</>}</p>
       </section>

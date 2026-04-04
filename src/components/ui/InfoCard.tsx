@@ -17,7 +17,7 @@ export default function InfoCard({ title, description, icon, href, onClick }: In
     <motion.div
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="glass-card rounded-xl p-6 cursor-pointer transition-all duration-300 h-full flex flex-col"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 cursor-pointer transition-all duration-300 h-full flex flex-col"
     >
       {icon && (
         <div className="mb-4">

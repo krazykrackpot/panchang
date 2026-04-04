@@ -104,7 +104,7 @@ export default function YearlyPanchangPage() {
           </div>
 
           {/* Calendar grid */}
-          <div className="glass-card rounded-2xl p-4 md:p-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 md:p-6">
             {loading && (
               <div className="text-center py-8"><Loader2 className="w-6 h-6 animate-spin text-gold-primary mx-auto" /></div>
             )}

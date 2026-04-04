@@ -142,7 +142,7 @@ export default function LearnBhavabalaPage() {
 
       {/* ═══ What is Bhavabala ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.whatTitle)}</h2>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP1)}</p>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP2)}</p>
@@ -159,7 +159,7 @@ export default function LearnBhavabalaPage() {
           const Icon = comp.icon;
           const isExpanded = expandedComponent === i;
           return (
-            <div key={i} className="glass-card rounded-2xl overflow-hidden border border-gold-primary/10">
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border border-gold-primary/10">
               <button onClick={() => setExpandedComponent(isExpanded ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
@@ -185,7 +185,7 @@ export default function LearnBhavabalaPage() {
 
       {/* ═══ 12 Houses Table ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.houseTitle)}</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -226,7 +226,7 @@ export default function LearnBhavabalaPage() {
         {L.classifications.map((cls) => {
           const isExp = expandedClass === cls.key;
           return (
-            <div key={cls.key} className={`glass-card rounded-2xl overflow-hidden border ${cls.borderColor}`}>
+            <div key={cls.key} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border ${cls.borderColor}`}>
               <button onClick={() => setExpandedClass(isExp ? null : cls.key)}
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
@@ -252,7 +252,7 @@ export default function LearnBhavabalaPage() {
 
       {/* ═══ Reading Your Bhavabala ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.readingTitle)}</h2>
         <p className="text-text-secondary leading-relaxed">{t(L.readingP1)}</p>
         <p className="text-text-secondary leading-relaxed">{t(L.readingP2)}</p>
@@ -260,7 +260,7 @@ export default function LearnBhavabalaPage() {
 
       {/* ═══ Remedies per House ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.remedyTitle)}</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -284,7 +284,7 @@ export default function LearnBhavabalaPage() {
 
       {/* ═══ Links ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/20 text-center space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 text-center space-y-4">
         <h3 className="text-gold-light font-bold text-lg" style={headingFont}>{t(L.linksTitle)}</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[

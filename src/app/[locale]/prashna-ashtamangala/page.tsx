@@ -128,7 +128,7 @@ export default function PrashnaAshtamangalaPage() {
       </div>
 
       {/* Step 2: Numbers */}
-      <div className="glass-card rounded-2xl p-6 mb-8">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
         <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step2}</h2>
         <div className="grid grid-cols-3 gap-6 max-w-lg mx-auto">
           {[0, 1, 2].map(i => (
@@ -159,7 +159,7 @@ export default function PrashnaAshtamangalaPage() {
             <GoldDivider />
 
             {/* Objects Revealed */}
-            <div className="glass-card rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.objects}</h2>
               <div className="grid grid-cols-3 gap-6 max-w-2xl mx-auto">
                 {data.objects.map((obj, i) => (
@@ -185,7 +185,7 @@ export default function PrashnaAshtamangalaPage() {
 
             {/* Yogas */}
             {data.yogas.length > 0 && (
-              <div className="glass-card rounded-xl p-6">
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
                 <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.yogas}</h2>
                 <div className="grid gap-3">
                   {data.yogas.map((y, i) => (

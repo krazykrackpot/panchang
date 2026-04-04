@@ -286,7 +286,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
 
   return (
     <motion.div
-      className="glass-card rounded-xl p-6 sm:p-8"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -455,7 +455,7 @@ function RashiDetailPanel({
 
   return (
     <motion.div
-      className="glass-card rounded-xl p-6 sm:p-8 border relative overflow-hidden"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8 border relative overflow-hidden"
       style={{ borderColor: `${elemColor}30` }}
       initial={{ opacity: 0, scale: 0.92, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -605,7 +605,7 @@ export default function RashiPage() {
           {t('scientificBasis')}
         </h2>
         <motion.div
-          className="glass-card rounded-xl p-8"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -642,7 +642,7 @@ export default function RashiPage() {
             ? 'नाक्षत्रिक राशि चक्र'
             : 'नाक्षत्रिकराशिचक्रम्'}
         </h2>
-        <div className="glass-card rounded-xl p-8 flex flex-col items-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center">
           <AnimatedZodiacWheel
             locale={locale}
             selectedRashi={selectedRashi}
@@ -697,7 +697,7 @@ export default function RashiPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.03, duration: 0.3 }}
               onClick={() => setSelectedRashi(rashi)}
-              className={`glass-card rounded-lg p-5 text-center border cursor-pointer ${
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 text-center border cursor-pointer ${
                 elementBorders[rashi.element.en] || ''
               } ${
                 selectedRashi?.id === rashi.id ? 'ring-1 ring-gold-primary/40' : ''

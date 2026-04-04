@@ -160,7 +160,7 @@ export default function TransitGuidePage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {houseData.map(h => (
                   <motion.div key={h.house} whileHover={{ scale: 1.015 }}
-                    className="glass-card rounded-lg p-4 border border-white/5 hover:border-gold-primary/20 transition-colors"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-white/5 hover:border-gold-primary/20 transition-colors"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold" style={{ color: activeTab.color }}>
@@ -189,7 +189,7 @@ export default function TransitGuidePage() {
               <div className="grid gap-4">
                 {axisData.map(a => (
                   <motion.div key={`${a.rahu}-${a.ketu}`} whileHover={{ scale: 1.01 }}
-                    className="glass-card rounded-lg p-5 border-l-4 border-l-purple-400/50"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 border-l-4 border-l-purple-400/50"
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-purple-300 font-bold text-sm">
@@ -225,7 +225,7 @@ export default function TransitGuidePage() {
       </LessonSection>
 
       {/* Related Links */}
-      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 glass-card rounded-xl p-6">
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
         <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-gold-light" />
           {t(L.related)}

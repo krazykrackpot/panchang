@@ -325,7 +325,7 @@ export default function CalendarPage() {
           <p className="text-text-secondary text-sm">{locale === 'en' ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
         </div>
       ) : !location ? (
-        <div className="flex flex-col items-center gap-4 mb-8 py-8 glass-card rounded-2xl border-2 border-gold-primary/30 max-w-lg mx-auto px-6">
+        <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-6">
           <MapPin className="w-10 h-10 text-gold-primary" />
           <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
             {locale === 'en' ? 'Location Required' : 'स्थान आवश्यक है'}

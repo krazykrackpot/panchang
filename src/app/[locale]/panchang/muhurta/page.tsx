@@ -594,7 +594,7 @@ export default function MuhurtaPage() {
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>{t('scientificBasis')}</h2>
         <motion.div
-          className="glass-card rounded-xl p-8"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -632,7 +632,7 @@ export default function MuhurtaPage() {
             ? 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें। हरा = शुभ, लाल = अशुभ।'
             : 'विवरणार्थं कमपि खण्डं क्लिक्कयतु। हरितम् = शुभम्, रक्तम् = अशुभम्।'}
         </p>
-        <div className="glass-card rounded-xl p-8 flex justify-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <AnimatedMuhurtaWheel locale={locale} selectedMuhurta={selectedMuhurta} onSelect={handleSelect} />
         </div>
       </section>
@@ -648,7 +648,7 @@ export default function MuhurtaPage() {
             transition={{ duration: 0.4, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className={`glass-card rounded-xl p-8 mb-8 border ${natureBorder(selected.nature)}`}>
+            <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8 border ${natureBorder(selected.nature)}`}>
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <motion.h3
@@ -750,7 +750,7 @@ export default function MuhurtaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Day-Night Muhurta Timeline' : locale === 'hi' ? 'दिवा-रात्रि मुहूर्त समयरेखा' : 'दिवारात्रिमुहूर्तकालरेखा'}
         </h2>
-        <div className="glass-card rounded-xl p-6">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
           <AnimatedSunriseSunsetDiagram locale={locale} selectedMuhurta={selectedMuhurta} onSelect={handleSelect} />
         </div>
       </section>

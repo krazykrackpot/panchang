@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'भाव लग्न — द्वितीय धन बिन्दु' : 'Bhava Lagna — The Second Wealth Point'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Bhava Lagna (BL) is another wealth and sustenance indicator that complements Hora Lagna. While HL focuses on accumulated wealth, BL often relates to ongoing sustenance and the ability to maintain oneself. Some Jaimini scholars consider BL particularly relevant for assessing the native&apos;s capacity to earn a livelihood, as distinct from inherited or windfall wealth shown by HL. When both HL and BL fall in strong signs with benefic aspects, the native enjoys robust financial health throughout life.
@@ -230,7 +230,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित गणना: दोपहर 2 बजे का जन्म' : 'Worked Calculation: 2 PM Birth'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Birth at 2:00 PM, Sunrise at 6:00 AM, Sun in Taurus, Lagna in Virgo.
@@ -245,7 +245,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
@@ -273,7 +273,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Lagna in Aries (odd, sign 1), Hora Lagna in Leo (odd, sign 5). Both are odd — use Rule 1.
@@ -291,7 +291,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'वर्णद का उद्देश्य' : 'The Purpose of Varnada'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
@@ -300,7 +300,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi

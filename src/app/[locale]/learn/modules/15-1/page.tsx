@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'नौ रत्न एक दृष्टि में' : 'The Nine Gems at a Glance'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -237,7 +237,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'ग्रह-रत्न-धातु-उँगली सन्दर्भ' : 'Planet-Gem-Metal-Finger Reference'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -253,7 +253,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'नीलम चेतावनी' : 'Blue Sapphire Warning'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Blue Sapphire (Neelam) is the most powerful and potentially dangerous gemstone in Jyotish. Saturn&apos;s energy is intense, karmic, and unforgiving. If Blue Sapphire suits your chart, results can be spectacularly positive — rapid financial gains, career breakthroughs, obstacles dissolving overnight. But if it doesn&apos;t suit you, the consequences are equally dramatic — accidents, losses, depression, or sudden downturns within days of wearing it.
@@ -293,7 +293,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'नवरत्न विकल्प' : 'The Navaratna Alternative'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -306,7 +306,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'गलत रत्न हानिकारक क्यों' : 'Why a Wrong Gemstone Can Cause Harm'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -319,7 +319,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य से ऊपर कुण्डली-विशिष्ट' : 'Chart-Specific Over Generic'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The most important takeaway from Ratna Shastra: gemstone prescription must be chart-specific. Generic advice like &quot;Sagittarius people should wear Yellow Sapphire&quot; is dangerously oversimplified. The same Jupiter that blesses one chart can devastate another depending on house lordships from the lagna. Always consult a competent astrologer who analyzes your full birth chart — lagna, planetary dignities, dasha periods, and transits — before investing in a gemstone. Our Kundali tool provides the foundation for this analysis.

@@ -60,7 +60,7 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
       </div>
 
       {/* How Yogas Form */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-lg mb-3" style={headingFont}>{isHi ? 'योग कैसे बनते हैं?' : 'How Yogas Form'}</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -78,7 +78,7 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
       </div>
 
       {/* House classification */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'भाव वर्गीकरण' : 'House Classification'}</h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
           <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/15"><div className="text-emerald-400 font-bold mb-0.5">Kendras</div><div className="text-text-secondary">1, 4, 7, 10</div></div>
@@ -94,7 +94,7 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
         const yogasInCat = KY_DATA.filter(y => y.category === cat.key);
         const isExpanded = expandedCategory === cat.key;
         return (
-          <div key={cat.key} className="glass-card rounded-2xl overflow-hidden">
+          <div key={cat.key} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
             <button onClick={() => setExpandedCategory(isExpanded ? null : cat.key)}
               className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
               <div className="flex items-center gap-3">
@@ -152,7 +152,7 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
       })}
 
       {/* CTA */}
-      <div className="glass-card rounded-2xl p-6 text-center border border-gold-primary/20">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center border border-gold-primary/20">
         <h3 className="text-gold-light font-bold text-lg mb-2" style={headingFont}>{isHi ? 'अपनी कुण्डली में योग देखें' : 'Check Yogas in Your Chart'}</h3>
         <p className="text-text-secondary text-xs mb-4">{isHi ? 'हमारा इंजन 55+ योगों का स्वचालित पता लगाता है' : 'Our engine automatically detects 55+ yogas'}</p>
         <a href={`/${locale}/kundali`} className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-primary text-bg-primary font-semibold hover:bg-gold-light transition-colors text-sm">{isHi ? 'कुण्डली बनाएं →' : 'Generate Kundali →'}</a>
@@ -202,7 +202,7 @@ export default function LearnYogasPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10 flex items-center gap-3"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 flex items-center gap-3"
             >
               <span className="text-gold-primary/60 text-lg font-bold w-8 text-center">{y.number}</span>
               <div className="flex-1 min-w-0">

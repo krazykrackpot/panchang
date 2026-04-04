@@ -148,7 +148,7 @@ export default function TodayPanchangWidget() {
     return (
       <div>
         <LocationBar />
-        <div className="glass-card rounded-2xl p-12 text-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-12 text-center">
           <MapPin className="w-12 h-12 text-gold-primary/40 mx-auto mb-4" />
           <p className="text-text-secondary text-lg mb-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {locale === 'en' ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}

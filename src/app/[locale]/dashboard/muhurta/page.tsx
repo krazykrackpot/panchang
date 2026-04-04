@@ -113,7 +113,7 @@ export default function MuhurtaPage() {
         })}
       </div>
 
-      <div className="mt-8 glass-card rounded-xl p-5 text-xs text-text-secondary" style={bf}>
+      <div className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-xs text-text-secondary" style={bf}>
         <p className="text-gold-dark font-bold uppercase tracking-wider mb-2">{locale === 'en' ? 'How this works' : 'यह कैसे काम करता है'}</p>
         <p>{locale === 'en'
           ? 'Tara Bala compares your birth nakshatra with today\'s nakshatra (9-cycle). Chandra Bala checks today\'s Moon position relative to your birth Moon sign. Both favorable = Excellent. Both unfavorable = Avoid.'

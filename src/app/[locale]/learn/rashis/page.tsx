@@ -502,7 +502,7 @@ export default function LearnRashisPage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: bp.id * 0.03 }}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10 text-center"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 text-center"
             >
               <div className="text-gold-primary text-xs font-mono mb-1">{bp.id}</div>
               <div className="text-gold-light font-semibold text-sm">{bp.sign[loc]}</div>
@@ -577,7 +577,7 @@ export default function LearnRashisPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-20px' }}
                 transition={{ delay: i * 0.03 }}
-                className="glass-card rounded-xl p-5 border border-gold-primary/10"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10"
               >
                 <div className="flex items-center gap-4 mb-3">
                   <span className="text-4xl">{r.symbol}</span>
@@ -622,7 +622,7 @@ export default function LearnRashisPage() {
             <Link
               key={ref.href}
               href={ref.href}
-              className="glass-card rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
             >
               <div className="text-gold-light font-semibold text-sm">{ref.label[loc]}</div>
               <div className="text-text-secondary text-xs mt-1">{ref.desc[loc]}</div>

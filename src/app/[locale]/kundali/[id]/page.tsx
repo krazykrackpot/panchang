@@ -7,6 +7,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
+import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 
 function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string } | null {
   const name = params.get('n');
@@ -94,7 +95,7 @@ export default function SharedKundaliPage() {
         <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8">
           <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
         </Link>
-        <div className="glass-card rounded-xl p-12 text-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-12 text-center">
           <h1 className="text-3xl text-red-400 font-bold mb-4" style={headingFont}>
             {locale === 'en' ? 'Invalid Chart Link' : 'अमान्य कुण्डली लिंक'}
           </h1>
@@ -114,13 +115,13 @@ export default function SharedKundaliPage() {
           <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
         </Link>
         <div className="flex items-center gap-2">
-          <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-gold-primary hover:text-gold-light">
+          <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg text-sm text-gold-primary hover:text-gold-light">
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
             {copied ? (locale === 'en' ? 'Copied!' : 'कॉपी!') : (locale === 'en' ? 'Copy Link' : 'लिंक कॉपी')}
           </button>
           {typeof navigator !== 'undefined' && 'share' in navigator && (
             <button onClick={() => navigator.share({ title: `${chartData.name} - Kundali`, url: shareUrl })}
-              className="inline-flex items-center gap-2 px-4 py-2 glass-card rounded-lg text-sm text-gold-primary hover:text-gold-light">
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg text-sm text-gold-primary hover:text-gold-light">
               <Share2 className="w-4 h-4" /> {locale === 'en' ? 'Share' : 'साझा'}
             </button>
           )}
@@ -128,7 +129,7 @@ export default function SharedKundaliPage() {
       </div>
 
       {/* Chart Header */}
-      <div className="glass-card rounded-xl p-8 mb-8">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8">
         <h1 className="text-3xl text-gold-gradient font-bold mb-2" style={headingFont}>{chartData.name}</h1>
         <div className="flex flex-wrap gap-4 text-text-secondary text-sm">
           <span>{chartData.date} at {chartData.time}</span>
@@ -159,7 +160,7 @@ export default function SharedKundaliPage() {
 
       {/* Planet Positions */}
       {kundali && (
-        <div className="glass-card rounded-xl p-8 mb-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8">
           <h2 className="text-xl text-gold-gradient font-bold mb-6" style={headingFont}>
             {locale === 'en' ? 'Planetary Positions' : 'ग्रह स्थिति'}
           </h2>
@@ -189,6 +190,61 @@ export default function SharedKundaliPage() {
           </div>
         </div>
       )}
+
+      {/* Graha Shanti Recommendations */}
+      {kundali && (() => {
+        const afflicted = detectAfflictedPlanets(
+          kundali.planets.map(p => ({
+            id: p.planet.id,
+            name: p.planet.name.en,
+            house: p.house,
+            isDebilitated: p.isDebilitated,
+            isCombust: p.isCombust,
+            isRetrograde: p.isRetrograde,
+          }))
+        );
+        if (afflicted.length === 0) return null;
+        return (
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8">
+            <h2 className="text-xl text-gold-gradient font-bold mb-2" style={headingFont}>
+              {locale === 'en' ? 'Recommended Graha Shanti Pujas' : 'अनुशंसित ग्रह शान्ति पूजा'}
+            </h2>
+            <p className="text-text-secondary text-sm mb-6">
+              {locale === 'en'
+                ? 'Based on your chart, the following planets may benefit from graha shanti rituals.'
+                : 'आपकी कुण्डली के अनुसार, निम्नलिखित ग्रहों को ग्रह शान्ति पूजा से लाभ हो सकता है।'}
+            </p>
+            <div className="space-y-3">
+              {afflicted.map((ap) => {
+                const cfg = {
+                  severe: { border: 'border-rose-500/20', bg: 'bg-rose-500/8', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-400', label: locale === 'en' ? 'Severe' : 'गम्भीर' },
+                  moderate: { border: 'border-amber-500/20', bg: 'bg-amber-500/8', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-400', label: locale === 'en' ? 'Moderate' : 'मध्यम' },
+                  mild: { border: 'border-blue-500/20', bg: 'bg-blue-500/8', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: locale === 'en' ? 'Mild' : 'साधारण' },
+                }[ap.severity];
+                const planetName = kundali.planets.find(p => p.planet.id === ap.planetId)?.planet.name[locale] || ap.planetName;
+                return (
+                  <div key={ap.planetId} className={`p-4 rounded-xl border ${cfg.border} ${cfg.bg}`}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className={`font-bold ${cfg.text}`} style={headingFont}>{planetName}</span>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${cfg.badge}`}>{cfg.label}</span>
+                    </div>
+                    <p className="text-text-secondary text-sm mb-2">{ap.reasons.join(', ')}</p>
+                    <Link
+                      href={`/puja/${ap.remedySlug}` as '/puja/graha-shanti-surya'}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-primary hover:text-gold-light transition-colors"
+                    >
+                      {locale === 'en' ? 'View Puja Details' : 'पूजा विवरण देखें'}
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* CTA */}
       <div className="text-center mt-8">

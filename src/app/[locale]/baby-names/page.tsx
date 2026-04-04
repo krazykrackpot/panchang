@@ -102,7 +102,7 @@ export default function BabyNamesPage() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.1 }}
-                    className="glass-card rounded-2xl p-6 border-2 border-gold-primary/30 min-w-[100px] text-center"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border-2 border-gold-primary/30 min-w-[100px] text-center"
                   >
                     <div className="text-4xl font-bold text-gold-light mb-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
                       {locale === 'en' ? syl.en : syl.hi}

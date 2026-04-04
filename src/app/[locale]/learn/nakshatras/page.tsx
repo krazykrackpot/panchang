@@ -391,7 +391,7 @@ export default function LearnNakshatrasPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10"
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg">{n.symbol}</span>

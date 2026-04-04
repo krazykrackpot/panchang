@@ -72,18 +72,18 @@ export default function ChartPage() {
 
       {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass-card rounded-xl p-6">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
           <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' ? 'Rashi (D1)' : 'राशि (D1)'}</h3>
           <ChartComponent data={kundali.chart} title="" />
         </motion.div>
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="glass-card rounded-xl p-6">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
           <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' ? 'Navamsha (D9)' : 'नवांश (D9)'}</h3>
           <ChartComponent data={kundali.navamshaChart} title="" />
         </motion.div>
       </div>
 
       {/* Ascendant */}
-      <div className="glass-card rounded-xl p-5 mb-6 flex items-center gap-4">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6 flex items-center gap-4">
         <RashiIconById id={kundali.ascendant.sign} size={40} />
         <div>
           <p className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Ascendant (Lagna)' : 'लग्न'}</p>
@@ -92,7 +92,7 @@ export default function ChartPage() {
       </div>
 
       {/* Planet table */}
-      <div className="glass-card rounded-xl p-5 overflow-x-auto">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 overflow-x-auto">
         <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' ? 'Planet Positions' : 'ग्रह स्थिति'}</h3>
         <table className="w-full text-sm">
           <thead>

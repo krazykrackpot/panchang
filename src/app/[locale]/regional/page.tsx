@@ -482,7 +482,7 @@ export default function RegionalCalendarsPage() {
         <h2 className="text-gold-gradient text-2xl font-bold text-center mb-6" style={headingFont}>
           {locale === 'en' ? 'Calendar Comparison' : 'पंचांग तुलना'}
         </h2>
-        <div className="glass-card rounded-xl overflow-x-auto border border-gold-primary/15">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">

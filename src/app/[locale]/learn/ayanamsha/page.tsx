@@ -24,7 +24,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ WHAT IS PRECESSION? ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>
           {isHi ? 'पृथ्वी का लड़खड़ाना — विषुव अग्रगमन क्या है?' : "Earth's Wobble — What Is Precession?"}
         </h3>
@@ -108,7 +108,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ THE TWO ZODIACS ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>
           {isHi ? 'दो राशिचक्र — क्या अंतर है?' : 'Two Zodiacs — What\'s the Difference?'}
         </h3>
@@ -178,7 +178,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ THE FORMULA ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>
           {isHi ? 'गणना — अयनांश कैसे निकालें?' : 'The Calculation — How Ayanamsha Is Computed'}
         </h3>
@@ -232,7 +232,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ AYANAMSHA SYSTEMS ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>
           {isHi ? 'अयनांश पद्धतियाँ — कौन सी सही है?' : 'Ayanamsha Systems — Which One Is Correct?'}
         </h3>
@@ -280,7 +280,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ HISTORICAL TIMELINE ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>
           {isHi ? 'ऐतिहासिक परिप्रेक्ष्य' : 'Historical Perspective'}
         </h3>
@@ -302,7 +302,7 @@ export default function AyanamshaPage() {
       </div>
 
       {/* ═══ WHY IT MATTERS ═══ */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient font-bold text-xl mb-4" style={hf}>
           {isHi ? 'आपकी कुण्डली पर प्रभाव' : 'Impact on Your Chart'}
         </h3>

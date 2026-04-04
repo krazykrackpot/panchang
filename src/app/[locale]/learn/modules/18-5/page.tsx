@@ -211,25 +211,25 @@ function Page1() {
           Notice the weight distribution: D60 leads at 4.0, followed by D1 at 3.5, D9 at 3.0, and D16 at 2.0. These four alone account for 12.5 of the 20 points. The remaining 12 vargas share just 7.5 points. This weighting encodes a hierarchy: past-life karma (D60), present-life sign placement (D1), soul-level dharma (D9), and comforts/vehicles (D16) matter most.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Vimshopaka Bala is described in BPHS (Brihat Parashara Hora Shastra), chapter 16. Parashara specifies three varga schemes — Shadvarga (6 vargas), Saptavarga (7), and Shodasvarga (16) — each with its own weight set summing to 20. The Shodasvarga scheme is the most comprehensive and is the standard used by serious practitioners. The system predates Shadbala and represents Parashara&rsquo;s original strength assessment method.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">Worked Example</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Jupiter at 5&deg; Cancer. In D1, Jupiter is exalted in Cancer = full 3.5 points. In D9 (Navamsha), 5&deg; Cancer falls in the first navamsha pada, which maps to Cancer itself — still exalted = full 3.0 points. Already 6.5 out of 20 from just two vargas. If Jupiter is also well-placed in D60, that adds up to 4.0 more. Three favourable vargas alone could yield 10.5/20 — already in the &ldquo;good&rdquo; range before checking the other 13.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">Common Misconception</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Many students assume that a planet exalted in D1 will automatically score high in Vimshopaka. This is not true. Exaltation in D1 contributes at most 3.5 out of 20 points. The planet could be debilitated or in enemy signs across many of the remaining 15 vargas, resulting in a mediocre total score. Vimshopaka&rsquo;s power lies precisely in this: it reveals whether D1 dignity is &ldquo;deep&rdquo; or &ldquo;superficial.&rdquo;
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Vimshopaka calculation is tedious by hand (checking dignity in 16 charts for each planet) but trivial for software. Modern Jyotish programs compute it instantly. This has made Vimshopaka accessible to every practitioner, not just scholars with the patience for manual divisional chart construction. It is now one of the first strength metrics checked in computerised chart analysis.
@@ -258,13 +258,13 @@ function Page2() {
           The scoring is applied independently in each varga. A planet could be exalted in D1 (full 3.5), in a friend&rsquo;s sign in D9 (half of 3.0 = 1.5), neutral in D60 (quarter of 4.0 = 1.0), and so on across all 16 charts. The final Vimshopaka score is the sum of all 16 contributions.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The dignity multipliers follow the Panchadha Maitri (five-fold relationship) system from BPHS. This system first determines natural friendship between planets, then modifies it based on temporary friendship (chart-specific positions), yielding five relationship grades: great friend, friend, neutral, enemy, great enemy. These same grades drive the Vimshopaka scoring, creating a direct link between planetary relationship theory and strength assessment.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">Worked Example — Full Calculation</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Jupiter in Cancer at 5&deg;. Let us trace the major vargas:
@@ -275,13 +275,13 @@ function Page2() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">D3 (weight 1.0):</span> 5&deg; Cancer = first drekkana = Cancer itself = exalted. Score: 1.0 x 1 = 1.00</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Running subtotal from 4 vargas:</span> 7.75 out of 20. The remaining 12 vargas add their contributions similarly.</p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">Common Misconception</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Students sometimes apply Moolatrikona and own-sign scoring incorrectly — treating them as the same as exaltation. While both score 3/4 (which is good), they are notably less than the full weight that exaltation receives. The difference matters in close cases. Also, &ldquo;great friend&rdquo; and &ldquo;friend&rdquo; both score 1/2, and &ldquo;enemy&rdquo; and &ldquo;great enemy&rdquo; differ (1/8 vs 1/16) — these fine gradations are often overlooked.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The Vimshopaka scoring system is essentially a weighted average — a concept familiar in data science and statistics. Modern practitioners appreciate its mathematical elegance: 16 independent assessments, each weighted by importance, collapsed into a single 0-20 score. It is arguably the most &ldquo;modern&rdquo; of classical Jyotish tools in its design philosophy, anticipating multi-factor scoring systems by millennia.
@@ -310,25 +310,25 @@ function Page3() {
           A planet can be dignified (high Vimshopaka) but poorly placed (low Shadbala) — like a nobleman in exile: inherently worthy but unable to exercise power. Conversely, a planet can be functionally strong (high Shadbala) but of poor quality (low Vimshopaka) — like a powerful official of questionable character. The most auspicious planets score high on both measures. Complete strength assessment requires both Vimshopaka and Shadbala.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Parashara presents Vimshopaka before Shadbala in BPHS, suggesting he considered it the primary strength metric. Later commentators like Balabhadra (Hora Ratnam) and modern scholars like Sanjay Rath have emphasised that Vimshopaka reveals the &ldquo;essence&rdquo; of a planet while Shadbala reveals its &ldquo;circumstances.&rdquo; Together they form a complete picture — like knowing both a person&rsquo;s character and their current situation.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">Worked Example — Vimshopaka vs Shadbala</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Saturn exalted in Libra (D1) at 20&deg;, also exalted in D9, D3, well-placed in D60 — Vimshopaka score: 16.2/20 (excellent). But this Saturn is in the 12th house, has low Dig Bala (directional strength, Saturn is strong in 7th not 12th), low Kala Bala (born during daytime when Saturn prefers night), and lost the planetary war with Mars nearby. Shadbala: only 85% of required minimum. This Saturn has superb inherent quality but difficult circumstances — during its dasha, the native achieves outcomes of lasting value but through struggle, isolation, or foreign lands (12th house themes).
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">Common Misconception</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Some practitioners treat Vimshopaka as a replacement for Shadbala, or vice versa. This is a fundamental error. They measure different things and can diverge significantly for the same planet. A chart analysis that uses only one is incomplete. Additionally, neither Vimshopaka nor Shadbala accounts for house lordship — a planet with excellent scores can still produce challenging results if it lords over dusthana houses (6th, 8th, 12th).
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The Vimshopaka-Shadbala distinction maps elegantly to modern psychological concepts. Vimshopaka is like measuring someone&rsquo;s &ldquo;trait&rdquo; — their stable, inherent character across contexts. Shadbala is like measuring their &ldquo;state&rdquo; — their current abilities given life circumstances. This dual-axis model of planetary strength, articulated thousands of years ago, anticipates modern personality psychology&rsquo;s trait-state distinction. For predictive work, high Vimshopaka with low Shadbala often manifests as &ldquo;potential waiting for the right dasha or transit to unlock it.&rdquo;

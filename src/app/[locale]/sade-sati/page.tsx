@@ -285,7 +285,7 @@ export default function SadeSatiPage() {
 
       {/* Full Mode — Birth Details Form */}
       {tab === 'full' && (
-        <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 glass-card rounded-2xl p-6 border border-gold-primary/10">
+        <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(LABELS.date, locale)}</label>
@@ -368,7 +368,7 @@ export default function SadeSatiPage() {
             {isFullMode && analysis.isActive && analysis.overallIntensity > 0 && (
               <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="my-10">
                 <h2 className="text-3xl font-bold text-gold-gradient mb-6 text-center" style={headingFont}>{t(LABELS.intensity, locale)}</h2>
-                <div className="glass-card rounded-2xl p-6 border border-gold-primary/10">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
                   {/* Circular-style gauge */}
                   <div className="flex flex-col items-center mb-6">
                     <div className="relative w-32 h-32">
@@ -427,7 +427,7 @@ export default function SadeSatiPage() {
                     if (!text) return null;
                     const isOpen = expandedSection === key || key === 'summary';
                     return (
-                      <div key={key} className="glass-card rounded-xl border border-gold-primary/10 overflow-hidden">
+                      <div key={key} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
                         <button
                           onClick={() => setExpandedSection(isOpen && key !== 'summary' ? '' : key)}
                           className="w-full flex items-center justify-between p-4 text-left"
@@ -529,7 +529,7 @@ export default function SadeSatiPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 + i * 0.08 }}
-                            className="glass-card rounded-xl p-4 border border-gold-primary/10"
+                            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4"
                           >
                             <div className="text-gold-light text-sm font-bold mb-1" style={bodyFont}>{r.title[lk as keyof typeof r.title] ?? r.title.en}</div>
                             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{r.description[lk as keyof typeof r.description] ?? r.description.en}</div>
@@ -548,7 +548,7 @@ export default function SadeSatiPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + i * 0.1 }}
-                    className="glass-card rounded-xl p-4 border border-gold-primary/10"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4"
                   >
                     <div className="flex items-start gap-3">
                       <span className="text-gold-primary text-lg font-bold">{i + 1}</span>

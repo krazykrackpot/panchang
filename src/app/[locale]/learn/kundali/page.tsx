@@ -597,7 +597,7 @@ export default function LearnKundaliPage() {
             <Link
               key={link.href}
               href={link.href}
-              className="glass-card rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors group"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{link.label[locale]}</div>
               <p className="text-text-secondary/60 text-xs mt-1">{link.desc[locale]}</p>

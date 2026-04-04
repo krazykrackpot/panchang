@@ -273,7 +273,7 @@ export default function LearnDashasPage() {
       <LessonSection number={3} title={L.birthNakshatraTitle[locale]}>
         <p style={bodyFont}>{L.birthNakshatraContent[locale]}</p>
 
-        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
@@ -409,7 +409,7 @@ export default function LearnDashasPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="glass-card rounded-xl p-4 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-bold text-sm" style={headingFont}>{sys.name[locale]}</span>
@@ -486,7 +486,7 @@ export default function LearnDashasPage() {
       <LessonSection number={11} title={L.antardashaCalcTitle[locale]}>
         <p style={bodyFont}>{L.antardashaCalcContent[locale]}</p>
 
-        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
             {locale === 'en' ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
           </p>
@@ -527,7 +527,7 @@ export default function LearnDashasPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="glass-card rounded-xl p-4 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10"
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: md.color }} />
@@ -604,7 +604,7 @@ export default function LearnDashasPage() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
                 {isHi ? mod.label.hi : mod.label.en}

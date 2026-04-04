@@ -39,7 +39,7 @@ function Page1() {
         </p>
 
         {/* Dignity Tower */}
-        <div className="glass-card rounded-xl p-4 border border-gold-primary/10 mb-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 mb-4">
           <div className="space-y-2">
             {[
               { level: 1, name: { en: 'Exalted (Uchcha)', hi: 'उच्च' }, desc: 'Peak power — planet at its absolute strongest', color: 'bg-emerald-500/15 border-emerald-500/25 text-emerald-400', strength: '100%' },
@@ -63,7 +63,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           BPHS Ch.3 v.18-20 defines exaltation, debilitation, and moolatrikona for each planet. The term <span className="text-gold-light font-bold">Uchcha</span> (उच्च) means "high/elevated," <span className="text-gold-light font-bold">Neecha</span> (नीच) means "low/fallen," and <span className="text-gold-light font-bold">Moolatrikona</span> means "root triangle" — the foundational zone of power. Parashara explicitly states that a planet's exaltation and debilitation points are always 180° apart — this is not coincidence but cosmic symmetry.
@@ -73,7 +73,7 @@ function Page1() {
       {/* Exaltation/Debilitation table */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Complete Exaltation & Debilitation Table</h3>
-        <div className="overflow-x-auto glass-card rounded-xl p-4 border border-gold-primary/10">
+        <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
           <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-2 text-gold-dark">Planet</th>
@@ -123,7 +123,7 @@ function Page2() {
           The metaphor is a <span className="text-gold-light">phoenix</span> — rising from the ashes of adversity to achieve greatness. Or a leader who comes from poverty and, having overcome every obstacle, leads with greater strength than someone born into privilege. Many highly successful people have Neecha Bhanga yogas in their charts.
         </p>
 
-        <div className="glass-card rounded-xl p-4 border border-emerald-500/15 mb-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-emerald-500/15 mb-4">
           <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">The 4 Classical Cancellation Conditions (BPHS Ch.34 v.22)</h4>
           <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
             <p><span className="text-emerald-300 font-bold">Condition 1:</span> The lord of the DEBILITATION sign is in a kendra (1/4/7/10) from Lagna or Moon. <span className="text-text-tertiary">(Example: Moon debilitated in Scorpio → Mars (Scorpio's lord) in kendra from Lagna)</span></p>
@@ -145,7 +145,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example: Complete Dignity Assessment</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Scenario:</span> Jupiter at 8° Capricorn in a chart where Mars is in the 7th house from Lagna.
@@ -162,7 +162,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "A debilitated planet is always harmful."<br />
@@ -172,7 +172,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully used in all Jyotish software.</span> Our app computes dignity for every planet in every chart — it's the foundation of Shadbala (Sthana Bala component), Vimshopaka Bala, and chart strength assessment. The Neecha Bhanga detection is part of our 55+ yoga engine. The exaltation/debilitation degrees are from BPHS — unchanged in 1,000+ years.

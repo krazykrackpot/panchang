@@ -160,7 +160,7 @@ function Page1() {
         </p>
 
         <div className="grid gap-3 mb-4">
-          <div className="glass-card rounded-lg p-3 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10">
             <p className="text-gold-light text-sm font-bold mb-1">{isHi ? 'ग्रेगोरियन = शुद्ध सौर' : 'Gregorian = Pure Solar'}</p>
             <p className="text-text-secondary text-xs">
               {isHi
@@ -168,7 +168,7 @@ function Page1() {
                 : '365.25 days/year. Aligned with seasons — December 25 is always in winter. But completely ignores Moon phases.'}
             </p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10">
             <p className="text-blue-300 text-sm font-bold mb-1">{isHi ? 'इस्लामी = शुद्ध चान्द्र' : 'Islamic = Pure Lunar'}</p>
             <p className="text-text-secondary text-xs">
               {isHi
@@ -176,7 +176,7 @@ function Page1() {
                 : '354 days/year. Aligned with Moon phases — but drifts through seasons. That\'s why Ramadan comes ~11 days earlier each year, completing a full cycle in ~33 years.'}
             </p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/15">
             <p className="text-emerald-400 text-sm font-bold mb-1">{isHi ? 'हिन्दू = चान्द्र-सौर (प्रतिभाशाली संकर)' : 'Hindu = Lunisolar (Genius Hybrid)'}</p>
             <p className="text-text-secondary text-xs">
               {isHi
@@ -194,7 +194,7 @@ function Page1() {
       </section>
 
       {/* Classical Origin — Gold card */}
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
         </h4>
@@ -229,7 +229,7 @@ function Page2() {
         </p>
 
         <div className="grid gap-3 mb-4">
-          <div className="glass-card rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'पूर्णिमान्त (उत्तर भारत)' : 'Purnimanta (North India)'}</p>
             <p className="text-text-secondary text-xs leading-relaxed mb-1">
               {isHi
@@ -240,7 +240,7 @@ function Page2() {
               {isHi ? 'उत्तर प्रदेश, राजस्थान, मध्य प्रदेश, नेपाल' : 'Uttar Pradesh, Rajasthan, Madhya Pradesh, Nepal'}
             </p>
           </div>
-          <div className="glass-card rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
             <p className="text-blue-300 text-sm font-bold mb-2">{isHi ? 'अमान्त (दक्षिण भारत/गुजरात)' : 'Amanta (South India / Gujarat)'}</p>
             <p className="text-text-secondary text-xs leading-relaxed mb-1">
               {isHi
@@ -267,7 +267,7 @@ function Page2() {
       </section>
 
       {/* Emerald fact card */}
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
           {isHi ? 'भारतीय वर्ष-गणना' : 'Indian Year-Counting Eras'}
         </h4>
@@ -334,7 +334,7 @@ function Page3() {
       </section>
 
       {/* Red — Misconceptions */}
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
           {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
         </h4>
@@ -361,7 +361,7 @@ function Page3() {
       </section>
 
       {/* Blue — Modern Relevance */}
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
         </h4>

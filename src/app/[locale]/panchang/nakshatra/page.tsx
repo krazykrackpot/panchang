@@ -42,7 +42,7 @@ export default function NakshatraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'What are Nakshatras?' : locale === 'hi' ? 'नक्षत्र क्या हैं?' : 'नक्षत्राणि किम्?'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
@@ -67,7 +67,7 @@ export default function NakshatraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'How Nakshatras Get Their Names' : locale === 'hi' ? 'नक्षत्रों के नाम कैसे पड़े' : 'नक्षत्राणां नामानि कथम्'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
@@ -83,7 +83,7 @@ export default function NakshatraPage() {
       {/* Scientific Basis */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>{t('scientificBasis')}</h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
@@ -106,7 +106,7 @@ export default function NakshatraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Ecliptic Belt — 27 Nakshatras' : locale === 'hi' ? 'क्रान्तिवृत्त — 27 नक्षत्र' : 'क्रान्तिवृत्तम् — सप्तविंशतिनक्षत्राणि'}
         </h2>
-        <div className="glass-card rounded-xl p-8 flex justify-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipticBelt locale={locale} isDevanagari={isDevanagari} />
         </div>
       </section>
@@ -132,7 +132,7 @@ export default function NakshatraPage() {
             >
               <Link
                 href={`/panchang/nakshatra/${nak.id}`}
-                className="glass-card rounded-xl p-5 flex items-center gap-5 hover:border-gold-primary/40 transition-all group block"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 flex items-center gap-5 hover:border-gold-primary/40 transition-all group block"
               >
                 <div className="flex-shrink-0 group-hover:scale-110 transition-transform">
                   <NakshatraIconById id={nak.id} size={64} />

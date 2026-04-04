@@ -639,7 +639,7 @@ export default function GrahanPage() {
           {t('scientificBasis')}
         </h2>
         <motion.div
-          className="glass-card rounded-xl p-8"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -673,7 +673,7 @@ export default function GrahanPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Eclipse Geometry' : locale === 'hi' ? 'ग्रहण ज्यामिति' : 'ग्रहणज्यामितिः'}
         </h2>
-        <div className="glass-card rounded-xl p-8 flex justify-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipseGeometrySVG locale={locale} />
         </div>
       </section>
@@ -690,7 +690,7 @@ export default function GrahanPage() {
             : 'पूर्णसूर्यग्रहणस्य चरणानि'}
         </h2>
         <motion.div
-          className="glass-card rounded-xl p-8"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -724,7 +724,7 @@ export default function GrahanPage() {
               whileHover={{ y: -4 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className={`glass-card rounded-lg p-5 border cursor-default transition-shadow ${
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 border cursor-default transition-shadow ${
                 eclipse.type === 'solar'
                   ? 'border-amber-500/20 hover:shadow-amber-500/10 hover:shadow-lg'
                   : 'border-indigo-500/20 hover:shadow-indigo-500/10 hover:shadow-lg'

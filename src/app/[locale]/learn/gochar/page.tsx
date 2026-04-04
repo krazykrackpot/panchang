@@ -176,7 +176,7 @@ export default function LearnGocharPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="flex items-center gap-3 glass-card rounded-lg p-3 border border-gold-primary/5"
+              className="flex items-center gap-3 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/5"
             >
               <div className="w-16 text-right text-sm font-semibold flex-shrink-0" style={{ color: ts.color }}>
                 {ts.planet[locale]}
@@ -302,7 +302,7 @@ export default function LearnGocharPage() {
 
       {/* Section 9: Transit through houses table */}
       <LessonSection number={9} title={L.transitHouseTitle[locale]}>
-        <div className="glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
@@ -371,7 +371,7 @@ export default function LearnGocharPage() {
             <Link
               key={mod.href}
               href={mod.href}
-              className={`glass-card rounded-lg p-3 border hover:border-gold-primary/30 transition-colors block ${
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border hover:border-gold-primary/30 transition-colors block ${
                 'tool' in mod ? 'border-blue-400/15 bg-blue-400/3' : 'border-gold-primary/10'
               }`}
             >

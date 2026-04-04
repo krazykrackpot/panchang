@@ -195,7 +195,7 @@ export default function HoraPage() {
 
       {/* Interactive Timeline */}
       <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-xl p-5 mb-6 border border-gold-primary/15"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6 border border-gold-primary/15"
       >
         <div className="flex justify-center gap-2 flex-wrap mb-4">
           {DAY_LORDS.map((dl, i) => (
@@ -286,7 +286,7 @@ export default function HoraPage() {
       </LessonSection>
 
       {/* Related Links */}
-      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 glass-card rounded-xl p-6">
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
         <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-gold-light" />
           {t(L.related)}

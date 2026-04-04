@@ -171,7 +171,7 @@ export default function RectifyPage() {
             </Link>
           </div>
 
-          <div className="glass-card rounded-2xl p-6 space-y-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-6">
             {/* Approximate birth details */}
             <div>
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{isHi ? 'अनुमानित जन्म तिथि' : 'Approximate Birth Date'}</label>

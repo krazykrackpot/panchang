@@ -96,7 +96,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onSubmit={handleSubmit}
-      className="glass-card rounded-2xl p-8 max-w-2xl mx-auto"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 max-w-2xl mx-auto"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name */}

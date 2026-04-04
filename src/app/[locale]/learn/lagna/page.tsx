@@ -215,7 +215,7 @@ export default function LagnaPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {L.lagnas.map((lagna, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 + i * 0.03 }}
-              className="p-4 glass-card rounded-xl border border-gold-primary/10">
+              className="p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border border-gold-primary/10">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gold-light font-semibold" style={headingFont}>{t(lagna.sign)}</span>
                 <span className="text-text-tertiary text-xs">{locale === 'en' ? 'Lord' : 'स्वामी'}: {t(lagna.lord)}</span>
@@ -264,7 +264,7 @@ export default function LagnaPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
           {L.muhurtaLagnas.map((ml, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 + i * 0.04 }}
-              className="p-4 glass-card rounded-xl border border-gold-primary/10">
+              className="p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border border-gold-primary/10">
               <span className="text-gold-light font-semibold text-sm" style={headingFont}>{t(ml.sign)}</span>
               <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{t(ml.use)}</p>
             </motion.div>
@@ -325,7 +325,7 @@ export default function LagnaPage() {
 
       {/* Cross-references */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}
-        className="glass-card rounded-xl p-6 text-center space-y-3">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 text-center space-y-3">
         <h3 className="text-gold-gradient text-lg font-bold" style={headingFont}>{locale === 'en' ? 'Continue Learning' : 'आगे सीखें'}</h3>
         <div className="flex flex-wrap gap-3 justify-center">
           {[

@@ -92,7 +92,7 @@ export default function DashasPage() {
 
       {/* Current Period */}
       {currentMaha && (
-        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="glass-card rounded-2xl p-6 border border-gold-primary/20 mb-8">
+        <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
           <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' ? 'Current Period' : 'वर्तमान काल'}</p>
 
           {/* Mahadasha */}
@@ -147,7 +147,7 @@ export default function DashasPage() {
               <motion.div key={`${d.planet}-${i}`} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                 <button onClick={() => setExpandedMaha(isExpanded ? null : d.planet)}
                   className={`w-full text-left ml-10 rounded-xl p-4 border transition-all relative ${
-                    isCurrent ? 'glass-card border-gold-primary/30 bg-gold-primary/5' : isPast ? 'bg-bg-tertiary/10 border-gold-primary/5 opacity-50' : 'glass-card border-gold-primary/10'
+                    isCurrent ? 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/30 bg-gold-primary/5' : isPast ? 'bg-bg-tertiary/10 border-gold-primary/5 opacity-50' : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10'
                   }`}>
                   {/* Timeline dot */}
                   <div className={`absolute -left-[1.65rem] top-5 w-3 h-3 rounded-full ${isCurrent ? 'bg-gold-primary shadow-[0_0_8px_rgba(212,168,83,0.5)]' : isPast ? 'bg-text-secondary/30' : 'bg-gold-primary/30'}`} />

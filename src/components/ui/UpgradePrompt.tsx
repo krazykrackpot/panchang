@@ -47,7 +47,7 @@ export default function UpgradePrompt({ feature, compact = false }: UpgradePromp
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeOut' as const }}
-      className="glass-card max-w-sm mx-auto p-6 rounded-2xl border border-gold/20 text-center"
+      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 max-w-sm mx-auto p-6 rounded-2xl border border-gold/20 text-center"
     >
       <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gold/10 border border-gold/30">
         <Lock className="h-7 w-7 text-gold" />

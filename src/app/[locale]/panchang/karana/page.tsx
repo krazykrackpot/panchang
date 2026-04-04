@@ -459,7 +459,7 @@ export default function KaranaPage() {
       {/* Scientific Basis with Angular Separation Diagram */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>{t('scientificBasis')}</h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AngularSeparationDiagram locale={locale} />
           <div className="mt-8 prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
@@ -491,7 +491,7 @@ export default function KaranaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en' ? 'Interactive Karana Wheel — 60 Half-Tithis' : locale === 'hi' ? 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ' : 'संवादात्मकं करणचक्रम् — षष्टिः अर्धतिथयः'}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedKaranaWheel
             locale={locale}
             onSelect={handleSelectSlot}
@@ -512,7 +512,7 @@ export default function KaranaPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="mt-8 glass-card rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
+                  className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/20 max-w-md mx-auto"
                 >
                   <div className="flex items-center justify-between mb-3">
                     <h3
@@ -593,7 +593,7 @@ export default function KaranaPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
               whileHover={{ scale: 1.05, borderColor: karana.name.en === 'Vishti' ? 'rgba(239,68,68,0.5)' : 'rgba(74,222,128,0.4)' }}
-              className={`glass-card rounded-lg p-4 text-center cursor-pointer border ${
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center cursor-pointer border ${
                 karana.name.en === 'Vishti' ? 'border-red-500/20' : 'border-emerald-500/10'
               }`}
               onClick={() => {
@@ -632,7 +632,7 @@ export default function KaranaPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
                 whileHover={{ scale: 1.05, borderColor: 'rgba(248,113,113,0.5)' }}
-                className="glass-card rounded-lg p-4 text-center border border-red-500/10 cursor-pointer"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center border border-red-500/10 cursor-pointer"
                 onClick={() => setSelectedKarana(slotPositions[i])}
               >
                 <div className="text-red-400/80 text-2xl mb-1">{karana.number}</div>

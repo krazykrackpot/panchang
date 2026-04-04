@@ -284,7 +284,7 @@ export default function MasaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {t('scientificBasis')}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
@@ -317,7 +317,7 @@ export default function MasaPage() {
             ? 'वार्षिक चक्र — मास और ऋतु'
             : 'वार्षिकचक्रम् — मासाः ऋतवश्च'}
         </h2>
-        <div className="glass-card rounded-xl p-8 flex justify-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <AnimatedAnnualWheel locale={locale} />
         </div>
       </section>
@@ -348,7 +348,7 @@ export default function MasaPage() {
                 whileHover={{ scale: 1.05 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
-                className="glass-card rounded-lg p-4 text-center cursor-default"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center cursor-default"
               >
                 <div className="text-gold-primary text-2xl mb-1">{i + 1}</div>
                 <div
@@ -385,7 +385,7 @@ export default function MasaPage() {
               whileHover={{ scale: 1.05 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="glass-card rounded-lg p-5 text-center cursor-default"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 text-center cursor-default"
             >
               <div className="text-2xl mb-2" style={{ color: rituColors[i] }}>
                 {i + 1}

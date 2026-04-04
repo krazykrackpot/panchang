@@ -98,7 +98,7 @@ export default function KPSystemPage() {
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
       </motion.div>
 
-      <div className="glass-card rounded-2xl p-6 mb-8">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {(['name', 'date', 'time'] as const).map(f => (
             <label key={f} className="block">
@@ -131,7 +131,7 @@ export default function KPSystemPage() {
             </div>
 
             {/* Cuspal Sub-Lord Table */}
-            <div className="glass-card rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.cuspalTable}</h2>
               <table className="w-full text-sm">
                 <thead><tr className="text-text-secondary border-b border-gold-primary/10">
@@ -154,7 +154,7 @@ export default function KPSystemPage() {
             </div>
 
             {/* Planetary Sub-Lord Table */}
-            <div className="glass-card rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.planetTable}</h2>
               <table className="w-full text-sm">
                 <thead><tr className="text-text-secondary border-b border-gold-primary/10">
@@ -179,7 +179,7 @@ export default function KPSystemPage() {
             </div>
 
             {/* Significator Table */}
-            <div className="glass-card rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.significators}</h2>
               <table className="w-full text-sm">
                 <thead><tr className="text-text-secondary border-b border-gold-primary/10">
@@ -204,7 +204,7 @@ export default function KPSystemPage() {
             </div>
 
             {/* Ruling Planets */}
-            <div className="glass-card rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.rulingPlanets}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
                 {[

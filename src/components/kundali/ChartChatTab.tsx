@@ -122,7 +122,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
             <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
               msg.role === 'user'
                 ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/20 rounded-br-md'
-                : 'glass-card text-text-primary rounded-bl-md'
+                : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 text-text-primary rounded-bl-md'
             }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {msg.content}
             </div>
@@ -139,7 +139,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
             <div className="w-7 h-7 rounded-full bg-gold-primary/15 flex items-center justify-center shrink-0">
               <Bot className="w-4 h-4 text-gold-primary" />
             </div>
-            <div className="glass-card rounded-2xl rounded-bl-md px-4 py-3">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl rounded-bl-md px-4 py-3">
               <Loader2 className="w-4 h-4 animate-spin text-gold-primary" />
             </div>
           </div>

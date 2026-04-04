@@ -13,10 +13,10 @@ interface LessonSectionProps {
 
 export default function LessonSection({ number, title, children, illustration, variant = 'default' }: LessonSectionProps) {
   const bgClass = variant === 'highlight'
-    ? 'glass-card border-gold-primary/20'
+    ? 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border-gold-primary/20'
     : variant === 'formula'
     ? 'bg-bg-primary/50 border border-gold-primary/10'
-    : 'glass-card';
+    : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12';
 
   return (
     <motion.section

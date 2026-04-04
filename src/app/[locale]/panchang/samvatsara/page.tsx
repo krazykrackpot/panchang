@@ -297,7 +297,7 @@ export default function SamvatsaraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {t('scientificBasis')}
         </h2>
-        <div className="glass-card rounded-xl p-8">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="prose prose-invert max-w-none text-text-secondary">
             <p className="text-lg leading-relaxed">
               {locale === 'en'
@@ -337,7 +337,7 @@ export default function SamvatsaraPage() {
             ? 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।'
             : 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।'}
         </p>
-        <div className="glass-card rounded-xl p-8 flex flex-col items-center gap-6">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center gap-6">
           <AnimatedSamvatsaraWheel
             locale={locale}
             selected={selectedIndex}
@@ -353,7 +353,7 @@ export default function SamvatsaraPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="glass-card rounded-xl p-6 w-full max-w-md text-center border border-gold-primary/20"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 w-full max-w-md text-center border border-gold-primary/20"
               >
                 <div
                   className="text-3xl font-bold mb-1"
@@ -406,7 +406,7 @@ export default function SamvatsaraPage() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.02 }}
                     onClick={() => setSelectedIndex(globalIndex)}
-                    className={`glass-card rounded-lg p-3 text-center cursor-pointer transition-colors ${
+                    className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center cursor-pointer transition-colors ${
                       isActive ? 'ring-2 ring-gold-primary/60' : ''
                     }`}
                   >

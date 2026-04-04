@@ -197,7 +197,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -230,7 +230,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> महा शिवरात्रि पर विचार करें, जो कृष्ण पक्ष चतुर्दशी (14वीं) को मनाई जाती है। अमान्त में यह माघ मास में आती है। पूर्णिमान्त में वही दिन फाल्गुन मास में आता है (क्योंकि माघ पूर्णिमा के बाद पूर्णिमान्त में फाल्गुन आरम्भ होता है)। खगोलीय घटना — चन्द्रमा और सूर्य की ठीक वही स्थिति — समान है, केवल नाम बदलता है।</> : <><span className="text-gold-light font-medium">Example:</span> Consider Maha Shivaratri, observed on Chaturdashi (14th) of Krishna Paksha. In Amanta, this falls in Magha month. In Purnimanta, the same day falls in Phalguna month (because after Magha Purnima, Purnimanta begins Phalguna). The astronomical event — the exact position of Moon and Sun — is identical. Only the label changes.</>}
@@ -240,7 +240,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अमान्त और पूर्णिमान्त में त्योहारों की तिथियाँ भिन्न होती हैं।&quot; शुक्ल पक्ष के त्योहारों के लिए यह असत्य है — चैत्र शुक्ल नवमी (राम नवमी) दोनों पद्धतियों में एक ही ग्रेगोरियन दिन पर और एक ही मास-नाम से आती है। भ्रम केवल कृष्ण पक्ष के अनुष्ठानों में उत्पन्न होता है जहाँ मास-नाम भिन्न होता है, वास्तविक तारीख नहीं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Amanta and Purnimanta give different festival dates.&quot; This is false for Shukla Paksha festivals — Chaitra Shukla Navami (Ram Navami) falls on the same Gregorian day in both systems with the same month name. The confusion arises only for Krishna Paksha observances where the month name differs, not the actual date.</>}
@@ -282,21 +282,21 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> चेन्नई (अमान्त) का एक भक्त और वाराणसी (पूर्णिमान्त) का एक भक्त दोनों वैकुण्ठ एकादशी मनाते हैं। खगोलीय एकादशी — वही चन्द्र-सूर्य कोणीय दूरी — दोनों के लिए एक ही ग्रेगोरियन तारीख पर आती है। किन्तु यदि कृष्ण पक्ष का कोई त्योहार हो तो चेन्नई का भक्त उसे &quot;मार्गशीर्ष कृष्ण एकादशी&quot; कहता है जबकि वाराणसी का भक्त उसी दिन को &quot;पौष कृष्ण एकादशी&quot; कहता है। अनुष्ठान और तारीख समान हैं; केवल मास-नाम भिन्न है।</> : <><span className="text-gold-light font-medium">Example:</span> A devotee in Chennai (Amanta) and one in Varanasi (Purnimanta) both observe Vaikunta Ekadashi. The astronomical Ekadashi — the same Moon-Sun elongation — falls on the same Gregorian date for both. But if a Krishna Paksha festival is involved, the Chennai devotee calls it &quot;Margashirsha Krishna Ekadashi&quot; while the Varanasi devotee calls the same day &quot;Pausha Krishna Ekadashi.&quot; The ritual performed and the date are identical; only the month label differs.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;कृष्ण पक्ष पूर्णतया नकारात्मक है और कोई शुभ कार्य नहीं करना चाहिए।&quot; यद्यपि कृष्ण पक्ष वृद्धि-उन्मुख मुहूर्तों के लिए आदर्श नहीं है, वह वास्तव में महत्वपूर्ण आध्यात्मिक साधनाओं का निर्धारित समय है — शनि प्रदोष व्रत, मास शिवरात्रि (चतुर्दशी) और सभी पितृ कर्म। काली और भैरव सहित अनेक शक्तिशाली देवता विशेष रूप से अन्धकार पखवाड़े में पूजित होते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Krishna Paksha is entirely negative and nothing good should be done.&quot; While Krishna Paksha is not ideal for growth-oriented muhurtas, it is actually the prescribed time for important spiritual practices — Shani Pradosh vrat, Masa Shivaratri (Chaturdashi), and all ancestral rites. Many powerful deities including Kali and Bhairava are specifically worshipped during the dark fortnight.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

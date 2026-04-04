@@ -64,7 +64,7 @@ function HouseDetailPanel({
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -10, scale: 0.95 }}
-      className="glass-card rounded-xl p-6 border border-gold-primary/30"
+      className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-gold-primary/30"
     >
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-4">
@@ -321,7 +321,7 @@ export default function KundaliPage() {
           <GoldDivider />
 
           {/* Birth details header */}
-          <div className="glass-card rounded-xl p-6 mb-8 text-center">
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 mb-8 text-center">
             <h2 className="text-gold-light text-2xl font-semibold mb-2" style={headingFont}>
               {kundali.birthData.name || (locale === 'en' ? 'Birth Chart' : 'जन्म कुण्डली')}
             </h2>
@@ -531,7 +531,7 @@ export default function KundaliPage() {
                     <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
                   </div>
                   {transitData && (
-                    <div className="glass-card rounded-xl p-4 mb-4">
+                    <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 mb-4">
                       <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
                         {transitData.planets?.map((p: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }, i: number) => {
                           const rashiName = RASHIS[p.rashi - 1]?.name[locale as Locale] || '';
@@ -603,7 +603,7 @@ export default function KundaliPage() {
                 const sClr: Record<string, string> = { strong: 'text-emerald-400', moderate: 'text-amber-400', weak: 'text-red-400' };
                 return (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} key={activeChart}
-                    className={`mt-8 glass-card rounded-2xl p-5 border ${sC[chartInsight.strength]}`}>
+                    className={`mt-8 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border ${sC[chartInsight.strength]}`}>
                     <div className="flex items-center justify-between mb-3">
                       <h4 className="text-gold-light font-bold text-sm" style={headingFont}>
                         {chartInsight.chart} — {isHi ? chartInsight.meaning.hi : chartInsight.meaning.en}
@@ -649,7 +649,7 @@ export default function KundaliPage() {
               })()}
 
               {/* Planet legend below charts */}
-              <div className="mt-8 glass-card rounded-xl p-5">
+              <div className="mt-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
                 <h4 className="text-gold-dark text-xs uppercase tracking-wider mb-4 text-center">{locale === 'en' ? 'Planets in Chart' : 'कुण्डली में ग्रह'}</h4>
                 <div className="flex flex-wrap justify-center gap-3">
                   {kundali.planets.map((p) => (
@@ -707,7 +707,7 @@ export default function KundaliPage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: p.planet.id * 0.04 }}
                   onClick={() => handleSelectPlanet(p.planet.id)}
-                  className={`glass-card rounded-xl p-4 cursor-pointer transition-all border ${
+                  className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 cursor-pointer transition-all border ${
                     selectedPlanet === p.planet.id
                       ? 'border-gold-primary/40 bg-gold-primary/5'
                       : 'border-transparent hover:border-gold-primary/20'
@@ -886,7 +886,7 @@ export default function KundaliPage() {
                     const isPast = now > end;
                     return (
                       <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
-                        className={`glass-card rounded-xl p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
+                        className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
                         <div className="flex items-center gap-3">
                           <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                           <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
@@ -988,7 +988,7 @@ export default function KundaliPage() {
 
                       return (
                         <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
-                          className={`glass-card rounded-xl overflow-hidden ${isCurrent ? 'border-2 ring-1 ring-gold-primary/20' : ''} ${isPast ? 'opacity-40' : ''}`}
+                          className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden ${isCurrent ? 'border-2 ring-1 ring-gold-primary/20' : ''} ${isPast ? 'opacity-40' : ''}`}
                           style={{ borderColor: isCurrent ? `${color}60` : undefined }}>
                           {/* Progress bar at top */}
                           <div className="h-1" style={{ backgroundColor: `${color}15` }}>
@@ -1124,7 +1124,7 @@ export default function KundaliPage() {
               <p className="text-text-secondary text-xs text-center mb-4">
                 {locale === 'en' ? 'HOW each planet expresses its energy — 5 classification systems from BPHS Ch.44-45' : 'प्रत्येक ग्रह अपनी ऊर्जा कैसे व्यक्त करता है — BPHS अ.44-45 से 5 वर्गीकरण'}
               </p>
-              <div className="glass-card rounded-2xl overflow-x-auto">
+              <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="border-b border-gold-primary/15">
@@ -1213,7 +1213,7 @@ export default function KundaliPage() {
                   const sig = HOUSE_SIGNIFICATIONS[ar.house - 1];
                   const remedy = OBSTRUCTION_REMEDIES[ar.house - 1];
                   return (
-                  <div key={ar.house} className={`glass-card rounded-xl overflow-hidden border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
+                  <div key={ar.house} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
                     {/* Header */}
                     <div className={`px-4 py-2.5 flex items-center justify-between ${ar.netEffect === 'supported' ? 'bg-emerald-500/5' : ar.netEffect === 'obstructed' ? 'bg-red-500/5' : 'bg-bg-secondary/30'}`}>
                       <div>
@@ -1287,7 +1287,7 @@ export default function KundaliPage() {
               </h3>
 
               {/* Beginner explanation */}
-              <div className="glass-card rounded-xl p-5 border border-sky-500/15">
+              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-sky-500/15">
                 <h4 className="text-sky-300 text-[10px] uppercase tracking-widest font-bold mb-2">
                   {isHi ? 'ये क्या हैं?' : 'What are Sphutas?'}
                 </h4>
@@ -1306,7 +1306,7 @@ export default function KundaliPage() {
               {/* YOGI & AVAYOGI — the key pair */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Yogi Point */}
-                <div className="glass-card rounded-xl p-5 border border-emerald-500/20 bg-emerald-500/5">
+                <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/20 bg-emerald-500/5">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">&#9733;</span>
                     <div>
@@ -1326,7 +1326,7 @@ export default function KundaliPage() {
                 </div>
 
                 {/* Avayogi Point */}
-                <div className="glass-card rounded-xl p-5 border border-red-500/20 bg-red-500/5">
+                <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-red-500/20 bg-red-500/5">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-lg">&#9888;</span>
                     <div>
@@ -1367,7 +1367,7 @@ export default function KundaliPage() {
                     { data: kundali.sphutas.triSphuta, label: isHi ? 'त्रि स्फुट' : 'Tri Sphuta', sublabel: isHi ? 'समग्र संकेतक' : 'Composite Indicator', color: 'border-amber-500/20', icon: '&#9651;',
                       explain: isHi ? 'तीनों स्फुटों (प्राण + देह + मृत्यु) का संयुक्त बिंदु। यह आपकी समग्र शारीरिक-प्राणिक स्थिति का एकल सूचक है।' : 'Composite of all three sphutas (Prana + Deha + Mrityu). This gives a single-point summary of your overall physical-vital condition. Its sign/nakshatra placement summarizes your constitutional strength.' },
                   ].map(({ data, label, sublabel, color, icon, explain }) => (
-                    <div key={label} className={`glass-card rounded-xl p-4 border ${color}`}>
+                    <div key={label} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border ${color}`}>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-gold-primary text-lg" dangerouslySetInnerHTML={{ __html: icon }} />
                         <div>
@@ -1398,7 +1398,7 @@ export default function KundaliPage() {
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     {kundali.sphutas.bijaSphuta && (
-                      <div className="glass-card rounded-xl p-4 border border-blue-500/15">
+                      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-blue-500/15">
                         <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'बीज स्फुट (पुरुष प्रजनन)' : 'Bija Sphuta (Male Fertility)'}</div>
                         <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.bijaSphuta.degree.toFixed(2)}°</div>
                         <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.bijaSphuta.sign)}</div>
@@ -1408,7 +1408,7 @@ export default function KundaliPage() {
                       </div>
                     )}
                     {kundali.sphutas.kshetraSphuta && (
-                      <div className="glass-card rounded-xl p-4 border border-pink-500/15">
+                      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-pink-500/15">
                         <div className="text-pink-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'क्षेत्र स्फुट (स्त्री प्रजनन)' : 'Kshetra Sphuta (Female Fertility)'}</div>
                         <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.kshetraSphuta.degree.toFixed(2)}°</div>
                         <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.kshetraSphuta.sign)}</div>
@@ -1422,7 +1422,7 @@ export default function KundaliPage() {
               )}
 
               {/* How to use this */}
-              <div className="glass-card rounded-xl p-5 border border-emerald-500/15">
+              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">
                 <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">
                   {isHi ? 'इसका उपयोग कैसे करें' : 'How to Use This Information'}
                 </h4>
@@ -1541,7 +1541,7 @@ export default function KundaliPage() {
                   {kundali.jaimini.charaKarakas.map((ck, i) => {
                     const info = KARAKA_INFO[ck.karaka];
                     return (
-                    <div key={i} className={`glass-card rounded-xl p-4 border ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/8'}`}>
+                    <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/8'}`}>
                       <div className="flex items-start gap-4">
                         <div className="shrink-0 w-14 text-center pt-1">
                           <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
@@ -1577,7 +1577,7 @@ export default function KundaliPage() {
                 <p className="text-text-secondary/50 text-xs text-center mb-4">
                   {locale === 'en' ? 'The Navamsha sign of your Atmakaraka — reveals your soul\'s ultimate destination' : 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य'}
                 </p>
-                <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 max-w-lg mx-auto">
+                <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-gold-primary/20 max-w-lg mx-auto">
                   <div className="text-center mb-3">
                     <RashiIconById id={kundali.jaimini.karakamsha.sign} size={48} />
                     <div className="text-gold-light font-bold text-2xl mt-2" style={headingFont}>{kundali.jaimini.karakamsha.signName[locale]}</div>
@@ -1602,7 +1602,7 @@ export default function KundaliPage() {
                   {kundali.jaimini.arudhaPadas.map((ap, i) => {
                     const meaning = ARUDHA_MEANING[ap.house];
                     return (
-                      <div key={i} className={`glass-card rounded-xl p-3 border ${i === 0 || ap.house === 7 || ap.house === 10 || ap.house === 12 ? 'border-gold-primary/20 bg-gold-primary/[0.03]' : 'border-gold-primary/5'}`}>
+                      <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 border ${i === 0 || ap.house === 7 || ap.house === 10 || ap.house === 12 ? 'border-gold-primary/20 bg-gold-primary/[0.03]' : 'border-gold-primary/5'}`}>
                         <div className="flex items-center gap-3">
                           <div className="shrink-0 w-10 h-10 rounded-lg bg-bg-secondary/50 flex items-center justify-center">
                             <span className="text-gold-primary font-bold text-sm">A{ap.house}</span>
@@ -1631,7 +1631,7 @@ export default function KundaliPage() {
                   <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
                     {locale === 'en' ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़'}
                   </h3>
-                  <div className="glass-card rounded-2xl overflow-hidden">
+                  <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
                       {((kundali.jaimini as unknown as { grahaArudhas: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas || []).map((ga, i) => (
                         <div key={i} className="p-3 text-center">
@@ -1657,7 +1657,7 @@ export default function KundaliPage() {
                     const isCurrent = now >= start && now <= end;
                     const isPast = now > end;
                     return (
-                      <div key={i} className={`glass-card rounded-xl p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
+                      <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
                         <div className="flex items-center gap-3">
                           <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                           <span className="text-gold-light font-bold" style={headingFont}>{cd.signName[locale]}</span>
@@ -1764,7 +1764,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
 
       {/* Quick insight */}
       {(strongSigns.length > 0 || weakSigns.length > 0) && (
-        <div className="glass-card rounded-xl p-5 border border-gold-primary/10">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-gold-primary/10">
           <h4 className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{locale === 'en' ? 'Quick Insight' : 'संक्षिप्त अन्तर्दृष्टि'}</h4>
           <div className="space-y-2 text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {strongSigns.length > 0 && (
@@ -1815,7 +1815,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
       </div>
 
       {viewMode === 'sav' ? (
-        <div className="glass-card rounded-xl p-6 overflow-x-auto">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
           <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('sarvashtakavarga')}</h4>
           <p className="text-text-secondary text-xs mb-4">
             {locale === 'en' ? 'Total bindu points per sign from all 7 planets. Houses with 28+ points are strong.' : 'सभी 7 ग्रहों के कुल बिन्दु प्रति राशि। 28+ बिन्दु वाले भाव बलवान हैं।'}
@@ -1844,7 +1844,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           </div>
         </div>
       ) : (
-        <div className="glass-card rounded-xl p-6 overflow-x-auto">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
           <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('bhinnashtakavarga')}</h4>
           <p className="text-text-secondary text-xs mb-4">
             {locale === 'en' ? 'Individual planet bindu points per sign (max 8 per cell).' : 'प्रत्येक ग्रह के बिन्दु प्रति राशि (अधिकतम 8 प्रति कक्ष)।'}
@@ -1933,7 +1933,7 @@ function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }
       </div>
 
       {/* Overview card */}
-      <div className="glass-card rounded-xl p-6 sm:p-8 border-2 border-gold-primary/30 relative overflow-hidden">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8 border-2 border-gold-primary/30 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold-primary/0 via-gold-primary to-gold-primary/0" />
         <h4 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-semibold">{tTip('yearOverview')}</h4>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -1943,7 +1943,7 @@ function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }
 
       {/* Events timeline */}
       {yp.events.length > 0 && (
-        <div className="glass-card rounded-xl p-6 sm:p-8">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h4 className="text-gold-light text-lg font-semibold mb-6" style={headingFont}>{tTip('majorEvents')}</h4>
           <div className="relative">
             {/* Vertical line */}
@@ -2015,7 +2015,7 @@ function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }
       )}
 
       {/* Quarterly forecast grid */}
-      <div className="glass-card rounded-xl p-6 sm:p-8">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h4 className="text-gold-light text-lg font-semibold mb-6" style={headingFont}>{tTip('quarterlyOutlook')}</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {yp.quarters.map((q, i) => (
@@ -2045,7 +2045,7 @@ function YearPredictionsSection({ tip, locale, isDevanagari, headingFont, tTip }
       </div>
 
       {/* Key advice */}
-      <div className="glass-card rounded-xl p-6 sm:p-8 border border-gold-primary/25 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8 border border-gold-primary/25 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h4 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-semibold">{tTip('keyAdvice')}</h4>
         <p className="text-gold-light text-sm leading-relaxed font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {yp.keyAdvice}
@@ -2148,7 +2148,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
   return (
     <div className="space-y-8">
       {/* Overall Synthesis */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
           {isHi ? 'वर्ग संश्लेषण — समस्त विभागीय चार्ट' : 'Varga Synthesis — All Divisional Charts'}
         </h3>
@@ -2197,7 +2197,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         <div className="space-y-4">
           {synthesis.vargaInsights.map((v, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}
-              className="glass-card rounded-2xl overflow-hidden">
+              className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
               {/* Header */}
               <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[v.strength].split(' ').slice(1).join(' ')}`}>
                 <div className="flex items-center gap-3">
@@ -2363,7 +2363,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       <GoldDivider />
 
       {/* ===== PERSONALITY PROFILE ===== */}
-      <section className="glass-card rounded-xl p-6 sm:p-8">
+      <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('personality')}</h3>
         <div className="space-y-6">
           {[tip.personality.lagna, tip.personality.moonSign, tip.personality.sunSign].map((block, i) => (
@@ -2389,7 +2389,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       </section>
 
       {/* ===== PLANET PLACEMENT ANALYSIS ===== */}
-      <section className="glass-card rounded-xl p-6 sm:p-8">
+      <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
           {locale === 'en' ? 'Planet Placement Analysis' : locale === 'hi' ? 'ग्रह स्थिति विश्लेषण' : 'ग्रहस्थितिविश्लेषणम्'}
         </h3>
@@ -2461,7 +2461,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       </section>
 
       {/* ===== YOGAS ===== */}
-      <section className="glass-card rounded-xl p-6 sm:p-8">
+      <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('yogas')}</h3>
         <div className="space-y-3">
           {tip.yogas.filter(y => y.present).map((yoga, i) => {
@@ -2532,7 +2532,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
           </div>
         </div>
       )}
-      <section className="glass-card rounded-xl p-6 sm:p-8">
+      <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('doshas')}</h3>
         <div className="space-y-4">
           {tip.doshas.filter(d => d.present).map((dosha, i) => {
@@ -2591,7 +2591,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       </section>
 
       {/* ===== LIFE AREA PROGNOSIS ===== */}
-      <section className="glass-card rounded-xl p-6 sm:p-8">
+      <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
           {locale === 'en' ? 'Life Area Prognosis' : locale === 'hi' ? 'जीवन क्षेत्र पूर्वानुमान' : 'जीवनक्षेत्रपूर्वानुमानम्'}
         </h3>
@@ -2649,7 +2649,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         return (
           <section className="space-y-6">
             {/* ── Section 1: Lifetime Timeline ── */}
-            <div className="glass-card rounded-xl p-6 sm:p-8">
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
                 {locale === 'en' ? 'Dasha Period Analysis' : locale === 'hi' ? 'दशा काल विश्लेषण' : 'दशाकालविश्लेषणम्'}
               </h3>
@@ -2697,7 +2697,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
             </div>
 
             {/* ── Section 2: Current Mahadasha Card ── */}
-            <div className="glass-card rounded-xl p-6 sm:p-8">
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               <div className="flex items-center gap-4 mb-6">
                 <GrahaIconById id={NAME_TO_ID[cm.planet] ?? 0} size={40} />
                 <div>
@@ -2757,7 +2757,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
             </div>
 
             {/* ── Section 3: Antardasha Stack ── */}
-            <div className="glass-card rounded-xl p-6 sm:p-8">
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               <h3 className="text-lg text-gold-light font-semibold mb-5" style={headingFont}>
                 {locale === 'en' ? 'Antardasha Periods' : locale === 'hi' ? 'अन्तर्दशा काल' : 'अन्तर्दशाकालाः'}
               </h3>
@@ -3020,7 +3020,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 
       {/* ===== DASHA INSIGHT (fallback when synthesis unavailable) ===== */}
       {!tip.dashaSynthesis && tip.dashaInsight.currentMaha && (
-        <section className="glass-card rounded-xl p-6 sm:p-8">
+        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('dashaAnalysis')}</h3>
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/20">
@@ -3051,7 +3051,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 
       {/* ===== PLANETARY STRENGTH ===== */}
       {tip.strengthOverview.length > 0 && (
-        <section className="glass-card rounded-xl p-6 sm:p-8">
+        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
             {locale === 'en' ? 'Planetary Strength (Shadbala)' : locale === 'hi' ? 'ग्रह बल (षड्बल)' : 'ग्रहबलम् (षड्बलम्)'}
           </h3>
@@ -3079,7 +3079,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 
       {/* ===== REMEDIES ===== */}
       {(tip.remedies.gemstones.length > 0 || tip.remedies.mantras.length > 0) && (
-        <section className="glass-card rounded-xl p-6 sm:p-8">
+        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('remedies')}</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {tip.remedies.gemstones.length > 0 && (
@@ -3129,7 +3129,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 
       {/* ===== GRAHA SHANTI PUJA RECOMMENDATIONS ===== */}
       {afflictedPlanets.length > 0 && (
-        <section className="glass-card rounded-xl p-6 sm:p-8">
+        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>
             {locale === 'en' ? 'Recommended Graha Shanti Pujas' : locale === 'hi' ? 'अनुशंसित ग्रह शान्ति पूजा' : 'अनुशंसित ग्रहशान्तिपूजाः'}
           </h3>
@@ -3199,7 +3199,7 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
       </h3>
 
       {/* Graha Table */}
-      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 overflow-x-auto">
         <table className="w-full text-sm whitespace-nowrap">
           <thead>
             <tr className="text-text-secondary border-b border-gold-primary/15 text-xs uppercase tracking-wider">
@@ -3301,7 +3301,7 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {upagrahas.map((u, i) => (
-                <div key={i} className="glass-card rounded-xl p-4 text-center">
+                <div key={i} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
                   <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{u.name[locale]}</p>
                   <RashiIconById id={u.sign} size={28} />
                   <p className="text-text-primary text-sm mt-1" style={bodyFont}>{u.signName[locale]} {u.degree}</p>
@@ -3533,7 +3533,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
           : 'शास्त्रीय षड्बल गणना। मान षष्ट्यंशों में। बल अनुपात 1.0 से अधिक पर्याप्त बल दर्शाता है।'}
       </p>
 
-      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-gold-primary/20">
@@ -3573,7 +3573,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
       </div>
 
       {/* Strength Ratio Bar Chart */}
-      <div className="glass-card rounded-xl p-6">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
         <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-4 font-bold text-center" style={bodyFont}>
           {locale === 'en' ? 'Strength Ratio (Min. Required = 1.0)' : 'बल अनुपात (न्यूनतम = 1.0)'}
         </h4>
@@ -3635,7 +3635,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
         {locale === 'en' ? 'Bhavabala — House Strength' : 'भावबल — भाव शक्ति'}
       </h3>
 
-      <div className="glass-card rounded-xl p-4 sm:p-6 overflow-x-auto">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-text-secondary border-b border-gold-primary/15 text-xs uppercase tracking-wider">
@@ -3679,7 +3679,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
       </div>
 
       {/* Visual bar chart */}
-      <div className="glass-card rounded-xl p-6">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
         <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-4 font-bold text-center" style={bodyFont}>
           {locale === 'en' ? 'House Strength Distribution' : 'भाव बल वितरण'}
         </h4>
@@ -3789,7 +3789,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="glass-card rounded-2xl p-6 border border-red-500/30 bg-red-500/5"
+          className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-red-500/30 bg-red-500/5"
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
             <div className="w-14 h-14 rounded-full bg-red-500/15 border-2 border-red-500/40 flex items-center justify-center shrink-0">
@@ -3830,7 +3830,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
           </div>
         </motion.div>
       ) : (
-        <div className="glass-card rounded-2xl p-6 border border-green-500/30 bg-green-500/5 text-center">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-green-500/30 bg-green-500/5 text-center">
           <div className="text-green-400 text-lg font-bold uppercase tracking-wider" style={headingFont}>
             {locale === 'en' ? 'Not in Sade Sati' : 'साढ़े साती नहीं'}
           </div>
@@ -3852,7 +3852,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
-          className="glass-card rounded-2xl p-6"
+          className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6"
         >
           <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-6" style={bodyFont}>
             {locale === 'en' ? 'Intensity Gauge' : 'तीव्रता मापक'}
@@ -3925,7 +3925,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
             return (
               <motion.div
                 key={key}
-                className="glass-card rounded-xl border border-gold-primary/10 overflow-hidden"
+                className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-gold-primary/10 overflow-hidden"
                 layout
               >
                 <button
@@ -3962,7 +3962,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
 
       {/* ── Timeline ── */}
       {sadeSati.allCycles.length > 0 && (
-        <div className="glass-card rounded-2xl p-6">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
           <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-5" style={bodyFont}>
             {locale === 'en' ? 'Sade Sati Timeline' : 'साढ़े साती समयरेखा'}
           </h4>
@@ -4020,7 +4020,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
 
       {/* ── Remedies (only if active) ── */}
       {sadeSati.isActive && sadeSati.remedies.length > 0 && (
-        <div className="glass-card rounded-2xl p-6">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
           <h4 className="text-gold-primary text-xs uppercase tracking-wider font-bold text-center mb-5" style={bodyFont}>
             {locale === 'en' ? 'Remedies' : 'उपाय'}
           </h4>

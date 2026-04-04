@@ -167,7 +167,7 @@ export default function LearnAshtakavargaPage() {
         <p style={bodyFont}>{L.readContent[locale]}</p>
 
         {/* Example BAV table */}
-        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
             {isHi ? 'उदाहरण: शनि BAV' : 'Example: Saturn BAV'}
           </p>
@@ -254,7 +254,7 @@ export default function LearnAshtakavargaPage() {
         <p style={bodyFont}>{L.savContent[locale]}</p>
 
         {/* SAV example */}
-        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
             {isHi ? 'उदाहरण: सर्वाष्टकवर्ग (SAV)' : 'Example: Sarvashtakavarga (SAV)'}
           </p>
@@ -347,7 +347,7 @@ export default function LearnAshtakavargaPage() {
       <LessonSection number={7} title={L.kakshyaTitle[locale]}>
         <p style={bodyFont}>{L.kakshyaContent[locale]}</p>
 
-        <div className="mt-4 glass-card rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
@@ -393,7 +393,7 @@ export default function LearnAshtakavargaPage() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
                 {mod.label[locale]}

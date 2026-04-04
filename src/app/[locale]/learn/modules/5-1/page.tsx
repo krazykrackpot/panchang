@@ -215,7 +215,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -248,7 +248,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण 1:</span> एक दम्पति विवाह तिथि चुनना चाहता है। द्वितीया (भद्रा समूह, ब्रह्मा शासित) और पंचमी (पूर्णा समूह) उत्तम विकल्प हैं। यदि दोनों शुक्ल पक्ष में अनुकूल नक्षत्र के साथ आएँ तो मुहूर्त अत्यन्त बलवान होता है। चतुर्थी या नवमी जैसी रिक्ता तिथियाँ विवाह हेतु पूर्णतया वर्जित हैं।</> : <><span className="text-gold-light font-medium">Example 1:</span> A couple wishes to choose a wedding date. Dwitiya (Bhadra group, ruled by Brahma the creator) and Panchami (Purna group) are excellent choices. If both fall in Shukla Paksha with a favorable nakshatra, the muhurta is exceptionally strong. Rikta tithis like Chaturthi or Navami would be avoided entirely for marriage.</>}
@@ -258,14 +258,14 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अमावस्या सदैव अशुभ और पूर्णिमा सदैव शुभ होती है।&quot; वास्तव में अमावस्या पितृ कर्म, तान्त्रिक साधना और गहन ध्यान के लिए अत्यन्त शुभ मानी जाती है। दीपावली जैसे अनेक शक्तिशाली त्योहार अमावस्या पर पड़ते हैं। इसी प्रकार पूर्णिमा सर्वत्र शुभ नहीं — गोपनीयता या एकान्तवास चाहने वाले कार्यों के लिए अमावस्या अधिक उपयुक्त है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Amavasya is always bad and Purnima is always good.&quot; In reality, Amavasya is considered highly auspicious for Pitru Karma (ancestral rites), tantric practices, and deep meditation. Many powerful festivals like Diwali fall on Amavasya. Similarly, Purnima is not universally positive — certain activities requiring secrecy or withdrawal are better on Amavasya.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -309,21 +309,21 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">गणना:</span> सूर्योदय पर चन्द्र = 220.5 अंश, सूर्य = 15.3 अंश। कोणीय दूरी = 220.5 - 15.3 = 205.2 अंश। तिथि = floor(205.2 / 12) + 1 = floor(17.1) + 1 = 17 + 1 = 18। यह कृष्ण पक्ष तृतीया है (कृष्ण पक्ष की 3री तिथि: 15 + 3 = कुल 18वीं)।</> : <><span className="text-gold-light font-medium">Calculation:</span> At sunrise, Moon = 220.5 degrees, Sun = 15.3 degrees. Elongation = 220.5 - 15.3 = 205.2 degrees. Tithi = floor(205.2 / 12) + 1 = floor(17.1) + 1 = 17 + 1 = 18. This is Krishna Paksha Tritiya (the 3rd tithi of the dark half: 15 + 3 = 18th overall).</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;क्षय तिथि का अर्थ है कि वह तिथि अस्तित्व में ही नहीं आई।&quot; क्षय का अर्थ मात्र इतना है कि वह तिथि दो सूर्योदयों के बीच आरम्भ और समाप्त हो गई, अतः कोई भी दिन उसके नाम पर नहीं रखा जाता। खगोलीय रूप से वह तिथि अवश्य घटित हुई — वह इतनी लघु थी कि किसी सूर्योदय पर उपस्थित न रह सकी। क्षय तिथियाँ दुर्लभ (वर्ष में कुछ ही) होती हैं और उनके त्योहार दायित्व सामान्यतः निकटवर्ती तिथि पर स्थानान्तरित हो जाते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;A Kshaya tithi means the tithi ceases to exist.&quot; Kshaya simply means that tithi started and ended between two sunrises, so no day is named after it. The tithi still occurred astronomically — it was just too short to be present at any sunrise. Kshaya tithis are uncommon (a few per year) and their festival obligations typically shift to the adjacent tithi.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

@@ -216,7 +216,7 @@ export default function LearnMatchingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="glass-card rounded-lg p-5 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 border border-gold-primary/10"
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="w-9 h-9 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light font-bold flex-shrink-0 text-sm">
@@ -316,7 +316,7 @@ export default function LearnMatchingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-lg p-4 border border-red-400/15"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-red-400/15"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-red-400 font-mono font-bold text-lg">{bp.pair}</span>

@@ -140,7 +140,7 @@ export default function TransitsPage() {
       {/* Current transits summary */}
       {year === new Date().getFullYear() && currentTransits.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="glass-card rounded-2xl p-6 mb-8">
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
           <h2 className="text-lg text-gold-gradient font-bold mb-4 text-center" style={headingFont}>
             {locale === 'en' ? 'Current Planetary Positions' : 'वर्तमान ग्रह स्थिति'}
           </h2>

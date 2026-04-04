@@ -516,7 +516,7 @@ export default function LearnVargasPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03, ease: 'easeOut' as const }}
-                className={`glass-card rounded-xl p-5 border ${tier.border}`}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border ${tier.border}`}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   {/* Chart ID badge */}
@@ -839,7 +839,7 @@ export default function LearnVargasPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05, ease: 'easeOut' as const }}
-              className="flex gap-4 p-4 rounded-lg glass-card border border-gold-primary/10"
+              className="flex gap-4 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-gold-primary/10"
             >
               <div
                 className="w-1.5 rounded-full flex-shrink-0"
@@ -859,7 +859,7 @@ export default function LearnVargasPage() {
         <p className="mb-5">{L.practicalText[locale]}</p>
 
         {/* D9 Interpretation Example */}
-        <div className="mb-5 p-5 rounded-xl glass-card border border-amber-500/20">
+        <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-amber-500/20">
           <h4 className="text-amber-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 1: Reading D9 for Marriage' : 'उदाहरण 1: D9 से विवाह पढ़ना'}
           </h4>
@@ -882,7 +882,7 @@ export default function LearnVargasPage() {
         </div>
 
         {/* D10 Interpretation Example */}
-        <div className="mb-5 p-5 rounded-xl glass-card border border-emerald-500/20">
+        <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-emerald-500/20">
           <h4 className="text-emerald-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 2: Reading D10 for Career' : 'उदाहरण 2: D10 से करियर पढ़ना'}
           </h4>
@@ -900,7 +900,7 @@ export default function LearnVargasPage() {
         </div>
 
         {/* D7 Interpretation Example */}
-        <div className="p-5 rounded-xl glass-card border border-purple-500/20">
+        <div className="p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-purple-500/20">
           <h4 className="text-purple-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 3: Reading D7 for Children' : 'उदाहरण 3: D7 से संतान पढ़ना'}
           </h4>
@@ -948,7 +948,7 @@ export default function LearnVargasPage() {
             <Link
               key={link.href}
               href={link.href}
-              className="glass-card rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">
                 {link.label[locale]}

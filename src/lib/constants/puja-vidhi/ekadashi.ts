@@ -327,6 +327,15 @@ santana kī sevā || oṃ jaya jagadīśa hare ||`,
     },
   ],
 
+  parana: {
+    type: 'sunrise_plus_quarter' as const,
+    description: {
+      en: 'Break fast (Parana) after sunrise on Dwadashi, before 1/4th of daytime passes or before Dwadashi tithi ends — whichever is earlier',
+      hi: 'द्वादशी पर सूर्योदय के बाद, दिन का पहला चौथाई भाग बीतने से पहले या द्वादशी तिथि समाप्त होने से पहले — जो भी पहले हो — पारण करें',
+      sa: 'द्वादश्यां सूर्योदयानन्तरं दिनस्य प्रथमचतुर्थांशात् प्राक् अथवा द्वादशीतिथिसमाप्तेः प्राक् पारणं कुर्यात्',
+    },
+  },
+
   phala: {
     en: 'Each Ekadashi observed with devotion equals the merit of donating 1000 cows (Padma Purana). It destroys sins of past lives, purifies the soul, and grants passage to Vaikuntha (the abode of Vishnu). The observer is freed from the cycle of birth and death.',
     hi: 'प्रत्येक एकादशी का भक्तिपूर्वक पालन 1000 गायों के दान के पुण्य के बराबर है (पद्म पुराण)। यह पूर्वजन्म के पापों को नष्ट करता है, आत्मा को शुद्ध करता है, और वैकुण्ठ (विष्णु के धाम) की प्राप्ति कराता है। व्रती जन्म-मरण के चक्र से मुक्त होता है।',

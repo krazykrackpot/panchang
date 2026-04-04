@@ -129,7 +129,7 @@ export default function DoshasPage() {
       </div>
 
       {/* What is a Dosha */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/10">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
           {L.whatTitle[locale]}
         </h3>
@@ -142,7 +142,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Karmic Perspective */}
-      <div className="glass-card rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
         <div className="flex items-center gap-3 mb-3">
           <Shield className="w-6 h-6 text-violet-400" />
           <h3 className="text-violet-300 text-lg font-bold" style={headingFont}>
@@ -171,7 +171,7 @@ export default function DoshasPage() {
           const sevColor = dosha.severity === 'high' ? 'border-red-500/20' : 'border-amber-500/20';
           const sevDot = dosha.severity === 'high' ? 'bg-red-500' : 'bg-amber-500';
           return (
-            <div key={dosha.id} className={`glass-card rounded-2xl border ${sevColor} overflow-hidden`}>
+            <div key={dosha.id} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl border ${sevColor} overflow-hidden`}>
               <button onClick={() => setExpanded(isExpanded ? null : dosha.id)}
                 className="w-full flex items-center justify-between px-5 py-4 hover:bg-gold-primary/3 transition-colors">
                 <div className="flex items-center gap-3">
@@ -218,7 +218,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Guru Chandal Dosha detail section */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/10">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
           {L.guruChandalTitle[locale]}
         </h3>
@@ -246,7 +246,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Kemadruma detail section */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/10">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
           {L.kemdrumaTitle[locale]}
         </h3>
@@ -275,7 +275,7 @@ export default function DoshasPage() {
             const Icon = rt.icon;
             return (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                className="glass-card rounded-xl p-5">
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
                 <div className="flex items-center gap-3 mb-2">
                   <Icon className={`w-6 h-6 ${rt.color}`} />
                   <span className={`font-bold ${rt.color}`} style={headingFont}>{rt.name[locale]}</span>
@@ -288,7 +288,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Planet remedy quick reference */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-light font-bold mb-3" style={headingFont}>{L.planetRemedyTitle[locale]}</h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -329,7 +329,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Important note */}
-      <div className="glass-card rounded-2xl p-5 border border-amber-400/15 bg-amber-400/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-amber-400/15 bg-amber-400/3">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -359,7 +359,7 @@ export default function DoshasPage() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="glass-card rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
                 {isHi ? mod.label.hi : mod.label.en}

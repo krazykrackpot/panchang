@@ -106,7 +106,7 @@ export default function SavedChartsPage() {
       <AnimatePresence>
         {showForm && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-            className="glass-card rounded-xl p-6 mb-6 border border-gold-primary/20">
+            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mb-6 border border-gold-primary/20">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="sm:col-span-2">
                 <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1">{locale === 'en' ? 'Label' : 'नाम'}</label>
@@ -142,7 +142,7 @@ export default function SavedChartsPage() {
       {loading ? (
         <div className="flex justify-center py-12"><div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent" /></div>
       ) : charts.length === 0 ? (
-        <div className="glass-card rounded-xl p-12 text-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-12 text-center">
           <Star className="w-12 h-12 text-gold-primary/30 mx-auto mb-4" />
           <p className="text-text-secondary text-lg mb-2" style={bf}>{locale === 'en' ? 'No saved charts yet' : 'अभी तक कोई सहेजा गया चार्ट नहीं'}</p>
           <p className="text-text-secondary/50 text-sm mb-4">{locale === 'en' ? 'Save birth charts for family members, friends, or clients' : 'परिवार, मित्रों या ग्राहकों की जन्म कुण्डली सहेजें'}</p>
@@ -154,7 +154,7 @@ export default function SavedChartsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {charts.map((c, i) => (
             <motion.div key={c.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-              className="glass-card rounded-xl p-5 border border-gold-primary/10">
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="text-gold-light font-bold text-sm" style={bf}>{c.label}</h3>

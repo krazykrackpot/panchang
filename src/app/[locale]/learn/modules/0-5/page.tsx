@@ -188,7 +188,7 @@ function Page1() {
   const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent mb-2">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent mb-2">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'आपका Spotify Wrapped आपके सुनने के डेटा से साल का सारांश देता है। आपका Instagram प्रोफ़ाइल आपका क्यूरेटेड स्व कैप्चर करता है। लेकिन कल्पना करें ऐसी पद्धति जो आपकी पहली साँस के ठीक सेकण्ड पर ब्रह्माण्ड की सम्पूर्ण स्थिति कैप्चर करे — हर ग्रह की स्थिति, हर भाव का संरेखण, हर कोणीय सम्बन्ध — एक ही चित्र में जमा हुआ। यही आपकी कुण्डली है। यह किसी भी ज्योतिषीय परम्परा में सर्वाधिक सूचना-सघन व्यक्तिगत दस्तावेज़ है।'
@@ -207,7 +207,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'लग्न (उदय राशि)' : 'The Lagna (Ascendant)'}
         </h4>
@@ -218,7 +218,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? '12 भाव — आकाश के 12 टुकड़े' : '12 Houses — 12 Slices of Sky'}
         </h4>
@@ -229,7 +229,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'यही कारण है कि जन्म समय इतना महत्त्वपूर्ण है: लग्न (उदय राशि) लगभग हर 2 घण्टे बदलता है। इसका मतलब 3 घण्टे के अन्तर से जन्मे जुड़वाँ बच्चों की कुण्डली बिल्कुल अलग हो सकती है — भिन्न लग्न, भिन्न भाव स्वामी, भिन्न जीवन कहानी। आर्यभट ने इस दर (1° हर 4 मिनट) की गणना 499 ई. में की, और आधुनिक खगोलीय गणना दशमलव तक इसकी पुष्टि करती है। इसीलिए वैदिक ज्योतिषी उन ग्राहकों को मना कर देते हैं जिन्हें जन्म समय नहीं पता — बिना इसके कुण्डली अविश्वसनीय है।'
@@ -237,7 +237,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -262,7 +262,7 @@ function Page2() {
         </h3>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'उत्तर भारतीय बनाम दक्षिण भारतीय कुण्डली' : 'North Indian vs South Indian Chart'}
         </h4>
@@ -273,7 +273,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'अपनी कुण्डली में पहले क्या देखें' : 'What to Look for First in YOUR Chart'}
         </h4>
@@ -301,7 +301,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'दृश्य जटिलता से घबराएँ नहीं। कुण्डली बस एक नक्शा है। उत्तर भारतीय शैली = सड़क के नक्शे जैसा जहाँ स्थान (भाव) स्थिर हैं और आप शुरुआती बिन्दु घुमाते हैं। दक्षिण भारतीय शैली = GPS जैसा जहाँ ग्रिड स्थिर है और आप उस पर अपना स्थान रखते हैं। एक ही क्षेत्र, भिन्न नेविगेशन शैली। एक चुनें और उसी से शुरू करें — दूसरी बाद में सीख सकते हैं।'
@@ -309,7 +309,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -339,7 +339,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'टैब क्या दिखाते हैं' : 'What the Tabs Show'}
         </h4>
@@ -377,7 +377,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? '3-मिनट की शुरुआती रीडिंग' : 'The Beginner\'s 3-Minute Reading'}
         </h4>
@@ -388,7 +388,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-400/20 bg-gradient-to-br from-red-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-400/20 bg-gradient-to-br from-red-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'भ्रान्ति निवारण' : 'Common Misconception'}
         </h4>
@@ -399,7 +399,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>

@@ -241,7 +241,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.whatIs)}
@@ -252,7 +252,7 @@ export default function LearnTithisPage() {
 
           {/* Visual: Sun-Moon angle diagram */}
           <div className="flex justify-center my-6">
-            <div className="glass-card rounded-2xl p-6 border border-gold-primary/15 max-w-md w-full">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 max-w-md w-full">
               <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-4 text-center">
                 {isHi ? 'तिथि = चन्द्र-सूर्य कोणीय दूरी / 12\u00b0' : 'Tithi = Moon-Sun Angular Distance / 12\u00b0'}
               </div>
@@ -285,7 +285,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.calcTitle)}
@@ -302,7 +302,7 @@ export default function LearnTithisPage() {
           </div>
 
           {/* Worked example */}
-          <div className="glass-card rounded-xl p-5 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
             <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
               {l(L.workedEx)}
             </div>
@@ -323,7 +323,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.pakshaTitle)}
@@ -346,7 +346,7 @@ export default function LearnTithisPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.03 }}
-                    className="glass-card rounded-lg p-3 text-center border border-gold-primary/10"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center border border-gold-primary/10"
                   >
                     <div className="text-gold-primary text-lg font-bold">{ti.number}</div>
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
@@ -377,7 +377,7 @@ export default function LearnTithisPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.03 }}
-                    className="glass-card rounded-lg p-3 text-center border border-gold-primary/10"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center border border-gold-primary/10"
                   >
                     <div className="text-indigo-300/80 text-lg font-bold">{ti.number - 15}</div>
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
@@ -399,7 +399,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.lordshipTitle)}
@@ -446,7 +446,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.categoriesTitle)}
@@ -474,7 +474,7 @@ export default function LearnTithisPage() {
         </div>
 
         {/* Category pattern visual */}
-        <div className="mt-6 glass-card rounded-xl p-4 border border-gold-primary/10">
+        <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
           <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
             {isHi ? 'चक्रीय प्रतिरूप: 1→नन्दा, 2→भद्रा, 3→जया, 4→रिक्ता, 5→पूर्णा (पुनरावर्तन)' : 'Cyclic Pattern: 1\u2192Nanda, 2\u2192Bhadra, 3\u2192Jaya, 4\u2192Rikta, 5\u2192Purna (repeats)'}
           </div>
@@ -499,7 +499,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {l(L.specialTitle)}
@@ -529,7 +529,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.kshayaTitle)}
@@ -568,7 +568,7 @@ export default function LearnTithisPage() {
           </div>
 
           {/* Visual: Moon speed variation */}
-          <div className="glass-card rounded-xl p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
             <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
               {isHi ? 'चन्द्र गति भिन्नता — क्षय/वृद्धि का कारण' : 'Moon Speed Variation \u2014 Cause of Kshaya/Vriddhi'}
             </div>
@@ -599,7 +599,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.dwiTithiTitle)}
@@ -636,7 +636,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.muhurtaTitle)}
@@ -673,7 +673,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.crossRef)}

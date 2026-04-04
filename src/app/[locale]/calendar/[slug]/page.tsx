@@ -306,7 +306,7 @@ export default function FestivalDetailPage() {
               <SectionHeading icon={<BookOpen className="w-5 h-5" />} title={LABELS.about[locale]} headingFont={headingFont} />
 
               {detail.deity && (
-                <div className="glass-card rounded-xl p-5 border border-gold-primary/10">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
                   <div className="flex items-center gap-3">
                     <Sparkles className="w-5 h-5 text-gold-primary" />
                     <span className="text-gold-dark text-sm font-bold uppercase tracking-wider" style={headingFont}>{LABELS.deity[locale]}</span>
@@ -494,7 +494,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
   };
 
   return (
-    <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10 relative">
+    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 relative">
       <button
         onClick={copy}
         className="absolute top-4 right-4 p-2 rounded-lg bg-bg-tertiary/50 hover:bg-bg-tertiary text-gold-primary/40 hover:text-gold-light transition-colors"
@@ -540,7 +540,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
     <div className="space-y-6">
 
       {/* ─── Muhurta ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
         <div className="flex items-center gap-2.5 mb-3">
           <Clock className="w-5 h-5 text-gold-primary" />
           <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
@@ -551,7 +551,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       </div>
 
       {/* ─── Samagri (shared component) ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
         <div className="flex items-center gap-2.5 mb-4">
           <Gift className="w-5 h-5 text-gold-primary" />
           <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
@@ -578,7 +578,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       </div>
 
       {/* ─── Vidhi Steps ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
         <div className="flex items-center gap-2.5 mb-5">
           <Flame className="w-5 h-5 text-gold-primary" />
           <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
@@ -630,7 +630,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
 
       {/* ─── Stotras ─── */}
       {puja.stotras && puja.stotras.length > 0 && (
-        <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
           <div className="flex items-center gap-2.5 mb-4">
             <BookOpen className="w-5 h-5 text-gold-primary" />
             <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
@@ -677,7 +677,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       )}
 
       {/* ─── Naivedya ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
         <div className="flex items-center gap-2.5 mb-3">
           <Gift className="w-5 h-5 text-gold-primary" />
           <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>
@@ -720,7 +720,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
 
       {/* ─── Visarjan ─── */}
       {puja.visarjan && (
-        <div className="glass-card rounded-xl p-5 sm:p-6 border border-gold-primary/10">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6">
           <div className="flex items-center gap-2.5 mb-3">
             <Sparkles className="w-5 h-5 text-gold-primary" />
             <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>

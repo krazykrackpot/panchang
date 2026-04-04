@@ -184,7 +184,7 @@ export default function MuhurtaAIPage() {
       </div>
 
       {/* Date Range */}
-      <div className="glass-card rounded-2xl p-6 mb-8">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
         <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step2}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
           <label className="block">
@@ -273,7 +273,7 @@ export default function MuhurtaAIPage() {
                 </div>
 
                 {/* All recommendations */}
-                <div className="glass-card rounded-xl p-6 overflow-x-auto">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
                   <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.results} ({data.topRecommendations.length})</h2>
                   <table className="w-full text-sm">
                     <thead><tr className="text-text-secondary border-b border-gold-primary/10">
@@ -304,13 +304,13 @@ export default function MuhurtaAIPage() {
                 </div>
               </>
             ) : (
-              <div className="glass-card rounded-xl p-8 text-center">
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 text-center">
                 <p className="text-text-secondary" style={bodyFont}>{t.noResults}</p>
               </div>
             )}
 
             {/* Summary */}
-            <div className="glass-card rounded-xl p-6 border border-gold-primary/20">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.summary[locale]}</p>
             </div>
           </motion.div>

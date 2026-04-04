@@ -194,7 +194,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           The Navamsha divides each 30-degree sign into <span className="text-gold-light font-medium">9 equal parts of 3°20'</span> (3 degrees and 20 minutes of arc). The crucial rule is which sign the first Navamsha maps to — this depends on the element of the rashi:
         </p>
-        <div className="glass-card rounded-xl p-4 border border-gold-primary/10 mb-3">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 mb-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {[
               { element: 'Fire', elementHi: 'अग्नि', signs: 'Aries, Leo, Sagittarius', signsHi: 'मेष, सिंह, धनु', start: 'Aries', startHi: 'मेष' },
@@ -215,7 +215,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Quick-Reference: 108 Navamshas</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           12 signs times 9 divisions = 108 total Navamshas. This sacred number (108) is not coincidental — it connects to the 108 beads of a japa mala, the 108 Upanishads, and reflects the completeness of the zodiacal-divisional framework. Each of the 108 Navamshas has a unique quality determined by the combination of rashi sign and Navamsha sign.
@@ -248,7 +248,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Navamsha Lagna Lord — The Key to Marital Happiness</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The lord of the Navamsha Lagna represents the native within the context of partnerships. Its placement tells the story of marital satisfaction:
@@ -268,7 +268,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">Marriage Timing with D9</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Marriage typically occurs during the Dasha or Antardasha of planets connected to the D9's 7th house — its lord, occupants, or planets aspecting it. When the D1 dasha lord also activates the D9's marriage significators, the probability of marriage is very high.
@@ -298,7 +298,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Vargottama Degree Ranges</h4>
         <div className="space-y-2">
           {[
@@ -318,7 +318,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Pushkara Navamsha — The Nourishing Degrees</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Certain Navamsha positions are called <span className="text-gold-light font-medium">Pushkara</span> (nourishing). These are specific degree ranges in each sign where the resulting Navamsha falls in a sign ruled by a natural benefic (Jupiter, Venus, Moon, or Mercury). A planet in Pushkara Navamsha gets an inherent boost — like planting a seed in the most fertile soil.
@@ -331,7 +331,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Parashara dedicates extensive chapters in BPHS to the Navamsha, stating it is the most important varga for assessing planetary strength and marital destiny. Mantreshwara in Phaladeepika (Chapter 15) elaborates on reading the D9 for spouse characteristics. Varahamihira in Brihat Jataka uses the Navamsha extensively for determining the true functional nature of planets. The unanimous classical consensus: no chart reading is complete without the Navamsha.

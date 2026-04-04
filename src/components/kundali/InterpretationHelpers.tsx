@@ -572,7 +572,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
             const pct = max > 0 ? strength / max : 0;
             const barColor = pct >= 0.7 ? 'bg-emerald-500' : pct >= 0.4 ? 'bg-amber-500' : 'bg-red-500';
             return (
-              <div key={h.bhava} className="glass-card rounded-lg p-2 w-[72px] text-center border border-gold-primary/10">
+              <div key={h.bhava} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 w-[72px] text-center">
                 <div className="text-gold-light font-bold text-sm">H{h.bhava}</div>
                 <div className="text-text-tertiary text-[9px]">{isHi ? sig?.hi : sig?.en}</div>
                 <div className="w-full h-1.5 bg-bg-tertiary/50 rounded-full mt-1.5 overflow-hidden">

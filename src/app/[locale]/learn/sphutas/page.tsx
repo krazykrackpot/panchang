@@ -133,7 +133,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ What are Sphutas ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.whatTitle)}</h2>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP1)}</p>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP2)}</p>
@@ -145,7 +145,7 @@ export default function LearnSphutasPage() {
         <p className="text-text-secondary leading-relaxed">{t(L.yogiDesc)}</p>
 
         {/* Yogi Point */}
-        <div className="glass-card rounded-2xl p-6 border border-emerald-500/20 space-y-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-emerald-500/20 space-y-4">
           <div className="flex items-center gap-3">
             <Star className="w-6 h-6 text-emerald-400" />
             <h3 className="text-lg font-bold text-emerald-400" style={headingFont}>{t(L.yogiPointTitle)}</h3>
@@ -163,7 +163,7 @@ export default function LearnSphutasPage() {
         </div>
 
         {/* Avayogi Point */}
-        <div className="glass-card rounded-2xl p-6 border border-red-500/20 space-y-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-red-500/20 space-y-4">
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-red-400" />
             <h3 className="text-lg font-bold text-red-400" style={headingFont}>{t(L.avayogiTitle)}</h3>
@@ -183,7 +183,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ Transit Triggers ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.yogiTransitTitle)}</h2>
         <div className="space-y-3">
           {L.yogiTransits.map((tr, i) => (
@@ -202,7 +202,7 @@ export default function LearnSphutasPage() {
         {L.constitutionalSphutas.map((sp, i) => {
           const isExp = expandedConst === i;
           return (
-            <div key={i} className="glass-card rounded-2xl overflow-hidden border border-gold-primary/10">
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border border-gold-primary/10">
               <button onClick={() => setExpandedConst(isExp ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
@@ -232,7 +232,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ Fertility Sphutas ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <div className="flex items-center gap-3 mb-2">
           <Baby className="w-6 h-6 text-pink-400" />
           <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.fertilityTitle)}</h2>
@@ -259,7 +259,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ How to Use ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.howToTitle)}</h2>
         <div className="space-y-3">
           {L.howToPoints.map((hp, i) => (
@@ -276,7 +276,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ Practical Example ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/20 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.exampleTitle)}</h2>
         <div className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-text-secondary text-sm leading-relaxed">{t(L.exampleContent)}</p>
@@ -285,7 +285,7 @@ export default function LearnSphutasPage() {
 
       {/* ═══ Links ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-gold-primary/20 text-center space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 text-center space-y-4">
         <h3 className="text-gold-light font-bold text-lg" style={headingFont}>{t(L.linksTitle)}</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[

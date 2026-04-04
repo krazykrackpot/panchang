@@ -157,7 +157,7 @@ export default function PrashnaPage() {
       {!analysis && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
           {/* What is Prashna */}
-          <div className="glass-card rounded-2xl p-6 sm:p-8 mb-8 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8 mb-8">
             <h2 className="text-xl font-bold text-gold-light mb-4" style={hf}>{L.whatIs[locale]}</h2>
             <p className="text-text-primary/85 leading-relaxed mb-6" style={bf}>{L.whatIsDesc[locale]}</p>
 
@@ -298,7 +298,7 @@ export default function PrashnaPage() {
                 </button>
               </div>
               <div className="flex justify-center">
-                <div className="glass-card rounded-xl p-4 border border-gold-primary/10 inline-block">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 inline-block">
                   <div className="flex items-center justify-center gap-2 mb-2 text-xs text-text-secondary">
                     <RashiIconById id={kundali.ascendant.sign} size={20} />
                     <span style={bf}>
@@ -335,7 +335,7 @@ export default function PrashnaPage() {
               <h2 className="text-lg font-bold text-gold-light mb-4 uppercase tracking-wider" style={hf}>
                 {L.planets[locale]}
               </h2>
-              <div className="glass-card rounded-xl overflow-hidden border border-gold-primary/10">
+              <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -399,7 +399,7 @@ export default function PrashnaPage() {
             <GoldDivider />
 
             {/* ── Timing ── */}
-            <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-3">
                 <Clock className="w-5 h-5 text-gold-primary" />
                 <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.timing[locale]}</h3>
@@ -417,7 +417,7 @@ export default function PrashnaPage() {
             </div>
 
             {/* ── Remedies ── */}
-            <div className="glass-card rounded-xl p-6 border border-gold-primary/15">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Sparkles className="w-5 h-5 text-gold-primary" />
                 <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.remedies[locale]}</h3>

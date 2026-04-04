@@ -178,7 +178,7 @@ export default function ClassicalTextsPage() {
       </div>
 
       {/* Two traditions visual */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15">
         <h3 className="text-gold-light font-bold text-sm mb-3" style={hf}>{isHi ? 'दो परंपराएं' : 'Two Traditions'}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
@@ -205,7 +205,7 @@ export default function ClassicalTextsPage() {
       </div>
 
       {/* Timeline */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/10">
         <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कालक्रम' : 'Timeline'}</h3>
         <div className="flex flex-wrap gap-2 justify-center">
           {TEXTS.sort((a, b) => {
@@ -225,7 +225,7 @@ export default function ClassicalTextsPage() {
         {TEXTS.map((text) => {
           const isExpanded = expandedText === text.id;
           return (
-            <div key={text.id} className={`glass-card rounded-2xl border ${text.border} overflow-hidden`}>
+            <div key={text.id} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl border ${text.border} overflow-hidden`}>
               {/* Header */}
               <button onClick={() => setExpandedText(isExpanded ? null : text.id)}
                 className="w-full flex items-center justify-between px-5 py-4 hover:bg-gold-primary/3 transition-colors">
@@ -307,7 +307,7 @@ export default function ClassicalTextsPage() {
       </div>
 
       {/* Modern synthesis */}
-      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient font-bold text-xl mb-4" style={hf}>
           {isHi ? 'आधुनिक संश्लेषण — हमारा दृष्टिकोण' : 'Modern Synthesis — Our Approach'}
         </h3>

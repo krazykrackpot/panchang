@@ -106,7 +106,7 @@ export default function DevotionalPage() {
       )}
 
       {/* Nakshatra info */}
-      <div className="glass-card rounded-xl p-6 mb-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mb-6">
         <div className="flex items-center gap-3">
           <NakshatraIconById id={today.nakshatra} size={36} />
           <div>
@@ -133,7 +133,7 @@ export default function DevotionalPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-xl p-6 border border-gold-primary/15"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
             >
               <h4 className="text-gold-light text-lg font-bold mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
                 {m.name[locale]}

@@ -58,7 +58,7 @@ export default function NakshatraDetailPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-card rounded-2xl p-8 sm:p-10 mb-10 border-2 border-gold-primary/20"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 sm:p-10 mb-10 border-2 border-gold-primary/20"
       >
         <div className="flex flex-col sm:flex-row items-center gap-8">
           <motion.div
@@ -105,7 +105,7 @@ export default function NakshatraDetailPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + i * 0.05 }}
-            className="glass-card rounded-xl p-4 text-center"
+            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 text-center"
           >
             <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{item.label}</div>
             <div className="text-gold-light text-sm font-semibold" style={bodyFont}>{item.value}</div>
@@ -160,7 +160,7 @@ export default function NakshatraDetailPage() {
             <h2 className={`text-2xl font-bold text-${section.color} mb-4`} style={headingFont}>
               {section.title}
             </h2>
-            <div className="glass-card rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
               <p className="text-text-secondary text-base leading-relaxed" style={bodyFont}>
                 {section.content}
               </p>
@@ -191,7 +191,7 @@ export default function NakshatraDetailPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: pada * 0.1 }}
-                className="glass-card rounded-xl p-5 text-center border border-gold-primary/10"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-center border border-gold-primary/10"
               >
                 <div className="text-gold-primary text-3xl font-bold mb-2">{pada}</div>
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
@@ -215,7 +215,7 @@ export default function NakshatraDetailPage() {
       <div className="flex justify-between items-center my-10">
         <Link
           href={`/panchang/nakshatra/${prevId}`}
-          className="glass-card rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
         >
           <ArrowLeft className="w-5 h-5 text-gold-primary group-hover:-translate-x-1 transition-transform" />
           <div>
@@ -225,7 +225,7 @@ export default function NakshatraDetailPage() {
         </Link>
         <Link
           href={`/panchang/nakshatra/${nextId}`}
-          className="glass-card rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
         >
           <div className="text-right">
             <div className="text-gold-dark text-xs">{locale === 'en' ? 'Next' : 'अगला'}</div>

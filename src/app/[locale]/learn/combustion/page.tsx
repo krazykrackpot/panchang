@@ -164,7 +164,7 @@ export default function CombustionPage() {
 
         {/* SVG Diagram */}
         <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-          className="glass-card rounded-xl p-6 mb-6 border border-gold-primary/15">
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mb-6 border border-gold-primary/15">
           <CombustionDiagram locale={locale} />
         </motion.div>
 
@@ -174,7 +174,7 @@ export default function CombustionPage() {
             {PLANETS.map((p) => (
               <motion.div key={p.name.en}
                 whileHover={{ scale: 1.02 }}
-                className="glass-card rounded-lg p-5 border border-gold-primary/10 hover:border-gold-primary/25 transition-colors"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 border border-gold-primary/10 hover:border-gold-primary/25 transition-colors"
               >
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-bold text-lg" style={{ color: p.color }}>

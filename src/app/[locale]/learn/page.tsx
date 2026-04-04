@@ -389,7 +389,7 @@ export default function LearnPage() {
             <Link
               key={ref.href}
               href={ref.href}
-              className="glass-card rounded-lg px-3 py-2.5 text-center text-sm text-text-secondary hover:text-gold-light hover:border-gold-primary/20 transition-colors border border-transparent"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-3 py-2.5 text-center text-sm text-text-secondary hover:text-gold-light hover:border-gold-primary/20 transition-colors"
               style={bf}
             >
               {ref.name[locale]}

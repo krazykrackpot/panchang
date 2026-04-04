@@ -237,6 +237,80 @@ export default function BabyNamesPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Ready Reckoner — full Nakshatra × Pada syllable table */}
+      <GoldDivider />
+      <div className="my-10">
+        <h3 className="text-gold-gradient text-2xl font-bold mb-2 text-center" style={headingFont}>
+          {locale === 'en' ? 'Complete Syllable Reference' : 'सम्पूर्ण अक्षर सन्दर्भ'}
+        </h3>
+        <p className="text-text-secondary/50 text-sm text-center mb-6">
+          {locale === 'en'
+            ? 'All 27 Nakshatras × 4 Padas — find the starting syllable for any birth star'
+            : 'सभी 27 नक्षत्र × 4 पाद — किसी भी जन्म तारे के लिए प्रारम्भिक अक्षर'}
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-gold-primary/10">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-bg-secondary/40">
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10 w-8">#</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10">
+                  {locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}
+                </th>
+                {[1, 2, 3, 4].map(p => (
+                  <th key={p} className="text-center px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10">
+                    {locale === 'en' ? `Pada ${p}` : `पाद ${p}`}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {NAKSHATRAS.map(n => {
+                const syls = NAKSHATRA_SYLLABLES[n.id];
+                const isHighlighted = n.id === selectedNak;
+                return (
+                  <tr key={n.id}
+                    className={`border-b border-gold-primary/5 transition-colors ${
+                      isHighlighted
+                        ? 'bg-gold-primary/10'
+                        : 'hover:bg-bg-secondary/30'
+                    }`}
+                  >
+                    <td className="px-4 py-2.5 text-text-secondary/40 text-xs font-mono">{n.id}</td>
+                    <td className="px-4 py-2.5">
+                      <div className="flex items-center gap-2">
+                        <NakshatraIconById id={n.id} size={18} />
+                        <span className={`text-sm font-medium ${isHighlighted ? 'text-gold-light font-bold' : 'text-text-primary'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {n.name[locale]}
+                        </span>
+                      </div>
+                    </td>
+                    {[0, 1, 2, 3].map(pi => {
+                      const syl = syls?.[pi];
+                      const isPadaHighlighted = isHighlighted && (selectedPada === 0 || selectedPada === pi + 1);
+                      return (
+                        <td key={pi} className="text-center px-4 py-2.5">
+                          {syl ? (
+                            <span className={`inline-block px-2 py-1 rounded-md text-sm ${
+                              isPadaHighlighted
+                                ? 'bg-gold-primary/20 text-gold-light font-bold border border-gold-primary/30'
+                                : 'text-text-secondary'
+                            }`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {locale === 'en' ? syl.en : syl.hi}
+                            </span>
+                          ) : (
+                            <span className="text-text-secondary/20">—</span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

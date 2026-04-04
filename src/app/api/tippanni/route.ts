@@ -10,6 +10,8 @@ import {
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
+import { buildConvergenceInput } from '@/lib/tippanni/convergence/relationship-map';
+import { runConvergenceEngine } from '@/lib/tippanni/convergence/engine';
 
 // ============================================================
 // In-memory cache (1 hour TTL)
@@ -93,6 +95,16 @@ export async function POST(request: Request) {
 
     // Step 1: Generate base deterministic tippanni
     const baseTippanni = generateTippanni(kundali, locale);
+
+    // Step 1b: Run convergence engine (non-fatal)
+    let convergence: TippanniContent['convergence'] = null;
+    try {
+      const convergenceInput = buildConvergenceInput(kundali);
+      convergence = runConvergenceEngine(convergenceInput);
+    } catch (err) {
+      console.error('Convergence engine failed (non-fatal):', err);
+    }
+    baseTippanni.convergence = convergence;
 
     // Step 2: Check if RAG can be enabled
     const canRAG =

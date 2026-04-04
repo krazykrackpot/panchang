@@ -1,5 +1,6 @@
 import type { Locale } from '@/types/panchang';
 import type { DashaSynthesis } from '@/lib/tippanni/dasha-synthesis-types';
+import type { ConvergenceResult } from '@/lib/tippanni/convergence/types';
 
 // ============================================================
 // Classical References (RAG)
@@ -159,6 +160,7 @@ export interface TippanniContent {
   strengthOverview: StrengthEntry[];
 
   dashaSynthesis?: DashaSynthesis;
+  convergence?: ConvergenceResult | null;
 
   // RAG metadata
   ragEnabled?: boolean;

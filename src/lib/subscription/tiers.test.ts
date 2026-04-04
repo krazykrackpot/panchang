@@ -32,8 +32,8 @@ describe('Subscription Tiers', () => {
       expect(checkFeatureAccess('matching_full', 'free')).toBe(false);
     });
 
-    it('free tier does NOT have varshaphal', () => {
-      expect(checkFeatureAccess('varshaphal', 'free')).toBe(false);
+    it('free tier has varshaphal', () => {
+      expect(checkFeatureAccess('varshaphal', 'free')).toBe(true);
     });
 
     it('free tier does NOT have batch', () => {
@@ -150,8 +150,8 @@ describe('Subscription Tiers', () => {
       expect(minTierForFeature('matching_full')).toBe('pro');
     });
 
-    it('varshaphal requires pro tier', () => {
-      expect(minTierForFeature('varshaphal')).toBe('pro');
+    it('varshaphal requires free tier', () => {
+      expect(minTierForFeature('varshaphal')).toBe('free');
     });
 
     it('batch requires jyotishi tier', () => {
@@ -166,12 +166,12 @@ describe('Subscription Tiers', () => {
   // ── Free tier limited features ──────────────────────────────────────
 
   describe('Free tier limitations', () => {
-    it('free tier has exactly 4 features', () => {
-      expect(TIER_CONFIG.free.features.size).toBe(4);
+    it('free tier has exactly 5 features', () => {
+      expect(TIER_CONFIG.free.features.size).toBe(5);
     });
 
-    it('free tier saved_charts total limit = 3', () => {
-      expect(TIER_CONFIG.free.total['saved_charts']).toBe(3);
+    it('free tier saved_charts total limit = 4', () => {
+      expect(TIER_CONFIG.free.total['saved_charts']).toBe(4);
     });
   });
 

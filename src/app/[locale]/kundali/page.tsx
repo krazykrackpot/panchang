@@ -1885,7 +1885,7 @@ export default function KundaliPage() {
 
                 {/* Header: Swastika + Om + Name + Birth Details */}
                 <div className="text-center space-y-3">
-                  <div className="text-5xl text-gold-primary/40" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
+                  <div className="text-5xl text-red-500" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
                   <div className="text-gold-primary/25 text-sm" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः</div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
                     {locale === 'en' ? 'Janma Patrika' : 'जन्म पत्रिका'}
@@ -1932,56 +1932,21 @@ export default function KundaliPage() {
                     const mD = MASA_NAMES[mI];
 
                     return (
-                      <div className="max-w-xl mx-auto">
-                        {/* Lagna / Chandra / Surya row */}
-                        <div className="grid grid-cols-3 gap-3 text-center mb-3">
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Lagna' : 'लग्न'}</div>
-                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {lagnaR?.name[locale]} ({kundali.ascendant.degree.toFixed(1)}°)
-                            </div>
-                          </div>
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Chandra Rashi' : 'चन्द्र राशि'}</div>
-                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {moonR?.name[locale] || '—'}
-                            </div>
-                          </div>
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Surya Rashi' : 'सूर्य राशि'}</div>
-                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {sunR?.name[locale] || '—'}
-                            </div>
-                          </div>
-                        </div>
-                        {/* Nakshatra / Tithi / Yoga / Masa row */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}</div>
-                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {moonP?.nakshatra?.name?.[locale] || '—'}
-                            </div>
-                            <div className="text-text-secondary/40 text-[9px]">{locale === 'en' ? 'Pada' : 'पाद'} {moonP?.pada || '—'}</div>
-                          </div>
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Tithi' : 'जन्म तिथि'}</div>
-                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {tD?.name?.[locale] || '—'}
-                            </div>
-                            <div className="text-text-secondary/40 text-[9px]">{tD?.paksha === 'shukla' ? (locale === 'en' ? 'Shukla' : 'शुक्ल') : (locale === 'en' ? 'Krishna' : 'कृष्ण')}</div>
-                          </div>
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Yoga' : 'जन्म योग'}</div>
-                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {yD?.name?.[locale] || '—'}
-                            </div>
-                          </div>
-                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
-                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Masa' : 'जन्म मास'}</div>
-                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {mD?.[locale] || '—'}
-                            </div>
-                          </div>
+                      <div className="max-w-2xl mx-auto">
+                        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs">
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Lagna' : 'लग्न'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{lagnaR?.name[locale]} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Chandra' : 'चन्द्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || '—'}</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Surya' : 'सूर्य'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{sunR?.name[locale] || '—'}</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({locale === 'en' ? 'Pada' : 'पाद'} {moonP?.pada || '—'})</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Tithi' : 'तिथि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? (locale === 'en' ? 'Shukla' : 'शुक्ल') : (locale === 'en' ? 'Krishna' : 'कृष्ण')})</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Yoga' : 'योग'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || '—'}</span></span>
+                          <span className="text-gold-primary/15">|</span>
+                          <span><span className="text-text-secondary/50">{locale === 'en' ? 'Masa' : 'मास'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || '—'}</span></span>
                         </div>
                       </div>
                     );

@@ -416,6 +416,22 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['retrograde planets', 'mercury retrograde', 'vakri graha', 'retrograde effects'],
   },
 
+  '/learn/combustion': {
+    title: { en: 'Combustion (Asta) — When Planets Get Too Close to the Sun', hi: 'अस्त ग्रह — जब ग्रह सूर्य के बहुत निकट', sa: 'अस्तग्रहाः' },
+    description: { en: 'Planet combustion distances, effects per planet when combust, remedies. SVG diagram showing combustion zones for Moon, Mercury, Venus, Mars, Jupiter, Saturn.', hi: 'ग्रह अस्त दूरी, प्रत्येक ग्रह पर प्रभाव, उपाय।', sa: 'ग्रहास्तदूरी प्रभावाः उपायाश्च।' },
+    keywords: ['combustion astrology', 'asta graha', 'combust planet', 'planet near sun'],
+  },
+  '/learn/transit-guide': {
+    title: { en: 'Transit Guide — Saturn, Jupiter, Rahu-Ketu Through 12 Houses', hi: 'गोचर मार्गदर्शिका — शनि, बृहस्पति, राहु-केतु', sa: 'गोचरमार्गदर्शिका' },
+    description: { en: 'House-by-house transit effects for Saturn (2.5yr), Jupiter (1yr), Rahu-Ketu (1.5yr). Star ratings, double transit theory, practical timing.', hi: 'शनि, बृहस्पति, राहु-केतु का भाव-दर-भाव गोचर प्रभाव।', sa: 'शनिबृहस्पतिराहुकेतूनां भावशः गोचरप्रभावाः।' },
+    keywords: ['saturn transit', 'jupiter transit', 'rahu ketu transit', 'gochar effects'],
+  },
+  '/learn/hora': {
+    title: { en: 'Hora — Planetary Hours & Best Times for Activities', hi: 'होरा — ग्रह घण्टे एवं कार्य हेतु उत्तम समय', sa: 'होरा — ग्रहघण्टाः कार्यार्थम् उत्तमसमयः' },
+    description: { en: 'The 24 planetary hours (Hora) system: Chaldean order, weekday derivation, which hora for which activity, computation formula.', hi: '24 ग्रह होरा: कैल्डियन क्रम, वार व्युत्पत्ति, कौन सी होरा किस कार्य के लिए।', sa: '24 ग्रहहोराः — कार्यानुसारं होराचयनम्।' },
+    keywords: ['hora', 'planetary hours', 'best time for activity', 'chaldean order'],
+  },
+
   // ─── Practitioner References ──────────────────────────────
   '/learn/planet-in-house': {
     title: { en: 'Planet in House — 108 Vedic Astrology Interpretations', hi: 'ग्रह भाव में — 108 वैदिक ज्योतिष व्याख्याएँ', sa: 'ग्रहः भावे — 108 वैदिकज्योतिषव्याख्याः' },

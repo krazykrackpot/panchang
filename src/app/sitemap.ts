@@ -65,6 +65,9 @@ const routes = [
   '/learn/health',
   '/learn/children',
   '/learn/retrograde-effects',
+  '/learn/combustion',
+  '/learn/transit-guide',
+  '/learn/hora',
   // Calendars
   '/calendar',
   '/transits',

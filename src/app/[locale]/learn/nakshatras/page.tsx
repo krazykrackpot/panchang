@@ -26,10 +26,10 @@ const L = {
     en: 'The Nakshatras are the 27 lunar mansions of Vedic astrology -- the original star-based coordinate system of Jyotish, predating the 12-sign Rashi system by millennia. While Rashis describe solar energy (the Sun spends ~30 days in each sign), Nakshatras describe lunar energy: the Moon spends roughly one day in each Nakshatra. Because the Moon governs the mind (Manas) in Jyotish, the birth Nakshatra reveals one\'s emotional core, instinctive nature, and deepest psychological patterns -- often more accurately than the Sun sign or even the Moon sign alone.',
     hi: 'नक्षत्र वैदिक ज्योतिष के 27 चान्द्र भवन हैं -- ज्योतिष की मूल तारा-आधारित निर्देशांक प्रणाली, जो 12 राशियों की प्रणाली से सहस्राब्दियों पुरानी है। जहाँ राशियाँ सौर ऊर्जा का वर्णन करती हैं, नक्षत्र चान्द्र ऊर्जा का वर्णन करते हैं: चन्द्रमा प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है। क्योंकि चन्द्र ज्योतिष में मन (मानस) का शासक है, जन्म नक्षत्र व्यक्ति के भावनात्मक केन्द्र, सहज प्रकृति, और गहनतम मनोवैज्ञानिक प्रतिरूपों को प्रकट करता है।'
   },
-  spanTitle: { en: 'Why 27 Divisions? The Geometry of 13\u00b020\'', hi: '27 विभाग क्यों? 13\u00b020\' की ज्यामिति' },
+  spanTitle: { en: 'Why 27 Divisions? The Geometry of 13°20\'', hi: '27 विभाग क्यों? 13°20\' की ज्यामिति' },
   spanContent: {
-    en: 'The Moon completes one full orbit (360\u00b0) around the zodiac in approximately 27.3 days -- the sidereal lunar month. The ancient Rishis divided the ecliptic into 27 equal segments of 13\u00b020\' (13.333\u00b0) each, so the Moon traverses roughly one Nakshatra per day. This creates an elegant daily marker system: each night, the Moon "resides" in a different stellar mansion. The 27-fold division is also mathematically harmonious: 27 = 3\u00b3, and 27 \u00d7 4 padas = 108, the sacred number connecting Nakshatras to the Navamsha (D9) chart.',
-    hi: 'चन्द्रमा राशिचक्र (360\u00b0) की एक पूर्ण परिक्रमा लगभग 27.3 दिनों में पूर्ण करता है -- नाक्षत्र चान्द्र मास। प्राचीन ऋषियों ने क्रान्तिवृत्त को 13\u00b020\' (13.333\u00b0) के 27 समान खण्डों में विभाजित किया, ताकि चन्द्रमा प्रतिदिन लगभग एक नक्षत्र पार करे। 27-गुना विभाजन गणितीय रूप से भी सुन्दर है: 27 = 3\u00b3, और 27 \u00d7 4 पाद = 108, वह पवित्र संख्या जो नक्षत्र को नवमांश (D9) कुण्डली से जोड़ती है।'
+    en: 'The Moon completes one full orbit (360°) around the zodiac in approximately 27.3 days -- the sidereal lunar month. The ancient Rishis divided the ecliptic into 27 equal segments of 13°20\' (13.333°) each, so the Moon traverses roughly one Nakshatra per day. This creates an elegant daily marker system: each night, the Moon "resides" in a different stellar mansion. The 27-fold division is also mathematically harmonious: 27 = 3\u00b3, and 27 × 4 padas = 108, the sacred number connecting Nakshatras to the Navamsha (D9) chart.',
+    hi: 'चन्द्रमा राशिचक्र (360°) की एक पूर्ण परिक्रमा लगभग 27.3 दिनों में पूर्ण करता है -- नाक्षत्र चान्द्र मास। प्राचीन ऋषियों ने क्रान्तिवृत्त को 13°20\' (13.333°) के 27 समान खण्डों में विभाजित किया, ताकि चन्द्रमा प्रतिदिन लगभग एक नक्षत्र पार करे। 27-गुना विभाजन गणितीय रूप से भी सुन्दर है: 27 = 3\u00b3, और 27 × 4 पाद = 108, वह पवित्र संख्या जो नक्षत्र को नवमांश (D9) कुण्डली से जोड़ती है।'
   },
   dashaTitle: { en: 'Nakshatra Lords & the Vimshottari Dasha', hi: 'नक्षत्र स्वामी और विंशोत्तरी दशा' },
   dashaContent: {
@@ -38,8 +38,8 @@ const L = {
   },
   padaTitle: { en: 'Nakshatra Padas -- The 108 Quarters', hi: 'नक्षत्र पाद -- 108 चतुर्थांश' },
   padaContent: {
-    en: 'Each Nakshatra is further divided into 4 Padas (quarters) of 3\u00b020\' (3.333\u00b0) each. The 108 Padas (27 \u00d7 4) map one-to-one with the 108 Navamsha divisions (12 signs \u00d7 9 Navamshas per sign). This elegant mathematical bridge connects the Nakshatra system to the Navamsha chart (D9), the most important divisional chart for marriage, dharma, and the soul\'s deeper purpose. The Pada determines which Navamsha sign a planet falls in, adding a crucial layer of interpretation beyond the Rashi chart alone.',
-    hi: 'प्रत्येक नक्षत्र को 3\u00b020\' (3.333\u00b0) के 4 पादों (चतुर्थांशों) में विभाजित किया गया है। 108 पाद (27 \u00d7 4) 108 नवमांश विभागों (12 राशि \u00d7 9 नवमांश प्रति राशि) से एक-एक मेल खाते हैं। यह सुन्दर गणितीय सेतु नक्षत्र प्रणाली को नवमांश कुण्डली (D9) से जोड़ता है, जो विवाह, धर्म, और आत्मा के गहन उद्देश्य के लिए सबसे महत्वपूर्ण विभागीय कुण्डली है।'
+    en: 'Each Nakshatra is further divided into 4 Padas (quarters) of 3°20\' (3.333°) each. The 108 Padas (27 × 4) map one-to-one with the 108 Navamsha divisions (12 signs × 9 Navamshas per sign). This elegant mathematical bridge connects the Nakshatra system to the Navamsha chart (D9), the most important divisional chart for marriage, dharma, and the soul\'s deeper purpose. The Pada determines which Navamsha sign a planet falls in, adding a crucial layer of interpretation beyond the Rashi chart alone.',
+    hi: 'प्रत्येक नक्षत्र को 3°20\' (3.333°) के 4 पादों (चतुर्थांशों) में विभाजित किया गया है। 108 पाद (27 × 4) 108 नवमांश विभागों (12 राशि × 9 नवमांश प्रति राशि) से एक-एक मेल खाते हैं। यह सुन्दर गणितीय सेतु नक्षत्र प्रणाली को नवमांश कुण्डली (D9) से जोड़ता है, जो विवाह, धर्म, और आत्मा के गहन उद्देश्य के लिए सबसे महत्वपूर्ण विभागीय कुण्डली है।'
   },
   categoryTitle: { en: 'Nakshatra Categories -- Activity Types', hi: 'नक्षत्र वर्गीकरण -- क्रिया प्रकार' },
   categoryContent: {
@@ -62,6 +62,16 @@ const L = {
     hi: 'अष्टकूट मिलान के आठ कारकों में से तीन नक्षत्र-आधारित हैं, जो कुल 36 में से 13 अंकों के लिए जिम्मेदार हैं। ये तीन कारक शारीरिक अनुकूलता (योनि), स्वभाव सामंजस्य (गण), और शारीरिक-आनुवंशिक स्वास्थ्य (नाडी) का मूल्यांकन करते हैं।'
   },
   ganaTitle: { en: 'Gana (Temperament) Groups', hi: 'गण (स्वभाव) समूह' },
+  degreeTitle: { en: 'What Do the Degrees Measure?', hi: 'अंश किसका माप हैं?' },
+  degreeContent: {
+    en: 'The degree ranges shown for each Nakshatra are sidereal ecliptic longitudes — positions measured along the ecliptic (the Sun\'s apparent annual path) using the fixed-star-based sidereal zodiac (Nirayana). Unlike the Western tropical zodiac that anchors 0° Aries to the spring equinox, the sidereal zodiac anchors 0° Aries to the star Spica (Chitra) minus 180°, adjusted by the Ayanamsha (currently ~24°). The ecliptic is divided into 360°, and each Nakshatra occupies exactly 13°20\' (13.333°) of that arc.',
+    hi: 'प्रत्येक नक्षत्र के लिए दिखाई गई अंश सीमाएँ निरयन क्रान्तिवृत्तीय देशान्तर हैं — क्रान्तिवृत्त (सूर्य का वार्षिक पथ) के साथ स्थिर-तारा-आधारित निरयन राशिचक्र में मापी गई स्थितियाँ। पश्चिमी सायन राशिचक्र के विपरीत जो 0° मेष को विषुव बिन्दु पर स्थिर करता है, निरयन राशिचक्र 0° मेष को चित्रा तारे (Spica) से 180° घटाकर, अयनांश (~24°) द्वारा समायोजित करता है। क्रान्तिवृत्त 360° में विभाजित है, और प्रत्येक नक्षत्र उस चाप का ठीक 13°20\' (13.333°) भाग है।'
+  },
+  yogataraTitle: { en: 'Yogatara — The Junction Stars', hi: 'योगतारा — संयोजक तारे' },
+  yogataraContent: {
+    en: 'Each Nakshatra is identified by a Yogatara (junction star) — the brightest or most prominent star in that lunar mansion. The Yogatara serves as the physical celestial marker for the Nakshatra. Ancient Indian astronomers catalogued these stars with remarkable precision; the Surya Siddhanta lists their ecliptic coordinates. Many Yogataras correspond to well-known stars in modern astronomy.',
+    hi: 'प्रत्येक नक्षत्र की पहचान एक योगतारा (संयोजक तारा) से होती है — उस चान्द्र भवन का सबसे चमकीला या प्रमुख तारा। योगतारा नक्षत्र का भौतिक आकाशीय चिन्हक है। प्राचीन भारतीय खगोलविदों ने इन तारों को अद्भुत परिशुद्धता से सूचीबद्ध किया; सूर्य सिद्धान्त में इनके क्रान्तिवृत्तीय निर्देशांक दिए गए हैं।'
+  },
   crossRefTitle: { en: 'Continue Your Learning', hi: 'अपना अध्ययन जारी रखें' },
   tryIt: { en: 'Explore Today\'s Nakshatra in Panchang', hi: 'आज का नक्षत्र पंचांग में देखें' },
 };
@@ -131,7 +141,7 @@ export default function LearnNakshatrasPage() {
       {/* ─── Sanskrit Key Terms ─── */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         <SanskritTermCard term="Nakshatra" devanagari="नक्षत्र" transliteration="Nak\u1e63atra" meaning="Star / Lunar mansion" />
-        <SanskritTermCard term="Pada" devanagari="पाद" transliteration="P\u0101da" meaning="Quarter (3\u00b020')" />
+        <SanskritTermCard term="Pada" devanagari="पाद" transliteration="P\u0101da" meaning="Quarter (3°20')" />
         <SanskritTermCard term="Dasha Lord" devanagari="दशा स्वामी" transliteration="Da\u015b\u0101 Sv\u0101m\u012b" meaning="Period ruler" />
         <SanskritTermCard term="Gana" devanagari="गण" transliteration="Ga\u1e47a" meaning="Temperament group" />
       </div>
@@ -141,12 +151,12 @@ export default function LearnNakshatrasPage() {
         <p>{L.overviewContent[lo]}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {lo === 'en' ? 'Key Fact:' : 'मुख्य तथ्य:'} 360\u00b0 \u00f7 27 = 13\u00b020\u2019 per Nakshatra
+            {lo === 'en' ? 'Key Fact:' : 'मुख्य तथ्य:'} 360° ÷ 27 = 13°20' per Nakshatra
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
             {lo === 'en'
-              ? 'Moon\'s sidereal period \u2248 27.32 days \u2192 ~1 Nakshatra per day'
-              : 'चन्द्र का नाक्षत्र काल \u2248 27.32 दिन \u2192 ~1 नक्षत्र प्रतिदिन'}
+              ? 'Moon\'s sidereal period \u2248 27.32 days → ~1 Nakshatra per day'
+              : 'चन्द्र का नाक्षत्र काल \u2248 27.32 दिन → ~1 नक्षत्र प्रतिदिन'}
           </p>
         </div>
       </LessonSection>
@@ -155,16 +165,16 @@ export default function LearnNakshatrasPage() {
       <LessonSection number={2} title={L.spanTitle[lo]}>
         <p>{L.spanContent[lo]}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm">Nakshatra = floor(Moon_longitude / 13.333\u00b0) + 1</p>
-          <p className="text-gold-light font-mono text-sm mt-1">Pada = floor((Moon_longitude mod 13.333\u00b0) / 3.333\u00b0) + 1</p>
+          <p className="text-gold-light font-mono text-sm">Nakshatra = floor(Moon_longitude / 13.333°) + 1</p>
+          <p className="text-gold-light font-mono text-sm mt-1">Pada = floor((Moon_longitude mod 13.333°) / 3.333°) + 1</p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
             {lo === 'en'
-              ? 'Example: Moon at 52\u00b0 \u2192 floor(52/13.333)+1 = 4 \u2192 Rohini, Pada = floor((52-40)/3.333)+1 = 4'
-              : '\u0909\u0926\u093e\u0939\u0930\u0923: \u091a\u0928\u094d\u0926\u094d\u0930 52\u00b0 \u092a\u0930 \u2192 floor(52/13.333)+1 = 4 \u2192 \u0930\u094b\u0939\u093f\u0923\u0940, \u092a\u093e\u0926 = floor((52-40)/3.333)+1 = 4'}
+              ? 'Example: Moon at 52° → floor(52/13.333)+1 = 4 → Rohini, Pada = floor((52-40)/3.333)+1 = 4'
+              : '\u0909\u0926\u093e\u0939\u0930\u0923: \u091a\u0928\u094d\u0926\u094d\u0930 52° \u092a\u0930 → floor(52/13.333)+1 = 4 → \u0930\u094b\u0939\u093f\u0923\u0940, \u092a\u093e\u0926 = floor((52-40)/3.333)+1 = 4'}
           </p>
           <div className="mt-3 pt-3 border-t border-gold-primary/10">
-            <p className="text-gold-light font-mono text-sm">27 Nakshatras \u00d7 4 Padas = 108 divisions</p>
-            <p className="text-gold-light font-mono text-sm">12 Rashis \u00d7 9 Navamshas = 108 divisions</p>
+            <p className="text-gold-light font-mono text-sm">27 Nakshatras × 4 Padas = 108 divisions</p>
+            <p className="text-gold-light font-mono text-sm">12 Rashis × 9 Navamshas = 108 divisions</p>
             <p className="text-gold-light/60 font-mono text-xs mt-1">
               {lo === 'en'
                 ? 'This is why 108 is sacred in Hindu tradition -- it unifies the Nakshatra and Rashi systems'

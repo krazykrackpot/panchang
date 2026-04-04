@@ -34,23 +34,23 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
   return (
     <div className="space-y-6">
       {/* Planet legend — 9 colored dots */}
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-1.5">
         {DASHA_SEQUENCE.map((p, i) => (
           <button
             key={p.id}
             onMouseEnter={() => setHoveredPlanet(i)}
             onMouseLeave={() => setHoveredPlanet(null)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all text-xs ${
+            className={`flex items-center gap-1.5 px-2 py-1 rounded-md border transition-all text-[11px] ${
               hoveredPlanet === i
                 ? 'border-gold-primary/40 bg-gold-primary/10'
                 : 'border-gold-primary/8 hover:border-gold-primary/20'
             }`}
           >
-            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: p.color, boxShadow: `0 0 6px ${p.color}40` }} />
-            <span className="text-text-primary font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: p.color, boxShadow: `0 0 6px ${p.color}40` }} />
+            <span className="text-text-primary font-medium whitespace-nowrap" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {isHi ? p.hi : p.en}
             </span>
-            <span className="text-text-secondary/40">{p.years}yr</span>
+            <span className="text-text-secondary/40 text-[9px]">{p.years}</span>
           </button>
         ))}
       </div>

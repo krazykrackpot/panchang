@@ -1115,7 +1115,18 @@ export default function KundaliPage() {
 
           {/* ===== GRAHA TAB ===== */}
           {activeTab === 'graha' && kundali.grahaDetails && (
-            <GrahaTab grahaDetails={kundali.grahaDetails} upagrahas={kundali.upagrahas || []} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} planetInsights={tip?.planetInsights} />
+            <>
+              <InfoBlock
+                id="kundali-graha"
+                title={locale === 'hi' ? 'ग्रह विश्लेषण क्या है?' : 'What is Graha Analysis?'}
+                defaultOpen={false}
+              >
+                {locale === 'hi'
+                  ? 'विस्तृत ग्रह डेटा जिसमें सटीक निर्देशांक, गति, क्रांति और प्रत्येक ग्रह जिस नक्षत्र पाद (चतुर्थांश) में है वह शामिल हैं। उपग्रह (गुलिका और मंदी जैसे छाया उप-ग्रह) और सूक्ष्मता जोड़ते हैं। गति बताती है कि ग्रह कितना सक्रिय है — धीमे ग्रह (वक्री के निकट) विलंबित लेकिन गहरे परिणाम देते हैं। अक्षांश दर्शाता है कि ग्रह क्रांतिवृत्त से कितना दूर है — अत्यधिक अक्षांश ग्रह के प्रभाव को कमज़ोर करता है।'
+                  : 'Extended planetary data including exact coordinates, speed, declination, and the nakshatra pada (quarter) each planet occupies. Upagrahas (shadow sub-planets like Gulika and Mandi) add nuance. Speed tells you how active a planet is — slow planets (near retrograde) give delayed but deep results. Latitude shows how far a planet is from the ecliptic — extreme latitudes weaken a planet\'s influence.'}
+              </InfoBlock>
+              <GrahaTab grahaDetails={kundali.grahaDetails} upagrahas={kundali.upagrahas || []} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} planetInsights={tip?.planetInsights} />
+            </>
           )}
 
           {/* ===== YOGAS TAB ===== */}
@@ -1126,10 +1137,20 @@ export default function KundaliPage() {
             </div>
           )}
 
+
           {/* ===== SHADBALA TAB ===== */}
           {activeTab === 'shadbala' && kundali.fullShadbala && (
             <PaywallGate feature="shadbala_full" blurContent={<ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
               <div className="space-y-6">
+                <InfoBlock
+                  id="kundali-shadbala"
+                  title={locale === 'hi' ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
+                  defaultOpen={false}
+                >
+                  {locale === 'hi'
+                    ? 'आपकी कुण्डली के सभी ग्रह समान रूप से शक्तिशाली नहीं होते। षड्बल 6 स्रोतों से प्रत्येक ग्रह की शक्ति मापता है: स्थानीय (कौन सी राशि), दिशात्मक (कौन सा भाव), कालिक (जन्म का समय), गतिज (गति), नैसर्गिक (जन्मजात शक्ति), और दृग् (अन्य ग्रहों का प्रभाव)। 1.0 रूप से ऊपर अंक पाने वाला ग्रह पर्याप्त बलवान है। उससे नीचे वह अपने वादे पूरे करने में संघर्ष करता है। सबसे बलवान ग्रह अक्सर आपके प्रमुख व्यक्तित्व लक्षण को परिभाषित करता है।'
+                    : 'Not all planets in your chart are equally powerful. Shadbala measures each planet\'s strength from 6 sources: positional (which sign), directional (which house), temporal (time of birth), motional (speed), natural (inherent strength), and aspectual (other planets\' influence). A planet scoring above 1.0 Rupa is adequately strong. Below that, it struggles to deliver its promises. The strongest planet often defines your dominant personality trait.'}
+                </InfoBlock>
                 <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
                 <ShadbalaInterpretation shadbala={kundali.fullShadbala} planets={kundali.planets} locale={locale} />
               </div>
@@ -1140,6 +1161,15 @@ export default function KundaliPage() {
           {activeTab === 'bhavabala' && kundali.bhavabala && (
             <PaywallGate feature="shadbala_full" blurContent={<BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
               <div className="space-y-6">
+                <InfoBlock
+                  id="kundali-bhavabala"
+                  title={locale === 'hi' ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
+                  defaultOpen={false}
+                >
+                  {locale === 'hi'
+                    ? 'आपकी कुण्डली के 12 भावों में से प्रत्येक का एक शक्ति स्कोर होता है। बलवान भाव सहजता से अपने वादे पूरे करते हैं — एक बलवान 10वाँ भाव का अर्थ है कि करियर की सफलता स्वाभाविक रूप से आती है। कमज़ोर भाव उन क्षेत्रों को इंगित करते हैं जिनमें अधिक प्रयास की आवश्यकता है। यह स्कोर भावेश की शक्ति, उसमें स्थित ग्रहों और प्राप्त दृष्टियों का संयोजन है। आपका सबसे बलवान भाव अक्सर आपकी सबसे बड़ी जीवन संपदा बन जाता है।'
+                    : 'Each of the 12 houses in your chart has a strength score. Strong houses deliver their promises easily — a strong 10th house means career success comes naturally. Weak houses indicate areas requiring more effort. The score combines the lord\'s strength, occupant planets, and aspects received. Your strongest house often becomes your greatest life asset.'}
+                </InfoBlock>
                 <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
                 <BhavabalaInterpretation bhavabala={kundali.bhavabala} locale={locale} />
               </div>
@@ -1317,22 +1347,15 @@ export default function KundaliPage() {
                 {isHi ? 'स्फुट — संवेदनशील बिंदु' : 'Sphutas — Sensitive Points in Your Chart'}
               </h3>
 
-              {/* Beginner explanation */}
-              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-sky-500/15">
-                <h4 className="text-sky-300 text-[10px] uppercase tracking-widest font-bold mb-2">
-                  {isHi ? 'ये क्या हैं?' : 'What are Sphutas?'}
-                </h4>
-                <p className="text-text-secondary text-sm leading-relaxed mb-2">
-                  {isHi
-                    ? 'स्फुट ("सटीक बिंदु") आपकी कुण्डली में गणितीय रूप से निर्धारित संवेदनशील अंश हैं। ये वास्तविक ग्रह नहीं हैं — ये गणना किए गए बिंदु हैं जो आपके जीवन के विशिष्ट पहलुओं को दर्शाते हैं। इन्हें "कॉस्मिक GPS कोऑर्डिनेट्स" समझें — प्रत्येक आपके जीवन के एक अलग आयाम (जीवनशक्ति, शरीर, दीर्घायु) को इंगित करता है।'
-                    : 'Sphutas ("precise points") are mathematically computed sensitive degrees in your chart. They are NOT actual planets — they are calculated points that indicate specific aspects of your life. Think of them as "cosmic GPS coordinates" — each one pinpoints a different dimension of your existence (vitality, body, longevity). When a transiting planet crosses one of these points, that life dimension gets activated.'}
-                </p>
-                <p className="text-text-secondary text-sm leading-relaxed">
-                  {isHi
-                    ? 'सबसे महत्वपूर्ण दो हैं: योगी बिंदु (आपका सबसे शुभ बिंदु — जब बृहस्पति इस पर गोचर करता है तो बड़ी सकारात्मक घटना होती है) और अवयोगी बिंदु (आपका सबसे चुनौतीपूर्ण बिंदु — जब शनि इस पर गोचर करता है तो कठिनाई आती है)।'
-                    : 'The two MOST important ones are: the Yogi Point (your most auspicious degree — when Jupiter transits this point, expect a major positive event) and the Avayogi Point (your most challenging degree — when Saturn transits this, expect difficulty). The rest (Prana, Deha, Mrityu, Tri) describe your constitutional nature.'}
-                </p>
-              </div>
+              <InfoBlock
+                id="kundali-sphutas"
+                title={isHi ? 'स्फुट क्या हैं?' : 'What are Sphutas (Sensitive Points)?'}
+                defaultOpen={false}
+              >
+                {isHi
+                  ? 'स्फुट गणितीय रूप से निर्धारित अंश बिंदु हैं जो छुपे आयाम प्रकट करते हैं: योगी बिंदु — आपका सबसे शुभ अंश, इसके निकट ग्रह भाग्य लाते हैं। अवयोगी बिंदु — आपका सबसे चुनौतीपूर्ण अंश। प्राण स्फुट — जीवनशक्ति और प्राण ऊर्जा। देह स्फुट — भौतिक शरीर और स्वास्थ्य संरचना। मृत्यु स्फुट — दीर्घायु सूचक (विश्लेषणात्मक, भविष्यसूचक नहीं!)। त्रि स्फुट — तीनों का समग्र।'
+                  : 'Sphutas are mathematically computed degree points that reveal hidden dimensions: Yogi Point — your luckiest degree, planets near this bring fortune. Avayogi Point — your most challenging degree. Prana Sphuta — vitality and life force. Deha Sphuta — physical body and health constitution. Mrityu Sphuta — longevity indicators (analytical, not predictive!). Tri Sphuta — composite of all three.'}
+              </InfoBlock>
 
               {/* YOGI & AVAYOGI — the key pair */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -3413,6 +3436,16 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
           {locale === 'en' ? `${inauspiciousPresent} Inauspicious` : `${inauspiciousPresent} अशुभ`}
         </span>
       </div>
+
+      <InfoBlock
+        id="kundali-yogas"
+        title={locale === 'hi' ? 'योग क्या हैं?' : 'What are Yogas?'}
+        defaultOpen={false}
+      >
+        {locale === 'hi'
+          ? 'वैदिक ज्योतिष में "योग" एक विशिष्ट ग्रह संयोजन है जो एक निश्चित परिणाम उत्पन्न करता है — जैसे एक ब्रह्मांडीय नुस्खा। राजयोग शक्ति और अधिकार लाते हैं, धनयोग धन लाते हैं, महापुरुष योग असाधारण व्यक्तित्व बनाते हैं (केवल 5 होते हैं), और अशुभ योग चुनौतियाँ लाते हैं जो चरित्र निर्माण करती हैं। "उपस्थित" का अर्थ है कि यह संयोजन आपकी कुण्डली में विद्यमान है। "शक्ति" दिखाती है कि यह कितनी प्रभावशाली ढंग से काम करता है। हरा = शुभ, लाल = चुनौतीपूर्ण किंतु प्रायः परिवर्तनकारी।'
+          : 'In Vedic astrology, a \'Yoga\' is a specific planetary combination that produces a defined result — like a cosmic recipe. Raja Yogas bring power and authority, Dhana Yogas bring wealth, Mahapurusha Yogas create exceptional personalities (only 5 exist), and Inauspicious Yogas bring challenges that build character. \'Present\' means the combination exists in your chart. \'Strength\' shows how powerfully it operates. Green = auspicious, Red = challenging but often transformative.'}
+      </InfoBlock>
 
       {/* Filters */}
       <div className="flex justify-center gap-2 flex-wrap">

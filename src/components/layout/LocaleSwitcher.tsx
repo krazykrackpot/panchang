@@ -15,7 +15,7 @@ export default function LocaleSwitcher() {
 
   return (
     <div className="flex items-center gap-1 bg-bg-secondary/50 rounded-lg p-1">
-      {locales.map((locale) => (
+      {locales.filter(l => l !== 'sa').map((locale) => (
         <button
           key={locale}
           onClick={() => switchLocale(locale)}

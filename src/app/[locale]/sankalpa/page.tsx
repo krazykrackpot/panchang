@@ -421,7 +421,7 @@ export default function SankalpaPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-6 sm:p-8 mb-8"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8 mb-8"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {/* Full Name */}
@@ -687,7 +687,7 @@ export default function SankalpaPage() {
               initial={{ opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 sm:p-12 text-center relative overflow-hidden"
             >
               {/* Decorative corner elements */}
               <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-gold-primary/20 rounded-tl-2xl" />
@@ -744,7 +744,7 @@ export default function SankalpaPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl overflow-hidden"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden"
             >
               <button
                 onClick={() => setShowMeaning(!showMeaning)}
@@ -777,7 +777,7 @@ export default function SankalpaPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-6"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
             >
               <h3 className="text-gold-primary text-sm uppercase tracking-wider font-bold mb-5" style={bodyFont}>
                 {t.components}

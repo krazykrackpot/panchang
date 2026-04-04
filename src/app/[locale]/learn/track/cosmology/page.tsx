@@ -162,21 +162,21 @@ export default function CosmologyTrackPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-3xl border border-indigo-400/20 bg-gradient-to-br from-indigo-950/90 via-violet-950/70 to-purple-950/90 p-8 sm:p-10 mb-10"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-8 sm:p-10 mb-10"
       >
-        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full bg-violet-500/8 blur-3xl" />
 
         <div className="relative z-10">
           {/* Back link */}
-          <Link href="/learn" className="inline-flex items-center gap-1.5 text-indigo-300/70 hover:text-indigo-200 text-xs uppercase tracking-wider mb-6 transition-colors">
+          <Link href="/learn" className="inline-flex items-center gap-1.5 text-gold-light/70 hover:text-indigo-200 text-xs uppercase tracking-wider mb-6 transition-colors">
             <ChevronRight className="w-3 h-3 rotate-180" />
             {l.backToLearn}
           </Link>
 
           <div className="flex items-center gap-3 mb-4">
-            <Sparkles className="w-6 h-6 text-indigo-300" />
-            <span className="text-indigo-300 text-xs uppercase tracking-widest font-bold">{l.badge}</span>
+            <Sparkles className="w-6 h-6 text-gold-light" />
+            <span className="text-gold-light text-xs uppercase tracking-widest font-bold">{l.badge}</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3" style={hf}>
@@ -186,7 +186,7 @@ export default function CosmologyTrackPage() {
 
           <Link
             href="/learn/modules/0-1"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-indigo-500 text-white font-bold text-sm hover:bg-indigo-400 transition-colors"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gold-primary/20 text-gold-light border border-gold-primary/30 font-bold text-sm hover:bg-gold-primary/30 transition-colors"
             style={hf}
           >
             {l.startHere}
@@ -204,16 +204,16 @@ export default function CosmologyTrackPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: si * 0.06 }}
-            className="rounded-2xl border border-indigo-500/15 bg-indigo-950/20 overflow-hidden"
+            className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] overflow-hidden"
           >
             {/* Section header */}
-            <div className="px-6 py-4 border-b border-indigo-500/10 flex items-center gap-3">
+            <div className="px-6 py-4 border-b border-gold-primary/10 flex items-center gap-3">
               <span className="text-2xl">{section.icon}</span>
               <div>
                 <h2 className="text-lg font-bold text-white" style={hf}>{section.title[locale]}</h2>
-                <span className="text-indigo-300/50 text-xs uppercase tracking-wider" style={bf}>{section.subtitle[locale]}</span>
+                <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{section.subtitle[locale]}</span>
               </div>
-              <span className="ml-auto text-indigo-400/40 text-xs font-mono">{section.modules.length} {l.modules}</span>
+              <span className="ml-auto text-gold-primary/40 text-xs font-mono">{section.modules.length} {l.modules}</span>
             </div>
 
             {/* Module cards */}
@@ -225,14 +225,14 @@ export default function CosmologyTrackPage() {
                   className="flex items-center justify-between px-6 py-3.5 hover:bg-indigo-500/8 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">
                       {mi + 1}
                     </span>
                     <span className="text-text-primary text-sm group-hover:text-indigo-200 transition-colors" style={bf}>
                       {mod.title[locale]}
                     </span>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-indigo-300 transition-colors shrink-0" />
+                  <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />
                 </Link>
               ))}
             </div>

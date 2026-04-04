@@ -52,7 +52,7 @@ export default function HoroscopePage() {
                 {RASHIS.map((r) => (
                   <motion.button key={r.id} onClick={() => setSelectedSign(selectedSign === r.id ? null : r.id)}
                     whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                    className={`bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-4 text-center transition-all ${
+                    className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 text-center transition-all ${
                       selectedSign === r.id ? 'border-gold-primary/40 bg-gold-primary/10' : 'hover:border-gold-primary/25'
                     }`}>
                     <div className="flex justify-center mb-2"><RashiIconById id={r.id} size={36} /></div>

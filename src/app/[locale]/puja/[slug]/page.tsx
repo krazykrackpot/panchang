@@ -146,7 +146,7 @@ function SectionAccordion({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <motion.div {...fadeInUp} className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl overflow-hidden">
+    <motion.div {...fadeInUp} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="w-full text-left p-5 flex items-center gap-3 hover:bg-gold-primary/5 transition-colors"
@@ -337,7 +337,7 @@ export default function PujaVidhiPage() {
     return (
       <main className="min-h-screen pt-28 pb-16 px-4">
         <div className="max-w-2xl mx-auto text-center">
-          <motion.div {...fadeInUp} className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-10">
+          <motion.div {...fadeInUp} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-10">
             <h1
               className="text-2xl font-bold text-gold-light mb-4"
               style={headingFont}

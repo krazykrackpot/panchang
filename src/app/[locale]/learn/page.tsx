@@ -149,7 +149,7 @@ export default function LearnPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative overflow-hidden rounded-3xl border border-gold-primary/20 bg-gradient-to-br from-[#0f1535] via-[#0a0e27] to-[#1a0f2e] p-8 sm:p-10 mb-10"
+        className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-8 sm:p-10 mb-10"
       >
         <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-gold-primary/5 blur-3xl" />
         <div className="absolute -bottom-20 -left-20 w-48 h-48 rounded-full bg-indigo-500/5 blur-3xl" />

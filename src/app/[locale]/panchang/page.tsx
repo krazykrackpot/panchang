@@ -1661,6 +1661,15 @@ export default function PanchangPage() {
           <GoldDivider />
 
           {/* ═══ CHOGHADIYA ═══ */}
+          <InfoBlock
+            id="panchang-choghadiya"
+            title={locale === 'hi' ? 'चोघड़िया क्या है?' : 'What is Choghadiya?'}
+            defaultOpen={false}
+          >
+            {locale === 'hi'
+              ? 'चोघड़िया दिन (सूर्योदय से सूर्यास्त) और रात (सूर्यास्त से सूर्योदय) को 8-8 भागों में बाँटता है। प्रत्येक भाग एक ग्रह द्वारा शासित होता है — शुभ (अमृत, शुभ, लाभ, चर — नए कार्य के लिए उत्तम) या अशुभ (रोग, काल, उद्वेग — नए कार्य टालें)। अभी का समय शुभ है या नहीं, यह शीघ्र जाँचने के लिए उपयोगी है।'
+              : 'Choghadiya divides the day (sunrise to sunset) and night (sunset to sunrise) into 8 slots each. Each slot is ruled by a planet and classified as Auspicious (Amrit, Shubh, Labh, Char — good for starting new work), or Inauspicious (Rog, Kaal, Udveg — avoid new ventures). Use this to quickly check if NOW is a good time to start something important.'}
+          </InfoBlock>
           {panchang.choghadiya && panchang.choghadiya.length > 0 && (
             <div className="my-14">
               <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
@@ -1743,6 +1752,15 @@ export default function PanchangPage() {
           <GoldDivider />
 
           {/* ═══ HORA (PLANETARY HOURS) ═══ */}
+          <InfoBlock
+            id="panchang-hora"
+            title={locale === 'hi' ? 'ग्रह होरा क्या है?' : 'What are Planetary Hours (Hora)?'}
+            defaultOpen={false}
+          >
+            {locale === 'hi'
+              ? 'दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित होता है। अपने कार्य को शासक ग्रह से मिलाएँ: सूर्य होरा → सरकारी कार्य, अधिकार। चंद्र होरा → यात्रा, जन-व्यवहार। मंगल होरा → साहस, संपत्ति। बुध होरा → व्यापार, संचार। बृहस्पति होरा → शिक्षा, अध्यात्म। शुक्र होरा → कला, प्रेम, विलास। शनि होरा → श्रम, निर्माण, अनुशासन।'
+              : 'Each hour of the day is ruled by a planet. Match your activity to the ruling planet for best results: Sun hora → authority, government work. Moon hora → travel, public dealings. Mars hora → courage, property. Mercury hora → business, communication. Jupiter hora → education, spirituality. Venus hora → arts, romance, luxury. Saturn hora → labor, construction, discipline.'}
+          </InfoBlock>
           {panchang.hora && panchang.hora.length > 0 && (
             <div className="my-14">
               <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
@@ -1779,6 +1797,15 @@ export default function PanchangPage() {
           <GoldDivider />
 
           {/* ═══ DAILY MUHURTA TIMELINE ═══ */}
+          <InfoBlock
+            id="panchang-muhurta"
+            title={locale === 'hi' ? 'दैनिक मुहूर्त क्या हैं?' : 'What are Daily Muhurtas?'}
+            defaultOpen={false}
+          >
+            {locale === 'hi'
+              ? 'दिन को 30 मुहूर्तों में बाँटा जाता है (प्रत्येक ~48 मिनट), जो सूर्योदय से अगले सूर्योदय तक चलते हैं। प्रत्येक मुहूर्त का एक पारंपरिक नाम है और इसे शुभ (हरा), अशुभ (लाल) या मिश्रित (पीला) वर्गीकृत किया जाता है। सर्वाधिक शुभ है अभिजित् मुहूर्त — दोपहर के आसपास का सूर्यमध्य काल। आज के महत्वपूर्ण कार्यों के लिए सर्वोत्तम समय खोजने हेतु इस समयरेखा का उपयोग करें।'
+              : 'The day is divided into 30 muhurtas (each ~48 minutes), running from sunrise to next sunrise. Each muhurta has a traditional name and is classified as good (green), bad (red), or mixed (amber). The most universally auspicious is Abhijit Muhurta — the midday period around solar noon. Use this timeline to find the best window for important activities today.'}
+          </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-3 text-center" style={headingFont}>
               {locale === 'en' ? "Today's Muhurtas" : 'आज के मुहूर्त'}
@@ -2002,6 +2029,15 @@ export default function PanchangPage() {
           <GoldDivider />
 
           {/* ═══ CHANDRABALAM & TARABALAM ═══ */}
+          <InfoBlock
+            id="panchang-balam"
+            title={locale === 'hi' ? 'चन्द्रबल और ताराबल क्या है?' : 'What is Chandrabalam & Tarabalam?'}
+            defaultOpen={false}
+          >
+            {locale === 'hi'
+              ? 'ये आपके जन्म डेटा के आधार पर आज के लिए व्यक्तिगत अनुकूलता अंक हैं। चन्द्रबल जाँचता है कि आज चंद्रमा आपकी जन्म राशि के सापेक्ष किस भाव में है — अनुकूल भाव (1,3,6,7,10,11) दर्शाते हैं कि दिन आपकी पहलों का समर्थन करता है। ताराबल आज की नक्षत्र की तुलना आपके जन्म नक्षत्र से करता है — कुछ संयोग भाग्यशाली होते हैं, अन्य सावधानी सुझाते हैं। दोनों अनुकूल = महत्वपूर्ण निर्णयों के लिए उत्तम दिन।'
+              : 'These are personal compatibility scores for TODAY based on YOUR birth data. Chandrabalam checks the Moon\'s current position relative to your birth Moon — favorable houses (1,3,6,7,10,11) mean the day supports your initiatives. Tarabalam checks today\'s nakshatra against your birth nakshatra — certain combinations bring luck while others suggest caution. Both favorable = excellent day for important decisions.'}
+          </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
               {locale === 'en' ? 'Chandrabalam & Tarabalam' : 'चन्द्रबल एवं ताराबल'}

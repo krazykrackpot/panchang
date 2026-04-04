@@ -186,10 +186,12 @@ After every `git push`:
 
 ## Agent Instructions
 
-### NEVER ASK FOR PERMISSION
+### NEVER ASK FOR EXECUTION PERMISSION
 - When assigned a task, GO. Do not ask "should I proceed?", "would you like me to?", or "shall I?".
+- NEVER prompt for permission to read files, write files, run commands, run tests, or make edits. Just do it.
 - Execute fully to 100% completion without prompting. The task is the permission.
 - If something is ambiguous, make the best decision and document it — don't block on a question.
+- DO prompt for design decisions when multiple valid approaches exist ("modal vs page?", "which layout?"). That's collaboration, not permission-asking.
 
 ### COMPLETION STANDARD
 - Every task must be DONE-done: built, tested, visually verified, pushed.

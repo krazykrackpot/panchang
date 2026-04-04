@@ -63,24 +63,43 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
   }
 
   // Argala pairs: [argala_offset, virodha_offset]
+  // BPHS Ch.31 + Jaimini Sutras + Sanjay Rath commentary
   const ARGALA_PAIRS: [number, number, 'primary' | 'secondary'][] = [
     [2, 12, 'primary'],   // 2nd creates, 12th counters
     [4, 10, 'primary'],   // 4th creates, 10th counters
     [11, 3, 'primary'],   // 11th creates, 3rd counters
     [5, 9, 'secondary'],  // 5th creates, 9th counters
+    [8, 6, 'secondary'],  // 8th creates, 6th counters (Sanjay Rath / Jaimini commentaries)
   ];
+
+  // Find Ketu's house for reversal rule
+  const ketuPlanet = planets.find(p => p.planet.id === 8);
+  const ketuHouse = ketuPlanet?.house || 0;
 
   for (let targetHouse = 1; targetHouse <= 12; targetHouse++) {
     const targetSign = ((ascSign - 1 + targetHouse - 1) % 12) + 1;
     const argalas: ArgalaEntry[] = [];
     const virodha: ArgalaEntry[] = [];
 
+    // Ketu reversal: for the sign Ketu occupies, Argala is reckoned in reverse
+    // 10th, 12th, 3rd become Argala; 4th, 2nd, 11th become Virodha
+    const isKetuReversed = targetHouse === ketuHouse;
+
     for (const [argOffset, virOffset, type] of ARGALA_PAIRS) {
-      const argHouse = ((targetHouse - 1 + argOffset - 1) % 12) + 1;
-      const virHouse = ((targetHouse - 1 + virOffset - 1) % 12) + 1;
+      // Apply Ketu reversal: swap argala and virodha offsets
+      const effectiveArgOffset = isKetuReversed ? virOffset : argOffset;
+      const effectiveVirOffset = isKetuReversed ? argOffset : virOffset;
+
+      const argHouse = ((targetHouse - 1 + effectiveArgOffset - 1) % 12) + 1;
+      const virHouse = ((targetHouse - 1 + effectiveVirOffset - 1) % 12) + 1;
 
       const argPlanets = housePlanets[argHouse];
       const virPlanets = housePlanets[virHouse];
+
+      // Cancellation rule (Jaimini: "Na nyuna vibalascha"):
+      // Argala cancelled ONLY when Virodha house has STRICTLY more planets
+      // Equal count = Argala prevails (borderline, but not cancelled)
+      const argalaCancelled = virPlanets.length > argPlanets.length;
 
       // Argala created by planets in argala house
       for (const p of argPlanets) {
@@ -88,10 +107,10 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
         argalas.push({
           planetId: p.planet.id,
           planetName: PLANET_NAMES[p.planet.id] || PLANET_NAMES[0],
-          fromHouse: argOffset,
+          fromHouse: effectiveArgOffset,
           type,
           nature: isBenefic ? 'benefic' : 'malefic',
-          strength: virPlanets.length >= argPlanets.length ? 'weak' : 'strong',
+          strength: argalaCancelled ? 'weak' : 'strong',
         });
       }
 
@@ -101,25 +120,27 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
         virodha.push({
           planetId: p.planet.id,
           planetName: PLANET_NAMES[p.planet.id] || PLANET_NAMES[0],
-          fromHouse: virOffset,
+          fromHouse: effectiveVirOffset,
           type,
           nature: isBenefic ? 'benefic' : 'malefic',
-          strength: argPlanets.length > virPlanets.length ? 'weak' : 'strong',
+          strength: argalaCancelled ? 'strong' : 'weak',
         });
       }
     }
 
-    // Special: malefics in 3rd from target also create Argala
+    // Special: 3+ malefics in 3rd from target create UNOBSTRUCTABLE Argala
+    // (Jaimini Sutra: Nirabhasargala — requires more than 2 malefics)
     const thirdHouse = ((targetHouse - 1 + 2) % 12) + 1;
-    for (const p of housePlanets[thirdHouse]) {
-      if (!BENEFICS.has(p.planet.id)) {
+    const thirdMalefics = housePlanets[thirdHouse].filter(p => !BENEFICS.has(p.planet.id));
+    if (thirdMalefics.length >= 3) {
+      for (const p of thirdMalefics) {
         argalas.push({
           planetId: p.planet.id,
           planetName: PLANET_NAMES[p.planet.id] || PLANET_NAMES[0],
           fromHouse: 3,
           type: 'special',
           nature: 'malefic',
-          strength: 'moderate',
+          strength: 'strong', // Unobstructable — always strong
         });
       }
     }

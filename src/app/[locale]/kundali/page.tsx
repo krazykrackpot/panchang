@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
 import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
+import AIReadingButton from '@/components/kundali/AIReadingButton';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -2773,6 +2774,9 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       {convergence && (
         <ConvergenceSummary convergence={convergence} locale={locale} headingFont={headingFont} />
       )}
+
+      {/* ===== AI READING (premium, below convergence) ===== */}
+      <AIReadingButton kundali={kundali} locale={locale} headingFont={headingFont} />
 
       {/* RAG status indicator */}
       {tip.ragEnabled && (

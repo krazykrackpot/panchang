@@ -98,6 +98,9 @@ const routes = [
   '/kundali/compare',
   '/kundali/rectify',
   // Learn modules (structured curriculum)
+  '/learn/track/cosmology',
+  '/learn/track/panchang',
+  '/learn/track/kundali',
   '/learn/modules',
   '/learn/modules/0-1', '/learn/modules/0-2', '/learn/modules/0-3',
   '/learn/modules/0-4', '/learn/modules/0-5', '/learn/modules/0-6',

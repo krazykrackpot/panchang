@@ -376,6 +376,23 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
   },
 
+  // ─── Learning Tracks ─────────────────────────────────────
+  '/learn/track/cosmology': {
+    title: { en: 'Hindu Cosmology & Foundations — Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — सम्पूर्ण पाठ्यक्रम', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — सम्पूर्णपाठ्यक्रमः' },
+    description: { en: 'Learn the Hindu worldview: cosmic time scales, Navagraha, 12 Rashis, 27 Nakshatras, Ayanamsha, and the mathematical framework of Jyotish. 30+ modules.', hi: 'हिन्दू विश्वदृष्टि सीखें: ब्रह्माण्डीय समय, नवग्रह, 12 राशि, 27 नक्षत्र, अयनांश।', sa: 'हिन्दूविश्वदृष्टिं शिक्षतु।' },
+    keywords: ['hindu cosmology course', 'vedic astronomy', 'navagraha', 'rashis', 'nakshatras'],
+  },
+  '/learn/track/panchang': {
+    title: { en: 'Panchang — Learn the Daily Cosmic Calendar', hi: 'पंचांग — दैनिक ब्रह्माण्डीय कैलेंडर सीखें', sa: 'पञ्चाङ्गम् — दैनिकब्रह्माण्डपञ्चाङ्गं शिक्षतु' },
+    description: { en: 'Master the Hindu Panchang: Tithi, Nakshatra, Yoga, Karana, Vara, Muhurta, Hora, festivals, and calendar systems. 15+ modules.', hi: 'हिन्दू पंचांग में दक्षता: तिथि, नक्षत्र, योग, करण, वार, मुहूर्त, होरा।', sa: 'हिन्दूपञ्चाङ्गे दक्षता।' },
+    keywords: ['panchang course', 'tithi', 'muhurta', 'hindu calendar', 'vedic timekeeping'],
+  },
+  '/learn/track/kundali': {
+    title: { en: 'Kundali — Learn Birth Chart Reading from Basics to Advanced', hi: 'कुण्डली — जन्म कुण्डली पठन सीखें', sa: 'कुण्डली — जन्मकुण्डलीपठनं शिक्षतु' },
+    description: { en: 'Complete Kundali course: houses, dashas, yogas, Shadbala, predictions, matching, remedies, Jaimini, KP system. 45+ modules, 5 interactive labs.', hi: 'सम्पूर्ण कुण्डली पाठ्यक्रम: भाव, दशा, योग, षड्बल, भविष्यवाणी, मिलान, उपाय।', sa: 'सम्पूर्णकुण्डलीपाठ्यक्रमः।' },
+    keywords: ['kundali course', 'birth chart reading', 'vedic astrology course', 'jyotish learning'],
+  },
+
   // ─── Cosmology ───────────────────────────────────────────
   '/learn/cosmology': {
     title: { en: 'Hindu Cosmology — Yugas, Kalpas, Brahma\'s 311 Trillion Year Lifespan', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — युग, कल्प, ब्रह्मा का 311 ट्रिलियन वर्ष जीवनकाल', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — युगाः कल्पाः ब्रह्मणः 311 लक्षकोटिवर्षायुः' },

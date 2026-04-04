@@ -146,13 +146,16 @@ export function calculateArgala(planets: PlanetPosition[], ascSign: number): Arg
     }
 
     // Determine net effect
-    const beneficArgalas = argalas.filter(a => a.nature === 'benefic' && a.strength !== 'weak').length;
-    const maleficArgalas = argalas.filter(a => a.nature === 'malefic' && a.strength !== 'weak').length;
+    // Argala = intervention (support), Virodha = counter-intervention (obstruction)
+    // Both benefic AND malefic planets in argala houses SUPPORT the house
+    // (malefic support is harsh but still intervention in favor)
+    // Virodha planets OBSTRUCT the house
+    const strongArgalas = argalas.filter(a => a.strength !== 'weak').length;
     const strongVirodha = virodha.filter(v => v.strength === 'strong').length;
 
     let netEffect: 'supported' | 'obstructed' | 'neutral' = 'neutral';
-    if (beneficArgalas > strongVirodha && beneficArgalas > maleficArgalas) netEffect = 'supported';
-    else if (maleficArgalas > beneficArgalas || strongVirodha > argalas.length) netEffect = 'obstructed';
+    if (strongArgalas > 0 && strongArgalas > strongVirodha) netEffect = 'supported';
+    else if (strongVirodha > 0 && strongVirodha > strongArgalas) netEffect = 'obstructed';
 
     results.push({ house: targetHouse, sign: targetSign, argalas, virodha, netEffect });
   }

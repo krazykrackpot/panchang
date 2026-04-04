@@ -218,7 +218,7 @@ export default function CosmologyTrackPage() {
 
             {/* Module cards */}
             <div className="divide-y divide-indigo-500/8">
-              {section.modules.map((mod) => (
+              {section.modules.map((mod, mi) => (
                 <Link
                   key={mod.id}
                   href={`/learn/modules/${mod.id}`}
@@ -226,7 +226,7 @@ export default function CosmologyTrackPage() {
                 >
                   <div className="flex items-center gap-3">
                     <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">
-                      {mod.id.replace('-', '.')}
+                      {mi + 1}
                     </span>
                     <span className="text-text-primary text-sm group-hover:text-indigo-200 transition-colors" style={bf}>
                       {mod.title[locale]}

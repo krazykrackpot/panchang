@@ -203,7 +203,7 @@ export default function PanchangTrackPage() {
             {/* Module cards */}
             {section.modules.length > 0 && (
               <div className="divide-y divide-amber-500/8">
-                {section.modules.map((mod) => (
+                {section.modules.map((mod, mi) => (
                   <Link
                     key={mod.id}
                     href={`/learn/modules/${mod.id}`}
@@ -211,7 +211,7 @@ export default function PanchangTrackPage() {
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">
-                        {mod.id.replace('-', '.')}
+                        {mi + 1}
                       </span>
                       <span className="text-text-primary text-sm group-hover:text-amber-200 transition-colors" style={bf}>
                         {mod.title[locale]}

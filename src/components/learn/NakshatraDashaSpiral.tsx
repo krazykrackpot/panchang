@@ -68,7 +68,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                 #{round * 9 + 1} – #{round * 9 + 9}
               </div>
             </div>
-            <div className="grid grid-cols-9 gap-1.5">
+            <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-1.5">
               {assignments.slice(round * 9, round * 9 + 9).map((a, idx) => {
                 const globalIdx = round * 9 + idx;
                 const isNakHovered = hoveredNak === globalIdx;
@@ -135,26 +135,26 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
             return (
               <div
                 key={pi}
-                className="flex items-center gap-3 py-1.5 px-3 rounded-lg hover:bg-gold-primary/5 transition-colors"
+                className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 py-2 px-3 rounded-lg hover:bg-gold-primary/5 transition-colors"
                 onMouseEnter={() => setHoveredPlanet(pi)}
                 onMouseLeave={() => setHoveredPlanet(null)}
               >
-                <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: planet.color, boxShadow: `0 0 6px ${planet.color}30` }} />
-                <div className="w-16 shrink-0">
-                  <span className="text-xs font-bold" style={{ color: planet.color, ...(isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>
+                <div className="flex items-center gap-2 shrink-0">
+                  <div className="w-4 h-4 rounded-full shrink-0" style={{ backgroundColor: planet.color, boxShadow: `0 0 6px ${planet.color}30` }} />
+                  <span className="text-xs font-bold w-14" style={{ color: planet.color, ...(isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>
                     {isHi ? planet.hi : planet.en}
                   </span>
-                  <span className="text-text-secondary/30 text-[9px] ml-1">({planet.years}yr)</span>
+                  <span className="text-text-secondary/30 text-[9px]">({planet.years}yr)</span>
                 </div>
-                <div className="flex-1 flex items-center gap-2">
+                <div className="flex items-center gap-1 flex-wrap ml-6 sm:ml-0">
                   {naks.map((n, ni) => (
-                    <div key={ni} className="flex items-center gap-1">
+                    <span key={ni} className="flex items-center gap-1 whitespace-nowrap">
                       <span className="text-text-secondary/40 text-[9px]">#{pi + ni * 9 + 1}</span>
                       <span className="text-text-primary text-xs font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                         {n.name[locale]}
                       </span>
                       {ni < 2 && <span className="text-gold-primary/20 mx-1">→</span>}
-                    </div>
+                    </span>
                   ))}
                 </div>
               </div>

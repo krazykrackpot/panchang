@@ -264,6 +264,11 @@ export default function KundaliPage() {
         body: JSON.stringify(birthData),
       });
       const data = await res.json();
+      if (!res.ok || data.error || !data.planets) {
+        console.error('Kundali API error:', data.error || `HTTP ${res.status}`);
+        setLoading(false);
+        return;
+      }
       setKundali(data);
       // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
       if (data.planets) {
@@ -394,7 +399,7 @@ export default function KundaliPage() {
               <ShareButton
                 title={`Kundali — ${kundali.birthData.name}`}
                 text={`Vedic birth chart for ${kundali.birthData.name} generated on Dekho Panchang`}
-                url={typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali/shared?n=${encodeURIComponent(kundali.birthData.name)}&d=${kundali.birthData.date}&t=${kundali.birthData.time}&la=${kundali.birthData.lat}&lo=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}` : undefined}
+                url={typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali/shared?n=${encodeURIComponent(kundali.birthData.name)}&d=${kundali.birthData.date}&t=${kundali.birthData.time}&la=${kundali.birthData.lat}&lo=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}&tz=${encodeURIComponent(kundali.birthData.timezone || '')}` : undefined}
               />
             </div>
           </div>

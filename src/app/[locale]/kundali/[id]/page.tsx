@@ -9,15 +9,18 @@ import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 
-function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string } | null {
+function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string; timezone: string } | null {
   const name = params.get('n');
   const date = params.get('d');
   const time = params.get('t');
   const lat = params.get('la');
   const lng = params.get('lo');
   const place = params.get('p');
+  const tz = params.get('tz');
   if (!name || !date || !time || !lat || !lng) return null;
-  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '' };
+  // Fallback timezone: estimate from longitude (~15° per hour) if not provided
+  const fallbackTz = String(Math.round(parseFloat(lng) / 15 * 10) / 10);
+  return { name: decodeURIComponent(name), date, time, lat: parseFloat(lat), lng: parseFloat(lng), place: place ? decodeURIComponent(place) : '', timezone: tz ? decodeURIComponent(tz) : fallbackTz };
 }
 
 export default function SharedKundaliPage() {
@@ -42,20 +45,18 @@ export default function SharedKundaliPage() {
 
     const fetchKundali = async () => {
       try {
-        const [year, month, day] = chartData.date.split('-').map(Number);
-        const [hour, minute] = chartData.time.split(':').map(Number);
-
         const response = await fetch('/api/kundali', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: chartData.name,
-            year, month, day,
-            hour, minute,
+            date: chartData.date,
+            time: chartData.time,
             lat: chartData.lat,
             lng: chartData.lng,
             place: chartData.place,
-            ayanamsa: 'lahiri',
+            timezone: chartData.timezone,
+            ayanamsha: 'lahiri',
           }),
         });
 

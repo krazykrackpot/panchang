@@ -95,7 +95,7 @@ export default function BabyNamesPage() {
       </motion.div>
 
       {/* Birth details — compact row */}
-      <div className="mb-8 rounded-xl border border-gold-primary/12 bg-bg-secondary/30 p-4">
+      <div className="mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
           {locale === 'en' ? 'Enter Birth Details (auto-detects Nakshatra)' : 'जन्म विवरण दर्ज करें (नक्षत्र स्वतः पहचानेगा)'}
         </label>
@@ -137,8 +137,8 @@ export default function BabyNamesPage() {
                   isSelected
                     ? 'col-span-2 row-span-2 p-4 bg-gradient-to-br from-gold-primary/15 to-gold-primary/5 border-gold-primary/50 border-2 shadow-xl shadow-gold-primary/15 ring-1 ring-gold-primary/20'
                     : isDetected
-                    ? 'p-2.5 bg-gold-primary/10 border-gold-primary/30 border-2 border-dashed'
-                    : 'p-2.5 bg-bg-tertiary/30 border border-gold-primary/10 hover:border-gold-primary/25'
+                    ? 'p-2.5 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border-gold-primary/30 border-2 border-dashed'
+                    : 'p-2.5 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20'
                 }`}>
                 <div className="flex justify-center">
                   <NakshatraIconById id={n.id} size={isSelected ? 48 : 24} />
@@ -159,7 +159,7 @@ export default function BabyNamesPage() {
         {selectedNak > 0 && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
             {/* Explanation: What are Padas? */}
-            <div className="rounded-xl border border-gold-primary/10 bg-bg-secondary/20 p-5 mb-6">
+            <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12 p-5 mb-6">
               <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
                 {locale === 'en' ? 'What are Padas?' : 'पाद क्या हैं?'}
               </h3>
@@ -178,17 +178,17 @@ export default function BabyNamesPage() {
               </label>
               <div className="flex justify-center gap-3">
                 <button onClick={() => setSelectedPada(0)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedPada === 0 ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10'}`}>
+                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${selectedPada === 0 ? 'bg-gradient-to-br from-gold-primary/20 to-gold-primary/10 text-gold-light border border-gold-primary/40' : 'bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27] text-text-secondary border border-gold-primary/8 hover:border-gold-primary/20'}`}>
                   {locale === 'en' ? 'All Padas' : 'सभी पाद'}
                 </button>
                 {[1, 2, 3, 4].map(p => (
                   <button key={p} onClick={() => setSelectedPada(p)}
                     className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
                       selectedPada === p
-                        ? 'bg-gold-primary/20 text-gold-light border-2 border-gold-primary/50'
+                        ? 'bg-gradient-to-br from-gold-primary/20 to-gold-primary/10 text-gold-light border-2 border-gold-primary/50'
                         : p === detectedPada
-                        ? 'text-gold-primary border-2 border-gold-primary/30 border-dashed bg-gold-primary/5'
-                        : 'text-text-secondary border border-gold-primary/10'
+                        ? 'bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] text-gold-primary border-2 border-gold-primary/30 border-dashed'
+                        : 'bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27] text-text-secondary border border-gold-primary/8 hover:border-gold-primary/20'
                     }`}>
                     {locale === 'en' ? `Pada ${p}` : `पाद ${p}`}
                   </button>
@@ -214,7 +214,7 @@ export default function BabyNamesPage() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl p-6 border-2 border-gold-primary/30 min-w-[110px] text-center shadow-lg shadow-gold-primary/5"
+                    className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-2xl p-6 border-2 border-gold-primary/25 min-w-[110px] text-center shadow-lg shadow-gold-primary/10"
                   >
                     <div className="text-5xl font-bold text-gold-light mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
                       {locale === 'en' ? syl.en : syl.hi}

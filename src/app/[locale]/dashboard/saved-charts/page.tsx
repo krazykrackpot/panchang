@@ -106,7 +106,7 @@ export default function SavedChartsPage() {
       <AnimatePresence>
         {showForm && (
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
-            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mb-6 border border-gold-primary/20">
+            className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mb-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="sm:col-span-2">
                 <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1">{locale === 'en' ? 'Label' : 'नाम'}</label>
@@ -154,7 +154,7 @@ export default function SavedChartsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {charts.map((c, i) => (
             <motion.div key={c.id} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="text-gold-light font-bold text-sm" style={bf}>{c.label}</h3>

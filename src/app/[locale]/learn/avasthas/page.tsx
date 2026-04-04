@@ -177,7 +177,7 @@ export default function LearnAvasthasPage() {
 
       {/* ═══ What are Avasthas ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.whatTitle)}</h2>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP1)}</p>
         <p className="text-text-secondary leading-relaxed">{t(L.whatP2)}</p>
@@ -191,7 +191,7 @@ export default function LearnAvasthasPage() {
           const color = SYSTEM_COLORS[i];
           const isExpanded = expandedSystem === i;
           return (
-            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden border border-gold-primary/10">
+            <div key={i} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
               <button onClick={() => setExpandedSystem(isExpanded ? null : i)}
                 className="w-full flex items-center justify-between px-6 py-4 hover:bg-gold-primary/5 transition-colors">
                 <div className="flex items-center gap-3">
@@ -235,7 +235,7 @@ export default function LearnAvasthasPage() {
 
       {/* ═══ Interpretation Table ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.interpretTitle)}</h2>
         <p className="text-text-secondary text-sm">{t(L.interpretDesc)}</p>
         <div className="space-y-3">
@@ -254,7 +254,7 @@ export default function LearnAvasthasPage() {
 
       {/* ═══ Synthesis ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.synthesisTitle)}</h2>
         <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
           <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उदाहरण: बलवान गुरु' : 'Example: Strong Jupiter'}</div>
@@ -268,7 +268,7 @@ export default function LearnAvasthasPage() {
 
       {/* ═══ Links ═══ */}
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 text-center space-y-4">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center space-y-4">
         <h3 className="text-gold-light font-bold text-lg" style={headingFont}>{t(L.linksTitle)}</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[

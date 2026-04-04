@@ -131,7 +131,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign has a fundamental quality that determines HOW it operates. Quality is the engine of behavior — it tells you whether a sign initiates, sustains, or adapts. Understanding quality is essential for both personality reading and muhurta (timing) work.</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Chara (Cardinal / Movable)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Aries, Cancer, Libra, Capricorn</span> (houses 1, 4, 7, 10 = Kendras)
@@ -144,7 +144,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Sthira (Fixed)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Taurus, Leo, Scorpio, Aquarius</span> (houses 2, 5, 8, 11 = Panapharas)
@@ -157,7 +157,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Dwiswabhava (Dual / Mutable)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Gemini, Virgo, Sagittarius, Pisces</span> (houses 3, 6, 9, 12 = Apoklimas)
@@ -170,7 +170,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15 mt-4">
+      <section className="glass-card rounded-xl p-5 border border-amber-500/15 mt-4">
         <h4 className="text-amber-300 text-[10px] uppercase tracking-widest font-bold mb-3">Quality and Activity Timing</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-gold-light font-medium">Starting a business?</span> Choose a Chara (Movable) Lagna — Aries, Cancer, Libra, or Capricorn rising at the muhurta moment.</p>
@@ -192,7 +192,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">While quality tells you HOW a sign acts, the element tells you WHAT kind of energy it carries. The four Tattvas (elements) are fundamental to Indian philosophy — they appear in Ayurveda, Yoga, and Tantra as well as Jyotish. Each element contains 3 signs, one of each quality.</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Agni (Fire) — Action and Transformation</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-red-300 font-bold">Signs: Aries (Cardinal), Leo (Fixed), Sagittarius (Mutable)</span>
@@ -203,7 +203,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">Prithvi (Earth) — Material and Stability</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-amber-300 font-bold">Signs: Taurus (Fixed), Virgo (Mutable), Capricorn (Cardinal)</span>
@@ -214,7 +214,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-500/15">
+      <section className="glass-card rounded-xl p-5 border border-cyan-500/15">
         <h4 className="text-cyan-400 text-[10px] uppercase tracking-widest font-bold mb-3">Vayu (Air) — Intellect and Connection</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-cyan-300 font-bold">Signs: Gemini (Mutable), Libra (Cardinal), Aquarius (Fixed)</span>
@@ -225,7 +225,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-400 text-[10px] uppercase tracking-widest font-bold mb-3">Jala (Water) — Emotion and Intuition</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">Signs: Cancer (Cardinal), Scorpio (Fixed), Pisces (Mutable)</span>
@@ -236,7 +236,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10 mt-4">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mt-4">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Reading Element Balance in a Chart</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">Count how many of the 9 planets fall in each element group. A balanced chart has planets spread across all 4 elements. Most charts are imbalanced — and that imbalance IS the person&apos;s temperament:</p>
         <div className="space-y-1 text-text-secondary text-xs leading-relaxed mt-2">
@@ -261,7 +261,7 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every sign is a unique combination of one quality and one element. 3 qualities x 4 elements = exactly 12, which is why there are exactly 12 signs. This is the fundamental mathematical structure of the zodiac, not an arbitrary choice.</p>
       </section>
 
-      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
         <table className="w-full text-xs">
           <thead><tr className="border-b border-gold-primary/15">
             <th className="text-left py-2 px-2 text-gold-dark">Element / Quality</th>
@@ -298,7 +298,7 @@ function Page3() {
         </table>
       </div>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">How to Read Chart Distribution</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">To assess temperament, count planets in each quality AND each element separately:</p>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
@@ -308,7 +308,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Additional Classifications</h4>
         <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
           <div>
@@ -326,7 +326,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Aquarius is a water sign because of the water-bearer symbol.&apos;</span><br />

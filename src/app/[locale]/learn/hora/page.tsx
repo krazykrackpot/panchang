@@ -195,7 +195,7 @@ export default function HoraPage() {
 
       {/* Interactive Timeline */}
       <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6 border border-gold-primary/15"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6"
       >
         <div className="flex justify-center gap-2 flex-wrap mb-4">
           {DAY_LORDS.map((dl, i) => (

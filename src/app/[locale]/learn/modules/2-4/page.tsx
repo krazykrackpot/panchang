@@ -45,7 +45,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           The Surya Siddhanta describes retrograde motion as part of the Sighra correction (Ch.2) — the difference between a planet's mean position and its true position as seen from Earth. Ancient Indian astronomers understood this was an observational effect, not a real reversal. The term <span className="text-gold-light font-bold">Vakri</span> (crooked) itself implies something that appears bent from the observer's perspective, not truly reversed.
@@ -55,7 +55,7 @@ function Page1() {
       {/* Retrograde frequency table */}
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>How Often Each Planet Goes Retrograde</h3>
-        <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+        <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-2 text-gold-dark">Planet</th>
@@ -88,7 +88,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           But the energy is <span className="text-gold-light font-bold">internalized</span>. A direct planet expresses outwardly; a retrograde planet expresses <em>inwardly</em>. Think of it as the difference between speaking your thoughts aloud (direct) versus deep internal reflection (retrograde). Neither is better — they're different modes of expression.
         </p>
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
           <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Retrograde Effects Summary</div>
           <ul className="text-text-secondary text-xs space-y-1.5">
             <li>• <span className="text-gold-light">Retrograde Saturn:</span> Karmic lessons intensified but internalized. Delays become more pronounced. Discipline deepened.</li>
@@ -114,7 +114,7 @@ function Page2() {
           When a planet gets too close to the Sun, it becomes invisible — overwhelmed by the Sun's brightness. This is called <span className="text-gold-light font-bold">Asta</span> (अस्त, literally "setting" or "disappearing"). In Jyotish, a combust planet's significations are <span className="text-gold-light">weakened</span> — the Sun's ego/authority energy overshadows the planet's own expression.
         </p>
 
-        <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 mb-4">
+        <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mb-4">
           <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Combustion Orbs (BPHS Ch.3 v.42)</h4>
           <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
@@ -152,7 +152,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <div>
@@ -166,7 +166,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "Mercury retrograde ruins everything."<br />
@@ -176,7 +176,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Astronomically correct.</span> Retrograde, combustion, and planetary conjunctions are all real, observable phenomena. Our app tracks retrograde status for all planets and displays it on the Panchang and Transit Calendar pages. The combustion orbs from BPHS correspond roughly to the angular distances at which planets become invisible to the naked eye — an observational fact.

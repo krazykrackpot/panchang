@@ -205,7 +205,7 @@ function Page1() {
           The 2nd house (speech, early learning) and 5th house (intelligence, creativity, higher learning) should be emphasized — with benefic planets or aspects. The recommended nakshatras are: Ashwini (quick learning), Pushya (nourishment of knowledge), Hasta (manual skill, writing), Shravana (listening, the Vedic learning method), Dhanishtha (mastery), Punarvasu (renewal, returning to knowledge), and Revati (completion of learning).
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Vasanta Panchami — The Supreme Day</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Vasanta Panchami (Shukla Panchami of Magha month, usually in late January or February) is the festival of Saraswati and the most auspicious day for Vidyarambha. It is considered a swayam-siddha muhurta — self-auspicious, requiring no additional Muhurta calculation. Similarly, Akshaya Tritiya (Shukla Tritiya of Vaishakha) is another self-auspicious day where any activity started yields lasting results. Many families specifically wait for one of these days.
@@ -234,7 +234,7 @@ function Page2() {
           For the ceremony itself: the Moon should be strong (waxing preferred), Rahu Kaal must be avoided, and a shubha nakshatra should be running at the ceremony time (not necessarily the birth nakshatra — the ceremony&rsquo;s own nakshatra matters). The father traditionally whispers the chosen name into the child&rsquo;s right ear.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Nakshatra Syllable Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Ashwini:</span> Chu, Che, Cho, La</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Bharani:</span> Li, Lu, Le, Lo</p>
@@ -242,7 +242,7 @@ function Page2() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Rohini:</span> O, Va, Vi, Vu</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Mrigashira:</span> Ve, Vo, Ka, Ki</p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconception</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Many families use the Rashi (zodiac sign) syllable instead of the Nakshatra pada syllable. While the Rashi syllable is acceptable in some traditions, the Nakshatra-pada method is more precise (108 unique syllables vs. 12 sign-based syllables) and is the method recommended by BPHS. Our baby-names tool supports both approaches.
@@ -271,7 +271,7 @@ function Page3() {
           The traditional age varies by varna: Brahmin at 8 years, Kshatriya at 11, Vaishya at 12. In modern practice, Upanayana is performed between ages 7-12 regardless of background, often timed to coincide with the start of higher education. Some families who missed the traditional window perform it just before the wedding ceremony as a combined samskara.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Upanayana Requirements</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Season:</span> Uttarayana (January-June). Avoid Dakshinayana.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Paksha:</span> Shukla Paksha preferred. Avoid Amavasya and Rikta tithis.</p>
@@ -279,7 +279,7 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Avoid:</span> Rahu Kaal, Vishti karana, Vyatipata/Vaidhriti yoga.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Planets:</span> Jupiter and Sun strong. Mercury well-placed for intellectual growth.</p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Adaptations</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Contemporary practice has adapted Upanayana in several ways. The strict age-by-varna rule is rarely followed. Some reformist traditions perform Upanayana for girls as well (historically it was reserved for boys). The ceremony may be shortened from the traditional multi-day format to a single morning. However, the core Muhurta requirements — Uttarayana, Shukla Paksha, suitable nakshatra, strong Jupiter — remain universally observed. The spiritual significance of the ceremony has not changed, even as its social context has evolved.

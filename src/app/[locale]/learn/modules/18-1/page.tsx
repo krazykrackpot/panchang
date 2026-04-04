@@ -206,7 +206,7 @@ function Page1() {
             : <>The six components are: <strong>Sthana Bala</strong> (positional) with 5 sub-parts &mdash; Uccha (exaltation), Saptavargaja (7 divisional charts), Ojha-Yugma (odd/even sign), Kendradi (angular placement), Drekkana (decanate). <strong>Dig Bala</strong> (directional) &mdash; Jupiter/Mercury strongest in the East (lagna), Sun/Mars in the South (10th), Saturn in the West (7th), Moon/Venus in the North (4th). <strong>Kala Bala</strong> (temporal) &mdash; day/night rulership, hora lord, month/year lords. <strong>Cheshta Bala</strong> (motional) &mdash; retrograde planets gain maximum strength. <strong>Naisargika Bala</strong> (natural) &mdash; fixed values, Sun strongest, Saturn weakest. <strong>Drig Bala</strong> (aspectual) &mdash; benefic aspects add, malefic aspects subtract.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उद्गम' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -248,7 +248,7 @@ function Page2() {
             : <><strong>Kala Bala:</strong> Mars is a nocturnal planet, so it gains strength in a night chart. In a daytime chart, it gets reduced Kala Bala &mdash; approximately 30 shashtiamsas instead of 60. <strong>Cheshta Bala:</strong> If Mars is direct (not retrograde), moderate motional strength of ~30. <strong>Naisargika Bala:</strong> Mars has a fixed natural strength of 17.14 shashtiamsas (6th of 7 planets). <strong>Drig Bala:</strong> Depends on aspects received &mdash; if Jupiter aspects this Mars, add ~15; if Saturn aspects, subtract ~15. Hypothetical net: +10.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">{isHi ? 'मंगल मकर में, दशम भाव, दिवस कुण्डली, मार्गी गति, बृहस्पति दृष्टि:' : 'Mars in Capricorn, 10th house, daytime chart, direct motion, Jupiter aspecting:'}</span>
@@ -265,7 +265,7 @@ function Page2() {
             : 'Total: ~362 shashtiamsas = 6.03 rupas. Mars minimum requirement is 5.0 rupas, so this Mars is effective and strong.'}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'सामान्य भ्रम' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -297,7 +297,7 @@ function Page3() {
             : 'Shadbala is particularly powerful for resolving contradictions: an exalted but combust planet, a planet in its own sign but in a dusthana, a retrograde planet in debilitation. In each case, the six-fold analysis provides a definitive net score that clarifies whether the planet functions as strong or weak in practice.'}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi

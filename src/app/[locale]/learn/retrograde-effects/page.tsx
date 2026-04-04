@@ -180,7 +180,7 @@ export default function RetrogradeEffectsPage() {
 
       {/* SVG Orbital Diagram */}
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="mb-12">
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
           <RetrogradeOrbitalDiagram isHi={isHi} />
           <p className="text-text-tertiary text-xs mt-3 text-center">
             {isHi

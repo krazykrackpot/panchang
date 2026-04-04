@@ -132,7 +132,7 @@ export default function ModuleIndexPage() {
       </div>
 
       {/* Start button */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/20 bg-gradient-to-r from-gold-primary/5 to-indigo-500/5 flex items-center justify-between">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 bg-gradient-to-r from-gold-primary/5 to-indigo-500/5 flex items-center justify-between">
         <div>
           <div className="text-gold-light font-bold text-lg" style={hf}>{isHi ? 'शुरू करें' : 'Start Learning'}</div>
           <p className="text-text-secondary text-xs mt-1">{isHi ? 'मॉड्यूल 1.1 — रात्रि आकाश एवं क्रान्तिवृत्त' : 'Module 1.1 — The Night Sky & Ecliptic'}</p>

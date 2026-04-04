@@ -181,7 +181,7 @@ export default function CosmologyPage() {
             transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
             className="mt-10"
           >
-            <div className="inline-flex flex-col items-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-8 py-6 border border-gold-primary/20">
+            <div className="inline-flex flex-col items-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-8 py-6">
               <span className="text-5xl sm:text-7xl font-black bg-gradient-to-r from-gold-primary via-yellow-300 to-gold-primary bg-clip-text text-transparent"
                 style={{ fontFamily: 'var(--font-heading)' }}>
                 311,040,000,000,000
@@ -288,7 +288,7 @@ export default function CosmologyPage() {
 
           {/* Bridge to yugas */}
           <div className="mt-6 text-center">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-full px-5 py-2 border border-gold-primary/20">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-full px-5 py-2">
               <Sparkles className="w-4 h-4 text-gold-primary" />
               <span className="text-gold-light text-sm font-semibold">
                 {hi ? 'वर्ष (Year) के बाद — पैमाना ब्रह्माण्डीय हो जाता है' : 'Beyond the Year — the scale becomes COSMIC'}
@@ -355,7 +355,7 @@ export default function CosmologyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
               >
                 <div className="text-2xl font-black text-gold-primary mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{fact.n}</div>
                 <div className="text-xs text-text-secondary/70">{t(fact.d)}</div>
@@ -434,7 +434,7 @@ export default function CosmologyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 text-center"
+                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                 >
                   <div className="text-[10px] uppercase tracking-wider text-text-secondary/50 mb-1">{t(pos.label)}</div>
                   <div className="text-xs sm:text-sm font-semibold text-gold-light">{t(pos.value)}</div>
@@ -480,7 +480,7 @@ export default function CosmologyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10"
+                  className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
                 >
                   <div className="text-xs text-text-secondary/50 mb-1">{t(item.label)}</div>
                   <div className="text-sm font-semibold text-gold-light">{t(item.value)}</div>
@@ -530,7 +530,7 @@ export default function CosmologyPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <item.icon className="w-4 h-4 text-gold-primary" />
@@ -646,7 +646,7 @@ export default function CosmologyPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/10"
+          className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
         >
           <h3 className="text-gold-light font-semibold text-sm uppercase tracking-wider mb-4">{t(L.exploreMore)}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -659,7 +659,7 @@ export default function CosmologyPage() {
               <Link
                 key={i}
                 href={link.href}
-                className="flex items-center justify-between bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-4 py-3 border border-gold-primary/10 hover:border-gold-primary/30 hover:bg-gold-primary/[0.04] transition-all group"
+                className="flex items-center justify-between bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-4 py-3 hover:border-gold-primary/30 hover:bg-gold-primary/[0.04] transition-all group"
               >
                 <span className="text-sm text-text-secondary group-hover:text-gold-light transition-colors">{t(link.label)}</span>
                 <ArrowRight className="w-4 h-4 text-gold-primary/40 group-hover:text-gold-primary group-hover:translate-x-1 transition-all" />

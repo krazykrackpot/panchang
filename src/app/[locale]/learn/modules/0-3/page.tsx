@@ -154,7 +154,7 @@ function Page1() {
         </p>
 
         <div className="grid gap-3 mb-4">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? '~24° अन्तर (अयनांश)' : 'The ~24 Degree Gap (Ayanamsha)'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -162,7 +162,7 @@ function Page1() {
                 : 'The tropical zodiac is tied to seasons (equinoxes). The sidereal is tied to stars. Due to precession, they\'ve diverged by ~24 degrees today. Since each sign is 30 degrees, your Vedic Sun sign is usually ONE sign behind your Western sign. Western Gemini = Vedic Vrishabha (Taurus)!'}
             </p>
           </div>
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-emerald-500/15">
+          <div className="glass-card rounded-lg p-4 border border-emerald-500/15">
             <p className="text-emerald-400 text-sm font-bold mb-2">{isHi ? 'चन्द्रमा बनाम सूर्य' : 'Moon vs Sun'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -180,7 +180,7 @@ function Page1() {
       </section>
 
       {/* Classical Origin — Gold card */}
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
         </h4>
@@ -225,7 +225,7 @@ function Page2() {
             { n: 11, en: 'Kumbha', hi: 'कुम्भ', sym: 'Aquarius', ruler: isHi ? 'शनि' : 'Saturn', elem: isHi ? 'वायु' : 'Air' },
             { n: 12, en: 'Meena', hi: 'मीन', sym: 'Pisces', ruler: isHi ? 'गुरु' : 'Jupiter', elem: isHi ? 'जल' : 'Water' },
           ].map(r => (
-            <div key={r.n} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 border border-gold-primary/5 text-center">
+            <div key={r.n} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 text-center">
               <p className="text-gold-light text-xs font-bold">{r.n}. {isHi ? r.hi : r.en}</p>
               <p className="text-text-tertiary text-[10px]">{r.sym}</p>
               <p className="text-text-secondary text-[10px]">{r.ruler} · {r.elem}</p>
@@ -250,7 +250,7 @@ function Page2() {
         </p>
 
         {/* Emerald fact card */}
-        <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+        <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
           <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
             {isHi ? 'उदाहरण' : 'Worked Example'}
           </h4>
@@ -287,7 +287,7 @@ function Page3() {
         </h3>
 
         <div className="space-y-4">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'नामकरण' : 'NAMING'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -296,7 +296,7 @@ function Page3() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'दशा (समय प्रणाली)' : 'DASHA (Timing System)'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -305,7 +305,7 @@ function Page3() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'विवाह मिलान' : 'MARRIAGE MATCHING'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -314,7 +314,7 @@ function Page3() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-emerald-500/15">
+          <div className="glass-card rounded-lg p-4 border border-emerald-500/15">
             <p className="text-emerald-400 text-sm font-bold mb-2">{isHi ? '120 वर्ष की समय-रेखा' : 'THE 120-YEAR TIMELINE'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -323,7 +323,7 @@ function Page3() {
             </p>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
             <p className="text-gold-light text-sm font-bold mb-2">{isHi ? 'जन्म नक्षत्र दिवस' : 'JANMA NAKSHATRA DAY'}</p>
             <p className="text-text-secondary text-xs leading-relaxed">
               {isHi
@@ -335,7 +335,7 @@ function Page3() {
       </section>
 
       {/* Red — Misconceptions */}
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
           {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
         </h4>
@@ -362,7 +362,7 @@ function Page3() {
       </section>
 
       {/* Blue — Modern Relevance */}
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
         </h4>

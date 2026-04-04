@@ -203,7 +203,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -235,7 +235,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> वधू का नक्षत्र = रोहिणी (4था)। वर का नक्षत्र = हस्त (13वाँ)। वधू से वर तक गणना: 13 - 4 + 1 = 10। 10 mod 9 = 1 → जन्म तारा (तटस्थ)। वर से वधू तक: 4 - 13 + 27 + 1 = 19। 19 mod 9 = 1 → जन्म तारा (तटस्थ)। चूँकि दोनों दिशाओं में हानिकारक तारा नहीं, तारा कूट सन्तुष्ट है।</> : <><span className="text-gold-light font-medium">Example:</span> Bride&apos;s nakshatra = Rohini (4th). Groom&apos;s nakshatra = Hasta (13th). Count from bride to groom: 13 - 4 + 1 = 10. 10 mod 9 = 1 → Janma tara (neutral). Count from groom to bride: 4 - 13 + 27 + 1 = 19. 19 mod 9 = 1 → Janma tara (neutral). Since both directions give non-harmful taras, Tara Kuta is satisfied.</>}
@@ -245,14 +245,14 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;यदि तारा कूट अंक 0 है तो विवाह विनाशकारी होगा।&quot; तारा कूट 36 में से केवल 3 अंक वहन करता है। कमजोर तारा अंक की भरपाई भकूट (7), नाड़ी (8) और ग्रह मैत्री (5) के सुदृढ़ अंकों से हो सकती है। कोई भी एकल कूट पृथक् रूप से मूल्यांकित नहीं होना चाहिए — समग्र अंक और सभी 8 कूटों का प्रारूप सर्वाधिक महत्त्वपूर्ण है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;If the Tara Kuta score is 0, the marriage is doomed.&quot; Tara Kuta carries only 3 out of 36 points. A poor Tara score can be compensated by strong scores in Bhakoot (7), Nadi (8), and Graha Maitri (5). No single kuta should be evaluated in isolation — the composite score and the pattern across all 8 kutas matter most.</>}
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <>अष्ट कूट मिलान भारत भर में व्यवस्थित विवाह वार्ताओं का प्रथम चरण बना हुआ है। वैवाहिक वेबसाइट और ऐप्स &quot;गुण मिलान&quot; अंक प्रमुखता से प्रदर्शित करते हैं। हमारा कुण्डली मिलान उपकरण जन्म नक्षत्रों से सभी 8 कूटों की स्वचालित गणना करता है, व्यक्तिगत और कुल अंक प्रदर्शित करता है, दोषों को चिह्नित करता है, और पारम्परिक निवारण शर्तों की जाँच करता है।</> : <>Ashta Kuta matching remains the first step in arranged marriage negotiations across India. Matrimonial websites and apps prominently display &quot;Gun Milan&quot; scores (another name for Ashta Kuta). Our Kundali Matching tool computes all 8 kutas automatically from the birth nakshatras, displays individual and total scores, flags doshas, and checks for traditional cancellation conditions.</>}
@@ -290,7 +290,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> वधू = रोहिणी (आदि नाड़ी, वृषभ), वर = मृगशिरा (मध्य नाड़ी, वृषभ/मिथुन)। रोहिणी आदि है, मृगशिरा मध्य — भिन्न नाड़ियाँ। पूर्ण 8 अंक प्रदत्त। नाड़ी दोष नहीं।</> : <><span className="text-gold-light font-medium">Example:</span> Bride = Rohini (Aadi nadi, Taurus), Groom = Mrigashira (Madhya nadi, Taurus/Gemini). Rohini is Aadi, Mrigashira is Madhya — different nadis. Full 8 points awarded. No Nadi Dosha.</>}
@@ -300,14 +300,14 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;नाड़ी दोष विवाह को पूर्णतया रोकता है — कोई उपाय नहीं है।&quot; वास्तव में, नाड़ी दोष सबसे अधिक सामने आने वाला दोष है (यह लगभग 3 में से 1 यादृच्छिक मिलान को प्रभावित करता है), और इसके बावजूद लाखों सफल विवाह हुए हैं। निवारण शर्तें सुप्रलेखित और व्यापक रूप से स्वीकृत हैं। नाड़ी दोष को पूर्ण निषेध मानना अत्यधिक कठोर है और सन्तुलित शास्त्रीय विद्वत्ता द्वारा समर्थित नहीं है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Nadi Dosha absolutely prevents marriage — there is no remedy.&quot; In practice, Nadi Dosha is the most frequently encountered dosha (it affects roughly 1 in 3 random matches), and millions of successful marriages exist despite it. The cancellation conditions are well-documented and widely accepted. Treating Nadi Dosha as an absolute veto is overly rigid and not supported by balanced classical scholarship.</>}
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

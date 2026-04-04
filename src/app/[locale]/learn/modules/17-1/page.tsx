@@ -205,7 +205,7 @@ function Page1() {
           The classical hierarchy of importance is: Nakshatra &gt; Tithi &gt; Yoga &gt; Vara &gt; Karana. This means the nakshatra at the time of starting has the strongest influence. A good nakshatra can partially compensate for a mediocre tithi, but a bad nakshatra undermines even the best tithi. This hierarchy guides how our scoring algorithm weights each factor.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">The Inception Chart Concept</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Think of Muhurta like choosing the &ldquo;birthday&rdquo; of your project. A company registered under Pushya nakshatra with strong Jupiter in the lagna has a chart that favours growth, nourishment, and expansion. The same company registered during Rahu Kaal with Vishti karana has a chart riddled with delays and obstacles. The Muhurta IS the natal chart of the endeavour.
@@ -234,7 +234,7 @@ function Page2() {
           Nakshatras are classified by activity type: Dhruva (fixed — Rohini, Uttara Phalguni, Uttara Ashadha, Uttarabhadrapada) for permanent works like house construction. Kshipra (swift — Ashwini, Pushya, Hasta) for quick tasks. Mridu (soft — Mrigashira, Chitra, Anuradha, Revati) for arts, relationships. Tikshna (sharp — Ardra, Ashlesha, Jyeshtha, Mula) for surgery, warfare, fierce acts. Matching nakshatra type to activity type is the first step.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Lagna Selection</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The lagna changes every ~2 hours, so it is the most precise timing tool. For marriage: 2nd, 7th, or 11th house lagna. For business: 1st, 10th, or 11th. For education: 2nd or 5th. For travel: 3rd or 9th. The lagna lord must be strong — not debilitated, combust, or retrograde — and ideally placed in a kendra or trikona.
@@ -263,14 +263,14 @@ function Page3() {
           This multi-factor approach ensures that no single bad element can hide behind good ones. A time window needs consistent quality across all dimensions to score highly. The result is a ranked list of time windows, colour-coded by quality, that the user can choose from with confidence.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The Four Scoring Dimensions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Panchang Score:</span> Evaluates the quality of tithi, nakshatra, yoga, karana, and vara at the given time. Each element is rated shubha/ashubha per classical rules. Activity-specific nakshatra matching adds bonus points.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Transit Score:</span> Assesses current planetary strength — are benefics strong? Are malefics contained? Is the relevant house lord well-placed? This captures the broader celestial weather.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Timing Score:</span> Checks the hora ruler (planetary hour) and choghadiya period. A business started during Jupiter hora scores higher than one during Saturn hora. Amrit and Shubha choghadiyas add points.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Personal Score:</span> When the user provides birth details, the engine checks Tara Bala (star strength from birth nakshatra), Chandrabala (Moon position from natal Moon), and Disha Shool (directional defect). This personalizes the Muhurta to the individual.</p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Score Interpretation</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Scores above 75 indicate excellent Muhurta windows suitable for major events. Scores 50-75 are acceptable for routine activities. Scores below 50 should be avoided for important initiations. In practice, most days have a few high-scoring windows (often early morning or specific evening hours) and several low-scoring periods (particularly during Rahu Kaal and Vishti karana). The engine supports 20 activity types with activity-specific weightings.

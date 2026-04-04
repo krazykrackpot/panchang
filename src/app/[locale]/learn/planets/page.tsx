@@ -220,7 +220,7 @@ export default function LearnPlanetsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4"
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: g.color }} />
@@ -244,7 +244,7 @@ export default function LearnPlanetsPage() {
         <p style={bodyFont}>{L.readingContent[locale]}</p>
 
         {/* Example table structure */}
-        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
@@ -342,7 +342,7 @@ export default function LearnPlanetsPage() {
       <LessonSection number={5} title={L.dignityTitle[locale]} variant="highlight">
         <p style={bodyFont}>{L.dignityContent[locale]}</p>
 
-        <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 border border-gold-primary/10 overflow-x-auto">
+        <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
@@ -398,7 +398,7 @@ export default function LearnPlanetsPage() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors block"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 hover:border-gold-primary/30 transition-colors block"
             >
               <span className="text-gold-light text-xs font-medium" style={headingFont}>
                 {mod.label[locale]}

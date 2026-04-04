@@ -134,7 +134,7 @@ export default function CareerPredictionGuide() {
 
       {/* SVG Wheel */}
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="mb-12">
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15 flex flex-col items-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 flex flex-col items-center">
           <CareerHouseWheel />
           <p className="text-text-tertiary text-xs mt-3 text-center">
             {isHi ? 'दशम भाव (10H) करियर और सामाजिक स्थिति का प्रमुख भाव। D10 दशमांश विभाजन चार्ट।' : 'The 10th house (10H) is the primary house of career and public status. D10 = Dasamsha divisional chart.'}
@@ -271,7 +271,7 @@ export default function CareerPredictionGuide() {
       </LessonSection>
 
       {/* Cross-references */}
-      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>{isHi ? 'सम्बन्धित विषय' : 'Related Topics'}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[

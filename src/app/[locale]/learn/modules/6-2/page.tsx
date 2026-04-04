@@ -212,7 +212,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi ? <>पाद-से-नवांश सम्बन्ध बृहत् पाराशर होरा शास्त्र (BPHS) में प्रलेखित है, जहाँ महर्षि पराशर बताते हैं कि नवांश राशि ग्रह की नक्षत्र पाद में स्थिति से कैसे निर्धारित होती है। वराहमिहिर की बृहत्जातक भी सूक्ष्म व्यक्तित्व विश्लेषण हेतु पाद पद्धति का उपयोग करती है। सूर्य सिद्धान्त प्रत्येक 13°20&apos; नक्षत्र को चार समान भागों में विभक्त करने का गणितीय ढाँचा प्रदान करता है। यह पाद पद्धति भारतीय खगोलशास्त्र में औपचारिक राशि पद्धति से पूर्ववर्ती है — पादों सहित नक्षत्र मूल निर्देशांक जालिका थे।</> : <>The pada-to-Navamsha correspondence is documented in Brihat Parashara Hora Shastra (BPHS), where Sage Parashara explains how the Navamsha sign is determined by the position of a planet within its nakshatra pada. Varahamihira&apos;s Brihat Jataka also uses the pada system for fine-grained personality analysis. The Surya Siddhanta provides the mathematical framework for dividing each 13°20&apos; nakshatra into four equal parts. This pada system predates the formal rashi (sign) system in Indian astronomy — nakshatras with padas were the original coordinate grid.</>}
@@ -246,21 +246,21 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> दो व्यक्तियों पर विचार करें जिनका चन्द्रमा भरणी (मेष 13°20&apos;-26°40&apos;) में है। व्यक्ति A का चन्द्रमा 15° (पाद 1, सिंह नवांश) पर और व्यक्ति B का 25° (पाद 4, वृश्चिक नवांश) पर। दोनों भरणी की शुक्र-शासित, रूपान्तरकारी, यम-शासित ऊर्जा साझा करते हैं। किन्तु व्यक्ति A (सिंह नवांश) इसे राजसी अधिकार, सृजनात्मक आत्मविश्वास और नाटकीय शैली से व्यक्त करता है। व्यक्ति B (वृश्चिक नवांश) उसी ऊर्जा को गहन मनोवैज्ञानिक अन्तर्दृष्टि, तीव्रता और गुप्त रूपान्तरण द्वारा प्रवाहित करता है। समान नक्षत्र, नाटकीय रूप से भिन्न अभिव्यक्ति।</> : <><span className="text-gold-light font-medium">Example:</span> Consider two people both born with Moon in Bharani (13°20&apos;-26°40&apos; Aries). Person A has Moon at 15° (pada 1, Leo Navamsha) and Person B has Moon at 25° (pada 4, Scorpio Navamsha). Both share Bharani&apos;s Venusian, transformative, Yama-ruled energy. However, Person A (Leo Navamsha) expresses this with regal authority, creative confidence, and dramatic flair. Person B (Scorpio Navamsha) channels the same energy through deep psychological insight, intensity, and hidden transformation. Same nakshatra, dramatically different expression.</>}
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;पाद पद्धति केवल एक लघु परिशोधन है — नक्षत्र अकेला पर्याप्त है।&quot; वास्तव में, एक ही नक्षत्र किन्तु भिन्न पादों वाले दो व्यक्तियों के व्यक्तित्व, व्यावसायिक झुकाव और जीवन पथ आश्चर्यजनक रूप से भिन्न हो सकते हैं। पाद नवांश स्थान निर्धारित करता है, जो विवाह, धर्म और गहन आत्मिक उद्देश्य को समझने के लिए अत्यन्त महत्त्वपूर्ण है। व्यावसायिक ज्योतिषी सदैव पाद पर विचार करते हैं, केवल नक्षत्र पर नहीं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The pada system is just a minor refinement — the nakshatra alone is sufficient.&quot; In practice, two people with the same nakshatra but different padas can have strikingly different personalities, career inclinations, and life paths. The pada determines the Navamsha placement, which is crucial for understanding marriage, dharma, and the deeper soul-level purpose. Professional astrologers always consider the pada, not just the nakshatra.</>}
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -286,7 +286,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण 1:</span> चन्द्रमा 167.3° पर। चरण 1: floor(167.3 / 13.333) = floor(12.548) = 12। चरण 2: नक्षत्र = 12 + 1 = 13 → हस्त (160° से 173.33° तक)। चरण 3: स्थिति = 167.3 - (12 x 13.333) = 167.3 - 160 = 7.3°। चरण 4: पाद = floor(7.3 / 3.333) + 1 = floor(2.19) + 1 = 2 + 1 = 3। परिणाम: हस्त पाद 3।</> : <><span className="text-gold-light font-medium">Example 1:</span> Moon at 167.3°. Step 1: floor(167.3 / 13.333) = floor(12.548) = 12. Step 2: Nakshatra = 12 + 1 = 13 → Hasta (spanning 160° to 173.33°). Step 3: Position = 167.3 - (12 x 13.333) = 167.3 - 160 = 7.3°. Step 4: Pada = floor(7.3 / 3.333) + 1 = floor(2.19) + 1 = 2 + 1 = 3. Result: Hasta pada 3.</>}
@@ -308,14 +308,14 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;पाद की नवांश राशि सदैव नक्षत्र की राशि के समान होती है।&quot; यह गलत है। नवांश राशि प्रत्येक राशि के 9 नवांशों में सभी 12 राशियों से चक्रित होती है। केवल अग्नि राशि का प्रथम नवांश मेल खाता है। पाद की नवांश राशि प्रायः नक्षत्र की राशि से पूर्णतया भिन्न होती है, और ठीक यही इसे विश्लेषणात्मक रूप से मूल्यवान बनाता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The Navamsha sign of a pada is always the same rashi as the nakshatra.&quot; This is incorrect. The Navamsha sign cycles through all 12 signs across the 9 Navamshas within each rashi. Only the first Navamsha of a fire sign rashi happens to match. The pada&apos;s Navamsha sign is often completely different from the rashi the nakshatra falls in, which is precisely what makes it analytically valuable.</>}
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

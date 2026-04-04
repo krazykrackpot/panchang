@@ -475,7 +475,7 @@ export default function LearnKaranasPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/20"
+                className="glass-card rounded-xl p-5 border border-amber-500/20"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-amber-400 text-2xl font-bold">#{posInfo?.pos}</span>

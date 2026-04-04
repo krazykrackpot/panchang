@@ -374,7 +374,7 @@ export default function VedicTimePage() {
       {vedic ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           {/* Vedic Clock */}
-          <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-6 text-center border border-gold-primary/20">
+          <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-6 text-center">
             <div className="text-gold-dark text-[10px] uppercase tracking-[0.3em] mb-2">
               {locale === 'en' ? 'Vedic Time' : 'वैदिक समय'}
             </div>
@@ -401,7 +401,7 @@ export default function VedicTimePage() {
           </div>
 
           {/* Gregorian Clock */}
-          <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-6 text-center border border-gold-primary/10">
+          <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-6 text-center">
             <div className="text-text-secondary/50 text-[10px] uppercase tracking-[0.3em] mb-2">
               {locale === 'en' ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
             </div>
@@ -431,7 +431,7 @@ export default function VedicTimePage() {
 
       {/* Panchang context — Tithi, Vara, Masa, Samvatsara */}
       {panchangCtx && (
-        <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl px-5 py-3 mb-4 border border-gold-primary/10 text-center" style={bodyFont}>
+        <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl px-5 py-3 mb-4 text-center" style={bodyFont}>
           <div className="text-gold-light text-sm font-semibold">
             {panchangCtx.masa?.[locale] || panchangCtx.masa?.en},{' '}
             {panchangCtx.tithi?.paksha === 'krishna'
@@ -533,7 +533,7 @@ export default function VedicTimePage() {
 
           {/* Prahar & Muhurta */}
           <div className="grid grid-cols-2 gap-4 mt-6">
-            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 text-center border border-gold-primary/10">
+            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 text-center">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Prahar' : 'प्रहर'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.prahar}<span className="text-text-secondary text-sm">/8</span></div>
               {vedic.praharName && (
@@ -545,7 +545,7 @@ export default function VedicTimePage() {
                 {locale === 'en' ? `${vedic.praharDurationMin} min each` : `${vedic.praharDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 text-center border border-gold-primary/10">
+            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 text-center">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{locale === 'en' ? 'Muhurta' : 'मुहूर्त'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.muhurta}<span className="text-text-secondary text-sm">/30</span></div>
               {vedic.muhurtaName && (
@@ -567,7 +567,7 @@ export default function VedicTimePage() {
 
           {/* 30-Ghati: Dinamana / Ratrimana Kala breakdown */}
           {clockMode === '30' && (
-            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 mt-4 border border-gold-primary/10">
+            <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-5 mt-4">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-3 text-center">
                 {vedic.isDaytime
                   ? (locale === 'en' ? 'Dinamana — 5 Kalas (6 Ghati each)' : 'दिनमान — 5 काल (6-6 घटी)')
@@ -596,7 +596,7 @@ export default function VedicTimePage() {
       )}
 
       {/* Conversion reference */}
-      <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-6 mt-8 border border-gold-primary/10">
+      <div className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-xl p-6 mt-8">
         <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
           {locale === 'en' ? 'Vedic Time Units' : 'वैदिक समय इकाइयाँ'}
         </h3>

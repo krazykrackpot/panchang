@@ -205,7 +205,7 @@ function Page1() {
           Monday, Wednesday, Thursday, and Friday are the preferred weekdays. A unique factor for Griha Pravesh is Bhoomi Dosha — a directional defect based on the month and the direction of the house entrance. If the current month&rsquo;s inauspicious direction matches your entrance direction, the Griha Pravesh should be deferred. This factor does not apply to other types of Muhurta.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Bhoomi Dosha — The Directional Defect</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Bhoomi Dosha divides the year into directional periods. During certain months, entering from certain directions is considered inauspicious — it is believed to bring illness, financial loss, or domestic discord. The remedy is either to wait for the direction to clear (usually a month) or to perform a specific Vastu Shanti puja before entry. Our Muhurta tool automatically flags Bhoomi Dosha when evaluating Griha Pravesh candidates.
@@ -234,7 +234,7 @@ function Page2() {
           The ideal nakshatras for vehicle purchase are: Ashwini (the divine horsemen — connected to transport), Rohini (stability and beauty), Pushya (the most auspicious nakshatra for any purchase — nourishment and growth), Hasta (skillful hands, craftsmanship), and Chitra (beauty, artistry). Avoid Vishti karana, Moon in the 8th or 12th house, and debilitated lagna lord.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Vehicle Purchase Checklist</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">4th House:</span> Strong, with benefic influence. No malefics in the 4th or 8th.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Nakshatra:</span> Ashwini, Rohini, Pushya, Hasta, or Chitra preferred.</p>
@@ -265,7 +265,7 @@ function Page3() {
           Chandrabala checks the transit Moon&rsquo;s position relative to the natal Moon. For travel, Moon in the 3rd, 6th, 10th, or 11th from natal Moon is excellent. Moon in the 8th is the worst (danger, accidents). For short trips, only Disha Shool avoidance is necessary. For long journeys — interstate, international, or by air — all three factors (Disha Shool, Tara Bala, Chandrabala) should be favourable.
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Disha Shool Quick Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Sunday:</span> West inauspicious</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Monday:</span> East inauspicious</p>
@@ -275,7 +275,7 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Friday:</span> West inauspicious</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Saturday:</span> East inauspicious</p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Remedial Detour</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           If travel in the Disha Shool direction is unavoidable, the traditional remedy is a detour: first travel a short distance in a non-Shool direction (even a few kilometres), pause briefly (offering a prayer), then redirect toward the destination. This symbolically &ldquo;breaks&rdquo; the initial directional defect. Wednesday is the safest day for travel in any direction as it has no Disha Shool.

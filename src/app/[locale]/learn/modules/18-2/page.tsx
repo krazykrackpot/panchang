@@ -205,7 +205,7 @@ function Page1() {
             : <><strong>Bhavabala</strong> = <strong>Bhavadhipati Bala</strong> (lord&apos;s Shadbala contribution) + <strong>Bhava Dig Bala</strong> (inherent positional strength of the house) + <strong>Bhava Drishti Bala</strong> (net aspects received by the house). A house with a weak lord but strong benefic aspects (Jupiter aspecting the 7th, for example) can still function well. Conversely, a house whose lord has excellent Shadbala but receives Saturn&apos;s and Mars&apos;s aspects may underperform.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उद्गम' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -237,7 +237,7 @@ function Page2() {
             : <><strong>Bhava Dig Bala:</strong> Houses have inherent positional strength. The 1st and 7th houses (the horizon axis) are inherently strongest. The 4th and 10th (meridian axis) follow. The dusthana houses (6th, 8th, 12th) have the lowest inherent Dig Bala. This is a fixed structural component that does not change between charts.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: विवाह हेतु सप्तम भाव' : 'Worked Example: 7th House for Marriage'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart: Aries Lagna, 7th lord Venus in Pisces (exalted), Jupiter aspects the 7th house, Saturn also aspects the 7th.</span>
@@ -251,7 +251,7 @@ function Page2() {
             : <>Total 7th Bhavabala: ~120 shashtiamsas. Moderate-to-good. Marriage is supported by the strong lord, but Saturn&apos;s aspect may cause some delays despite Jupiter&apos;s protection.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'सामान्य भ्रम' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -283,7 +283,7 @@ function Page3() {
             : <>Comparing two charts with the same lagna illustrates this powerfully. Person A (Aries lagna) may have a strong 7th house (exalted Venus as lord, Jupiter aspecting) and a weak 10th (Saturn debilitated as lord, no benefic aspects). Person B (also Aries lagna) may show the reverse. Same lagna, completely different life experiences in marriage versus career, all explained by Bhavabala distribution.</>}
         </p>
       </section>
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi

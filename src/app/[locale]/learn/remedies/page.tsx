@@ -414,7 +414,7 @@ export default function RemediesPage() {
 
       {/* Planet Selector + Remedy Card */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/10">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <p className="text-text-secondary text-xs mb-4" style={bodyFont}>{L.selectPlanet[locale]}</p>
 
         {/* Planet buttons */}
@@ -443,7 +443,7 @@ export default function RemediesPage() {
 
       {/* Remedy Selection Flowchart */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <div className="flex items-center gap-3 mb-3">
           <ShieldCheck className="w-6 h-6 text-gold-light" />
           <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{L.flowchartTitle[locale]}</h3>
@@ -469,7 +469,7 @@ export default function RemediesPage() {
 
       {/* When Remedies Don't Work */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-amber-500/15 bg-amber-500/3">
+        className="glass-card rounded-2xl p-6 border border-amber-500/15 bg-amber-500/3">
         <div className="flex items-center gap-3 mb-4">
           <AlertTriangle className="w-6 h-6 text-amber-400" />
           <h3 className="text-amber-300 text-lg font-bold" style={headingFont}>{L.dontWorkTitle[locale]}</h3>
@@ -496,7 +496,7 @@ export default function RemediesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {RELATED_LINKS.map((link, i) => (
             <Link key={i} href={link.href}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-colors flex items-center justify-between group">
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 hover:border-gold-primary/30 transition-colors flex items-center justify-between group">
               <span className="text-sm text-text-primary font-medium" style={bodyFont}>{link.label[locale]}</span>
               <ArrowRight className="w-4 h-4 text-gold-primary/50 group-hover:text-gold-primary transition-colors" />
             </Link>

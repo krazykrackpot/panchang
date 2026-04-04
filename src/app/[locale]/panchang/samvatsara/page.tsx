@@ -353,7 +353,7 @@ export default function SamvatsaraPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 w-full max-w-md text-center border border-gold-primary/20"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 w-full max-w-md text-center"
               >
                 <div
                   className="text-3xl font-bold mb-1"

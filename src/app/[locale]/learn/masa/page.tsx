@@ -43,7 +43,7 @@ export default function MasaPage() {
       </div>
 
       {/* Two Systems */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {isHi ? 'दो प्रणालियाँ — अमान्त और पूर्णिमान्त' : 'Two Systems — Amant and Purnimant'}
         </h3>
@@ -98,7 +98,7 @@ export default function MasaPage() {
       </div>
 
       {/* Adhika Masa */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-500/20 bg-gradient-to-br from-violet-500/5 to-transparent">
+      <div className="glass-card rounded-2xl p-6 border border-violet-500/20 bg-gradient-to-br from-violet-500/5 to-transparent">
         <h3 className="text-violet-400 font-bold text-lg mb-4" style={hf}>
           {isHi ? 'अधिक मास (मलमास / पुरुषोत्तम मास)' : 'Adhika Masa (Intercalary Month)'}
         </h3>
@@ -139,7 +139,7 @@ export default function MasaPage() {
       </div>
 
       {/* Month naming — why are they named this way */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {isHi ? 'मासों के नाम क्यों?' : 'Why Are Months Named This Way?'}
         </h3>
@@ -167,7 +167,7 @@ export default function MasaPage() {
       </div>
 
       {/* Exact dates for current year */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {isHi ? `${currentYear} की सटीक तिथियाँ` : `Exact Dates for ${currentYear}`}
         </h3>
@@ -220,7 +220,7 @@ export default function MasaPage() {
         <div className="space-y-4">
           {MONTHS_DETAIL.map((m, i) => (
             <motion.div key={m.n} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/10">
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
               <div className="flex items-start gap-4 mb-3">
                 <div className="w-10 h-10 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-gold-primary font-bold text-sm shrink-0">{m.n}</div>
                 <div>
@@ -239,7 +239,7 @@ export default function MasaPage() {
       </div>
 
       {/* Six Ritus */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {isHi ? 'षड् ऋतु — छह ऋतुएं' : 'Shad Ritu — The Six Seasons'}
         </h3>

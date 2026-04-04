@@ -201,7 +201,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
       <div className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
 
       {/* Modal */}
-      <div className="relative z-10 w-full max-w-md bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border border-gold-primary/20">
+      <div className="relative z-10 w-full max-w-md bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8">
         <h2
           className="text-2xl font-bold text-gold-gradient mb-2"
           style={{ fontFamily: 'var(--font-heading)' }}

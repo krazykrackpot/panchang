@@ -160,7 +160,7 @@ export default function TransitGuidePage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {houseData.map(h => (
                   <motion.div key={h.house} whileHover={{ scale: 1.015 }}
-                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-white/5 hover:border-gold-primary/20 transition-colors"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/20 transition-colors"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <span className="text-sm font-bold" style={{ color: activeTab.color }}>

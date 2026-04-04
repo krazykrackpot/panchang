@@ -136,7 +136,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Sun and Moon each rule ONE sign (Leo and Cancer respectively). The remaining 5 planets — Mercury, Venus, Mars, Jupiter, Saturn — each rule TWO signs, one odd-numbered and one even-numbered. Rahu and Ketu, being shadow planets (mathematical points where the Moon&apos;s orbit crosses the ecliptic), do NOT own any sign in the classical Parashari system.</p>
       </section>
 
-      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
         <table className="w-full text-xs">
           <thead><tr className="border-b border-gold-primary/15">
             <th className="text-left py-2 px-2 text-gold-dark">Planet</th>
@@ -156,7 +156,7 @@ function Page1() {
         </table>
       </div>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The Symmetric Pattern</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">The lordship pattern is beautifully symmetric around the Leo-Cancer axis (the two luminary signs). Moving outward from this center:</p>
         <div className="p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10 font-mono text-xs text-text-secondary space-y-1">
@@ -167,7 +167,7 @@ function Page1() {
         <p className="text-text-secondary text-xs mt-3 leading-relaxed">This mirrors the solar system: Mercury (closest planet) rules signs adjacent to the luminaries. Saturn (farthest visible planet) rules the outermost signs. The ancients encoded the structure of the solar system into the zodiac.</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
+      <section className="glass-card rounded-xl p-5 border border-purple-500/15">
         <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-3">Rahu &amp; Ketu — No Ownership, But Affinity</h4>
         <p className="text-text-secondary text-sm leading-relaxed">While Rahu and Ketu do not own signs in classical Parashara, they have sign affinities used by some practitioners: Rahu has affinity with Aquarius (Saturn&apos;s sign, where Rahu behaves like Saturn) and some consider Virgo. Ketu has affinity with Scorpio (Mars&apos;s sign, where Ketu behaves like Mars) and some consider Pisces. These are NOT ownership — just behavioral similarity. In chart analysis, Rahu/Ketu give results based on their sign lord, star lord, and conjunctions.</p>
       </section>
@@ -186,7 +186,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">The hierarchy of planetary dignity, from strongest to weakest: Exaltation &gt; Moolatrikona &gt; Own Sign &gt; Friendly Sign &gt; Neutral Sign &gt; Enemy Sign &gt; Debilitation. A planet in Moolatrikona gives excellent results — reliable, productive, and authoritative.</p>
       </section>
 
-      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+      <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
         <table className="w-full text-xs">
           <thead><tr className="border-b border-gold-primary/15">
             <th className="text-left py-2 px-2 text-gold-dark">Planet</th>
@@ -206,7 +206,7 @@ function Page2() {
         </table>
       </div>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
+      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-300 text-[10px] uppercase tracking-widest font-bold mb-3">Key Observations</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-gold-light font-medium">Mercury&apos;s narrow range:</span> Only 5° of Moolatrikona (Virgo 15°-20°). This reflects Mercury&apos;s nature — it&apos;s the most adaptable planet, comfortable almost everywhere, so its &quot;peak zone&quot; is very focused.</p>
@@ -215,7 +215,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Dignity Hierarchy — Complete Ranking</h4>
         <div className="space-y-1 text-text-secondary text-xs font-mono">
           <p><span className="text-emerald-400">1. Exaltation (Uchcha)</span> — Peak power, maximum dignity</p>
@@ -241,7 +241,7 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">This is arguably the single most important concept in Vedic astrology. Once you understand it, everything else falls into place. The principle is simple but profound:</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/30 ring-1 ring-gold-primary/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 ring-1 ring-gold-primary/15">
         <p className="text-gold-light text-sm font-bold leading-relaxed text-center">
           &quot;The SIGN on a house cusp determines the LORD of that house. The lord&apos;s condition (sign, house, aspects, conjunctions) determines the OUTCOME of that house&apos;s affairs.&quot;
         </p>
@@ -251,7 +251,7 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">For example: If Aries is on the 5th house cusp, then Mars (lord of Aries) becomes the &quot;5th lord.&quot; The 5th house governs children, education, creativity, intelligence, and past-life merit. To predict 5th house outcomes, you analyze Mars: What sign is Mars in? (dignity) What house is Mars in? (area of life activated) What planets aspect Mars? (influences) What planets conjoin Mars? (modification) Is Mars retrograde, combust, or in planetary war? (condition)</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-4 text-text-secondary text-xs leading-relaxed">
           <div>
@@ -269,7 +269,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Why This Matters — The Core Algorithm</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every prediction in Vedic astrology follows this algorithm:</p>
         <div className="space-y-1 text-text-secondary text-xs font-mono">
@@ -285,7 +285,7 @@ function Page3() {
         <p className="text-text-secondary text-xs mt-3 leading-relaxed">This is why the lordship table is not just a reference — it is THE fundamental lookup that drives ALL Vedic chart interpretation. Our app&apos;s Tippanni (interpretive commentary) follows exactly this algorithm for every house in your chart.</p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Planets IN a house are more important than the house lord.&apos;</span><br />
@@ -295,7 +295,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Dig Bala — Directional Strength</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">Each planet gains maximum directional strength (Dig Bala) in a specific house:</p>
         <div className="grid grid-cols-2 gap-2 text-xs text-text-secondary mt-2">

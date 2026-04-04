@@ -210,7 +210,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'जब प्रश्न अपरिहार्य हो' : 'When Prashna Is Indispensable'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Prashna becomes essential in several scenarios: (1) Birth time is unknown or unreliable — a vast number of people, especially in older generations, do not have exact birth times. (2) A specific urgent question demands an immediate answer — &quot;Will this business deal succeed?&quot; &quot;Is the missing person safe?&quot; &quot;Will I get the visa?&quot; (3) Cross-verification — a skilled astrologer uses Prashna to verify findings from the natal chart. If the Prashna chart aligns with natal predictions, confidence in the reading is greatly increased. Prashna is not a replacement for natal astrology but a powerful complement.
@@ -244,7 +244,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: &quot;क्या मुझे नौकरी मिलेगी?&quot;' : 'Worked Example: &quot;Will I Get the Job?&quot;'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -257,7 +257,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न में चेतावनी संकेत' : 'Red Flags in Prashna'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Several configurations warn against a favorable outcome: Moon void of course (no result), Moon in 6th, 8th, or 12th house (obstacles, hidden enemies, losses), malefics in the Lagna (querent faces hardship), the 7th lord stronger than the 1st lord (the other party dominates). Combustion of key significators (too close to the Sun) is also negative — the matter is &quot;burnt up&quot; or obscured. If the Lagna is in the last degrees of a sign (Gandanta or sandhya), the chart itself may be unreadable.
@@ -285,7 +285,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न के लिए आदर्श समय' : 'Ideal Times for Prashna'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Classical texts recommend specific auspicious times for Prashna: Brahma Muhurta (approximately 1.5 hours before sunrise) is considered the most sattvic and spiritually clear time — the mind is fresh, worldly distractions are minimal, and the cosmic field is receptive. Abhijit Muhurta (the 8th muhurta of the day, approximately 24 minutes around solar noon) is another powerful window — it is ruled by Vishnu and is considered universally auspicious. Avoid asking questions during Rahu Kalam, Yamagandam, or Gulika Kalam.
@@ -295,7 +295,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'स्वयं आज़माएँ' : 'Try It Yourself'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our Prashna tool generates a chart for the current moment, analyzing the Lagna, Moon condition, and house lords to provide guidance on your question. The Ashtamangala Prashna tool adds the eight-object symbolic layer — you provide three numbers and receive a combined chart + object analysis. Remember the sincerity principle: ask only when a genuine question weighs on your mind. The tools implement the classical rules of Prashna Marga and Krishneeya — two authoritative Kerala texts on horary astrology.

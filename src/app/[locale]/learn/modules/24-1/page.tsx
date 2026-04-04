@@ -469,7 +469,7 @@ export default function GandaMulaModule() {
 
       {/* Introduction */}
       <motion.section {...fadeInUp} className="my-10">
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border border-gold-primary/15" style={bf}>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8" style={bf}>
           <h2 className="text-2xl font-bold text-gold-light mb-4" style={hf}>
             {locale === 'en' ? 'What are Ganda Mula Nakshatras?' : 'गण्ड मूल नक्षत्र क्या हैं?'}
           </h2>
@@ -528,7 +528,7 @@ export default function GandaMulaModule() {
             viewport={{ once: true }}
             transition={{ delay: idx * 0.05 }}
           >
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl border border-gold-primary/15 overflow-hidden">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
               {/* Header */}
               <div className="px-6 py-4 bg-gold-primary/5 border-b border-gold-primary/10 flex items-center gap-4">
                 <NakshatraIconById id={nak.id} size={40} />
@@ -587,7 +587,7 @@ export default function GandaMulaModule() {
 
       {/* General remedies */}
       <motion.section {...fadeInUp} className="my-10">
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border border-gold-primary/15" style={bf}>
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8" style={bf}>
           <h2 className="text-2xl font-bold text-gold-light mb-4" style={hf}>
             {locale === 'en' ? 'General Ganda Mula Shanti Vidhi' : 'सामान्य गण्ड मूल शान्ति विधि'}
           </h2>

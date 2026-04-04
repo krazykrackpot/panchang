@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The 8 Kutas at a Glance</h4>
         <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">1. Varna (1 pt)</span> — Spiritual/ego compatibility. Brahmin, Kshatriya, Vaishya, Shudra classification by nakshatra.</p>
@@ -218,7 +218,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Why Matching Alone Does Not Guarantee Success</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Ashta Kuta uses only the Moon nakshatra — it knows nothing about the 7th house, Venus strength, dasha alignment, or Navamsha compatibility. Think of it as checking blood group compatibility before surgery — necessary but not sufficient. Two people can score 34/36 yet have Mars afflicting each other&apos;s 7th houses, Venus debilitated in both charts, and misaligned Mahadasha periods. The Kuta score opens the door; the full chart analysis determines whether to walk through it.
@@ -246,7 +246,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Key Override Factors</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">7th House Lord Strength:</span> The 7th lord in a kendra or trikona in good dignity (own sign, exalted, or in a friendly sign) is the single strongest indicator of marital happiness. If both partners have strong 7th lords, the marriage has a solid foundation regardless of the Kuta score.
@@ -262,7 +262,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
+      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Case A — High Score, Troubled Marriage:</span> Groom&apos;s Moon in Rohini, Bride&apos;s Moon in Hasta. Kuta score: 30/36 (excellent). But: Groom has Saturn in 7th aspecting Venus, Mars in 8th (severe Mangal Dosha). Bride has 7th lord debilitated in 12th, Rahu-Ketu across 1-7 axis. Despite the stellar Kuta score, both charts independently show marital difficulty.
@@ -290,7 +290,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The 5-Step Process</h4>
         <div className="space-y-3 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Step 1 — Moon Nakshatra Identification:</span> From each person&apos;s birth chart, identify the exact Moon nakshatra and pada. This requires accurate birth time (at least within 2 hours for nakshatra accuracy, within 15 minutes for pada accuracy). The nakshatra pada also determines the Navamsha lagna, so precision matters.</p>
@@ -301,7 +301,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
+      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">When to Consult a Jyotishi vs. Relying on Automated Scoring</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Automated tools are sufficient when:</span> The score is clearly high (28+) with no Nadi or Bhakoot dosha, no Mangal Dosha mismatch, and both charts appear generally well-placed. In this case, the match is likely favorable and detailed analysis is confirmatory rather than diagnostic.
@@ -311,7 +311,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
+      <section className="glass-card rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Pitfalls</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The biggest modern pitfall is treating the Kuta score like a credit score — reducing a complex multi-dimensional assessment to a single number. Families sometimes reject excellent matches because the score is 22 instead of 28, while accepting problematic ones that happen to score 30. Remember: the 8 kutas use only the Moon nakshatra. They say nothing about the ascendant, planetary yogas, dasha periods, or the hundreds of other factors that shape a life. Use the Kuta score as a screening tool, not a verdict.

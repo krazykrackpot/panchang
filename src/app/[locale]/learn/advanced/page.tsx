@@ -207,7 +207,7 @@ export default function LearnAdvancedPage() {
             { item: locale === 'en' ? 'Flag' : 'ध्वज', meaning: locale === 'en' ? 'Victory, announcement' : 'विजय, घोषणा' },
             { item: locale === 'en' ? 'Fan' : 'व्यजन', meaning: locale === 'en' ? 'Royal service, comfort' : 'राजसेवा, सुविधा' },
           ].map((a) => (
-            <div key={a.item} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-purple-400/10">
+            <div key={a.item} className="glass-card rounded-lg p-3 border border-purple-400/10">
               <p className="text-purple-300 font-bold text-sm">{a.item}</p>
               <p className="text-text-secondary text-xs mt-1">{a.meaning}</p>
             </div>
@@ -312,7 +312,7 @@ export default function LearnAdvancedPage() {
               <Link
                 key={ml.href}
                 href={ml.href}
-                className="inline-block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg px-3 py-2 border border-blue-500/15 hover:border-blue-500/30 transition-colors text-xs text-blue-300"
+                className="inline-block glass-card rounded-lg px-3 py-2 border border-blue-500/15 hover:border-blue-500/30 transition-colors text-xs text-blue-300"
               >
                 {ml.label[locale]}
               </Link>
@@ -331,7 +331,7 @@ export default function LearnAdvancedPage() {
             >
               <Link
                 href={tool.link}
-                className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all"
+                className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/30 transition-all"
               >
                 <div className="text-sm font-semibold mb-1" style={{ color: tool.color }}>{tool.name[locale]}</div>
                 <p className="text-text-secondary text-xs">{tool.desc[locale]}</p>

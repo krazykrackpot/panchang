@@ -469,7 +469,7 @@ export default function LearnGrahasPage() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-semibold">{item.planet}</span>
@@ -530,7 +530,7 @@ export default function LearnGrahasPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-semibold">{upa.name[locale]}</span>
@@ -579,7 +579,7 @@ export default function LearnGrahasPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-gold-primary/10"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-3xl" style={{ color: g.color }}>{g.symbol}</span>

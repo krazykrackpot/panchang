@@ -85,7 +85,7 @@ export default function VaraPage() {
       </div>
 
       {/* The 5 Angas visual */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
         <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">{isHi ? 'पञ्चाङ्ग — पाँच अंग' : 'Panchanga — The Five Limbs'}</h3>
         <div className="flex flex-wrap justify-center gap-3">
           {[
@@ -105,7 +105,7 @@ export default function VaraPage() {
       </div>
 
       {/* ═══ India's Contribution: Why This Order? ═══ */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="glass-card rounded-2xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <h3 className="text-gold-gradient font-bold text-xl mb-4" style={headingFont}>
           {isHi ? 'भारत का योगदान: सप्ताह के दिनों का क्रम क्यों?' : "India's Gift to the World: Why This Weekday Order?"}
         </h3>
@@ -160,7 +160,7 @@ export default function VaraPage() {
 
           {/* Hora table for Saturday-Sunday showing the derivation */}
           <div className="overflow-x-auto mb-3">
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
               <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शनिवार की 24 होराएं' : "Saturday's 24 Horas"}</div>
               <div className="flex flex-wrap gap-1 text-[9px]">
                 {['Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma'].map((h, i) => (
@@ -189,7 +189,7 @@ export default function VaraPage() {
           </p>
 
           {/* Visual: the skip-3 derivation */}
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/15">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
             <div className="text-center space-y-2 text-xs">
               <div className="text-text-tertiary">{isHi ? 'कक्षीय क्रम:' : 'Orbital order:'} <span className="text-slate-300">Sa</span> <span className="text-yellow-400">Ju</span> <span className="text-red-400">Ma</span> <span className="text-amber-400">Su</span> <span className="text-pink-300">Ve</span> <span className="text-emerald-400">Me</span> <span className="text-blue-300">Mo</span> (repeat)</div>
               <div className="text-text-secondary">{isHi ? '3 छोड़कर पढ़ें:' : 'Read every 3rd:'}</div>
@@ -328,7 +328,7 @@ export default function VaraPage() {
       </div>
 
       {/* Vara in Muhurta */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-gold-primary/15">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light font-bold text-lg mb-3" style={headingFont}>
           {isHi ? 'मुहूर्त में वार का महत्व' : 'Vara in Muhurta Selection'}
         </h3>

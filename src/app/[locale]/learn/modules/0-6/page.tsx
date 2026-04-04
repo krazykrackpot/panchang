@@ -189,7 +189,7 @@ function Page1() {
   const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'यह बात आपको चौंका सकती है: आपके दादा-दादी जो भी हिन्दू कर्मकाण्ड करते हैं, उसके नीचे एक खगोलीय गणना चल रही है। जब आपकी माँ दिवाली पर सूर्यास्त में दीप जलाती हैं, वे कार्तिक अमावस्या पर सटीक सौर स्थिति चिह्नित कर रही हैं। जब पण्डित आपकी शादी की तारीख चुनता है, वह 7 खगोलीय मापदण्डों पर बहु-चर अनुकूलन समस्या हल कर रहा है। जब आप एकादशी का व्रत रखते हैं, आप एक विशिष्ट चन्द्र-सूर्य कोणीय सम्बन्ध पर प्रतिक्रिया दे रहे हैं। इनमें कुछ भी यादृच्छिक परम्परा नहीं है — यह व्यावहारिक खगोलशास्त्र है।'
@@ -208,7 +208,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'एकादशी व्रत (11वीं तिथि)' : 'Ekadashi Fasting (11th Tithi)'}
         </h4>
@@ -219,7 +219,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'आधुनिक कालजीवविज्ञान (chronobiology) — जैविक प्रक्रियाओं और समय चक्रों के सम्बन्ध का अध्ययन — ने 2017 में चिकित्सा/शरीरविज्ञान का नोबेल पुरस्कार जीता। शोधकर्ताओं (हॉल, रोसबैश, यंग) ने सिद्ध किया कि हर कोशिका में बाहरी चक्रों से समन्वित एक आणविक घड़ी है। एकादशी व्रत परम्परा मूलतः कहती है: "चन्द्र चक्र के इस विशिष्ट बिन्दु पर (120°-132° चन्द्र-सूर्य कोण), आपका पाचन तन्त्र भिन्न रूप से काम करता है — इसलिए उपवास करें।" यह विशिष्ट दावा चिकित्सकीय परीक्षणों में अपरीक्षित है, लेकिन ढाँचा — कि जैविक लय ब्रह्माण्डीय चक्रों से सम्बद्ध हैं — अब नोबेल पुरस्कार विजेता विज्ञान है।'
@@ -227,7 +227,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'पूर्णिमा पूजा' : 'Purnima (Full Moon) Worship'}
         </h4>
@@ -238,7 +238,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'अमावस्या तर्पण' : 'Amavasya (New Moon) Tarpana'}
         </h4>
@@ -249,7 +249,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -274,7 +274,7 @@ function Page2() {
         </h3>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'मंगलवार — मंगल-दिवस' : 'Tuesday — Mars-Day (Mangalavara)'}
         </h4>
@@ -285,7 +285,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'शनिवार — शनि-दिवस' : 'Saturday — Saturn-Day (Shanivara)'}
         </h4>
@@ -296,7 +296,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'सोचिए: आप पहले से बिना जाने ग्रह जागरूकता का अभ्यास करते हैं। आप "Monday blues" कहते हैं (Moon-day = भावनात्मक, चिन्तनशील)। आप "TGIF" कहते हैं क्योंकि Friday (Venus-day = शुक्रवार) हल्का, अधिक सामाजिक लगता है। "Saturday night" (Saturn-day = अनुशासन ढीला) में आप छुट्टी मनाते हैं। सप्ताह के दिनों के नाम बनाने वाली ग्रह होरा पद्धति ठीक वही होरा पद्धति है जो ज्योतिष में है। आप जीवन भर व्यावहारिक ज्योतिष करते रहे हैं — बस संस्कृत शब्द नहीं जानते थे।'
@@ -304,7 +304,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'विवाह मुहूर्त — मनमाना नहीं' : 'Marriage Muhurta — Not Arbitrary'}
         </h4>
@@ -315,7 +315,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'संकल्प — ब्रह्माण्डीय समय-चिह्न' : 'Sankalpa — A Cosmic Timestamp'}
         </h4>
@@ -326,7 +326,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -356,7 +356,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <div className="space-y-3">
           <p className="text-text-secondary text-sm leading-relaxed">
             {isHi
@@ -396,7 +396,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'ज्योतिष की सुन्दरता यह है: आपको भाग्य में विश्वास करने की आवश्यकता नहीं कि यह उपयोगी हो। पंचांग को एक सचेत दैनिक जाँच के रूप में उपयोग करें। अपनी कुण्डली को आत्म-चिन्तन के ढाँचे के रूप में। मुहूर्त को निर्णय-सहायता उपकरण के रूप में। संकल्प को किसी भी महत्त्वपूर्ण कार्य से पहले संकल्प-स्थापना के क्षण के रूप। खगोलीय गणनाएँ सटीक विज्ञान हैं। व्याख्या की परत सांस्कृतिक ज्ञान है। जो गूँजे वह लें, जो न गूँजे छोड़ दें — लेकिन कम से कम समझें कि आपके दादा-दादी क्या जानते थे, उसे खारिज करने से पहले।'
@@ -404,7 +404,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">
+      <section className="glass-card rounded-xl p-5 border border-emerald-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधार पूर्ण!' : 'Foundations Complete!'}
         </h4>

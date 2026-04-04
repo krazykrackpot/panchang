@@ -66,7 +66,7 @@ export default function HoroscopePage() {
                 {selectedSign && horoscopes[selectedSign] && (
                   <motion.div key={selectedSign}
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-                    className="bg-gradient-to-br from-\[#2d1b69\]/40 via-\[#1a1040\]/50 to-\[#0a0e27\] border border-gold-primary/12 rounded-2xl p-8 border border-gold-primary/20 max-w-3xl mx-auto">
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 max-w-3xl mx-auto">
                     <div className="flex items-center gap-4 mb-4">
                       <RashiIconById id={selectedSign} size={48} />
                       <div>

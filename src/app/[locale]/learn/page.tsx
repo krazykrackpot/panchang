@@ -372,7 +372,7 @@ export default function LearnPage() {
             { href: '/learn/labs/kp', title: { en: 'KP Sub-Lord Lookup', hi: 'केपी उप-स्वामी खोज', sa: 'केपी उपस्वामिखोजः' }, desc: { en: 'Degree → Sign Lord → Star Lord → Sub Lord', hi: 'अंश → राशि स्वामी → नक्षत्र स्वामी → उप-स्वामी', sa: 'अंशः → राशिस्वामी → नक्षत्रस्वामी → उपस्वामी' }, color: 'cyan' },
           ].map(lab => (
             <Link key={lab.href} href={lab.href}
-              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-${lab.color}-500/20 bg-${lab.color}-500/5 hover:border-${lab.color}-500/40 transition-all group`}>
+              className={`glass-card rounded-xl p-4 border border-${lab.color}-500/20 bg-${lab.color}-500/5 hover:border-${lab.color}-500/40 transition-all group`}>
               <h3 className={`text-${lab.color}-300 font-bold text-sm mb-1 group-hover:text-${lab.color}-200`} style={bf}>{lab.title[locale]}</h3>
               <p className="text-text-secondary/70 text-xs" style={bf}>{lab.desc[locale]}</p>
             </Link>

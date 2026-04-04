@@ -256,7 +256,7 @@ export default function JaiminiPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
             >
               <h4 className="text-gold-light font-semibold mb-1">{rd.type[locale]}</h4>
               <p className="text-text-secondary/60 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
@@ -347,7 +347,7 @@ export default function JaiminiPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 border border-gold-primary/10"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5"
             >
               <h4 className="text-gold-light font-semibold text-sm mb-2">{adv.name[locale]}</h4>
               <p className="text-text-secondary text-sm leading-relaxed">{adv.desc[locale]}</p>

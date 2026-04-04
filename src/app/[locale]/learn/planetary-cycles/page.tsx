@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { ChevronRight, Orbit, Clock, Target, Star, Eye, Telescope } from 'lucide-react';
+import { ChevronRight, Orbit, Clock, Target, Star, Eye, Telescope, Calculator } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 // ── Labels ──────────────────────────────────────────────────────
@@ -171,7 +171,7 @@ export default function PlanetaryCyclesPage() {
   const isHi = locale !== 'en';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = (L as Record<string, typeof L.en>)[locale] || L.en;
+  const l = (L as unknown as Record<string, typeof L.en>)[locale] || L.en;
 
   return (
     <div className="space-y-12">

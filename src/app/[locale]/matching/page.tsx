@@ -13,6 +13,7 @@ import {
   dateToJD, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber,
 } from '@/lib/ephem/astronomical';
+import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
@@ -384,6 +385,19 @@ export default function MatchingPage() {
                 <div className="text-text-secondary text-sm">{t('nadiDoshaDesc')}</div>
               </motion.div>
             )}
+
+            {/* Ashta Kuta Intro */}
+            <InfoBlock
+              id="matching-ashta-kuta"
+              title={locale === 'en' ? 'What is Ashta Kuta (8-Fold Compatibility)?' : 'अष्ट कूट (8-गुण मिलान) क्या है?'}
+              defaultOpen={true}
+            >
+              {locale === 'hi' ? (
+                <p>अष्ट कूट पद्धति 8 आयामों पर संगतता को अंकित करती है (अधिकतम 36 अंक): वर्ण (1 अंक) — आध्यात्मिक अनुकूलता, वश्य (2 अंक) — परस्पर आकर्षण, तारा (3 अंक) — नक्षत्र सामंजस्य, योनि (4 अंक) — शारीरिक अनुकूलता, ग्रह मैत्री (5 अंक) — मानसिक तालमेल, गण (6 अंक) — स्वभाव मिलान (देव/मनुष्य/राक्षस), भकूट (7 अंक) — समग्र समृद्धि, नाड़ी (8 अंक) — स्वास्थ्य व आनुवंशिक अनुकूलता (एक ही नाड़ी = गंभीर दोष)। 28+ = उत्तम, 18-27 = अच्छा, 18 से कम = चुनौतीपूर्ण। ये दिशानिर्देश हैं, फैसले नहीं — कम अंकों वाले कई सफल विवाह हुए हैं।</p>
+              ) : (
+                <p>The Ashta Kuta system scores compatibility on 8 dimensions (max 36 points): Varna (1pt) — spiritual compatibility, Vashya (2pts) — mutual attraction, Tara (3pts) — birth star harmony, Yoni (4pts) — physical compatibility, Graha Maitri (5pts) — mental wavelength, Gana (6pts) — temperament match (gentle/mixed/intense), Bhakoot (7pts) — overall prosperity, Nadi (8pts) — health and genetic compatibility (same Nadi = serious concern). 28+ = Excellent, 18–27 = Good, below 18 = Challenging. These are guidelines, not verdicts — many happy marriages have low scores.</p>
+              )}
+            </InfoBlock>
 
             {/* Kuta Breakdown */}
             <h2 className="text-3xl font-bold text-gold-gradient mb-8 text-center" style={headingFont}>

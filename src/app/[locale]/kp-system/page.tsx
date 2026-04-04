@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -97,6 +98,19 @@ export default function KPSystemPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
       </motion.div>
+
+      {/* KP Intro */}
+      <InfoBlock
+        id="kp-intro"
+        title={locale === 'en' ? 'What is the KP System?' : locale === 'hi' ? 'केपी पद्धति क्या है?' : 'केपी पद्धतिः किम्?'}
+        defaultOpen={false}
+      >
+        {locale === 'hi' ? (
+          <p>कृष्णमूर्ति पद्धति (KP) वैदिक ज्योतिष का एक आधुनिक परिष्करण है। यह प्रत्येक नक्षत्र को &apos;उप-स्वामी&apos; नामक 9 उपखंडों में विभाजित करता है, जिससे बहुत सटीक भविष्यवाणी संभव होती है। जहां पारंपरिक ज्योतिष कहता है &apos;करियर के लिए शुभ&apos;, वहीं KP बता सकता है &apos;15-22 मार्च के बीच पदोन्नति संभव।&apos; यह वैदिक सिद्धांतों के साथ प्लेसिडस भाव पद्धति का उपयोग करता है।</p>
+        ) : (
+          <p>Krishnamurti Paddhati (KP) is a modern refinement of Vedic astrology. It divides each nakshatra into 9 sub-divisions called &apos;sub-lords&apos;, giving much more precise predictions. While traditional astrology tells you &apos;good for career&apos;, KP can pinpoint &apos;promotion likely between March 15–22.&apos; It uses the Placidus house system with Vedic principles.</p>
+        )}
+      </InfoBlock>
 
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

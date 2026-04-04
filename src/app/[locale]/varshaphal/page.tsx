@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
@@ -135,6 +136,19 @@ export default function VarshaphalPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
       </motion.div>
+
+      {/* Varshaphal Intro */}
+      <InfoBlock
+        id="varshaphal-intro"
+        title={locale === 'en' ? 'What is Varshaphal (Annual Horoscope)?' : locale === 'hi' ? 'वर्षफल क्या है?' : 'वर्षफलम् किम्?'}
+        defaultOpen={false}
+      >
+        {locale === 'hi' ? (
+          <p>वर्षफल का अर्थ है &apos;वर्ष का फल&apos; — ताजिक पद्धति पर आधारित आपका वार्षिक कुण्डली फल। प्रत्येक वर्ष जब सूर्य अपनी जन्म-स्थिति पर लौटता है, उस ठीक क्षण की कुण्डली बनती है जो आने वाले 12 महीनों के विषय, चुनौतियां और अवसर दर्शाती है। मुख्य घटक: मुन्था (गतिशील भाग्य बिंदु), सहम (जीवन क्षेत्र के संवेदनशील बिंदु), और मुद्दा दशा (वार्षिक ग्रह अवधि)।</p>
+        ) : (
+          <p>Varshaphal means &apos;fruit of the year&apos; — your annual horoscope based on the Tajika system. A new chart is cast for the exact moment the Sun returns to its birth position each year, revealing themes, challenges, and opportunities for the coming 12 months. Key components: Muntha (progressed luck point), Sahams (sensitive life-area points), and Mudda Dasha (annual planetary periods).</p>
+        )}
+      </InfoBlock>
 
       {/* Birth form */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">

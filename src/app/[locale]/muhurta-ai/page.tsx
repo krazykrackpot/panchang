@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
@@ -168,6 +169,19 @@ export default function MuhurtaAIPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
       </motion.div>
+
+      {/* Muhurta Intro */}
+      <InfoBlock
+        id="muhurta-ai-intro"
+        title={locale === 'en' ? 'What is Muhurta?' : locale === 'hi' ? 'मुहूर्त क्या है?' : 'मुहूर्तम् किम्?'}
+        defaultOpen={false}
+      >
+        {locale === 'hi' ? (
+          <p>मुहूर्त सही समय चुनने का वैदिक विज्ञान है। जैसे सही मौसम में बोए गए बीज बेहतर उगते हैं, वैसे ही शुभ समय पर शुरू किए गए कार्य अधिक सफल होते हैं। हमारा AI प्रत्येक समय खंड को 0-100 के पैमाने पर अंकित करता है: तिथि गुण, नक्षत्र प्रकृति, योग शुभता, ग्रह होरा, चौघड़िया और वर्तमान गोचर।</p>
+        ) : (
+          <p>Muhurta is the Vedic science of choosing the right time. Just as seeds planted in the right season grow better, actions started at auspicious times succeed more easily. Our AI scores each time window (0–100) by combining: tithi quality, nakshatra nature, yoga auspiciousness, planetary hora, choghadiya, and current transits.</p>
+        )}
+      </InfoBlock>
 
       {/* Activity Grid */}
       <div className="mb-8">

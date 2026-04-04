@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
@@ -100,6 +101,19 @@ export default function ShraddhaPage() {
             : 'मृत्यु तिथि के आधार पर वार्षिक श्राद्ध तिथि की गणना करें'}
         </p>
       </motion.div>
+
+      {/* Shraddha Intro */}
+      <InfoBlock
+        id="shraddha-intro"
+        title={locale === 'en' ? 'What is Shraddha?' : 'श्राद्ध क्या है?'}
+        defaultOpen={true}
+      >
+        {locale === 'hi' ? (
+          <p>श्राद्ध वार्षिक अनुष्ठान है जिसमें मृत पूर्वजों को उनकी पुण्यतिथि पर — ग्रेगोरियन नहीं, हिन्दू चन्द्र तिथि के अनुसार — भोजन और प्रार्थना अर्पित की जाती है। यह सबसे महत्वपूर्ण कर्तव्यों में से एक है — माना जाता है कि इससे दिवंगत आत्मा को शांति मिलती है और परिवार को आशीर्वाद प्राप्त होता है। प्रतिवर्ष तिथि बदलती है क्योंकि यह मृत्यु की चन्द्र तिथि पर आधारित है।</p>
+        ) : (
+          <p>Shraddha is the annual ritual of offering food and prayers to deceased ancestors on the anniversary of their passing — by Hindu lunar calendar, not Gregorian date. It&apos;s one of the most important duties — believed to bring peace to the departed soul and blessings to the family. The date changes every year because it follows the lunar tithi of death.</p>
+        )}
+      </InfoBlock>
 
       {/* Input */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 mb-8">

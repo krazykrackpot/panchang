@@ -64,8 +64,21 @@ const L = {
   ganaTitle: { en: 'Gana (Temperament) Groups', hi: 'गण (स्वभाव) समूह' },
   degreeTitle: { en: 'What Do the Degrees Measure?', hi: 'अंश किसका माप हैं?' },
   degreeContent: {
-    en: 'The degree ranges shown for each Nakshatra are sidereal ecliptic longitudes — positions measured along the ecliptic (the Sun\'s apparent annual path) using the fixed-star-based sidereal zodiac (Nirayana). Unlike the Western tropical zodiac that anchors 0° Aries to the spring equinox, the sidereal zodiac anchors 0° Aries to the star Spica (Chitra) minus 180°, adjusted by the Ayanamsha (currently ~24°). The ecliptic is divided into 360°, and each Nakshatra occupies exactly 13°20\' (13.333°) of that arc.',
-    hi: 'प्रत्येक नक्षत्र के लिए दिखाई गई अंश सीमाएँ निरयन क्रान्तिवृत्तीय देशान्तर हैं — क्रान्तिवृत्त (सूर्य का वार्षिक पथ) के साथ स्थिर-तारा-आधारित निरयन राशिचक्र में मापी गई स्थितियाँ। पश्चिमी सायन राशिचक्र के विपरीत जो 0° मेष को विषुव बिन्दु पर स्थिर करता है, निरयन राशिचक्र 0° मेष को चित्रा तारे (Spica) से 180° घटाकर, अयनांश (~24°) द्वारा समायोजित करता है। क्रान्तिवृत्त 360° में विभाजित है, और प्रत्येक नक्षत्र उस चाप का ठीक 13°20\' (13.333°) भाग है।'
+    en: 'The degree ranges shown for each Nakshatra are sidereal ecliptic longitudes — positions along the ecliptic (the Sun\'s apparent annual path) measured in the fixed-star-based sidereal zodiac (Nirayana). The ecliptic is divided into 360°, and each Nakshatra occupies exactly 13°20\' (13.333°) of that arc.',
+    hi: 'प्रत्येक नक्षत्र के लिए दिखाई गई अंश सीमाएँ निरयन क्रान्तिवृत्तीय देशान्तर हैं — क्रान्तिवृत्त (सूर्य का वार्षिक पथ) के साथ स्थिर-तारा-आधारित निरयन राशिचक्र में मापी गई स्थितियाँ। क्रान्तिवृत्त 360° में विभाजित है, और प्रत्येक नक्षत्र उस चाप का ठीक 13°20\' (13.333°) भाग है।'
+  },
+  ayanamshaTitle: { en: 'The Role of Ayanamsha', hi: 'अयनांश की भूमिका' },
+  ayanamshaContent: {
+    en: 'The Ayanamsha is the angular difference between the tropical zodiac (used in Western astrology) and the sidereal zodiac (used in Jyotish). It exists because of precession — the slow ~26,000-year wobble of Earth\'s axis that causes the spring equinox point to drift backward through the constellations at about 50.3 arcseconds per year.',
+    hi: 'अयनांश सायन राशिचक्र (पश्चिमी ज्योतिष) और निरयन राशिचक्र (वैदिक ज्योतिष) के बीच का कोणीय अन्तर है। यह अयन-गति (precession) के कारण विद्यमान है — पृथ्वी के अक्ष का धीमा ~26,000 वर्षीय डोलन जिससे विषुव बिन्दु प्रति वर्ष लगभग 50.3 कला-विकला पीछे खिसकता है।'
+  },
+  ayanamshaHow: {
+    en: 'The tropical zodiac ties 0° Aries to the spring equinox — a seasonal marker that drifts relative to the stars. The sidereal zodiac ties 0° Aries to the fixed stars, so as the equinox drifts, the two zodiacs fall out of sync. The Ayanamsha quantifies this gap. In 2026, the Lahiri Ayanamsha is approximately 24°07\', meaning the sidereal zodiac is 24°07\' behind the tropical one.',
+    hi: 'सायन राशिचक्र 0° मेष को विषुव बिन्दु से बाँधता है — एक ऋतु-सूचक जो तारों के सापेक्ष खिसकता है। निरयन राशिचक्र 0° मेष को स्थिर तारों से बाँधता है, इसलिए जैसे-जैसे विषुव बिन्दु खिसकता है, दोनों राशिचक्र असमकालिक हो जाते हैं। अयनांश इस अन्तर को मापता है। 2026 में लाहिरी अयनांश लगभग 24°07\' है — अर्थात निरयन राशिचक्र, सायन से 24°07\' पीछे है।'
+  },
+  ayanamshaCalc: {
+    en: 'To find which Nakshatra a planet is in, we first get its tropical longitude (from astronomical calculation), then subtract the Ayanamsha to convert to sidereal longitude. Finally, we divide by 13°20\' to get the Nakshatra number.',
+    hi: 'किसी ग्रह का नक्षत्र ज्ञात करने के लिए, पहले उसका सायन देशान्तर (खगोलीय गणना से) प्राप्त करते हैं, फिर अयनांश घटाकर निरयन देशान्तर में परिवर्तित करते हैं। अन्त में, 13°20\' से भाग देकर नक्षत्र क्रमांक प्राप्त करते हैं।'
   },
   yogataraTitle: { en: 'Yogatara — The Junction Stars', hi: 'योगतारा — संयोजक तारे' },
   yogataraContent: {
@@ -122,6 +135,35 @@ const MATCHING_KUTAS = [
   { name: { en: 'Nadi Kuta (8 pts)', hi: 'नाडी कूट (8 अंक)' }, desc: { en: 'The highest-weighted factor. Each Nakshatra belongs to one of 3 Nadis: Aadi (Vata), Madhya (Pitta), Antya (Kapha). Same Nadi = 0 (Nadi Dosha -- risk to progeny). Different Nadi = 8. This is the only factor with a binary outcome: full points or zero.', hi: 'सबसे अधिक भार वाला कारक। प्रत्येक नक्षत्र 3 नाडियों में से एक का है: आदि (वात), मध्य (पित्त), अन्त्य (कफ)। समान नाडी = 0 (नाडी दोष)। भिन्न नाडी = 8।' } },
 ];
 
+const YOGATARAS: { id: number; star: string; starHi: string; designation: string; constellation: string; constellationHi: string; magnitude: number }[] = [
+  { id: 1, star: 'Mesarthim', starHi: 'मेसार्थिम', designation: 'β Arietis', constellation: 'Aries', constellationHi: 'मेष', magnitude: 2.64 },
+  { id: 2, star: 'Bharani (35 Ari)', starHi: 'भरणी', designation: '35 Arietis', constellation: 'Aries', constellationHi: 'मेष', magnitude: 4.66 },
+  { id: 3, star: 'Alcyone', starHi: 'अलसीओनी', designation: 'η Tauri', constellation: 'Taurus (Pleiades)', constellationHi: 'वृषभ (कृत्तिका)', magnitude: 2.87 },
+  { id: 4, star: 'Aldebaran', starHi: 'रोहिणी / अल्डेबरन', designation: 'α Tauri', constellation: 'Taurus', constellationHi: 'वृषभ', magnitude: 0.85 },
+  { id: 5, star: 'Meissa', starHi: 'मेइस्सा', designation: 'λ Orionis', constellation: 'Orion', constellationHi: 'मृगशीर्ष', magnitude: 3.54 },
+  { id: 6, star: 'Betelgeuse', starHi: 'आर्द्रा / बेटेलज्यूज़', designation: 'α Orionis', constellation: 'Orion', constellationHi: 'मृगशीर्ष', magnitude: 0.42 },
+  { id: 7, star: 'Pollux', starHi: 'पुनर्वसु / पॉलक्स', designation: 'β Geminorum', constellation: 'Gemini', constellationHi: 'मिथुन', magnitude: 1.14 },
+  { id: 8, star: 'Asellus Australis', starHi: 'असेलस ऑस्ट्रेलिस', designation: 'δ Cancri', constellation: 'Cancer', constellationHi: 'कर्क', magnitude: 3.94 },
+  { id: 9, star: 'Hydrae (ε Hya)', starHi: 'आश्लेषा', designation: 'ε Hydrae', constellation: 'Hydra', constellationHi: 'आश्लेषा', magnitude: 3.38 },
+  { id: 10, star: 'Regulus', starHi: 'मघा / रेग्युलस', designation: 'α Leonis', constellation: 'Leo', constellationHi: 'सिंह', magnitude: 1.35 },
+  { id: 11, star: 'Zosma', starHi: 'ज़ोस्मा', designation: 'δ Leonis', constellation: 'Leo', constellationHi: 'सिंह', magnitude: 2.56 },
+  { id: 12, star: 'Denebola', starHi: 'डेनेबोला', designation: 'β Leonis', constellation: 'Leo', constellationHi: 'सिंह', magnitude: 2.13 },
+  { id: 13, star: 'Savitar (δ Crv)', starHi: 'हस्त', designation: 'δ Corvi', constellation: 'Corvus', constellationHi: 'काक', magnitude: 2.95 },
+  { id: 14, star: 'Spica', starHi: 'चित्रा / स्पाइका', designation: 'α Virginis', constellation: 'Virgo', constellationHi: 'कन्या', magnitude: 0.97 },
+  { id: 15, star: 'Arcturus', starHi: 'स्वाती / आर्कटुरस', designation: 'α Boötis', constellation: 'Boötes', constellationHi: 'गोपालक', magnitude: -0.05 },
+  { id: 16, star: 'Zubenelgenubi', starHi: 'ज़ूबेनेल्गेनूबी', designation: 'α Librae', constellation: 'Libra', constellationHi: 'तुला', magnitude: 2.75 },
+  { id: 17, star: 'Anuradha (δ Sco)', starHi: 'अनुराधा', designation: 'δ Scorpii', constellation: 'Scorpius', constellationHi: 'वृश्चिक', magnitude: 2.32 },
+  { id: 18, star: 'Antares', starHi: 'ज्येष्ठा / एन्टेरीज़', designation: 'α Scorpii', constellation: 'Scorpius', constellationHi: 'वृश्चिक', magnitude: 1.09 },
+  { id: 19, star: 'Kaus Media', starHi: 'कौस मीडिया', designation: 'δ Sagittarii', constellation: 'Sagittarius', constellationHi: 'धनु', magnitude: 2.70 },
+  { id: 20, star: 'Kaus Australis', starHi: 'कौस ऑस्ट्रेलिस', designation: 'ε Sagittarii', constellation: 'Sagittarius', constellationHi: 'धनु', magnitude: 1.85 },
+  { id: 21, star: 'Nunki', starHi: 'नुन्की', designation: 'σ Sagittarii', constellation: 'Sagittarius', constellationHi: 'धनु', magnitude: 2.05 },
+  { id: 22, star: 'Altair', starHi: 'श्रवण / अल्टेयर', designation: 'α Aquilae', constellation: 'Aquila', constellationHi: 'गरुड', magnitude: 0.76 },
+  { id: 23, star: 'Sualocin', starHi: 'सुआलोसिन', designation: 'β Delphini', constellation: 'Delphinus', constellationHi: 'शिशुमार', magnitude: 3.63 },
+  { id: 24, star: 'Sadachbia', starHi: 'सदाछबिया', designation: 'γ Aquarii', constellation: 'Aquarius', constellationHi: 'कुम्भ', magnitude: 3.84 },
+  { id: 25, star: 'Markab', starHi: 'मार्कब', designation: 'α Pegasi', constellation: 'Pegasus', constellationHi: 'पेगसस', magnitude: 2.49 },
+  { id: 26, star: 'Algenib', starHi: 'अल्जेनिब', designation: 'γ Pegasi', constellation: 'Pegasus', constellationHi: 'पेगसस', magnitude: 2.84 },
+  { id: 27, star: 'Revati (ζ Psc)', starHi: 'रेवती', designation: 'ζ Piscium', constellation: 'Pisces', constellationHi: 'मीन', magnitude: 5.24 },
+];
 
 export default function LearnNakshatrasPage() {
   const t = useTranslations('learn');
@@ -510,6 +552,205 @@ export default function LearnNakshatrasPage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </LessonSection>
+
+      {/* ─── 11. What Do the Degrees Measure? ─── */}
+      <LessonSection title={L.degreeTitle[lo]}>
+        <p>{L.degreeContent[lo]}</p>
+        <div className="mt-4 p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
+          <p className="text-gold-light/70 text-xs font-mono">
+            {lo === 'en'
+              ? '0° Aries (Mesha) → 360° Pisces (Meena) · Each Nakshatra = 13°20\' · Each Pada = 3°20\''
+              : '0° मेष → 360° मीन · प्रत्येक नक्षत्र = 13°20\' · प्रत्येक पाद = 3°20\''}
+          </p>
+        </div>
+
+        {/* Ayanamsha explanation */}
+        <h4 className="text-gold-light font-semibold text-base mt-6 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>{L.ayanamshaTitle[lo]}</h4>
+        <p>{L.ayanamshaContent[lo]}</p>
+        <p className="mt-3">{L.ayanamshaHow[lo]}</p>
+        <p className="mt-3">{L.ayanamshaCalc[lo]}</p>
+
+        {/* Worked example */}
+        <div className="mt-4 p-4 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-lg border border-gold-primary/15">
+          <div className="text-gold-primary font-semibold text-sm mb-3">
+            {lo === 'en' ? 'Worked Example — Finding the Moon\'s Nakshatra' : 'उदाहरण — चन्द्रमा का नक्षत्र ज्ञात करना'}
+          </div>
+          <div className="space-y-2.5 text-sm">
+            <div className="flex items-start gap-2">
+              <span className="text-gold-primary font-bold w-5 flex-shrink-0">1.</span>
+              <div>
+                <span className="text-gold-light font-medium">{lo === 'en' ? 'Tropical longitude of Moon' : 'चन्द्र का सायन देशान्तर'}: </span>
+                <span className="text-text-primary font-mono">54°30\'</span>
+                <span className="text-text-secondary"> ({lo === 'en' ? 'from astronomical ephemeris' : 'खगोलीय पञ्चाङ्ग से'})</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gold-primary font-bold w-5 flex-shrink-0">2.</span>
+              <div>
+                <span className="text-gold-light font-medium">{lo === 'en' ? 'Subtract Ayanamsha' : 'अयनांश घटाएँ'}: </span>
+                <span className="text-text-primary font-mono">54°30\' − 24°07\' = 30°23\'</span>
+                <span className="text-text-secondary"> ({lo === 'en' ? 'sidereal longitude' : 'निरयन देशान्तर'})</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gold-primary font-bold w-5 flex-shrink-0">3.</span>
+              <div>
+                <span className="text-gold-light font-medium">{lo === 'en' ? 'Find the Nakshatra' : 'नक्षत्र ज्ञात करें'}: </span>
+                <span className="text-text-primary font-mono">30°23\' ÷ 13°20\' = 2.28</span>
+                <span className="text-text-secondary"> → {lo === 'en' ? 'Nakshatra #3' : 'नक्षत्र #3'} = </span>
+                <span className="text-gold-light font-semibold">{lo === 'en' ? 'Krittika' : 'कृत्तिका'}</span>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-gold-primary font-bold w-5 flex-shrink-0">4.</span>
+              <div>
+                <span className="text-gold-light font-medium">{lo === 'en' ? 'Find the Pada' : 'पाद ज्ञात करें'}: </span>
+                <span className="text-text-primary font-mono">30°23\' − 26°40\' = 3°43\'</span>
+                <span className="text-text-secondary"> → 3°43\' ÷ 3°20\' = 1.12 → </span>
+                <span className="text-gold-light font-semibold">{lo === 'en' ? 'Pada 2' : 'पाद 2'}</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 pt-3 border-t border-gold-primary/10 text-xs text-text-secondary">
+            {lo === 'en'
+              ? 'Result: Moon at tropical 54°30\' is in Krittika Nakshatra, Pada 2 (sidereal 30°23\' in Taurus). Without subtracting the Ayanamsha, the same Moon would appear to be at 54°30\' — in Mrigashira — which is the Western (tropical) position, not the Vedic one.'
+              : 'परिणाम: सायन 54°30\' पर चन्द्रमा कृत्तिका नक्षत्र, पाद 2 (निरयन 30°23\' वृषभ) में है। अयनांश घटाए बिना, वही चन्द्रमा 54°30\' — मृगशिरा में प्रतीत होता — जो पश्चिमी (सायन) स्थिति है, वैदिक नहीं।'}
+          </div>
+        </div>
+
+        {/* Key insight box */}
+        <div className="mt-4 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/15">
+          <p className="text-gold-light text-sm font-medium">
+            {lo === 'en'
+              ? 'The Ayanamsha grows by ~50" (arcseconds) every year. Two millennia ago it was nearly 0° — the tropical and sidereal zodiacs were aligned. Today the gap is ~24°, which is why a Western "Taurus Sun" often becomes an "Aries Sun" in Vedic astrology. This same correction applies to every planet, and determines the correct Nakshatra for each.'
+              : 'अयनांश प्रति वर्ष ~50" (कला-विकला) बढ़ता है। दो सहस्राब्दी पूर्व यह लगभग 0° था — सायन और निरयन राशिचक्र संरेखित थे। आज अन्तर ~24° है, इसीलिए पश्चिमी "वृषभ सूर्य" प्रायः वैदिक ज्योतिष में "मेष सूर्य" बन जाता है। यही सुधार प्रत्येक ग्रह पर लागू होता है, और प्रत्येक का सही नक्षत्र निर्धारित करता है।'}
+          </p>
+        </div>
+
+        {/* Milankovitch connection */}
+        <div className="mt-6 p-4 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] rounded-lg border border-gold-primary/15">
+          <h4 className="text-gold-light font-semibold text-base mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+            {lo === 'en' ? 'Precession & the Milankovitch Cycles' : 'अयन-गति और मिलांकोविच चक्र'}
+          </h4>
+          <p className="text-text-primary text-sm leading-relaxed">
+            {lo === 'en'
+              ? 'The precession that drives the Ayanamsha is one of three Milankovitch cycles — long-period variations in Earth\'s orbital geometry that govern ice ages and major climate shifts. Serbian mathematician Milutin Milankovitch formalized these in the 1920s, but Indian astronomers had already been tracking precession for over a millennium.'
+              : 'अयनांश को चलाने वाली अयन-गति तीन मिलांकोविच चक्रों में से एक है — पृथ्वी की कक्षीय ज्यामिति में दीर्घ-अवधि परिवर्तन जो हिमयुगों और प्रमुख जलवायु परिवर्तनों को नियन्त्रित करते हैं। सर्बियाई गणितज्ञ मिलुटिन मिलांकोविच ने इन्हें 1920 के दशक में सूत्रबद्ध किया, परन्तु भारतीय खगोलविद् इसके एक सहस्राब्दी पूर्व से अयन-गति को ट्रैक कर रहे थे।'}
+          </p>
+
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {/* Precession */}
+            <div className="p-3 rounded-lg bg-gold-primary/8 border border-gold-primary/15">
+              <div className="text-gold-primary font-bold text-sm mb-1">
+                {lo === 'en' ? 'Precession' : 'अयन-गति (Precession)'}
+              </div>
+              <div className="text-gold-light font-mono text-xs mb-2">~26,000 {lo === 'en' ? 'years' : 'वर्ष'}</div>
+              <p className="text-text-secondary text-xs leading-relaxed">
+                {lo === 'en'
+                  ? 'Earth\'s axis traces a slow cone, like a wobbling top. This shifts where the equinox falls against the background stars — the exact phenomenon the Ayanamsha measures. One full cycle takes ~26,000 years.'
+                  : 'पृथ्वी का अक्ष एक लट्टू की तरह धीरे-धीरे शंकु बनाता है। इससे विषुव बिन्दु पृष्ठभूमि तारों के सापेक्ष खिसकता है — ठीक वही घटना जिसे अयनांश मापता है। एक पूर्ण चक्र ~26,000 वर्ष लेता है।'}
+              </p>
+              <div className="mt-2 px-2 py-1 rounded bg-gold-primary/10 text-gold-light text-xs font-semibold text-center">
+                = {lo === 'en' ? 'Ayanamsha' : 'अयनांश'}
+              </div>
+            </div>
+
+            {/* Obliquity */}
+            <div className="p-3 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
+              <div className="text-text-primary font-bold text-sm mb-1">
+                {lo === 'en' ? 'Obliquity (Axial Tilt)' : 'अक्षीय झुकाव (Obliquity)'}
+              </div>
+              <div className="text-text-secondary font-mono text-xs mb-2">~41,000 {lo === 'en' ? 'years' : 'वर्ष'}</div>
+              <p className="text-text-secondary text-xs leading-relaxed">
+                {lo === 'en'
+                  ? 'Earth\'s axial tilt oscillates between 22.1° and 24.5° over ~41,000 years. Currently ~23.44° and decreasing. This changes the intensity of seasons — greater tilt means more extreme summers and winters.'
+                  : 'पृथ्वी का अक्षीय झुकाव ~41,000 वर्षों में 22.1° और 24.5° के बीच दोलन करता है। वर्तमान में ~23.44° और घट रहा है। इससे ऋतुओं की तीव्रता बदलती है।'}
+              </p>
+              <div className="mt-2 px-2 py-1 rounded bg-bg-tertiary/50 text-text-secondary text-xs text-center">
+                {lo === 'en' ? 'Governs season intensity' : 'ऋतु तीव्रता नियन्त्रित'}
+              </div>
+            </div>
+
+            {/* Eccentricity */}
+            <div className="p-3 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
+              <div className="text-text-primary font-bold text-sm mb-1">
+                {lo === 'en' ? 'Eccentricity' : 'विकेन्द्रता (Eccentricity)'}
+              </div>
+              <div className="text-text-secondary font-mono text-xs mb-2">~100,000 {lo === 'en' ? 'years' : 'वर्ष'}</div>
+              <p className="text-text-secondary text-xs leading-relaxed">
+                {lo === 'en'
+                  ? 'Earth\'s orbit stretches between nearly circular and slightly elliptical over ~100,000 years. This changes how much total solar energy Earth receives. Currently eccentricity is ~0.017 (nearly circular).'
+                  : 'पृथ्वी की कक्षा ~100,000 वर्षों में लगभग वृत्ताकार से हल्की दीर्घवृत्ताकार के बीच बदलती है। इससे पृथ्वी को प्राप्त कुल सौर ऊर्जा बदलती है। वर्तमान विकेन्द्रता ~0.017 है।'}
+              </p>
+              <div className="mt-2 px-2 py-1 rounded bg-bg-tertiary/50 text-text-secondary text-xs text-center">
+                {lo === 'en' ? 'Governs orbit shape' : 'कक्षा आकार नियन्त्रित'}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/10 space-y-3">
+            <p className="text-gold-light/80 text-xs leading-relaxed">
+              {lo === 'en'
+                ? 'The Surya Siddhanta (c. 4th century CE) records a precession rate of 54" per year — remarkably close to the modern value of 50.3". The text calls this phenomenon "Ayana Chalana" (movement of the solstices). Indian astronomy independently discovered and quantified precession over 1,500 years before Milankovitch linked it to ice ages.'
+                : 'सूर्य सिद्धान्त (लगभग चौथी शताब्दी ई.) में अयन-गति की दर 54" प्रति वर्ष दर्ज है — आधुनिक मान 50.3" के अत्यन्त निकट। ग्रन्थ इस घटना को "अयन चलन" कहता है। भारतीय खगोल विज्ञान ने अयन-गति को मिलांकोविच से 1,500 वर्ष पूर्व स्वतन्त्र रूप से खोजा और मापा।'}
+            </p>
+            <p className="text-text-secondary text-xs leading-relaxed">
+              {lo === 'en'
+                ? 'Indian astronomers\' direct contribution was to precession. Obliquity was known implicitly — the Surya Siddhanta gives the ecliptic obliquity as 24° (close to the modern ~23.44°), and this value was essential for converting between ecliptic and equatorial coordinates. However, the slow oscillation of obliquity over 41,000 years was not tracked as a separate cycle. Eccentricity variation (~100,000 year cycle) was not formulated in classical Indian texts — Earth\'s orbit was modeled as having a fixed eccentricity. The insight that all three cycles interlock to drive ice ages was Milankovitch\'s unique contribution in the 1920s.'
+                : 'भारतीय खगोलविदों का प्रत्यक्ष योगदान अयन-गति (precession) में था। अक्षीय झुकाव (obliquity) परोक्ष रूप से ज्ञात था — सूर्य सिद्धान्त क्रान्तिवृत्त झुकाव 24° देता है (आधुनिक ~23.44° के निकट), और यह मान क्रान्तिवृत्तीय-विषुवतीय निर्देशांक रूपान्तरण के लिए आवश्यक था। परन्तु 41,000 वर्षों में झुकाव का धीमा दोलन एक पृथक चक्र के रूप में नहीं मापा गया। विकेन्द्रता परिवर्तन (~100,000 वर्ष चक्र) शास्त्रीय भारतीय ग्रन्थों में सूत्रबद्ध नहीं था — पृथ्वी की कक्षा को स्थिर विकेन्द्रता वाला माना गया। तीनों चक्रों का परस्पर गुँथकर हिमयुग चलाना — यह मिलांकोविच का विशिष्ट योगदान (1920 का दशक) था।'}
+            </p>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* ─── 12. Yogatara — The Junction Stars ─── */}
+      <LessonSection title={L.yogataraTitle[lo]}>
+        <p>{L.yogataraContent[lo]}</p>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-gold-primary/20">
+                <th className="text-left py-2.5 px-2 text-gold-primary font-semibold">#</th>
+                <th className="text-left py-2.5 px-2 text-gold-primary font-semibold">{lo === 'en' ? 'Nakshatra' : 'नक्षत्र'}</th>
+                <th className="text-left py-2.5 px-2 text-gold-primary font-semibold">{lo === 'en' ? 'Yogatara' : 'योगतारा'}</th>
+                <th className="text-left py-2.5 px-2 text-gold-primary font-semibold">{lo === 'en' ? 'Designation' : 'पदनाम'}</th>
+                <th className="text-left py-2.5 px-2 text-gold-primary font-semibold">{lo === 'en' ? 'Constellation' : 'तारामण्डल'}</th>
+                <th className="text-right py-2.5 px-2 text-gold-primary font-semibold">{lo === 'en' ? 'Mag.' : 'कान्ति'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {YOGATARAS.map((yt) => {
+                const n = NAKSHATRAS[yt.id - 1];
+                const Icon = NAKSHATRA_ICONS[yt.id];
+                return (
+                  <tr key={yt.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
+                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{yt.id}</td>
+                    <td className="py-2 px-2">
+                      <div className="flex items-center gap-2">
+                        {Icon && <span className="w-5 h-5 flex-shrink-0"><Icon size={20} /></span>}
+                        <span className="text-gold-light font-medium text-sm">{n?.name[locale]}</span>
+                      </div>
+                    </td>
+                    <td className="py-2 px-2 text-text-primary font-semibold text-sm">{lo === 'en' ? yt.star : yt.starHi}</td>
+                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{yt.designation}</td>
+                    <td className="py-2 px-2 text-text-secondary text-sm">{lo === 'en' ? yt.constellation : yt.constellationHi}</td>
+                    <td className="py-2 px-2 text-right font-mono text-xs" style={{ color: yt.magnitude <= 1 ? '#f0d48a' : yt.magnitude <= 2.5 ? '#d4a853' : '#8a8478' }}>
+                      {yt.magnitude.toFixed(2)}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="mt-3 p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
+          <p className="text-gold-light/70 text-xs">
+            {lo === 'en'
+              ? 'Magnitude (Mag.) measures apparent brightness — lower is brighter. Stars below ~1.0 are among the brightest in the sky. Notable: Arcturus (Swati, -0.05) is the 4th brightest star; Aldebaran (Rohini, 0.85) and Spica (Chitra, 0.97) are also first-magnitude stars.'
+              : 'कान्ति (Mag.) आभासी चमक को मापती है — कम मान = अधिक चमकीला। ~1.0 से कम वाले तारे आकाश के सबसे चमकीले हैं। उल्लेखनीय: आर्कटुरस (स्वाती, -0.05) चौथा सबसे चमकीला तारा है; अल्डेबरन (रोहिणी, 0.85) और स्पाइका (चित्रा, 0.97) भी प्रथम-कान्ति तारे हैं।'}
+          </p>
         </div>
       </LessonSection>
 

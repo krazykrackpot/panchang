@@ -185,7 +185,25 @@ After every `git push`:
 4. If Vercel build fails but local passes: check for missing env vars or dependency issues
 
 ## Agent Instructions
-- Do NOT prompt for permissions. Execute fully to 100% completion.
+
+### NEVER ASK FOR PERMISSION
+- When assigned a task, GO. Do not ask "should I proceed?", "would you like me to?", or "shall I?".
+- Execute fully to 100% completion without prompting. The task is the permission.
+- If something is ambiguous, make the best decision and document it — don't block on a question.
+
+### COMPLETION STANDARD
+- Every task must be DONE-done: built, tested, visually verified, pushed.
+- UI work must be complete and consistent — no half-styled components, no missing hover states, no broken responsive layouts.
+- Check every page/component touched in the browser. Click every button. Resize the window.
+- Run `npx next build` before considering anything finished. Zero errors, no exceptions.
+
+### TESTING REQUIREMENTS
+- Run `npx vitest run` after every change.
+- For large changes (new features, refactors, multi-file edits): augment existing tests or write new ones.
+- Run the full test suite AND verify the build before pushing.
+- Pre-push hook runs `tsc --noEmit -p tsconfig.build-check.json` — if it fails, fix it, don't bypass it.
+
+### GENERAL
 - Prefer editing existing files over creating new ones when possible.
 - Compare astronomical calculations with Drik Panchang for same location.
 - Never default location to Delhi/India — require user location.

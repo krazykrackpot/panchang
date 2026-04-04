@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">The 97-Chapter Architecture</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">The 97-Chapter Architecture</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           BPHS is organized in a logical progression. Chapters 1-2 introduce the purpose of Jyotish. Chapter 3 defines Graha (planetary) properties. Chapter 4 describes Rashi (sign) nature. Chapters 5-11 cover subsidiary charts (Shadvarga, Saptavarga). Chapters 12-25 give house-by-house results. Chapters 26-33 handle special lagnas and strengths.
         </p>
@@ -213,7 +213,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">The Dialogue Format</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">The Dialogue Format</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Maitreya asks: &ldquo;O great sage, please describe the nature of the nine grahas.&rdquo; Parashara responds with systematic descriptions. This call-and-response structure is not merely literary — it signals topic transitions and marks when the text moves from one domain to another. When Maitreya says &ldquo;Please elaborate further,&rdquo; it indicates that the next section deepens the preceding topic. Understanding this structure helps modern readers navigate the text efficiently.
         </p>
@@ -239,7 +239,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Chapter Quick Reference</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Chapter Quick Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Ch. 3 — Graha Gunadhyaya:</span> Planetary nature, caste, element, direction, deity, relationships. The DNA of each planet.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Ch. 4 — Rashi Swarupadhyaya:</span> Sign characteristics, odd/even, movable/fixed/dual, body parts, directions.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Ch. 12-25 — Bhavaphaladhyaya:</span> Results for each house — the most consulted section for predictions.</p>
@@ -247,7 +247,7 @@ function Page2() {
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Ch. 46 — Dashadhyaya:</span> Vimshottari and other timing systems — the predictive backbone.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Pitfalls</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Pitfalls</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           BPHS verses are terse and sometimes ambiguous in Sanskrit. Different commentators interpret the same verse differently. For example, the definition of &ldquo;Yoga Karaka&rdquo; planet has subtle variations across translations. Always cross-reference multiple translations (Santhanam, Girish Chand Sharma, Ernst Wilhelm) before concluding a verse means a specific thing.
         </p>
@@ -273,7 +273,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Which Chapters to Start With</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Which Chapters to Start With</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Beginners:</span> Start with Chapter 3 (planets) and Chapter 4 (signs). Then read Chapters 12-13 (1st and 2nd house results). This gives you enough to begin reading charts.
         </p>
@@ -285,7 +285,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Text vs. Practice</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Text vs. Practice</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           There is always a gap between textual rules and practical interpretation. BPHS gives categorical statements — &ldquo;Sun in the 7th house causes late marriage&rdquo; — but experienced astrologers know these are tendencies modified by aspects, conjunctions, sign placement, and dasha timing. The text provides the grammar; chart reading provides the poetry. Our app bridges this gap by implementing the precise rules computationally while the tippanni module adds nuanced, context-aware interpretation.
         </p>

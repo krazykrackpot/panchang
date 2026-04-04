@@ -204,7 +204,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख योग श्रेणियाँ' : 'Major Yoga Categories'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख योग श्रेणियाँ' : 'Major Yoga Categories'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Raja Yogas (Power):</span> Formed by Kendra-Trikona lord combinations. These confer authority, leadership, social status, and influence. From political power to corporate leadership to spiritual authority — Raja Yogas elevate a person above the ordinary.
         </p>
@@ -238,7 +238,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'पाँच योग' : 'The Five Yogas'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'पाँच योग' : 'The Five Yogas'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1. Ruchaka (Mars):</span> The Warrior. Mars in Aries, Scorpio, or Capricorn in a Kendra. Produces courageous leaders, military commanders, athletes, surgeons. Physical strength, fearlessness, and commanding presence.
         </p>
@@ -257,7 +257,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'पूर्ण बल की शर्तें' : 'Conditions for Full Strength'}</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'पूर्ण बल की शर्तें' : 'Conditions for Full Strength'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           A Mahapurusha Yoga reaches full strength when: (1) the planet is not combust (too close to the Sun), (2) it is not aspected by or conjoined with malefics that weaken it, (3) it is not in retrograde motion (debatable — some texts consider retrogrades strengthening), and (4) the dasha of the yoga-forming planet activates during the native&apos;s productive years. A technically present but weakened Mahapurusha Yoga may manifest partially — the promise exists but delivery is diminished.
         </p>
@@ -282,7 +282,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख राज योग संयोग' : 'Key Raja Yoga Combinations'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख राज योग संयोग' : 'Key Raja Yoga Combinations'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1st + 5th lords:</span> Self-expression through creativity and intelligence. Success in education, speculation, and leadership through wisdom.
         </p>
@@ -307,7 +307,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सक्रियण सिद्धान्त' : 'Activation Principle'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सक्रियण सिद्धान्त' : 'Activation Principle'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           A Raja Yoga remains a latent promise until the Mahadasha or Antardasha of one of the yoga-forming planets arrives. A person with a powerful 9th+10th lord Raja Yoga born during an unrelated dasha (say, Mercury) may live an ordinary life until Jupiter or Saturn dasha begins (if those are the 9th and 10th lords). This is why timing (dasha analysis) is inseparable from yoga analysis — the chart shows WHAT is possible, the dasha shows WHEN it manifests.
         </p>

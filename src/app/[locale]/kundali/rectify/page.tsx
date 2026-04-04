@@ -188,7 +188,7 @@ export default function RectifyPage() {
                 <input type="number" min={0} max={23} value={approxHour} onChange={e => setApproxHour(+e.target.value)} className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 <input type="number" min={0} max={59} value={approxMin} onChange={e => setApproxMin(+e.target.value)} className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 <div>
-                  <label className="text-text-tertiary text-[10px]">{isHi ? 'अनिश्चितता (घंटे)' : 'Uncertainty (hrs)'}</label>
+                  <label className="text-text-tertiary text-xs">{isHi ? 'अनिश्चितता (घंटे)' : 'Uncertainty (hrs)'}</label>
                   <input type="number" min={1} max={6} value={uncertainty} onChange={e => setUncertainty(+e.target.value)} className="w-full px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-primary text-sm" />
                 </div>
               </div>

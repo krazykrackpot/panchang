@@ -443,9 +443,9 @@ export default function RegionalCalendarsPage() {
                         <div className={`text-sm font-bold ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
                           {month.name}
                         </div>
-                        <div className="text-text-secondary/40 text-[10px] mt-0.5">{month.approxGregorian}</div>
+                        <div className="text-text-secondary/40 text-xs mt-0.5">{month.approxGregorian}</div>
                         {isCurrent && (
-                          <div className="text-gold-primary text-[9px] font-bold mt-1 animate-pulse">
+                          <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
                             {locale === 'en' ? 'NOW' : 'अभी'}
                           </div>
                         )}

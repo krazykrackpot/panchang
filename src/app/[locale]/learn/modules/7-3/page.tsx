@@ -189,7 +189,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed">The Sanskrit names directly reflect planetary rulership: Ravivara (Ravi = Sun), Somavara (Soma = Moon), Mangalavara (Mangal = Mars), Budhavara (Budha = Mercury), Guruvara (Guru = Jupiter), Shukravara (Shukra = Venus), Shanivara (Shani = Saturn). Every European language encodes the same planetary assignments (e.g., Saturday = Saturn&apos;s day, Sunday = Sun&apos;s day).</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">The Hora system is described in Varahamihira&apos;s Brihat Jataka (6th century CE) and in the Surya Siddhanta. The word &quot;hora&quot; itself derives from the Greek &quot;hora&quot; (hour), pointing to the shared Greco-Indian astronomical heritage. BPHS discusses vara as one of the five essential Panchang limbs. The Muhurta Chintamani provides extensive tables of Vara-Nakshatra and Vara-Tithi combinations that create special yogas like Sarvartha Siddhi and Amrita Siddhi.</p>
       </section>
     </div>
@@ -208,7 +208,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed">Beyond the day-level vara, each hour within the day has its own hora ruler. The 24 horas cycle through the Chaldean sequence starting from the day&apos;s ruler. For fine-grained muhurta selection, practitioners check both the vara and the prevailing hora. A Jupiter hora on a Thursday is doubly auspicious; a Saturn hora on a Saturday intensifies Shani energy for better or worse.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 1 (Vara from JD):</span> JD = 2460400.5 (a specific date). floor(2460400.5 + 1.5) mod 7 = floor(2460402) mod 7 = 2460402 mod 7 = 0 (Monday). So this date is Somavara — a good day for travel and domestic matters.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 2 (Sarvartha Siddhi):</span> Date: Thursday, Nakshatra: Anuradha. Muhurta Chintamani lists Thursday + Anuradha as a Sarvartha Siddhi Yoga combination. This window is auspicious for virtually all activities — an &quot;all-purpose success&quot; window.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Example 3 (Hora selection):</span> It is Wednesday, and you need to sign a contract at 3 PM. Wednesday starts with Mercury hora at sunrise (~6 AM). Counting 9 horas forward (9 hours later = 3 PM) through the Chaldean sequence: Mercury → Moon → Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon. The 10th hour (3 PM) is Moon hora — favourable for agreements involving public-facing matters.</p>
@@ -229,13 +229,13 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed">Computing the vara is trivially simple: floor(JD + 1.5) mod 7, where 0 = Monday, 1 = Tuesday, and so on. This makes vara the easiest of the five Panchang elements to compute — no planetary position calculations needed, just modular arithmetic on the Julian Day Number. Despite its computational simplicity, vara carries significant weight in muhurta decisions and is never omitted from any Panchang listing.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &quot;Tuesday and Saturday are always bad.&quot; These days are inauspicious for gentle beginnings, but they are powerful for Mars-type and Saturn-type activities respectively. Surgery on Tuesday, discipline on Saturday — matching the day&apos;s energy to the action&apos;s nature is the correct approach.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Myth:</span> &quot;Vara alone determines whether a day is good or bad.&quot; Vara is just one of five Panchang limbs. A Thursday with Vyatipata yoga and Vishti karana is not automatically auspicious. The five elements must be evaluated together.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Myth:</span> &quot;The weekday order is arbitrary or culturally imposed.&quot; The sequence follows rigorously from the Hora system: 24 mod 7 = 3, producing the skip-two pattern in the Chaldean sequence. This mathematical derivation is shared across civilizations.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">Vara is universally present in every Panchang, calendar, and almanac. In our app, the vara is displayed prominently on the daily Panchang page, and the Muhurta AI engine uses Vara-Nakshatra and Vara-Tithi lookup tables to detect Sarvartha Siddhi and Amrita Siddhi windows. The planetary hora calculator provides hour-by-hour planetary rulership for any given day. Even people who do not follow Jyotish actively tend to respect vara traditions — avoiding travel on Tuesday, worshipping Shani on Saturday, and fasting on Thursday (for Jupiter blessings).</p>
       </section>
     </div>

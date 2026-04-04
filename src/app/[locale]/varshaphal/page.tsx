@@ -151,7 +151,7 @@ export default function VarshaphalPage() {
       </InfoBlock>
 
       {/* Birth form */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 mb-8">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {(['name', 'date', 'time'] as const).map(f => (
             <label key={f} className="block">
@@ -180,11 +180,11 @@ export default function VarshaphalPage() {
 
       <AnimatePresence>
         {data && (
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-4 sm:space-y-6 md:space-y-8">
             <GoldDivider />
 
             {/* Solar Return Moment + Age */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 text-center">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 text-center">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-2 font-bold">{t.solarReturn}</h2>
               <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN')}</p>
               <p className="text-text-secondary mt-2">{t.age}: <span className="text-gold-light font-bold">{data.age}</span></p>
@@ -202,7 +202,7 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Muntha */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.muntha}</h2>
               <div className="flex items-center gap-4">
                 <RashiIconById id={data.muntha.sign} size={40} />
@@ -214,7 +214,7 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Varsheshvara */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.varsheshvara}</h2>
               <div className="flex items-center gap-4">
                 <GrahaIconById id={data.varsheshvara.planetId} size={40} />
@@ -226,7 +226,7 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Sahams Table */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 overflow-x-auto">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.sahams}</h2>
               <table className="w-full text-sm">
                 <thead><tr className="text-text-secondary border-b border-gold-primary/10">
@@ -247,7 +247,7 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Tajika Yogas */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.tajikaYogas}</h2>
               <div className="grid gap-3">
                 {data.tajikaYogas.map((y, i) => (
@@ -266,14 +266,14 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Mudda Dasha Timeline */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 overflow-x-auto">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.muddaDasha}</h2>
               <div className="flex gap-1 mb-4">
                 {data.muddaDasha.map((d, i) => (
                   <div key={i} className="flex-1 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[80px]">
                     <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={24} />
                     <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{d.planetName[locale]}</p>
-                    <p className="text-text-secondary text-[10px]">{d.durationDays}d</p>
+                    <p className="text-text-secondary text-xs">{d.durationDays}d</p>
                   </div>
                 ))}
               </div>
@@ -296,7 +296,7 @@ export default function VarshaphalPage() {
             </div>
 
             {/* Year Summary */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.yearSummary}</h2>
               <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.yearSummary[locale]}</p>
             </div>

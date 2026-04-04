@@ -223,7 +223,7 @@ export default function SadeSatiPage() {
       : p === 'recommended' ? 'bg-gold-primary/20 text-gold-light border-gold-primary/30'
       : 'bg-blue-500/20 text-blue-400 border-blue-500/30';
     const label = p === 'essential' ? LABELS.essential : p === 'recommended' ? LABELS.recommended : LABELS.optional;
-    return <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${cls}`} style={bodyFont}>{t(label, locale)}</span>;
+    return <span className={`text-xs px-2 py-0.5 rounded-full font-bold border ${cls}`} style={bodyFont}>{t(label, locale)}</span>;
   };
 
   return (
@@ -309,7 +309,7 @@ export default function SadeSatiPage() {
                 }`}
               >
                 <div className="flex justify-center mb-1"><RashiIconById id={r.id} size={28} /></div>
-                <div className="text-gold-light text-[10px] font-bold" style={bodyFont}>{r.name[lk as keyof typeof r.name]}</div>
+                <div className="text-gold-light text-xs font-bold" style={bodyFont}>{r.name[lk as keyof typeof r.name]}</div>
               </button>
             ))}
           </div>
@@ -318,7 +318,7 @@ export default function SadeSatiPage() {
 
       {/* Full Mode — Birth Details Form */}
       {tab === 'full' && (
-        <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+        <motion.div {...fadeUp} className="max-w-lg mx-auto mb-12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-1" style={bodyFont}>{t(LABELS.date, locale)}</label>
@@ -363,7 +363,7 @@ export default function SadeSatiPage() {
 
             {/* 1. Status Banner */}
             {analysis.isActive ? (
-              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">
+              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">
                 <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.active, locale)}</div>
                 <div className="text-red-300 text-2xl font-bold mb-1" style={headingFont}>{analysis.cycleStart} — {analysis.cycleEnd}</div>
                 {analysis.currentPhase && (
@@ -379,11 +379,11 @@ export default function SadeSatiPage() {
                       className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     />
                   </div>
-                  <div className="text-text-secondary text-[10px] mt-1">{Math.min(100, Math.round(analysis.phaseProgress * 100))}%</div>
+                  <div className="text-text-secondary text-xs mt-1">{Math.min(100, Math.round(analysis.phaseProgress * 100))}%</div>
                 </div>
               </div>
             ) : (
-              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent text-center">
+              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent text-center">
                 <div className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.notActive, locale)}</div>
                 {analysis.allCycles.length > 0 && (() => {
                   const currentYear = new Date().getFullYear();
@@ -401,7 +401,7 @@ export default function SadeSatiPage() {
             {isFullMode && analysis.isActive && analysis.overallIntensity > 0 && (
               <motion.div {...fadeUp} transition={{ delay: 0.1 }} className="my-10">
                 <h2 className="text-3xl font-bold text-gold-gradient mb-6 text-center" style={headingFont}>{t(LABELS.intensity, locale)}</h2>
-                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
+                <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6">
                   {/* Circular-style gauge */}
                   <div className="flex flex-col items-center mb-6">
                     <div className="relative w-32 h-32">
@@ -419,7 +419,7 @@ export default function SadeSatiPage() {
                         <span className={`text-3xl font-bold font-mono ${intensityColor(analysis.overallIntensity)}`}>
                           {analysis.overallIntensity.toFixed(1)}
                         </span>
-                        <span className="text-text-secondary text-[10px]">/10</span>
+                        <span className="text-text-secondary text-xs">/10</span>
                       </div>
                     </div>
                     <span className={`mt-2 text-sm font-bold ${intensityColor(analysis.overallIntensity)}`} style={bodyFont}>
@@ -517,7 +517,7 @@ export default function SadeSatiPage() {
                           {cycle.startYear} — {cycle.endYear}
                         </span>
                         {cycle.isActive && (
-                          <span className="ml-3 text-[10px] px-2 py-0.5 bg-red-500/20 text-red-400 rounded-full font-bold animate-pulse">
+                          <span className="ml-3 text-xs px-2 py-0.5 bg-red-500/20 text-red-400 rounded-full font-bold animate-pulse">
                             {t(LABELS.current, locale)}
                           </span>
                         )}
@@ -541,7 +541,7 @@ export default function SadeSatiPage() {
                     {/* Nakshatra transit sub-items for active cycle */}
                     {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1">
-                        <div className="text-[10px] text-text-tertiary uppercase tracking-wider mb-1.5">
+                        <div className="text-xs text-text-tertiary uppercase tracking-wider mb-1.5">
                           {locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
                         </div>
                         {analysis.nakshatraTimeline.map((nt, k) => {
@@ -551,7 +551,7 @@ export default function SadeSatiPage() {
                           return (
                             <div
                               key={k}
-                              className={`flex items-center gap-2 text-[11px] px-2.5 py-1.5 rounded-lg border ${
+                              className={`flex items-center gap-2 text-xs px-2.5 py-1.5 rounded-lg border ${
                                 nt.isBirthNakshatra
                                   ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 font-bold'
                                   : nt.isCurrent
@@ -563,14 +563,14 @@ export default function SadeSatiPage() {
                                 nt.isCurrent ? 'bg-gold-primary animate-pulse' : nt.isBirthNakshatra ? 'bg-amber-400' : 'bg-text-tertiary/40'
                               }`} />
                               <span className="flex-1">{nakName}</span>
-                              <span className="font-mono text-[10px] opacity-70">{yearLabel}</span>
+                              <span className="font-mono text-xs opacity-70">{yearLabel}</span>
                               {nt.isBirthNakshatra && (
-                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
+                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
                                   {locale === 'en' ? 'Birth' : 'जन्म'}
                                 </span>
                               )}
                               {nt.isCurrent && !nt.isBirthNakshatra && (
-                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
+                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
                                   {locale === 'en' ? 'Now' : 'अभी'}
                                 </span>
                               )}
@@ -590,7 +590,7 @@ export default function SadeSatiPage() {
             <h2 className="text-3xl font-bold text-gold-gradient my-8 text-center" style={headingFont}>{t(LABELS.remedies, locale)}</h2>
 
             {isFullMode && analysis.remedies.length > 0 ? (
-              <div className="space-y-8 mb-10">
+              <div className="space-y-4 sm:space-y-6 md:space-y-8 mb-10">
                 {(['essential', 'recommended', 'optional'] as const).map(priority => {
                   const items = analysis.remedies.filter(r => r.priority === priority);
                   if (items.length === 0) return null;

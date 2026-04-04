@@ -389,7 +389,7 @@ export default function PlanetInHousePage() {
               <text x="160" y="155" textAnchor="middle" fill="#d4a853" className="text-xs font-medium opacity-60">
                 Bhava
               </text>
-              <text x="160" y="172" textAnchor="middle" fill="#d4a853" className="text-[10px] opacity-40">
+              <text x="160" y="172" textAnchor="middle" fill="#d4a853" className="text-xs opacity-40">
                 Chakra
               </text>
             </svg>

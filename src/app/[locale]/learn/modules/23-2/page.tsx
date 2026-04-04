@@ -152,7 +152,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'मुख्य अन्तर्दृष्टि' : 'Key Insight'}</h4>
+        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'मुख्य अन्तर्दृष्टि' : 'Key Insight'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री ग्रह पृथ्वी के अधिक निकट होते हैं, दूर नहीं। यह प्रतिकूल ज्ञान है लेकिन महत्वपूर्ण: वक्री ग्रह आकाश में अधिक चमकीला दिखता है, अधिक शक्तिशाली (दुर्बल नहीं) होता है, और इसके प्रभाव अधिक आन्तरिक और तीव्र होते हैं। &quot;पुनः-&quot; उपसर्ग वक्री को पूर्ण रूप से व्यक्त करता है: पुनर्समीक्षा, पुनर्संशोधन, पुनर्विचार, पुनर्सम्पर्क, पुनः करना।</> : <>Retrograde planets are CLOSER to Earth, not farther. This is counterintuitive but critical: a retrograde planet appears brighter in the sky, is stronger (not weaker), and its effects are more internalized and intense. The &quot;re-&quot; prefix captures retrogrades perfectly: review, revise, reconsider, reconnect, redo.</>}</p>
       </section>
     </div>
@@ -193,7 +193,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-light text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'इंजन ट्रैकिंग' : 'Engine Tracking'}</h4>
+        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'इंजन ट्रैकिंग' : 'Engine Tracking'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा वक्री और अस्त इंजन प्रत्येक ग्रह के लिए सटीक अवधियों को ट्रैक करता है — कब वे वक्री या अस्त में प्रवेश और निकास करते हैं। यह डेटा वक्री पंचांग पृष्ठ पर उपलब्ध है, जो सटीक तिथियाँ और प्रभावित राशि अंश दिखाता है। आप एक नज़र में देख सकते हैं कि कौन से ग्रह वर्तमान में वक्री या अस्त हैं।</> : <>Our retrograde and combustion engine tracks exact windows for each planet — when they enter and exit retrograde or combustion. This data is available on the Retrograde Calendar page, showing precise dates and the affected zodiac degrees. You can see at a glance which planets are currently retrograde or combust.</>}</p>
       </section>
     </div>
@@ -228,7 +228,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'षड्बल में वक्री ग्रह' : 'Vakri Planets in Shadbala'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'षड्बल में वक्री ग्रह' : 'Vakri Planets in Shadbala'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री अवस्था षड्बल प्रणाली में चेष्टा बल (गतिजन्य शक्ति) देती है। वक्री ग्रह अधिक परिश्रम करता है — यह तीव्र, दृढ़ और माँग करने वाला होता है। जन्म कुण्डली में, वक्री ग्रह अक्सर जीवन के उस क्षेत्र को दर्शाता है जहाँ जातक को अतिरिक्त प्रयास करना, पिछले कर्म पर पुनर्विचार करना, या अपरम्परागत माध्यमों से विकास करना होता है। हमारे ऐप का वक्री पंचांग पृष्ठ वर्ष भर के सभी ग्रहीय वक्री और अस्त अवधियों की सटीक तिथियाँ दिखाता है।</> : <>The Vakri (retrograde) state gives Cheshta Bala (motional strength) in the Shadbala system. A retrograde planet works harder — it is intense, determined, and demanding. In a birth chart, a retrograde planet often indicates an area of life where the native must put in extra effort, revisit past karma, or develop through unconventional means. Our app&apos;s Retrograde Calendar page shows exact dates for all planetary retrogrades and combustion windows throughout the year.</>}</p>
       </section>
     </div>

@@ -170,8 +170,8 @@ export default function PrashnaAshtamangalaPage() {
                     <p className="text-gold-light font-bold mt-3" style={bodyFont}>{obj.name[locale]}</p>
                     <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{obj.symbolism[locale]}</p>
                     <div className="mt-2 flex justify-center gap-2">
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.ruler}: {obj.planetName[locale]}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.arudaHouse}: {data.arudaHouses[i]}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.ruler}: {obj.planetName[locale]}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.arudaHouse}: {data.arudaHouses[i]}</span>
                     </div>
                   </motion.div>
                 ))}

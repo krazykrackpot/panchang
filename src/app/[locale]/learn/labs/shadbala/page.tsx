@@ -192,7 +192,7 @@ export default function ShadbalaLabPage() {
                     <div key={b.key} className="p-3 rounded-xl bg-white/5 border border-white/5 text-center">
                       <div className="w-3 h-3 rounded-full mx-auto mb-2" style={{ backgroundColor: b.color }} />
                       <div className="text-sm font-semibold text-white">{L[b.label][locale]}</div>
-                      <div className="text-[10px] text-white/40 mt-1">{L[b.desc][locale]}</div>
+                      <div className="text-xs text-white/40 mt-1">{L[b.desc][locale]}</div>
                     </div>
                   ))}
                 </div>
@@ -225,7 +225,7 @@ export default function ShadbalaLabPage() {
                           <div className="text-xl font-mono font-bold" style={{ color: totalColor }}>
                             {sb.rupas.toFixed(2)}
                           </div>
-                          <div className="text-[10px] text-white/30">{L.minRequired[locale]}: {sb.minRequired.toFixed(2)}</div>
+                          <div className="text-xs text-white/30">{L.minRequired[locale]}: {sb.minRequired.toFixed(2)}</div>
                         </div>
                       </div>
 
@@ -237,7 +237,7 @@ export default function ShadbalaLabPage() {
                           const pct = Math.min((absVal / barMax) * 100, 100);
                           return (
                             <div key={b.key} className="flex items-center gap-2">
-                              <div className="w-16 text-[10px] text-white/40 shrink-0 text-right">{L[b.label][locale]}</div>
+                              <div className="w-16 text-xs text-white/40 shrink-0 text-right">{L[b.label][locale]}</div>
                               <div className="flex-1 relative h-4 rounded-full bg-white/5 overflow-hidden">
                                 <motion.div
                                   initial={{ width: 0 }}
@@ -261,7 +261,7 @@ export default function ShadbalaLabPage() {
                       {/* Total bar */}
                       <div className="mt-3 pt-3 border-t border-white/5">
                         <div className="flex items-center gap-2">
-                          <div className="w-16 text-[10px] text-white/60 shrink-0 text-right font-bold">{L.total[locale]}</div>
+                          <div className="w-16 text-xs text-white/60 shrink-0 text-right font-bold">{L.total[locale]}</div>
                           <div className="flex-1 relative h-5 rounded-full bg-white/5 overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
@@ -278,7 +278,7 @@ export default function ShadbalaLabPage() {
                           </div>
                           <div className="w-12 text-xs font-mono font-bold text-right" style={{ color: totalColor }}>{sb.rupas.toFixed(2)}</div>
                         </div>
-                        <div className="flex justify-between mt-1 text-[10px] text-white/20">
+                        <div className="flex justify-between mt-1 text-xs text-white/20">
                           <span>{L.strength[locale]}: {sb.strengthRatio.toFixed(2)}x</span>
                           <span className={sb.rupas >= sb.minRequired ? 'text-emerald-400/50' : 'text-red-400/50'}>
                             {sb.rupas >= sb.minRequired ? 'ABOVE' : 'BELOW'} min
@@ -329,7 +329,7 @@ export default function ShadbalaLabPage() {
                         </div>
                         <div className="text-right shrink-0">
                           <div className="text-lg font-mono font-bold" style={{ color }}>{sb.rupas.toFixed(2)}</div>
-                          <div className="text-[10px] text-white/30">{sb.strengthRatio.toFixed(2)}x</div>
+                          <div className="text-xs text-white/30">{sb.strengthRatio.toFixed(2)}x</div>
                         </div>
                       </motion.div>
                     );

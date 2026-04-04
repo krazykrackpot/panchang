@@ -365,7 +365,7 @@ export default function UpagrahaPage() {
                 <span className={`w-2 h-2 rounded-full ${c.dot}`} />
                 <span className="text-text-primary text-xs font-bold">{c.label}</span>
               </div>
-              <span className="text-text-secondary/60 text-[10px]">{c.names}</span>
+              <span className="text-text-secondary/60 text-xs">{c.names}</span>
             </div>
           ))}
         </div>
@@ -512,7 +512,7 @@ export default function UpagrahaPage() {
                     {locale === 'en' ? h.name.en.split(' ')[0] : h.name.hi}
                   </div>
                   <div className="text-gold-light text-lg font-bold font-mono">{h.house}</div>
-                  <div className="text-text-secondary/50 text-[9px]">
+                  <div className="text-text-secondary/50 text-xs">
                     {locale === 'en'
                       ? `${h.house}${['st','nd','rd'][h.house-1]||'th'} house`
                       : `${h.house}वाँ भाव`}
@@ -571,7 +571,7 @@ export default function UpagrahaPage() {
                         <span className="text-gold-light text-xl font-bold" style={headingFont}>
                           {u.info.name[locale]}
                         </span>
-                        <span className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded-full border ${natureBg(u.info.nature)}`}>
+                        <span className={`px-2 py-0.5 text-xs font-bold uppercase rounded-full border ${natureBg(u.info.nature)}`}>
                           {natureLabel(u.info.nature)}
                         </span>
                         <span className="text-text-secondary/50 text-xs">
@@ -590,7 +590,7 @@ export default function UpagrahaPage() {
 
                       {/* Sign-specific interpretation — always visible */}
                       <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/10 mb-3">
-                        <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1.5">
+                        <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1.5">
                           {locale === 'en' ? `${u.info.name.en} in ${u.signName.en} — What it means for you` : `${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है`}
                         </div>
                         <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
@@ -603,7 +603,7 @@ export default function UpagrahaPage() {
                         <div className="rounded-xl p-4 bg-bg-primary/50 border border-emerald-500/15 mb-3">
                           <div className="flex items-center gap-2 mb-2">
                             <Zap className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">
+                            <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">
                               {locale === 'en' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                             </span>
                           </div>
@@ -641,7 +641,7 @@ export default function UpagrahaPage() {
                     {/* When strong / when afflicted */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="rounded-xl p-4 bg-emerald-500/5 border border-emerald-500/15">
-                        <div className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold mb-2">
+                        <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">
                           {locale === 'en' ? 'When Well-Placed' : 'शुभ स्थिति में'}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -649,7 +649,7 @@ export default function UpagrahaPage() {
                         </p>
                       </div>
                       <div className="rounded-xl p-4 bg-red-500/5 border border-red-500/15">
-                        <div className="text-red-400 text-[10px] uppercase tracking-wider font-bold mb-2">
+                        <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">
                           {locale === 'en' ? 'When Afflicted' : 'पीड़ित स्थिति में'}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -660,7 +660,7 @@ export default function UpagrahaPage() {
 
                     {/* All 12 sign effects */}
                     <div>
-                      <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-3">
+                      <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
                         {locale === 'en' ? `${u.info.name.en} through the 12 Signs` : `12 राशियों में ${u.info.name.hi}`}
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -678,9 +678,9 @@ export default function UpagrahaPage() {
                                   <span className={`font-bold text-xs ${isCurrent ? 'text-gold-light' : 'text-text-primary'}`}>
                                     {RASHIS[signId - 1].name[locale]}
                                   </span>
-                                  {isCurrent && <span className="px-1 py-0 text-[8px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                                 </div>
-                                <p className="text-text-secondary/60 text-[10px] leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
+                                <p className="text-text-secondary/60 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
                               </div>
                             </div>
                           );

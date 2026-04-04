@@ -205,7 +205,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'भाव लग्न — द्वितीय धन बिन्दु' : 'Bhava Lagna — The Second Wealth Point'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'भाव लग्न — द्वितीय धन बिन्दु' : 'Bhava Lagna — The Second Wealth Point'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Bhava Lagna (BL) is another wealth and sustenance indicator that complements Hora Lagna. While HL focuses on accumulated wealth, BL often relates to ongoing sustenance and the ability to maintain oneself. Some Jaimini scholars consider BL particularly relevant for assessing the native&apos;s capacity to earn a livelihood, as distinct from inherited or windfall wealth shown by HL. When both HL and BL fall in strong signs with benefic aspects, the native enjoys robust financial health throughout life.
         </p>
@@ -231,7 +231,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित गणना: दोपहर 2 बजे का जन्म' : 'Worked Calculation: 2 PM Birth'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित गणना: दोपहर 2 बजे का जन्म' : 'Worked Calculation: 2 PM Birth'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Birth at 2:00 PM, Sunrise at 6:00 AM, Sun in Taurus, Lagna in Virgo.
         </p>
@@ -246,7 +246,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;होरा लग्न और D2 (होरा) कुण्डली एक ही हैं।&quot; ये पूर्णतया भिन्न हैं। D2 होरा कुण्डली पाराशरी ज्योतिष में धन मूल्यांकन हेतु प्रयुक्त एक विभागीय कुण्डली है। होरा लग्न जैमिनी ज्योतिष में प्रयुक्त एक संवेदनशील बिन्दु (गणितीय लग्न-सदृश) है। दोनों &quot;होरा&quot; शब्द साझा करते हैं किन्तु भिन्न गणना और अनुप्रयोग वाली अलग अवधारणाएँ हैं।</>
@@ -274,7 +274,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given:</span> Lagna in Aries (odd, sign 1), Hora Lagna in Leo (odd, sign 5). Both are odd — use Rule 1.
         </p>
@@ -292,7 +292,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'वर्णद का उद्देश्य' : 'The Purpose of Varnada'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'वर्णद का उद्देश्य' : 'The Purpose of Varnada'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>वर्णद लग्न जातक का &quot;वर्ण&quot; निर्धारित करता है — जाति के अर्थ में नहीं, बल्कि समाज में व्यक्ति की मूलभूत पुकार या योगदान के रूप में। इसका स्वामी और दृष्ट ग्रह प्रकट करते हैं कि व्यक्ति स्वाभाविक रूप से बौद्धिक कार्यों (ब्राह्मण गुण), नेतृत्व और शासन (क्षत्रिय गुण), वाणिज्य और उद्यम (वैश्य गुण), या सेवा और शिल्प (शूद्र गुण) की ओर उन्मुख है। आधुनिक व्याख्या में यह कठोर सामाजिक श्रेणियों के बजाय व्यापक जीविका आदर्शरूपों में अनुवादित होता है।</>
@@ -301,7 +301,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>विशेष लग्न कुण्डली व्याख्या में उल्लेखनीय गहराई जोड़ते हैं। यद्यपि उन्हें सटीक जन्म समय चाहिए (विशेषकर घटी लग्न को), आधुनिक सॉफ्टवेयर चारों विशेष लग्नों की तत्काल गणना कर सकता है। परामर्श में ज्योतिषी पा सकता है कि जन्म लग्न एक जीविका दिशा सुझाता है जबकि होरा लग्न और वर्णद लग्न दूसरी ओर संकेत करते हैं — प्रकट करते हुए कि जातक जीविकार्थ क्या करता है और उसकी आत्मा वास्तव में क्या चाहती है, इसके बीच का तनाव। ये बहुविध दृष्टिकोण वैदिक ज्योतिष में जैमिनी के महानतम योगदानों में से एक हैं।</>

@@ -211,7 +211,7 @@ export default function HoraPage() {
           ))}
         </div>
         <HoraTimeline dayIdx={dayIdx} locale={locale} />
-        <p className="text-center text-[10px] text-text-tertiary mt-2">
+        <p className="text-center text-xs text-text-tertiary mt-2">
           {locale === 'hi' ? 'क्रम सूर्योदय पर दिन-स्वामी से शुरू, 24 होराएँ' : 'Sequence starts at sunrise with day lord, 24 horas total'}
         </p>
       </motion.div>
@@ -229,7 +229,7 @@ export default function HoraPage() {
               const nameMap: Record<string, Record<string, string>> = { sun: { en: 'Sun', hi: 'रवि', sa: 'रविः' }, moon: { en: 'Moon', hi: 'सोम', sa: 'सोमः' }, mars: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, mercury: { en: 'Merc', hi: 'बुध', sa: 'बुधः' }, jupiter: { en: 'Jup', hi: 'गुरु', sa: 'गुरुः' }, venus: { en: 'Ven', hi: 'शुक्र', sa: 'शुक्रः' }, saturn: { en: 'Sat', hi: 'शनि', sa: 'शनिः' } };
               return (
                 <span key={p} className="inline-flex items-center gap-1">
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-bold" style={{ backgroundColor: colorMap[p] + '30', color: colorMap[p] }}>{i + 1}</span>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: colorMap[p] + '30', color: colorMap[p] }}>{i + 1}</span>
                   <span className="text-xs font-medium" style={{ color: colorMap[p] }}>{nameMap[p][locale]}</span>
                   {i < 6 && <span className="text-text-tertiary mx-0.5">→</span>}
                 </span>
@@ -279,7 +279,7 @@ export default function HoraPage() {
             <div key={d.num} className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
               <div className="text-2xl font-bold text-gold-light">{d.num}</div>
               <p className="text-sm font-semibold text-gold-light mt-1">{t(d.label)}</p>
-              <p className="text-[10px] text-text-tertiary">{t(d.desc)}</p>
+              <p className="text-xs text-text-tertiary">{t(d.desc)}</p>
             </div>
           ))}
         </div>

@@ -46,7 +46,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           The Surya Siddhanta describes retrograde motion as part of the Sighra correction (Ch.2) — the difference between a planet's mean position and its true position as seen from Earth. Ancient Indian astronomers understood this was an observational effect, not a real reversal. The term <span className="text-gold-light font-bold">Vakri</span> (crooked) itself implies something that appears bent from the observer's perspective, not truly reversed.
         </p>
@@ -76,7 +76,7 @@ function Page1() {
               ))}
             </tbody>
           </table>
-          <p className="text-text-tertiary text-[9px] mt-2">Sun and Moon NEVER go retrograde. Outer planets (Jupiter, Saturn) are retrograde ~1/3 of the time — so retrograde Jupiter/Saturn is very common, not alarming.</p>
+          <p className="text-text-tertiary text-xs mt-2">Sun and Moon NEVER go retrograde. Outer planets (Jupiter, Saturn) are retrograde ~1/3 of the time — so retrograde Jupiter/Saturn is very common, not alarming.</p>
         </div>
       </section>
 
@@ -89,7 +89,7 @@ function Page1() {
           But the energy is <span className="text-gold-light font-bold">internalized</span>. A direct planet expresses outwardly; a retrograde planet expresses <em>inwardly</em>. Think of it as the difference between speaking your thoughts aloud (direct) versus deep internal reflection (retrograde). Neither is better — they're different modes of expression.
         </p>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Retrograde Effects Summary</div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Retrograde Effects Summary</div>
           <ul className="text-text-secondary text-xs space-y-1.5">
             <li>• <span className="text-gold-light">Retrograde Saturn:</span> Karmic lessons intensified but internalized. Delays become more pronounced. Discipline deepened.</li>
             <li>• <span className="text-gold-light">Retrograde Jupiter:</span> Wisdom directed inward — philosophical, less social. May struggle with conventional education but excels at self-study.</li>
@@ -115,7 +115,7 @@ function Page2() {
         </p>
 
         <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mb-4">
-          <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Combustion Orbs (BPHS Ch.3 v.42)</h4>
+          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Combustion Orbs (BPHS Ch.3 v.42)</h4>
           <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-2 text-gold-dark">Planet</th>
@@ -153,7 +153,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
           <div>
             <p className="text-gold-light font-medium mb-1">Example 1: Is Mercury combust?</p>
@@ -167,7 +167,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "Mercury retrograde ruins everything."<br />
           <span className="text-emerald-300">Reality:</span> This is pop astrology exaggeration. Mercury is retrograde ~19% of the time — that's ~70 days per year. If it truly "ruined everything," 1/5th of all days would be catastrophic. In Jyotish, retrograde Mercury simply indicates a different communication style — more reflective, less spontaneous.</p>
@@ -177,7 +177,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Astronomically correct.</span> Retrograde, combustion, and planetary conjunctions are all real, observable phenomena. Our app tracks retrograde status for all planets and displays it on the Panchang and Transit Calendar pages. The combustion orbs from BPHS correspond roughly to the angular distances at which planets become invisible to the naked eye — an observational fact.
         </p>

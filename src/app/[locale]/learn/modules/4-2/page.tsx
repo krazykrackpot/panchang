@@ -144,7 +144,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           The Surya Siddhanta and early siddhantas did not specify a single precise ayanamsha value — they used approximate corrections or the trepidation model. The concept of a fixed, monotonically increasing ayanamsha anchored to a specific star emerged in the modern era. Nyanatiloka Chattopadhyaya (later known as N.C. Lahiri) computed his ayanamsha tables in the 1930s-40s. The 1955 Calendar Reform Committee report, chaired by the great physicist Meghnad Saha, evaluated 30+ ayanamsha proposals and selected Lahiri as best matching observable star positions and traditional Indian calendar conventions. Meanwhile, Cyril Fagan derived his system from Babylonian star catalogues in the 1940s, and B.V. Raman published his independent calculations based on his interpretation of classical texts.
         </p>
@@ -176,7 +176,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — Sign change across systems:</span> Suppose the Sun is at 45° tropical (Taurus 15°) on a given date in 2026. Lahiri sidereal: 45° - 24.22° = 20.78° = Aries 20°47&apos;. Raman sidereal: 45° - 22.73° = 22.27° = Aries 22°16&apos;. KP sidereal: 45° - 24.11° = 20.89° = Aries 20°53&apos;. Fagan-Bradley: 45° - 24.41° = 20.59° = Aries 20°35&apos;. All four systems agree: Aries. No sign change here because 45° is well within one sign of the nearest cusp.
         </p>
@@ -188,7 +188,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;Lahiri is the only correct ayanamsha and all others are wrong.&quot; <strong className="text-red-300">Reality:</strong> No ayanamsha can be mathematically proven &quot;correct&quot; in an absolute sense — the choice of anchor star is a human convention. Lahiri is the most widely used and officially recognized, giving it the largest empirical validation base. But competent astrologers get excellent results with KP, Raman, and other systems.
         </p>
@@ -197,7 +197,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our app defaults to the Lahiri ayanamsha (Indian Government standard) for all calculations. The internal pipeline works as follows: Meeus algorithms compute tropical planetary longitudes to sub-degree accuracy, then the Lahiri polynomial subtracts the ayanamsha to produce sidereal positions. For KP practitioners, the app&apos;s KP module uses the Krishnamurti ayanamsha with its own sub-lord tables. The difference between systems is purely in the constant offset — the underlying astronomical engine remains identical. When in doubt, use Lahiri: it has 70+ years of institutional backing, the largest corpus of validated predictions, and is what the Rashtriya Panchang uses.
         </p>
@@ -229,13 +229,13 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           While the BPHS (Brihat Parashara Hora Shastra) does not specify a numerical ayanamsha, the Surya Siddhanta (circa 400 CE) places the Chitra star in a manner consistent with the Chitrapaksha framework. The concept of using Chitra/Spica as the primary reference star has roots going back to the Vedanga Jyotisha period. The modern Lahiri formalization simply quantified what was already implicit in the Indian astronomical tradition. The Calendar Reform Committee drew on this heritage while applying modern observational precision.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — Lahiri across centuries:</span> For year 1900 (T = -1.0): A = 23.85306 - 1.39722 + 0.00018 + 0.000005 = 22.456°. For year 2000 (T = 0): A = 23.853°. For year 2100 (T = 1.0): A = 23.85306 + 1.39722 + 0.00018 - 0.000005 = 25.250°. The ayanamsha grew by 2.794° over 200 years, averaging 1.397° per century.
         </p>
@@ -244,7 +244,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;Lahiri ayanamsha has been used since ancient times.&quot; <strong className="text-red-300">Reality:</strong> The modern Lahiri formulation dates to the 20th century. Ancient Indian astronomers used approximate corrections or trepidation models. Lahiri systematized what was a scattered tradition into a precise, computable formula.
         </p>
@@ -253,7 +253,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The Lahiri ayanamsha is used by the Indian Government&apos;s Rashtriya Panchang, the India Meteorological Department, virtually all North Indian panchangs, most South Indian panchangs, and the vast majority of practicing Jyotishis worldwide. When software like this app, Jagannatha Hora, or Parashara&apos;s Light defaults to &quot;Lahiri,&quot; they are implementing the same polynomial. The institutional consensus means that Lahiri-based predictions have been tested across millions of charts for over 70 years — a validation corpus no other ayanamsha can match. For this reason, Lahiri is the recommended default for anyone beginning Vedic astrology study.
         </p>

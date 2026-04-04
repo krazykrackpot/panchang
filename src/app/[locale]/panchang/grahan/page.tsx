@@ -148,7 +148,7 @@ function AnimatedEclipseSequence({ locale }: { locale: Locale }) {
               </svg>
               {/* Label */}
               <motion.span
-                className="text-[10px] sm:text-xs text-center whitespace-nowrap"
+                className="text-xs sm:text-xs text-center whitespace-nowrap"
                 animate={{ color: isActive ? '#fbbf24' : 'rgba(200,200,200,0.6)' }}
               >
                 {labels[i]}

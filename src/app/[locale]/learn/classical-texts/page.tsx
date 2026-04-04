@@ -184,12 +184,12 @@ export default function ClassicalTextsPage() {
           <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सिद्धांत (Astronomical)' : 'Siddhanta (Astronomical)'}</div>
             <p className="text-text-secondary text-xs mb-2">{isHi ? 'गणितीय खगोल विज्ञान — ग्रह कहाँ हैं की गणना' : 'Mathematical astronomy — computing WHERE planets are'}</p>
-            <div className="text-text-tertiary text-[10px]">Surya Siddhanta, Aryabhatiya</div>
+            <div className="text-text-tertiary text-xs">Surya Siddhanta, Aryabhatiya</div>
           </div>
           <div className="p-4 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
             <div className="text-gold-light font-bold text-sm mb-1">{isHi ? 'होरा (Predictive)' : 'Hora (Predictive)'}</div>
             <p className="text-text-secondary text-xs mb-2">{isHi ? 'फलित ज्योतिष — ग्रहों का क्या अर्थ है' : 'Interpretive astrology — what planet positions MEAN'}</p>
-            <div className="text-text-tertiary text-[10px]">BPHS, Brihat Jataka, Phaladeepika, Saravali</div>
+            <div className="text-text-tertiary text-xs">BPHS, Brihat Jataka, Phaladeepika, Saravali</div>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@ export default function ClassicalTextsPage() {
           }).map((t, i) => (
             <div key={i} className={`px-3 py-2 rounded-lg border ${t.border} text-center min-w-[100px]`}>
               <div className={`font-bold text-xs ${t.color}`}>{t.date}</div>
-              <div className="text-text-secondary text-[9px]">{isHi ? t.name.hi : t.name.en}</div>
+              <div className="text-text-secondary text-xs">{isHi ? t.name.hi : t.name.en}</div>
             </div>
           ))}
         </div>
@@ -249,7 +249,7 @@ export default function ClassicalTextsPage() {
                       {/* Accuracy table (if available) */}
                       {text.accuracyHighlights && (
                         <div>
-                          <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'सटीकता' : 'Accuracy Highlights'}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सटीकता' : 'Accuracy Highlights'}</div>
                           <div className="overflow-x-auto">
                             <table className="w-full text-xs">
                               <thead><tr className="border-b border-gold-primary/10"><th className="text-left py-1.5 px-2 text-gold-dark">Value</th><th className="text-left py-1.5 px-2 text-gold-dark">Given</th><th className="text-left py-1.5 px-2 text-gold-dark">Modern</th><th className="text-left py-1.5 px-2 text-gold-dark">Error</th></tr></thead>
@@ -265,7 +265,7 @@ export default function ClassicalTextsPage() {
 
                       {/* Key contributions with relevance status */}
                       <div>
-                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'प्रमुख योगदान एवं आज की प्रासंगिकता' : 'Key Contributions & Modern Relevance'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'प्रमुख योगदान एवं आज की प्रासंगिकता' : 'Key Contributions & Modern Relevance'}</div>
                         <div className="space-y-2">
                           {text.keyContributions.map((kc, i) => {
                             const status = STATUS_CONFIG[kc.status];
@@ -277,7 +277,7 @@ export default function ClassicalTextsPage() {
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2 mb-1">
                                       <span className="text-text-primary font-bold text-xs">{kc.topic}</span>
-                                      <span className={`text-[9px] px-1.5 py-0.5 rounded ${status.bg} ${status.color} border ${text.border}`}>{isHi ? status.label.hi : status.label.en}</span>
+                                      <span className={`text-xs px-1.5 py-0.5 rounded ${status.bg} ${status.color} border ${text.border}`}>{isHi ? status.label.hi : status.label.en}</span>
                                     </div>
                                     <p className="text-text-secondary text-xs leading-relaxed">{isHi ? kc.detail.hi : kc.detail.en}</p>
                                   </div>
@@ -290,7 +290,7 @@ export default function ClassicalTextsPage() {
 
                       {/* Unique concepts still used */}
                       <div>
-                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'विशिष्ट अवधारणाएं (आज भी प्रयुक्त)' : 'Unique Concepts (Still Used Today)'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'विशिष्ट अवधारणाएं (आज भी प्रयुक्त)' : 'Unique Concepts (Still Used Today)'}</div>
                         <div className="space-y-1">
                           {text.uniqueConcepts.map((uc, i) => (
                             <div key={i} className="text-text-secondary text-xs flex gap-2"><span className="text-gold-dark shrink-0">•</span><span>{isHi ? uc.hi : uc.en}</span></div>
@@ -331,7 +331,7 @@ export default function ClassicalTextsPage() {
             </ul>
           </div>
         </div>
-        <p className="text-text-tertiary text-[10px] text-center mt-4">
+        <p className="text-text-tertiary text-xs text-center mt-4">
           {isHi
             ? '💡 सूत्र: आधुनिक गणना (कहाँ) + शास्त्रीय व्याख्या (क्या अर्थ) = सर्वोत्तम ज्योतिष'
             : '💡 Formula: Modern computation (WHERE) + Classical interpretation (WHAT IT MEANS) = Best Jyotish'}

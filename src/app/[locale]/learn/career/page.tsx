@@ -181,7 +181,7 @@ export default function CareerPredictionGuide() {
             <div key={i} className="p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
               <div className={`font-bold text-sm mb-1 ${s.color}`} style={hf}>{t(s.sign)}</div>
               <div className="text-text-secondary text-xs mb-1">{t(s.nature)}</div>
-              <div className="text-text-tertiary text-[11px]">{t(s.fields)}</div>
+              <div className="text-text-tertiary text-xs">{t(s.fields)}</div>
             </div>
           ))}
         </div>
@@ -230,7 +230,7 @@ export default function CareerPredictionGuide() {
           {LORD_PLACEMENTS.map((lp) => (
             <div key={lp.house} className="p-3 rounded-lg bg-bg-secondary/40 border border-gold-primary/8">
               <span className="text-gold-light font-bold text-xs">{isHi ? `${lp.house} भाव` : `${lp.house} House`}</span>
-              <p className="text-text-secondary text-[11px] mt-1 leading-relaxed">{t(lp.meaning)}</p>
+              <p className="text-text-secondary text-xs mt-1 leading-relaxed">{t(lp.meaning)}</p>
             </div>
           ))}
         </div>

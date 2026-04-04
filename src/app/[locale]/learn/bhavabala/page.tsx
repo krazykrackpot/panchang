@@ -205,7 +205,7 @@ export default function LearnBhavabalaPage() {
                   <td className="py-2.5 px-3 text-gold-light font-medium whitespace-nowrap">{t(h.name)}</td>
                   <td className="py-2.5 px-3 text-text-secondary text-xs leading-relaxed">{t(h.significations)}</td>
                   <td className="py-2.5 px-3 text-center">
-                    <span className={`text-[10px] px-2 py-0.5 rounded border ${classificationColor(h.classification)}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded border ${classificationColor(h.classification)}`}>
                       {h.classification === 'kendra' ? (isHi ? 'केन्द्र' : 'Kendra') :
                        h.classification === 'trikona' ? (isHi ? 'त्रिकोण' : 'Trikona') :
                        h.classification === 'dusthana' ? (isHi ? 'दुःस्थान' : 'Dusthana') :

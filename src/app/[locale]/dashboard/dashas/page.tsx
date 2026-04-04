@@ -104,7 +104,7 @@ export default function DashasPage() {
               <div className="mt-2 h-2 bg-bg-tertiary/40 rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${progressPercent(currentMaha.startDate, currentMaha.endDate)}%` }} />
               </div>
-              <p className="text-text-secondary/50 text-[10px] mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {locale === 'en' ? 'complete' : 'पूर्ण'}</p>
+              <p className="text-text-secondary/50 text-xs mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {locale === 'en' ? 'complete' : 'पूर्ण'}</p>
             </div>
           </div>
 
@@ -114,7 +114,7 @@ export default function DashasPage() {
               <GrahaIconById id={PLANET_ID[currentAntar.planet] ?? 0} size={28} />
               <div className="flex-1">
                 <p className="text-gold-light font-semibold text-sm" style={bf}>{currentAntar.planetName[lk as keyof typeof currentAntar.planetName]} {locale === 'en' ? 'Antardasha' : 'अंतर्दशा'}</p>
-                <p className="text-text-secondary text-[10px] font-mono">{currentAntar.startDate} — {currentAntar.endDate}</p>
+                <p className="text-text-secondary text-xs font-mono">{currentAntar.startDate} — {currentAntar.endDate}</p>
                 <div className="mt-1 h-1.5 bg-bg-tertiary/40 rounded-full overflow-hidden">
                   <div className="h-full bg-gold-primary/60 rounded-full" style={{ width: `${progressPercent(currentAntar.startDate, currentAntar.endDate)}%` }} />
                 </div>
@@ -157,7 +157,7 @@ export default function DashasPage() {
                       <GrahaIconById id={PLANET_ID[d.planet] ?? 0} size={24} />
                       <div>
                         <span className={`font-bold text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`} style={bf}>{d.planetName[lk as keyof typeof d.planetName]}</span>
-                        {isCurrent && <span className="ml-2 text-[10px] px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                        {isCurrent && <span className="ml-2 text-xs px-2 py-0.5 bg-gold-primary/20 text-gold-primary rounded-full font-bold">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -177,7 +177,7 @@ export default function DashasPage() {
                           <GrahaIconById id={PLANET_ID[s.planet] ?? 0} size={14} />
                           <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{s.planetName[lk as keyof typeof s.planetName]}</span>
                           <span className="text-text-secondary/40 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
-                          {isCurrentAntar && <span className="text-gold-primary text-[9px] font-bold">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                          {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                         </div>
                       );
                     })}

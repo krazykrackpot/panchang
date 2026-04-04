@@ -49,7 +49,7 @@ function NavDropdown({ label, items, onNavigate }: { label: string; items: Dropd
       </button>
       {open && (
         <div
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 py-2 bg-bg-primary/95 backdrop-blur-xl border border-gold-primary/20 rounded-xl shadow-2xl shadow-black/40 z-50"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 max-w-[calc(100vw-2rem)] py-2 bg-bg-primary/95 backdrop-blur-xl border border-gold-primary/20 rounded-xl shadow-2xl shadow-black/40 z-50"
           onMouseLeave={() => setOpen(false)}
         >
           {items.map((item) => (
@@ -197,7 +197,7 @@ export default function Navbar() {
             {hydrated && locationStore.confirmed && locationStore.name && (
               <div className="flex items-center gap-1.5 text-text-secondary text-xs">
                 <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-                <span className="max-w-[120px] truncate">{locationStore.name}</span>
+                <span className="max-w-[150px] truncate">{locationStore.name}</span>
               </div>
             )}
             {hydrated && user && <NotificationBell />}
@@ -210,7 +210,7 @@ export default function Navbar() {
               </a>
             )}
             {hydrated && isTrialing && trialDaysLeft > 0 && (
-              <span className="text-gold-dark text-[10px] whitespace-nowrap">
+              <span className="text-gold-dark text-xs whitespace-nowrap">
                 {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>
             )}
@@ -259,7 +259,7 @@ export default function Navbar() {
                             <Link
                               key={child.href}
                               href={child.href}
-                              className="block text-sm text-text-secondary/80 hover:text-gold-light transition-colors px-2 py-1.5"
+                              className="block text-sm text-text-secondary/80 hover:text-gold-light transition-colors px-2 py-2.5"
                               onClick={() => setIsOpen(false)}
                             >
                               {child.label}
@@ -289,7 +289,7 @@ export default function Navbar() {
                   </a>
                 )}
                 {isTrialing && trialDaysLeft > 0 && (
-                  <span className="text-gold-dark text-[10px]">
+                  <span className="text-gold-dark text-xs">
                     {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
                   </span>
                 )}

@@ -189,7 +189,7 @@ export default function ChildrenPredictionPage() {
                 <h4 className="text-gold-light font-bold text-sm" style={hf}>{isHi ? 'बीज स्फुट (पुरुष)' : 'Bija Sphuta (Male)'}</h4>
               </div>
               <p className="text-text-secondary text-xs mb-2">{isHi ? 'सूर्य + शुक्र + गुरु के अंश = बीज स्फुट' : 'Sun + Venus + Jupiter longitudes = Bija Sphuta'}</p>
-              <p className="text-text-tertiary text-[11px] leading-relaxed">
+              <p className="text-text-tertiary text-xs leading-relaxed">
                 {isHi
                   ? 'विषम राशि में + शुभ नक्षत्र में = सशक्त प्रजनन क्षमता। सम राशि + पाप नक्षत्र = दुर्बल।'
                   : 'In odd sign + benefic nakshatra = strong fertility. Even sign + malefic nakshatra = weak. This ancient formula assesses male reproductive potential.'}
@@ -201,7 +201,7 @@ export default function ChildrenPredictionPage() {
                 <h4 className="text-pink-300 font-bold text-sm" style={hf}>{isHi ? 'क्षेत्र स्फुट (स्त्री)' : 'Kshetra Sphuta (Female)'}</h4>
               </div>
               <p className="text-text-secondary text-xs mb-2">{isHi ? 'चन्द्र + मंगल + गुरु के अंश = क्षेत्र स्फुट' : 'Moon + Mars + Jupiter longitudes = Kshetra Sphuta'}</p>
-              <p className="text-text-tertiary text-[11px] leading-relaxed">
+              <p className="text-text-tertiary text-xs leading-relaxed">
                 {isHi
                   ? 'सम राशि में = अनुकूल। शुभ ग्रह दृष्टि = प्रजनन क्षमता उत्तम। पाप दृष्टि = चिकित्सा आवश्यक।'
                   : 'In even sign = favorable. Benefic aspect = excellent fertility. Malefic aspect = medical support may be needed. Ancient gynecological astrology formula.'}
@@ -217,7 +217,7 @@ export default function ChildrenPredictionPage() {
             ].map((item, i) => (
               <div key={i} className={`p-3 rounded-xl border ${item.positive ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-amber-500/15 bg-amber-500/5'}`}>
                 <span className={`font-bold text-xs ${item.positive ? 'text-emerald-400' : 'text-amber-400'}`} style={hf}>{t(item.indicator)}</span>
-                <p className="text-text-tertiary text-[11px] mt-1 leading-relaxed">{t(item.result)}</p>
+                <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(item.result)}</p>
               </div>
             ))}
           </div>
@@ -261,7 +261,7 @@ export default function ChildrenPredictionPage() {
               <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{t(c.condition)}</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-3">{t(c.meaning)}</p>
               <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
-                <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
+                <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
                 <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(c.remedy)}</p>
               </div>
             </div>

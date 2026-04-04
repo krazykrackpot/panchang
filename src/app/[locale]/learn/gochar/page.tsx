@@ -223,7 +223,7 @@ export default function LearnGocharPage() {
         <p style={bodyFont}>{L.jupiterContent[locale]}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-            <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+            <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Auspicious Jupiter transit houses' : 'शुभ गुरु गोचर भाव'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -233,7 +233,7 @@ export default function LearnGocharPage() {
             </div>
           </div>
           <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
-            <div className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+            <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Challenging Jupiter transit houses' : 'कठिन गुरु गोचर भाव'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -379,7 +379,7 @@ export default function LearnGocharPage() {
                 {isHi ? mod.label.hi : mod.label.en}
               </span>
               {'tool' in mod && (
-                <span className="text-text-tertiary text-[10px] block mt-0.5">
+                <span className="text-text-tertiary text-xs block mt-0.5">
                   {locale === 'en' ? 'Tool' : 'उपकरण'} →
                 </span>
               )}

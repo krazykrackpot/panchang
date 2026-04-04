@@ -370,7 +370,7 @@ export default function PrashnaPage() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2 flex-wrap">
                               {p.dignity && (
-                                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                                <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
                                   p.dignity === 'Exalted' ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' :
                                   p.dignity === 'Own Sign' ? 'bg-blue-500/15 text-blue-300 border border-blue-500/20' :
                                   p.dignity === 'Debilitated' ? 'bg-red-500/15 text-red-300 border border-red-500/20' :
@@ -379,7 +379,7 @@ export default function PrashnaPage() {
                                   {p.dignity}
                                 </span>
                               )}
-                              {p.retrograde && <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-bold">Retro</span>}
+                              {p.retrograde && <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-bold">Retro</span>}
                               <span className={`w-2 h-2 rounded-full ${
                                 p.strength === 'strong' ? 'bg-emerald-400' : p.strength === 'moderate' ? 'bg-amber-400' : 'bg-red-400'
                               }`} title={p.strength} />
@@ -478,7 +478,7 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
           <div className="text-3xl font-bold font-mono">
             {analysis.verdict.score > 0 ? '+' : ''}{analysis.verdict.score}
           </div>
-          <div className="text-[10px] text-text-secondary uppercase">{locale === 'en' ? 'Score' : 'अंक'}</div>
+          <div className="text-xs text-text-secondary uppercase">{locale === 'en' ? 'Score' : 'अंक'}</div>
         </div>
       </div>
       <p className="text-sm leading-relaxed opacity-90" style={bf}>

@@ -375,7 +375,7 @@ export default function VedicTimePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
           {/* Vedic Clock */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
-            <div className="text-gold-dark text-[10px] uppercase tracking-[0.3em] mb-2">
+            <div className="text-gold-dark text-xs uppercase tracking-[0.3em] mb-2">
               {locale === 'en' ? 'Vedic Time' : 'वैदिक समय'}
             </div>
             <div className="text-gold-light text-4xl font-bold" style={headingFont}>
@@ -390,11 +390,11 @@ export default function VedicTimePage() {
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunriseVedic}</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunsetVedic}</div>
               </div>
             </div>
@@ -402,7 +402,7 @@ export default function VedicTimePage() {
 
           {/* Gregorian Clock */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
-            <div className="text-text-secondary/50 text-[10px] uppercase tracking-[0.3em] mb-2">
+            <div className="text-text-secondary/50 text-xs uppercase tracking-[0.3em] mb-2">
               {locale === 'en' ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
             </div>
             <div className="text-gold-light text-4xl font-bold font-mono tracking-wider">
@@ -413,11 +413,11 @@ export default function VedicTimePage() {
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunriseStr}</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunsetStr}</div>
               </div>
             </div>
@@ -585,7 +585,7 @@ export default function VedicTimePage() {
                       <div className="font-semibold" style={bodyFont}>
                         {locale === 'sa' ? kala.sa : locale === 'hi' ? kala.hi : kala.en}
                       </div>
-                      <div className="text-[10px] mt-0.5 opacity-60">{i * 6}–{(i + 1) * 6}G</div>
+                      <div className="text-xs mt-0.5 opacity-60">{i * 6}–{(i + 1) * 6}G</div>
                     </div>
                   );
                 })}

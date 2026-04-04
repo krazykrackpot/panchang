@@ -158,7 +158,7 @@ export default function SavedChartsPage() {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="text-gold-light font-bold text-sm" style={bf}>{c.label}</h3>
-                  {c.is_primary && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold">{locale === 'en' ? 'Primary' : 'प्राथमिक'}</span>}
+                  {c.is_primary && <span className="text-xs px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold">{locale === 'en' ? 'Primary' : 'प्राथमिक'}</span>}
                 </div>
                 <button onClick={() => handleDelete(c.id)} disabled={deleting === c.id}
                   className="text-text-secondary/40 hover:text-red-400 transition-colors p-1">

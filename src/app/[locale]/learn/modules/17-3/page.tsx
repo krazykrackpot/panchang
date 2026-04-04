@@ -206,7 +206,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Bhoomi Dosha — The Directional Defect</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Bhoomi Dosha — The Directional Defect</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Bhoomi Dosha divides the year into directional periods. During certain months, entering from certain directions is considered inauspicious — it is believed to bring illness, financial loss, or domestic discord. The remedy is either to wait for the direction to clear (usually a month) or to perform a specific Vastu Shanti puja before entry. Our Muhurta tool automatically flags Bhoomi Dosha when evaluating Griha Pravesh candidates.
         </p>
@@ -235,7 +235,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Vehicle Purchase Checklist</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Vehicle Purchase Checklist</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">4th House:</span> Strong, with benefic influence. No malefics in the 4th or 8th.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Nakshatra:</span> Ashwini, Rohini, Pushya, Hasta, or Chitra preferred.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Day:</span> Tuesday (Mars strong), Thursday (Jupiter), or Friday (Venus for luxury).</p>
@@ -266,7 +266,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Disha Shool Quick Reference</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Disha Shool Quick Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Sunday:</span> West inauspicious</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Monday:</span> East inauspicious</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Tuesday:</span> North inauspicious</p>
@@ -276,7 +276,7 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Saturday:</span> East inauspicious</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Remedial Detour</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Remedial Detour</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           If travel in the Disha Shool direction is unavoidable, the traditional remedy is a detour: first travel a short distance in a non-Shool direction (even a few kilometres), pause briefly (offering a prayer), then redirect toward the destination. This symbolically &ldquo;breaks&rdquo; the initial directional defect. Wednesday is the safest day for travel in any direction as it has no Disha Shool.
         </p>

@@ -46,7 +46,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           The word <span className="text-gold-light font-bold">Nakshatra</span> (नक्षत्र) is debated etymologically: some derive it from <em>naksha</em> (नक्ष, to approach) + <em>tra</em> (त्र, protector) = "that which approaches and protects." Others from <em>na</em> (न, not) + <em>kshatra</em> (क्षत्र, destructible) = "indestructible" — referring to the fixed stars' permanence. The Rig Veda (one of the oldest texts in any language) mentions nakshatras, placing their use at least 3,500 years ago. The Vedanga Jyotisha (~1200 BCE) gives the earliest systematic nakshatra list.
         </p>
@@ -117,7 +117,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example: The Zodiacal Position Problem</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: The Zodiacal Position Problem</h4>
         <div className="space-y-3">
           <p className="text-text-secondary text-xs leading-relaxed">
             <span className="text-gold-light font-medium">Scenario:</span> A planet is at 175° sidereal longitude. Where is it?
@@ -134,7 +134,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "There should be 13 signs because the Sun passes through Ophiuchus."<br />
           <span className="text-emerald-300">Reality:</span> Signs are 30° mathematical sectors, not constellation boundaries. Ophiuchus is a constellation, not a sign. Adding it would break the 12 × 30° = 360° framework. This "13th sign" claim misunderstands what signs ARE.</p>
@@ -146,7 +146,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">The sign system is fully valid</span> — it's a mathematical coordinate system, and math doesn't expire. The yogtara identifications are <span className="text-blue-300 font-bold">mostly valid</span> — a few identifications are debated (especially for faint nakshatras like Anuradha and Dhanishtha), but the major ones (Rohini=Aldebaran, Chitra=Spica, Magha=Regulus, Jyeshtha=Antares) are certain.
         </p>

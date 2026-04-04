@@ -188,7 +188,7 @@ export default function WealthPredictionGuide() {
                   className="w-full flex items-center justify-between px-4 py-3 hover:bg-gold-primary/5 transition-colors">
                   <div className="flex items-center gap-3">
                     <span className="text-gold-light font-bold text-sm" style={hf}>{t(dy.name)}</span>
-                    <span className={`px-1.5 py-0.5 rounded text-[9px] font-medium ${strengthColor}`}>
+                    <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${strengthColor}`}>
                       {dy.strength === 'powerful' ? (isHi ? 'अति शक्तिशाली' : 'Powerful') : dy.strength === 'strong' ? (isHi ? 'शक्तिशाली' : 'Strong') : (isHi ? 'मध्यम' : 'Moderate')}
                     </span>
                   </div>
@@ -199,7 +199,7 @@ export default function WealthPredictionGuide() {
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                       <div className="px-4 pb-4 pt-1 space-y-2">
                         <div className="p-2 rounded-lg bg-bg-secondary/50">
-                          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'शर्त' : 'Condition'}</span>
+                          <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'शर्त' : 'Condition'}</span>
                           <p className="text-text-secondary text-sm">{t(dy.condition)}</p>
                         </div>
                         <p className="text-text-secondary text-sm leading-relaxed">{t(dy.effect)}</p>
@@ -226,7 +226,7 @@ export default function WealthPredictionGuide() {
               <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{t(item.indicator)}</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-3">{t(item.problem)}</p>
               <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
-                <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
+                <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
                 <p className="text-emerald-300/80 text-xs mt-1">{t(item.remedy)}</p>
               </div>
             </div>

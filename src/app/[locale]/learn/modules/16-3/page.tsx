@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Epicyclic Theory — Manda and Shighra</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Epicyclic Theory — Manda and Shighra</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Planets do not move at constant speed in circular orbits. The Surya Siddhanta accounts for this with two corrections: the Manda (slow) correction handles the equation of center (the planet speeds up at perihelion and slows at aphelion). The Shighra (fast) correction converts heliocentric longitude to geocentric — explaining retrograde motion. Together, these two epicycles reproduce observed planetary positions with about 1-degree accuracy for most planets.
         </p>
@@ -233,7 +233,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Computing Without Telescopes</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Computing Without Telescopes</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           How did Indian astronomers achieve sub-degree accuracy without optical instruments? Through sustained observation programs spanning centuries, mathematical curve-fitting to naked-eye data, and progressive refinement of parameters. Each generation of astronomers recorded planetary positions against star fields, compared them to predictions, and adjusted the constants. This is essentially the same method modern science uses — just with less precise measuring instruments and more patience.
         </p>
@@ -259,20 +259,20 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Accuracy Table</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Accuracy Table</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Surya Siddhanta:</span> Sun ~0.1 degree | Moon ~1 degree | Mars ~2-3 degrees</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Meeus (our app):</span> Sun ~0.01 degree | Moon ~0.3 degree | Mars ~0.5 degree</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Swiss Ephemeris:</span> All planets &lt; 0.001 degree (sub-arcsecond)</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">JPL DE440:</span> All planets ~0.000001 degree (milliarcsecond)</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">When Higher Accuracy Matters</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">When Higher Accuracy Matters</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           For basic Panchang (tithi, nakshatra, yoga, karana), Meeus is more than sufficient. But for precise Kundali lagna calculation (which changes sign every ~2 hours), higher accuracy helps — a 0.3-degree Moon error could shift a close lagna by a few minutes. For divisional charts (D-9, D-12) where 1 degree can change the sign, Swiss Ephemeris precision becomes desirable. Our app balances practicality (no server-side ephemeris files needed) with sufficient accuracy for its use cases.
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">The Unbroken Lineage</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Unbroken Lineage</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our app&rsquo;s Meeus algorithms are the intellectual descendants of the Surya Siddhanta. The same fundamental approach — compute mean position, apply periodic corrections, convert to geocentric coordinates — runs through the entire lineage. What changed is the number and precision of correction terms. The Surya Siddhanta uses one epicycle per planet; Meeus uses dozens of Fourier terms. But the architecture is recognizably the same. When you check today&rsquo;s Panchang in our app, you are using a computational tradition that is at least 1,500 years old.
         </p>

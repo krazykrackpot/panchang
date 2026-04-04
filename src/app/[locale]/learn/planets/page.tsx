@@ -227,7 +227,7 @@ export default function LearnPlanetsPage() {
                 <span className="text-gold-light font-bold text-sm" style={headingFont}>
                   {isHi ? g.hi : g.en}
                 </span>
-                <span className="text-text-tertiary text-[10px] font-mono">
+                <span className="text-text-tertiary text-xs font-mono">
                   {g.sanskrit}
                 </span>
               </div>
@@ -317,7 +317,7 @@ export default function LearnPlanetsPage() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-gold-light text-sm font-bold" style={headingFont}>{el.element[locale]}</span>
-                <span className="text-text-tertiary text-[10px] font-mono">
+                <span className="text-text-tertiary text-xs font-mono">
                   ({isHi ? el.signsHi : el.signs})
                 </span>
               </div>

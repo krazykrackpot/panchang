@@ -54,9 +54,9 @@ function Page1() {
                 <span className={`text-lg font-black w-6 text-center ${d.color.split(' ')[2]}`}>{d.level}</span>
                 <div className="flex-1">
                   <span className={`font-bold text-xs ${d.color.split(' ')[2]}`}>{d.name.en} <span className="font-normal text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({d.name.hi})</span></span>
-                  <div className="text-text-secondary text-[10px]">{d.desc}</div>
+                  <div className="text-text-secondary text-xs">{d.desc}</div>
                 </div>
-                <span className="text-[10px] font-mono text-text-tertiary">{d.strength}</span>
+                <span className="text-xs font-mono text-text-tertiary">{d.strength}</span>
               </div>
             ))}
           </div>
@@ -64,7 +64,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           BPHS Ch.3 v.18-20 defines exaltation, debilitation, and moolatrikona for each planet. The term <span className="text-gold-light font-bold">Uchcha</span> (उच्च) means "high/elevated," <span className="text-gold-light font-bold">Neecha</span> (नीच) means "low/fallen," and <span className="text-gold-light font-bold">Moolatrikona</span> means "root triangle" — the foundational zone of power. Parashara explicitly states that a planet's exaltation and debilitation points are always 180° apart — this is not coincidence but cosmic symmetry.
         </p>
@@ -102,7 +102,7 @@ function Page1() {
               ))}
             </tbody>
           </table>
-          <p className="text-text-tertiary text-[9px] mt-2">Note: Mercury is unique — exalted in its OWN sign (Virgo). Moolatrikona range is the narrow 16°-20° zone within Virgo.</p>
+          <p className="text-text-tertiary text-xs mt-2">Note: Mercury is unique — exalted in its OWN sign (Virgo). Moolatrikona range is the narrow 16°-20° zone within Virgo.</p>
         </div>
       </section>
     </div>
@@ -124,7 +124,7 @@ function Page2() {
         </p>
 
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-emerald-500/15 mb-4">
-          <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">The 4 Classical Cancellation Conditions (BPHS Ch.34 v.22)</h4>
+          <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">The 4 Classical Cancellation Conditions (BPHS Ch.34 v.22)</h4>
           <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
             <p><span className="text-emerald-300 font-bold">Condition 1:</span> The lord of the DEBILITATION sign is in a kendra (1/4/7/10) from Lagna or Moon. <span className="text-text-tertiary">(Example: Moon debilitated in Scorpio → Mars (Scorpio's lord) in kendra from Lagna)</span></p>
             <p><span className="text-emerald-300 font-bold">Condition 2:</span> The lord of the EXALTATION sign of the debilitated planet is in a kendra. <span className="text-text-tertiary">(Example: Moon debilitated → Venus (lord of Taurus, Moon's exaltation sign) in kendra)</span></p>
@@ -146,7 +146,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example: Complete Dignity Assessment</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: Complete Dignity Assessment</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Scenario:</span> Jupiter at 8° Capricorn in a chart where Mars is in the 7th house from Lagna.
         </p>
@@ -163,7 +163,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "A debilitated planet is always harmful."<br />
           <span className="text-emerald-300">Reality:</span> With Neecha Bhanga, a debilitated planet can produce GREATER success than an exalted one. Abraham Lincoln, Steve Jobs, and many leaders had Neecha Bhanga yogas.</p>
@@ -173,7 +173,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully used in all Jyotish software.</span> Our app computes dignity for every planet in every chart — it's the foundation of Shadbala (Sthana Bala component), Vimshopaka Bala, and chart strength assessment. The Neecha Bhanga detection is part of our 55+ yoga engine. The exaltation/debilitation degrees are from BPHS — unchanged in 1,000+ years.
         </p>

@@ -154,7 +154,7 @@ export default function ModuleIndexPage() {
             {phase.topics.map((topic) => (
               <div key={topic.topic} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border ${phase.color} overflow-hidden`}>
                 <div className="px-4 py-2 border-b border-gold-primary/5">
-                  <span className="text-gold-dark text-[10px] uppercase tracking-widest font-bold">{topic.topic}</span>
+                  <span className="text-gold-dark text-xs uppercase tracking-widest font-bold">{topic.topic}</span>
                 </div>
                 <div className="divide-y divide-gold-primary/5">
                   {topic.modules.map((mod, i) => (

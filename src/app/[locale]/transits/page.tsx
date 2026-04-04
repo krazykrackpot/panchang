@@ -127,7 +127,7 @@ export default function TransitsPage() {
       </motion.div>
 
       {/* Year selector */}
-      <div className="flex items-center justify-center gap-6 mb-8">
+      <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8">
         <button onClick={() => setYear(y => y - 1)} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all" aria-label="Previous year">
           <ChevronLeft className="w-5 h-5 text-gold-primary" />
         </button>
@@ -140,7 +140,7 @@ export default function TransitsPage() {
       {/* Current transits summary */}
       {year === new Date().getFullYear() && currentTransits.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-8">
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 mb-8">
           <h2 className="text-lg text-gold-gradient font-bold mb-4 text-center" style={headingFont}>
             {locale === 'en' ? 'Current Planetary Positions' : 'वर्तमान ग्रह स्थिति'}
           </h2>
@@ -151,7 +151,7 @@ export default function TransitsPage() {
                 <span className="text-gold-light text-xs font-semibold mt-1.5" style={headingFont}>{ct.planetName[locale]}</span>
                 <div className="flex items-center gap-1 mt-1">
                   <RashiIconById id={ct.sign} size={14} />
-                  <span className="text-text-secondary text-[11px]" style={bodyFont}>{ct.signName[locale]}</span>
+                  <span className="text-text-secondary text-xs" style={bodyFont}>{ct.signName[locale]}</span>
                 </div>
               </div>
             ))}
@@ -162,7 +162,7 @@ export default function TransitsPage() {
       {/* Stats bar */}
       {!loading && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
-          className="flex items-center justify-center gap-6 mb-6 text-sm">
+          className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 text-sm">
           <span className="text-text-secondary">
             <span className="text-gold-light font-bold">{stats.total}</span> {locale === 'en' ? 'transits' : 'गोचर'}
           </span>
@@ -183,7 +183,7 @@ export default function TransitsPage() {
         <div className="flex gap-2">
           {(['all', 'major', 'moderate'] as const).map(f => (
             <button key={f} onClick={() => setSigFilter(f)}
-              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
                 sigFilter === f ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}>
               {f === 'all' ? (locale === 'en' ? 'All' : 'सभी') : f === 'major' ? (locale === 'en' ? 'Major' : 'प्रमुख') : (locale === 'en' ? 'Major + Moderate' : 'प्रमुख + मध्यम')}
@@ -193,7 +193,7 @@ export default function TransitsPage() {
 
         {/* Planet filter toggle */}
         <button onClick={() => setShowFilters(!showFilters)}
-          className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-bold transition-all border ${showFilters || planetFilter !== null ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40' : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'}`}>
+          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all border ${showFilters || planetFilter !== null ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40' : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'}`}>
           <Filter className="w-3.5 h-3.5" />
           {locale === 'en' ? 'Planet' : 'ग्रह'}
           {planetFilter !== null && `: ${(locale === 'en' ? PLANET_NAMES_EN : PLANET_NAMES_HI)[planetFilter]}`}
@@ -206,7 +206,7 @@ export default function TransitsPage() {
           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}
             className="flex flex-wrap justify-center gap-2 mb-8 overflow-hidden">
             <button onClick={() => setPlanetFilter(null)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs transition-all ${planetFilter === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs transition-all ${planetFilter === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
               {locale === 'en' ? 'All Planets' : 'सभी ग्रह'}
             </button>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(pid => {
@@ -214,7 +214,7 @@ export default function TransitsPage() {
               if (!hasEvents) return null;
               return (
                 <button key={pid} onClick={() => setPlanetFilter(planetFilter === pid ? null : pid)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs transition-all ${planetFilter === pid ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
+                  className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs transition-all ${planetFilter === pid ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
                   <GrahaIconById id={pid} size={14} />
                   {(locale === 'en' ? PLANET_NAMES_EN : PLANET_NAMES_HI)[pid]}
                 </button>
@@ -256,7 +256,7 @@ export default function TransitsPage() {
                   </h3>
                   <span className="text-text-tertiary text-xs">{monthEvents.length} {locale === 'en' ? 'events' : 'घटनाएँ'}</span>
                   {isCurrentMonth && (
-                    <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-[10px] rounded-full font-bold">
+                    <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold">
                       {locale === 'en' ? 'NOW' : 'अभी'}
                     </span>
                   )}
@@ -278,7 +278,7 @@ export default function TransitsPage() {
                         {/* Date column */}
                         <div className="flex-shrink-0 w-12 text-center">
                           <div className="text-2xl font-bold text-gold-light leading-none">{dayNum}</div>
-                          <div className="text-[10px] text-text-tertiary uppercase">{dayName}</div>
+                          <div className="text-xs text-text-tertiary uppercase">{dayName}</div>
                         </div>
 
                         {/* Separator */}
@@ -295,7 +295,7 @@ export default function TransitsPage() {
                             <span className="text-gold-light font-bold" style={headingFont}>
                               {e.planetName[locale]}
                             </span>
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${sigBadge[e.significance]}`}>
+                            <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${sigBadge[e.significance]}`}>
                               {(locale === 'en' ? sigLabel[e.significance].en : sigLabel[e.significance].hi)}
                             </span>
                           </div>

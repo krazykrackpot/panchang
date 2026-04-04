@@ -284,7 +284,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
               <div key={y.id} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/10">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-semibold text-emerald-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${
                     y.strength === 'Strong' ? 'bg-emerald-500/20 text-emerald-300' :
                     y.strength === 'Moderate' ? 'bg-sky-500/20 text-sky-300' :
                     'bg-gray-500/20 text-gray-400'
@@ -300,7 +300,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                   <span className="text-gray-500">{isHi ? 'निर्माण नियम: ' : 'Formation: '}</span>
                   {isHi ? y.formationRule.hi : y.formationRule.en}
                 </p>
-                <p className="text-[11px] text-sky-400 mt-1">
+                <p className="text-xs text-sky-400 mt-1">
                   {isHi
                     ? 'अधिकतम लाभ हेतु: इसके निर्माणकारी ग्रह की दशा में सक्रिय होता है। उस अवधि में सकारात्मक कार्य करें।'
                     : 'How to maximize: This yoga activates most during the Mahadasha of its forming planets. Take positive action during those periods.'}
@@ -320,7 +320,7 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
               <div key={y.id} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-semibold text-amber-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${
                     y.strength === 'Strong' ? 'bg-red-500/20 text-red-300' :
                     y.strength === 'Moderate' ? 'bg-amber-500/20 text-amber-300' :
                     'bg-gray-500/20 text-gray-400'
@@ -467,7 +467,7 @@ export function AvasthasInterpretation({ avasthas, planets, locale }: AvasthasIn
                   <td className="py-2 px-2 text-[#d4a853] font-medium">{r.state}</td>
                   <td className="py-2 px-2 text-gray-300">{isHi ? r.meaningHi : r.meaning}</td>
                   <td className="py-2 px-2">
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${
                       r.good === 'Best' ? 'bg-emerald-500/20 text-emerald-300' :
                       r.good === 'Great' || r.good === 'Good' ? 'bg-sky-500/20 text-sky-300' :
                       r.good === 'Neutral' ? 'bg-gray-500/20 text-gray-400' :
@@ -572,13 +572,13 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
             const pct = max > 0 ? strength / max : 0;
             const barColor = pct >= 0.7 ? 'bg-emerald-500' : pct >= 0.4 ? 'bg-amber-500' : 'bg-red-500';
             return (
-              <div key={h.bhava} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 w-[72px] text-center">
+              <div key={h.bhava} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 w-[60px] sm:w-[72px] text-center">
                 <div className="text-gold-light font-bold text-sm">H{h.bhava}</div>
-                <div className="text-text-tertiary text-[9px]">{isHi ? sig?.hi : sig?.en}</div>
+                <div className="text-text-tertiary text-xs">{isHi ? sig?.hi : sig?.en}</div>
                 <div className="w-full h-1.5 bg-bg-tertiary/50 rounded-full mt-1.5 overflow-hidden">
                   <div className={`h-full rounded-full ${barColor}`} style={{ width: `${pct * 100}%` }} />
                 </div>
-                <div className="text-[9px] text-text-tertiary mt-0.5">{strength.toFixed(0)}</div>
+                <div className="text-xs text-text-tertiary mt-0.5">{strength.toFixed(0)}</div>
               </div>
             );
           })}

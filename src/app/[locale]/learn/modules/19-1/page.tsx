@@ -205,7 +205,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'राहु का विशेष नियम' : 'Rahu&apos;s Special Treatment'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'राहु का विशेष नियम' : 'Rahu&apos;s Special Treatment'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>कुछ जैमिनी विद्वान 8-कारक पद्धति प्रयोग करते हैं जिसमें राहु सम्मिलित है। चूँकि राहु वक्री गति से चलता है, उसका अंश 30° ऋण राशि में उसका वास्तविक अंश गणित किया जाता है। उदाहरणार्थ, किसी राशि में 22° पर राहु को कारक क्रम में 8° माना जाता है। यह उल्टी गणना राहु की सदा वक्री प्रकृति का ध्यान रखती है। 8-कारक पद्धति में एक अतिरिक्त कारक — पितृकारक (पिता) — मातृकारक और पुत्रकारक के बीच जोड़ा जाता है।</>
@@ -233,7 +233,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Given positions:</span> Sun at 25°14&apos; Aries, Moon at 18°07&apos; Gemini, Mars at 22°45&apos; Leo, Mercury at 10°33&apos; Virgo, Jupiter at 28°02&apos; Taurus, Venus at 15°21&apos; Libra, Saturn at 8°48&apos; Capricorn.
         </p>
@@ -251,7 +251,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चर कारक के लिए ग्रह का कुल भोगांश (राशिचक्र में निरपेक्ष अंश) प्रयोग होता है।&quot; यह गलत है। केवल अपनी राशि में अंश (0° से 30°) ही मायने रखता है। मेष में 5° (निरपेक्ष 5°) का ग्रह और वृश्चिक में 5° (निरपेक्ष 215°) का ग्रह समान माना जाता है — दोनों अपनी राशि में 5° पर हैं।</>
@@ -260,7 +260,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>चर कारकों ने आधुनिक ज्योतिष अभ्यासकर्ताओं में नवीन रुचि प्राप्त की है क्योंकि वे कुण्डली व्याख्या में गहन व्यक्तिगत परत जोड़ते हैं। जहाँ पाराशरी स्थिर कारक सामान्य सिद्धान्त देते हैं, वहीं चर कारक प्रकट करते हैं कि प्रत्येक व्यक्ति के लिए विशिष्ट रूप से क्या महत्त्वपूर्ण है। सॉफ्टवेयर इन्हें तत्काल गणित कर सकता है, जिससे जैमिनी तकनीकें पहले से कहीं अधिक सुलभ हो गयी हैं।</>
@@ -299,7 +299,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">उदाहरण:</span> बृहस्पति AK है 28° वृषभ में। D9 में बृहस्पति मकर में पड़ता है। अतः कारकांश मकर है। D1 कुण्डली में मकर को लग्न मानकर देखें: यदि शुक्र मकर (कारकांश) में हो, तो जातक में कलात्मक प्रतिभा है और वह स्त्री देवताओं की उपासना कर सकता है। यदि मंगल कर्क से मकर को दृष्ट करे (सप्तम दृष्टि), तो जातक का अनुशासित, योद्धा-सदृश आध्यात्मिक अभ्यास है। कारकांश से दशम (तुला) आत्मा की सच्ची व्यावसायिक पुकार निर्धारित करता है।</>
@@ -308,7 +308,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'AK लग्नेश से ऊपर क्यों' : 'Why AK Can Surpass the Lagna Lord'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'AK लग्नेश से ऊपर क्यों' : 'Why AK Can Surpass the Lagna Lord'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>लग्नेश दिखाता है कि जातक संसार से कैसे अन्तर्क्रिया करता है — शारीरिक रूप, स्वास्थ्य और व्यक्तित्व प्रक्षेपण। किन्तु आत्मकारक गहन &quot;क्यों&quot; प्रकट करता है — वह कार्मिक उद्देश्य जो आत्मा ने इस अवतार में पूर्ण करने के लिए चुना। समान लग्न किन्तु भिन्न आत्मकारक वाले दो व्यक्तियों के जीवन पथ बहुत भिन्न होंगे। लग्नेश बाह्य संसार में मार्गदर्शन करता है; आत्मकारक आन्तरिक दिशासूचक चलाता है। जैमिनी अभ्यास में AK और कारकांश का विश्लेषण प्रायः उन अस्पष्टताओं को सुलझाता है जो पाराशरी विधियों से अनुत्तरित रहती हैं।</>

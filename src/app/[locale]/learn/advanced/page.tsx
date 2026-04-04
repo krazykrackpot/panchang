@@ -304,7 +304,7 @@ export default function LearnAdvancedPage() {
         <p>{L.practiceContent[locale]}</p>
 
         <div className="mt-4 mb-6">
-          <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
             {locale === 'en' ? 'Related Learn Modules' : 'सम्बन्धित शिक्षा मॉड्यूल'}
           </h4>
           <div className="flex flex-wrap gap-2">

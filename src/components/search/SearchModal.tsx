@@ -152,7 +152,7 @@ export default function SearchModal() {
       >
         <Search className="w-3.5 h-3.5" />
         <span className="hidden sm:inline">{locale === 'en' ? 'Search' : 'खोजें'}</span>
-        <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/40 font-mono ml-1" suppressHydrationWarning>
+        <kbd className="hidden sm:inline text-xs px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/40 font-mono ml-1" suppressHydrationWarning>
           {isMac ? '⌘' : 'Ctrl+'}K
         </kbd>
       </button>
@@ -203,7 +203,7 @@ export default function SearchModal() {
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="text-[10px] text-text-secondary/30 uppercase tracking-wider w-16 shrink-0">{item.category}</span>
+                    <span className="text-xs text-text-secondary/30 uppercase tracking-wider w-16 shrink-0">{item.category}</span>
                     <span className={`text-sm truncate ${i === selectedIdx ? 'text-gold-light font-semibold' : 'text-text-primary'}`}>
                       {locale === 'en' ? item.title : (item.titleHi || item.title)}
                     </span>
@@ -215,7 +215,7 @@ export default function SearchModal() {
           </div>
 
           {/* Footer */}
-          <div className="px-5 py-2.5 border-t border-gold-primary/10 flex items-center justify-between text-[10px] text-text-secondary/30">
+          <div className="px-5 py-2.5 border-t border-gold-primary/10 flex items-center justify-between text-xs text-text-secondary/30">
             <div className="flex items-center gap-3">
               <span><kbd className="px-1 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 font-mono">↑↓</kbd> navigate</span>
               <span><kbd className="px-1 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 font-mono">↵</kbd> open</span>

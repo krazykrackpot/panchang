@@ -298,12 +298,12 @@ export default function KaalNirnayaPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * i }}
-              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border-2 ${yuga.border} ${yuga.bg} relative overflow-hidden`}
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 border-2 ${yuga.border} ${yuga.bg} relative overflow-hidden`}
             >
               {yuga.current && (
                 <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-red-500/20 border border-red-500/40 rounded-full">
                   <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-                  <span className="text-red-300 text-[10px] font-bold uppercase">{locale === 'en' ? 'NOW' : 'अभी'}</span>
+                  <span className="text-red-300 text-xs font-bold uppercase">{locale === 'en' ? 'NOW' : 'अभी'}</span>
                 </div>
               )}
               <div className="mb-4">
@@ -316,7 +316,7 @@ export default function KaalNirnayaPage() {
               </div>
               {/* Dharma meter */}
               <div className="mb-4">
-                <div className="flex justify-between text-[10px] text-text-secondary mb-1">
+                <div className="flex justify-between text-xs text-text-secondary mb-1">
                   <span>{locale === 'en' ? 'Dharma' : 'धर्म'}</span>
                   <span className={yuga.text}>{yuga.dharma}%</span>
                 </div>
@@ -333,13 +333,13 @@ export default function KaalNirnayaPage() {
               {/* Current Yuga progress */}
               {yuga.current && (
                 <div className="mt-4 pt-4 border-t border-red-500/20">
-                  <div className="text-[10px] text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
+                  <div className="text-xs text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
                     {locale === 'en' ? 'Current Progress' : 'वर्तमान प्रगति'}
                   </div>
                   <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden mb-1">
                     <div className="h-full bg-red-400/50 rounded-full" style={{ width: `${kaliPct}%` }} />
                   </div>
-                  <div className="flex justify-between text-[10px] text-text-secondary/60 font-mono">
+                  <div className="flex justify-between text-xs text-text-secondary/60 font-mono">
                     <span>3102 BCE</span>
                     <span className="text-red-300">{kaliPct}%</span>
                     <span>+{(KALI_YUGA_TOTAL - KALI_ELAPSED).toLocaleString()}y</span>
@@ -354,7 +354,7 @@ export default function KaalNirnayaPage() {
 
       {/* ═══ SECTION 2: WHERE ARE WE NOW? ═══ */}
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.13 }} className="mb-20">
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5">
           <h2 className="text-3xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
             {locale === 'en' ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
           </h2>
@@ -368,7 +368,7 @@ export default function KaalNirnayaPage() {
               { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष' }, color: 'text-amber-300' },
             ].map((item) => (
               <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
-                <div className="text-gold-dark/60 text-[10px] uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
+                <div className="text-gold-dark/60 text-xs uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
                 <div className={`font-bold text-sm ${item.color}`}>{t2(item.value)}</div>
               </div>
             ))}
@@ -376,7 +376,7 @@ export default function KaalNirnayaPage() {
 
           {/* Visual: Brahma's life progress */}
           <div className="mb-4">
-            <div className="flex justify-between text-[10px] text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
+            <div className="flex justify-between text-xs text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
               <span>{locale === 'en' ? "Brahma's Life Progress" : 'ब्रह्मा के जीवन की प्रगति'}</span>
               <span className="text-gold-primary">~50%</span>
             </div>
@@ -384,7 +384,7 @@ export default function KaalNirnayaPage() {
               <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/50 via-gold-primary/50 to-rose-500/50" style={{ width: '50.5%' }} />
               <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
             </div>
-            <div className="flex justify-between text-[10px] text-text-secondary/50 mt-1 font-mono">
+            <div className="flex justify-between text-xs text-text-secondary/50 mt-1 font-mono">
               <span>{locale === 'en' ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
               <span className="text-gold-light/60">{locale === 'en' ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
               <span>{locale === 'en' ? 'Mahapralaya' : 'महाप्रलय'}</span>
@@ -414,13 +414,13 @@ export default function KaalNirnayaPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-1.5 flex-1 bg-emerald-500/30 rounded-full" />
-                  <span className="text-emerald-400/60 text-[10px] font-mono">{locale === 'en' ? 'COMPLETE' : 'पूर्ण'}</span>
+                  <span className="text-emerald-400/60 text-xs font-mono">{locale === 'en' ? 'COMPLETE' : 'पूर्ण'}</span>
                 </div>
               </div>
               <div className="rounded-xl p-4 bg-bg-primary/40 border border-rose-500/20">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-rose-300 font-bold text-sm">{locale === 'en' ? 'Dvitiya Parardha' : 'द्वितीय परार्ध'}</span>
-                  <span className="px-1.5 py-0.5 text-[10px] bg-rose-500/20 text-rose-300 rounded font-bold uppercase border border-rose-500/30">{locale === 'en' ? 'NOW' : 'अभी'}</span>
+                  <span className="px-1.5 py-0.5 text-xs bg-rose-500/20 text-rose-300 rounded font-bold uppercase border border-rose-500/30">{locale === 'en' ? 'NOW' : 'अभी'}</span>
                 </div>
                 <div className="text-text-secondary text-xs leading-relaxed mb-2">
                   {locale === 'en'
@@ -431,7 +431,7 @@ export default function KaalNirnayaPage() {
                   <div className="h-1.5 flex-1 bg-bg-tertiary rounded-full overflow-hidden">
                     <div className="h-full bg-rose-400/40 rounded-full" style={{ width: '2%' }} />
                   </div>
-                  <span className="text-rose-300/60 text-[10px] font-mono">~1%</span>
+                  <span className="text-rose-300/60 text-xs font-mono">~1%</span>
                 </div>
               </div>
             </div>
@@ -481,14 +481,14 @@ export default function KaalNirnayaPage() {
                 { n: 30, en: 'Pitri', hi: 'पितृ', meaning: { en: 'Of the ancestors', hi: 'पितरों का कल्प' } },
               ] as { n: number; en: string; hi: string; meaning: { en: string; hi: string }; current?: boolean }[]).map((k) => (
                 <div key={k.n} className={`rounded-lg px-3 py-2.5 flex items-start gap-2.5 ${k.current ? 'bg-gold-primary/8 border border-gold-primary/25' : 'bg-bg-primary/30 border border-gold-primary/5'}`}>
-                  <span className={`text-[10px] font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/40'}`}>{String(k.n).padStart(2, '0')}</span>
+                  <span className={`text-xs font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/40'}`}>{String(k.n).padStart(2, '0')}</span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className={`font-bold text-xs ${k.current ? 'text-gold-light' : 'text-text-primary'}`}>{locale === 'en' ? k.en : k.hi}</span>
-                      {locale === 'en' && <span className="text-gold-dark/40 text-[10px]" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.hi}</span>}
-                      {k.current && <span className="px-1 py-0 text-[8px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{locale === 'en' ? 'CURRENT' : 'वर्तमान'}</span>}
+                      {locale === 'en' && <span className="text-gold-dark/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.hi}</span>}
+                      {k.current && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{locale === 'en' ? 'CURRENT' : 'वर्तमान'}</span>}
                     </div>
-                    <p className="text-text-secondary/60 text-[10px] leading-snug mt-0.5">{t2(k.meaning)}</p>
+                    <p className="text-text-secondary/60 text-xs leading-snug mt-0.5">{t2(k.meaning)}</p>
                   </div>
                 </div>
               ))}
@@ -681,7 +681,7 @@ export default function KaalNirnayaPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, ease: 'easeOut' as const }}
             >
-              <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border-l-4 ${tier.color} ${tier.highlight ? 'bg-gold-primary/3' : ''}`}>
+              <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border-l-4 ${tier.color} ${tier.highlight ? 'bg-gold-primary/3' : ''}`}>
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   {/* Level badge + vertical dot */}
                   <div className="flex items-center sm:flex-col sm:items-center gap-3 sm:gap-1 flex-shrink-0 sm:w-16">
@@ -704,7 +704,7 @@ export default function KaalNirnayaPage() {
 
                     {/* Formula */}
                     <div className="mb-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
-                      <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Formula' : 'सूत्र'}: </span>
+                      <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Formula' : 'सूत्र'}: </span>
                       <span className="text-gold-light/70 font-mono text-xs">{t2(tier.formula)}</span>
                     </div>
 
@@ -740,8 +740,8 @@ export default function KaalNirnayaPage() {
           <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.ayanamshaDesc[locale]}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'What is Precession?' : 'अग्रगमन क्या है?'}
             </h3>
@@ -753,18 +753,18 @@ export default function KaalNirnayaPage() {
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4">
               <div className="grid grid-cols-2 gap-3 text-center">
                 <div>
-                  <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Rate' : 'दर'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Rate' : 'दर'}</div>
                   <div className="text-gold-light font-bold text-lg font-mono">50.3″/yr</div>
                 </div>
                 <div>
-                  <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Full Cycle' : 'पूर्ण चक्र'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Full Cycle' : 'पूर्ण चक्र'}</div>
                   <div className="text-gold-light font-bold text-lg font-mono">~25,772 yrs</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'Ayanamsha Systems' : 'अयनांश प्रणालियाँ'}
             </h3>
@@ -779,7 +779,7 @@ export default function KaalNirnayaPage() {
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
                       <span className="text-text-primary font-semibold text-sm">{a.name}</span>
-                      {a.official && <span className="px-1.5 py-0.5 text-[10px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' ? 'Official' : 'आधिकारिक'}</span>}
+                      {a.official && <span className="px-1.5 py-0.5 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' ? 'Official' : 'आधिकारिक'}</span>}
                     </div>
                     <span className="font-mono text-gold-light text-sm font-bold">{a.value}</span>
                   </div>
@@ -792,7 +792,7 @@ export default function KaalNirnayaPage() {
 
         {/* Current Lahiri Ayanamsha */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border-2 border-gold-primary/30 bg-gradient-to-r from-gold-primary/5 to-transparent text-center">
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border-2 border-gold-primary/30 bg-gradient-to-r from-gold-primary/5 to-transparent text-center">
           <div className="text-gold-dark text-xs uppercase tracking-[0.3em] font-bold mb-2">
             {locale === 'en' ? 'Current Lahiri Ayanamsha (2026 CE)' : 'वर्तमान लाहिरी अयनांश (2026 CE)'}
           </div>
@@ -822,7 +822,7 @@ export default function KaalNirnayaPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.05 * i }}
-              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border ${limb.border} ${limb.bg}`}
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 border ${limb.border} ${limb.bg}`}
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="flex-shrink-0"><limb.icon size={48} /></div>
@@ -835,7 +835,7 @@ export default function KaalNirnayaPage() {
               </div>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{limb.desc[locale]}</p>
               <div className="rounded-lg p-3 bg-bg-tertiary/50 border border-gold-primary/10">
-                <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">
+                <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
                   {locale === 'en' ? 'Formula' : 'सूत्र'}
                 </div>
                 <div className="text-text-primary text-xs font-mono">{limb.formula[locale]}</div>
@@ -876,8 +876,8 @@ export default function KaalNirnayaPage() {
           <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.muhurtaDesc[locale]}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mb-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? '30 Muhurtas in a Day' : 'दिन में 30 मुहूर्त'}
             </h3>
@@ -894,13 +894,13 @@ export default function KaalNirnayaPage() {
               ].map(item => (
                 <div key={item.label} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3">
                   <div className="text-gold-light font-bold text-2xl font-mono">{item.value}</div>
-                  <div className="text-text-secondary text-[10px] mt-1">{item.label}</div>
+                  <div className="text-text-secondary text-xs mt-1">{item.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6">
             <h3 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
               {locale === 'en' ? 'Key Auspicious Muhurtas' : 'प्रमुख शुभ मुहूर्त'}
             </h3>
@@ -1016,10 +1016,10 @@ export default function KaalNirnayaPage() {
                 },
               ] as { label: { en: string; hi: string; sa: string }; value: string; desc: { en: string; hi: string; sa: string }; color: string }[]).map((item, i) => (
                 <motion.div key={item.label.en} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.05 * i }}
-                  className="p-6 text-center">
-                  <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">{item.label[locale]}</div>
+                  className="p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">{item.label[locale]}</div>
                   <div className={`font-bold text-2xl font-mono ${item.color}`} style={headingFont}>{item.value}</div>
-                  <div className="text-text-secondary text-[10px] mt-2">{item.desc[locale]}</div>
+                  <div className="text-text-secondary text-xs mt-2">{item.desc[locale]}</div>
                 </motion.div>
               ))}
             </div>
@@ -1069,7 +1069,7 @@ export default function KaalNirnayaPage() {
                       <span className={`font-bold text-sm ${row.highlight ? 'text-gold-light' : 'text-text-primary'}`}>
                         {row.unit}
                       </span>
-                      {row.highlight && <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">Key</span>}
+                      {row.highlight && <span className="ml-2 px-1.5 py-0.5 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">Key</span>}
                     </td>
                     <td className="px-5 py-3">
                       <span className="text-gold-dark text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{row.hi}</span>

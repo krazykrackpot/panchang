@@ -205,7 +205,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'नक्षत्रों को उप-विभाजित करने की अवधारणा नई नहीं है — पाराशरी ज्योतिष 4-पाद पद्धति (कुल 108 पाद, जो नवांश बनाते हैं) का उपयोग करता है। केपी का नवाचार था समान पादों को असमान विंशोत्तरी-अनुपातित उप-भागों से प्रतिस्थापित करना। कृष्णमूर्ति का तर्क था कि चूँकि विंशोत्तरी दशा जीवन घटनाओं के समय को नियन्त्रित करती है, वही आनुपातिक तर्क राशिचक्र के स्थानिक विभाजन को भी नियन्त्रित करना चाहिए। समान विंशोत्तरी अनुपातों का उपयोग करके कालिक (दशा) और स्थानिक (उप-स्वामी) पद्धतियों का यह सुन्दर एकीकरण ही केपी को आन्तरिक रूप से सुसंगत बनाता है।'
@@ -238,7 +238,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -276,7 +276,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">
@@ -287,7 +287,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">

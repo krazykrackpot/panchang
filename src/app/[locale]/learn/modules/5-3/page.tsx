@@ -211,7 +211,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'क्षय और वृद्धि तिथियों के नियम धर्मशास्त्र ग्रन्थों जैसे निर्णय सिन्धु (17वीं शताब्दी) और धर्म सिन्धु में संहिताबद्ध हैं, जो त्योहारों और अनुष्ठानों के निर्धारण के लिए प्रामाणिक मार्गदर्शक हैं। सूर्य सिद्धान्त गणितीय आधार प्रदान करता है, जबकि मुहूर्त चिन्तामणि जैसे ग्रन्थ मुहूर्त ज्योतिष के लिए व्यावहारिक निहितार्थों का विस्तार करते हैं। सूर्योदय-आधारित गणना की परम्परा सभी हिन्दू पंचांग पद्धतियों में सार्वभौमिक है।'
@@ -242,7 +242,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">वृद्धि उदाहरण:</span> मान लें सप्तमी तिथि सोमवार प्रातः 4:30 (सूर्योदय 6:15 से पहले) आरम्भ होकर बुधवार प्रातः 7:45 पर समाप्त होती है। सप्तमी सोमवार और मंगलवार दोनों के सूर्योदय पर उपस्थित है। सोमवार प्रथम सप्तमी और मंगलवार वृद्धि (दोहरी) सप्तमी है। सप्तमी से जुड़े अधिकांश त्योहारों हेतु प्रथम दिन (सोमवार) प्रयुक्त होता है।</> : <><span className="text-gold-light font-medium">Vriddhi Example:</span> Suppose Saptami tithi begins at 4:30 AM (before sunrise at 6:15 AM) on Monday and ends at 7:45 AM on Wednesday. Saptami is present at sunrise on both Monday and Tuesday. Monday is the first Saptami day and Tuesday is the Vriddhi (repeated) Saptami day. For most festivals tied to Saptami, the first day (Monday) is used.</>}
         </p>
@@ -252,7 +252,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "पारण एकादशी के अगले दिन सुबह कभी भी किया जा सकता है।" यह गलत है और एकादशी तिथि चलते हुए (यदि एकादशी देर सुबह समाप्त हो) उपवास तोड़ सकता है। सदैव एकादशी समाप्ति का सटीक समय देखें। यदि यह प्रातः 10:30 पर समाप्त होती है तो 7:00 बजे भोजन करना एकादशी के दौरान ही उपवास तोड़ना होगा, जिससे व्रत का पुण्य नष्ट हो जाएगा।</> : <><span className="text-gold-light font-medium">Misconception:</span> "Parana can be done any time the next morning after Ekadashi." This is incorrect and can lead to breaking the fast while Ekadashi tithi is still running (if Ekadashi ends late morning). Always check the exact Ekadashi end time. If it ends at 10:30 AM, eating at 7 AM would break the fast during Ekadashi itself, losing the vrat&apos;s merit.</>}
         </p>
@@ -281,21 +281,21 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">क्षय उदाहरण:</span> मान लें नवमी मंगलवार प्रातः 8:15 (सूर्योदय 6:20 के बाद) आरम्भ होती है और चन्द्रमा उपभू के निकट 15.2 अंश/दिन चल रहा है। शुद्ध सापेक्ष गति = 15.2 - 1.0 = 14.2 अंश/दिन। तिथि अवधि = 12 / 14.2 = 20.3 घण्टे। नवमी 8:15 + 20.3 घण्टे = बुधवार प्रातः 4:33 (सूर्योदय 6:20 से पहले) समाप्त। परिणाम: नवमी किसी सूर्योदय पर उपस्थित नहीं। यह क्षय तिथि है। मंगलवार को सूर्योदय पर अष्टमी और बुधवार को दशमी — नवमी पंचांग से छूट गई।</> : <><span className="text-gold-light font-medium">Kshaya Example:</span> Suppose Navami begins at 8:15 AM Tuesday (after sunrise at 6:20 AM) and the Moon is near perigee, moving at 15.2 degrees/day. Net relative speed = 15.2 - 1.0 = 14.2 degrees/day. Tithi duration = 12 / 14.2 = 20.3 hours. Navami ends at 8:15 AM + 20.3 hours = 4:33 AM Wednesday (before sunrise at 6:20 AM). Result: Navami is not present at any sunrise. It is a Kshaya tithi. Tuesday has Ashtami at sunrise, and Wednesday has Dashami at sunrise — Navami is skipped in the calendar.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> "तिथि समाप्ति समय 12 अंश को चन्द्रमा की औसत गति से भाग देकर निकाला जा सकता है।" यह एक सन्निकटन तो देता है किन्तु एक घण्टे से अधिक की त्रुटि हो सकती है क्योंकि चन्द्रमा की गति दिनभर निरन्तर बदलती रहती है। द्विभाजन खोज विधि प्रत्येक चरण पर चन्द्र और सूर्य की स्थिति पुनः गणना करती है, वास्तविक-समय गति परिवर्तन को पकड़ती है, यही कारण है कि आधुनिक पंचांग सॉफ्टवेयर मिनट-स्तर की सटीकता प्राप्त करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> "You can compute tithi end time by simply dividing 12 degrees by the average Moon speed." While this gives an approximation, it can be off by over an hour because the Moon&apos;s speed changes continuously throughout the day. The binary search method recomputes Moon and Sun positions at each iteration, capturing the real-time speed variation, which is why modern Panchang software achieves minute-level accuracy.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? 'हमारा पंचांग इंजन तिथि-तालिका मॉड्यूल में ठीक यही द्विभाजन खोज विधि लागू करता है। प्रत्येक दिन के लिए यह मीयस एल्गोरिदम से सूर्योदय पर चन्द्र और सूर्य भोगांश गणना करता है, कोणीय दूरी निकालता है, तिथि पहचानता है, फिर पुनरावर्ती द्विभाजन से एक मिनट के भीतर सटीक आरम्भ और समाप्ति समय ज्ञात करता है। क्षय और वृद्धि तिथियाँ स्वचालित रूप से पहचानी और चिह्नित की जाती हैं। एकादशी व्रत हेतु पारण समय द्वादशी के सटीक आरम्भ और समाप्ति समय ज्ञात कर सूर्योदय-सूर्यास्त खिड़की से प्रतिच्छेदन द्वारा निकाला जाता है।'

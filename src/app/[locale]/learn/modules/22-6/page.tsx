@@ -218,7 +218,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'गणितीय अभिव्यक्ति' : 'The Mathematical Expression'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'गणितीय अभिव्यक्ति' : 'The Mathematical Expression'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Let y = tan²(ε/2) where ε ≈ 23.44° is the obliquity. Let e ≈ 0.01671 be the eccentricity. Let L₀ be the Sun&apos;s mean longitude and M be the mean anomaly. Then:
         </p>
@@ -232,7 +232,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'एनालेम्मा' : 'The Analemma'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'एनालेम्मा' : 'The Analemma'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>यदि आप प्रतिदिन एक ही घड़ी समय पर पूरे वर्ष सूर्य का चित्र लें, तो यह उसी स्थान पर नहीं लौटता। इसके बजाय, यह एनालेम्मा नामक अंक-8 आकृति बनाता है। पूर्व-पश्चिम विस्थापन EoT है (EoT &gt; 0 होने पर सूर्य अपनी माध्य स्थिति से पूर्व में, EoT &lt; 0 होने पर पश्चिम में)। उत्तर-दक्षिण विस्थापन बदलती क्रान्ति है (ग्रीष्म में ऊँचा, शीत में नीचा)। एनालेम्मा विषम है क्योंकि उत्केन्द्रता और तिर्यकता प्रभावों की भिन्न अवधियाँ हैं — एक पाश दूसरे से बड़ा है।</> : <>If you photograph the Sun at the same clock time every day for a year, it does NOT return to the same spot. Instead, it traces a figure-8 pattern called the analemma. The east-west displacement is the EoT (the Sun is east of its mean position when EoT &gt; 0, west when EoT &lt; 0). The north-south displacement is the changing declination (high in summer, low in winter). The analemma is asymmetric because the eccentricity and obliquity effects have different periods — one loop is larger than the other.</>}</p>
       </section>
     </div>
@@ -253,12 +253,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;समय का समीकरण केवल समयक्षेत्रों के बारे में है।&quot; समयक्षेत्र राजनीतिक/प्रशासनिक व्यवस्था है। EoT एक मूलभूत खगोलीय घटना है जो समयक्षेत्रों से स्वतन्त्र विद्यमान है। यदि आप अपने समयक्षेत्र के केन्द्रीय याम्योत्तर पर ठीक रहते भी, तो तिर्यकता और उत्केन्द्रता प्रभावों के कारण आपकी धूपघड़ी अभी भी आपकी घड़ी से 16 मिनट तक असहमत होगी।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The Equation of Time is just about timezones.&quot; Timezones are a political/administrative system. The EoT is a fundamental astronomical phenomenon that exists regardless of timezones. Even if you lived exactly on the central meridian of your timezone, your sundial would still disagree with your clock by up to 16 minutes because of the obliquity and eccentricity effects.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>EoT को समझना प्राचीन भारतीय खगोलशास्त्र को आधुनिक संगणक अभ्यास से जोड़ता है। सूर्य सिद्धान्त पहले से ही अपने मन्दफल (केन्द्र समीकरण) सुधार द्वारा उत्केन्द्रता प्रभाव का लेखा-जोखा रखता है। तिर्यकता प्रभाव क्रान्तिवृत्तीय और विषुवतीय निर्देशांकों के बीच रूपान्तरण (क्रान्ति गणना) में प्रकट होता है। हमारा इंजन दोनों प्रभावों को संक्षिप्त EoT सूत्र में संयोजित करता है, जब भी सूर्योदय या सूर्यास्त गणित करता है इसे लागू करता है — वे आधारभूत सन्दर्भ समय जिन पर सम्पूर्ण पंचांग संरचना टिकी है।</> : <>Understanding the EoT connects ancient Indian astronomy with modern computational practice. The Surya Siddhanta already accounts for the eccentricity effect through its mandaphala (equation of center) correction. The obliquity effect appears in the conversion between ecliptic and equatorial coordinates (kranti calculation). Our engine combines both effects in the compact EoT formula, applying it every time it computes sunrise or sunset — the foundational reference times upon which the entire Panchang structure rests.</>}</p>
       </section>
     </div>

@@ -628,7 +628,7 @@ export default function LearnGrahasPage() {
             >
               <span className="text-xs font-semibold" style={{ color: d.color }}>{d.name}</span>
               <span className="text-gold-primary text-lg font-bold">{d.years}</span>
-              <span className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'years' : 'वर्ष'}</span>
+              <span className="text-text-secondary/50 text-xs">{locale === 'en' ? 'years' : 'वर्ष'}</span>
             </div>
           ))}
         </div>

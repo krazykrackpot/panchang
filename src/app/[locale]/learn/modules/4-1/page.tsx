@@ -237,7 +237,7 @@ function Page1() {
 
       {/* Classical Origin Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
@@ -272,7 +272,7 @@ function Page2() {
 
       {/* Ayanamsha Systems Table */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 overflow-x-auto">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'अयनांश पद्धतियों की तुलना' : 'Ayanamsha Systems Compared'}
         </h4>
         <table className="w-full text-xs text-text-secondary">
@@ -343,7 +343,7 @@ function Page2() {
 
       {/* Worked Examples Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'उदाहरण — सीमारेखा की समस्या' : 'Worked Example — The Boundary Problem'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -373,7 +373,7 @@ function Page2() {
 
       {/* Real-World Comparison */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-violet-500/15">
-        <h4 className="text-violet-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-violet-300 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'वास्तविक उदाहरण — लहिरी बनाम रमन' : 'Real Chart Comparison — Lahiri vs Raman'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
@@ -513,7 +513,7 @@ function Page3() {
 
       {/* Each System's Anchor Logic */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'प्रत्येक प्रणाली ने अपना लंगर कैसे चुना' : 'How Each System Chose Its Anchor'}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
@@ -527,7 +527,7 @@ function Page3() {
 
       {/* Why Can't We Just Measure It? */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-500/15">
-        <h4 className="text-cyan-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-cyan-300 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'क्या हम इसे माप नहीं सकते?' : 'Why Can\'t We Just Measure It?'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
@@ -573,7 +573,7 @@ function Page3() {
 
       {/* Misconceptions Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">
@@ -592,7 +592,7 @@ function Page3() {
 
       {/* Modern Relevance Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed">

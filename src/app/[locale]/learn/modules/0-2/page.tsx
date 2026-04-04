@@ -195,7 +195,7 @@ function Page1() {
 
       {/* Classical Origin — Gold card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
@@ -236,7 +236,7 @@ function Page2() {
                 ? 'मास पूर्णिमा पर समाप्त होता है। कृष्ण पक्ष पहले, फिर शुक्ल पक्ष।'
                 : 'Month ENDS at Purnima (full moon). Krishna Paksha (waning) comes first, then Shukla Paksha (waxing).'}
             </p>
-            <p className="text-text-tertiary text-[10px]">
+            <p className="text-text-tertiary text-xs">
               {isHi ? 'उत्तर प्रदेश, राजस्थान, मध्य प्रदेश, नेपाल' : 'Uttar Pradesh, Rajasthan, Madhya Pradesh, Nepal'}
             </p>
           </div>
@@ -247,7 +247,7 @@ function Page2() {
                 ? 'मास अमावस्या पर समाप्त होता है। शुक्ल पक्ष पहले, फिर कृष्ण पक्ष।'
                 : 'Month ENDS at Amavasya (new moon). Shukla Paksha (waxing) comes first, then Krishna Paksha (waning).'}
             </p>
-            <p className="text-text-tertiary text-[10px]">
+            <p className="text-text-tertiary text-xs">
               {isHi ? 'महाराष्ट्र, कर्नाटक, आन्ध्र, तमिलनाडु, गुजरात' : 'Maharashtra, Karnataka, Andhra, Tamil Nadu, Gujarat'}
             </p>
           </div>
@@ -268,7 +268,7 @@ function Page2() {
 
       {/* Emerald fact card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'भारतीय वर्ष-गणना' : 'Indian Year-Counting Eras'}
         </h4>
         <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
@@ -335,7 +335,7 @@ function Page3() {
 
       {/* Red — Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}
         </h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">
@@ -362,7 +362,7 @@ function Page3() {
 
       {/* Blue — Modern Relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}
         </h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">

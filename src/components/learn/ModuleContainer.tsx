@@ -144,7 +144,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     <div className="space-y-6">
       {/* Module header */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
-        <div className="flex items-center gap-2 text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+        <div className="flex items-center gap-2 text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           <BookOpen className="w-3.5 h-3.5" />
           {isHi ? `चरण ${meta.phase} · ${meta.topic}` : `Phase ${meta.phase} · ${meta.topic}`}
         </div>
@@ -152,7 +152,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           {isHi ? `${meta.moduleNumber}  ${meta.title.hi}` : `${meta.moduleNumber}  ${meta.title.en}`}
         </h2>
         <p className="text-text-secondary text-sm">{isHi ? meta.subtitle.hi : meta.subtitle.en}</p>
-        <div className="flex items-center gap-4 mt-3 text-text-tertiary text-[10px]">
+        <div className="flex items-center gap-4 mt-3 text-text-tertiary text-xs">
           <span>~{meta.estimatedMinutes} {isHi ? 'मिनट' : 'min'}</span>
           <span>{totalContentPages} {isHi ? 'पृष्ठ' : 'pages'} + {isHi ? 'ज्ञान परीक्षा' : 'knowledge check'}</span>
         </div>
@@ -163,7 +163,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
             <div className="h-full bg-gold-primary rounded-full transition-all duration-500"
               style={{ width: showQuiz ? '100%' : `${((currentPage + 1) / (totalContentPages + 1)) * 100}%` }} />
           </div>
-          <span className="text-text-tertiary text-[10px] font-mono shrink-0">
+          <span className="text-text-tertiary text-xs font-mono shrink-0">
             {showQuiz ? (isHi ? 'परीक्षा' : 'Quiz') : `${currentPage + 1}/${totalContentPages}`}
           </span>
         </div>
@@ -255,11 +255,11 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                     {answered && (
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
                         className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/10">
-                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1">
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">
                           {isHi ? 'व्याख्या' : 'Explanation'}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? q.explanation.hi : q.explanation.en}</p>
-                        {q.classicalRef && <p className="text-text-tertiary text-[10px] mt-1">{q.classicalRef}</p>}
+                        {q.classicalRef && <p className="text-text-tertiary text-xs mt-1">{q.classicalRef}</p>}
                       </motion.div>
                     )}
 
@@ -344,7 +344,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
       {/* Cross-references */}
       {meta.crossRefs && meta.crossRefs.length > 0 && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'संबंधित मॉड्यूल' : 'Related Modules'}</div>
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'संबंधित मॉड्यूल' : 'Related Modules'}</div>
           <div className="flex flex-wrap gap-2">
             {meta.crossRefs.map((ref, i) => (
               <a key={i} href={ref.href} className="text-xs text-gold-primary/70 hover:text-gold-primary px-2 py-1 rounded-lg bg-gold-primary/5 transition-colors">

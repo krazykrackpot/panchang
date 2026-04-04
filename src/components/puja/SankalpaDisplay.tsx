@@ -242,7 +242,7 @@ export default function SankalpaDisplay({
         {fieldEntries.map(f => (
           <span
             key={f.key}
-            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] bg-gold-primary/[0.06] border border-gold-primary/10 text-text-secondary/70"
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-gold-primary/[0.06] border border-gold-primary/10 text-text-secondary/70"
           >
             <span className="text-text-secondary/40">{f.label}:</span>
             <span

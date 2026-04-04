@@ -718,8 +718,8 @@ export default function PlanetaryCyclesPage() {
               ].map((item, i) => (
                 <div key={i} className="text-center p-3 rounded-xl bg-black/20 border border-indigo-500/10">
                   <div className="text-2xl font-bold text-gold-light font-mono">{item.num}</div>
-                  <div className="text-[10px] text-gold-light/50 mt-0.5">{item.unit}</div>
-                  <div className="text-[10px] text-text-tertiary mt-1" style={bf}>{item.label}</div>
+                  <div className="text-xs text-gold-light/50 mt-0.5">{item.unit}</div>
+                  <div className="text-xs text-text-tertiary mt-1" style={bf}>{item.label}</div>
                 </div>
               ))}
             </div>
@@ -811,8 +811,8 @@ export default function PlanetaryCyclesPage() {
             ].map((item, i) => (
               <div key={i} className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
                 <div className="text-xl sm:text-2xl font-bold text-gold-light font-mono">{item.num}</div>
-                <div className="text-[10px] text-text-secondary mt-1" style={bf}>{item.label}</div>
-                <div className="text-[9px] text-text-tertiary mt-0.5 font-mono">{item.sub}</div>
+                <div className="text-xs text-text-secondary mt-1" style={bf}>{item.label}</div>
+                <div className="text-xs text-text-tertiary mt-0.5 font-mono">{item.sub}</div>
               </div>
             ))}
           </div>
@@ -859,19 +859,19 @@ export default function PlanetaryCyclesPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">18.03</div>
-              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'सारोस चक्र (वर्ष)' : 'Saros Cycle (yrs)'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'सारोस चक्र (वर्ष)' : 'Saros Cycle (yrs)'}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">18.61</div>
-              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'राहु-केतु काल (वर्ष)' : 'Rahu-Ketu Period (yrs)'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'राहु-केतु काल (वर्ष)' : 'Rahu-Ketu Period (yrs)'}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">223</div>
-              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'सिनोडिक मास' : 'Synodic months'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'सिनोडिक मास' : 'Synodic months'}</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">242</div>
-              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'ड्रैकोनिक मास' : 'Draconic months'}</div>
+              <div className="text-xs text-text-secondary mt-1" style={bf}>{isHi ? 'ड्रैकोनिक मास' : 'Draconic months'}</div>
             </div>
           </div>
         </div>
@@ -1014,7 +1014,7 @@ export default function PlanetaryCyclesPage() {
               </div>
               {/* Expanded detail */}
               <div className="ml-12 p-3 rounded-lg bg-black/20 border border-indigo-500/6">
-                <p className="text-text-tertiary text-[11px] leading-relaxed whitespace-pre-wrap" style={bf}>{method.detail}</p>
+                <p className="text-text-tertiary text-xs leading-relaxed whitespace-pre-wrap" style={bf}>{method.detail}</p>
               </div>
             </div>
           ))}

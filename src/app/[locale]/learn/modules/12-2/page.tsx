@@ -198,7 +198,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'तीन चरण' : 'The Three Phases'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'तीन चरण' : 'The Three Phases'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">आरोही चरण (चन्द्र से 12वाँ):</span> शनि आपकी चन्द्र राशि से पहली राशि में प्रवेश करता है। 12वाँ भाव हानि, व्यय, निद्रा और अवचेतन का शासक है। यह चरण बढ़ती चिन्ता, अनिद्रा, बढ़ा हुआ व्यय और बदलाव की अनुभूति लाता है। यह तैयारी है — बारिश से पहले बादलों का जमाव।</> : <><span className="text-gold-light font-medium">Rising Phase (12th from Moon):</span> Saturn enters the sign before your Moon sign. The 12th house governs losses, expenses, sleep, and the subconscious. This phase brings growing anxiety, disturbed sleep, increased expenses, and a nagging sense that something is about to change. It is the preparation — the storm clouds gathering before the rain.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-red-400 font-medium">शिखर चरण (चन्द्रमा पर):</span> शनि सीधे जन्म चन्द्रमा पर गोचर करता है। यह सर्वाधिक तीव्र चरण है — अधिकतम भावनात्मक दबाव, बाध्य रूपान्तरण, सम्भावित स्वास्थ्य समस्याएँ, करियर उथल-पुथल और गहन कार्मिक सामना। यह अप्रामाणिक को छीन लेता है और सत्य से पुनर्निर्माण के लिए बाध्य करता है।</> : <><span className="text-red-400 font-medium">Peak Phase (over the Moon):</span> Saturn directly transits over your natal Moon. This is the most intense phase — maximum emotional pressure, forced transformation, potential health issues, career upheavals, and deep karmic confrontations. It strips away what is not authentic and forces you to rebuild from a place of truth.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-emerald-400 font-medium">अवरोही चरण (चन्द्र से 2रा):</span> शनि आपकी चन्द्र राशि के बाद की राशि में जाता है। 2रा भाव धन, परिवार, वाणी और संचित संसाधनों का शासक है। आर्थिक दबाव और पारिवारिक तनाव धीरे-धीरे समाधान की ओर बढ़ते हैं। यह पुनर्प्राप्ति चरण है — तूफान गुजरता है और आप अपनी सहनशीलता के फल देखने लगते हैं।</> : <><span className="text-emerald-400 font-medium">Setting Phase (2nd from Moon):</span> Saturn moves to the sign after your Moon sign. The 2nd house governs wealth, family, speech, and accumulated resources. Financial pressures and family tensions gradually resolve. This is the recovery phase — the storm passes and you begin to see the fruits of your endurance.</>}</p>
@@ -223,7 +223,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख तीव्रता कारक' : 'Key Severity Factors'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख तीव्रता कारक' : 'Key Severity Factors'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1. Natal Saturn&apos;s Dignity:</span> If Saturn is exalted (Libra), in own sign (Capricorn/Aquarius), or in a friendly sign in the birth chart, Sade Sati produces discipline and growth. If debilitated (Aries) or afflicted, the effects are harsher. A strong natal Saturn means the native already has Saturnian coping mechanisms built into their psyche.
         </p>
@@ -239,7 +239,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'दशा पारस्परिक क्रिया' : 'Dasha Interaction'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'दशा पारस्परिक क्रिया' : 'Dasha Interaction'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">शनि या राहु दशा:</span> शनि या राहु महादशा में साढ़े साती सर्वाधिक कठिन होती है। दोहरा शनि प्रभाव (दशा + गोचर) अत्यधिक दबाव, विलम्ब और कार्मिक तीव्रता लाता है। राहु दशा भ्रम और अनिश्चितता जोड़ती है।
         </p>
@@ -267,7 +267,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'तीन जीवनकालीन साढ़े साती' : 'The Three Life Sade Satis'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'तीन जीवनकालीन साढ़े साती' : 'The Three Life Sade Satis'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? <><span className="text-gold-light font-medium">पहली साढ़े साती (~आयु 22-30):</span> यह शनि की प्रथम वापसी के साथ आती है — सच्ची प्रौढ़ता का ज्योतिषीय चिह्न। ब्रह्माण्ड माँग करता है कि आप करियर स्थापित करें, जिम्मेदारी लें और ठोस नींव बनाएँ। सम्बन्ध परीक्षित होते हैं। लापरवाह युवावस्था समाप्त होती है।</> : <><span className="text-gold-light font-medium">First Sade Sati (~Age 22-30):</span> This coincides with Saturn&apos;s first return — the astrological marker of true adulthood. The universe demands that you establish your career, take responsibility, and build a solid foundation. Relationships are tested. The carefree youth phase ends. Those who resist Saturn&apos;s discipline face prolonged struggle; those who embrace it emerge with a career and identity that can last decades.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? <><span className="text-gold-light font-medium">दूसरी साढ़े साती (~आयु 52-60):</span> सर्वाधिक भावनात्मक रूप से तीव्र चक्र। स्वास्थ्य चिन्ताएँ उभरती हैं, माता-पिता और बड़ों का वियोग हो सकता है, मृत्यु और विरासत का सीधा सामना होता है। करियर शिखर या ठहराव पर हो सकता है।</> : <><span className="text-gold-light font-medium">Second Sade Sati (~Age 52-60):</span> The most emotionally intense cycle. Health concerns emerge, parents and elders may pass away, and one confronts mortality and legacy directly. Career may peak or plateau. This Sade Sati forces a reckoning with what truly matters — stripping away ambition-driven pursuits in favor of meaning-driven ones.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
@@ -276,7 +276,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'छिपा हुआ वरदान' : 'The Hidden Gift'}</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'छिपा हुआ वरदान' : 'The Hidden Gift'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Despite its fearsome reputation, Sade Sati is ultimately Saturn&apos;s gift of maturity. Many of history&apos;s greatest achievements — career breakthroughs, spiritual awakenings, masterworks of art — have occurred during Sade Sati. Saturn does not destroy; he removes what is false so that what is true can emerge. The key is to work with Saturn rather than against him: embrace discipline, accept responsibility, serve others, and maintain patience. What survives Sade Sati becomes unshakable.
         </p>

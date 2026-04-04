@@ -97,11 +97,11 @@ export default function VaraPage() {
           ].map((anga, i) => (
             <div key={i} className={`px-4 py-3 rounded-xl border border-gold-primary/15 text-center min-w-[100px] ${i === 4 ? 'bg-gold-primary/10 border-gold-primary/30 ring-1 ring-gold-primary/20' : 'bg-bg-secondary/30'}`}>
               <div className={`font-bold text-sm ${anga.color}`} style={headingFont}>{isHi ? anga.name.hi : anga.name.en}</div>
-              <div className="text-text-tertiary text-[10px] mt-0.5">{isHi ? anga.desc.hi : anga.desc.en}</div>
+              <div className="text-text-tertiary text-xs mt-0.5">{isHi ? anga.desc.hi : anga.desc.en}</div>
             </div>
           ))}
         </div>
-        <p className="text-text-tertiary text-[10px] text-center mt-3">{isHi ? 'वार वर्तमान पृष्ठ पर प्रकाशित (हाइलाइट)' : 'Vara is highlighted — you are here'}</p>
+        <p className="text-text-tertiary text-xs text-center mt-3">{isHi ? 'वार वर्तमान पृष्ठ पर प्रकाशित (हाइलाइट)' : 'Vara is highlighted — you are here'}</p>
       </div>
 
       {/* ═══ India's Contribution: Why This Order? ═══ */}
@@ -117,7 +117,7 @@ export default function VaraPage() {
 
         {/* Step 1: Orbital Speed Order */}
         <div className="mb-6">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
             {isHi ? 'चरण 1: कक्षीय गति क्रम (सबसे धीमे से तेज़)' : 'Step 1: Orbital Speed Order (Slowest to Fastest)'}
           </div>
           <p className="text-text-secondary text-xs mb-3 leading-relaxed">
@@ -136,20 +136,20 @@ export default function VaraPage() {
               { name: { en: 'Moon', hi: 'चन्द्र' }, period: '27.3 d', color: 'text-blue-300', border: 'border-blue-500/20' },
             ].map((p, i) => (
               <div key={i} className="flex flex-col items-center">
-                {i > 0 && <span className="text-text-tertiary text-[10px] mb-0.5">→</span>}
+                {i > 0 && <span className="text-text-tertiary text-xs mb-0.5">→</span>}
                 <div className={`px-3 py-2 rounded-lg border ${p.border} text-center min-w-[70px]`}>
                   <div className={`font-bold text-xs ${p.color}`}>{isHi ? p.name.hi : p.name.en}</div>
-                  <div className="text-text-tertiary text-[9px]">{p.period}</div>
+                  <div className="text-text-tertiary text-xs">{p.period}</div>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-text-tertiary text-[10px] text-center">{isHi ? 'शनि ← सबसे धीमा (दूर) | चन्द्र ← सबसे तेज़ (निकट)' : 'Saturn ← slowest (farthest) | Moon ← fastest (nearest)'}</p>
+          <p className="text-text-tertiary text-xs text-center">{isHi ? 'शनि ← सबसे धीमा (दूर) | चन्द्र ← सबसे तेज़ (निकट)' : 'Saturn ← slowest (farthest) | Moon ← fastest (nearest)'}</p>
         </div>
 
         {/* Step 2: Hora System */}
         <div className="mb-6">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
             {isHi ? 'चरण 2: होरा प्रणाली — प्रत्येक घंटे का ग्रह स्वामी' : 'Step 2: The Hora System — Each Hour Has a Planetary Ruler'}
           </div>
           <p className="text-text-secondary text-xs mb-3 leading-relaxed">
@@ -161,15 +161,15 @@ export default function VaraPage() {
           {/* Hora table for Saturday-Sunday showing the derivation */}
           <div className="overflow-x-auto mb-3">
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-              <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शनिवार की 24 होराएं' : "Saturday's 24 Horas"}</div>
-              <div className="flex flex-wrap gap-1 text-[9px]">
+              <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शनिवार की 24 होराएं' : "Saturday's 24 Horas"}</div>
+              <div className="flex flex-wrap gap-1 text-xs">
                 {['Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma'].map((h, i) => (
                   <span key={i} className={`px-1.5 py-0.5 rounded ${i === 0 ? 'bg-gold-primary/20 text-gold-light font-bold ring-1 ring-gold-primary/40' : 'bg-bg-secondary/50 text-text-tertiary'}`}>
                     {i+1}:{h}
                   </span>
                 ))}
               </div>
-              <div className="mt-2 text-[9px]">
+              <div className="mt-2 text-xs">
                 <span className="text-text-tertiary">{isHi ? '25वीं होरा (= अगले दिन की पहली) =' : '25th hora (= next day\'s 1st) ='}</span>
                 <span className="text-amber-400 font-bold ml-1">{isHi ? 'सूर्य → इसलिए अगला दिन = रविवार!' : 'Sun → so the next day = Sunday!'}</span>
               </div>
@@ -179,7 +179,7 @@ export default function VaraPage() {
 
         {/* Step 3: The Derivation */}
         <div className="mb-6">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
             {isHi ? 'चरण 3: वार क्रम की उत्पत्ति' : 'Step 3: Deriving the Weekday Order'}
           </div>
           <p className="text-text-secondary text-xs mb-3 leading-relaxed">
@@ -207,7 +207,7 @@ export default function VaraPage() {
                     {i > 0 && <span className="text-gold-primary">→</span>}
                     <div className={`px-2.5 py-1.5 rounded-lg border ${d.border}`}>
                       <div className={`font-bold text-sm ${d.color}`}>{d.name}</div>
-                      <div className="text-[8px] text-text-tertiary">{isHi ? d.full.hi : d.full.en}</div>
+                      <div className="text-xs text-text-tertiary">{isHi ? d.full.hi : d.full.en}</div>
                     </div>
                   </div>
                 ))}
@@ -223,7 +223,7 @@ export default function VaraPage() {
 
         {/* Historical context */}
         <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
-          <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+          <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-2">
             {isHi ? 'ऐतिहासिक संदर्भ' : 'Historical Context'}
           </div>
           <div className="text-text-secondary text-xs leading-relaxed space-y-2">
@@ -242,7 +242,7 @@ export default function VaraPage() {
         {/* Cross-cultural names table */}
         <div className="mt-6 overflow-x-auto">
           <h4 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>{isHi ? 'विश्व भर में ग्रह-आधारित दिन नाम' : 'Planet-Based Day Names Across the World'}</h4>
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/15">
                 <th className="text-left py-2 px-2 text-gold-dark">{isHi ? 'ग्रह' : 'Planet'}</th>
@@ -274,7 +274,7 @@ export default function VaraPage() {
               ))}
             </tbody>
           </table>
-          <p className="text-text-tertiary text-[9px] mt-2 text-center">{isHi ? 'जापानी नाम भी ग्रह तत्वों पर आधारित: 日=सूर्य, 月=चन्द्र, 火=अग्नि(मंगल), 水=जल(बुध), 木=काष्ठ(गुरु), 金=धातु(शुक्र), 土=पृथ्वी(शनि)' : 'Japanese names use elemental associations: 日=Sun, 月=Moon, 火=Fire(Mars), 水=Water(Mercury), 木=Wood(Jupiter), 金=Metal(Venus), 土=Earth(Saturn)'}</p>
+          <p className="text-text-tertiary text-xs mt-2 text-center">{isHi ? 'जापानी नाम भी ग्रह तत्वों पर आधारित: 日=सूर्य, 月=चन्द्र, 火=अग्नि(मंगल), 水=जल(बुध), 木=काष्ठ(गुरु), 金=धातु(शुक्र), 土=पृथ्वी(शनि)' : 'Japanese names use elemental associations: 日=Sun, 月=Moon, 火=Fire(Mars), 水=Water(Mercury), 木=Wood(Jupiter), 金=Metal(Venus), 土=Earth(Saturn)'}</p>
         </div>
       </div>
 
@@ -293,8 +293,8 @@ export default function VaraPage() {
                   <span className="text-text-secondary text-xs">{isHi ? vara.planet.hi : vara.planet.en}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  {isToday && <span className="px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-light text-[10px] font-bold animate-pulse">{isHi ? 'आज' : 'TODAY'}</span>}
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full border ${vara.nature.en.includes('Cruel') ? 'border-red-500/20 text-red-400' : vara.nature.en.includes('Benefic') ? 'border-emerald-500/20 text-emerald-400' : 'border-amber-500/20 text-amber-400'}`}>
+                  {isToday && <span className="px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-light text-xs font-bold animate-pulse">{isHi ? 'आज' : 'TODAY'}</span>}
+                  <span className={`text-xs px-2 py-0.5 rounded-full border ${vara.nature.en.includes('Cruel') ? 'border-red-500/20 text-red-400' : vara.nature.en.includes('Benefic') ? 'border-emerald-500/20 text-emerald-400' : 'border-amber-500/20 text-amber-400'}`}>
                     {isHi ? vara.nature.hi : vara.nature.en}
                   </span>
                 </div>
@@ -307,17 +307,17 @@ export default function VaraPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* Favourable */}
                   <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-                    <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'अनुकूल कार्य' : 'Favorable Activities'}</div>
+                    <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'अनुकूल कार्य' : 'Favorable Activities'}</div>
                     <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.activities.hi : vara.activities.en}</div>
                   </div>
                   {/* Avoid */}
                   <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
-                    <div className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'वर्जित' : 'Avoid'}</div>
+                    <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'वर्जित' : 'Avoid'}</div>
                     <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.avoid.hi : vara.avoid.en}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-[10px] text-text-tertiary">
+                <div className="flex items-center gap-4 text-xs text-text-tertiary">
                   <span>{isHi ? 'देवता' : 'Deity'}: <span className="text-gold-light">{isHi ? vara.deity.hi : vara.deity.en}</span></span>
                   <span>{isHi ? 'होरा' : 'Hora'}: <span className="text-text-secondary">{isHi ? vara.hora.hi : vara.hora.en}</span></span>
                 </div>

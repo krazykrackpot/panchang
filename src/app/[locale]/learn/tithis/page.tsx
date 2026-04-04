@@ -253,7 +253,7 @@ export default function LearnTithisPage() {
           {/* Visual: Sun-Moon angle diagram */}
           <div className="flex justify-center my-6">
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 max-w-md w-full">
-              <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-4 text-center">
+              <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-4 text-center">
                 {isHi ? 'तिथि = चन्द्र-सूर्य कोणीय दूरी / 12\u00b0' : 'Tithi = Moon-Sun Angular Distance / 12\u00b0'}
               </div>
               <div className="grid grid-cols-4 gap-2 text-center text-xs">
@@ -270,7 +270,7 @@ export default function LearnTithisPage() {
                   <div key={i} className="px-1.5 py-2 rounded-lg border border-gold-primary/10">
                     <div className="text-lg mb-1">{item.phase}</div>
                     <div className="text-gold-primary font-mono font-bold">{item.angle}</div>
-                    <div className="text-text-secondary/70 text-[10px]">{l(item.tithi)}</div>
+                    <div className="text-text-secondary/70 text-xs">{l(item.tithi)}</div>
                   </div>
                 ))}
               </div>
@@ -303,7 +303,7 @@ export default function LearnTithisPage() {
 
           {/* Worked example */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-            <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+            <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
               {l(L.workedEx)}
             </div>
             <p className="text-sm">{l(L.workedExBody)}</p>
@@ -352,8 +352,8 @@ export default function LearnTithisPage() {
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
                     {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
-                    <div className={`text-[10px] mt-1 font-medium ${catColor}`}>{cat}</div>
-                    <div className="text-text-tertiary text-[9px]">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
+                    <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
+                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
                   </motion.div>
                 );
               })}
@@ -383,8 +383,8 @@ export default function LearnTithisPage() {
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
                     {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
-                    <div className={`text-[10px] mt-1 font-medium ${catColor}`}>{cat}</div>
-                    <div className="text-text-tertiary text-[9px]">{TITHI_PLANETS[(ti.number - 15) - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
+                    <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
+                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[(ti.number - 15) - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
                   </motion.div>
                 );
               })}
@@ -465,7 +465,7 @@ export default function LearnTithisPage() {
             >
               <div className={`text-lg font-bold ${cat.color} mb-1`} style={headingFont}>{l(cat.name)}</div>
               <div className="text-text-secondary/60 text-xs mb-2">{l(cat.meaning)}</div>
-              <div className="text-text-tertiary text-[10px] font-mono mb-3">
+              <div className="text-text-tertiary text-xs font-mono mb-3">
                 {isHi ? 'तिथि' : 'Tithis'}: {cat.tithis}
               </div>
               <p className="text-text-secondary text-xs leading-relaxed">{l(cat.nature)}</p>
@@ -475,7 +475,7 @@ export default function LearnTithisPage() {
 
         {/* Category pattern visual */}
         <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
+          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
             {isHi ? 'चक्रीय प्रतिरूप: 1→नन्दा, 2→भद्रा, 3→जया, 4→रिक्ता, 5→पूर्णा (पुनरावर्तन)' : 'Cyclic Pattern: 1\u2192Nanda, 2\u2192Bhadra, 3\u2192Jaya, 4\u2192Rikta, 5\u2192Purna (repeats)'}
           </div>
           <div className="flex flex-wrap justify-center gap-1.5">
@@ -485,7 +485,7 @@ export default function LearnTithisPage() {
               return (
                 <div key={n} className="flex flex-col items-center px-2 py-1.5 rounded-lg border border-gold-primary/10 min-w-[40px]">
                   <div className="text-gold-primary font-bold text-sm">{n}</div>
-                  <div className={`text-[9px] font-medium ${color}`}>{cat.substring(0, 2)}</div>
+                  <div className={`text-xs font-medium ${color}`}>{cat.substring(0, 2)}</div>
                 </div>
               );
             })}
@@ -569,24 +569,24 @@ export default function LearnTithisPage() {
 
           {/* Visual: Moon speed variation */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-            <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
+            <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
               {isHi ? 'चन्द्र गति भिन्नता — क्षय/वृद्धि का कारण' : 'Moon Speed Variation \u2014 Cause of Kshaya/Vriddhi'}
             </div>
             <div className="flex flex-wrap justify-center gap-3 text-center text-xs">
               <div className="px-4 py-3 rounded-lg border border-red-500/15 bg-red-500/5">
                 <div className="text-red-400 font-bold">{isHi ? 'उपभू (Perigee)' : 'Perigee (Closest)'}</div>
                 <div className="text-text-secondary font-mono">~15.4\u00b0/day</div>
-                <div className="text-text-tertiary text-[10px] mt-1">{isHi ? '→ क्षय तिथि सम्भव' : '\u2192 Kshaya possible'}</div>
+                <div className="text-text-tertiary text-xs mt-1">{isHi ? '→ क्षय तिथि सम्भव' : '\u2192 Kshaya possible'}</div>
               </div>
               <div className="px-4 py-3 rounded-lg border border-gold-primary/15">
                 <div className="text-gold-light font-bold">{isHi ? 'औसत' : 'Average'}</div>
                 <div className="text-text-secondary font-mono">~13.2\u00b0/day</div>
-                <div className="text-text-tertiary text-[10px] mt-1">{isHi ? '→ सामान्य तिथि' : '\u2192 Normal tithi'}</div>
+                <div className="text-text-tertiary text-xs mt-1">{isHi ? '→ सामान्य तिथि' : '\u2192 Normal tithi'}</div>
               </div>
               <div className="px-4 py-3 rounded-lg border border-emerald-500/15 bg-emerald-500/5">
                 <div className="text-emerald-400 font-bold">{isHi ? 'अपभू (Apogee)' : 'Apogee (Farthest)'}</div>
                 <div className="text-text-secondary font-mono">~11.8\u00b0/day</div>
-                <div className="text-text-tertiary text-[10px] mt-1">{isHi ? '→ वृद्धि तिथि सम्भव' : '\u2192 Vriddhi possible'}</div>
+                <div className="text-text-tertiary text-xs mt-1">{isHi ? '→ वृद्धि तिथि सम्भव' : '\u2192 Vriddhi possible'}</div>
               </div>
             </div>
           </div>

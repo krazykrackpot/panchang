@@ -146,7 +146,7 @@ export default function TransitGuidePage() {
               }`}
             >
               <span style={{ color: selected === tab.key ? tab.color : undefined }}>{t(tab.label)}</span>
-              <span className="block text-[10px] mt-0.5 opacity-60">{t(tab.stay)}</span>
+              <span className="block text-xs mt-0.5 opacity-60">{t(tab.stay)}</span>
             </button>
           ))}
         </div>
@@ -218,7 +218,7 @@ export default function TransitGuidePage() {
             <div key={d.house} className="text-center p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
               <div className="w-10 h-10 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center mx-auto mb-2 text-gold-light font-bold text-sm">{d.icon}</div>
               <p className="text-sm font-semibold text-gold-light">{t(d.event)}</p>
-              <p className="text-[10px] text-text-tertiary mt-1">{locale === 'hi' ? `गुरु + शनि → ${d.house}` : `Jup + Sat → ${d.house}`}</p>
+              <p className="text-xs text-text-tertiary mt-1">{locale === 'hi' ? `गुरु + शनि → ${d.house}` : `Jup + Sat → ${d.house}`}</p>
             </div>
           ))}
         </div>

@@ -43,7 +43,7 @@ function Page1() {
 
         {/* Kalapurusha body mapping */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Kalapurusha Body Map</h4>
+          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Kalapurusha Body Map</h4>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-xs">
             {[
               { sign: 'Aries (मेष)', body: 'Head, Brain', num: 1, color: 'text-red-400' },
@@ -65,12 +65,12 @@ function Page1() {
               </div>
             ))}
           </div>
-          <p className="text-text-tertiary text-[9px] mt-2">The body flows from head (Aries) to feet (Pisces) — initiative to dissolution, action to surrender.</p>
+          <p className="text-text-tertiary text-xs mt-2">The body flows from head (Aries) to feet (Pisces) — initiative to dissolution, action to surrender.</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           BPHS Ch.4 opens: <em>"O Brahmin, now I tell you about the nature of the Rashis."</em> Parashara describes each sign's physical form (Ram, Bull, Twins...), the direction it faces, the terrain it inhabits (forest, water, market, etc.), its caste (Brahmana, Kshatriya, Vaishya, Shudra), and its gender. These aren't arbitrary — each detail encodes the sign's fundamental energy pattern. A "forest-dwelling" sign (Aries, Leo) has different energy from a "water-dwelling" sign (Cancer, Pisces).
         </p>
@@ -79,7 +79,7 @@ function Page1() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>Parashara's Sign Descriptions — Complete Table</h3>
         <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-1.5 text-gold-dark">#</th>
               <th className="text-left py-2 px-1.5 text-gold-dark">Sign</th>
@@ -120,7 +120,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "The sign descriptions are just poetic metaphors with no practical use."<br />
           <span className="text-emerald-300">Reality:</span> Each attribute has practical application. Prashna (horary) astrology uses sign habitats to determine WHERE lost objects might be found — an object lost during a Cancer Lagna may be near water. Medical astrology uses the body mapping for health predictions.</p>
@@ -130,7 +130,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully used.</span> Sign descriptions from BPHS are used in every chart interpretation. The Kalapurusha body mapping is the basis of medical astrology. Sign habitats are used in Prashna. The form descriptions (biped/quadruped/insect/water) affect how signs express — a human-form sign (Gemini, Virgo, Libra) produces more intellectual expression than an animal-form sign (Aries, Taurus, Leo).
         </p>

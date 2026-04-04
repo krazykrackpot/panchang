@@ -455,7 +455,7 @@ export default function HomePage() {
             {/* ── Pillar 1: Panchang ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/panchang" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-4 sm:p-6 md:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-6"><PanchangPillarIcon /></div>
                   {/* Shirorekha heading — Roman text with Devanagari headline bar */}
                   <div className="mb-1">
@@ -486,7 +486,7 @@ export default function HomePage() {
             {/* ── Pillar 2: Kundali ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/kundali" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-4 sm:p-6 md:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-6"><KundaliPillarIcon /></div>
                   <div className="mb-1">
                     <div className="border-t-2 border-gold-primary/60 inline-block">
@@ -516,7 +516,7 @@ export default function HomePage() {
             {/* ── Pillar 3: Jyotish (Learn) ── */}
             <motion.div variants={fadeInUp}>
               <Link href="/learn" className="block group h-full">
-                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-8 sm:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
+                <div className="relative rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 hover:border-gold-primary/40 p-4 sm:p-6 md:p-10 h-full min-h-[420px] sm:min-h-[500px] flex flex-col transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-xl group-hover:shadow-gold-primary/10 overflow-hidden">
                   <div className="mb-6"><JyotishPillarIcon /></div>
                   <div className="mb-1">
                     <div className="border-t-2 border-gold-primary/60 inline-block">
@@ -584,7 +584,7 @@ export default function HomePage() {
                         {profileBanner.display_name || (locale === 'en' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
                       </span>
                       {profileBanner.spiActive && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
+                        <span className="text-xs px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
                           {locale === 'en' ? 'Sade Sati' : 'साढ़े साती'}
                         </span>
                       )}

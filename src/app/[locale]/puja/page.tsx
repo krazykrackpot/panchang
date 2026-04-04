@@ -95,7 +95,7 @@ function PujaCard({
           )}
           <div className="flex items-center justify-between mt-3">
             <span
-              className={`text-[10px] px-2 py-0.5 rounded-full font-semibold border ${
+              className={`text-xs px-2 py-0.5 rounded-full font-semibold border ${
                 category === 'festival'
                   ? 'bg-amber-500/15 text-amber-400 border-amber-500/25'
                   : category === 'graha_shanti'

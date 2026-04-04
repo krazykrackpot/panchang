@@ -303,17 +303,17 @@ export default function ProfilePage() {
               >
                 <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.ascendant_sign} size={40} /></div>
-                  <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-0.5">{T.lagna}</p>
+                  <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.lagna}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.lagnaRashiName?.[locale] || snapshot.lagnaRashiName?.en}</p>
                 </div>
                 <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.moon_sign} size={40} /></div>
-                  <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-0.5">{T.chandraRashi}</p>
+                  <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.chandraRashi}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.moonRashiName?.[locale] || snapshot.moonRashiName?.en}</p>
                 </div>
                 <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.sun_sign} size={40} /></div>
-                  <p className="text-[10px] uppercase tracking-widest text-text-secondary mb-0.5">{T.suryaRashi}</p>
+                  <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.suryaRashi}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.sunRashiName?.[locale] || snapshot.sunRashiName?.en}</p>
                 </div>
               </motion.div>
@@ -326,7 +326,7 @@ export default function ProfilePage() {
                 <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
                   <NakshatraIconById id={snapshot.moon_nakshatra} size={36} />
                   <div>
-                    <p className="text-[10px] uppercase tracking-widest text-text-secondary">{T.nakshatra}</p>
+                    <p className="text-xs uppercase tracking-widest text-text-secondary">{T.nakshatra}</p>
                     <p className="text-base font-bold text-gold-light">{snapshot.moonNakshatraName?.[locale] || snapshot.moonNakshatraName?.en}</p>
                     <p className="text-xs text-text-secondary">{T.pada} {snapshot.moon_nakshatra_pada}</p>
                   </div>
@@ -337,7 +337,7 @@ export default function ProfilePage() {
                   <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
                     <Moon className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-text-secondary">{T.tithi}</p>
+                      <p className="text-xs uppercase tracking-widest text-text-secondary">{T.tithi}</p>
                       <p className="text-base font-bold text-gold-light">{birthPanchang.tithi.name?.[locale] || birthPanchang.tithi.name?.en}</p>
                       <p className="text-xs text-text-secondary">{birthPanchang.tithi.paksha === 'shukla' ? T.shukla : T.krishna}</p>
                     </div>
@@ -346,7 +346,7 @@ export default function ProfilePage() {
                   <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
                     <Moon className="w-9 h-9 text-gold-primary/30 shrink-0" />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-text-secondary">{T.tithi}</p>
+                      <p className="text-xs uppercase tracking-widest text-text-secondary">{T.tithi}</p>
                       <p className="text-sm text-text-secondary/50">&mdash;</p>
                     </div>
                   </div>
@@ -357,7 +357,7 @@ export default function ProfilePage() {
                   <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
                     <Star className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-text-secondary">{T.yoga}</p>
+                      <p className="text-xs uppercase tracking-widest text-text-secondary">{T.yoga}</p>
                       <p className="text-base font-bold text-gold-light">{birthPanchang.yoga.name?.[locale] || birthPanchang.yoga.name?.en}</p>
                       <p className="text-xs text-text-secondary">{birthPanchang.yoga.meaning?.[locale] || birthPanchang.yoga.meaning?.en}</p>
                     </div>
@@ -369,7 +369,7 @@ export default function ProfilePage() {
                   <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
                     <Sun className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
-                      <p className="text-[10px] uppercase tracking-widest text-text-secondary">{T.masa}</p>
+                      <p className="text-xs uppercase tracking-widest text-text-secondary">{T.masa}</p>
                       <p className="text-base font-bold text-gold-light">{birthPanchang.masa.name?.[locale] || birthPanchang.masa.name?.en}</p>
                     </div>
                   </div>
@@ -384,7 +384,7 @@ export default function ProfilePage() {
                   <h3 className="text-xs uppercase tracking-widest text-text-secondary mb-4">{T.currentDasha}</h3>
                   <div className="flex items-center gap-6">
                     <div className="flex-1">
-                      <p className="text-[10px] uppercase tracking-wider text-text-secondary/60">{T.mahaDasha}</p>
+                      <p className="text-xs uppercase tracking-wider text-text-secondary/60">{T.mahaDasha}</p>
                       <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.maha.planetName?.[locale] || snapshot.currentDasha.maha.planet}</p>
                       <p className="text-xs text-text-secondary mt-0.5">
                         {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
@@ -394,7 +394,7 @@ export default function ProfilePage() {
                       <>
                         <div className="w-px h-14 bg-gold-primary/15" />
                         <div className="flex-1">
-                          <p className="text-[10px] uppercase tracking-wider text-text-secondary/60">{T.antarDasha}</p>
+                          <p className="text-xs uppercase tracking-wider text-text-secondary/60">{T.antarDasha}</p>
                           <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.antar.planetName?.[locale] || snapshot.currentDasha.antar.planet}</p>
                           <p className="text-xs text-text-secondary mt-0.5">
                             {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}

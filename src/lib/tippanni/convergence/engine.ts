@@ -2,11 +2,14 @@
 
 import { scorePattern } from './scoring';
 import { ALL_PATTERNS, PATTERN_MAP } from './patterns/index';
+import { META_RULES } from './interactions';
+import { computeTransitOverlay } from './transit-overlay';
 import type {
   ConvergenceInput,
   ConvergenceResult,
   MatchedPattern,
   ExecutiveInsight,
+  MetaInsight,
   UrgentFlag,
   Tone,
 } from './types';
@@ -15,18 +18,20 @@ import { TippanniSection, CONVERGENCE_VERSION } from './types';
 // ─── Positive / Negative pattern IDs for favorability ────────────────────────
 
 const POSITIVE_PATTERN_IDS = new Set([
-  'career-peak',
-  'public-recognition',
-  'marriage-window',
-  'partnership-blessing',
+  'career-peak', 'public-recognition',
+  'marriage-window', 'partnership-blessing',
+  'sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition',
+  'recovery', 'vitality-peak',
+  'awakening', 'guru-connection', 'moksha-activation',
+  'childbirth', 'family-harmony',
 ]);
 
 const NEGATIVE_PATTERN_IDS = new Set([
-  'authority-conflict',
-  'relationship-storm',
-  'divorce-separation',
-  'professional-stagnation',
-  'career-change',
+  'authority-conflict', 'relationship-storm', 'divorce-separation',
+  'professional-stagnation', 'career-change',
+  'financial-crisis', 'speculative-losses', 'debt-trap',
+  'chronic-illness', 'mental-health', 'accident-prone',
+  'child-health', 'mother-health', 'father-health', 'property-dispute',
 ]);
 
 // ─── Favorability computation ─────────────────────────────────────────────────
@@ -179,7 +184,20 @@ export function runConvergenceEngine(input: ConvergenceInput): ConvergenceResult
   // Step 9: Build section markers
   const sectionMarkers = buildSectionMarkers(patterns);
 
-  // Step 10: Return full result
+  // Step 10: Run meta-interaction rules
+  const metaInsights: MetaInsight[] = [];
+  for (const rule of META_RULES) {
+    try {
+      if (rule.trigger(patterns, input)) {
+        const insight = rule.generate(patterns, input, 'en');
+        if (insight) metaInsights.push(insight);
+      }
+    } catch {
+      // Non-fatal — skip broken rules
+    }
+  }
+
+  // Step 11: Return full result
   return {
     version: CONVERGENCE_VERSION,
     computedAt: new Date().toISOString(),
@@ -190,18 +208,12 @@ export function runConvergenceEngine(input: ConvergenceInput): ConvergenceResult
       tone,
       insights,
       urgentFlags,
-      metaInsights: [],
+      metaInsights,
     },
 
     patterns,
     sectionMarkers,
 
-    // Transit overlay is Phase 2 — return empty structure
-    transitOverlay: {
-      snapshot: [],
-      retroStatus: [],
-      combustStatus: [],
-      ashtakavargaHighlights: [],
-    },
+    transitOverlay: computeTransitOverlay(input),
   };
 }

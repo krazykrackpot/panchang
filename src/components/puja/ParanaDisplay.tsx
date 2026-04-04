@@ -102,7 +102,7 @@ export default function ParanaDisplay({
         </div>
 
         {/* Next-day date badge */}
-        <span className="text-[11px] font-medium text-amber-400/60 bg-amber-500/10 border border-amber-500/15 px-2.5 py-1 rounded-full">
+        <span className="text-xs font-medium text-amber-400/60 bg-amber-500/10 border border-amber-500/15 px-2.5 py-1 rounded-full">
           {LABELS.nextDay[locale]} &middot; {nextDayStr}
         </span>
       </div>

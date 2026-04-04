@@ -145,30 +145,30 @@ function Page1() {
             <th className="text-left py-2 px-2 text-gold-dark">Notes</th>
           </tr></thead>
           <tbody className="divide-y divide-gold-primary/5">
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-amber-400">Sun</td><td className="py-2 px-2 text-text-secondary">Leo</td><td className="py-2 px-2 text-text-secondary">5</td><td className="py-2 px-2 text-text-secondary text-[10px]">Only 1 sign — the royal luminary</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-blue-300">Moon</td><td className="py-2 px-2 text-text-secondary">Cancer</td><td className="py-2 px-2 text-text-secondary">4</td><td className="py-2 px-2 text-text-secondary text-[10px]">Only 1 sign — the nurturing luminary</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-red-400">Mars</td><td className="py-2 px-2 text-text-secondary">Aries, Scorpio</td><td className="py-2 px-2 text-text-secondary">1, 8</td><td className="py-2 px-2 text-text-secondary text-[10px]">Fire + Water — action meets depth</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-emerald-400">Mercury</td><td className="py-2 px-2 text-text-secondary">Gemini, Virgo</td><td className="py-2 px-2 text-text-secondary">3, 6</td><td className="py-2 px-2 text-text-secondary text-[10px]">Both Dual signs — adaptable</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-yellow-400">Jupiter</td><td className="py-2 px-2 text-text-secondary">Sagittarius, Pisces</td><td className="py-2 px-2 text-text-secondary">9, 12</td><td className="py-2 px-2 text-text-secondary text-[10px]">Dharma + Moksha — wisdom signs</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-pink-400">Venus</td><td className="py-2 px-2 text-text-secondary">Taurus, Libra</td><td className="py-2 px-2 text-text-secondary">2, 7</td><td className="py-2 px-2 text-text-secondary text-[10px]">Wealth + Relationships — pleasure signs</td></tr>
-            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-indigo-400">Saturn</td><td className="py-2 px-2 text-text-secondary">Capricorn, Aquarius</td><td className="py-2 px-2 text-text-secondary">10, 11</td><td className="py-2 px-2 text-text-secondary text-[10px]">Outermost planet — outermost signs</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-amber-400">Sun</td><td className="py-2 px-2 text-text-secondary">Leo</td><td className="py-2 px-2 text-text-secondary">5</td><td className="py-2 px-2 text-text-secondary text-xs">Only 1 sign — the royal luminary</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-blue-300">Moon</td><td className="py-2 px-2 text-text-secondary">Cancer</td><td className="py-2 px-2 text-text-secondary">4</td><td className="py-2 px-2 text-text-secondary text-xs">Only 1 sign — the nurturing luminary</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-red-400">Mars</td><td className="py-2 px-2 text-text-secondary">Aries, Scorpio</td><td className="py-2 px-2 text-text-secondary">1, 8</td><td className="py-2 px-2 text-text-secondary text-xs">Fire + Water — action meets depth</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-emerald-400">Mercury</td><td className="py-2 px-2 text-text-secondary">Gemini, Virgo</td><td className="py-2 px-2 text-text-secondary">3, 6</td><td className="py-2 px-2 text-text-secondary text-xs">Both Dual signs — adaptable</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-yellow-400">Jupiter</td><td className="py-2 px-2 text-text-secondary">Sagittarius, Pisces</td><td className="py-2 px-2 text-text-secondary">9, 12</td><td className="py-2 px-2 text-text-secondary text-xs">Dharma + Moksha — wisdom signs</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-pink-400">Venus</td><td className="py-2 px-2 text-text-secondary">Taurus, Libra</td><td className="py-2 px-2 text-text-secondary">2, 7</td><td className="py-2 px-2 text-text-secondary text-xs">Wealth + Relationships — pleasure signs</td></tr>
+            <tr className="hover:bg-gold-primary/3"><td className="py-2 px-2 text-indigo-400">Saturn</td><td className="py-2 px-2 text-text-secondary">Capricorn, Aquarius</td><td className="py-2 px-2 text-text-secondary">10, 11</td><td className="py-2 px-2 text-text-secondary text-xs">Outermost planet — outermost signs</td></tr>
           </tbody>
         </table>
       </div>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The Symmetric Pattern</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">The Symmetric Pattern</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">The lordship pattern is beautifully symmetric around the Leo-Cancer axis (the two luminary signs). Moving outward from this center:</p>
         <div className="p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10 font-mono text-xs text-text-secondary space-y-1">
           <p className="text-center text-gold-light">... Saturn | Jupiter | Mars | Venus | Mercury | <span className="text-amber-400">Moon</span> | <span className="text-amber-400">Sun</span> | Mercury | Venus | Mars | Jupiter | Saturn ...</p>
           <p className="text-center text-text-secondary/50">Cap | Sag | Sco | Lib | Vir | <span className="text-amber-300">Can</span> | <span className="text-amber-300">Leo</span> | Gem | Tau | Ari | Pis | Aqu</p>
-          <p className="text-center text-text-secondary/30 text-[10px]">10 | 9 | 8 | 7 | 6 | 4 | 5 | 3 | 2 | 1 | 12 | 11</p>
+          <p className="text-center text-text-secondary/30 text-xs">10 | 9 | 8 | 7 | 6 | 4 | 5 | 3 | 2 | 1 | 12 | 11</p>
         </div>
         <p className="text-text-secondary text-xs mt-3 leading-relaxed">This mirrors the solar system: Mercury (closest planet) rules signs adjacent to the luminaries. Saturn (farthest visible planet) rules the outermost signs. The ancients encoded the structure of the solar system into the zodiac.</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
-        <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-3">Rahu &amp; Ketu — No Ownership, But Affinity</h4>
+        <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">Rahu &amp; Ketu — No Ownership, But Affinity</h4>
         <p className="text-text-secondary text-sm leading-relaxed">While Rahu and Ketu do not own signs in classical Parashara, they have sign affinities used by some practitioners: Rahu has affinity with Aquarius (Saturn&apos;s sign, where Rahu behaves like Saturn) and some consider Virgo. Ketu has affinity with Scorpio (Mars&apos;s sign, where Ketu behaves like Mars) and some consider Pisces. These are NOT ownership — just behavioral similarity. In chart analysis, Rahu/Ketu give results based on their sign lord, star lord, and conjunctions.</p>
       </section>
     </div>
@@ -207,7 +207,7 @@ function Page2() {
       </div>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-300 text-[10px] uppercase tracking-widest font-bold mb-3">Key Observations</h4>
+        <h4 className="text-amber-300 text-xs uppercase tracking-widest font-bold mb-3">Key Observations</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-gold-light font-medium">Mercury&apos;s narrow range:</span> Only 5° of Moolatrikona (Virgo 15°-20°). This reflects Mercury&apos;s nature — it&apos;s the most adaptable planet, comfortable almost everywhere, so its &quot;peak zone&quot; is very focused.</p>
           <p><span className="text-gold-light font-medium">Moon in Taurus (not Cancer):</span> Moon&apos;s own sign is Cancer, but Moolatrikona is Taurus — where Moon is also exalted at 3°. This makes early Taurus the single most powerful position for the Moon in the entire zodiac.</p>
@@ -216,7 +216,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Dignity Hierarchy — Complete Ranking</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Dignity Hierarchy — Complete Ranking</h4>
         <div className="space-y-1 text-text-secondary text-xs font-mono">
           <p><span className="text-emerald-400">1. Exaltation (Uchcha)</span> — Peak power, maximum dignity</p>
           <p><span className="text-emerald-300">2. Moolatrikona</span> — Home office, near-peak productive zone</p>
@@ -252,7 +252,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-4 text-text-secondary text-xs leading-relaxed">
           <div>
             <p className="text-gold-light font-medium mb-1">Example 1: Aries Lagna, Venus (7th lord) in Pisces (12th house)</p>
@@ -270,7 +270,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Why This Matters — The Core Algorithm</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Why This Matters — The Core Algorithm</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">Every prediction in Vedic astrology follows this algorithm:</p>
         <div className="space-y-1 text-text-secondary text-xs font-mono">
           <p>1. Identify the HOUSE for the life topic (e.g., 7th = marriage)</p>
@@ -286,7 +286,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Planets IN a house are more important than the house lord.&apos;</span><br />
           <span className="text-emerald-300">REALITY: The house lord is the PRIMARY determinant. Planets IN the house modify and color the results, but the lord sets the foundation. A strong lord with no planets in the house still gives good results. A weak lord with benefics in the house gives mixed results.</span></p>
@@ -296,7 +296,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Dig Bala — Directional Strength</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Dig Bala — Directional Strength</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">Each planet gains maximum directional strength (Dig Bala) in a specific house:</p>
         <div className="grid grid-cols-2 gap-2 text-xs text-text-secondary mt-2">
           <p><span className="text-amber-400">Sun + Mars:</span> 10th house (south/zenith)</p>

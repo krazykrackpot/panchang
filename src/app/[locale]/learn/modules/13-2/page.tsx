@@ -198,7 +198,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख धन योग' : 'Key Dhana Yogas'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख धन योग' : 'Key Dhana Yogas'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">2nd + 11th lords in mutual Kendras:</span> When the lord of stored wealth and the lord of income occupy each other&apos;s Kendra positions, wealth flows both ways — savings grow and income increases. This is a classic prosperity indicator.
         </p>
@@ -232,7 +232,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य निर्माण' : 'Common Formations'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य निर्माण' : 'Common Formations'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">11th lord in 6/8/12:</span> The lord of gains trapped in houses of debt (6th), obstacles (8th), or expenses (12th). Income is earned but immediately consumed by debts, crises, or excessive spending.
         </p>
@@ -245,7 +245,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'निरसन एवं शमन' : 'Cancellation & Mitigation'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'निरसन एवं शमन' : 'Cancellation & Mitigation'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Jupiter&apos;s aspect:</span> A strong Jupiter aspecting the afflicted house or planet can substantially cancel Daridra Yoga. Jupiter brings wisdom, expansion, and divine protection to whatever it touches.
         </p>
@@ -276,7 +276,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख अरिष्ट विन्यास' : 'Key Arishta Configurations'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रमुख अरिष्ट विन्यास' : 'Key Arishta Configurations'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Balarishta (infant danger):</span> Moon afflicted by malefics without benefic aspect — vulnerable early childhood health. Saturn-Moon (emotional suppression), Mars-Moon (fevers, inflammation), Rahu-Moon (unexplained anxieties). Jupiter&apos;s aspect is the primary protector.
         </p>
@@ -289,12 +289,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'तीव्रता मूल्यांकन' : 'Severity Assessment'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'तीव्रता मूल्यांकन' : 'Severity Assessment'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>अरिष्ट तीव्रता निर्भर करती है: (1) कितने पापी ग्रह सम्मिलित हैं — एक सम्भालने योग्य है, दो या अधिक गम्भीर। (2) शुभ प्रतिसन्तुलन — गुरु या शुक्र की दृष्टि पीड़ित बिन्दु पर तीव्रता नाटकीय रूप से कम करती है। (3) लग्न स्वामी बल — बलवान लग्न स्वामी पीड़ाओं को सहने की शारीरिक सहनशक्ति देता है। (4) दशा समय — अरिष्ट योग केवल सम्बन्धित ग्रहों की दशा में सक्रिय होते हैं।</> : <>Arishta severity depends on: (1) How many malefics are involved — one malefic is manageable, two or more is serious. (2) Benefic counterbalance — Jupiter or Venus aspecting the afflicted point reduces severity dramatically. (3) Lagna lord strength — a strong Lagna lord gives physical resilience to withstand afflictions. (4) Dasha timing — Arishta Yogas activate only during the dasha of involved planets.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचारात्मक दृष्टिकोण' : 'Remedial Perspective'}</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचारात्मक दृष्टिकोण' : 'Remedial Perspective'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Identifying Arishta Yogas is not meant to create fear but to enable prevention. Jyotish tradition prescribes specific remedies: strengthening benefics through gemstones (yellow sapphire for Jupiter, diamond/white sapphire for Venus), mantras for the afflicting planets, charitable acts associated with the malefic (e.g., feeding crows for Saturn, donating red items for Mars), and spiritual practices. Modern health awareness — regular checkups during vulnerable dasha periods — is the practical application of Arishta analysis.
         </p>

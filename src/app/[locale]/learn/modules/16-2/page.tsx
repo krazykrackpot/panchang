@@ -204,7 +204,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Why Phaladeepika Endures</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Why Phaladeepika Endures</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Three qualities make Phaladeepika indispensable: brevity (no wasted verses), clarity (unambiguous language), and completeness within its scope (all essential topics covered). A student who masters Phaladeepika can read any birth chart competently. Many traditional gurukuls use it as the primary teaching text, introducing BPHS only for advanced topics.
         </p>
@@ -233,7 +233,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Key Jataka Parijata Contributions</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Key Jataka Parijata Contributions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Raja Yoga hierarchy:</span> Not all Raja Yogas are equal. Vaidyanatha ranks them by the houses involved — 1-9, 1-5, 4-10 lords combining produce different grades of power and fame.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Nabhasa Yogas:</span> 32 celestial patterns based on planetary distribution. These tell you the overall &ldquo;shape&rdquo; of a life before examining individual placements.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Cancellation rules:</span> Detailed conditions under which a yoga is cancelled (bhanga) by adverse factors — essential for accurate prediction.</p>
@@ -259,7 +259,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Myth:</span> &ldquo;If it is in BPHS, it must be exactly followed without question.&rdquo; Reality: BPHS has multiple recensions (manuscript versions), and some chapters were likely added later. Critical reading — comparing versions and checking internal consistency — is necessary.
         </p>
@@ -268,7 +268,7 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Our App&rsquo;s Approach</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Our App&rsquo;s Approach</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our yoga detection engine implements definitions from all three texts, prioritizing BPHS for foundational rules and cross-referencing Phaladeepika and Jataka Parijata for yoga classification. When texts disagree on a yoga condition, we follow the stricter definition — it is better to miss a marginal yoga than to flag a false one. The tippanni commentary notes which text supports each interpretation.
         </p>

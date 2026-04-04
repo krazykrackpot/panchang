@@ -179,7 +179,7 @@ export default function EkadashiParanaCard({
             {ll.title}
           </h2>
         </div>
-        <span className="text-[11px] font-mono text-text-secondary/40 bg-bg-tertiary/50 px-2 py-0.5 rounded border border-white/5">
+        <span className="text-xs font-mono text-text-secondary/40 bg-bg-tertiary/50 px-2 py-0.5 rounded border border-white/5">
           24h
         </span>
       </div>
@@ -198,30 +198,30 @@ export default function EkadashiParanaCard({
         <div className="mb-5 grid grid-cols-3 gap-3 text-center">
           {ekadashiStart && (
             <div className="rounded-lg border border-blue-500/15 bg-blue-500/[0.04] p-3">
-              <div className="text-[9px] uppercase tracking-wider text-blue-400/60 mb-1">
+              <div className="text-xs uppercase tracking-wider text-blue-400/60 mb-1">
                 {locale === 'en' ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
               </div>
               <div className="font-mono text-base font-bold text-blue-300">{ekadashiStart}</div>
-              {ekadashiStartDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
+              {ekadashiStartDate && <div className="text-xs text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
             </div>
           )}
           {ekadashiEnd && (
             <div className="rounded-lg border border-amber-500/15 bg-amber-500/[0.04] p-3">
-              <div className="text-[9px] uppercase tracking-wider text-amber-400/60 mb-1">
+              <div className="text-xs uppercase tracking-wider text-amber-400/60 mb-1">
                 {locale === 'en' ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-amber-300">{ekadashiEnd}</div>
-              {ekadashiEndDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiEndDate)}</div>}
+              {ekadashiEndDate && <div className="text-xs text-text-secondary/40 mt-0.5">{fmtShortDate(ekadashiEndDate)}</div>}
             </div>
           )}
           {dwadashiEndTime && (
             <div className="rounded-lg border border-rose-500/15 bg-rose-500/[0.04] p-3">
-              <div className="text-[9px] uppercase tracking-wider text-rose-400/60 mb-1">
+              <div className="text-xs uppercase tracking-wider text-rose-400/60 mb-1">
                 {locale === 'en' ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-rose-300">{dwadashiEndTime}</div>
-              {dwadashiEndDate && <div className="text-[10px] text-text-secondary/40 mt-0.5">{fmtShortDate(dwadashiEndDate)}</div>}
-              <div className="text-[8px] text-rose-400/50 mt-1">{locale === 'en' ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
+              {dwadashiEndDate && <div className="text-xs text-text-secondary/40 mt-0.5">{fmtShortDate(dwadashiEndDate)}</div>}
+              <div className="text-xs text-rose-400/50 mt-1">{locale === 'en' ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
             </div>
           )}
         </div>
@@ -254,7 +254,7 @@ export default function EkadashiParanaCard({
             style={{ left: `${pct(paranaStartMin)}%`, width: `${pct(paranaEndMin) - pct(paranaStartMin)}%` }}
           >
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[9px] font-bold text-emerald-200 uppercase tracking-widest whitespace-nowrap">
+              <span className="text-xs font-bold text-emerald-200 uppercase tracking-widest whitespace-nowrap">
                 {ll.parana}
               </span>
             </div>
@@ -282,7 +282,7 @@ export default function EkadashiParanaCard({
         </div>
 
         {/* Timeline labels below the bar */}
-        <div className="relative h-10 mt-1 text-[9px] sm:text-[10px] font-mono">
+        <div className="relative h-10 mt-1 text-xs sm:text-xs font-mono">
           {/* Sunrise */}
           <div className="absolute flex flex-col items-center" style={{ left: `${pct(sunriseMin)}%`, transform: 'translateX(-50%)' }}>
             <div className="w-px h-2 bg-text-secondary/30" />
@@ -311,7 +311,7 @@ export default function EkadashiParanaCard({
         </div>
 
         {/* Legend row */}
-        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-[10px] text-text-secondary/50">
+        <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs text-text-secondary/50">
           {!hvSameAsSunrise && (
             <span className="flex items-center gap-1">
               <span className="w-2.5 h-2.5 rounded-sm bg-blue-500/40 border border-blue-400/30" />
@@ -395,7 +395,7 @@ export default function EkadashiParanaCard({
 
       {/* Footer */}
       <div className="mt-4 pt-3 border-t border-amber-500/10">
-        <p className="text-[10px] text-text-secondary/40 font-mono">
+        <p className="text-xs text-text-secondary/40 font-mono">
           {ll.format24h}
         </p>
       </div>
@@ -432,7 +432,7 @@ function RuleRow({
           {label}
         </p>
         {note && (
-          <p className="text-[11px] text-text-secondary/40 leading-relaxed mt-0.5"
+          <p className="text-xs text-text-secondary/40 leading-relaxed mt-0.5"
             style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
             {note}

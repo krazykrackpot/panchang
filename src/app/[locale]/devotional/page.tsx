@@ -171,7 +171,7 @@ export default function DevotionalPage() {
                 <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {info.deity[locale]}
                 </div>
-                {isToday && <div className="text-gold-primary text-[10px] font-bold mt-1 animate-pulse">{locale === 'en' ? 'TODAY' : 'आज'}</div>}
+                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{locale === 'en' ? 'TODAY' : 'आज'}</div>}
               </div>
             );
           })}

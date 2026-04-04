@@ -196,7 +196,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'आठ योगिनियाँ — त्वरित सन्दर्भ' : 'The Eight Yoginis — Quick Reference'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'आठ योगिनियाँ — त्वरित सन्दर्भ' : 'The Eight Yoginis — Quick Reference'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Mangala</span> (1 yr, Moon) — Auspiciousness, new beginnings, emotional sensitivity.
           <span className="text-gold-light font-medium ml-2">Pingala</span> (2 yr, Sun) — Vitality, authority, father-related events.
@@ -228,7 +228,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'राशि दृष्टि — जैमिनी दृष्टि' : 'Rashi Drishti — Jaimini Aspects'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'राशि दृष्टि — जैमिनी दृष्टि' : 'Rashi Drishti — Jaimini Aspects'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>पराशर की ग्रह दृष्टि (जहाँ शनि 3, 7 और 10वें को देखता है) के विपरीत, जैमिनी राशि-आधारित दृष्टि प्रयोग करते हैं। नियम सुन्दर हैं: चर राशियाँ (मेष, कर्क, तुला, मकर) सभी स्थिर राशियों को देखती हैं सिवाय निकटवर्ती के। स्थिर राशियाँ (वृषभ, सिंह, वृश्चिक, कुम्भ) सभी चर राशियों को देखती हैं सिवाय निकटवर्ती के। द्विस्वभाव राशियाँ (मिथुन, कन्या, धनु, मीन) एक-दूसरे को देखती हैं।</> : <>Unlike Parashara&apos;s planetary aspects (where Saturn aspects the 3rd, 7th, and 10th), Jaimini uses sign-based aspects. The rules are elegant: Movable signs (Aries, Cancer, Libra, Capricorn) aspect all Fixed signs except the one next to them. Fixed signs (Taurus, Leo, Scorpio, Aquarius) aspect all Movable signs except the one next to them. Dual signs (Gemini, Virgo, Sagittarius, Pisces) aspect each other.</>}</p>
       </section>
     </div>
@@ -252,12 +252,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;केवल विंशोत्तरी प्रामाणिक है; अन्य दशा पद्धतियाँ आधुनिक आविष्कार हैं।&quot; यह पूर्णतया असत्य है। जैमिनी सूत्र (महर्षि जैमिनी, व्यास के शिष्य को समर्पित) अनेक पाराशरी टीकाओं से पूर्ववर्ती हैं। योगिनी दशा मध्यकालीन भारत के तान्त्रिक साहित्य में प्रकट होती है और शाक्त परम्परा में इसकी गहरी जड़ें हैं। तीनों पद्धतियों का प्राचीन वंशक्रम है और ये परस्पर पूरक हैं, प्रतिस्पर्धी नहीं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Only Vimshottari is authentic; other dasha systems are modern inventions.&quot; This is completely false. Jaimini Sutras (attributed to Maharishi Jaimini, a disciple of Vyasa) predate many Parashari commentaries. Yogini Dasha appears in Tantric literature from medieval India and has deep roots in the Shakta tradition. All three systems have ancient pedigrees and are mutually complementary, not competing.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यवहार में अभिसारी प्रमाणीकरण' : 'Convergent Validation in Practice'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यवहार में अभिसारी प्रमाणीकरण' : 'Convergent Validation in Practice'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">परिदृश्य:</span> एक जातक पूछता है &quot;मेरा विवाह कब होगा?&quot; आप जाँचते हैं: विंशोत्तरी गुरु महादशा में शुक्र अन्तर्दशा जून 2027 से दिखाती है। योगिनी सिद्धा (शुक्र) काल 2026-2033 चल रहा दिखाती है। चर दशा लग्न से 7वीं राशि 2027-2029 में सक्रिय दिखाती है। तीनों पद्धतियाँ 2027-2028 पर विवाह खिड़की के रूप में अभिसरित होती हैं। यह उच्च-विश्वास भविष्यवाणी है।</> : <><span className="text-gold-light font-medium">Scenario:</span> A client asks &quot;When will I get married?&quot; You check: Vimshottari shows Venus Antardasha in Jupiter Mahadasha starting June 2027. Yogini shows Siddha (Venus) period running 2026-2033. Char Dasha shows 7th sign from lagna getting activated in 2027-2029. All three systems converge on 2027-2028 as the marriage window. This is high-confidence prediction.</>}</p>
       </section>
     </div>

@@ -218,7 +218,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सम्पूर्ण सूत्र' : 'The Complete Formula'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सम्पूर्ण सूत्र' : 'The Complete Formula'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Apparent Longitude</span> = True Longitude - 0.00569° - 0.00478° x sin(Ω)
         </p>
@@ -242,12 +242,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;अधिक ज्या पद सदैव सूर्य के लिए बेहतर सटीकता देते हैं।&quot; सूर्य के लिए केन्द्र समीकरण में 3 पद पर्याप्त हैं क्योंकि पृथ्वी की कक्षा की उत्केन्द्रता बहुत कम है (e ≈ 0.017)। चौथा पद ~0.000001° होगा — हमारी आवश्यक सटीकता से बहुत नीचे। चन्द्रमा, अपनी अत्यधिक जटिल कक्षा के साथ, वास्तव में 60+ पदों की आवश्यकता रखता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;More sine terms always mean better accuracy for the Sun.&quot; For the Sun, 3 terms in the Equation of Center are sufficient because Earth&apos;s orbit has very low eccentricity (e ≈ 0.017). The 4th term would be ~0.000001° — far below our needed precision. The Moon, with its much more complex orbit, genuinely needs 60+ terms.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा sunLongitude(jd) फ़ंक्शन ठीक ऊपर वर्णित एल्गोरिदम लागू करता है। यह एक जूलियन दिवस लेता है, T गणित करता है, फिर L₀, M, C, सत्य भोगांश, और अन्ततः दृश्य सायन भोगांश लौटाने हेतु अयन-चलन और विपथन लागू करता है। यह एकल फ़ंक्शन प्रति पृष्ठ लोड सैकड़ों बार बुलाया जाता है — सूर्योदय, सूर्यास्त, तिथि सीमाओं, संक्रान्ति समय और अन्य के लिए। मीयस की सुन्दरता यह है कि 3 ज्या पद और 2 छोटे सुधार न्यूनतम गणना के साथ व्यावसायिक-स्तर के परिणाम देते हैं।</> : <>Our sunLongitude(jd) function implements exactly the algorithm described above. It takes a Julian Day, computes T, then L₀, M, C, true longitude, and finally applies nutation and aberration to return the apparent tropical longitude. This single function is called hundreds of times per page load — for sunrise, sunset, tithi boundaries, sankranti timing, and more. The elegance of Meeus is that 3 sine terms and 2 small corrections give us professional-grade results with minimal computation.</>}</p>
       </section>
     </div>

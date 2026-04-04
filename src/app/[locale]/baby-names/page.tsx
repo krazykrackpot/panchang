@@ -143,7 +143,7 @@ export default function BabyNamesPage() {
                 <div className="flex justify-center">
                   <NakshatraIconById id={n.id} size={isSelected ? 48 : 24} />
                 </div>
-                <div className={`mt-1 font-medium ${isSelected ? 'text-gold-light text-sm' : 'text-text-secondary text-[10px]'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                <div className={`mt-1 font-medium ${isSelected ? 'text-gold-light text-sm' : 'text-text-secondary text-xs'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {n.name[locale]}
                 </div>
                 {isSelected && detectedPada > 0 && (
@@ -222,7 +222,7 @@ export default function BabyNamesPage() {
                     <div className="text-text-secondary text-sm">
                       {locale === 'en' ? syl.hi : syl.en}
                     </div>
-                    <div className="text-text-secondary/30 text-[10px] mt-1">
+                    <div className="text-text-secondary/30 text-xs mt-1">
                       {locale === 'en' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
                     </div>
                   </motion.div>
@@ -273,7 +273,7 @@ export default function BabyNamesPage() {
                     <span className={`font-bold ${isHighlighted ? 'text-gold-light text-base' : 'text-text-primary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {n.name[locale]}
                     </span>
-                    <span className="text-text-secondary/30 text-[10px] ml-2">#{n.id}</span>
+                    <span className="text-text-secondary/30 text-xs ml-2">#{n.id}</span>
                   </div>
                 </div>
                 {/* 4 Pada syllables in a row */}
@@ -290,7 +290,7 @@ export default function BabyNamesPage() {
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {syl ? (locale === 'en' ? syl.en : syl.hi) : '—'}
                         </div>
-                        <div className="text-[8px] text-text-secondary/30 mt-0.5">P{pi + 1}</div>
+                        <div className="text-xs text-text-secondary/30 mt-0.5">P{pi + 1}</div>
                       </div>
                     );
                   })}

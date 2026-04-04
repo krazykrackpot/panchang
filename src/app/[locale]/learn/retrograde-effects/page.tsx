@@ -268,10 +268,10 @@ export default function RetrogradeEffectsPage() {
                       <div className="px-4 pb-4 space-y-3 ml-11">
                         <p className="text-text-secondary text-sm leading-relaxed">{t(n.traits)}</p>
                         <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
-                          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'गहरा अर्थ' : 'Deeper Meaning'}</span>
+                          <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'गहरा अर्थ' : 'Deeper Meaning'}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(n.depth)}</p>
                         </div>
-                        <div className="text-text-tertiary text-[11px]">
+                        <div className="text-text-tertiary text-xs">
                           <span className="text-gold-dark font-bold">{isHi ? 'प्रसिद्ध उदाहरण:' : 'Famous examples:'}</span> {t(n.famous)}
                         </div>
                       </div>
@@ -305,11 +305,11 @@ export default function RetrogradeEffectsPage() {
                       className="overflow-hidden">
                       <div className="px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
-                          <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">{isHi ? 'करें' : 'Do'}</span>
+                          <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'करें' : 'Do'}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.doList)}</p>
                         </div>
                         <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/15">
-                          <span className="text-red-400 text-[10px] uppercase tracking-wider font-bold">{isHi ? 'न करें' : 'Don\'t'}</span>
+                          <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'न करें' : 'Don\'t'}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.dontList)}</p>
                         </div>
                       </div>
@@ -341,7 +341,7 @@ export default function RetrogradeEffectsPage() {
             { label: { en: 'Stationary Planets', hi: 'स्थिर ग्रह' }, value: { en: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', hi: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।' } },
           ].map((item, i) => (
             <div key={i} className="p-3 rounded-xl bg-bg-secondary/30 border border-gold-primary/8">
-              <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{t(item.label)}</span>
+              <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{t(item.label)}</span>
               <p className="text-text-secondary text-sm mt-1 leading-relaxed">{t(item.value)}</p>
             </div>
           ))}

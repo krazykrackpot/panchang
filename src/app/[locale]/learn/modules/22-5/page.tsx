@@ -219,7 +219,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'उदय सीमा' : 'The Rise Threshold'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उदय सीमा' : 'The Rise Threshold'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>चन्द्रोदय सीमा h₀ ≈ -0.3°। यह सूर्य के -0.8333° से भिन्न है क्योंकि चन्द्र अर्ध-व्यास (~16&apos;) और वायुमण्डलीय अपवर्तन (~34&apos;) आंशिक रूप से एक-दूसरे को सन्तुलित करते हैं, और बड़ा लम्बन सुधार स्थलकेन्द्रीय रूपान्तरण में अलग से संभाला जाता है। सटीक सीमा चन्द्र दूरी के साथ थोड़ी भिन्न होती है (अर्ध-व्यास 14.7&apos; से 16.7&apos; तक), किन्तु -0.3° एक अच्छा औसत है।</> : <>The moonrise threshold h₀ ≈ -0.3°. This differs from the Sun&apos;s -0.8333° because the Moon&apos;s semi-diameter (~16&apos;) and atmospheric refraction (~34&apos;) partially cancel, and the large parallax correction is handled separately in the topocentric conversion. The exact threshold varies slightly with the Moon&apos;s distance (semi-diameter ranges from 14.7&apos; to 16.7&apos;), but -0.3° is a good average.</>}</p>
       </section>
     </div>
@@ -240,17 +240,17 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'विशेष स्थितियाँ' : 'Edge Cases'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'विशेष स्थितियाँ' : 'Edge Cases'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">चन्द्रोदय नहीं:</span> चन्द्रमा प्रतिदिन ~50 मिनट देर से उदित होने से, कभी-कभी ऐसी तिथि आती है जब चन्द्रोदय एक दिन मध्यरात्रि से ठीक पहले और अगला अगले दिन मध्यरात्रि के बाद आता है, जिससे एक कैलेण्डर तिथि बिना चन्द्रोदय रह जाती है। हमारा स्कैनर 24-घण्टे अन्वेषण में ऋणात्मक-से-धनात्मक क्रॉसिंग न मिलने पर &quot;चन्द्रोदय नहीं&quot; सही रूप से प्रतिवेदित करता है।</> : <><span className="text-gold-light font-medium">No moonrise:</span> Because the Moon rises ~50 minutes later each day, there are occasional dates when moonrise falls just before midnight and the next moonrise after midnight the following day, leaving one calendar date with no moonrise event. Our scanner correctly handles this by reporting &quot;no moonrise&quot; when the 24-hour scan finds no negative-to-positive crossing.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;चन्द्रोदय लम्बन सूर्य की तरह नगण्य है।&quot; सूर्य का लम्बन (8.8&quot;) वास्तव में नगण्य है। चन्द्रमा का लम्बन (~57&apos;) 400 गुना बड़ा है और दृश्य चन्द्रोदय समय को 3-5 मिनट खिसकाता है। इसकी अनदेखी करने से हमारा चन्द्रोदय लगातार कई मिनट देर से आता।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Moonrise parallax is negligible like the Sun&apos;s.&quot; The Sun&apos;s parallax (8.8&quot;) is indeed negligible. The Moon&apos;s parallax (~57&apos;) is 400 times larger and shifts the apparent moonrise time by 3-5 minutes. Ignoring it would make our moonrise consistently late by several minutes.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>चन्द्रोदय समय पंचांग के लिए अत्यन्त महत्त्वपूर्ण है: करवा चौथ पर चन्द्रोदय समय व्रत-भंग अनुष्ठान निर्धारित करता है। शरद पूर्णिमा पर चन्द्रोदय समय अनुष्ठान समय-निर्धारण प्रभावित करता है। हमारा अन्वेषण + द्विआधारी खोज दृष्टिकोण पूर्ण 60-पद चन्द्र स्थिति ~300 बार (288 अन्वेषण बिन्दु + ~15 द्विआधारी खोज पुनरावृत्तियाँ) गणित करने के बावजूद आधुनिक हार्डवेयर पर 100ms से कम में चलता है, जिससे यह वास्तविक-समय वेब अनुप्रयोगों के लिए व्यावहारिक है।</> : <>Moonrise timing is crucial for Panchang: the Chandrodaya (moonrise) time on Karva Chauth determines when the fast-breaking ritual occurs. On Sharad Purnima, moonrise timing affects ritual scheduling. Our scanning + binary search approach runs in under 100ms on modern hardware despite computing the full 60-term Moon position ~300 times (288 scan points + ~15 binary search iterations), making it practical for real-time web applications.</>}</p>
       </section>
     </div>

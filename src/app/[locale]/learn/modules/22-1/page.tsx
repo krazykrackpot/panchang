@@ -196,7 +196,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? '4713 ई.पू. क्यों?' : 'Why 4713 BCE?'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? '4713 ई.पू. क्यों?' : 'Why 4713 BCE?'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>जोसेफ स्कैलिजर ने 1583 में यह तिथि इसलिए चुनी क्योंकि यह एक संयुक्त महाचक्र का आरम्भ है: 28-वर्षीय सौर चक्र (जूलियन कैलेण्डर का सप्ताह-दिन दोहराव), 19-वर्षीय मेटोनिक चक्र (चन्द्र कलाएँ उन्हीं कैलेण्डर तिथियों पर दोहराती हैं), और 15-वर्षीय रोमन इंडिक्शन (कर चक्र)। गुणनफल 28 × 19 × 15 = 7980 वर्ष। 1 ई. से पीछे गणना करने पर आरम्भ 4713 ई.पू. आता है। इससे प्रत्येक ऐतिहासिक तिथि का JD धनात्मक रहता है — ऋणात्मक दिन संख्या की आवश्यकता नहीं।</> : <>Joseph Scaliger chose this date in 1583 because it is the start of a combined super-cycle: the 28-year solar cycle (Julian calendar day-of-week repeats), the 19-year Metonic cycle (Moon phases repeat on the same calendar dates), and the 15-year Roman indiction (tax cycle). The product 28 x 19 x 15 = 7980 years. Counting backward from 1 CE places the start at 4713 BCE. This guarantees that every historical date has a positive JD — no negative day numbers needed.</>}</p>
       </section>
     </div>
@@ -217,7 +217,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सम्पूर्ण सूत्र' : 'The Complete Formula'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सम्पूर्ण सूत्र' : 'The Complete Formula'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Step 3:</span> JD = floor(365.25 x (Y + 4716)) + floor(30.6001 x (M + 1)) + D + H/24 + B - 1524.5
         </p>
@@ -225,7 +225,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">2 अप्रैल, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12। M &gt; 2 होने से कोई समायोजन नहीं। A = floor(2026/100) = 20। B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13। JD = floor(365.25 × 6742) + floor(30.6001 × 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0।</> : <><span className="text-gold-light font-medium">April 2, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12. Since M &gt; 2, no adjustment needed. A = floor(2026/100) = 20. B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13. JD = floor(365.25 x 6742) + floor(30.6001 x 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0.</>}</p>
       </section>
     </div>
@@ -246,12 +246,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'हमारा ऐप JD कैसे उपयोग करता है' : 'How Our App Uses JD'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'हमारा ऐप JD कैसे उपयोग करता है' : 'How Our App Uses JD'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>हमारे कोडबेस में dateToJD() फ़ंक्शन सभी गणना का प्रवेशद्वार है। जब उपयोगकर्ता किसी तिथि का पंचांग देखता है, सबसे पहले होता है: JD = dateToJD(year, month, day, hour)। यह JD फिर sunLongitude(jd) और moonLongitude(jd) को दिया जाता है ताकि सूर्य और चन्द्रमा की सायन स्थितियाँ मिलें। अन्तर (चन्द्र - सूर्य) तिथि देता है। चन्द्रमा की निरयन स्थिति नक्षत्र देती है। संयुक्त सूर्य-चन्द्र भोगांश योग देता है। पंचांग का प्रत्येक अंग इसी एक JD रूपान्तरण से जुड़ा है।</> : <>In our codebase, the function dateToJD() is the gateway to all computation. When a user views the Panchang for a date, the first thing that happens is: JD = dateToJD(year, month, day, hour). This JD is then passed to sunLongitude(jd) and moonLongitude(jd) to get the tropical positions of the Sun and Moon. The difference (Moon - Sun) gives the Tithi. The Moon&apos;s sidereal position gives the Nakshatra. The combined Sun-Moon longitude sum gives the Yoga. Every single element of the Panchang traces back to this one JD conversion.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;जूलियन दिवस बस भिन्न इकाइयों में यूनिक्स टाइमस्टैम्प है।&quot; दोनों निरन्तर समय गणनाएँ हैं, किन्तु यूनिक्स टाइमस्टैम्प 1 जनवरी, 1970 से आरम्भ होकर सेकण्ड गिनता है, जबकि JD 4713 ई.पू. से आरम्भ होकर दिन गिनता है। महत्त्वपूर्ण बात, JD मध्याह्न UT (मध्यरात्रि नहीं) से आरम्भ होता है, अर्थात JD .0 = मध्याह्न और JD .5 = मध्यरात्रि — अधिकांश प्रोग्रामरों की अपेक्षा के विपरीत।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Julian Day is just a Unix timestamp in different units.&quot; While both are continuous time counts, Unix timestamps start at January 1, 1970 and count seconds, while JD starts at 4713 BCE and counts days. More importantly, JD begins at noon UT (not midnight), which means JD .0 = noon and JD .5 = midnight — the opposite of what most programmers expect.</>}</p>
       </section>
     </div>

@@ -176,7 +176,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
           </button>
           {/* Copied toast */}
           {showCopied && (
-            <span className="absolute -bottom-7 right-0 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
+            <span className="absolute -bottom-7 right-0 text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
               {UI_LABELS.copied[locale]}
             </span>
           )}
@@ -235,7 +235,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                             {item.name[locale]}
                           </span>
                           {item.essential === false && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">
+                            <span className="text-xs px-1.5 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">
                               {UI_LABELS.optional[locale]}
                             </span>
                           )}

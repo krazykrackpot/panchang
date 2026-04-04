@@ -102,9 +102,9 @@ export default function NorthIndianChart({ houses, ascendantSign, title, size = 
                 y={region.signY}
                 textAnchor="middle"
                 dominantBaseline="middle"
-                fill="#8a6d2b"
-                fontSize="11"
-                opacity="0.7"
+                fill={i === 0 ? '#f0d48a' : 'rgba(212,168,83,0.85)'}
+                fontSize="13"
+                fontWeight={i === 0 ? '700' : '600'}
               >
                 {house.signSymbol}
               </text>
@@ -117,7 +117,7 @@ export default function NorthIndianChart({ houses, ascendantSign, title, size = 
                   textAnchor="middle"
                   dominantBaseline="middle"
                   fill="#d4a853"
-                  fontSize="8"
+                  fontSize="10"
                   fontWeight="bold"
                   filter="url(#glow)"
                 >

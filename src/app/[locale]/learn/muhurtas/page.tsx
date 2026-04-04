@@ -138,7 +138,7 @@ export default function LearnMuhurtasPage() {
           {L.rahuKaalContent[locale]}
         </p>
         <div className="mt-4 overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-red-500/15">
-          <p className="text-red-300 text-[10px] uppercase tracking-widest font-bold mb-3">
+          <p className="text-red-300 text-xs uppercase tracking-widest font-bold mb-3">
             {locale === 'en' ? 'Weekday Segment Positions (1-8 of daytime)' : 'सप्ताह के दिन खण्ड स्थिति (दिवा 1-8)'}
           </p>
           <table className="w-full text-xs">
@@ -179,7 +179,7 @@ export default function LearnMuhurtasPage() {
             <div key={ch.name} className={`rounded-lg border p-3 ${ch.color}`}>
               <p className="font-bold text-sm">{ch.name}</p>
               <p className="text-xs opacity-70">{ch.planet}</p>
-              <p className="text-[10px] uppercase tracking-wider mt-1 opacity-50">{ch.nature}</p>
+              <p className="text-xs uppercase tracking-wider mt-1 opacity-50">{ch.nature}</p>
             </div>
           ))}
         </div>
@@ -274,7 +274,7 @@ export default function LearnMuhurtasPage() {
                       <span className="text-gold-primary font-bold text-xl w-8">{m.number}</span>
                       <div>
                         <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
-                        {m.number === 8 && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-[10px] rounded-full font-bold uppercase">Abhijit</span>}
+                        {m.number === 8 && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
                         <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
                       </div>
                     </div>
@@ -339,7 +339,7 @@ export default function LearnMuhurtasPage() {
                       <span className="text-indigo-300/80 font-bold text-xl w-8">{m.number}</span>
                       <div>
                         <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
-                        {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-[10px] rounded-full font-bold">{locale === 'en' ? 'BRAHMA' : 'ब्राह्म'}</span>}
+                        {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' ? 'BRAHMA' : 'ब्राह्म'}</span>}
                         <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
                       </div>
                     </div>
@@ -382,7 +382,7 @@ export default function LearnMuhurtasPage() {
 
       {/* Links */}
       <div className="mt-8 space-y-3">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {locale === 'en' ? 'Explore Further' : 'और जानें'}
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

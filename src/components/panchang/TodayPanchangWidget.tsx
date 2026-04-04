@@ -148,7 +148,7 @@ export default function TodayPanchangWidget() {
     return (
       <div>
         <LocationBar />
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-12 text-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-8 md:p-12 text-center">
           <MapPin className="w-12 h-12 text-gold-primary/40 mx-auto mb-4" />
           <p className="text-text-secondary text-lg mb-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {locale === 'en' ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
@@ -198,10 +198,10 @@ export default function TodayPanchangWidget() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8 text-center min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center"
+            className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 md:p-8 text-center min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center"
           >
             <div className="flex justify-center mb-4"><el.Icon size={64} /></div>
-            <div className="text-gold-dark text-[11px] uppercase tracking-widest font-bold mb-2">{el.label}</div>
+            <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{el.label}</div>
             <div className="text-gold-light text-xl sm:text-2xl font-bold" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
               {el.value}
             </div>
@@ -212,16 +212,16 @@ export default function TodayPanchangWidget() {
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
                 <div className="flex items-center justify-center gap-3">
                   <div className="text-center">
-                    <div className="text-[9px] uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Starts' : 'आरम्भ'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Starts' : 'आरम्भ'}</div>
                     <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
                   </div>
                   <span className="text-text-secondary/20 text-lg">→</span>
                   <div className="text-center">
-                    <div className="text-[9px] uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Ends' : 'समाप्ति'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Ends' : 'समाप्ति'}</div>
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
                   </div>
                 </div>
-                <div className="text-[8px] text-text-secondary/30 text-center mt-1">24h</div>
+                <div className="text-xs text-text-secondary/30 text-center mt-1">24h</div>
               </div>
             )}
           </motion.div>

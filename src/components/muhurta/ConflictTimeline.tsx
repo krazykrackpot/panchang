@@ -34,7 +34,7 @@ export default function ConflictTimeline({ locale }: ConflictTimelineProps) {
 
   return (
     <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${width} ${totalH}`} className="w-full min-w-[500px]">
+      <svg viewBox={`0 0 ${width} ${totalH}`} className="w-full min-w-[320px] sm:min-w-[500px]">
         {/* Header */}
         <text x={barLeft} y={18} fill="#f0d48a" fontSize="10" fontFamily="monospace">
           {locale === 'en' ? 'Sunrise' : 'सूर्योदय'}

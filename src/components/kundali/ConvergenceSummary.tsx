@@ -155,11 +155,11 @@ function InsightCard({ insight, locale, headingFont, isExpanded, onToggle }: {
               <span className="text-xs font-medium text-amber-400 uppercase tracking-wider">
                 {pickLabel(THEME_LABELS[theme] || THEME_LABELS.career, locale)}
               </span>
-              <span className="text-[10px] text-text-tertiary flex items-center gap-1">
+              <span className="text-xs text-text-tertiary flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 {pickLabel(TEMPORAL_LABELS[insight.temporalFrame] || TEMPORAL_LABELS['this-year'], locale)}
               </span>
-              <span className="text-[10px] text-text-tertiary">
+              <span className="text-xs text-text-tertiary">
                 {insight.matchCount}
               </span>
             </div>
@@ -189,7 +189,7 @@ function InsightCard({ insight, locale, headingFont, isExpanded, onToggle }: {
               {/* Layperson note */}
               {insight.laypersonNote && pickText(insight.laypersonNote, locale) && (
                 <div className="mt-3 p-3 bg-gold-primary/5 rounded-lg">
-                  <p className="text-[11px] text-gold-dark uppercase tracking-wider mb-1 font-semibold">
+                  <p className="text-xs text-gold-dark uppercase tracking-wider mb-1 font-semibold">
                     {pickLabel(LABELS.simpleExplanation, locale)}
                   </p>
                   <p className="text-sm text-text-secondary leading-relaxed">
@@ -206,7 +206,7 @@ function InsightCard({ insight, locale, headingFont, isExpanded, onToggle }: {
               {/* Advice */}
               {insight.advice && pickText(insight.advice, locale) && (
                 <div className="p-3 bg-emerald-500/5 rounded-lg border border-emerald-500/10">
-                  <p className="text-[11px] text-emerald-400 uppercase tracking-wider mb-1 font-semibold">
+                  <p className="text-xs text-emerald-400 uppercase tracking-wider mb-1 font-semibold">
                     {pickLabel(LABELS.advice, locale)}
                   </p>
                   <p className="text-sm text-text-secondary leading-relaxed">
@@ -265,7 +265,7 @@ export default function ConvergenceSummary({ convergence, locale, headingFont }:
       className={`rounded-xl border-2 ${toneStyle.border} bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] p-6 sm:p-8 shadow-lg shadow-black/20`}
     >
       {/* ─── Header row ────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-5 mb-6">
+      <div className="flex items-center gap-3 sm:gap-5 mb-6">
         <ActivationGauge activation={activation} toneStroke={toneStyle.stroke} />
         <div className="flex-1 min-w-0">
           <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>

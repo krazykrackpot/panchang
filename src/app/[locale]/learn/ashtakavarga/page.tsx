@@ -195,7 +195,7 @@ export default function LearnAshtakavargaPage() {
               </tr>
             </tbody>
           </table>
-          <p className="mt-2 text-text-tertiary text-[10px]">
+          <p className="mt-2 text-text-tertiary text-xs">
             {isHi
               ? 'हरा = 4+ (शुभ) | पीला = 3 (मध्यम) | लाल = 0-2 (कठिन)'
               : 'Green = 4+ (favourable) | Yellow = 3 (mixed) | Red = 0-2 (challenging)'}
@@ -241,7 +241,7 @@ export default function LearnAshtakavargaPage() {
               </div>
             ))}
           </div>
-          <div className="flex justify-between mt-1 text-[10px]">
+          <div className="flex justify-between mt-1 text-xs">
             <span className="text-red-400">{isHi ? 'कठिन' : 'Challenging'}</span>
             <span className="text-gold-light">{isHi ? 'सीमा = 4' : 'Threshold = 4'}</span>
             <span className="text-emerald-400">{isHi ? 'अनुकूल' : 'Favourable'}</span>
@@ -278,7 +278,7 @@ export default function LearnAshtakavargaPage() {
               </tr>
             </tbody>
           </table>
-          <p className="mt-2 text-text-tertiary text-[10px] font-mono">
+          <p className="mt-2 text-text-tertiary text-xs font-mono">
             {isHi ? 'कुल: 337 | औसत प्रति राशि: ~28' : 'Total: 337 | Average per sign: ~28'}
           </p>
         </div>

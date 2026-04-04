@@ -174,7 +174,7 @@ export default function FestivalDetailModal({
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-bg-tertiary/50 flex flex-col items-center justify-center border border-gold-primary/20">
                     <span className="text-gold-light text-2xl font-bold leading-none">{dayStr}</span>
-                    <span className="text-text-secondary text-[10px] uppercase">{locale === 'en' ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
+                    <span className="text-text-secondary text-xs uppercase">{locale === 'en' ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
                   </div>
                   <div className="flex-1 min-w-0 pr-8">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient leading-tight" style={headingFont}>
@@ -183,7 +183,7 @@ export default function FestivalDetailModal({
                     <p className="text-text-secondary text-sm mt-1">
                       {dayStr} {monthStr} {yearStr}
                       {festivalCategory && (
-                        <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full border border-gold-primary/20 bg-gold-primary/10 text-gold-dark font-bold uppercase">
+                        <span className="ml-2 text-xs px-2 py-0.5 rounded-full border border-gold-primary/20 bg-gold-primary/10 text-gold-dark font-bold uppercase">
                           {festivalCategory}
                         </span>
                       )}
@@ -282,7 +282,7 @@ export default function FestivalDetailModal({
 
                         {/* Recommended window — prominent */}
                         <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-center mb-3">
-                          <div className="text-[10px] text-emerald-400/70 uppercase tracking-wider mb-1" style={headingFont}>
+                          <div className="text-xs text-emerald-400/70 uppercase tracking-wider mb-1" style={headingFont}>
                             {LP.paranaWindow[locale]}
                           </div>
                           <div className="text-2xl font-bold text-emerald-300 font-mono tracking-tight">
@@ -292,7 +292,7 @@ export default function FestivalDetailModal({
 
                         {/* ─── Three Rules Summary ─── */}
                         <div className="rounded-lg bg-bg-tertiary/30 border border-gold-primary/10 p-3 mb-3">
-                          <div className="text-[10px] text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
+                          <div className="text-xs text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
                             {locale === 'en' ? 'Three Rules of Parana' : locale === 'hi' ? 'पारण के तीन नियम' : 'पारणस्य त्रयो नियमाः'}
                           </div>
                           <div className="space-y-1 text-xs" style={bodyFont}>
@@ -405,7 +405,7 @@ export default function FestivalDetailModal({
                           </div>
                           <div className="grid grid-cols-2 gap-3 mb-3">
                             <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
-                              <div className="text-[10px] text-text-secondary uppercase tracking-wider mb-1">
+                              <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
                                 {LP.magnitude[locale]}
                               </div>
                               <div className="text-lg font-bold text-red-300 capitalize">
@@ -413,7 +413,7 @@ export default function FestivalDetailModal({
                               </div>
                             </div>
                             <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
-                              <div className="text-[10px] text-text-secondary uppercase tracking-wider mb-1">
+                              <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
                                 {LP.maxTime[locale]}
                               </div>
                               <div className="text-lg font-bold text-amber-300 font-mono">
@@ -507,11 +507,11 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
       <button onClick={copy} className="absolute top-2 right-2 p-1 rounded text-gold-primary/40 hover:text-gold-light" aria-label="Copy">
         {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
       </button>
-      <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{mantra.name[lk as keyof typeof mantra.name]}</p>
+      <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{mantra.name[lk as keyof typeof mantra.name]}</p>
       <p className="text-gold-light text-base leading-relaxed pr-6" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{mantra.devanagari}</p>
       <p className="text-text-secondary/60 text-xs italic mt-1">{mantra.iast}</p>
       <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{mantra.meaning[lk as keyof typeof mantra.meaning]}</p>
-      {mantra.japaCount && <span className="text-gold-primary/50 text-[10px] mt-1 inline-block">{mantra.japaCount}x</span>}
+      {mantra.japaCount && <span className="text-gold-primary/50 text-xs mt-1 inline-block">{mantra.japaCount}x</span>}
     </div>
   );
 }
@@ -542,12 +542,12 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Samagri */}
       <div className="rounded-xl bg-bg-tertiary/30 p-3">
-        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
           {locale === 'en' ? 'Materials (Samagri)' : 'सामग्री'}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {puja.samagri.map((item, i) => (
-            <span key={i} className="text-[11px] px-2 py-0.5 rounded-full bg-gold-primary/8 border border-gold-primary/10 text-text-secondary" style={bodyFont}>
+            <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/8 border border-gold-primary/10 text-text-secondary" style={bodyFont}>
               {t(item.name)}{item.quantity ? ` (${item.quantity})` : ''}
             </span>
           ))}
@@ -556,18 +556,18 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Vidhi Steps */}
       <div>
-        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
           {locale === 'en' ? 'Procedure' : 'विधि'}
         </p>
         <div className="space-y-2">
           {puja.vidhiSteps.map((step) => (
             <div key={step.step} className="flex gap-2.5">
-              <span className="w-5 h-5 rounded-full bg-gold-primary/15 text-gold-primary text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="w-5 h-5 rounded-full bg-gold-primary/15 text-gold-primary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
                 {step.step}
               </span>
               <div className="flex-1 min-w-0">
                 <span className="text-gold-light text-xs font-semibold" style={bodyFont}>{t(step.title)}</span>
-                <p className="text-text-secondary/70 text-[11px] leading-relaxed" style={bodyFont}>{t(step.description)}</p>
+                <p className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>{t(step.description)}</p>
               </div>
             </div>
           ))}
@@ -576,7 +576,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Mantras */}
       <div>
-        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-2">
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
           {locale === 'en' ? 'Mantras' : 'मन्त्र'}
         </p>
         <div className="space-y-2">
@@ -589,7 +589,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Aarti */}
       {puja.aarti && (
         <div className="rounded-xl bg-orange-500/5 border border-orange-500/15 p-3">
-          <p className="text-orange-400 text-[10px] uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Aarti' : 'आरती'}</p>
+          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Aarti' : 'आरती'}</p>
           <p className="text-gold-light text-sm whitespace-pre-line leading-relaxed" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {puja.aarti.devanagari}
           </p>
@@ -598,16 +598,16 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Naivedya */}
       <div className="rounded-xl bg-bg-tertiary/30 p-3">
-        <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
       </div>
 
       {/* Precautions */}
       <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 p-3">
-        <p className="text-amber-400 text-[10px] uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Precautions' : 'सावधानियाँ'}</p>
+        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Precautions' : 'सावधानियाँ'}</p>
         <ul className="space-y-1">
           {puja.precautions.map((p, i) => (
-            <li key={i} className="flex gap-2 text-text-secondary text-[11px]" style={bodyFont}>
+            <li key={i} className="flex gap-2 text-text-secondary text-xs" style={bodyFont}>
               <AlertTriangle className="w-3 h-3 text-amber-400/60 flex-shrink-0 mt-0.5" />
               <span>{t(p)}</span>
             </li>
@@ -617,14 +617,14 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Phala */}
       <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-3">
-        <p className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Benefits (Phala)' : 'फल'}</p>
+        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Benefits (Phala)' : 'फल'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
       </div>
 
       {/* Visarjan */}
       {puja.visarjan && (
         <div className="rounded-xl bg-bg-tertiary/30 p-3">
-          <p className="text-gold-dark text-[10px] uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
           <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
         </div>
       )}

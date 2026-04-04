@@ -204,7 +204,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Why These 6 Houses?</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Why These 6 Houses?</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">1st House (Lagna):</span> Self/personality — Mars here creates an aggressive, domineering temperament that can overwhelm a partner.</p>
           <p><span className="text-gold-light font-semibold">2nd House (Dhana):</span> Family/speech — Mars here causes harsh speech, family conflicts, and financial impulsiveness.</p>
@@ -234,7 +234,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Cancellation Conditions</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Cancellation Conditions</h4>
         <div className="space-y-3 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">1. Mars in Own Sign (Aries/Scorpio):</span> A planet in its own sign is dignified and behaves constructively. Mars in Aries (1st or 8th for certain lagnas) or Scorpio gives courage, leadership, and focused energy rather than destructive aggression. The &ldquo;fire&rdquo; is controlled.</p>
           <p><span className="text-gold-light font-semibold">2. Mars in Capricorn (Exalted):</span> Exalted Mars is disciplined, strategic Mars. In Capricorn, Mars&apos;s energy is channeled into ambition and achievement. This is a powerful cancellation — exalted Mars actually strengthens the chart considerably.</p>
@@ -246,7 +246,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">South Indian vs North Indian Approach</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">South Indian vs North Indian Approach</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The South Indian tradition is considerably more conservative — it checks Mangal Dosha <strong className="text-blue-300">only from Lagna</strong>, not from Moon or Venus. This dramatically reduces the detection rate. A chart that is &ldquo;double Manglik&rdquo; by North Indian standards (Mars dosha from both Lagna and Moon) might be completely clear by South Indian assessment. Neither tradition is &ldquo;wrong&rdquo; — they represent different interpretive frameworks, and the practitioner should specify which system they follow.
         </p>
@@ -274,7 +274,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Traditional Remedies</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Traditional Remedies</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Kumbha Vivah:</span> A symbolic marriage to a clay pot (kumbha), peepal tree, or Vishnu idol performed before the actual wedding. The first &ldquo;marriage&rdquo; absorbs the Mars energy, and the pot is then immersed in water. This is the most well-known remedy and is considered highly effective in traditional practice.</p>
           <p><span className="text-gold-light font-semibold">Mangal Puja on Tuesdays:</span> Regular worship of Mars (Mangal) on Tuesdays, including recitation of Mangal mantras, offering red items (kumkum, red flowers, red lentils) at a Hanuman temple. The discipline of weekly observance channels Mars energy into devotion.</p>
@@ -284,7 +284,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">When Both Partners Have Dosha</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">When Both Partners Have Dosha</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The principle of mutual cancellation is beautifully logical: two equally assertive people in a relationship create balance through equal footing. Neither partner overwhelms the other. The Mars energy, instead of being one-sided (one person always pushing, the other always retreating), becomes a shared dynamic of passion, healthy competition, and mutual respect for boundaries.
         </p>

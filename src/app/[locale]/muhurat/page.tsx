@@ -173,7 +173,7 @@ export default function MuhuratPage() {
                     {/* Big date number */}
                     <div className="w-16 h-16 rounded-xl bg-bg-primary/60 flex flex-col items-center justify-center flex-shrink-0 border border-gold-primary/10">
                       <span className="text-gold-light text-2xl font-bold leading-none">{dayNum}</span>
-                      <span className="text-text-secondary text-[10px] mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      <span className="text-text-secondary text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                         {WEEKDAY_NAMES[String(d.weekday)][locale]}
                       </span>
                     </div>

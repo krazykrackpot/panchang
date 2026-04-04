@@ -157,7 +157,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>भाव सूचकताएँ BPHS अध्याय 11-12, फलदीपिका अध्याय 2, और सारावली में वर्णित हैं। पराशर ने व्यवस्थित रूप से प्रत्येक भाव के शासन क्षेत्र सूचीबद्ध किए, और बाद के टीकाकारों जैसे वराहमिहिर और मन्त्रेश्वर ने इन सूचियों को परिष्कृत और विस्तारित किया। 12-भाव प्रणाली दो सहस्राब्दियों से उल्लेखनीय रूप से स्थिर रही है।</> : <>The house significations are described in BPHS Chapters 11-12, Phaladeepika Chapter 2, and Saravali. Parashara systematically lists what each house governs, and later commentators like Varahamihira and Mantreshwara refined and expanded these lists. The 12-house system has remained remarkably stable for over two millennia.</>}</p>
       </section>
     </div>
@@ -198,7 +198,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'केन्द्र + त्रिकोण = राजयोग क्यों' : 'Why Kendra + Trikona = Raja Yoga'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'केन्द्र + त्रिकोण = राजयोग क्यों' : 'Why Kendra + Trikona = Raja Yoga'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>केन्द्र विष्णु (धारण शक्ति) और त्रिकोण लक्ष्मी (भाग्य, कृपा) का प्रतिनिधित्व करते हैं। जब उनके स्वामी एक साथ आते हैं — युति, परस्पर दृष्टि, या राशि परिवर्तन से — शक्ति और भाग्य का मिलन राजयोग बनाता है, अर्थात &quot;राजसी संयोजन।&quot; यह पाराशरी ज्योतिष का सबसे महत्वपूर्ण योग सिद्धांत है।</> : <>Kendras represent Vishnu (sustaining power) and Trikonas represent Lakshmi (fortune, grace). When their lords come together — by conjunction, mutual aspect, or sign exchange — the union of power and fortune creates Raja Yoga, literally &quot;royal combination.&quot; This is the single most important yoga principle in Parashari Jyotish.</>}</p>
       </section>
     </div>
@@ -221,18 +221,18 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">मेष लग्न:</span> मंगल प्रथम (मेष) और अष्टम (वृश्चिक) दोनों का स्वामी है। शुक्र द्वितीय (वृषभ) और सप्तम (तुला) का स्वामी है। बृहस्पति नवम (धनु) और द्वादश (मीन) का स्वामी है। यहाँ बृहस्पति नवम स्वामी के रूप में सर्वाधिक शुभ ग्रह है — यदि यह लग्न पर दृष्टि डाले या केन्द्र में बैठे, तो पूरी कुण्डली उन्नत होती है।</> : <><span className="text-gold-light font-medium">Aries Lagna:</span> Mars owns both the 1st (Aries) and 8th (Scorpio). Venus owns the 2nd (Taurus) and 7th (Libra). Jupiter owns the 9th (Sagittarius) and 12th (Pisces). Here, Jupiter as 9th lord is the most benefic planet — if it aspects the Lagna or sits in a Kendra, it uplifts the entire chart.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">कर्क लग्न:</span> चन्द्र प्रथम, सूर्य द्वितीय, मंगल पंचम और दशम का स्वामी है (अतः मंगल कर्क लग्न के लिए राजयोगकारक है क्योंकि यह त्रिकोण और केन्द्र दोनों का स्वामी है)। बृहस्पति षष्ठ और नवम का स्वामी है। शनि सप्तम और अष्टम का स्वामी है (मारक ग्रह — संभावित हानि)।</> : <><span className="text-gold-light font-medium">Cancer Lagna:</span> Moon rules the 1st, Sun rules the 2nd, Mars rules the 5th and 10th (hence Mars forms Raja Yoga for Cancer Lagna as it rules both a Trikona and a Kendra). Jupiter rules the 6th and 9th. Saturn rules the 7th and 8th (a Maraka planet — potential harm).</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;बृहस्पति सदैव शुभ और शनि सदैव अशुभ है।&quot; यह मूलतः गलत है। कारक स्वभाव स्वामित्व पर निर्भर करता है। वृषभ लग्न के लिए बृहस्पति अष्टम और एकादश का स्वामी है — विशेष शुभ नहीं। शनि नवम और दशम का स्वामी है — कुण्डली का सर्वश्रेष्ठ ग्रह जो योगकारक बनता है। प्राकृतिक शुभ ग्रह दुःस्थान का स्वामी होने पर हानिकारक बनते हैं; प्राकृतिक पापग्रह त्रिकोण का स्वामी होने पर सहायक बनते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;Jupiter is always good and Saturn is always bad.&quot; This is fundamentally wrong. Functional nature depends on lordship. For Taurus Lagna, Jupiter rules the 8th and 11th — not especially benefic. Saturn rules the 9th and 10th — the best planet in the chart forming Yoga Karaka. Natural benefics owning Dusthanas become harmful; natural malefics owning Trikonas become helpful.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन लग्न राशि और समभाव पद्धति के आधार पर प्रत्येक कुण्डली के भाव स्वामियों की स्वचालित गणना करता है। टिप्पणी (व्याख्यात्मक भाष्य) प्रत्येक भाव स्वामी की स्थिति का विश्लेषण करती है, योगों की पहचान करती है, शक्ति का मूल्यांकन करती है, और जीवन-क्षेत्र भविष्यवाणियाँ प्रदान करती है।</> : <>Our Kundali engine automatically calculates house lords for every chart based on the Lagna sign and the Equal House system. The tippanni (interpretive commentary) analyzes each house lord&apos;s placement, identifying yogas, evaluating strength, and providing life-area predictions. You can generate your chart and see exactly which planet rules each house in your life.</>}</p>
       </section>
     </div>

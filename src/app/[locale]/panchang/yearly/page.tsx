@@ -135,7 +135,7 @@ export default function YearlyPanchangPage() {
                           ${isPurnima ? 'bg-amber-500/5' : isAmavasya ? 'bg-indigo-500/5' : ''}`}>
                         <div className={`text-sm font-bold ${isToday ? 'text-gold-primary' : isKrishna ? 'text-text-secondary' : 'text-text-primary'}`}>{day}</div>
                         {data?.tithi && (
-                          <div className={`text-[8px] leading-tight mt-0.5 ${isKrishna ? 'text-indigo-400' : 'text-amber-400'}`}>
+                          <div className={`text-xs leading-tight mt-0.5 ${isKrishna ? 'text-indigo-400' : 'text-amber-400'}`}>
                             {data.tithi.name[locale as Locale]?.substring(0, 6)}
                           </div>
                         )}
@@ -150,7 +150,7 @@ export default function YearlyPanchangPage() {
                 </div>
 
                 {/* Legend */}
-                <div className="flex justify-center gap-4 mt-4 text-[10px] text-text-tertiary">
+                <div className="flex justify-center gap-4 mt-4 text-xs text-text-tertiary">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400" /> {isHi ? 'शुक्ल' : 'Shukla'}</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-indigo-400" /> {isHi ? 'कृष्ण' : 'Krishna'}</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-gold-primary" /> {isHi ? 'आज' : 'Today'}</span>

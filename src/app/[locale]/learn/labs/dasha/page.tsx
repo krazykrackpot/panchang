@@ -432,8 +432,8 @@ export default function DashaLabPage() {
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-white flex items-center gap-2">
                             {GRAHAS[seg.planetId].name[locale]}
-                            {i === 0 && <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">PARTIAL</span>}
-                            {isCurrent && <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">{L.current[locale]}</span>}
+                            {i === 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">PARTIAL</span>}
+                            {isCurrent && <span className="text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">{L.current[locale]}</span>}
                           </div>
                           <div className="text-xs text-white/40">
                             {formatDate(seg.startDate)} &mdash; {formatDate(seg.endDate)}

@@ -148,12 +148,12 @@ function Page1() {
               <tr><td className="p-2">{isHi ? 'केतु' : 'Ketu'}</td><td className="p-2">{isHi ? 'वृश्चिक*' : 'Scorpio'}</td><td className="p-2">20°</td><td className="p-2">Occult depth (per BPHS)</td></tr>
             </tbody>
           </table>
-          <p className="text-text-tertiary text-[10px] mt-1">{isHi ? <>* राहु/केतु का उच्च परम्परा अनुसार भिन्न है। कुछ मिथुन/धनु मानते हैं। BPHS वृषभ/वृश्चिक का समर्थन करता है।</> : <>* Rahu/Ketu exaltation varies by tradition. Some use Gemini/Sagittarius. BPHS supports Taurus/Scorpio.</>}</p>
+          <p className="text-text-tertiary text-xs mt-1">{isHi ? <>* राहु/केतु का उच्च परम्परा अनुसार भिन्न है। कुछ मिथुन/धनु मानते हैं। BPHS वृषभ/वृश्चिक का समर्थन करता है।</> : <>* Rahu/Ketu exaltation varies by tradition. Some use Gemini/Sagittarius. BPHS supports Taurus/Scorpio.</>}</p>
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>उच्च अंश BPHS अध्याय 3 (श्लोक 51) और फलदीपिका अध्याय 2 में सूचीबद्ध हैं। ये विशिष्ट राशि-अंश संयोजन सभी ज्योतिष परम्पराओं में 2000 से अधिक वर्षों से अपरिवर्तित हैं। परम उच्च अंश वह है जहाँ ग्रह पूर्ण अधिकतम शक्ति पर पहुँचता है — ठीक 10° मेष सूर्य या 5° कर्क बृहस्पति अपने शिखर पर होता है।</> : <>Exaltation degrees are listed in BPHS Chapter 3 (Shloka 51) and Phaladeepika Chapter 2. These specific sign-degree combinations have remained unchanged for over 2000 years across all Jyotish traditions. The deep exaltation degree is where the planet reaches absolute maximum potency — a planet at exactly 10° Aries Sun or 5° Cancer Jupiter is at its peak.</>}</p>
       </section>
     </div>
@@ -187,12 +187,12 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: नीचभंग' : 'Worked Example: Neecha Bhanga'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: नीचभंग' : 'Worked Example: Neecha Bhanga'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> बृहस्पति मकर में नीच, सप्तम भाव में। मकर का स्वामी शनि है। यदि शनि केन्द्र में हो (मान लें, दशम भाव में मेष में), तो शर्त 1 पूरी होती है — नीचभंग होता है। प्रारम्भ में दुर्बल बृहस्पति शक्तिशाली बल में बदल जाता है। जातक को प्रारम्भ में संबंधों में चुनौतियाँ हो सकती हैं (नीच सप्तम भाव बृहस्पति), लेकिन अंततः प्रारम्भिक बाधाओं को पार करके एक असाधारण अर्थपूर्ण साझेदारी प्राप्त करता है।</> : <><span className="text-gold-light font-medium">Example:</span> Jupiter is debilitated in Capricorn in the 7th house. Capricorn is ruled by Saturn. If Saturn is placed in a Kendra (say, the 10th house in Aries), condition 1 is met — Neecha Bhanga occurs. The initially weak Jupiter transforms into a powerful force. The native may initially face relationship challenges (debilitated 7th house Jupiter), but ultimately achieves an exceptionally meaningful partnership after overcoming early obstacles.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रांतियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><strong className="text-gold-light">भ्रांति:</strong> &quot;नीच ग्रह का अर्थ है कि वह जीवन क्षेत्र बर्बाद है।&quot; यह दो स्तरों पर गलत है। पहला, नीचभंग की शर्तें बहुत सामान्य हैं — अधिकांश कुण्डलियों में कम से कम एक भंग होता है। दूसरा, भंग के बिना भी, नीच ग्रह ऐसी चुनौतियाँ उत्पन्न करता है जो विकास के लिए बाध्य करती हैं। कई अत्यंत सफल लोगों के पास नीच ग्रह होते हैं जो क्षतिपूर्ति के संघर्ष से उनकी महत्वाकांक्षा को संचालित करते हैं।</> : <><strong className="text-gold-light">Misconception:</strong> &quot;A debilitated planet means that life area is doomed.&quot; This is wrong on two levels. First, Neecha Bhanga conditions are very common — most charts have at least one cancellation. Second, even without cancellation, a debilitated planet produces challenges that force growth. Many highly successful people have debilitated planets driving their ambition through the struggle to compensate.</>}</p>
       </section>
     </div>
@@ -242,12 +242,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'पूर्ण गरिमा क्रम' : 'The Complete Hierarchy'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'पूर्ण गरिमा क्रम' : 'The Complete Hierarchy'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>शक्तिशाली से कमजोर: <strong className="text-gold-light">उच्च</strong> (ग्रह शिखर शक्ति पर) &gt; <strong className="text-gold-light">मूलत्रिकोण</strong> (केन्द्रित कर्तव्य) &gt; <strong className="text-gold-light">स्वराशि</strong> (सुविधाजनक) &gt; <strong className="text-gold-light">मित्र राशि</strong> (स्वागत अतिथि) &gt; <strong className="text-gold-light">सम राशि</strong> (उदासीन) &gt; <strong className="text-gold-light">शत्रु राशि</strong> (अस्वागत अतिथि) &gt; <strong className="text-gold-light">नीच</strong> (ग्रह सबसे कमजोर)।</> : <>From strongest to weakest: <strong className="text-gold-light">Exalted</strong> (planet at peak power) &gt; <strong className="text-gold-light">Moolatrikona</strong> (focused duty) &gt; <strong className="text-gold-light">Own Sign</strong> (comfortable) &gt; <strong className="text-gold-light">Friend&apos;s Sign</strong> (welcome guest) &gt; <strong className="text-gold-light">Neutral Sign</strong> (indifferent) &gt; <strong className="text-gold-light">Enemy&apos;s Sign</strong> (unwelcome guest) &gt; <strong className="text-gold-light">Debilitated</strong> (planet at weakest).</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन स्वचालित रूप से आपकी कुण्डली में प्रत्येक ग्रह की गरिमा का मूल्यांकन करता है। टिप्पणी उच्च और नीच ग्रहों की पहचान करती है, नीचभंग शर्तों की जाँच करती है, और समझाती है कि गरिमा प्रत्येक ग्रह की अपने भाव में फल देने की क्षमता को कैसे प्रभावित करती है। यह षड्बल शक्ति मूल्यांकन में एकीकृत है।</> : <>Our Kundali engine automatically evaluates every planet&apos;s dignity in your chart. The tippanni commentary identifies exalted and debilitated planets, checks for Neecha Bhanga conditions, and explains how dignity affects each planet&apos;s ability to deliver results in its house. This is integrated into the Shadbala strength assessment for a complete picture of planetary power.</>}</p>
       </section>
     </div>

@@ -524,7 +524,7 @@ export default function SankalpaPage() {
                 }`}
               >
                 {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
-                <span className="block text-[10px] text-text-secondary/60 mt-0.5">
+                <span className="block text-xs text-text-secondary/60 mt-0.5">
                   {locale === 'en' ? 'North India' : 'उत्तर भारत'}
                 </span>
               </button>
@@ -537,7 +537,7 @@ export default function SankalpaPage() {
                 }`}
               >
                 {locale === 'en' ? 'Amant' : 'अमान्त'}
-                <span className="block text-[10px] text-text-secondary/60 mt-0.5">
+                <span className="block text-xs text-text-secondary/60 mt-0.5">
                   {locale === 'en' ? 'South India' : 'दक्षिण भारत'}
                 </span>
               </button>
@@ -795,7 +795,7 @@ export default function SankalpaPage() {
                       transition={{ delay: 0.4 + idx * 0.04 }}
                       className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs border ${colorClass}`}
                     >
-                      <span className="opacity-60 text-[10px] uppercase tracking-wider">{label}</span>
+                      <span className="opacity-60 text-xs uppercase tracking-wider">{label}</span>
                       <span
                         className="font-semibold"
                         style={{ fontFamily: 'var(--font-devanagari-body)' }}

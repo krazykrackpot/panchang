@@ -315,7 +315,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
           >
             {L.skip}
           </button>
-          <p className="text-text-secondary/30 text-[10px] text-center">{L.skipHint}</p>
+          <p className="text-text-secondary/30 text-xs text-center">{L.skipHint}</p>
         </form>
       </div>
     </div>

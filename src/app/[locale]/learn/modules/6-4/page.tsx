@@ -203,7 +203,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'विंशोत्तरी दशा पद्धति महर्षि पराशर को श्रेय दी जाती है और बृहत् पाराशर होरा शास्त्र (BPHS) में विस्तृत रूप से वर्णित है। शास्त्रीय ग्रन्थों में वर्णित 40 से अधिक दशा पद्धतियों में यह सर्वाधिक प्रचलित है। पराशर कहते हैं कि सभी दशा पद्धतियों में विंशोत्तरी वर्तमान कलियुग में सर्वाधिक लागू है। नक्षत्रों को ग्रहों का नियतन और विशिष्ट वर्ष अवधि (7, 20, 6, 10, 7, 18, 16, 19, 17) दैवीय रूप से प्रकट मानी जाती हैं, अनुभवजन्य नहीं।'
@@ -232,7 +232,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> जन्म चन्द्रमा 167.3° हस्त (चन्द्र-शासित, 160° से आरम्भ) में। हस्त में स्थिति = 167.3 - 160 = 7.3°। बीता हुआ अंश = 7.3 / 13.333 = 0.5475 = 54.75%। चन्द्र दशा कुल = 10 वर्ष। शेष = 10 x (1 - 0.5475) = 10 x 0.4525 = 4.525 वर्ष ≈ 4 वर्ष, 6 माह, 9 दिन।</> : <><span className="text-gold-light font-medium">Example:</span> Birth Moon at 167.3° in Hasta (Moon-ruled, starting at 160°). Position within Hasta = 167.3 - 160 = 7.3°. Fraction elapsed = 7.3 / 13.333 = 0.5475 = 54.75%. Moon dasha total = 10 years. Remaining = 10 x (1 - 0.5475) = 10 x 0.4525 = 4.525 years ≈ 4 years, 6 months, 9 days.</>}
         </p>
@@ -242,14 +242,14 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;जन्म नक्षत्र का दशा स्वामी कुण्डली का सबसे महत्त्वपूर्ण ग्रह है।&quot; जन्म दशा स्वामी केवल इंगित करता है कि आप किस ग्रह अवधि में जन्मे — इसका अर्थ यह नहीं कि वह ग्रह कुण्डली का सबसे प्रबल या प्रभावशाली है। नक्षत्र के अन्तिम मिनटों में जन्मे व्यक्ति के पास उस दशा के कुछ ही दिन शेष हो सकते हैं, और वह अपने प्रारम्भिक जीवन का अधिकांश भाग अगले ग्रह के प्रभाव में व्यतीत करता है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;The dasha lord of your birth nakshatra is the most important planet in your chart.&quot; The birth dasha lord simply indicates which planetary period you&apos;re born into — it does not necessarily mean that planet is the chart&apos;s strongest or most dominant influence. A person born in the last minutes of a nakshatra might have only days of that dasha remaining, spending most of their early life under the next planet&apos;s influence instead.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? 'सटीक दशा सन्तुलन गणना के लिए चन्द्रमा का भोगांश उच्च परिशुद्धता तक ज्ञात होना आवश्यक है। चन्द्रमा की स्थिति में 0.5° की त्रुटि भी दशा सन्तुलन को कई महीनों तक विचलित कर सकती है। हमारा अनुप्रयोग मीयस चन्द्र एल्गोरिदम का उपयोग करता है, जो ~0.5° के भीतर चन्द्र भोगांश सटीकता प्राप्त करता है — कुछ दिनों की सटीकता के भीतर दशा गणना के लिए पर्याप्त। गम्भीर मामलों में, मिनट तक का सटीक जन्म समय आवश्यक है।'
@@ -293,21 +293,21 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">पूर्ण दशा समयरेखा:</span> 167.3° (हस्त, चन्द्र-शासित) पर चन्द्रमा में जन्मा व्यक्ति। शेष चन्द्र दशा: 4.53 वर्ष (आयु 0 से ~4.5)। मंगल: 7 वर्ष (आयु ~4.5 से ~11.5)। राहु: 18 वर्ष (आयु ~11.5 से ~29.5)। बृहस्पति: 16 वर्ष (आयु ~29.5 से ~45.5)। शनि: 19 वर्ष (आयु ~45.5 से ~64.5)। बुध: 17 वर्ष (आयु ~64.5 से ~81.5)। केतु: 7 वर्ष (आयु ~81.5 से ~88.5)। शुक्र: 20 वर्ष (आयु ~88.5 से ~108.5)। सूर्य: 6 वर्ष (आयु ~108.5 से ~114.5)। फिर पुनः चन्द्र 120-वर्षीय चक्र पूर्ण करने हेतु।</> : <><span className="text-gold-light font-medium">Complete dasha timeline:</span> Person born with Moon at 167.3° (Hasta, Moon-ruled). Remaining Moon dasha: 4.53 years (age 0 to ~4.5). Mars: 7 years (age ~4.5 to ~11.5). Rahu: 18 years (age ~11.5 to ~29.5). Jupiter: 16 years (age ~29.5 to ~45.5). Saturn: 19 years (age ~45.5 to ~64.5). Mercury: 17 years (age ~64.5 to ~81.5). Ketu: 7 years (age ~81.5 to ~88.5). Venus: 20 years (age ~88.5 to ~108.5). Sun: 6 years (age ~108.5 to ~114.5). Then Moon again to complete the 120-year cycle.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;शनि महादशा (19 वर्ष) सदैव भयानक और सूर्य महादशा (6 वर्ष) सदैव शुभ होती है।&quot; किसी भी दशा की गुणवत्ता पूर्णतया व्यक्तिगत जन्म कुण्डली में ग्रह की स्थिति, गरिमा, दृष्टि और स्वामित्व पर निर्भर करती है। सुस्थित शनि अपनी 19-वर्षीय अवधि में अपार व्यावसायिक सफलता दे सकता है, जबकि दुर्बल सूर्य 6 वर्षों में अहं संघर्ष और स्वास्थ्य समस्याएँ ला सकता है। कोई दशा स्वाभाविक रूप से शुभ या अशुभ नहीं — कुण्डली का सन्दर्भ ही सब कुछ है।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Saturn Mahadasha (19 years) is always terrible and Sun Mahadasha (6 years) is always good.&quot; The quality of any dasha depends entirely on the planet&apos;s placement, dignity, aspects, and lordship in the individual birth chart. A well-placed Saturn can give tremendous career success during its 19-year period, while a poorly placed Sun can bring ego conflicts and health issues during its 6 years. No dasha is inherently good or bad — chart context is everything.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <>विंशोत्तरी दशा पद्धति वैदिक ज्योतिष में प्राथमिक फलादेश समय उपकरण बनी हुई है। व्यावसायिक परामर्श अनिवार्य रूप से &quot;आपकी कौन-सी दशा चल रही है?&quot; से आरम्भ होता है। हमारा कुण्डली उपकरण जन्म चन्द्रमा की नक्षत्र स्थिति से सम्पूर्ण दशा-अन्तर्दशा-प्रत्यन्तर्दशा पदानुक्रम गणित करता है, एक व्यापक जीवन समयरेखा प्रदान करता है। इस समयरेखा की सटीकता सीधे जन्म चन्द्र भोगांश की परिशुद्धता पर निर्भर है, जो हमारा मीयस-आधारित इंजन ~0.5° के भीतर गणित करता है।</> : <>The Vimshottari dasha system remains the primary predictive timing tool in Vedic astrology. Professional consultations invariably begin with &quot;What dasha are you running?&quot; Our Kundali tool computes the complete dasha-antardasha-pratyantardasha hierarchy from the birth Moon&apos;s nakshatra position, providing a comprehensive life timeline. The accuracy of this timeline depends directly on the precision of the birth Moon longitude, which our Meeus-based engine computes to within ~0.5°.</>}
         </p>

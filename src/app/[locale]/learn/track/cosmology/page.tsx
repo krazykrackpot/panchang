@@ -233,11 +233,11 @@ export default function CosmologyTrackPage() {
                 >
                   <div className="flex items-center gap-3">
                     {isRef ? (
-                      <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
+                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
                         {locale === 'en' ? 'Ref' : 'सन्दर्भ'}
                       </span>
                     ) : (
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">
+                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">
                         {mi + 1}
                       </span>
                     )}

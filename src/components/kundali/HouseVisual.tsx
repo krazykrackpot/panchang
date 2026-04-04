@@ -63,7 +63,7 @@ const GRID_POS: Record<number, [number, number]> = {
 export default function HouseVisual({ highlight, label, size = 'sm', color = 'gold' }: HouseVisualProps) {
   const highlights = Array.isArray(highlight) ? highlight : [highlight];
   const colors = COLOR_MAP[color];
-  const cellSize = size === 'sm' ? 'w-8 h-8 text-[10px]' : 'w-10 h-10 text-xs';
+  const cellSize = size === 'sm' ? 'w-9 h-9 text-xs sm:w-8 sm:h-8' : 'w-11 h-11 text-xs sm:w-10 sm:h-10';
 
   return (
     <div className="inline-flex flex-col items-center gap-1">
@@ -90,7 +90,7 @@ export default function HouseVisual({ highlight, label, size = 'sm', color = 'go
           })
         ))}
       </div>
-      {label && <span className={`text-[9px] ${colors.text} font-medium`}>{label}</span>}
+      {label && <span className={`text-xs ${colors.text} font-medium`}>{label}</span>}
     </div>
   );
 }
@@ -105,7 +105,7 @@ export function HouseBadge({ house, locale = 'en', color = 'gold' }: { house: nu
   return (
     <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-lg text-xs font-medium ${colors.bg} border ${colors.border} ${colors.text}`}>
       <span className="font-bold">H{house}</span>
-      <span className="text-[10px] opacity-80">{isHi ? sig?.hi : sig?.en}</span>
+      <span className="text-xs opacity-80">{isHi ? sig?.hi : sig?.en}</span>
     </span>
   );
 }

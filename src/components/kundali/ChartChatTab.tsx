@@ -85,7 +85,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
   };
 
   return (
-    <div className="flex flex-col h-[600px]">
+    <div className="flex flex-col h-[calc(100vh-200px)] sm:h-[500px] md:h-[600px]">
       <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
         {isHi ? 'अपनी कुण्डली से चर्चा करें' : 'Chat with Your Chart'}
       </h3>
@@ -103,7 +103,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {suggestions.map((q, i) => (
                 <button key={i} onClick={() => sendMessage(q)}
-                  className="text-left px-3 py-2 rounded-lg bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary text-xs hover:border-gold-primary/30 hover:text-gold-light transition-all">
+                  className="text-left px-3 py-2.5 rounded-lg bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary text-xs sm:text-sm hover:border-gold-primary/30 hover:text-gold-light transition-all">
                   {q}
                 </button>
               ))}

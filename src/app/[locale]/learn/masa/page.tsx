@@ -116,13 +116,13 @@ export default function MasaPage() {
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
-            <div className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'अशुभ — वर्जित कार्य' : 'Inauspicious — Avoided'}</div>
+            <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'अशुभ — वर्जित कार्य' : 'Inauspicious — Avoided'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi
               ? 'अधिक मास में विवाह, गृह प्रवेश, मुंडन, नामकरण, उपनयन जैसे शुभ संस्कार वर्जित हैं। इसे "मलमास" (अशुद्ध मास) भी कहते हैं।'
               : 'Marriage, Griha Pravesh, Mundan, Namakarana, Upanayana and other auspicious samskaras are avoided. It\'s also called "Malamasa" (impure month).'}</p>
           </div>
           <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-            <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'शुभ — विशेष पुण्य' : 'Auspicious — Special Merit'}</div>
+            <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'शुभ — विशेष पुण्य' : 'Auspicious — Special Merit'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi
               ? 'पुरुषोत्तम मास (विष्णु का मास) — दान, जप, व्रत, तीर्थ यात्रा का विशेष पुण्य। इस मास में किया गया कोई भी पुण्य कार्य सामान्य से कई गुना फलदायी। भागवत पुराण पठन विशेष शुभ।'
               : 'Also called Purushottam Masa (Vishnu\'s month) — charity, japa, vrat, pilgrimage carry special merit. Any meritorious act during this month yields many times the normal result. Bhagavat Purana reading is especially auspicious.'}</p>
@@ -171,7 +171,7 @@ export default function MasaPage() {
         <h3 className="text-gold-light font-bold text-lg mb-4" style={hf}>
           {isHi ? `${currentYear} की सटीक तिथियाँ` : `Exact Dates for ${currentYear}`}
         </h3>
-        <p className="text-text-secondary text-[10px] mb-3">
+        <p className="text-text-secondary text-xs mb-3">
           {isHi ? 'वास्तविक अमावस्या (नवचंद्र) स्थितियों से गणित' : 'Computed from actual New Moon (Amavasya) positions'}
         </p>
         {hinduMonths.length > 0 ? (
@@ -196,7 +196,7 @@ export default function MasaPage() {
                       <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
                       <td className="py-1.5 px-2 font-medium" style={hf}>
                         <span className={m.isAdhika ? 'text-violet-400' : 'text-gold-light'}>{isHi ? m.hi : m.en}</span>
-                        {isCurrent && <span className="ml-1 text-[8px] px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{isHi ? 'अभी' : 'NOW'}</span>}
+                        {isCurrent && <span className="ml-1 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{isHi ? 'अभी' : 'NOW'}</span>}
                       </td>
                       <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
                       <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
@@ -230,7 +230,7 @@ export default function MasaPage() {
               </div>
               <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? m.significance.hi : m.significance.en}</p>
               <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
-                <div className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'प्रमुख त्योहार' : 'Key Festivals'}</div>
+                <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'प्रमुख त्योहार' : 'Key Festivals'}</div>
                 <div className="text-text-secondary text-xs">{isHi ? m.festivals.hi : m.festivals.en}</div>
               </div>
             </motion.div>
@@ -257,8 +257,8 @@ export default function MasaPage() {
           ].map((r, i) => (
             <div key={i} className={`p-3 rounded-xl border ${r.color}`}>
               <div className={`font-bold text-sm mb-0.5 ${r.color.split(' ')[0]}`}>{isHi ? r.hi : r.en}</div>
-              <div className="text-text-tertiary text-[10px]">{r.months}</div>
-              <div className="text-text-secondary text-[10px] mt-1">{isHi ? r.desc.hi : r.desc.en}</div>
+              <div className="text-text-tertiary text-xs">{r.months}</div>
+              <div className="text-text-secondary text-xs mt-1">{isHi ? r.desc.hi : r.desc.en}</div>
             </div>
           ))}
         </div>

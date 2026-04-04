@@ -148,7 +148,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यावहारिक उदाहरण' : 'Practical Example'}</h4>
+        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यावहारिक उदाहरण' : 'Practical Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>यदि आपका योगी बिन्दु पुष्य नक्षत्र (93°20&apos; - 106°40&apos;) में पड़ता है, तो योगी ग्रह शनि (पुष्य का स्वामी) है। शनि की महादशा में आप सबसे उत्पादक अवधि अनुभव करते हैं — संरचित विकास, अनुशासन से कैरियर उन्नति, और स्थायी उपलब्धियाँ। यदि शनि आपका दशम स्वामी (कैरियर) भी है, तो प्रभाव दोगुना शक्तिशाली है।</> : <>If your Yogi Point falls in Pushya nakshatra (93°20&apos; - 106°40&apos;), the Yogi Planet is Saturn (Pushya&apos;s lord). During Saturn&apos;s Maha Dasha, you experience your most productive period — structured growth, career advancement through discipline, and lasting achievements. If Saturn is also your 10th lord (career), the effect is doubly powerful.</>}</p>
       </section>
     </div>
@@ -183,7 +183,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-light text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'समय रणनीति' : 'Timing Strategy'}</h4>
+        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'समय रणनीति' : 'Timing Strategy'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>अपने योगी और अवयोगी ग्रहों को जानने से रणनीतिक जीवन योजना सम्भव होती है: प्रमुख उपक्रम योगी ग्रह की दशा में शुरू करें, और अवयोगी ग्रह की दशा का उपयोग आत्मनिरीक्षण, उपचारात्मक कार्य, और लम्बित दायित्वों को पूरा करने के लिए करें, नये शुरू करने के बजाय। यह ज्योतिष में सबसे सरल लेकिन सबसे प्रभावी समय उपकरणों में से एक है।</> : <>Knowing your Yogi and Avayogi planets allows strategic life planning: initiate major ventures during the Yogi Planet&apos;s dasha, and use the Avayogi Planet&apos;s dasha for introspection, remedial work, and completing pending obligations rather than starting new ones. This is one of the simplest yet most effective timing tools in Jyotish.</>}</p>
       </section>
     </div>
@@ -218,7 +218,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारा इंजन सब गणना करता है' : 'Our Engine Computes All'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारा इंजन सब गणना करता है' : 'Our Engine Computes All'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन जन्म डेटा से स्वचालित रूप से तीनों संवेदनशील बिन्दुओं — योगी बिन्दु (योगी नक्षत्र और ग्रह सहित), अवयोगी बिन्दु (अवयोगी ग्रह सहित), और भृगु बिन्दु — की गणना करता है। ये चार्ट विश्लेषण में प्रदर्शित होते हैं और दशा तथा गोचर भविष्यवाणियों में एकीकृत हैं, जो आपको सबसे शुभ और कम शुभ ग्रहीय अवधियों और प्रमुख घटनाओं को सक्रिय करने वाले सटीक अंशों की पूरी तस्वीर देते हैं।</> : <>Our Kundali engine computes all three sensitive points — Yogi Point (with Yogi Nakshatra and Planet), Avayogi Point (with Avayogi Planet), and Bhrigu Bindu — automatically from the birth data. These are displayed in the chart analysis and integrated into dasha and transit predictions, giving you a complete picture of your most and least auspicious planetary periods and the precise degrees that trigger major events.</>}</p>
       </section>
     </div>

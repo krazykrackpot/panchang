@@ -436,7 +436,7 @@ export default function CosmologyPage() {
                   transition={{ delay: i * 0.1 }}
                   className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                 >
-                  <div className="text-[10px] uppercase tracking-wider text-text-secondary/50 mb-1">{t(pos.label)}</div>
+                  <div className="text-xs uppercase tracking-wider text-text-secondary/50 mb-1">{t(pos.label)}</div>
                   <div className="text-xs sm:text-sm font-semibold text-gold-light">{t(pos.value)}</div>
                 </motion.div>
               ))}

@@ -127,7 +127,7 @@ export default function MantraCard({
       </div>
       {/* Copied tooltip */}
       {copied && (
-        <span className="absolute top-2 right-20 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
+        <span className="absolute top-2 right-20 text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 whitespace-nowrap">
           Copied!
         </span>
       )}
@@ -180,12 +180,12 @@ export default function MantraCard({
       {/* Japa count badge + usage */}
       <div className="flex items-center flex-wrap gap-2 mt-3">
         {showJapaCount && mantra.japaCount && (
-          <span className="inline-flex items-center text-[11px] px-2.5 py-1 rounded-full bg-gold-primary/15 text-gold-primary font-semibold border border-gold-primary/20">
+          <span className="inline-flex items-center text-xs px-2.5 py-1 rounded-full bg-gold-primary/15 text-gold-primary font-semibold border border-gold-primary/20">
             {mantra.japaCount}x
           </span>
         )}
         <span
-          className="text-text-secondary/40 text-[11px]"
+          className="text-text-secondary/40 text-xs"
           style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
         >
           {mantra.usage[loc]}

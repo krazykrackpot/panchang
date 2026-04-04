@@ -328,14 +328,14 @@ export default function RetrogradePage() {
                 {activeRetros.map(r => (
                   <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{r.planetName[locale]}</div>
-                    <div className="text-red-400 text-[10px] font-bold uppercase">{locale === 'en' ? 'Retrograde' : 'वक्री'}</div>
-                    {hasBirthData && <div className="text-text-secondary/50 text-[9px] mt-1">{locale === 'en' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
+                    <div className="text-red-400 text-xs font-bold uppercase">{locale === 'en' ? 'Retrograde' : 'वक्री'}</div>
+                    {hasBirthData && <div className="text-text-secondary/50 text-xs mt-1">{locale === 'en' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
                   </div>
                 ))}
                 {activeCombusts.map(c => (
                   <div key={`c-${c.planetId}`} className="rounded-lg p-3 border border-orange-500/20 bg-orange-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{c.planetName[locale]}</div>
-                    <div className="text-orange-400 text-[10px] font-bold uppercase">{locale === 'en' ? 'Combust' : 'अस्त'}</div>
+                    <div className="text-orange-400 text-xs font-bold uppercase">{locale === 'en' ? 'Combust' : 'अस्त'}</div>
                   </div>
                 ))}
               </div>
@@ -422,11 +422,11 @@ export default function RetrogradePage() {
                         <span className="text-lg font-bold" style={{ color: p.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
                           {p.planetName[locale]}
                         </span>
-                        <span className="text-red-400 text-[10px] font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
+                        <span className="text-red-400 text-xs font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
                           {locale === 'en' ? 'RETROGRADE' : 'वक्री'}
                         </span>
                         {active && (
-                          <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
+                          <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                             {locale === 'en' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
                           </span>
@@ -460,7 +460,7 @@ export default function RetrogradePage() {
                         <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/15 mb-3">
                           <div className="flex items-center gap-2 mb-2">
                             <Zap className="w-3.5 h-3.5 text-gold-primary" />
-                            <span className="text-gold-primary text-[10px] uppercase tracking-wider font-bold">
+                            <span className="text-gold-primary text-xs uppercase tracking-wider font-bold">
                               {locale === 'en' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                             </span>
                           </div>
@@ -476,14 +476,14 @@ export default function RetrogradePage() {
                           <div className="rounded-lg p-3 bg-emerald-500/5 border border-emerald-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <Shield className="w-3 h-3 text-emerald-400" />
-                              <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Do' : 'करें'}</span>
+                              <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Do' : 'करें'}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.dos)}</p>
                           </div>
                           <div className="rounded-lg p-3 bg-red-500/5 border border-red-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <AlertTriangle className="w-3 h-3 text-red-400" />
-                              <span className="text-red-400 text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? "Don't" : 'न करें'}</span>
+                              <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' ? "Don't" : 'न करें'}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.donts)}</p>
                           </div>
@@ -531,11 +531,11 @@ export default function RetrogradePage() {
                       <span className="font-bold text-lg" style={{ color: e.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
                         {e.planetName[locale]}
                       </span>
-                      <span className="text-orange-400 text-[10px] font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
+                      <span className="text-orange-400 text-xs font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
                         {locale === 'en' ? 'COMBUST' : 'अस्त'}
                       </span>
                       {active && (
-                        <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
+                        <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                           {locale === 'en' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
                         </span>
@@ -571,7 +571,7 @@ export default function RetrogradePage() {
                       <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/15">
                         <div className="flex items-center gap-2 mb-2">
                           <Zap className="w-3.5 h-3.5 text-orange-400" />
-                          <span className="text-orange-400 text-[10px] uppercase tracking-wider font-bold">
+                          <span className="text-orange-400 text-xs uppercase tracking-wider font-bold">
                             {locale === 'en' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                           </span>
                         </div>

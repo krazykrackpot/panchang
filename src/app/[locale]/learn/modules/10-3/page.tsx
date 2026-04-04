@@ -207,13 +207,13 @@ function Page1() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
               <span className="text-gold-light font-bold text-xs">Odd Signs (विषम राशियाँ)</span>
-              <p className="text-text-secondary/70 text-[11px] mt-1">Aries, Gemini, Leo, Libra, Sagittarius, Aquarius</p>
-              <p className="text-emerald-400 text-[11px] mt-1">Count from the same sign</p>
+              <p className="text-text-secondary/70 text-xs mt-1">Aries, Gemini, Leo, Libra, Sagittarius, Aquarius</p>
+              <p className="text-emerald-400 text-xs mt-1">Count from the same sign</p>
             </div>
             <div className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
               <span className="text-gold-light font-bold text-xs">Even Signs (सम राशियाँ)</span>
-              <p className="text-text-secondary/70 text-[11px] mt-1">Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces</p>
-              <p className="text-emerald-400 text-[11px] mt-1">Count from the 9th sign</p>
+              <p className="text-text-secondary/70 text-xs mt-1">Taurus, Cancer, Virgo, Scorpio, Capricorn, Pisces</p>
+              <p className="text-emerald-400 text-xs mt-1">Count from the 9th sign</p>
             </div>
           </div>
         </div>
@@ -223,7 +223,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Reading the D10 Career Chart</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Reading the D10 Career Chart</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">D10 Lagna sign:</span> Shows the overall professional orientation — Aries D10 Lagna indicates pioneering/entrepreneurial careers; Taurus suggests banking/luxury/agriculture; Gemini points to communication/media/writing.
         </p>
@@ -259,7 +259,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">Jupiter in D7 — The Decisive Factor</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Jupiter in D7 — The Decisive Factor</h4>
         <div className="space-y-2">
           {[
             { status: 'Jupiter exalted/own sign in D7', statusHi: 'D7 में बृहस्पति उच्च/स्वगृही', result: 'Strong fertility, timely childbirth, happiness from children', resultHi: 'प्रबल प्रजनन क्षमता, समय पर सन्तान, सन्तान से सुख' },
@@ -268,15 +268,15 @@ function Page2() {
             { status: 'Jupiter in 6/8/12 of D7', statusHi: 'D7 के 6/8/12 में बृहस्पति', result: 'Obstacles to progeny; medical intervention may be needed; children may live at distance', resultHi: 'सन्तान में बाधाएँ; चिकित्सकीय हस्तक्षेप आवश्यक; सन्तान दूर रह सकती है' },
           ].map((item, i) => (
             <div key={i} className="bg-bg-primary/40 rounded-lg px-3 py-2 border border-white/5">
-              <span className="text-gold-light text-[11px] font-medium">{isHi ? item.statusHi : item.status}</span>
-              <p className="text-text-secondary/70 text-[11px] mt-0.5">{isHi ? item.resultHi : item.result}</p>
+              <span className="text-gold-light text-xs font-medium">{isHi ? item.statusHi : item.status}</span>
+              <p className="text-text-secondary/70 text-xs mt-0.5">{isHi ? item.resultHi : item.result}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Childbirth Timing with D7</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Childbirth Timing with D7</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The Dasha of the 5th lord of D7, Jupiter's dasha periods, or the dasha of planets occupying the 5th house of D7 are prime periods for childbirth. When the same planet is simultaneously the 5th lord in D1 and well-placed in D7, the indication becomes very strong.
         </p>
@@ -309,7 +309,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Reading the D12 — Parents and Lineage</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Reading the D12 — Parents and Lineage</h4>
         <div className="space-y-2">
           {[
             { house: '4th House (Mother)', houseHi: 'चतुर्थ भाव (माता)', desc: 'Sign, planets in 4th, and 4th lord placement describe mother\'s nature, health, and the emotional bond', descHi: 'राशि, चतुर्थ में ग्रह और चतुर्थेश की स्थिति माता के स्वभाव, स्वास्थ्य और भावनात्मक बन्धन का वर्णन करते हैं' },
@@ -318,15 +318,15 @@ function Page3() {
             { house: '10th House (Legacy)', houseHi: 'दशम भाव (विरासत)', desc: 'What the native does with inherited karma — continuation, transformation, or transcendence of family patterns', descHi: 'विरासत में मिले कर्म से जातक क्या करता है — पारिवारिक प्रतिरूपों की निरन्तरता, रूपान्तरण या पारगमन' },
           ].map((item, i) => (
             <div key={i} className="bg-bg-primary/40 rounded-lg px-3 py-2 border border-white/5">
-              <span className="text-gold-light text-[11px] font-medium">{isHi ? item.houseHi : item.house}</span>
-              <p className="text-text-secondary/70 text-[11px] mt-0.5">{isHi ? item.descHi : item.desc}</p>
+              <span className="text-gold-light text-xs font-medium">{isHi ? item.houseHi : item.house}</span>
+              <p className="text-text-secondary/70 text-xs mt-0.5">{isHi ? item.descHi : item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Timing Parental Events</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Timing Parental Events</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The Dasha of the D12 4th lord or planets aspecting/occupying the 4th house often coincides with significant maternal events — health concerns, relocation, or deepening of the bond. Similarly, the 9th lord's dasha period activates paternal themes. When maraka (death-inflicting) planets of D12 are simultaneously activated in D1 dasha, they can indicate serious parental health crises.
         </p>
@@ -336,7 +336,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Reference</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Parashara in BPHS (Chapters 6-7) provides the mathematical rules for all three vargas covered here. He emphasizes that the D10 should be consulted for all questions about profession and status, D7 for children and creative output, and D12 for parents and lineage. Mantreshwara and Varahamihira concur, adding that these vargas should not be read in isolation — the D1 provides the foundation, and each varga deepens a specific dimension of the same fundamental chart.
         </p>

@@ -205,7 +205,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Key Timing Combinations</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Key Timing Combinations</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Jupiter Transit 7th from Moon/Lagna:</span> Creates a 12-month window of opportunity. Jupiter expands whatever it touches — in the 7th, it expands partnership possibilities, brings proposals, and creates auspiciousness around marriage.</p>
           <p><span className="text-gold-light font-semibold">Saturn Transit 7th or Aspecting 7th:</span> Saturn&apos;s involvement brings seriousness, commitment, and formalization. While Jupiter might bring a joyful meeting, Saturn makes it official — the engagement, the ceremony, the legal registration.</p>
@@ -233,7 +233,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Delay Factors</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Common Delay Factors</h4>
         <div className="space-y-3 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Saturn Aspect on 7th House or Venus:</span> Saturn is the planet of delay, discipline, and maturation. Its 3rd, 7th, or 10th aspect falling on the 7th house or on Venus pushes marriage into the late 20s or early 30s. The upside: Saturn-delayed marriages tend to be more mature and stable once they happen.</p>
           <p><span className="text-gold-light font-semibold">7th Lord in Dusthana (6/8/12):</span> The 7th lord in the 6th house brings conflicts around partnerships, in the 8th creates hidden obstacles and transformative experiences before marriage, in the 12th may indicate a spouse from a distant place or losses through partnerships. Each has its own timing window — the 7th lord&apos;s dasha often opens the door.</p>
@@ -243,7 +243,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Timing Windows for Each Delay Factor</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Timing Windows for Each Delay Factor</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Saturn Delays:</span> Usually resolve by early 30s, when Saturn has completed its first return (age ~29.5). After the Saturn return, the native has matured enough to handle the commitment Saturn demands.</p>
           <p><span className="text-gold-light font-semibold">Rahu Delays:</span> Clear when the Rahu dasha ends or when Rahu transit moves away from the 7th house. If Rahu Mahadasha runs in the 20s, marriage often occurs in the subsequent Jupiter or Saturn dasha.</p>
@@ -271,7 +271,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Navamsha — The Marriage Chart</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Navamsha — The Marriage Chart</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Spouse Personality:</span> The 7th house of the Navamsha, its lord, and planets occupying it describe the spouse&apos;s character. Jupiter in Navamsha 7th indicates a wise, dharmic spouse. Venus there indicates a beautiful, artistic partner. Mars indicates a passionate, assertive one.</p>
           <p><span className="text-gold-light font-semibold">Navamsha Lagna Lord:</span> This planet&apos;s strength and placement reveals the overall quality of the marriage. Strong Navamsha lagna lord in a kendra/trikona = the marriage is a source of strength. Weak or afflicted = the marriage requires more effort and conscious work.</p>
@@ -280,7 +280,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Family Expansion and Children</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Family Expansion and Children</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">2nd House — Family Growth:</span> The 2nd house governs family expansion after marriage. Its lord&apos;s dasha and Jupiter transit over the 2nd indicate periods when the family grows — through children, in-laws moving in, or other additions to the household.</p>
           <p><span className="text-gold-light font-semibold">5th House — Children Timing:</span> The 5th house (Putra Bhava) is the primary indicator. The 5th lord&apos;s dasha, Jupiter transiting over the 5th, and the Saptamsha (D-7) chart together indicate when children are likely. Jupiter-5th lord connections in dasha and transit are the strongest conception indicators.</p>
@@ -289,7 +289,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Challenging Periods in Marriage</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Challenging Periods in Marriage</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">7th Lord Dasha in Dusthana:</span> When the 7th lord&apos;s dasha runs and it is placed in the 6th (conflicts), 8th (crises/transformation), or 12th (separation/distance), the marriage undergoes testing. This does not mean divorce — it means the marriage faces its growth edges.</p>
           <p><span className="text-gold-light font-semibold">Saturn Transit Over Venus:</span> This 2.5-year transit creates emotional coolness, practical pressures, and a &ldquo;reality check&rdquo; on the romance. Couples who communicate through this period emerge stronger; those who avoid difficult conversations may drift apart.</p>
@@ -298,7 +298,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Remedies for Marital Harmony</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Remedies for Marital Harmony</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Venus Strengthening:</span> Wearing white/cream on Fridays, offering white flowers to Lakshmi, reciting Shukra mantras. If Venus is a functional benefic for the lagna, wearing a diamond or white sapphire (after chart analysis) strengthens the love and harmony signification.
         </p>

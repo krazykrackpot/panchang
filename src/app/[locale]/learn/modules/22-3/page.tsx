@@ -218,7 +218,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'उत्केन्द्रता सुधार' : 'Eccentricity Correction'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उत्केन्द्रता सुधार' : 'Eccentricity Correction'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>एक सूक्ष्म किन्तु महत्त्वपूर्ण विवरण: सूर्य की माध्य विलम्बिका M वाले पदों को पृथ्वी की कक्षीय उत्केन्द्रता की धीमी कमी हेतु सुधारित करना चाहिए। गुणक E = 1 - 0.002516 × T - 0.0000074 × T² लागू होता है: M वाले पद E से गुणित, 2M वाले E² से। हमारे वर्तमान युगारम्भ (T ≈ 0.26) के लिए E ≈ 0.9993 — एक छोटा सुधार, किन्तु यह शताब्दियों में संचित होता है और एल्गोरिदम को ऐतिहासिक और भविष्य की तिथियों के लिए सटीक बनाए रखता है।</> : <>A subtle but important detail: terms involving the Sun&apos;s mean anomaly M must be corrected for the slow decrease in Earth&apos;s orbital eccentricity. The factor E = 1 - 0.002516 x T - 0.0000074 x T² is applied: terms with M are multiplied by E, terms with 2M by E². For our current epoch (T ≈ 0.26), E ≈ 0.9993 — a tiny correction, but it accumulates over centuries and ensures the algorithm remains accurate for historical and future dates.</>}</p>
       </section>
     </div>
@@ -239,12 +239,12 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सटीकता सीमाएँ' : 'Accuracy Limits'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सटीकता सीमाएँ' : 'Accuracy Limits'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">हमारे इंजन की सटीकता:</span> भोगांश में ~0.3° (लगभग 10 कला)। चन्द्रमा ~13.2°/दिन चलता है, अतः 0.3° त्रुटि गोचर भविष्यवाणियों के लिए लगभग 30 मिनट समय में बदलती है। यह निर्धारित करने के लिए पर्याप्त है कि सूर्योदय पर कौन-सा नक्षत्र, तिथि या योग सक्रिय है, किन्तु इसका अर्थ है कि हमारी तिथि संक्रमण समय उच्च-सटीकता एफेमेरिस से ~30 मिनट तक भिन्न हो सकते हैं।</> : <><span className="text-gold-light font-medium">Our engine&apos;s accuracy:</span> ~0.3° in longitude (about 10 arcminutes). Since the Moon moves ~13.2°/day, a 0.3° error translates to about 30 minutes of time for transit predictions. This is sufficient for determining which Nakshatra, Tithi, or Yoga is active at sunrise, but it means our tithi transition times may be off by up to ~30 minutes from high-precision ephemerides.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा moonLongitude(jd) फ़ंक्शन सारणी 47.A के सभी 60 ज्या पद लागू करता है, उत्केन्द्रता सुधार E गणित करता है, और चन्द्रमा का भूकेन्द्रीय सायन भोगांश लौटाता है। यह प्रत्येक पंचांग तत्व के लिए बुलाया जाता है जो चन्द्रमा पर निर्भर है: तिथि (चन्द्र-सूर्य कोण), नक्षत्र (चन्द्र निरयन स्थिति), योग (सूर्य+चन्द्र योग), करण (अर्ध-तिथि), और चन्द्रोदय/चन्द्रास्त समय। 60-पद गणना आधुनिक हार्डवेयर पर माइक्रोसेकण्ड में चलती है — मीयस ने शताब्दियों के चन्द्र सिद्धान्त को कितनी कुशलता से संक्षिप्त एल्गोरिदम में संकलित किया, इसका प्रमाण।</> : <>Our moonLongitude(jd) function implements all 60 sine terms from Table 47.A, computes the eccentricity correction E, and returns the Moon&apos;s geocentric tropical longitude. This is called for every Panchang element that depends on the Moon: Tithi (Moon-Sun angle), Nakshatra (Moon&apos;s sidereal position), Yoga (Sun+Moon sum), Karana (half-tithi), and moonrise/moonset timing. The 60-term computation runs in microseconds on modern hardware — a testament to how efficiently Meeus distilled centuries of lunar theory into a compact algorithm.</>}</p>
       </section>
     </div>

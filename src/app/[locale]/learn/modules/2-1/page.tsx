@@ -46,7 +46,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Parashara opens BPHS Chapter 3 with: <em>"O Brahmin, I shall now tell you about the Grahas."</em> He describes each Graha's nature (Prakriti), appearance (Swarupa), ruling deity (Devata), element (Tattva), gender (Linga), caste (Varna), direction (Disha), and natural significations (Karakatva). This chapter is the foundation — without understanding each Graha's inherent nature, no chart can be read correctly.
         </p>
@@ -56,7 +56,7 @@ function Page1() {
       <section>
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>The Nine Grahas — Complete Classification</h3>
         <div className="overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <table className="w-full text-[10px]">
+          <table className="w-full text-xs">
             <thead><tr className="border-b border-gold-primary/15">
               <th className="text-left py-2 px-1.5 text-gold-dark">Graha</th>
               <th className="text-left py-2 px-1.5 text-gold-dark">Sanskrit</th>
@@ -92,7 +92,7 @@ function Page1() {
               ))}
             </tbody>
           </table>
-          <div className="text-text-tertiary text-[9px] mt-2 space-y-0.5">
+          <div className="text-text-tertiary text-xs mt-2 space-y-0.5">
             <p>* Moon is benefic when waxing (Shukla Paksha) and malefic when waning (Krishna Paksha, specifically after K.Ashtami)</p>
             <p>** Mercury is neutral — adopts the nature of planets it associates with</p>
           </div>
@@ -124,7 +124,7 @@ function Page2() {
             { name: 'Saturn (Shani)', sa: 'शनि', color: 'text-slate-300', border: 'border-slate-500/15', karakatva: 'Longevity, karma, servants, labor, iron, oil, chronic disease, delay, discipline, democracy, west direction', karakatvahi: 'दीर्घायु, कर्म, सेवक, श्रम, लोहा, तेल, दीर्घ रोग, विलम्ब, अनुशासन, लोकतंत्र' },
           ].map((g, i) => (
             <div key={i} className={`p-3 rounded-xl border ${g.border}`}>
-              <div className={`font-bold text-sm ${g.color} mb-1`}>{g.name} <span className="text-text-tertiary font-normal text-[10px]" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({g.sa})</span></div>
+              <div className={`font-bold text-sm ${g.color} mb-1`}>{g.name} <span className="text-text-tertiary font-normal text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({g.sa})</span></div>
               <p className="text-text-secondary text-xs leading-relaxed">{g.karakatva}</p>
             </div>
           ))}
@@ -153,7 +153,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "The Sun is a benefic planet because sunlight is good."<br />
           <span className="text-emerald-300">Reality:</span> In Jyotish, the Sun is a NATURAL MALEFIC (Papa Graha). Its energy is powerful but harsh — it burns (combustion), it demands (ego/authority), and its heat is scorching. Benefic/malefic doesn't mean good/bad — it describes the quality of energy.</p>
@@ -165,7 +165,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">The 7 visible Grahas</span> are real astronomical bodies whose positions are computed to sub-arcsecond precision by modern ephemerides. <span className="text-blue-300 font-bold">Rahu and Ketu</span> are mathematically precise points — the mean lunar node is computed analytically, the true node accounts for perturbations. NASA uses the same nodal calculations for eclipse prediction.
         </p>
@@ -175,7 +175,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example: Reading Karakatvas in a Chart</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: Reading Karakatvas in a Chart</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Scenario:</span> Saturn (karaka of servants, labor, chronic disease) is in the 6th house (house of enemies, disease, daily work). What does this indicate?
         </p>

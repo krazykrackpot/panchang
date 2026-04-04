@@ -212,12 +212,12 @@ export default function LearnAvasthasPage() {
                           <div key={j} className="p-3 rounded-xl bg-bg-secondary/50 border border-gold-primary/8">
                             <div className="flex items-center gap-2 mb-1.5">
                               <span className={`font-bold text-sm ${state.color}`}>{t(state.name)}</span>
-                              {state.quality && <span className="text-text-tertiary text-[10px] ml-auto">{t(state.quality)}</span>}
-                              {state.output && <span className="text-text-tertiary text-[10px] ml-auto">{t(state.output)}</span>}
-                              {state.speed && <span className="text-text-tertiary text-[10px] ml-auto">{t(state.speed)}</span>}
-                              {state.tier && <span className={`text-[9px] px-1.5 py-0.5 rounded ml-auto ${tierColor(state.tier)}`}>{state.tier}</span>}
+                              {state.quality && <span className="text-text-tertiary text-xs ml-auto">{t(state.quality)}</span>}
+                              {state.output && <span className="text-text-tertiary text-xs ml-auto">{t(state.output)}</span>}
+                              {state.speed && <span className="text-text-tertiary text-xs ml-auto">{t(state.speed)}</span>}
+                              {state.tier && <span className={`text-xs px-1.5 py-0.5 rounded ml-auto ${tierColor(state.tier)}`}>{state.tier}</span>}
                             </div>
-                            {state.condition && <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-0.5">{isHi ? 'स्थिति' : 'Condition'}: <span className="normal-case tracking-normal text-text-secondary font-normal">{t(state.condition)}</span></div>}
+                            {state.condition && <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-0.5">{isHi ? 'स्थिति' : 'Condition'}: <span className="normal-case tracking-normal text-text-secondary font-normal">{t(state.condition)}</span></div>}
                             {state.result && <div className="text-text-secondary text-xs leading-relaxed">{t(state.result)}</div>}
                             {state.effect && <div className="text-text-secondary text-xs leading-relaxed">{t(state.effect)}</div>}
                             {state.desc && <div className="text-text-secondary text-xs leading-relaxed">{t(state.desc)}</div>}
@@ -245,7 +245,7 @@ export default function LearnAvasthasPage() {
                 <span className="font-bold text-sm">{t(tier.tier)}</span>
                 <span className="font-mono text-xs opacity-70">{tier.pct}</span>
               </div>
-              <div className="text-text-tertiary text-[10px] uppercase tracking-widest mb-1">{isHi ? 'उदाहरण' : 'Examples'}: {t(tier.examples)}</div>
+              <div className="text-text-tertiary text-xs uppercase tracking-widest mb-1">{isHi ? 'उदाहरण' : 'Examples'}: {t(tier.examples)}</div>
               <div className="text-text-secondary text-xs leading-relaxed">{t(tier.desc)}</div>
             </div>
           ))}

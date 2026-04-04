@@ -244,7 +244,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">
@@ -310,7 +310,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
         <p className="text-text-secondary text-sm leading-relaxed">

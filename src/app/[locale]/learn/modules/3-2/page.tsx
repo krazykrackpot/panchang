@@ -132,7 +132,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Chara (Cardinal / Movable)</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Chara (Cardinal / Movable)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Aries, Cancer, Libra, Capricorn</span> (houses 1, 4, 7, 10 = Kendras)
         </p>
@@ -145,7 +145,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Sthira (Fixed)</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Sthira (Fixed)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Taurus, Leo, Scorpio, Aquarius</span> (houses 2, 5, 8, 11 = Panapharas)
         </p>
@@ -158,7 +158,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Dwiswabhava (Dual / Mutable)</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Dwiswabhava (Dual / Mutable)</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-gold-light font-bold">Signs: Gemini, Virgo, Sagittarius, Pisces</span> (houses 3, 6, 9, 12 = Apoklimas)
         </p>
@@ -171,7 +171,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15 mt-4">
-        <h4 className="text-amber-300 text-[10px] uppercase tracking-widest font-bold mb-3">Quality and Activity Timing</h4>
+        <h4 className="text-amber-300 text-xs uppercase tracking-widest font-bold mb-3">Quality and Activity Timing</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-gold-light font-medium">Starting a business?</span> Choose a Chara (Movable) Lagna — Aries, Cancer, Libra, or Capricorn rising at the muhurta moment.</p>
           <p><span className="text-gold-light font-medium">Laying a foundation?</span> Choose a Sthira (Fixed) Lagna — Taurus, Leo, Scorpio, or Aquarius for permanence.</p>
@@ -193,7 +193,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Agni (Fire) — Action and Transformation</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Agni (Fire) — Action and Transformation</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-red-300 font-bold">Signs: Aries (Cardinal), Leo (Fixed), Sagittarius (Mutable)</span>
         </p>
@@ -204,7 +204,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">Prithvi (Earth) — Material and Stability</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">Prithvi (Earth) — Material and Stability</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-amber-300 font-bold">Signs: Taurus (Fixed), Virgo (Mutable), Capricorn (Cardinal)</span>
         </p>
@@ -215,7 +215,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-500/15">
-        <h4 className="text-cyan-400 text-[10px] uppercase tracking-widest font-bold mb-3">Vayu (Air) — Intellect and Connection</h4>
+        <h4 className="text-cyan-400 text-xs uppercase tracking-widest font-bold mb-3">Vayu (Air) — Intellect and Connection</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-cyan-300 font-bold">Signs: Gemini (Mutable), Libra (Cardinal), Aquarius (Fixed)</span>
         </p>
@@ -226,7 +226,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-400 text-[10px] uppercase tracking-widest font-bold mb-3">Jala (Water) — Emotion and Intuition</h4>
+        <h4 className="text-blue-400 text-xs uppercase tracking-widest font-bold mb-3">Jala (Water) — Emotion and Intuition</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           <span className="text-blue-300 font-bold">Signs: Cancer (Cardinal), Scorpio (Fixed), Pisces (Mutable)</span>
         </p>
@@ -237,7 +237,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mt-4">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Reading Element Balance in a Chart</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Reading Element Balance in a Chart</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">Count how many of the 9 planets fall in each element group. A balanced chart has planets spread across all 4 elements. Most charts are imbalanced — and that imbalance IS the person&apos;s temperament:</p>
         <div className="space-y-1 text-text-secondary text-xs leading-relaxed mt-2">
           <p><span className="text-gold-light font-medium">4+ planets in Fire:</span> Dominant leader, high energy, needs to learn patience and empathy</p>
@@ -299,7 +299,7 @@ function Page3() {
       </div>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">How to Read Chart Distribution</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">How to Read Chart Distribution</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">To assess temperament, count planets in each quality AND each element separately:</p>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-gold-light font-medium">Quality distribution:</span> Most planets in Cardinal = initiator/leader. Most in Fixed = determined/stubborn. Most in Mutable = adaptable/scattered. This tells you the person&apos;s MODE of operation.</p>
@@ -309,7 +309,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Additional Classifications</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Additional Classifications</h4>
         <div className="space-y-3 text-text-secondary text-sm leading-relaxed">
           <div>
             <p className="text-gold-light font-medium text-xs mb-1">Gender (Linga)</p>
@@ -327,7 +327,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">MISCONCEPTION: &apos;Aquarius is a water sign because of the water-bearer symbol.&apos;</span><br />
           <span className="text-emerald-300">REALITY: Aquarius is an AIR sign. The water-bearer represents the distribution of knowledge and humanitarian ideals — NOT the water element.</span></p>

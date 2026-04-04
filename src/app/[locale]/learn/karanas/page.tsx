@@ -391,7 +391,7 @@ export default function LearnKaranasPage() {
                         {locale !== 'en' && <span className="ml-2 text-text-secondary/50 text-xs">{k.name.en}</span>}
                         <span className="ml-2 text-text-secondary/40 text-xs">({detail.deity[loc]})</span>
                         {k.type === 'sthira' && (
-                          <span className="ml-2 px-1.5 py-0.5 bg-amber-500/15 text-amber-300 text-[10px] rounded-full font-bold uppercase">
+                          <span className="ml-2 px-1.5 py-0.5 bg-amber-500/15 text-amber-300 text-xs rounded-full font-bold uppercase">
                             {loc === 'en' ? 'Fixed' : 'स्थिर'}
                           </span>
                         )}

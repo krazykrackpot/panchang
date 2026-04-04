@@ -205,7 +205,7 @@ export default function JaiminiPage() {
                       {ck.rule[locale]}
                     </span>
                     {ck.importance === 'critical' && (
-                      <span className="text-amber-400 text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
+                      <span className="text-amber-400 text-xs font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
                         {locale === 'en' ? 'MOST IMPORTANT' : 'सर्वाधिक महत्वपूर्ण'}
                       </span>
                     )}

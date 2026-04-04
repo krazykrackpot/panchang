@@ -197,7 +197,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'गुरु और शनि ही क्यों?' : 'Why Jupiter and Saturn?'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'गुरु और शनि ही क्यों?' : 'Why Jupiter and Saturn?'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">{isHi ? <>गुरु और शनि इसलिए चुने जाते हैं क्योंकि ये सबसे धीमी गति के दृश्य ग्रह हैं, क्रमशः 1 वर्ष और 2.5 वर्ष प्रति राशि व्यतीत करते हैं। इनके गोचर व्यापक समय-खिड़कियाँ बनाते हैं जो दशा के वचन को विशिष्ट वर्ष तक संकीर्ण करती हैं। तीव्र ग्रह (चन्द्र, बुध, शुक्र) प्रमुख घटनाओं के समय चिह्न के लिए बहुत शीघ्र गति करते हैं। गुरु दिव्य कृपा, विस्तार और अवसर का प्रतिनिधित्व करता है। शनि कर्म, अनुशासन और ठोस अभिव्यक्ति का। साथ मिलकर ये किसी भी घटना के लिए आवश्यक दो शक्तियों का प्रतिनिधित्व करते हैं: आशीर्वाद (गुरु) और कर्म (शनि)।</> : <>Jupiter and Saturn are chosen because they are the slowest-moving visible planets, spending 1 year and 2.5 years per sign respectively. Their transits create broad time windows that narrow the dasha promise to a specific year. Faster planets (Moon, Mercury, Venus) move too quickly to be useful as timing markers for major events. Jupiter represents divine grace, expansion, and opportunity. Saturn represents karma, discipline, and concrete manifestation. Together they represent the two forces needed for any event: the blessing (Jupiter) and the karma (Saturn).</>}</p>
       </section>
     </div>
@@ -218,13 +218,13 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सन्धि काल का संचालन' : 'Navigating Sandhi Periods'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सन्धि काल का संचालन' : 'Navigating Sandhi Periods'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">जागरूकता:</span> केवल यह जानना कि सन्धि आ रही है, चिन्ता कम करता है। सटीक महादशा संक्रमण तिथि पहले से चिह्नित करें और मानें कि पहले और बाद के 6 मास अस्थिर अनुभव होंगे। यह स्वाभाविक और अस्थायी है।</> : <><span className="text-gold-light font-medium">Awareness:</span> Simply knowing a sandhi is approaching reduces anxiety. Mark the exact Mahadasha transition date in advance and recognize that the 6 months before and after will feel unsettled. This is natural and temporary.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">बड़े निर्णय टालें:</span> यदि सम्भव हो तो सन्धि काल में अपरिवर्तनीय निर्णय (विवाह, बड़ा निवेश, कैरियर परिवर्तन) न लें। नई दशा के स्थापित होने की प्रतीक्षा करें — सामान्यतः नई महादशा में प्रवेश के 3-6 मास बाद।</> : <><span className="text-gold-light font-medium">Avoid major commitments:</span> Do not make irreversible decisions (marriage, major investment, career change) during sandhi if possible. Wait for the new dasha to establish itself — typically 3-6 months into the new Mahadasha.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;दशा सन्धि सदा विपत्ति लाती है।&quot; सत्य नहीं। दो शुभ दशाओं के बीच सन्धि (जैसे गुरु से बुध, जब दोनों शुभ स्थित हों) केवल पुनर्संशोधन काल जैसा अनुभव हो सकता है — संकट नहीं, हल्की बेचैनी। गम्भीरता इस पर निर्भर करती है कि दोनों महादशा स्वामी स्वभाव और स्थिति में कितने भिन्न हैं, और वे परस्पर मित्र हैं या शत्रु।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Dasha sandhi always brings disaster.&quot; Not true. The sandhi between two benefic dashas (e.g., Jupiter to Mercury for a chart where both are well-placed) can simply feel like a period of recalibration — mild restlessness rather than crisis. The severity depends on how different the two Mahadasha lords are in nature and placement, and whether they are mutual friends or enemies.</>}</p>
       </section>
     </div>
@@ -245,7 +245,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart:</span> Taurus ascendant. Saturn (yogakaraka, ruling 9th and 10th) is exalted in Libra in the 6th house. Current period: Saturn Mahadasha / Venus Antardasha (Venus rules 1st and 6th, sits in 9th). Transit: Jupiter entering Taurus (1st house) in 2026, Saturn in Pisces (11th house) aspecting 1st, 5th, 8th.
         </p>
@@ -253,7 +253,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारे ऐप में' : 'In Our App'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारे ऐप में' : 'In Our App'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा कुण्डली इंजन पूर्ण विंशोत्तरी दशा तालिका बनाता है और वर्तमान चल रही महादशा एवं अन्तर्दशा पहचानता है। टिप्पणी (व्याख्यात्मक भाष्य) खण्ड महादशा ग्रह के भाव, राशि और भावेशत्व का विश्लेषण करता है, अन्तर्दशा सम्बन्ध आँकता है, और वर्तमान गुरु-शनि गोचर से तुलना करता है। गोचर पृष्ठ वास्तविक समय में ग्रह स्थितियाँ दिखाता है, जिससे आपकी कुण्डली के किसी भी भाव के लिए द्वि-गोचर शर्तें सत्यापित करना सरल है।</> : <>Our Kundali engine generates the complete Vimshottari dasha table and identifies the current running Mahadasha and Antardasha. The Tippanni (interpretive commentary) section analyzes the Mahadasha planet&apos;s house, sign, and lordship, the Antardasha relationship, and cross-references with current Jupiter and Saturn transits. The Transits page shows real-time planetary positions, making it easy to verify double transit conditions for any house in your chart.</>}</p>
       </section>
     </div>

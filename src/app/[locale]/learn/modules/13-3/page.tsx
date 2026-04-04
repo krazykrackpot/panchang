@@ -197,7 +197,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? '6 निवारण शर्तें' : '6 Cancellation Conditions'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? '6 निवारण शर्तें' : '6 Cancellation Conditions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1. Jupiter&apos;s aspect on Mars:</span> Jupiter&apos;s benevolent gaze on Mars tames its aggression. The native channels Mars energy constructively — passion becomes purposeful drive rather than destructive force.
         </p>
@@ -237,7 +237,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आंशिक बनाम पूर्ण' : 'Partial vs Complete'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आंशिक बनाम पूर्ण' : 'Partial vs Complete'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">पूर्ण काल सर्प:</span> सभी 7 ग्रह राहु और केतु के बीच सख्ती से हों, कोई ग्रह किसी पात के साथ संयुक्त न हो। यह पूर्ण बल का दोष है। प्रभावों में करियर-सम्बन्ध असन्तुलन, भाग्य का अचानक पलटना और कार्मिक चक्र में फँसे होने का अनुभव सम्मिलित है।</> : <><span className="text-gold-light font-medium">Complete Kala Sarpa:</span> All 7 planets strictly between Rahu and Ketu with no planet conjunct either node. This is the full-strength dosha. Effects include career-relationship imbalance, sudden reversals of fortune, and a feeling of being caught in a karmic loop.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-gold-light font-medium">Partial Kala Sarpa:</span> One or more planets conjunct Rahu or Ketu (within ~5°), sitting on the boundary. This significantly reduces the dosha&apos;s intensity. The boundary planet acts as a bridge between the concentrated and empty halves, allowing energy to flow more freely.
@@ -245,7 +245,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
-        <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'जीवन पर प्रभाव' : 'Effects on Life'}</h4>
+        <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'जीवन पर प्रभाव' : 'Effects on Life'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Kala Sarpa natives often experience: delayed marriage or career establishment, sudden rises followed by unexpected falls, intense spiritual experiences, feeling &quot;different&quot; from peers, and a strong pull toward unconventional paths. Many highly successful individuals have Kala Sarpa — the concentrated energy, when channeled properly, produces extraordinary results in one area of life.
         </p>
@@ -273,7 +273,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'पितृ दोष' : 'Pitra Dosha'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'पितृ दोष' : 'Pitra Dosha'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Formation:</span> Sun conjunct Rahu, Sun conjunct Saturn, or severe affliction to the 9th house (ancestors). The 9th house represents father, forefathers, and inherited merit (punya). When afflicted, ancestral karmic debts remain unresolved.
         </p>
@@ -286,13 +286,13 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'गुरु चाण्डाल एवं शापित' : 'Guru Chandal & Shrapit'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'गुरु चाण्डाल एवं शापित' : 'Guru Chandal & Shrapit'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">गुरु चाण्डाल (गुरु + राहु):</span> ज्ञान और धार्मिक बोध को दूषित करता है। जातक गलत गुरुओं का अनुसरण कर सकता है, अपरम्परागत या भ्रामक मान्यताएँ रख सकता है, या शिक्षकों और मार्गदर्शकों से समस्याएँ झेल सकता है।</> : <><span className="text-gold-light font-medium">Guru Chandal (Jupiter + Rahu):</span> Corrupts wisdom and dharmic sense. The native may follow false gurus, hold unorthodox or misguided beliefs, or face problems with teachers and mentors. Remedies: strengthen Jupiter with yellow sapphire, recite Guru (Brihaspati) mantras, and donate to educational institutions.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">शापित दोष (शनि + राहु):</span> अकथनीय अवरोध और विलम्ब बनाता है। जातक को जिस भाव में यह संयोग हो वहाँ शापित या दीर्घकालिक दुर्भाग्यशाली अनुभव हो सकता है। पूर्वजन्म ऋण वर्तमान जीवन में बाधाएँ बनाते हैं।</> : <><span className="text-gold-light font-medium">Shrapit Dosha (Saturn + Rahu):</span> Creates inexplicable blocks and delays. The native may feel cursed or chronically unlucky in the house where this conjunction falls. Past-life debts create present-life obstacles. Remedies: Saturn mantras, Rahu pacification, feeding the poor on Saturdays, and Hanuman worship.</>}</p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचार सिद्धान्त' : 'The Remedial Principle'}</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचार सिद्धान्त' : 'The Remedial Principle'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>दोष कार्मिक प्रतिमान प्रकट करते हैं — दण्ड नहीं। उपचार सिद्धान्त त्रिविध है: (1) <span className="text-gold-light font-medium">कमजोर को मजबूत करें:</span> दोष प्रतिकार करने वाले शुभ ग्रहों के लिए रत्न और मन्त्र। (2) <span className="text-gold-light font-medium">पीड़ित को शान्त करें:</span> दोष कारक पापी ग्रह के लिए दान, उपवास और मन्त्र। (3) <span className="text-gold-light font-medium">सचेत जागरूकता:</span> प्रतिमान समझना भिन्न चयन करने देता है — कुण्डली मानचित्र है, बन्दीगृह नहीं।</> : <>Doshas reveal karmic patterns — not punishments. The principle behind remedies is threefold: (1) <span className="text-gold-light font-medium">Strengthen the weak:</span> Gemstones and mantras for benefic planets that can counteract the dosha. (2) <span className="text-gold-light font-medium">Pacify the afflicting:</span> Charity, fasting, and mantras for the malefic planet causing the dosha. (3) <span className="text-gold-light font-medium">Conscious awareness:</span> Understanding the pattern allows you to make different choices — the chart is a map, not a prison.</>}</p>
       </section>
     </div>

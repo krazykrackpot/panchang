@@ -272,7 +272,7 @@ export default function AyanamshaPage() {
           </table>
         </div>
 
-        <p className="text-text-tertiary text-[10px] mt-3">
+        <p className="text-text-tertiary text-xs mt-3">
           {isHi
             ? '💡 अंतर छोटा लगता है (~1-2°), लेकिन यह ग्रह-राशि सीमा पर स्थित ग्रहों की राशि बदल सकता है। अधिकांश स्थितियों में लाहिरी सबसे विश्वसनीय है।'
             : '💡 The difference seems small (~1-2°), but it can change the sign of planets near sign boundaries. In most cases, Lahiri is the most reliable and widely tested system.'}

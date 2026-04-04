@@ -148,7 +148,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न कब उपयोग करें' : 'When to Use Prashna'}</h4>
+        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न कब उपयोग करें' : 'When to Use Prashna'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>प्रश्न आदर्श है जब: जन्म समय अज्ञात या अनिश्चित हो, प्रश्न किसी विशिष्ट घटना के बारे में हाँ/नहीं उत्तर वाला हो, समय तत्काल हो और आपको शीघ्र मार्गदर्शन चाहिए, या जब आप जन्म कुण्डली विश्लेषण की पुष्टि करना चाहें। यह ठोस प्रश्नों के लिए सर्वोत्तम काम करता है: &quot;क्या मुझे यह नौकरी मिलेगी?&quot;, &quot;क्या मुझे इस सम्पत्ति में निवेश करना चाहिए?&quot;, &quot;क्या विवाह होगा?&quot;</> : <>Prashna is ideal when: birth time is unknown or imprecise, the question is about a specific event with a yes/no answer, timing is urgent and you need immediate guidance, or when you want to confirm what a natal chart analysis suggests. It works best for concrete questions: &quot;Will I get this job?&quot;, &quot;Should I invest in this property?&quot;, &quot;Will the marriage happen?&quot;</>}</p>
       </section>
     </div>
@@ -187,7 +187,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-light text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न से समय' : 'Timing from Prashna'}</h4>
+        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न से समय' : 'Timing from Prashna'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>आगामी दृष्टि का अंश समय बताता है: यदि लग्न स्वामी 5° ओर्ब पर सप्तम स्वामी की ओर आ रहा है, तो घटना 5 दिन/सप्ताह/महीने में हो सकती है (इकाई राशि प्रकार पर निर्भर — चर = दिन, स्थिर = महीने, द्विस्वभाव = सप्ताह)। तीव्र ग्रह (चन्द्र, बुध) शीघ्र परिणाम दर्शाते हैं; मन्द ग्रह (शनि, बृहस्पति) लम्बी प्रतीक्षा।</> : <>The degree of the applying aspect tells timing: if the Lagna lord applies to the 7th lord at 5° orb, the event may happen in 5 days/weeks/months (the unit depends on the sign type — cardinal = days, fixed = months, mutable = weeks). Fast-moving planets (Moon, Mercury) indicate quick results; slow planets (Saturn, Jupiter) indicate longer waits.</>}</p>
       </section>
     </div>
@@ -226,7 +226,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारा प्रश्न इंजन' : 'Our Prashna Engine'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारा प्रश्न इंजन' : 'Our Prashna Engine'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा प्रश्न पृष्ठ इन सभी योगों का स्वचालित मूल्यांकन करता है। जब आप प्रश्न प्रस्तुत करते हैं, इंजन: 1) सटीक क्षण की कुण्डली बनाता है। 2) चन्द्र स्थिति, कला और नक्षत्र जाँचता है। 3) लग्न स्वामी स्थान और गरिमा का मूल्यांकन करता है। 4) केन्द्रों में शुभ/पाप स्थिति पहचानता है। 5) आगामी और वियोजी दृष्टि का विश्लेषण करता है। 6) प्रमुख ग्रहों के अस्त की जाँच करता है। 7) सभी कारकों का समर्थक और विरोधी योगों की विस्तृत व्याख्या के साथ स्वचालित निर्णय (अनुकूल/प्रतिकूल/तटस्थ) में संश्लेषण करता है।</> : <>Our Prashna page evaluates all these yogas automatically. When you submit a question, the engine: 1) Casts the chart for the exact moment. 2) Checks Moon placement, phase, and nakshatra. 3) Evaluates Lagna lord position and dignity. 4) Identifies benefic/malefic placements in Kendras. 5) Analyzes applying and separating aspects. 6) Checks for combustion of key planets. 7) Synthesizes all factors into an automatic verdict (favorable/unfavorable/neutral) with detailed explanation of supporting and opposing yogas.</>}</p>
       </section>
     </div>

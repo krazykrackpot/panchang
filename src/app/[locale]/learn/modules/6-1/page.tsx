@@ -216,7 +216,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'नक्षत्र पद्धति मानव सभ्यता के प्राचीनतम खगोलीय ढाँचों में से एक है। तैत्तिरीय संहिता और अथर्ववेद (लगभग 1500-1000 ई.पू.) में 27 (कभी-कभी अभिजित सहित 28) नक्षत्रों का उनके देवताओं सहित उल्लेख है। वेदांग ज्योतिष, प्राचीनतम भारतीय खगोलीय ग्रन्थ, नक्षत्रों को प्राथमिक निर्देशांक पद्धति के रूप में प्रयोग करता है। सूर्य सिद्धान्त प्रत्येक योगतारा की सटीक क्रान्तिवृत्तीय स्थिति देता है। वराहमिहिर की बृहत्संहिता (छठी शताब्दी ई.) प्रत्येक नक्षत्र के गुण, देवता और सांसारिक फलादेश का विस्तृत विवरण प्रदान करती है।'
@@ -256,7 +256,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण 1:</span> एक परिवार गृह प्रवेश का समय निश्चित करना चाहता है। आदर्श नक्षत्र ध्रुव प्रकार के होंगे: रोहिणी (ब्रह्मा के अधीन स्थायित्व, समृद्धि), उत्तरा फाल्गुनी (अर्यमन के अधीन स्थिरता), या उत्तराषाढ़ा (विश्वदेवों के अधीन स्थायी विजय)। तीक्ष्ण नक्षत्र जैसे आर्द्रा या मूल से बचना चाहिए, जो घर में अस्थिरता ला सकते हैं।</> : <><span className="text-gold-light font-medium">Example 1:</span> A family wants to schedule a housewarming (Griha Pravesh). Ideal nakshatras would be Dhruva types: Rohini (permanence, prosperity under Brahma), Uttara Phalguni (stability under Aryaman), or Uttara Ashadha (enduring victory under Vishvadevas). They should avoid Tikshna nakshatras like Ardra or Mula, which could bring instability to the home.</>}
         </p>
@@ -266,14 +266,14 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;राक्षस गण के लोग दुष्ट या खतरनाक होते हैं।&quot; यह पूर्णतया गलत है। राक्षस गण स्वतन्त्रता, दृढ़ इच्छाशक्ति और अपरम्परागत चिन्तन का प्रतीक है। अनेक सफल नेता, नवप्रवर्तक और कलाकार राक्षस गण नक्षत्रों में जन्मे हैं। &quot;राक्षस&quot; शब्द स्वभाव की तीव्रता का वर्णन करता है, नैतिक चरित्र का नहीं। मूल (राक्षस गण) के जातक प्रायः गहन शोधकर्ता और अन्वेषक बनते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Rakshasa gana people are evil or dangerous.&quot; This is entirely wrong. Rakshasa gana signifies independence, strong will, and unconventional thinking. Many successful leaders, innovators, and artists are born under Rakshasa gana nakshatras. The term &quot;Rakshasa&quot; describes temperament intensity, not moral character. Mula (Rakshasa gana) natives often become profound researchers and investigators.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? 'समकालीन भारत में नक्षत्र वर्गीकरण मुहूर्त (शुभ समय) चयन के लिए केन्द्रीय बना हुआ है। विवाह आयोजक, सम्पत्ति एजेंट और व्यापार परामर्शदाता महत्त्वपूर्ण कार्यक्रम निर्धारित करने से पहले नियमित रूप से पंचांग ऐप पर चन्द्रमा का नक्षत्र जाँचते हैं। हमारा अनुप्रयोग मीयस एल्गोरिदम द्वारा चन्द्रमा का सटीक निरयन भोगांश गणित करता है और वर्तमान नक्षत्र वास्तविक समय में निर्धारित करता है, जिससे उपयोगकर्ता उचित नक्षत्र गुण के अनुरूप कार्य नियोजित कर सकें।'
@@ -315,21 +315,21 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">गणना:</span> चन्द्रमा का निरयन भोगांश = 47.8°। नक्षत्र संख्या = floor(47.8 / 13.333) + 1 = floor(3.585) + 1 = 3 + 1 = 4। चौथा नक्षत्र रोहिणी है (40° से 53°20&apos; तक)। रोहिणी में स्थिति = 47.8° - 40° = 7.8°। पाद = floor(7.8 / 3.333) + 1 = floor(2.34) + 1 = 2 + 1 = 3। अतः चन्द्रमा रोहिणी पाद 3 में है।</> : <><span className="text-gold-light font-medium">Calculation:</span> Moon&apos;s sidereal longitude = 47.8°. Nakshatra number = floor(47.8 / 13.333) + 1 = floor(3.585) + 1 = 3 + 1 = 4. The 4th nakshatra is Rohini (spanning 40° to 53°20&apos;). Position within Rohini = 47.8° - 40° = 7.8°. Pada = floor(7.8 / 3.333) + 1 = floor(2.34) + 1 = 2 + 1 = 3. So the Moon is in Rohini pada 3.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;आपका नक्षत्र आपकी सूर्य राशि के तारामण्डल के समान है।&quot; आपका जन्म नक्षत्र चन्द्रमा की निरयन स्थिति से निर्धारित होता है, सूर्य की नहीं। वृषभ राशि में सूर्य वाले व्यक्ति का चन्द्रमा 27 में से किसी भी नक्षत्र में हो सकता है। नक्षत्र पद्धति और राशि पद्धति पूरक किन्तु भिन्न हैं — नक्षत्र चान्द्र व्यक्तित्व और दशा समय देते हैं, जबकि राशियाँ व्यापक सौर-चिह्न विशेषताओं का वर्णन करती हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Your nakshatra is the same as your Sun sign constellation.&quot; Your birth nakshatra is determined by the Moon&apos;s sidereal position, not the Sun&apos;s. A person with Sun in Taurus may have Moon in any of the 27 nakshatras. The nakshatra system and the rashi system are complementary but distinct — nakshatras give lunar personality and dasha timing, while rashis describe broader solar-sign characteristics.</>}
         </p>
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? 'नक्षत्र पाद अक्षरों पर आधारित शिशु नामकरण शहरी, शिक्षित परिवारों में भी सर्वाधिक पालन की जाने वाली ज्योतिषीय परम्पराओं में से एक है। जन्म के कुछ ही घण्टों में अस्पताल के ज्योतिषी या पारिवारिक ज्योतिषी से सम्पर्क किया जाता है ताकि सटीक जन्म नक्षत्र और पाद निर्धारित हो, जिससे नामकरण अक्षर प्राप्त होता है। हमारा शिशु नाम उपकरण उसी पाद-से-अक्षर मानचित्रण का उपयोग करके बालक के गणित जन्म नक्षत्र के आधार पर सांस्कृतिक रूप से उपयुक्त नाम सुझाता है।'

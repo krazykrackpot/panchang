@@ -436,62 +436,68 @@ export default function KundaliPage() {
             );
           })()}
 
-          {/* Tab navigation */}
-          <div className="flex flex-wrap gap-2 mb-8 justify-center">
-            {([
-              { key: 'chart' as const, label: t('birthChart') },
-              { key: 'planets' as const, label: t('planetPositions') },
-              { key: 'dasha' as const, label: t('dashaTimeline') },
-              { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
-              { key: 'tippanni' as const, label: t('tippanni') },
-              { key: 'varga' as const, label: locale === 'en' ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
-              { key: 'chat' as const, label: locale === 'en' ? 'Chat' : 'चैट' },
-              { key: 'graha' as const, label: locale === 'en' ? 'Graha' : 'ग्रह' },
-              { key: 'yogas' as const, label: locale === 'en' ? 'Yogas' : 'योग' },
-              { key: 'avasthas' as const, label: locale === 'en' ? 'Avasthas' : 'अवस्था' },
-              { key: 'argala' as const, label: locale === 'en' ? 'Argala' : 'अर्गला' },
-              { key: 'sphutas' as const, label: locale === 'en' ? 'Sphutas' : 'स्फुट' },
-              { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
-              { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
-              { key: 'sadesati' as const, label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती' },
-              { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
-              { key: 'patrika' as const, label: locale === 'en' ? 'Patrika' : 'पत्रिका' },
-            ]).map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); }}
-                className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all ${
-                  activeTab === tab.key
-                    ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
-                    : 'text-text-secondary hover:text-text-primary border border-transparent hover:border-gold-primary/20'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* Tab navigation — horizontal scroll strip */}
+          <div className="relative mb-8">
+            <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+              <div className="flex gap-1.5 sm:gap-2 min-w-max sm:flex-wrap sm:justify-center sm:min-w-0">
+                {([
+                  { key: 'chart' as const, label: t('birthChart') },
+                  { key: 'planets' as const, label: t('planetPositions') },
+                  { key: 'dasha' as const, label: t('dashaTimeline') },
+                  { key: 'ashtakavarga' as const, label: t('ashtakavarga') },
+                  { key: 'tippanni' as const, label: t('tippanni') },
+                  { key: 'varga' as const, label: locale === 'en' ? 'Varga Analysis' : 'वर्ग विश्लेषण' },
+                  { key: 'chat' as const, label: locale === 'en' ? 'Chat' : 'चैट' },
+                  { key: 'graha' as const, label: locale === 'en' ? 'Graha' : 'ग्रह' },
+                  { key: 'yogas' as const, label: locale === 'en' ? 'Yogas' : 'योग' },
+                  { key: 'avasthas' as const, label: locale === 'en' ? 'Avasthas' : 'अवस्था' },
+                  { key: 'argala' as const, label: locale === 'en' ? 'Argala' : 'अर्गला' },
+                  { key: 'sphutas' as const, label: locale === 'en' ? 'Sphutas' : 'स्फुट' },
+                  { key: 'shadbala' as const, label: locale === 'en' ? 'Shadbala' : 'षड्बल' },
+                  { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
+                  { key: 'sadesati' as const, label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती' },
+                  { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
+                  { key: 'patrika' as const, label: locale === 'en' ? 'Patrika' : 'पत्रिका' },
+                ]).map((tab) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); }}
+                    className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                      activeTab === tab.key
+                        ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
+                        : 'text-text-secondary hover:text-text-primary border border-transparent hover:border-gold-primary/20'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* ===== CHART TAB ===== */}
           {activeTab === 'chart' && (
             <div>
               {/* Chart type selector — all Parashara vargas */}
-              <div className="flex flex-wrap justify-center gap-1.5 mb-4">
+              <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-4">
+              <div className="flex sm:flex-wrap sm:justify-center gap-1.5 min-w-max sm:min-w-0">
                 {([
-                  { key: 'D1', label: locale === 'en' ? 'D1 Rashi' : 'D1 राशि' },
-                  { key: 'bhav_chalit', label: locale === 'en' ? 'BC' : 'भा.च.' },
-                  { key: 'D9', label: locale === 'en' ? 'D9 Navamsha' : 'D9 नवांश' },
+                  { key: 'D1', label: locale === 'en' ? 'D1 Rashi' : locale === 'hi' ? 'D1 राशि' : 'D1 राशिः' },
+                  { key: 'bhav_chalit', label: locale === 'en' ? 'Bhav Chalit' : 'भाव चलित' },
+                  { key: 'D9', label: locale === 'en' ? 'D9 Navamsha' : locale === 'hi' ? 'D9 नवांश' : 'D9 नवांशः' },
                   ...(kundali.divisionalCharts ? Object.entries(kundali.divisionalCharts).map(([key, dc]) => ({
                     key,
-                    label: `${key}`,
+                    label: dc.label[locale as Locale] || dc.label.en || key,
                   })) : []),
                 ]).map(c => (
                   <button key={c.key} onClick={() => setActiveChart(c.key)}
-                    className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all ${
                       activeChart === c.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
                     }`}>
                     {c.label}
                   </button>
                 ))}
+              </div>
               </div>
 
               {/* Chart meaning description */}
@@ -548,7 +554,7 @@ export default function KundaliPage() {
                 <div className="mb-4">
                   <div className="text-center p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15 mb-3">
                     <div className="text-emerald-400 text-xs font-medium mb-1">{locale === 'en' ? 'Current Transit Positions' : 'वर्तमान गोचर स्थितियाँ'}</div>
-                    <div className="text-text-tertiary text-[10px]">{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
+                    <div className="text-text-tertiary text-xs">{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
                   </div>
                   {transitData && (
                     <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 mb-4">
@@ -560,8 +566,8 @@ export default function KundaliPage() {
                           return (
                             <div key={i} className={`text-center p-2 rounded-lg ${isSameSign ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-bg-secondary/50'}`}>
                               <div className="text-gold-light text-xs font-bold">{p.name[locale as Locale]}</div>
-                              <div className="text-emerald-400 text-[10px] font-medium mt-0.5">{rashiName}</div>
-                              {p.isRetrograde && <div className="text-red-400 text-[9px]">℞</div>}
+                              <div className="text-emerald-400 text-xs font-medium mt-0.5">{rashiName}</div>
+                              {p.isRetrograde && <div className="text-red-400 text-xs">℞</div>}
                             </div>
                           );
                         })}
@@ -628,7 +634,7 @@ export default function KundaliPage() {
                       <h4 className="text-gold-light font-bold text-sm" style={headingFont}>
                         {chartInsight.chart} — {isHi ? chartInsight.meaning.hi : chartInsight.meaning.en}
                       </h4>
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[chartInsight.strength]} ${sClr[chartInsight.strength]}`}>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[chartInsight.strength]} ${sClr[chartInsight.strength]}`}>
                         {sL[chartInsight.strength]}
                       </span>
                     </div>
@@ -641,7 +647,7 @@ export default function KundaliPage() {
                     {/* Key Findings */}
                     {chartInsight.keyFindings.length > 0 && (
                       <div className="mb-3">
-                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1.5">
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1.5">
                           {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
                         </div>
                         <div className="space-y-1">
@@ -657,7 +663,7 @@ export default function KundaliPage() {
 
                     {/* Prognosis */}
                     <div className="p-3 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
-                      <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                      <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
                         {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
                       </div>
                       <div className="text-text-secondary text-xs leading-relaxed">
@@ -689,7 +695,7 @@ export default function KundaliPage() {
                         <div className="text-sm font-bold" style={{ color: p.planet.color, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>
                           {p.planet.name[locale]}
                         </div>
-                        <div className="text-text-secondary text-[10px]" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        <div className="text-text-secondary text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {p.signName[locale]} &middot; H{p.house}
                           {p.isRetrograde ? ' (R)' : ''}
                         </div>
@@ -975,7 +981,7 @@ export default function KundaliPage() {
                 return (
                   <>
                     {/* Visual timeline bar */}
-                    <div className="rounded-lg overflow-hidden h-8 flex mb-8 border border-gold-primary/10">
+                    <div className="rounded-lg overflow-hidden h-10 sm:h-8 flex mb-8 border border-gold-primary/10">
                       {dashaList.map((d: { planetName: Record<string, string>; startDate: string; endDate: string; planet?: string }, idx: number) => {
                         const s = new Date(d.startDate).getTime();
                         const e = new Date(d.endDate).getTime();
@@ -984,17 +990,17 @@ export default function KundaliPage() {
                         const planetEn = d.planetName?.en || d.planet || '';
                         const color = PLANET_COLORS[planetEn] || '#d4a853';
                         return (
-                          <div key={idx} className="relative group" style={{ width: `${widthPct}%`, backgroundColor: `${color}${isCur ? '40' : '18'}`, borderRight: '1px solid rgba(10,14,39,0.5)' }}>
+                          <div key={idx} className="relative group cursor-pointer" style={{ width: `${widthPct}%`, backgroundColor: `${color}${isCur ? '40' : '18'}`, borderRight: '1px solid rgba(10,14,39,0.5)' }}>
                             {isCur && (
                               <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${color}30, ${color}50)` }}>
                                 <div className="absolute left-0 top-0 bottom-0 bg-gold-primary/30" style={{ width: `${Math.min(100, ((nowMs - s) / (e - s)) * 100)}%` }} />
                               </div>
                             )}
-                            <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-white/70 truncate px-1">
+                            <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white/70 truncate px-1">
                               {widthPct > 4 ? (planetEn.substring(0, 3)) : ''}
                             </span>
-                            {/* Tooltip */}
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-bg-primary/95 border border-gold-primary/20 rounded text-xs text-gold-light whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                            {/* Tooltip — visible on hover (desktop) and focus-within (touch tap) */}
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1.5 bg-bg-primary/95 border border-gold-primary/20 rounded text-xs text-gold-light whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 active:opacity-100 transition-opacity pointer-events-none z-10" role="tooltip">
                               {d.planetName[locale]} ({d.startDate.substring(0, 4)}–{d.endDate.substring(0, 4)})
                             </div>
                           </div>
@@ -1032,7 +1038,7 @@ export default function KundaliPage() {
                                   {dasha.planetName[locale]}
                                 </span>
                                 <span className="text-text-secondary/50 text-xs">{durationYears} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
-                                {isCurrent && <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-[10px] rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                                {isCurrent && <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                               </div>
                               <span className="text-text-secondary text-xs font-mono">{dasha.startDate.substring(0, 7)} → {dasha.endDate.substring(0, 7)}</span>
                             </div>
@@ -1053,8 +1059,8 @@ export default function KundaliPage() {
 
                             {/* Sub-periods (Antar Dasha) — show for current maha dasha */}
                             {isCurrent && dasha.subPeriods && (
-                              <div className="mt-4 ml-4 pl-4 border-l-2 space-y-1.5" style={{ borderColor: `${color}30` }}>
-                                <div className="text-[10px] uppercase tracking-wider text-text-secondary/40 mb-2">{locale === 'en' ? 'Antar Dasha (Sub-periods)' : 'अन्तर दशा'}</div>
+                              <div className="mt-4 ml-2 pl-2 sm:ml-4 sm:pl-4 border-l-2 space-y-1.5" style={{ borderColor: `${color}30` }}>
+                                <div className="text-xs uppercase tracking-wider text-text-secondary/40 mb-2">{locale === 'en' ? 'Antar Dasha (Sub-periods)' : 'अन्तर दशा'}</div>
                                 {dasha.subPeriods.map((sub, j) => {
                                   const subStart = new Date(sub.startDate);
                                   const subEnd = new Date(sub.endDate);
@@ -1071,12 +1077,12 @@ export default function KundaliPage() {
                                           <span className={`text-sm ${isSubCurrent ? 'text-gold-light font-semibold' : 'text-text-secondary'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                                             {sub.planetName[locale]}
                                           </span>
-                                          {isSubCurrent && <span className="text-[9px] px-1.5 py-0.5 bg-gold-primary/15 text-gold-primary rounded-full">{locale === 'en' ? 'active' : 'सक्रिय'}</span>}
+                                          {isSubCurrent && <span className="text-xs px-1.5 py-0.5 bg-gold-primary/15 text-gold-primary rounded-full">{locale === 'en' ? 'active' : 'सक्रिय'}</span>}
                                         </span>
-                                        <span className="font-mono text-[10px] text-text-secondary/50">{sub.startDate.substring(0, 7)} → {sub.endDate.substring(0, 7)}</span>
+                                        <span className="font-mono text-xs text-text-secondary/50">{sub.startDate.substring(0, 7)} → {sub.endDate.substring(0, 7)}</span>
                                       </div>
                                       {isSubCurrent && subMeaning && (
-                                        <p className="text-text-secondary/60 text-[11px] mt-1 ml-5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                        <p className="text-text-secondary/60 text-xs mt-1 ml-5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                                           {planetEn}–{subPlanetEn}: {locale === 'en' ? subMeaning.en : subMeaning.hi}
                                         </p>
                                       )}
@@ -1212,10 +1218,10 @@ export default function KundaliPage() {
                       return (
                         <tr key={av.planetId} className="hover:bg-gold-primary/3">
                           <td className="py-2.5 px-3 text-gold-light font-bold" style={headingFont}>{pName}</td>
-                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.baladi.strength >= 70 ? 'bg-emerald-500/10 text-emerald-300' : av.baladi.strength >= 40 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.baladi.name[locale as Locale] || av.baladi.name.en}</span></td>
-                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.jagradadi.quality === 'full' ? 'bg-emerald-500/10 text-emerald-300' : av.jagradadi.quality === 'half' ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.jagradadi.name[locale as Locale] || av.jagradadi.name.en}</span></td>
-                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.deeptadi.luminosity >= 60 ? 'bg-emerald-500/10 text-emerald-300' : av.deeptadi.luminosity >= 30 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.deeptadi.name[locale as Locale] || av.deeptadi.name.en}</span></td>
-                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-[10px] ${av.lajjitadi.effect === 'benefic' ? 'bg-emerald-500/10 text-emerald-300' : av.lajjitadi.effect === 'malefic' ? 'bg-red-500/10 text-red-400' : 'bg-amber-500/10 text-amber-300'}`}>{av.lajjitadi.name[locale as Locale] || av.lajjitadi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-xs ${av.baladi.strength >= 70 ? 'bg-emerald-500/10 text-emerald-300' : av.baladi.strength >= 40 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.baladi.name[locale as Locale] || av.baladi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-xs ${av.jagradadi.quality === 'full' ? 'bg-emerald-500/10 text-emerald-300' : av.jagradadi.quality === 'half' ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.jagradadi.name[locale as Locale] || av.jagradadi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-xs ${av.deeptadi.luminosity >= 60 ? 'bg-emerald-500/10 text-emerald-300' : av.deeptadi.luminosity >= 30 ? 'bg-amber-500/10 text-amber-300' : 'bg-red-500/10 text-red-400'}`}>{av.deeptadi.name[locale as Locale] || av.deeptadi.name.en}</span></td>
+                          <td className="py-2.5 px-3"><span className={`px-2 py-0.5 rounded text-xs ${av.lajjitadi.effect === 'benefic' ? 'bg-emerald-500/10 text-emerald-300' : av.lajjitadi.effect === 'malefic' ? 'bg-red-500/10 text-red-400' : 'bg-amber-500/10 text-amber-300'}`}>{av.lajjitadi.name[locale as Locale] || av.lajjitadi.name.en}</span></td>
                           <td className="py-2.5 px-3 text-text-secondary">{av.shayanadi.name[locale as Locale] || av.shayanadi.name.en}</td>
                         </tr>
                       );
@@ -1312,11 +1318,11 @@ export default function KundaliPage() {
                     <div className={`px-4 py-2.5 flex items-center justify-between ${ar.netEffect === 'supported' ? 'bg-emerald-500/5' : ar.netEffect === 'obstructed' ? 'bg-red-500/5' : 'bg-bg-secondary/30'}`}>
                       <div>
                         <span className="text-gold-light font-bold text-sm">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</span>
-                        <span className="text-text-secondary/50 text-[10px] ml-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        <span className="text-text-secondary/50 text-xs ml-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {sig[locale === 'en' ? 'en' : 'hi']}
                         </span>
                       </div>
-                      <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
                         {ar.netEffect === 'supported' ? (locale === 'en' ? 'Supported' : 'समर्थित') : ar.netEffect === 'obstructed' ? (locale === 'en' ? 'Obstructed' : 'अवरुद्ध') : (locale === 'en' ? 'Neutral' : 'तटस्थ')}
                       </span>
                     </div>
@@ -1334,11 +1340,11 @@ export default function KundaliPage() {
                         </div>
                       )}
                       {ar.argalas.length === 0 && ar.virodha.length === 0 && (
-                        <div className="text-[10px] text-text-tertiary">{locale === 'en' ? 'No planetary intervention on this house.' : 'इस भाव पर कोई ग्रह हस्तक्षेप नहीं।'}</div>
+                        <div className="text-xs text-text-tertiary">{locale === 'en' ? 'No planetary intervention on this house.' : 'इस भाव पर कोई ग्रह हस्तक्षेप नहीं।'}</div>
                       )}
                       {/* Implication */}
                       {ar.netEffect === 'supported' && (
-                        <p className="text-emerald-400/50 text-[10px] leading-relaxed mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        <p className="text-emerald-400/50 text-xs leading-relaxed mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {locale === 'en'
                             ? `Positive: ${sig.en.split(',')[0]} matters receive planetary support — expect growth and ease in these areas.`
                             : `शुभ: ${sig.hi.split(',')[0]} विषयों को ग्रह समर्थन — इन क्षेत्रों में वृद्धि और सहजता।`}
@@ -1346,12 +1352,12 @@ export default function KundaliPage() {
                       )}
                       {ar.netEffect === 'obstructed' && (
                         <div className="mt-1">
-                          <p className="text-red-400/50 text-[10px] leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          <p className="text-red-400/50 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                             {locale === 'en'
                               ? `Challenge: ${sig.en.split(',')[0]} matters face obstruction — delays or difficulties likely.`
                               : `चुनौती: ${sig.hi.split(',')[0]} विषयों में अवरोध — विलम्ब या कठिनाइयाँ सम्भावित।`}
                           </p>
-                          <p className="text-amber-400/40 text-[10px] mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          <p className="text-amber-400/40 text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                             {locale === 'en' ? 'Upaya: ' : 'उपाय: '}{remedy[locale === 'en' ? 'en' : 'hi']}
                           </p>
                         </div>
@@ -1397,7 +1403,7 @@ export default function KundaliPage() {
                   <div className="flex items-center gap-2 mb-3">
                     <span className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">&#9733;</span>
                     <div>
-                      <div className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold">{isHi ? 'योगी बिंदु — आपका शुभ बिंदु' : 'Yogi Point — Your Lucky Degree'}</div>
+                      <div className="text-emerald-300 text-xs uppercase tracking-widest font-bold">{isHi ? 'योगी बिंदु — आपका शुभ बिंदु' : 'Yogi Point — Your Lucky Degree'}</div>
                     </div>
                   </div>
                   <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas.yogiPoint.degree.toFixed(2)}°</div>
@@ -1417,7 +1423,7 @@ export default function KundaliPage() {
                   <div className="flex items-center gap-2 mb-3">
                     <span className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-400 text-lg">&#9888;</span>
                     <div>
-                      <div className="text-red-300 text-[10px] uppercase tracking-widest font-bold">{isHi ? 'अवयोगी बिंदु — आपका चुनौतीपूर्ण बिंदु' : 'Avayogi Point — Your Challenging Degree'}</div>
+                      <div className="text-red-300 text-xs uppercase tracking-widest font-bold">{isHi ? 'अवयोगी बिंदु — आपका चुनौतीपूर्ण बिंदु' : 'Avayogi Point — Your Challenging Degree'}</div>
                     </div>
                   </div>
                   <div className="text-gold-light font-bold text-3xl font-mono mb-1">{kundali.sphutas.avayogiPoint.degree.toFixed(2)}°</div>
@@ -1459,7 +1465,7 @@ export default function KundaliPage() {
                         <span className="text-gold-primary text-lg" dangerouslySetInnerHTML={{ __html: icon }} />
                         <div>
                           <div className="text-gold-light text-sm font-bold">{label}</div>
-                          <div className="text-text-secondary/60 text-[10px]">{sublabel}</div>
+                          <div className="text-text-secondary/60 text-xs">{sublabel}</div>
                         </div>
                       </div>
                       <div className="flex items-baseline gap-2 mb-2">
@@ -1486,20 +1492,20 @@ export default function KundaliPage() {
                   <div className="grid grid-cols-2 gap-3">
                     {kundali.sphutas.bijaSphuta && (
                       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-blue-500/15">
-                        <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'बीज स्फुट (पुरुष प्रजनन)' : 'Bija Sphuta (Male Fertility)'}</div>
+                        <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'बीज स्फुट (पुरुष प्रजनन)' : 'Bija Sphuta (Male Fertility)'}</div>
                         <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.bijaSphuta.degree.toFixed(2)}°</div>
                         <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.bijaSphuta.sign)}</div>
-                        <p className="text-text-secondary/70 text-[10px] mt-2 leading-relaxed">
+                        <p className="text-text-secondary/70 text-xs mt-2 leading-relaxed">
                           {isHi ? 'सूर्य + शुक्र + बृहस्पति से गणित। विषम राशि और शुभ नक्षत्र = बलवान।' : 'Computed from Sun + Venus + Jupiter. Odd sign + benefic nakshatra = strong male fertility factor.'}
                         </p>
                       </div>
                     )}
                     {kundali.sphutas.kshetraSphuta && (
                       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 border border-pink-500/15">
-                        <div className="text-pink-300 text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'क्षेत्र स्फुट (स्त्री प्रजनन)' : 'Kshetra Sphuta (Female Fertility)'}</div>
+                        <div className="text-pink-300 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'क्षेत्र स्फुट (स्त्री प्रजनन)' : 'Kshetra Sphuta (Female Fertility)'}</div>
                         <div className="text-gold-light font-bold text-xl font-mono">{kundali.sphutas.kshetraSphuta.degree.toFixed(2)}°</div>
                         <div className="text-text-secondary text-xs mt-1">{signName(kundali.sphutas.kshetraSphuta.sign)}</div>
-                        <p className="text-text-secondary/70 text-[10px] mt-2 leading-relaxed">
+                        <p className="text-text-secondary/70 text-xs mt-2 leading-relaxed">
                           {isHi ? 'चन्द्र + मंगल + बृहस्पति से गणित। सम राशि और शुभ नक्षत्र = बलवान।' : 'Computed from Moon + Mars + Jupiter. Even sign + benefic nakshatra = strong female fertility factor.'}
                         </p>
                       </div>
@@ -1510,7 +1516,7 @@ export default function KundaliPage() {
 
               {/* How to use this */}
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">
-                <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+                <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">
                   {isHi ? 'इसका उपयोग कैसे करें' : 'How to Use This Information'}
                 </h4>
                 <ul className="text-text-secondary text-xs leading-relaxed space-y-2">
@@ -1659,7 +1665,7 @@ export default function KundaliPage() {
                       <div className="flex items-start gap-4">
                         <div className="shrink-0 w-14 text-center pt-1">
                           <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
-                          <div className="text-gold-primary/40 font-mono text-[10px]">{ck.karaka} &middot; {ck.degree.toFixed(1)}°</div>
+                          <div className="text-gold-primary/40 font-mono text-xs">{ck.karaka} &middot; {ck.degree.toFixed(1)}°</div>
                         </div>
                         <div className="flex-1">
                           <div className="flex items-baseline gap-2 mb-1 flex-wrap">
@@ -1724,10 +1730,10 @@ export default function KundaliPage() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
                               <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ap.signName[locale]}</span>
-                              <span className="text-text-secondary/30 text-[10px]">{ap.label[locale]}</span>
+                              <span className="text-text-secondary/30 text-xs">{ap.label[locale]}</span>
                             </div>
                             {meaning && (
-                              <p className="text-text-secondary/50 text-[10px] leading-relaxed mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              <p className="text-text-secondary/50 text-xs leading-relaxed mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                                 {meaning[locale === 'en' ? 'en' : 'hi']}
                               </p>
                             )}
@@ -1749,7 +1755,7 @@ export default function KundaliPage() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
                       {((kundali.jaimini as unknown as { grahaArudhas: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas || []).map((ga, i) => (
                         <div key={i} className="p-3 text-center">
-                          <div className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{ga.planetName[locale as Locale] || ga.planetName.en}</div>
+                          <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ga.planetName[locale as Locale] || ga.planetName.en}</div>
                           <div className="text-gold-light font-bold text-sm mt-1" style={headingFont}>{ga.arudhaSignName[locale as Locale] || ga.arudhaSignName.en}</div>
                         </div>
                       ))}
@@ -2050,7 +2056,7 @@ export default function KundaliPage() {
                             <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                               {d.planetName[locale]}
                             </span>
-                            {isCurrent && <span className="text-[10px] text-gold-primary font-bold uppercase tracking-wider">{locale === 'en' ? 'Current' : 'वर्तमान'}</span>}
+                            {isCurrent && <span className="text-xs text-gold-primary font-bold uppercase tracking-wider">{locale === 'en' ? 'Current' : 'वर्तमान'}</span>}
                           </div>
                           <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
                         </div>
@@ -2256,7 +2262,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                   className={`rounded-xl p-3 text-center border ${strong ? 'border-emerald-500/30 bg-emerald-500/10' : weak ? 'border-red-500/20 bg-red-500/5' : 'border-gold-primary/10 bg-bg-tertiary/30'}`}
                 >
                   <RashiIconById id={r.id} size={24} />
-                  <div className="text-[10px] text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
+                  <div className="text-xs text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
                   <div className={`text-xl font-bold mt-1 ${strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-gold-light'}`}>{val}</div>
                 </motion.div>
               );
@@ -2281,7 +2287,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                     <th key={r.id} className="text-center p-1">
                       <div className="flex flex-col items-center">
                         <RashiIconById id={r.id} size={16} />
-                        <span className="text-[9px] text-text-secondary/60 mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale].slice(0, 3)}</span>
+                        <span className="text-xs text-text-secondary/60 mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale].slice(0, 3)}</span>
                       </div>
                     </th>
                   ))}
@@ -2503,7 +2509,7 @@ function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
             {locale === 'en' ? 'Classical References' : locale === 'hi' ? 'शास्त्रीय सन्दर्भ' : 'शास्त्रीयसन्दर्भाः'}
           </span>
         </div>
-        <span className={`text-[10px] px-1.5 py-0.5 rounded-full border ${confidenceColors[refs.confidence]}`}>
+        <span className={`text-xs px-1.5 py-0.5 rounded-full border ${confidenceColors[refs.confidence]}`}>
           {refs.confidence}
         </span>
       </div>
@@ -2537,7 +2543,7 @@ function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
                     <div key={i} className="p-2.5 rounded-lg bg-bg-primary/40 border border-amber-600/10">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-amber-400 text-xs font-bold">{cite.textName}</span>
-                        {cite.verseRange && <span className="text-text-secondary/50 text-[10px] font-mono">{cite.verseRange}</span>}
+                        {cite.verseRange && <span className="text-text-secondary/50 text-xs font-mono">{cite.verseRange}</span>}
                       </div>
                       {cite.sanskritExcerpt && (
                         <p className="text-amber-200/60 text-xs italic mb-1" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
@@ -2546,7 +2552,7 @@ function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
                       )}
                       <p className="text-text-secondary text-xs leading-relaxed">{cite.translationExcerpt}</p>
                       {cite.relevanceNote && (
-                        <p className="text-amber-500/50 text-[10px] mt-1 italic">{cite.relevanceNote}</p>
+                        <p className="text-amber-500/50 text-xs mt-1 italic">{cite.relevanceNote}</p>
                       )}
                     </div>
                   ))}
@@ -2605,8 +2611,8 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
           {synthesis.vargaInsights.map((v, i) => (
             <div key={i} className={`rounded-lg p-2 border text-center ${sC[v.strength]}`}>
               <div className="font-bold text-xs">{v.chart}</div>
-              <div className="text-[8px] text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
-              <div className="text-[10px] font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
+              <div className="text-xs text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
+              <div className="text-xs font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
             </div>
           ))}
         </div>
@@ -2627,7 +2633,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                   <span className="text-gold-light font-bold text-lg">{v.chart}</span>
                   <span className="text-text-secondary text-xs">{isHi ? v.label.hi : v.label.en}</span>
                 </div>
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
                   {isHi ? sL[v.strength].hi : sL[v.strength].en}
                 </span>
               </div>
@@ -2635,7 +2641,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
               <div className="p-5 space-y-4">
                 {/* Overall Commentary */}
                 <div>
-                  <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                  <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
                     {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
@@ -2646,7 +2652,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 {/* Key Findings */}
                 {v.keyFindings.length > 0 && (
                   <div>
-                    <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
+                    <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
                       {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
                     </div>
                     <div className="space-y-1">
@@ -2662,7 +2668,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
 
                 {/* Prognosis */}
                 <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
-                  <div className="text-indigo-400 text-[10px] uppercase tracking-widest font-bold mb-2">
+                  <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-2">
                     {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed">
@@ -3104,7 +3110,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                         style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                         {md.planetName[locale]}
                       </span>
-                      <span className="text-[10px] text-text-secondary/60 whitespace-nowrap">
+                      <span className="text-xs text-text-secondary/60 whitespace-nowrap">
                         {fmtYear(md.startDate)}-{fmtYear(md.endDate).slice(2)}
                       </span>
                       {md.isCurrent && <span className="w-1.5 h-1.5 rounded-full bg-gold-primary animate-pulse" />}
@@ -3239,7 +3245,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                           {lifeKeys.map(k => {
                             const arrow = lifeAreaArrow(ad.lifeAreas[k]);
                             return (
-                              <span key={k} className="flex items-center gap-0.5 text-[10px]">
+                              <span key={k} className="flex items-center gap-0.5 text-xs">
                                 <span className="text-text-secondary/50">{LIFE_LABELS[k][loc as 'en' | 'hi']}</span>
                                 <span className={`font-bold ${lifeAreaColor(arrow)}`}>{arrow}</span>
                               </span>
@@ -3333,8 +3339,8 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                                   {(['D1', 'D9', 'D10', 'D2'] as const).map(dk => (
                                     <div key={dk} className="p-2 rounded bg-bg-primary/40 border border-gold-primary/10">
-                                      <span className="text-gold-primary text-[10px] font-bold">{dk}</span>
-                                      <p className="text-text-secondary text-[11px] mt-0.5">{ad.divisionalInsights[dk]}</p>
+                                      <span className="text-gold-primary text-xs font-bold">{dk}</span>
+                                      <p className="text-text-secondary text-xs mt-0.5">{ad.divisionalInsights[dk]}</p>
                                     </div>
                                   ))}
                                 </div>
@@ -3412,7 +3418,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                                                 </span>
                                                 <span className="text-text-secondary/50 text-xs">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
                                               </div>
-                                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
+                                              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${pColors.text}`}>{pLabel[loc as 'en' | 'hi']}</span>
                                             </div>
                                             <p className="text-text-secondary text-xs mb-1"><span className="text-gold-primary font-medium">{locale === 'en' ? 'Theme' : 'विषय'}:</span> {pd.keyTheme}</p>
                                             <p className="text-text-secondary text-xs"><span className="text-gold-primary font-medium">{locale === 'en' ? 'Advice' : 'सलाह'}:</span> {pd.advice}</p>
@@ -3420,9 +3426,9 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                                               <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
                                                 <p className="text-text-secondary text-xs">{pd.expanded.lordAnalysis}</p>
                                                 <div className="flex gap-2">
-                                                  <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D1:</span> {pd.expanded.divisionalInsights.D1}</span>
-                                                  {pd.expanded.divisionalInsights.D9 && <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D9:</span> {pd.expanded.divisionalInsights.D9}</span>}
-                                                  {pd.expanded.divisionalInsights.D10 && <span className="text-[10px] text-text-secondary/60"><span className="text-gold-primary">D10:</span> {pd.expanded.divisionalInsights.D10}</span>}
+                                                  <span className="text-xs text-text-secondary/60"><span className="text-gold-primary">D1:</span> {pd.expanded.divisionalInsights.D1}</span>
+                                                  {pd.expanded.divisionalInsights.D9 && <span className="text-xs text-text-secondary/60"><span className="text-gold-primary">D9:</span> {pd.expanded.divisionalInsights.D9}</span>}
+                                                  {pd.expanded.divisionalInsights.D10 && <span className="text-xs text-text-secondary/60"><span className="text-gold-primary">D10:</span> {pd.expanded.divisionalInsights.D10}</span>}
                                                 </div>
                                                 {pd.expanded.warning && (
                                                   <p className="text-rose-400 text-xs mt-1 p-2 rounded bg-rose-500/5 border border-rose-500/10">{pd.expanded.warning}</p>
@@ -3863,7 +3869,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                     <div className="flex items-center gap-2">
                       <span className="text-gold-light font-medium text-sm" style={bodyFont}>{y.name[locale]}</span>
                       {y.present && (
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                        <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${
                           y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
                           y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
                           'bg-orange-500/20 text-orange-400'
@@ -3873,12 +3879,12 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                       )}
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                      <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${
                         y.isAuspicious ? 'bg-green-500/15 text-green-400' : 'bg-red-500/15 text-red-400'
                       }`}>
                         {y.isAuspicious ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
                       </span>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${y.present ? 'bg-gold-primary/20 text-gold-light' : 'bg-bg-primary/50 text-text-secondary/50'}`}>
+                      <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${y.present ? 'bg-gold-primary/20 text-gold-light' : 'bg-bg-primary/50 text-text-secondary/50'}`}>
                         {y.present ? (locale === 'en' ? 'Present' : 'है') : (locale === 'en' ? 'Absent' : 'नहीं')}
                       </span>
                     </div>
@@ -3886,7 +3892,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                   {expandedYoga === y.id && (
                     <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
                       <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
-                      <p className="text-gold-dark text-[10px] italic" style={bodyFont}>
+                      <p className="text-gold-dark text-xs italic" style={bodyFont}>
                         {locale === 'en' ? 'Rule' : 'नियम'}: {y.formationRule[locale]}
                       </p>
                     </div>
@@ -4036,7 +4042,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
           {/* Min line indicator */}
           <div className="relative mt-1">
             <div className="absolute left-[calc(50%+40px)] top-0 w-px h-3 bg-red-400/50" />
-            <p className="text-center text-[10px] text-red-400/50 ml-20">{locale === 'en' ? '1.0 = minimum adequate' : '1.0 = पर्याप्त'}</p>
+            <p className="text-center text-xs text-red-400/50 ml-20">{locale === 'en' ? '1.0 = minimum adequate' : '1.0 = पर्याप्त'}</p>
           </div>
         </div>
       </div>
@@ -4132,7 +4138,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
             return (
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
-                <div className="w-20 text-right text-[10px] text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
+                <div className="w-20 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
                 <div className="flex-1 bg-bg-primary/60 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>
@@ -4255,7 +4261,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
 
           {/* Progress bar */}
           <div className="mt-5">
-            <div className="flex justify-between text-[10px] text-text-secondary mb-1">
+            <div className="flex justify-between text-xs text-text-secondary mb-1">
               <span>{sadeSati.cycleStart}</span>
               <span className="text-gold-light font-bold">{Math.round(sadeSati.phaseProgress * 100)}%</span>
               <span>{sadeSati.cycleEnd}</span>
@@ -4319,7 +4325,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                 <span className={`text-3xl font-bold font-mono ${intensityColor(sadeSati.overallIntensity)}`}>
                   {sadeSati.overallIntensity.toFixed(1)}
                 </span>
-                <span className="text-text-secondary text-[10px] uppercase tracking-wider" style={bodyFont}>
+                <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>
                   {intensityLabel(sadeSati.overallIntensity)[lk]}
                 </span>
               </div>
@@ -4330,7 +4336,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
               <div className="w-full max-w-md space-y-2.5">
                 {sadeSati.intensityFactors.map((f, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="w-28 text-right text-[11px] text-text-secondary truncate" style={bodyFont}>
+                    <div className="w-28 text-right text-xs text-text-secondary truncate" style={bodyFont}>
                       {f.description[lk]}
                     </div>
                     <div className="flex-1 bg-bg-primary/60 rounded-full h-3 overflow-hidden">
@@ -4430,7 +4436,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                         {cycle.startYear} &mdash; {cycle.endYear}
                       </span>
                       {cycle.isActive && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-light border border-gold-primary/30">
+                        <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-gold-primary/15 text-gold-light border border-gold-primary/30">
                           {locale === 'en' ? 'Active' : 'सक्रिय'}
                         </span>
                       )}
@@ -4438,7 +4444,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                     {cycle.phases.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mt-1.5">
                         {cycle.phases.map((ph, j) => (
-                          <span key={j} className={`text-[10px] px-2 py-0.5 rounded border ${
+                          <span key={j} className={`text-xs px-2 py-0.5 rounded border ${
                             cycle.isActive && sadeSati.currentPhase === ph.phase
                               ? 'bg-gold-primary/15 text-gold-light border-gold-primary/30 font-bold'
                               : 'text-text-tertiary border-gold-primary/10'
@@ -4455,7 +4461,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                     {/* Nakshatra transit sub-items for active cycle */}
                     {cycle.isActive && sadeSati.nakshatraTimeline.length > 0 && (
                       <div className="mt-3 ml-1 space-y-1">
-                        <div className="text-[10px] text-text-tertiary uppercase tracking-wider mb-1.5">
+                        <div className="text-xs text-text-tertiary uppercase tracking-wider mb-1.5">
                           {locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
                         </div>
                         {sadeSati.nakshatraTimeline.map((nt, k) => {
@@ -4465,7 +4471,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                           return (
                             <div
                               key={k}
-                              className={`flex items-center gap-2 text-[11px] px-2.5 py-1.5 rounded-lg border ${
+                              className={`flex items-center gap-2 text-xs px-2.5 py-1.5 rounded-lg border ${
                                 nt.isBirthNakshatra
                                   ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 font-bold'
                                   : nt.isCurrent
@@ -4477,14 +4483,14 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                                 nt.isCurrent ? 'bg-gold-primary animate-pulse' : nt.isBirthNakshatra ? 'bg-amber-400' : 'bg-text-tertiary/40'
                               }`} />
                               <span className="flex-1">{nakName}</span>
-                              <span className="font-mono text-[10px] opacity-70">{yearLabel}</span>
+                              <span className="font-mono text-xs opacity-70">{yearLabel}</span>
                               {nt.isBirthNakshatra && (
-                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
+                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
                                   {locale === 'en' ? 'Birth' : 'जन्म'}
                                 </span>
                               )}
                               {nt.isCurrent && !nt.isBirthNakshatra && (
-                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
+                                <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
                                   {locale === 'en' ? 'Now' : 'अभी'}
                                 </span>
                               )}
@@ -4514,7 +4520,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
             return (
               <div key={priority} className="mb-5 last:mb-0">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${pc.bg} ${pc.text} ${pc.border}`}>
+                  <span className={`text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${pc.bg} ${pc.text} ${pc.border}`}>
                     {PRIORITY_LABELS[priority][lk]}
                   </span>
                 </div>

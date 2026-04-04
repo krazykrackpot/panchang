@@ -348,7 +348,7 @@ function Page1() {
 
       {/* Classical Origin Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>विंशोत्तरी पद्धति बृहत् पराशर होराशास्त्र (BPHS), अध्याय 46 से उत्पन्न है। पराशर इसे सामान्य उपयोग के लिए सर्वाधिक उपयुक्त दशा बताते हैं — जब चन्द्रमा 0° से 360° के बीच हो (अर्थात् सदा)। पराशर 40 से अधिक दशा पद्धतियों (अष्टोत्तरी, योगिनी, आदि) का वर्णन करते हैं, किन्तु वे विशिष्ट चन्द्र स्थितियों के लिए निर्दिष्ट हैं। विंशोत्तरी कलियुग की सार्वभौमिक दशा है।</>
@@ -358,7 +358,7 @@ function Page1() {
 
       {/* Key Fact Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'मुख्य तथ्य' : 'Key Fact'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'मुख्य तथ्य' : 'Key Fact'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>विंशोत्तरी को विश्व की अन्य सभी समय-निर्धारण प्रणालियों से जो अद्वितीय बनाता है: यह भविष्यवाणी कर सकती है कि घटनाएँ कब होंगी, न कि केवल क्या हो सकता है। एक पश्चिमी ज्योतिषी कह सकता है &quot;आपका विवाह हो सकता है।&quot; दशा प्रयोग करने वाला वैदिक ज्योतिषी कह सकता है &quot;विवाह की सर्वाधिक सम्भावना शुक्र-गुरु काल में, अक्टूबर 2027 से फरवरी 2029 के बीच है।&quot; यह विशिष्टता पदानुक्रमिक उपविभाजन प्रणाली के कारण सम्भव है — जिसे अगले पृष्ठ पर विस्तार से समझाया गया है।</>
@@ -481,7 +481,7 @@ function Page2() {
 
       {/* Worked Example Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली' : 'Worked Example: Delhi Birth Chart'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली' : 'Worked Example: Delhi Birth Chart'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">जन्म विवरण:</span> 15 जनवरी 1990, 10:30 IST, दिल्ली। चन्द्रमा 140.13° निरयन पर। नक्षत्र = floor(140.13 / 13.333) + 1 = floor(10.509) + 1 = 11 = पूर्वा फाल्गुनी। पू.फा. का स्वामी = शुक्र। अतः जन्म पर शुक्र महादशा चल रही है।</>
@@ -501,7 +501,7 @@ function Page2() {
 
       {/* Mind-blown fact */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
-        <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'अद्भुत सटीकता' : 'Staggering Precision'}</h4>
+        <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'अद्भुत सटीकता' : 'Staggering Precision'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? <>विंशोत्तरी पद्धति 9 x 9 = 81 अद्वितीय महादशा-अन्तर्दशा संयोजन उत्पन्न करती है। प्रत्यन्तर्दशा के साथ 729। सूक्ष्म दशा के साथ 6,561। प्राण दशा के साथ 59,049। यह एकमात्र जन्म क्षण से घण्टों की समय सटीकता उत्पन्न करता है। इतिहास की किसी अन्य ज्योतिष पद्धति में कालिक विस्तार (temporal granularity) का यह स्तर नहीं है।</>
@@ -633,7 +633,7 @@ function Page3() {
 
       {/* Misconceptions Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-3">
           {isHi
             ? <><span className="text-gold-light font-medium">&quot;राहु और शनि दशा सदा बुरी होती है&quot;</span> — यह असत्य है। राहु दशा असाधारण सांसारिक सफलता ला सकती है (विदेशी अवसर, प्रौद्योगिकी कैरियर, अपरम्परागत उपलब्धियाँ)। शनि दशा स्थायी संरचनाएँ बनाती है (कैरियर शिखर, सम्पत्ति संचय, अनुशासन)। परिणामों की गुणवत्ता आपकी कुण्डली में ग्रह की मर्यादा और भावेशत्व पर निर्भर करती है, ग्रह की सामान्य प्रतिष्ठा पर नहीं।</>
@@ -708,7 +708,7 @@ function Page3() {
 
       {/* Modern Relevance Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारे ऐप में प्रयोग करें' : 'Try It In Our App'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारे ऐप में प्रयोग करें' : 'Try It In Our App'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? <>हमारा कुण्डली इंजन (/kundali) जन्म से 120 वर्षों तक की पूर्ण विंशोत्तरी दशा तालिका गणित करता है — चन्द्रमा का सटीक निरयन भोगांश, जन्म नक्षत्र, दशा शेष, और सटीक आरम्भ-समाप्ति तिथियों सहित महादशा एवं अन्तर्दशा काल। टिप्पणी (व्याख्यात्मक भाष्य) बताता है कि वर्तमान में कौन-सी दशा चल रही है और आपकी विशिष्ट कुण्डली के लिए उसके सक्रियण का क्या अर्थ है।</>

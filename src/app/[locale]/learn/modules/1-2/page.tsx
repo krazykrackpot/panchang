@@ -46,7 +46,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Origin</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           The Surya Siddhanta (Ch.1) defines the Bhachakra (भचक्र) — the "star circle" or zodiac — as a 360° circle centered on the ecliptic. The term <span className="text-gold-light font-bold">Amsha</span> (अंश) means "part" or "degree" — literally a 1/360th part of the circle. Parashara (BPHS Ch.1) opens with: <em>"The zodiac comprises 360 degrees, 12 signs of 30° each, and 27 nakshatras..."</em> — establishing both coordinate grids in the very first chapter.
         </p>
@@ -98,7 +98,7 @@ function Page2() {
 
         {/* Conversion formulas */}
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 mb-4">
-          <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">Conversion Formulas</h4>
+          <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">Conversion Formulas</h4>
           <div className="font-mono text-xs space-y-2 text-emerald-300">
             <div>Sign number = floor(longitude / 30) + 1 <span className="text-text-tertiary">// 1=Aries, 12=Pisces</span></div>
             <div>Degree in sign = longitude mod 30 <span className="text-text-tertiary">// 0-29.99°</span></div>
@@ -111,7 +111,7 @@ function Page2() {
 
       {/* Worked examples */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-4">
           <div>
             <p className="text-gold-light text-sm font-medium mb-1">Example 1: Moon at 247.5° sidereal</p>
@@ -147,7 +147,7 @@ function Page2() {
 
       {/* Misconceptions */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "Signs correspond to constellations."<br />
           <span className="text-emerald-300">Reality:</span> Signs are equal 30° mathematical divisions. Constellations (physical star patterns) have wildly unequal spans — Virgo covers ~44° while Cancer covers only ~20°. Jyotish uses signs, not constellations.</p>
@@ -158,7 +158,7 @@ function Page2() {
 
       {/* Modern relevance */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully valid.</span> The degree system, sign divisions, and nakshatra divisions are mathematical constructs — they don't depend on physical accuracy. Our app computes planetary longitudes to 0.01° precision using Meeus algorithms, then maps them to signs and nakshatras using exactly these formulas. The 108 pada/navamsha system underpins the entire divisional chart (varga) engine.
         </p>

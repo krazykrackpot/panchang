@@ -121,8 +121,8 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
                             <div className="flex items-center gap-3">
                               <span className={`w-2 h-2 rounded-full ${yoga.auspicious ? 'bg-emerald-400' : 'bg-red-400'}`} />
                               <span className="text-gold-light font-bold text-sm" style={headingFont}>{isHi ? yoga.name.hi : yoga.name.en}</span>
-                              <span className="text-text-tertiary text-[10px]">{yoga.planets}</span>
-                              {yoga.strength === 'rare' && <span className="px-1.5 py-0.5 rounded text-[9px] bg-violet-500/15 text-violet-300 border border-violet-500/20">Rare</span>}
+                              <span className="text-text-tertiary text-xs">{yoga.planets}</span>
+                              {yoga.strength === 'rare' && <span className="px-1.5 py-0.5 rounded text-xs bg-violet-500/15 text-violet-300 border border-violet-500/20">Rare</span>}
                             </div>
                             <ChevronDown className={`w-4 h-4 text-text-tertiary transition-transform ${isYE ? 'rotate-180' : ''}`} />
                           </button>
@@ -130,11 +130,11 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
                             {isYE && (
                               <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }} className="overflow-hidden">
                                 <div className="px-4 pb-4 space-y-3">
-                                  <div><div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'निर्माण नियम' : 'Formation Rule'}</div><div className="text-text-secondary text-xs leading-relaxed">{isHi ? yoga.condition.hi : yoga.condition.en}</div></div>
-                                  <div><div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1">{isHi ? 'फल' : 'Effects'}</div><div className="text-text-secondary text-xs leading-relaxed">{isHi ? yoga.effect.hi : yoga.effect.en}</div></div>
+                                  <div><div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'निर्माण नियम' : 'Formation Rule'}</div><div className="text-text-secondary text-xs leading-relaxed">{isHi ? yoga.condition.hi : yoga.condition.en}</div></div>
+                                  <div><div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'फल' : 'Effects'}</div><div className="text-text-secondary text-xs leading-relaxed">{isHi ? yoga.effect.hi : yoga.effect.en}</div></div>
                                   <div className="flex items-center gap-2">
-                                    <span className="text-text-tertiary text-[10px]">{yoga.classical}</span>
-                                    <span className={`text-[9px] px-1.5 py-0.5 rounded ${yoga.auspicious ? 'bg-emerald-500/10 text-emerald-300' : 'bg-red-500/10 text-red-400'}`}>{yoga.auspicious ? (isHi ? 'शुभ' : 'Auspicious') : (isHi ? 'अशुभ' : 'Inauspicious')}</span>
+                                    <span className="text-text-tertiary text-xs">{yoga.classical}</span>
+                                    <span className={`text-xs px-1.5 py-0.5 rounded ${yoga.auspicious ? 'bg-emerald-500/10 text-emerald-300' : 'bg-red-500/10 text-red-400'}`}>{yoga.auspicious ? (isHi ? 'शुभ' : 'Auspicious') : (isHi ? 'अशुभ' : 'Inauspicious')}</span>
                                   </div>
                                 </div>
                               </motion.div>

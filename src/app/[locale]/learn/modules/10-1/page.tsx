@@ -203,7 +203,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The Core Divisional Charts</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">The Core Divisional Charts</h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { code: 'D1', name: 'Rashi', nameHi: 'राशि', domain: 'Overall life, physical body', domainHi: 'सम्पूर्ण जीवन, शारीरिक देह' },
@@ -218,7 +218,7 @@ function Page1() {
             <div key={v.code} className="bg-bg-primary/40 rounded-lg p-3 border border-white/5">
               <span className="text-gold-light font-mono font-bold text-xs">{v.code}</span>
               <span className="text-text-secondary text-xs ml-2">{isHi ? v.nameHi : v.name}</span>
-              <p className="text-text-secondary/70 text-[11px] mt-1">{isHi ? v.domainHi : v.domain}</p>
+              <p className="text-text-secondary/70 text-xs mt-1">{isHi ? v.domainHi : v.domain}</p>
             </div>
           ))}
         </div>
@@ -248,7 +248,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Practical Example: Strong in D1, Weak in D9</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Practical Example: Strong in D1, Weak in D9</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Scenario:</span> Jupiter is exalted in Cancer in D1 (rashi chart) — this looks magnificent. The native appears wise, generous, and spiritually inclined. But in D9, Jupiter falls in Capricorn (its debilitation sign).
         </p>
@@ -261,7 +261,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">The Navamsha — "The Chart Behind the Chart"</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">The Navamsha — "The Chart Behind the Chart"</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Among all 16 vargas, the Navamsha (D9) holds a special status. No serious Jyotish reading is complete without it. While D1 shows your outer circumstances — the life you live in the world — D9 reveals your inner reality: your true strength, your dharmic path, and the quality of your closest partnerships.
         </p>
@@ -294,7 +294,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
-        <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">When Does Vargottama Occur?</h4>
+        <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">When Does Vargottama Occur?</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Vargottama occurs in the first 3°20' of cardinal signs (Aries, Cancer, Libra, Capricorn), the middle 3°20' of fixed signs (Taurus, Leo, Scorpio, Aquarius), and the last 3°20' of dual signs (Gemini, Virgo, Sagittarius, Pisces). Any planet or the Lagna falling in these specific degree ranges will be in the same sign in both D1 and D9.
         </p>
@@ -304,7 +304,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">Classical Reference</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">Classical Reference</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Parashara in BPHS (Chapter 6-7) provides the complete rules for all 16 vargas. He states: "The wise should examine the Shodasvarga positions of all planets to determine their true strength." Varahamihira in Brihat Jataka and Mantreshwara in Phaladeepika further elaborate the interpretation of divisional charts, especially the Navamsha, calling it the "fruit-giving chart" (phala-suchaka).
         </p>

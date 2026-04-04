@@ -142,6 +142,15 @@ html.light .gold-divider {
   background: linear-gradient(90deg, transparent, #d4a853, transparent);
 }
 
+/* Hide scrollbar for horizontal scroll strips */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -158,6 +167,21 @@ html.light .gold-divider {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #d4a853;
+}
+
+/* Devanagari text — prevent overflow on mobile, allow word breaks for compound words */
+html[lang="hi"],
+html[lang="sa"] {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+html[lang="hi"] button,
+html[lang="sa"] button,
+html[lang="hi"] a,
+html[lang="sa"] a {
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Selection color */

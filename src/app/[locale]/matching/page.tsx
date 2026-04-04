@@ -180,12 +180,12 @@ export default function MatchingPage() {
       </div>
 
       {/* Input Form */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-12">
         {/* Groom */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-blue-500/20"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-6 border border-blue-500/20"
         >
           <h2 className="text-xl font-bold text-blue-400 mb-6 text-center" style={headingFont}>{t('groomDetails')}</h2>
 
@@ -253,7 +253,7 @@ export default function MatchingPage() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-pink-500/20"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-6 border border-pink-500/20"
         >
           <h2 className="text-xl font-bold text-pink-400 mb-6 text-center" style={headingFont}>{t('brideDetails')}</h2>
 

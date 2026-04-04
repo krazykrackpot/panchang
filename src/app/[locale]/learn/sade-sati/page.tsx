@@ -218,7 +218,7 @@ export default function SadeSatiLearnPage() {
                     className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl flex flex-col items-center justify-center border"
                     style={{ backgroundColor: phase.color + '10', borderColor: phase.color + '30', color: phase.color }}
                   >
-                    <span className="text-[10px] sm:text-xs font-semibold">{phase.label[loc]}</span>
+                    <span className="text-xs sm:text-xs font-semibold">{phase.label[loc]}</span>
                     <span className="text-lg font-bold mt-1">{phase.years}</span>
                   </div>
                 </div>

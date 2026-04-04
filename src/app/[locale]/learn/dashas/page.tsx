@@ -391,8 +391,8 @@ export default function LearnDashasPage() {
               className={`rounded-lg p-3 border ${item.color}`}
             >
               <div className="text-gold-light text-xs font-bold mb-1" style={headingFont}>{isHi ? item.level.hi : item.level.en}</div>
-              <div className="text-text-secondary text-[10px] font-mono">{isHi ? item.duration.hi : item.duration.en}</div>
-              <div className="text-text-tertiary text-[10px] mt-1">{isHi ? item.example.hi : item.example.en}</div>
+              <div className="text-text-secondary text-xs font-mono">{isHi ? item.duration.hi : item.duration.en}</div>
+              <div className="text-text-tertiary text-xs mt-1">{isHi ? item.example.hi : item.example.en}</div>
             </motion.div>
           ))}
         </div>
@@ -413,10 +413,10 @@ export default function LearnDashasPage() {
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-bold text-sm" style={headingFont}>{sys.name[locale]}</span>
-                <span className="text-text-tertiary text-[10px] font-mono">{sys.cycle} / {sys.planets} {locale === 'en' ? 'planets' : 'ग्रह'}</span>
+                <span className="text-text-tertiary text-xs font-mono">{sys.cycle} / {sys.planets} {locale === 'en' ? 'planets' : 'ग्रह'}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{sys.desc[locale]}</p>
-              <div className="mt-2 text-[10px] text-emerald-400/80 font-mono">
+              <div className="mt-2 text-xs text-emerald-400/80 font-mono">
                 {locale === 'en' ? 'Best used when: ' : 'सर्वोत्तम उपयोग: '}{sys.when[locale]}
               </div>
             </motion.div>
@@ -510,7 +510,7 @@ export default function LearnDashasPage() {
               ))}
             </tbody>
           </table>
-          <p className="mt-2 text-text-tertiary text-[10px] font-mono">
+          <p className="mt-2 text-text-tertiary text-xs font-mono">
             {locale === 'en' ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
           </p>
         </div>
@@ -534,7 +534,7 @@ export default function LearnDashasPage() {
                 <span className="font-bold text-sm" style={{ color: md.color, ...headingFont }}>
                   {isHi ? md.planetHi : md.planet}
                 </span>
-                <span className="text-text-tertiary text-[10px] font-mono">{md.years} {locale === 'en' ? 'years' : 'वर्ष'}</span>
+                <span className="text-text-tertiary text-xs font-mono">{md.years} {locale === 'en' ? 'years' : 'वर्ष'}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                 {isHi ? md.themes.hi : md.themes.en}
@@ -560,7 +560,7 @@ export default function LearnDashasPage() {
               <div className="text-gold-light text-sm font-bold mb-1" style={headingFont}>
                 {isHi ? item.from.hi : item.from.en}
               </div>
-              <div className="text-text-tertiary text-[10px] font-mono mb-1">
+              <div className="text-text-tertiary text-xs font-mono mb-1">
                 {locale === 'en' ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
               </div>
               <div className="text-text-secondary text-xs" style={bodyFont}>{isHi ? item.desc.hi : item.desc.en}</div>

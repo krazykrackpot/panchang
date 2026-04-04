@@ -188,26 +188,26 @@ export default function DoshasPage() {
                     <div className="p-5 space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Formation' : locale === 'hi' ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
+                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Formation' : locale === 'hi' ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.condition[locale]}</div>
                         </div>
                         <div>
-                          <div className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Effects' : locale === 'hi' ? 'प्रभाव' : 'प्रभावः'}</div>
+                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Effects' : locale === 'hi' ? 'प्रभाव' : 'प्रभावः'}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.effect[locale]}</div>
                         </div>
                       </div>
                       <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                          <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold">{locale === 'en' ? 'Cancellation Conditions' : locale === 'hi' ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{locale === 'en' ? 'Cancellation Conditions' : locale === 'hi' ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
                         </div>
                         <div className="text-emerald-300 text-xs leading-relaxed" style={bodyFont}>{dosha.cancellation[locale]}</div>
                       </div>
                       <div className="p-3 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
-                        <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Remedies' : locale === 'hi' ? 'उपाय' : 'उपायाः'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{locale === 'en' ? 'Remedies' : locale === 'hi' ? 'उपाय' : 'उपायाः'}</div>
                         <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.remedy[locale]}</div>
                       </div>
-                      <div className="text-text-tertiary text-[10px]">{dosha.classical}</div>
+                      <div className="text-text-tertiary text-xs">{dosha.classical}</div>
                     </div>
                   </motion.div>
                 )}
@@ -227,7 +227,7 @@ export default function DoshasPage() {
         </p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
-            <div className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+            <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -235,7 +235,7 @@ export default function DoshasPage() {
             </div>
           </div>
           <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
-            <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+            <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
@@ -254,7 +254,7 @@ export default function DoshasPage() {
           {L.kemdrumaContent[locale]}
         </p>
         <div className="mt-4 p-3 rounded-xl bg-blue-400/5 border border-blue-400/15">
-          <div className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-1">
+          <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">
             {locale === 'en' ? 'Important nuance' : isHi ? 'महत्वपूर्ण सूक्ष्मता' : 'महत्त्वपूर्णसूक्ष्मता'}
           </div>
           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>

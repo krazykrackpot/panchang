@@ -204,7 +204,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'सम्पूर्ण दृष्टि सारणी' : 'Complete Aspect Table'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'सम्पूर्ण दृष्टि सारणी' : 'Complete Aspect Table'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1">
           <span className="text-gold-light font-medium">Aries (Movable):</span> aspects Leo, Scorpio, Aquarius (not Taurus)
         </p>
@@ -257,7 +257,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित तुलना' : 'Worked Comparison'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित तुलना' : 'Worked Comparison'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart:</span> Sun and Mercury in Gemini, Mars in Virgo, Jupiter in Sagittarius, Venus in Pisces.
         </p>
@@ -302,7 +302,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;राशि दृष्टि पाराशरी दृष्टियों का प्रतिस्थापन है।&quot; कोई भी पद्धति दूसरी का प्रतिस्थापन नहीं करती। ये भिन्न ऋषियों के समान्तर ढाँचे हैं। पाराशरी दृष्टियों का प्रयोग विंशोत्तरी दशा और पाराशरी नियमों के साथ करें। राशि दृष्टि का प्रयोग चर दशा और जैमिनी नियमों के साथ। अनेक उन्नत ज्योतिषी दोनों पद्धतियों का प्रयोग पारस्परिक सत्यापन हेतु साथ-साथ करते हैं, किन्तु एक विश्लेषण श्रृंखला में कभी मिलाते नहीं।</>
@@ -311,7 +311,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <>जैमिनी राशि दृष्टि ने 21वीं शताब्दी में पुनरुत्थान देखा है, विशेषकर के.एन. राव और संजय रथ जैसे विद्वानों के कार्य से जिन्होंने आधुनिक अभ्यासकर्ताओं के लिए जैमिनी तकनीकों को व्यवस्थित किया। राशि-आधारित दृष्टियों की सरलता उन्हें कम्प्यूटरीकृत ज्योतिष के लिए उपयुक्त बनाती है — कोई अस्पष्ट ओर्ब गणना आवश्यक नहीं। हमारा कुण्डली इंजन राशि दृष्टि सम्बन्धों की तत्काल गणना कर सकता है, पारम्परिक पाराशरी दृष्टियों के साथ एक अतिरिक्त विश्लेषणात्मक परत प्रदान करता है।</>

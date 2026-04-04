@@ -342,7 +342,7 @@ export default function KPSubLordLabPage() {
                     <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl mx-auto mb-1">
                       {GRAHAS[item.id].symbol}
                     </div>
-                    <div className="text-[10px] text-white/40">{item.label}</div>
+                    <div className="text-xs text-white/40">{item.label}</div>
                     <div className="text-xs text-white font-semibold">{GRAHAS[item.id].name[locale]}</div>
                   </div>
                 </div>
@@ -382,7 +382,7 @@ export default function KPSubLordLabPage() {
                         <span className={sub.isCurrent ? 'text-violet-300 font-semibold' : 'text-white'}>
                           {GRAHAS[sub.planetId].name[locale]}
                         </span>
-                        {sub.isCurrent && <span className="text-[10px] px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-300">ACTIVE</span>}
+                        {sub.isCurrent && <span className="text-xs px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-300">ACTIVE</span>}
                       </div>
                     </td>
                     <td className="py-2.5 px-3 font-mono text-xs text-white/60">
@@ -429,7 +429,7 @@ export default function KPSubLordLabPage() {
                 <div className="text-lg">{GRAHAS[v.id].symbol}</div>
                 <div className="text-xs text-white/50">{v.label}</div>
                 <div className="text-sm font-mono text-white font-bold">{v.years}yr</div>
-                <div className="text-[10px] text-white/30">{((v.years / TOTAL_YEARS) * NAK_SPAN).toFixed(3)}&deg;</div>
+                <div className="text-xs text-white/30">{((v.years / TOTAL_YEARS) * NAK_SPAN).toFixed(3)}&deg;</div>
               </div>
             ))}
           </div>

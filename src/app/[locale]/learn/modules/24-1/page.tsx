@@ -546,15 +546,15 @@ export default function GandaMulaModule() {
                 {/* Quick facts */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
                   <div className="rounded-lg bg-bg-secondary/40 p-3">
-                    <div className="text-[10px] uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Junction' : 'सन्धि'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Junction' : 'सन्धि'}</div>
                     <div className="text-text-primary mt-0.5">{nak.junction[locale === 'en' ? 'en' : 'hi']}</div>
                   </div>
                   <div className="rounded-lg bg-bg-secondary/40 p-3">
-                    <div className="text-[10px] uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Affected Relation' : 'प्रभावित सम्बन्ध'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Affected Relation' : 'प्रभावित सम्बन्ध'}</div>
                     <div className="text-text-primary mt-0.5">{nak.affected[locale === 'en' ? 'en' : 'hi']}</div>
                   </div>
                   <div className="rounded-lg bg-bg-secondary/40 p-3">
-                    <div className="text-[10px] uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Critical Padas' : 'संवेदनशील पाद'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/60">{locale === 'en' ? 'Critical Padas' : 'संवेदनशील पाद'}</div>
                     <div className="text-red-400 font-semibold mt-0.5">{locale === 'en' ? 'Pada' : 'पाद'} {nak.criticalPadas}</div>
                   </div>
                 </div>

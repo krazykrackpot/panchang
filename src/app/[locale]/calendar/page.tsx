@@ -308,7 +308,7 @@ export default function CalendarPage() {
       </motion.div>
 
       {/* Year selector */}
-      <div className="flex items-center justify-center gap-6 mb-8">
+      <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8">
         <button onClick={() => setYear(y => y - 1)} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all">
           <ChevronLeft className="w-5 h-5 text-gold-primary" />
         </button>
@@ -325,7 +325,7 @@ export default function CalendarPage() {
           <p className="text-text-secondary text-sm">{locale === 'en' ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
         </div>
       ) : !location ? (
-        <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-6">
+        <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-3 sm:px-4 md:px-6">
           <MapPin className="w-10 h-10 text-gold-primary" />
           <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
             {locale === 'en' ? 'Location Required' : 'स्थान आवश्यक है'}
@@ -415,7 +415,7 @@ export default function CalendarPage() {
       <div className="flex flex-wrap justify-center gap-2 mb-6">
         <button
           onClick={() => setSelectedMonth(null)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+          className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
             selectedMonth === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
@@ -426,7 +426,7 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                 selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}
             >
@@ -438,7 +438,7 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
                 selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}
             >
@@ -478,7 +478,7 @@ export default function CalendarPage() {
               key={e.cat}
               href={`/api/calendar/export?year=${year}&category=${e.cat}&lat=${location.lat}&lon=${location.lng}&timezone=${encodeURIComponent(location.timezone)}&locale=${locale}`}
               download
-              className="text-[10px] px-2.5 py-1 rounded-full border border-gold-primary/15 text-gold-dark hover:text-gold-light hover:border-gold-primary/30 transition-all flex items-center gap-1"
+              className="text-xs px-2.5 py-1 rounded-full border border-gold-primary/15 text-gold-dark hover:text-gold-light hover:border-gold-primary/30 transition-all flex items-center gap-1"
             >
               <Download className="w-3 h-3" />
               {e.label[locale === 'sa' ? 'hi' : locale]}
@@ -521,7 +521,7 @@ export default function CalendarPage() {
                 {/* Date badge */}
                 <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-bg-tertiary/50 flex flex-col items-center justify-center">
                   <span className="text-gold-light text-xl font-bold leading-none">{dayStr}</span>
-                  <span className="text-text-secondary text-[10px] uppercase">{monthStr}</span>
+                  <span className="text-text-secondary text-xs uppercase">{monthStr}</span>
                 </div>
 
                 {/* Content */}
@@ -531,11 +531,11 @@ export default function CalendarPage() {
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {f.name[locale]}
                     </span>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${categoryColors[f.category] || 'text-text-secondary bg-bg-tertiary/50 border-gold-primary/10'}`}>
                       {f.category.toUpperCase()}
                     </span>
                     {f.masa && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full border border-gold-primary/10 text-gold-dark/60">
+                      <span className="text-xs px-2 py-0.5 rounded-full border border-gold-primary/10 text-gold-dark/60">
                         {f.masa.purnimanta} {f.paksha || ''}
                       </span>
                     )}
@@ -563,14 +563,14 @@ export default function CalendarPage() {
                           return `${d} ${months[m - 1]}`;
                         })()}
                       </span>
-                      <span className="text-[8px] text-text-secondary/30">24h</span>
+                      <span className="text-xs text-text-secondary/30">24h</span>
                     </div>
                   )}
                 </div>
 
                 {/* Recommended for you */}
                 {f.slug && recommendedSlugs.has(f.slug) && (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
+                  <span className="hidden sm:inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
                     <Sparkles className="w-3 h-3" />
                     {locale === 'en' ? 'For You' : 'आपके लिए'}
                   </span>
@@ -578,7 +578,7 @@ export default function CalendarPage() {
 
                 {/* Puja Vidhi indicator */}
                 {hasPujaVidhi(f.slug) && (
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
+                  <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
                     {locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि'}
                   </span>
                 )}
@@ -586,16 +586,16 @@ export default function CalendarPage() {
                 {/* Parana time indicator */}
                 {f.paranaStart && (
                   <div className="text-right flex-shrink-0">
-                    <div className="text-text-secondary text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Parana' : 'पारण'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{locale === 'en' ? 'Parana' : 'पारण'}</div>
                     <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
-                    {f.paranaDate && <div className="text-text-secondary/40 text-[9px]">{f.paranaDate}</div>}
+                    {f.paranaDate && <div className="text-text-secondary/40 text-xs">{f.paranaDate}</div>}
                   </div>
                 )}
 
                 {/* Tithi */}
                 {f.tithi && !f.paranaStart && (
                   <div className="hidden sm:block text-right flex-shrink-0">
-                    <div className="text-text-secondary text-[10px] uppercase tracking-wider">{locale === 'en' ? 'Tithi' : 'तिथि'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{locale === 'en' ? 'Tithi' : 'तिथि'}</div>
                     <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
                   </div>
                 )}

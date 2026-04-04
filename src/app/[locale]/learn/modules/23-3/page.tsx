@@ -148,7 +148,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'व्युत्पत्ति' : 'Etymology'}</h4>
+        <h4 className="text-emerald-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'व्युत्पत्ति' : 'Etymology'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>&quot;सर्वतोभद्र&quot; का अर्थ है &quot;सभी दिशाओं से शुभ&quot; — ग्रिड किसी भी दिशा (ऊपर, नीचे, बाएँ, दाएँ, तिरछे) से पढ़ने के लिए डिज़ाइन की गई है। यह बहु-दिशात्मक पठन क्षमता इसे प्रतीत होने वाले असम्बन्धित ज्योतिषीय कारकों के बीच छिपे सम्बन्धों की पहचान के लिए अद्वितीय रूप से शक्तिशाली बनाती है।</> : <>&quot;Sarvatobhadra&quot; means &quot;auspicious from all sides&quot; — the grid is designed to be read from any direction (top, bottom, left, right, diagonal). This multi-directional reading capability makes it uniquely powerful for identifying hidden relationships between seemingly unrelated astrological factors.</>}</p>
       </section>
     </div>
@@ -185,7 +185,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-light text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'किला रूपक' : 'Fort Metaphor'}</h4>
+        <h4 className="text-gold-light text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'किला रूपक' : 'Fort Metaphor'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>किला रूपक गहराई से सहज है: स्तम्भ राजा का कक्ष है, मध्य आन्तरिक प्रांगण है, प्राकार किले की दीवार है, और बाह्य बाहर का भूमि है। शुभ ग्रह मित्र हैं; पाप ग्रह आक्रमणकारी। आपके &quot;किले&quot; (आपकी कुण्डली की समग्र शुभ शक्ति) की ताकत निर्धारित करती है कि आप घेराबन्दी का कितनी अच्छी तरह सामना करते हैं।</> : <>The fort metaphor is deeply intuitive: Stambha is the king&apos;s chamber, Madhya is the inner courtyard, Praakara is the fortress wall, and Bahya is the land outside. Benefic planets are allies; malefic planets are invaders. The strength of your &quot;fort&quot; (your chart&apos;s overall benefic strength) determines how well you withstand the siege.</>}</p>
       </section>
     </div>
@@ -220,7 +220,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'ये प्रणालियाँ क्यों महत्वपूर्ण हैं' : 'Why These Systems Matter'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'ये प्रणालियाँ क्यों महत्वपूर्ण हैं' : 'Why These Systems Matter'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>चक्र प्रणालियाँ मानक भाव-आधारित गोचर विश्लेषण से भिन्न दृष्टिकोण प्रदान करती हैं। वे नक्षत्र स्तर पर केन्द्रित हैं — भविष्यवाणी का एक सूक्ष्मतर स्तर। जबकि भाव गोचर बताते हैं कि कौन सा जीवन क्षेत्र सक्रिय है, चक्र प्रणालियाँ प्रभाव की तीव्रता, दिशा और गुणवत्ता बताती हैं। दशा विश्लेषण के साथ मिलकर, वे वैदिक ज्योतिष में सबसे सम्पूर्ण भविष्यवाणी उपकरण-समूह बनाती हैं।</> : <>Chakra systems provide a different lens than standard house-based transit analysis. They focus on the nakshatra level — a finer grain of prediction. While house transits tell you which life area is activated, chakra systems tell you the intensity, direction, and quality of the impact. Together with dasha analysis, they form the most complete predictive toolkit in Vedic astrology.</>}</p>
       </section>
     </div>

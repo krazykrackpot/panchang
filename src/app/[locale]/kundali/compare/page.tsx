@@ -102,7 +102,7 @@ export default function ComparePage() {
         <div className="flex justify-center gap-4 mb-8">
           {[1, 2, 3].map(s => (
             <div key={s} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium ${step >= s ? 'bg-gold-primary/15 text-gold-light border border-gold-primary/30' : 'text-text-tertiary border border-gold-primary/10'}`}>
-              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${step >= s ? 'bg-gold-primary text-bg-primary' : 'bg-bg-secondary text-text-tertiary'}`}>{s}</span>
+              <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${step >= s ? 'bg-gold-primary text-bg-primary' : 'bg-bg-secondary text-text-tertiary'}`}>{s}</span>
               {s === 1 ? t(L.chart1, locale) : s === 2 ? t(L.chart2, locale) : t(L.synastry, locale)}
             </div>
           ))}
@@ -188,7 +188,7 @@ export default function ComparePage() {
                       <div key={i} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 border ${aspColor.split(' ')[0]}`}>
                         <div className="flex items-center justify-between mb-1">
                           <span className={`text-xs font-bold ${aspColor.split(' ')[1]}`}>{asp.type}</span>
-                          <span className="text-text-tertiary text-[10px]">{asp.orb}° orb</span>
+                          <span className="text-text-tertiary text-xs">{asp.orb}° orb</span>
                         </div>
                         <div className="text-text-secondary text-xs">
                           <span className="text-gold-light">{GRAHAS[asp.planetA]?.name[locale as Locale]}</span>

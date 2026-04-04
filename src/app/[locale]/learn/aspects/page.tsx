@@ -259,7 +259,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
           <text
             x={innerPos(sourceHouse).x} y={innerPos(sourceHouse).y}
             textAnchor="middle" dominantBaseline="central"
-            className="text-[9px] font-bold" fill={selectedPlanet.color}
+            className="text-xs font-bold" fill={selectedPlanet.color}
           >
             {selectedPlanet.label.substring(0, 2)}
           </text>
@@ -286,7 +286,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
       )}
       {selectedPlanet && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
-          className="text-[10px] font-bold" fill={selectedPlanet.color}>
+          className="text-xs font-bold" fill={selectedPlanet.color}>
           {selectedPlanet.name[locale]}
         </text>
       )}

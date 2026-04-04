@@ -205,7 +205,7 @@ function Page1() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शास्त्रीय उत्पत्ति' : 'Classical Origin'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'प्लेसिडस भाव पद्धति इतालवी भिक्षु और गणितज्ञ प्लेसिडस दे टिटिस (1603-1668) ने अपनी कृति "फिज़ियोमैथेमैटिका" में विकसित की। तथापि, समय-आधारित भाव विभाजन की मूल अवधारणा टॉलेमी के टेट्राबिब्लोस (द्वितीय शताब्दी ई.) तक जाती है। तमिलनाडु के प्राध्यापक के.एस. कृष्णमूर्ति ने पहचाना कि यह पाश्चात्य तकनीक भारतीय ज्योतिष की एक वास्तविक समस्या — गैर-भूमध्यरेखीय अक्षांशों पर समान भावों की अशुद्धि — का समाधान करती है, और इसे वैदिक नक्षत्र उप-स्वामी पद्धति के साथ प्रतिभापूर्वक एकीकृत कर केपी का निर्माण किया।'
@@ -238,7 +238,7 @@ function Page2() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <><span className="text-gold-light font-medium">47 अंश उत्तर अक्षांश की कुण्डली (जैसे स्विट्ज़रलैण्ड):</span> लग्न = 5 अंश कर्क, MC = 15 अंश मीन। समान भावों में प्रत्येक भाव ठीक 30 अंश होता। किन्तु इस अक्षांश पर प्लेसिडस में भाव नाटकीय रूप से असमान हो जाते हैं: प्रथम भाव = 5 अंश कर्क से 28 अंश कर्क (केवल 23 अंश चौड़ा), द्वितीय भाव = 28 अंश कर्क से 25 अंश सिंह (27 अंश), तृतीय भाव = 25 अंश सिंह से 27 अंश कन्या (32 अंश)। वहीं दशम भाव 15 अंश मीन से 20 अंश मेष तक (35 अंश चौड़ा)। 23 से 35 अंश तक का अन्तर दिखाता है कि ग्रह स्थान भावों के बीच कैसे बदल सकता है।</>
@@ -271,7 +271,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
-        <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
+        <h4 className="text-red-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;प्लेसिडस पाश्चात्य पद्धति है, अतः वैदिक ज्योतिष में इसका कोई स्थान नहीं।&quot; यद्यपि प्लेसिडस की उत्पत्ति यूरोप में हुई, केपी पद्धति इसे विशुद्ध वैदिक अवधारणाओं — नक्षत्र, विंशोत्तरी दशा अनुपात, और निरयन (लाहिरी) अयनांश — के साथ प्रयोग करती है। केपी एक संकर पद्धति है जो दोनों परम्पराओं का सर्वश्रेष्ठ लेती है। भाव विभाजन तकनीक ज्यामितीय और खगोलीय है — इसमें कोई अन्तर्निहित सांस्कृतिक पूर्वाग्रह नहीं है।</>
@@ -280,7 +280,7 @@ function Page3() {
       </section>
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? 'आज प्लेसिडस भावों सहित केपी भारत में सर्वाधिक लोकप्रिय फलादेश पद्धतियों में से एक है, विशेषतः प्रश्न (होरेरी) और घटना-समय निर्धारण प्रश्नों के लिए। हमारे केपी सिस्टम उपकरण जैसे सॉफ्टवेयर किसी भी अक्षांश के लिए स्वचालित रूप से प्लेसिडस सन्धियाँ गणित करते हैं, जिससे प्रारम्भिक केपी अभ्यासकर्ताओं को करनी पड़ने वाली मैनुअल सारणी खोज की आवश्यकता समाप्त हो गई। यह पद्धति उच्च अक्षांशों (ब्रिटेन, कनाडा, उत्तरी यूरोप) पर रहने वाले भारतीय प्रवासियों के लिए विशेष रूप से प्रासंगिक है जहाँ समान भाव उत्तरोत्तर अशुद्ध होते जाते हैं।'

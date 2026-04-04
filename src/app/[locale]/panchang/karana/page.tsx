@@ -642,7 +642,7 @@ export default function KaranaPage() {
                 <div className="text-red-400 text-xs mt-1">
                   {locale === 'en' ? 'Sthira (Fixed)' : locale === 'hi' ? 'स्थिर (अचल)' : 'स्थिरम्'}
                 </div>
-                <div className="text-red-400/50 text-[10px] mt-0.5">
+                <div className="text-red-400/50 text-xs mt-0.5">
                   {locale === 'en' ? `Position ${slotPositions[i] + 1}` : `स्थान ${slotPositions[i] + 1}`}
                 </div>
               </motion.div>

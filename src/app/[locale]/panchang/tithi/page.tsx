@@ -404,7 +404,7 @@ export default function TithiPage() {
                   className="flex flex-col items-center"
                 >
                   <MoonPhase phase={phase} />
-                  <span className="text-[10px] text-text-secondary mt-1">{i + 1}</span>
+                  <span className="text-xs text-text-secondary mt-1">{i + 1}</span>
                 </motion.div>
               );
             })}

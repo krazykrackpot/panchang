@@ -100,7 +100,7 @@ export default function GraphicTransitPage() {
           <>
             {/* Graphic grid: rows = planets, columns = days */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto mb-8">
-              <table className="w-full text-[10px]">
+              <table className="w-full text-xs">
                 <thead>
                   <tr>
                     <th className="text-left px-2 py-1 text-gold-dark">Planet</th>
@@ -145,7 +145,7 @@ export default function GraphicTransitPage() {
                       <div className="flex items-center gap-2 mb-1">
                         <span className="w-2 h-2 rounded-full" style={{ backgroundColor: PLANET_COLORS[evt.planet] }} />
                         <span className="text-gold-light text-xs font-bold">{PLANET_NAMES[evt.planet]}</span>
-                        <span className="text-text-tertiary text-[10px]">{MONTHS[month]} {evt.day}</span>
+                        <span className="text-text-tertiary text-xs">{MONTHS[month]} {evt.day}</span>
                       </div>
                       <div className="text-text-secondary text-xs">
                         {evt.type === 'ingress' && `${RASHIS[(evt.fromSign! - 1) % 12]?.name[locale]} → ${RASHIS[(evt.toSign! - 1) % 12]?.name[locale]}`}

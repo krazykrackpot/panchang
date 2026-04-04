@@ -206,7 +206,7 @@ function Page1() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">The Inception Chart Concept</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">The Inception Chart Concept</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           Think of Muhurta like choosing the &ldquo;birthday&rdquo; of your project. A company registered under Pushya nakshatra with strong Jupiter in the lagna has a chart that favours growth, nourishment, and expansion. The same company registered during Rahu Kaal with Vishti karana has a chart riddled with delays and obstacles. The Muhurta IS the natal chart of the endeavour.
         </p>
@@ -235,7 +235,7 @@ function Page2() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
-        <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Lagna Selection</h4>
+        <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Lagna Selection</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The lagna changes every ~2 hours, so it is the most precise timing tool. For marriage: 2nd, 7th, or 11th house lagna. For business: 1st, 10th, or 11th. For education: 2nd or 5th. For travel: 3rd or 9th. The lagna lord must be strong — not debilitated, combust, or retrograde — and ideally placed in a kendra or trikona.
         </p>
@@ -264,14 +264,14 @@ function Page3() {
         </p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
-        <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3">The Four Scoring Dimensions</h4>
+        <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">The Four Scoring Dimensions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Panchang Score:</span> Evaluates the quality of tithi, nakshatra, yoga, karana, and vara at the given time. Each element is rated shubha/ashubha per classical rules. Activity-specific nakshatra matching adds bonus points.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Transit Score:</span> Assesses current planetary strength — are benefics strong? Are malefics contained? Is the relevant house lord well-placed? This captures the broader celestial weather.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Timing Score:</span> Checks the hora ruler (planetary hour) and choghadiya period. A business started during Jupiter hora scores higher than one during Saturn hora. Amrit and Shubha choghadiyas add points.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Personal Score:</span> When the user provides birth details, the engine checks Tara Bala (star strength from birth nakshatra), Chandrabala (Moon position from natal Moon), and Disha Shool (directional defect). This personalizes the Muhurta to the individual.</p>
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
-        <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Score Interpretation</h4>
+        <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Score Interpretation</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Scores above 75 indicate excellent Muhurta windows suitable for major events. Scores 50-75 are acceptable for routine activities. Scores below 50 should be avoided for important initiations. In practice, most days have a few high-scoring windows (often early morning or specific evening hours) and several low-scoring periods (particularly during Rahu Kaal and Vishti karana). The engine supports 20 activity types with activity-specific weightings.
         </p>

@@ -260,11 +260,11 @@ export default function HealthAstrologyPage() {
                       className="overflow-hidden">
                       <div className="px-3 pb-3 space-y-1.5">
                         <div>
-                          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'प्रकृति' : 'Constitution'}</span>
+                          <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'प्रकृति' : 'Constitution'}</span>
                           <p className="text-text-secondary text-xs">{t(l.constitution)}</p>
                         </div>
                         <div>
-                          <span className="text-red-400/80 text-[10px] uppercase tracking-wider font-bold">{isHi ? 'कमजोरी' : 'Vulnerability'}</span>
+                          <span className="text-red-400/80 text-xs uppercase tracking-wider font-bold">{isHi ? 'कमजोरी' : 'Vulnerability'}</span>
                           <p className="text-text-tertiary text-xs">{t(l.vulnerability)}</p>
                         </div>
                       </div>
@@ -318,7 +318,7 @@ export default function HealthAstrologyPage() {
                 <h4 className="text-gold-light font-bold text-base" style={hf}>{t(d.dosha)}</h4>
               </div>
               <p className="text-text-secondary text-xs mb-2 font-medium">{t(d.elements)}</p>
-              <p className="text-gold-dark text-[11px] mb-2">{t(d.signs)}</p>
+              <p className="text-gold-dark text-xs mb-2">{t(d.signs)}</p>
               <p className="text-text-tertiary text-xs leading-relaxed">{t(d.traits)}</p>
             </motion.div>
           ))}

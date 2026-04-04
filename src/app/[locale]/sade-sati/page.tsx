@@ -18,6 +18,7 @@ import {
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import InfoBlock from '@/components/ui/InfoBlock';
 
 // ---------------------------------------------------------------------------
 // Trilingual labels
@@ -241,6 +242,36 @@ export default function SadeSatiPage() {
           </p>
         )}
       </motion.div>
+
+      <InfoBlock id="sade-sati-intro" title={locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
+        {locale === 'en' ? (
+          <div className="space-y-3">
+            <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
+            <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn — the planet of discipline, karma, and hard lessons — passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment — it&apos;s a period of deep maturation.</p>
+            <p><strong>The three phases:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong>Rising (12th from Moon)</strong> — Financial pressures, sleep disturbance, hidden anxieties. Saturn approaches your Moon like gathering clouds.</li>
+              <li><strong>Peak (over Moon sign)</strong> — The most intense phase. Mental pressure, relationship tests, career challenges. But also the deepest growth and self-discovery.</li>
+              <li><strong>Setting (2nd from Moon)</strong> — Financial strain eases but family/speech-related issues may surface. Saturn recedes, leaving wisdom behind.</li>
+            </ul>
+            <p><strong>Important:</strong> Sade Sati is NOT always bad. Its effects depend on Saturn&apos;s natal position, the Moon&apos;s strength, and your current dasha. For some, it brings career breakthroughs, spiritual awakening, or overdue life corrections. Many successful people achieved their greatest milestones during Sade Sati.</p>
+            <p><strong>It occurs 2-3 times</strong> in an average lifetime (every ~30 years when Saturn completes its orbit). The first Sade Sati (childhood) is felt by parents. The second (age 28-37 roughly) is the most impactful. The third (late 50s-60s) brings spiritual depth.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p><strong>साढ़े साती</strong> (शाब्दिक अर्थ &quot;साढ़े सात&quot;) वह ~7.5 वर्ष की अवधि है जब शनि तीन क्रमिक राशियों से गुजरता है — आपकी चन्द्र राशि से पहली, स्वयं चन्द्र राशि, और उसके बाद की। शनि ~2.5 वर्ष प्रति राशि लेता है, कुल ~7.5 वर्ष।</p>
+            <p><strong>चन्द्रमा क्यों?</strong> वैदिक ज्योतिष में चन्द्र राशि (सूर्य राशि नहीं) आपके मन, भावनाओं और आन्तरिक संसार का प्रतिनिधित्व करती है। जब शनि — अनुशासन, कर्म और कठिन पाठ का ग्रह — चन्द्रमा पर से गुजरता है, वह भावनात्मक नींव पर दबाव डालता है। यह दण्ड नहीं — गहन परिपक्वता का काल है।</p>
+            <p><strong>तीन चरण:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong>आरम्भ (चन्द्र से 12वाँ)</strong> — आर्थिक दबाव, नींद में बाधा, छिपी चिन्ताएँ।</li>
+              <li><strong>चरम (चन्द्र राशि पर)</strong> — सबसे तीव्र। मानसिक दबाव, सम्बन्ध परीक्षा, कैरियर चुनौतियाँ। किन्तु सबसे गहन विकास भी।</li>
+              <li><strong>अवसान (चन्द्र से 2रा)</strong> — आर्थिक दबाव कम, पारिवारिक/वाणी विषय। शनि ज्ञान छोड़कर जाता है।</li>
+            </ul>
+            <p><strong>महत्वपूर्ण:</strong> साढ़े साती सदैव बुरी नहीं होती। प्रभाव शनि की जन्म स्थिति, चन्द्रमा की शक्ति और वर्तमान दशा पर निर्भर करते हैं। कई सफल लोगों ने साढ़े साती में सबसे बड़ी उपलब्धियाँ प्राप्त कीं।</p>
+            <p><strong>जीवनकाल में 2-3 बार</strong> आती है (~30 वर्ष में एक बार)। पहली (बचपन) माता-पिता पर प्रभावी। दूसरी (28-37 वर्ष) सर्वाधिक प्रभावशाली। तीसरी (50-60 वर्ष) आध्यात्मिक गहनता।</p>
+          </div>
+        )}
+      </InfoBlock>
 
       {/* Tabs */}
       <div className="flex justify-center gap-2 mb-10">

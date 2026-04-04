@@ -1464,7 +1464,20 @@ export default function PanchangPage() {
                       </thead>
                       <tbody className="divide-y divide-gold-primary/5">
                         {hinduMonths.map((m) => {
-                          const isHighlighted = todayStr >= m.startDate && todayStr < m.endDate;
+                          // Compute effective dates based on selected masa system
+                          let effectiveStart = m.startDate;
+                          let effectiveEnd = m.endDate;
+                          if (masaSystem === 'purnimant') {
+                            const shiftDate = (ds: string, days: number) => {
+                              const [y2, mo2, d2] = ds.split('-').map(Number);
+                              const dt = new Date(y2, mo2 - 1, d2);
+                              dt.setDate(dt.getDate() + days);
+                              return `${dt.getFullYear()}-${(dt.getMonth()+1).toString().padStart(2,'0')}-${dt.getDate().toString().padStart(2,'0')}`;
+                            };
+                            effectiveStart = shiftDate(m.startDate, -15);
+                            effectiveEnd = shiftDate(m.endDate, -15);
+                          }
+                          const isHighlighted = todayStr >= effectiveStart && todayStr < effectiveEnd;
                           return (
                             <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
                               <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
@@ -1474,27 +1487,8 @@ export default function PanchangPage() {
                                 {m.isAdhika && <span className="ml-1.5 text-[8px] px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'en' ? 'Intercalary' : 'अधिक'}</span>}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
-                              {masaSystem === 'amant' ? (
-                                <>
-                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
-                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
-                                </>
-                              ) : (
-                                <>
-                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{(() => {
-                                    const [y, mo, d] = m.startDate.split('-').map(Number);
-                                    const pDate = new Date(y, mo - 1, d);
-                                    pDate.setDate(pDate.getDate() - 15);
-                                    return formatMonthDate(`${pDate.getFullYear()}-${(pDate.getMonth()+1).toString().padStart(2,'0')}-${pDate.getDate().toString().padStart(2,'0')}`, locale);
-                                  })()}</td>
-                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{(() => {
-                                    const [y, mo, d] = m.endDate.split('-').map(Number);
-                                    const pDate = new Date(y, mo - 1, d);
-                                    pDate.setDate(pDate.getDate() - 15);
-                                    return formatMonthDate(`${pDate.getFullYear()}-${(pDate.getMonth()+1).toString().padStart(2,'0')}-${pDate.getDate().toString().padStart(2,'0')}`, locale);
-                                  })()}</td>
-                                </>
-                              )}
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveStart, locale)}</td>
+                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveEnd, locale)}</td>
                               <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ritu.en : m.ritu.hi}</td>
                             </tr>
                           );

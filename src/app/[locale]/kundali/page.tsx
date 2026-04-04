@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -232,12 +232,13 @@ export default function KundaliPage() {
     } catch { /* silently fail */ }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
   const [dashaSystem, setDashaSystem] = useState('vimshottari');
   const [showTransits, setShowTransits] = useState(false);
+  const patrikaRef = useRef<HTMLDivElement>(null);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
   // Fetch current transits when toggled on
@@ -454,6 +455,7 @@ export default function KundaliPage() {
               { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
               { key: 'sadesati' as const, label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती' },
               { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
+              { key: 'patrika' as const, label: locale === 'en' ? 'Patrika' : 'पत्रिका' },
             ]).map((tab) => (
               <button
                 key={tab.key}
@@ -1785,6 +1787,270 @@ export default function KundaliPage() {
             </div>
             );
           })()}
+
+          {/* ===== PATRIKA TAB ===== */}
+          {activeTab === 'patrika' && (() => {
+            const bd = kundali.birthData;
+            const mahaDashas = kundali.dashas.filter(d => d.level === 'maha');
+            const now = new Date();
+
+            // Detect key doshas
+            const doshas: { name: { en: string; hi: string }; present: boolean; detail: { en: string; hi: string } }[] = [];
+
+            // Manglik: Mars in 1,2,4,7,8,12
+            const mars = kundali.planets.find(p => p.planet.id === 2);
+            const isManglik = mars ? [1, 2, 4, 7, 8, 12].includes(mars.house) : false;
+            doshas.push({
+              name: { en: 'Manglik Dosha', hi: 'मांगलिक दोष' },
+              present: isManglik,
+              detail: isManglik
+                ? { en: `Mars in House ${mars!.house}`, hi: `मंगल भाव ${mars!.house} में` }
+                : { en: 'Mars not in 1/2/4/7/8/12', hi: 'मंगल 1/2/4/7/8/12 में नहीं' },
+            });
+
+            // Kaal Sarp: all planets between Rahu-Ketu axis
+            const rahu = kundali.planets.find(p => p.planet.id === 7);
+            const ketu = kundali.planets.find(p => p.planet.id === 8);
+            let isKaalSarp = false;
+            if (rahu && ketu) {
+              const rahuLon = rahu.longitude;
+              const ketuLon = ketu.longitude;
+              const others = kundali.planets.filter(p => p.planet.id !== 7 && p.planet.id !== 8);
+              const allOnOneSide = others.every(p => {
+                const lon = p.longitude;
+                if (rahuLon < ketuLon) return lon >= rahuLon && lon <= ketuLon;
+                return lon >= rahuLon || lon <= ketuLon;
+              });
+              const allOnOtherSide = others.every(p => {
+                const lon = p.longitude;
+                if (ketuLon < rahuLon) return lon >= ketuLon && lon <= rahuLon;
+                return lon >= ketuLon || lon <= rahuLon;
+              });
+              isKaalSarp = allOnOneSide || allOnOtherSide;
+            }
+            doshas.push({
+              name: { en: 'Kaal Sarp Dosha', hi: 'काल सर्प दोष' },
+              present: isKaalSarp,
+              detail: isKaalSarp
+                ? { en: 'All planets hemmed between Rahu-Ketu axis', hi: 'सभी ग्रह राहु-केतु अक्ष के बीच' }
+                : { en: 'Not present', hi: 'उपस्थित नहीं' },
+            });
+
+            // Ganda Mula
+            const moon = kundali.planets.find(p => p.planet.id === 1);
+            const gandaMulaNakshatras = [1, 10, 19, 9, 18, 27];
+            const isGandaMula = moon ? gandaMulaNakshatras.includes(moon.nakshatra.id) : false;
+            doshas.push({
+              name: { en: 'Ganda Mula', hi: 'गण्ड मूल' },
+              present: isGandaMula,
+              detail: isGandaMula
+                ? { en: `Moon in ${moon!.nakshatra.name.en}`, hi: `चन्द्र ${moon!.nakshatra.name.hi} में` }
+                : { en: 'Moon not in Ganda Mula nakshatra', hi: 'चन्द्र गण्ड मूल नक्षत्र में नहीं' },
+            });
+
+            // Sade Sati
+            const isSadeSati = kundali.sadeSati?.isActive ?? false;
+            doshas.push({
+              name: { en: 'Sade Sati', hi: 'साढ़े साती' },
+              present: isSadeSati,
+              detail: isSadeSati
+                ? { en: `Currently active — ${kundali.sadeSati?.currentPhase || 'ongoing'}`, hi: `वर्तमान में सक्रिय — ${kundali.sadeSati?.currentPhase || 'चालू'}` }
+                : { en: 'Not currently active', hi: 'वर्तमान में सक्रिय नहीं' },
+            });
+
+            return (
+            <div className="space-y-6">
+              {/* Print/PDF controls */}
+              <div className="flex justify-center gap-3 mb-4">
+                <button
+                  onClick={async () => {
+                    const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
+                    exportKundaliPDF(kundali, locale as Locale, tip ?? undefined);
+                  }}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                >
+                  <Download className="w-4 h-4" />
+                  PDF
+                </button>
+                <PrintButton
+                  contentHtml={generateKundaliPrintHtml(kundali, locale as 'en' | 'hi' | 'sa')}
+                  title={`Patrika — ${bd.name}`}
+                  label={locale === 'en' ? 'Print' : 'प्रिंट'}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
+                />
+              </div>
+
+              {/* Patrika content */}
+              <div ref={patrikaRef} className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8 space-y-8">
+
+                {/* Header: Om + Name + Birth Details */}
+                <div className="text-center space-y-3">
+                  <div className="text-4xl sm:text-5xl text-gold-primary" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ</div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
+                    {locale === 'en' ? 'Janma Patrika' : 'जन्म पत्रिका'}
+                  </h2>
+                  <div className="max-w-md mx-auto">
+                    <p className="text-gold-primary text-lg font-bold" style={headingFont}>{bd.name || (locale === 'en' ? 'Native' : 'जातक')}</p>
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 mt-3 text-sm">
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Date of Birth' : 'जन्म तिथि'}</span>
+                      <span className="text-text-secondary text-left font-mono">{bd.date}</span>
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Time of Birth' : 'जन्म समय'}</span>
+                      <span className="text-text-secondary text-left font-mono">{bd.time}</span>
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Place' : 'स्थान'}</span>
+                      <span className="text-text-secondary text-left">{bd.place || `${bd.lat.toFixed(2)}N, ${bd.lng.toFixed(2)}E`}</span>
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Ayanamsha' : 'अयनांश'}</span>
+                      <span className="text-text-secondary text-left font-mono">Lahiri {kundali.ayanamshaValue.toFixed(4)}°</span>
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Ascendant' : 'लग्न'}</span>
+                      <span className="text-text-secondary text-left" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-gold-primary/10" />
+
+                {/* D1 + D9 Charts Side by Side */}
+                <div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="text-center">
+                      <h3 className="text-gold-primary text-sm font-bold uppercase tracking-wider mb-3">
+                        {locale === 'en' ? 'D1 — Rashi Chart' : 'D1 — राशि चक्र'}
+                      </h3>
+                      <div className="flex justify-center">
+                        {chartStyle === 'south' ? (
+                          <ChartSouth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} />
+                        ) : (
+                          <ChartNorth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} />
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="text-gold-primary text-sm font-bold uppercase tracking-wider mb-3">
+                        {locale === 'en' ? 'D9 — Navamsha Chart' : 'D9 — नवांश चक्र'}
+                      </h3>
+                      <div className="flex justify-center">
+                        {chartStyle === 'south' ? (
+                          <ChartSouth data={kundali.navamshaChart} title={locale === 'en' ? 'D9 Navamsha' : 'D9 नवांश'} size={280} />
+                        ) : (
+                          <ChartNorth data={kundali.navamshaChart} title={locale === 'en' ? 'D9 Navamsha' : 'D9 नवांश'} size={280} />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="border-t border-gold-primary/10" />
+
+                {/* Planet Positions Table */}
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
+                    {locale === 'en' ? 'Planet Positions' : 'ग्रह स्थिति'}
+                  </h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm border-collapse">
+                      <thead>
+                        <tr className="border-b border-gold-primary/20">
+                          <th className="text-gold-dark text-left py-2 px-3 font-semibold">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
+                          <th className="text-gold-dark text-left py-2 px-3 font-semibold">{locale === 'en' ? 'Sign' : 'राशि'}</th>
+                          <th className="text-gold-dark text-center py-2 px-3 font-semibold">{locale === 'en' ? 'House' : 'भाव'}</th>
+                          <th className="text-gold-dark text-right py-2 px-3 font-semibold">{locale === 'en' ? 'Degree' : 'अंश'}</th>
+                          <th className="text-gold-dark text-left py-2 px-3 font-semibold">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}</th>
+                          <th className="text-gold-dark text-center py-2 px-3 font-semibold">{locale === 'en' ? 'Pada' : 'पाद'}</th>
+                          <th className="text-gold-dark text-center py-2 px-3 font-semibold">R</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {kundali.planets.map((p) => (
+                          <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/[0.03]">
+                            <td className="py-2 px-3 font-medium" style={{ color: PLANET_COLORS[p.planet.id] || '#d4a853' }}>
+                              <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.planet.name[locale]}</span>
+                            </td>
+                            <td className="py-2 px-3 text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {p.signName[locale]}
+                            </td>
+                            <td className="py-2 px-3 text-text-secondary text-center font-mono">{p.house}</td>
+                            <td className="py-2 px-3 text-text-secondary text-right font-mono">{p.degree}</td>
+                            <td className="py-2 px-3 text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {p.nakshatra.name[locale]}
+                            </td>
+                            <td className="py-2 px-3 text-text-secondary text-center font-mono">{p.pada}</td>
+                            <td className="py-2 px-3 text-center">
+                              {p.isRetrograde ? <span className="text-red-400 font-bold">R</span> : <span className="text-text-secondary/20">—</span>}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="border-t border-gold-primary/10" />
+
+                {/* Vimshottari Dasha Summary */}
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
+                    {locale === 'en' ? 'Vimshottari Maha Dasha' : 'विंशोत्तरी महादशा'}
+                  </h3>
+                  <div className="space-y-2">
+                    {mahaDashas.map((d, i) => {
+                      const start = new Date(d.startDate);
+                      const end = new Date(d.endDate);
+                      const isCurrent = now >= start && now <= end;
+                      const isPast = now > end;
+                      return (
+                        <div key={i} className={`flex items-center justify-between px-4 py-2.5 rounded-lg transition-all ${isCurrent ? 'bg-gold-primary/10 border border-gold-primary/30' : 'border border-gold-primary/5'} ${isPast ? 'opacity-40' : ''}`}>
+                          <div className="flex items-center gap-3">
+                            <span className={`w-2 h-2 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/40'}`} />
+                            <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {d.planetName[locale]}
+                            </span>
+                            {isCurrent && <span className="text-[10px] text-gold-primary font-bold uppercase tracking-wider">{locale === 'en' ? 'Current' : 'वर्तमान'}</span>}
+                          </div>
+                          <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="border-t border-gold-primary/10" />
+
+                {/* Key Doshas */}
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
+                    {locale === 'en' ? 'Key Doshas' : 'प्रमुख दोष'}
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {doshas.map((dosha, i) => (
+                      <div key={i} className={`rounded-xl p-4 border ${dosha.present ? 'bg-red-500/5 border-red-500/20' : 'bg-emerald-500/5 border-emerald-500/15'}`}>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`w-2.5 h-2.5 rounded-full ${dosha.present ? 'bg-red-400' : 'bg-emerald-400'}`} />
+                          <span className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                            {dosha.name[locale === 'en' ? 'en' : 'hi']}
+                          </span>
+                        </div>
+                        <p className="text-text-secondary/60 text-xs ml-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {dosha.detail[locale === 'en' ? 'en' : 'hi']}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-gold-primary/10" />
+
+                {/* Footer */}
+                <div className="text-center pt-2">
+                  <p className="text-text-secondary/30 text-xs">
+                    Generated by <span className="text-gold-dark/50">Dekho Panchang</span> — dekhopanchang.com
+                  </p>
+                </div>
+              </div>
+            </div>
+            );
+          })()}
+
         </motion.div>
       )}
     </div>

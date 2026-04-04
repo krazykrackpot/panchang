@@ -92,8 +92,9 @@ export default function SearchModal() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [isMac, setIsMac] = useState(false);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { setMounted(true); setIsMac(/Mac|iPhone|iPad/.test(navigator.userAgent)); }, []);
 
   // Cmd+K / Ctrl+K handler
   useEffect(() => {
@@ -151,8 +152,8 @@ export default function SearchModal() {
       >
         <Search className="w-3.5 h-3.5" />
         <span className="hidden sm:inline">{locale === 'en' ? 'Search' : 'खोजें'}</span>
-        <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/40 font-mono ml-1">
-          {typeof navigator !== 'undefined' && /Mac/.test(navigator.userAgent) ? '⌘' : 'Ctrl+'}K
+        <kbd className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/40 font-mono ml-1" suppressHydrationWarning>
+          {isMac ? '⌘' : 'Ctrl+'}K
         </kbd>
       </button>
     );

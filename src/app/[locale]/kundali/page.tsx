@@ -28,7 +28,8 @@ import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { Locale } from '@/types/panchang';
-import type { SadeSatiAnalysis } from '@/lib/kundali/sade-sati-analysis';
+import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
@@ -1256,11 +1257,35 @@ export default function KundaliPage() {
               <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
                 {locale === 'en' ? 'Argala — Planetary Intervention' : 'अर्गला — ग्रह हस्तक्षेप'}
               </h3>
-              <p className="text-text-secondary/70 text-sm text-center mb-2 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {locale === 'en'
-                  ? 'Argala (from Jaimini Sutras / BPHS Ch.31) shows which planets actively intervene in each house\'s affairs — either supporting its significations or obstructing them. Planets in the 2nd, 4th, and 11th from a house create positive Argala; planets in the 3rd, 10th, and 12th create Virodha (counter-intervention).'
-                  : 'अर्गला (जैमिनी सूत्र / BPHS अ.31) दर्शाती है कि कौन से ग्रह प्रत्येक भाव में सक्रिय हस्तक्षेप करते हैं — समर्थन या अवरोध। 2, 4, 11वें भाव के ग्रह शुभ अर्गला बनाते हैं; 3, 10, 12वें भाव के ग्रह विरोध अर्गला।'}
-              </p>
+
+              <InfoBlock id="kundali-argala" title={locale === 'en' ? 'What is Argala and how to read it?' : 'अर्गला क्या है और इसे कैसे पढ़ें?'}>
+                {locale === 'en' ? (
+                  <div className="space-y-3">
+                    <p><strong>Argala</strong> (from Jaimini Sutras, BPHS Ch.31) reveals which planets actively <strong>push</strong> or <strong>block</strong> each area of your life. Unlike Bhavabala (which measures a house&apos;s built-in strength), Argala shows <strong>external forces</strong> acting on each house.</p>
+                    <p><strong>How it works:</strong> Planets positioned in the 2nd, 4th, 5th, 8th, and 11th houses from any house create <strong>Argala</strong> (intervention/support). Planets in the 12th, 10th, 9th, 6th, and 3rd houses respectively create <strong>Virodha</strong> (counter-intervention). If the supporting planets outnumber the countering ones, the house is &quot;Supported.&quot;</p>
+                    <p><strong>Why Bhavabala and Argala can differ:</strong> A house can be inherently strong (high Bhavabala) yet face external obstruction (Argala). For example, a strong 7th house with Argala obstruction means: your marriage capacity is excellent, but outside circumstances create friction. Conversely, a weak house with strong Argala support means: external help compensates for inherent weakness.</p>
+                    <p><strong>How to use it:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-emerald-400">Supported houses</strong> — Life areas where planets actively help you. Lean into these — efforts here get cosmic tailwind.</li>
+                      <li><strong className="text-red-400">Obstructed houses</strong> — Life areas facing planetary resistance. Not blocked permanently — the upayas (remedies) shown can reduce friction.</li>
+                      <li><strong className="text-amber-400">Neutral houses</strong> — Balanced forces. Results depend more on your own effort than planetary push/pull.</li>
+                    </ul>
+                    <p className="text-gold-primary/50 text-xs">Special rules: 3+ malefics in the 3rd create unobstructable Argala. For Ketu&apos;s house, the argala directions are reversed.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p><strong>अर्गला</strong> (जैमिनी सूत्र, BPHS अ.31) दर्शाती है कि कौन से ग्रह आपके जीवन के प्रत्येक क्षेत्र को सक्रिय रूप से <strong>बढ़ावा</strong> या <strong>अवरुद्ध</strong> करते हैं। भावबल (जो भाव की अन्तर्निहित शक्ति मापता है) से भिन्न, अर्गला <strong>बाह्य शक्तियों</strong> को दर्शाती है।</p>
+                    <p><strong>कैसे काम करती है:</strong> किसी भाव से 2, 4, 5, 8, 11वें भाव के ग्रह <strong>अर्गला</strong> (समर्थन) बनाते हैं। 12, 10, 9, 6, 3वें भाव के ग्रह <strong>विरोध अर्गला</strong> बनाते हैं।</p>
+                    <p><strong>भावबल और अर्गला में अन्तर क्यों:</strong> एक भाव अन्तर्निहित रूप से बलवान (उच्च भावबल) हो सकता है फिर भी बाह्य अवरोध (अर्गला) झेल सकता है। उदाहरण: बलवान 7वाँ भाव + अर्गला अवरोध = विवाह की क्षमता उत्कृष्ट, पर बाहरी परिस्थितियाँ बाधा डालती हैं।</p>
+                    <p><strong>उपयोग:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-emerald-400">समर्थित भाव</strong> — जहाँ ग्रह सक्रिय रूप से सहायता करते हैं। इन क्षेत्रों में प्रयास करें।</li>
+                      <li><strong className="text-red-400">अवरुद्ध भाव</strong> — ग्रह प्रतिरोध। स्थायी नहीं — उपायों से घर्षण कम होता है।</li>
+                      <li><strong className="text-amber-400">तटस्थ भाव</strong> — सन्तुलित। परिणाम आपके प्रयास पर निर्भर।</li>
+                    </ul>
+                  </div>
+                )}
+              </InfoBlock>
 
               {/* Summary */}
               <div className="flex justify-center gap-4 text-xs">
@@ -1374,8 +1399,8 @@ export default function KundaliPage() {
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed">
                     {isHi
-                      ? `यह आपकी कुण्डली का सबसे शुभ बिंदु है। ${yogiPlanetName} आपका योगी ग्रह है — इसकी दशा/अन्तर्दशा में सर्वोत्तम परिणाम मिलते हैं। जब बृहस्पति इस अंश (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}) पर गोचर करता है, तो जीवन में बड़ी सकारात्मक घटना होती है। इस ग्रह को बलवान रखें — इसका रत्न, मंत्र, या दान करें।`
-                      : `This is the single most auspicious degree in your entire chart. ${yogiPlanetName} is your Yogi Planet — its dasha/antardasha brings the BEST results in your life. When Jupiter transits over this degree (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}), expect a major positive event — promotion, marriage, windfall, or breakthrough. Keep this planet strong — wear its gemstone, chant its mantra, make donations on its day.`}
+                      ? `यह आपकी कुण्डली का सबसे शुभ बिंदु है। ${yogiPlanetName} आपका योगी ग्रह है — इसकी दशा/अन्तर्दशा में सर्वोत्तम परिणाम मिलते हैं। ${yogiPlanetName} को बलवान रखें — इसका रत्न, मंत्र, या दान करें। अलग से, जब गोचरी बृहस्पति इस अंश (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}) पर आता है, तो जीवन में बड़ी सकारात्मक घटना होती है — यह लगभग हर 12 वर्ष में होता है।`
+                      : `This is the single most auspicious degree in your entire chart. ${yogiPlanetName} is your Yogi Planet — its dasha/antardasha brings the BEST results in your life. Keep ${yogiPlanetName} strong — wear its gemstone, chant its mantra, make donations on its day. Separately, when transiting Jupiter crosses this degree (${kundali.sphutas.yogiPoint.degree.toFixed(0)}° ${signName(kundali.sphutas.yogiPoint.sign)}), expect a major positive event — this happens roughly once every 12 years and is your most powerful transit window.`}
                   </div>
                 </div>
 
@@ -4068,10 +4093,52 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                           }`}>
                             {ph.phase === 'rising' ? (locale === 'en' ? 'Rising' : 'उदय') :
                              ph.phase === 'peak' ? (locale === 'en' ? 'Peak' : 'शिखर') :
-                             (locale === 'en' ? 'Setting' : 'अस्त')}
+                             (locale === 'en' ? 'Setting' : 'अस���त')}
                             {' '}{ph.startYear}-{ph.endYear}
                           </span>
                         ))}
+                      </div>
+                    )}
+
+                    {/* Nakshatra transit sub-items for active cycle */}
+                    {cycle.isActive && sadeSati.nakshatraTimeline.length > 0 && (
+                      <div className="mt-3 ml-1 space-y-1">
+                        <div className="text-[10px] text-text-tertiary uppercase tracking-wider mb-1.5">
+                          {locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
+                        </div>
+                        {sadeSati.nakshatraTimeline.map((nt, k) => {
+                          const nak = NAKSHATRAS[nt.nakshatra - 1];
+                          const nakName = nak?.name?.[locale as 'en' | 'hi' | 'sa'] || nak?.name?.en || '';
+                          const yearLabel = nt.firstYear === nt.lastYear ? String(nt.firstYear) : `${nt.firstYear}–${nt.lastYear}`;
+                          return (
+                            <div
+                              key={k}
+                              className={`flex items-center gap-2 text-[11px] px-2.5 py-1.5 rounded-lg border ${
+                                nt.isBirthNakshatra
+                                  ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 font-bold'
+                                  : nt.isCurrent
+                                    ? 'bg-gold-primary/10 border-gold-primary/25 text-gold-light'
+                                    : 'border-transparent text-text-secondary'
+                              }`}
+                            >
+                              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                                nt.isCurrent ? 'bg-gold-primary animate-pulse' : nt.isBirthNakshatra ? 'bg-amber-400' : 'bg-text-tertiary/40'
+                              }`} />
+                              <span className="flex-1">{nakName}</span>
+                              <span className="font-mono text-[10px] opacity-70">{yearLabel}</span>
+                              {nt.isBirthNakshatra && (
+                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
+                                  {locale === 'en' ? 'Birth' : 'जन्म'}
+                                </span>
+                              )}
+                              {nt.isCurrent && !nt.isBirthNakshatra && (
+                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
+                                  {locale === 'en' ? 'Now' : 'अभी'}
+                                </span>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

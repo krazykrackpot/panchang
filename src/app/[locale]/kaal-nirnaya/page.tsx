@@ -270,56 +270,7 @@ export default function KaalNirnayaPage() {
         </p>
       </motion.div>
 
-      {/* ═══ SECTION 1: HINDU TIME UNITS ═══ */}
-      <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="mb-20">
-        <div className="text-center mb-8">
-          <div className="flex justify-center mb-3"><Clock className="w-14 h-14 text-gold-primary" /></div>
-          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.kaalMaan[locale]}</h2>
-          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.kaalMaanDesc[locale]}</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gold-primary/20 bg-gold-primary/5">
-                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {locale === 'en' ? 'Unit' : 'इकाई'}
-                  </th>
-                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {locale === 'en' ? 'Sanskrit' : 'संस्कृत'}
-                  </th>
-                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {locale === 'en' ? 'Composition' : 'संरचना'}
-                  </th>
-                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
-                    {locale === 'en' ? 'Modern Equivalent' : 'आधुनिक समतुल्य'}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {TIME_UNITS.map((row, i) => (
-                  <tr key={row.unit} className={`border-b border-gold-primary/5 hover:bg-bg-tertiary/30 transition-colors ${row.highlight ? 'bg-gold-primary/3' : ''}`}>
-                    <td className="px-5 py-3">
-                      <span className={`font-bold text-sm ${row.highlight ? 'text-gold-light' : 'text-text-primary'}`}>
-                        {row.unit}
-                      </span>
-                      {row.highlight && <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">Key</span>}
-                    </td>
-                    <td className="px-5 py-3">
-                      <span className="text-gold-dark text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{row.hi}</span>
-                    </td>
-                    <td className="px-5 py-3 text-text-secondary text-sm font-mono">{row.value}</td>
-                    <td className="px-5 py-3 text-text-secondary text-sm">{row.modern}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ═══ SECTION 2: FOUR YUGAS ═══ */}
+      {/* ═══ SECTION 1: FOUR YUGAS ═══ */}
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="mb-20">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
@@ -401,7 +352,197 @@ export default function KaalNirnayaPage() {
 
       </motion.section>
 
-      {/* ═══ SECTION 2B: COSMIC TIME HIERARCHY — Mahayuga to Brahma's Life ═══ */}
+      {/* ═══ SECTION 2: WHERE ARE WE NOW? ═══ */}
+      <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.13 }} className="mb-20">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5">
+          <h2 className="text-3xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
+            {locale === 'en' ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            {[
+              { label: { en: 'Current Brahma', hi: 'वर्तमान ब्रह्मा' }, value: { en: '51st year (Dvitiya Parardha)', hi: '51वाँ वर्ष (द्वितीय परार्ध)' }, color: 'text-rose-300' },
+              { label: { en: 'Current Kalpa', hi: 'वर्तमान कल्प' }, value: { en: 'Shveta-Varaha Kalpa', hi: 'श्वेत-वराह कल्प' }, color: 'text-gold-light' },
+              { label: { en: 'Current Manu', hi: 'वर्तमान मनु' }, value: { en: '7th — Vaivasvata', hi: '7वें — वैवस्वत' }, color: 'text-blue-300' },
+              { label: { en: 'Current Mahayuga', hi: 'वर्तमान महायुग' }, value: { en: '28th of 71', hi: '71 में से 28वाँ' }, color: 'text-emerald-300' },
+              { label: { en: 'Current Yuga', hi: 'वर्तमान युग' }, value: { en: 'Kali Yuga (4th)', hi: 'कलियुग (4था)' }, color: 'text-red-300' },
+              { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष' }, color: 'text-amber-300' },
+            ].map((item) => (
+              <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
+                <div className="text-gold-dark/60 text-[10px] uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
+                <div className={`font-bold text-sm ${item.color}`}>{t2(item.value)}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Visual: Brahma's life progress */}
+          <div className="mb-4">
+            <div className="flex justify-between text-[10px] text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
+              <span>{locale === 'en' ? "Brahma's Life Progress" : 'ब्रह्मा के जीवन की प्रगति'}</span>
+              <span className="text-gold-primary">~50%</span>
+            </div>
+            <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden relative">
+              <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/50 via-gold-primary/50 to-rose-500/50" style={{ width: '50.5%' }} />
+              <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
+            </div>
+            <div className="flex justify-between text-[10px] text-text-secondary/50 mt-1 font-mono">
+              <span>{locale === 'en' ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
+              <span className="text-gold-light/60">{locale === 'en' ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
+              <span>{locale === 'en' ? 'Mahapralaya' : 'महाप्रलय'}</span>
+            </div>
+          </div>
+
+          {/* Parardha explanation */}
+          <div className="mt-6 pt-6 border-t border-gold-primary/15 mb-6">
+            <h4 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>
+              {locale === 'en' ? 'What is a Parardha?' : 'परार्ध क्या है?'}
+            </h4>
+            <p className="text-text-secondary text-sm leading-relaxed mb-4">
+              {locale === 'en'
+                ? 'Brahma\'s 100-year lifespan is divided into two halves called Parardhas (परार्ध, literally "half of the ultimate"). Each Parardha spans 50 Brahma-years, or ~155.52 trillion human years.'
+                : 'ब्रह्मा के 100 वर्ष के जीवनकाल को दो भागों में विभाजित किया गया है जिन्हें परार्ध कहते हैं (परार्ध, शाब्दिक अर्थ "परम का अर्ध")। प्रत्येक परार्ध 50 ब्रह्म-वर्ष या ~155.52 खरब मानव वर्ष का है।'}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-emerald-400 font-bold text-sm">{locale === 'en' ? 'Prathama Parardha' : 'प्रथम परार्ध'}</span>
+                  <span className="text-text-secondary/40 text-xs">{locale === 'en' ? '(First Half)' : '(पहला भाग)'}</span>
+                </div>
+                <div className="text-text-secondary text-xs leading-relaxed mb-2">
+                  {locale === 'en'
+                    ? 'Brahma\'s years 1-50. This entire half has already elapsed. The Padma Kalpa was the last Kalpa of this Parardha.'
+                    : 'ब्रह्मा के वर्ष 1-50। यह पूरा भाग बीत चुका है। पद्म कल्प इस परार्ध का अंतिम कल्प था।'}
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-1.5 flex-1 bg-emerald-500/30 rounded-full" />
+                  <span className="text-emerald-400/60 text-[10px] font-mono">{locale === 'en' ? 'COMPLETE' : 'पूर्ण'}</span>
+                </div>
+              </div>
+              <div className="rounded-xl p-4 bg-bg-primary/40 border border-rose-500/20">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-rose-300 font-bold text-sm">{locale === 'en' ? 'Dvitiya Parardha' : 'द्वितीय परार्ध'}</span>
+                  <span className="px-1.5 py-0.5 text-[10px] bg-rose-500/20 text-rose-300 rounded font-bold uppercase border border-rose-500/30">{locale === 'en' ? 'NOW' : 'अभी'}</span>
+                </div>
+                <div className="text-text-secondary text-xs leading-relaxed mb-2">
+                  {locale === 'en'
+                    ? 'Brahma\'s years 51-100. We are in the very first year (51st overall) of this half. The current Kalpa — Shveta-Varaha — is the first day of year 51.'
+                    : 'ब्रह्मा के वर्ष 51-100। हम इस भाग के पहले ही वर्ष (कुल 51वें) में हैं। वर्तमान कल्प — श्वेत-वराह — वर्ष 51 का पहला दिन है।'}
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="h-1.5 flex-1 bg-bg-tertiary rounded-full overflow-hidden">
+                    <div className="h-full bg-rose-400/40 rounded-full" style={{ width: '2%' }} />
+                  </div>
+                  <span className="text-rose-300/60 text-[10px] font-mono">~1%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* The 30 Kalpas */}
+          <div className="mt-6 pt-6 border-t border-gold-primary/15 mb-6">
+            <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
+              {locale === 'en' ? 'The 30 Kalpas — Days of Brahma' : '30 कल्प — ब्रह्मा के दिन'}
+            </h4>
+            <p className="text-text-secondary text-xs mb-4 leading-relaxed">
+              {locale === 'en'
+                ? 'Each day of Brahma (4.32 billion years) is a Kalpa, named after the form or activity of creation that characterizes it. The Matsya Purana and Vayu Purana list 30 Kalpas. We are currently in the Shveta-Varaha Kalpa — the first Kalpa of Brahma\'s 51st year.'
+                : 'ब्रह्मा का प्रत्येक दिन (4.32 अरब वर्ष) एक कल्प है, जिसका नाम उस सृष्टि के स्वरूप या गतिविधि पर रखा गया है। मत्स्य पुराण और वायु पुराण में 30 कल्पों की सूची है। हम वर्तमान में श्वेत-वराह कल्प में हैं — ब्रह्मा के 51वें वर्ष का पहला कल्प।'}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {([
+                { n: 1, en: 'Shveta-Varaha', hi: 'श्वेत-वराह', meaning: { en: 'White Boar — Vishnu as Varaha lifts Earth', hi: 'श्वेत वराह — विष्णु वराह रूप में पृथ्वी उठाते हैं' }, current: true },
+                { n: 2, en: 'Nilalohita', hi: 'नीललोहित', meaning: { en: 'Blue-Red — Shiva as Nilalohita', hi: 'नील-लोहित — शिव नीललोहित रूप' } },
+                { n: 3, en: 'Vamadeva', hi: 'वामदेव', meaning: { en: 'Gracious Lord — Shiva as Vamadeva', hi: 'वामदेव — शिव का सौम्य रूप' } },
+                { n: 4, en: 'Gathantara', hi: 'गठान्तर', meaning: { en: 'Between the knots of time', hi: 'काल की गाँठों के बीच' } },
+                { n: 5, en: 'Raurava', hi: 'रौरव', meaning: { en: 'Named after Ruru deer form', hi: 'रुरु मृग रूप के नाम पर' } },
+                { n: 6, en: 'Prana', hi: 'प्राण', meaning: { en: 'The Cosmic Breath', hi: 'ब्रह्मांडीय प्राण' } },
+                { n: 7, en: 'Brihad', hi: 'बृहत्', meaning: { en: 'The Great Expansion', hi: 'महान विस्तार' } },
+                { n: 8, en: 'Kandarpa', hi: 'कन्दर्प', meaning: { en: 'Desire — creative impulse', hi: 'काम — सृजन की प्रेरणा' } },
+                { n: 9, en: 'Sadya', hi: 'सद्य', meaning: { en: 'The Immediate', hi: 'तत्काल' } },
+                { n: 10, en: 'Ishana', hi: 'ईशान', meaning: { en: 'The Ruler — Shiva as Ishana', hi: 'ईशान — शिव का शासक रूप' } },
+                { n: 11, en: 'Dhyana', hi: 'ध्यान', meaning: { en: 'Meditation', hi: 'ध्यान' } },
+                { n: 12, en: 'Sarasvata', hi: 'सारस्वत', meaning: { en: 'Of Sarasvati — knowledge', hi: 'सरस्वती — ज्ञान का कल्प' } },
+                { n: 13, en: 'Udana', hi: 'उदान', meaning: { en: 'Upward breath', hi: 'ऊर्ध्व प्राण' } },
+                { n: 14, en: 'Garuda', hi: 'गरुड', meaning: { en: 'The divine eagle of Vishnu', hi: 'विष्णु का दिव्य वाहन गरुड' } },
+                { n: 15, en: 'Kaurma', hi: 'कौर्म', meaning: { en: 'Tortoise — Vishnu as Kurma', hi: 'कूर्म — विष्णु का कच्छप रूप' } },
+                { n: 16, en: 'Narasimha', hi: 'नारसिंह', meaning: { en: 'Man-Lion avatar of Vishnu', hi: 'विष्णु का नरसिंह अवतार' } },
+                { n: 17, en: 'Samana', hi: 'समान', meaning: { en: 'The Equalizing breath', hi: 'समान प्राण' } },
+                { n: 18, en: 'Agneya', hi: 'आग्नेय', meaning: { en: 'Of Agni — fire creation', hi: 'अग्नि — अग्नि सृष्टि' } },
+                { n: 19, en: 'Soma', hi: 'सोम', meaning: { en: 'Moon — the nectar of immortality', hi: 'चन्द्र — अमृत का कल्प' } },
+                { n: 20, en: 'Manava', hi: 'मानव', meaning: { en: 'Of Manu — human creation', hi: 'मनु — मानव सृष्टि' } },
+                { n: 21, en: 'Tatpurusha', hi: 'तत्पुरुष', meaning: { en: 'Supreme Person — Shiva as Tatpurusha', hi: 'तत्पुरुष — शिव का परम पुरुष रूप' } },
+                { n: 22, en: 'Vaikunta', hi: 'वैकुण्ठ', meaning: { en: 'Vishnu\'s supreme abode', hi: 'विष्णु का परम धाम' } },
+                { n: 23, en: 'Lakshmi', hi: 'लक्ष्मी', meaning: { en: 'Goddess of prosperity', hi: 'समृद्धि की देवी' } },
+                { n: 24, en: 'Savitri', hi: 'सावित्री', meaning: { en: 'Solar creative power', hi: 'सौर सृजन शक्ति' } },
+                { n: 25, en: 'Aghora', hi: 'अघोर', meaning: { en: 'Non-terrifying — Shiva as Aghora', hi: 'अघोर — शिव का अभय रूप' } },
+                { n: 26, en: 'Varaha', hi: 'वराह', meaning: { en: 'Boar incarnation', hi: 'वराह अवतार' } },
+                { n: 27, en: 'Vairaja', hi: 'वैराज', meaning: { en: 'Of Viraj — the cosmic body', hi: 'विराज — विराट पुरुष का कल्प' } },
+                { n: 28, en: 'Gauri', hi: 'गौरी', meaning: { en: 'The radiant — Parvati\'s form', hi: 'गौरी — पार्वती का उज्ज्वल रूप' } },
+                { n: 29, en: 'Mahesvara', hi: 'माहेश्वर', meaning: { en: 'The Great Lord — Shiva', hi: 'महेश्वर — शिव' } },
+                { n: 30, en: 'Pitri', hi: 'पितृ', meaning: { en: 'Of the ancestors', hi: 'पितरों का कल्प' } },
+              ] as { n: number; en: string; hi: string; meaning: { en: string; hi: string }; current?: boolean }[]).map((k) => (
+                <div key={k.n} className={`rounded-lg px-3 py-2.5 flex items-start gap-2.5 ${k.current ? 'bg-gold-primary/8 border border-gold-primary/25' : 'bg-bg-primary/30 border border-gold-primary/5'}`}>
+                  <span className={`text-[10px] font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/40'}`}>{String(k.n).padStart(2, '0')}</span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className={`font-bold text-xs ${k.current ? 'text-gold-light' : 'text-text-primary'}`}>{locale === 'en' ? k.en : k.hi}</span>
+                      {locale === 'en' && <span className="text-gold-dark/40 text-[10px]" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.hi}</span>}
+                      {k.current && <span className="px-1 py-0 text-[8px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{locale === 'en' ? 'CURRENT' : 'वर्तमान'}</span>}
+                    </div>
+                    <p className="text-text-secondary/60 text-[10px] leading-snug mt-0.5">{t2(k.meaning)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pralaya types */}
+          <div className="pt-6 border-t border-gold-primary/15">
+            <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
+              {locale === 'en' ? 'The Four Types of Pralaya (Dissolution)' : 'प्रलय के चार प्रकार'}
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                {
+                  name: { en: 'Nitya Pralaya', hi: 'नित्य प्रलय' },
+                  desc: { en: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', hi: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।' },
+                  color: 'text-emerald-400', border: 'border-emerald-500/20',
+                },
+                {
+                  name: { en: 'Naimittika Pralaya', hi: 'नैमित्तिक प्रलय' },
+                  desc: { en: 'Brahma\'s nightly sleep — the three lower worlds dissolve, higher lokas survive. Occurs every Kalpa (4.32B years).', hi: 'ब्रह्मा की रात्रि निद्रा — तीन निचले लोक विलीन, उच्चतर लोक बचते हैं। प्रत्येक कल्प (4.32 अरब वर्ष) में होता है।' },
+                  color: 'text-blue-400', border: 'border-blue-500/20',
+                },
+                {
+                  name: { en: 'Prakritika Pralaya (Mahapralaya)', hi: 'प्राकृतिक प्रलय (महाप्रलय)' },
+                  desc: { en: 'Brahma\'s death — everything dissolves into Prakriti (primordial nature). Even Brahma ceases. Occurs after 100 Brahma years (311 trillion years).', hi: 'ब्रह्मा की मृत्यु — ब्रह्मा सहित सब कुछ प्रकृति में विलीन। 100 ब्रह्मवर्ष (311 खरब वर्ष) बाद होता है।' },
+                  color: 'text-rose-400', border: 'border-rose-500/20',
+                },
+                {
+                  name: { en: 'Atyantika Pralaya', hi: 'आत्यन्तिक प्रलय' },
+                  desc: { en: 'Individual liberation (Moksha) — the soul\'s personal dissolution from the cycle of rebirth. Not cosmic, but the ultimate goal of Jyotish and Vedanta.', hi: 'व्यक्तिगत मुक्ति (मोक्ष) — आत्मा का पुनर्जन्म चक्र से मुक्ति। ब्रह्मांडीय नहीं, लेकिन ज्योतिष और वेदान्त का अन्तिम लक्ष्य।' },
+                  color: 'text-gold-primary', border: 'border-gold-primary/20',
+                },
+              ].map((p) => (
+                <div key={p.name.en} className={`rounded-lg p-4 border ${p.border} bg-bg-primary/30`}>
+                  <div className={`font-bold text-sm mb-1 ${p.color}`}>{t2(p.name)}</div>
+                  <p className="text-text-secondary text-xs leading-relaxed">{t2(p.desc)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* After Mahapralaya */}
+          <div className="mt-6 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10 text-center">
+            <p className="text-text-secondary text-sm leading-relaxed italic">
+              {locale === 'en'
+                ? '"After Mahapralaya, for a period equal to Brahma\'s entire lifespan, nothing exists but Maha-Vishnu resting on the cosmic serpent Shesha upon the causal ocean. Then, from His navel springs a lotus, from which a new Brahma is born, and 311 trillion years of creation begin again." — Bhagavata Purana'
+                : '"महाप्रलय के बाद, ब्रह्मा के सम्पूर्ण जीवनकाल के बराबर अवधि तक, कारण सागर पर शेषनाग पर विश्राम करते महा-विष्णु के अतिरिक्त कुछ भी विद्यमान नहीं रहता। फिर, उनकी नाभि से एक कमल प्रकट होता है, जिससे नए ब्रह्मा का जन्म होता है, और 311 खरब वर्षों की सृष्टि पुनः आरंभ होती है।" — भागवत पुराण'}
+            </p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ SECTION 3: COSMIC TIME HIERARCHY — Mahayuga to Brahma's Life ═══ */}
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }} className="mb-20">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
@@ -575,99 +716,9 @@ export default function KaalNirnayaPage() {
             </motion.div>
           ))}
         </div>
-
-        {/* Where are we now? */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5"
-        >
-          <h3 className="text-xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
-            {locale === 'en' ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-            {[
-              { label: { en: 'Current Brahma', hi: 'वर्तमान ब्रह्मा' }, value: { en: '51st year (Dvitiya Parardha)', hi: '51वाँ वर्ष (द्वितीय परार्ध)' }, color: 'text-rose-300' },
-              { label: { en: 'Current Kalpa', hi: 'वर्तमान कल्प' }, value: { en: 'Shveta-Varaha Kalpa', hi: 'श्वेत-वराह कल्प' }, color: 'text-gold-light' },
-              { label: { en: 'Current Manu', hi: 'वर्तमान मनु' }, value: { en: '7th — Vaivasvata', hi: '7वें — वैवस्वत' }, color: 'text-blue-300' },
-              { label: { en: 'Current Mahayuga', hi: 'वर्तमान महायुग' }, value: { en: '28th of 71', hi: '71 में से 28वाँ' }, color: 'text-emerald-300' },
-              { label: { en: 'Current Yuga', hi: 'वर्तमान युग' }, value: { en: 'Kali Yuga (4th)', hi: 'कलियुग (4था)' }, color: 'text-red-300' },
-              { label: { en: 'Kali Yuga elapsed', hi: 'कलियुग बीत चुका' }, value: { en: '~5,128 of 432,000 years', hi: '4,32,000 में से ~5,128 वर्ष' }, color: 'text-amber-300' },
-            ].map((item) => (
-              <div key={item.label.en} className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10 text-center">
-                <div className="text-gold-dark/60 text-[10px] uppercase tracking-wider font-bold mb-1.5">{t2(item.label)}</div>
-                <div className={`font-bold text-sm ${item.color}`}>{t2(item.value)}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Visual: Brahma's life progress */}
-          <div className="mb-4">
-            <div className="flex justify-between text-[10px] text-text-secondary mb-1.5 font-bold uppercase tracking-wider">
-              <span>{locale === 'en' ? "Brahma's Life Progress" : 'ब्रह्मा के जीवन की प्रगति'}</span>
-              <span className="text-gold-primary">~50%</span>
-            </div>
-            <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden relative">
-              <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/50 via-gold-primary/50 to-rose-500/50" style={{ width: '50.5%' }} />
-              <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
-            </div>
-            <div className="flex justify-between text-[10px] text-text-secondary/50 mt-1 font-mono">
-              <span>{locale === 'en' ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
-              <span className="text-gold-light/60">{locale === 'en' ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
-              <span>{locale === 'en' ? 'Mahapralaya' : 'महाप्रलय'}</span>
-            </div>
-          </div>
-
-          {/* Pralaya types */}
-          <div className="mt-6 pt-6 border-t border-gold-primary/15">
-            <h4 className="text-gold-light font-bold text-sm mb-4" style={headingFont}>
-              {locale === 'en' ? 'The Four Types of Pralaya (Dissolution)' : 'प्रलय के चार प्रकार'}
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                {
-                  name: { en: 'Nitya Pralaya', hi: 'नित्य प्रलय' },
-                  desc: { en: 'Daily dissolution — the sleep and death of individual beings. Occurs continuously.', hi: 'दैनिक विलय — व्यक्तिगत प्राणियों की नींद और मृत्यु। निरन्तर होता है।' },
-                  color: 'text-emerald-400', border: 'border-emerald-500/20',
-                },
-                {
-                  name: { en: 'Naimittika Pralaya', hi: 'नैमित्तिक प्रलय' },
-                  desc: { en: 'Brahma\'s nightly sleep — the three lower worlds dissolve, higher lokas survive. Occurs every Kalpa (4.32B years).', hi: 'ब्रह्मा की रात्रि निद्रा — तीन निचले लोक विलीन, उच्चतर लोक बचते हैं। प्रत्येक कल्प (4.32 अरब वर्ष) में होता है।' },
-                  color: 'text-blue-400', border: 'border-blue-500/20',
-                },
-                {
-                  name: { en: 'Prakritika Pralaya (Mahapralaya)', hi: 'प्राकृतिक प्रलय (महाप्रलय)' },
-                  desc: { en: 'Brahma\'s death — everything dissolves into Prakriti (primordial nature). Even Brahma ceases. Occurs after 100 Brahma years (311 trillion years).', hi: 'ब्रह्मा की मृत्यु — ब्रह्मा सहित सब कुछ प्रकृति में विलीन। 100 ब्रह्मवर्ष (311 खरब वर्ष) बाद होता है।' },
-                  color: 'text-rose-400', border: 'border-rose-500/20',
-                },
-                {
-                  name: { en: 'Atyantika Pralaya', hi: 'आत्यन्तिक प्रलय' },
-                  desc: { en: 'Individual liberation (Moksha) — the soul\'s personal dissolution from the cycle of rebirth. Not cosmic, but the ultimate goal of Jyotish and Vedanta.', hi: 'व्यक्तिगत मुक्ति (मोक्ष) — आत्मा का पुनर्जन्म चक्र से मुक्ति। ब्रह्मांडीय नहीं, लेकिन ज्योतिष और वेदान्त का अन्तिम लक्ष्य।' },
-                  color: 'text-gold-primary', border: 'border-gold-primary/20',
-                },
-              ].map((p) => (
-                <div key={p.name.en} className={`rounded-lg p-4 border ${p.border} bg-bg-primary/30`}>
-                  <div className={`font-bold text-sm mb-1 ${p.color}`}>{t2(p.name)}</div>
-                  <p className="text-text-secondary text-xs leading-relaxed">{t2(p.desc)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* After Mahapralaya */}
-          <div className="mt-6 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10 text-center">
-            <p className="text-text-secondary text-sm leading-relaxed italic">
-              {locale === 'en'
-                ? '"After Mahapralaya, for a period equal to Brahma\'s entire lifespan, nothing exists but Maha-Vishnu resting on the cosmic serpent Shesha upon the causal ocean. Then, from His navel springs a lotus, from which a new Brahma is born, and 311 trillion years of creation begin again." — Bhagavata Purana'
-                : '"महाप्रलय के बाद, ब्रह्मा के सम्पूर्ण जीवनकाल के बराबर अवधि तक, कारण सागर पर शेषनाग पर विश्राम करते महा-विष्णु के अतिरिक्त कुछ भी विद्यमान नहीं रहता। फिर, उनकी नाभि से एक कमल प्रकट होता है, जिससे नए ब्रह्मा का जन्म होता है, और 311 खरब वर्षों की सृष्टि पुनः आरंभ होती है।" — भागवत पुराण'}
-            </p>
-          </div>
-        </motion.div>
       </motion.section>
 
-      {/* ═══ SECTION 3: AYANAMSHA ═══ */}
+      {/* ═══ SECTION 4: AYANAMSHA ═══ */}
       <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="mb-20">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-3">
@@ -981,6 +1032,55 @@ export default function KaalNirnayaPage() {
             {locale === 'en' ? 'View Full Panchang' : 'पूर्ण पंचांग देखें'}
             <ArrowRight className="w-4 h-4" />
           </Link>
+        </div>
+      </motion.section>
+
+      {/* ═══ SECTION 8: HINDU TIME UNITS (Kaal Maan) ═══ */}
+      <motion.section initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="mb-16">
+        <div className="text-center mb-8">
+          <div className="flex justify-center mb-3"><Clock className="w-14 h-14 text-gold-primary" /></div>
+          <h2 className="text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>{L.kaalMaan[locale]}</h2>
+          <p className="text-text-secondary text-sm max-w-2xl mx-auto">{L.kaalMaanDesc[locale]}</p>
+        </div>
+
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gold-primary/20 bg-gold-primary/5">
+                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
+                    {locale === 'en' ? 'Unit' : 'इकाई'}
+                  </th>
+                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
+                    {locale === 'en' ? 'Sanskrit' : 'संस्कृत'}
+                  </th>
+                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
+                    {locale === 'en' ? 'Composition' : 'संरचना'}
+                  </th>
+                  <th className="text-left px-5 py-4 text-gold-primary text-xs uppercase tracking-wider font-bold">
+                    {locale === 'en' ? 'Modern Equivalent' : 'आधुनिक समतुल्य'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {TIME_UNITS.map((row) => (
+                  <tr key={row.unit} className={`border-b border-gold-primary/5 hover:bg-bg-tertiary/30 transition-colors ${row.highlight ? 'bg-gold-primary/3' : ''}`}>
+                    <td className="px-5 py-3">
+                      <span className={`font-bold text-sm ${row.highlight ? 'text-gold-light' : 'text-text-primary'}`}>
+                        {row.unit}
+                      </span>
+                      {row.highlight && <span className="ml-2 px-1.5 py-0.5 text-[10px] bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">Key</span>}
+                    </td>
+                    <td className="px-5 py-3">
+                      <span className="text-gold-dark text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{row.hi}</span>
+                    </td>
+                    <td className="px-5 py-3 text-text-secondary text-sm font-mono">{row.value}</td>
+                    <td className="px-5 py-3 text-text-secondary text-sm">{row.modern}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </motion.section>
 

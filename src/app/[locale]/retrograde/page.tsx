@@ -3,10 +3,14 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, AlertTriangle, Shield, Zap } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
+import { RASHIS } from '@/lib/constants/rashis';
+import { useBirthDataStore } from '@/stores/birth-data-store';
+import { dateToJD, sunLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
+import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 interface RetroPeriod {
@@ -31,16 +35,151 @@ interface CombustEvent {
   durationDays: number;
 }
 
+// ─── Retrograde interpretations by planet ────────────────────────────────────
+
+const RETRO_MEANING: Record<number, { general: { en: string; hi: string }; dos: { en: string; hi: string }; donts: { en: string; hi: string } }> = {
+  // Mercury (3)
+  3: {
+    general: {
+      en: 'Mercury retrograde disrupts communication, technology, travel, and contracts. Misunderstandings multiply, emails go astray, devices malfunction, and travel plans face delays. Mercury rules information flow — when it reverses, that flow gets turbulent.',
+      hi: 'बुध वक्री संचार, तकनीक, यात्रा और अनुबंधों को बाधित करता है। गलतफहमियाँ बढ़ती हैं, ईमेल भटक जाते हैं, उपकरण खराब होते हैं और यात्रा योजनाएँ विलंबित होती हैं।',
+    },
+    dos: {
+      en: 'Review old projects, reconnect with old contacts, revise documents, back up data, double-check all communications, slow down and reflect.',
+      hi: 'पुरानी परियोजनाओं की समीक्षा करें, पुराने संपर्कों से जुड़ें, दस्तावेज़ों को संशोधित करें, डेटा बैकअप लें, सभी संवाद दोबारा जाँचें।',
+    },
+    donts: {
+      en: 'Avoid signing contracts, launching products, buying electronics, starting new ventures, or making major decisions based on incomplete information.',
+      hi: 'अनुबंध पर हस्ताक्षर, उत्पाद लॉन्च, इलेक्ट्रॉनिक्स खरीदना, नया उद्यम शुरू करना, या अपूर्ण जानकारी पर बड़े निर्णय लेने से बचें।',
+    },
+  },
+  // Venus (5)
+  5: {
+    general: {
+      en: 'Venus retrograde turns the heart inward. Past lovers resurface, relationships are re-evaluated, and what you value shifts. Beauty, art, and luxury feel unsatisfying. This is a period to reassess what truly matters in love and money — not to start new romances or make expensive purchases.',
+      hi: 'शुक्र वक्री हृदय को अंतर्मुखी बनाता है। पुराने प्रेमी फिर से प्रकट होते हैं, संबंधों का पुनर्मूल्यांकन होता है। सौंदर्य, कला और विलासिता असंतोषजनक लगती है।',
+    },
+    dos: {
+      en: 'Revisit creative projects, reconnect with your aesthetic values, journal about what you truly desire in relationships, practice self-love.',
+      hi: 'सृजनात्मक परियोजनाओं पर लौटें, अपने सौंदर्य मूल्यों से पुनः जुड़ें, संबंधों में अपनी सच्ची इच्छा पर चिंतन करें।',
+    },
+    donts: {
+      en: 'Avoid starting new relationships, getting married, cosmetic procedures, luxury purchases, or drastic changes to appearance.',
+      hi: 'नए संबंध शुरू करना, विवाह, सौंदर्य प्रक्रियाएँ, विलासिता खरीदारी, या दिखावट में भारी बदलाव से बचें।',
+    },
+  },
+  // Mars (2)
+  2: {
+    general: {
+      en: 'Mars retrograde saps initiative and redirects anger inward. Projects stall, conflicts simmer without resolution, and physical energy dips. Actions taken during Mars retrograde often need to be redone later. This is a time to strategize, not charge ahead.',
+      hi: 'मंगल वक्री पहल को कमजोर करता है और क्रोध को अंदर की ओर मोड़ता है। परियोजनाएँ रुकती हैं, संघर्ष बिना समाधान के सुलगते हैं, और शारीरिक ऊर्जा घटती है।',
+    },
+    dos: {
+      en: 'Review ongoing projects, refine strategy before acting, channel energy into planning and internal work, maintain fitness routines gently.',
+      hi: 'चल रही परियोजनाओं की समीक्षा करें, कार्य से पहले रणनीति परिष्कृत करें, ऊर्जा को योजना में लगाएँ, व्यायाम कोमलता से करें।',
+    },
+    donts: {
+      en: 'Avoid starting lawsuits, initiating conflicts, surgery (if elective), buying vehicles/property, or beginning aggressive campaigns.',
+      hi: 'मुकदमे, संघर्ष शुरू करना, वैकल्पिक शल्यचिकित्सा, वाहन/संपत्ति खरीदना, या आक्रामक अभियान शुरू करने से बचें।',
+    },
+  },
+  // Jupiter (4)
+  4: {
+    general: {
+      en: 'Jupiter retrograde turns wisdom inward. External growth slows so inner growth can accelerate. Teachers and gurus may disappoint. Financial expansion stalls. But this is the best time for spiritual study, philosophical reflection, and developing your own inner wisdom rather than relying on external authorities.',
+      hi: 'गुरु वक्री ज्ञान को अंतर्मुखी बनाता है। बाह्य विकास धीमा होता है ताकि आंतरिक विकास तेज हो सके। गुरु और शिक्षक निराश कर सकते हैं। लेकिन यह आध्यात्मिक अध्ययन और दार्शनिक चिंतन का सर्वोत्तम समय है।',
+    },
+    dos: {
+      en: 'Deepen spiritual practice, study philosophy, revisit old teachings, reassess your beliefs, mentor yourself, complete pending education.',
+      hi: 'आध्यात्मिक अभ्यास गहन करें, दर्शन का अध्ययन करें, पुरानी शिक्षाओं पर लौटें, अपने विश्वासों का पुनर्मूल्यांकन करें।',
+    },
+    donts: {
+      en: 'Avoid starting new educational programs, long-distance travel for growth, major investments, legal proceedings, or religious ceremonies.',
+      hi: 'नए शैक्षिक कार्यक्रम, विकास हेतु लंबी यात्रा, बड़े निवेश, कानूनी कार्यवाही, या धार्मिक समारोह शुरू करने से बचें।',
+    },
+  },
+  // Saturn (6)
+  6: {
+    general: {
+      en: 'Saturn retrograde eases external pressure but increases internal reckoning. Karma that was delayed now surfaces for processing. Structures and commitments are tested from within. Authority figures may become unreliable. This is a time to take responsibility for your own discipline rather than having it imposed externally.',
+      hi: 'शनि वक्री बाहरी दबाव कम करता है लेकिन आंतरिक लेखा-जोखा बढ़ाता है। विलंबित कर्म अब सतह पर आता है। संरचनाएँ और प्रतिबद्धताएँ भीतर से परखी जाती हैं।',
+    },
+    dos: {
+      en: 'Restructure habits, reassess career commitments, clear karmic debts, practice discipline voluntarily, complete pending responsibilities.',
+      hi: 'आदतों का पुनर्गठन, करियर प्रतिबद्धताओं का पुनर्मूल्यांकन, कार्मिक ऋण चुकाएँ, स्वेच्छा से अनुशासन अभ्यास करें।',
+    },
+    donts: {
+      en: 'Avoid starting new long-term commitments, changing career, real estate transactions, or defying legitimate authority figures.',
+      hi: 'नई दीर्घकालिक प्रतिबद्धताएँ, करियर बदलना, अचल संपत्ति लेनदेन, या वैध अधिकारियों की अवज्ञा से बचें।',
+    },
+  },
+};
+
+// Combustion meaning by planet
+const COMBUST_MEANING: Record<number, { en: string; hi: string }> = {
+  2: { en: 'Mars combust weakens courage, initiative, and physical vitality. Avoid conflicts — you lack the fire to win them. Brothers/siblings may face difficulties.', hi: 'मंगल अस्त साहस, पहल और शारीरिक ऊर्जा को कमजोर करता है। संघर्ष से बचें। भाई-बहनों को कठिनाई हो सकती है।' },
+  3: { en: 'Mercury combust clouds intellect, disrupts communication, and weakens analytical ability. Not ideal for exams, negotiations, or important correspondence.', hi: 'बुध अस्त बुद्धि को धुँधला करता है, संवाद बाधित करता है। परीक्षा, वार्ता या महत्वपूर्ण पत्राचार के लिए अनुकूल नहीं।' },
+  4: { en: 'Jupiter combust diminishes wisdom, good fortune, and the guidance of teachers. Spiritual practices feel hollow. Financial judgment is impaired.', hi: 'गुरु अस्त ज्ञान, सौभाग्य और गुरु मार्गदर्शन कम करता है। आध्यात्मिक अभ्यास खोखला लगता है। वित्तीय निर्णय प्रभावित।' },
+  5: { en: 'Venus combust dries up pleasure, romance, creativity, and luxury. Relationships feel unsatisfying. Artistic inspiration wanes.', hi: 'शुक्र अस्त सुख, प्रेम, सृजनशीलता और विलासिता को सुखा देता है। संबंध असंतोषजनक लगते हैं।' },
+  6: { en: 'Saturn combust weakens discipline, long-term planning, and structural stability. Commitments feel burdensome. Authority figures are unsupportive.', hi: 'शनि अस्त अनुशासन, दीर्घकालिक योजना और संरचनात्मक स्थिरता को कमजोर करता है।' },
+};
+
+// ─── House transit interpretation from Moon sign ─────────────────────────────
+
+const HOUSE_RETRO_EFFECT: Record<number, { en: string; hi: string }> = {
+  1: { en: 'Transiting your 1st house — affects health, self-image, and personal initiatives. Take extra care of your body and avoid impulsive decisions.', hi: 'आपके प्रथम भाव में गोचर — स्वास्थ्य, आत्म-छवि और व्यक्तिगत पहल प्रभावित। शरीर का विशेष ध्यान रखें।' },
+  2: { en: 'Transiting your 2nd house — affects finances, family harmony, and speech. Avoid major purchases and be careful with words.', hi: 'आपके द्वितीय भाव में — वित्त, पारिवारिक सद्भाव और वाणी प्रभावित। बड़ी खरीदारी से बचें।' },
+  3: { en: 'Transiting your 3rd house — affects courage, siblings, short travel, and communication. Messages may be delayed or misunderstood.', hi: 'आपके तृतीय भाव में — साहस, भाई-बहन, छोटी यात्रा प्रभावित। संदेश विलंबित या गलत समझे जा सकते हैं।' },
+  4: { en: 'Transiting your 4th house — affects home, mother, emotional peace, and property. Domestic disruptions possible. Avoid property transactions.', hi: 'आपके चतुर्थ भाव में — घर, माता, मानसिक शांति प्रभावित। घरेलू बाधाएँ संभव। संपत्ति लेनदेन से बचें।' },
+  5: { en: 'Transiting your 5th house — affects children, romance, creativity, and speculation. Past lovers may reappear. Avoid risky investments.', hi: 'आपके पंचम भाव में — संतान, प्रेम, सृजनशीलता प्रभावित। पुराने प्रेमी फिर प्रकट हो सकते हैं। जोखिम भरे निवेश से बचें।' },
+  6: { en: 'Transiting your 6th house — actually favorable! Enemies weaken, debts can be resolved, health issues surface for healing.', hi: 'आपके षष्ठ भाव में — वास्तव में अनुकूल! शत्रु कमजोर, ऋण समाधान, स्वास्थ्य समस्याएँ उपचार हेतु सतह पर।' },
+  7: { en: 'Transiting your 7th house — affects marriage, partnerships, and contracts. Existing relationships are tested. Avoid new partnerships.', hi: 'आपके सप्तम भाव में — विवाह, साझेदारी और अनुबंध प्रभावित। मौजूदा संबंध परखे जाते हैं। नई साझेदारी से बचें।' },
+  8: { en: 'Transiting your 8th house — affects longevity, hidden matters, and transformation. Old secrets surface. Be cautious with joint finances.', hi: 'आपके अष्टम भाव में — दीर्घायु, गुप्त मामले प्रभावित। पुराने रहस्य सतह पर। संयुक्त वित्त में सावधानी।' },
+  9: { en: 'Transiting your 9th house — affects luck, father, higher learning, and long travel. Travel plans may change. Reassess beliefs.', hi: 'आपके नवम भाव में — भाग्य, पिता, उच्च शिक्षा प्रभावित। यात्रा योजनाएँ बदल सकती हैं। विश्वासों का पुनर्मूल्यांकन करें।' },
+  10: { en: 'Transiting your 10th house — affects career, reputation, and authority. Professional setbacks or delays. Don\'t start new ventures.', hi: 'आपके दशम भाव में — करियर, प्रतिष्ठा प्रभावित। पेशेवर बाधाएँ या विलंब। नया उद्यम शुरू न करें।' },
+  11: { en: 'Transiting your 11th house — generally favorable. Reconnect with old friends. Delayed gains arrive. Social circle restructures.', hi: 'आपके एकादश भाव में — सामान्यतः अनुकूल। पुराने मित्रों से पुनः जुड़ें। विलंबित लाभ प्राप्त।' },
+  12: { en: 'Transiting your 12th house — affects expenses, sleep, and foreign connections. Hidden expenses surface. Good for spiritual retreat.', hi: 'आपके द्वादश भाव में — व्यय, नींद, विदेशी संपर्क प्रभावित। छिपे व्यय सतह पर। आध्यात्मिक एकान्त के लिए अच्छा।' },
+};
+
+// House effects for combustion — weakened planet energy in each house
+const HOUSE_COMBUST_EFFECT: Record<number, { en: string; hi: string }> = {
+  1: { en: 'Combust planet weakens 1st house — low energy, health issues, diminished self-confidence. Take it easy.', hi: 'अस्त ग्रह प्रथम भाव कमजोर — कम ऊर्जा, स्वास्थ्य समस्याएँ, आत्मविश्वास में कमी।' },
+  2: { en: 'Combust planet weakens 2nd house — financial judgment impaired, family communication strained, speech lacks impact.', hi: 'द्वितीय भाव कमजोर — वित्तीय निर्णय प्रभावित, पारिवारिक संवाद तनावपूर्ण।' },
+  3: { en: 'Combust planet in 3rd house — courage diminished, communication efforts fall flat, siblings may need support.', hi: 'तृतीय भाव में — साहस कम, संवाद प्रयास विफल, भाई-बहनों को सहायता की आवश्यकता।' },
+  4: { en: 'Combust planet weakens 4th house — domestic comfort disrupted, mother may face health issues, property matters stall.', hi: 'चतुर्थ भाव कमजोर — घरेलू सुख बाधित, माता को स्वास्थ्य समस्या, संपत्ति मामले रुके।' },
+  5: { en: 'Combust planet in 5th house — creative blocks, romance loses spark, children may be unwell, avoid speculation.', hi: 'पंचम भाव में — सृजनात्मक अवरोध, प्रेम में चिंगारी कम, संतान अस्वस्थ, सट्टे से बचें।' },
+  6: { en: 'Combust planet in 6th house — paradoxically helpful! Enemies are weakened too. But health vigilance needed.', hi: 'षष्ठ भाव में — विरोधाभासी रूप से सहायक! शत्रु भी कमजोर। लेकिन स्वास्थ्य सतर्कता आवश्यक।' },
+  7: { en: 'Combust planet weakens 7th house — partner feels distant, negotiations lack energy, avoid new contracts.', hi: 'सप्तम भाव कमजोर — साथी दूर महसूस, वार्ता में ऊर्जा की कमी, नए अनुबंध से बचें।' },
+  8: { en: 'Combust planet in 8th house — hidden vulnerabilities surface. Be careful with joint finances and insurance matters.', hi: 'अष्टम भाव में — छिपी कमजोरियाँ सतह पर। संयुक्त वित्त और बीमा में सावधानी।' },
+  9: { en: 'Combust planet in 9th house — luck feels muted, guru guidance unavailable, long-distance travel problematic.', hi: 'नवम भाव में — भाग्य मंद, गुरु मार्गदर्शन अनुपलब्ध, लंबी यात्रा समस्याग्रस्त।' },
+  10: { en: 'Combust planet weakens 10th house — career momentum stalls, authority figures unsupportive, public image dims.', hi: 'दशम भाव कमजोर — करियर गति रुकी, अधिकारी असहायक, सार्वजनिक छवि मंद।' },
+  11: { en: 'Combust planet in 11th house — gains delayed, social connections feel lukewarm, elder siblings face difficulties.', hi: 'एकादश भाव में — लाभ विलंबित, सामाजिक संपर्क उदासीन, बड़े भाई-बहनों को कठिनाई।' },
+  12: { en: 'Combust planet in 12th house — expenses increase, sleep quality poor, foreign connections weaken. Good for letting go.', hi: 'द्वादश भाव में — व्यय बढ़ा, नींद खराब, विदेशी संपर्क कमजोर। त्याग के लिए अच्छा।' },
+};
+
+function getHouseFromMoon(moonSign: number, transitSign: number): number {
+  return ((transitSign - moonSign + 12) % 12) + 1;
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+
 export default function RetrogradePage() {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+
+  const t2 = (obj: { en: string; hi: string }): string => locale === 'en' ? obj.en : obj.hi;
 
   const [year, setYear] = useState(new Date().getFullYear());
   const [retroPeriods, setRetroPeriods] = useState<RetroPeriod[]>([]);
   const [combustEvents, setCombustEvents] = useState<CombustEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'retrograde' | 'combustion'>('retrograde');
+
+  const { birthRashi, isSet: hasBirthData } = useBirthDataStore();
+
+  useEffect(() => { useBirthDataStore.getState().loadFromStorage(); }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -59,20 +198,163 @@ export default function RetrogradePage() {
     return d.toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'short' });
   };
 
+  // Check if a period is currently active
+  const isActive = (start: string, end: string) => {
+    const now = new Date();
+    return now >= new Date(start + 'T00:00:00') && now <= new Date(end + 'T23:59:59');
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {locale === 'en' ? 'Retrograde & Combustion Calendar' : 'वक्री एवं अस्त पञ्चाङ्ग'}
+            {locale === 'en' ? 'Retrograde & Combustion' : 'वक्री एवं अस्त'}
           </span>
         </h1>
-        <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+        <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed" style={bodyFont}>
           {locale === 'en'
-            ? 'Track when planets go retrograde or become combust (too close to the Sun)'
-            : 'जानें कब ग्रह वक्री होते हैं या सूर्य के निकट होकर अस्त होते हैं'}
+            ? 'When planets reverse their apparent motion (retrograde) or get too close to the Sun (combust), their significations turn inward, weaken, or become unpredictable. Track these periods and understand how they affect your life.'
+            : 'जब ग्रह अपनी दिशा उलटते हैं (वक्री) या सूर्य के बहुत निकट आते हैं (अस्त), उनके फल अंतर्मुखी, कमजोर या अप्रत्याशित हो जाते हैं। इन अवधियों को ट्रैक करें और समझें कि ये आपके जीवन को कैसे प्रभावित करती हैं।'}
         </p>
       </motion.div>
+
+      {/* Personalized Synthesis */}
+      {hasBirthData && !loading ? (() => {
+        const moonName = RASHIS[birthRashi - 1]?.name;
+        const now = new Date();
+
+        // Currently active retrogrades
+        const activeRetros = retroPeriods.filter(p =>
+          now >= new Date(p.startDate + 'T00:00:00') && now <= new Date(p.endDate + 'T23:59:59')
+        );
+        const activeCombusts = combustEvents.filter(e =>
+          now >= new Date(e.startDate + 'T00:00:00') && now <= new Date(e.endDate + 'T23:59:59')
+        );
+
+        // Next upcoming retrograde
+        const upcoming = retroPeriods.find(p => new Date(p.startDate + 'T00:00:00') > now);
+
+        const totalActive = activeRetros.length + activeCombusts.length;
+        const toneColor = totalActive === 0 ? 'emerald' : totalActive <= 2 ? 'amber' : 'red';
+
+        // Build narrative
+        const parts_en: string[] = [];
+        const parts_hi: string[] = [];
+
+        if (activeRetros.length === 0 && activeCombusts.length === 0) {
+          parts_en.push('No planets are currently retrograde or combust — a clear sky for new initiatives.');
+          parts_hi.push('वर्तमान में कोई ग्रह वक्री या अस्त नहीं — नई पहल के लिए स्वच्छ आकाश।');
+          if (upcoming) {
+            parts_en.push(`The next retrograde is ${upcoming.planetName.en} starting ${formatDate(upcoming.startDate)}.`);
+            parts_hi.push(`अगला वक्री ${upcoming.planetName.hi} है, ${formatDate(upcoming.startDate)} से।`);
+          }
+        } else {
+          if (activeRetros.length > 0) {
+            const names = activeRetros.map(r => r.planetName.en).join(', ');
+            const namesHi = activeRetros.map(r => r.planetName.hi).join(', ');
+            parts_en.push(`${activeRetros.length} planet${activeRetros.length > 1 ? 's' : ''} currently retrograde: ${names}.`);
+            parts_hi.push(`${activeRetros.length} ग्रह वर्तमान में वक्री: ${namesHi}।`);
+
+            // House-level synthesis
+            const housesHit = activeRetros.map(r => ({
+              name: r.planetName,
+              house: getHouseFromMoon(birthRashi, r.startSign),
+              color: r.planetColor,
+            }));
+
+            const sensitiveHouses = housesHit.filter(h => [1, 4, 7, 10].includes(h.house));
+            if (sensitiveHouses.length > 0) {
+              const houseList = sensitiveHouses.map(h => `${h.name.en} in your ${h.house}${['st','nd','rd'][h.house-1]||'th'}`).join(', ');
+              parts_en.push(`Key impact: ${houseList} — angular houses are stressed, handle with care.`);
+              const houseListHi = sensitiveHouses.map(h => `${h.name.hi} ${h.house}वें भाव में`).join(', ');
+              parts_hi.push(`मुख्य प्रभाव: ${houseListHi} — केन्द्र भाव तनावग्रस्त, सावधानी से निपटें।`);
+            }
+
+            const favorableHouses = housesHit.filter(h => [3, 6, 11].includes(h.house));
+            if (favorableHouses.length > 0) {
+              parts_en.push(`${favorableHouses.map(h => h.name.en).join(' and ')} ${favorableHouses.length > 1 ? 'are' : 'is'} retrograde in favorable upachaya house${favorableHouses.length > 1 ? 's' : ''} — actually beneficial for competition and overcoming obstacles.`);
+              parts_hi.push(`${favorableHouses.map(h => h.name.hi).join(' और ')} अनुकूल उपचय भाव में वक्री — प्रतिस्पर्धा और बाधा निवारण के लिए लाभकारी।`);
+            }
+          }
+
+          if (activeCombusts.length > 0) {
+            const names = activeCombusts.map(c => c.planetName.en).join(', ');
+            const namesHi = activeCombusts.map(c => c.planetName.hi).join(', ');
+            parts_en.push(`${names} ${activeCombusts.length > 1 ? 'are' : 'is'} combust — ${activeCombusts.length > 1 ? 'their' : 'its'} significations are weakened by solar proximity.`);
+            parts_hi.push(`${namesHi} अस्त — सूर्य निकटता से ${activeCombusts.length > 1 ? 'इनके' : 'इसके'} फल कमजोर।`);
+          }
+        }
+
+        return (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className={`rounded-2xl p-6 border-2 mb-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] ${
+              toneColor === 'emerald' ? 'border-emerald-500/30' : toneColor === 'red' ? 'border-red-500/30' : 'border-amber-500/30'
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
+                toneColor === 'emerald' ? 'bg-emerald-500/15' : toneColor === 'red' ? 'bg-red-500/15' : 'bg-amber-500/15'
+              }`}>
+                {totalActive === 0 ? '☀' : totalActive <= 2 ? '◐' : '⚡'}
+              </div>
+              <div>
+                <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
+                  {locale === 'en' ? 'Current Cosmic Weather' : 'वर्तमान ब्रह्मांडीय मौसम'}
+                </h3>
+                <div className="flex items-center gap-2 text-xs text-text-secondary">
+                  <Shield className="w-3 h-3 text-emerald-400" />
+                  <span>{locale === 'en' ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
+                  <span className="text-gold-primary/20">|</span>
+                  <span className={`font-bold ${toneColor === 'emerald' ? 'text-emerald-400' : toneColor === 'red' ? 'text-red-400' : 'text-amber-400'}`}>
+                    {totalActive === 0
+                      ? (locale === 'en' ? 'All Clear' : 'सब स्पष्ट')
+                      : `${totalActive} ${locale === 'en' ? 'Active' : 'सक्रिय'}`}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-text-primary text-sm leading-relaxed mb-4" style={bodyFont}>
+              {locale === 'en' ? parts_en.join(' ') : parts_hi.join(' ')}
+            </p>
+
+            {/* Active events grid */}
+            {totalActive > 0 && (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {activeRetros.map(r => (
+                  <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
+                    <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{r.planetName[locale]}</div>
+                    <div className="text-red-400 text-[10px] font-bold uppercase">{locale === 'en' ? 'Retrograde' : 'वक्री'}</div>
+                    {hasBirthData && <div className="text-text-secondary/50 text-[9px] mt-1">{locale === 'en' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
+                  </div>
+                ))}
+                {activeCombusts.map(c => (
+                  <div key={`c-${c.planetId}`} className="rounded-lg p-3 border border-orange-500/20 bg-orange-500/5 text-center">
+                    <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{c.planetName[locale]}</div>
+                    <div className="text-orange-400 text-[10px] font-bold uppercase">{locale === 'en' ? 'Combust' : 'अस्त'}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+        );
+      })() : !hasBirthData ? (
+        <div className="rounded-xl p-4 bg-gold-primary/5 border border-gold-primary/15 mb-8 text-center">
+          <p className="text-text-secondary text-sm" style={bodyFont}>
+            {locale === 'en'
+              ? 'Generate a Kundali to see personalized analysis of how retrogrades and combustions affect your specific houses.'
+              : 'वक्री और अस्त आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत विश्लेषण देखने के लिए कुंडली बनाएँ।'}
+            {' '}
+            <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
+              {locale === 'en' ? 'Generate Kundali' : 'कुंडली बनाएँ'}
+            </Link>
+          </p>
+        </div>
+      ) : null}
 
       {/* Year selector */}
       <div className="flex items-center justify-center gap-6 mb-8">
@@ -93,7 +375,7 @@ export default function RetrogradePage() {
             tab === 'retrograde' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
-          {locale === 'en' ? 'Retrograde' : 'वक्री'}
+          {locale === 'en' ? `Retrograde (${retroPeriods.length})` : `वक्री (${retroPeriods.length})`}
         </button>
         <button
           onClick={() => setTab('combustion')}
@@ -101,7 +383,7 @@ export default function RetrogradePage() {
             tab === 'combustion' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
-          {locale === 'en' ? 'Combustion' : 'अस्त'}
+          {locale === 'en' ? `Combustion (${combustEvents.length})` : `अस्त (${combustEvents.length})`}
         </button>
       </div>
 
@@ -112,87 +394,198 @@ export default function RetrogradePage() {
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-gold-primary border-t-transparent" />
         </div>
       ) : tab === 'retrograde' ? (
-        <div className="space-y-4 my-10">
+        <div className="space-y-5 my-10">
           {retroPeriods.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
               {locale === 'en' ? 'No retrograde periods found.' : 'कोई वक्री अवधि नहीं मिली।'}
             </div>
-          ) : retroPeriods.map((p, i) => (
-            <motion.div
-              key={`${p.startDate}-${p.planetId}`}
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: Math.min(i * 0.05, 0.6) }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15 bg-gradient-to-r from-red-500/5 to-transparent"
-            >
-              <div className="flex items-center gap-4">
-                <GrahaIconById id={p.planetId} size={48} />
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-lg font-bold" style={{ color: p.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
-                      {p.planetName[locale]}
-                    </span>
-                    <span className="text-red-400 text-xs font-bold px-2 py-0.5 bg-red-500/15 rounded-full">
-                      {locale === 'en' ? 'RETROGRADE' : 'वक्री'}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 mt-1 text-sm text-text-secondary">
-                    <span className="font-mono">{formatDate(p.startDate)}</span>
-                    <span className="text-gold-dark">→</span>
-                    <span className="font-mono">{formatDate(p.endDate)}</span>
-                    <span className="text-text-secondary/50 text-xs">({p.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
-                  </div>
-                  <div className="flex items-center gap-2 mt-1.5 text-xs">
-                    <RashiIconById id={p.startSign} size={14} />
-                    <span className="text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.startSignName[locale]}</span>
-                    <span className="text-gold-dark">→</span>
-                    <RashiIconById id={p.endSign} size={14} />
-                    <span className="text-text-primary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.endSignName[locale]}</span>
+          ) : retroPeriods.map((p, i) => {
+            const active = isActive(p.startDate, p.endDate);
+            const meaning = RETRO_MEANING[p.planetId];
+            const house = hasBirthData ? getHouseFromMoon(birthRashi, p.startSign) : 0;
+            const houseEffect = house ? HOUSE_RETRO_EFFECT[house] : null;
+
+            return (
+              <motion.div
+                key={`${p.startDate}-${p.planetId}`}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(i * 0.06, 0.5) }}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border rounded-2xl overflow-hidden ${active ? 'border-red-500/40 ring-1 ring-red-500/20' : 'border-gold-primary/12'}`}
+              >
+                {/* Header */}
+                <div className="p-5">
+                  <div className="flex items-start gap-4">
+                    <GrahaIconById id={p.planetId} size={48} />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <span className="text-lg font-bold" style={{ color: p.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
+                          {p.planetName[locale]}
+                        </span>
+                        <span className="text-red-400 text-[10px] font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
+                          {locale === 'en' ? 'RETROGRADE' : 'वक्री'}
+                        </span>
+                        {active && (
+                          <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                            {locale === 'en' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Dates & signs */}
+                      <div className="flex items-center gap-2 flex-wrap mb-2">
+                        <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.startDate)}</span>
+                        <span className="text-gold-dark">→</span>
+                        <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.endDate)}</span>
+                        <span className="text-text-secondary/40 text-xs">({p.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs mb-3">
+                        <RashiIconById id={p.startSign} size={16} />
+                        <span className="text-text-secondary" style={bodyFont}>{p.startSignName[locale]}</span>
+                        <span className="text-gold-dark">→</span>
+                        <RashiIconById id={p.endSign} size={16} />
+                        <span className="text-text-primary font-semibold" style={bodyFont}>{p.endSignName[locale]}</span>
+                      </div>
+
+                      {/* General meaning */}
+                      {meaning && (
+                        <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
+                          {t2(meaning.general)}
+                        </p>
+                      )}
+
+                      {/* Personalized house effect */}
+                      {hasBirthData && houseEffect && (
+                        <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/15 mb-3">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Zap className="w-3.5 h-3.5 text-gold-primary" />
+                            <span className="text-gold-primary text-[10px] uppercase tracking-wider font-bold">
+                              {locale === 'en' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                            </span>
+                          </div>
+                          <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                            {t2(houseEffect)}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Do's and Don'ts */}
+                      {meaning && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="rounded-lg p-3 bg-emerald-500/5 border border-emerald-500/15">
+                            <div className="flex items-center gap-1.5 mb-1.5">
+                              <Shield className="w-3 h-3 text-emerald-400" />
+                              <span className="text-emerald-400 text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? 'Do' : 'करें'}</span>
+                            </div>
+                            <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.dos)}</p>
+                          </div>
+                          <div className="rounded-lg p-3 bg-red-500/5 border border-red-500/15">
+                            <div className="flex items-center gap-1.5 mb-1.5">
+                              <AlertTriangle className="w-3 h-3 text-red-400" />
+                              <span className="text-red-400 text-[10px] uppercase tracking-wider font-bold">{locale === 'en' ? "Don't" : 'न करें'}</span>
+                            </div>
+                            <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.donts)}</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-          <div className="text-center text-text-secondary text-sm mt-6">
-            {retroPeriods.length} {locale === 'en' ? 'retrograde periods' : 'वक्री अवधियाँ'}
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
       ) : (
-        <div className="space-y-3 my-10">
+        /* Combustion tab */
+        <div className="space-y-4 my-10">
           {combustEvents.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
               {locale === 'en' ? 'No combustion events found.' : 'कोई अस्त घटना नहीं मिली।'}
             </div>
-          ) : combustEvents.map((e, i) => (
-            <motion.div
-              key={`${e.startDate}-${e.planetId}`}
-              initial={{ opacity: 0, x: -15 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: Math.min(i * 0.03, 0.6) }}
-              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-4 border border-orange-500/15"
-            >
-              <GrahaIconById id={e.planetId} size={40} />
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold" style={{ color: e.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
-                    {e.planetName[locale]}
-                  </span>
-                  <span className="text-orange-400 text-[10px] font-bold px-2 py-0.5 bg-orange-500/15 rounded-full">
-                    {locale === 'en' ? 'COMBUST' : 'अस्त'}
-                  </span>
+          ) : combustEvents.map((e, i) => {
+            const active = isActive(e.startDate, e.endDate);
+            const meaning = COMBUST_MEANING[e.planetId];
+
+            // Compute Sun's sign at midpoint of combustion for house calculation
+            const midDate = new Date(e.startDate + 'T00:00:00');
+            const midJd = dateToJD(midDate.getFullYear(), midDate.getMonth() + 1, midDate.getDate(), 12);
+            const sunSign = getRashiNumber(toSidereal(sunLongitude(midJd), midJd));
+            const house = hasBirthData ? getHouseFromMoon(birthRashi, sunSign) : 0;
+            const houseEffect = house ? HOUSE_COMBUST_EFFECT[house] : null;
+            const sunSignName = RASHIS[sunSign - 1]?.name;
+
+            return (
+              <motion.div
+                key={`${e.startDate}-${e.planetId}`}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(i * 0.04, 0.5) }}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border rounded-2xl overflow-hidden ${active ? 'border-orange-500/40 ring-1 ring-orange-500/20' : 'border-gold-primary/12'}`}
+              >
+                <div className="p-5">
+                <div className="flex items-start gap-4">
+                  <GrahaIconById id={e.planetId} size={44} />
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className="font-bold text-lg" style={{ color: e.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
+                        {e.planetName[locale]}
+                      </span>
+                      <span className="text-orange-400 text-[10px] font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
+                        {locale === 'en' ? 'COMBUST' : 'अस्त'}
+                      </span>
+                      {active && (
+                        <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                          {locale === 'en' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-2 mb-2 text-sm flex-wrap">
+                      <span className="text-gold-light font-mono font-bold">{formatDate(e.startDate)}</span>
+                      <span className="text-gold-dark">→</span>
+                      <span className="text-gold-light font-mono font-bold">{formatDate(e.endDate)}</span>
+                      <span className="text-text-secondary/40 text-xs">({e.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
+                      {sunSignName && (
+                        <>
+                          <span className="text-gold-primary/20">|</span>
+                          <RashiIconById id={sunSign} size={14} />
+                          <span className="text-text-secondary text-xs" style={bodyFont}>{sunSignName[locale]}</span>
+                        </>
+                      )}
+                    </div>
+                    {meaning ? (
+                      <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
+                        {t2(meaning)}
+                      </p>
+                    ) : (
+                      <p className="text-text-secondary/70 text-sm leading-relaxed mb-3" style={bodyFont}>
+                        {locale === 'en'
+                          ? `${e.planetName.en} is too close to the Sun and loses its independent strength. Its significations — ${e.planetId === 2 ? 'courage, energy, siblings' : e.planetId === 3 ? 'intellect, communication, trade' : e.planetId === 4 ? 'wisdom, fortune, teachers' : e.planetId === 5 ? 'love, beauty, creativity' : e.planetId === 6 ? 'discipline, structure, career' : 'its natural qualities'} — are overpowered by the Sun's blazing energy.`
+                          : `${e.planetName.hi} सूर्य के बहुत निकट है और अपनी स्वतंत्र शक्ति खो देता है। इसके फल सूर्य की तीव्र ऊर्जा से दब जाते हैं।`}
+                      </p>
+                    )}
+
+                    {/* Personalized house effect */}
+                    {hasBirthData && houseEffect && (
+                      <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/15">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Zap className="w-3.5 h-3.5 text-orange-400" />
+                          <span className="text-orange-400 text-[10px] uppercase tracking-wider font-bold">
+                            {locale === 'en' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                          </span>
+                        </div>
+                        <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
+                          {t2(houseEffect)}
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="text-sm text-text-secondary mt-0.5">
-                  <span className="font-mono">{formatDate(e.startDate)}</span>
-                  <span className="text-gold-dark mx-1">→</span>
-                  <span className="font-mono">{formatDate(e.endDate)}</span>
-                  <span className="text-text-secondary/50 text-xs ml-2">({e.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-          <div className="text-center text-text-secondary text-sm mt-6">
-            {combustEvents.length} {locale === 'en' ? 'combustion events' : 'अस्त घटनाएँ'}
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
       )}
     </div>

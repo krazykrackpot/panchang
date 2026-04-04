@@ -12,6 +12,9 @@ export interface YogaComplete {
   description: { en: string; hi: string; sa: string };
 }
 
+const GRAHA_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+const GRAHA_HI = ['सूर्य', 'चन्द्रमा', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+
 interface PlanetData {
   id: number;        // 0=Sun..8=Ketu
   longitude: number; // sidereal 0-360
@@ -1944,13 +1947,13 @@ function detectDaridraYogas(planets: PlanetData[], ascSign: number): YogaComplet
   // Lord of 11th in 6th/8th/12th = gains obstructed
   const lord11 = getP(planets, houseLords[11]);
   if (DUSTHANA.includes(lord11.house)) {
-    results.push({ id: 'daridra_11_dusthana', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Daridra Yoga (11th Lord)', hi: 'दरिद्र योग (11 स्वामी)', sa: '' }, formationRule: { en: `Lord of 11th in ${lord11.house}th house (dusthana)`, hi: `11वें का स्वामी ${lord11.house}वें भाव में (दुःस्थान)`, sa: '' }, description: { en: 'Lord of gains in house of loss/debt/enemies — income blocked, financial struggles despite effort, money slips through fingers.', hi: '11वें स्वामी दुःस्थान में — आय अवरुद्ध, प्रयासों के बावजूद वित्तीय संघर्ष।', sa: '' } });
+    results.push({ id: 'daridra_11_dusthana', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Daridra Yoga (11th Lord)', hi: 'दरिद्र योग (11 स्वामी)', sa: '' }, formationRule: { en: `${GRAHA_EN[lord11.id]} (lord of 11th) in ${lord11.house}th house (dusthana)`, hi: `${GRAHA_HI[lord11.id]} (11वें का स्वामी) ${lord11.house}वें भाव में (दुःस्थान)`, sa: '' }, description: { en: `${GRAHA_EN[lord11.id]} — lord of gains — placed in house of loss/debt/enemies. Income blocked, financial struggles despite effort, money slips through fingers.`, hi: `${GRAHA_HI[lord11.id]} — लाभ का स्वामी — हानि/ऋण/शत्रु भाव में। आय अवरुद्ध, प्रयासों के बावजूद वित्तीय संघर्ष।`, sa: '' } });
   }
 
   // Lord of 2nd in 6th/8th/12th = family wealth diminished
   const lord2 = getP(planets, houseLords[2]);
   if (DUSTHANA.includes(lord2.house)) {
-    results.push({ id: 'daridra_2_dusthana', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Daridra Yoga (2nd Lord)', hi: 'दरिद्र योग (2 स्वामी)', sa: '' }, formationRule: { en: `Lord of 2nd in ${lord2.house}th house (dusthana)`, hi: `2वें का स्वामी ${lord2.house}वें भाव में`, sa: '' }, description: { en: 'Lord of family/wealth in dusthana — family assets dissipated, difficulty saving, poor early financial conditions.', hi: '2वें स्वामी दुःस्थान में — पारिवारिक संपत्ति क्षीण, बचत में कठिनाई।', sa: '' } });
+    results.push({ id: 'daridra_2_dusthana', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Daridra Yoga (2nd Lord)', hi: 'दरिद्र योग (2 स्वामी)', sa: '' }, formationRule: { en: `${GRAHA_EN[lord2.id]} (lord of 2nd) in ${lord2.house}th house (dusthana)`, hi: `${GRAHA_HI[lord2.id]} (2वें का स्वामी) ${lord2.house}वें भाव में`, sa: '' }, description: { en: `${GRAHA_EN[lord2.id]} — lord of family/wealth — placed in dusthana. Family assets dissipated, difficulty saving, poor early financial conditions.`, hi: `${GRAHA_HI[lord2.id]} — परिवार/धन का स्वामी — दुःस्थान में। पारिवारिक संपत्ति क्षीण, बचत में कठिनाई।`, sa: '' } });
   }
 
   // Lords of 2nd and 11th both debilitated

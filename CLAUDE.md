@@ -205,6 +205,12 @@ After every `git push`:
 - Run the full test suite AND verify the build before pushing.
 - Pre-push hook runs `tsc --noEmit -p tsconfig.build-check.json` — if it fails, fix it, don't bypass it.
 
+### SELF-REVIEW EVERY DESIGN SECTION
+- After presenting any design section, immediately review it with fresh eyes before moving on.
+- Identify flaws, gaps, missing edge cases, and enhancement opportunities.
+- Address them in the same message — don't wait for the user to find problems.
+- This applies to: architecture proposals, API designs, data models, UI layouts, pattern definitions, and any non-trivial technical decision.
+
 ### GENERAL
 - Prefer editing existing files over creating new ones when possible.
 - Compare astronomical calculations with Drik Panchang for same location.

@@ -207,13 +207,13 @@ export function detectExtendedDoshas(
     severity: daridraPresent ? (lord11?.house === 8 ? 'moderate' : 'mild') : 'none',
     description: daridraPresent
       ? t(locale,
-          `Lord of 11th house (gains) placed in house ${lord11!.house} (dusthana). Income faces obstacles, delays, or comes through unconventional means. Financial growth requires extra effort. May gain through service, healing, or foreign sources.`,
-          `11वें भाव (लाभ) का स्वामी ${lord11!.house}वें भाव (दुःस्थान) में। आय में बाधाएँ, विलम्ब या अपरम्परागत साधन। आर्थिक विकास में अतिरिक्त प्रयास। सेवा, उपचार या विदेशी स्रोतों से लाभ सम्भव।`)
+          `${lord11!.planet.name.en} (lord of 11th house — gains) placed in house ${lord11!.house} (dusthana). Income faces obstacles, delays, or comes through unconventional means. Financial growth requires extra effort. May gain through service, healing, or foreign sources.`,
+          `${lord11!.planet.name.hi} (11वें भाव का स्वामी — लाभ) ${lord11!.house}वें भाव (दुःस्थान) में। आय में बाधाएँ, विलम्ब या अपरम्परागत साधन। आर्थिक विकास में अतिरिक्त प्रयास। सेवा, उपचार या विदेशी स्रोतों से लाभ सम्भव।`)
       : t(locale, 'No Daridra Dosha. The 11th lord is well-placed for gains and fulfillment of desires.', 'दरिद्र दोष नहीं। 11वें भाव का स्वामी लाभ और इच्छापूर्ति के लिए शुभ स्थिति में।'),
     remedies: daridraPresent
       ? t(locale,
-          'Remedies: 1) Strengthen the 11th lord with its gemstone. 2) Donate on the day ruled by the 11th lord. 3) Chant Lakshmi Mantra on Fridays. 4) Feed the poor regularly. 5) Plant fruit trees.',
-          'उपाय: 1) 11वें भाव के स्वामी को रत्न से मजबूत करें। 2) 11वें स्वामी के दिन दान। 3) शुक्रवार को लक्ष्मी मन्त्र जप। 4) नियमित रूप से गरीबों को भोजन। 5) फलदार वृक्ष लगाएँ।')
+          `Remedies: 1) Strengthen ${lord11!.planet.name.en} with its gemstone. 2) Donate on the day ruled by ${lord11!.planet.name.en}. 3) Chant Lakshmi Mantra on Fridays. 4) Feed the poor regularly. 5) Plant fruit trees.`,
+          `उपाय: 1) ${lord11!.planet.name.hi} को उसके रत्न से मजबूत करें। 2) ${lord11!.planet.name.hi} के दिन दान। 3) शुक्रवार को लक्ष्मी मन्त्र जप। 4) नियमित रूप से गरीबों को भोजन। 5) फलदार वृक्ष लगाएँ।`)
       : '',
   });
 

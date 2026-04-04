@@ -21,7 +21,6 @@ export default function BabyNamesPage() {
 
   const [selectedNak, setSelectedNak] = useState(0);
   const [selectedPada, setSelectedPada] = useState(0); // 0 = all padas
-  const [nameFilter, setNameFilter] = useState('');
 
   // Birth details for auto-detection
   const [birthDate, setBirthDate] = useState('');
@@ -205,23 +204,14 @@ export default function BabyNamesPage() {
               </div>
             </div>
 
-            {/* Name suggestions */}
+            {/* Name suggestions — show directly without filter */}
             {suggestedNames.length > 0 && (
               <div className="my-8">
                 <h3 className="text-gold-light text-xl font-bold mb-4 text-center" style={headingFont}>
-                  {locale === 'en' ? 'Name Suggestions' : 'नाम सुझाव'}
+                  {locale === 'en' ? 'Suggested Names' : 'सुझावित नाम'}
                 </h3>
-                <div className="max-w-md mx-auto mb-4">
-                  <input
-                    type="text"
-                    value={nameFilter}
-                    onChange={e => setNameFilter(e.target.value)}
-                    placeholder={locale === 'en' ? 'Filter names...' : 'नाम खोजें...'}
-                    className="w-full px-4 py-2 rounded-xl bg-bg-secondary/50 border border-gold-primary/15 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40 placeholder:text-text-tertiary"
-                  />
-                </div>
                 <div className="flex flex-wrap justify-center gap-2">
-                  {suggestedNames.filter(n => !nameFilter || n.toLowerCase().includes(nameFilter.toLowerCase())).map((name, i) => (
+                  {suggestedNames.map((name, i) => (
                     <motion.span key={name}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -233,7 +223,7 @@ export default function BabyNamesPage() {
                   ))}
                 </div>
                 <p className="text-text-secondary/50 text-xs text-center mt-4">
-                  {locale === 'en' ? 'These are traditional suggestions. The first syllable is most important.' : 'ये परम्परागत सुझाव हैं। प्रथम अक्षर सबसे महत्त्वपूर्ण है।'}
+                  {locale === 'en' ? 'Traditional suggestions based on nakshatra syllables. The first syllable is most important.' : 'नक्षत्र अक्षरों पर आधारित परम्परागत सुझाव। प्रथम अक्षर सबसे महत्त्वपूर्ण है।'}
                 </p>
               </div>
             )}

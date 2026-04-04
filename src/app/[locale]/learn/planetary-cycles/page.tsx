@@ -298,7 +298,7 @@ function NodalDiagram({ isHi }: { isHi: boolean }) {
   // Tighter viewBox, larger orbits relative to container
   const cx = 200, cy = 110, r = 150;
   return (
-    <svg viewBox="0 0 400 210" className="w-full">
+    <svg viewBox="0 0 400 215" className="w-full">
       <defs>
         <linearGradient id="eclipticGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.2" />
@@ -329,11 +329,11 @@ function NodalDiagram({ isHi }: { isHi: boolean }) {
         <ellipse cx={cx} cy={cy} rx={r} ry={36} fill="none" stroke="url(#moonOrbitGrad)" strokeWidth="2.5" />
       </g>
 
-      {/* Legend labels on right side */}
-      <line x1="355" y1="25" x2="375" y2="25" stroke="#f59e0b" strokeWidth="2.5" strokeDasharray="5 3" />
-      <text x="380" y="28" fill="#f59e0b" fontSize="8" opacity="0.9">{isHi ? 'क्रान्तिवृत्त (सूर्य पथ)' : 'Ecliptic (Sun\'s path)'}</text>
-      <line x1="355" y1="40" x2="375" y2="40" stroke="#818cf8" strokeWidth="2.5" />
-      <text x="380" y="43" fill="#818cf8" fontSize="8" opacity="0.9">{isHi ? 'चन्द्र कक्षा (5.1° झुकी)' : "Moon's orbit (5.1° tilted)"}</text>
+      {/* Legend (top-left, compact) */}
+      <line x1="8" y1="12" x2="22" y2="12" stroke="#f59e0b" strokeWidth="2" strokeDasharray="4 2" />
+      <text x="25" y="15" fill="#f59e0b" fontSize="6.5" opacity="0.9">{isHi ? 'क्रान्तिवृत्त' : 'Ecliptic'}</text>
+      <line x1="8" y1="24" x2="22" y2="24" stroke="#818cf8" strokeWidth="2" />
+      <text x="25" y="27" fill="#818cf8" fontSize="6.5" opacity="0.9">{isHi ? 'चन्द्र कक्षा' : "Moon's orbit"}</text>
 
       {/* ── Rahu node (ascending) — left intersection ── */}
       <circle cx={cx - r + 8} cy={cy + 12} r="14" fill="rgba(239,68,68,0.25)" stroke="#ef4444" strokeWidth="2.5" filter="url(#nodeGlow)" />
@@ -382,9 +382,12 @@ function NodalDiagram({ isHi }: { isHi: boolean }) {
       <circle cx={cx + 80} cy={cy - 30} r="7" fill="rgba(226,232,240,0.2)" stroke="#e2e8f0" strokeWidth="1.5" />
       <text x={cx + 80} y={cy - 27} textAnchor="middle" fill="#e2e8f0" fontSize="6" fontWeight="bold">{isHi ? 'चन्द्र' : 'Moon'}</text>
 
-      {/* Regression direction */}
-      <text x={cx} y={200} textAnchor="middle" fill="#f0d48a" fontSize="8" fontWeight="bold" opacity="0.8">
-        {isHi ? '← पात पश्चिम दिशा में प्रतिगामी (18.6 वर्ष चक्र) →' : '← Nodes regress westward (18.6-year cycle) →'}
+      {/* Bottom explanation */}
+      <text x={cx} y={196} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold" opacity="0.8">
+        {isHi ? 'राहु-केतु धीरे-धीरे राशि चक्र में पीछे खिसकते हैं' : 'Rahu & Ketu slowly drift backward through the zodiac'}
+      </text>
+      <text x={cx} y={208} textAnchor="middle" fill="#f0d48a" fontSize="6.5" opacity="0.55">
+        {isHi ? 'एक पूर्ण चक्र = 18.6 वर्ष — यही सारोस ग्रहण चक्र का आधार है' : 'One full loop = 18.6 years — this is why eclipses repeat on a similar schedule'}
       </text>
     </svg>
   );

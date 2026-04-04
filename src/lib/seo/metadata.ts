@@ -416,6 +416,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['retrograde planets', 'mercury retrograde', 'vakri graha', 'retrograde effects'],
   },
 
+  '/learn/advanced-houses': {
+    title: { en: 'MKS, Badhaka, Maraka — Advanced House Concepts', hi: 'मारक कारक स्थान, बाधक, मारक', sa: 'मारककारकस्थानम् बाधकः मारकश्च' },
+    description: { en: 'Marana Karaka Sthana (death places), Badhakesh (obstruction lord), Maraka (death-inflicting lords), and functional benefic/malefic per lagna.', hi: 'मारक कारक स्थान, बाधकेश, मारक ग्रह, और प्रत्येक लग्न के लिए कार्यात्मक शुभ/अशुभ।', sa: 'मारककारकस्थानम् बाधकेशः मारकग्रहाः प्रतिलग्नं कार्यात्मकशुभाशुभाश्च।' },
+    keywords: ['marana karaka sthana', 'badhaka', 'maraka', 'yogakaraka', 'functional malefic'],
+  },
+  '/learn/compatibility': {
+    title: { en: 'Advanced Compatibility — Beyond Ashta Kuta', hi: 'उन्नत अनुकूलता — अष्ट कूट से परे', sa: 'उन्नतमेलनम् — अष्टकूटात् परम्' },
+    description: { en: 'Chart-level marriage compatibility: 7th house comparison, Venus assessment, Navamsha matching, dasha compatibility, Mangal Dosha full analysis.', hi: 'चार्ट-स्तरीय विवाह अनुकूलता: 7वां भाव, शुक्र, नवांश, दशा अनुकूलता, मंगल दोष।', sa: 'चक्रस्तरीयविवाहमेलनम् — सप्तमभावः शुक्रः नवांशः दशामेलनम् मङ्गलदोषश्च।' },
+    keywords: ['advanced compatibility', 'chart matching', 'navamsha compatibility', 'mangal dosha full'],
+  },
   '/learn/combustion': {
     title: { en: 'Combustion (Asta) — When Planets Get Too Close to the Sun', hi: 'अस्त ग्रह — जब ग्रह सूर्य के बहुत निकट', sa: 'अस्तग्रहाः' },
     description: { en: 'Planet combustion distances, effects per planet when combust, remedies. SVG diagram showing combustion zones for Moon, Mercury, Venus, Mars, Jupiter, Saturn.', hi: 'ग्रह अस्त दूरी, प्रत्येक ग्रह पर प्रभाव, उपाय।', sa: 'ग्रहास्तदूरी प्रभावाः उपायाश्च।' },

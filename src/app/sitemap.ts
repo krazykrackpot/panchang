@@ -68,6 +68,8 @@ const routes = [
   '/learn/combustion',
   '/learn/transit-guide',
   '/learn/hora',
+  '/learn/advanced-houses',
+  '/learn/compatibility',
   // Calendars
   '/calendar',
   '/transits',

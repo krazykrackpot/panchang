@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -10,6 +10,8 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { useAuthStore } from '@/stores/auth-store';
+import { getSupabase } from '@/lib/supabase/client';
 import {
   dateToJD, sunLongitude, moonLongitude, toSidereal,
   getRashiNumber, getNakshatraNumber, getNakshatraPada,
@@ -29,6 +31,33 @@ export default function SignCalculatorPage() {
   const [placeLat, setPlaceLat] = useState<number | null>(null);
   const [placeLng, setPlaceLng] = useState<number | null>(null);
   const [placeTimezone, setPlaceTimezone] = useState<string | null>(null);
+  const [autoFilled, setAutoFilled] = useState(false);
+
+  // Auto-fill from user profile if logged in
+  const { user, initialized } = useAuthStore();
+  useEffect(() => {
+    if (!initialized || !user || autoFilled) return;
+    const supabase = getSupabase();
+    if (!supabase) return;
+
+    supabase.from('user_profiles')
+      .select('date_of_birth, time_of_birth, birth_time_known, birth_place, birth_lat, birth_lng, birth_timezone')
+      .eq('id', user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        if (data?.date_of_birth && data?.birth_lat != null) {
+          setDateStr(data.date_of_birth);
+          if (data.time_of_birth && data.birth_time_known) {
+            setTimeStr(data.time_of_birth.substring(0, 5)); // HH:MM from HH:MM:SS
+          }
+          setPlaceName(data.birth_place || '');
+          setPlaceLat(data.birth_lat);
+          setPlaceLng(data.birth_lng);
+          setPlaceTimezone(data.birth_timezone || null);
+          setAutoFilled(true);
+        }
+      });
+  }, [initialized, user, autoFilled]);
 
   const result = useMemo(() => {
     if (!dateStr || !placeLat || !placeLng) return null;

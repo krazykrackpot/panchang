@@ -109,6 +109,12 @@ export default function PanchangPage() {
   const panchangContentRef = useRef<HTMLDivElement>(null);
   const [showAllMuhurtas, setShowAllMuhurtas] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
+  const [masaSystem, setMasaSystem] = useState<'amant' | 'purnimant'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('panchang_masa_system') as 'amant' | 'purnimant') || 'amant';
+    }
+    return 'amant';
+  });
   const [currentMuhurtaIdx, setCurrentMuhurtaIdx] = useState(-1);
   const [birthNakshatra, setBirthNakshatra] = useState(0);
   const [birthRashi, setBirthRashi] = useState(0);
@@ -1381,8 +1387,7 @@ export default function PanchangPage() {
                     { label: locale === 'en' ? 'Vikram Samvat' : 'विक्रम संवत्', value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
                     { label: locale === 'en' ? 'Shaka Samvat' : 'शक संवत्', value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
                     { label: t('samvatsara'), value: panchang.samvatsara[locale], iconKey: 'samvatsara' as const },
-                    { label: locale === 'en' ? 'Masa (Purnimant)' : 'मास (पूर्णिमान्त)', value: (panchang.purnimantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
-                    { label: locale === 'en' ? 'Masa (Amant)' : 'मास (अमान्त)', value: (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
+                    { label: locale === 'en' ? `Masa (${masaSystem === 'purnimant' ? 'Purnimant' : 'Amant'})` : `मास (${masaSystem === 'purnimant' ? 'पूर्णिमान्त' : 'अमान्त'})`, value: masaSystem === 'purnimant' ? (panchang.purnimantMasa || panchang.masa)[locale] : (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
                     { label: locale === 'en' ? 'Paksha' : 'पक्ष', value: panchang.tithi.paksha === 'shukla' ? (locale === 'en' ? 'Shukla Paksha' : 'शुक्ल पक्ष') : (locale === 'en' ? 'Krishna Paksha' : 'कृष्ण पक्ष'), iconKey: null },
                     { label: t('ritu'), value: panchang.ritu[locale], iconKey: 'ritu' as const },
                     { label: t('ayana'), value: panchang.ayana[locale], iconKey: 'ayana' as const },
@@ -1415,14 +1420,35 @@ export default function PanchangPage() {
 
               return (
                 <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-                  <h4 className="text-gold-light font-bold text-sm mb-3 flex items-center gap-2" style={headingFont}>
-                    <MasaIcon size={22} />
-                    {locale === 'en' ? `Hindu Months ${displayYear} (Amant)` : `हिन्दू मास ${displayYear} (अमान्त)`}
-                  </h4>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-gold-light font-bold text-sm flex items-center gap-2" style={headingFont}>
+                      <MasaIcon size={22} />
+                      {locale === 'en' ? `Hindu Months ${displayYear}` : `हिन्दू मास ${displayYear}`}
+                    </h4>
+                    {/* Amant / Purnimant toggle */}
+                    <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-[11px]">
+                      <button
+                        onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
+                        className={`px-3 py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                      >
+                        {locale === 'en' ? 'Amant' : 'अमान्त'}
+                      </button>
+                      <button
+                        onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
+                        className={`px-3 py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
+                      >
+                        {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
+                      </button>
+                    </div>
+                  </div>
                   <p className="text-text-secondary text-[10px] mb-3">
-                    {locale === 'en'
-                      ? `Exact Gregorian dates for Hindu lunar months in ${displayYear}. Each month begins on Amavasya (New Moon). Dates are computed from actual Moon-Sun positions.`
-                      : `${displayYear} में हिन्दू चान्द्र मासों की सटीक ग्रेगोरियन तिथियाँ। प्रत्येक मास अमावस्या (नवचंद्र) पर आरम्भ। चंद्र-सूर्य स्थिति से गणित।`}
+                    {masaSystem === 'amant'
+                      ? (locale === 'en'
+                        ? `Amant system: Each month begins on Amavasya (New Moon) and ends on the next Amavasya. Used in South & West India.`
+                        : `अमान्त पद्धति: प्रत्येक मास अमावस्या पर आरम्भ, अगली अमावस्या पर समाप्त। दक्षिण व पश्चिम भारत में प्रचलित।`)
+                      : (locale === 'en'
+                        ? `Purnimant system: Each month begins on Purnima (Full Moon) and ends on the next Purnima. Used in North & East India.`
+                        : `पूर्णिमान्त पद्धति: प्रत्येक मास पूर्णिमा पर आरम्भ, अगली पूर्णिमा पर समाप्त। उत्तर व पूर्व भारत में प्रचलित।`)}
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
@@ -1431,9 +1457,8 @@ export default function PanchangPage() {
                           <th className="text-left py-2 px-2 text-gold-dark">#</th>
                           <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Hindu Month' : 'हिन्दू मास'}</th>
                           <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Sanskrit' : 'संस्कृत'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Amant Start' : 'अमान्त आरम्भ'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Amant End' : 'अमान्त समाप्ति'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Purnimant Start' : 'पूर्णि. आरम्भ'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Start' : 'आरम्भ'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'End' : 'समाप्ति'}</th>
                           <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Ritu' : 'ऋतु'}</th>
                         </tr>
                       </thead>
@@ -1449,16 +1474,27 @@ export default function PanchangPage() {
                                 {m.isAdhika && <span className="ml-1.5 text-[8px] px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'en' ? 'Intercalary' : 'अधिक'}</span>}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
-                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
-                              <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
-                              <td className="py-1.5 px-2 text-text-tertiary font-mono text-[10px]">{(() => {
-                                // Purnimant starts ~15 days before Amant (from the preceding Purnima)
-                                const [y, mo, d] = m.startDate.split('-').map(Number);
-                                const purnimantDate = new Date(y, mo - 1, d);
-                                purnimantDate.setDate(purnimantDate.getDate() - 15);
-                                const pStr = `${purnimantDate.getFullYear()}-${(purnimantDate.getMonth()+1).toString().padStart(2,'0')}-${purnimantDate.getDate().toString().padStart(2,'0')}`;
-                                return formatMonthDate(pStr, locale);
-                              })()}</td>
+                              {masaSystem === 'amant' ? (
+                                <>
+                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.startDate, locale)}</td>
+                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(m.endDate, locale)}</td>
+                                </>
+                              ) : (
+                                <>
+                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{(() => {
+                                    const [y, mo, d] = m.startDate.split('-').map(Number);
+                                    const pDate = new Date(y, mo - 1, d);
+                                    pDate.setDate(pDate.getDate() - 15);
+                                    return formatMonthDate(`${pDate.getFullYear()}-${(pDate.getMonth()+1).toString().padStart(2,'0')}-${pDate.getDate().toString().padStart(2,'0')}`, locale);
+                                  })()}</td>
+                                  <td className="py-1.5 px-2 text-text-secondary font-mono">{(() => {
+                                    const [y, mo, d] = m.endDate.split('-').map(Number);
+                                    const pDate = new Date(y, mo - 1, d);
+                                    pDate.setDate(pDate.getDate() - 15);
+                                    return formatMonthDate(`${pDate.getFullYear()}-${(pDate.getMonth()+1).toString().padStart(2,'0')}-${pDate.getDate().toString().padStart(2,'0')}`, locale);
+                                  })()}</td>
+                                </>
+                              )}
                               <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ritu.en : m.ritu.hi}</td>
                             </tr>
                           );
@@ -1467,9 +1503,13 @@ export default function PanchangPage() {
                     </table>
                   </div>
                   <p className="text-text-tertiary text-[9px] mt-2">
-                    {locale === 'en'
-                      ? `Dates computed from actual New Moon positions for ${displayYear}. Adhika Masa (intercalary month, shown in purple) occurs when two New Moons fall in the same solar month. Hindu year begins with Chaitra Shukla Pratipada.`
-                      : `${displayYear} के वास्तविक अमावस्या स्थितियों से गणित। अधिक मास (बैंगनी में) तब होता है जब एक ही सौर मास में दो अमावस्याएं आती हैं। हिन्दू वर्ष चैत्र शुक्ल प्रतिपदा से आरम्भ।`}
+                    {masaSystem === 'amant'
+                      ? (locale === 'en'
+                        ? `Amant dates computed from actual New Moon positions for ${displayYear}. Each month starts on Amavasya. Adhika Masa (intercalary, purple) occurs when two New Moons fall in the same solar month.`
+                        : `${displayYear} के अमावस्या स्थितियों से अमान्त तिथियाँ। प्रत्येक मास अमावस्या पर आरम्भ। अधिक मास (बैंगनी) एक ही सौर मास में दो अमावस्याओं पर।`)
+                      : (locale === 'en'
+                        ? `Purnimant dates computed from Full Moon positions for ${displayYear}. Each month starts on Purnima. This system is predominant in North India (UP, Bihar, MP, Rajasthan).`
+                        : `${displayYear} के पूर्णिमा स्थितियों ��े पूर्णिमान्त तिथियाँ। प्रत्येक मास पूर्णिमा पर आरम्भ। उत्तर भारत (उ.प्र., बिहार, म.प्र., राजस्थान) में प्रचलित।`)}
                   </p>
                 </div>
               );

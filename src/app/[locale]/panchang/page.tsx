@@ -625,6 +625,13 @@ export default function PanchangPage() {
                       </div>
                     </div>
                   )}
+                  {/* Tithi contextual tip */}
+                  <div className="text-text-secondary/50 text-[10px] mt-1.5 leading-snug">
+                    {panchang.tithi.paksha === 'shukla'
+                      ? (locale === 'en' ? 'Waxing Moon' : 'शुक्ल पक्ष')
+                      : (locale === 'en' ? 'Waning Moon' : 'कृष्ण पक्ष')
+                    }{' — '}{locale === 'en' ? 'Deity:' : 'देवता:'}{' '}{panchang.tithi.deity[locale]}
+                  </div>
                 </motion.div>
 
                 {/* ── NAKSHATRA CARD ── */}
@@ -669,6 +676,10 @@ export default function PanchangPage() {
                       </div>
                     </div>
                   )}
+                  {/* Nakshatra contextual tip */}
+                  <div className="text-text-secondary/50 text-[10px] mt-1.5 leading-snug">
+                    {locale === 'en' ? 'Nature:' : 'स्वभाव:'}{' '}{panchang.nakshatra.nature[locale]}{' — '}{locale === 'en' ? 'Ruler:' : 'स्वामी:'}{' '}{panchang.nakshatra.rulerName[locale]}
+                  </div>
                 </motion.div>
 
                 {/* ── YOGA CARD ── */}
@@ -694,6 +705,15 @@ export default function PanchangPage() {
                       )}
                     </div>
                   )}
+                  {/* Yoga contextual tip */}
+                  <div className="text-text-secondary/50 text-[10px] mt-1.5 leading-snug">
+                    {activeYoga.nature === 'auspicious'
+                      ? (locale === 'en' ? 'Favorable — good for new beginnings' : 'शुभ — नए कार्यों के लिए अच्छा')
+                      : activeYoga.nature === 'inauspicious'
+                        ? (locale === 'en' ? 'Unfavorable — avoid important tasks' : 'अशुभ — महत्वपूर्ण कार्य टालें')
+                        : (locale === 'en' ? 'Neutral — proceed with care' : 'सामान्य — सोच-समझकर करें')
+                    }
+                  </div>
                 </motion.div>
 
                 {/* ── KARANA CARD ── */}
@@ -721,6 +741,15 @@ export default function PanchangPage() {
                       )}
                     </div>
                   )}
+                  {/* Karana contextual tip */}
+                  <div className="text-text-secondary/50 text-[10px] mt-1.5 leading-snug">
+                    {activeKarana.type === 'chara'
+                      ? (locale === 'en' ? 'Movable — good for travel & new work' : 'चर — यात्रा व नए कार्य के लिए')
+                      : activeKarana.type === 'sthira'
+                        ? (locale === 'en' ? 'Fixed — good for stable, lasting work' : 'स्थिर — स्थायी कार्यों के लिए')
+                        : (locale === 'en' ? 'Special karana — exercise caution' : 'विशेष करण — सावधानी बरतें')
+                    }
+                  </div>
                 </motion.div>
 
                 {/* ── VARA CARD ── */}
@@ -735,6 +764,18 @@ export default function PanchangPage() {
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('vara')}</div>
                   <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{panchang.vara.name[locale]}</div>
                   <div className="text-text-secondary text-xs mt-2">{panchang.vara.ruler[locale]}</div>
+                  {/* Vara contextual tip */}
+                  <div className="text-text-secondary/50 text-[10px] mt-1.5 leading-snug">
+                    {locale === 'en' ? 'Ruled by' : 'स्वामी:'}{' '}{panchang.vara.ruler[locale]}{' — '}{
+                      panchang.vara.day === 0 ? (locale === 'en' ? 'good for spirituality' : 'आध्यात्मिक कार्यों के लिए')
+                      : panchang.vara.day === 1 ? (locale === 'en' ? 'good for new starts' : 'नई शुरुआत के लिए')
+                      : panchang.vara.day === 2 ? (locale === 'en' ? 'good for courage & action' : 'साहस व कार्य के लिए')
+                      : panchang.vara.day === 3 ? (locale === 'en' ? 'good for learning & trade' : 'विद्या व व्यापार के लिए')
+                      : panchang.vara.day === 4 ? (locale === 'en' ? 'good for expansion & wealth' : 'विस्तार व धन के लिए')
+                      : panchang.vara.day === 5 ? (locale === 'en' ? 'good for beauty & relationships' : 'सौंदर्य व संबंधों के लिए')
+                      : (locale === 'en' ? 'good for discipline & focus' : 'अनुशासन व एकाग्रता के लिए')
+                    }
+                  </div>
                 </motion.div>
               </div>
             );

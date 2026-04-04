@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { ChevronRight, Calendar, BookOpen, ExternalLink } from 'lucide-react';
+import { ChevronRight, Calendar } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 type Tri = { en: string; hi: string; sa: string };
@@ -12,7 +12,7 @@ interface Section {
   icon: string;
   title: Tri;
   subtitle: Tri;
-  modules: { id: string; title: Tri }[];
+  modules: { id: string; title: Tri; href?: string }[];
   refs: { label: Tri; href: string }[];
 }
 
@@ -25,10 +25,9 @@ const SECTIONS: Section[] = [
       { id: '5-1', title: { en: 'The Lunar Day \u2014 12\u00b0 Segments', hi: 'तिथि \u2014 12\u00b0 खण्ड', sa: 'तिथिः \u2014 12\u00b0 खण्डाः' } },
       { id: '5-2', title: { en: 'Paksha \u2014 Shukla & Krishna', hi: 'पक्ष \u2014 शुक्ल एवं कृष्ण', sa: 'पक्षः \u2014 शुक्लकृष्णौ' } },
       { id: '5-3', title: { en: 'Parana, Kshaya & Vriddhi Tithis', hi: 'पारण, क्षय एवं वृद्धि तिथि', sa: 'पारणं, क्षयवृद्धितिथयः' } },
+      { id: 'ref:tithis', title: { en: 'Tithis — Complete Reference', hi: 'तिथियाँ — सम्पूर्ण सन्दर्भ', sa: 'तिथयः — सम्पूर्णसन्दर्भः' }, href: '/learn/tithis' },
     ],
-    refs: [
-      { label: { en: 'Tithis', hi: 'तिथियाँ', sa: 'तिथयः' }, href: '/learn/tithis' },
-    ],
+    refs: [],
   },
   {
     id: 'nakshatra', icon: '\u2736',
@@ -36,10 +35,9 @@ const SECTIONS: Section[] = [
     subtitle: { en: 'The Daily Star', hi: 'दैनिक नक्षत्र', sa: 'दैनिकनक्षत्रम्' },
     modules: [
       { id: '6-1', title: { en: '27 Lunar Mansions', hi: '27 चन्द्र गृह', sa: '27 चन्द्रगृहाणि' } },
+      { id: 'ref:nakshatras', title: { en: 'Nakshatras — Complete Reference', hi: 'नक्षत्र — सम्पूर्ण सन्दर्भ', sa: 'नक्षत्राणि — सम्पूर्णसन्दर्भः' }, href: '/learn/nakshatras' },
     ],
-    refs: [
-      { label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, href: '/learn/nakshatras' },
-    ],
+    refs: [],
   },
   {
     id: 'yoga-karana-vara', icon: '\u262F',
@@ -49,12 +47,11 @@ const SECTIONS: Section[] = [
       { id: '7-1', title: { en: 'Yoga \u2014 Sun + Moon Sum', hi: 'योग \u2014 सूर्य + चन्द्र योग', sa: 'योगः \u2014 सूर्यचन्द्रयोगः' } },
       { id: '7-2', title: { en: 'Karana \u2014 The Half-Tithi', hi: 'करण \u2014 अर्ध तिथि', sa: 'करणम् \u2014 अर्धतिथिः' } },
       { id: '7-3', title: { en: 'Vara & the Hora System', hi: 'वार एवं होरा पद्धति', sa: 'वारः होरापद्धतिश्च' } },
+      { id: 'ref:yogas', title: { en: 'Yogas — Complete Reference', hi: 'योग — सम्पूर्ण सन्दर्भ', sa: 'योगाः — सम्पूर्णसन्दर्भः' }, href: '/learn/yogas' },
+      { id: 'ref:karanas', title: { en: 'Karanas — Complete Reference', hi: 'करण — सम्पूर्ण सन्दर्भ', sa: 'करणानि — सम्पूर्णसन्दर्भः' }, href: '/learn/karanas' },
+      { id: 'ref:vara', title: { en: 'Vara — Complete Reference', hi: 'वार — सम्पूर्ण सन्दर्भ', sa: 'वारः — सम्पूर्णसन्दर्भः' }, href: '/learn/vara' },
     ],
-    refs: [
-      { label: { en: 'Yogas', hi: 'योग', sa: 'योगाः' }, href: '/learn/yogas' },
-      { label: { en: 'Karanas', hi: 'करण', sa: 'करणानि' }, href: '/learn/karanas' },
-      { label: { en: 'Vara', hi: 'वार', sa: 'वारः' }, href: '/learn/vara' },
-    ],
+    refs: [],
   },
   {
     id: 'muhurta', icon: '\u23F0',
@@ -66,11 +63,10 @@ const SECTIONS: Section[] = [
       { id: '17-2', title: { en: 'Marriage Muhurta', hi: 'विवाह मुहूर्त', sa: 'विवाहमुहूर्तम्' } },
       { id: '17-3', title: { en: 'Property & Travel', hi: 'गृह एवं यात्रा', sa: 'गृहं यात्रा च' } },
       { id: '17-4', title: { en: 'Education & Naming', hi: 'शिक्षा एवं नामकरण', sa: 'शिक्षा नामकरणं च' } },
+      { id: 'ref:muhurtas', title: { en: 'Muhurtas — Complete Reference', hi: 'मुहूर्त — सम्पूर्ण सन्दर्भ', sa: 'मुहूर्ताः — सम्पूर्णसन्दर्भः' }, href: '/learn/muhurtas' },
+      { id: 'ref:hora', title: { en: 'Hora — Complete Reference', hi: 'होरा — सम्पूर्ण सन्दर्भ', sa: 'होरा — सम्पूर्णसन्दर्भः' }, href: '/learn/hora' },
     ],
-    refs: [
-      { label: { en: 'Muhurtas', hi: 'मुहूर्त', sa: 'मुहूर्ताः' }, href: '/learn/muhurtas' },
-      { label: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, href: '/learn/hora' },
-    ],
+    refs: [],
   },
   {
     id: 'integration', icon: '\u{1F4D6}',
@@ -78,21 +74,20 @@ const SECTIONS: Section[] = [
     subtitle: { en: 'Putting It All Together', hi: 'सब कुछ एक साथ', sa: 'सर्वम् एकत्र' },
     modules: [
       { id: '0-4', title: { en: 'Reading Today\'s Panchang', hi: 'आज का पंचांग पढ़ना', sa: 'अद्यपञ्चाङ्गपठनम्' } },
+      { id: 'ref:masa', title: { en: 'Masa — Complete Reference', hi: 'मास — सम्पूर्ण सन्दर्भ', sa: 'मासः — सम्पूर्णसन्दर्भः' }, href: '/learn/masa' },
+      { id: 'ref:transit-guide', title: { en: 'Transit Guide — Complete Reference', hi: 'गोचर मार्गदर्शिका — सम्पूर्ण सन्दर्भ', sa: 'गोचरमार्गदर्शिका — सम्पूर्णसन्दर्भः' }, href: '/learn/transit-guide' },
     ],
-    refs: [
-      { label: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
-      { label: { en: 'Transit Guide', hi: 'गोचर मार्गदर्शिका', sa: 'गोचरमार्गदर्शिका' }, href: '/learn/transit-guide' },
-    ],
+    refs: [],
   },
   {
     id: 'calendar', icon: '\u{1F4C5}',
     title: { en: 'Calendar & Festivals', hi: 'पंचांग एवं त्योहार', sa: 'पञ्चाङ्गम् उत्सवाश्च' },
     subtitle: { en: 'Living by the Stars', hi: 'तारों के अनुसार जीवन', sa: 'ताराणाम् अनुसारं जीवनम्' },
-    modules: [],
-    refs: [
-      { label: { en: 'Festival Calendar', hi: 'त्योहार कैलेंडर', sa: 'उत्सवपञ्चाङ्गम्' }, href: '/calendar' },
-      { label: { en: 'Cosmic Time Scales', hi: 'ब्रह्माण्डीय कालमान', sa: 'ब्रह्माण्डीयकालमानम्' }, href: '/learn/cosmology' },
+    modules: [
+      { id: 'ref:calendar', title: { en: 'Festival Calendar — Complete Reference', hi: 'त्योहार कैलेंडर — सम्पूर्ण सन्दर्भ', sa: 'उत्सवपञ्चाङ्गम् — सम्पूर्णसन्दर्भः' }, href: '/calendar' },
+      { id: 'ref:cosmology', title: { en: 'Cosmic Time Scales — Complete Reference', hi: 'ब्रह्माण्डीय कालमान — सम्पूर्ण सन्दर्भ', sa: 'ब्रह्माण्डीयकालमानम् — सम्पूर्णसन्दर्भः' }, href: '/learn/cosmology' },
     ],
+    refs: [],
   },
 ];
 
@@ -192,52 +187,41 @@ export default function PanchangTrackPage() {
                 <h2 className="text-lg font-bold text-white" style={hf}>{section.title[locale]}</h2>
                 <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{section.subtitle[locale]}</span>
               </div>
-              {section.modules.length > 0 && (
-                <span className="ml-auto text-gold-primary/40 text-xs font-mono">{section.modules.length} {l.modules}</span>
-              )}
-              {section.modules.length === 0 && (
-                <span className="ml-auto text-gold-primary/30 text-xs italic">{l.refsOnly}</span>
-              )}
+              {(() => {
+                const modCount = section.modules.filter(m => !m.id.startsWith('ref:')).length;
+                return modCount > 0
+                  ? <span className="ml-auto text-gold-primary/40 text-xs font-mono">{modCount} {l.modules}</span>
+                  : <span className="ml-auto text-gold-primary/30 text-xs italic">{l.refsOnly}</span>;
+              })()}
             </div>
 
-            {/* Module cards */}
+            {/* Module & reference cards */}
             {section.modules.length > 0 && (
               <div className="divide-y divide-amber-500/8">
-                {section.modules.map((mod, mi) => (
-                  <Link
-                    key={mod.id}
-                    href={`/learn/modules/${mod.id}`}
-                    className="flex items-center justify-between px-6 py-3.5 hover:bg-amber-500/8 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-gold-light">
-                        {mi + 1}
-                      </span>
-                      <span className="text-text-primary text-sm group-hover:text-amber-200 transition-colors" style={bf}>
-                        {mod.title[locale]}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            {/* Reference deep dives */}
-            {section.refs.length > 0 && (
-              <div className={`px-6 py-3 ${section.modules.length > 0 ? 'border-t border-amber-500/10' : ''} flex flex-wrap gap-2`}>
-                {section.refs.map(ref => (
-                  <Link
-                    key={ref.href}
-                    href={ref.href}
-                    className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full bg-orange-500/15 text-orange-300 hover:bg-orange-500/25 border border-orange-500/20 transition-colors"
-                    style={bf}
-                  >
-                    <BookOpen className="w-3 h-3" />
-                    {l.deepDive}: {ref.label[locale]}
-                    <ExternalLink className="w-2.5 h-2.5 opacity-50" />
-                  </Link>
-                ))}
+                {section.modules.map((mod, mi) => {
+                  const isRef = mod.id.startsWith('ref:');
+                  const linkHref = isRef && mod.href ? mod.href : `/learn/modules/${mod.id}`;
+                  return (
+                    <Link key={mod.id} href={linkHref}
+                      className={`flex items-center justify-between px-6 py-3.5 transition-colors group ${isRef ? 'hover:bg-violet-500/8 bg-violet-500/3' : 'hover:bg-amber-500/8'}`}>
+                      <div className="flex items-center gap-3">
+                        {isRef ? (
+                          <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
+                            {locale === 'en' ? 'Ref' : 'सन्दर्भ'}
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-gold-light">
+                            {mi + 1}
+                          </span>
+                        )}
+                        <span className={`text-sm group-hover:text-amber-200 transition-colors ${isRef ? 'text-violet-200/80' : 'text-text-primary'}`} style={bf}>
+                          {mod.title[locale]}
+                        </span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </motion.div>

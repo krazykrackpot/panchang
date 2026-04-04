@@ -376,6 +376,18 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['kp sub lord', 'krishnamurti paddhati', '249 sub lords', 'kp astrology calculator'],
   },
 
+  // ─── Cosmology Heritage ──────────────────────────────────
+  '/learn/vedanga': {
+    title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदांग ज्योतिष एवं भारतीय खगोलशास्त्र विरासत', sa: 'वेदाङ्गज्योतिषम् भारतीयखगोलशास्त्रपरम्परा च' },
+    description: { en: 'The oldest astronomical text, great Indian astronomers (Aryabhata, Varahamihira, Brahmagupta, Madhava), and what India knew centuries before the West.', hi: 'सबसे प्राचीन खगोलशास्त्र ग्रन्थ, महान भारतीय खगोलशास्त्री, और भारत ने पश्चिम से सदियों पहले क्या जाना।', sa: 'प्राचीनतमं खगोलशास्त्रं महान्तः भारतीयखगोलशास्त्रिणः पश्चिमात् शताब्दीभिः पूर्वं भारतः किमजानात्।' },
+    keywords: ['vedanga jyotisha', 'aryabhata', 'indian astronomy', 'brahmagupta zero', 'madhava calculus'],
+  },
+  '/learn/observatories': {
+    title: { en: 'Jantar Mantar — India\'s Stone Astronomical Observatories', hi: 'जन्तर मन्तर — भारत की पत्थर वेधशालाएं', sa: 'जन्तरमन्तरम् — भारतस्य प्रस्तरवेधशालाः' },
+    description: { en: 'Maharaja Jai Singh\'s 5 stone observatories: Samrat Yantra (27m sundial), Jai Prakash, Rashivalaya. 2-arcsecond accuracy without telescopes. UNESCO World Heritage.', hi: 'महाराजा जयसिंह की 5 पत्थर वेधशालाएं: सम्राट यंत्र, जयप्रकाश, राशिवलय। बिना दूरबीन 2 आर्कसेकण्ड सटीकता।', sa: 'महाराजजयसिंहस्य ५ प्रस्तरवेधशालाः। दूरदर्शिनं विना २ चापकलासम्यक्ता।' },
+    keywords: ['jantar mantar', 'jai singh observatory', 'samrat yantra', 'indian observatory', 'stone instruments'],
+  },
+
   // ─── Learning Tracks ─────────────────────────────────────
   '/learn/track/cosmology': {
     title: { en: 'Hindu Cosmology & Foundations — Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — सम्पूर्ण पाठ्यक्रम', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — सम्पूर्णपाठ्यक्रमः' },

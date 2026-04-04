@@ -115,6 +115,8 @@ const SECTIONS: Section[] = [
     ],
     refs: [
       { label: { en: 'Classical Texts', hi: 'शास्त्रीय ग्रंथ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
+      { label: { en: 'Vedanga Jyotisha & Heritage', hi: 'वेदांग ज्योतिष एवं विरासत', sa: 'वेदाङ्गज्योतिषम्' }, href: '/learn/vedanga' },
+      { label: { en: 'Jantar Mantar Observatories', hi: 'जन्तर मन्तर वेधशालाएं', sa: 'जन्तरमन्तरवेधशालाः' }, href: '/learn/observatories' },
     ],
   },
 ];

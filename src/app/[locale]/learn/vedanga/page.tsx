@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
-import { ArrowRight, BookOpen, Star, Sparkles, Globe } from 'lucide-react';
+import { ArrowRight, BookOpen, Star, Sparkles, Globe, Route } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -21,6 +21,7 @@ const L = {
   s2Title: { en: 'The Great Astronomers of India', hi: 'भारत के महान खगोलशास्त्री' },
   s3Title: { en: 'Key Texts Timeline', hi: 'प्रमुख ग्रन्थों की समयरेखा' },
   s4Title: { en: 'What India Knew Before the West', hi: 'जो भारत ने पश्चिम से पहले जाना' },
+  s5Title: { en: 'The Transmission Chain', hi: 'ज्ञान का संचरण मार्ग' },
   backToLearn: { en: 'Back to Learn', hi: 'सीखने पर वापस' },
   exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
 };
@@ -57,6 +58,7 @@ const ASTRONOMERS: Astronomer[] = [
       { en: 'Calculated Earth\'s circumference to 99.8% accuracy (39,736 km vs 40,075 km)', hi: 'पृथ्वी की परिधि 99.8% सटीकता से आँकी (39,736 km बनाम 40,075 km)' },
       { en: 'Created the first sine tables (ardha-jya) — the word "sine" IS Sanskrit', hi: 'प्रथम ज्या सारणी बनाई (अर्ध-ज्या) — "sine" शब्द संस्कृत से ही आया है' },
       { en: 'Pi = 3.1416 — most accurate ancient value. Wrote Aryabhatiya at age 23.', hi: 'पाई = 3.1416 — प्राचीन विश्व का सबसे सटीक मान। 23 वर्ष की आयु में आर्यभटीय लिखी।' },
+      { en: 'First to explain eclipses as Earth\'s shadow on the Moon — not Rahu swallowing the luminaries.', hi: 'ग्रहण को पृथ्वी की छाया के रूप में समझाने वाले पहले व्यक्ति — राहु द्वारा ग्रास नहीं।' },
     ],
     quote: { en: '"As a man in a boat sees stationary objects moving backward, so the stationary stars are seen as moving westward."', hi: '"जैसे नाव में बैठा व्यक्ति स्थिर वस्तुओं को पीछे जाते देखता है, वैसे ही स्थिर तारे पश्चिम की ओर गतिमान दिखते हैं।"' },
   },
@@ -79,6 +81,7 @@ const ASTRONOMERS: Astronomer[] = [
       { en: 'Brahmasphutasiddhanta (628 CE) — calculated lunar and solar eclipse durations', hi: 'ब्राह्मस्फुटसिद्धान्त (628 ई.) — चन्द्र और सूर्य ग्रहण की अवधि गणना' },
       { en: 'His work reached Baghdad, becoming the foundation for Al-Khwarizmi\'s algebra', hi: 'उनका कार्य बग़दाद पहुँचा, अल-ख़्वारिज़्मी के बीजगणित का आधार बना' },
     ],
+    quote: { en: '"Bodies fall towards the Earth as it is in the nature of the Earth to attract bodies, just as it is the nature of water to flow."', hi: '"वस्तुएँ पृथ्वी की ओर गिरती हैं क्योंकि पृथ्वी का स्वभाव वस्तुओं को आकर्षित करना है, जैसे जल का स्वभाव बहना है।"' },
   },
   {
     name: 'Bhaskara I', nameHi: 'भास्कर प्रथम', era: '600 CE',
@@ -137,7 +140,11 @@ const PRIORITY_TABLE = [
   { concept: { en: 'Sine function', hi: 'ज्या (Sine) फलन' }, india: 'Aryabhata, 499 CE', west: 'Latin sinus via Arabic', gap: 'Origin' },
   { concept: { en: 'Zero as a number', hi: 'शून्य एक संख्या के रूप में' }, india: 'Brahmagupta, 628 CE', west: 'Europe via Al-Khwarizmi, ~825 CE', gap: '~200 yrs' },
   { concept: { en: 'Infinite series for pi', hi: 'पाई की अनन्त श्रेणी' }, india: 'Madhava, ~1400 CE', west: 'Gregory-Leibniz, ~1670 CE', gap: '270 yrs' },
+  { concept: { en: 'Negative numbers', hi: 'ऋण संख्याएँ' }, india: 'Brahmagupta, 628 CE', west: 'Europe, ~1200s CE', gap: '~600 yrs' },
+  { concept: { en: 'Gravity concept', hi: 'गुरुत्वाकर्षण अवधारणा' }, india: 'Brahmagupta, 628 CE', west: 'Newton, 1687 CE', gap: '1,059 yrs' },
+  { concept: { en: 'Calculus concepts', hi: 'कलनशास्त्र अवधारणाएँ' }, india: 'Madhava, ~1400 CE', west: 'Newton/Leibniz, ~1680 CE', gap: '~280 yrs' },
   { concept: { en: 'Semi-heliocentric model', hi: 'अर्ध-सूर्यकेन्द्रित मॉडल' }, india: 'Nilakantha, ~1500 CE', west: 'Copernicus, 1543 CE', gap: '~40 yrs' },
+  { concept: { en: 'Decimal system', hi: 'दशमलव प्रणाली' }, india: 'Bhaskara I, ~600 CE', west: 'Fibonacci, 1202 CE', gap: '~600 yrs' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -347,6 +354,68 @@ export default function VedangaPage() {
               {hi
                 ? 'शब्द यात्रा: अर्ध-ज्या → ज्या → अरबी "जीब" → लैटिन "sinus" → अंग्रेज़ी "sine"। हर बार जब कोई "sine" कहता है, वह संस्कृत बोल रहा है।'
                 : 'Word journey: ardha-jya \u2192 jya \u2192 Arabic "jiba" \u2192 Latin "sinus" \u2192 English "sine." Every time anyone says "sine," they are speaking Sanskrit.'}
+            </p>
+          </motion.div>
+        </LessonSection>
+
+        {/* ═══ SECTION 5: Transmission Chain ═══ */}
+        <LessonSection number={5} title={t(L.s5Title)}>
+          <p className="text-text-secondary/70 text-sm mb-5 leading-relaxed">
+            {hi
+              ? 'भारतीय गणित और खगोल विज्ञान अरब विद्वानों के माध्यम से यूरोप तक कैसे पहुँचा — यह ज्ञान की सबसे महत्वपूर्ण यात्रा है।'
+              : 'How Indian mathematics and astronomy reached Europe through Arab scholars — one of the most consequential knowledge transfers in human history.'}
+          </p>
+
+          {/* Flow diagram */}
+          <div className="flex flex-col items-center gap-0">
+            {[
+              {
+                icon: <Sparkles className="w-5 h-5 text-amber-400" />,
+                title: { en: 'Indian Mathematicians', hi: 'भारतीय गणितज्ञ' },
+                detail: { en: 'Aryabhata, Brahmagupta, Bhaskara — decimal system, zero, algebra, trigonometry, astronomy', hi: 'आर्यभट, ब्रह्मगुप्त, भास्कर — दशमलव, शून्य, बीजगणित, त्रिकोणमिति, खगोल' },
+                color: 'border-amber-500/30 bg-amber-500/[0.06]',
+              },
+              {
+                icon: <Route className="w-5 h-5 text-emerald-400" />,
+                title: { en: 'Arabic Scholars (8th-11th c.)', hi: 'अरब विद्वान (8वीं-11वीं सदी)' },
+                detail: { en: 'Al-Khwarizmi learned from Indian texts — his name gave us "algorithm." Al-Biruni (1030 CE) traveled to India, wrote Tarikh al-Hind.', hi: 'अल-ख़्वारिज़्मी ने भारतीय ग्रन्थों से सीखा — उनके नाम से "algorithm" बना। अल-बिरूनी (1030 ई.) ने भारत यात्रा की, तारीख़-उल-हिन्द लिखी।' },
+                color: 'border-emerald-500/30 bg-emerald-500/[0.06]',
+              },
+              {
+                icon: <Globe className="w-5 h-5 text-blue-400" />,
+                title: { en: 'Medieval Europe (12th-13th c.)', hi: 'मध्यकालीन यूरोप (12वीं-13वीं सदी)' },
+                detail: { en: 'Fibonacci\'s Liber Abaci (1202) introduced "Arabic" numerals — which were Indian numerals transmitted via Arabia. Europe finally abandoned Roman numerals.', hi: 'फ़िबोनाची की लिबेर अबाची (1202) ने "अरबी" अंक प्रस्तुत किए — जो वास्तव में अरब के माध्यम से आए भारतीय अंक थे।' },
+                color: 'border-blue-500/30 bg-blue-500/[0.06]',
+              },
+            ].map((step, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }} className="w-full">
+                {i > 0 && (
+                  <div className="flex justify-center py-2">
+                    <div className="w-0.5 h-6 bg-gradient-to-b from-gold-primary/40 to-gold-primary/10" />
+                  </div>
+                )}
+                <div className={`rounded-xl border ${step.color} p-4 sm:p-5`}>
+                  <div className="flex items-center gap-3 mb-2">
+                    {step.icon}
+                    <h4 className="font-bold text-sm sm:text-base text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>{t(step.title)}</h4>
+                  </div>
+                  <p className="text-xs sm:text-sm text-text-secondary/75 leading-relaxed pl-8">{t(step.detail)}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-6 rounded-xl border border-gold-primary/20 bg-gradient-to-r from-gold-primary/[0.06] to-transparent p-5"
+          >
+            <p className="text-sm text-gold-light/90 font-medium text-center leading-relaxed">
+              {hi
+                ? '"Arabic numerals" = भारतीय अंक जो अरब के रास्ते गए। "Algorithm" = अल-ख़्वारिज़्मी = जिन्होंने भारतीय गणितज्ञों से सीखा। आधुनिक गणित की नींव भारत में रखी गई।'
+                : '"Arabic numerals" are Indian numerals transmitted via Arabia. "Algorithm" comes from Al-Khwarizmi — who learned from Indian mathematicians. The foundations of modern mathematics were laid in India.'}
             </p>
           </motion.div>
         </LessonSection>

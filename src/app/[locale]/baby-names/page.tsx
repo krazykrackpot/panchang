@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
-import { NAKSHATRA_SYLLABLES, SAMPLE_NAMES } from '@/lib/constants/nakshatra-syllables';
+import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -80,17 +80,6 @@ export default function BabyNamesPage() {
     }
     return data;
   }, [selectedNak, selectedPada]);
-
-  const suggestedNames = useMemo(() => {
-    const names: string[] = [];
-    for (const syl of syllables) {
-      const key = syl.en;
-      if (SAMPLE_NAMES[key]) {
-        names.push(...SAMPLE_NAMES[key]);
-      }
-    }
-    return [...new Set(names)];
-  }, [syllables]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -169,69 +158,82 @@ export default function BabyNamesPage() {
       <AnimatePresence>
         {selectedNak > 0 && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
+            {/* Explanation: What are Padas? */}
+            <div className="rounded-xl border border-gold-primary/10 bg-bg-secondary/20 p-5 mb-6">
+              <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
+                {locale === 'en' ? 'What are Padas?' : 'पाद क्या हैं?'}
+              </h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {locale === 'en'
+                  ? 'Each nakshatra (birth star) is divided into 4 quarters called "Padas." Each pada is associated with a specific starting syllable for the baby\'s name. In the Hindu naming tradition (Namakarana), the child\'s name should begin with the syllable of their birth pada — this is believed to align the child\'s identity with their cosmic vibration. Your baby\'s pada is determined by the exact position of the Moon at the time of birth.'
+                  : 'प्रत्येक नक्षत्र (जन्म तारा) को 4 भागों में बाँटा जाता है जिन्हें "पाद" कहते हैं। प्रत्येक पाद एक विशिष्ट प्रारम्भिक अक्षर से जुड़ा होता है। हिन्दू नामकरण परम्परा में बच्चे का नाम उनके जन्म पाद के अक्षर से शुरू होना चाहिए — माना जाता है कि यह बच्चे की पहचान को उनके ब्रह्मांडीय कम्पन से जोड़ता है। पाद जन्म के समय चन्द्रमा की सटीक स्थिति से निर्धारित होता है।'}
+              </p>
+            </div>
+
             {/* Pada selector */}
-            <div className="flex justify-center gap-3 mb-8">
-              <button onClick={() => setSelectedPada(0)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedPada === 0 ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10'}`}>
-                {locale === 'en' ? 'All Padas' : 'सभी पद'}
-              </button>
-              {[1, 2, 3, 4].map(p => (
-                <button key={p} onClick={() => setSelectedPada(p)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedPada === p ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10'}`}>
-                  {locale === 'en' ? `Pada ${p}` : `पद ${p}`}
+            <div className="mb-8">
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
+                {locale === 'en' ? 'Select Pada (Quarter)' : 'पाद चुनें (चतुर्थांश)'}
+                {detectedPada > 0 && <span className="text-gold-primary font-normal ml-2">— {locale === 'en' ? `Pada ${detectedPada} detected from birth time` : `जन्म समय से पाद ${detectedPada} पहचाना`}</span>}
+              </label>
+              <div className="flex justify-center gap-3">
+                <button onClick={() => setSelectedPada(0)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedPada === 0 ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10'}`}>
+                  {locale === 'en' ? 'All Padas' : 'सभी पाद'}
                 </button>
-              ))}
+                {[1, 2, 3, 4].map(p => (
+                  <button key={p} onClick={() => setSelectedPada(p)}
+                    className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                      selectedPada === p
+                        ? 'bg-gold-primary/20 text-gold-light border-2 border-gold-primary/50'
+                        : p === detectedPada
+                        ? 'text-gold-primary border-2 border-gold-primary/30 border-dashed bg-gold-primary/5'
+                        : 'text-text-secondary border border-gold-primary/10'
+                    }`}>
+                    {locale === 'en' ? `Pada ${p}` : `पाद ${p}`}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <GoldDivider />
 
-            {/* Syllables */}
+            {/* Syllables — the main result */}
             <div className="my-8">
-              <h3 className="text-gold-light text-xl font-bold mb-4 text-center" style={headingFont}>
-                {locale === 'en' ? 'Starting Syllables' : 'प्रारम्भिक अक्षर'}
+              <h3 className="text-gold-light text-xl font-bold mb-2 text-center" style={headingFont}>
+                {locale === 'en' ? 'Name Starting Syllables' : 'नाम के प्रारम्भिक अक्षर'}
               </h3>
-              <div className="flex flex-wrap justify-center gap-3">
+              <p className="text-text-secondary/60 text-sm text-center mb-6">
+                {locale === 'en'
+                  ? 'Your baby\'s name should ideally start with one of these syllables'
+                  : 'आपके बच्चे का नाम इनमें से किसी एक अक्षर से शुरू होना चाहिए'}
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
                 {syllables.map((syl, i) => (
                   <motion.div key={i}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: i * 0.1 }}
-                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border-2 border-gold-primary/30 min-w-[100px] text-center"
+                    className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-2xl p-6 border-2 border-gold-primary/30 min-w-[110px] text-center shadow-lg shadow-gold-primary/5"
                   >
-                    <div className="text-4xl font-bold text-gold-light mb-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
+                    <div className="text-5xl font-bold text-gold-light mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
                       {locale === 'en' ? syl.en : syl.hi}
                     </div>
-                    <div className="text-text-secondary text-xs">
+                    <div className="text-text-secondary text-sm">
                       {locale === 'en' ? syl.hi : syl.en}
+                    </div>
+                    <div className="text-text-secondary/30 text-[10px] mt-1">
+                      {locale === 'en' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
                     </div>
                   </motion.div>
                 ))}
               </div>
+              <p className="text-text-secondary/40 text-xs text-center mt-6">
+                {locale === 'en'
+                  ? 'For example, if the syllable is "Chu", names like "Chudamani", "Chulbul" etc. are auspicious.'
+                  : 'उदाहरण: यदि अक्षर "चू" है तो "चूड़ामणि", "चुलबुल" आदि नाम शुभ हैं।'}
+              </p>
             </div>
-
-            {/* Name suggestions — show directly without filter */}
-            {suggestedNames.length > 0 && (
-              <div className="my-8">
-                <h3 className="text-gold-light text-xl font-bold mb-4 text-center" style={headingFont}>
-                  {locale === 'en' ? 'Suggested Names' : 'सुझावित नाम'}
-                </h3>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {suggestedNames.map((name, i) => (
-                    <motion.span key={name}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: Math.min(i * 0.03, 0.5) }}
-                      className="px-4 py-2 rounded-xl bg-bg-tertiary/30 border border-gold-primary/10 text-gold-light text-sm font-medium"
-                    >
-                      {name}
-                    </motion.span>
-                  ))}
-                </div>
-                <p className="text-text-secondary/50 text-xs text-center mt-4">
-                  {locale === 'en' ? 'Traditional suggestions based on nakshatra syllables. The first syllable is most important.' : 'नक्षत्र अक्षरों पर आधारित परम्परागत सुझाव। प्रथम अक्षर सबसे महत्त्वपूर्ण है।'}
-                </p>
-              </div>
-            )}
           </motion.div>
         )}
       </AnimatePresence>

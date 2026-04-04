@@ -1883,29 +1883,109 @@ export default function KundaliPage() {
               {/* Patrika content */}
               <div ref={patrikaRef} className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8 space-y-8">
 
-                {/* Header: Om + Name + Birth Details */}
+                {/* Header: Swastika + Om + Name + Birth Details */}
                 <div className="text-center space-y-3">
-                  <div className="text-4xl sm:text-5xl text-gold-primary" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ</div>
+                  <div className="text-5xl text-gold-primary/40" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
+                  <div className="text-gold-primary/25 text-sm" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः</div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
                     {locale === 'en' ? 'Janma Patrika' : 'जन्म पत्रिका'}
                   </h2>
-                  <div className="max-w-md mx-auto">
-                    <p className="text-gold-primary text-lg font-bold" style={headingFont}>{bd.name || (locale === 'en' ? 'Native' : 'जातक')}</p>
-                    <div className="grid grid-cols-2 gap-x-6 gap-y-1.5 mt-3 text-sm">
-                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Date of Birth' : 'जन्म तिथि'}</span>
+
+                  {/* Name */}
+                  <p className="text-gold-primary text-xl font-bold" style={headingFont}>{bd.name || (locale === 'en' ? 'Native' : 'जातक')}</p>
+
+                  {/* Birth data grid */}
+                  <div className="max-w-lg mx-auto">
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-1.5 text-sm">
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Date of Birth' : 'जन्म दिनांक'}</span>
                       <span className="text-text-secondary text-left font-mono">{bd.date}</span>
                       <span className="text-gold-dark text-right">{locale === 'en' ? 'Time of Birth' : 'जन्म समय'}</span>
                       <span className="text-text-secondary text-left font-mono">{bd.time}</span>
-                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Place' : 'स्थान'}</span>
-                      <span className="text-text-secondary text-left">{bd.place || `${bd.lat.toFixed(2)}N, ${bd.lng.toFixed(2)}E`}</span>
+                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Place of Birth' : 'जन्म स्थान'}</span>
+                      <span className="text-text-secondary text-left">{bd.place || `${bd.lat.toFixed(2)}°N, ${bd.lng.toFixed(2)}°E`}</span>
                       <span className="text-gold-dark text-right">{locale === 'en' ? 'Ayanamsha' : 'अयनांश'}</span>
-                      <span className="text-text-secondary text-left font-mono">Lahiri {kundali.ayanamshaValue.toFixed(4)}°</span>
-                      <span className="text-gold-dark text-right">{locale === 'en' ? 'Ascendant' : 'लग्न'}</span>
-                      <span className="text-text-secondary text-left" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
-                      </span>
+                      <span className="text-text-secondary text-left font-mono">{bd.ayanamsha} ({kundali.ayanamshaValue.toFixed(4)}°)</span>
                     </div>
                   </div>
+
+                  <div className="border-t border-gold-primary/10 my-2" />
+
+                  {/* Vedic birth details: Lagna, Rashi, Nakshatra, Tithi, Yoga, Masa */}
+                  {(() => {
+                    const moonP = kundali.planets.find(p => p.planet.id === 1);
+                    const sunP = kundali.planets.find(p => p.planet.id === 0);
+                    const lagnaR = RASHIS[kundali.ascendant.sign - 1];
+                    const moonR = moonP ? RASHIS[moonP.sign - 1] : null;
+                    const sunR = sunP ? RASHIS[sunP.sign - 1] : null;
+
+                    // Compute tithi, yoga, masa from julianDay
+                    const { calculateTithi, calculateYoga, sunLongitude: sunLon, toSidereal: toSid, getMasa, MASA_NAMES } = require('@/lib/ephem/astronomical');
+                    const { TITHIS } = require('@/lib/constants/tithis');
+                    const { YOGAS } = require('@/lib/constants/yogas');
+                    const jd = kundali.julianDay;
+                    const tR = calculateTithi(jd);
+                    const tD = TITHIS[tR.number - 1];
+                    const yN = calculateYoga(jd);
+                    const yD = YOGAS[yN - 1];
+                    const sS = toSid(sunLon(jd), jd);
+                    const mI = getMasa(sS);
+                    const mD = MASA_NAMES[mI];
+
+                    return (
+                      <div className="max-w-xl mx-auto">
+                        {/* Lagna / Chandra / Surya row */}
+                        <div className="grid grid-cols-3 gap-3 text-center mb-3">
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Lagna' : 'लग्न'}</div>
+                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {lagnaR?.name[locale]} ({kundali.ascendant.degree.toFixed(1)}°)
+                            </div>
+                          </div>
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Chandra Rashi' : 'चन्द्र राशि'}</div>
+                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {moonR?.name[locale] || '—'}
+                            </div>
+                          </div>
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Surya Rashi' : 'सूर्य राशि'}</div>
+                            <div className="text-gold-light font-bold text-sm mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {sunR?.name[locale] || '—'}
+                            </div>
+                          </div>
+                        </div>
+                        {/* Nakshatra / Tithi / Yoga / Masa row */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}</div>
+                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {moonP?.nakshatra?.name?.[locale] || '—'}
+                            </div>
+                            <div className="text-text-secondary/40 text-[9px]">{locale === 'en' ? 'Pada' : 'पाद'} {moonP?.pada || '—'}</div>
+                          </div>
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Tithi' : 'जन्म तिथि'}</div>
+                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {tD?.name?.[locale] || '—'}
+                            </div>
+                            <div className="text-text-secondary/40 text-[9px]">{tD?.paksha === 'shukla' ? (locale === 'en' ? 'Shukla' : 'शुक्ल') : (locale === 'en' ? 'Krishna' : 'कृष्ण')}</div>
+                          </div>
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Yoga' : 'जन्म योग'}</div>
+                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {yD?.name?.[locale] || '—'}
+                            </div>
+                          </div>
+                          <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-2.5">
+                            <div className="text-[9px] text-text-secondary/50 uppercase tracking-wider">{locale === 'en' ? 'Birth Masa' : 'जन्म मास'}</div>
+                            <div className="text-gold-light font-bold text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {mD?.[locale] || '—'}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
 
                 <div className="border-t border-gold-primary/10" />

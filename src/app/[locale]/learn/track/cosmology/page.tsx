@@ -40,6 +40,7 @@ const SECTIONS: Section[] = [
       { id: '1-2', title: { en: 'Measuring the Sky \u2014 Degrees & Signs', hi: 'आकाश मापन \u2014 अंश एवं राशि', sa: 'आकाशमापनम् \u2014 अंशाः राशयश्च' } },
       { id: '1-3', title: { en: 'Fixed Stars vs Moving Planets', hi: 'स्थिर तारे बनाम गतिशील ग्रह', sa: 'स्थिरतारकाः गतिशीलग्रहाश्च' } },
       { id: 'ref:calculations', title: { en: 'How We Calculate — Meeus Algorithms', hi: 'गणना कैसे करते हैं — Meeus गणित', sa: 'गणनापद्धतयः' }, href: '/learn/calculations' },
+      { id: 'ref:orbital', title: { en: 'Planetary Orbital Periods — Surya Siddhanta vs NASA', hi: 'ग्रह कक्षीय काल — सूर्य सिद्धान्त बनाम NASA', sa: 'ग्रहकक्षीयकालाः' }, href: '/learn/planetary-cycles' },
     ],
     refs: [],
   },

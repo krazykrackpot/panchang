@@ -388,6 +388,12 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['jantar mantar', 'jai singh observatory', 'samrat yantra', 'indian observatory', 'stone instruments'],
   },
 
+  '/learn/planetary-cycles': {
+    title: { en: 'Planetary Orbital Periods — Surya Siddhanta vs NASA', hi: 'ग्रह कक्षीय काल — सूर्य सिद्धान्त बनाम NASA', sa: 'ग्रहकक्षीयकालाः — सूर्यसिद्धान्तः NASA च' },
+    description: { en: 'How ancient Indians knew planetary orbits: Saturn 29.5yr (Sade Sati = quarter orbit), Jupiter 12yr (sign/year), Moon 27.3d (27 Nakshatras). Surya Siddhanta vs NASA comparison.', hi: 'प्राचीन भारतीयों ने ग्रह कक्षाएं कैसे जानीं: शनि 29.5 वर्ष, बृहस्पति 12 वर्ष, चन्द्र 27.3 दिन।', sa: 'प्राचीनभारतीयाः ग्रहकक्षाः कथम् अजानन्।' },
+    keywords: ['planetary orbits vedic', 'surya siddhanta accuracy', 'sade sati orbital', 'ancient indian astronomy'],
+  },
+
   // ─── Learning Tracks ─────────────────────────────────────
   '/learn/track/cosmology': {
     title: { en: 'Hindu Cosmology & Foundations — Complete Learning Track', hi: 'हिन्दू ब्रह्माण्ड विज्ञान — सम्पूर्ण पाठ्यक्रम', sa: 'हिन्दूब्रह्माण्डविज्ञानम् — सम्पूर्णपाठ्यक्रमः' },

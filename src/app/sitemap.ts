@@ -61,6 +61,7 @@ const routes = [
   '/learn/cosmology',
   '/learn/vedanga',
   '/learn/observatories',
+  '/learn/planetary-cycles',
   '/learn/career',
   '/learn/marriage',
   '/learn/wealth',

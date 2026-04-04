@@ -168,6 +168,19 @@ export default function LearnNakshatrasPage() {
       {/* ─── 3. Nakshatra Lords & Dasha ─── */}
       <LessonSection number={3} title={L.dashaTitle[lo]}>
         <p>{L.dashaContent[lo]}</p>
+        <div className="mt-4 rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
+          {lo === 'en' ? (
+            <>
+              <p className="mb-2"><strong className="text-gold-light">How is the mapping done?</strong> The 9 planets are assigned to nakshatras in a fixed repeating cycle: <span className="text-gold-primary">Ketu → Venus → Sun → Moon → Mars → Rahu → Jupiter → Saturn → Mercury</span>, then back to Ketu. This cycle repeats 3 times across 27 nakshatras (9 × 3 = 27), so each planet rules exactly 3 nakshatras.</p>
+              <p>This sequence is NOT random — it follows the <strong>Vimshottari Dasha order</strong>, which is based on the planets&apos; orbital periods and their relative influence over human life. The dasha years assigned to each planet (Ketu=7, Venus=20, Sun=6, etc.) total exactly 120 years — the ideal human lifespan according to the Vedas.</p>
+            </>
+          ) : (
+            <>
+              <p className="mb-2"><strong className="text-gold-light">यह मैपिंग कैसे होती है?</strong> 9 ग्रह एक निश्चित दोहराव चक्र में नक्षत्रों को सौंपे जाते हैं: <span className="text-gold-primary">केतु → शुक्र → सूर्य → चन्द्र → मंगल → राहु → गुरु → शनि → बुध</span>, फिर वापस केतु। यह चक्र 27 नक्षत्रों में 3 बार दोहराता है (9 × 3 = 27), इसलिए प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है।</p>
+              <p>यह क्रम यादृच्छिक नहीं — यह <strong>विंशोत्तरी दशा क्रम</strong> का अनुसरण करता है। प्रत्येक ग्रह को सौंपे गए दशा वर्ष (केतु=7, शुक्र=20, सूर्य=6 आदि) कुल 120 वर्ष होते हैं — वेदों के अनुसार आदर्श मानव जीवनकाल।</p>
+            </>
+          )}
+        </div>
         <div className="mt-6 space-y-2">
           {DASHA_LORDS.map((d, i) => (
             <motion.div
@@ -192,8 +205,8 @@ export default function LearnNakshatrasPage() {
               >
                 {d.years} {lo === 'en' ? 'yrs' : '\u0935\u0930\u094d\u0937'}
               </div>
-              <div className="text-text-secondary/60 text-xs hidden sm:block">
-                #{d.nakshatras.join(', #')}
+              <div className="text-text-secondary/60 text-xs hidden sm:block" style={lo !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {d.nakshatras.map((nId: number) => NAKSHATRAS[nId - 1]?.name[lo] || `#${nId}`).join(', ')}
               </div>
             </motion.div>
           ))}

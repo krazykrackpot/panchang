@@ -13,7 +13,7 @@ interface Section {
   icon: string;
   title: Tri;
   subtitle: Tri;
-  modules: { id: string; title: Tri }[];
+  modules: { id: string; title: Tri; href?: string }[];
   refs: { label: Tri; href: string }[];
 }
 
@@ -27,10 +27,9 @@ const SECTIONS: Section[] = [
       { id: '0-2', title: { en: 'The Hindu Calendar \u2014 Why It\'s Different', hi: 'हिन्दू पंचांग \u2014 यह अलग क्यों है', sa: 'हिन्दूपञ्चाङ्गम् \u2014 कथं भिन्नम्' } },
       { id: '0-3', title: { en: 'Your Cosmic Address \u2014 Sun, Moon, Nakshatra', hi: 'आपका ब्रह्माण्डीय पता \u2014 सूर्य, चन्द्र, नक्षत्र', sa: 'भवतः ब्रह्माण्डीयसङ्केतः' } },
       { id: '0-6', title: { en: 'Rituals & Astronomy', hi: 'अनुष्ठान एवं खगोल', sa: 'अनुष्ठानं खगोलं च' } },
+      { id: 'ref:cosmology', title: { en: 'Cosmic Time Scales — Yugas, Kalpas, Brahma', hi: 'ब्रह्माण्डीय कालमान — युग, कल्प, ब्रह्मा', sa: 'ब्रह्माण्डीयकालमानम्' }, href: '/learn/cosmology' },
     ],
-    refs: [
-      { label: { en: 'Cosmic Time Scales', hi: 'ब्रह्माण्डीय कालमान', sa: 'ब्रह्माण्डीयकालमानम्' }, href: '/learn/cosmology' },
-    ],
+    refs: [],
   },
   {
     id: 'sky', icon: '\u2604',
@@ -40,10 +39,9 @@ const SECTIONS: Section[] = [
       { id: '1-1', title: { en: 'The Night Sky & Ecliptic', hi: 'रात्रि आकाश एवं क्रान्तिवृत्त', sa: 'रात्र्याकाशः क्रान्तिवृत्तं च' } },
       { id: '1-2', title: { en: 'Measuring the Sky \u2014 Degrees & Signs', hi: 'आकाश मापन \u2014 अंश एवं राशि', sa: 'आकाशमापनम् \u2014 अंशाः राशयश्च' } },
       { id: '1-3', title: { en: 'Fixed Stars vs Moving Planets', hi: 'स्थिर तारे बनाम गतिशील ग्रह', sa: 'स्थिरतारकाः गतिशीलग्रहाश्च' } },
+      { id: 'ref:calculations', title: { en: 'How We Calculate — Meeus Algorithms', hi: 'गणना कैसे करते हैं — Meeus गणित', sa: 'गणनापद्धतयः' }, href: '/learn/calculations' },
     ],
-    refs: [
-      { label: { en: 'Calculation Methods', hi: 'गणना पद्धतियाँ', sa: 'गणनापद्धतयः' }, href: '/learn/calculations' },
-    ],
+    refs: [],
   },
   {
     id: 'navagraha', icon: '\u2609',
@@ -54,15 +52,14 @@ const SECTIONS: Section[] = [
       { id: '2-2', title: { en: 'Planetary Friendship Matrix', hi: 'ग्रह मित्रता सारणी', sa: 'ग्रहमैत्रीसारणी' } },
       { id: '2-3', title: { en: 'Dignities \u2014 Exaltation & Debilitation', hi: 'ग्रह गरिमा \u2014 उच्च एवं नीच', sa: 'ग्रहगरिमा \u2014 उच्चनीचम्' } },
       { id: '2-4', title: { en: 'Retrograde, Combustion & Graha Yuddha', hi: 'वक्री, अस्त एवं ग्रह युद्ध', sa: 'वक्री, अस्तं, ग्रहयुद्धं च' } },
+      { id: 'ref:grahas', title: { en: 'The Navagraha — Complete Reference', hi: 'नवग्रह — सम्पूर्ण संदर्भ', sa: 'नवग्रहाः — सम्पूर्णसन्दर्भः' }, href: '/learn/grahas' },
+      { id: 'ref:planets', title: { en: 'Planetary Positions — Reading Your Chart', hi: 'ग्रह स्थिति — कुण्डली पढ़ना', sa: 'ग्रहस्थितयः' }, href: '/learn/planets' },
+      { id: 'ref:aspects', title: { en: 'Planetary Aspects (Drishti) — Visual Guide', hi: 'ग्रह दृष्टि — दृश्य मार्गदर्शिका', sa: 'ग्रहदृष्टिः' }, href: '/learn/aspects' },
+      { id: 'ref:combustion', title: { en: 'Combustion — When Planets Get Too Close to Sun', hi: 'अस्त — जब ग्रह सूर्य के निकट', sa: 'अस्तम्' }, href: '/learn/combustion' },
+      { id: 'ref:retro', title: { en: 'Retrograde Effects — All 5 Planets', hi: 'वक्री प्रभाव — सभी 5 ग्रह', sa: 'वक्रीप्रभावाः' }, href: '/learn/retrograde-effects' },
+      { id: 'ref:remedies', title: { en: 'Complete Remedial Reference — All 9 Planets', hi: 'सम्पूर्ण उपचार — सभी 9 ग्रह', sa: 'उपायाः' }, href: '/learn/remedies' },
     ],
-    refs: [
-      { label: { en: 'Grahas', hi: 'ग्रह', sa: 'ग्रहाः' }, href: '/learn/grahas' },
-      { label: { en: 'Planets', hi: 'ग्रह विवरण', sa: 'ग्रहविवरणम्' }, href: '/learn/planets' },
-      { label: { en: 'Aspects', hi: 'दृष्टि', sa: 'दृष्टिः' }, href: '/learn/aspects' },
-      { label: { en: 'Combustion', hi: 'अस्त', sa: 'अस्तम्' }, href: '/learn/combustion' },
-      { label: { en: 'Retrograde Effects', hi: 'वक्री प्रभाव', sa: 'वक्रीप्रभावाः' }, href: '/learn/retrograde-effects' },
-      { label: { en: 'Remedies', hi: 'उपाय', sa: 'उपायाः' }, href: '/learn/remedies' },
-    ],
+    refs: [],
   },
   {
     id: 'rashis', icon: '\u2648',
@@ -72,10 +69,9 @@ const SECTIONS: Section[] = [
       { id: '3-1', title: { en: 'The 12 Rashis \u2014 Parashara\'s Description', hi: '12 राशियाँ \u2014 पराशर वर्णन', sa: '12 राशयः \u2014 पाराशरवर्णनम्' } },
       { id: '3-2', title: { en: 'Qualities & Elements', hi: 'गुण एवं तत्व', sa: 'गुणाः तत्त्वानि च' } },
       { id: '3-3', title: { en: 'Sign Lordship & Moolatrikona', hi: 'राशि स्वामित्व एवं मूलत्रिकोण', sa: 'राशिस्वामित्वं मूलत्रिकोणं च' } },
+      { id: 'ref:rashis', title: { en: 'The 12 Rashis — Complete Reference', hi: '12 राशियाँ — सम्पूर्ण संदर्भ', sa: '12 राशयः — सम्पूर्णसन्दर्भः' }, href: '/learn/rashis' },
     ],
-    refs: [
-      { label: { en: 'Rashis', hi: 'राशियाँ', sa: 'राशयः' }, href: '/learn/rashis' },
-    ],
+    refs: [],
   },
   {
     id: 'nakshatras', icon: '\u2736',
@@ -86,10 +82,9 @@ const SECTIONS: Section[] = [
       { id: '6-2', title: { en: '108 Padas \u2014 The Navamsha Link', hi: '108 पाद \u2014 नवांश सम्बन्ध', sa: '108 पादाः \u2014 नवांशसम्बन्धः' } },
       { id: '6-3', title: { en: 'Compatibility (Melapaka)', hi: 'अनुकूलता (मेलापक)', sa: 'अनुकूलता (मेलापकम्)' } },
       { id: '6-4', title: { en: 'Nakshatra Lords & Dasha Connection', hi: 'नक्षत्र स्वामी एवं दशा सम्बन्ध', sa: 'नक्षत्रस्वामिनः दशासम्बन्धश्च' } },
+      { id: 'ref:nakshatras', title: { en: '27 Nakshatras — Complete Reference', hi: '27 नक्षत्र — सम्पूर्ण संदर्भ', sa: '27 नक्षत्राणि — सम्पूर्णसन्दर्भः' }, href: '/learn/nakshatras' },
     ],
-    refs: [
-      { label: { en: 'Nakshatras', hi: 'नक्षत्र', sa: 'नक्षत्राणि' }, href: '/learn/nakshatras' },
-    ],
+    refs: [],
   },
   {
     id: 'precession', icon: '\u21BB',
@@ -99,10 +94,9 @@ const SECTIONS: Section[] = [
       { id: '4-1', title: { en: 'Precession \u2014 Why the Sky Shifts', hi: 'अयनगति \u2014 आकाश क्यों बदलता', sa: 'अयनगतिः \u2014 आकाशः कथं परिवर्तते' } },
       { id: '4-2', title: { en: 'Ayanamsha Systems Compared', hi: 'अयनांश पद्धतियों की तुलना', sa: 'अयनांशपद्धतीनां तुलना' } },
       { id: '4-3', title: { en: 'Tropical vs Sidereal Debate', hi: 'सायन बनाम निरयन वाद', sa: 'सायननिरयनवादः' } },
+      { id: 'ref:ayanamsha', title: { en: 'Ayanamsha — Complete Systems Reference', hi: 'अयनांश — सम्पूर्ण पद्धति संदर्भ', sa: 'अयनांशः — सम्पूर्णपद्धतिसन्दर्भः' }, href: '/learn/ayanamsha' },
     ],
-    refs: [
-      { label: { en: 'Ayanamsha', hi: 'अयनांश', sa: 'अयनांशः' }, href: '/learn/ayanamsha' },
-    ],
+    refs: [],
   },
   {
     id: 'classical', icon: '\u{1F4DC}',
@@ -112,12 +106,11 @@ const SECTIONS: Section[] = [
       { id: '16-1', title: { en: 'Brihat Parashara Hora Shastra', hi: 'बृहत् पराशर होरा शास्त्र', sa: 'बृहत्पाराशरहोराशास्त्रम्' } },
       { id: '16-2', title: { en: 'Phaladeepika & Jataka Parijata', hi: 'फलदीपिका एवं जातक पारिजात', sa: 'फलदीपिका जातकपारिजातश्च' } },
       { id: '16-3', title: { en: 'Surya Siddhanta & Mathematics', hi: 'सूर्य सिद्धान्त एवं गणित', sa: 'सूर्यसिद्धान्तः गणितं च' } },
+      { id: 'ref:classical', title: { en: 'Classical Texts — Complete Reference', hi: 'शास्त्रीय ग्रन्थ — सम्पूर्ण संदर्भ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
+      { id: 'ref:vedanga', title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदांग ज्योतिष एवं भारतीय खगोल विरासत', sa: 'वेदाङ्गज्योतिषम्' }, href: '/learn/vedanga' },
+      { id: 'ref:observatories', title: { en: 'Jantar Mantar — Stone Observatories', hi: 'जन्तर मन्तर — पत्थर वेधशालाएं', sa: 'जन्तरमन्तरवेधशालाः' }, href: '/learn/observatories' },
     ],
-    refs: [
-      { label: { en: 'Classical Texts', hi: 'शास्त्रीय ग्रंथ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
-      { label: { en: 'Vedanga Jyotisha & Heritage', hi: 'वेदांग ज्योतिष एवं विरासत', sa: 'वेदाङ्गज्योतिषम्' }, href: '/learn/vedanga' },
-      { label: { en: 'Jantar Mantar Observatories', hi: 'जन्तर मन्तर वेधशालाएं', sa: 'जन्तरमन्तरवेधशालाः' }, href: '/learn/observatories' },
-    ],
+    refs: [],
   },
 ];
 
@@ -220,26 +213,36 @@ export default function CosmologyTrackPage() {
 
             {/* Module cards */}
             <div className="divide-y divide-indigo-500/8">
-              {section.modules.map((mod, mi) => (
+              {section.modules.map((mod, mi) => {
+                const isRef = mod.id.startsWith('ref:');
+                const linkHref = isRef && mod.href ? mod.href : `/learn/modules/${mod.id}`;
+                return (
                 <Link
                   key={mod.id}
-                  href={`/learn/modules/${mod.id}`}
-                  className="flex items-center justify-between px-6 py-3.5 hover:bg-indigo-500/8 transition-colors group"
+                  href={linkHref}
+                  className={`flex items-center justify-between px-6 py-3.5 transition-colors group ${isRef ? 'hover:bg-violet-500/8 bg-violet-500/3' : 'hover:bg-indigo-500/8'}`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">
-                      {mi + 1}
-                    </span>
-                    <span className="text-text-primary text-sm group-hover:text-indigo-200 transition-colors" style={bf}>
+                    {isRef ? (
+                      <span className="text-[9px] font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
+                        {locale === 'en' ? 'Ref' : 'सन्दर्भ'}
+                      </span>
+                    ) : (
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-gold-light">
+                        {mi + 1}
+                      </span>
+                    )}
+                    <span className={`text-sm group-hover:text-indigo-200 transition-colors ${isRef ? 'text-violet-200/80' : 'text-text-primary'}`} style={bf}>
                       {mod.title[locale]}
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />
                 </Link>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Reference deep dives */}
+            {/* Legacy refs section — now empty, all moved to modules list */}
             {section.refs.length > 0 && (
               <div className="px-6 py-3 border-t border-indigo-500/10 flex flex-wrap gap-2">
                 {section.refs.map(ref => (

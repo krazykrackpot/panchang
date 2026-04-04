@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
+import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -2412,9 +2413,17 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
     none: 'bg-green-500/20 text-green-400',
   };
 
+  // Convergence synthesis — only available from server-side API response
+  const convergence = (ragTip || tip)?.convergence || null;
+
   return (
     <div className="space-y-8">
       <h2 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{tTip('title')}</h2>
+
+      {/* ===== CONVERGENCE SYNTHESIS (hero card) ===== */}
+      {convergence && (
+        <ConvergenceSummary convergence={convergence} locale={locale} headingFont={headingFont} />
+      )}
 
       {/* RAG status indicator */}
       {tip.ragEnabled && (

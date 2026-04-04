@@ -109,12 +109,15 @@ export default function PanchangPage() {
   const panchangContentRef = useRef<HTMLDivElement>(null);
   const [showAllMuhurtas, setShowAllMuhurtas] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
-  const [masaSystem, setMasaSystem] = useState<'amant' | 'purnimant'>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('panchang_masa_system') as 'amant' | 'purnimant') || 'amant';
-    }
-    return 'amant';
-  });
+  const [masaSystem, setMasaSystem] = useState<'amant' | 'purnimant'>('amant');
+
+  // Load saved masa preference from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('panchang_masa_system');
+      if (saved === 'purnimant') setMasaSystem('purnimant');
+    } catch { /* ignore */ }
+  }, []);
   const [currentMuhurtaIdx, setCurrentMuhurtaIdx] = useState(-1);
   const [birthNakshatra, setBirthNakshatra] = useState(0);
   const [birthRashi, setBirthRashi] = useState(0);

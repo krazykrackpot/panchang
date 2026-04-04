@@ -8,6 +8,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import RashiNakshatraWheel from '@/components/learn/RashiNakshatraWheel';
 
 /* ───── Inline bilingual labels ───── */
 const L = {
@@ -260,7 +261,7 @@ export default function LearnNakshatrasPage() {
             >
               <div className="font-semibold text-sm mb-1" style={{ color: cat.color }}>{cat.name[lo]}</div>
               <p className="text-text-secondary/70 text-xs mb-2">{cat.desc[lo]}</p>
-              <p className="text-text-secondary/50 text-[11px] font-mono">{cat.nakshatras}</p>
+              <p className="text-text-secondary/50 text-xs font-mono">{cat.nakshatras}</p>
             </motion.div>
           ))}
         </div>
@@ -283,7 +284,19 @@ export default function LearnNakshatrasPage() {
         </div>
       </LessonSection>
 
-      {/* ─── 7. Baby Naming ─── */}
+      {/* ─── Rashi-Nakshatra Wheel ─── */}
+      <LessonSection number={7} title={lo === 'en' ? 'Rashi–Nakshatra Relationship' : 'राशि-नक्षत्र सम्बन्ध'}>
+        <p>
+          {lo === 'en'
+            ? 'The zodiac is divided into 12 Rashis (30° each) AND 27 Nakshatras (13°20\' each) simultaneously. These two systems overlap — some nakshatras span two rashis. This is why your Moon sign (rashi) and Moon nakshatra are BOTH important but carry different information. Hover over any segment to see the relationship.'
+            : 'राशिचक्र 12 राशियों (30° प्रत्येक) और 27 नक्षत्रों (13°20\' प्रत्येक) दोनों में एक साथ विभाजित है। ये दोनों प्रणालियाँ ओवरलैप करती हैं — कुछ नक्षत्र दो राशियों में फैले हैं। इसीलिए चन्द्र राशि और चन्द्र नक्षत्र दोनों महत्वपूर्ण हैं किन्तु भिन्न सूचना देते हैं।'}
+        </p>
+        <div className="mt-6">
+          <RashiNakshatraWheel locale={lo as Locale} />
+        </div>
+      </LessonSection>
+
+      {/* ─── 8. Baby Naming ─── */}
       <LessonSection number={7} title={L.namingTitle[lo]}>
         <p>{L.namingContent[lo]}</p>
         <div className="mt-4 overflow-x-auto">
@@ -401,7 +414,7 @@ export default function LearnNakshatrasPage() {
                   </div>
                   {locale !== 'en' && <div className="text-text-secondary/60 text-xs truncate">{n.name.en}</div>}
                 </div>
-                <span className="text-text-secondary/50 text-[10px] font-mono flex-shrink-0">{n.startDeg.toFixed(1)}\u00b0</span>
+                <span className="text-text-secondary/50 text-xs font-mono flex-shrink-0">{n.startDeg.toFixed(1)}\u00b0</span>
               </div>
               <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70">
                 <span>{n.deity[locale]}</span>

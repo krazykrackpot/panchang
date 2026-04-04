@@ -33,19 +33,76 @@ const L = {
     sec5: 'Nakshatras -- The Moon\'s Daily Stations',
     sec5sub: '27 divisions calibrated to the Moon',
     sec5text: 'The Moon\'s sidereal period is 27.32 days. The 27 Nakshatras are 27 "stations" the Moon visits -- each spanning 13 degrees 20 arcminutes, approximately one day of lunar motion. The Moon moves ~13.2 degrees per day -- almost exactly one nakshatra. The ancient Indians did not just know the Moon\'s period; they built a 27-division coordinate system CALIBRATED to it. This is equivalent to constructing a ruler where each mark represents one day of lunar travel.',
-    sec6: 'Eclipse Prediction -- The Saros Cycle',
-    sec6sub: 'Rahu-Ketu and the nodal period',
-    sec6text: 'Rahu and Ketu are the lunar nodes -- where the Moon\'s orbit crosses the ecliptic. Eclipses happen when the Sun and Moon are near these points. The Saros cycle (eclipses repeating every 18 years, 11 days, 8 hours) is nearly identical to the Rahu-Ketu orbital period of 18.613 years. The ancient Indians used this nodal period for eclipse prediction, and the Surya Siddhanta\'s eclipse calculations matched observed eclipses to within minutes.',
+    sec6: 'Eclipse Prediction -- Rahu, Ketu & the Saros Cycle',
+    sec6sub: 'The lunar nodes and eclipse mechanics',
+    sec6intro: 'Rahu and Ketu are not physical bodies -- they are the two points where the Moon\'s tilted orbit crosses the ecliptic (the Sun\'s apparent path). The Moon\'s orbit is inclined ~5.1° to the ecliptic, creating two intersection points that slowly regress westward, completing a full cycle in 18.613 years.',
+    sec6how: 'How Eclipses Happen',
+    sec6howText: 'An eclipse requires THREE alignments: (1) New Moon or Full Moon (Sun-Moon conjunction/opposition), (2) Moon must be NEAR a node (Rahu or Ketu), and (3) The angular distance from the node must be within the eclipse limit (~18° for solar, ~12° for lunar). When all three conditions align, the Moon\'s shadow falls on Earth (solar eclipse) or Earth\'s shadow falls on the Moon (lunar eclipse).',
+    sec6saros: 'The Saros Cycle',
+    sec6sarosText: 'The Saros = 223 synodic months = 242 draconic months = 239 anomalistic months. This triple near-coincidence means that after 18 years, 11 days, 8 hours, the Sun, Moon, and nodes return to nearly the same relative geometry -- producing a similar eclipse. The Surya Siddhanta encodes this as the Rahu-Ketu period.',
+    sec6types: [
+      { type: 'Solar (Surya Grahan)', desc: 'New Moon at node. Moon blocks the Sun. Shadow on Earth = 100-170 km wide.' },
+      { type: 'Lunar (Chandra Grahan)', desc: 'Full Moon at node. Earth blocks sunlight. The Moon turns copper-red (Rayleigh scattering).' },
+      { type: 'Annular (Valayakara)', desc: 'Moon at apogee (far point). Appears smaller than Sun, creating a ring of fire.' },
+    ],
+    sec6accuracy: 'The Surya Siddhanta\'s eclipse predictions matched observed eclipses to within 15-20 minutes of time and ~0.5° of position -- remarkable for naked-eye astronomy.',
+    sec6nodalDiagram: 'Lunar Nodes (Rahu & Ketu)',
+    sec6eclipseDiagram: 'Eclipse Geometry',
     sec7: 'How Did They Measure This?',
-    sec7sub: 'Centuries of patient observation',
+    sec7sub: 'Centuries of patient observation -- five key techniques',
     sec7methods: [
-      { name: 'Gnomon (Shanku)', desc: 'A vertical stick casting shadows -- measures the Sun\'s declination daily, yielding the solar year to high precision.' },
-      { name: 'Star Transits', desc: 'Observing when specific stars cross the meridian at the same time as a planet -- gives planetary positions relative to the fixed stars.' },
-      { name: 'Occultations', desc: 'When the Moon covers a star -- precise timing gives the Moon\'s exact position.' },
-      { name: 'Synodic Periods', desc: 'Counting days between successive conjunctions or oppositions -- averages over many cycles reduce error.' },
-      { name: 'Long Baselines', desc: 'Observations accumulated over CENTURIES by temple astronomers (Jyotirvid), passed down through the Guru-Shishya parampara.' },
+      { name: 'Gnomon (Shanku)', desc: 'A vertical pole casting shadows on a level surface. Measure shadow length at noon daily to track the Sun\'s declination through the year. The time between two successive shortest shadows (summer solstices) = one tropical year. Over 100+ years of daily measurements, the error reduces to ~1 minute/year. The Surya Siddhanta\'s 365.258756 days implies ~1000 years of accumulated gnomon data.', detail: 'Standard: 12-angula pole (Surya Siddhanta). A flat north-south line inscribed in stone. Noon shadow length = f(declination). Equinoxes: shadow aligns exactly east-west. Solstices: shortest/longest noon shadows. The Samrat Yantra at Jantar Mantar is a giant precision gnomon.' },
+      { name: 'Star Transits (Meridian Observations)', desc: 'Note the exact time a planet crosses the local meridian (highest point) and compare with a reference star like Spica (Chitra). The angular difference = planet\'s ecliptic longitude. Repeated over months, this traces the planet\'s motion against fixed stars. Stars rise ~3 min 56 sec earlier each night (sidereal vs solar day) -- this offset was precisely known.', detail: 'Tools: A plumb line (Lamba-yantra) for the meridian, a water clock (Jala-yantra) for timing. Multiple observers at the same site reduced personal error. Cross-checking with known star positions gave ~0.5° accuracy per observation.' },
+      { name: 'Occultations (Lunar Covering of Stars)', desc: 'When the Moon passes in front of a star, the star vanishes and reappears at precise moments. The Moon moves ~0.5° per hour, so timing an occultation to 1 minute gives position to ~0.008° -- the most precise naked-eye method available.', detail: 'Critical observations: Moon occulting Aldebaran (Rohini), Regulus (Magha), Spica (Chitra), Antares (Jyeshtha). These four bright ecliptic stars provided regular calibration points every month.' },
+      { name: 'Synodic Periods (Opposition Counting)', desc: 'Record the date when a planet is exactly opposite the Sun (rises at sunset = opposition). Wait for the next opposition. The interval = one synodic period. Average over 10+ cycles to reduce error. Over 50+ cycles (centuries), the error drops to hours.', detail: 'Key formula: 1/P_sidereal = 1/P_earth - 1/P_synodic (outer planets). For inner planets: 1/P_sidereal = 1/P_earth + 1/P_synodic. This is the mathematical bridge from observable synodic periods to true orbital periods.' },
+      { name: 'Long Baselines (Guru-Shishya Parampara)', desc: 'Temple astronomers (Jyotirvid) maintained continuous daily observations passed from teacher to student across generations. Multiple sites across India provided independent verification. The five Siddhantas (Surya, Brahma, Paulisha, Romaka, Vasishtha) represent ~2000 years of accumulated observational data.', detail: 'Modern parallel: This is exactly how astronomical catalogs work -- decades of observations from multiple observatories, averaged and refined. The Indian system added a uniquely robust transmission mechanism through formalized oral-textual tradition.' },
     ],
     sec7closing: 'The Jantar Mantar observatories (1730s) achieved 2-arcsecond accuracy -- but the orbital periods were already known 1000+ years earlier from patient naked-eye observation.',
+    // Mathematical derivation section
+    secMath: 'Mathematical Derivation: How They Calculated Orbital Periods',
+    secMathSub: 'From naked-eye observation to precise orbital mechanics',
+    secMathIntro: 'The ancient Indians could not directly observe a planet completing its orbit. Instead, they used an elegant indirect method: observe what you CAN see (synodic periods), then derive what you CANNOT see (sidereal periods) using mathematics.',
+    secMathSteps: [
+      { title: 'Step 1: Observe Opposition', desc: 'For an outer planet like Saturn, note the date when it rises exactly at sunset (opposition -- directly opposite the Sun). This is observable with the naked eye.' },
+      { title: 'Step 2: Wait for Next Opposition', desc: 'Count the days until the next opposition. For Saturn, this is ~378.09 days. This is the SYNODIC period (P_syn) -- the time for Earth to "lap" Saturn.' },
+      { title: 'Step 3: The Key Insight', desc: 'During one synodic period, Earth completes slightly more than one orbit while the planet moves only a small arc. The angular rates subtract: ω_planet = ω_earth - ω_synodic.' },
+      { title: 'Step 4: Derive Sidereal Period', desc: 'Since angular rate = 360°/period, we get: 1/P_sidereal = 1/P_earth - 1/P_synodic. This single equation converts the observable synodic period into the true orbital period.' },
+      { title: 'Step 5: Average Over Many Cycles', desc: 'One measurement has ~1-day error. But 50 oppositions (spanning ~52 years for Saturn) give 50 independent measurements. Averaging reduces error to ~0.02 days. The Surya Siddhanta likely used 200+ years of data.' },
+    ],
+    secMathSaturn: 'Worked Example: Saturn (Shani)',
+    secMathSaturnSteps: [
+      'Observed synodic period: P_syn = 378.09 days',
+      'Earth\'s period: P_earth = 365.26 days',
+      '1/P_sid = 1/365.26 - 1/378.09',
+      '1/P_sid = 0.002738 - 0.002645 = 0.0000927',
+      'P_sid = 1/0.0000927 = 10,787 days',
+      '= 29.53 years',
+      'Surya Siddhanta: 10,765.77 d = 29.47 yr  ✓',
+      'NASA JPL modern: 10,759.22 d = 29.46 yr  ✓',
+    ],
+    secMathMoon: 'Moon\'s Period (Direct Observation)',
+    secMathMoonSteps: [
+      '1. Note which star the Moon is near tonight',
+      '2. Count nights until it returns to that same star',
+      '3. Single measurement: ~27.3 days',
+      '4. Average over 100 returns: 27.32166 days',
+      '5. Surya Siddhanta value: 27.321674 days',
+      '6. Error: 1.1 seconds per orbit!',
+    ],
+    secMathJupiter: 'Worked Example: Jupiter (Guru)',
+    secMathJupiterSteps: [
+      'Observed synodic period: P_syn = 398.88 days',
+      'Earth\'s period: P_earth = 365.26 days',
+      '1/P_sid = 1/365.26 - 1/398.88',
+      '1/P_sid = 0.002738 - 0.002507 = 0.000231',
+      'P_sid = 1/0.000231 = 4,329 days',
+      '= 11.85 years',
+      'Surya Siddhanta: 4,332.32 d = 11.86 yr  ✓',
+    ],
+    secMathFormula: 'The Master Formula',
+    secMathFormulaOuter: 'Outer planets (Mars, Jupiter, Saturn):',
+    secMathFormulaInner: 'Inner planets (Mercury, Venus):',
+    secMathVisual: 'Synodic Period: Earth Overtaking Saturn',
     closing: 'Every time you read a Panchang entry, check your Sade Sati status, or look at your Dasha timeline -- you are using orbital mechanics measured by Indian astronomers who watched the sky for centuries with nothing but their eyes, a gnomon, and extraordinary patience. The numbers are real. The science is sound. The tradition preserves it.',
     relatedLinks: 'Continue Exploring',
     backToLearn: 'Back to Learn',
@@ -84,19 +141,76 @@ const L = {
     sec5: 'नक्षत्र -- चन्द्रमा के दैनिक स्थान',
     sec5sub: 'चन्द्रमा के लिए अंशांकित 27 विभाजन',
     sec5text: 'चन्द्रमा का नाक्षत्र काल 27.32 दिन है। 27 नक्षत्र 27 "पड़ाव" हैं जिन पर चन्द्रमा रुकता है -- प्रत्येक 13 अंश 20 कला का, लगभग एक दिन की चन्द्र गति। चन्द्रमा ~13.2 अंश/दिन चलता है -- लगभग ठीक एक नक्षत्र। प्राचीन भारतीयों ने केवल चन्द्रमा का काल नहीं जाना; उन्होंने उससे अंशांकित 27-विभाजन निर्देशांक प्रणाली बनाई।',
-    sec6: 'ग्रहण भविष्यवाणी -- सारोस चक्र',
-    sec6sub: 'राहु-केतु और पातीय काल',
-    sec6text: 'राहु-केतु चन्द्र पात हैं -- जहाँ चन्द्रमा की कक्षा क्रान्तिवृत्त को काटती है। ग्रहण तब होते हैं जब सूर्य-चन्द्र इन बिन्दुओं के निकट हों। सारोस चक्र (18 वर्ष, 11 दिन, 8 घंटे) राहु-केतु के 18.613 वर्षीय काल के लगभग समान है। सूर्य सिद्धान्त की ग्रहण गणनाएँ प्रेक्षित ग्रहणों से मिनटों के भीतर मिलती थीं।',
+    sec6: 'ग्रहण भविष्यवाणी -- राहु, केतु एवं सारोस चक्र',
+    sec6sub: 'चन्द्र पात एवं ग्रहण यांत्रिकी',
+    sec6intro: 'राहु और केतु भौतिक पिंड नहीं हैं -- ये वे दो बिन्दु हैं जहाँ चन्द्रमा की झुकी कक्षा क्रान्तिवृत्त (सूर्य का दृश्य पथ) को काटती है। चन्द्र कक्षा क्रान्तिवृत्त से ~5.1° झुकी है, जिससे दो प्रतिच्छेदन बिन्दु बनते हैं जो धीरे-धीरे पश्चिम की ओर सरकते हैं, 18.613 वर्ष में पूर्ण चक्र पूरा करते हैं।',
+    sec6how: 'ग्रहण कैसे होते हैं',
+    sec6howText: 'ग्रहण के लिए तीन संरेखण आवश्यक हैं: (1) अमावस्या या पूर्णिमा (सूर्य-चन्द्र युति/प्रतियुति), (2) चन्द्रमा किसी पात (राहु या केतु) के निकट हो, (3) पात से कोणीय दूरी ग्रहण सीमा के भीतर हो (~18° सूर्य ग्रहण, ~12° चन्द्र ग्रहण)।',
+    sec6saros: 'सारोस चक्र',
+    sec6sarosText: 'सारोस = 223 सिनोडिक मास = 242 ड्रैकोनिक मास = 239 विषम मास। यह त्रिगुण लगभग-संयोग = 18 वर्ष, 11 दिन, 8 घंटे के बाद सूर्य, चन्द्र और पात लगभग उसी सापेक्ष ज्यामिति में लौटते हैं -- समान ग्रहण उत्पन्न करते हैं। सूर्य सिद्धान्त इसे राहु-केतु काल के रूप में कूटबद्ध करता है।',
+    sec6types: [
+      { type: 'सूर्य ग्रहण', desc: 'अमावस्या को पात पर। चन्द्रमा सूर्य को ढकता है। पृथ्वी पर छाया = 100-170 किमी चौड़ी।' },
+      { type: 'चन्द्र ग्रहण', desc: 'पूर्णिमा को पात पर। पृथ्वी सूर्य का प्रकाश रोकती है। चन्द्रमा ताम्रवर्ण हो जाता है।' },
+      { type: 'वलयाकार ग्रहण', desc: 'चन्द्रमा अपभू (दूरस्थ बिन्दु) पर। सूर्य से छोटा दिखता है, अग्नि वलय बनाता है।' },
+    ],
+    sec6accuracy: 'सूर्य सिद्धान्त की ग्रहण भविष्यवाणियाँ प्रेक्षित ग्रहणों से 15-20 मिनट के भीतर और ~0.5° स्थिति में मिलती थीं -- नग्न-नेत्र खगोलविज्ञान के लिए उल्लेखनीय।',
+    sec6nodalDiagram: 'चन्द्र पात (राहु एवं केतु)',
+    sec6eclipseDiagram: 'ग्रहण ज्यामिति',
     sec7: 'उन्होंने यह कैसे मापा?',
-    sec7sub: 'शताब्दियों का धैर्यपूर्ण प्रेक्षण',
+    sec7sub: 'शताब्दियों का धैर्यपूर्ण प्रेक्षण -- पाँच प्रमुख विधियाँ',
     sec7methods: [
-      { name: 'शंकु (Gnomon)', desc: 'छाया डालने वाली ऊर्ध्वाधर छड़ी -- सूर्य का दैनिक क्रान्ति मापन, उच्च सटीकता से सौर वर्ष देती है।' },
-      { name: 'तारा गोचर', desc: 'विशिष्ट तारों को ग्रह के साथ याम्योत्तर पार करते देखना -- स्थिर तारों के सापेक्ष ग्रह स्थिति देता है।' },
-      { name: 'प्रच्छादन', desc: 'जब चन्द्रमा किसी तारे को ढकता है -- सटीक समय चन्द्रमा की सटीक स्थिति देता है।' },
-      { name: 'सिनोडिक काल', desc: 'क्रमिक युतियों या प्रतियुतियों के बीच दिन गिनना -- अनेक चक्रों का औसत त्रुटि कम करता है।' },
-      { name: 'दीर्घ आधार रेखा', desc: 'शताब्दियों में मन्दिर खगोलविदों (ज्योतिर्विद) द्वारा संचित प्रेक्षण, गुरु-शिष्य परम्परा से हस्तान्तरित।' },
+      { name: 'शंकु (Gnomon)', desc: 'समतल सतह पर ऊर्ध्वाधर दण्ड की छाया। दैनिक मध्याह्न छाया लम्बाई मापकर सूर्य की क्रान्ति का वार्षिक अनुसरण। दो क्रमिक लघुतम छायाओं (ग्रीष्म अयनान्त) का अन्तराल = एक उष्णकटिबन्धीय वर्ष। 100+ वर्षों के दैनिक माप से त्रुटि ~1 मिनट/वर्ष हो जाती है।', detail: 'मानक: 12-अंगुल दण्ड (सूर्य सिद्धान्त)। पाषाण में उत्तर-दक्षिण रेखा। जन्तर मन्तर का सम्राट यन्त्र एक विशाल परिशुद्ध शंकु है।' },
+      { name: 'तारा गोचर (याम्योत्तर प्रेक्षण)', desc: 'ग्रह के याम्योत्तर पार (उच्चतम बिन्दु) का सटीक समय नोट करें और चित्रा (Spica) जैसे सन्दर्भ तारे से तुलना करें। कोणीय अन्तर = ग्रह का क्रान्तिवृत्तीय देशान्तर। महीनों तक दोहराने पर स्थिर तारों के विरुद्ध ग्रह गति का मानचित्रण होता है।', detail: 'उपकरण: लम्ब-यन्त्र (याम्योत्तर के लिए), जल-यन्त्र (समय के लिए)। एक प्रेक्षण में ~0.5° सटीकता।' },
+      { name: 'प्रच्छादन (चन्द्र-तारा आवरण)', desc: 'जब चन्द्रमा किसी तारे को ढकता है, तारा अदृश्य होकर सटीक क्षणों में पुनः प्रकट होता है। चन्द्रमा ~0.5°/घंटा चलता है, अतः 1 मिनट की समय-सटीकता से ~0.008° स्थिति सटीकता -- सबसे सटीक नग्न-नेत्र विधि।', detail: 'प्रमुख प्रेक्षण: रोहिणी (Aldebaran), मघा (Regulus), चित्रा (Spica), ज्येष्ठा (Antares) का चन्द्र-आवरण। ये चार तारे प्रतिमास अंशांकन बिन्दु देते थे।' },
+      { name: 'सिनोडिक काल (प्रतियुति गणना)', desc: 'ग्रह के सूर्य के ठीक विपरीत होने (सूर्यास्त पर उदय = प्रतियुति) की तिथि नोट करें। अगली प्रतियुति की प्रतीक्षा करें। अन्तराल = एक सिनोडिक काल। 10+ चक्रों का औसत लें। 50+ चक्रों (शताब्दियों) में त्रुटि घंटों में आ जाती है।', detail: 'मूल सूत्र: 1/P_नाक्षत्र = 1/P_पृथ्वी - 1/P_सिनोडिक (बाह्य ग्रह)। आन्तरिक ग्रहों के लिए: 1/P_नाक्षत्र = 1/P_पृथ्वी + 1/P_सिनोडिक।' },
+      { name: 'दीर्घ आधार रेखा (गुरु-शिष्य परम्परा)', desc: 'मन्दिर खगोलविदों (ज्योतिर्विद) ने निरन्तर दैनिक प्रेक्षण बनाए रखे जो गुरु से शिष्य को पीढ़ियों तक हस्तान्तरित हुए। भारत भर में अनेक स्थलों से स्वतन्त्र सत्यापन। पाँच सिद्धान्त ~2000 वर्षों के संचित आँकड़ों का प्रतिनिधित्व करते हैं।', detail: 'आधुनिक समानान्तर: ठीक ऐसे ही आज खगोलीय सूचीपत्र काम करते हैं -- अनेक वेधशालाओं से दशकों के प्रेक्षण, औसत एवं परिष्कृत।' },
     ],
     sec7closing: 'जन्तर मन्तर वेधशालाओं (1730 के दशक) ने 2-arc-second सटीकता प्राप्त की -- परन्तु कक्षीय काल 1000+ वर्ष पहले से धैर्यपूर्ण नग्न-नेत्र प्रेक्षण से ज्ञात थे।',
+    // Mathematical derivation section
+    secMath: 'गणितीय व्युत्पत्ति: कक्षीय काल कैसे गणना किए गए',
+    secMathSub: 'नग्न-नेत्र प्रेक्षण से सटीक कक्षीय यांत्रिकी तक',
+    secMathIntro: 'प्राचीन भारतीय ग्रह की पूरी परिक्रमा सीधे नहीं देख सकते थे। उन्होंने एक सुन्दर अप्रत्यक्ष विधि अपनाई: जो दिखता है (सिनोडिक काल) उसे प्रेक्षित करो, फिर गणित से जो नहीं दिखता (नाक्षत्र काल) उसे व्युत्पन्न करो।',
+    secMathSteps: [
+      { title: 'चरण 1: प्रतियुति प्रेक्षित करो', desc: 'शनि जैसे बाह्य ग्रह के लिए, वह तिथि नोट करो जब वह ठीक सूर्यास्त पर उदय हो (प्रतियुति)। यह नग्न नेत्रों से दिखता है।' },
+      { title: 'चरण 2: अगली प्रतियुति की प्रतीक्षा', desc: 'अगली प्रतियुति तक दिन गिनो। शनि के लिए ~378.09 दिन। यह सिनोडिक काल (P_syn) है -- पृथ्वी द्वारा शनि को "पछाड़ने" का समय।' },
+      { title: 'चरण 3: मूल अन्तर्दृष्टि', desc: 'एक सिनोडिक काल में, पृथ्वी एक कक्षा से थोड़ा अधिक पूरा करती है जबकि ग्रह केवल एक छोटा चाप चलता है। कोणीय दरें घटती हैं: ω_ग्रह = ω_पृथ्वी - ω_सिनोडिक।' },
+      { title: 'चरण 4: नाक्षत्र काल व्युत्पन्न करो', desc: 'चूँकि कोणीय दर = 360°/काल, हमें मिलता है: 1/P_नाक्षत्र = 1/P_पृथ्वी - 1/P_सिनोडिक। यह एक समीकरण प्रेक्षणीय सिनोडिक काल को वास्तविक कक्षीय काल में बदलता है।' },
+      { title: 'चरण 5: अनेक चक्रों का औसत', desc: 'एक माप में ~1 दिन की त्रुटि। 50 प्रतियुतियाँ (शनि के लिए ~52 वर्ष) 50 स्वतन्त्र माप देती हैं। औसत से त्रुटि ~0.02 दिन हो जाती है। सूर्य सिद्धान्त ने सम्भवतः 200+ वर्षों के आँकड़ों का उपयोग किया।' },
+    ],
+    secMathSaturn: 'उदाहरण: शनि',
+    secMathSaturnSteps: [
+      'प्रेक्षित सिनोडिक काल: P_syn = 378.09 दिन',
+      'पृथ्वी का काल: P_earth = 365.26 दिन',
+      '1/P_sid = 1/365.26 - 1/378.09',
+      '1/P_sid = 0.002738 - 0.002645 = 0.0000927',
+      'P_sid = 1/0.0000927 = 10,787 दिन',
+      '= 29.53 वर्ष',
+      'सूर्य सिद्धान्त: 10,765.77 दि = 29.47 वर्ष  ✓',
+      'नासा JPL: 10,759.22 दि = 29.46 वर्ष  ✓',
+    ],
+    secMathMoon: 'चन्द्रमा का काल (प्रत्यक्ष प्रेक्षण)',
+    secMathMoonSteps: [
+      '1. आज रात चन्द्रमा किस तारे के निकट है, नोट करो',
+      '2. उसी तारे पर लौटने तक रातें गिनो',
+      '3. एक माप: ~27.3 दिन',
+      '4. 100 चक्रों का औसत: 27.32166 दिन',
+      '5. सूर्य सिद्धान्त मान: 27.321674 दिन',
+      '6. त्रुटि: प्रति कक्षा 1.1 सेकंड!',
+    ],
+    secMathJupiter: 'उदाहरण: बृहस्पति (गुरु)',
+    secMathJupiterSteps: [
+      'प्रेक्षित सिनोडिक काल: P_syn = 398.88 दिन',
+      'पृथ्वी का काल: P_earth = 365.26 दिन',
+      '1/P_sid = 1/365.26 - 1/398.88',
+      '1/P_sid = 0.002738 - 0.002507 = 0.000231',
+      'P_sid = 1/0.000231 = 4,329 दिन',
+      '= 11.85 वर्ष',
+      'सूर्य सिद्धान्त: 4,332.32 दि = 11.86 वर्ष  ✓',
+    ],
+    secMathFormula: 'मूल सूत्र',
+    secMathFormulaOuter: 'बाह्य ग्रह (मंगल, बृहस्पति, शनि):',
+    secMathFormulaInner: 'आन्तरिक ग्रह (बुध, शुक्र):',
+    secMathVisual: 'सिनोडिक काल: पृथ्वी शनि को पछाड़ रही है',
     closing: 'जब भी आप पञ्चाङ्ग पढ़ते हैं, साढ़े साती जाँचते हैं, या दशा समयरेखा देखते हैं -- आप उन भारतीय खगोलविदों द्वारा मापी गई कक्षीय यांत्रिकी का उपयोग कर रहे हैं जिन्होंने शताब्दियों तक केवल अपनी आँखों, एक शंकु, और असाधारण धैर्य से आकाश का प्रेक्षण किया। संख्याएँ वास्तविक हैं। विज्ञान सुदृढ़ है। परम्परा इसे सुरक्षित रखती है।',
     relatedLinks: 'आगे अन्वेषण करें',
     backToLearn: 'वापस सीखें',
@@ -165,13 +279,324 @@ const SectionIcon = ({ icon: Icon, className = '' }: { icon: typeof Orbit; class
   </div>
 );
 
+// ── SVG: Lunar Nodes Diagram ────────────────────────────────────
+function NodalDiagram({ isHi }: { isHi: boolean }) {
+  const cx = 200, cy = 160, r = 120;
+  // Ecliptic: horizontal ellipse
+  // Moon orbit: tilted ellipse (~5.1° tilt)
+  const tiltRad = 18 * Math.PI / 180; // exaggerated for visibility
+  return (
+    <svg viewBox="0 0 400 320" className="w-full">
+      <defs>
+        <linearGradient id="eclipticGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#f59e0b" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.3" />
+        </linearGradient>
+        <linearGradient id="moonOrbitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#818cf8" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="#818cf8" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#818cf8" stopOpacity="0.3" />
+        </linearGradient>
+        <filter id="nodeGlow">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      {/* Background stars */}
+      {Array.from({ length: 20 }).map((_, i) => (
+        <circle key={i} cx={30 + (i * 19) % 370} cy={15 + (i * 37) % 290} r={0.5 + (i % 3) * 0.3} fill="#f0d48a" opacity={0.15 + (i % 4) * 0.1} />
+      ))}
+
+      {/* Ecliptic plane (horizontal ellipse) */}
+      <ellipse cx={cx} cy={cy} rx={r} ry={30} fill="none" stroke="url(#eclipticGrad)" strokeWidth="2" strokeDasharray="6 3" />
+      <text x={cx + r + 8} y={cy + 4} fill="#f59e0b" fontSize="9" fontWeight="bold" opacity="0.8">
+        {isHi ? 'क्रान्तिवृत्त' : 'Ecliptic'}
+      </text>
+
+      {/* Moon orbit (tilted ellipse) */}
+      <g transform={`rotate(${-18}, ${cx}, ${cy})`}>
+        <ellipse cx={cx} cy={cy} rx={r} ry={30} fill="none" stroke="url(#moonOrbitGrad)" strokeWidth="2" />
+      </g>
+      <text x={cx - r - 8} y={cy - 40} fill="#818cf8" fontSize="9" fontWeight="bold" opacity="0.8" textAnchor="end">
+        {isHi ? 'चन्द्र कक्षा' : "Moon's Orbit"}
+      </text>
+
+      {/* 5.1° angle indicator */}
+      <line x1={cx + 50} y1={cy} x2={cx + 50} y2={cy - 20} stroke="#f0d48a" strokeWidth="0.5" opacity="0.5" />
+      <text x={cx + 55} y={cy - 8} fill="#f0d48a" fontSize="7" opacity="0.6">5.1°</text>
+
+      {/* Rahu node (ascending) - left intersection */}
+      <circle cx={cx - r + 5} cy={cy + 8} r="10" fill="rgba(239,68,68,0.2)" stroke="#ef4444" strokeWidth="2" filter="url(#nodeGlow)" />
+      <text x={cx - r + 5} y={cy + 12} textAnchor="middle" fill="#fca5a5" fontSize="8" fontWeight="bold">
+        {isHi ? 'रा' : 'Ra'}
+      </text>
+      <text x={cx - r + 5} y={cy + 28} textAnchor="middle" fill="#fca5a5" fontSize="7">
+        {isHi ? 'राहु' : 'Rahu'}
+      </text>
+      <text x={cx - r + 5} y={cy + 38} textAnchor="middle" fill="#fca5a5" fontSize="6" opacity="0.6">
+        {isHi ? '(आरोही पात)' : '(Ascending Node)'}
+      </text>
+
+      {/* Ketu node (descending) - right intersection */}
+      <circle cx={cx + r - 5} cy={cy - 8} r="10" fill="rgba(168,85,247,0.2)" stroke="#a855f7" strokeWidth="2" filter="url(#nodeGlow)" />
+      <text x={cx + r - 5} y={cy - 4} textAnchor="middle" fill="#c084fc" fontSize="8" fontWeight="bold">
+        {isHi ? 'के' : 'Ke'}
+      </text>
+      <text x={cx + r - 5} y={cy - 22} textAnchor="middle" fill="#c084fc" fontSize="7">
+        {isHi ? 'केतु' : 'Ketu'}
+      </text>
+      <text x={cx + r - 5} y={cy - 32} textAnchor="middle" fill="#c084fc" fontSize="6" opacity="0.6">
+        {isHi ? '(अवरोही पात)' : '(Descending Node)'}
+      </text>
+
+      {/* Sun at center */}
+      <circle cx={cx} cy={cy} r="14" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" strokeWidth="1.5" />
+      <text x={cx} y={cy + 4} textAnchor="middle" fill="#fbbf24" fontSize="8" fontWeight="bold">
+        {isHi ? 'सूर्य' : 'Sun'}
+      </text>
+
+      {/* Moon on its orbit */}
+      <circle cx={cx + 60} cy={cy - 22} r="8" fill="rgba(226,232,240,0.2)" stroke="#e2e8f0" strokeWidth="1.5" />
+      <text x={cx + 60} y={cy - 18} textAnchor="middle" fill="#e2e8f0" fontSize="7" fontWeight="bold">
+        {isHi ? 'चन्द्र' : 'Moon'}
+      </text>
+
+      {/* Earth on ecliptic */}
+      <circle cx={cx + 40} cy={cy - 2} r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x={cx + 40} y={cy + 2} textAnchor="middle" fill="#93c5fd" fontSize="6" fontWeight="bold">
+        {isHi ? 'पृथ्वी' : 'Earth'}
+      </text>
+
+      {/* Regression arrow */}
+      <path d={`M ${cx - r + 25} ${cy + 12} L ${cx - r + 35} ${cy + 15} L ${cx - r + 28} ${cy + 17}`} fill="none" stroke="#ef4444" strokeWidth="1" opacity="0.6" />
+      <text x={cx} y={cy + 55} textAnchor="middle" fill="#f0d48a" fontSize="8" opacity="0.7">
+        {isHi ? '← पात प्रतिगामी (18.6 वर्ष चक्र) →' : '← Nodes regress westward (18.6 yr cycle) →'}
+      </text>
+
+      {/* Title */}
+      <text x={cx} y={18} textAnchor="middle" fill="#f0d48a" fontSize="10" fontWeight="bold">
+        {isHi ? 'चन्द्र पात: राहु एवं केतु' : 'Lunar Nodes: Rahu & Ketu'}
+      </text>
+    </svg>
+  );
+}
+
+// ── SVG: Eclipse Geometry ───────────────────────────────────────
+function EclipseGeometryDiagram({ isHi }: { isHi: boolean }) {
+  return (
+    <svg viewBox="0 0 400 360" className="w-full">
+      <defs>
+        <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="earthShadow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#1e293b" stopOpacity="0.9" />
+          <stop offset="70%" stopColor="#1e293b" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#1e293b" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* ── SOLAR ECLIPSE (top) ── */}
+      <text x="200" y="20" textAnchor="middle" fill="#fbbf24" fontSize="10" fontWeight="bold">
+        {isHi ? 'सूर्य ग्रहण (अमावस्या को पात पर)' : 'Solar Eclipse (New Moon at Node)'}
+      </text>
+
+      {/* Sun */}
+      <circle cx="60" cy="80" r="30" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" strokeWidth="1.5" />
+      <circle cx="60" cy="80" r="45" fill="url(#sunGlow)" />
+      <text x="60" y="84" textAnchor="middle" fill="#fbbf24" fontSize="9" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+
+      {/* Light rays */}
+      {[55, 70, 85, 100, 105].map((angle, i) => {
+        const rad = angle * Math.PI / 180;
+        return (
+          <line key={`ray-${i}`} x1={60 + 32 * Math.cos(rad)} y1={80 + 32 * Math.sin(rad)} x2={60 + 150 * Math.cos(rad)} y2={80 + 150 * Math.sin(rad)} stroke="#fbbf24" strokeWidth="0.5" opacity="0.15" />
+        );
+      })}
+
+      {/* Moon blocking */}
+      <circle cx="190" cy="80" r="12" fill="#334155" stroke="#64748b" strokeWidth="1" />
+      <text x="190" y="84" textAnchor="middle" fill="#94a3b8" fontSize="7" fontWeight="bold">{isHi ? 'चन्द्र' : 'Moon'}</text>
+      <text x="190" y="62" textAnchor="middle" fill="#94a3b8" fontSize="6" opacity="0.6">{isHi ? '(अमावस्या)' : '(New Moon)'}</text>
+
+      {/* Shadow cone */}
+      <path d="M 202 74 L 320 70 L 320 90 L 202 86 Z" fill="rgba(30,41,59,0.3)" stroke="none" />
+
+      {/* Earth */}
+      <circle cx="320" cy="80" r="16" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x="320" y="84" textAnchor="middle" fill="#93c5fd" fontSize="7" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
+
+      {/* Shadow spot on Earth */}
+      <circle cx="312" cy="76" r="4" fill="rgba(30,41,59,0.6)" stroke="#475569" strokeWidth="0.5" />
+      <text x="340" y="60" fill="#94a3b8" fontSize="6" opacity="0.7">{isHi ? '← छाया' : '← Shadow'}</text>
+      <line x1="336" y1="61" x2="316" y2="74" stroke="#94a3b8" strokeWidth="0.3" opacity="0.5" />
+
+      {/* Node marker */}
+      <circle cx="190" cy="110" r="5" fill="rgba(239,68,68,0.2)" stroke="#ef4444" strokeWidth="1" />
+      <text x="190" y="113" textAnchor="middle" fill="#fca5a5" fontSize="5" fontWeight="bold">{isHi ? 'पात' : 'Node'}</text>
+      <line x1="190" y1="92" x2="190" y2="105" stroke="#ef4444" strokeWidth="0.5" strokeDasharray="2 2" />
+
+      {/* Divider */}
+      <line x1="30" y1="140" x2="370" y2="140" stroke="#f0d48a" strokeWidth="0.5" opacity="0.15" />
+
+      {/* ── LUNAR ECLIPSE (bottom) ── */}
+      <text x="200" y="165" textAnchor="middle" fill="#f87171" fontSize="10" fontWeight="bold">
+        {isHi ? 'चन्द्र ग्रहण (पूर्णिमा को पात पर)' : 'Lunar Eclipse (Full Moon at Node)'}
+      </text>
+
+      {/* Sun */}
+      <circle cx="60" cy="240" r="30" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" strokeWidth="1.5" />
+      <circle cx="60" cy="240" r="45" fill="url(#sunGlow)" />
+      <text x="60" y="244" textAnchor="middle" fill="#fbbf24" fontSize="9" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+
+      {/* Earth in middle */}
+      <circle cx="200" cy="240" r="16" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x="200" y="244" textAnchor="middle" fill="#93c5fd" fontSize="7" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
+
+      {/* Earth's shadow cone */}
+      <path d="M 216 230 L 350 220 L 350 260 L 216 250 Z" fill="url(#earthShadow)" stroke="none" />
+      <text x="280" y="275" textAnchor="middle" fill="#64748b" fontSize="6" opacity="0.6">{isHi ? 'पृथ्वी की छाया' : "Earth's Shadow"}</text>
+
+      {/* Moon in shadow (copper-red) */}
+      <circle cx="320" cy="240" r="10" fill="rgba(239,68,68,0.2)" stroke="#dc2626" strokeWidth="1.5" />
+      <text x="320" y="244" textAnchor="middle" fill="#fca5a5" fontSize="7" fontWeight="bold">{isHi ? 'चन्द्र' : 'Moon'}</text>
+      <text x="320" y="225" textAnchor="middle" fill="#fca5a5" fontSize="6" opacity="0.7">{isHi ? '(ताम्रवर्ण)' : '(Copper-red)'}</text>
+      <text x="320" y="260" textAnchor="middle" fill="#94a3b8" fontSize="6" opacity="0.6">{isHi ? '(पूर्णिमा)' : '(Full Moon)'}</text>
+
+      {/* Node marker */}
+      <circle cx="320" cy="290" r="5" fill="rgba(168,85,247,0.2)" stroke="#a855f7" strokeWidth="1" />
+      <text x="320" y="293" textAnchor="middle" fill="#c084fc" fontSize="5" fontWeight="bold">{isHi ? 'पात' : 'Node'}</text>
+      <line x1="320" y1="260" x2="320" y2="285" stroke="#a855f7" strokeWidth="0.5" strokeDasharray="2 2" />
+
+      {/* Eclipse limit annotation */}
+      <text x="200" y="340" textAnchor="middle" fill="#f0d48a" fontSize="7" opacity="0.6">
+        {isHi ? 'ग्रहण सीमा: सूर्य ~18° | चन्द्र ~12° (पात से अधिकतम दूरी)' : 'Eclipse limits: Solar ~18° | Lunar ~12° (max distance from node)'}
+      </text>
+    </svg>
+  );
+}
+
+// ── SVG: Synodic Period Visual ──────────────────────────────────
+function SynodicVisual({ isHi }: { isHi: boolean }) {
+  const cx = 180, cy = 150;
+  // Show Earth at two positions and Saturn barely moving
+  const earthR = 70, saturnR = 130;
+  // Position 1: Earth and Saturn at opposition (aligned with Sun)
+  const e1Angle = -90 * Math.PI / 180;
+  const s1Angle = -90 * Math.PI / 180;
+  // Position 2: ~378 days later, Earth has gone 373° (slightly past full orbit), Saturn has gone ~12.2°
+  const e2Angle = (-90 + 373) * Math.PI / 180;
+  const s2Angle = (-90 + 12.2) * Math.PI / 180;
+
+  return (
+    <svg viewBox="0 0 360 300" className="w-full max-w-[340px]">
+      <defs>
+        <linearGradient id="orbitGold2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f0d48a" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#8a6d2b" stopOpacity="0.1" />
+        </linearGradient>
+      </defs>
+
+      {/* Saturn orbit */}
+      <circle cx={cx} cy={cy} r={saturnR} fill="none" stroke="#f0d48a" strokeWidth="0.8" opacity="0.2" />
+      {/* Earth orbit */}
+      <circle cx={cx} cy={cy} r={earthR} fill="none" stroke="#3b82f6" strokeWidth="0.8" opacity="0.3" />
+
+      {/* Sun center */}
+      <circle cx={cx} cy={cy} r="10" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" strokeWidth="1" />
+      <text x={cx} y={cy + 4} textAnchor="middle" fill="#fbbf24" fontSize="7" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+
+      {/* Earth Position 1 */}
+      <circle cx={cx + earthR * Math.cos(e1Angle)} cy={cy + earthR * Math.sin(e1Angle)} r="7" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x={cx + earthR * Math.cos(e1Angle)} y={cy + earthR * Math.sin(e1Angle) - 12} textAnchor="middle" fill="#93c5fd" fontSize="6" fontWeight="bold">E₁</text>
+
+      {/* Earth Position 2 */}
+      <circle cx={cx + earthR * Math.cos(e2Angle)} cy={cy + earthR * Math.sin(e2Angle)} r="7" fill="rgba(59,130,246,0.5)" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x={cx + earthR * Math.cos(e2Angle) + 12} y={cy + earthR * Math.sin(e2Angle) + 4} textAnchor="start" fill="#93c5fd" fontSize="6" fontWeight="bold">E₂</text>
+
+      {/* Earth orbit arc (showing full+ revolution) */}
+      <circle cx={cx} cy={cy} r={earthR} fill="none" stroke="#3b82f6" strokeWidth="1.5" opacity="0.4" strokeDasharray="3 2" />
+
+      {/* Saturn Position 1 */}
+      <circle cx={cx + saturnR * Math.cos(s1Angle)} cy={cy + saturnR * Math.sin(s1Angle)} r="8" fill="rgba(240,212,138,0.2)" stroke="#f0d48a" strokeWidth="1.5" />
+      <text x={cx + saturnR * Math.cos(s1Angle) - 14} y={cy + saturnR * Math.sin(s1Angle) + 4} textAnchor="end" fill="#f0d48a" fontSize="6" fontWeight="bold">S₁</text>
+
+      {/* Saturn Position 2 (barely moved) */}
+      <circle cx={cx + saturnR * Math.cos(s2Angle)} cy={cy + saturnR * Math.sin(s2Angle)} r="8" fill="rgba(240,212,138,0.4)" stroke="#f0d48a" strokeWidth="1.5" />
+      <text x={cx + saturnR * Math.cos(s2Angle) + 14} y={cy + saturnR * Math.sin(s2Angle) + 4} textAnchor="start" fill="#f0d48a" fontSize="6" fontWeight="bold">S₂</text>
+
+      {/* Saturn arc (tiny movement ~12°) */}
+      <path d={`M ${cx + saturnR * Math.cos(s1Angle)} ${cy + saturnR * Math.sin(s1Angle)} A ${saturnR} ${saturnR} 0 0 1 ${cx + saturnR * Math.cos(s2Angle)} ${cy + saturnR * Math.sin(s2Angle)}`} fill="none" stroke="#f59e0b" strokeWidth="2.5" opacity="0.6" />
+
+      {/* Opposition alignment lines */}
+      <line x1={cx} y1={cy} x2={cx + saturnR * Math.cos(s1Angle)} y2={cy + saturnR * Math.sin(s1Angle)} stroke="#ef4444" strokeWidth="0.5" strokeDasharray="4 3" opacity="0.4" />
+      <line x1={cx} y1={cy} x2={cx + saturnR * Math.cos(s2Angle)} y2={cy + saturnR * Math.sin(s2Angle)} stroke="#22c55e" strokeWidth="0.5" strokeDasharray="4 3" opacity="0.4" />
+
+      {/* Labels */}
+      <text x={cx} y={18} textAnchor="middle" fill="#f0d48a" fontSize="9" fontWeight="bold">
+        {isHi ? 'सिनोडिक काल: पृथ्वी शनि को पछाड़ती है' : 'Synodic Period: Earth Overtaking Saturn'}
+      </text>
+
+      <text x={20} y={cy + 8} fill="#ef4444" fontSize="7" opacity="0.7">
+        {isHi ? 'प्रतियुति 1' : 'Opposition 1'}
+      </text>
+      <text x={cx + saturnR * Math.cos(s2Angle) + 14} y={cy + saturnR * Math.sin(s2Angle) + 18} fill="#22c55e" fontSize="7" opacity="0.7">
+        {isHi ? 'प्रतियुति 2' : 'Opposition 2'}
+      </text>
+
+      {/* Bottom annotation */}
+      <text x={cx} y={280} textAnchor="middle" fill="#94a3b8" fontSize="7">
+        {isHi ? '378 दिनों में: पृथ्वी = 1.035 चक्कर | शनि = 12.2° चाप' : '378 days: Earth = 1.035 orbits | Saturn = 12.2° arc'}
+      </text>
+      <text x={cx} y={295} textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold">
+        1/P_sid = 1/P_earth - 1/P_syn
+      </text>
+    </svg>
+  );
+}
+
+// ── SVG: Saros Timeline ─────────────────────────────────────────
+function SarosTimeline({ isHi }: { isHi: boolean }) {
+  const eclipses = [
+    { year: '2008', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 40 },
+    { year: '2026', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 160 },
+    { year: '2044', type: isHi ? 'कुल सूर्य' : 'Total Solar', x: 280 },
+  ];
+  return (
+    <svg viewBox="0 0 360 80" className="w-full">
+      {/* Timeline bar */}
+      <line x1="30" y1="35" x2="330" y2="35" stroke="#f0d48a" strokeWidth="1.5" opacity="0.3" />
+
+      {eclipses.map((e, i) => (
+        <g key={i}>
+          <circle cx={e.x} cy="35" r="8" fill="rgba(239,68,68,0.2)" stroke="#ef4444" strokeWidth="1.5" />
+          <text x={e.x} y="39" textAnchor="middle" fill="#fca5a5" fontSize="6" fontWeight="bold">{i + 1}</text>
+          <text x={e.x} y="18" textAnchor="middle" fill="#f0d48a" fontSize="7" fontWeight="bold">{e.year}</text>
+          <text x={e.x} y="58" textAnchor="middle" fill="#94a3b8" fontSize="6">{e.type}</text>
+          {i < eclipses.length - 1 && (
+            <>
+              <line x1={e.x + 12} y1="35" x2={eclipses[i + 1].x - 12} y2="35" stroke="#f59e0b" strokeWidth="1" opacity="0.5" />
+              <text x={(e.x + eclipses[i + 1].x) / 2} y="72" textAnchor="middle" fill="#f59e0b" fontSize="7" fontWeight="bold">
+                18y 11d 8h
+              </text>
+            </>
+          )}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 // ── Page ────────────────────────────────────────────────────────
 export default function PlanetaryCyclesPage() {
   const locale = useLocale() as Locale;
   const isHi = locale !== 'en';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = (L as unknown as Record<string, typeof L.en>)[locale] || L.en;
+  const l = (L as Record<string, typeof L.en>)[locale] || L.en;
 
   return (
     <div className="space-y-12">
@@ -480,7 +905,7 @@ export default function PlanetaryCyclesPage() {
         </div>
       </motion.section>
 
-      {/* ══════════════ SECTION 6: Eclipse / Saros ══════════════ */}
+      {/* ══════════════ SECTION 6: Eclipse / Rahu-Ketu (ENHANCED) ══════════════ */}
       <motion.section {...fadeUp} className="space-y-6">
         <div className="flex items-start gap-4">
           <SectionIcon icon={Eye} />
@@ -490,10 +915,50 @@ export default function PlanetaryCyclesPage() {
           </div>
         </div>
 
+        {/* Intro */}
         <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
-          <p className="text-text-secondary text-sm leading-relaxed mb-5" style={bf}>{l.sec6text}</p>
+          <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6intro}</p>
+        </div>
 
-          <div className="grid grid-cols-2 gap-4">
+        {/* Nodal Diagram */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
+          <NodalDiagram isHi={isHi} />
+        </div>
+
+        {/* How Eclipses Happen */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-4">
+          <h3 className="text-lg font-bold text-gold-light" style={hf}>{l.sec6how}</h3>
+          <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6howText}</p>
+        </div>
+
+        {/* Eclipse Geometry Diagram */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
+          <EclipseGeometryDiagram isHi={isHi} />
+        </div>
+
+        {/* Eclipse Types */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {l.sec6types.map((t, i) => (
+            <div key={i} className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-5">
+              <div className="w-8 h-8 rounded-lg bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center mb-3">
+                <span className="text-gold-light font-mono text-xs font-bold">{i + 1}</span>
+              </div>
+              <h4 className="text-gold-light text-sm font-bold mb-2" style={hf}>{t.type}</h4>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bf}>{t.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Saros Cycle */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-4">
+          <h3 className="text-lg font-bold text-gold-light" style={hf}>{l.sec6saros}</h3>
+          <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6sarosText}</p>
+
+          {/* Saros Timeline */}
+          <SarosTimeline isHi={isHi} />
+
+          {/* Key numbers */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
             <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
               <div className="text-2xl font-bold text-amber-300 font-mono">18.03</div>
               <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'सारोस चक्र (वर्ष)' : 'Saros Cycle (yrs)'}</div>
@@ -502,11 +967,115 @@ export default function PlanetaryCyclesPage() {
               <div className="text-2xl font-bold text-amber-300 font-mono">18.61</div>
               <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'राहु-केतु काल (वर्ष)' : 'Rahu-Ketu Period (yrs)'}</div>
             </div>
+            <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
+              <div className="text-2xl font-bold text-amber-300 font-mono">223</div>
+              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'सिनोडिक मास' : 'Synodic months'}</div>
+            </div>
+            <div className="text-center p-4 rounded-xl bg-black/20 border border-indigo-500/10">
+              <div className="text-2xl font-bold text-amber-300 font-mono">242</div>
+              <div className="text-[10px] text-text-secondary mt-1" style={bf}>{isHi ? 'ड्रैकोनिक मास' : 'Draconic months'}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Accuracy callout */}
+        <div className="px-5 py-4 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
+          <p className="text-gold-light text-sm font-medium leading-relaxed" style={bf}>{l.sec6accuracy}</p>
+        </div>
+      </motion.section>
+
+      {/* ══════════════ SECTION 8: Mathematical Derivation ══════════════ */}
+      <motion.section {...fadeUp} className="space-y-6">
+        <div className="flex items-start gap-4">
+          <SectionIcon icon={Calculator} />
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white" style={hf}>{l.secMath}</h2>
+            <p className="text-gold-light/50 text-sm mt-1" style={bf}>{l.secMathSub}</p>
+          </div>
+        </div>
+
+        {/* Intro */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6">
+          <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.secMathIntro}</p>
+        </div>
+
+        {/* 5-step derivation */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-3">
+          {l.secMathSteps.map((step, i) => (
+            <div key={i} className="flex gap-4 p-4 rounded-xl bg-black/15 border border-indigo-500/8">
+              <div className="w-8 h-8 rounded-lg bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center shrink-0">
+                <span className="text-gold-light font-mono text-xs font-bold">{i + 1}</span>
+              </div>
+              <div>
+                <h4 className="text-gold-light text-sm font-bold mb-1" style={hf}>{step.title}</h4>
+                <p className="text-text-secondary text-xs leading-relaxed" style={bf}>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Synodic Visual */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 flex items-center justify-center">
+          <SynodicVisual isHi={isHi} />
+        </div>
+
+        {/* Master Formula */}
+        <div className="rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-6 space-y-4">
+          <h3 className="text-lg font-bold text-gold-light" style={hf}>{l.secMathFormula}</h3>
+
+          <div className="space-y-3">
+            <div className="p-4 rounded-xl bg-black/30 border border-indigo-500/15">
+              <p className="text-text-secondary text-xs mb-2" style={bf}>{l.secMathFormulaOuter}</p>
+              <pre className="text-emerald-300/90 font-mono text-sm font-bold">1/P_sidereal = 1/P_earth - 1/P_synodic</pre>
+            </div>
+            <div className="p-4 rounded-xl bg-black/30 border border-indigo-500/15">
+              <p className="text-text-secondary text-xs mb-2" style={bf}>{l.secMathFormulaInner}</p>
+              <pre className="text-emerald-300/90 font-mono text-sm font-bold">1/P_sidereal = 1/P_earth + 1/P_synodic</pre>
+            </div>
+          </div>
+        </div>
+
+        {/* Worked examples side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Saturn */}
+          <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5 space-y-3">
+            <h3 className="text-base font-bold text-gold-light" style={hf}>{l.secMathSaturn}</h3>
+            <div className="space-y-1.5">
+              {l.secMathSaturnSteps.map((step, i) => (
+                <div key={i} className={`font-mono text-xs ${i >= 6 ? 'text-amber-300/90 font-bold' : i >= 3 ? 'text-emerald-300/80' : 'text-text-secondary'}`}>
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Jupiter */}
+          <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5 space-y-3">
+            <h3 className="text-base font-bold text-gold-light" style={hf}>{l.secMathJupiter}</h3>
+            <div className="space-y-1.5">
+              {l.secMathJupiterSteps.map((step, i) => (
+                <div key={i} className={`font-mono text-xs ${i >= 6 ? 'text-amber-300/90 font-bold' : i >= 3 ? 'text-emerald-300/80' : 'text-text-secondary'}`}>
+                  {step}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Moon */}
+          <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-5 space-y-3">
+            <h3 className="text-base font-bold text-gold-light" style={hf}>{l.secMathMoon}</h3>
+            <div className="space-y-1.5">
+              {l.secMathMoonSteps.map((step, i) => (
+                <div key={i} className={`font-mono text-xs ${i >= 4 ? 'text-amber-300/90 font-bold' : 'text-text-secondary'}`}>
+                  {step}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
 
-      {/* ══════════════ SECTION 7: How They Measured ══════════════ */}
+      {/* ══════════════ SECTION 7: How They Measured (ENHANCED) ══════════════ */}
       <motion.section {...fadeUp} className="space-y-6">
         <div className="flex items-start gap-4">
           <SectionIcon icon={Telescope} />
@@ -516,15 +1085,21 @@ export default function PlanetaryCyclesPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-3">
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-4">
           {l.sec7methods.map((method, i) => (
-            <div key={i} className="flex gap-4 p-4 rounded-xl bg-black/15 border border-indigo-500/8">
-              <div className="w-7 h-7 rounded-lg bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-gold-light font-mono text-xs font-bold">{i + 1}</span>
+            <div key={i} className="p-5 rounded-xl bg-black/15 border border-indigo-500/8 space-y-3">
+              <div className="flex gap-4">
+                <div className="w-8 h-8 rounded-lg bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center shrink-0">
+                  <span className="text-gold-light font-mono text-xs font-bold">{i + 1}</span>
+                </div>
+                <div>
+                  <h4 className="text-gold-light text-sm font-bold mb-1" style={hf}>{method.name}</h4>
+                  <p className="text-text-secondary text-xs leading-relaxed" style={bf}>{method.desc}</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-gold-light text-sm font-bold mb-1" style={hf}>{method.name}</h4>
-                <p className="text-text-secondary text-xs leading-relaxed" style={bf}>{method.desc}</p>
+              {/* Expanded detail */}
+              <div className="ml-12 p-3 rounded-lg bg-black/20 border border-indigo-500/6">
+                <p className="text-text-tertiary text-[11px] leading-relaxed whitespace-pre-wrap" style={bf}>{method.detail}</p>
               </div>
             </div>
           ))}

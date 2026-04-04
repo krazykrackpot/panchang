@@ -15,24 +15,6 @@ export function T({ en, hi }: { en: string; hi: string }) {
   return <>{locale === 'en' ? en : hi}</>;
 }
 
-// ─── Module Sequence (ordered) ───────────────────────────────────────────────
-
-export const MODULE_SEQUENCE = [
-  '0-1','0-2','0-3','0-4','0-5','0-6',
-  '1-1','1-2','1-3','2-1','2-2','2-3','2-4','3-1','3-2','3-3',
-  '4-1','4-2','4-3','5-1','5-2','5-3','6-1','6-2','6-3','6-4',
-  '7-1','7-2','7-3','8-1','9-1','9-2','9-3','9-4','10-1','10-2',
-  '10-3','11-1','11-2','11-3','12-1','12-2','12-3','13-1','13-2',
-  '13-3','14-1','14-2','14-3','15-1','15-2','15-3','15-4','16-1','16-2','16-3',
-  '17-1','17-2','17-3','17-4',
-  '18-1','18-2','18-3','18-4','18-5',
-  '19-1','19-2','19-3','19-4',
-  '20-1','20-2','20-3','20-4',
-  '21-1','21-2','21-3','21-4',
-  '22-1','22-2','22-3','22-4','22-5','22-6',
-  '23-1','23-2','23-3','23-4','23-5',
-];
-
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface ModuleQuestion {
@@ -355,39 +337,6 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         </div>
       )}
 
-      {/* ── Module Navigation (Prev / Index / Next) ── */}
-      {(() => {
-        const currentIdx = MODULE_SEQUENCE.indexOf(meta.moduleNumber.replace('.', '-'));
-        const prevMod = currentIdx > 0 ? MODULE_SEQUENCE[currentIdx - 1] : null;
-        const nextMod = currentIdx < MODULE_SEQUENCE.length - 1 ? MODULE_SEQUENCE[currentIdx + 1] : null;
-        return (
-          <div className="flex items-center justify-between mt-6 pt-4 border-t border-gold-primary/10">
-            {prevMod ? (
-              <a href={`/learn/modules/${prevMod}`}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/5 transition-colors">
-                <ChevronLeft className="w-4 h-4" />
-                {isHi ? `मॉड्यूल ${prevMod.replace('-', '.')}` : `Module ${prevMod.replace('-', '.')}`}
-              </a>
-            ) : <div />}
-            <a href="/learn/modules"
-              className="px-4 py-2 rounded-xl text-xs text-gold-primary/60 hover:text-gold-primary hover:bg-gold-primary/5 transition-colors">
-              {isHi ? 'सभी मॉड्यूल' : 'All Modules'}
-            </a>
-            {nextMod ? (
-              <a href={`/learn/modules/${nextMod}`}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium text-gold-light bg-gold-primary/10 hover:bg-gold-primary/20 transition-colors">
-                {isHi ? `मॉड्यूल ${nextMod.replace('-', '.')} →` : `Module ${nextMod.replace('-', '.')} →`}
-                <ChevronRight className="w-4 h-4" />
-              </a>
-            ) : (
-              <a href="/learn"
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 transition-colors">
-                {isHi ? 'पाठ्यक्रम पूर्ण!' : 'Course Complete!'}
-              </a>
-            )}
-          </div>
-        );
-      })()}
     </div>
     </ModuleLocaleContext.Provider>
   );

@@ -123,7 +123,7 @@ export default function RetrogradePage() {
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: Math.min(i * 0.05, 0.6) }}
-              className="glass-card rounded-xl p-5 border border-red-500/15 bg-gradient-to-r from-red-500/5 to-transparent"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15 bg-gradient-to-r from-red-500/5 to-transparent"
             >
               <div className="flex items-center gap-4">
                 <GrahaIconById id={p.planetId} size={48} />
@@ -169,7 +169,7 @@ export default function RetrogradePage() {
               initial={{ opacity: 0, x: -15 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: Math.min(i * 0.03, 0.6) }}
-              className="glass-card rounded-xl p-4 flex items-center gap-4 border border-orange-500/15"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-4 border border-orange-500/15"
             >
               <GrahaIconById id={e.planetId} size={40} />
               <div className="flex-1">

@@ -175,7 +175,7 @@ function Page2() {
           The key principle: always be consistent within a single chart reading. Never mix Lahiri positions with KP sub-lord tables, or Raman positions with Lahiri-based dasha calculations. The system is self-consistent — the interpretive rules were developed and tested under a specific ayanamsha, and switching mid-analysis introduces errors.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — Sign change across systems:</span> Suppose the Sun is at 45° tropical (Taurus 15°) on a given date in 2026. Lahiri sidereal: 45° - 24.22° = 20.78° = Aries 20°47&apos;. Raman sidereal: 45° - 22.73° = 22.27° = Aries 22°16&apos;. KP sidereal: 45° - 24.11° = 20.89° = Aries 20°53&apos;. Fagan-Bradley: 45° - 24.41° = 20.59° = Aries 20°35&apos;. All four systems agree: Aries. No sign change here because 45° is well within one sign of the nearest cusp.
@@ -187,7 +187,7 @@ function Page2() {
           <span className="text-gold-light font-medium">Example 3 — Lahiri polynomial for 2026:</span> T = (2026.0 - 2000.0)/100 = 0.26. A = 23.85306 + 1.39722×0.26 + 0.00018×(0.26)² - 0.000005×(0.26)³ = 23.85306 + 0.36328 + 0.00001 - 0.00000 = 24.2164°. This matches published Lahiri values for 2026.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;Lahiri is the only correct ayanamsha and all others are wrong.&quot; <strong className="text-red-300">Reality:</strong> No ayanamsha can be mathematically proven &quot;correct&quot; in an absolute sense — the choice of anchor star is a human convention. Lahiri is the most widely used and officially recognized, giving it the largest empirical validation base. But competent astrologers get excellent results with KP, Raman, and other systems.
@@ -196,7 +196,7 @@ function Page2() {
           <strong>Misconception:</strong> &quot;The difference between systems is negligible and does not matter.&quot; <strong className="text-red-300">Reality:</strong> The ~1.5° gap between Lahiri and Raman may seem small, but for any planet within 2° of a sign boundary (statistically, about 13% of all planets), the sign changes. Different sign means different house lordship, different natural benefic/malefic status, different dasha sequence — the entire reading can diverge.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our app defaults to the Lahiri ayanamsha (Indian Government standard) for all calculations. The internal pipeline works as follows: Meeus algorithms compute tropical planetary longitudes to sub-degree accuracy, then the Lahiri polynomial subtracts the ayanamsha to produce sidereal positions. For KP practitioners, the app&apos;s KP module uses the Krishnamurti ayanamsha with its own sub-lord tables. The difference between systems is purely in the constant offset — the underlying astronomical engine remains identical. When in doubt, use Lahiri: it has 70+ years of institutional backing, the largest corpus of validated predictions, and is what the Rashtriya Panchang uses.
@@ -234,7 +234,7 @@ function Page3() {
           While the BPHS (Brihat Parashara Hora Shastra) does not specify a numerical ayanamsha, the Surya Siddhanta (circa 400 CE) places the Chitra star in a manner consistent with the Chitrapaksha framework. The concept of using Chitra/Spica as the primary reference star has roots going back to the Vedanga Jyotisha period. The modern Lahiri formalization simply quantified what was already implicit in the Indian astronomical tradition. The Calendar Reform Committee drew on this heritage while applying modern observational precision.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — Lahiri across centuries:</span> For year 1900 (T = -1.0): A = 23.85306 - 1.39722 + 0.00018 + 0.000005 = 22.456°. For year 2000 (T = 0): A = 23.853°. For year 2100 (T = 1.0): A = 23.85306 + 1.39722 + 0.00018 - 0.000005 = 25.250°. The ayanamsha grew by 2.794° over 200 years, averaging 1.397° per century.
@@ -243,7 +243,7 @@ function Page3() {
           <span className="text-gold-light font-medium">Example 2 — Finding the zero-ayanamsha year:</span> We need A(T) = 0. Using the linear approximation: 0 = 23.853 + 1.397×T, so T = -17.07 centuries = year 2000 - 1707 = ~293 CE. The full polynomial gives ~285 CE, the commonly cited epoch when the tropical vernal equinox coincided with sidereal 0° Aries under the Lahiri system. This is why the two zodiacs diverged — from ~285 CE onward, the gap grew by ~1.4° per century.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;Lahiri ayanamsha has been used since ancient times.&quot; <strong className="text-red-300">Reality:</strong> The modern Lahiri formulation dates to the 20th century. Ancient Indian astronomers used approximate corrections or trepidation models. Lahiri systematized what was a scattered tradition into a precise, computable formula.
@@ -252,7 +252,7 @@ function Page3() {
           <strong>Misconception:</strong> &quot;Since Spica has proper motion, the Lahiri system drifts over time.&quot; <strong className="text-red-300">Reality:</strong> Spica&apos;s proper motion is ~43 milliarcseconds/year — it takes about 84 years to accumulate a single arcsecond of drift. Over a human lifetime, this is completely negligible. Over 10,000 years it would be about 7 arcminutes — still smaller than the uncertainty in any ancient text. The Lahiri system is stable for all practical astrological purposes.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The Lahiri ayanamsha is used by the Indian Government&apos;s Rashtriya Panchang, the India Meteorological Department, virtually all North Indian panchangs, most South Indian panchangs, and the vast majority of practicing Jyotishis worldwide. When software like this app, Jagannatha Hora, or Parashara&apos;s Light defaults to &quot;Lahiri,&quot; they are implementing the same polynomial. The institutional consensus means that Lahiri-based predictions have been tested across millions of charts for over 70 years — a validation corpus no other ayanamsha can match. For this reason, Lahiri is the recommended default for anyone beginning Vedic astrology study.

@@ -148,7 +148,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Example</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Scenario:</span> In a chart, Venus is in Aries (Mars's sign), and Mars is in the 3rd house from Venus.
@@ -161,7 +161,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "Planetary relationships are reciprocal — if A is B's friend, B must be A's friend."<br />
@@ -171,7 +171,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully used in modern Jyotish.</span> The friendship matrix is essential for computing planetary dignity (Module 2.3) and Shadbala. Our app's Vimshopaka Bala calculation uses compound relationships to determine dignity scores across all 16+ divisional charts. The mathematical derivation from moolatrikona signs means this system is internally consistent, not arbitrary.

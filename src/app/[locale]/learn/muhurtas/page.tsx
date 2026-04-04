@@ -137,7 +137,7 @@ export default function LearnMuhurtasPage() {
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {L.rahuKaalContent[locale]}
         </p>
-        <div className="mt-4 overflow-x-auto glass-card rounded-xl p-4 border border-red-500/15">
+        <div className="mt-4 overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-red-500/15">
           <p className="text-red-300 text-[10px] uppercase tracking-widest font-bold mb-3">
             {locale === 'en' ? 'Weekday Segment Positions (1-8 of daytime)' : 'सप्ताह के दिन खण्ड स्थिति (दिवा 1-8)'}
           </p>
@@ -328,7 +328,7 @@ export default function LearnMuhurtasPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
-                className={`glass-card rounded-xl border overflow-hidden ${isBrahma ? 'border-indigo-400/30 ring-1 ring-indigo-400/15' : 'border-gold-primary/10'}`}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border overflow-hidden ${isBrahma ? 'border-indigo-400/30 ring-1 ring-indigo-400/15' : 'border-gold-primary/10'}`}
               >
                 <button
                   onClick={() => setExpandedNight(isExpanded ? null : m.number)}

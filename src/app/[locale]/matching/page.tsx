@@ -184,7 +184,7 @@ export default function MatchingPage() {
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="glass-card rounded-2xl p-6 border border-blue-500/20"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-blue-500/20"
         >
           <h2 className="text-xl font-bold text-blue-400 mb-6 text-center" style={headingFont}>{t('groomDetails')}</h2>
 
@@ -252,7 +252,7 @@ export default function MatchingPage() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="glass-card rounded-2xl p-6 border border-pink-500/20"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-pink-500/20"
         >
           <h2 className="text-xl font-bold text-pink-400 mb-6 text-center" style={headingFont}>{t('brideDetails')}</h2>
 
@@ -378,7 +378,7 @@ export default function MatchingPage() {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="glass-card rounded-xl p-5 border-2 border-red-500/30 bg-red-500/5 mb-8 text-center"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border-2 border-red-500/30 bg-red-500/5 mb-8 text-center"
               >
                 <div className="text-red-400 font-bold text-lg mb-1" style={headingFont}>{t('nadiDosha')}</div>
                 <div className="text-text-secondary text-sm">{t('nadiDoshaDesc')}</div>

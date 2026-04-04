@@ -632,7 +632,7 @@ export default function KaranaPage() {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.03 }}
                 whileHover={{ scale: 1.05, borderColor: 'rgba(248,113,113,0.5)' }}
-                className="glass-card rounded-lg p-4 text-center border border-red-500/10 cursor-pointer"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 text-center border border-red-500/10 cursor-pointer"
                 onClick={() => setSelectedKarana(slotPositions[i])}
               >
                 <div className="text-red-400/80 text-2xl mb-1">{karana.number}</div>

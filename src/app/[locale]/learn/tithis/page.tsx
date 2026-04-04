@@ -599,7 +599,7 @@ export default function LearnTithisPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.5 }}
-        className="glass-card rounded-xl p-6 sm:p-8 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent"
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent"
       >
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.dwiTithiTitle)}

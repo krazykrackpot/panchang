@@ -119,7 +119,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <div className="space-y-2 text-text-secondary text-xs leading-relaxed">
           <p><span className="text-red-300 font-bold">Misconception:</span> "The sign descriptions are just poetic metaphors with no practical use."<br />
@@ -129,7 +129,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-blue-300 font-bold">Fully used.</span> Sign descriptions from BPHS are used in every chart interpretation. The Kalapurusha body mapping is the basis of medical astrology. Sign habitats are used in Prashna. The form descriptions (biped/quadruped/insect/water) affect how signs express — a human-form sign (Gemini, Virgo, Libra) produces more intellectual expression than an animal-form sign (Aries, Taurus, Leo).

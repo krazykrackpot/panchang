@@ -252,7 +252,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'संकल्प की भूमिका' : 'The Role of Sankalpa'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -299,7 +299,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'विवाद — उपचारों के लिए भुगतान' : 'The Controversy — Paying for Remedies'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
@@ -312,7 +312,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचारों का क्रम' : 'Hierarchy of Remedies'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Classical texts suggest a hierarchy of remedial effectiveness: (1) Mantra japa — the most personal and powerful, requires only time and devotion; (2) Daan (charity) — directly generates positive karma by helping others; (3) Puja and Homa — formal rituals that invoke divine intervention; (4) Gemstones — passive remedies that work continuously but amplify rather than pacify; (5) Yantra — mystical diagrams that serve as focal points for planetary energy. The best approach combines multiple levels: wear the appropriate gemstone while performing daily japa and regular charity on the relevant day. Consistency matters more than intensity — 108 mantras daily for a year outweighs a one-time elaborate homa.

@@ -347,7 +347,7 @@ export default function KaalNirnayaPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * i }}
-              className={`glass-card rounded-2xl p-6 border-2 ${yuga.border} ${yuga.bg} relative overflow-hidden`}
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border-2 ${yuga.border} ${yuga.bg} relative overflow-hidden`}
             >
               {yuga.current && (
                 <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 bg-red-500/20 border border-red-500/40 rounded-full">
@@ -540,7 +540,7 @@ export default function KaalNirnayaPage() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.06, ease: 'easeOut' as const }}
             >
-              <div className={`glass-card rounded-xl p-6 border-l-4 ${tier.color} ${tier.highlight ? 'bg-gold-primary/3' : ''}`}>
+              <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border-l-4 ${tier.color} ${tier.highlight ? 'bg-gold-primary/3' : ''}`}>
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4">
                   {/* Level badge + vertical dot */}
                   <div className="flex items-center sm:flex-col sm:items-center gap-3 sm:gap-1 flex-shrink-0 sm:w-16">
@@ -582,7 +582,7 @@ export default function KaalNirnayaPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="glass-card rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5"
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 via-transparent to-purple-500/5"
         >
           <h3 className="text-xl font-bold text-gold-gradient mb-5 text-center" style={headingFont}>
             {locale === 'en' ? 'Where Are We Now?' : 'हम अभी कहाँ हैं?'}
@@ -741,7 +741,7 @@ export default function KaalNirnayaPage() {
 
         {/* Current Lahiri Ayanamsha */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-          className="glass-card rounded-xl p-6 border-2 border-gold-primary/30 bg-gradient-to-r from-gold-primary/5 to-transparent text-center">
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border-2 border-gold-primary/30 bg-gradient-to-r from-gold-primary/5 to-transparent text-center">
           <div className="text-gold-dark text-xs uppercase tracking-[0.3em] font-bold mb-2">
             {locale === 'en' ? 'Current Lahiri Ayanamsha (2026 CE)' : 'वर्तमान लाहिरी अयनांश (2026 CE)'}
           </div>
@@ -771,7 +771,7 @@ export default function KaalNirnayaPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.05 * i }}
-              className={`glass-card rounded-2xl p-6 border ${limb.border} ${limb.bg}`}
+              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border ${limb.border} ${limb.bg}`}
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className="flex-shrink-0"><limb.icon size={48} /></div>

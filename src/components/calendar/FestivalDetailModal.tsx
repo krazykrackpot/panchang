@@ -160,7 +160,7 @@ export default function FestivalDetailModal({
             transition={{ duration: 0.35, ease: 'easeOut' as const }}
             className="fixed inset-x-4 bottom-4 top-auto sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:max-w-2xl sm:w-full z-50 max-h-[85vh] overflow-hidden flex flex-col"
           >
-            <div className={`glass-card rounded-2xl border ${categoryColorMap[festivalCategory] || 'border-gold-primary/20'} bg-gradient-to-b overflow-hidden flex flex-col max-h-[85vh]`}>
+            <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl border ${categoryColorMap[festivalCategory] || 'border-gold-primary/20'} bg-gradient-to-b overflow-hidden flex flex-col max-h-[85vh]`}>
               {/* Header */}
               <div className="relative px-6 pt-6 pb-4 flex-shrink-0">
                 <button

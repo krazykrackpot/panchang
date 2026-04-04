@@ -80,12 +80,12 @@ export default function DevotionalPage() {
       </motion.div>
 
       {/* Today's deity */}
-      <div className="glass-card rounded-2xl p-8 mb-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 to-transparent text-center">
+      <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-8 mb-8 text-center">
         <GrahaIconById id={dayPlanetId} size={64} />
         <h2 className="text-gold-light text-3xl font-bold mt-4" style={headingFont}>
           {varaDeity.deity[locale]}
         </h2>
-        <div className="text-gold-primary text-xl mt-3 py-3 px-6 bg-gold-primary/10 rounded-xl inline-block" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
+        <div className="text-amber-300 text-xl font-bold mt-3 py-3 px-6 bg-gold-primary/10 rounded-xl inline-block" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
           {varaDeity.mantra}
         </div>
         <p className="text-text-secondary text-sm mt-3">
@@ -95,7 +95,7 @@ export default function DevotionalPage() {
 
       {/* Tithi suggestion */}
       {tithiSuggestion && (
-        <div className="glass-card rounded-xl p-6 mb-6 border border-amber-500/20 bg-amber-500/5">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 mb-6">
           <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
             {locale === 'en' ? 'Tithi Significance' : 'तिथि महत्त्व'}
           </div>

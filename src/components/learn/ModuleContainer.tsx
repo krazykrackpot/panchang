@@ -143,7 +143,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     <ModuleLocaleContext.Provider value={locale}>
     <div className="space-y-6">
       {/* Module header */}
-      <div className="glass-card rounded-2xl p-5 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
         <div className="flex items-center gap-2 text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           <BookOpen className="w-3.5 h-3.5" />
           {isHi ? `चरण ${meta.phase} · ${meta.topic}` : `Phase ${meta.phase} · ${meta.topic}`}
@@ -184,7 +184,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <motion.div key="quiz"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
             {/* Quiz */}
-            <div className="glass-card rounded-2xl p-6 border border-indigo-500/20">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-indigo-500/20">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <HelpCircle className="w-5 h-5 text-indigo-400" />
@@ -287,7 +287,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
           <motion.div key="results"
             initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
             {/* Results */}
-            <div className={`glass-card rounded-2xl p-8 text-center border ${passed ? 'border-emerald-500/30' : 'border-red-500/30'}`}>
+            <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 text-center border ${passed ? 'border-emerald-500/30' : 'border-red-500/30'}`}>
               <div className={`text-5xl mb-4`}>{passed ? '🎉' : '📚'}</div>
               <h3 className={`text-2xl font-bold mb-2 ${passed ? 'text-emerald-400' : 'text-red-400'}`} style={hf}>
                 {passed

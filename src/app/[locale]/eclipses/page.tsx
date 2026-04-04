@@ -101,7 +101,7 @@ export default function EclipsesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
-                className={`glass-card rounded-2xl p-8 border-2 ${borderColor} bg-gradient-to-br ${bgColor}`}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 ${borderColor} bg-gradient-to-br ${bgColor}`}
               >
                 {/* Eclipse icon */}
                 <div className="flex items-start gap-6">

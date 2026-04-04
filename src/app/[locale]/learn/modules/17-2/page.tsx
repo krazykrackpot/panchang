@@ -234,7 +234,7 @@ function Page2() {
           The Moon should be waxing (Shukla Paksha preferred) for emotional growth and happiness. No malefic in the 8th house — Saturn, Mars, Rahu, or Ketu there indicates hidden challenges, secrets, or threats to the marriage&rsquo;s longevity. Eclipses should not have occurred within the preceding 7 days.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Planetary Checklist</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Venus:</span> Not combust. Not debilitated. Ideally in own/exaltation sign or in kendra.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Jupiter:</span> Aspecting lagna or 7th house. Not debilitated. In kendra or trikona.</p>
@@ -265,14 +265,14 @@ function Page3() {
           The pandit&rsquo;s role in finalizing the exact lagna is crucial. Even after the family identifies a suitable date based on Panchang elements and seasonal restrictions, the pandit selects the precise 2-hour lagna window within that day. This fine-tuning — considering the lagna chart, hora, and the couple&rsquo;s individual charts — is the final and most personalized step of Muhurta selection.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Restricted Periods</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Pitru Paksha:</span> Krishna Paksha of Bhadrapada — devoted to ancestors. No auspicious work.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Eclipses:</span> Avoid marriage within 7 days before or after any eclipse.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Chaturmas:</span> July-November (varies by tradition). Some regions strictly prohibit, others are flexible.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Adhika Masa:</span> North India generally prohibits; South India varies. Consult family pandit.</p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">The Pandit&rsquo;s Final Step</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Our Muhurta AI tool identifies candidate dates and time windows that satisfy the Panchang, planetary, and seasonal requirements. But the final selection — especially for marriage — traditionally involves a pandit who considers the specific couple&rsquo;s charts, family traditions, and regional customs. The tool narrows hundreds of potential times to a shortlist; the pandit makes the final human judgment.

@@ -859,7 +859,7 @@ export default function LearnVargasPage() {
         <p className="mb-5">{L.practicalText[locale]}</p>
 
         {/* D9 Interpretation Example */}
-        <div className="mb-5 p-5 rounded-xl glass-card border border-amber-500/20">
+        <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-amber-500/20">
           <h4 className="text-amber-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 1: Reading D9 for Marriage' : 'उदाहरण 1: D9 से विवाह पढ़ना'}
           </h4>
@@ -882,7 +882,7 @@ export default function LearnVargasPage() {
         </div>
 
         {/* D10 Interpretation Example */}
-        <div className="mb-5 p-5 rounded-xl glass-card border border-emerald-500/20">
+        <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-emerald-500/20">
           <h4 className="text-emerald-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 2: Reading D10 for Career' : 'उदाहरण 2: D10 से करियर पढ़ना'}
           </h4>
@@ -900,7 +900,7 @@ export default function LearnVargasPage() {
         </div>
 
         {/* D7 Interpretation Example */}
-        <div className="p-5 rounded-xl glass-card border border-purple-500/20">
+        <div className="p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-purple-500/20">
           <h4 className="text-purple-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
             {locale === 'en' ? 'Example 3: Reading D7 for Children' : 'उदाहरण 3: D7 से संतान पढ़ना'}
           </h4>

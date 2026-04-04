@@ -108,7 +108,7 @@ export default function MarriagePredictionGuide() {
 
       {/* SVG Charts */}
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2 }} className="mb-12">
-        <div className="glass-card rounded-2xl p-6 border border-pink-500/15 flex flex-col items-center">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-pink-500/15 flex flex-col items-center">
           <MarriageChartSVG />
           <p className="text-text-tertiary text-xs mt-3 text-center">
             {isHi ? 'D1 रासि चार्ट (7वां भाव = विवाह) और D9 नवमांश (विवाह का सूक्ष्म चार्ट) साथ-साथ' : 'D1 Rashi chart (7th house = marriage) alongside D9 Navamsha (the microscopic marriage chart)'}

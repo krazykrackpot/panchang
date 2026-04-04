@@ -408,7 +408,7 @@ export default function PrashnaPage() {
             </div>
 
             {/* ── Guidance ── */}
-            <div className="glass-card rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
+            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 border border-gold-primary/15 bg-gradient-to-br from-gold-primary/5 to-transparent">
               <div className="flex items-center gap-2 mb-3">
                 <Shield className="w-5 h-5 text-gold-primary" />
                 <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={hf}>{L.guidance[locale]}</h3>
@@ -498,7 +498,7 @@ function InsightCard({ insight, locale, hf, bf, compact = false }: {
   const labelColor = insight.nature === 'positive' ? 'text-emerald-300' : insight.nature === 'negative' ? 'text-red-300' : 'text-amber-300';
 
   return (
-    <div className={`glass-card rounded-xl border ${borderColor} ${compact ? 'p-4' : 'p-5'}`}>
+    <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border ${borderColor} ${compact ? 'p-4' : 'p-5'}`}>
       <div className="flex items-center gap-2 mb-2">
         <span className={`w-2.5 h-2.5 rounded-full ${dotColor} flex-shrink-0`} />
         <h3 className={`text-xs font-bold uppercase tracking-wider ${labelColor}`} style={hf}>

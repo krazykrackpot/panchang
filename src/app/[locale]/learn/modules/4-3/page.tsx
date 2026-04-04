@@ -169,7 +169,7 @@ function Page2() {
           The Hindu concept of yugas (cosmic ages) is sometimes confused with astrological ages, but they are different. Astrological ages are defined by the equinox&apos;s position among sidereal constellations and last ~2,148 years each. Hindu yugas (Satya, Treta, Dvapara, Kali) are described in Puranic literature as lasting hundreds of thousands of years. Sri Yukteshwar Giri proposed a shorter yuga cycle of 24,000 years (roughly matching the precession period), but this remains a minority interpretation not accepted in mainstream Jyotish.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — The &quot;sign confusion&quot;:</span> Someone born April 5 has Sun at ~15° Aries tropically (Western: Aries). Vedic sidereal: 15° - 24.2° = -9.2° → 360° - 9.2° = 350.8° → Pisces 20.8°. Western says bold fire sign Aries; Vedic says intuitive water sign Pisces. Both are astronomically correct — they reference different zero-points. The personality traits associated with each come from interpretive traditions developed within their respective frameworks.
@@ -181,7 +181,7 @@ function Page2() {
           <span className="text-gold-light font-medium">Example 3 — Age calculation:</span> If the Age of Pisces began when the equinox entered sidereal Pisces (~68 CE by one reckoning), and each age lasts ~2,148 years, then the Age of Aquarius begins around 68 + 2148 = ~2216 CE. This is one of many estimates — the uncertainty arises because sidereal constellation boundaries are not sharply defined (unlike the exactly 30° zodiac signs).
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;The sidereal zodiac is more accurate because it matches the actual constellations in the sky.&quot; <strong className="text-red-300">Reality:</strong> The 12 zodiac signs are each exactly 30° wide, but the actual constellations vary dramatically in size (Virgo spans ~44° while Cancer spans ~20°). Neither the tropical nor sidereal zodiac matches the irregular constellation boundaries. Both use an idealized, equal-division system. The sidereal zodiac is better aligned with the nakshatra framework, not with constellation edges.
@@ -222,7 +222,7 @@ function Page3() {
           The Brihat Parashara Hora Shastra (BPHS) assigns each nakshatra a dasha lord: Ashwini → Ketu (7 years), Bharani → Shukra (20 years), Krittika → Surya (6 years), and so on through the Vimshottari cycle of 120 years. This mapping is fixed to the star-based nakshatra positions. Parashara also assigns rashi lords, exaltation degrees, and moolatrikona ranges — all in the sidereal framework. The entire interpretive apparatus of classical Jyotish was built, tested, and refined over millennia using sidereal positions. Switching to tropical would require recalibrating every rule, every exaltation degree, every yogtara boundary — effectively creating a new system from scratch.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Example 1 — Dasha divergence:</span> Moon at tropical 40° (Taurus 10°) → sidereal 15.8° (Aries 15.8°). Tropical puts Moon in Krittika nakshatra (Taurus 10° = 40°, Krittika spans 26°40&apos; to 40°). Sidereal puts Moon in Ashwini (15.8° = Ashwini pada 2). Tropical Krittika → Sun dasha lord (6 years). Sidereal Ashwini → Ketu dasha lord (7 years). Completely different dasha sequence from birth — tropical gives Sun-Moon-Mars..., sidereal gives Ketu-Venus-Sun.... Every prediction diverges.
@@ -231,7 +231,7 @@ function Page3() {
           <span className="text-gold-light font-medium">Example 2 — Seasonal vs stellar logic:</span> On December 21 (winter solstice), the Sun is at tropical 270° = Capricorn 0° (by definition). Sidereal position: 270° - 24.2° = 245.8° = Sagittarius 5.8°. Tropically, Capricorn 0° perfectly captures the winter solstice symbolism (new beginning from the darkest point). Sidereally, the Sun is in Sagittarius — the archer — which carries entirely different mythological associations. Both are internally coherent within their respective interpretive traditions.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconceptions</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <strong>Misconception:</strong> &quot;Western astrology is wrong because it does not match the actual sky anymore.&quot; <strong className="text-red-300">Reality:</strong> Western astrology never claimed to match the sky — after Ptolemy, it explicitly chose the equinox as its reference. The tropical zodiac is a seasonal coordinate system. Saying it is &quot;wrong&quot; because Aries does not align with the Aries constellation is like saying the GMT timezone is &quot;wrong&quot; because noon does not match solar noon everywhere.
@@ -240,7 +240,7 @@ function Page3() {
           <strong>Misconception:</strong> &quot;We can simply use both zodiacs together for a more complete reading.&quot; <strong className="text-red-300">Reality:</strong> While some astrologers do examine both charts, you cannot mix techniques. Vimshottari Dasha must use sidereal nakshatra positions. Western aspect patterns were developed with tropical positions. Applying Vedic dasha rules to a tropical chart, or Western transit rules to a sidereal chart, yields unreliable results because the interpretive rules are calibrated to their native zodiac.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Relevance</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           This app computes planetary positions using Meeus algorithms (same mathematical basis as NASA&apos;s ephemerides), producing tropical longitudes accurate to ~0.01° for the Sun and ~0.5° for the Moon. The Lahiri ayanamsha polynomial then converts these to sidereal positions for all Vedic calculations — nakshatras, dashas, yogas, house cusps, and chart interpretation. The tropical-to-sidereal conversion is a simple subtraction, but it is the conceptual bridge between modern computational astronomy (which works in tropical/equatorial coordinates) and classical Jyotish (which requires sidereal/nakshatra-based positions). Understanding why this bridge exists — and why both sides are valid — is fundamental to understanding why Vedic and Western astrology give different but internally consistent readings for the same birth moment.

@@ -464,7 +464,7 @@ function ContentCard({
     : 'bg-gold-primary/5 border-gold-primary/15';
 
   return (
-    <div className={`glass-card rounded-xl p-5 sm:p-6 border ${highlight ? highlightClasses : 'border-gold-primary/10'}`}>
+    <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border ${highlight ? highlightClasses : 'border-gold-primary/10'}`}>
       <div className="flex items-center gap-2.5 mb-3">
         <span className={accentColor === 'emerald' ? 'text-emerald-400' : 'text-gold-primary'}>{icon}</span>
         <h3 className={`text-sm font-bold uppercase tracking-wider ${accentColor === 'emerald' ? 'text-emerald-300' : 'text-gold-light'}`} style={headingFont}>
@@ -562,7 +562,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       </div>
 
       {/* ─── Sankalpa ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-amber-500/20 bg-amber-500/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border border-amber-500/20 bg-amber-500/3">
         <div className="flex items-center gap-2.5 mb-3">
           <Shield className="w-5 h-5 text-amber-400" />
           <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wider" style={headingFont}>
@@ -601,7 +601,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
                   {linkedMantra && (
                     <div className="mt-3 pl-3 border-l-2 border-gold-primary/20">
                       <p className="text-gold-primary/60 text-xs uppercase tracking-wider font-bold mb-1">{linkedMantra.name[locale === 'sa' ? 'hi' : locale as 'en' | 'hi']}</p>
-                      <p className="text-gold-light text-base" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{linkedMantra.devanagari}</p>
+                      <p className="text-amber-300 text-base font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{linkedMantra.devanagari}</p>
                     </div>
                   )}
                 </div>
@@ -657,7 +657,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
 
       {/* ─── Aarti ─── */}
       {puja.aarti && (
-        <div className="glass-card rounded-xl p-5 sm:p-6 border border-orange-500/15 bg-orange-500/3">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border border-orange-500/15 bg-orange-500/3">
           <div className="flex items-center gap-2.5 mb-4">
             <Flame className="w-5 h-5 text-orange-400" />
             <h3 className="text-sm font-bold text-orange-300 uppercase tracking-wider" style={headingFont}>
@@ -689,7 +689,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
 
       {/* ─── Precautions ─── */}
       {puja.precautions.length > 0 && (
-        <div className="glass-card rounded-xl p-5 sm:p-6 border border-amber-500/15 bg-amber-500/3">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border border-amber-500/15 bg-amber-500/3">
           <div className="flex items-center gap-2.5 mb-4">
             <AlertTriangle className="w-5 h-5 text-amber-400" />
             <h3 className="text-sm font-bold text-amber-300 uppercase tracking-wider" style={headingFont}>
@@ -708,7 +708,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       )}
 
       {/* ─── Phala ─── */}
-      <div className="glass-card rounded-xl p-5 sm:p-6 border border-emerald-500/20 bg-emerald-500/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border border-emerald-500/20 bg-emerald-500/3">
         <div className="flex items-center gap-2.5 mb-3">
           <Star className="w-5 h-5 text-emerald-400" />
           <h3 className="text-sm font-bold text-emerald-300 uppercase tracking-wider" style={headingFont}>

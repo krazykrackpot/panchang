@@ -242,7 +242,7 @@ export default function LearnPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {LABS.map(lab => (
             <Link key={lab.href} href={lab.href}
-              className="glass-card rounded-xl p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group text-center">
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group text-center">
               <h3 className="text-gold-light font-bold text-sm mb-1 group-hover:text-gold-primary" style={bf}>{lab.title[locale]}</h3>
             </Link>
           ))}

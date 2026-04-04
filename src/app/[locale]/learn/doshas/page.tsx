@@ -142,7 +142,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Karmic Perspective */}
-      <div className="glass-card rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
         <div className="flex items-center gap-3 mb-3">
           <Shield className="w-6 h-6 text-violet-400" />
           <h3 className="text-violet-300 text-lg font-bold" style={headingFont}>
@@ -329,7 +329,7 @@ export default function DoshasPage() {
       </div>
 
       {/* Important note */}
-      <div className="glass-card rounded-2xl p-5 border border-amber-400/15 bg-amber-400/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 border border-amber-400/15 bg-amber-400/3">
         <div className="flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>

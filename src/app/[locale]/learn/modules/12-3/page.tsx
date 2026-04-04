@@ -197,7 +197,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>गुरु (बृहस्पति) वैदिक ज्योतिष में सबसे बड़ा नैसर्गिक शुभ ग्रह है। राशिचक्र में इसका गोचर — लगभग प्रत्येक 13 मास में राशि परिवर्तन — सर्वाधिक महत्वपूर्ण वार्षिक ज्योतिषीय घटनाओं में से एक है। गुरु जो भी छूता है उसे विस्तारित करता है: धन, ज्ञान, आध्यात्मिकता, सम्बन्ध या सन्तान। इसका राशि परिवर्तन प्रायः आपके जीवन के प्रमुख विषय में दृश्य बदलाव से सहसम्बद्ध होता है।</> : <>Jupiter (Guru/Brihaspati) is the greatest natural benefic in Vedic astrology. Its transit through the zodiac — changing signs approximately every 13 months — is one of the most significant annual astrological events. Jupiter expands whatever it touches: wealth, knowledge, spirituality, relationships, or children. Its sign change often correlates with a visible shift in the dominant theme of your life.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'चन्द्र से गोचर फल' : 'Transit Results from Moon'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Highly Auspicious — Trikona (1, 5, 9):</span> Jupiter in the 1st brings personal growth, optimism, and new beginnings. In the 5th, it enhances intelligence, creativity, romance, and children&apos;s well-being. In the 9th, it brings fortune, dharma, long-distance travel, guru blessings, and spiritual elevation. These are Jupiter&apos;s most powerful positions.
@@ -210,7 +210,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-purple-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
         <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'गुरु की विशेष दृष्टि' : 'Jupiter&apos;s Special Aspects'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Unlike other planets that only aspect the 7th house from their position, Jupiter has special aspects (Vishesh Drishti) on the 5th, 7th, and 9th houses from where it sits. This means Jupiter activates 4 houses simultaneously during transit — the house it occupies plus three aspected houses. This quadruple activation is why Jupiter transits are so impactful. For example, Jupiter in the 3rd from Moon (not ideal by transit rules) still aspects the 7th (marriage), 9th (fortune), and 11th (gains) — providing beneficial influence to those areas.
@@ -243,7 +243,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्मिक सक्रियता' : 'Karmic Activation'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">नोडल वापसी (~18 वर्ष):</span> जब गोचरी राहु अपनी जन्मकालिक स्थिति पर लौटता है (और केतु अपनी पर), एक प्रमुख कार्मिक चक्र पूर्ण होता है। यह लगभग 18-19, 36-37, 54-55 और 72-73 वर्ष की आयु में होता है। ये निर्णायक वर्ष हैं जब जीवन दिशा नाटकीय रूप से बदलती है।</> : <><span className="text-gold-light font-medium">Nodal Return (~18 years):</span> When transiting Rahu returns to its natal position (and Ketu to its natal position), a major karmic cycle completes. This happens around ages 18-19, 36-37, 54-55, and 72-73. These are pivotal years when life direction shifts dramatically — the universe recalibrates your karmic trajectory.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">
@@ -285,12 +285,12 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'उदाहरण — विवाह समय' : 'Worked Example — Marriage Timing'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>एक जातक पर विचार करें जिसका चन्द्रमा मेष में है। विवाह के लिए हमें गुरु और शनि दोनों को 7वें भाव (तुला) को प्रभावित करने की आवश्यकता है। मिथुन में गुरु अपनी 5वीं दृष्टि से तुला को देखता है। कुम्भ में शनि अपनी 10वीं दृष्टि (शनि की विशेष दृष्टि) से तुला को देखता है। चूँकि दोनों ग्रह एक साथ 7वें भाव को प्रभावित करते हैं, यह काल विवाह की सम्भावना खोलता है — बशर्ते दशा भी समर्थन करे।</> : <>Consider a native with Moon in Aries (Mesha). For marriage, we need Jupiter and Saturn to both influence the 7th house (Libra/Tula) from Moon. Jupiter in Gemini (Mithuna) aspects Libra with its 5th aspect. Saturn in Aquarius (Kumbha) aspects Libra with its 10th aspect (Saturn&apos;s special Vishesh Drishti). Since both planets simultaneously influence the 7th house, this period opens a marriage window — provided the dasha also supports it.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'महत्वपूर्ण सावधानी' : 'Important Caveat'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The double transit opens a window of possibility, but the natal chart must promise the event (through appropriate yogas), and the dasha period must support it. All three layers — natal promise, dasha activation, and transit timing — must align for a significant event to occur. This is the &quot;triple condition&quot; of Vedic prediction: promise (chart) + activation (dasha) + timing (transit) = event manifestation.

@@ -145,7 +145,7 @@ export default function LearnSphutasPage() {
         <p className="text-text-secondary leading-relaxed">{t(L.yogiDesc)}</p>
 
         {/* Yogi Point */}
-        <div className="glass-card rounded-2xl p-6 border border-emerald-500/20 space-y-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-emerald-500/20 space-y-4">
           <div className="flex items-center gap-3">
             <Star className="w-6 h-6 text-emerald-400" />
             <h3 className="text-lg font-bold text-emerald-400" style={headingFont}>{t(L.yogiPointTitle)}</h3>
@@ -163,7 +163,7 @@ export default function LearnSphutasPage() {
         </div>
 
         {/* Avayogi Point */}
-        <div className="glass-card rounded-2xl p-6 border border-red-500/20 space-y-4">
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-red-500/20 space-y-4">
           <div className="flex items-center gap-3">
             <AlertTriangle className="w-6 h-6 text-red-400" />
             <h3 className="text-lg font-bold text-red-400" style={headingFont}>{t(L.avayogiTitle)}</h3>

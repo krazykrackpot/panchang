@@ -98,7 +98,7 @@ export default function MasaPage() {
       </div>
 
       {/* Adhika Masa */}
-      <div className="glass-card rounded-2xl p-6 border border-violet-500/20 bg-gradient-to-br from-violet-500/5 to-transparent">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-500/20 bg-gradient-to-br from-violet-500/5 to-transparent">
         <h3 className="text-violet-400 font-bold text-lg mb-4" style={hf}>
           {isHi ? 'अधिक मास (मलमास / पुरुषोत्तम मास)' : 'Adhika Masa (Intercalary Month)'}
         </h3>

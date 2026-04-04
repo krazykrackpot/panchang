@@ -185,7 +185,7 @@ export default function ComparePage() {
                       : asp.type === 'Trine' || asp.type === 'Sextile' ? 'border-blue-500/20 text-blue-300'
                       : 'border-red-500/20 text-red-400';
                     return (
-                      <div key={i} className={`glass-card rounded-xl p-3 border ${aspColor.split(' ')[0]}`}>
+                      <div key={i} className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 border ${aspColor.split(' ')[0]}`}>
                         <div className="flex items-center justify-between mb-1">
                           <span className={`text-xs font-bold ${aspColor.split(' ')[1]}`}>{asp.type}</span>
                           <span className="text-text-tertiary text-[10px]">{asp.orb}° orb</span>

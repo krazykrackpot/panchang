@@ -233,7 +233,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Cancellation Conditions</h4>
         <div className="space-y-3 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">1. Mars in Own Sign (Aries/Scorpio):</span> A planet in its own sign is dignified and behaves constructively. Mars in Aries (1st or 8th for certain lagnas) or Scorpio gives courage, leadership, and focused energy rather than destructive aggression. The &ldquo;fire&rdquo; is controlled.</p>
@@ -245,7 +245,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">South Indian vs North Indian Approach</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           The South Indian tradition is considerably more conservative — it checks Mangal Dosha <strong className="text-blue-300">only from Lagna</strong>, not from Moon or Venus. This dramatically reduces the detection rate. A chart that is &ldquo;double Manglik&rdquo; by North Indian standards (Mars dosha from both Lagna and Moon) might be completely clear by South Indian assessment. Neither tradition is &ldquo;wrong&rdquo; — they represent different interpretive frameworks, and the practitioner should specify which system they follow.
@@ -283,7 +283,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">When Both Partners Have Dosha</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The principle of mutual cancellation is beautifully logical: two equally assertive people in a relationship create balance through equal footing. Neither partner overwhelms the other. The Mars energy, instead of being one-sided (one person always pushing, the other always retreating), becomes a shared dynamic of passion, healthy competition, and mutual respect for boundaries.

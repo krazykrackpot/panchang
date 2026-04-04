@@ -147,7 +147,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'प्रश्न कब उपयोग करें' : 'When to Use Prashna'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>प्रश्न आदर्श है जब: जन्म समय अज्ञात या अनिश्चित हो, प्रश्न किसी विशिष्ट घटना के बारे में हाँ/नहीं उत्तर वाला हो, समय तत्काल हो और आपको शीघ्र मार्गदर्शन चाहिए, या जब आप जन्म कुण्डली विश्लेषण की पुष्टि करना चाहें। यह ठोस प्रश्नों के लिए सर्वोत्तम काम करता है: &quot;क्या मुझे यह नौकरी मिलेगी?&quot;, &quot;क्या मुझे इस सम्पत्ति में निवेश करना चाहिए?&quot;, &quot;क्या विवाह होगा?&quot;</> : <>Prashna is ideal when: birth time is unknown or imprecise, the question is about a specific event with a yes/no answer, timing is urgent and you need immediate guidance, or when you want to confirm what a natal chart analysis suggests. It works best for concrete questions: &quot;Will I get this job?&quot;, &quot;Should I invest in this property?&quot;, &quot;Will the marriage happen?&quot;</>}</p>
       </section>
@@ -167,19 +167,19 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>ये विशिष्ट ग्रहीय संयोजन हैं जो जिज्ञासु के प्रश्न का सकारात्मक उत्तर दर्शाते हैं। इनमें से जितने अधिक एक साथ उपस्थित हों, सकारात्मक संकेत उतना मजबूत। एक अकेला अनुकूल योग सुझावात्मक है; एक साथ अनेक निर्णायक हैं।</> : <>These are the specific planetary combinations that indicate a positive answer to the querent&apos;s question. The more of these present simultaneously, the stronger the positive indication. A single favorable yoga is suggestive; multiple together are conclusive.</>}</p>
 
         <div className="space-y-3">
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">
             <p className="text-emerald-300 font-bold text-sm">{isHi ? 'केन्द्र/त्रिकोण में चन्द्र' : 'Moon in Kendra/Trikona'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>प्रश्न लग्न से 1, 4, 5, 7, 9, या 10 भावों में चन्द्रमा पहली और सबसे महत्वपूर्ण जाँच है। सुस्थित चन्द्रमा दर्शाता है कि घटनाओं का प्रवाह सकारात्मक परिणाम का समर्थन करता है। चन्द्रमा जिज्ञासु के मन और परिस्थितियों की गति का प्रतिनिधित्व करता है। शुक्ल पक्ष का चन्द्रमा इस योग को और मजबूत करता है।</> : <>Moon in houses 1, 4, 5, 7, 9, or 10 from the Prashna Lagna is the first and most important check. A well-placed Moon indicates that the flow of events supports a positive outcome. The Moon represents the mind of the querent and the momentum of circumstances. Waxing Moon (Shukla Paksha) strengthens this yoga further.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">
             <p className="text-emerald-300 font-bold text-sm">{isHi ? 'लग्न स्वामी सप्तम में' : 'Lagna Lord in the 7th'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>लग्न स्वामी का सप्तम भाव में जाना दर्शाता है कि जिज्ञासु वांछित परिणाम की ओर निर्देशित है। यह सबसे मजबूत सकारात्मक संकेतकों में से एक है। यदि सप्तम स्वामी भी बलवान और सुस्थित है, तो परिणाम पारस्परिक रूप से लाभकारी है। यदि लग्न स्वामी और सप्तम स्वामी की आगामी दृष्टि है, तो मिलन आसन्न है।</> : <>The Lagna lord moving to the 7th house shows the querent is directed toward the desired outcome. This is one of the strongest positive indicators. If the 7th lord is also strong and well-placed, the outcome is mutually beneficial. If the Lagna lord and 7th lord have an applying aspect, the coming together is imminent.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">
             <p className="text-emerald-300 font-bold text-sm">{isHi ? 'केन्द्रों में शुभ ग्रह' : 'Benefics in Kendras'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>बृहस्पति, शुक्र, शुक्ल पक्ष का चन्द्रमा, या अपीड़ित बुध कोणीय भावों (1, 4, 7, 10) में प्रश्न के लिए अनुकूल वातावरण बनाता है। केन्द्रों में शुभ ग्रह स्थिति को स्थिर करते हैं और सकारात्मक परिणामों का समर्थन करते हैं। जितने अधिक शुभ ग्रह कोणों में, समग्र चित्र उतना अनुकूल।</> : <>Jupiter, Venus, waxing Moon, or unafflicted Mercury in the angular houses (1, 4, 7, 10) creates a favorable environment for the question. Benefics in Kendras stabilize the situation and support positive outcomes. The more benefics in angles, the more favorable the overall picture.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-emerald-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-emerald-500/10">
             <p className="text-emerald-300 font-bold text-sm">{isHi ? 'अनुकूल नक्षत्र में चन्द्र' : 'Moon in Favorable Nakshatra'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>स्थिर नक्षत्र में चन्द्र = स्थिर, स्थायी परिणाम। चर नक्षत्र में चन्द्र = शीघ्र परिणाम। देव नक्षत्र में चन्द्र = आशीर्वादित परिणाम। मृत्यु नक्षत्रों जैसे भरणी या अश्लेषा में चन्द्र = सावधानी आवश्यक। नक्षत्र गुणवत्ता परिणाम की प्रकृति और समय को रंगती है।</> : <>Moon in a &quot;fixed&quot; (Sthira) nakshatra = stable, lasting outcome. Moon in a &quot;moveable&quot; (Chara) nakshatra = quick result. Moon in a Deva (divine) nakshatra = blessed outcome. Moon in Mrityu (death) nakshatras like Bharani or Ashlesha = caution needed. The nakshatra quality colors the nature and timing of the result.</>}</p>
           </div>
@@ -206,26 +206,26 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>ये संयोजन बाधाओं, अस्वीकृति, या नकारात्मक परिणामों को दर्शाते हैं। इन्हें समझना अनुकूल योगों को जानने जितना ही महत्वपूर्ण है — वे चेतावनी संकेतों के रूप में कार्य करते हैं जो जिज्ञासु को खराब निर्णयों से बचाते हैं।</> : <>These combinations indicate obstacles, denial, or negative outcomes. Understanding them is as important as knowing the favorable yogas — they serve as warning signals that protect the querent from poor decisions.</>}</p>
 
         <div className="space-y-3">
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'चन्द्र शून्य पथ' : 'Moon Void of Course'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>जब चन्द्रमा अपनी वर्तमान राशि छोड़ने से पहले किसी भी ग्रह से कोई आगामी दृष्टि नहीं बनाता, तो यह &quot;शून्य पथ&quot; है। यह &quot;कुछ नहीं होगा&quot; का सबसे मजबूत संकेतक है — मामला साकार नहीं होगा, समाप्त हो जाएगा, या कोई निश्चित निष्कर्ष नहीं होगा। उपक्रम के साथ आगे न बढ़ें।</> : <>When the Moon makes no applying aspect to any planet before leaving its current sign, it is &quot;void of course.&quot; This is the strongest indicator of &quot;nothing will happen&quot; — the matter will not materialize, fizzle out, or come to no definitive conclusion. Do not proceed with the venture.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'लग्न स्वामी दुःस्थान में' : 'Lagna Lord in Dusthana'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>लग्न स्वामी 6ठे (संघर्ष/रोग), 8वें (बाधा/हानि), या 12वें (खर्च/एकान्त) भाव में जिज्ञासु के महत्वपूर्ण बाधाओं का सामना दर्शाता है। व्यक्ति की ऊर्जा उपलब्धि के बजाय संघर्ष (6ठा), छिपे खतरों (8वाँ), या हानि (12वाँ) की ओर निर्देशित है।</> : <>Lagna lord in the 6th (conflict/disease), 8th (obstacles/losses), or 12th (expenses/isolation) house indicates the querent faces significant obstacles. The person&apos;s energy is directed toward struggle (6th), hidden dangers (8th), or losses (12th) rather than achievement.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'सप्तम में पाप ग्रह' : 'Malefics in 7th'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>सप्तम भाव में शनि, मंगल, राहु, या केतु दर्शाता है कि पूछताछ का विषय स्वाभाविक रूप से समस्याग्रस्त है। विवाह के लिए: साथी में गम्भीर समस्याएँ हैं। व्यापार के लिए: सौदा जोखिमभरा या कपटपूर्ण है। किसी भी प्रश्न के लिए: जो आप खोज रहे हैं उसमें छिपी समस्याएँ हैं।</> : <>Saturn, Mars, Rahu, or Ketu in the 7th house indicates the subject of inquiry is inherently problematic. For marriage: the partner has serious issues. For business: the deal is risky or fraudulent. For any question: what you&apos;re seeking carries hidden problems.</>}</p>
           </div>
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'वियोजी दृष्टि और अस्त लग्न स्वामी' : 'Separating Aspects & Combust Lagna Lord'}</p>
             <p className="text-text-secondary text-xs mt-1">{isHi ? <>लग्न स्वामी और सम्बन्धित भाव स्वामी के बीच वियोजी दृष्टि दर्शाती है कि अवसर पहले ही बीत चुका है — आपने इसे खो दिया। अस्त लग्न स्वामी का अर्थ है कि जिज्ञासु दुर्बल है, परिस्थितियों से अभिभूत है, या प्रभावी ढंग से कार्य करने में असमर्थ है। दोनों प्रतिकूल परिणाम के मजबूत संकेतक हैं।</> : <>Separating aspects between the Lagna lord and the relevant house lord indicate the opportunity has already passed — you missed it. Combust Lagna lord means the querent is weakened, overwhelmed by circumstances, or unable to act effectively. Both are strong indicators of an unfavorable outcome.</>}</p>
           </div>
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हमारा प्रश्न इंजन' : 'Our Prashna Engine'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारा प्रश्न पृष्ठ इन सभी योगों का स्वचालित मूल्यांकन करता है। जब आप प्रश्न प्रस्तुत करते हैं, इंजन: 1) सटीक क्षण की कुण्डली बनाता है। 2) चन्द्र स्थिति, कला और नक्षत्र जाँचता है। 3) लग्न स्वामी स्थान और गरिमा का मूल्यांकन करता है। 4) केन्द्रों में शुभ/पाप स्थिति पहचानता है। 5) आगामी और वियोजी दृष्टि का विश्लेषण करता है। 6) प्रमुख ग्रहों के अस्त की जाँच करता है। 7) सभी कारकों का समर्थक और विरोधी योगों की विस्तृत व्याख्या के साथ स्वचालित निर्णय (अनुकूल/प्रतिकूल/तटस्थ) में संश्लेषण करता है।</> : <>Our Prashna page evaluates all these yogas automatically. When you submit a question, the engine: 1) Casts the chart for the exact moment. 2) Checks Moon placement, phase, and nakshatra. 3) Evaluates Lagna lord position and dignity. 4) Identifies benefic/malefic placements in Kendras. 5) Analyzes applying and separating aspects. 6) Checks for combustion of key planets. 7) Synthesizes all factors into an automatic verdict (favorable/unfavorable/neutral) with detailed explanation of supporting and opposing yogas.</>}</p>
       </section>

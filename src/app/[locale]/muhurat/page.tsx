@@ -167,7 +167,7 @@ export default function MuhuratPage() {
                   initial={{ opacity: 0, x: -15 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: Math.min(i * 0.04, 0.5) }}
-                  className={`glass-card rounded-xl p-5 border ${QUALITY_COLORS[d.quality]}`}
+                  className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border ${QUALITY_COLORS[d.quality]}`}
                 >
                   <div className="flex items-center gap-4">
                     {/* Big date number */}

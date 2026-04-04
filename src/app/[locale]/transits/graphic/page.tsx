@@ -141,7 +141,7 @@ export default function GraphicTransitPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                   {events.map((evt, i) => (
                     <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-                      className={`glass-card rounded-xl p-3 border ${evt.type === 'ingress' ? 'border-gold-primary/20' : 'border-red-500/20'}`}>
+                      className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 border ${evt.type === 'ingress' ? 'border-gold-primary/20' : 'border-red-500/20'}`}>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="w-2 h-2 rounded-full" style={{ backgroundColor: PLANET_COLORS[evt.planet] }} />
                         <span className="text-gold-light text-xs font-bold">{PLANET_NAMES[evt.planet]}</span>

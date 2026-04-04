@@ -222,7 +222,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Reading the D10 Career Chart</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">D10 Lagna sign:</span> Shows the overall professional orientation — Aries D10 Lagna indicates pioneering/entrepreneurial careers; Taurus suggests banking/luxury/agriculture; Gemini points to communication/media/writing.
@@ -258,7 +258,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">Jupiter in D7 — The Decisive Factor</h4>
         <div className="space-y-2">
           {[
@@ -275,7 +275,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Childbirth Timing with D7</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The Dasha of the 5th lord of D7, Jupiter's dasha periods, or the dasha of planets occupying the 5th house of D7 are prime periods for childbirth. When the same planet is simultaneously the 5th lord in D1 and well-placed in D7, the indication becomes very strong.
@@ -308,7 +308,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Reading the D12 — Parents and Lineage</h4>
         <div className="space-y-2">
           {[
@@ -325,7 +325,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Timing Parental Events</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           The Dasha of the D12 4th lord or planets aspecting/occupying the 4th house often coincides with significant maternal events — health concerns, relocation, or deepening of the bond. Similarly, the 9th lord's dasha period activates paternal themes. When maraka (death-inflicting) planets of D12 are simultaneously activated in D1 dasha, they can indicate serious parental health crises.

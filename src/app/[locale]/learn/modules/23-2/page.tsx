@@ -151,7 +151,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'मुख्य अन्तर्दृष्टि' : 'Key Insight'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री ग्रह पृथ्वी के अधिक निकट होते हैं, दूर नहीं। यह प्रतिकूल ज्ञान है लेकिन महत्वपूर्ण: वक्री ग्रह आकाश में अधिक चमकीला दिखता है, अधिक शक्तिशाली (दुर्बल नहीं) होता है, और इसके प्रभाव अधिक आन्तरिक और तीव्र होते हैं। &quot;पुनः-&quot; उपसर्ग वक्री को पूर्ण रूप से व्यक्त करता है: पुनर्समीक्षा, पुनर्संशोधन, पुनर्विचार, पुनर्सम्पर्क, पुनः करना।</> : <>Retrograde planets are CLOSER to Earth, not farther. This is counterintuitive but critical: a retrograde planet appears brighter in the sky, is stronger (not weaker), and its effects are more internalized and intense. The &quot;re-&quot; prefix captures retrogrades perfectly: review, revise, reconsider, reconnect, redo.</>}</p>
       </section>
@@ -171,7 +171,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>अस्त तब होता है जब कोई ग्रह सूर्य के बहुत निकट आ जाता है और अदृश्य हो जाता है — सूर्य के तेज प्रकाश से अभिभूत। वैदिक ज्योतिष में, अस्त ग्रह दुर्बल माना जाता है: इसके कारकत्व दबे, भ्रमित या जले हुए हो जाते हैं। प्रत्येक ग्रह की विशिष्ट अस्त दूरी सीमा है।</> : <>Combustion occurs when a planet gets too close to the Sun and becomes invisible — overwhelmed by the Sun&apos;s brilliant light. In Vedic astrology, a combust planet is considered weakened: its significations become suppressed, confused, or burned away. Each planet has a specific combustion distance threshold.</>}</p>
 
         <div className="space-y-3">
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'अस्त दूरियाँ' : 'Combustion Distances'}</p>
             <div className="text-text-secondary text-xs mt-2 space-y-1">{isHi ? <><p><strong className="text-gold-light">चन्द्र:</strong> 12° — भावनात्मक स्पष्टता मन्द, मानसिक धुंध</p>
               <p><strong className="text-gold-light">मंगल:</strong> 17° — साहस/कर्म दबा हुआ, छिपी आक्रामकता</p>
@@ -227,7 +227,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'षड्बल में वक्री ग्रह' : 'Vakri Planets in Shadbala'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>वक्री अवस्था षड्बल प्रणाली में चेष्टा बल (गतिजन्य शक्ति) देती है। वक्री ग्रह अधिक परिश्रम करता है — यह तीव्र, दृढ़ और माँग करने वाला होता है। जन्म कुण्डली में, वक्री ग्रह अक्सर जीवन के उस क्षेत्र को दर्शाता है जहाँ जातक को अतिरिक्त प्रयास करना, पिछले कर्म पर पुनर्विचार करना, या अपरम्परागत माध्यमों से विकास करना होता है। हमारे ऐप का वक्री पंचांग पृष्ठ वर्ष भर के सभी ग्रहीय वक्री और अस्त अवधियों की सटीक तिथियाँ दिखाता है।</> : <>The Vakri (retrograde) state gives Cheshta Bala (motional strength) in the Shadbala system. A retrograde planet works harder — it is intense, determined, and demanding. In a birth chart, a retrograde planet often indicates an area of life where the native must put in extra effort, revisit past karma, or develop through unconventional means. Our app&apos;s Retrograde Calendar page shows exact dates for all planetary retrogrades and combustion windows throughout the year.</>}</p>
       </section>

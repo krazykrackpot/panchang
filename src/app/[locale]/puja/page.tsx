@@ -82,7 +82,7 @@ function PujaCard({
     >
       <Link href={`/${locale}/puja/${slug}`} className="block group">
         <div
-          className={`glass-card rounded-xl border border-gold-primary/10 p-5 bg-gradient-to-br ${gradient} hover:border-gold-primary/25 transition-all duration-300 hover:shadow-lg hover:shadow-gold-primary/5`}
+          className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 hover:border-gold-primary/25 transition-all duration-300 hover:shadow-lg hover:shadow-gold-primary/5`}
         >
           <h3
             className="text-gold-light font-bold text-lg mb-1 group-hover:text-gold-primary transition-colors"

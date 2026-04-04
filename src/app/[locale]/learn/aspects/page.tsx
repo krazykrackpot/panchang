@@ -449,7 +449,7 @@ export default function AspectsPage() {
 
       {/* Section 5: Math / Engine */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="glass-card rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-violet-400/15 bg-violet-400/3">
         <h3 className="text-violet-300 text-lg font-bold mb-3" style={headingFont}>{L.mathTitle[locale]}</h3>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{L.mathContent[locale]}</p>
       </motion.div>

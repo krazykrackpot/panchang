@@ -316,7 +316,7 @@ export default function LearnMatchingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-lg p-4 border border-red-400/15"
+              className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 border border-red-400/15"
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-red-400 font-mono font-bold text-lg">{bp.pair}</span>

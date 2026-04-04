@@ -238,7 +238,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'दशा पारस्परिक क्रिया' : 'Dasha Interaction'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">शनि या राहु दशा:</span> शनि या राहु महादशा में साढ़े साती सर्वाधिक कठिन होती है। दोहरा शनि प्रभाव (दशा + गोचर) अत्यधिक दबाव, विलम्ब और कार्मिक तीव्रता लाता है। राहु दशा भ्रम और अनिश्चितता जोड़ती है।
@@ -266,7 +266,7 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>शनि की लगभग 29.5 वर्ष की कक्षा अवधि का अर्थ है कि साढ़े साती लगभग 30 वर्ष के चक्र में पुनरावृत्त होती है। अधिकांश लोग जीवन में 2-3 साढ़े साती अनुभव करते हैं, प्रत्येक एक विशिष्ट विकास चरण से सम्बद्ध। आप कौन-सी साढ़े साती में हैं यह समझना माँगे जा रहे विशिष्ट जीवन पाठों को प्रकट करता है।</> : <>Saturn&apos;s orbital period of approximately 29.5 years means Sade Sati recurs in a roughly 30-year cycle. Most people experience 2-3 Sade Satis in their lifetime, each corresponding to a distinct developmental stage. Understanding which Sade Sati you are in reveals the specific life lessons being demanded.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'तीन जीवनकालीन साढ़े साती' : 'The Three Life Sade Satis'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? <><span className="text-gold-light font-medium">पहली साढ़े साती (~आयु 22-30):</span> यह शनि की प्रथम वापसी के साथ आती है — सच्ची प्रौढ़ता का ज्योतिषीय चिह्न। ब्रह्माण्ड माँग करता है कि आप करियर स्थापित करें, जिम्मेदारी लें और ठोस नींव बनाएँ। सम्बन्ध परीक्षित होते हैं। लापरवाह युवावस्था समाप्त होती है।</> : <><span className="text-gold-light font-medium">First Sade Sati (~Age 22-30):</span> This coincides with Saturn&apos;s first return — the astrological marker of true adulthood. The universe demands that you establish your career, take responsibility, and build a solid foundation. Relationships are tested. The carefree youth phase ends. Those who resist Saturn&apos;s discipline face prolonged struggle; those who embrace it emerge with a career and identity that can last decades.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? <><span className="text-gold-light font-medium">दूसरी साढ़े साती (~आयु 52-60):</span> सर्वाधिक भावनात्मक रूप से तीव्र चक्र। स्वास्थ्य चिन्ताएँ उभरती हैं, माता-पिता और बड़ों का वियोग हो सकता है, मृत्यु और विरासत का सीधा सामना होता है। करियर शिखर या ठहराव पर हो सकता है।</> : <><span className="text-gold-light font-medium">Second Sade Sati (~Age 52-60):</span> The most emotionally intense cycle. Health concerns emerge, parents and elders may pass away, and one confronts mortality and legacy directly. Career may peak or plateau. This Sade Sati forces a reckoning with what truly matters — stripping away ambition-driven pursuits in favor of meaning-driven ones.</>}</p>
@@ -275,7 +275,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'छिपा हुआ वरदान' : 'The Hidden Gift'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Despite its fearsome reputation, Sade Sati is ultimately Saturn&apos;s gift of maturity. Many of history&apos;s greatest achievements — career breakthroughs, spiritual awakenings, masterworks of art — have occurred during Sade Sati. Saturn does not destroy; he removes what is false so that what is true can emerge. The key is to work with Saturn rather than against him: embrace discipline, accept responsibility, serve others, and maintain patience. What survives Sade Sati becomes unshakable.

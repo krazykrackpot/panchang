@@ -28,7 +28,7 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
   return (
     <motion.div
       layout
-      className={`glass-card rounded-xl border overflow-hidden ${
+      className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl border overflow-hidden ${
         isAbhijit ? 'border-gold-primary/40 ring-1 ring-gold-primary/20' :
         isBrahma ? 'border-indigo-400/30 ring-1 ring-indigo-400/15' :
         'border-gold-primary/10'

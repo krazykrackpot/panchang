@@ -255,7 +255,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi ? <><span className="text-gold-light font-medium">उदाहरण 1:</span> एक परिवार गृह प्रवेश का समय निश्चित करना चाहता है। आदर्श नक्षत्र ध्रुव प्रकार के होंगे: रोहिणी (ब्रह्मा के अधीन स्थायित्व, समृद्धि), उत्तरा फाल्गुनी (अर्यमन के अधीन स्थिरता), या उत्तराषाढ़ा (विश्वदेवों के अधीन स्थायी विजय)। तीक्ष्ण नक्षत्र जैसे आर्द्रा या मूल से बचना चाहिए, जो घर में अस्थिरता ला सकते हैं।</> : <><span className="text-gold-light font-medium">Example 1:</span> A family wants to schedule a housewarming (Griha Pravesh). Ideal nakshatras would be Dhruva types: Rohini (permanence, prosperity under Brahma), Uttara Phalguni (stability under Aryaman), or Uttara Ashadha (enduring victory under Vishvadevas). They should avoid Tikshna nakshatras like Ardra or Mula, which could bring instability to the home.</>}
@@ -265,14 +265,14 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;राक्षस गण के लोग दुष्ट या खतरनाक होते हैं।&quot; यह पूर्णतया गलत है। राक्षस गण स्वतन्त्रता, दृढ़ इच्छाशक्ति और अपरम्परागत चिन्तन का प्रतीक है। अनेक सफल नेता, नवप्रवर्तक और कलाकार राक्षस गण नक्षत्रों में जन्मे हैं। &quot;राक्षस&quot; शब्द स्वभाव की तीव्रता का वर्णन करता है, नैतिक चरित्र का नहीं। मूल (राक्षस गण) के जातक प्रायः गहन शोधकर्ता और अन्वेषक बनते हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Rakshasa gana people are evil or dangerous.&quot; This is entirely wrong. Rakshasa gana signifies independence, strong will, and unconventional thinking. Many successful leaders, innovators, and artists are born under Rakshasa gana nakshatras. The term &quot;Rakshasa&quot; describes temperament intensity, not moral character. Mula (Rakshasa gana) natives often become profound researchers and investigators.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
@@ -314,21 +314,21 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">गणना:</span> चन्द्रमा का निरयन भोगांश = 47.8°। नक्षत्र संख्या = floor(47.8 / 13.333) + 1 = floor(3.585) + 1 = 3 + 1 = 4। चौथा नक्षत्र रोहिणी है (40° से 53°20&apos; तक)। रोहिणी में स्थिति = 47.8° - 40° = 7.8°। पाद = floor(7.8 / 3.333) + 1 = floor(2.34) + 1 = 2 + 1 = 3। अतः चन्द्रमा रोहिणी पाद 3 में है।</> : <><span className="text-gold-light font-medium">Calculation:</span> Moon&apos;s sidereal longitude = 47.8°. Nakshatra number = floor(47.8 / 13.333) + 1 = floor(3.585) + 1 = 3 + 1 = 4. The 4th nakshatra is Rohini (spanning 40° to 53°20&apos;). Position within Rohini = 47.8° - 40° = 7.8°. Pada = floor(7.8 / 3.333) + 1 = floor(2.34) + 1 = 2 + 1 = 3. So the Moon is in Rohini pada 3.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'सामान्य भ्रान्तियाँ' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi ? <><span className="text-gold-light font-medium">भ्रान्ति:</span> &quot;आपका नक्षत्र आपकी सूर्य राशि के तारामण्डल के समान है।&quot; आपका जन्म नक्षत्र चन्द्रमा की निरयन स्थिति से निर्धारित होता है, सूर्य की नहीं। वृषभ राशि में सूर्य वाले व्यक्ति का चन्द्रमा 27 में से किसी भी नक्षत्र में हो सकता है। नक्षत्र पद्धति और राशि पद्धति पूरक किन्तु भिन्न हैं — नक्षत्र चान्द्र व्यक्तित्व और दशा समय देते हैं, जबकि राशियाँ व्यापक सौर-चिह्न विशेषताओं का वर्णन करती हैं।</> : <><span className="text-gold-light font-medium">Misconception:</span> &quot;Your nakshatra is the same as your Sun sign constellation.&quot; Your birth nakshatra is determined by the Moon&apos;s sidereal position, not the Sun&apos;s. A person with Sun in Taurus may have Moon in any of the 27 nakshatras. The nakshatra system and the rashi system are complementary but distinct — nakshatras give lunar personality and dasha timing, while rashis describe broader solar-sign characteristics.</>}
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi

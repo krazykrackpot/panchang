@@ -147,7 +147,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'व्युत्पत्ति' : 'Etymology'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>&quot;सर्वतोभद्र&quot; का अर्थ है &quot;सभी दिशाओं से शुभ&quot; — ग्रिड किसी भी दिशा (ऊपर, नीचे, बाएँ, दाएँ, तिरछे) से पढ़ने के लिए डिज़ाइन की गई है। यह बहु-दिशात्मक पठन क्षमता इसे प्रतीत होने वाले असम्बन्धित ज्योतिषीय कारकों के बीच छिपे सम्बन्धों की पहचान के लिए अद्वितीय रूप से शक्तिशाली बनाती है।</> : <>&quot;Sarvatobhadra&quot; means &quot;auspicious from all sides&quot; — the grid is designed to be read from any direction (top, bottom, left, right, diagonal). This multi-directional reading capability makes it uniquely powerful for identifying hidden relationships between seemingly unrelated astrological factors.</>}</p>
       </section>
@@ -167,7 +167,7 @@ function Page2() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>कोटा चक्र ग्रहीय गोचरों को एक किले पर आक्रमण करती (या रक्षा करती) सेना के रूप में दृश्य बनाता है। आपका जन्म नक्षत्र आपको चार संकेन्द्रित परतों में से एक में रखता है। इन परतों से गोचर करते ग्रह आपके व्यक्तिगत केन्द्र की ओर आती या पीछे हटती शक्तियों का प्रतिनिधित्व करते हैं।</> : <>The Kota Chakra visualizes planetary transits as an army approaching (or defending) a fort. Your birth nakshatra places you in one of four concentric layers. Planets transiting through these layers represent forces approaching or receding from your personal center.</>}</p>
 
         <div className="space-y-3">
-          <div className="glass-card rounded-lg p-3 border border-red-500/10">
+          <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-red-500/10">
             <p className="text-red-400 font-bold text-sm">{isHi ? 'चार परतें' : 'The Four Layers'}</p>
             <div className="text-text-secondary text-xs mt-2 space-y-2">{isHi ? <><p><strong className="text-gold-light">स्तम्भ (खम्भा/अन्तरतम):</strong> आपका व्यक्तिगत केन्द्र — पहचान, स्वास्थ्य, जीवनशक्ति। यहाँ ग्रह सीधे प्रभावित करते हैं। स्तम्भ में पाप ग्रह = प्रत्यक्ष व्यक्तिगत संकट। शुभ ग्रह = प्रत्यक्ष व्यक्तिगत आशीर्वाद और रक्षा।</p>
               <p><strong className="text-gold-light">मध्य (बीच):</strong> आपका तात्कालिक वातावरण — परिवार, निकट सम्बन्ध, दैनिक जीवन। यहाँ गोचर आपके अन्तरंग वृत्त और भावनात्मक संसार को प्रभावित करते हैं।</p>
@@ -219,7 +219,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'ये प्रणालियाँ क्यों महत्वपूर्ण हैं' : 'Why These Systems Matter'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>चक्र प्रणालियाँ मानक भाव-आधारित गोचर विश्लेषण से भिन्न दृष्टिकोण प्रदान करती हैं। वे नक्षत्र स्तर पर केन्द्रित हैं — भविष्यवाणी का एक सूक्ष्मतर स्तर। जबकि भाव गोचर बताते हैं कि कौन सा जीवन क्षेत्र सक्रिय है, चक्र प्रणालियाँ प्रभाव की तीव्रता, दिशा और गुणवत्ता बताती हैं। दशा विश्लेषण के साथ मिलकर, वे वैदिक ज्योतिष में सबसे सम्पूर्ण भविष्यवाणी उपकरण-समूह बनाती हैं।</> : <>Chakra systems provide a different lens than standard house-based transit analysis. They focus on the nakshatra level — a finer grain of prediction. While house transits tell you which life area is activated, chakra systems tell you the intensity, direction, and quality of the impact. Together with dasha analysis, they form the most complete predictive toolkit in Vedic astrology.</>}</p>
       </section>

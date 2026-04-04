@@ -234,7 +234,7 @@ function Page2() {
           For the ceremony itself: the Moon should be strong (waxing preferred), Rahu Kaal must be avoided, and a shubha nakshatra should be running at the ceremony time (not necessarily the birth nakshatra — the ceremony&rsquo;s own nakshatra matters). The father traditionally whispers the chosen name into the child&rsquo;s right ear.
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Nakshatra Syllable Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Ashwini:</span> Chu, Che, Cho, La</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Bharani:</span> Li, Lu, Le, Lo</p>
@@ -242,7 +242,7 @@ function Page2() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Rohini:</span> O, Va, Vi, Vu</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Mrigashira:</span> Ve, Vo, Ka, Ki</p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Misconception</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Many families use the Rashi (zodiac sign) syllable instead of the Nakshatra pada syllable. While the Rashi syllable is acceptable in some traditions, the Nakshatra-pada method is more precise (108 unique syllables vs. 12 sign-based syllables) and is the method recommended by BPHS. Our baby-names tool supports both approaches.
@@ -279,7 +279,7 @@ function Page3() {
         <p className="text-text-secondary text-xs leading-relaxed mb-1"><span className="text-gold-light font-medium">Avoid:</span> Rahu Kaal, Vishti karana, Vyatipata/Vaidhriti yoga.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Planets:</span> Jupiter and Sun strong. Mercury well-placed for intellectual growth.</p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Modern Adaptations</h4>
         <p className="text-text-secondary text-xs leading-relaxed">
           Contemporary practice has adapted Upanayana in several ways. The strict age-by-varna rule is rarely followed. Some reformist traditions perform Upanayana for girls as well (historically it was reserved for boys). The ceremony may be shortened from the traditional multi-day format to a single morning. However, the core Muhurta requirements — Uttarayana, Shukla Paksha, suitable nakshatra, strong Jupiter — remain universally observed. The spiritual significance of the ceremony has not changed, even as its social context has evolved.

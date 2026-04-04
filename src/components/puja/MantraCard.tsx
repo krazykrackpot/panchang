@@ -149,7 +149,7 @@ export default function MantraCard({
       <div className="space-y-2">
         {(displayMode === 'devanagari' || displayMode === 'both') && (
           <p
-            className="text-gold-light text-xl leading-relaxed whitespace-pre-line"
+            className="text-amber-300 text-xl leading-relaxed whitespace-pre-line font-bold"
             style={{ fontFamily: 'var(--font-devanagari-heading)' }}
           >
             {mantra.devanagari}

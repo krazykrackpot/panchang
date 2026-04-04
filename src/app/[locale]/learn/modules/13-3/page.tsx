@@ -196,7 +196,7 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>मंगल दोष (कुज दोष या माँगलिक भी कहा जाता है) भारतीय विवाह ज्योतिष में सर्वाधिक चर्चित दोष है। यह तब बनता है जब मंगल लग्न, चन्द्र राशि या शुक्र से 1ले, 2रे, 4थे, 7वें, 8वें या 12वें भाव में हो। ये छह भाव विवाह और गृहस्थ जीवन से सीधे सम्बन्धित हैं — स्वयं (1ला), परिवार (2रा), गृह शान्ति (4था), जीवनसाथी (7वाँ), वैवाहिक आयु (8वाँ) और शय्या सुख (12वाँ)। इन संवेदनशील भावों में मंगल की अग्नि, आक्रामक ऊर्जा विवाह में संघर्ष, प्रभुत्व समस्याएँ या शारीरिक खतरे बना सकती है।</> : <>Mangal Dosha (also called Kuja Dosha or Manglik) is the most commonly discussed dosha in Indian marriage astrology. It forms when Mars (Mangal) is placed in the 1st, 2nd, 4th, 7th, 8th, or 12th house from the Lagna, Moon sign, or Venus. These six houses directly relate to marriage and domestic life — self (1st), family (2nd), domestic peace (4th), spouse (7th), marital longevity (8th), and bed pleasures (12th). Mars&apos;s fiery, aggressive energy in these sensitive houses can create conflict, dominance issues, or physical dangers in marriage.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? '6 निवारण शर्तें' : '6 Cancellation Conditions'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">1. Jupiter&apos;s aspect on Mars:</span> Jupiter&apos;s benevolent gaze on Mars tames its aggression. The native channels Mars energy constructively — passion becomes purposeful drive rather than destructive force.
@@ -244,7 +244,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-purple-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-500/15">
         <h4 className="text-purple-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'जीवन पर प्रभाव' : 'Effects on Life'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           Kala Sarpa natives often experience: delayed marriage or career establishment, sudden rises followed by unexpected falls, intense spiritual experiences, feeling &quot;different&quot; from peers, and a strong pull toward unconventional paths. Many highly successful individuals have Kala Sarpa — the concentrated energy, when channeled properly, produces extraordinary results in one area of life.
@@ -285,13 +285,13 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'गुरु चाण्डाल एवं शापित' : 'Guru Chandal & Shrapit'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">गुरु चाण्डाल (गुरु + राहु):</span> ज्ञान और धार्मिक बोध को दूषित करता है। जातक गलत गुरुओं का अनुसरण कर सकता है, अपरम्परागत या भ्रामक मान्यताएँ रख सकता है, या शिक्षकों और मार्गदर्शकों से समस्याएँ झेल सकता है।</> : <><span className="text-gold-light font-medium">Guru Chandal (Jupiter + Rahu):</span> Corrupts wisdom and dharmic sense. The native may follow false gurus, hold unorthodox or misguided beliefs, or face problems with teachers and mentors. Remedies: strengthen Jupiter with yellow sapphire, recite Guru (Brihaspati) mantras, and donate to educational institutions.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">शापित दोष (शनि + राहु):</span> अकथनीय अवरोध और विलम्ब बनाता है। जातक को जिस भाव में यह संयोग हो वहाँ शापित या दीर्घकालिक दुर्भाग्यशाली अनुभव हो सकता है। पूर्वजन्म ऋण वर्तमान जीवन में बाधाएँ बनाते हैं।</> : <><span className="text-gold-light font-medium">Shrapit Dosha (Saturn + Rahu):</span> Creates inexplicable blocks and delays. The native may feel cursed or chronically unlucky in the house where this conjunction falls. Past-life debts create present-life obstacles. Remedies: Saturn mantras, Rahu pacification, feeding the poor on Saturdays, and Hanuman worship.</>}</p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'उपचार सिद्धान्त' : 'The Remedial Principle'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>दोष कार्मिक प्रतिमान प्रकट करते हैं — दण्ड नहीं। उपचार सिद्धान्त त्रिविध है: (1) <span className="text-gold-light font-medium">कमजोर को मजबूत करें:</span> दोष प्रतिकार करने वाले शुभ ग्रहों के लिए रत्न और मन्त्र। (2) <span className="text-gold-light font-medium">पीड़ित को शान्त करें:</span> दोष कारक पापी ग्रह के लिए दान, उपवास और मन्त्र। (3) <span className="text-gold-light font-medium">सचेत जागरूकता:</span> प्रतिमान समझना भिन्न चयन करने देता है — कुण्डली मानचित्र है, बन्दीगृह नहीं।</> : <>Doshas reveal karmic patterns — not punishments. The principle behind remedies is threefold: (1) <span className="text-gold-light font-medium">Strengthen the weak:</span> Gemstones and mantras for benefic planets that can counteract the dosha. (2) <span className="text-gold-light font-medium">Pacify the afflicting:</span> Charity, fasting, and mantras for the malefic planet causing the dosha. (3) <span className="text-gold-light font-medium">Conscious awareness:</span> Understanding the pattern allows you to make different choices — the chart is a map, not a prison.</>}</p>
       </section>

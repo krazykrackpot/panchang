@@ -232,7 +232,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Common Delay Factors</h4>
         <div className="space-y-3 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Saturn Aspect on 7th House or Venus:</span> Saturn is the planet of delay, discipline, and maturation. Its 3rd, 7th, or 10th aspect falling on the 7th house or on Venus pushes marriage into the late 20s or early 30s. The upside: Saturn-delayed marriages tend to be more mature and stable once they happen.</p>
@@ -242,7 +242,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Timing Windows for Each Delay Factor</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">Saturn Delays:</span> Usually resolve by early 30s, when Saturn has completed its first return (age ~29.5). After the Saturn return, the native has matured enough to handle the commitment Saturn demands.</p>
@@ -279,7 +279,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">Family Expansion and Children</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">2nd House — Family Growth:</span> The 2nd house governs family expansion after marriage. Its lord&apos;s dasha and Jupiter transit over the 2nd indicate periods when the family grows — through children, in-laws moving in, or other additions to the household.</p>
@@ -288,7 +288,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">Challenging Periods in Marriage</h4>
         <div className="space-y-2 text-xs text-text-secondary">
           <p><span className="text-gold-light font-semibold">7th Lord Dasha in Dusthana:</span> When the 7th lord&apos;s dasha runs and it is placed in the 6th (conflicts), 8th (crises/transformation), or 12th (separation/distance), the marriage undergoes testing. This does not mean divorce — it means the marriage faces its growth edges.</p>
@@ -297,7 +297,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">Remedies for Marital Harmony</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Venus Strengthening:</span> Wearing white/cream on Fridays, offering white flowers to Lakshmi, reciting Shukra mantras. If Venus is a functional benefic for the lagna, wearing a diamond or white sapphire (after chart analysis) strengthens the love and harmony signification.

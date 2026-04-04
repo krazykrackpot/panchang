@@ -330,7 +330,7 @@ export default function SadeSatiPage() {
 
             {/* 1. Status Banner */}
             {analysis.isActive ? (
-              <div className="my-10 glass-card rounded-2xl p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">
+              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">
                 <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.active, locale)}</div>
                 <div className="text-red-300 text-2xl font-bold mb-1" style={headingFont}>{analysis.cycleStart} — {analysis.cycleEnd}</div>
                 {analysis.currentPhase && (
@@ -350,7 +350,7 @@ export default function SadeSatiPage() {
                 </div>
               </div>
             ) : (
-              <div className="my-10 glass-card rounded-2xl p-8 border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent text-center">
+              <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent text-center">
                 <div className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">{t(LABELS.notActive, locale)}</div>
                 {analysis.allCycles.length > 0 && (() => {
                   const currentYear = new Date().getFullYear();
@@ -471,7 +471,7 @@ export default function SadeSatiPage() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.08 }}
-                    className={`glass-card rounded-xl p-5 border relative ${
+                    className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border relative ${
                       cycle.isActive ? 'border-red-500/30 bg-red-500/5' : 'border-gold-primary/10'
                     }`}
                   >

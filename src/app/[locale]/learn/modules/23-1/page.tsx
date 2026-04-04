@@ -147,7 +147,7 @@ function Page1() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'हर अमावस्या/पूर्णिमा पर क्यों नहीं?' : 'Why Not Every New/Full Moon?'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>चन्द्रमा की कक्षा क्रान्तिवृत्त (सूर्य के दृश्य पथ) से लगभग 5° झुकी हुई है। इसलिए अधिकांश अमावस्या और पूर्णिमा पर, चन्द्रमा सूर्य के तल के ऊपर या नीचे से गुजरता है — कोई संरेखण नहीं, कोई ग्रहण नहीं। केवल जब कोई ल्यूनेशन चन्द्रमा के अपने दो नोड्स (राहु या केतु) में से किसी एक के निकट होने से मेल खाता है, तब संरेखण ग्रहण के लिए पर्याप्त निकट होता है।</> : <>The Moon&apos;s orbit is tilted about 5° relative to the ecliptic (the Sun&apos;s apparent path). So at most New and Full Moons, the Moon passes above or below the Sun&apos;s plane — no alignment, no eclipse. Only when a lunation coincides with the Moon being near one of its two nodes (Rahu or Ketu) does the alignment become close enough for an eclipse.</>}</p>
       </section>
@@ -182,7 +182,7 @@ function Page2() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'ऐतिहासिक सटीकता' : 'Historical Precision'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>भारतीय खगोलविद सूर्य सिद्धान्त विधियों का उपयोग करके उल्लेखनीय सटीकता से ग्रहणों की भविष्यवाणी कर सकते थे। आर्यभट (5वीं शताब्दी ईस्वी) ने चन्द्रमा के कक्षीय मापदण्डों की इतनी सटीक गणना की कि उनकी ग्रहण भविष्यवाणियाँ वास्तविक घटनाओं से मिनटों के भीतर थीं। नोड प्रत्यागमन अवधि (18.6 वर्ष) सेकण्डों के भीतर ज्ञात थी। आधुनिक एल्गोरिदम केवल उसे परिष्कृत करते हैं जो प्राचीन भारतीय गणित ने स्थापित किया था।</> : <>Indian astronomers could predict eclipses with remarkable accuracy using Surya Siddhanta methods. Aryabhata (5th century CE) computed the Moon&apos;s orbital parameters so precisely that his eclipse predictions were within minutes of actual events. The node regression period (18.6 years) was known to within seconds. Modern algorithms simply refine what ancient Indian mathematics established.</>}</p>
       </section>
@@ -217,7 +217,7 @@ function Page3() {
         </div>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यावहारिक अनुप्रयोग' : 'Practical Application'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>हमारे ग्रहण पृष्ठ पर आगामी ग्रहणों को ट्रैक करें। ध्यान दें कि वे आपकी जन्म कुण्डली में किस भाव से गोचर करते हैं। ग्रहण काल में प्रमुख शुरुआतें टालें, लेकिन ऊर्जा का उपयोग ध्यान, पुराने प्रतिमानों को छोड़ने और आन्तरिक कार्य के लिए करें। यदि कोई ग्रहण किसी जन्मकालीन ग्रह के 3° के भीतर पड़ता है, तो अगले 6 महीनों में उस ग्रह के कारकत्व से सम्बन्धित महत्वपूर्ण घटनाओं की अपेक्षा करें।</> : <>Track upcoming eclipses on our Grahan page. Note which house they transit in your birth chart. Avoid major initiations during the eclipse season, but use the energy for meditation, releasing old patterns, and inner work. If an eclipse falls within 3° of a natal planet, expect significant events related to that planet&apos;s significations within the following 6 months.</>}</p>
       </section>

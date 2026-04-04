@@ -238,7 +238,7 @@ function Page2() {
             : <><strong>SAV interpretation:</strong> Signs with 28+ total SAV points are strong locations &mdash; any planet transiting them benefits from a generally supportive environment. Below 28 indicates a relatively weak sign in the chart. The SAV gives an overview of which parts of the zodiac are powerful for the native.</>}
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-emerald-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: शनि का BAV' : 'Worked Example: Saturn&apos;s BAV'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Saturn&apos;s Bhinna Ashtakavarga for a sample chart:</span>
@@ -251,7 +251,7 @@ function Page2() {
             : <><span className="text-gold-light font-medium">Interpretation:</span> Saturn transiting Gemini (6 bindus) = highly productive 2.5-year period. Career progress, discipline paying off. Saturn transiting Taurus (2 bindus) = difficult period with delays, health concerns, career obstacles. Saturn in Cancer, Libra, Aquarius (4 bindus each) = neutral, manageable periods.</>}
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-red-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-red-500/15">
         <h4 className="text-red-400 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'सामान्य भ्रम' : 'Common Misconceptions'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
@@ -283,7 +283,7 @@ function Page3() {
             : <>The <strong>Kaksha system</strong> takes this further. Each 30-degree sign is divided into 8 sub-sections (Kakshas) of 3.75 degrees each, ruled by: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, and Lagna (in that order). As a planet slowly transits a sign, it passes through each Kaksha. When it enters the Kaksha of a source that contributed a bindu, that sub-period is favorable. When it enters a Kaksha whose source gave 0, that sub-period is challenging. This pinpoints specific months within a 2.5-year Saturn transit.</>}
         </p>
       </section>
-      <section className="glass-card rounded-xl p-5 border border-blue-500/15">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-[10px] uppercase tracking-widest font-bold mb-2">{isHi ? 'आधुनिक प्रासंगिकता' : 'Modern Relevance'}</h4>
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi

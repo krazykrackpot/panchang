@@ -270,7 +270,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                   </button>
                 )}
                 <p
-                  className="text-center text-2xl leading-relaxed text-gold-light sm:text-3xl"
+                  className="text-center text-2xl leading-relaxed text-amber-300 font-bold sm:text-3xl"
                   style={{ fontFamily: 'var(--font-devanagari-heading)' }}
                 >
                   {linkedMantra.devanagari}

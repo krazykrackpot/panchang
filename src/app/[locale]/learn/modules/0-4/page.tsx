@@ -200,7 +200,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'पंचांग को एक ब्रह्माण्डीय मौसम ऐप समझें। जैसे मौसम ऐप बताता है "धूप, 25°C, UV इण्डेक्स उच्च — सनस्क्रीन लगाएँ," वैसे ही पंचांग बताता है "शुक्ल दशमी, हस्त नक्षत्र, शुभ योग — नई शुरुआत के लिए अच्छा दिन, राहु काल में यात्रा आरम्भ न करें।" करोड़ों भारतीय हर सुबह यह देखते हैं, ठीक वैसे जैसे आप मौसम देखते हैं।'
@@ -235,7 +235,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-purple-400/20 bg-gradient-to-br from-purple-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'यहाँ एक चौंकाने वाला सम्बन्ध है: अंग्रेजी सप्ताह के दिन उसी ग्रह पद्धति से आते हैं। Sunday = Sun-day (रविवार)। Monday = Moon-day (सोमवार)। Saturday = Saturn-day (शनिवार)। Tuesday = Tiw\'s day (नॉर्स मंगल = मंगलवार)। यह संयोग नहीं है — 7-दिवसीय ग्रह सप्ताह भारत से बेबीलोन होते हुए रोम तक पहुँचा। जब भी आप "Monday" कहते हैं, आप भारतीय खगोलशास्त्र का प्रयोग कर रहे हैं।'
@@ -243,7 +243,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -268,7 +268,7 @@ function Page2() {
         </h3>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'अब यहाँ पंचांग विशिष्ट रूप से भारतीय हो जाता है। पश्चिमी कैलेंडर "आज कौन-सा दिन है?" पर रुक जाता है। पंचांग ब्रह्माण्डीय जानकारी के चार और आयाम जोड़ता है — ऐसे आयाम जिनका कोई पश्चिमी समकक्ष नहीं है।'
@@ -309,7 +309,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
         <h4 className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -367,7 +367,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'शुरुआती सलाह' : 'Pro Tip for Beginners'}
         </h4>
@@ -378,7 +378,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="glass-card rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'व्यावहारिक अभ्यास' : 'Practical Exercise'}
         </h4>

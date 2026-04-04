@@ -286,11 +286,53 @@ export default function LearnNakshatrasPage() {
 
       {/* ─── Rashi-Nakshatra Wheel ─── */}
       <LessonSection number={7} title={lo === 'en' ? 'Rashi–Nakshatra Relationship' : 'राशि-नक्षत्र सम्बन्ध'}>
-        <p>
-          {lo === 'en'
-            ? 'The zodiac is divided into 12 Rashis (30° each) AND 27 Nakshatras (13°20\' each) simultaneously. These two systems overlap — some nakshatras span two rashis. This is why your Moon sign (rashi) and Moon nakshatra are BOTH important but carry different information. Hover over any segment to see the relationship.'
-            : 'राशिचक्र 12 राशियों (30° प्रत्येक) और 27 नक्षत्रों (13°20\' प्रत्येक) दोनों में एक साथ विभाजित है। ये दोनों प्रणालियाँ ओवरलैप करती हैं — कुछ नक्षत्र दो राशियों में फैले हैं। इसीलिए चन्द्र राशि और चन्द्र नक्षत्र दोनों महत्वपूर्ण हैं किन्तु भिन्न सूचना देते हैं।'}
-        </p>
+        {lo === 'en' ? (
+          <div className="space-y-3">
+            <p>The zodiac (360°) is divided <strong>two ways simultaneously</strong> — and understanding both is the key to Vedic astrology:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">12</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">Rashis (Signs)</div>
+                <div className="text-text-secondary/50 text-xs mt-1">30° each — based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">27</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">Nakshatras (Stars)</div>
+                <div className="text-text-secondary/50 text-xs mt-1">13°20&apos; each — based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">108</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">Padas (Quarters)</div>
+                <div className="text-text-secondary/50 text-xs mt-1">3°20&apos; each — 27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
+              </div>
+            </div>
+            <p className="text-sm"><strong>The beautiful math:</strong> 12 rashis × 9 padas = 108. 27 nakshatras × 4 padas = 108. This is why 108 is sacred in Hinduism — it&apos;s the meeting point of the solar (rashi) and lunar (nakshatra) systems. A mala has 108 beads for this reason.</p>
+            <p className="text-sm">These two systems <strong>overlap</strong> — some nakshatras span two rashis (e.g., Krittika starts in Aries, ends in Taurus). This is why people born in the same nakshatra but different padas can have different rashis. Hover over any segment below to see the relationship.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p>राशिचक्र (360°) <strong>दो तरीकों से एक साथ</strong> विभाजित है — दोनों को समझना वैदिक ज्योतिष की कुंजी है:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">12</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">राशियाँ</div>
+                <div className="text-text-secondary/50 text-xs mt-1">30° प्रत्येक — <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">27</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">नक्षत्र</div>
+                <div className="text-text-secondary/50 text-xs mt-1">13°20&apos; प्रत्येक — <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
+              </div>
+              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+                <div className="text-3xl font-bold text-gold-light">108</div>
+                <div className="text-gold-primary text-sm font-semibold mt-1">पाद (चतुर्थांश)</div>
+                <div className="text-text-secondary/50 text-xs mt-1">3°20&apos; प्रत्येक — 27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
+              </div>
+            </div>
+            <p className="text-sm"><strong>सुन्दर गणित:</strong> 12 राशियाँ × 9 पाद = 108। 27 नक्षत्र × 4 पाद = 108। इसीलिए हिन्दू धर्म में 108 पवित्र है — यह सौर (राशि) और चान्द्र (नक्षत्र) प्रणालियों का मिलन बिन्दु है। माला में 108 मनके इसीलिए होते हैं।</p>
+            <p className="text-sm">ये दोनों प्रणालियाँ <strong>ओवरलैप</strong> करती हैं — कुछ नक्षत्र दो राशियों में फैले हैं। इसीलिए एक ही नक्षत्र के भिन्न पादों में जन्मे लोगों की राशि भिन्न हो सकती है।</p>
+          </div>
+        )}
         <div className="mt-6">
           <RashiNakshatraWheel locale={lo as Locale} />
         </div>

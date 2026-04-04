@@ -1886,7 +1886,7 @@ export default function KundaliPage() {
                 {/* Header: Swastika + Om + Name + Birth Details */}
                 <div className="text-center space-y-3">
                   <div className="text-5xl text-red-500" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
-                  <div className="text-gold-primary/25 text-sm" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः</div>
+                  <div className="text-orange-500 text-xl font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः</div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
                     {locale === 'en' ? 'Janma Patrika' : 'जन्म पत्रिका'}
                   </h2>

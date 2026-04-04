@@ -9,6 +9,7 @@ import {
   toSidereal,
   lahiriAyanamsha,
   getRashiNumber,
+  getNakshatraNumber,
   dateToJD,
   getPlanetaryPositions,
 } from '@/lib/ephem/astronomical';
@@ -41,11 +42,21 @@ export interface SadeSatiAnalysis {
     houseEffect: { en: string; hi: string };
   };
 
+  nakshatraTimeline: NakshatraTransitEntry[];
+
   remedies: {
     title: { en: string; hi: string };
     description: { en: string; hi: string };
     priority: 'essential' | 'recommended' | 'optional';
   }[];
+}
+
+export interface NakshatraTransitEntry {
+  nakshatra: number; // 1-27
+  firstYear: number;
+  lastYear: number;
+  isBirthNakshatra: boolean;
+  isCurrent: boolean; // Saturn is currently in this nakshatra
 }
 
 export interface SadeSatiCycle {
@@ -563,21 +574,72 @@ function generateAshtakavargaInsight(bindus: number[] | undefined, currentSaturn
   };
 }
 
-function generateNakshatraTransit(moonSign: number, moonNakshatra?: number): { en: string; hi: string } {
+function generateNakshatraTransit(moonSign: number, moonNakshatra: number | undefined, cycle: SadeSatiCycle | null): { en: string; hi: string } {
   const sign12th = ((moonSign - 2 + 12) % 12) + 1;
   const sign2nd = (moonSign % 12) + 1;
   const allNaks: number[] = [...nakshatrasInSign(sign12th), ...nakshatrasInSign(moonSign), ...nakshatrasInSign(sign2nd)];
   const uniqueNaks = [...new Set(allNaks)].filter(n => n >= 1 && n <= 27);
 
-  const nakNamesEn = uniqueNaks.map(n => NAKSHATRA_EN[n]).join(', ');
-  const nakNamesHi = uniqueNaks.map(n => NAKSHATRA_HI[n]).join(', ');
+  // Compute approximate year ranges for each nakshatra transit using quarterly sampling
+  const nakYearRanges = new Map<number, { first: number; last: number }>();
+  if (cycle) {
+    const MONTHS = [1, 4, 7, 10]; // quarterly sampling
+    for (let y = cycle.startYear; y <= cycle.endYear; y++) {
+      for (const m of MONTHS) {
+        const jd = dateToJD(y, m, 15, 12);
+        const planets = getPlanetaryPositions(jd);
+        const satTrop = planets[6]?.longitude ?? 0;
+        const satSid = normalizeDeg(toSidereal(satTrop, jd));
+        const nak = getNakshatraNumber(satSid);
+        if (uniqueNaks.includes(nak)) {
+          const existing = nakYearRanges.get(nak);
+          if (!existing) {
+            nakYearRanges.set(nak, { first: y, last: y });
+          } else {
+            if (y < existing.first) existing.first = y;
+            if (y > existing.last) existing.last = y;
+          }
+        }
+      }
+    }
+  }
 
-  let en = `Saturn will transit through the nakshatras: ${nakNamesEn} during this Sade Sati.`;
-  let hi = `इस साढ़ेसाती में शनि ${nakNamesHi} नक्षत्रों से गोचर करेगा।`;
+  // Build nakshatra list with year ranges
+  const nakListEn = uniqueNaks.map(n => {
+    const range = nakYearRanges.get(n);
+    const name = NAKSHATRA_EN[n];
+    if (range) {
+      return range.first === range.last
+        ? `${name} (~${range.first})`
+        : `${name} (~${range.first}–${range.last})`;
+    }
+    return name;
+  }).join(', ');
+
+  const nakListHi = uniqueNaks.map(n => {
+    const range = nakYearRanges.get(n);
+    const name = NAKSHATRA_HI[n];
+    if (range) {
+      return range.first === range.last
+        ? `${name} (~${range.first})`
+        : `${name} (~${range.first}–${range.last})`;
+    }
+    return name;
+  }).join(', ');
+
+  let en = `Saturn will transit through the nakshatras: ${nakListEn} during this Sade Sati.`;
+  let hi = `इस साढ़ेसाती में शनि इन नक्षत्रों से गोचर करेगा: ${nakListHi}।`;
 
   if (moonNakshatra && moonNakshatra >= 1 && moonNakshatra <= 27) {
-    en += ` The most sensitive period is when Saturn crosses your birth nakshatra ${NAKSHATRA_EN[moonNakshatra]}. During that transit, Saturn's lessons become deeply personal — touching the core of your emotional and psychological makeup.`;
-    hi += ` सबसे संवेदनशील काल वह होगा जब शनि आपके जन्म नक्षत्र ${NAKSHATRA_HI[moonNakshatra]} को पार करेगा। उस गोचर में, शनि के सबक गहरे व्यक्तिगत होते हैं — आपके भावनात्मक और मनोवैज्ञानिक मूल को स्पर्श करते हैं।`;
+    const birthRange = nakYearRanges.get(moonNakshatra);
+    const birthTimingEn = birthRange
+      ? ` (approximately ${birthRange.first === birthRange.last ? String(birthRange.first) : `${birthRange.first}–${birthRange.last}`})`
+      : '';
+    const birthTimingHi = birthRange
+      ? ` (लगभग ${birthRange.first === birthRange.last ? String(birthRange.first) : `${birthRange.first}–${birthRange.last}`})`
+      : '';
+    en += ` The most sensitive period is when Saturn crosses your birth nakshatra ${NAKSHATRA_EN[moonNakshatra]}${birthTimingEn}. During that transit, Saturn's lessons become deeply personal — touching the core of your emotional and psychological makeup.`;
+    hi += ` सबसे संवेदनशील काल वह होगा जब शनि आपके जन्म नक्षत्र ${NAKSHATRA_HI[moonNakshatra]}${birthTimingHi} को पार करेगा। उस गोचर में, शनि के सबक गहरे व्यक्तिगत होते हैं — आपके भावनात्मक और मनोवैज्ञानिक मूल को स्पर्श करते हैं।`;
   }
 
   return { en, hi };
@@ -734,7 +796,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
           const currentMonth = currentYear * 12 + now.getMonth();
           const totalMonths = phaseEndMonth - phaseStartMonth;
           const elapsedMonths = currentMonth - phaseStartMonth;
-          phaseProgress = totalMonths > 0 ? Math.min(100, Math.max(0, (elapsedMonths / totalMonths) * 100)) : 50;
+          phaseProgress = totalMonths > 0 ? Math.min(1, Math.max(0, elapsedMonths / totalMonths)) : 0.5;
           break;
         }
       }
@@ -775,12 +837,61 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     moonStrength: generateMoonStrength(input.moonSign, input.moonNakshatra),
     dashaInterplay: isActive ? generateDashaInterplay(input.currentDasha) : noTransit,
     ashtakavargaInsight: isActive ? generateAshtakavargaInsight(input.ashtakavargaSaturnBindus, saturnInfo.sign) : noTransit,
-    nakshatraTransit: isActive ? generateNakshatraTransit(input.moonSign, input.moonNakshatra) : noTransit,
+    nakshatraTransit: isActive ? generateNakshatraTransit(input.moonSign, input.moonNakshatra, allCycles[currentCycleIndex] ?? null) : noTransit,
     houseEffect: isActive ? generateHouseEffect(input) : noTransit,
   };
 
   // Remedies — only generate active remedies when Sade Sati is active
   const remedies = isActive ? generateRemedies(input, overallIntensity, currentPhase) : [];
+
+  // Nakshatra timeline for active cycle
+  const nakshatraTimeline: NakshatraTransitEntry[] = [];
+  if (isActive) {
+    const cycle = allCycles[currentCycleIndex];
+    const sign12th = ((input.moonSign - 2 + 12) % 12) + 1;
+    const sign2nd = (input.moonSign % 12) + 1;
+    const cycleNaks = [...new Set([...nakshatrasInSign(sign12th), ...nakshatrasInSign(input.moonSign), ...nakshatrasInSign(sign2nd)])].filter(n => n >= 1 && n <= 27);
+
+    // Sample Saturn's nakshatra quarterly across the cycle
+    const nakRanges = new Map<number, { first: number; last: number }>();
+    const MONTHS = [1, 4, 7, 10];
+    for (let y = cycle.startYear; y <= cycle.endYear; y++) {
+      for (const m of MONTHS) {
+        const jd = dateToJD(y, m, 15, 12);
+        const planets = getPlanetaryPositions(jd);
+        const satTrop = planets[6]?.longitude ?? 0;
+        const satSid = normalizeDeg(toSidereal(satTrop, jd));
+        const nak = getNakshatraNumber(satSid);
+        if (cycleNaks.includes(nak)) {
+          const existing = nakRanges.get(nak);
+          if (!existing) nakRanges.set(nak, { first: y, last: y });
+          else { if (y < existing.first) existing.first = y; if (y > existing.last) existing.last = y; }
+        }
+      }
+    }
+
+    // Get current Saturn nakshatra
+    const nowJd = dateToJD(currentYear, now.getMonth() + 1, now.getDate(), 12);
+    const nowPlanets = getPlanetaryPositions(nowJd);
+    const nowSatSid = normalizeDeg(toSidereal(nowPlanets[6]?.longitude ?? 0, nowJd));
+    const currentSaturnNak = getNakshatraNumber(nowSatSid);
+
+    // Build ordered entries
+    for (const nak of cycleNaks) {
+      const range = nakRanges.get(nak);
+      if (range) {
+        nakshatraTimeline.push({
+          nakshatra: nak,
+          firstYear: range.first,
+          lastYear: range.last,
+          isBirthNakshatra: nak === (input.moonNakshatra ?? 0),
+          isCurrent: nak === currentSaturnNak,
+        });
+      }
+    }
+    // Sort by firstYear
+    nakshatraTimeline.sort((a, b) => a.firstYear - b.firstYear || a.nakshatra - b.nakshatra);
+  }
 
   return {
     isActive,
@@ -793,6 +904,7 @@ export function analyzeSadeSati(input: SadeSatiInput): SadeSatiAnalysis {
     overallIntensity,
     intensityFactors,
     interpretation,
+    nakshatraTimeline,
     remedies,
   };
 }

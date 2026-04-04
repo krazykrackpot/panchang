@@ -13,7 +13,9 @@ import {
   getCurrentSaturnSign,
   type SadeSatiAnalysis,
   type SadeSatiInput,
+  type NakshatraTransitEntry,
 } from '@/lib/kundali/sade-sati-analysis';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 
@@ -341,12 +343,12 @@ export default function SadeSatiPage() {
                   <div className="h-2 rounded-full bg-bg-tertiary/40 overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
-                      animate={{ width: `${Math.min(100, Math.round(analysis.phaseProgress))}%` }}
+                      animate={{ width: `${Math.min(100, Math.round(analysis.phaseProgress * 100))}%` }}
                       transition={{ duration: 1, ease: 'easeOut' as const }}
                       className="h-full rounded-full bg-gradient-to-r from-red-500 to-red-400"
                     />
                   </div>
-                  <div className="text-text-secondary text-[10px] mt-1">{Math.min(100, Math.round(analysis.phaseProgress))}%</div>
+                  <div className="text-text-secondary text-[10px] mt-1">{Math.min(100, Math.round(analysis.phaseProgress * 100))}%</div>
                 </div>
               </div>
             ) : (
@@ -502,6 +504,48 @@ export default function SadeSatiPage() {
                             <span className="font-mono">{ph.startYear}–{ph.endYear}</span>
                           </div>
                         ))}
+                      </div>
+                    )}
+
+                    {/* Nakshatra transit sub-items for active cycle */}
+                    {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1">
+                        <div className="text-[10px] text-text-tertiary uppercase tracking-wider mb-1.5">
+                          {locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
+                        </div>
+                        {analysis.nakshatraTimeline.map((nt, k) => {
+                          const nak = NAKSHATRAS[nt.nakshatra - 1];
+                          const nakName = nak?.name?.[locale as 'en' | 'hi' | 'sa'] || nak?.name?.en || '';
+                          const yearLabel = nt.firstYear === nt.lastYear ? String(nt.firstYear) : `${nt.firstYear}–${nt.lastYear}`;
+                          return (
+                            <div
+                              key={k}
+                              className={`flex items-center gap-2 text-[11px] px-2.5 py-1.5 rounded-lg border ${
+                                nt.isBirthNakshatra
+                                  ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 font-bold'
+                                  : nt.isCurrent
+                                    ? 'bg-gold-primary/10 border-gold-primary/25 text-gold-light'
+                                    : 'border-transparent text-text-secondary'
+                              }`}
+                            >
+                              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                                nt.isCurrent ? 'bg-gold-primary animate-pulse' : nt.isBirthNakshatra ? 'bg-amber-400' : 'bg-text-tertiary/40'
+                              }`} />
+                              <span className="flex-1">{nakName}</span>
+                              <span className="font-mono text-[10px] opacity-70">{yearLabel}</span>
+                              {nt.isBirthNakshatra && (
+                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
+                                  {locale === 'en' ? 'Birth' : 'जन्म'}
+                                </span>
+                              )}
+                              {nt.isCurrent && !nt.isBirthNakshatra && (
+                                <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
+                                  {locale === 'en' ? 'Now' : 'अभी'}
+                                </span>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
                   </motion.div>

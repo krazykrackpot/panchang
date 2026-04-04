@@ -249,66 +249,55 @@ export default function BabyNamesPage() {
             ? 'All 27 Nakshatras × 4 Padas — find the starting syllable for any birth star'
             : 'सभी 27 नक्षत्र × 4 पाद — किसी भी जन्म तारे के लिए प्रारम्भिक अक्षर'}
         </p>
-        <div className="overflow-x-auto rounded-xl border border-gold-primary/10">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-bg-secondary/40">
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10 w-8">#</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10">
-                  {locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}
-                </th>
-                {[1, 2, 3, 4].map(p => (
-                  <th key={p} className="text-center px-4 py-3 text-gold-dark text-xs uppercase tracking-wider font-bold border-b border-gold-primary/10">
-                    {locale === 'en' ? `Pada ${p}` : `पाद ${p}`}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {NAKSHATRAS.map(n => {
-                const syls = NAKSHATRA_SYLLABLES[n.id];
-                const isHighlighted = n.id === selectedNak;
-                return (
-                  <tr key={n.id}
-                    className={`border-b border-gold-primary/5 transition-colors ${
-                      isHighlighted
-                        ? 'bg-gold-primary/10'
-                        : 'hover:bg-bg-secondary/30'
-                    }`}
-                  >
-                    <td className="px-4 py-2.5 text-text-secondary/40 text-xs font-mono">{n.id}</td>
-                    <td className="px-4 py-2.5">
-                      <div className="flex items-center gap-2">
-                        <NakshatraIconById id={n.id} size={18} />
-                        <span className={`text-sm font-medium ${isHighlighted ? 'text-gold-light font-bold' : 'text-text-primary'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {n.name[locale]}
-                        </span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {NAKSHATRAS.map(n => {
+            const syls = NAKSHATRA_SYLLABLES[n.id];
+            const isHighlighted = n.id === selectedNak;
+            return (
+              <motion.div
+                key={n.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onClick={() => { setSelectedNak(n.id); setSelectedPada(0); }}
+                className={`rounded-xl p-4 transition-all cursor-pointer ${
+                  isHighlighted
+                    ? 'bg-gradient-to-br from-gold-primary/15 via-gold-primary/5 to-transparent border-2 border-gold-primary/40 shadow-lg shadow-gold-primary/10 ring-1 ring-gold-primary/15'
+                    : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20 hover:bg-[#1a1040]/40'
+                }`}
+              >
+                {/* Nakshatra header */}
+                <div className="flex items-center gap-3 mb-3">
+                  <NakshatraIconById id={n.id} size={isHighlighted ? 28 : 22} />
+                  <div>
+                    <span className={`font-bold ${isHighlighted ? 'text-gold-light text-base' : 'text-text-primary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                      {n.name[locale]}
+                    </span>
+                    <span className="text-text-secondary/30 text-[10px] ml-2">#{n.id}</span>
+                  </div>
+                </div>
+                {/* 4 Pada syllables in a row */}
+                <div className="grid grid-cols-4 gap-1.5">
+                  {[0, 1, 2, 3].map(pi => {
+                    const syl = syls?.[pi];
+                    const isThisPada = isHighlighted && (selectedPada === 0 || selectedPada === pi + 1);
+                    return (
+                      <div key={pi} className={`rounded-lg py-2 px-1 text-center ${
+                        isThisPada
+                          ? 'bg-gold-primary/20 border border-gold-primary/40'
+                          : 'bg-bg-secondary/30 border border-gold-primary/5'
+                      }`}>
+                        <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {syl ? (locale === 'en' ? syl.en : syl.hi) : '—'}
+                        </div>
+                        <div className="text-[8px] text-text-secondary/30 mt-0.5">P{pi + 1}</div>
                       </div>
-                    </td>
-                    {[0, 1, 2, 3].map(pi => {
-                      const syl = syls?.[pi];
-                      const isPadaHighlighted = isHighlighted && (selectedPada === 0 || selectedPada === pi + 1);
-                      return (
-                        <td key={pi} className="text-center px-4 py-2.5">
-                          {syl ? (
-                            <span className={`inline-block px-2 py-1 rounded-md text-sm ${
-                              isPadaHighlighted
-                                ? 'bg-gold-primary/20 text-gold-light font-bold border border-gold-primary/30'
-                                : 'text-text-secondary'
-                            }`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {locale === 'en' ? syl.en : syl.hi}
-                            </span>
-                          ) : (
-                            <span className="text-text-secondary/20">—</span>
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

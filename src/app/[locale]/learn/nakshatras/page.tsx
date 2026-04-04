@@ -9,6 +9,7 @@ import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import RashiNakshatraWheel from '@/components/learn/RashiNakshatraWheel';
+import NakshatraDashaSpiral from '@/components/learn/NakshatraDashaSpiral';
 import { NAKSHATRA_ICONS } from '@/components/icons/NakshatraIcons';
 
 /** Format decimal degrees as D°M' (e.g. 13.333 → "13°20'") */
@@ -225,6 +226,11 @@ export default function LearnNakshatrasPage() {
           <div className="mt-2 text-center text-text-secondary/50 text-xs font-mono">
             Total: 7+20+6+10+7+18+16+19+17 = 120 {lo === 'en' ? 'years' : '\u0935\u0930\u094d\u0937'}
           </div>
+        </div>
+
+        {/* Interactive Nakshatra-Dasha mapping visualization */}
+        <div className="mt-8">
+          <NakshatraDashaSpiral locale={lo as Locale} />
         </div>
       </LessonSection>
 
@@ -483,7 +489,7 @@ export default function LearnNakshatrasPage() {
                   </div>
                   {locale !== 'en' && <div className="text-text-secondary/60 text-xs truncate">{n.name.en}</div>}
                 </div>
-                <span className="text-text-secondary/50 text-xs font-mono flex-shrink-0">{fmtDeg(n.startDeg)} – {fmtDeg(n.endDeg)}</span>
+                <span className="text-gold-primary text-xs font-mono font-bold flex-shrink-0">{fmtDeg(n.startDeg)} – {fmtDeg(n.endDeg)}</span>
               </div>
               <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70 ml-[42px]">
                 <span>{n.deity[locale]}</span>

@@ -33,6 +33,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
+import InfoBlock from '@/components/ui/InfoBlock';
 import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation, JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
 
 // Planet colors for table highlights
@@ -517,6 +518,16 @@ export default function KundaliPage() {
                 </button>
               </div>
 
+              <InfoBlock
+                id="kundali-chart"
+                title={locale === 'en' ? 'What is a Birth Chart (Kundali)?' : 'जन्म कुण्डली क्या है?'}
+                defaultOpen={true}
+              >
+                {locale === 'en'
+                  ? 'A birth chart is a map of the sky at the exact moment you were born. It shows where all 9 planets were positioned across 12 zodiac signs and 12 houses (life areas). This map reveals your personality, career path, relationships, health patterns, and life timing — think of it as your cosmic DNA. The diamond shape is the traditional North Indian format. Each triangle is one \'house.\' Planet abbreviations: Su=Sun, Mo=Moon, Ma=Mars, Me=Mercury, Ju=Jupiter, Ve=Venus, Sa=Saturn, Ra=Rahu, Ke=Ketu.'
+                  : 'जन्म कुण्डली आपके जन्म के सटीक क्षण में आकाश का नक्शा है। यह दर्शाती है कि 9 ग्रह 12 राशियों और 12 भावों (जीवन क्षेत्रों) में कहाँ थे। यह आपके व्यक्तित्व, कैरियर, सम्बन्ध, स्वास्थ्य और जीवन समय को प्रकट करती है। हीरे का आकार पारम्परिक उत्तर भारतीय प्रारूप है। प्रत्येक त्रिभुज एक \'भाव\' है।'}
+              </InfoBlock>
+
               <div className="flex justify-center gap-3 mb-4 flex-wrap">
                 <button onClick={() => setShowTransits(!showTransits)}
                   className={`px-4 py-1.5 rounded-lg text-xs transition-all flex items-center gap-1.5 ${showTransits ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'}`}>
@@ -700,6 +711,15 @@ export default function KundaliPage() {
           {/* ===== PLANETS TAB ===== */}
           {activeTab === 'planets' && (
             <div className="space-y-3">
+              <InfoBlock
+                id="kundali-planets"
+                title={locale === 'en' ? 'What do Planet Positions mean?' : 'ग्रह स्थितियों का क्या अर्थ है?'}
+                defaultOpen={false}
+              >
+                {locale === 'en'
+                  ? 'Each planet represents a force in your life: Sun=ego/authority/father, Moon=mind/emotions/mother, Mars=energy/courage/property, Mercury=communication/business/intellect, Jupiter=wisdom/children/wealth, Venus=love/marriage/luxury, Saturn=discipline/karma/hard work, Rahu=ambition/foreign/technology, Ketu=spirituality/detachment/liberation. The SIGN a planet is in colors its expression. The HOUSE it occupies determines which life area it affects. Retrograde (R) planets work inwardly — their effects are felt more internally.'
+                  : 'प्रत्येक ग्रह आपके जीवन में एक शक्ति का प्रतिनिधित्व करता है: सूर्य=अहंकार/अधिकार/पिता, चंद्र=मन/भावनाएं/माता, मंगल=ऊर्जा/साहस/संपत्ति, बुध=संचार/व्यापार/बुद्धि, गुरु=ज्ञान/संतान/धन, शुक्र=प्रेम/विवाह/विलास, शनि=अनुशासन/कर्म/परिश्रम, राहु=महत्वाकांक्षा/विदेश/तकनीक, केतु=आध्यात्म/वैराग्य/मोक्ष। ग्रह जिस राशि में हो वह उसकी अभिव्यक्ति रंगती है। जिस भाव में हो वह जीवन क्षेत्र प्रभावित होता है। वक्री (R) ग्रह अंतर्मुखी होकर कार्य करते हैं।'}
+              </InfoBlock>
               {kundali.planets.map((p) => (
                 <motion.div
                   key={p.planet.id}
@@ -1077,9 +1097,20 @@ export default function KundaliPage() {
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
           {activeTab === 'varga' && (
-            <PaywallGate feature="varga_full" blurContent={<VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />}>
-              <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
-            </PaywallGate>
+            <>
+              <InfoBlock
+                id="kundali-varga"
+                title={locale === 'en' ? 'What are Divisional Charts (Varga)?' : 'विभागीय चार्ट (वर्ग) क्या हैं?'}
+                defaultOpen={false}
+              >
+                {locale === 'en'
+                  ? 'Your birth chart (D1) shows the big picture. Divisional charts zoom into specific life areas by mathematically dividing each sign: D9 (Navamsha)=marriage/dharma/soul\'s true nature (most important after D1), D10 (Dashamsha)=career/profession, D2 (Hora)=wealth, D3 (Drekkana)=siblings, D7 (Saptamsha)=children, D12 (Dwadashamsha)=parents. If a planet is strong in BOTH D1 and D9, its results are confirmed and powerful.'
+                  : 'आपकी जन्म कुण्डली (D1) व्यापक चित्र दिखाती है। विभागीय चार्ट प्रत्येक राशि को गणितीय रूप से विभाजित करके विशिष्ट जीवन क्षेत्रों में ज़ूम करते हैं: D9 (नवांश)=विवाह/धर्म/आत्मा का सच्चा स्वरूप (D1 के बाद सर्वाधिक महत्वपूर्ण), D10 (दशमांश)=कैरियर/व्यवसाय, D2 (होरा)=धन, D3 (द्रेष्काण)=भाई-बहन, D7 (सप्तांश)=संतान, D12 (द्वादशांश)=माता-पिता। यदि कोई ग्रह D1 और D9 दोनों में बलवान है तो उसके फल निश्चित और शक्तिशाली होते हैं।'}
+              </InfoBlock>
+              <PaywallGate feature="varga_full" blurContent={<VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />}>
+                <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+              </PaywallGate>
+            </>
           )}
 
           {/* ===== GRAHA TAB ===== */}

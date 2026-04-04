@@ -834,8 +834,8 @@ export default function PlanetaryCyclesPage() {
           <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6intro}</p>
         </div>
 
-        {/* Nodal Diagram — tight container */}
-        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-4 py-3 max-w-2xl mx-auto">
+        {/* Nodal Diagram */}
+        <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] px-5 py-3">
           <NodalDiagram isHi={isHi} />
         </div>
 
@@ -843,19 +843,6 @@ export default function PlanetaryCyclesPage() {
         <div className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-6 space-y-4">
           <h3 className="text-lg font-bold text-gold-light" style={hf}>{l.sec6how}</h3>
           <p className="text-text-secondary text-sm leading-relaxed" style={bf}>{l.sec6howText}</p>
-        </div>
-
-        {/* Eclipse Types */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {l.sec6types.map((t, i) => (
-            <div key={i} className="rounded-xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/30 to-[#0a0e27] p-5">
-              <div className="w-8 h-8 rounded-lg bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center mb-3">
-                <span className="text-gold-light font-mono text-xs font-bold">{i + 1}</span>
-              </div>
-              <h4 className="text-gold-light text-sm font-bold mb-2" style={hf}>{t.type}</h4>
-              <p className="text-text-secondary text-xs leading-relaxed" style={bf}>{t.desc}</p>
-            </div>
-          ))}
         </div>
 
         {/* Saros Cycle */}

@@ -144,17 +144,22 @@ export default function BabyNamesPage() {
             const isSelected = selectedNak === n.id;
             return (
               <button key={n.id} onClick={() => { setSelectedNak(n.id); setSelectedPada(0); }}
-                className={`rounded-xl p-2.5 text-center transition-all ${
+                className={`rounded-xl text-center transition-all ${
                   isSelected
-                    ? 'bg-gold-primary/20 border-gold-primary/50 border-2 shadow-lg shadow-gold-primary/10'
+                    ? 'col-span-2 row-span-2 p-4 bg-gradient-to-br from-gold-primary/15 to-gold-primary/5 border-gold-primary/50 border-2 shadow-xl shadow-gold-primary/15 ring-1 ring-gold-primary/20'
                     : isDetected
-                    ? 'bg-gold-primary/10 border-gold-primary/30 border-2 border-dashed'
-                    : 'bg-bg-tertiary/30 border border-gold-primary/10 hover:border-gold-primary/25'
+                    ? 'p-2.5 bg-gold-primary/10 border-gold-primary/30 border-2 border-dashed'
+                    : 'p-2.5 bg-bg-tertiary/30 border border-gold-primary/10 hover:border-gold-primary/25'
                 }`}>
-                <div className="flex justify-center"><NakshatraIconById id={n.id} size={isSelected ? 28 : 24} /></div>
-                <div className={`text-[10px] mt-1 font-medium ${isSelected ? 'text-gold-light' : 'text-text-secondary'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                <div className="flex justify-center">
+                  <NakshatraIconById id={n.id} size={isSelected ? 48 : 24} />
+                </div>
+                <div className={`mt-1 font-medium ${isSelected ? 'text-gold-light text-sm' : 'text-text-secondary text-[10px]'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {n.name[locale]}
                 </div>
+                {isSelected && detectedPada > 0 && (
+                  <div className="text-gold-primary/60 text-xs mt-1">{locale === 'en' ? `Pada ${detectedPada}` : `पाद ${detectedPada}`}</div>
+                )}
               </button>
             );
           })}

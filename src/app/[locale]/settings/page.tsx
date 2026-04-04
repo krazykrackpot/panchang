@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { User, MapPin, Calendar, Clock, Save, Trash2, LogOut, Loader2 } from 'lucide-react';
+import { User, MapPin, Calendar, Clock, Save, Trash2, LogOut, Loader2, Bell } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
@@ -23,6 +23,14 @@ interface ProfileData {
   ayanamsha: string;
   chart_style: string;
 }
+
+const NOTIF_TYPES = [
+  { key: 'dasha_transition', en: 'Dasha Transitions', hi: 'दशा परिवर्तन' },
+  { key: 'transit_alert',   en: 'Planetary Transits', hi: 'ग्रह गोचर' },
+  { key: 'festival_reminder', en: 'Festival Reminders', hi: 'पर्व स्मरण' },
+  { key: 'sade_sati',       en: 'Sade Sati Alerts', hi: 'साढ़े साती सूचना' },
+  { key: 'weekly_digest',   en: 'Weekly Email Digest', hi: 'साप्ताहिक सारांश ईमेल' },
+] as const;
 
 const LABELS = {
   en: {
@@ -44,6 +52,8 @@ const LABELS = {
     northIndian: 'North Indian',
     southIndian: 'South Indian',
     language: 'Language',
+    notifications: 'Notification Preferences',
+    notifDesc: 'Choose which alerts you receive in the app and by email.',
     dangerZone: 'Danger Zone',
     signOut: 'Sign Out',
     deleteAccount: 'Delete Account',
@@ -76,6 +86,8 @@ const LABELS = {
     northIndian: 'उत्तर भारतीय',
     southIndian: 'दक्षिण भारतीय',
     language: 'भाषा',
+    notifications: 'सूचना प्राथमिकताएँ',
+    notifDesc: 'चुनें कि आप ऐप और ईमेल में कौन-से अलर्ट प्राप्त करना चाहते हैं।',
     dangerZone: 'खतरा क्षेत्र',
     signOut: 'साइन आउट',
     deleteAccount: 'खाता हटाएँ',
@@ -108,6 +120,8 @@ const LABELS = {
     northIndian: 'उत्तरभारतीय',
     southIndian: 'दक्षिणभारतीय',
     language: 'भाषा',
+    notifications: 'सूचनाप्राथमिकताः',
+    notifDesc: 'ऐप तथा ईमेल-सूचनाः चिनोतु।',
     dangerZone: 'संकटक्षेत्रम्',
     signOut: 'निर्गमनम्',
     deleteAccount: 'खातम् विलोपयतु',
@@ -144,6 +158,13 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [notifPrefs, setNotifPrefs] = useState<Record<string, boolean>>({
+    dasha_transition: true,
+    transit_alert: true,
+    festival_reminder: true,
+    sade_sati: true,
+    weekly_digest: true,
+  });
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -191,6 +212,10 @@ export default function SettingsPage() {
           };
           setProfile(loaded);
           setOriginalProfile({ ...loaded });
+          // Load notification preferences
+          if (data.notification_prefs && typeof data.notification_prefs === 'object') {
+            setNotifPrefs(prev => ({ ...prev, ...(data.notification_prefs as Record<string, boolean>) }));
+          }
         } else {
           const defaults: ProfileData = {
             display_name: user.user_metadata?.name || user.email?.split('@')[0] || '',
@@ -274,6 +299,7 @@ export default function SettingsPage() {
         birth_timezone: profile.birth_timezone || null,
         ayanamsha: profile.ayanamsha,
         chart_style: profile.chart_style,
+        notification_prefs: notifPrefs,
         updated_at: new Date().toISOString(),
       };
 
@@ -571,11 +597,48 @@ export default function SettingsPage() {
           </div>
         </motion.section>
 
+        {/* Section 4: Notification Preferences */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+          className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm overflow-hidden"
+        >
+          <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
+            <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
+              <Bell className="w-5 h-5" />
+              {L.notifications}
+            </h2>
+            <p className="text-xs text-text-secondary/60 mt-1">{L.notifDesc}</p>
+          </div>
+          <div className="px-6 py-5 space-y-3">
+            {NOTIF_TYPES.map((nt) => (
+              <label key={nt.key} className="flex items-center justify-between cursor-pointer group">
+                <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
+                  {locale === 'en' ? nt.en : nt.hi}
+                </span>
+                <button
+                  role="switch"
+                  aria-checked={notifPrefs[nt.key] !== false}
+                  onClick={() => setNotifPrefs(prev => ({ ...prev, [nt.key]: !prev[nt.key] }))}
+                  className={`relative w-10 h-5 rounded-full transition-colors shrink-0 ${
+                    notifPrefs[nt.key] !== false ? 'bg-gold-primary/70' : 'bg-bg-tertiary/60'
+                  }`}
+                >
+                  <span className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
+                    notifPrefs[nt.key] !== false ? 'translate-x-5' : 'translate-x-0'
+                  }`} />
+                </button>
+              </label>
+            ))}
+          </div>
+        </motion.section>
+
         {/* Save Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
           <button
             onClick={handleSave}
@@ -605,11 +668,11 @@ export default function SettingsPage() {
           )}
         </motion.div>
 
-        {/* Section 4: Account Actions */}
+        {/* Section 5: Account Actions */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.45 }}
           className="rounded-2xl border border-gold-primary/10 bg-bg-secondary/20 backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-5 space-y-3">

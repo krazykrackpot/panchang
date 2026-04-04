@@ -3,6 +3,7 @@ import { getServerSupabase } from '@/lib/supabase/server';
 import { generateNotifications } from '@/lib/personalization/notification-engine';
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/generate-notifications
@@ -55,7 +56,7 @@ export async function GET(req: NextRequest) {
 
   // Fetch upcoming festivals (next 7 days) — using a simple date range query
   // We'll use a generic list; in production this would come from the calendar API
-  const upcomingFestivals = await getUpcomingFestivals();
+  const upcomingFestivals = getUpcomingFestivals();
 
   let totalGenerated = 0;
   let totalUsers = 0;
@@ -131,9 +132,9 @@ export async function GET(req: NextRequest) {
 }
 
 // ---------------------------------------------------------------------------
-// Upcoming festivals helper
-// In production this would query a festivals table or calendar API.
-// For now, return an empty array — the cron will still process dasha/transit/sade-sati.
+// Upcoming festivals helper — generates the next 7 days of festivals
+// using the Hindu calendar engine. Uses a representative India location
+// since festival dates are calendar-based and don't vary by region.
 // ---------------------------------------------------------------------------
 
 interface FestivalStub {
@@ -143,9 +144,30 @@ interface FestivalStub {
   date: string;
 }
 
-async function getUpcomingFestivals(): Promise<FestivalStub[]> {
-  // TODO: integrate with the calendar/festivals data source
-  // This would query festivals within the next 7 days
-  // For now, return empty — non-festival notifications still work
-  return [];
+function getUpcomingFestivals(): FestivalStub[] {
+  const now = new Date();
+  const cutoff = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+  const todayStr = now.toISOString().slice(0, 10);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+
+  // Generate festivals for current year (and next if we're near year-end)
+  const years = [now.getFullYear()];
+  if (now.getMonth() >= 11) years.push(now.getFullYear() + 1);
+
+  const results: FestivalStub[] = [];
+  for (const year of years) {
+    // Use Delhi as representative location for Hindu calendar festivals
+    const entries = generateFestivalCalendarV2(year, 28.6, 77.2, 'Asia/Kolkata');
+    for (const e of entries) {
+      if (e.date >= todayStr && e.date <= cutoffStr && e.slug) {
+        results.push({
+          slug: e.slug,
+          name: e.name.en,
+          category: e.category,
+          date: e.date,
+        });
+      }
+    }
+  }
+  return results;
 }

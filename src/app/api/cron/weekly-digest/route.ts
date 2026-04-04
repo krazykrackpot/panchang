@@ -5,6 +5,7 @@ import { weeklyDigestEmail } from '@/lib/email/templates/weekly-digest';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { computeTransitAlerts } from '@/lib/personalization/transit-alerts';
 import type { UserSnapshot } from '@/lib/personalization/types';
+import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 // Runs every Monday at 6 AM UTC
 export async function GET(req: Request) {
@@ -94,11 +95,20 @@ export async function GET(req: Request) {
     // Sade sati
     const sadeSatiActive = !!(snap.sade_sati as { isActive?: boolean })?.isActive;
 
+    // Upcoming 7-day festivals (use Delhi as representative location)
+    const thisYear = now.getFullYear();
+    const festEntries = generateFestivalCalendarV2(thisYear, 28.6, 77.2, 'Asia/Kolkata');
+    const weekCutoff = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const todayStr = now.toISOString().slice(0, 10);
+    const upcomingFestivals = festEntries
+      .filter(f => f.date >= todayStr && f.date <= weekCutoff)
+      .map(f => f.name.en);
+
     const email = weeklyDigestEmail({
       name: profile?.display_name || 'Friend',
       dashaInfo,
       days: days.map(d => ({ ...d, color: '' })),
-      festivals: [], // Could add festival lookup here
+      festivals: upcomingFestivals,
       transitAlerts,
       sadeSatiActive,
     });

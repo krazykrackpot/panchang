@@ -118,6 +118,7 @@ export interface KundaliData {
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };
     arudhaPadas: { house: number; sign: number; signName: { en: string; hi: string; sa: string }; label: { en: string; hi: string; sa: string } }[];
     charaDasha: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }[];
+    grahaArudhas?: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[];
   };
 }
 

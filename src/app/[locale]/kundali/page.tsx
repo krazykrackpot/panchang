@@ -1747,14 +1747,17 @@ export default function KundaliPage() {
               </div>
 
               {/* Graha Arudhas */}
-              {kundali.jaimini && (kundali.jaimini as unknown as { grahaArudhas?: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas && (
+              {kundali.jaimini?.grahaArudhas && kundali.jaimini.grahaArudhas.length > 0 && (
                 <div>
-                  <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-                    {locale === 'en' ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़'}
+                  <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)'}
                   </h3>
+                  <p className="text-text-secondary/50 text-xs text-center mb-4">
+                    {locale === 'en' ? 'The Arudha of each planet — where its energy projects outward into the world' : 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है'}
+                  </p>
                   <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
-                      {((kundali.jaimini as unknown as { grahaArudhas: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[] }).grahaArudhas || []).map((ga, i) => (
+                      {kundali.jaimini.grahaArudhas.map((ga, i) => (
                         <div key={i} className="p-3 text-center">
                           <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{ga.planetName[locale as Locale] || ga.planetName.en}</div>
                           <div className="text-gold-light font-bold text-sm mt-1" style={headingFont}>{ga.arudhaSignName[locale as Locale] || ga.arudhaSignName.en}</div>
@@ -1764,6 +1767,90 @@ export default function KundaliPage() {
                   </div>
                 </div>
               )}
+
+              {/* Argala (Planetary Interventions) */}
+              {kundali.argala && kundali.argala.length > 0 && (() => {
+                const HOUSE_LABELS: Record<number, { en: string; hi: string }> = {
+                  1: { en: 'Lagna', hi: 'लग्न' }, 2: { en: 'Dhana', hi: 'धन' }, 3: { en: 'Sahaja', hi: 'सहज' },
+                  4: { en: 'Sukha', hi: 'सुख' }, 5: { en: 'Putra', hi: 'पुत्र' }, 6: { en: 'Ari', hi: 'अरि' },
+                  7: { en: 'Kalatra', hi: 'कलत्र' }, 8: { en: 'Randhra', hi: 'रन्ध्र' }, 9: { en: 'Dharma', hi: 'धर्म' },
+                  10: { en: 'Karma', hi: 'कर्म' }, 11: { en: 'Labha', hi: 'लाभ' }, 12: { en: 'Vyaya', hi: 'व्यय' },
+                };
+                return (
+                  <div>
+                    <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                      {locale === 'en' ? 'Argala (Planetary Interventions)' : 'अर्गल (ग्रह हस्तक्षेप)'}
+                    </h3>
+                    <p className="text-text-secondary/50 text-xs text-center mb-4 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {locale === 'en'
+                        ? 'Planets in 2nd, 4th, and 11th from each house create Argala (intervention) — those in 12th, 10th, 3rd counter it (Virodha). Net effect shows whether planetary forces support or obstruct each house.'
+                        : 'प्रत्येक भाव से 2रे, 4थे, 11वें ग्रह अर्गल बनाते हैं — 12वें, 10वें, 3रे से ग्रह विरोधार्गल। शुद्ध प्रभाव दर्शाता है कि ग्रह शक्तियाँ प्रत्येक भाव को सहयोग देती हैं या बाधित करती हैं।'}
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {kundali.argala.map((ar) => {
+                        const rashiName = RASHIS[ar.sign - 1]?.name;
+                        const signLabel = rashiName ? (locale === 'en' ? rashiName.en : rashiName.hi) : `S${ar.sign}`;
+                        const houseLabel = HOUSE_LABELS[ar.house];
+                        const strongArgalas = ar.argalas.filter(a => a.strength === 'strong');
+                        const strongVirodha = ar.virodha.filter(v => v.strength === 'strong');
+                        return (
+                          <div key={ar.house} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-3 ${
+                            ar.netEffect === 'supported' ? 'border-emerald-500/25' :
+                            ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/8'
+                          }`}>
+                            {/* House header */}
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="flex items-center gap-1.5">
+                                <span className="w-5 h-5 rounded bg-bg-secondary/80 flex items-center justify-center text-gold-primary font-bold text-xs">{ar.house}</span>
+                                <div>
+                                  <div className="text-gold-light font-semibold text-xs" style={headingFont}>{signLabel}</div>
+                                  <div className="text-text-secondary/40 text-[10px]">{houseLabel?.[locale === 'en' ? 'en' : 'hi']}</div>
+                                </div>
+                              </div>
+                              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
+                                ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-400' :
+                                ar.netEffect === 'obstructed' ? 'bg-red-500/12 text-red-400' : 'bg-bg-secondary/60 text-text-secondary/50'
+                              }`}>
+                                {ar.netEffect === 'supported' ? (locale === 'en' ? '✦ Active' : '✦ सक्रिय') :
+                                 ar.netEffect === 'obstructed' ? (locale === 'en' ? '↓ Blocked' : '↓ अवरुद्ध') :
+                                 (locale === 'en' ? '— Neutral' : '— तटस्थ')}
+                              </span>
+                            </div>
+
+                            {/* Argala planets */}
+                            {strongArgalas.length > 0 && (
+                              <div className="flex flex-wrap gap-1 mb-1">
+                                {strongArgalas.map((a, i) => (
+                                  <span key={i} className={`text-[10px] px-1.5 py-0.5 rounded-full ${a.nature === 'benefic' ? 'bg-emerald-500/12 text-emerald-300/80' : 'bg-amber-500/12 text-amber-300/70'}`}>
+                                    {a.planetName[locale as 'en' | 'hi' | 'sa'] || a.planetName.en}
+                                    <span className="text-text-secondary/30 ml-0.5">+{a.fromHouse}</span>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Virodha planets */}
+                            {strongVirodha.length > 0 && (
+                              <div className="flex flex-wrap gap-1">
+                                {strongVirodha.map((v, i) => (
+                                  <span key={i} className="text-[10px] px-1.5 py-0.5 rounded-full bg-red-500/10 text-red-300/60">
+                                    {v.planetName[locale as 'en' | 'hi' | 'sa'] || v.planetName.en}
+                                    <span className="text-text-secondary/30 ml-0.5">−{v.fromHouse}</span>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {strongArgalas.length === 0 && strongVirodha.length === 0 && (
+                              <p className="text-text-secondary/30 text-[10px]">{locale === 'en' ? 'No strong interventions' : 'कोई प्रबल हस्तक्षेप नहीं'}</p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Chara Dasha */}
               <div>

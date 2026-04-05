@@ -90,20 +90,23 @@ export const useLocationStore = create<LocationState>((set, get) => ({
       }
     };
 
-    const fromIP = () => {
-      fetch('https://ipapi.co/json/')
-        .then(res => res.json())
-        .then(data => {
-          if (data.latitude && data.longitude) {
-            const name = [data.city, data.country_name].filter(Boolean).join(', ');
-            const timezone = data.timezone || null;
-            saveToStorage(data.latitude, data.longitude, name, timezone);
-            set({ lat: data.latitude, lng: data.longitude, name, timezone, confirmed: true, detecting: false });
-          } else {
-            set({ detecting: false });
-          }
-        })
-        .catch(() => set({ detecting: false }));
+    const fromIP = async () => {
+      try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+        if (data.latitude && data.longitude) {
+          // Use reverseGeocode on the actual coordinates — IP data.city often mismatches
+          // the lat/lng (ISP routing points can be hundreds of km from the user's city)
+          const name = await reverseGeocode(data.latitude, data.longitude);
+          const timezone = data.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : null);
+          saveToStorage(data.latitude, data.longitude, name, timezone);
+          set({ lat: data.latitude, lng: data.longitude, name, timezone, confirmed: true, detecting: false });
+        } else {
+          set({ detecting: false });
+        }
+      } catch {
+        set({ detecting: false });
+      }
     };
 
     if (!('geolocation' in navigator)) { fromIP(); return; }

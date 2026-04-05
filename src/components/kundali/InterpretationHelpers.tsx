@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import type { PlanetPosition } from '@/types/kundali';
+import type { PlanetPosition, DashaEntry } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
@@ -72,6 +72,97 @@ const PLANET_REMEDIES: Record<number, { en: string; hi: string }> = {
   6: { en: 'Wear Blue Sapphire (with caution), Saturday charity, feed crows', hi: 'नीलम (सावधानी से) धारण करें, शनिवार दान, कौवों को खिलाएं' },
 };
 
+// ─── Per-planet dasha forecasts ─────────────────────────────────────────────
+
+const PLANET_DASHA_FORECAST: Record<number, {
+  strongEn: string; strongHi: string;
+  adequateEn: string; adequateHi: string;
+  weakEn: string; weakHi: string;
+  actionEn: string; actionHi: string;
+}> = {
+  0: {
+    strongEn: 'Career breakthroughs, government recognition, leadership roles. Authority figures support you.',
+    strongHi: 'करियर में उन्नति, सरकारी मान्यता, नेतृत्व भूमिकाएं। अधिकारी आपका समर्थन करते हैं।',
+    adequateEn: 'Steady career growth, father relationships improve, vitality is reliable.',
+    adequateHi: 'करियर में स्थिर प्रगति, पिता संबंध सुधरते हैं, स्वास्थ्य विश्वसनीय।',
+    weakEn: 'Career setbacks likely, eye/heart health needs attention. Avoid conflicts with authority figures.',
+    weakHi: 'करियर में बाधा संभव, नेत्र/हृदय स्वास्थ्य पर ध्यान दें। अधिकारियों से विवाद से बचें।',
+    actionEn: 'Apply for promotions, take on leadership roles, strengthen relationship with father.',
+    actionHi: 'पदोन्नति के लिए आवेदन करें, नेतृत्व भूमिकाएं लें, पिता से संबंध सुधारें।',
+  },
+  1: {
+    strongEn: 'Emotional peace, public popularity, mother relationship flourishes. Best period for public-facing work.',
+    strongHi: 'भावनात्मक शांति, लोकप्रियता, माता से अच्छे संबंध। जनसेवा के लिए उत्तम काल।',
+    adequateEn: 'Emotional stability, modest public recognition, family life pleasant.',
+    adequateHi: 'भावनात्मक स्थिरता, मध्यम सार्वजनिक मान्यता, पारिवारिक जीवन सुखद।',
+    weakEn: 'Mental fluctuations, sleep issues, mother\'s health may be a concern. Avoid major decisions in emotional states.',
+    weakHi: 'मानसिक उतार-चढ़ाव, नींद की समस्या, माता के स्वास्थ्य की चिंता। भावनात्मक स्थिति में बड़े निर्णय न लें।',
+    actionEn: 'Launch public ventures, nurture close relationships, work with the public or media.',
+    actionHi: 'सार्वजनिक उद्यम शुरू करें, करीबी रिश्तों को पोषित करें, जनसेवा/मीडिया में कार्य करें।',
+  },
+  2: {
+    strongEn: 'Property acquisition, physical achievement, courage rewarded. Siblings and allies are supportive.',
+    strongHi: 'संपत्ति अर्जन, शारीरिक उपलब्धि, साहस पुरस्कृत। भाई-बहन और सहयोगी सहायक।',
+    adequateEn: 'Energy and initiative carry you forward in concrete, material goals.',
+    adequateHi: 'ऊर्जा और पहल ठोस, भौतिक लक्ष्यों में मदद करती है।',
+    weakEn: 'Injury risk, property disputes, temper issues. Avoid impulsive decisions and risky physical activities.',
+    weakHi: 'चोट का खतरा, संपत्ति विवाद, क्रोध की समस्या। आवेगी निर्णयों और जोखिम भरी गतिविधियों से बचें।',
+    actionEn: 'Buy property, start a fitness regimen, take bold but calculated risks.',
+    actionHi: 'संपत्ति खरीदें, फिटनेस शुरू करें, साहसिक लेकिन सोचे-समझे जोखिम लें।',
+  },
+  3: {
+    strongEn: 'Business success, communication wins, education thrives. Writing, media, and analytical work excel.',
+    strongHi: 'व्यापार सफलता, संवाद में जीत, शिक्षा फलती है। लेखन, मीडिया और विश्लेषणात्मक कार्य श्रेष्ठ।',
+    adequateEn: 'Good for studies, business deals, networking, and intellectual pursuits.',
+    adequateHi: 'अध्ययन, व्यापार सौदों, नेटवर्किंग और बौद्धिक कार्यों के लिए अच्छा।',
+    weakEn: 'Miscommunication, nervous system sensitivity, indecision. Double-check all agreements before signing.',
+    weakHi: 'संवाद में गलतफहमी, तंत्रिका तंत्र की संवेदनशीलता। हस्ताक्षर से पहले सभी समझौतों की जांच करें।',
+    actionEn: 'Start studies, sign contracts, launch media or writing projects, network actively.',
+    actionHi: 'अध्ययन शुरू करें, अनुबंध हस्ताक्षर करें, लेखन/मीडिया परियोजनाएं शुरू करें।',
+  },
+  4: {
+    strongEn: 'Wisdom grows, wealth expands, children succeed. Excellent judgment and spiritual advancement. Best period for higher education and investment.',
+    strongHi: 'ज्ञान बढ़ता है, धन का विस्तार, संतान की सफलता। उत्कृष्ट निर्णय और आध्यात्मिक उन्नति। उच्च शिक्षा और निवेश के लिए उत्तम।',
+    adequateEn: 'Growth and expansion in key life areas. Guidance and good fortune come when needed.',
+    adequateHi: 'जीवन के प्रमुख क्षेत्रों में विकास। जरूरत पड़ने पर मार्गदर्शन और सौभाग्य मिलता है।',
+    weakEn: 'Poor advice leads to costly mistakes, financial misjudgments, children may face challenges. Consult trusted mentors before major decisions.',
+    weakHi: 'खराब सलाह से महंगी गलतियां, आर्थिक गलत निर्णय, संतान को चुनौतियां। बड़े निर्णयों से पहले विश्वसनीय गुरुओं से परामर्श करें।',
+    actionEn: 'Invest for the long term, pursue higher education, have children, find a guru or mentor.',
+    actionHi: 'दीर्घकालिक निवेश करें, उच्च शिक्षा लें, संतान प्राप्ति, गुरु की खोज करें।',
+  },
+  5: {
+    strongEn: 'Happy marriage or relationship, artistic success, financial gains from beauty/art/luxury. Life feels pleasurable.',
+    strongHi: 'सुखी विवाह/रिश्ता, कलात्मक सफलता, सौंदर्य/कला/विलास से आर्थिक लाभ। जीवन आनंदपूर्ण।',
+    adequateEn: 'Relationships are pleasant, creative projects succeed moderately, comforts increase.',
+    adequateHi: 'रिश्ते सुखद, रचनात्मक परियोजनाएं मध्यम सफलता, सुख-सुविधाएं बढ़ती हैं।',
+    weakEn: 'Relationship friction, kidney or reproductive health needs monitoring, overspending risk. Be deliberate in romantic decisions.',
+    weakHi: 'रिश्तों में तनाव, गुर्दे/प्रजनन स्वास्थ्य की निगरानी, अत्यधिक खर्च का खतरा।',
+    actionEn: 'Get married, launch creative ventures, invest in beauty or luxury sector, deepen artistic practice.',
+    actionHi: 'विवाह करें, रचनात्मक उद्यम शुरू करें, सौंदर्य/विलास क्षेत्र में निवेश करें।',
+  },
+  6: {
+    strongEn: 'Career stability, disciplined wealth building, longevity confirmed. Hard work is consistently rewarded.',
+    strongHi: 'करियर स्थिरता, अनुशासित धन निर्माण, दीर्घायु सिद्ध। परिश्रम का फल निरंतर मिलता है।',
+    adequateEn: 'Slow but steady progress. Discipline and persistence reliably pay off.',
+    adequateHi: 'धीमी लेकिन स्थिर प्रगति। अनुशासन और दृढ़ता विश्वसनीय रूप से फलदायक।',
+    weakEn: 'Delays, chronic health issues (joints, bones, teeth), career obstacles. Extra patience and persistence are essential.',
+    weakHi: 'विलम्ब, दीर्घकालिक स्वास्थ्य समस्याएं (जोड़/हड्डी/दांत), करियर में बाधाएं। अतिरिक्त धैर्य और दृढ़ता आवश्यक।',
+    actionEn: 'Build long-term assets, establish daily routines, take on serious responsibilities, do inner work.',
+    actionHi: 'दीर्घकालिक संपत्ति बनाएं, दिनचर्या स्थापित करें, गंभीर जिम्मेदारियां लें, आत्मिक कार्य करें।',
+  },
+};
+
+const RAHU_KETU_FORECAST: Record<number, { en: string; hi: string }> = {
+  7: {
+    en: 'Unusual opportunities, foreign connections, sudden gains or disruptions. Ambition peaks — but verify carefully before acting. Excellent for unconventional paths.',
+    hi: 'असामान्य अवसर, विदेशी संपर्क, अचानक लाभ या व्यवधान। महत्वाकांक्षा चरम पर — कार्य से पहले सावधानी से जांचें।',
+  },
+  8: {
+    en: 'Detachment, spiritual insight, past-life patterns surfacing. Career may feel directionless but inner wisdom and intuition grow strongly.',
+    hi: 'विरक्ति, आध्यात्मिक अंतर्दृष्टि, पूर्व जन्म के संस्कार उभरते हैं। करियर अनिश्चित लेकिन आंतरिक ज्ञान और अंतर्ज्ञान बढ़ता है।',
+  },
+};
+
 // ─── House significations ────────────────────────────────────────────────────
 
 const HOUSE_SIGNIFICATIONS: Record<number, { en: string; hi: string; remedy_en: string; remedy_hi: string }> = {
@@ -137,105 +228,340 @@ function InfoParagraph({ children }: { children: React.ReactNode }) {
 // 1. SHADBALA INTERPRETATION
 // ═══════════════════════════════════════════════════════════════════════════════
 
+const PLANET_ALL_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+
+const TIER_COLORS = { strong: '#22c55e', adequate: '#d4a853', weak: '#f59e0b', node: '#8b5cf6' } as const;
+
 interface ShadbalaInterpretationProps {
   shadbala: ShadBalaComplete[];
   planets: PlanetPosition[];
+  dashas: DashaEntry[];
   locale: string;
 }
 
-export function ShadbalaInterpretation({ shadbala, planets, locale }: ShadbalaInterpretationProps) {
+export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: ShadbalaInterpretationProps) {
   const isHi = locale !== 'en';
 
-  const sorted = useMemo(() => {
-    return [...shadbala].sort((a, b) => b.rupas - a.rupas);
-  }, [shadbala]);
-
+  const sorted = useMemo(() => [...shadbala].sort((a, b) => b.rupas - a.rupas), [shadbala]);
   const strongest = sorted[0];
   const weakPlanets = sorted.filter(p => p.rupas < 1.0);
+  const mahadashas = useMemo(() => dashas.filter(d => d.level === 'maha'), [dashas]);
+
+  const now = useMemo(() => new Date(), []);
+
+  // Build lookup: English planet name → shadbala entry
+  const shadByName = useMemo(() => {
+    const map: Record<string, ShadBalaComplete | undefined> = {};
+    sorted.forEach(sb => { const n = PLANET_NAMES_EN[sb.planetId]; if (n) map[n] = sb; });
+    return map;
+  }, [sorted]);
+
+  function getDashaStrength(d: DashaEntry): { tier: 'strong' | 'adequate' | 'weak' | 'node'; rupas: number } {
+    const name = d.planetName?.en || d.planet;
+    const sb = shadByName[name];
+    if (!sb) return { tier: 'node', rupas: 0 };
+    if (sb.rupas >= 1.2) return { tier: 'strong', rupas: sb.rupas };
+    if (sb.rupas >= 1.0) return { tier: 'adequate', rupas: sb.rupas };
+    return { tier: 'weak', rupas: sb.rupas };
+  }
+
+  const TIER_LABELS = {
+    strong: isHi ? 'बलवान' : 'Strong',
+    adequate: isHi ? 'पर्याप्त' : 'Adequate',
+    weak: isHi ? 'कमज़ोर' : 'Weak',
+    node: isHi ? 'छाया ग्रह' : 'Node',
+  };
+
+  const currentDasha = mahadashas.find(d => new Date(d.startDate) <= now && new Date(d.endDate) >= now);
+  const upcomingStrong = mahadashas.filter(d => new Date(d.startDate) > now && getDashaStrength(d).tier === 'strong');
+  const upcomingWeak = mahadashas.filter(d => new Date(d.startDate) > now && getDashaStrength(d).tier === 'weak');
+
+  // Timeline bar geometry
+  const firstStart = mahadashas.length ? new Date(mahadashas[0].startDate).getTime() : now.getTime();
+  const lastEnd = mahadashas.length ? new Date(mahadashas[mahadashas.length - 1].endDate).getTime() : now.getTime() + 1;
+  const totalMs = lastEnd - firstStart || 1;
+  const nowOffset = Math.max(0, Math.min(100, (now.getTime() - firstStart) / totalMs * 100));
+
+  function getDashaForecast(d: DashaEntry, tier: 'strong' | 'adequate' | 'weak' | 'node'): string {
+    const name = d.planetName?.en || d.planet;
+    const id = PLANET_ALL_NAMES.indexOf(name);
+    if (tier === 'node') return isHi ? (RAHU_KETU_FORECAST[id]?.hi ?? '') : (RAHU_KETU_FORECAST[id]?.en ?? '');
+    const f = PLANET_DASHA_FORECAST[id];
+    if (!f) return '';
+    if (tier === 'strong') return isHi ? f.strongHi : f.strongEn;
+    if (tier === 'adequate') return isHi ? f.adequateHi : f.adequateEn;
+    return isHi ? f.weakHi : f.weakEn;
+  }
+
+  function getDashaAction(d: DashaEntry): string {
+    const name = d.planetName?.en || d.planet;
+    const id = PLANET_ALL_NAMES.indexOf(name);
+    return isHi ? (PLANET_DASHA_FORECAST[id]?.actionHi ?? '') : (PLANET_DASHA_FORECAST[id]?.actionEn ?? '');
+  }
 
   if (!sorted.length) return null;
 
   return (
-    <div className="space-y-4 mt-6">
-      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'षड्बल विश्लेषण' : 'Shadbala Interpretation'}
+    <div className="space-y-3 mt-6">
+      <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold border-b border-gold-primary/20 pb-2">
+        {isHi ? 'षड्बल — आपके लिए इसका अर्थ' : 'Shadbala — What It Means For You'}
       </h3>
 
-      {/* Intro */}
-      <SectionCard>
-        <SectionHeading>{isHi ? 'इन संख्याओं का क्या अर्थ है?' : 'What do these numbers mean?'}</SectionHeading>
-        <InfoParagraph>
-          {isHi
-            ? 'षड्बल मापता है कि आपकी कुंडली में प्रत्येक ग्रह कितना शक्तिशाली है, रूपा में मापा जाता है। एक ग्रह को प्रभावी ढंग से कार्य करने के लिए कम से कम 1.0 रूपा की आवश्यकता होती है। अधिक = अधिक बलवान परिणाम। 6 उप-घटक (स्थान, दिग्, काल, चेष्टा, नैसर्गिक, दृग्) बल के विभिन्न पहलुओं को मापते हैं।'
-            : 'Shadbala measures how POWERFUL each planet is in your chart, on a scale measured in Rupas. A planet needs at least 1.0 Rupa to function effectively. Higher = stronger results. The 6 sub-components (Sthana, Dig, Kala, Cheshta, Naisargika, Drig) measure different aspects of strength.'}
-        </InfoParagraph>
-      </SectionCard>
+      {/* Current period */}
+      {currentDasha && (() => {
+        const { tier, rupas } = getDashaStrength(currentDasha);
+        const name = currentDasha.planetName?.en || currentDasha.planet;
+        const displayName = isHi ? (currentDasha.planetName?.hi || name) : name;
+        const endYear = new Date(currentDasha.endDate).getFullYear();
+        const forecast = getDashaForecast(currentDasha, tier);
+        const action = getDashaAction(currentDasha);
+        const tierColor = tier === 'strong' ? 'text-green-400' : tier === 'weak' ? 'text-amber-400' : tier === 'node' ? 'text-purple-400' : 'text-gold-light';
+        return (
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
+            <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+              {isHi ? 'आपका अभी का दशा काल' : 'Your Current Dasha Period'}
+            </div>
+            <div className="flex items-center gap-2 flex-wrap mb-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: TIER_COLORS[tier] }} />
+              <span className="text-gold-light font-semibold text-sm">{displayName} {isHi ? 'महादशा' : 'Mahadasha'}</span>
+              <span className={`text-xs px-2 py-0.5 rounded-full bg-white/5 font-medium ${tierColor}`}>
+                {TIER_LABELS[tier]}{rupas > 0 ? ` · ${rupas.toFixed(2)} R` : ''}
+              </span>
+              <span className="text-text-secondary text-xs">→ {endYear}</span>
+            </div>
+            {forecast && <p className="text-text-secondary text-sm leading-relaxed">{forecast}</p>}
+            {action && (
+              <p className="text-gold-primary/80 text-xs mt-2 italic">
+                {isHi ? 'अभी करें: ' : 'Best actions now: '}{action}
+              </p>
+            )}
+          </div>
+        );
+      })()}
+
+      {/* Life Dasha Timeline */}
+      {mahadashas.length > 0 && (
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
+            {isHi ? 'जीवन दशा समयरेखा' : 'Life Dasha Timeline'}
+          </div>
+
+          {/* Proportional bar */}
+          <div className="relative h-5 rounded-lg overflow-hidden flex mb-1" style={{ background: 'rgba(255,255,255,0.04)' }}>
+            {mahadashas.map((d, i) => {
+              const start = new Date(d.startDate).getTime();
+              const end = new Date(d.endDate).getTime();
+              const width = (end - start) / totalMs * 100;
+              const { tier } = getDashaStrength(d);
+              const isPast = end < now.getTime();
+              const isCurrent = start <= now.getTime() && end >= now.getTime();
+              return (
+                <div key={i} title={`${d.planetName?.en || d.planet}: ${new Date(d.startDate).getFullYear()}–${new Date(d.endDate).getFullYear()}`}
+                  style={{ width: `${width}%`, backgroundColor: TIER_COLORS[tier], opacity: isPast ? 0.25 : isCurrent ? 1 : 0.65 }}
+                  className="h-full shrink-0"
+                />
+              );
+            })}
+            {/* Now marker */}
+            <div className="absolute top-0 bottom-0 w-px bg-white/90" style={{ left: `${nowOffset}%` }} />
+          </div>
+
+          {/* Legend */}
+          <div className="flex gap-3 flex-wrap mt-2 mb-3">
+            {(['strong', 'adequate', 'weak', 'node'] as const).map(t => (
+              <div key={t} className="flex items-center gap-1">
+                <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: TIER_COLORS[t] }} />
+                <span className="text-text-secondary text-xs">{TIER_LABELS[t]}</span>
+              </div>
+            ))}
+            <div className="flex items-center gap-1">
+              <div className="w-px h-3.5 bg-white/70" />
+              <span className="text-text-secondary text-xs">{isHi ? 'अभी' : 'Now'}</span>
+            </div>
+          </div>
+
+          {/* Period rows */}
+          <div className="space-y-1.5">
+            {mahadashas.map((d, i) => {
+              const { tier, rupas } = getDashaStrength(d);
+              const name = d.planetName?.en || d.planet;
+              const displayName = isHi ? (d.planetName?.hi || name) : name;
+              const startY = new Date(d.startDate).getFullYear();
+              const endY = new Date(d.endDate).getFullYear();
+              const isPast = new Date(d.endDate) < now;
+              const isCurrent = new Date(d.startDate) <= now && new Date(d.endDate) >= now;
+              const forecast = getDashaForecast(d, tier);
+              const tierColor = tier === 'strong' ? 'text-green-400' : tier === 'weak' ? 'text-amber-400' : tier === 'node' ? 'text-purple-400' : 'text-gold-light';
+              return (
+                <div key={i} className={`rounded-lg px-3 py-2 ${isCurrent ? 'bg-gold-primary/8 border border-gold-primary/20' : 'bg-white/[0.02]'} ${isPast ? 'opacity-35' : ''}`}>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: TIER_COLORS[tier] }} />
+                    <span className={`font-medium text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>{displayName}</span>
+                    <span className="text-text-secondary/50 text-xs">{startY}–{endY}</span>
+                    {isCurrent && (
+                      <span className="text-xs bg-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full font-medium">{isHi ? 'अभी' : 'Now'}</span>
+                    )}
+                    <span className={`text-xs ml-auto ${tierColor}`}>
+                      {TIER_LABELS[tier]}{rupas > 0 ? ` · ${rupas.toFixed(1)}R` : ''}
+                    </span>
+                  </div>
+                  {!isPast && forecast && (
+                    <p className="text-text-secondary/65 text-xs mt-1 pl-4 leading-relaxed">{forecast}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Chart Captain */}
       {strongest && (
-        <SectionCard border="border-emerald-500/15">
-          <SectionHeading>{isHi ? 'आपकी कुंडली का सेनापति' : 'Your Chart Captain'}</SectionHeading>
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+            {isHi ? 'आपकी कुंडली का सेनापति' : 'Your Chart Captain'}
+          </div>
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-lg shrink-0">
-              1
+            <div className="w-8 h-8 rounded-full bg-green-500/15 flex items-center justify-center shrink-0">
+              <span className="text-green-400 font-bold text-sm">1</span>
             </div>
-            <div>
-              <p className="text-sm text-gray-200 leading-relaxed">
-                {isHi
-                  ? `आपका सबसे शक्तिशाली ग्रह ${pName(strongest.planetId, true)} है जिसके ${strongest.rupas.toFixed(2)} रूपा हैं। यह ग्रह आपके जीवन पर प्रभुत्व रखता है: ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''}। ${pName(strongest.planetId, true)} की महादशा में प्रबल परिणाम अपेक्षित हैं।`
-                  : `Your strongest planet is ${pName(strongest.planetId, false)} with ${strongest.rupas.toFixed(2)} Rupas. This planet's themes dominate your life: ${PLANET_THEMES[strongest.planetId]?.strong ?? ''}. During ${pName(strongest.planetId, false)}'s Mahadasha, expect amplified results.`}
-              </p>
-            </div>
-          </div>
-        </SectionCard>
-      )}
-
-      {/* Weak planets */}
-      {weakPlanets.length > 0 && (
-        <SectionCard border="border-amber-500/15">
-          <SectionHeading>{isHi ? 'सहायता चाहिए' : 'Planets Needing Support'}</SectionHeading>
-          <div className="space-y-3">
-            {weakPlanets.map(wp => (
-              <div key={wp.planetId} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
-                <p className="text-sm text-gray-200">
-                  <span className="font-semibold text-amber-400">{pName(wp.planetId, isHi)}</span>
-                  {isHi
-                    ? ` कमजोर है (${wp.rupas.toFixed(2)} रूपा)। इसका अर्थ है कि ${pName(wp.planetId, true)} के कारकत्व (जिन भावों का स्वामी है) में चुनौतियां आ सकती हैं।`
-                    : ` is weak (${wp.rupas.toFixed(2)} Rupas). This means ${pName(wp.planetId, false)}'s significations (houses it rules) may face challenges.`}
-                </p>
-                <p className="text-xs text-emerald-400 mt-1">
-                  {isHi ? 'उपाय: ' : 'Consider: '}
-                  {isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
-                </p>
+            <div className="flex-1">
+              <div className="flex items-center gap-2 flex-wrap mb-2">
+                <span className="text-gold-light font-semibold text-sm">{pName(strongest.planetId, isHi)}</span>
+                <span className="text-xs bg-green-500/15 text-green-400 px-2 py-0.5 rounded-full font-medium">{strongest.rupas.toFixed(2)} Rupas</span>
               </div>
-            ))}
+              <p className="text-text-secondary text-sm leading-relaxed mb-2">
+                {isHi
+                  ? `${pName(strongest.planetId, true)} आपकी सर्वाधिक बलवान ग्रह है। इसके विषय — ${PLANET_THEMES[strongest.planetId]?.strongHi ?? ''} — आपके जीवन पर प्रभुत्व रखते हैं।`
+                  : `${pName(strongest.planetId, false)} is your most powerful planet. Its themes — ${PLANET_THEMES[strongest.planetId]?.strong ?? ''} — run through your life most powerfully.`}
+              </p>
+              {PLANET_DASHA_FORECAST[strongest.planetId] && (
+                <p className="text-gold-primary/80 text-xs italic">
+                  {isHi ? 'इसकी महादशा में: ' : 'During its Mahadasha: '}
+                  {isHi ? PLANET_DASHA_FORECAST[strongest.planetId].strongHi : PLANET_DASHA_FORECAST[strongest.planetId].strongEn}
+                </p>
+              )}
+            </div>
           </div>
-        </SectionCard>
+        </div>
       )}
 
-      {/* Strength ranking */}
-      <SectionCard>
-        <SectionHeading>{isHi ? 'बल क्रमांकन' : 'Strength Ranking'}</SectionHeading>
-        <div className="space-y-2">
+      {/* Upcoming turning points */}
+      {(upcomingStrong.length > 0 || upcomingWeak.length > 0) && (
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
+            {isHi ? 'आने वाले महत्वपूर्ण काल' : 'Upcoming Key Periods'}
+          </div>
+          <div className="space-y-2">
+            {upcomingStrong.slice(0, 2).map((d, i) => {
+              const name = d.planetName?.en || d.planet;
+              const displayName = isHi ? (d.planetName?.hi || name) : name;
+              const id = PLANET_ALL_NAMES.indexOf(name);
+              const startY = new Date(d.startDate).getFullYear();
+              const endY = new Date(d.endDate).getFullYear();
+              return (
+                <div key={`s${i}`} className="flex items-start gap-2 p-2.5 rounded-lg bg-green-500/5 border border-green-500/10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 mt-1.5 shrink-0" />
+                  <div>
+                    <span className="text-green-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
+                    <span className="text-text-secondary text-xs ml-2">{isHi ? '— सुनहरा काल' : '— Golden period'}</span>
+                    {PLANET_DASHA_FORECAST[id] && (
+                      <p className="text-text-secondary/65 text-xs mt-0.5">
+                        {isHi ? PLANET_DASHA_FORECAST[id].actionHi : PLANET_DASHA_FORECAST[id].actionEn}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+            {upcomingWeak.slice(0, 2).map((d, i) => {
+              const name = d.planetName?.en || d.planet;
+              const displayName = isHi ? (d.planetName?.hi || name) : name;
+              const id = PLANET_ALL_NAMES.indexOf(name);
+              const startY = new Date(d.startDate).getFullYear();
+              const endY = new Date(d.endDate).getFullYear();
+              return (
+                <div key={`w${i}`} className="flex items-start gap-2 p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                  <div>
+                    <span className="text-amber-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
+                    <span className="text-text-secondary text-xs ml-2">{isHi ? '— सावधान रहें' : '— Proceed with care'}</span>
+                    {PLANET_REMEDIES[id] && (
+                      <p className="text-text-secondary/65 text-xs mt-0.5">
+                        {isHi ? `उपाय: ${PLANET_REMEDIES[id].hi}` : `Remedy: ${PLANET_REMEDIES[id].en}`}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Planets needing support */}
+      {weakPlanets.length > 0 && (
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
+            {isHi ? 'सहायता चाहिए' : 'Planets Needing Support'}
+          </div>
+          <div className="space-y-2">
+            {weakPlanets.map(wp => {
+              const matchName = PLANET_NAMES_EN[wp.planetId];
+              const dashaForPlanet = mahadashas.find(d => (d.planetName?.en || d.planet) === matchName);
+              const dashaDates = dashaForPlanet
+                ? ` (${new Date(dashaForPlanet.startDate).getFullYear()}–${new Date(dashaForPlanet.endDate).getFullYear()})`
+                : '';
+              return (
+                <div key={wp.planetId} className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/10">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-amber-400 font-semibold text-sm">{pName(wp.planetId, isHi)}</span>
+                    <span className="text-amber-400/60 text-xs">{wp.rupas.toFixed(2)} Rupas{dashaDates}</span>
+                  </div>
+                  <p className="text-text-secondary text-xs leading-relaxed mb-1.5">
+                    {isHi ? PLANET_THEMES[wp.planetId]?.weakHi : PLANET_THEMES[wp.planetId]?.weak}
+                  </p>
+                  <p className="text-gold-primary/70 text-xs italic">
+                    {isHi ? 'उपाय: ' : 'Remedy: '}{isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Strength ranking with bar chart */}
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
+          {isHi ? 'सम्पूर्ण बल क्रमांकन' : 'Full Strength Ranking'}
+        </div>
+        <div className="space-y-2.5">
           {sorted.map((sb, i) => {
             const isStrong = sb.rupas >= 1.0;
             const themes = PLANET_THEMES[sb.planetId];
             const implication = isStrong
               ? (isHi ? themes?.strongHi : themes?.strong)
               : (isHi ? themes?.weakHi : themes?.weak);
+            const barW = Math.min(100, (sb.rupas / 2.5) * 100);
             return (
-              <div key={sb.planetId} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
-                <span className="w-6 text-center text-xs text-gray-500 font-mono">{i + 1}</span>
-                <span className={`w-20 font-semibold text-sm ${isStrong ? 'text-emerald-400' : 'text-amber-400'}`}>
-                  {pName(sb.planetId, isHi)}
-                </span>
-                <span className="w-16 text-xs text-gray-400 font-mono">{sb.rupas.toFixed(2)} R</span>
-                <span className="text-xs text-gray-400 flex-1">{implication}</span>
+              <div key={sb.planetId}>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 text-center text-xs text-text-secondary/40 font-mono">{i + 1}</span>
+                  <span className={`w-16 font-semibold text-sm ${isStrong ? 'text-green-400' : 'text-amber-400'}`}>
+                    {pName(sb.planetId, isHi)}
+                  </span>
+                  <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: `${barW}%`, backgroundColor: isStrong ? '#22c55e' : '#f59e0b' }} />
+                  </div>
+                  <span className="text-xs text-text-secondary/60 font-mono w-12 text-right">{sb.rupas.toFixed(2)} R</span>
+                </div>
+                <p className="text-text-secondary/55 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>
               </div>
             );
           })}
         </div>
-      </SectionCard>
+      </div>
     </div>
   );
 }

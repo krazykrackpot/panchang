@@ -287,12 +287,37 @@ export default function KundaliPage() {
       const isActive = delta <= 5 || delta >= 355;
       if (isActive) delta = 0;
       const daysAway = isActive ? 0 : delta / Math.abs(speed);
-      const nextDate = new Date();
-      nextDate.setDate(nextDate.getDate() + Math.round(daysAway));
-      const mY = nextDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-      const mYHi = nextDate.toLocaleDateString('hi-IN', { month: 'long', year: 'numeric' });
-      const label = isActive ? 'Active now!' : daysAway < 30 ? `~${Math.round(daysAway)} days` : mY;
-      const labelHi = isActive ? 'अभी सक्रिय!' : daysAway < 30 ? `~${Math.round(daysAway)} दिन` : mYHi;
+      const centerDate = new Date();
+      centerDate.setDate(centerDate.getDate() + Math.round(daysAway));
+
+      // Window = ±5° around target. halfWindowDays = 5 / speed.
+      const halfWindowDays = Math.round(5 / Math.abs(speed));
+      const showRange = halfWindowDays >= 7; // skip range for Sun (~5d) and Moon (~9h)
+      const fmtShort = (d: Date, loc: string) => d.toLocaleDateString(loc, { month: 'short', year: 'numeric' });
+
+      let label: string;
+      let labelHi: string;
+      if (isActive) {
+        // Show how long the window remains
+        if (showRange) {
+          const exitDate = new Date();
+          exitDate.setDate(exitDate.getDate() + halfWindowDays);
+          label   = `Active – ${fmtShort(exitDate, 'en-US')}`;
+          labelHi = `सक्रिय – ${fmtShort(exitDate, 'hi-IN')}`;
+        } else {
+          label = 'Active now!'; labelHi = 'अभी सक्रिय!';
+        }
+      } else if (daysAway < 30) {
+        label = `~${Math.round(daysAway)} days`; labelHi = `~${Math.round(daysAway)} दिन`;
+      } else if (showRange) {
+        const startDate = new Date(); startDate.setDate(startDate.getDate() + Math.max(0, Math.round(daysAway - halfWindowDays)));
+        const endDate   = new Date(); endDate.setDate(endDate.getDate()   + Math.round(daysAway + halfWindowDays));
+        label   = `${fmtShort(startDate,'en-US')} – ${fmtShort(endDate,'en-US')}`;
+        labelHi = `${fmtShort(startDate,'hi-IN')} – ${fmtShort(endDate,'hi-IN')}`;
+      } else {
+        label   = centerDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        labelHi = centerDate.toLocaleDateString('hi-IN', { month: 'long', year: 'numeric' });
+      }
       return { label, labelHi, daysAway: Math.round(daysAway), isActive, planetName: PLANET_NAMES_EN[pid] || '', period: PERIOD_YEARS[pid] || '' };
     };
 

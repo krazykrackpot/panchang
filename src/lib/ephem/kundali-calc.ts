@@ -20,6 +20,7 @@ import { calculateNarayanaDasha, calculateShoolaDasha, calculateSthiraDasha, cal
 import { calculateAvasthas } from '@/lib/kundali/avasthas';
 import { calculateArgala } from '@/lib/kundali/argala';
 import { calculateSphutas } from '@/lib/kundali/sphutas';
+import { detectGrahaYuddha } from '@/lib/kundali/graha-yuddha';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -987,6 +988,9 @@ export function generateKundali(birthData: BirthData): KundaliData {
       const bbSign = Math.floor(mid / 30) + 1;
       return { longitude: mid, sign: bbSign, degree: formatDegrees(mid % 30) };
     })(),
+    grahaYuddha: detectGrahaYuddha(
+      planets.map(p => ({ id: p.planet.id, longitude: p.longitude, latitude: p.latitude }))
+    ),
     sphutas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const jupP = planets.find(p => p.planet.id === 4);

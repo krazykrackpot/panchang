@@ -123,6 +123,7 @@ export interface KundaliData {
   argala?: import('@/lib/kundali/argala').ArgalaResult[];
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
   bhriguBindu?: BhriguBindu;
+  grahaYuddha?: import('@/lib/kundali/graha-yuddha').GrahaYuddhaResult[];
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };

@@ -4,10 +4,11 @@ import { useMemo, useRef, useEffect, useState } from 'react';
 import type { KundaliData } from '@/types/kundali';
 
 // ── Layout constants ──────────────────────────────────────────────────────────
-const PX = 30;        // pixels per year
-const ML = 72;        // left margin (track labels)
+const PX = 30;         // pixels per year
+const ML = 0;          // no left margin in SVG — labels are in a fixed panel outside
+const LABEL_W = 72;    // fixed labels panel width
 const YEARS = 90;
-const TW = ML + PX * YEARS + 32;
+const TW = PX * YEARS + 32;
 
 // Track layout: y = top of track, h = height
 const T = {
@@ -120,12 +121,32 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
         ))}
       </div>
 
-      {/* Scrollable SVG timeline */}
-      <div
-        ref={scrollRef}
-        className="overflow-x-auto rounded-xl border border-gold-primary/10"
-        style={{ background: '#070a1a' }}
-      >
+      {/* Timeline: fixed labels + scrollable SVG */}
+      <div className="flex rounded-xl border border-gold-primary/10 overflow-hidden" style={{ background: '#070a1a' }}>
+
+        {/* ── Fixed labels panel (never scrolls) ── */}
+        <div style={{ width: LABEL_W, minWidth: LABEL_W, height: TH, position: 'relative', flexShrink: 0, borderRight: '1px solid rgba(255,255,255,0.05)', zIndex: 2, background: '#070a1a' }}>
+          {([
+            { y: T.dasha.y + T.dasha.h / 2,        en: 'Dasha',     hi: 'दशा' },
+            { y: T.sadesati.y + T.sadesati.h / 2,   en: '♄ Transit', hi: '♄ गोचर' },
+            { y: T.yoga.y + T.yoga.h / 2,           en: 'Yogas',     hi: 'योग' },
+            { y: T.jupiter.y + T.jupiter.h / 2,     en: '♃ Transit', hi: '♃ गोचर' },
+            { y: T.saturn.y + T.saturn.h / 2,       en: '♄ ◉ Rahu',  hi: '♄ ◉ राहु' },
+            { y: T.ashtaka.y + T.ashtaka.h / 2,     en: 'SAV',       hi: 'अष्ट' },
+            { y: T.synthesis.y + T.synthesis.h / 2, en: 'Quality',   hi: 'गुण' },
+            { y: T.ageRuler.y + T.ageRuler.h / 2,   en: 'Age',       hi: 'आयु' },
+          ] as { y: number; en: string; hi: string }[]).map((lbl, i) => (
+            <div key={i} style={{ position: 'absolute', top: lbl.y - 5, right: 6, lineHeight: '11px', color: '#6a6055', textAlign: 'right', fontSize: 9, fontFamily: 'system-ui' }}>
+              {isHi ? lbl.hi : lbl.en}
+            </div>
+          ))}
+        </div>
+
+        {/* ── Scrollable SVG ── */}
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto flex-1"
+        >
         <svg
           width={TW} height={TH}
           style={{ display: 'block', minWidth: TW }}
@@ -170,21 +191,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
             );
           })}
 
-          {/* ── Track labels ──────────────────────────────────────────────── */}
-          {[
-            { y: T.dasha.y + T.dasha.h / 2,    en: 'Dasha',         hi: 'दशा' },
-            { y: T.sadesati.y + T.sadesati.h / 2, en: '♄ Transit',  hi: '♄ गोचर' },
-            { y: T.yoga.y + T.yoga.h / 2,       en: 'Yogas',         hi: 'योग' },
-            { y: T.jupiter.y + T.jupiter.h / 2, en: '♃ Transit',    hi: '♃ गोचर' },
-            { y: T.saturn.y + T.saturn.h / 2,   en: '♄ ◉ Rahu',     hi: '♄ ◉ राहु' },
-            { y: T.ashtaka.y + T.ashtaka.h / 2, en: 'SAV', hi: 'अष्ट' },
-            { y: T.synthesis.y + T.synthesis.h / 2, en: 'Quality', hi: 'गुण' },
-          ].map((lbl, i) => (
-            <text key={i} x={ML - 6} y={lbl.y + 4} textAnchor="end"
-              fontSize="9" fill="#6a6055" fontFamily="system-ui">
-              {isHi ? lbl.hi : lbl.en}
-            </text>
-          ))}
+          {/* Track labels are in the fixed panel outside the SVG */}
 
           {/* ── Top year ruler ─────────────────────────────────────────────── */}
           {Array.from({ length: YEARS + 1 }, (_, i) => {
@@ -463,9 +470,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
               </g>
             );
           })}
-          {/* "Age" label */}
-          <text x={ML - 6} y={T.ageRuler.y + T.ageRuler.h - 4} textAnchor="end"
-            fontSize="9" fill="#6a6055" fontFamily="system-ui">{isHi ? 'आयु' : 'Age'}</text>
+          {/* "Age" label is in the fixed labels panel */}
 
           {/* ── Today vertical line ───────────────────────────────────────── */}
           {data.todayX >= ML && data.todayX <= TW - 4 && (
@@ -491,7 +496,8 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
             </g>
           )}
         </svg>
-      </div>
+        </div> {/* end scrollable div */}
+      </div> {/* end flex container */}
 
       {/* ── Key Periods Summary ──────────────────────────────────────────────── */}
       <KeyPeriodsSummary data={data} isHi={isHi} isDevanagari={isDevanagari} headingFont={headingFont} />
@@ -750,7 +756,7 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   const todayYear = toFracYear(today);
   const birthDate = new Date(kundali.birthData.date);
   const birthYear = toFracYear(birthDate);
-  const todayX = ML + (todayYear - birthYear) * PX;
+  const todayX = (todayYear - birthYear) * PX;
 
   // ── Dasha bands ────────────────────────────────────────────────────────────
   const mahaDashas = kundali.dashas.filter(d => d.level === 'maha');

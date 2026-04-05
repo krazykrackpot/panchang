@@ -1282,8 +1282,8 @@ export default function KundaliPage() {
                     ? 'आपकी कुण्डली के सभी ग्रह समान रूप से शक्तिशाली नहीं होते। षड्बल 6 स्रोतों से प्रत्येक ग्रह की शक्ति मापता है: स्थानीय (कौन सी राशि), दिशात्मक (कौन सा भाव), कालिक (जन्म का समय), गतिज (गति), नैसर्गिक (जन्मजात शक्ति), और दृग् (अन्य ग्रहों का प्रभाव)। 1.0 रूप से ऊपर अंक पाने वाला ग्रह पर्याप्त बलवान है। उससे नीचे वह अपने वादे पूरे करने में संघर्ष करता है। सबसे बलवान ग्रह अक्सर आपके प्रमुख व्यक्तित्व लक्षण को परिभाषित करता है।'
                     : 'Not all planets in your chart are equally powerful. Shadbala measures each planet\'s strength from 6 sources: positional (which sign), directional (which house), temporal (time of birth), motional (speed), natural (inherent strength), and aspectual (other planets\' influence). A planet scoring above 1.0 Rupa is adequately strong. Below that, it struggles to deliver its promises. The strongest planet often defines your dominant personality trait.'}
                 </InfoBlock>
-                <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
                 <ShadbalaInterpretation shadbala={kundali.fullShadbala} planets={kundali.planets} dashas={kundali.dashas || []} locale={locale} />
+                <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
               </div>
             </PaywallGate>
           )}
@@ -4437,33 +4437,6 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
         </table>
       </div>
 
-      {/* Strength Ratio Bar Chart */}
-      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
-        <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-4 font-bold text-center" style={bodyFont}>
-          {locale === 'en' ? 'Strength Ratio (Min. Required = 1.0)' : 'बल अनुपात (न्यूनतम = 1.0)'}
-        </h4>
-        <div className="space-y-3">
-          {shadbala.map(s => {
-            const label = PLANET_LABELS[s.planet] || { en: s.planet, hi: s.planet };
-            const pct = Math.min(100, (s.strengthRatio / 2) * 100);
-            const color = s.strengthRatio >= 1.5 ? '#4ade80' : s.strengthRatio >= 1.0 ? '#d4a853' : '#f87171';
-            return (
-              <div key={s.planetId} className="flex items-center gap-3">
-                <div className="w-20 text-right text-xs text-gold-light" style={bodyFont}>{label[locale === 'sa' ? 'hi' : locale]}</div>
-                <div className="flex-1 bg-bg-primary/60 rounded-full h-5 overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
-                </div>
-                <div className="w-14 text-right text-xs font-mono" style={{ color }}>{s.strengthRatio.toFixed(2)}</div>
-              </div>
-            );
-          })}
-          {/* Min line indicator */}
-          <div className="relative mt-1">
-            <div className="absolute left-[calc(50%+40px)] top-0 w-px h-3 bg-red-400/50" />
-            <p className="text-center text-xs text-red-400/50 ml-20">{locale === 'en' ? '1.0 = minimum adequate' : '1.0 = पर्याप्त'}</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -531,32 +531,51 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
         </div>
       )}
 
-      {/* Strength ranking with bar chart */}
+      {/* Combined Strength Ranking + Ratio chart */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
-        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3">
-          {isHi ? 'सम्पूर्ण बल क्रमांकन' : 'Full Strength Ranking'}
+        <div className="flex items-center justify-between mb-1">
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold">
+            {isHi ? 'बल क्रमांकन — अनुपात सहित' : 'Strength Ranking & Ratio'}
+          </div>
+          <div className="text-text-secondary/40 text-xs font-mono">
+            {isHi ? 'न्यूनतम = 1.0' : 'Min. = 1.0'}
+          </div>
         </div>
-        <div className="space-y-2.5">
+        {/* Legend */}
+        <div className="flex gap-3 mb-3 text-[10px]">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" />{isHi ? 'प्रबल ≥1.5' : 'Strong ≥1.5'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />{isHi ? 'पर्याप्त ≥1.0' : 'Adequate ≥1.0'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" />{isHi ? 'दुर्बल <1.0' : 'Weak <1.0'}</span>
+        </div>
+        <div className="space-y-3">
           {sorted.map((sb, i) => {
-            const isStrong = sb.rupas >= 1.0;
+            const tier = sb.strengthRatio >= 1.5 ? 'strong' : sb.strengthRatio >= 1.0 ? 'adequate' : 'weak';
+            const barColor = tier === 'strong' ? '#4ade80' : tier === 'adequate' ? '#d4a853' : '#f87171';
+            // Bar represents ratio capped at 2.0 so 1.0 = 50%
+            const ratioBarW = Math.min(100, (sb.strengthRatio / 2.0) * 100);
             const themes = PLANET_THEMES[sb.planetId];
-            const implication = isStrong
+            const implication = tier !== 'weak'
               ? (isHi ? themes?.strongHi : themes?.strong)
               : (isHi ? themes?.weakHi : themes?.weak);
-            const barW = Math.min(100, (sb.rupas / 2.5) * 100);
             return (
               <div key={sb.planetId}>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 text-center text-xs text-text-secondary/40 font-mono">{i + 1}</span>
-                  <span className={`w-16 font-semibold text-sm ${isStrong ? 'text-green-400' : 'text-amber-400'}`}>
+                  <span className="w-4 text-center text-[10px] text-text-secondary/40 font-mono flex-shrink-0">{i + 1}</span>
+                  <span className="w-16 font-semibold text-sm flex-shrink-0" style={{ color: barColor }}>
                     {pName(sb.planetId, isHi)}
                   </span>
-                  <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full" style={{ width: `${barW}%`, backgroundColor: isStrong ? '#22c55e' : '#f59e0b' }} />
+                  {/* Bar with 1.0 threshold at 50% */}
+                  <div className="flex-1 relative h-2 bg-white/5 rounded-full overflow-visible">
+                    <div className="h-full rounded-full" style={{ width: `${ratioBarW}%`, backgroundColor: barColor, opacity: 0.85 }} />
+                    {/* 1.0 line at exactly 50% */}
+                    <div className="absolute top-0 bottom-0 w-px bg-white/30" style={{ left: '50%' }} />
                   </div>
-                  <span className="text-xs text-text-secondary/60 font-mono w-12 text-right">{sb.rupas.toFixed(2)} R</span>
+                  <span className="text-[11px] font-mono flex-shrink-0 w-10 text-right" style={{ color: barColor }}>{sb.strengthRatio.toFixed(2)}</span>
+                  <span className="text-[10px] text-text-secondary/40 font-mono flex-shrink-0 w-12 text-right">{sb.rupas.toFixed(2)}R</span>
                 </div>
-                <p className="text-text-secondary/55 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>
+                {implication && (
+                  <p className="text-text-secondary/50 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>
+                )}
               </div>
             );
           })}

@@ -361,6 +361,32 @@ export default function SadeSatiPage() {
           <motion.div {...fadeUp} exit={{ opacity: 0 }}>
             <GoldDivider />
 
+            {/* Ashtama Shani Warning — Saturn in 8th from natal Moon */}
+            {(() => {
+              if (!moonRashi || !saturnNow.sign) return null;
+              const eighthFromMoon = ((moonRashi - 1 + 7) % 12) + 1;
+              const isAshtamaShani = saturnNow.sign === eighthFromMoon;
+              if (!isAshtamaShani) return null;
+              const saturnSignNm = RASHIS.find(r => r.id === saturnNow.sign)?.name;
+              return (
+                <div className="my-6 rounded-2xl border-2 border-red-700/50 bg-gradient-to-br from-red-900/20 via-red-950/10 to-transparent p-5 text-center">
+                  <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
+                    {locale === 'en' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
+                  </div>
+                  <div className="text-red-300 text-xl font-bold mb-2" style={headingFont}>
+                    {locale === 'en'
+                      ? `Saturn in your 8th sign (${saturnSignNm?.[lk as keyof typeof saturnSignNm] || ''})`
+                      : `शनि आपकी ${saturnSignNm?.[lk as keyof typeof saturnSignNm] || ''} राशि में — अष्टम स्थान`}
+                  </div>
+                  <p className="text-text-secondary text-sm max-w-xl mx-auto">
+                    {locale === 'en'
+                      ? 'Ashtama Shani — Saturn transiting the 8th sign from your natal Moon — is considered more severe than individual Sade Sati phases. This 2.5-year period brings deep transformation, unexpected challenges, and intensified karmic lessons in health, longevity, and hidden matters. Focus on discipline, avoid impulsive decisions, and prioritise spiritual practice.'
+                      : 'अष्टम शनि — शनि का जन्म चन्द्र राशि से 8वीं राशि में गोचर — साढ़े साती के व्यक्तिगत चरणों से भी अधिक कष्टप्रद माना जाता है। यह 2.5 वर्ष की अवधि स्वास्थ्य, आयु और छिपे विषयों में गहन परिवर्तन, अप्रत्याशित चुनौतियाँ लाती है। अनुशासन पर ध्यान दें, आवेगी निर्णयों से बचें, आध्यात्मिक साधना बढ़ाएँ।'}
+                  </p>
+                </div>
+              );
+            })()}
+
             {/* 1. Status Banner */}
             {analysis.isActive ? (
               <div className="my-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5 md:p-8 border-2 border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent text-center">

@@ -133,6 +133,9 @@ function PlanetDetailRow({ planet: p, locale, isDevanagari }: { planet: PlanetPo
             {p.isExalted && <span className="text-emerald-400 text-xs font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded">{locale === 'en' ? 'Exalted' : 'उच्च'}</span>}
             {p.isDebilitated && <span className="text-orange-400 text-xs font-bold px-1.5 py-0.5 bg-orange-500/10 rounded">{locale === 'en' ? 'Debilitated' : 'नीच'}</span>}
             {p.isOwnSign && <span className="text-blue-400 text-xs font-bold px-1.5 py-0.5 bg-blue-500/10 rounded">{locale === 'en' ? 'Own Sign' : 'स्वगृह'}</span>}
+            {p.isVargottama && <span className="text-gold-light text-xs font-bold px-1.5 py-0.5 bg-gold-primary/15 rounded border border-gold-primary/30" title={locale === 'en' ? 'Strength equal to double exaltation — same sign in D1 and D9' : 'वर्गोत्तम — D1 और D9 में एक ही राशि'}>Vgm</span>}
+            {p.isMrityuBhaga && <span className="text-rose-400 text-xs font-bold px-1.5 py-0.5 bg-rose-500/10 rounded" title={locale === 'en' ? 'At or near Mrityu Bhaga — dangerous degree, severely weakened' : 'मृत्यु भाग — खतरनाक अंश, बल में गिरावट'}>MB</span>}
+            {p.isPushkarNavamsha && <span className="text-sky-300 text-xs font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20" title={locale === 'en' ? 'Pushkar Navamsha — supremely auspicious navamsha position' : 'पुष्कर नवांश — अत्यंत शुभ नवांश स्थिति'}>PKN</span>}
           </div>
           <div className="text-text-secondary text-xs mt-0.5">
             <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.signName[locale]}</span>
@@ -875,6 +878,9 @@ export default function KundaliPage() {
                         {p.isExalted && <span className="text-emerald-400 text-xs font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded">{locale === 'en' ? 'Exalted' : 'उच्च'}</span>}
                         {p.isDebilitated && <span className="text-orange-400 text-xs font-bold px-1.5 py-0.5 bg-orange-500/10 rounded">{locale === 'en' ? 'Debilitated' : 'नीच'}</span>}
                         {p.isOwnSign && <span className="text-blue-400 text-xs font-bold px-1.5 py-0.5 bg-blue-500/10 rounded">{locale === 'en' ? 'Own Sign' : 'स्वगृह'}</span>}
+                        {p.isVargottama && <span className="text-gold-light text-xs font-bold px-1.5 py-0.5 bg-gold-primary/15 rounded border border-gold-primary/30" title={locale === 'en' ? 'Same sign in D1 & D9 — strength equal to double exaltation' : 'वर्गोत्तम — D1 और D9 में एक ही राशि'}>Vgm</span>}
+                        {p.isMrityuBhaga && <span className="text-rose-400 text-xs font-bold px-1.5 py-0.5 bg-rose-500/10 rounded" title={locale === 'en' ? 'At or near Mrityu Bhaga — dangerous degree, severely weakened' : 'मृत्यु भाग — खतरनाक अंश, बल में गिरावट'}>MB</span>}
+                        {p.isPushkarNavamsha && <span className="text-sky-300 text-xs font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20" title={locale === 'en' ? 'Pushkar Navamsha — supremely auspicious navamsha position' : 'पुष्कर नवांश — अत्यंत शुभ नवांश स्थिति'}>PKN</span>}
                       </div>
                       <div className="text-text-secondary text-sm mt-0.5 flex flex-wrap gap-x-4 gap-y-0.5">
                         <span>
@@ -1131,6 +1137,10 @@ export default function KundaliPage() {
                       const end = new Date(dasha.endDate);
                       const isCurrent = now >= start && now <= end;
                       const isPast = now > end;
+                      // Dasha Sandhi — within 3 months of boundary
+                      const THREE_MONTHS_MS = 90 * 24 * 3600 * 1000;
+                      const isEndingSoon = isCurrent && (end.getTime() - now.getTime()) <= THREE_MONTHS_MS;
+                      const isStartingSoon = !isCurrent && !isPast && (start.getTime() - now.getTime()) <= THREE_MONTHS_MS;
                       const planetEn = dasha.planetName?.en || dasha.planet || '';
                       const color = PLANET_COLORS[planetEn] || '#d4a853';
                       const meaning = DASHA_MEANING[planetEn];
@@ -1155,9 +1165,29 @@ export default function KundaliPage() {
                                 </span>
                                 <span className="text-text-secondary/50 text-xs">{durationYears} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
                                 {isCurrent && <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                                {(isEndingSoon || isStartingSoon) && (
+                                  <span className="px-2 py-0.5 bg-amber-500/20 text-amber-400 text-xs rounded-full font-bold border border-amber-500/30" title={locale === 'en' ? 'Dasha Sandhi — junction zone, 3-6 months of instability. Avoid major commitments.' : 'दशा संधि — अस्थिर काल, नए कार्यों से बचें'}>
+                                    {locale === 'en' ? 'Sandhi' : 'संधि'}
+                                  </span>
+                                )}
                               </div>
                               <span className="text-text-secondary text-xs font-mono">{dasha.startDate.substring(0, 7)} → {dasha.endDate.substring(0, 7)}</span>
                             </div>
+
+                            {/* Sandhi warning */}
+                            {(isEndingSoon || isStartingSoon) && (
+                              <div className="mt-2 ml-7 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
+                                <p className="text-amber-400 text-xs leading-relaxed">
+                                  {locale === 'en'
+                                    ? isEndingSoon
+                                      ? `Dasha Sandhi — this Mahadasha ends in ${Math.ceil((end.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. The junction zone brings instability; avoid irreversible decisions until the new dasha establishes.`
+                                      : `Dasha Sandhi — this Mahadasha begins in ${Math.ceil((start.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. Prepare for a significant shift in life themes.`
+                                    : isEndingSoon
+                                      ? `दशा संधि — यह महादशा ${Math.ceil((end.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} माह में समाप्त। संधि काल में महत्वपूर्ण निर्णय टालें।`
+                                      : `दशा संधि — यह महादशा ${Math.ceil((start.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} माह में प्रारम्भ। नए जीवन-विषयों की तैयारी करें।`}
+                                </p>
+                              </div>
+                            )}
 
                             {/* Dasha meaning */}
                             {meaning && !isPast && (
@@ -1806,6 +1836,27 @@ export default function KundaliPage() {
                       </div>
                     )}
                   </div>
+                </div>
+              )}
+
+              {/* Bhrigu Bindu — midpoint of Rahu and Moon */}
+              {kundali.bhriguBindu && (
+                <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-5">
+                  <div className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-2">
+                    {isHi ? 'भृगु बिंदु (Uttara Kalamrita)' : 'Bhrigu Bindu (Uttara Kalamrita)'}
+                  </div>
+                  <div className="flex items-center gap-4 mb-3">
+                    <div>
+                      <span className="text-gold-light font-bold text-2xl font-mono">{kundali.bhriguBindu.degree}</span>
+                      <span className="text-purple-300 text-sm ml-2">{signName(kundali.bhriguBindu.sign)}</span>
+                    </div>
+                    <div className="text-text-secondary text-xs">{kundali.bhriguBindu.longitude.toFixed(2)}°</div>
+                  </div>
+                  <p className="text-text-secondary/80 text-xs leading-relaxed">
+                    {isHi
+                      ? 'भृगु बिंदु = राहु और चन्द्र का मध्यबिंदु। यह आपके जीवन का सर्वाधिक संवेदनशील बिंदु है। जब बृहस्पति इस बिंदु से गुजरे, बड़ी शुभ घटनाएँ होती हैं। शनि का गोचर चुनौती लाता है।'
+                      : 'Midpoint of natal Rahu and Moon — the most sensitive accumulation point in your chart. Jupiter transiting within 5° of Bhrigu Bindu triggers major positive events. Saturn transiting this point brings a challenge period requiring discipline and patience.'}
+                  </p>
                 </div>
               )}
 

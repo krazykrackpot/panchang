@@ -661,6 +661,84 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Navamsha
   const navamshaChart = calculateNavamsha(planets, siderealAsc);
 
+  // Vargottama — planet in same sign in D1 and D9
+  const navamshaSignMap = new Map<number, number>(); // planetId -> navamsha sign (0-based)
+  navamshaChart.houses.forEach((planetIds, signIdx) => {
+    planetIds.forEach((id) => navamshaSignMap.set(id, signIdx));
+  });
+  planets.forEach((p) => {
+    const d1Sign = p.sign - 1; // 1-based to 0-based
+    const d9Sign = navamshaSignMap.get(p.planet.id);
+    p.isVargottama = d9Sign !== undefined && d1Sign === d9Sign;
+  });
+
+  // Mrityu Bhaga — one dangerous degree per sign per planet (Narada Purana/BPHS tradition)
+  // [planetId][signIndex 0-11] = mrityu bhaga degree within sign
+  const MRITYU_BHAGA: number[][] = [
+    // Sun:  Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        16,  6, 19, 26, 28, 22,  9, 19, 29,  3, 20, 23 ],
+    // Moon: Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        26,  9,  3,  5, 16, 22, 28, 27,  1, 22, 21, 28 ],
+    // Mars: Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        17, 29,  4,  6, 13, 20, 29, 28, 22,  8, 11, 20 ],
+    // Merc: Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        22, 17, 29,  9, 22, 24, 16,  6, 14, 21,  7, 23 ],
+    // Jup:  Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        18, 10, 23, 17,  2, 27, 21,  6, 22, 11, 17,  4 ],
+    // Ven:  Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [        23,  9, 28, 16, 11,  9, 29, 18, 20,  2, 24, 26 ],
+    // Sat:  Ar  Ta  Ge  Ca  Le  Vi  Li  Sc  Sa  Cp  Aq  Pi
+    [         8, 17, 26, 23, 12, 19,  7, 23, 20, 24, 29, 11 ],
+    // Rahu: same as Saturn (traditional texts use Sat's table for nodes)
+    [         8, 17, 26, 23, 12, 19,  7, 23, 20, 24, 29, 11 ],
+    // Ketu: same as Mars
+    [        17, 29,  4,  6, 13, 20, 29, 28, 22,  8, 11, 20 ],
+  ];
+  planets.forEach((p) => {
+    const signIdx = p.sign - 1; // 0-based
+    const degreeInSign = p.longitude % 30;
+    const mrityu = MRITYU_BHAGA[p.planet.id]?.[signIdx];
+    p.isMrityuBhaga = mrityu !== undefined && Math.abs(degreeInSign - mrityu) <= 1;
+  });
+
+  // Pushkar Navamsha — 24 auspicious navamsha positions (Saravali tradition)
+  // Each navamsha is encoded as: signIdx(0-11) * 9 + navamshaIdx(0-8)
+  // Aries d9-1, Aries d9-5, Taurus d9-5, Taurus d9-9, Gemini d9-3, Gemini d9-7,
+  // Cancer d9-1, Cancer d9-7, Leo d9-1, Leo d9-5, Virgo d9-3, Virgo d9-7,
+  // Libra d9-1, Libra d9-7, Scorpio d9-3, Scorpio d9-5, Sag d9-5, Sag d9-9,
+  // Cap d9-3, Cap d9-7, Aqu d9-1, Aqu d9-7, Pis d9-3, Pis d9-5
+  const PUSHKAR_NAV = new Set([
+    0,   // Aries(0) navamsha 1(0)
+    4,   // Aries(0) navamsha 5(4)
+    13,  // Taurus(1) navamsha 5(4)
+    17,  // Taurus(1) navamsha 9(8)
+    20,  // Gemini(2) navamsha 3(2)
+    24,  // Gemini(2) navamsha 7(6)
+    27,  // Cancer(3) navamsha 1(0)
+    33,  // Cancer(3) navamsha 7(6)
+    36,  // Leo(4) navamsha 1(0)
+    40,  // Leo(4) navamsha 5(4)
+    47,  // Virgo(5) navamsha 3(2)
+    51,  // Virgo(5) navamsha 7(6)
+    54,  // Libra(6) navamsha 1(0)
+    60,  // Libra(6) navamsha 7(6)
+    65,  // Scorpio(7) navamsha 3(2)
+    67,  // Scorpio(7) navamsha 5(4)
+    76,  // Sagittarius(8) navamsha 5(4)
+    80,  // Sagittarius(8) navamsha 9(8)
+    83,  // Capricorn(9) navamsha 3(2)
+    87,  // Capricorn(9) navamsha 7(6)
+    90,  // Aquarius(10) navamsha 1(0)
+    96,  // Aquarius(10) navamsha 7(6)
+    101, // Pisces(11) navamsha 3(2)
+    103, // Pisces(11) navamsha 5(4)
+  ]);
+  planets.forEach((p) => {
+    const signIdx = p.sign - 1; // 0-based
+    const navamshaIdx = Math.floor((p.longitude % 30) / (30 / 9)); // 0-8
+    p.isPushkarNavamsha = PUSHKAR_NAV.has(signIdx * 9 + navamshaIdx);
+  });
+
   // Bhav Chalit
   const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
 
@@ -897,6 +975,18 @@ export function generateKundali(birthData: BirthData): KundaliData {
     })(),
     avasthas: calculateAvasthas(planets),
     argala: calculateArgala(planets, ascSign),
+    bhriguBindu: (() => {
+      const rahuP = planets.find(p => p.planet.id === 7);
+      const moonP = planets.find(p => p.planet.id === 1);
+      if (!rahuP || !moonP) return undefined;
+      let mid = (rahuP.longitude + moonP.longitude) / 2;
+      // Handle wrap: if the arc between them is > 180°, take the other midpoint
+      const diff = Math.abs(rahuP.longitude - moonP.longitude);
+      if (diff > 180) { mid = (mid + 180) % 360; }
+      mid = ((mid % 360) + 360) % 360;
+      const bbSign = Math.floor(mid / 30) + 1;
+      return { longitude: mid, sign: bbSign, degree: formatDegrees(mid % 30) };
+    })(),
     sphutas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const jupP = planets.find(p => p.planet.id === 4);

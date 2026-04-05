@@ -886,6 +886,44 @@ export default function PanchangPage() {
               </motion.div>
             )}
 
+            {/* Amrit Siddhi Yoga banner */}
+            {panchang.amritSiddhiYoga && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+                <div className="rounded-2xl border-2 border-emerald-500/40 bg-gradient-to-r from-emerald-500/10 via-gold-primary/5 to-emerald-500/10 p-4 text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold">
+                      {locale === 'en' ? 'Amrit Siddhi Yoga' : 'अमृत सिद्धि योग'}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  </div>
+                  <div className="text-emerald-300 text-base font-bold">
+                    {locale === 'en' ? 'Supremely Auspicious Day' : 'अत्यंत शुभ दिन'}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-1">
+                    {locale === 'en'
+                      ? 'The Vara and Nakshatra combine for supreme auspiciousness — ideal for all important activities.'
+                      : 'वार और नक्षत्र का दिव्य संयोग — सभी महत्वपूर्ण कार्यों के लिए आदर्श।'}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Dagdha Tithi warning */}
+            {panchang.dagdhaTithi && (
+              <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-6 flex justify-center">
+                <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-rose-500/40 bg-rose-500/10">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                  <span className="text-rose-400 text-sm font-bold uppercase tracking-wider">
+                    {locale === 'en' ? 'Dagdha Tithi' : 'दग्ध तिथि'}
+                  </span>
+                  <span className="text-rose-400/70 text-xs">
+                    {locale === 'en' ? '· Avoid new beginnings' : '· नए कार्य वर्जित'}
+                  </span>
+                </div>
+              </motion.div>
+            )}
+
             {/* Auspicious timings grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {/* Brahma Muhurta */}
@@ -1133,6 +1171,20 @@ export default function PanchangPage() {
                     <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
                   ))}
                   <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Inauspicious — avoid all new work' : 'अशुभ — सभी नए कार्य टालें'}</div>
+                </motion.div>
+              )}
+
+              {/* Visha Ghatika — 25th Ghatika poison period */}
+              {panchang.vishaGhatika && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-700/30 p-3 sm:p-4 md:p-6 text-center bg-gradient-to-br from-red-700/5 to-transparent">
+                  <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {locale === 'en' ? 'Visha Ghatika' : 'विष घटी'}
+                  </div>
+                  <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start} — {panchang.vishaGhatika.end}</div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? '25th Ghatika — poison period, avoid all new activities' : '25वीं घटी — विष काल, सभी नए कार्य वर्जित'}
+                  </div>
                 </motion.div>
               )}
 

@@ -15,6 +15,7 @@ export interface ScoredTimeWindow {
   totalScore: number;
   breakdown: ScoreBreakdown;
   keyFactors: Trilingual[];
+  panchangaShuddhi?: number; // 0-5 count of favorable panchanga elements
 }
 
 export type ExtendedActivityId =

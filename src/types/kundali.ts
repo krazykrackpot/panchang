@@ -36,6 +36,15 @@ export interface PlanetPosition {
   isExalted: boolean;
   isDebilitated: boolean;
   isOwnSign: boolean;
+  isVargottama?: boolean;
+  isMrityuBhaga?: boolean;
+  isPushkarNavamsha?: boolean;
+}
+
+export interface BhriguBindu {
+  longitude: number;  // sidereal 0-360
+  sign: number;       // 1-12
+  degree: string;     // formatted
 }
 
 export interface DashaEntry {
@@ -113,6 +122,7 @@ export interface KundaliData {
   avasthas?: import('@/lib/kundali/avasthas').PlanetAvasthas[];
   argala?: import('@/lib/kundali/argala').ArgalaResult[];
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
+  bhriguBindu?: BhriguBindu;
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };

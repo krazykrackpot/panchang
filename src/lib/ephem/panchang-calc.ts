@@ -1127,6 +1127,44 @@ export function computePanchang(input: PanchangInput): PanchangData {
     });
   }
 
+  // ── Visha Ghatika — 25th Ghatika from sunrise is inauspicious (Muhurta Chintamani) ──
+  // 1 Ghatika = 24 minutes. 25th Ghatika starts 24 * 24 = 576 minutes after sunrise.
+  const vishaGhatikaStartUT = sunriseUT + 576 / 60; // hours
+  const vishaGhatikaEndUT   = vishaGhatikaStartUT + 24 / 60;
+  const vishaGhatika = {
+    start: formatTime(vishaGhatikaStartUT, tzOffset),
+    end: formatTime(vishaGhatikaEndUT, tzOffset),
+  };
+
+  // ── Dagdha Tithi — 7 "burnt" Tithi+Vara combos (Muhurta Chintamani) ──
+  // Inauspicious for new ventures: Chaturthi+Sun, Panchami+Mon, Saptami+Tue,
+  // Ashtami+Wed, Tritiya+Thu, Shashthi+Fri, Dvadashi+Sat
+  const DAGDHA_TITHI_TABLE: Record<number, number> = {
+    0: 4,   // Sunday + Chaturthi (4)
+    1: 5,   // Monday + Panchami (5)
+    2: 7,   // Tuesday + Saptami (7)
+    3: 8,   // Wednesday + Ashtami (8)
+    4: 3,   // Thursday + Tritiya (3)
+    5: 6,   // Friday + Shashthi (6)
+    6: 12,  // Saturday + Dvadashi (12)
+  };
+  const currentTithiNum = tithiResult.number > 15 ? tithiResult.number - 15 : tithiResult.number;
+  const dagdhaTithi = DAGDHA_TITHI_TABLE[weekday] === currentTithiNum;
+
+  // ── Amrit Siddhi Yoga — 7 supremely auspicious Vara+Nakshatra combos (Muhurta Deepika) ──
+  // Sunday+Hasta(13), Monday+Mrigashira(5), Tuesday+Ashwini(1),
+  // Wednesday+Anuradha(17), Thursday+Pushya(8), Friday+Revati(27), Saturday+Rohini(4)
+  const AMRIT_SIDDHI_TABLE: Record<number, number> = {
+    0: 13, // Sunday + Hasta
+    1: 5,  // Monday + Mrigashira
+    2: 1,  // Tuesday + Ashwini
+    3: 17, // Wednesday + Anuradha
+    4: 8,  // Thursday + Pushya
+    5: 27, // Friday + Revati
+    6: 4,  // Saturday + Rohini
+  };
+  const amritSiddhiYoga = AMRIT_SIDDHI_TABLE[weekday] === nakshatraNum;
+
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
@@ -1190,5 +1228,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     tamilYoga,
     mantriMandala,
     homahuti,
+    dagdhaTithi,
+    amritSiddhiYoga,
+    vishaGhatika,
   };
 }

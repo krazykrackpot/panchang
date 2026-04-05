@@ -276,6 +276,19 @@ export default function MuhurtaAIPage() {
                     <ScoreGauge score={top.breakdown.personalScore} label={t.personal} />
                   </div>
 
+                  {/* Panchanga Shuddhi Score */}
+                  {top.panchangaShuddhi !== undefined && (
+                    <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20">
+                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
+                      <span className={`font-bold text-sm ${top.panchangaShuddhi >= 4 ? 'text-emerald-400' : top.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>
+                        {top.panchangaShuddhi}/5
+                      </span>
+                      <span className="text-text-secondary/50 text-xs">
+                        {top.panchangaShuddhi === 5 ? (locale === 'en' ? '✦ Rare' : '✦ दुर्लभ') : top.panchangaShuddhi >= 4 ? (locale === 'en' ? '· Excellent' : '· उत्तम') : top.panchangaShuddhi >= 3 ? (locale === 'en' ? '· Acceptable' : '· स्वीकार्य') : (locale === 'en' ? '· Proceed with care' : '· सावधानी से')}
+                      </span>
+                    </div>
+                  )}
+
                   {/* Key Factors */}
                   {top.keyFactors.length > 0 && (
                     <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -296,6 +309,7 @@ export default function MuhurtaAIPage() {
                       <th className="text-left py-2 px-2">{t.time}</th>
                       <th className="text-left py-2 px-2">{t.score}</th>
                       <th className="text-left py-2 px-2">{t.panchang}</th>
+                      <th className="text-left py-2 px-2">{locale === 'en' ? 'Shuddhi' : 'शुद्धि'}</th>
                       <th className="text-left py-2 px-2">{t.transit}</th>
                       <th className="text-left py-2 px-2">{t.timing}</th>
                       <th className="text-left py-2 px-2">{t.keyFactors}</th>
@@ -309,6 +323,11 @@ export default function MuhurtaAIPage() {
                           <span className={`font-bold ${w.totalScore >= 70 ? 'text-green-400' : w.totalScore >= 50 ? 'text-yellow-400' : 'text-orange-400'}`}>{w.totalScore}</span>
                         </td>
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.panchangScore}</td>
+                        <td className="py-2 px-2">
+                          {w.panchangaShuddhi !== undefined && (
+                            <span className={`font-bold text-xs ${w.panchangaShuddhi >= 4 ? 'text-emerald-400' : w.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>{w.panchangaShuddhi}/5</span>
+                          )}
+                        </td>
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.transitScore}</td>
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.timingScore}</td>
                         <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{w.keyFactors.map(f => f[locale]).join(', ')}</td>

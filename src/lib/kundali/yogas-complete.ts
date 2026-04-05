@@ -133,7 +133,7 @@ function detectDoshaYogas(planets: PlanetData[], _ascSign: number): YogaComplete
     },
   });
 
-  // 2. Kala Sarpa Yoga
+  // 2. Kala Sarpa Yoga — with 12 sub-types based on Rahu's house
   const rahuLon = rahu.longitude;
   const ketuLon = ketu.longitude;
   const sevenPlanets = planets.filter(p => p.id >= 0 && p.id <= 6);
@@ -141,9 +141,29 @@ function detectDoshaYogas(planets: PlanetData[], _ascSign: number): YogaComplete
   const allBetweenReverse = sevenPlanets.every(p => isLongBetween(p.longitude, ketuLon, rahuLon));
   const ksPresent = allBetween || allBetweenReverse;
 
+  const KSY_TYPES: Record<number, { en: string; hi: string; sa: string; themeEn: string; themeHi: string }> = {
+    1:  { en: 'Anant',       hi: 'अनन्त',       sa: 'अनन्तः',       themeEn: 'Self-identity, health, and beginnings blocked by karmic debt',       themeHi: 'कर्मऋण से स्वास्थ्य और पहचान में बाधा' },
+    2:  { en: 'Kulika',      hi: 'कुलिक',       sa: 'कुलिकः',       themeEn: 'Wealth, speech, and family lineage carry karmic burdens',            themeHi: 'धन, वाणी और परिवार पर कर्म का बोझ' },
+    3:  { en: 'Vasuki',      hi: 'वासुकी',      sa: 'वासुकिः',      themeEn: 'Courage, siblings, and communication face karmic obstacles',          themeHi: 'साहस, भाई-बहन और संचार में बाधा' },
+    4:  { en: 'Shankhapala', hi: 'शंखपाल',      sa: 'शंखपालः',      themeEn: 'Home, mother, and emotional security are karmically challenged',      themeHi: 'घर, माता और भावनात्मक सुरक्षा में कर्मिक चुनौती' },
+    5:  { en: 'Padma',       hi: 'पद्म',        sa: 'पद्मः',        themeEn: 'Children, creativity, and intelligence bear karmic restrictions',      themeHi: 'संतान, रचनात्मकता और बुद्धि में कर्म की बाधा' },
+    6:  { en: 'Mahapadma',   hi: 'महापद्म',     sa: 'महापद्मः',     themeEn: 'Enemies, debts, and diseases carry deep karmic patterns',             themeHi: 'शत्रु, ऋण और रोग में गहरा कर्म' },
+    7:  { en: 'Takshaka',    hi: 'तक्षक',       sa: 'तक्षकः',       themeEn: 'Marriage, partnerships, and business relationships are karmically tested', themeHi: 'विवाह, साझेदारी और व्यापार में कर्म की परीक्षा' },
+    8:  { en: 'Karkotak',    hi: 'कर्कोटक',     sa: 'कर्कोटकः',     themeEn: 'Longevity, hidden matters, and transformation carry karmic intensity',  themeHi: 'आयु, गुप्त विषय और परिवर्तन में कर्मिक तीव्रता' },
+    9:  { en: 'Shankhachood', hi: 'शंखचूड',     sa: 'शंखचूडः',      themeEn: 'Luck, father, and dharma are challenged by past-life karma',           themeHi: 'भाग्य, पिता और धर्म में पूर्वजन्म का कर्म' },
+    10: { en: 'Ghatak',      hi: 'घातक',        sa: 'घातकः',        themeEn: 'Career, reputation, and public life face karmic tests',                 themeHi: 'करियर और सार्वजनिक जीवन में कर्मिक परीक्षा' },
+    11: { en: 'Vishdhar',    hi: 'विषधर',       sa: 'विषधरः',       themeEn: 'Gains, friends, and ambitions bear karmic poison that delays fulfillment', themeHi: 'लाभ, मित्र और महत्वाकांक्षा में विलंब' },
+    12: { en: 'Sheshnag',    hi: 'शेषनाग',      sa: 'शेषनागः',      themeEn: 'Foreign lands, losses, and liberation carry intense karmic weight',     themeHi: 'विदेश, हानि और मोक्ष में गहरा कर्म' },
+  };
+
+  const rahuHouse = rahu.house;
+  const ksSubType = ksPresent ? (KSY_TYPES[rahuHouse] ?? KSY_TYPES[1]) : null;
+
   results.push({
     id: 'kala_sarpa',
-    name: { en: 'Kala Sarpa Yoga', hi: 'काल सर्प योग', sa: 'कालसर्पयोगः' },
+    name: ksPresent && ksSubType
+      ? { en: `Kala Sarpa Yoga — ${ksSubType.en}`, hi: `काल सर्प योग — ${ksSubType.hi}`, sa: `कालसर्पयोगः — ${ksSubType.sa}` }
+      : { en: 'Kala Sarpa Yoga', hi: 'काल सर्प योग', sa: 'कालसर्पयोगः' },
     category: 'dosha',
     isAuspicious: false,
     present: ksPresent,
@@ -153,7 +173,11 @@ function detectDoshaYogas(planets: PlanetData[], _ascSign: number): YogaComplete
       hi: 'सभी सात ग्रह राहु और केतु के बीच',
       sa: 'सर्वे सप्तग्रहाः राहु-केत्वोर्मध्ये स्थिताः',
     },
-    description: {
+    description: ksPresent && ksSubType ? {
+      en: `${ksSubType.en} Kala Sarpa (Rahu in house ${rahuHouse}): ${ksSubType.themeEn}. All planets hemmed between the lunar nodes intensifies karmic experiences.`,
+      hi: `${ksSubType.hi} काल सर्प (राहु ${rahuHouse}वें भाव में): ${ksSubType.themeHi}। सभी ग्रह राहु-केतु अक्ष में।`,
+      sa: `${ksSubType.sa} कालसर्पयोगः (राहुः ${rahuHouse}भावे): सर्वे ग्रहाः राहुकेत्वोर्मध्ये।`,
+    } : {
       en: 'All planets confined between the lunar nodes, creating karmic intensity and life obstacles.',
       hi: 'सभी ग्रह राहु-केतु अक्ष में। कार्मिक बाधाओं और जीवन संघर्ष का संकेत।',
       sa: 'सर्वे ग्रहाः राहुकेत्वोर्मध्ये। कार्मिकविघ्नानां जीवनसंघर्षस्य च सूचकः।',

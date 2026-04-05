@@ -83,6 +83,14 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
       if (totalScore >= 40) {
         const allFactors = [...panchang.factors, ...transit.factors, ...timing.factors];
 
+        // Panchanga Shuddhi — count favorable panchanga elements (0-5)
+        let shuddhi = 0;
+        if (!rules.avoidTithis.includes(snap.tithi)) shuddhi++; // Tithi clean
+        if (rules.goodNakshatras.includes(snap.nakshatra)) shuddhi++; // Nakshatra favorable
+        if (snap.yoga >= 1 && snap.yoga <= 15) shuddhi++; // Yoga — first 15 are broadly auspicious
+        if (snap.karana >= 1 && snap.karana <= 7) shuddhi++; // Karana — Chara karanas
+        if (rules.goodWeekdays.includes(snap.weekday)) shuddhi++; // Vara favorable
+
         const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         windows.push({
           date: dateStr,
@@ -91,6 +99,7 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
           totalScore,
           breakdown,
           keyFactors: allFactors.slice(0, 5), // Top 5 factors
+          panchangaShuddhi: shuddhi,
         });
       }
     }

@@ -145,6 +145,9 @@ export interface PanchangData {
   tamilYoga?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' };
   mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual } };
   homahuti?: { direction: Trilingual; deity: Trilingual };
+  dagdhaTithi?: boolean;
+  amritSiddhiYoga?: boolean;
+  vishaGhatika?: { start: string; end: string };
   // Festivals & Vrats for this date
   festivals?: {
     name: Trilingual;

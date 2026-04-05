@@ -977,6 +977,7 @@ interface JaiminiInterpretationProps {
 
 export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretationProps) {
   const isHi = locale !== 'en';
+  const L = isHi ? 'hi' : 'en';
 
   if (!jaimini) return null;
 
@@ -992,77 +993,141 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
   const amatyakaraka = findKaraka('Amatyakaraka') || findKaraka('AmK');
   const darakaraka = findKaraka('Darakaraka') || findKaraka('DK');
 
-  const getPlanetName = (karaka: any): string => {
+  // Always use EN name as the theme lookup key; display name uses locale
+  const getPlanetKey = (karaka: any): string => {
+    if (!karaka) return '';
+    if (karaka.planetName) return karaka.planetName.en;
+    if (typeof karaka.planet === 'string') return karaka.planet;
+    return '';
+  };
+
+  const getPlanetDisplay = (karaka: any): string => {
     if (!karaka) return isHi ? 'अज्ञात' : 'Unknown';
-    // planetName is a Trilingual object {en, hi, sa} — use it first
-    // karaka.planet is a numeric ID (0-8) — never display it directly
-    if (karaka.planetName) {
-      return isHi ? (karaka.planetName.hi || karaka.planetName.en) : karaka.planetName.en;
-    }
+    if (karaka.planetName) return isHi ? (karaka.planetName.hi || karaka.planetName.en) : karaka.planetName.en;
     if (typeof karaka.planet === 'string') return karaka.planet;
     return isHi ? 'अज्ञात' : 'Unknown';
   };
 
-  const akPlanet = getPlanetName(atmakaraka);
-  const amkPlanet = getPlanetName(amatyakaraka);
-  const dkPlanet = getPlanetName(darakaraka);
+  const akKey = getPlanetKey(atmakaraka);
+  const amkKey = getPlanetKey(amatyakaraka);
+  const dkKey = getPlanetKey(darakaraka);
+
+  const akDisplay = getPlanetDisplay(atmakaraka);
+  const amkDisplay = getPlanetDisplay(amatyakaraka);
+  const dkDisplay = getPlanetDisplay(darakaraka);
+
+  const ak = AK_THEMES[akKey];
+  const amk = AMK_THEMES[amkKey];
+  const dk = DK_THEMES[dkKey];
 
   return (
-    <div className="space-y-3 mt-6">
+    <div className="space-y-4 mt-6">
       <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold border-b border-gold-primary/20 pb-2">
         {isHi ? 'जैमिनी विश्लेषण' : 'Jaimini Interpretation'}
       </h3>
 
-      {/* Atmakaraka */}
-      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
-        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-          {isHi ? 'आत्मकारक — आत्मा का उद्देश्य' : 'Atmakaraka — Soul\'s Purpose'}
-        </div>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">
-          {isHi
-            ? `आपका आत्मकारक ${akPlanet} है — आपकी कुंडली में सबसे ऊंचे अंश वाला ग्रह। यह इस जन्म में आपकी आत्मा की सबसे गहरी इच्छा को दर्शाता है।`
-            : `Your Atmakaraka is ${akPlanet} — the planet with the highest degree in your chart. This represents your soul's deepest desire in this life.`}
-        </p>
-        {AK_THEMES[akPlanet] && (
-          <p className="text-gold-light text-sm leading-relaxed italic">
-            {isHi ? AK_THEMES[akPlanet].desire.hi : AK_THEMES[akPlanet].desire.en}
-          </p>
-        )}
-      </div>
-
-      {/* Amatyakaraka */}
-      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
-        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-          {isHi ? 'अमात्यकारक — करियर' : 'Amatya Karaka — Career'}
-        </div>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">
-          {isHi
-            ? `आपका अमात्यकारक ${amkPlanet} है — यह आपकी स्वाभाविक करियर दिशा का संकेत देता है।`
-            : `Your Amatya Karaka is ${amkPlanet} — indicating your natural career direction.`}
-        </p>
-        {AMK_THEMES[amkPlanet] && (
+      {/* ── Atmakaraka ── */}
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/25 p-4 space-y-3">
+        <div>
+          <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-1">
+            {isHi ? 'आत्मकारक — आत्मा का राजा' : 'Atmakaraka — King of the Soul'}
+          </div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {isHi
-              ? `करियर संकेत: ${AMK_THEMES[amkPlanet].fields.hi}`
-              : `Career direction: ${AMK_THEMES[amkPlanet].fields.en}`}
+              ? `आपका आत्मकारक ${akDisplay} है — कुंडली में सर्वाधिक अंश वाला ग्रह और आत्मा का मुख्य प्रतिनिधि। सभी अन्य कारक इसी की सेवा में हैं।`
+              : `Your Atmakaraka is ${akDisplay} — the planet with the highest degree in your chart and the ruler of your soul. Every other karaka serves this planet's agenda.`}
           </p>
+        </div>
+
+        {ak && (
+          <div className="grid grid-cols-1 gap-2">
+            <div className="rounded-lg bg-emerald-500/8 border border-emerald-500/20 px-3 py-2">
+              <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'आत्मा की इच्छा' : "Soul's Desire"}
+              </div>
+              <p className="text-emerald-100/80 text-sm leading-relaxed">{ak.desire[L]}</p>
+            </div>
+            <div className="rounded-lg bg-sky-500/8 border border-sky-500/20 px-3 py-2">
+              <div className="text-sky-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'जीवन-पाठ' : 'Life Lessons'}
+              </div>
+              <p className="text-sky-100/80 text-sm leading-relaxed">{ak.lessons[L]}</p>
+            </div>
+            <div className="rounded-lg bg-rose-500/8 border border-rose-500/20 px-3 py-2">
+              <div className="text-rose-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'छाया / जाल' : 'Shadow / Trap'}
+              </div>
+              <p className="text-rose-100/80 text-sm leading-relaxed">{ak.shadow[L]}</p>
+            </div>
+            <div className="rounded-lg bg-amber-500/8 border border-amber-500/20 px-3 py-2">
+              <div className="text-amber-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'कर्म-मिशन' : 'Karmic Mission'}
+              </div>
+              <p className="text-amber-100/80 text-sm leading-relaxed">{ak.karma[L]}</p>
+            </div>
+          </div>
         )}
       </div>
 
-      {/* Darakaraka */}
-      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
-        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-          {isHi ? 'दारकारक — जीवनसाथी' : 'Dara Karaka — Spouse'}
-        </div>
-        <p className="text-text-secondary text-sm leading-relaxed mb-2">
-          {isHi
-            ? `आपका दारकारक ${dkPlanet} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव का संकेत देता है।`
-            : `Your Dara Karaka is ${dkPlanet} — the planet with the lowest degree. This indicates your spouse's nature.`}
-        </p>
-        {DK_THEMES[dkPlanet] && (
+      {/* ── Amatyakaraka ── */}
+      <div className="rounded-xl bg-gradient-to-br from-[#1b3a2d]/40 via-[#0f2018]/50 to-[#0a0e27] border border-emerald-500/20 p-4 space-y-3">
+        <div>
+          <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">
+            {isHi ? 'अमात्यकारक — करियर-कारक' : 'Amatyakaraka — Career Significator'}
+          </div>
           <p className="text-text-secondary text-sm leading-relaxed">
-            {isHi ? DK_THEMES[dkPlanet].nature.hi : DK_THEMES[dkPlanet].nature.en}
+            {isHi
+              ? `आपका अमात्यकारक ${amkDisplay} है। यह उन क्षेत्रों और कार्यशैली को दर्शाता है जिनमें आत्मा का कार्य सबसे अच्छे से प्रकट होता है।`
+              : `Your Amatyakaraka is ${amkDisplay}. This reveals the fields and working style through which your soul's mission best expresses itself.`}
           </p>
+        </div>
+
+        {amk && (
+          <div className="grid grid-cols-1 gap-2">
+            <div className="rounded-lg bg-emerald-500/8 border border-emerald-500/20 px-3 py-2">
+              <div className="text-emerald-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'क्षेत्र' : 'Fields'}
+              </div>
+              <p className="text-emerald-100/80 text-sm leading-relaxed">{amk.fields[L]}</p>
+            </div>
+            <div className="rounded-lg bg-teal-500/8 border border-teal-500/20 px-3 py-2">
+              <div className="text-teal-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'कार्यशैली' : 'Working Style'}
+              </div>
+              <p className="text-teal-100/80 text-sm leading-relaxed">{amk.style[L]}</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── Darakaraka ── */}
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b40]/40 via-[#1a0f28]/50 to-[#0a0e27] border border-purple-500/20 p-4 space-y-3">
+        <div>
+          <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-1">
+            {isHi ? 'दारकारक — जीवनसाथी-कारक' : 'Darakaraka — Spouse Significator'}
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {isHi
+              ? `आपका दारकारक ${dkDisplay} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव और सम्बन्ध की गतिशीलता को दर्शाता है।`
+              : `Your Darakaraka is ${dkDisplay} — the planet with the lowest degree. This reveals the nature of your spouse and the dynamic of your primary partnership.`}
+          </p>
+        </div>
+
+        {dk && (
+          <div className="grid grid-cols-1 gap-2">
+            <div className="rounded-lg bg-purple-500/8 border border-purple-500/20 px-3 py-2">
+              <div className="text-purple-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'साथी का स्वभाव' : "Partner's Nature"}
+              </div>
+              <p className="text-purple-100/80 text-sm leading-relaxed">{dk.nature[L]}</p>
+            </div>
+            <div className="rounded-lg bg-pink-500/8 border border-pink-500/20 px-3 py-2">
+              <div className="text-pink-400 text-[10px] uppercase tracking-widest font-bold mb-1">
+                {isHi ? 'सम्बन्ध-गतिशीलता' : 'Partnership Dynamic'}
+              </div>
+              <p className="text-pink-100/80 text-sm leading-relaxed">{dk.dynamic[L]}</p>
+            </div>
+          </div>
         )}
       </div>
     </div>

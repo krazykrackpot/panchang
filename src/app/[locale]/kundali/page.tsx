@@ -1643,6 +1643,22 @@ export default function KundaliPage() {
               12: { en: 'Upapada (UL/A12) — The image of your spouse. Critical for marriage analysis.', hi: 'उपपद (UL/A12) — जीवनसाथी की छवि। विवाह विश्लेषण में महत्वपूर्ण।' },
             };
 
+            // How each rashi colours the perception projected by an Arudha Pada
+            const RASHI_ARUDHA_DESC: Record<number, { en: string; hi: string }> = {
+              1:  { en: 'Aries here gives a bold, pioneering image — the world sees you (in this area) as someone who acts first, leads instinctively, and projects raw energy. There may be an aura of impatience or courage that precedes you.', hi: 'मेष यहाँ साहसी, अग्रणी छवि देता है — विश्व आपको इस क्षेत्र में पहले कार्य करने वाले, सहज नेतृत्व करने वाले के रूप में देखता है। एक ऊर्जावान, कभी-कभी अधीर आभा आपसे पहले पहुँचती है।' },
+              2:  { en: 'Taurus here gives a stable, prosperous image — the world perceives this area of your life as grounded, reliable, and materially well-rooted. You project an air of permanence and sensory richness.', hi: 'वृष यहाँ स्थिर, समृद्ध छवि देता है — विश्व इस क्षेत्र को ठोस, विश्वसनीय और भौतिक रूप से सुदृढ़ मानता है। आप स्थायित्व और संवेदनशील समृद्धि का आभास देते हैं।' },
+              3:  { en: 'Gemini here gives a versatile, communicative image — this area appears witty, curious, and multi-faceted to the world. Others see adaptability and intellectual energy — sometimes flickering between too many directions.', hi: 'मिथुन यहाँ बहुमुखी, संवादी छवि देता है — यह क्षेत्र बुद्धिमान, जिज्ञासु और बहुआयामी दिखता है। दूसरे अनुकूलनशीलता देखते हैं, कभी-कभी अनेक दिशाओं में बिखरी।' },
+              4:  { en: 'Cancer here gives a nurturing, familial image — the world sees this area as emotionally rooted, home-centred, and deeply caring. There is a private, protective quality to the perception — like a house with strong walls.', hi: 'कर्क यहाँ पोषणकारी, पारिवारिक छवि देता है — विश्व इस क्षेत्र को भावनात्मक, गृह-केन्द्रित और गहरे देखभाल करने वाला मानता है। संरक्षक, निजी गुण की अनुभूति होती है।' },
+              5:  { en: 'Leo here gives a radiant, authoritative image — this area projects confidence, creativity, and leadership. The world expects something grand and authentic from you here. The spotlight follows naturally — use it wisely.', hi: 'सिंह यहाँ तेजस्वी, अधिकारपूर्ण छवि देता है — यह क्षेत्र आत्मविश्वास, रचनात्मकता और नेतृत्व प्रक्षेपित करता है। विश्व यहाँ कुछ भव्य और प्रामाणिक की अपेक्षा रखता है।' },
+              6:  { en: 'Virgo here gives a precise, service-oriented image — the world perceives this area as analytical, detail-driven, and practically useful. You project competence and care — but may be seen as critical or overly particular.', hi: 'कन्या यहाँ सटीक, सेवा-उन्मुख छवि देता है — विश्व इस क्षेत्र को विश्लेषणात्मक और व्यावहारिक मानता है। आप सक्षमता प्रक्षेपित करते हैं, पर कभी-कभी अत्यधिक आलोचनात्मक लग सकते हैं।' },
+              7:  { en: 'Libra here gives a charming, diplomatic image — the world sees this area as graceful, relationship-oriented, and aesthetically refined. Others are drawn in; there is a magnetic fairness to the perception.', hi: 'तुला यहाँ आकर्षक, कूटनीतिक छवि देता है — विश्व इस क्षेत्र को सुरुचिपूर्ण, सम्बन्ध-उन्मुख और सौन्दर्यपूर्ण मानता है। एक चुम्बकीय निष्पक्षता की अनुभूति होती है।' },
+              8:  { en: 'Scorpio here gives an intense, mysterious image — the world perceives this area as deep, transformative, and not fully knowable. Others sense hidden power or hidden struggle here. The perception carries weight and intrigue.', hi: 'वृश्चिक यहाँ तीव्र, रहस्यमय छवि देता है — विश्व इस क्षेत्र को गहरा, रूपान्तरकारी और पूरी तरह अज्ञेय मानता है। छिपी शक्ति या संघर्ष की अनुभूति होती है।' },
+              9:  { en: 'Sagittarius here gives an expansive, philosophical image — the world sees this area as optimistic, principled, and wisdom-seeking. You project a teacher or traveller quality — someone whose horizons are always expanding.', hi: 'धनु यहाँ विस्तृत, दार्शनिक छवि देता है — विश्व इस क्षेत्र को आशावादी, सिद्धान्तनिष्ठ और ज्ञान-खोजी मानता है। एक शिक्षक या यात्री का भाव प्रक्षेपित होता है।' },
+              10: { en: 'Capricorn here gives a disciplined, ambitious image — the world perceives this area as structured, achievement-driven, and enduring. You project authority through results, not words. Long-term credibility is your hallmark.', hi: 'मकर यहाँ अनुशासित, महत्वाकांक्षी छवि देता है — विश्व इस क्षेत्र को संरचित और परिणाम-उन्मुख मानता है। आप परिणामों से अधिकार प्रक्षेपित करते हैं, शब्दों से नहीं।' },
+              11: { en: 'Aquarius here gives a progressive, collective image — the world sees this area as unconventional, socially conscious, and future-oriented. You project idealism and independent thinking — sometimes ahead of your time.', hi: 'कुम्भ यहाँ प्रगतिशील, सामूहिक छवि देता है — विश्व इस क्षेत्र को अपरम्परागत और सामाजिक रूप से जागरूक मानता है। आदर्शवाद और स्वतन्त्र विचार प्रक्षेपित होते हैं।' },
+              12: { en: 'Pisces here gives a spiritual, elusive image — the world perceives this area as mysterious, compassionate, and otherworldly. There is a sense of sacrifice or transcendence around it. Perception may be idealised or difficult to pin down.', hi: 'मीन यहाँ आध्यात्मिक, अस्पष्ट छवि देता है — विश्व इस क्षेत्र को रहस्यमय, करुणामय और अलौकिक मानता है। त्याग या अतिक्रमण का भाव होता है।' },
+            };
+
             return (
             <div className="space-y-8">
               {/* System intro */}
@@ -1729,20 +1745,27 @@ export default function KundaliPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {kundali.jaimini.arudhaPadas.map((ap, i) => {
                     const meaning = ARUDHA_MEANING[ap.house];
+                    const rashiDesc = RASHI_ARUDHA_DESC[ap.sign];
+                    const isKey = i === 0 || ap.house === 7 || ap.house === 10 || ap.house === 12;
                     return (
-                      <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 border ${i === 0 || ap.house === 7 || ap.house === 10 || ap.house === 12 ? 'border-gold-primary/20 bg-gold-primary/[0.03]' : 'border-gold-primary/5'}`}>
-                        <div className="flex items-center gap-3">
-                          <div className="shrink-0 w-10 h-10 rounded-lg bg-bg-secondary/50 flex items-center justify-center">
+                      <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-3 ${isKey ? 'border border-gold-primary/20 bg-gold-primary/[0.03]' : 'border border-gold-primary/8'}`}>
+                        <div className="flex items-start gap-3">
+                          <div className="shrink-0 w-10 h-10 rounded-lg bg-bg-secondary/50 flex items-center justify-center mt-0.5">
                             <span className="text-gold-primary font-bold text-sm">A{ap.house}</span>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
+                          <div className="flex-1 min-w-0 space-y-1">
+                            <div className="flex items-center gap-2 flex-wrap">
                               <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ap.signName[locale]}</span>
-                              <span className="text-text-secondary/30 text-xs">{ap.label[locale]}</span>
+                              <span className="text-text-secondary/40 text-xs">{ap.label[locale]}</span>
                             </div>
                             {meaning && (
-                              <p className="text-text-secondary/50 text-xs leading-relaxed mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              <p className="text-text-secondary/60 text-xs leading-relaxed font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                                 {meaning[locale === 'en' ? 'en' : 'hi']}
+                              </p>
+                            )}
+                            {rashiDesc && (
+                              <p className="text-text-secondary/45 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                {rashiDesc[locale === 'en' ? 'en' : 'hi']}
                               </p>
                             )}
                           </div>

@@ -323,19 +323,6 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         </div>
       )}
 
-      {/* Cross-references */}
-      {meta.crossRefs && meta.crossRefs.length > 0 && (
-        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
-          <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'संबंधित मॉड्यूल' : 'Related Modules'}</div>
-          <div className="flex flex-wrap gap-2">
-            {meta.crossRefs.map((ref, i) => (
-              <a key={i} href={ref.href} className="text-xs text-gold-primary/70 hover:text-gold-primary px-2 py-1 rounded-lg bg-gold-primary/5 transition-colors">
-                {isHi ? ref.label.hi : ref.label.en}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
 
     </div>
     </ModuleLocaleContext.Provider>

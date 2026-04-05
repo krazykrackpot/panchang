@@ -38,6 +38,7 @@ import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } f
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation, JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
+import { hasRashiDrishti, getMutualRashiDrishti } from '@/lib/jaimini/rashi-drishti';
 import LifeTimeline from '@/components/kundali/LifeTimeline';
 
 // Planet colors for table highlights
@@ -2165,6 +2166,119 @@ export default function KundaliPage() {
                   </div>
                 </div>
               )}
+
+              {/* Rashi Drishti (Sign Aspects) */}
+              {(() => {
+                const ascSign = kundali.ascendant.sign;
+                const moonSign = kundali.planets.find(p => p.planet.id === 1)?.sign ?? 0;
+                const karakamsha = kundali.jaimini?.karakamsha.sign ?? 0;
+
+                const SIGN_NAMES_EN = ['Ar','Ta','Ge','Ca','Le','Vi','Li','Sc','Sa','Cp','Aq','Pi'];
+                const SIGN_NAMES_HI = ['मेष','वृष','मिथुन','कर्क','सिंह','कन्या','तुला','वृश्चिक','धनु','मकर','कुम्भ','मीन'];
+                const keySignIds = new Set([ascSign, moonSign, karakamsha].filter(s => s > 0));
+
+                const mutualAspects = getMutualRashiDrishti();
+                const mutualSet = new Set(mutualAspects.map(m => `${m.sign1}-${m.sign2}`));
+
+                return (
+                  <div>
+                    <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                      {locale === 'en' ? 'Rashi Drishti (Sign Aspects)' : 'राशि दृष्टि (राशि पहलू)'}
+                    </h3>
+                    <p className="text-text-secondary/50 text-xs text-center mb-1 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {locale === 'en'
+                        ? 'Jaimini sign aspects: Movable signs aspect all Fixed signs (except adjacent), Fixed aspect Movable (except adjacent), Dual aspect Dual (except adjacent).'
+                        : 'जैमिनी राशि दृष्टि: चर राशियाँ सभी स्थिर राशियों को देखती हैं (आसन्न को छोड़कर), स्थिर राशियाँ चर को, द्विस्वभाव राशियाँ द्विस्वभाव को।'}
+                    </p>
+                    <p className="text-text-secondary/40 text-[11px] text-center mb-4">
+                      {locale === 'en'
+                        ? 'Gold border = your Lagna / Moon / Karakamsha. Mutual aspects shown in bold.'
+                        : 'सुनहरी सीमा = आपकी लग्न / चन्द्र / कारकांश। परस्पर दृष्टि बोल्ड में।'}
+                    </p>
+
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+                      {Array.from({ length: 12 }, (_, i) => i + 1).map(fromSign => {
+                        const aspectedSigns: number[] = [];
+                        for (let to = 1; to <= 12; to++) {
+                          if (hasRashiDrishti(fromSign, to)) aspectedSigns.push(to);
+                        }
+                        const isKey = keySignIds.has(fromSign);
+                        const hasMutual = aspectedSigns.some(to => mutualSet.has(`${Math.min(fromSign,to)}-${Math.max(fromSign,to)}`));
+
+                        return (
+                          <div
+                            key={fromSign}
+                            className={`rounded-xl p-3 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border ${isKey ? 'border-gold-primary/40 shadow-sm shadow-gold-primary/10' : 'border-gold-primary/8'}`}
+                          >
+                            {/* Sign header */}
+                            <div className="flex items-center gap-1.5 mb-2">
+                              <span className={`text-xs font-bold ${isKey ? 'text-gold-light' : 'text-gold-primary/70'}`} style={headingFont}>
+                                {locale === 'en' ? SIGN_NAMES_EN[fromSign - 1] : SIGN_NAMES_HI[fromSign - 1]}
+                              </span>
+                              <span className="text-text-secondary/30 text-[10px] font-mono">{fromSign}</span>
+                              {isKey && (
+                                <span className="ml-auto text-[9px] px-1 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-bold">
+                                  {fromSign === ascSign ? (locale === 'en' ? 'L' : 'ल') : fromSign === moonSign ? (locale === 'en' ? 'M' : 'च') : (locale === 'en' ? 'K' : 'क')}
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Aspected signs */}
+                            <div className="flex flex-wrap gap-1">
+                              {aspectedSigns.length === 0 ? (
+                                <span className="text-text-secondary/25 text-[10px]">—</span>
+                              ) : aspectedSigns.map(to => {
+                                const isMut = mutualSet.has(`${Math.min(fromSign,to)}-${Math.max(fromSign,to)}`);
+                                const isToKey = keySignIds.has(to);
+                                return (
+                                  <span
+                                    key={to}
+                                    className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
+                                      isMut && isToKey ? 'bg-gold-primary/25 text-gold-light font-bold' :
+                                      isMut ? 'bg-purple-500/15 text-purple-300/80 font-semibold' :
+                                      isToKey ? 'bg-gold-primary/12 text-gold-primary/90' :
+                                      'bg-bg-secondary/50 text-text-secondary/50'
+                                    }`}
+                                  >
+                                    {locale === 'en' ? SIGN_NAMES_EN[to - 1] : SIGN_NAMES_HI[to - 1]}
+                                    {isMut && <span className="ml-0.5 opacity-60">↔</span>}
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Mutual aspects summary */}
+                    {mutualAspects.length > 0 && (
+                      <div className="mt-4 rounded-xl bg-purple-500/5 border border-purple-500/15 p-3">
+                        <div className="text-purple-300/70 text-xs font-bold mb-2">
+                          {locale === 'en' ? 'Mutual Sign Aspects (↔ Both aspects each other)' : 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)'}
+                        </div>
+                        <div className="flex flex-wrap gap-1.5">
+                          {mutualAspects.map(m => {
+                            const s1Key = keySignIds.has(m.sign1);
+                            const s2Key = keySignIds.has(m.sign2);
+                            const isHighlighted = s1Key || s2Key;
+                            return (
+                              <span
+                                key={`${m.sign1}-${m.sign2}`}
+                                className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${isHighlighted ? 'bg-gold-primary/20 text-gold-light font-bold' : 'bg-purple-500/10 text-purple-200/60'}`}
+                              >
+                                {locale === 'en' ? SIGN_NAMES_EN[m.sign1-1] : SIGN_NAMES_HI[m.sign1-1]}
+                                {' ↔ '}
+                                {locale === 'en' ? SIGN_NAMES_EN[m.sign2-1] : SIGN_NAMES_HI[m.sign2-1]}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
 
               {/* Argala (Planetary Interventions) */}
               {kundali.argala && kundali.argala.length > 0 && (() => {

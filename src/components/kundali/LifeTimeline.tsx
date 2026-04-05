@@ -45,8 +45,7 @@ const PLANET_HI: Record<string, string> = {
 const norm360 = (d: number) => ((d % 360) + 360) % 360;
 
 function dateToFracYear(dateStr: string): number {
-  const d = new Date(dateStr);
-  return d.getFullYear() + (d.getMonth() + d.getDate() / 31) / 12;
+  return toFracYear(new Date(dateStr));
 }
 
 // ── Tooltip state ─────────────────────────────────────────────────────────────
@@ -105,7 +104,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
       <div className="flex flex-wrap gap-2 justify-center text-xs">
         {[
           { color: '#f0b429', label: isHi ? 'विंशोत्तरी दशा' : 'Vimshottari Dasha' },
-          { color: '#e74c3c', label: isHi ? 'साढ़े साती' : 'Sade Sati', opacity: '60%' },
+          { color: '#e74c3c', label: isHi ? 'साढ़े साती (♄ गोचर)' : 'Sade Sati (♄ transit)', opacity: '60%' },
           { color: '#2ecc71', label: isHi ? 'योग सक्रिय' : 'Major Yoga Active' },
           { color: '#f0b429', label: isHi ? '⭐ बृहस्पति→योगी' : '⭐ Jupiter→Yogi Pt' },
           { color: '#e74c3c', label: isHi ? '⚠ शनि→अवयोगी' : '⚠ Saturn→Avayogi' },
@@ -173,11 +172,11 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
 
           {/* ── Track labels ──────────────────────────────────────────────── */}
           {[
-            { y: T.dasha.y + T.dasha.h / 2, en: 'Dasha', hi: 'दशा' },
-            { y: T.sadesati.y + T.sadesati.h / 2, en: 'Sade Sati', hi: 'साढ़े साती' },
-            { y: T.yoga.y + T.yoga.h / 2, en: 'Yogas', hi: 'योग' },
-            { y: T.jupiter.y + T.jupiter.h / 2, en: 'Jupiter', hi: 'बृहस्पति' },
-            { y: T.saturn.y + T.saturn.h / 2, en: 'Saturn', hi: 'शनि' },
+            { y: T.dasha.y + T.dasha.h / 2,    en: 'Dasha',         hi: 'दशा' },
+            { y: T.sadesati.y + T.sadesati.h / 2, en: '♄ Transit',  hi: '♄ गोचर' },
+            { y: T.yoga.y + T.yoga.h / 2,       en: 'Yogas',         hi: 'योग' },
+            { y: T.jupiter.y + T.jupiter.h / 2, en: '♃ Transit',    hi: '♃ गोचर' },
+            { y: T.saturn.y + T.saturn.h / 2,   en: '♄ ◉ Rahu',     hi: '♄ ◉ राहु' },
             { y: T.ashtaka.y + T.ashtaka.h / 2, en: 'SAV', hi: 'अष्ट' },
             { y: T.synthesis.y + T.synthesis.h / 2, en: 'Quality', hi: 'गुण' },
           ].map((lbl, i) => (
@@ -575,8 +574,15 @@ function DashaSynthesisTable({ data, isHi, headingFont }: {
       <h4 className="text-gold-light font-semibold text-base mb-3" style={headingFont}>
         {isHi ? 'दशा-वार संश्लेषण' : 'Period-by-Period Synthesis'}
       </h4>
+      {/* Clarifying note about Sade Sati independence */}
+      <div className="mb-3 rounded-lg bg-amber-500/8 border border-amber-500/15 px-3 py-2 text-xs text-amber-200/70 leading-relaxed">
+        <strong className="text-amber-300">{isHi ? 'ध्यान दें:' : 'Note:'}</strong>
+        {isHi
+          ? ' साढ़े साती शनि के वर्तमान गोचर (आकाश में स्थिति) पर आधारित है — विंशोत्तरी दशा पर नहीं। यह हर ~30 वर्षों में होती है, चाहे कोई भी दशा चल रही हो। अलग-अलग दशाओं में "हाँ" का अर्थ है भिन्न साढ़े साती चक्र।'
+          : ' Sade Sati is based on Saturn\'s current sky transit — independent of Vimshottari dasha. It repeats every ~30 years regardless of which planet\'s dasha is running. "Yes" in different non-consecutive dashas means different Sade Sati cycles, not one long one.'}
+      </div>
       <div className="overflow-x-auto rounded-xl border border-gold-primary/10">
-        <table className="w-full text-xs" style={{ minWidth: 560 }}>
+        <table className="w-full text-xs" style={{ minWidth: 580 }}>
           <thead>
             <tr className="border-b border-white/8" style={{ background: '#111633' }}>
               {[
@@ -584,7 +590,7 @@ function DashaSynthesisTable({ data, isHi, headingFont }: {
                 isHi ? 'काल' : 'Period',
                 isHi ? 'षड्बल' : 'Shadbala',
                 isHi ? 'योग' : 'Yogas',
-                isHi ? 'साढ़े साती?' : 'Sade Sati?',
+                isHi ? '♄ गोचर (साढ़े साती)' : '♄ Transit (Sade Sati)',
                 isHi ? 'गुण-स्कोर' : 'Quality',
               ].map((h, i) => (
                 <th key={i} className="px-3 py-2.5 text-left font-semibold text-text-secondary">{h}</th>
@@ -594,9 +600,14 @@ function DashaSynthesisTable({ data, isHi, headingFont }: {
           <tbody>
             {data.dashas.map((d, i) => {
               const color = PC[d.planet] ?? { bg: '#333', fg: '#ccc', glow: '#666' };
-              const inSadeSati = data.sadeSatiPeriods.some(ss =>
-                d.startYear < ss.endYear && d.endYear > ss.startYear
-              );
+              // Find which specific Sade Sati cycle(s) overlap this dasha, and the overlap years
+              const overlappingCycles = data.sadeSatiPeriods
+                .filter(ss => d.startYear < ss.endYear && d.endYear > ss.startYear)
+                .map(ss => {
+                  const overlapStart = Math.max(d.startYear, ss.startYear);
+                  const overlapEnd = Math.min(d.endYear, ss.endYear);
+                  return `${Math.round(overlapStart)}–${Math.round(overlapEnd)}`;
+                });
               const qualityColor = d.quality === 'strong' ? 'text-emerald-300' : d.quality === 'weak' ? 'text-red-300' : 'text-amber-300';
               const qualityLabel = d.quality === 'strong'
                 ? (isHi ? '★ बलवान' : '★ Strong')
@@ -626,8 +637,8 @@ function DashaSynthesisTable({ data, isHi, headingFont }: {
                       : <span className="text-text-secondary opacity-40">—</span>}
                   </td>
                   <td className="px-3 py-2">
-                    {inSadeSati
-                      ? <span className="text-red-300">⚠ {isHi ? 'हाँ' : 'Yes'}</span>
+                    {overlappingCycles.length > 0
+                      ? <span className="text-orange-300 font-mono">⚠ {overlappingCycles.join(', ')}</span>
                       : <span className="text-text-secondary opacity-40">—</span>}
                   </td>
                   <td className="px-3 py-2">
@@ -727,14 +738,19 @@ function fmtYear(yr: number): string {
   return `${MONTHS[Math.min(11, Math.max(0, m))]} ${y}`;
 }
 
+function toFracYear(d: Date): number {
+  const y = d.getFullYear();
+  const start = new Date(y, 0, 1).getTime();
+  const end = new Date(y + 1, 0, 1).getTime();
+  return y + (d.getTime() - start) / (end - start);
+}
+
 function computeTimeline(kundali: KundaliData): TimelineData {
   const today = new Date();
-  const todayYear = today.getFullYear() + today.getMonth() / 12 + today.getDate() / 365;
+  const todayYear = toFracYear(today);
   const birthDate = new Date(kundali.birthData.date);
-  const birthYear = birthDate.getFullYear() + birthDate.getMonth() / 12 + birthDate.getDate() / 365;
+  const birthYear = toFracYear(birthDate);
   const todayX = ML + (todayYear - birthYear) * PX;
-
-  const yearToX = (y: number) => ML + (y - birthYear) * PX;
 
   // ── Dasha bands ────────────────────────────────────────────────────────────
   const mahaDashas = kundali.dashas.filter(d => d.level === 'maha');
@@ -808,11 +824,9 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   // ── Jupiter and Saturn transit computation ─────────────────────────────────
   const JUP_SPEED = 0.0831; // deg/day
   const JUP_PERIOD_DAYS = 360 / JUP_SPEED; // ~4332 days
-  const JUP_PERIOD_YEARS = JUP_PERIOD_DAYS / 365.25; // ~11.86
 
   const SAT_SPEED = 0.0335;
   const SAT_PERIOD_DAYS = 360 / SAT_SPEED; // ~10746 days
-  const SAT_PERIOD_YEARS = SAT_PERIOD_DAYS / 365.25; // ~29.4
 
   const jupPlanet = kundali.planets.find(p => p.planet.id === 4);
   const satPlanet = kundali.planets.find(p => p.planet.id === 6);
@@ -937,14 +951,12 @@ function computeTimeline(kundali: KundaliData): TimelineData {
         }
       }
     }
-    // Jupiter Yogi in window
-    for (const jt of jupiterYogiTransits) {
-      if (jt.year >= d.startYear - 1 && jt.year <= d.endYear + 1) score += 20;
-    }
-    // Saturn Avayogi in window
-    for (const st of saturnAvayogiTransits) {
-      if (st.year >= d.startYear - 1 && st.year <= d.endYear + 1) score -= 15;
-    }
+    // Jupiter Yogi in window — cap at +20 per dasha regardless of how many transits occur
+    const hasJupYogi = jupiterYogiTransits.some(jt => jt.year >= d.startYear && jt.year <= d.endYear);
+    if (hasJupYogi) score += 20;
+    // Saturn Avayogi in window — cap at -15 per dasha
+    const hasSatAvayogi = saturnAvayogiTransits.some(st => st.year >= d.startYear && st.year <= d.endYear);
+    if (hasSatAvayogi) score -= 15;
     score = Math.max(5, Math.min(95, score));
     return { startYear: d.startYear, endYear: d.endYear, score };
   });
@@ -958,40 +970,30 @@ function computeTimeline(kundali: KundaliData): TimelineData {
   const allEvents: TimelineEvent[] = [
     ...jupiterYogiTransits,
     ...saturnAvayogiTransits,
-    // Strong dasha starts
+    // Notable dasha starts — deduplicated: one event per dasha (strong OR yoga, not both)
     ...dashas
-      .filter(d => d.quality === 'strong')
-      .map(d => ({
-        year: d.startYear,
-        type: 'positive' as const,
-        icon: '✦',
-        title: `${d.planet} Mahadasha begins`,
-        titleHi: `${PLANET_HI[d.planet] ?? d.planet} महादशा आरम्भ`,
-        desc: `Strong ${d.planet} dasha starts — planet has above-average Shadbala. Period of elevated ${d.planet} significations.`,
-        descHi: `बलवान ${PLANET_HI[d.planet] ?? d.planet} दशा आरम्भ — षड्बल औसत से अधिक।`,
-        yearLabel: fmtYear(d.startYear),
-        label: [`${d.planet} Dasha begins`, fmtYear(d.startYear)],
-        labelHi: [`${PLANET_HI[d.planet] ?? d.planet} दशा`, fmtYear(d.startYear)],
-        windowYears: 0,
-        trackY: T.dasha.y + T.dasha.h / 2,
-      })),
-    // Yoga-active dasha starts
-    ...dashas
-      .filter(d => d.hasYoga && !yogaPeriods.find(yp => Math.abs(yp.startYear - d.startYear) < 0.5))
-      .map(d => ({
-        year: d.startYear,
-        type: 'positive' as const,
-        icon: '◆',
-        title: `${d.planet} Dasha — Yoga active`,
-        titleHi: `${PLANET_HI[d.planet] ?? d.planet} दशा — योग सक्रिय`,
-        desc: `A major yoga involving ${d.planet} becomes active during this dasha.`,
-        descHi: `${PLANET_HI[d.planet] ?? d.planet} से सम्बद्ध प्रमुख योग इस दशा में सक्रिय।`,
-        yearLabel: fmtYear(d.startYear),
-        label: [`${d.planet} Yoga Dasha`, fmtYear(d.startYear)],
-        labelHi: [`${PLANET_HI[d.planet] ?? d.planet} योग दशा`, fmtYear(d.startYear)],
-        windowYears: 0,
-        trackY: T.dasha.y + T.dasha.h / 2,
-      })),
+      .filter(d => d.quality === 'strong' || d.hasYoga)
+      .map(d => {
+        const isStrong = d.quality === 'strong';
+        const yogaNames = yogaNamesByPlanet[d.planet]?.slice(0, 2).join(', ') ?? '';
+        const yogaNamesHi = yogaNamesByPlanetHi[d.planet]?.slice(0, 2).join(', ') ?? '';
+        const suffix = isStrong && d.hasYoga ? ` — ★ + ${yogaNames || 'Yoga'}` : isStrong ? ' — ★ Strong' : ` — ${yogaNames || 'Yoga'}`;
+        const suffixHi = isStrong && d.hasYoga ? ` — ★ + ${yogaNamesHi || 'योग'}` : isStrong ? ' — ★ बलवान' : ` — ${yogaNamesHi || 'योग'}`;
+        return {
+          year: d.startYear,
+          type: 'positive' as const,
+          icon: isStrong && d.hasYoga ? '🌟' : d.hasYoga ? '◆' : '✦',
+          title: `${d.planet} Mahadasha${suffix}`,
+          titleHi: `${PLANET_HI[d.planet] ?? d.planet} महादशा${suffixHi}`,
+          desc: `${isStrong ? `Strong ${d.planet} (above-average Shadbala). ` : ''}${d.hasYoga ? `Major yoga involving ${d.planet} activates.` : ''}`,
+          descHi: `${isStrong ? `बलवान ${PLANET_HI[d.planet] ?? d.planet} (षड्बल औसत से अधिक)। ` : ''}${d.hasYoga ? `${PLANET_HI[d.planet] ?? d.planet} से सम्बद्ध प्रमुख योग सक्रिय।` : ''}`,
+          yearLabel: fmtYear(d.startYear),
+          label: [`${d.planet} Dasha begins`, fmtYear(d.startYear)],
+          labelHi: [`${PLANET_HI[d.planet] ?? d.planet} दशा`, fmtYear(d.startYear)],
+          windowYears: 0,
+          trackY: T.dasha.y + T.dasha.h / 2,
+        };
+      }),
     // Sade Sati starts
     ...sadeSatiPeriods.map(ss => ({
       year: ss.startYear,

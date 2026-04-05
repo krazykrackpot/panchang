@@ -901,34 +901,73 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
 // 7. JAIMINI INTERPRETATION — Soul's purpose via Chara Karakas
 // ═══════════════════════════════════════════════════════════════════════════════
 
-const AK_THEMES: Record<string, { en: string; hi: string }> = {
-  Sun:     { en: 'Your soul seeks recognition, authority, and self-expression', hi: 'आपकी आत्मा मान्यता, अधिकार और आत्म-अभिव्यक्ति चाहती है' },
-  Moon:    { en: 'Your soul seeks emotional connection, nurturing, and peace', hi: 'आपकी आत्मा भावनात्मक संबंध, पोषण और शांति चाहती है' },
-  Mars:    { en: 'Your soul seeks courage, action, and the ability to protect', hi: 'आपकी आत्मा साहस, कार्यवाही और रक्षा की क्षमता चाहती है' },
-  Mercury: { en: 'Your soul seeks knowledge, communication, and intellectual mastery', hi: 'आपकी आत्मा ज्ञान, संवाद और बौद्धिक निपुणता चाहती है' },
-  Jupiter: { en: 'Your soul seeks wisdom, teaching, and spiritual growth', hi: 'आपकी आत्मा ज्ञान, शिक्षण और आध्यात्मिक विकास चाहती है' },
-  Venus:   { en: 'Your soul seeks love, beauty, and harmonious relationships', hi: 'आपकी आत्मा प्रेम, सौंदर्य और सामंजस्यपूर्ण संबंध चाहती है' },
-  Saturn:  { en: 'Your soul seeks discipline, service, and karmic completion', hi: 'आपकी आत्मा अनुशासन, सेवा और कार्मिक पूर्णता चाहती है' },
+interface AKTheme { desire: { en: string; hi: string }; lessons: { en: string; hi: string }; shadow: { en: string; hi: string }; karma: { en: string; hi: string }; }
+
+const AK_THEMES: Record<string, AKTheme> = {
+  Sun: {
+    desire: { en: 'Your soul seeks recognition, authentic self-expression, and the right to lead — not from ego, but from dharma. The soul longs to shine as itself without apology.', hi: 'आपकी आत्मा मान्यता, प्रामाणिक अभिव्यक्ति और नेतृत्व की इच्छा रखती है — अहंकार से नहीं, धर्म से।' },
+    lessons: { en: 'Develop authority through service, not dominance. True recognition comes from what you give, not what you claim. You are here to become a centre of light that others voluntarily orbit — because of your warmth, not your demands.', hi: 'सेवा के माध्यम से अधिकार विकसित करें। सच्ची मान्यता देने से आती है। दूसरे आपकी उष्णता के कारण आपकी ओर आकर्षित हों, आपकी माँग के कारण नहीं।' },
+    shadow: { en: 'Pride, need for constant validation, and rage when ignored. The solar soul can confuse self-worth with the applause of others — and collapse when that applause stops.', hi: 'अहंकार, निरन्तर मान्यता की आवश्यकता और उपेक्षा पर क्रोध। सौर आत्मा आत्म-मूल्य को सराहना से भ्रमित कर सकती है।' },
+    karma: { en: 'In past lives you served — or were forced to serve — and your will was suppressed. This life you must reclaim your sovereignty, but wield it righteously. Be the king who serves the kingdom, not the king who IS the kingdom.', hi: 'पिछले जन्मों में आत्मा की इच्छा को दबाया गया था। इस जीवन में अपनी सम्प्रभुता पुनः प्राप्त करनी है, पर धर्मपूर्वक।' },
+  },
+  Moon: {
+    desire: { en: 'Your soul seeks emotional depth, true belonging, and the safety of unconditional love. It longs to nurture and be nurtured — to feel genuinely at home in the world.', hi: 'आपकी आत्मा भावनात्मक गहराई, सच्चे अपनेपन और बिना शर्त प्रेम की सुरक्षा चाहती है।' },
+    lessons: { en: 'Nurture others without losing yourself in the process. The Moon AK must master emotional boundaries — giving care from fullness, not from fear of loss. Detachment from outcomes is the key spiritual lesson.', hi: 'दूसरों का पोषण करते हुए स्वयं को न खोएं। डर से नहीं, परिपूर्णता से देना सीखें।' },
+    shadow: { en: 'Emotional neediness, clinging, fear of abandonment, and mood cycles that pull others in then push them away. The lunar soul can become a tide that drowns those it loves most.', hi: 'भावनात्मक निर्भरता, चिपकना और परित्याग का भय। चन्द्र आत्मा उन्हें डुबो सकती है जिन्हें वह प्रेम करती है।' },
+    karma: { en: 'This soul has known great emotional loss — separation from home, mother, or beloveds. The karma is to become the mother: hold space for others, create emotional safety, and master the mind\'s tides through equanimity.', hi: 'इस आत्मा ने भावनात्मक हानि जानी है। कर्म है माँ बनना — दूसरों के लिए भावनात्मक सुरक्षा बनाना और मन को साधना।' },
+  },
+  Mars: {
+    desire: { en: 'Your soul seeks courage — the ability to act righteously in the face of opposition, protect the innocent, and conquer internal and external enemies. The Martian soul came here to fight its most important war.', hi: 'आपकी आत्मा साहस चाहती है — विरोध के सामने धर्मपूर्वक कार्य करने और निर्दोषों की रक्षा करने की क्षमता।' },
+    lessons: { en: 'Channel aggression into disciplined, dharmic action. The soul left battles unfinished in past lives — either avoiding conflict when it should have fought, or fighting the wrong wars for wrong reasons. This life demands you learn the difference.', hi: 'आक्रमण को अनुशासित धार्मिक कार्य में बदलें। सही और गलत लड़ाई के बीच अन्तर सीखना आवश्यक है।' },
+    shadow: { en: 'Impulsive anger, recklessness, and the addiction to conflict. The Mars AK soul can mistake aggression for strength — fighting for ego\'s pleasure rather than dharma\'s necessity.', hi: 'आवेगशील क्रोध और संघर्ष की लत। मंगल आत्मा आक्रमण को शक्ति समझ सकती है।' },
+    karma: { en: 'A warrior soul returning to learn when to draw the sword and when to sheathe it. The karma involves protection and service — guarding, building, or healing. Courage must become compassion.', hi: 'एक योद्धा आत्मा जो सीखने आई है कब तलवार उठानी है। साहस को करुणा बनना है।' },
+  },
+  Mercury: {
+    desire: { en: 'Your soul seeks mastery of the mind — the power to understand, communicate, and transmit knowledge in ways that transform others. It longs to find the words that change the world.', hi: 'आपकी आत्मा मन की महारत चाहती है — ज्ञान को इस प्रकार संप्रेषित करने की शक्ति जो दूसरों को बदल दे।' },
+    lessons: { en: 'Depth over breadth. The Mercury AK soul scatters brilliance across too many pursuits and achieves mastery in none. Go deep — study one subject until it reveals its hidden roots, then teach what you have truly understood, not merely memorized.', hi: 'विस्तार से गहराई श्रेयस्कर है। किसी एक विषय में गहरे जाएं, फिर जो वास्तव में समझा है उसे सिखाएं।' },
+    shadow: { en: 'Superficiality, cleverness masquerading as wisdom, intellectual arrogance, and the manipulation of truth through words. The mercurial soul can become a sophist rather than a sage.', hi: 'सतहीपन और शब्दों के माध्यम से सत्य का हेरफेर। बुध आत्मा ज्ञानी नहीं बल्कि वाग्मी बन सकती है।' },
+    karma: { en: 'A learner across many lifetimes who collected knowledge without integration. This life calls for synthesis — gathering all you have learned into a coherent teaching and sharing it generously. The pen, the voice, or the code is your tool of karma.', hi: 'कई जन्मों में ज्ञान बिना एकीकरण के एकत्र किया। इस जीवन में उसका संश्लेषण और उदारता से साझा करना ही कर्म है।' },
+  },
+  Jupiter: {
+    desire: { en: 'Your soul seeks wisdom — not merely knowledge — and the role of guide, teacher, or guru to those who are lost. Jupiter as Atmakaraka is the most dharmic placement: the soul came here to uphold truth and expand others\' horizons.', hi: 'आपकी आत्मा ज्ञान — केवल जानकारी नहीं — और मार्गदर्शक, शिक्षक या गुरु की भूमिका चाहती है। गुरु आत्मकारक सबसे धार्मिक स्थान है।' },
+    lessons: { en: 'Distinguish between preaching and truly guiding. The Jupiter AK soul can confuse accumulating students with achieving wisdom. Real dharma is not proclaimed — it is lived. The lesson is humility: the real guru knows how much they don\'t know. Righteousness must never become self-righteousness.', hi: 'उपदेश देने और वास्तव में मार्गदर्शन करने में अन्तर करें। वास्तविक गुरु जानता है कि वह कितना नहीं जानता।' },
+    shadow: { en: 'Spiritual pride, dogmatism, over-expansion, and inflating the ego through "teaching." The Jupiter AK soul\'s greatest trap is believing they have arrived — when the path is still long.', hi: 'आध्यात्मिक अहंकार और कट्टरता। गुरु आत्मकारक का सबसे बड़ा जाल यह विश्वास है कि वे पहुँच गए हैं।' },
+    karma: { en: 'This soul was a seeker in past lives who gained wisdom but kept it for themselves, or used it improperly. The karma is to become a true Brahmin in the original sense — one who radiates dharma through their very being. You are meant to be a light that other lights come to rekindle themselves from.', hi: 'पूर्व जन्मों में ज्ञान प्राप्त किया पर अपने पास रखा। कर्म है सच्चा ब्राह्मण बनना — जो अपने अस्तित्व से धर्म विकीर्ण करे।' },
+  },
+  Venus: {
+    desire: { en: 'Your soul seeks beauty, love, and profound connection — the experience of the divine through aesthetics, relationship, and the senses. It came here to create and to love, not merely to be loved.', hi: 'आपकी आत्मा सौन्दर्य, प्रेम और गहरे सम्बन्ध — सौन्दर्यशास्त्र और इन्द्रियों के माध्यम से दिव्यता का अनुभव — चाहती है।' },
+    lessons: { en: 'Love without attachment and create without craving recognition. The Venus AK soul must learn that real beauty is discovered, not manufactured, and real love is unconditional, not transactional. The spiritual test is to move from Venusian pleasure to Venusian grace.', hi: 'आसक्ति के बिना प्रेम करें। वास्तविक सौन्दर्य खोजा जाता है, निर्मित नहीं। शुक्र के आनन्द से शुक्र की कृपा की ओर बढ़ें।' },
+    shadow: { en: 'Vanity, attachment to comfort and luxury, fear of ugliness and pain, codependency, and the use of beauty or charm for manipulation.', hi: 'घमंड, विलासिता से आसक्ति, कुरूपता का भय, सहनिर्भरता और आकर्षण का हेरफेर के लिए उपयोग।' },
+    karma: { en: 'A soul that has moved through many relationships seeking completion in another. The karma is the recognition that beauty is not found in another person — it is found within. This life calls for the creation of art, beauty, or relationship structures that outlast you.', hi: 'एक आत्मा जो पूर्णता की खोज में कई सम्बन्धों से गुज़री है। कर्म है यह जानना कि सौन्दर्य स्वयं के भीतर है।' },
+  },
+  Saturn: {
+    desire: { en: 'Your soul seeks justice, lasting achievement, and the fulfillment of karmic debt through disciplined service. The Saturn soul came here to master time — to build things that endure and serve causes greater than the self.', hi: 'आपकी आत्मा न्याय, स्थायी उपलब्धि और अनुशासित सेवा से कार्मिक ऋण की पूर्ति चाहती है।' },
+    lessons: { en: 'Embrace limitation as a teacher, not an enemy. Discipline is a spiritual practice, suffering can be alchemized into strength, and serving the margins of society — the old, the poor, the forgotten — is a high dharma.', hi: 'सीमा को शत्रु नहीं, गुरु मानें। अनुशासन आध्यात्मिक अभ्यास है। समाज के हाशिये पर सेवा उच्च धर्म है।' },
+    shadow: { en: 'Pessimism, harsh self-judgment, excessive austerity, bitterness toward life, and the belief that suffering is the only teacher. The Saturn soul risks becoming so disciplined it forgets how to live.', hi: 'निराशावाद, कठोर आत्म-निर्णय और जीवन के प्रति कड़वाहट। शनि आत्मा इतनी अनुशासित हो सकती है कि जीना भूल जाए।' },
+    karma: { en: 'This soul carries heavy karmic loads — debts of neglect, exploitation of workers, or the abuse of authority. The mission is karmic rectification: serve those you once ignored, and build structures of justice that protect others long after you are gone.', hi: 'इस आत्मा पर भारी कार्मिक बोझ है। मिशन है कार्मिक सुधार और न्याय की ऐसी संरचनाएं बनाना जो आपके बाद भी दूसरों की रक्षा करें।' },
+  },
 };
 
-const AMK_THEMES: Record<string, { en: string; hi: string }> = {
-  Sun:     { en: 'Government, leadership, administration', hi: 'सरकार, नेतृत्व, प्रशासन' },
-  Moon:    { en: 'Public service, nursing, hospitality, psychology', hi: 'जनसेवा, नर्सिंग, आतिथ्य, मनोविज्ञान' },
-  Mars:    { en: 'Military, engineering, surgery, real estate', hi: 'सेना, इंजीनियरिंग, शल्य चिकित्सा, अचल संपत्ति' },
-  Mercury: { en: 'Writing, business, accounting, IT, teaching', hi: 'लेखन, व्यापार, लेखाकरण, आईटी, शिक्षण' },
-  Jupiter: { en: 'Teaching, law, priesthood, counseling', hi: 'शिक्षण, कानून, पुरोहित, परामर्श' },
-  Venus:   { en: 'Arts, entertainment, luxury goods, fashion', hi: 'कला, मनोरंजन, विलासिता सामग्री, फैशन' },
-  Saturn:  { en: 'Labor, mining, agriculture, social work', hi: 'श्रम, खनन, कृषि, सामाजिक कार्य' },
+interface AMKTheme { fields: { en: string; hi: string }; style: { en: string; hi: string }; }
+const AMK_THEMES: Record<string, AMKTheme> = {
+  Sun:     { fields: { en: 'Government, administration, politics, corporate leadership, film/media, or any role requiring authority and public visibility.', hi: 'सरकार, प्रशासन, राजनीति, कॉर्पोरेट नेतृत्व, फिल्म/मीडिया, या अधिकार और सार्वजनिक दृश्यता वाली भूमिका।' }, style: { en: 'You work best in leadership roles where your name and identity are on the line. Solar AMK people rarely thrive as anonymous contributors — they need a stage and the satisfaction of being the one who leads.', hi: 'आप नेतृत्व भूमिकाओं में सर्वश्रेष्ठ कार्य करते हैं जहाँ आपकी पहचान दाँव पर हो।' } },
+  Moon:    { fields: { en: 'Healthcare, psychology, food, hospitality, public relations, education, caregiving, or any profession serving human comfort and emotional needs.', hi: 'स्वास्थ्य सेवा, मनोविज्ञान, भोजन, आतिथ्य, जनसम्पर्क, शिक्षा, देखभाल।' }, style: { en: 'Career success comes through empathy and public trust. You are most effective when working with people\'s innermost needs. Success often involves the public or masses in some way — your reputation is your professional currency.', hi: 'सहानुभूति और जनविश्वास के माध्यम से सफलता। आप लोगों की सबसे गहरी जरूरतों के साथ काम करने में सबसे प्रभावी हैं।' } },
+  Mars:    { fields: { en: 'Military, police, surgery, engineering, real estate, construction, competitive sports, entrepreneurship, or any field demanding physical action and decisive risk-taking.', hi: 'सेना, पुलिस, शल्य चिकित्सा, इंजीनियरिंग, अचल सम्पत्ति, निर्माण, प्रतिस्पर्धी खेल, उद्यमिता।' }, style: { en: 'You are built to initiate, compete, and conquer. Career should involve tangible results and the satisfaction of winning. Desk work without stakes depletes you — you need a field where something real is on the line.', hi: 'आप शुरुआत करने, प्रतिस्पर्धा और जीतने के लिए बने हैं। ठोस परिणाम और वास्तविक दाँव आपको ऊर्जावान बनाते हैं।' } },
+  Mercury: { fields: { en: 'Writing, journalism, IT, software, finance, trading, teaching, law, consulting, research, or any profession centred on information, analysis, and the intellect.', hi: 'लेखन, पत्रकारिता, आईटी, सॉफ्टवेयर, वित्त, व्यापार, शिक्षण, कानून, परामर्श, शोध।' }, style: { en: 'You succeed through intelligence and communication. Multiple skills and simultaneous ventures are natural. The mind is your greatest professional asset — keep it fed, challenged, and well-expressed. Monotonous work is poison.', hi: 'बुद्धि और संवाद के माध्यम से सफलता। मन आपकी सबसे बड़ी व्यावसायिक सम्पत्ति है — उसे पोषित और चुनौतीपूर्ण बनाए रखें।' } },
+  Jupiter: { fields: { en: 'Teaching, law, judiciary, counseling, astrology, philosophy, publishing, priesthood, or any role requiring wisdom, ethical guidance, and the expansion of others\' understanding.', hi: 'शिक्षण, कानून, न्यायपालिका, परामर्श, ज्योतिष, दर्शन, प्रकाशन, पुरोहित।' }, style: { en: 'Your greatest professional tool is trust and wisdom. People come to you not for services but for guidance. Career thrives when you embrace the role of mentor — the one who expands others, not just informs them. Over-extending into too many roles dilutes your power.', hi: 'आपका सबसे बड़ा उपकरण विश्वास और ज्ञान है। करियर तब फलता-फूलता है जब आप संरक्षक की भूमिका अपनाते हैं।' } },
+  Venus:   { fields: { en: 'Fine arts, music, cinema, fashion, luxury goods, hospitality, interior design, beauty, diplomacy, or any profession requiring aesthetic sense and refined taste.', hi: 'ललित कला, संगीत, सिनेमा, फैशन, विलासिता, आतिथ्य, आन्तरिक सज्जा, सौन्दर्य उद्योग, कूटनीति।' }, style: { en: 'You work best in environments that are beautiful, harmonious, and relationship-rich. Professional energy thrives through collaboration, aesthetics, and sensory excellence. Conflict-heavy environments deplete you quickly — you need grace around you to work at your best.', hi: 'आप सुन्दर, सामंजस्यपूर्ण वातावरण में सर्वश्रेष्ठ काम करते हैं। सहयोग और सौन्दर्यशास्त्र से पेशेवर ऊर्जा बढ़ती है।' } },
+  Saturn:  { fields: { en: 'Law, social work, government, labor sectors, agriculture, mining, construction, urban planning, healthcare for the elderly or poor, or any slow-building, high-integrity profession.', hi: 'कानून, समाज सेवा, सरकार, श्रम क्षेत्र, कृषि, खनन, निर्माण, वृद्धों/गरीबों की स्वास्थ्य सेवा।' }, style: { en: 'You are built for the long game. Career success comes slowly but is rock-solid when it arrives. You excel in professions that others abandon — because you have patience, discipline, and the ability to serve without recognition. The less glamorous the work, often the better you perform.', hi: 'आप लम्बी दौड़ के लिए बने हैं। करियर की सफलता धीरे आती है पर अटल होती है। आप वहाँ उत्कृष्ट हैं जहाँ दूसरे हार मानते हैं।' } },
 };
 
-const DK_THEMES: Record<string, { en: string; hi: string }> = {
-  Sun:     { en: 'Authoritative, career-oriented, dignified spouse', hi: 'अधिकारपूर्ण, करियर-उन्मुख, प्रतिष्ठित जीवनसाथी' },
-  Moon:    { en: 'Nurturing, emotional, caring spouse', hi: 'पोषणकारी, भावनात्मक, देखभाल करने वाले जीवनसाथी' },
-  Mars:    { en: 'Energetic, assertive, passionate spouse', hi: 'ऊर्जावान, मुखर, जुनूनी जीवनसाथी' },
-  Mercury: { en: 'Intellectual, communicative, youthful spouse', hi: 'बुद्धिमान, संवादशील, युवा जीवनसाथी' },
-  Jupiter: { en: 'Wise, religious, generous, well-educated spouse', hi: 'बुद्धिमान, धार्मिक, उदार, सुशिक्षित जीवनसाथी' },
-  Venus:   { en: 'Beautiful, artistic, romantic, luxury-loving spouse', hi: 'सुंदर, कलात्मक, रोमांटिक, विलासिता-प्रेमी जीवनसाथी' },
-  Saturn:  { en: 'Mature, responsible, hardworking, older spouse', hi: 'परिपक्व, जिम्मेदार, मेहनती, बड़ी उम्र के जीवनसाथी' },
+interface DKTheme { nature: { en: string; hi: string }; dynamic: { en: string; hi: string }; }
+const DK_THEMES: Record<string, DKTheme> = {
+  Sun:     { nature: { en: 'Authoritative, proud, career-driven, and dignified. Your partner has a strong identity and needs recognition. They may be drawn to leadership, carry a solar radiance, and struggle with being second.', hi: 'अधिकारपूर्ण, गर्वित, करियर-उन्मुख और प्रतिष्ठित। साथी की पहचान मजबूत है, उन्हें मान्यता चाहिए।' }, dynamic: { en: 'Power balance is crucial. Two suns create friction unless roles are clearly defined. The relationship thrives when both have their own domain of authority — and the wisdom to respect each other\'s.', hi: 'शक्ति सन्तुलन महत्वपूर्ण है। दोनों की अलग-अलग अधिकार-भूमिकाएँ होनी चाहिए।' } },
+  Moon:    { nature: { en: 'Nurturing, emotionally sensitive, family-oriented, and deeply caring. Your partner feels deeply and gives deeply — but also needs consistent emotional reassurance and security.', hi: 'पोषणकारी, भावनात्मक रूप से संवेदनशील, पारिवारिक। साथी गहराई से महसूस और देते हैं।' }, dynamic: { en: 'This partnership runs on emotional currency. Feeling seen, safe, and cared for matters more than logic or achievement. Home, family, and shared roots anchor the bond. Neglect emotional maintenance at your peril.', hi: 'यह साझेदारी भावनात्मक मुद्रा पर चलती है। देखा-सुना महसूस करना तर्क से अधिक मायने रखता है।' } },
+  Mars:    { nature: { en: 'Energetic, assertive, physically driven, and passionately expressive. Your partner acts first and thinks later, brings intense vitality to the relationship, and may have a short fuse.', hi: 'ऊर्जावान, मुखर, शारीरिक रूप से सक्रिय। साथी पहले कार्य करते हैं, बाद में सोचते हैं।' }, dynamic: { en: 'This is a high-energy partnership. There will be friction, passion, and intensity. It needs physical vitality and healthy competition to stay alive. Monotony kills it. Conflict, handled maturely, makes it stronger.', hi: 'यह उच्च-ऊर्जा साझेदारी है। घर्षण और जुनून होगा। शारीरिक जीवन्तता से सम्बन्ध जीवित रहता है।' } },
+  Mercury: { nature: { en: 'Intellectually sharp, communicative, playful, and youthful in spirit. Your partner engages through ideas and conversation. They may be versatile, restless, and need mental stimulation constantly.', hi: 'बौद्धिक रूप से तेज, संवादशील, चुलबुले। साथी विचारों और बातचीत से जुड़ते हैं।' }, dynamic: { en: 'Communication is everything. A partner who doesn\'t talk, think, or grow intellectually will not hold your attention long. The relationship feeds on wit, debate, and shared curiosity — it must keep learning together.', hi: 'संवाद सब कुछ है। बुद्धि और साझा जिज्ञासा से सम्बन्ध पोषित होता है।' } },
+  Jupiter: { nature: { en: 'Wise, generous, philosophical, and morally grounded. Your partner has a teacher quality — they guide and expand you. They may be religious or spiritual, well-educated, and known for their integrity.', hi: 'बुद्धिमान, उदार, दार्शनिक और नैतिक। आपके साथी में गुरु का गुण है।' }, dynamic: { en: 'This partnership is built on wisdom, shared values, and mutual growth. There\'s a teacher-student dynamic — in the best sense: both make each other wiser. Shared dharma and life philosophy are the foundation. Without shared values, the bond has no centre.', hi: 'यह साझेदारी ज्ञान और साझा मूल्यों पर बनी है। साझा धर्म इसकी नींव है।' } },
+  Venus:   { nature: { en: 'Beautiful (inner or outer), artistic, pleasure-loving, and relationship-centred. Your partner brings grace, aesthetic sensibility, and social charm. They value comfort and harmony intensely and may avoid all conflict.', hi: 'सुन्दर, कलात्मक, सुख-प्रेमी। साथी जीवन में सौन्दर्यशास्त्र और सामाजिक आकर्षण लाते हैं।' }, dynamic: { en: 'This is a deeply romantic partnership that values beauty, pleasure, and harmony. Conflict and ugliness are handled poorly — the bond needs to be maintained with affection, aesthetic nourishment, and consistent tenderness.', hi: 'यह गहरी रोमांटिक साझेदारी है जो सौन्दर्य और सामंजस्य को महत्व देती है।' } },
+  Saturn:  { nature: { en: 'Mature, responsible, disciplined, and deeply committed. Your partner may be older, more serious, or someone who has been tested by life. They bring stability, loyalty, and a long-term perspective that other partners may lack.', hi: 'परिपक्व, जिम्मेदार, अनुशासित। साथी बड़े, अधिक गम्भीर, या जीवन से परखे हुए हो सकते हैं।' }, dynamic: { en: 'This partnership is built for the long haul, not the honeymoon. It deepens with time, shared challenge, and struggle. Romance may be understated, but loyalty and reliability run bone-deep. Do not mistake slowness for coldness — Saturn love is proven over decades, not days.', hi: 'यह साझेदारी लम्बे समय के लिए बनी है। धीरेपन को ठंडक मत समझें — शनि का प्रेम दशकों में सिद्ध होता है।' } },
 };
 
 interface JaiminiInterpretationProps {
@@ -986,7 +1025,7 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
         </p>
         {AK_THEMES[akPlanet] && (
           <p className="text-gold-light text-sm leading-relaxed italic">
-            {isHi ? AK_THEMES[akPlanet].hi : AK_THEMES[akPlanet].en}
+            {isHi ? AK_THEMES[akPlanet].desire.hi : AK_THEMES[akPlanet].desire.en}
           </p>
         )}
       </div>
@@ -1004,8 +1043,8 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
         {AMK_THEMES[amkPlanet] && (
           <p className="text-text-secondary text-sm leading-relaxed">
             {isHi
-              ? `करियर संकेत: ${AMK_THEMES[amkPlanet].hi}`
-              : `Career direction: ${AMK_THEMES[amkPlanet].en}`}
+              ? `करियर संकेत: ${AMK_THEMES[amkPlanet].fields.hi}`
+              : `Career direction: ${AMK_THEMES[amkPlanet].fields.en}`}
           </p>
         )}
       </div>
@@ -1022,7 +1061,7 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
         </p>
         {DK_THEMES[dkPlanet] && (
           <p className="text-text-secondary text-sm leading-relaxed">
-            {isHi ? DK_THEMES[dkPlanet].hi : DK_THEMES[dkPlanet].en}
+            {isHi ? DK_THEMES[dkPlanet].nature.hi : DK_THEMES[dkPlanet].nature.en}
           </p>
         )}
       </div>

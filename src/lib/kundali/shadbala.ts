@@ -158,13 +158,85 @@ function ucchaBala(p: PlanetInput): number {
   return (180 - diff) / 3; // 0–60
 }
 
+// ── Saptavargaja Bala — proper multi-varga dignity ───────────────────────────
+// Computes dignity across 6 vargas: D1, D2, D3, D9, D12, D27
+// (D60 requires a 720-entry lookup table per source and is excluded)
+// Each varga contributes dignity points per BPHS:
+//   Uccha/Moolatrikona=45, Own=30, Friend=15, Neutral=7.5, Enemy=3.75, Neecha=1.875
+
+const SIGN_LORDS_SB: number[] = [2, 5, 3, 1, 0, 3, 5, 2, 4, 6, 6, 4]; // 0=Aries lord
+
+const EXALTATION_SIGN_SB: Record<number, number> = {
+  0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7,
+};
+
+const DEBILITATION_SIGN_SB: Record<number, number> = {
+  0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1,
+};
+
+const MOOLATRIKONA_SIGN_SB: Record<number, number> = {
+  0: 5, 1: 2, 2: 1, 3: 6, 4: 9, 5: 7, 6: 11,
+};
+
+const OWN_SIGNS_SB: Record<number, number[]> = {
+  0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
+};
+
+// Natural friendships (BPHS standard)
+const NAT_FRIENDS_SB: Record<number, number[]> = {
+  0: [1, 2, 4], 1: [0, 3], 2: [0, 1, 4], 3: [0, 5], 4: [0, 1, 2], 5: [3, 6], 6: [3, 5],
+};
+
+const NAT_ENEMIES_SB: Record<number, number[]> = {
+  0: [5, 6], 1: [], 2: [3], 3: [1], 4: [3, 5], 5: [0, 1], 6: [0, 1, 2],
+};
+
+function vargaDignityPoints(planetId: number, sign: number): number {
+  if (EXALTATION_SIGN_SB[planetId] === sign) return 45;
+  if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
+  if (MOOLATRIKONA_SIGN_SB[planetId] === sign) return 45;
+  if (OWN_SIGNS_SB[planetId]?.includes(sign)) return 30;
+  const lord = SIGN_LORDS_SB[sign - 1];
+  if (NAT_FRIENDS_SB[planetId]?.includes(lord)) return 15;
+  if (NAT_ENEMIES_SB[planetId]?.includes(lord)) return 3.75;
+  return 7.5; // neutral
+}
+
+function computeVargaSigns(p: PlanetInput): number[] {
+  const sign = p.sign;
+  const degInSign = p.longitude % 30;
+
+  // D1 — Rashi (natal sign)
+  const d1 = sign;
+
+  // D2 — Hora: odd signs 0-15→Leo(5), 15-30→Cancer(4); even signs reversed
+  const isOddSign_ = sign % 2 === 1;
+  const d2 = degInSign < 15 ? (isOddSign_ ? 5 : 4) : (isOddSign_ ? 4 : 5);
+
+  // D3 — Drekkana: 0-10°=own, 10-20°=5th, 20-30°=9th
+  const d3Offset = degInSign < 10 ? 0 : degInSign < 20 ? 4 : 8;
+  const d3 = ((sign - 1 + d3Offset) % 12) + 1;
+
+  // D9 — Navamsha (pre-computed in PlanetInput)
+  const d9 = p.navamshaSign;
+
+  // D12 — Dwadashamsha: 12 equal parts, starting from own sign
+  const d12 = ((sign - 1 + Math.floor(degInSign * 12 / 30)) % 12) + 1;
+
+  // D27 — Saptavimshamsha: 27 parts; start from Aries(fire), Cancer(earth), Libra(air), Capricorn(water)
+  const d27PartIdx = Math.floor(degInSign * 27 / 30);
+  const d27Start = [1, 5, 9].includes(sign) ? 1
+    : [2, 6, 10].includes(sign) ? 4
+    : [3, 7, 11].includes(sign) ? 7
+    : 10;
+  const d27 = ((d27Start - 1 + d27PartIdx) % 12) + 1;
+
+  return [d1, d2, d3, d9, d12, d27];
+}
+
 function saptavargajaBala(p: PlanetInput): number {
-  let base: number;
-  if (p.isExalted) base = 45;
-  else if (p.isOwnSign) base = 30;
-  else if (p.isDebilitated) base = 1.875;
-  else base = 15; // neutral average
-  return base * 3.5;
+  const vargas = computeVargaSigns(p);
+  return vargas.reduce((sum, sign) => sum + vargaDignityPoints(p.id, sign), 0);
 }
 
 function ojhayugmaRashiBala(p: PlanetInput): number {

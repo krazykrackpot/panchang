@@ -13,7 +13,8 @@ export interface BhavaBalaResult {
   lordName: string;
   bhavadhipatiBala: number;
   bhavaDigBala: number;
-  bhavaDrishtiBala: number;
+  bhavaDrishtiBala: number;  // aspects only (not occupation)
+  bhavaGrahaSambandha: number; // occupation: benefic +15, malefic -15
   total: number;
   strengthPercent: number;
 }
@@ -64,20 +65,22 @@ function getAspectedHouses(planetId: number, planetHouse: number): number[] {
 export function calculateBhavabala(input: BhavaBalaInput): BhavaBalaResult[] {
   const { houses, planets, shadbalaRupas } = input;
 
-  // Pre-compute aspect map: house number -> net drishti bala
+  // Pre-compute aspect map: house → net drishti bala (aspects only, NOT occupation)
   const drishtiBalaMap: Record<number, number> = {};
+  // Occupation: benefic tenants strengthen (+15), malefic tenants weaken (-15)
+  const grahaSambandhaMap: Record<number, number> = {};
   for (let h = 1; h <= 12; h++) {
     drishtiBalaMap[h] = 0;
+    grahaSambandhaMap[h] = 0;
   }
 
   for (const planet of planets) {
     const isBenefic = BENEFIC_IDS.has(planet.id);
 
-    // Planets IN a house
-    const occupiedHouse = planet.house;
-    drishtiBalaMap[occupiedHouse] += isBenefic ? 15 : -15;
+    // Occupation (Bhava Graha Sambandha) — separate from Drishti
+    grahaSambandhaMap[planet.house] += isBenefic ? 15 : -15;
 
-    // Planetary aspects
+    // Planetary aspects (Drishti Bala only)
     const aspected = getAspectedHouses(planet.id, planet.house);
     for (const h of aspected) {
       drishtiBalaMap[h] += isBenefic ? 10 : -10;
@@ -100,8 +103,9 @@ export function calculateBhavabala(input: BhavaBalaInput): BhavaBalaResult[] {
 
     const bhavaDigBala = getBhavaDigBala(h.house);
     const bhavaDrishtiBala = drishtiBalaMap[h.house] ?? 0;
+    const bhavaGrahaSambandha = grahaSambandhaMap[h.house] ?? 0;
 
-    const total = bhavadhipatiBala + bhavaDigBala + bhavaDrishtiBala;
+    const total = bhavadhipatiBala + bhavaDigBala + bhavaDrishtiBala + bhavaGrahaSambandha;
 
     results.push({
       bhava: h.house,
@@ -110,6 +114,7 @@ export function calculateBhavabala(input: BhavaBalaInput): BhavaBalaResult[] {
       bhavadhipatiBala: round2(bhavadhipatiBala),
       bhavaDigBala: round2(bhavaDigBala),
       bhavaDrishtiBala: round2(bhavaDrishtiBala),
+      bhavaGrahaSambandha: round2(bhavaGrahaSambandha),
       total: round2(total),
       strengthPercent: 0, // computed after all houses
     });

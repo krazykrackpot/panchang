@@ -1510,6 +1510,122 @@ export default function KundaliPage() {
                   : 'Sphutas are mathematically computed degree points that reveal hidden dimensions: Yogi Point — your luckiest degree, planets near this bring fortune. Avayogi Point — your most challenging degree. Prana Sphuta — vitality and life force. Deha Sphuta — physical body and health constitution. Mrityu Sphuta — longevity indicators (analytical, not predictive!). Tri Sphuta — composite of all three.'}
               </InfoBlock>
 
+              {/* ── SYNTHESIS — leads with so-what ────────────────────────────────── */}
+              {sphuataTransitData && (() => {
+                const PLANET_COLORS_SPHUTA: Record<number,string> = { 0:'text-amber-400',1:'text-slate-300',2:'text-red-400',3:'text-emerald-400',4:'text-yellow-300',5:'text-pink-300',6:'text-blue-400',7:'text-purple-400',8:'text-gray-400' };
+                const PLANET_NAMES_SPHUTA_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
+                const PLANET_NAMES_SPHUTA_HI = ['सूर्य','चन्द्र','मंगल','बुध','बृहस्पति','शुक्र','शनि','राहु','केतु'];
+                const pName = (pid: number) => isHi ? (PLANET_NAMES_SPHUTA_HI[pid]||'') : (PLANET_NAMES_SPHUTA_EN[pid]||'');
+                const SIGN_ELEMENTS: Record<number,string> = { 1:'Fire',2:'Earth',3:'Air',4:'Water',5:'Fire',6:'Earth',7:'Air',8:'Water',9:'Fire',10:'Earth',11:'Air',12:'Water' };
+                const SIGN_ELEMENTS_HI: Record<number,string> = { 1:'अग्नि',2:'पृथ्वी',3:'वायु',4:'जल',5:'अग्नि',6:'पृथ्वी',7:'वायु',8:'जल',9:'अग्नि',10:'पृथ्वी',11:'वायु',12:'जल' };
+                const elemName = (s: number) => isHi ? SIGN_ELEMENTS_HI[s] : SIGN_ELEMENTS[s];
+                const sp = kundali.sphutas!;
+                // Check if any transit is active right now
+                const activeNow = sphuataTransitData.yogiJupiter.isActive || sphuataTransitData.avayogiSaturn.isActive;
+                return (
+                <div className="rounded-xl bg-gradient-to-br from-[#1a1040]/70 via-[#0f0d2e]/80 to-[#0a0e27] border border-gold-primary/25 p-5">
+                  <h4 className="text-gold-gradient text-sm font-bold mb-1 uppercase tracking-wider" style={headingFont}>
+                    {isHi ? '✦ स्फुट संश्लेषण — आपका पूर्ण चित्र' : '✦ Sphuta Synthesis — Your Complete Picture'}
+                  </h4>
+                  <p className="text-text-secondary/60 text-xs mb-4">
+                    {isHi ? 'सभी स्फुट बिंदुओं का एकीकृत विश्लेषण — महत्वपूर्ण गोचर खिड़कियाँ, स्वास्थ्य संरचना, और व्यावहारिक सुझाव।' : 'Integrated reading of all sphuta points — key transit windows, constitutional health picture, and actionable guidance.'}
+                  </p>
+
+                  {/* Blueprint paragraph */}
+                  <div className="bg-[#0a0e27]/60 border border-gold-primary/10 rounded-lg p-4 mb-4">
+                    <p className="text-text-secondary text-xs leading-relaxed">
+                      {isHi
+                        ? `आपकी प्राण शक्ति ${signName(sp.pranaSphuta.sign)} (${elemName(sp.pranaSphuta.sign)} तत्व) में है, जो ${sp.pranaSphuta.sign % 2 === 0 ? 'सम — ग्रहणशील, भावनात्मक' : 'विषम — सक्रिय, अभिव्यंजक'} प्रकृति दर्शाती है। देह स्फुट ${signName(sp.dehaSphuta.sign)} में ${elemName(sp.dehaSphuta.sign) === 'अग्नि' || elemName(sp.dehaSphuta.sign) === 'पृथ्वी' ? 'शारीरिक सहनशक्ति और स्थिरता' : 'लचीलापन और अनुकूलनशीलता'} देता है। मृत्यु स्फुट ${signName(sp.mrityuSphuta.sign)} में संवेदनशीलता ${sp.mrityuSphuta.sign >= 1 && sp.mrityuSphuta.sign <= 6 ? 'शरीर के ऊपरी भाग में' : 'शरीर के निचले भाग में'} इंगित करता है। आपका योगी ग्रह ${pName(sp.yogiPoint.yogiPlanet)} है और अवयोगी ग्रह ${pName(sp.avayogiPoint.avayogiPlanet)} — इन दोनों की दशाओं में क्रमशः सर्वोत्तम और सबसे चुनौतीपूर्ण अनुभव होते हैं।`
+                        : `Your Prana (vitality) is rooted in ${signName(sp.pranaSphuta.sign)} (${elemName(sp.pranaSphuta.sign)} element) — ${sp.pranaSphuta.sign % 2 === 0 ? 'receptive and emotionally driven' : 'active and expressive'}. Deha (body) in ${signName(sp.dehaSphuta.sign)} gives you ${(elemName(sp.dehaSphuta.sign) === 'Fire' || elemName(sp.dehaSphuta.sign) === 'Earth') ? 'physical endurance and structural strength' : 'flexibility and adaptability'}. Mrityu in ${signName(sp.mrityuSphuta.sign)} points to constitutional sensitivity in the ${sp.mrityuSphuta.sign >= 1 && sp.mrityuSphuta.sign <= 6 ? 'upper body region' : 'lower body region'}. Your Yogi Planet is ${pName(sp.yogiPoint.yogiPlanet)} and Avayogi is ${pName(sp.avayogiPoint.avayogiPlanet)} — these two planets mark your best and most challenging dasha periods respectively.`}
+                    </p>
+                  </div>
+
+                  {/* Active window alert */}
+                  {activeNow && (
+                    <div className="bg-emerald-500/15 border border-emerald-400/30 rounded-lg p-3 mb-4 flex items-start gap-2">
+                      <span className="text-emerald-400 text-sm mt-0.5">&#9733;</span>
+                      <p className="text-emerald-300 text-xs leading-relaxed font-medium">
+                        {isHi ? 'एक महत्वपूर्ण गोचर अभी सक्रिय है! अपने जीवन के अवसरों/चुनौतियों पर ध्यान दें।' : 'An important transit is ACTIVE RIGHT NOW. Pay close attention to opportunities or challenges unfolding in your life.'}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Timeline */}
+                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
+                    {isHi ? 'आगामी महत्वपूर्ण खिड़कियाँ' : 'Upcoming Key Windows'}
+                  </h5>
+                  <div className="space-y-1.5 mb-4">
+                    {sphuataTransitData.timeline.map((ev, idx) => (
+                      <div key={idx} className={`flex items-start gap-3 rounded-lg px-3 py-2 text-xs border ${ev.isBenefic ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-red-500/15 bg-red-500/5'}`}>
+                        <div className={`mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold ${ev.isBenefic ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
+                          {ev.isBenefic ? '✦' : '⚠'}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2 flex-wrap">
+                            <span className={`font-bold ${PLANET_COLORS_SPHUTA[ev.planet] || 'text-gold-light'}`}>
+                              {isHi ? PLANET_NAMES_SPHUTA_HI[ev.planet] : PLANET_NAMES_SPHUTA_EN[ev.planet]} → {ev.sphutalabel}
+                            </span>
+                            <span className={`font-bold text-xs ${ev.isBenefic ? 'text-emerald-300' : 'text-red-300'}`}>
+                              {ev.daysAway < 30 ? (isHi ? `~${ev.daysAway} दिन` : `~${ev.daysAway} days`) : ev.date.toLocaleDateString(isHi ? 'hi-IN' : 'en-US', { month:'short', year:'numeric' })}
+                            </span>
+                          </div>
+                          <p className={`mt-0.5 leading-relaxed ${ev.isBenefic ? 'text-emerald-200/70' : 'text-red-200/70'}`}>
+                            {isHi ? ev.actionHi : ev.action}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Constitution summary */}
+                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
+                    {isHi ? 'स्वास्थ्य संरचना सारांश' : 'Constitutional Health Summary'}
+                  </h5>
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    {[
+                      { label: isHi?'प्राण':'Prana', sign: sp.pranaSphuta.sign, deg: sp.pranaSphuta.degree, color:'text-gold-primary' },
+                      { label: isHi?'देह':'Deha', sign: sp.dehaSphuta.sign, deg: sp.dehaSphuta.degree, color:'text-blue-400' },
+                      { label: isHi?'मृत्यु':'Mrityu', sign: sp.mrityuSphuta.sign, deg: sp.mrityuSphuta.degree, color:'text-violet-400' },
+                    ].map(({ label, sign, deg, color }) => (
+                      <div key={label} className="bg-[#0a0e27]/60 border border-gold-primary/8 rounded-lg p-2 text-center">
+                        <div className={`text-xs font-bold ${color}`}>{label}</div>
+                        <div className="text-gold-light text-sm font-mono font-bold">{deg.toFixed(1)}°</div>
+                        <div className="text-text-secondary/60 text-xs">{signName(sign)}</div>
+                        <div className="text-text-secondary/40 text-xs">{elemName(sign)}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Key actions */}
+                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
+                    {isHi ? 'मुख्य सुझाव' : 'Key Actions'}
+                  </h5>
+                  <div className="space-y-1.5">
+                    <div className="flex items-start gap-2 text-xs text-text-secondary">
+                      <span className="text-emerald-400 mt-0.5 flex-shrink-0">✦</span>
+                      <span>{isHi ? `${pName(sp.yogiPoint.yogiPlanet)} को सबसे अधिक बल दें — यह आपका कल्याणकारी ग्रह है। इसके रत्न, मंत्र, और दान से आपकी योगी बिंदु ऊर्जा सक्रिय होती है।` : `Strengthen ${pName(sp.yogiPoint.yogiPlanet)} above all others — it is your most benefic karmic ally. Its gemstone, mantra, and charitable donations activate your Yogi Point energy.`}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-text-secondary">
+                      <span className="text-amber-400 mt-0.5 flex-shrink-0">◈</span>
+                      <span>{isHi ? `जब बृहस्पति आपके योगी बिंदु (${sp.yogiPoint.degree.toFixed(0)}° ${signName(sp.yogiPoint.sign)}) के ±5° में हो — ${sphuataTransitData.yogiJupiter.isActive ? 'अभी!' : (isHi ? sphuataTransitData.yogiJupiter.labelHi : sphuataTransitData.yogiJupiter.label)} — बड़े कार्य, निवेश, विवाह, और यात्राएं शुरू करें।` : `When Jupiter is within ±5° of your Yogi Point (${sp.yogiPoint.degree.toFixed(0)}° ${signName(sp.yogiPoint.sign)}) — ${sphuataTransitData.yogiJupiter.isActive ? 'that is NOW' : sphuataTransitData.yogiJupiter.label} — initiate major ventures, investments, marriages, journeys.`}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-text-secondary">
+                      <span className="text-red-400 mt-0.5 flex-shrink-0">⚠</span>
+                      <span>{isHi ? `${pName(sp.avayogiPoint.avayogiPlanet)} की दशा/अन्तर्दशा और शनि के अवयोगी बिंदु गोचर (${sphuataTransitData.avayogiSaturn.isActive ? 'अभी सक्रिय' : sphuataTransitData.avayogiSaturn.labelHi}) में: बड़े कानूनी, वित्तीय और व्यावसायिक निर्णय टालें।` : `During ${pName(sp.avayogiPoint.avayogiPlanet)} dasha/antardasha and Saturn's Avayogi transit (${sphuataTransitData.avayogiSaturn.isActive ? 'active now!' : sphuataTransitData.avayogiSaturn.label}): postpone major legal, financial, and career decisions where possible.`}</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-text-secondary">
+                      <span className="text-violet-400 mt-0.5 flex-shrink-0">◉</span>
+                      <span>{isHi ? `जब शनि या मंगल मृत्यु स्फुट (${sp.mrityuSphuta.degree.toFixed(0)}° ${signName(sp.mrityuSphuta.sign)}) पर गोचर करे — शनि: ${sphuataTransitData.mrityuSaturn.isActive ? 'अभी!' : sphuataTransitData.mrityuSaturn.labelHi}, मंगल: ${sphuataTransitData.mrityuMars.isActive ? 'अभी!' : sphuataTransitData.mrityuMars.labelHi} — पूर्ण स्वास्थ्य जांच कराएं।` : `When Saturn (${sphuataTransitData.mrityuSaturn.isActive ? 'now!' : sphuataTransitData.mrityuSaturn.label}) or Mars (${sphuataTransitData.mrityuMars.isActive ? 'now!' : sphuataTransitData.mrityuMars.label}) transit your Mrityu Sphuta (${sp.mrityuSphuta.degree.toFixed(0)}° ${signName(sp.mrityuSphuta.sign)}): schedule a comprehensive health checkup, avoid risky activities.`}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-text-secondary/30 text-xs mt-3 italic">
+                    {isHi ? '* गोचर तिथियाँ औसत गति पर आधारित अनुमान हैं — वक्री गति से ±4-8 सप्ताह का अन्तर हो सकता है।' : '* Transit dates are estimates based on average daily motion — retrograde periods may shift by ±4–8 weeks.'}
+                  </p>
+                </div>
+                );
+              })()}
+
               {/* YOGI & AVAYOGI — the key pair */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Yogi Point */}
@@ -1690,122 +1806,6 @@ export default function KundaliPage() {
                   </div>
                 </div>
               )}
-
-              {/* ── SYNTHESIS ─────────────────────────────────────────────────────── */}
-              {sphuataTransitData && (() => {
-                const PLANET_COLORS_SPHUTA: Record<number,string> = { 0:'text-amber-400',1:'text-slate-300',2:'text-red-400',3:'text-emerald-400',4:'text-yellow-300',5:'text-pink-300',6:'text-blue-400',7:'text-purple-400',8:'text-gray-400' };
-                const PLANET_NAMES_SPHUTA_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
-                const PLANET_NAMES_SPHUTA_HI = ['सूर्य','चन्द्र','मंगल','बुध','बृहस्पति','शुक्र','शनि','राहु','केतु'];
-                const pName = (pid: number) => isHi ? (PLANET_NAMES_SPHUTA_HI[pid]||'') : (PLANET_NAMES_SPHUTA_EN[pid]||'');
-                const SIGN_ELEMENTS: Record<number,string> = { 1:'Fire',2:'Earth',3:'Air',4:'Water',5:'Fire',6:'Earth',7:'Air',8:'Water',9:'Fire',10:'Earth',11:'Air',12:'Water' };
-                const SIGN_ELEMENTS_HI: Record<number,string> = { 1:'अग्नि',2:'पृथ्वी',3:'वायु',4:'जल',5:'अग्नि',6:'पृथ्वी',7:'वायु',8:'जल',9:'अग्नि',10:'पृथ्वी',11:'वायु',12:'जल' };
-                const elemName = (s: number) => isHi ? SIGN_ELEMENTS_HI[s] : SIGN_ELEMENTS[s];
-                const sp = kundali.sphutas!;
-                // Check if any transit is active right now
-                const activeNow = sphuataTransitData.yogiJupiter.isActive || sphuataTransitData.avayogiSaturn.isActive;
-                return (
-                <div className="rounded-xl bg-gradient-to-br from-[#1a1040]/70 via-[#0f0d2e]/80 to-[#0a0e27] border border-gold-primary/25 p-5">
-                  <h4 className="text-gold-gradient text-sm font-bold mb-1 uppercase tracking-wider" style={headingFont}>
-                    {isHi ? '✦ स्फुट संश्लेषण — आपका पूर्ण चित्र' : '✦ Sphuta Synthesis — Your Complete Picture'}
-                  </h4>
-                  <p className="text-text-secondary/60 text-xs mb-4">
-                    {isHi ? 'सभी स्फुट बिंदुओं का एकीकृत विश्लेषण — महत्वपूर्ण गोचर खिड़कियाँ, स्वास्थ्य संरचना, और व्यावहारिक सुझाव।' : 'Integrated reading of all sphuta points — key transit windows, constitutional health picture, and actionable guidance.'}
-                  </p>
-
-                  {/* Blueprint paragraph */}
-                  <div className="bg-[#0a0e27]/60 border border-gold-primary/10 rounded-lg p-4 mb-4">
-                    <p className="text-text-secondary text-xs leading-relaxed">
-                      {isHi
-                        ? `आपकी प्राण शक्ति ${signName(sp.pranaSphuta.sign)} (${elemName(sp.pranaSphuta.sign)} तत्व) में है, जो ${sp.pranaSphuta.sign % 2 === 0 ? 'सम — ग्रहणशील, भावनात्मक' : 'विषम — सक्रिय, अभिव्यंजक'} प्रकृति दर्शाती है। देह स्फुट ${signName(sp.dehaSphuta.sign)} में ${elemName(sp.dehaSphuta.sign) === 'अग्नि' || elemName(sp.dehaSphuta.sign) === 'पृथ्वी' ? 'शारीरिक सहनशक्ति और स्थिरता' : 'लचीलापन और अनुकूलनशीलता'} देता है। मृत्यु स्फुट ${signName(sp.mrityuSphuta.sign)} में संवेदनशीलता ${sp.mrityuSphuta.sign >= 1 && sp.mrityuSphuta.sign <= 6 ? 'शरीर के ऊपरी भाग में' : 'शरीर के निचले भाग में'} इंगित करता है। आपका योगी ग्रह ${pName(sp.yogiPoint.yogiPlanet)} है और अवयोगी ग्रह ${pName(sp.avayogiPoint.avayogiPlanet)} — इन दोनों की दशाओं में क्रमशः सर्वोत्तम और सबसे चुनौतीपूर्ण अनुभव होते हैं।`
-                        : `Your Prana (vitality) is rooted in ${signName(sp.pranaSphuta.sign)} (${elemName(sp.pranaSphuta.sign)} element) — ${sp.pranaSphuta.sign % 2 === 0 ? 'receptive and emotionally driven' : 'active and expressive'}. Deha (body) in ${signName(sp.dehaSphuta.sign)} gives you ${(elemName(sp.dehaSphuta.sign) === 'Fire' || elemName(sp.dehaSphuta.sign) === 'Earth') ? 'physical endurance and structural strength' : 'flexibility and adaptability'}. Mrityu in ${signName(sp.mrityuSphuta.sign)} points to constitutional sensitivity in the ${sp.mrityuSphuta.sign >= 1 && sp.mrityuSphuta.sign <= 6 ? 'upper body region' : 'lower body region'}. Your Yogi Planet is ${pName(sp.yogiPoint.yogiPlanet)} and Avayogi is ${pName(sp.avayogiPoint.avayogiPlanet)} — these two planets mark your best and most challenging dasha periods respectively.`}
-                    </p>
-                  </div>
-
-                  {/* Active window alert */}
-                  {activeNow && (
-                    <div className="bg-emerald-500/15 border border-emerald-400/30 rounded-lg p-3 mb-4 flex items-start gap-2">
-                      <span className="text-emerald-400 text-sm mt-0.5">&#9733;</span>
-                      <p className="text-emerald-300 text-xs leading-relaxed font-medium">
-                        {isHi ? 'एक महत्वपूर्ण गोचर अभी सक्रिय है! अपने जीवन के अवसरों/चुनौतियों पर ध्यान दें।' : 'An important transit is ACTIVE RIGHT NOW. Pay close attention to opportunities or challenges unfolding in your life.'}
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Timeline */}
-                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-                    {isHi ? 'आगामी महत्वपूर्ण खिड़कियाँ' : 'Upcoming Key Windows'}
-                  </h5>
-                  <div className="space-y-1.5 mb-4">
-                    {sphuataTransitData.timeline.map((ev, idx) => (
-                      <div key={idx} className={`flex items-start gap-3 rounded-lg px-3 py-2 text-xs border ${ev.isBenefic ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-red-500/15 bg-red-500/5'}`}>
-                        <div className={`mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold ${ev.isBenefic ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
-                          {ev.isBenefic ? '✦' : '⚠'}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-2 flex-wrap">
-                            <span className={`font-bold ${PLANET_COLORS_SPHUTA[ev.planet] || 'text-gold-light'}`}>
-                              {isHi ? PLANET_NAMES_SPHUTA_HI[ev.planet] : PLANET_NAMES_SPHUTA_EN[ev.planet]} → {ev.sphutalabel}
-                            </span>
-                            <span className={`font-bold text-xs ${ev.isBenefic ? 'text-emerald-300' : 'text-red-300'}`}>
-                              {ev.daysAway < 30 ? (isHi ? `~${ev.daysAway} दिन` : `~${ev.daysAway} days`) : ev.date.toLocaleDateString(isHi ? 'hi-IN' : 'en-US', { month:'short', year:'numeric' })}
-                            </span>
-                          </div>
-                          <p className={`mt-0.5 leading-relaxed ${ev.isBenefic ? 'text-emerald-200/70' : 'text-red-200/70'}`}>
-                            {isHi ? ev.actionHi : ev.action}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Constitution summary */}
-                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-                    {isHi ? 'स्वास्थ्य संरचना सारांश' : 'Constitutional Health Summary'}
-                  </h5>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    {[
-                      { label: isHi?'प्राण':'Prana', sign: sp.pranaSphuta.sign, deg: sp.pranaSphuta.degree, color:'text-gold-primary' },
-                      { label: isHi?'देह':'Deha', sign: sp.dehaSphuta.sign, deg: sp.dehaSphuta.degree, color:'text-blue-400' },
-                      { label: isHi?'मृत्यु':'Mrityu', sign: sp.mrityuSphuta.sign, deg: sp.mrityuSphuta.degree, color:'text-violet-400' },
-                    ].map(({ label, sign, deg, color }) => (
-                      <div key={label} className="bg-[#0a0e27]/60 border border-gold-primary/8 rounded-lg p-2 text-center">
-                        <div className={`text-xs font-bold ${color}`}>{label}</div>
-                        <div className="text-gold-light text-sm font-mono font-bold">{deg.toFixed(1)}°</div>
-                        <div className="text-text-secondary/60 text-xs">{signName(sign)}</div>
-                        <div className="text-text-secondary/40 text-xs">{elemName(sign)}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Key actions */}
-                  <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-                    {isHi ? 'मुख्य सुझाव' : 'Key Actions'}
-                  </h5>
-                  <div className="space-y-1.5">
-                    <div className="flex items-start gap-2 text-xs text-text-secondary">
-                      <span className="text-emerald-400 mt-0.5 flex-shrink-0">✦</span>
-                      <span>{isHi ? `${pName(sp.yogiPoint.yogiPlanet)} को सबसे अधिक बल दें — यह आपका कल्याणकारी ग्रह है। इसके रत्न, मंत्र, और दान से आपकी योगी बिंदु ऊर्जा सक्रिय होती है।` : `Strengthen ${pName(sp.yogiPoint.yogiPlanet)} above all others — it is your most benefic karmic ally. Its gemstone, mantra, and charitable donations activate your Yogi Point energy.`}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-text-secondary">
-                      <span className="text-amber-400 mt-0.5 flex-shrink-0">◈</span>
-                      <span>{isHi ? `जब बृहस्पति आपके योगी बिंदु (${sp.yogiPoint.degree.toFixed(0)}° ${signName(sp.yogiPoint.sign)}) के ±5° में हो — ${sphuataTransitData.yogiJupiter.isActive ? 'अभी!' : (isHi ? sphuataTransitData.yogiJupiter.labelHi : sphuataTransitData.yogiJupiter.label)} — बड़े कार्य, निवेश, विवाह, और यात्राएं शुरू करें।` : `When Jupiter is within ±5° of your Yogi Point (${sp.yogiPoint.degree.toFixed(0)}° ${signName(sp.yogiPoint.sign)}) — ${sphuataTransitData.yogiJupiter.isActive ? 'that is NOW' : sphuataTransitData.yogiJupiter.label} — initiate major ventures, investments, marriages, journeys.`}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-text-secondary">
-                      <span className="text-red-400 mt-0.5 flex-shrink-0">⚠</span>
-                      <span>{isHi ? `${pName(sp.avayogiPoint.avayogiPlanet)} की दशा/अन्तर्दशा और शनि के अवयोगी बिंदु गोचर (${sphuataTransitData.avayogiSaturn.isActive ? 'अभी सक्रिय' : sphuataTransitData.avayogiSaturn.labelHi}) में: बड़े कानूनी, वित्तीय और व्यावसायिक निर्णय टालें।` : `During ${pName(sp.avayogiPoint.avayogiPlanet)} dasha/antardasha and Saturn's Avayogi transit (${sphuataTransitData.avayogiSaturn.isActive ? 'active now!' : sphuataTransitData.avayogiSaturn.label}): postpone major legal, financial, and career decisions where possible.`}</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-xs text-text-secondary">
-                      <span className="text-violet-400 mt-0.5 flex-shrink-0">◉</span>
-                      <span>{isHi ? `जब शनि या मंगल मृत्यु स्फुट (${sp.mrityuSphuta.degree.toFixed(0)}° ${signName(sp.mrityuSphuta.sign)}) पर गोचर करे — शनि: ${sphuataTransitData.mrityuSaturn.isActive ? 'अभी!' : sphuataTransitData.mrityuSaturn.labelHi}, मंगल: ${sphuataTransitData.mrityuMars.isActive ? 'अभी!' : sphuataTransitData.mrityuMars.labelHi} — पूर्ण स्वास्थ्य जांच कराएं।` : `When Saturn (${sphuataTransitData.mrityuSaturn.isActive ? 'now!' : sphuataTransitData.mrityuSaturn.label}) or Mars (${sphuataTransitData.mrityuMars.isActive ? 'now!' : sphuataTransitData.mrityuMars.label}) transit your Mrityu Sphuta (${sp.mrityuSphuta.degree.toFixed(0)}° ${signName(sp.mrityuSphuta.sign)}): schedule a comprehensive health checkup, avoid risky activities.`}</span>
-                    </div>
-                  </div>
-
-                  <p className="text-text-secondary/30 text-xs mt-3 italic">
-                    {isHi ? '* गोचर तिथियाँ औसत गति पर आधारित अनुमान हैं — वक्री गति से ±4-8 सप्ताह का अन्तर हो सकता है।' : '* Transit dates are estimates based on average daily motion — retrograde periods may shift by ±4–8 weeks.'}
-                  </p>
-                </div>
-                );
-              })()}
 
               {/* How to use this */}
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">

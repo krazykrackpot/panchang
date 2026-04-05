@@ -969,57 +969,63 @@ export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretation
   const dkPlanet = getPlanetName(darakaraka);
 
   return (
-    <div className="space-y-4 mt-6">
-      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
+    <div className="space-y-3 mt-6">
+      <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold border-b border-gold-primary/20 pb-2">
         {isHi ? 'जैमिनी विश्लेषण' : 'Jaimini Interpretation'}
       </h3>
 
       {/* Atmakaraka */}
-      <SectionCard border="border-emerald-500/15">
-        <SectionHeading>{isHi ? 'आपकी आत्मा का उद्देश्य (आत्मकारक)' : 'Your Soul\'s Purpose (Atmakaraka)'}</SectionHeading>
-        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-4">
+        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+          {isHi ? 'आत्मकारक — आत्मा का उद्देश्य' : 'Atmakaraka — Soul\'s Purpose'}
+        </div>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? `आपका आत्मकारक ${akPlanet} है — आपकी कुंडली में सबसे ऊंचे अंश वाला ग्रह। यह इस जन्म में आपकी आत्मा की सबसे गहरी इच्छा को दर्शाता है।`
             : `Your Atmakaraka is ${akPlanet} — the planet with the highest degree in your chart. This represents your soul's deepest desire in this life.`}
         </p>
         {AK_THEMES[akPlanet] && (
-          <p className="text-sm text-emerald-400 leading-relaxed italic">
+          <p className="text-gold-light text-sm leading-relaxed italic">
             {isHi ? AK_THEMES[akPlanet].hi : AK_THEMES[akPlanet].en}
           </p>
         )}
-      </SectionCard>
+      </div>
 
       {/* Amatyakaraka */}
-      <SectionCard border="border-sky-500/15">
-        <SectionHeading>{isHi ? 'अमात्यकारक (करियर)' : 'Amatya Karaka (Career)'}</SectionHeading>
-        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+          {isHi ? 'अमात्यकारक — करियर' : 'Amatya Karaka — Career'}
+        </div>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? `आपका अमात्यकारक ${amkPlanet} है — यह आपकी स्वाभाविक करियर दिशा का संकेत देता है।`
             : `Your Amatya Karaka is ${amkPlanet} — indicating your natural career direction.`}
         </p>
         {AMK_THEMES[amkPlanet] && (
-          <p className="text-sm text-sky-400 leading-relaxed">
+          <p className="text-text-secondary text-sm leading-relaxed">
             {isHi
               ? `करियर संकेत: ${AMK_THEMES[amkPlanet].hi}`
               : `Career direction: ${AMK_THEMES[amkPlanet].en}`}
           </p>
         )}
-      </SectionCard>
+      </div>
 
       {/* Darakaraka */}
-      <SectionCard border="border-sky-500/15">
-        <SectionHeading>{isHi ? 'दारकारक (जीवनसाथी)' : 'Dara Karaka (Spouse)'}</SectionHeading>
-        <p className="text-sm text-gray-200 leading-relaxed mb-2">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4">
+        <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
+          {isHi ? 'दारकारक — जीवनसाथी' : 'Dara Karaka — Spouse'}
+        </div>
+        <p className="text-text-secondary text-sm leading-relaxed mb-2">
           {isHi
             ? `आपका दारकारक ${dkPlanet} है — सबसे कम अंश वाला ग्रह। यह आपके जीवनसाथी के स्वभाव का संकेत देता है।`
             : `Your Dara Karaka is ${dkPlanet} — the planet with the lowest degree. This indicates your spouse's nature.`}
         </p>
         {DK_THEMES[dkPlanet] && (
-          <p className="text-sm text-sky-400 leading-relaxed">
+          <p className="text-text-secondary text-sm leading-relaxed">
             {isHi ? DK_THEMES[dkPlanet].hi : DK_THEMES[dkPlanet].en}
           </p>
         )}
-      </SectionCard>
+      </div>
     </div>
   );
 }

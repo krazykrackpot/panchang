@@ -12,7 +12,7 @@ import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
-import { Download, Save, Check } from 'lucide-react';
+import { Download, Save, Check, ScrollText } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { generateKundaliPrintHtml } from '@/lib/pdf/kundali-pdf';
@@ -379,7 +379,14 @@ export default function KundaliPage() {
                 {locale === 'en' ? 'New Chart' : 'नया चार्ट'}
               </button>
             </div>
-            <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
+              <button
+                onClick={() => setActiveTab('patrika')}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/40 text-gold-light bg-gold-primary/8 hover:bg-gold-primary/15 hover:border-gold-primary/70 transition-all duration-300"
+              >
+                <ScrollText className="w-4 h-4" />
+                {locale === 'en' ? 'Generate Patrika' : 'पत्रिका बनाएं'}
+              </button>
               <button
                 onClick={async () => {
                   const { exportKundaliPDF } = await import('@/lib/export/pdf-kundali');
@@ -555,7 +562,7 @@ export default function KundaliPage() {
                 <div className="mb-4">
                   <div className="text-center p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15 mb-3">
                     <div className="text-emerald-400 text-xs font-medium mb-1">{locale === 'en' ? 'Current Transit Positions' : 'वर्तमान गोचर स्थितियाँ'}</div>
-                    <div className="text-text-tertiary text-xs">{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
+                    <div className="text-text-tertiary text-xs" suppressHydrationWarning>{locale === 'en' ? `As of ${new Date().toLocaleDateString()}` : `${new Date().toLocaleDateString('hi-IN')}`}</div>
                   </div>
                   {transitData && (
                     <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 mb-4">

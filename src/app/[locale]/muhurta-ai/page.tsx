@@ -127,16 +127,31 @@ export default function MuhurtaAIPage() {
           }
           setDetectingLocation(false);
         },
-        () => {
-          fetch('https://ipapi.co/json/')
-            .then(res => res.json())
-            .then(ipData => {
-              if (ipData.latitude && ipData.longitude) {
-                setLocation({ lat: ipData.latitude, lng: ipData.longitude, name: [ipData.city, ipData.country_name].filter(Boolean).join(', ') || 'Unknown', tz: ipData.utc_offset ? parseFloat(ipData.utc_offset) / 100 : -new Date().getTimezoneOffset() / 60, timezone: ipData.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone });
+        async () => {
+          try {
+            const res = await fetch('https://ipapi.co/json/');
+            const ipData = await res.json();
+            if (ipData.latitude && ipData.longitude) {
+              let name = `${ipData.latitude.toFixed(2)}°, ${ipData.longitude.toFixed(2)}°`;
+              try {
+                const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${ipData.latitude}&lon=${ipData.longitude}&zoom=10`);
+                const geoData = await geo.json();
+                const city = geoData.address?.city || geoData.address?.town || geoData.address?.village || '';
+                const country = geoData.address?.country || '';
+                name = [city, country].filter(Boolean).join(', ') || name;
+              } catch { /* use coordinate fallback */ }
+              // Parse utc_offset in HHMM format (e.g. "+0530" → 5.5, not 5.3)
+              let tz = -new Date().getTimezoneOffset() / 60;
+              if (ipData.utc_offset) {
+                const sign = ipData.utc_offset[0] === '-' ? -1 : 1;
+                const hh = parseInt(ipData.utc_offset.slice(1, 3), 10);
+                const mm = parseInt(ipData.utc_offset.slice(3, 5), 10);
+                tz = sign * (hh + mm / 60);
               }
-            })
-            .catch(() => {})
-            .finally(() => setDetectingLocation(false));
+              setLocation({ lat: ipData.latitude, lng: ipData.longitude, name, tz, timezone: ipData.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone });
+            }
+          } catch { /* silently fail */ }
+          setDetectingLocation(false);
         },
         { timeout: 8000 }
       );

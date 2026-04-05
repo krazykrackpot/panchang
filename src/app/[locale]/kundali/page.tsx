@@ -974,6 +974,36 @@ export default function KundaliPage() {
                 </motion.div>
               ))}
               <PlanetsInterpretation planets={kundali.planets} ascendant={kundali.ascendant} locale={locale} />
+
+              {/* ── Graha Yuddha (Planetary War) ── */}
+              {kundali.grahaYuddha && kundali.grahaYuddha.length > 0 && (
+                <div className="mt-4 rounded-xl bg-gradient-to-br from-red-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/30 p-5">
+                  <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-3">
+                    {locale === 'en' ? '⚔ Graha Yuddha — Planetary War' : '⚔ ग्रह युद्ध'}
+                  </div>
+                  <div className="space-y-4">
+                    {kundali.grahaYuddha.map((gy, i) => (
+                      <div key={i} className="border-t border-red-500/15 pt-3 first:border-0 first:pt-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className="text-gold-light font-bold text-sm">{gy.planet1Name[locale as 'en' | 'hi' | 'sa']}</span>
+                          <span className="text-red-400 font-bold">⚔</span>
+                          <span className="text-gold-light font-bold text-sm">{gy.planet2Name[locale as 'en' | 'hi' | 'sa']}</span>
+                          <span className="text-text-secondary/50 text-xs font-mono">({gy.separation.toFixed(2)}°)</span>
+                          <span className="px-2 py-0.5 bg-emerald-500/15 text-emerald-400 text-xs rounded-full font-bold border border-emerald-500/20">
+                            {locale === 'en' ? 'Winner:' : 'विजयी:'} {gy.winnerName[locale as 'en' | 'hi' | 'sa']}
+                          </span>
+                          <span className="px-2 py-0.5 bg-red-500/15 text-red-400 text-xs rounded-full font-bold border border-red-500/20">
+                            {locale === 'en' ? 'Loser:' : 'पराजित:'} {gy.loserName[locale as 'en' | 'hi' | 'sa']}
+                          </span>
+                        </div>
+                        <p className="text-text-secondary/80 text-xs leading-relaxed">
+                          {gy.interpretation[locale as 'en' | 'hi' | 'sa']}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

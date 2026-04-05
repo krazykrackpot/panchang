@@ -175,16 +175,33 @@ export default function PanchangPage() {
           }
           setDetectingLocation(false);
         },
-        () => {
-          fetch('https://ipapi.co/json/')
-            .then(res => res.json())
-            .then(data => {
-              if (data.latitude && data.longitude) {
-                setLocation({ lat: data.latitude, lng: data.longitude, name: [data.city, data.country_name].filter(Boolean).join(', ') || 'Unknown', tz: data.utc_offset ? parseFloat(data.utc_offset) / 100 : -(new Date().getTimezoneOffset() / 60) });
+        async () => {
+          try {
+            const res = await fetch('https://ipapi.co/json/');
+            const data = await res.json();
+            if (data.latitude && data.longitude) {
+              // Reverse-geocode the actual coordinates — data.city from ipapi often mismatches
+              // the lat/lng because ISP routing points can be far from the user's city
+              let name = `${data.latitude.toFixed(2)}°, ${data.longitude.toFixed(2)}°`;
+              try {
+                const geo = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${data.latitude}&lon=${data.longitude}&zoom=10`);
+                const geoData = await geo.json();
+                const city = geoData.address?.city || geoData.address?.town || geoData.address?.village || '';
+                const country = geoData.address?.country || '';
+                name = [city, country].filter(Boolean).join(', ') || name;
+              } catch { /* use coordinate fallback */ }
+              // Parse utc_offset in HHMM format (e.g. "+0530" → 5.5, not 5.3)
+              let tz = -(new Date().getTimezoneOffset() / 60);
+              if (data.utc_offset) {
+                const sign = data.utc_offset[0] === '-' ? -1 : 1;
+                const hh = parseInt(data.utc_offset.slice(1, 3), 10);
+                const mm = parseInt(data.utc_offset.slice(3, 5), 10);
+                tz = sign * (hh + mm / 60);
               }
-            })
-            .catch(() => {})
-            .finally(() => setDetectingLocation(false));
+              setLocation({ lat: data.latitude, lng: data.longitude, name, tz });
+            }
+          } catch { /* silently fail */ }
+          setDetectingLocation(false);
         },
         { timeout: 5000 }
       );

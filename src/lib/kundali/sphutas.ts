@@ -50,15 +50,14 @@ export function calculateSphutas(
   const pranaNak = getNakshatraNumber(pranaDeg);
 
   // ── Deha Sphuta (Body Point) ──
-  // = (Moon × 8 + Lagna × 1) / 9 — some texts use different weights
-  // Using BPHS variant: (Lagna + Sun + Moon) normalized
-  const dehaDeg = normalizeDeg((moonLong * 8 + lagnaLong) / 9 * 12); // normalized
+  // = (Moon × 8 + Lagna) / 9 — weighted average, produces 0-360° directly
+  const dehaDeg = normalizeDeg((moonLong * 8 + lagnaLong) / 9);
   const dehaSign = Math.floor(dehaDeg / 30) + 1;
   const dehaNak = getNakshatraNumber(dehaDeg);
 
   // ── Mrityu Sphuta (Death Point) ──
-  // = (Moon × 8 + Lagna + Sun × 7) / 16 normalized
-  const mrityuDeg = normalizeDeg((moonLong * 8 + lagnaLong + sunLong * 7) / 16 * 12);
+  // = (Moon × 8 + Lagna + Sun × 7) / 16 — weighted average, 0-360° directly
+  const mrityuDeg = normalizeDeg((moonLong * 8 + lagnaLong + sunLong * 7) / 16);
   const mrityuSign = Math.floor(mrityuDeg / 30) + 1;
   const mrityuNak = getNakshatraNumber(mrityuDeg);
 

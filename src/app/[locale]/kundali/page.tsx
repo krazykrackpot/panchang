@@ -38,6 +38,7 @@ import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } f
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation, JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
+import LifeTimeline from '@/components/kundali/LifeTimeline';
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
@@ -233,7 +234,7 @@ export default function KundaliPage() {
     } catch { /* silently fail */ }
     setSaving(false);
   };
-  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika'>('chart');
+  const [activeTab, setActiveTab] = useState<'chart' | 'planets' | 'dasha' | 'ashtakavarga' | 'tippanni' | 'varga' | 'chat' | 'jaimini' | 'graha' | 'yogas' | 'shadbala' | 'bhavabala' | 'avasthas' | 'argala' | 'sphutas' | 'sadesati' | 'patrika' | 'timeline'>('chart');
   const [selectedHouse, setSelectedHouse] = useState<number | null>(null);
   const [selectedPlanet, setSelectedPlanet] = useState<number | null>(null);
   const [activeChart, setActiveChart] = useState<string>('D1');
@@ -571,6 +572,7 @@ export default function KundaliPage() {
                   { key: 'bhavabala' as const, label: locale === 'en' ? 'Bhavabala' : 'भावबल' },
                   { key: 'sadesati' as const, label: locale === 'en' ? 'Sade Sati' : 'साढ़े साती' },
                   { key: 'jaimini' as const, label: locale === 'en' ? 'Jaimini' : 'जैमिनी' },
+                  { key: 'timeline' as const, label: locale === 'en' ? 'Life Timeline' : 'जीवन-रेखा' },
                   { key: 'patrika' as const, label: locale === 'en' ? 'Patrika' : 'पत्रिका' },
                 ]).map((tab) => (
                   <button
@@ -2196,6 +2198,16 @@ export default function KundaliPage() {
             </div>
             );
           })()}
+
+          {/* ===== LIFE TIMELINE TAB ===== */}
+          {activeTab === 'timeline' && (
+            <LifeTimeline
+              kundali={kundali}
+              locale={locale}
+              isDevanagari={isDevanagari}
+              headingFont={headingFont}
+            />
+          )}
 
           {/* ===== PATRIKA TAB ===== */}
           {activeTab === 'patrika' && (() => {

@@ -840,6 +840,135 @@ export default function KundaliPage() {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* JYOTISH-16: Transit Activation of Natal Promise */}
+              {(() => {
+                const lk = locale === 'sa' ? 'hi' : locale;
+                // Current Mahadasha lord
+                const currentMaha = kundali.dashas.find(d => {
+                  const now = new Date();
+                  return d.level === 'maha' && new Date(d.startDate) <= now && new Date(d.endDate) >= now;
+                });
+                if (!currentMaha || !transitData) return null;
+
+                const mahaLordId = ['Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury','Ketu','Venus']
+                  .indexOf(typeof currentMaha.planet === 'string' ? currentMaha.planet : (currentMaha.planet as { en: string }).en);
+                const mahaHouse = kundali.planets.find(p => p.planet.id === mahaLordId)?.house ?? 0;
+                const mahaOwnedHouses = kundali.houses
+                  .filter(h => {
+                    const lordSign = h.sign;
+                    const SIGN_LORD_MAP: Record<number,number> = {1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4};
+                    return SIGN_LORD_MAP[lordSign] === mahaLordId;
+                  })
+                  .map(h => h.house);
+
+                // Life area checks — 5 core domains
+                const LIFE_AREAS = [
+                  {
+                    area: { en: 'Marriage / Partnership', hi: 'विवाह / साझेदारी' },
+                    natHouse: 7, // Natal 7H lord in kendra/trikona = natal promise
+                    transitPlanet: 4, // Jupiter transiting 7H = transit confirmation
+                    dashaHouses: [7, 2], // Dasha activating 7H or 2H
+                  },
+                  {
+                    area: { en: 'Career / Authority', hi: 'कैरियर / अधिकार' },
+                    natHouse: 10,
+                    transitPlanet: 4, // Jupiter on 10H
+                    dashaHouses: [10, 1, 9],
+                  },
+                  {
+                    area: { en: 'Children / Creativity', hi: 'संतान / रचनात्मकता' },
+                    natHouse: 5,
+                    transitPlanet: 4, // Jupiter on 5H
+                    dashaHouses: [5, 9],
+                  },
+                  {
+                    area: { en: 'Wealth / Gains', hi: 'धन / लाभ' },
+                    natHouse: 11,
+                    transitPlanet: 4, // Jupiter on 2H or 11H
+                    dashaHouses: [2, 11],
+                  },
+                  {
+                    area: { en: 'Relocation / Abroad', hi: 'स्थानान्तरण / विदेश' },
+                    natHouse: 12,
+                    transitPlanet: 6, // Saturn on 12H or Rahu
+                    dashaHouses: [12, 9, 3],
+                  },
+                ];
+
+                const results = LIFE_AREAS.map(la => {
+                  // 1. Natal promise — lord of natHouse in kendra (1,4,7,10) or trikona (1,5,9)
+                  const houseData = kundali.houses.find(h => h.house === la.natHouse);
+                  const lordSign = houseData?.sign ?? 0;
+                  const SIGN_LORD: Record<number,number> = {1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4};
+                  const lordId = SIGN_LORD[lordSign];
+                  const lordPlanet = kundali.planets.find(p => p.planet.id === lordId);
+                  const lordHouse = lordPlanet?.house ?? 0;
+                  const kendraTrikona = new Set([1, 4, 5, 7, 9, 10]);
+                  const natalPromise = kendraTrikona.has(lordHouse);
+
+                  // 2. Dasha activation — current Mahadasha lord owns or occupies relevant house
+                  const dashaConfirm = la.dashaHouses.includes(mahaHouse) ||
+                    la.dashaHouses.some(h => mahaOwnedHouses.includes(h));
+
+                  // 3. Transit — relevant planet in the target house
+                  const transitPlanetData = transitData?.planets.find(p => p.id === la.transitPlanet);
+                  const transitSign = transitPlanetData?.rashi ?? 0;
+                  // House of transit planet = which house (from lagna) that sign occupies
+                  const lagnaSign = kundali.ascendant.sign;
+                  const transitHouseFromLagna = transitSign > 0 ? ((transitSign - lagnaSign + 12) % 12) + 1 : 0;
+                  const transitConfirm = la.dashaHouses.includes(transitHouseFromLagna);
+
+                  const confirmCount = [natalPromise, dashaConfirm, transitConfirm].filter(Boolean).length;
+
+                  return { ...la, natalPromise, dashaConfirm, transitConfirm, confirmCount, lordPlanet, lordHouse };
+                }).sort((a, b) => b.confirmCount - a.confirmCount);
+
+                const highProbability = results.filter(r => r.confirmCount >= 3);
+                const moderate = results.filter(r => r.confirmCount === 2);
+                const showing = [...highProbability, ...moderate].slice(0, 5);
+
+                return (
+                  <div className="mt-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 p-5">
+                    <h3 className="text-gold-gradient text-lg font-bold mb-1 text-center" style={headingFont}>
+                      {lk === 'en' ? 'Transit Activation of Natal Promise' : 'गोचर द्वारा जन्म वादे की सक्रियता'}
+                    </h3>
+                    <p className="text-text-secondary/50 text-xs text-center mb-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {lk === 'en'
+                        ? `Current Mahadasha: ${typeof currentMaha.planet === 'string' ? currentMaha.planet : (currentMaha.planet as { en: string }).en} — events manifest when Natal Promise + Dasha + Transit align. Source: Nadi tradition, BPHS transit chapters.`
+                        : `वर्तमान महादशा — नटाल वादा + दशा + गोचर एकसाथ होने पर घटनाएँ घटित होती हैं।`}
+                    </p>
+                    <div className="space-y-3">
+                      {showing.map((r, i) => (
+                        <div key={i} className={`rounded-xl p-3 border ${r.confirmCount >= 3 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 bg-bg-primary/20'}`}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-gold-light font-semibold text-sm" style={headingFont}>{r.area[lk === 'en' ? 'en' : 'hi']}</span>
+                            <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${r.confirmCount >= 3 ? 'bg-gold-primary/20 text-gold-light' : 'bg-amber-500/15 text-amber-400'}`}>
+                              {r.confirmCount}/3 {lk === 'en' ? 'confirmed' : 'पुष्ट'}
+                            </span>
+                          </div>
+                          <div className="flex gap-3 flex-wrap">
+                            <span className={`text-xs px-2 py-0.5 rounded ${r.natalPromise ? 'text-emerald-400 bg-emerald-500/10' : 'text-text-secondary/30 bg-bg-primary/20'}`}>
+                              {lk === 'en' ? 'Natal Promise' : 'जन्म वादा'} {r.natalPromise ? '✓' : '✗'}
+                            </span>
+                            <span className={`text-xs px-2 py-0.5 rounded ${r.dashaConfirm ? 'text-emerald-400 bg-emerald-500/10' : 'text-text-secondary/30 bg-bg-primary/20'}`}>
+                              {lk === 'en' ? `Dasha (${typeof currentMaha.planet === 'string' ? currentMaha.planet : (currentMaha.planet as { en: string }).en})` : 'दशा'} {r.dashaConfirm ? '✓' : '✗'}
+                            </span>
+                            <span className={`text-xs px-2 py-0.5 rounded ${r.transitConfirm ? 'text-emerald-400 bg-emerald-500/10' : 'text-text-secondary/30 bg-bg-primary/20'}`}>
+                              {lk === 'en' ? 'Transit' : 'गोचर'} {r.transitConfirm ? '✓' : '✗'}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                      {showing.length === 0 && (
+                        <p className="text-text-secondary/50 text-xs text-center py-4">
+                          {lk === 'en' ? 'No life areas currently show triple alignment. Enable transit overlay for real-time data.' : 'कोई क्षेत्र तीनों शर्तें पूरी नहीं करता। गोचर ओवरले सक्षम करें।'}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           )}
 
@@ -1933,6 +2062,79 @@ export default function KundaliPage() {
                   </div>
                 </div>
               )}
+
+              {/* JYOTISH-13: Bhrigu Chakra Paddhati (Annual House Activation) */}
+              {(() => {
+                const jupNatal = kundali.planets.find(p => p.planet.id === 4);
+                if (!jupNatal) return null;
+                const jupNatalHouse = jupNatal.house;
+                const isHiBCP = locale !== 'en';
+                const HOUSE_THEMES_EN: Record<number, string> = {
+                  1: 'Self, identity, health, and new beginnings', 2: 'Wealth, family, speech, and accumulated resources',
+                  3: 'Siblings, courage, communication, and short travel', 4: 'Home, mother, property, and emotional happiness',
+                  5: 'Children, intelligence, creativity, and romance', 6: 'Enemies, debts, health challenges, and service',
+                  7: 'Marriage, partnerships, business, and public dealings', 8: 'Longevity, transformation, hidden matters, and inheritance',
+                  9: 'Fortune, dharma, father, teachers, and long travel', 10: 'Career, authority, government, and public recognition',
+                  11: 'Gains, income, social network, and desires fulfilled', 12: 'Losses, liberation, foreign lands, and spirituality',
+                };
+                const HOUSE_THEMES_HI: Record<number, string> = {
+                  1: 'स्वयं, स्वास्थ्य, और नई शुरुआत', 2: 'धन, परिवार, वाणी और संचित संसाधन',
+                  3: 'भाई-बहन, साहस, संचार और अल्प यात्रा', 4: 'घर, माता, सम्पत्ति और सुख',
+                  5: 'संतान, बुद्धि, रचनात्मकता और प्रेम', 6: 'शत्रु, ऋण, स्वास्थ्य और सेवा',
+                  7: 'विवाह, साझेदारी, व्यवसाय', 8: 'दीर्घायु, रूपांतरण और विरासत',
+                  9: 'भाग्य, धर्म, पिता और गुरु', 10: 'कैरियर, अधिकार और सार्वजनिक पहचान',
+                  11: 'लाभ, आय और इच्छापूर्ति', 12: 'हानि, मोक्ष, विदेश और आध्यात्म',
+                };
+                const currentAge = kundali.birthData.date
+                  ? Math.floor((new Date().getTime() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 3600 * 1000))
+                  : null;
+                const bcpHouse = currentAge !== null ? ((jupNatalHouse - 1 + currentAge) % 12) + 1 : null;
+                const upcoming = Array.from({ length: 10 }, (_, i) => {
+                  const age = (currentAge ?? 0) + i;
+                  const house = ((jupNatalHouse - 1 + age) % 12) + 1;
+                  return { age, house };
+                });
+
+                return (
+                  <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-5">
+                    <h4 className="text-amber-300 text-xs uppercase tracking-widest font-bold mb-1">
+                      {isHiBCP ? 'भृगु चक्र पद्धति — वार्षिक भाव सक्रियण' : 'Bhrigu Chakra Paddhati — Annual House Activation'}
+                    </h4>
+                    <p className="text-text-secondary/50 text-xs mb-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHiBCP
+                        ? `आयु के अनुसार जन्म के बृहस्पति (भाव ${jupNatalHouse}) से गिनकर सक्रिय भाव। स्रोत: उत्तर कालामृत / नाडी परम्परा`
+                        : `Jupiter's natal house (${jupNatalHouse}H) advances one house per year of life — reveals the activated life theme for each year. Source: Uttara Kalamrita / Nadi tradition`}
+                    </p>
+                    {bcpHouse && currentAge !== null && (
+                      <div className="rounded-xl bg-amber-500/10 border border-amber-500/25 p-4 mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="text-amber-300 font-bold text-3xl font-mono">{bcpHouse}</div>
+                          <div>
+                            <div className="text-amber-200 font-semibold text-sm" style={headingFont}>
+                              {isHiBCP ? `इस वर्ष (आयु ${currentAge}) — भाव ${bcpHouse} सक्रिय` : `This Year (Age ${currentAge}) — House ${bcpHouse} Activated`}
+                            </div>
+                            <div className="text-text-secondary/70 text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {isHiBCP ? HOUSE_THEMES_HI[bcpHouse] : HOUSE_THEMES_EN[bcpHouse]}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    {/* 10-year timeline */}
+                    <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5">
+                      {upcoming.map(({ age, house }, i) => (
+                        <div key={i} className={`rounded-lg p-2 text-center ${i === 0 ? 'bg-amber-500/20 border border-amber-500/40' : 'bg-bg-primary/30 border border-gold-primary/8'}`}>
+                          <div className={`font-bold text-sm ${i === 0 ? 'text-amber-300' : 'text-gold-primary/60'}`}>{house}H</div>
+                          <div className="text-text-secondary/40 text-xs">{isHiBCP ? `आयु ${age}` : `Age ${age}`}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-text-secondary/40 text-xs mt-3 text-center" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHiBCP ? `जन्म बृहस्पति: भाव ${jupNatalHouse}` : `Natal Jupiter: House ${jupNatalHouse} — the starting point of the cycle`}
+                    </p>
+                  </div>
+                );
+              })()}
 
               {/* Bhrigu Bindu — midpoint of Rahu and Moon */}
               {kundali.bhriguBindu && (

@@ -8,6 +8,8 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale, Trilingual } from '@/types/panchang';
+import { useBirthDataStore } from '@/stores/birth-data-store';
+import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/lib/ephem/astronomical';
 
 interface TransitEvent {
   planetId: number;
@@ -40,6 +42,8 @@ export default function TransitsPage() {
   const [sigFilter, setSigFilter] = useState<'all' | 'major' | 'moderate'>('all');
   const [planetFilter, setPlanetFilter] = useState<number | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const { birthRashi, isSet: hasBirthData, loadFromStorage } = useBirthDataStore();
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   useEffect(() => {
     setLoading(true);
@@ -119,6 +123,57 @@ export default function TransitsPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTransits]);
 
+  // JYOTISH-15: Mesha Sankranti — exact moment Sun enters 0° sidereal Aries (binary search)
+  const meshaSankranti = useMemo(() => {
+    // Approximate date: around April 14 each year (Lahiri)
+    const approxJD = dateToJD(year, 4, 13);
+    const getSidSunLon = (jd: number) => {
+      const trop = sunLongitude(jd);
+      return normalizeDeg(toSidereal(trop, jd));
+    };
+    // Binary search: find JD where sidereal Sun longitude = 0 (crossing Aries)
+    let lo = approxJD - 5;
+    let hi = approxJD + 5;
+    // Ensure we're bracketing the 0° crossing (handle wrap-around)
+    for (let i = 0; i < 60; i++) {
+      const mid = (lo + hi) / 2;
+      const lonMid = getSidSunLon(mid);
+      // lonMid near 0 or 360 = target; use diff to 360 if > 180
+      const diff = lonMid > 180 ? lonMid - 360 : lonMid;
+      if (Math.abs(hi - lo) < 0.0001) break; // ~8 sec precision
+      if (diff < 0) lo = mid; else hi = mid;
+    }
+    const jdResult = (lo + hi) / 2;
+    const dateResult = jdToDate(jdResult);
+    // House themes for mundane astrology
+    const SANKRANTI_HOUSES = [
+      { en: '1H — World — Global identity, new world-era theme for the solar year', hi: '1H — विश्व — वार्षिक सौर-काल का वैश्विक विषय' },
+      { en: '2H — Wealth — Global economy, food production, financial trends', hi: '2H — धन — वैश्विक अर्थव्यवस्था, खाद्य उत्पादन' },
+      { en: '3H — Communication — Media, transport, trade, neighbouring nations', hi: '3H — संचार — मीडिया, परिवहन, व्यापार' },
+      { en: '4H — Land — Agriculture, crops, weather, masses, and real estate', hi: '4H — भूमि — कृषि, फसल, मौसम, जनता' },
+      { en: '5H — Creativity — Children, arts, entertainment, stock markets', hi: '5H — रचना — बच्चे, कला, मनोरंजन, शेयर बाज़ार' },
+      { en: '6H — Health — Epidemics, public health, labour disputes, military', hi: '6H — स्वास्थ्य — महामारी, सार्वजनिक स्वास्थ्य, सेना' },
+      { en: '7H — Alliances — Wars, treaties, international relations', hi: '7H — संधि — युद्ध, सन्धियाँ, अन्तर्राष्ट्रीय सम्बन्ध' },
+      { en: '8H — Transformation — Deaths, natural disasters, hidden powers', hi: '8H — रूपांतरण — मृत्यु, प्राकृतिक आपदाएँ, गुप्त शक्तियाँ' },
+      { en: '9H — Dharma — Religion, law, higher education, long journeys', hi: '9H — धर्म — धर्म, कानून, उच्च शिक्षा' },
+      { en: '10H — Governments — Rulers, leadership, national authority', hi: '10H — सरकार — शासक, नेतृत्व, राष्ट्रीय अधिकार' },
+      { en: '11H — Gains — Profits for nations, social movements, aspirations', hi: '11H — लाभ — राष्ट्रीय लाभ, सामाजिक आन्दोलन' },
+      { en: '12H — Liberation — Foreign influence, losses, spirituality, hidden enemies', hi: '12H — मोक्ष — विदेशी प्रभाव, हानि, आध्यात्मिकता' },
+    ];
+    // Planets in each house at Sankranti (approximate — use current transits)
+    return { date: dateResult, jd: jdResult, houseThemes: SANKRANTI_HOUSES };
+  }, [year]);
+
+  // QW-12: Ashtama Shani — Saturn in 8th from natal Moon = 2.5yr of extreme difficulty
+  const ashtamaShani = useMemo(() => {
+    if (!hasBirthData || birthRashi <= 0) return null;
+    const sat = currentTransits.find(c => c.planetId === 6);
+    if (!sat) return null;
+    const satHouseFromMoon = ((sat.sign - birthRashi + 12) % 12) + 1;
+    if (satHouseFromMoon === 8) return { saturnSign: sat.signName, moonSign: birthRashi };
+    return null;
+  }, [currentTransits, birthRashi, hasBirthData]);
+
   const sigColors: Record<string, string> = {
     major: 'border-gold-primary/30 bg-gold-primary/5',
     moderate: 'border-amber-500/20 bg-amber-500/5',
@@ -189,6 +244,22 @@ export default function TransitsPage() {
                   {locale === 'en'
                     ? `Jupiter transiting ${jupiterVedha.jupiterSign.en} is Vedha-blocked by Saturn in ${jupiterVedha.saturnSign.en} — Jupiter's transit benefits are reduced or negated this period. Classical Gochar texts state that Vedha negates the positive results of the transiting planet.`
                     : `${jupiterVedha.jupiterSign.hi} में गोचर करते गुरु को ${jupiterVedha.saturnSign.hi} में शनि का वेध है — गुरु गोचर के शुभ फल इस काल में घटित अथवा निष्फल होते हैं।`}
+                </p>
+              </div>
+            </div>
+          )}
+          {/* QW-12: Ashtama Shani warning */}
+          {ashtamaShani && (
+            <div className="mt-4 rounded-xl bg-red-500/8 border border-red-500/30 p-3 flex items-start gap-3">
+              <span className="text-red-400 text-lg mt-0.5">⚠</span>
+              <div>
+                <div className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
+                  {locale === 'en' ? 'Ashtama Shani Active (for you)' : 'अष्टम शनि सक्रिय (आपके लिए)'}
+                </div>
+                <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
+                  {locale === 'en'
+                    ? `Saturn is currently in ${ashtamaShani.saturnSign.en}, which is the 8th house from your natal Moon sign. This is Ashtama Shani — a 2.5-year period of intense karmic pressure. Often more taxing than individual Sade Sati phases. Focus on health, avoid risky financial decisions, and strengthen spiritual practice.`
+                    : `शनि अभी ${ashtamaShani.saturnSign.hi} में है, जो आपके जन्म चन्द्र से 8वाँ भाव है। यह अष्टम शनि है — 2.5 वर्ष का गहन कार्मिक दबाव। स्वास्थ्य पर ध्यान दें, जोखिम भरे वित्तीय निर्णयों से बचें, और आध्यात्मिक साधना को मजबूत करें।`}
                 </p>
               </div>
             </div>
@@ -352,6 +423,45 @@ export default function TransitsPage() {
             );
           })}
         </div>
+      )}
+
+      {/* JYOTISH-15: Mesha Sankranti */}
+      {meshaSankranti && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
+          <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+            {locale === 'en' ? `Mesha Sankranti ${year}` : `मेष संक्रान्ति ${year}`}
+          </h2>
+          <p className="text-text-secondary/50 text-xs text-center mb-5" style={bodyFont}>
+            {locale === 'en'
+              ? 'Sun enters 0° sidereal Aries — the astrological new year. This chart governs mundane affairs for the entire solar year. Source: Brihat Samhita.'
+              : 'सूर्य 0° सायन मेष में प्रवेश करता है — ज्योतिषीय नव वर्ष। यह चार्ट वर्षभर के सांसारिक विषयों का संकेत देता है।'}
+          </p>
+          <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
+            <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont}>
+              {meshaSankranti.date.toLocaleDateString(locale === 'en' ? 'en-GB' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </div>
+            <div className="text-gold-primary/70 text-sm mt-1">
+              {meshaSankranti.date.toLocaleTimeString(locale === 'en' ? 'en-GB' : 'hi-IN', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
+            </div>
+            <div className="text-text-secondary/50 text-xs mt-2" style={bodyFont}>
+              {locale === 'en' ? 'Exact moment of Sun\'s ingress into sidereal Aries (Lahiri Ayanamsha)' : 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)'}
+            </div>
+          </div>
+          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
+            {locale === 'en' ? 'House Themes for the Solar Year' : 'वार्षिक सौर-काल के भाव विषय'}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            {meshaSankranti.houseThemes.map((theme, i) => (
+              <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
+                <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
+                <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
+                  {locale === 'en' ? theme.en : theme.hi}
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       )}
 
       {/* Footer count */}

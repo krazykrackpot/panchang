@@ -527,27 +527,56 @@ export default function KundaliPage() {
           {/* Ganda Mula Alert — visible on ALL tabs */}
           {(() => {
             const moonP = kundali.planets.find(p => p.planet.id === 1);
-            const gandaMulaIds = [1, 9, 10, 18, 19, 27];
+            // 6 Ganda Mula nakshatras: 1=Ashwini, 9=Ashlesha, 10=Magha, 18=Jyestha, 19=Moola, 27=Revati
+            const GANDA_MULA_DATA: Record<number, { type: { en: string; hi: string }; affected: { en: string; hi: string }; procedure: { en: string; hi: string } }> = {
+              1:  { type: { en: 'Ashwini — Adi Ganda Mula', hi: 'अश्विनी — आदि गण्ड मूल' }, affected: { en: 'Father (Ketu rules Ashwini)', hi: 'पिता (केतु शासित अश्विनी)' }, procedure: { en: 'Ganda Mula Shanti on the 27th day after birth, then annually on the child\'s birth nakshatra. 27 Navagraha Homa recommended.', hi: 'जन्म के 27वें दिन शान्ति, फिर वार्षिक जन्म नक्षत्र पर। 27 नवग्रह होम अनुशंसित।' } },
+              9:  { type: { en: 'Ashlesha — Sarpa Ganda Mula', hi: 'आश्लेषा — सर्प गण्ड मूल' }, affected: { en: 'Mother (Mercury/Moon rules Ashlesha)', hi: 'माता (बुध/चन्द्र शासित आश्लेषा)' }, procedure: { en: 'Naganam Puja (serpent deity) within 27 days. Avoid showing child to mother for 27 days in traditional practice.', hi: 'नागनाम पूजा 27 दिन में। पारम्परिक रूप से 27 दिन माता-शिशु दर्शन से बचें।' } },
+              10: { type: { en: 'Magha — Pitru Ganda Mula', hi: 'मघा — पितृ गण्ड मूल' }, affected: { en: 'Father\'s family / paternal lineage (Ketu rules Magha)', hi: 'पिता का परिवार / पितृ वंश (केतु शासित मघा)' }, procedure: { en: 'Pitru Tarpana and Magha Nakshatra Shanti. Perform Shraddha rites on Magha nakshatra days.', hi: 'पितृ तर्पण और मघा नक्षत्र शान्ति। मघा नक्षत्र के दिन श्राद्ध कर्म करें।' } },
+              18: { type: { en: 'Jyestha — Avara Ganda Mula', hi: 'ज्येष्ठा — अवर गण्ड मूल' }, affected: { en: 'Elder siblings, family honour (Mercury rules Jyestha)', hi: 'बड़े भाई-बहन, पारिवारिक मान (बुध शासित ज्येष्ठा)' }, procedure: { en: 'Elder sibling should not see the newborn for 27 days. Rudra Abhisheka and Jyestha Nakshatra Puja required.', hi: 'बड़े भाई-बहन 27 दिन नवजात न देखें। रुद्राभिषेक और ज्येष्ठा नक्षत्र पूजा।' } },
+              19: { type: { en: 'Moola — Mukhya Ganda Mula', hi: 'मूल — मुख्य गण्ड मूल' }, affected: { en: 'Father (Ketu rules Moola — most severe for father)', hi: 'पिता (केतु शासित मूल — पिता के लिए सबसे गम्भीर)' }, procedure: { en: 'Father should not see the newborn for 27 days. Navagraha Homa and Moola Nakshatra Shanti within 27 days is mandatory.', hi: 'पिता 27 दिन नवजात न देखें। 27 दिन में नवग्रह होम और मूल नक्षत्र शान्ति अनिवार्य।' } },
+              27: { type: { en: 'Revati — Antya Ganda Mula', hi: 'रेवती — अन्त्य गण्ड मूल' }, affected: { en: 'Child\'s own vitality (Mercury rules Revati)', hi: 'शिशु की स्वयं की जीवन शक्ति (बुध शासित रेवती)' }, procedure: { en: 'Revati Nakshatra Shanti within 27 days. Mercury-related puja. Often mild — Revati is a gentle nakshatra.', hi: 'रेवती नक्षत्र शान्ति 27 दिन में। बुध सम्बन्धित पूजा। अक्सर सौम्य — रेवती कोमल नक्षत्र।' } },
+            };
             const moonNakId = moonP?.nakshatra?.id;
-            if (!moonNakId || !gandaMulaIds.includes(moonNakId)) return null;
+            if (!moonNakId || !GANDA_MULA_DATA[moonNakId]) return null;
+            const gm = GANDA_MULA_DATA[moonNakId];
             const nakName = moonP?.nakshatra?.name?.[locale] || moonP?.nakshatra?.name?.en;
+            const lk = locale === 'sa' ? 'hi' : locale;
             return (
-              <div className="rounded-xl border border-amber-500/25 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-6">
+              <div className="rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-6">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-amber-500/15 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-amber-400 text-lg font-bold">!</span>
+                    <span className="text-amber-400 text-xl font-bold">!</span>
                   </div>
-                  <div>
-                    <h4 className="text-amber-300 font-bold text-base mb-1">
-                      {locale === 'en' ? `Ganda Mula — Moon in ${nakName}` : `गण्ड मूल — चन्द्रमा ${nakName} में`}
+                  <div className="flex-1">
+                    <h4 className="text-amber-300 font-bold text-base mb-1" style={headingFont}>
+                      {lk === 'en' ? `Ganda Mula — Moon in ${nakName} (Pada ${moonP?.pada})` : `गण्ड मूल — चन्द्रमा ${nakName} (पाद ${moonP?.pada})`}
                     </h4>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                      {locale === 'en'
-                        ? `Birth Moon is in ${nakName} nakshatra (Pada ${moonP?.pada}) — a Ganda Mula nakshatra at a water-fire sign junction. A Ganda Mula Shanti Puja is recommended. See Tippanni tab for detailed analysis and remedies.`
-                        : `जन्म चन्द्रमा ${nakName} नक्षत्र (पाद ${moonP?.pada}) में — जल-अग्नि राशि सन्धि का गण्ड मूल नक्षत्र। गण्ड मूल शान्ति पूजा अनुशंसित। विस्तृत विश्लेषण और उपायों के लिए टिप्पणी टैब देखें।`}
+                    <div className="text-amber-200/80 text-xs font-semibold mb-2">{gm.type[lk === 'en' ? 'en' : 'hi']}</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                      <div className="rounded-lg bg-amber-500/8 p-3">
+                        <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
+                          {lk === 'en' ? 'Who is affected' : 'किसे प्रभाव'}
+                        </div>
+                        <p className="text-text-secondary/80 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {gm.affected[lk === 'en' ? 'en' : 'hi']}
+                        </p>
+                      </div>
+                      <div className="rounded-lg bg-amber-500/8 p-3">
+                        <div className="text-amber-400 text-xs font-bold uppercase tracking-wider mb-1">
+                          {lk === 'en' ? 'Shanti procedure' : 'शान्ति विधि'}
+                        </div>
+                        <p className="text-text-secondary/80 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {gm.procedure[lk === 'en' ? 'en' : 'hi']}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-text-secondary/50 text-xs mt-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {lk === 'en'
+                        ? 'Annual shanti: perform Ganda Mula Puja on your birth nakshatra day each year. Shanti timing: when the Moon transits your birth nakshatra.'
+                        : 'वार्षिक शान्ति: प्रत्येक वर्ष अपने जन्म नक्षत्र के दिन गण्ड मूल पूजा करें। शान्ति काल: जब चन्द्रमा आपके जन्म नक्षत्र से गुजरे।'}
                     </p>
                     <Link href="/learn/modules/24-1" className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2" tabIndex={-1}>
-                      {locale === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
+                      {lk === 'en' ? 'Learn about Ganda Mula Nakshatras →' : 'गण्ड मूल नक्षत्रों के बारे में जानें →'}
                     </Link>
                   </div>
                 </div>
@@ -1259,21 +1288,48 @@ export default function KundaliPage() {
                     : dashaSystem === 'drig' ? kundali.drigDasha
                     : dashaSystem === 'navamsha_dasha' ? kundali.navamshaDasha
                     : kundali.shoolaDasha;
+                  // P2-07: Narayana Dasha classical prediction rules
+                  const SIGN_NAMES_EN = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
+                  const lagnaSign = kundali.ascendant.sign;
+                  const getNarayanaHouseTheme = (dashSign: number): { en: string; hi: string } | null => {
+                    if (dashaSystem !== 'narayana') return null;
+                    const fatherSign = ((dashSign - 1 + 8) % 12) + 1; // 9th from dasha sign
+                    const childSign  = ((dashSign - 1 + 4) % 12) + 1; // 5th
+                    const spouseSign = ((dashSign - 1 + 6) % 12) + 1; // 7th
+                    const motherSign = ((dashSign - 1 + 3) % 12) + 1; // 4th
+                    const careerSign = ((dashSign - 1 + 9) % 12) + 1; // 10th
+                    const houseFromLagna = ((dashSign - lagnaSign + 12) % 12) + 1;
+                    const sn = (s: number) => SIGN_NAMES_EN[s - 1];
+                    return {
+                      en: `H${houseFromLagna} activated (from Lagna). Father: ${sn(fatherSign)} | Children: ${sn(childSign)} | Spouse: ${sn(spouseSign)} | Mother: ${sn(motherSign)} | Career: ${sn(careerSign)}`,
+                      hi: `लग्न से भाव ${houseFromLagna} सक्रिय। पिता: ${sn(fatherSign)} | सन्तान: ${sn(childSign)} | जीवनसाथी: ${sn(spouseSign)} | माता: ${sn(motherSign)} | कैरियर: ${sn(careerSign)}`,
+                    };
+                  };
                   return (rasiData || []).map((d: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }, i: number) => {
                     const now = new Date();
                     const start = new Date(d.startDate);
                     const end = new Date(d.endDate);
                     const isCurrent = now >= start && now <= end;
                     const isPast = now > end;
+                    const theme = getNarayanaHouseTheme(d.sign);
                     return (
                       <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
-                        className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
-                        <div className="flex items-center gap-3">
-                          <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
-                          <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
-                          <span className="text-text-tertiary text-xs">{d.years} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
+                        className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
+                            <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
+                            <span className="text-text-tertiary text-xs">{d.years} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
+                          </div>
+                          <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
                         </div>
-                        <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
+                        {isCurrent && theme && (
+                          <div className="mt-2 pt-2 border-t border-gold-primary/10">
+                            <p className="text-text-secondary/60 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {theme[locale === 'en' ? 'en' : 'hi']}
+                            </p>
+                          </div>
+                        )}
                       </motion.div>
                     );
                   });
@@ -2156,6 +2212,70 @@ export default function KundaliPage() {
                   </p>
                 </div>
               )}
+
+              {/* P2-01: Pindayu Longevity Calculation */}
+              {(() => {
+                // BPHS Ch. 44-45: Pindayu — each planet contributes years based on degree in D1
+                // Base years: Su=19, Mo=25, Ma=15, Me=12, Ju=15, Ve=21, Sa=20 (+ Rahu/Ketu inherit lord)
+                const PINDAYU_BASE: Record<number, number> = { 0:19, 1:25, 2:15, 3:12, 4:15, 5:21, 6:20, 7:0, 8:0 };
+                const PLANET_NAMES = { en: ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'], hi: ['सूर्य','चन्द्र','मंगल','बुध','गुरु','शुक्र','शनि'] };
+                // Each planet gives proportion of base years = (degree in sign / 30) × base
+                // Reduce for: retrogression (÷2), combustion (reduce by 25%), debilitation
+                const DEBILITATED_SIGNS: Record<number, number> = { 0:7, 1:8, 2:4, 3:6, 4:10, 5:6, 6:1 };
+                const COMBUST_RANGE: Record<number, number> = { 1:12, 2:17, 3:14, 4:11, 5:10, 6:15 };
+
+                const sunLongAbs = kundali.planets.find(p => p.planet.id === 0)?.longitude ?? 0;
+
+                const contributions = [0,1,2,3,4,5,6].map(pid => {
+                  const planet = kundali.planets.find(p => p.planet.id === pid);
+                  if (!planet) return null;
+                  const base = PINDAYU_BASE[pid];
+                  const degInSign = planet.longitude % 30;
+                  let years = (degInSign / 30) * base;
+                  // Retrograde: divide by 2
+                  if (planet.isRetrograde) years *= 0.5;
+                  // Debilitation: reduce by 25%
+                  if (DEBILITATED_SIGNS[pid] === planet.sign) years *= 0.75;
+                  // Combustion: within COMBUST_RANGE of Sun (except Sun itself)
+                  if (pid > 0 && pid <= 6) {
+                    const diff = Math.abs(planet.longitude - sunLongAbs) % 360;
+                    const minDiff = diff > 180 ? 360 - diff : diff;
+                    if (minDiff <= (COMBUST_RANGE[pid] ?? 10)) years *= 0.75;
+                  }
+                  return { pid, years: Math.round(years * 10) / 10, planet };
+                }).filter(Boolean) as { pid: number; years: number; planet: typeof kundali.planets[0] }[];
+
+                const totalPindayu = Math.round(contributions.reduce((sum, c) => sum + c.years, 0));
+                // Rough range: ±20% for life uncertainties
+                const lo = Math.max(0, Math.round(totalPindayu * 0.8));
+                const hi2 = Math.round(totalPindayu * 1.2);
+
+                return (
+                  <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-5">
+                    <h4 className="text-purple-300 text-xs uppercase tracking-widest font-bold mb-1">
+                      {isHi ? 'पिण्डायु — संवैधानिक दीर्घायु संकेतक (BPHS अ. 44-45)' : 'Pindayu — Constitutional Longevity Indicators (BPHS Ch. 44-45)'}
+                    </h4>
+                    <p className="text-text-secondary/50 text-xs mb-4" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {isHi
+                        ? 'प्रत्येक ग्रह आधार वर्ष × राशि में अंश देता है। वक्री, अस्त, और नीच होने पर कम होता है। यह मृत्यु की भविष्यवाणी नहीं — संवैधानिक शक्ति का संकेत है।'
+                        : 'Each planet contributes base years × degree proportion. Reduced for retrogression, combustion, and debilitation. This is NOT death prediction — it indicates constitutional vitality and life force quality.'}
+                    </p>
+                    <div className="rounded-xl bg-purple-500/10 border border-purple-500/25 p-4 mb-4 text-center">
+                      <div className="text-purple-200 font-bold text-3xl font-mono">{lo}–{hi2}</div>
+                      <div className="text-text-secondary/60 text-xs mt-1">{isHi ? 'वर्ष (अनुमानित सीमा)' : 'years (estimated constitutional range)'}</div>
+                    </div>
+                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5">
+                      {contributions.map(c => (
+                        <div key={c.pid} className="rounded-lg bg-bg-primary/30 border border-purple-500/10 p-2 text-center">
+                          <div className="text-gold-primary/60 text-xs font-bold">{PLANET_NAMES[isHi ? 'hi' : 'en'][c.pid]}</div>
+                          <div className="text-purple-300 font-mono text-sm font-bold">{c.years}y</div>
+                          {c.planet.isRetrograde && <div className="text-amber-400 text-xs">(R)</div>}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* How to use this */}
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">
@@ -3672,6 +3792,107 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
           ))}
         </div>
       </div>
+
+      {/* P2-09: D2 Hora Chart — Full Classical Interpretation */}
+      {(() => {
+        const lagnaSign = kundali.ascendant.sign;
+        // In Hora: odd signs (Ar,Ge,Le,Li,Sa,Aq) = Sun's hora; even signs = Moon's hora
+        // Planet's Hora sign: degree 0-14.99 → same-sign hora; 15-29.99 → next-sign hora
+        // Actually classical rule: Sun hora = Leo (odd signs for first half, even signs for second half)
+        // Standard: degree 0-15 of odd sign = Sun; 15-30 = Moon. Even sign = opposite.
+        const getHora = (planet: { planet: { id: number }; sign: number; longitude: number; isRetrograde: boolean }): 'sun' | 'moon' => {
+          const signIsOdd = planet.sign % 2 === 1; // 1=Ar, 3=Ge etc
+          const degInSign = planet.longitude % 30;
+          const firstHalf = degInSign < 15;
+          // Odd sign first half = Sun hora; second half = Moon hora
+          // Even sign first half = Moon hora; second half = Sun hora
+          return (signIsOdd && firstHalf) || (!signIsOdd && !firstHalf) ? 'sun' : 'moon';
+        };
+
+        const SUN_HORA_RESULTS: Record<number, { en: string; hi: string }> = {
+          0: { en: 'Soul purpose and authority manifest strongly. Father benefits. Government or leadership gains. Right-side body energy is amplified.', hi: 'आत्म उद्देश्य और अधिकार प्रबल। पिता लाभान्वित। सरकार/नेतृत्व से लाभ।' },
+          1: { en: 'Mental resources and maternal wealth. Income through public or emotional intelligence. Female gains through Sun hora create ambition.', hi: 'मानसिक संसाधन और मातृ धन। सार्वजनिक बुद्धि से आय।' },
+          2: { en: 'Earned through courage, real estate, or siblings. Property from masculine effort. Mars energy drives income.', hi: 'साहस, सम्पत्ति या भाई-बहन से धन। मर्दाना प्रयास से सम्पत्ति।' },
+          3: { en: 'Intellectual wealth and communication income. Business, media, and trade are strongly supported. Mercury doubles Sun power.', hi: 'बौद्धिक धन और संचार आय। व्यापार, मीडिया दृढ़ता से समर्थित।' },
+          4: { en: 'Wisdom, children, and dharmic wealth. Speculative gains strongly supported. Wealth from Jupiter\'s benevolence here.', hi: 'ज्ञान, संतान और धार्मिक धन। सट्टा लाभ प्रबल।' },
+          5: { en: 'Luxury, arts, and relationship wealth. Income through beauty, entertainment, or spouse. Feminine wealth through masculine hora.', hi: 'विलासिता, कला और सम्बन्ध धन। सौन्दर्य/मनोरंजन से आय।' },
+          6: { en: 'Career and authority-driven income. Discipline and hard work yield Saturn\'s slow-but-certain wealth.', hi: 'कैरियर और अधिकार से आय। अनुशासन और परिश्रम से सतत् धन।' },
+          7: { en: 'Unconventional or foreign wealth. Ambition and technology drive income. Rahu intensifies Sun hora.', hi: 'असामान्य या विदेशी धन। महत्वाकांक्षा और प्रौद्योगिकी से आय।' },
+          8: { en: 'Spiritual detachment from material. Ketu in Sun hora = income through knowledge or past-life merit. Intermittent gains.', hi: 'भौतिक से आध्यात्मिक वैराग्य। ज्ञान या पूर्व जन्म के पुण्य से आय।' },
+        };
+        const MOON_HORA_RESULTS: Record<number, { en: string; hi: string }> = {
+          0: { en: 'Authority serving others — income through public service or maternal care. Soul wealth through giving. Leadership gains lunar quality (popular, fluctuating).', hi: 'सार्वजनिक सेवा से आय। मातृ देखभाल। नेतृत्व लोकप्रिय पर अस्थिर।' },
+          1: { en: 'Emotional wealth and intuition. Moon in Moon hora = excellent for maternal inheritance, public income, and emotional business. Most powerful Moon placement.', hi: 'भावनात्मक धन और अन्तर्ज्ञान। मातृ विरासत और सार्वजनिक आय के लिए उत्तम।' },
+          2: { en: 'Property and courage nurtured. Real estate through feminine resources. Siblings support emotionally. Nurturing mother income.', hi: 'सम्पत्ति और साहस का पोषण। स्त्री संसाधनों से अचल सम्पत्ति।' },
+          3: { en: 'Communication wealth from emotional intelligence. Writing, teaching, counselling. Mercury in Moon hora amplifies empathetic commerce.', hi: 'भावनात्मक बुद्धि से व्यापारिक धन। लेखन, शिक्षण, परामर्श।' },
+          4: { en: 'Dharmic wealth through emotional wisdom. Children, charity, spiritual growth. Jupiter in Moon hora = abundant nurturing wealth.', hi: 'धार्मिक धन। बच्चे, दान, आध्यात्मिक विकास। प्रचुर पोषण धन।' },
+          5: { en: 'Love, beauty, and relationship wealth fully expressed. Venus in Moon hora = supreme luxury, arts, and marital wealth. Most natural placement for Venus.', hi: 'प्रेम, सौन्दर्य और सम्बन्ध धन पूर्ण। विलासिता, कला और वैवाहिक धन।' },
+          6: { en: 'Disciplined earning through persistence. Saturn in Moon hora = slow, consistent wealth through service, farming, or mass industries.', hi: 'दृढ़ता से अनुशासित कमाई। सेवा, कृषि या जन उद्योग से धन।' },
+          7: { en: 'Foreign or unconventional income. Rahu in Moon hora = wealthy through international dealings, technology, or unusual means. Fluctuating but large.', hi: 'विदेशी या असामान्य आय। अंतर्राष्ट्रीय व्यापार या प्रौद्योगिकी से बड़ा धन।' },
+          8: { en: 'Ketu in Moon hora = spiritual renunciation of material. Gains through healing, meditation, or moksha-oriented work. Minimal material attachment.', hi: 'आध्यात्मिक वैराग्य। उपचार, ध्यान से आय। भौतिक आसक्ति न्यूनतम।' },
+        };
+
+        const planetHoras = kundali.planets.map(p => ({
+          planet: p,
+          hora: getHora(p),
+          interpretation: getHora(p) === 'sun' ? SUN_HORA_RESULTS[p.planet.id] : MOON_HORA_RESULTS[p.planet.id],
+        }));
+
+        const sunHoraCount = planetHoras.filter(ph => ph.hora === 'sun').length;
+        const moonHoraCount = planetHoras.filter(ph => ph.hora === 'moon').length;
+        // Wealth timing: planet with most planets in its hora rules
+        const dominantHora = sunHoraCount >= moonHoraCount ? 'sun' : 'moon';
+
+        return (
+          <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-6">
+            <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+              {isHi ? 'D2 होरा — धन व संसाधन विश्लेषण' : 'D2 Hora — Wealth & Resource Analysis'}
+            </h3>
+            <p className="text-text-secondary/50 text-xs text-center mb-5" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              {isHi
+                ? 'होरा चार्ट सूर्य होरा (सिंह) और चन्द्र होरा (कर्क) के बीच ग्रहों को विभाजित करता है। स्रोत: बृहज्जातक, BPHS अ. 6'
+                : 'Hora chart divides planets between Sun hora (Leo) and Moon hora (Cancer). Source: Brihat Jataka, BPHS Ch. 6'}
+            </p>
+            {/* Dominant Hora */}
+            <div className={`rounded-xl p-4 mb-4 text-center border ${dominantHora === 'sun' ? 'bg-amber-500/10 border-amber-500/25' : 'bg-blue-500/10 border-blue-500/25'}`}>
+              <div className={`font-bold text-lg mb-1 ${dominantHora === 'sun' ? 'text-amber-300' : 'text-blue-300'}`} style={headingFont}>
+                {dominantHora === 'sun'
+                  ? (isHi ? 'सूर्य होरा प्रबल' : 'Sun Hora Dominant')
+                  : (isHi ? 'चन्द्र होरा प्रबल' : 'Moon Hora Dominant')}
+              </div>
+              <p className="text-text-secondary/70 text-xs" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {dominantHora === 'sun'
+                  ? (isHi ? 'धन सूर्य होरा से आता है — अधिकार, स्वतन्त्र प्रयास, पिता, और सरकारी स्रोतों से। मर्दाना, दृढ़, और प्रत्यक्ष।' : 'Wealth comes through Sun hora — authority, independent effort, paternal sources, and government. Income is direct, assertive, and masculine in quality.')
+                  : (isHi ? 'धन चन्द्र होरा से आता है — जनता, भावनात्मक बुद्धि, माता, और सेवा से। स्त्री, पोषणकारी, और उतार-चढ़ाव वाला।' : 'Wealth comes through Moon hora — public, emotional intelligence, maternal sources, and service. Income fluctuates but nurtures. Feminine quality dominates.')}
+              </p>
+            </div>
+            {/* Planet grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {planetHoras.map((ph, i) => (
+                <div key={i} className={`rounded-xl p-3 border ${ph.hora === 'sun' ? 'border-amber-500/15 bg-amber-500/5' : 'border-blue-500/15 bg-blue-500/5'}`}>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${ph.hora === 'sun' ? 'bg-amber-500/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'}`}>
+                      {ph.hora === 'sun' ? (isHi ? 'सूर्य' : 'Sun') : (isHi ? 'चन्द्र' : 'Moon')}
+                    </span>
+                    <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ph.planet.planet.name[locale as Locale] || ph.planet.planet.name.en}</span>
+                    <span className="text-text-secondary/40 text-xs">H{ph.planet.house} · {ph.planet.signName[locale as Locale] || ph.planet.signName.en}</span>
+                  </div>
+                  {ph.interpretation && (
+                    <p className="text-text-secondary/60 text-xs leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {ph.interpretation[isHi ? 'hi' : 'en']}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-text-secondary/30 text-xs text-center mt-4">
+              {isHi
+                ? `सूर्य होरा: ${sunHoraCount} ग्रह | चन्द्र होरा: ${moonHoraCount} ग्रह | लग्न राशि: ${RASHIS[lagnaSign-1]?.name?.hi || lagnaSign}`
+                : `Sun Hora: ${sunHoraCount} planets | Moon Hora: ${moonHoraCount} planets | Lagna: ${RASHIS[lagnaSign-1]?.name?.en || lagnaSign}`}
+            </p>
+          </div>
+        );
+      })()}
     </div>
   );
 }

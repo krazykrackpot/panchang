@@ -436,6 +436,59 @@ export default function MatchingPage() {
               ))}
             </div>
             </div>
+            {/* P2-03: Nakshatra Veda Pairs */}
+            {(() => {
+              const bNak = mode === 'birth' ? boyComputed?.nakshatra : boyNakshatra;
+              const gNak = mode === 'birth' ? girlComputed?.nakshatra : girlNakshatra;
+              if (!bNak || !gNak) return null;
+              // 11 Veda pairs (each arrows the other — one dominates)
+              const VEDA_PAIRS: [number, number][] = [
+                [4, 5], // Rohini / Mrigashira
+                [6, 7], // Ardra / Punarvasu
+                [8, 9], // Pushya / Ashlesha
+                [11, 12], // P.Phalguni / U.Phalguni
+                [13, 14], // Hasta / Chitra
+                [15, 16], // Swati / Vishakha
+                [17, 18], // Anuradha / Jyestha
+                [20, 21], // Purvashadha / Uttarashadha
+                [22, 23], // Shravana / Dhanishtha
+                [24, 25], // Shatabhisha / Purva Bhadrapada
+                [26, 27], // Uttara Bhadrapada / Revati
+              ];
+              const NAK_NAMES_EN = ['','Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu','Pushya','Ashlesha','Magha','P.Phalguni','U.Phalguni','Hasta','Chitra','Swati','Vishakha','Anuradha','Jyestha','Moola','P.Shadha','U.Shadha','Shravana','Dhanishtha','Shatabhisha','P.Bhadra','U.Bhadra','Revati'];
+              const NAK_NAMES_HI = ['','अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पू.फाल्गुनी','उ.फाल्गुनी','हस्त','चित्रा','स्वाती','विशाखा','अनुराधा','ज्येष्ठा','मूल','पू.आषाढ़','उ.आषाढ़','श्रवण','धनिष्ठा','शतभिषा','पू.भाद्र','उ.भाद्र','रेवती'];
+              const vedaPair = VEDA_PAIRS.find(([a, b]) => (a === bNak && b === gNak) || (a === gNak && b === bNak));
+              if (!vedaPair) return null;
+              const lk = locale === 'sa' ? 'hi' : locale;
+              const sn = (n: number) => lk === 'en' ? NAK_NAMES_EN[n] : NAK_NAMES_HI[n];
+              // In Veda pair: the lower-numbered nakshatra tends to dominate (traditional view)
+              const dominant = Math.min(bNak, gNak) === bNak ? 'boy' : 'girl';
+              return (
+                <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                  className="mt-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/25 p-5">
+                  <h3 className="text-amber-300 font-bold text-base mb-1" style={headingFont}>
+                    {lk === 'en' ? 'Nakshatra Veda Pair Detected' : 'नक्षत्र वेद जोड़ी पहचानी गई'}
+                  </h3>
+                  <p className="text-text-secondary/70 text-xs mb-3" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {lk === 'en'
+                      ? `${sn(bNak)} and ${sn(gNak)} form a classical Nakshatra Veda pair — these stars "arrow" each other in traditional compatibility texts. One partner tends to have greater influence in the relationship. Source: Nakshatra compatibility texts.`
+                      : `${sn(bNak)} और ${sn(gNak)} शास्त्रीय नक्षत्र वेध जोड़ी बनाते हैं — ये नक्षत्र पारम्परिक मिलान ग्रन्थों में एक-दूसरे को "वेध" करते हैं। एक साथी का सम्बन्ध में अधिक प्रभाव होता है।`}
+                  </p>
+                  <div className="flex items-center gap-3 justify-center">
+                    <span className="text-amber-300 font-bold">{sn(bNak)}</span>
+                    <span className="text-text-secondary/50">↔</span>
+                    <span className="text-amber-300 font-bold">{sn(gNak)}</span>
+                    <span className="text-amber-400/60 text-xs">({lk === 'en' ? 'Veda pair' : 'वेध जोड़ी'})</span>
+                  </div>
+                  <p className="text-text-secondary/50 text-xs text-center mt-2" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {lk === 'en'
+                      ? `The ${dominant === 'boy' ? 'boy/groom' : 'girl/bride'}'s nakshatra (${sn(Math.min(bNak, gNak))}) traditionally has stronger influence. Veda pairs are additional insight — consult the full Ashta Kuta score for the overall picture.`
+                      : `${dominant === 'boy' ? 'वर' : 'वधू'} का नक्षत्र (${sn(Math.min(bNak, gNak))}) परम्परागत रूप से अधिक प्रभावशाली। पूर्ण चित्र के लिए अष्ट कूट देखें।`}
+                  </p>
+                </motion.div>
+              );
+            })()}
+
             {/* Print / PDF button */}
             <div className="text-center mt-8">
               <PrintButton

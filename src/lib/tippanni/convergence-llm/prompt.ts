@@ -5,6 +5,15 @@
 
 import type { ConvergenceResult, MatchedPattern, MetaInsight } from '../convergence/types';
 
+const PLANET_NAMES: Record<number, string> = {
+  0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter',
+  5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
+};
+
+function planetName(id: number): string {
+  return PLANET_NAMES[id] ?? `Planet-${id}`;
+}
+
 export function buildSystemPrompt(locale: 'en' | 'hi'): string {
   if (locale === 'hi') {
     return `You are a senior Vedic astrologer (ज्योतिषाचार्य) writing a personal consultation in Hindi. You speak with warmth, wisdom, and authority — like a trusted family astrologer who has studied your chart deeply.
@@ -21,18 +30,20 @@ RULES:
 - Keep it under 800 words.`;
   }
 
-  return `You are a senior Vedic astrologer writing a personal consultation. You speak with warmth, wisdom, and authority — like a trusted advisor who has studied the chart deeply.
+  return `You are a senior Vedic astrologer writing a personal consultation. You speak with warmth, wisdom, and authority — like a trusted advisor who has studied this chart for years.
 
-You will receive structured chart analysis results from a pattern-matching engine. Your job is to weave these findings into a coherent, empathetic narrative.
+You will receive structured chart analysis results from a pattern-matching engine. Your job is to weave these findings into a coherent, deeply personal narrative.
 
 RULES:
 - Do NOT invent astrological claims — only narrate what the data shows.
 - Be specific — name the planets, houses, and signs involved.
-- Be empathetic but honest — don't sugarcoat difficult patterns.
-- Give actionable guidance, not vague platitudes.
-- Use astrological terms naturally but explain them for a general audience.
-- Keep it under 800 words.
-- Structure your response with clear sections but let them flow naturally.`;
+- Be empathetic but honest — don't sugarcoat difficult patterns, but frame them constructively.
+- Give actionable guidance, not vague platitudes. "Strengthen Saturn through discipline and service" beats "be careful."
+- Use astrological terms naturally but briefly explain them on first use.
+- Write for someone who knows a little Jyotish, not a complete beginner.
+- Keep it under 800 words total.
+- Do NOT use bullet points or numbered lists — write in prose paragraphs.
+- Bold section headers are fine. Flowing prose within each section is required.`;
 }
 
 export function buildUserPrompt(
@@ -59,7 +70,7 @@ export function buildUserPrompt(
 
   // Format transit snapshot
   const transitSummaries = transitOverlay.snapshot.map(t =>
-    `- Planet ${t.planetId} transiting house ${t.houseFromMoon} from Moon (${t.isRetrograde ? 'retrograde' : 'direct'}, ${t.ashtakavargaBindus} SAV bindus)`
+    `- ${planetName(t.planetId)} transiting house ${t.houseFromMoon} from Moon (${t.isRetrograde ? 'retrograde' : 'direct'}, ${t.ashtakavargaBindus} SAV bindus)`
   ).join('\n');
 
   // Format urgent flags
@@ -92,7 +103,7 @@ ${transitSummaries || '(none active)'}
 ${urgentSummaries || '(none)'}
 
 ## Retrograde Status
-${transitOverlay.retroStatus.map(r => `- Planet ${r.planetId}: ${r.effect.en}`).join('\n') || '(none retrograde)'}
+${transitOverlay.retroStatus.map(r => `- ${planetName(r.planetId)}: ${r.effect.en}`).join('\n') || '(none retrograde)'}
 
 ## Ashtakavarga Highlights
 ${transitOverlay.ashtakavargaHighlights.map(a => a.text.en).join('\n') || '(none notable)'}

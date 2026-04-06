@@ -174,8 +174,6 @@ const CUSP_REQUIRED_HOUSES: Record<number, number[]> = {
   12: [4, 8, 12],                // Expenses/liberation: 12 (loss/moksha), 8 (death), 4 (isolation)
 };
 
-/** Benefic houses for standard life areas */
-const BENEFIC_HOUSES = new Set([1, 2, 3, 4, 5, 9, 10, 11]);
 /** Malefic houses (trik + dushthana) */
 const MALEFIC_HOUSES = new Set([6, 8, 12]);
 

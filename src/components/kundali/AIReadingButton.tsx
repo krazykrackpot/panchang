@@ -128,7 +128,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
               {locale === 'en' ? 'Get AI Reading' : 'AI विश्लेषण प्राप्त करें'}
             </span>
           </div>
-          <p className="text-text-secondary/60 text-xs mt-2">
+          <p className="text-text-secondary/75 text-xs mt-2">
             {locale === 'en'
               ? 'Powered by Claude AI — a personalized narrative weaving all your chart factors together'
               : 'क्लॉड AI द्वारा संचालित — आपकी कुंडली के सभी कारकों को एकीकृत करने वाली व्यक्तिगत कथा'}

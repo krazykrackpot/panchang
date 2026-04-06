@@ -463,7 +463,7 @@ export default function LearnVargasPage() {
               ? 'Planet at 15°40\' Aries (D1) → In D9: 15°40\' ÷ 3°20\' = 5th navamsha → from Aries (fire sign) = 5th sign = Leo'
               : 'ग्रह 15°40\' मेष (D1) → D9 में: 15°40\' ÷ 3°20\' = 5वाँ नवांश → मेष (अग्नि) से = 5वीं राशि = सिंह'}
           </p>
-          <p className="text-text-secondary/50 text-xs mt-2 italic">
+          <p className="text-text-secondary/70 text-xs mt-2 italic">
             {locale === 'en'
               ? 'Same planet, same degree — but D9 says Leo while D1 says Aries. This new position reveals the hidden layer.'
               : 'एक ही ग्रह, एक ही अंश — लेकिन D9 कहता है सिंह जबकि D1 कहता है मेष। यह नई स्थिति छिपी परत दर्शाती है।'}
@@ -524,7 +524,7 @@ export default function LearnVargasPage() {
                     <span className={`text-2xl font-black ${tier.text}`} style={{ fontFamily: 'var(--font-heading)' }}>
                       {v.key}
                     </span>
-                    <span className="text-text-secondary/40 text-xs font-mono">÷{v.division}</span>
+                    <span className="text-text-secondary/65 text-xs font-mono">÷{v.division}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -533,7 +533,7 @@ export default function LearnVargasPage() {
                       <h4 className="text-gold-light font-bold text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
                         {v.name[locale]}
                       </h4>
-                      <span className="text-text-secondary/60 text-xs">({v.fullName[locale]})</span>
+                      <span className="text-text-secondary/75 text-xs">({v.fullName[locale]})</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${tier.bg} ${tier.text} ${tier.border}`}>
                         {tier.label[locale] || tier.label.en}
                       </span>
@@ -588,25 +588,25 @@ export default function LearnVargasPage() {
                 <td className="py-2 text-red-400 font-semibold">{locale === 'en' ? 'Fire' : 'अग्नि'}</td>
                 <td className="py-2 text-text-secondary">{locale === 'en' ? 'Aries, Leo, Sagittarius' : 'मेष, सिंह, धनु'}</td>
                 <td className="py-2 text-gold-light font-semibold">{locale === 'en' ? 'Aries (1)' : 'मेष (1)'}</td>
-                <td className="py-2 text-text-secondary/60 hidden sm:table-cell font-mono">1→2→3→4→5→6→7→8→9</td>
+                <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">1→2→3→4→5→6→7→8→9</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
                 <td className="py-2 text-emerald-400 font-semibold">{locale === 'en' ? 'Earth' : 'पृथ्वी'}</td>
                 <td className="py-2 text-text-secondary">{locale === 'en' ? 'Taurus, Virgo, Capricorn' : 'वृषभ, कन्या, मकर'}</td>
                 <td className="py-2 text-gold-light font-semibold">{locale === 'en' ? 'Capricorn (10)' : 'मकर (10)'}</td>
-                <td className="py-2 text-text-secondary/60 hidden sm:table-cell font-mono">10→11→12→1→2→3→4→5→6</td>
+                <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">10→11→12→1→2→3→4→5→6</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
                 <td className="py-2 text-sky-400 font-semibold">{locale === 'en' ? 'Air' : 'वायु'}</td>
                 <td className="py-2 text-text-secondary">{locale === 'en' ? 'Gemini, Libra, Aquarius' : 'मिथुन, तुला, कुम्भ'}</td>
                 <td className="py-2 text-gold-light font-semibold">{locale === 'en' ? 'Libra (7)' : 'तुला (7)'}</td>
-                <td className="py-2 text-text-secondary/60 hidden sm:table-cell font-mono">7→8→9→10→11→12→1→2→3</td>
+                <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">7→8→9→10→11→12→1→2→3</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
                 <td className="py-2 text-blue-400 font-semibold">{locale === 'en' ? 'Water' : 'जल'}</td>
                 <td className="py-2 text-text-secondary">{locale === 'en' ? 'Cancer, Scorpio, Pisces' : 'कर्क, वृश्चिक, मीन'}</td>
                 <td className="py-2 text-gold-light font-semibold">{locale === 'en' ? 'Cancer (4)' : 'कर्क (4)'}</td>
-                <td className="py-2 text-text-secondary/60 hidden sm:table-cell font-mono">4→5→6→7→8→9→10→11→12</td>
+                <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">4→5→6→7→8→9→10→11→12</td>
               </tr>
             </tbody>
           </table>
@@ -620,7 +620,7 @@ export default function LearnVargasPage() {
             <p className="text-gold-light/80 font-mono text-xs">{locale === 'en' ? 'Cancer is a Water sign → Navamsha starts from Cancer (4)' : 'कर्क जल राशि है → नवांश कर्क (4) से शुरू'}</p>
             <p className="text-gold-light/80 font-mono text-xs">{locale === 'en' ? 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha' : 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश'}</p>
             <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">{locale === 'en' ? '9th from Cancer = Pisces → Sun is in Pisces in D9' : 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में'}</p>
-            <p className="text-text-secondary/50 text-xs mt-2 italic">
+            <p className="text-text-secondary/70 text-xs mt-2 italic">
               {locale === 'en'
                 ? 'In D1, Sun is in Cancer (friendly sign). In D9, Sun is in Pisces (friendly sign). Both dignified = Sun\'s promises are confirmed.'
                 : 'D1 में सूर्य कर्क (मित्र राशि) में। D9 में सूर्य मीन (मित्र राशि) में। दोनों गरिमायुक्त = सूर्य के वादे पुष्ट।'}
@@ -705,7 +705,7 @@ export default function LearnVargasPage() {
                           style={{ width: `${(w.weight / 3.5) * 100}%` }}
                         />
                       </div>
-                      <span className="text-text-secondary/40 text-xs font-mono w-10 text-right">{((w.weight / 20) * 100).toFixed(0)}%</span>
+                      <span className="text-text-secondary/65 text-xs font-mono w-10 text-right">{((w.weight / 20) * 100).toFixed(0)}%</span>
                     </div>
                   </td>
                 </tr>
@@ -719,19 +719,19 @@ export default function LearnVargasPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="text-center p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
               <div className="text-emerald-400 font-bold">15-20</div>
-              <div className="text-text-secondary/60">{locale === 'en' ? 'Very Strong' : 'बहुत शक्तिशाली'}</div>
+              <div className="text-text-secondary/75">{locale === 'en' ? 'Very Strong' : 'बहुत शक्तिशाली'}</div>
             </div>
             <div className="text-center p-2 rounded bg-amber-500/10 border border-amber-500/20">
               <div className="text-amber-400 font-bold">10-15</div>
-              <div className="text-text-secondary/60">{locale === 'en' ? 'Strong' : 'शक्तिशाली'}</div>
+              <div className="text-text-secondary/75">{locale === 'en' ? 'Strong' : 'शक्तिशाली'}</div>
             </div>
             <div className="text-center p-2 rounded bg-orange-500/10 border border-orange-500/20">
               <div className="text-orange-400 font-bold">5-10</div>
-              <div className="text-text-secondary/60">{locale === 'en' ? 'Moderate' : 'मध्यम'}</div>
+              <div className="text-text-secondary/75">{locale === 'en' ? 'Moderate' : 'मध्यम'}</div>
             </div>
             <div className="text-center p-2 rounded bg-red-500/10 border border-red-500/20">
               <div className="text-red-400 font-bold">0-5</div>
-              <div className="text-text-secondary/60">{locale === 'en' ? 'Weak' : 'दुर्बल'}</div>
+              <div className="text-text-secondary/75">{locale === 'en' ? 'Weak' : 'दुर्बल'}</div>
             </div>
           </div>
         </div>
@@ -756,7 +756,7 @@ export default function LearnVargasPage() {
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-amber-500/10">
                   <div className="text-amber-400 font-bold">{c.key}</div>
-                  <div className="text-text-secondary/60">{c.name}</div>
+                  <div className="text-text-secondary/75">{c.name}</div>
                 </div>
               ))}
             </div>
@@ -775,7 +775,7 @@ export default function LearnVargasPage() {
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-emerald-500/10">
                   <div className="text-emerald-400 font-bold">{c.key}</div>
-                  <div className="text-text-secondary/60">{c.name}</div>
+                  <div className="text-text-secondary/75">{c.name}</div>
                 </div>
               ))}
             </div>
@@ -800,7 +800,7 @@ export default function LearnVargasPage() {
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-blue-500/10">
                   <div className="text-blue-400 font-bold">{c.key}</div>
-                  <div className="text-text-secondary/60">{c.name}</div>
+                  <div className="text-text-secondary/75">{c.name}</div>
                 </div>
               ))}
             </div>
@@ -953,7 +953,7 @@ export default function LearnVargasPage() {
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">
                 {link.label[locale]}
               </div>
-              <p className="text-text-secondary/60 text-xs mt-1">{link.desc[locale]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{link.desc[locale]}</p>
             </Link>
           ))}
         </div>

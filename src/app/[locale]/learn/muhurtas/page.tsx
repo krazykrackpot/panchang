@@ -275,14 +275,14 @@ export default function LearnMuhurtasPage() {
                       <div>
                         <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
                         {m.number === 8 && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
-                        <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
+                        <span className="ml-2 text-text-secondary/70 text-xs">{m.deity[locale]}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
                         {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
                       </span>
-                      <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
                   <p className="text-text-secondary text-sm ml-11 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -340,14 +340,14 @@ export default function LearnMuhurtasPage() {
                       <div>
                         <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
                         {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' ? 'BRAHMA' : 'ब्राह्म'}</span>}
-                        <span className="ml-2 text-text-secondary/50 text-xs">{m.deity[locale]}</span>
+                        <span className="ml-2 text-text-secondary/70 text-xs">{m.deity[locale]}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
                         {m.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') : (locale === 'en' ? 'Inauspicious' : 'अशुभ')}
                       </span>
-                      <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
                   <p className="text-text-secondary text-sm ml-11 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>

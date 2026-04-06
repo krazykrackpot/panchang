@@ -91,7 +91,7 @@ export default function LocationSearch({ value, onSelect, placeholder = 'Search 
           onChange={(e) => handleChange(e.target.value)}
           onFocus={() => results.length > 0 && setIsOpen(true)}
           placeholder={placeholder}
-          className="w-full pl-10 pr-10 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none text-sm"
+          className="w-full pl-10 pr-10 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
           aria-label="Search location"
           autoComplete="off"
         />

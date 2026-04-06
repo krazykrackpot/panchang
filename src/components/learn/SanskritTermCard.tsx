@@ -24,7 +24,7 @@ export default function SanskritTermCard({ term, transliteration, meaning, devan
         {term}
       </div>
       {transliteration !== term && (
-        <div className="text-text-secondary/60 text-xs italic mt-0.5">{transliteration}</div>
+        <div className="text-text-secondary/75 text-xs italic mt-0.5">{transliteration}</div>
       )}
       <div className="text-text-secondary text-xs mt-1">{meaning}</div>
     </motion.div>

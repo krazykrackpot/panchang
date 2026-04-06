@@ -296,7 +296,7 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
           }`}>
             <span className="text-gold-light/60 mt-0.5 flex-shrink-0">{row.icon}</span>
             <div className="min-w-0">
-              <span className="text-xs uppercase tracking-wider text-text-secondary/60 block" style={bodyFont}>{row.label}</span>
+              <span className="text-xs uppercase tracking-wider text-text-secondary/75 block" style={bodyFont}>{row.label}</span>
               <span className={`text-sm ${row.highlight ? 'text-gold-light font-medium' : 'text-text-secondary'}`} style={bodyFont}>
                 {row.value}
               </span>

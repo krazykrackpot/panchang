@@ -458,7 +458,7 @@ export default function SettingsPage() {
                 type="text"
                 value={profile.display_name}
                 onChange={(e) => setProfile({ ...profile, display_name: e.target.value })}
-                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none text-sm"
+                className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
                 placeholder="Enter your full name"
               />
             </div>
@@ -514,7 +514,7 @@ export default function SettingsPage() {
                 placeholder={locale === 'hi' ? 'शहर खोजें...' : 'Search city or place...'}
               />
               {profile.birth_place && profile.birth_lat != null && (
-                <p className="text-xs text-text-secondary/60 mt-1.5 flex items-center gap-1">
+                <p className="text-xs text-text-secondary/75 mt-1.5 flex items-center gap-1">
                   <MapPin className="w-3 h-3" />
                   {profile.birth_lat.toFixed(2)}, {profile.birth_lng?.toFixed(2)} ({profile.birth_timezone})
                 </p>
@@ -609,7 +609,7 @@ export default function SettingsPage() {
               <Bell className="w-5 h-5" />
               {L.notifications}
             </h2>
-            <p className="text-xs text-text-secondary/60 mt-1">{L.notifDesc}</p>
+            <p className="text-xs text-text-secondary/75 mt-1">{L.notifDesc}</p>
           </div>
           <div className="px-6 py-5 space-y-3">
             {NOTIF_TYPES.map((nt) => (
@@ -685,7 +685,7 @@ export default function SettingsPage() {
             </button>
             <button
               onClick={() => setShowDeleteConfirm(true)}
-              className="w-full flex items-center gap-2 px-4 py-2 text-xs text-text-secondary/50 hover:text-red-400/70 transition-colors justify-center"
+              className="w-full flex items-center gap-2 px-4 py-2 text-xs text-text-secondary/70 hover:text-red-400/70 transition-colors justify-center"
             >
               <Trash2 className="w-3 h-3" />
               {L.deleteAccount}

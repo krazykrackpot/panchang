@@ -252,7 +252,7 @@ export default function LearnKundaliPage() {
               <div className="text-gold-light font-bold text-lg">{locale === 'en' ? 'New Delhi' : 'नई दिल्ली'}</div>
             </div>
           </div>
-          <div className="text-center mt-3 text-text-secondary/50 font-mono text-xs">
+          <div className="text-center mt-3 text-text-secondary/70 font-mono text-xs">
             28.6139°N, 77.2090°E
           </div>
         </div>
@@ -335,7 +335,7 @@ export default function LearnKundaliPage() {
             <p className="text-gold-light/80 font-mono text-xs">Ayanamsha (1995) ≈ 23.8°</p>
             <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">Sidereal Lagna ≈ 183.7° = <span className="text-emerald-400">Tula (Libra)</span> 3°42&apos;</p>
           </div>
-          <p className="text-text-secondary/60 text-xs mt-3 italic">
+          <p className="text-text-secondary/75 text-xs mt-3 italic">
             {locale === 'en'
               ? 'Tula (Libra) rising means Venus-ruled personality: diplomatic, artistic, relationship-oriented.'
               : 'तुला लग्न अर्थात् शुक्र-शासित व्यक्तित्व: कूटनीतिक, कलात्मक, सम्बन्ध-उन्मुख।'}
@@ -352,7 +352,7 @@ export default function LearnKundaliPage() {
             <p className="text-gold-light/80 font-mono text-xs">For 1995 (T ≈ -0.044): Ayanamsha ≈ 23.79°</p>
             <p className="text-gold-light/80 font-mono text-xs mt-2">Sidereal position = Tropical position - 23.79°</p>
           </div>
-          <p className="text-text-secondary/60 text-xs mt-3 italic">
+          <p className="text-text-secondary/75 text-xs mt-3 italic">
             {locale === 'en'
               ? 'This is why your "Western sign" and "Vedic sign" usually differ by about one sign.'
               : 'इसीलिए आपकी "पश्चिमी राशि" और "वैदिक राशि" प्रायः लगभग एक राशि भिन्न होती हैं।'}
@@ -384,7 +384,7 @@ export default function LearnKundaliPage() {
                   <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{p.name[locale]}</td>
                   <td className="py-2 text-gold-light/70 font-mono text-xs">{p.sidereal}</td>
                   <td className="py-2 text-text-secondary text-xs">{p.rashi[locale]}</td>
-                  <td className="py-2 text-text-secondary/60 text-xs hidden sm:table-cell" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
+                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
                 </tr>
               ))}
             </tbody>
@@ -419,9 +419,9 @@ export default function LearnKundaliPage() {
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-6 h-6 rounded-full bg-gold-primary/10 flex items-center justify-center text-gold-light text-xs font-bold">{h.house}</span>
-                <span className="text-text-secondary/60 text-xs">{h.rashi[locale]}</span>
+                <span className="text-text-secondary/75 text-xs">{h.rashi[locale]}</span>
               </div>
-              <div className={`text-xs font-semibold ${h.planets[locale] !== '—' ? 'text-gold-light' : 'text-text-secondary/30'}`}>
+              <div className={`text-xs font-semibold ${h.planets[locale] !== '—' ? 'text-gold-light' : 'text-text-secondary/55'}`}>
                 {h.planets[locale]}
               </div>
             </div>
@@ -463,7 +463,7 @@ export default function LearnKundaliPage() {
               <div className="w-2 h-8 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
               <div className="flex-1">
                 <span className="text-gold-light text-sm font-semibold">{d.planet[locale]}</span>
-                <span className="text-text-secondary/60 text-sm"> — </span>
+                <span className="text-text-secondary/75 text-sm"> — </span>
                 <span className="text-sm" style={{ color: d.color }}>{d.status[locale]}</span>
               </div>
             </div>
@@ -600,7 +600,7 @@ export default function LearnKundaliPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4 hover:border-gold-primary/30 transition-colors group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{link.label[locale]}</div>
-              <p className="text-text-secondary/60 text-xs mt-1">{link.desc[locale]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{link.desc[locale]}</p>
             </Link>
           ))}
         </div>

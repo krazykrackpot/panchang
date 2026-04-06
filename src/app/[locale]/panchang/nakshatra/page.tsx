@@ -149,7 +149,7 @@ export default function NakshatraPage() {
                   </div>
                   <div className="flex items-center gap-3 mt-1.5">
                     <span className="text-gold-dark/60 text-xs font-mono">{nak.startDeg.toFixed(1)}° — {nak.endDeg.toFixed(1)}°</span>
-                    <span className="text-xs text-text-secondary/60" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak.nature[locale]}</span>
+                    <span className="text-xs text-text-secondary/75" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak.nature[locale]}</span>
                   </div>
                 </div>
                 <div className="text-gold-primary/40 group-hover:text-gold-light transition-colors text-lg">→</div>

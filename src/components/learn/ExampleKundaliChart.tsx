@@ -217,7 +217,7 @@ export default function ExampleKundaliChart({ size = 420 }: { size?: number }) {
       </svg>
 
       {/* Caption */}
-      <p className="text-text-secondary/60 text-xs mt-3 text-center font-mono">
+      <p className="text-text-secondary/75 text-xs mt-3 text-center font-mono">
         {locale === 'en'
           ? '15 Aug 1995 \u00B7 10:30 AM IST \u00B7 New Delhi'
           : '15 अगस्त 1995 \u00B7 10:30 AM IST \u00B7 नई दिल्ली'}

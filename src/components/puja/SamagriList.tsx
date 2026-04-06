@@ -139,7 +139,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
               {checkedCount} / {items.length}
             </span>
             <span
-              className="text-sm text-text-secondary/60"
+              className="text-sm text-text-secondary/75"
               style={bodyFont ? { fontFamily: bodyFont } : undefined}
             >
               {UI_LABELS.ready[locale]}
@@ -189,7 +189,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
           <section key={key}>
             {/* Category header */}
             <h3
-              className="text-xs font-bold text-text-secondary/40 uppercase tracking-wider mb-3"
+              className="text-xs font-bold text-text-secondary/65 uppercase tracking-wider mb-3"
               style={bodyFont ? { fontFamily: bodyFont } : undefined}
             >
               {CATEGORY_LABELS[key][locale]}
@@ -228,7 +228,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                         <div className="flex items-center gap-2 flex-wrap">
                           <span
                             className={`font-semibold text-sm leading-snug ${
-                              isChecked ? 'line-through text-text-secondary/40' : 'text-gold-light'
+                              isChecked ? 'line-through text-text-secondary/65' : 'text-gold-light'
                             }`}
                             style={bodyFont ? { fontFamily: bodyFont } : undefined}
                           >
@@ -240,7 +240,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                             </span>
                           )}
                           {item.quantity && (
-                            <span className={`text-xs ${isChecked ? 'text-text-secondary/30' : 'text-text-secondary/50'}`}>
+                            <span className={`text-xs ${isChecked ? 'text-text-secondary/55' : 'text-text-secondary/70'}`}>
                               ({item.quantity})
                             </span>
                           )}
@@ -249,7 +249,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                         {/* Note */}
                         {item.note && (
                           <p
-                            className={`text-xs leading-relaxed ${isChecked ? 'text-text-secondary/25' : 'text-text-secondary/50'}`}
+                            className={`text-xs leading-relaxed ${isChecked ? 'text-text-secondary/50' : 'text-text-secondary/70'}`}
                             style={bodyFont ? { fontFamily: bodyFont } : undefined}
                           >
                             {item.note[locale]}
@@ -273,7 +273,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                             {item.substitutions.map((sub, si) => (
                               <p
                                 key={si}
-                                className={`text-xs ${isChecked ? 'text-text-secondary/25' : 'text-text-secondary/50'}`}
+                                className={`text-xs ${isChecked ? 'text-text-secondary/50' : 'text-text-secondary/70'}`}
                                 style={bodyFont ? { fontFamily: bodyFont } : undefined}
                               >
                                 <span className="text-gold-primary/70 font-semibold">
@@ -281,7 +281,7 @@ export default function SamagriList({ items, slug, locale }: SamagriListProps) {
                                 </span>{' '}
                                 {sub.item[locale]}
                                 {sub.note && (
-                                  <span className="text-text-secondary/35"> &mdash; {sub.note[locale]}</span>
+                                  <span className="text-text-secondary/55"> &mdash; {sub.note[locale]}</span>
                                 )}
                               </p>
                             ))}

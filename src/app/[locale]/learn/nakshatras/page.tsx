@@ -270,12 +270,12 @@ export default function LearnNakshatrasPage() {
               >
                 {d.years} {lo === 'en' ? 'yrs' : '\u0935\u0930\u094d\u0937'}
               </div>
-              <div className="text-text-secondary/60 text-xs hidden sm:block" style={lo !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+              <div className="text-text-secondary/75 text-xs hidden sm:block" style={lo !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                 {d.nakshatras.map((nId: number) => NAKSHATRAS[nId - 1]?.name[lo] || `#${nId}`).join(', ')}
               </div>
             </motion.div>
           ))}
-          <div className="mt-2 text-center text-text-secondary/50 text-xs font-mono">
+          <div className="mt-2 text-center text-text-secondary/70 text-xs font-mono">
             Total: 7+20+6+10+7+18+16+19+17 = 120 {lo === 'en' ? 'years' : '\u0935\u0930\u094d\u0937'}
           </div>
         </div>
@@ -313,14 +313,14 @@ export default function LearnNakshatrasPage() {
                     {syllables?.map((s, si) => (
                       <td key={si} className="py-1.5 px-1 text-center font-mono text-gold-light/60">{lo === 'en' ? s.en : s.hi}</td>
                     ))}
-                    <td className="py-1.5 px-2 text-right text-text-secondary/50 font-mono">
+                    <td className="py-1.5 px-2 text-right text-text-secondary/70 font-mono">
                       {[0, 1, 2, 3].map((p) => navSigns[(navamshaStart + p) % 12]).join('-')}
                     </td>
                   </tr>
                 );
               })}
               <tr>
-                <td colSpan={6} className="py-2 text-center text-text-secondary/40 text-xs italic">
+                <td colSpan={6} className="py-2 text-center text-text-secondary/65 text-xs italic">
                   {lo === 'en' ? '...showing first 9 of 27. See baby naming section for complete syllable chart.' : '...27 में से प्रथम 9 दिखा रहे हैं। पूर्ण अक्षर तालिका के लिए नामकरण खण्ड देखें।'}
                 </td>
               </tr>
@@ -344,7 +344,7 @@ export default function LearnNakshatrasPage() {
             >
               <div className="font-semibold text-sm mb-1" style={{ color: cat.color }}>{cat.name[lo]}</div>
               <p className="text-text-secondary/70 text-xs mb-2">{cat.desc[lo]}</p>
-              <p className="text-text-secondary/50 text-xs font-mono">{cat.nakshatras}</p>
+              <p className="text-text-secondary/70 text-xs font-mono">{cat.nakshatras}</p>
             </motion.div>
           ))}
         </div>
@@ -376,17 +376,17 @@ export default function LearnNakshatrasPage() {
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Rashis (Signs)</div>
-                <div className="text-text-secondary/50 text-xs mt-1">30° each — based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">30° each — based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Nakshatras (Stars)</div>
-                <div className="text-text-secondary/50 text-xs mt-1">13°20&apos; each — based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; each — based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Padas (Quarters)</div>
-                <div className="text-text-secondary/50 text-xs mt-1">3°20&apos; each — 27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
+                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; each — 27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
               </div>
             </div>
             <p className="text-sm"><strong>The beautiful math:</strong> 12 rashis × 9 padas = 108. 27 nakshatras × 4 padas = 108. This is why 108 is sacred in Hinduism — it&apos;s the meeting point of the solar (rashi) and lunar (nakshatra) systems. A mala has 108 beads for this reason.</p>
@@ -399,17 +399,17 @@ export default function LearnNakshatrasPage() {
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">राशियाँ</div>
-                <div className="text-text-secondary/50 text-xs mt-1">30° प्रत्येक — <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">30° प्रत्येक — <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">नक्षत्र</div>
-                <div className="text-text-secondary/50 text-xs mt-1">13°20&apos; प्रत्येक — <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; प्रत्येक — <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">पाद (चतुर्थांश)</div>
-                <div className="text-text-secondary/50 text-xs mt-1">3°20&apos; प्रत्येक — 27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
+                <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; प्रत्येक — 27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
               </div>
             </div>
             <p className="text-sm"><strong>सुन्दर गणित:</strong> 12 राशियाँ × 9 पाद = 108। 27 नक्षत्र × 4 पाद = 108। इसीलिए हिन्दू धर्म में 108 पवित्र है — यह सौर (राशि) और चान्द्र (नक्षत्र) प्रणालियों का मिलन बिन्दु है। माला में 108 मनके इसीलिए होते हैं।</p>
@@ -539,15 +539,15 @@ export default function LearnNakshatrasPage() {
                   <div className="text-gold-light font-semibold text-sm truncate">
                     {n.id}. {n.name[locale]}
                   </div>
-                  {locale !== 'en' && <div className="text-text-secondary/60 text-xs truncate">{n.name.en}</div>}
+                  {locale !== 'en' && <div className="text-text-secondary/75 text-xs truncate">{n.name.en}</div>}
                 </div>
                 <span className="text-gold-primary text-xs font-mono font-bold flex-shrink-0">{fmtDeg(n.startDeg)} – {fmtDeg(n.endDeg)}</span>
               </div>
               <div className="flex flex-wrap gap-x-2 text-xs text-text-secondary/70 ml-[42px]">
                 <span>{n.deity[locale]}</span>
-                <span className="text-text-secondary/30">|</span>
+                <span className="text-text-secondary/55">|</span>
                 <span>{n.rulerName[locale]}</span>
-                <span className="text-text-secondary/30">|</span>
+                <span className="text-text-secondary/55">|</span>
                 <span>{n.nature[locale]}</span>
               </div>
             </motion.div>

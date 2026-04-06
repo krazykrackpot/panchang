@@ -601,7 +601,7 @@ export default function HomePage() {
                       )}
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-text-secondary/30 group-hover:text-gold-primary/60 transition-colors shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-text-secondary/55 group-hover:text-gold-primary/60 transition-colors shrink-0" />
                 </div>
               </div>
             </Link>

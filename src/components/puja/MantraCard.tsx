@@ -139,7 +139,7 @@ export default function MantraCard({
       >
         {mantra.name[loc]}
         {loc !== 'en' && (
-          <span className="text-text-secondary/40 text-xs ml-2 font-normal">
+          <span className="text-text-secondary/65 text-xs ml-2 font-normal">
             ({mantra.name.en})
           </span>
         )}
@@ -170,7 +170,7 @@ export default function MantraCard({
       {/* Meaning */}
       {showMeaning && (
         <p
-          className="text-text-secondary/60 text-xs mt-3 leading-relaxed"
+          className="text-text-secondary/75 text-xs mt-3 leading-relaxed"
           style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
         >
           {mantra.meaning[loc]}
@@ -185,7 +185,7 @@ export default function MantraCard({
           </span>
         )}
         <span
-          className="text-text-secondary/40 text-xs"
+          className="text-text-secondary/65 text-xs"
           style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
         >
           {mantra.usage[loc]}

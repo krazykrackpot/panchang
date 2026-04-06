@@ -245,7 +245,7 @@ export default function CosmologyPage() {
                 </div>
               </motion.div>
             ))}
-            <p className="text-xs text-text-secondary/50 italic mt-2 text-center">
+            <p className="text-xs text-text-secondary/70 italic mt-2 text-center">
               {hi ? 'लघुगणकीय पैमाना — प्रत्येक चरण 10 गुना बड़ा है' : 'Logarithmic scale — each step is 10x larger'}
             </p>
           </div>
@@ -279,7 +279,7 @@ export default function CosmologyPage() {
                     <td className="py-2.5 px-2 font-medium text-text-primary whitespace-nowrap">{row.unit}</td>
                     <td className="py-2.5 px-2 font-mono text-xs text-amber-300/80">{row.duration}</td>
                     <td className="py-2.5 px-2 text-text-secondary/70 hidden sm:table-cell">{row.modern}</td>
-                    <td className="py-2.5 px-2 text-text-secondary/50 text-xs italic hidden md:table-cell">{row.wow ? t(row.wow) : ''}</td>
+                    <td className="py-2.5 px-2 text-text-secondary/70 text-xs italic hidden md:table-cell">{row.wow ? t(row.wow) : ''}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -327,14 +327,14 @@ export default function CosmologyPage() {
                         <span className="text-xs sm:text-sm font-bold text-white/90 whitespace-nowrap">
                           {yuga.years} {hi ? 'वर्ष' : 'years'}
                         </span>
-                        <span className="text-xs font-mono text-white/60 hidden sm:inline">
+                        <span className="text-xs font-mono text-white/75 hidden sm:inline">
                           {yuga.dharma}% {hi ? 'धर्म' : 'dharma'}
                         </span>
                       </motion.div>
                     </div>
                   </div>
                 </div>
-                <p className="text-xs text-text-secondary/60 ml-32 sm:ml-40">
+                <p className="text-xs text-text-secondary/75 ml-32 sm:ml-40">
                   {t(yuga.desc)}
                 </p>
               </motion.div>
@@ -386,7 +386,7 @@ export default function CosmologyPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                   <div>
                     <span className="text-gold-light font-bold text-sm">{t(item.label)}</span>
-                    <span className="text-text-secondary/50 text-xs ml-2">= {item.formula}</span>
+                    <span className="text-text-secondary/70 text-xs ml-2">= {item.formula}</span>
                   </div>
                   <span className="text-amber-300 font-mono font-bold text-sm sm:text-base">{item.value}</span>
                 </div>
@@ -405,18 +405,18 @@ export default function CosmologyPage() {
             <div className="flex justify-center gap-4 sm:gap-12 mb-4 flex-wrap">
               <div>
                 <div className="text-3xl sm:text-4xl font-black text-gold-primary" style={{ fontFamily: 'var(--font-heading)' }}>4.32B</div>
-                <div className="text-xs text-text-secondary/60 mt-1">{hi ? 'एक कल्प' : 'One Kalpa'}</div>
+                <div className="text-xs text-text-secondary/75 mt-1">{hi ? 'एक कल्प' : 'One Kalpa'}</div>
               </div>
               <div className="flex items-center text-2xl text-gold-primary/40">&asymp;</div>
               <div>
                 <div className="text-3xl sm:text-4xl font-black text-emerald-400" style={{ fontFamily: 'var(--font-heading)' }}>4.54B</div>
-                <div className="text-xs text-text-secondary/60 mt-1">{hi ? 'पृथ्वी की आयु' : 'Earth\'s Age'}</div>
+                <div className="text-xs text-text-secondary/75 mt-1">{hi ? 'पृथ्वी की आयु' : 'Earth\'s Age'}</div>
               </div>
             </div>
             <p className="text-gold-light/90 text-sm sm:text-base font-semibold max-w-xl mx-auto">
               {t(L.s4Comparison)}
             </p>
-            <p className="text-text-secondary/50 text-xs mt-3 italic">
+            <p className="text-text-secondary/70 text-xs mt-3 italic">
               {hi ? 'यह संयोग का दावा नहीं है — लेकिन सोच का पैमाना असाधारण है।' : 'This is NOT a coincidence claim — but the scale of thinking is extraordinary.'}
             </p>
           </motion.div>
@@ -436,7 +436,7 @@ export default function CosmologyPage() {
                   transition={{ delay: i * 0.1 }}
                   className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 text-center"
                 >
-                  <div className="text-xs uppercase tracking-wider text-text-secondary/50 mb-1">{t(pos.label)}</div>
+                  <div className="text-xs uppercase tracking-wider text-text-secondary/70 mb-1">{t(pos.label)}</div>
                   <div className="text-xs sm:text-sm font-semibold text-gold-light">{t(pos.value)}</div>
                 </motion.div>
               ))}
@@ -450,7 +450,7 @@ export default function CosmologyPage() {
               transition={{ delay: 0.5 }}
               className="mt-4 text-center"
             >
-              <p className="text-text-secondary/50 text-xs mb-2">
+              <p className="text-text-secondary/70 text-xs mb-2">
                 {hi ? 'यही संकल्प पाठ में प्रकट होता है:' : 'This is EXACTLY what appears in the Sankalpa text:'}
               </p>
               <div
@@ -482,7 +482,7 @@ export default function CosmologyPage() {
                   transition={{ delay: i * 0.1 }}
                   className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-4"
                 >
-                  <div className="text-xs text-text-secondary/50 mb-1">{t(item.label)}</div>
+                  <div className="text-xs text-text-secondary/70 mb-1">{t(item.label)}</div>
                   <div className="text-sm font-semibold text-gold-light">{t(item.value)}</div>
                 </motion.div>
               ))}
@@ -499,8 +499,8 @@ export default function CosmologyPage() {
               <div className="text-4xl sm:text-6xl font-black bg-gradient-to-r from-gold-primary via-yellow-300 to-gold-primary bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-heading)' }}>
                 311.04 {hi ? 'खरब' : 'TRILLION'}
               </div>
-              <div className="text-text-secondary/60 text-sm mt-2">{hi ? 'वर्ष — ब्रह्मा की सम्पूर्ण आयु' : 'years — Brahma\'s total lifespan'}</div>
-              <div className="text-text-secondary/40 text-xs mt-1">{hi ? 'वर्तमान: ब्रह्मा अपने 51वें वर्ष (द्वितीय परार्ध) के प्रथम दिन में हैं' : 'Current: Brahma is in his 51st year (second Parardha), first day'}</div>
+              <div className="text-text-secondary/75 text-sm mt-2">{hi ? 'वर्ष — ब्रह्मा की सम्पूर्ण आयु' : 'years — Brahma\'s total lifespan'}</div>
+              <div className="text-text-secondary/65 text-xs mt-1">{hi ? 'वर्तमान: ब्रह्मा अपने 51वें वर्ष (द्वितीय परार्ध) के प्रथम दिन में हैं' : 'Current: Brahma is in his 51st year (second Parardha), first day'}</div>
             </motion.div>
 
             {/* Cyclic nature */}
@@ -597,7 +597,7 @@ export default function CosmologyPage() {
                   ? '"यदि आप ब्रह्माण्ड के रहस्य खोजना चाहते हैं, तो ऊर्जा, आवृत्ति और कम्पन के सन्दर्भ में सोचें।"'
                   : '"If you want to find the secrets of the universe, think in terms of energy, frequency and vibration."'}
               </p>
-              <footer className="text-text-secondary/50 text-xs mt-2">
+              <footer className="text-text-secondary/70 text-xs mt-2">
                 {hi ? '— निकोला टेस्ला — वैदिक परम्परा ने ठीक यही किया।' : '— Nikola Tesla — The Vedic tradition did exactly this.'}
               </footer>
             </motion.blockquote>
@@ -670,7 +670,7 @@ export default function CosmologyPage() {
           <div className="mt-4 pt-4 border-t border-white/[0.05]">
             <Link
               href="/learn"
-              className="text-sm text-text-secondary/60 hover:text-gold-light transition-colors"
+              className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors"
             >
               &larr; {t(L.backToLearn)}
             </Link>

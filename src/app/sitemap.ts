@@ -183,6 +183,8 @@ function addEntries(
     for (const alt of locales) {
       alternates[alt] = `${BASE_URL}/${alt}${route}`;
     }
+    // x-default points to EN version (recommended by Google for multilingual sites)
+    alternates['x-default'] = `${BASE_URL}/en${route}`;
     entries.push({
       url,
       lastModified: new Date(),

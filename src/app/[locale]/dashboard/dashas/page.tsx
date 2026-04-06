@@ -104,7 +104,7 @@ export default function DashasPage() {
               <div className="mt-2 h-2 bg-bg-tertiary/40 rounded-full overflow-hidden">
                 <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${progressPercent(currentMaha.startDate, currentMaha.endDate)}%` }} />
               </div>
-              <p className="text-text-secondary/50 text-xs mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {locale === 'en' ? 'complete' : 'पूर्ण'}</p>
+              <p className="text-text-secondary/70 text-xs mt-1">{progressPercent(currentMaha.startDate, currentMaha.endDate)}% {locale === 'en' ? 'complete' : 'पूर्ण'}</p>
             </div>
           </div>
 
@@ -161,7 +161,7 @@ export default function DashasPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-text-secondary/50 text-xs font-mono">{d.startDate.slice(0, 4)}—{d.endDate.slice(0, 4)} ({yearsDiff(d.startDate, d.endDate)}y)</span>
+                      <span className="text-text-secondary/70 text-xs font-mono">{d.startDate.slice(0, 4)}—{d.endDate.slice(0, 4)} ({yearsDiff(d.startDate, d.endDate)}y)</span>
                       {d.subPeriods && d.subPeriods.length > 0 && <ChevronDown className={`w-4 h-4 text-gold-primary/40 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />}
                     </div>
                   </div>
@@ -176,7 +176,7 @@ export default function DashasPage() {
                         <div key={j} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs ${isCurrentAntar ? 'bg-gold-primary/10 border border-gold-primary/20' : ''}`}>
                           <GrahaIconById id={PLANET_ID[s.planet] ?? 0} size={14} />
                           <span className={isCurrentAntar ? 'text-gold-light font-bold' : 'text-text-secondary'} style={bf}>{s.planetName[lk as keyof typeof s.planetName]}</span>
-                          <span className="text-text-secondary/40 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
+                          <span className="text-text-secondary/65 font-mono ml-auto">{s.startDate} — {s.endDate}</span>
                           {isCurrentAntar && <span className="text-gold-primary text-xs font-bold">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                         </div>
                       );

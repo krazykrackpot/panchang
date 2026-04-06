@@ -106,7 +106,7 @@ export default function JapaCounter({
               {count}
             </motion.span>
           </AnimatePresence>
-          <span className="text-sm text-text-secondary/50">/ {target}</span>
+          <span className="text-sm text-text-secondary/70">/ {target}</span>
         </div>
       </button>
 

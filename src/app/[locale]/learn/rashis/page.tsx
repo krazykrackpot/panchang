@@ -584,8 +584,8 @@ export default function LearnRashisPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-gold-light font-bold text-lg">{r.name[locale]}</span>
-                      {locale !== 'en' && <span className="text-text-secondary/50 text-sm">({r.name.en})</span>}
-                      <span className="text-text-secondary/40 text-xs font-mono">{r.startDeg}-{r.endDeg}</span>
+                      {locale !== 'en' && <span className="text-text-secondary/70 text-sm">({r.name.en})</span>}
+                      <span className="text-text-secondary/65 text-xs font-mono">{r.startDeg}-{r.endDeg}</span>
                     </div>
                     <div className="flex flex-wrap gap-2 mt-1">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${elementBg[r.element.en] || ''} ${elementColor[r.element.en] || ''}`}>

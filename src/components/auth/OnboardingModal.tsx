@@ -227,7 +227,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               onChange={(e) => setFullName(e.target.value)}
               placeholder={L.namePlaceholder}
               required
-              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none text-sm"
+              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none text-sm"
             />
           </div>
 
@@ -246,7 +246,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
           <div>
             <label className="block text-text-secondary text-xs font-medium mb-1.5">
               {L.tobLabel}
-              <span className="ml-2 text-text-secondary/50 font-normal">({L.tobHint})</span>
+              <span className="ml-2 text-text-secondary/70 font-normal">({L.tobHint})</span>
             </label>
             <input
               type="time"
@@ -311,11 +311,11 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
               }
             }}
             disabled={saving}
-            className="w-full py-2.5 text-text-secondary/60 text-sm hover:text-text-secondary transition-colors"
+            className="w-full py-2.5 text-text-secondary/75 text-sm hover:text-text-secondary transition-colors"
           >
             {L.skip}
           </button>
-          <p className="text-text-secondary/30 text-xs text-center">{L.skipHint}</p>
+          <p className="text-text-secondary/55 text-xs text-center">{L.skipHint}</p>
         </form>
       </div>
     </div>

@@ -395,7 +395,7 @@ export default function SankalpaPage() {
       )
     : GOTRAS;
 
-  const inputCls = 'w-full bg-bg-primary/60 border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none focus:ring-1 focus:ring-gold-primary/20 transition-all placeholder:text-text-secondary/30';
+  const inputCls = 'w-full bg-bg-primary/60 border border-gold-primary/20 rounded-xl px-4 py-3 text-text-primary text-sm focus:border-gold-primary/50 focus:outline-none focus:ring-1 focus:ring-gold-primary/20 transition-all placeholder:text-text-secondary/55';
   const labelCls = 'text-text-secondary text-xs uppercase tracking-wider mb-1.5 block';
 
   return (
@@ -475,7 +475,7 @@ export default function SankalpaPage() {
                       className="w-full text-left px-4 py-2.5 text-sm hover:bg-gold-primary/10 transition-colors flex items-center justify-between"
                     >
                       <span className="text-gold-light" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{g.sa}</span>
-                      <span className="text-text-secondary/50 text-xs">{g.en}</span>
+                      <span className="text-text-secondary/70 text-xs">{g.en}</span>
                     </button>
                   ))}
                 </motion.div>
@@ -524,7 +524,7 @@ export default function SankalpaPage() {
                 }`}
               >
                 {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
-                <span className="block text-xs text-text-secondary/60 mt-0.5">
+                <span className="block text-xs text-text-secondary/75 mt-0.5">
                   {locale === 'en' ? 'North India' : 'उत्तर भारत'}
                 </span>
               </button>
@@ -537,7 +537,7 @@ export default function SankalpaPage() {
                 }`}
               >
                 {locale === 'en' ? 'Amant' : 'अमान्त'}
-                <span className="block text-xs text-text-secondary/60 mt-0.5">
+                <span className="block text-xs text-text-secondary/75 mt-0.5">
                   {locale === 'en' ? 'South India' : 'दक्षिण भारत'}
                 </span>
               </button>
@@ -556,7 +556,7 @@ export default function SankalpaPage() {
                 className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   purposeTab === tab
                     ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30 shadow-lg shadow-gold-primary/5'
-                    : 'text-text-secondary/60 hover:text-text-secondary border border-transparent hover:border-gold-primary/10'
+                    : 'text-text-secondary/75 hover:text-text-secondary border border-transparent hover:border-gold-primary/10'
                 }`}
                 style={bodyFont}
               >
@@ -709,7 +709,7 @@ export default function SankalpaPage() {
 
               {/* IAST */}
               <div className="mt-8 pt-6 border-t border-gold-primary/10">
-                <p className="text-text-secondary/50 text-xs uppercase tracking-wider mb-2">{t.iast}</p>
+                <p className="text-text-secondary/70 text-xs uppercase tracking-wider mb-2">{t.iast}</p>
                 <p className="text-text-secondary/70 text-sm italic leading-relaxed">
                   {result.iast}
                 </p>

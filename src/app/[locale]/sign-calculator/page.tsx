@@ -143,7 +143,7 @@ export default function SignCalculatorPage() {
             placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />
         </div>
-        <p className="text-text-secondary/50 text-xs text-center mt-4" style={bodyFont}>
+        <p className="text-text-secondary/70 text-xs text-center mt-4" style={bodyFont}>
           {locale === 'en'
             ? 'Location is essential — Moon moves ~13° per day and timezone affects calculations.'
             : 'स्थान आवश्यक है — चन्द्रमा प्रतिदिन ~13° चलता है और समयक्षेत्र गणना को प्रभावित करता है।'}
@@ -156,7 +156,7 @@ export default function SignCalculatorPage() {
             <GoldDivider />
 
             {/* Location + timezone confirmation */}
-            <p className="text-text-secondary/60 text-xs text-center my-4">
+            <p className="text-text-secondary/75 text-xs text-center my-4">
               {result.location} (UTC{result.tzOffset >= 0 ? '+' : ''}{result.tzOffset})
             </p>
 
@@ -219,7 +219,7 @@ export default function SignCalculatorPage() {
               </div>
             </motion.div>
 
-            <div className="text-center text-text-secondary/50 text-xs mt-6" style={bodyFont}>
+            <div className="text-center text-text-secondary/70 text-xs mt-6" style={bodyFont}>
               {locale === 'en'
                 ? 'Note: These are Vedic (Sidereal) signs using Lahiri Ayanamsha, not Western (Tropical) signs.'
                 : 'नोट: ये लाहिरी अयनांश के साथ वैदिक (सायन) राशियाँ हैं, पश्चिमी (सायन) राशियाँ नहीं।'}

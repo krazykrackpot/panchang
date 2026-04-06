@@ -509,7 +509,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
       </button>
       <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{mantra.name[lk as keyof typeof mantra.name]}</p>
       <p className="text-gold-light text-base leading-relaxed pr-6" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{mantra.devanagari}</p>
-      <p className="text-text-secondary/60 text-xs italic mt-1">{mantra.iast}</p>
+      <p className="text-text-secondary/75 text-xs italic mt-1">{mantra.iast}</p>
       <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{mantra.meaning[lk as keyof typeof mantra.meaning]}</p>
       {mantra.japaCount && <span className="text-gold-primary/50 text-xs mt-1 inline-block">{mantra.japaCount}x</span>}
     </div>

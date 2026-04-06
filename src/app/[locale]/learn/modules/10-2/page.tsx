@@ -312,7 +312,7 @@ function Page3() {
                 <span className="text-emerald-400 font-mono text-xs">{item.range}</span>
               </div>
               <p className="text-text-secondary/70 text-xs mt-1">{isHi ? item.signsHi : item.signs}</p>
-              <p className="text-text-secondary/50 text-xs mt-0.5">{item.note}</p>
+              <p className="text-text-secondary/70 text-xs mt-0.5">{item.note}</p>
             </div>
           ))}
         </div>

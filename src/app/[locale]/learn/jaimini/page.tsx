@@ -201,7 +201,7 @@ export default function JaiminiPage() {
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
                     <h4 className="text-gold-light font-semibold">{ck.name[locale]}</h4>
-                    <span className="text-text-secondary/50 text-xs font-mono px-2 py-0.5 rounded bg-bg-primary/50">
+                    <span className="text-text-secondary/70 text-xs font-mono px-2 py-0.5 rounded bg-bg-primary/50">
                       {ck.rule[locale]}
                     </span>
                     {ck.importance === 'critical' && (
@@ -259,7 +259,7 @@ export default function JaiminiPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5"
             >
               <h4 className="text-gold-light font-semibold mb-1">{rd.type[locale]}</h4>
-              <p className="text-text-secondary/60 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
+              <p className="text-text-secondary/75 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
               <p className="text-text-secondary text-sm mb-2">{rd.aspects[locale]}</p>
               <div className="p-2 rounded bg-bg-primary/40 text-text-secondary/70 text-xs">
                 {locale === 'en' ? 'Example: ' : 'उदाहरण: '}{rd.example[locale]}
@@ -385,7 +385,7 @@ export default function JaiminiPage() {
               className="block p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{ref.label[loc]}</div>
-              <p className="text-text-secondary/60 text-xs mt-1">{ref.desc[loc]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{ref.desc[loc]}</p>
             </Link>
           ))}
         </div>

@@ -227,7 +227,7 @@ export default function NotificationBell() {
                       <p className="text-xs text-text-secondary mt-0.5 line-clamp-2 leading-relaxed">
                         {notif.body}
                       </p>
-                      <p className="text-xs text-text-secondary/60 mt-1">
+                      <p className="text-xs text-text-secondary/75 mt-1">
                         {timeAgo(notif.created_at)}
                       </p>
                     </div>

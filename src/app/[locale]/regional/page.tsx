@@ -399,7 +399,7 @@ export default function RegionalCalendarsPage() {
                         {cal.type}
                       </span>
                     </div>
-                    <div className="text-text-secondary/60 text-lg font-mono">{cal.script}</div>
+                    <div className="text-text-secondary/75 text-lg font-mono">{cal.script}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-gold-dark text-xs uppercase tracking-wider mb-1">
@@ -418,7 +418,7 @@ export default function RegionalCalendarsPage() {
                 <div className="flex items-center gap-2 text-sm">
                   <span className="text-gold-primary font-bold">{locale === 'en' ? 'New Year:' : 'नववर्ष:'}</span>
                   <span className="text-gold-light font-bold">{cal.newYear.name}</span>
-                  <span className="text-text-secondary/50">—</span>
+                  <span className="text-text-secondary/70">—</span>
                   <span className="text-text-secondary text-xs">{cal.newYear.approxDate}</span>
                 </div>
               </div>
@@ -443,7 +443,7 @@ export default function RegionalCalendarsPage() {
                         <div className={`text-sm font-bold ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>
                           {month.name}
                         </div>
-                        <div className="text-text-secondary/40 text-xs mt-0.5">{month.approxGregorian}</div>
+                        <div className="text-text-secondary/65 text-xs mt-0.5">{month.approxGregorian}</div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
                             {locale === 'en' ? 'NOW' : 'अभी'}

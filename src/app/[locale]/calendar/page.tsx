@@ -342,7 +342,7 @@ export default function CalendarPage() {
               onChange={e => setLocationInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
               placeholder={locale === 'en' ? 'Enter your city…' : 'अपना शहर दर्ज करें…'}
-              className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/60"
+              className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/60"
               autoFocus
             />
             <button
@@ -373,7 +373,7 @@ export default function CalendarPage() {
                 onChange={e => setLocationInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
                 placeholder={locale === 'en' ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
-                className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none focus:border-gold-primary/50"
+                className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/50"
               />
               <button
                 onClick={handleLocationSearch}
@@ -563,7 +563,7 @@ export default function CalendarPage() {
                           return `${d} ${months[m - 1]}`;
                         })()}
                       </span>
-                      <span className="text-xs text-text-secondary/30">24h</span>
+                      <span className="text-xs text-text-secondary/55">24h</span>
                     </div>
                   )}
                 </div>
@@ -588,7 +588,7 @@ export default function CalendarPage() {
                   <div className="text-right flex-shrink-0">
                     <div className="text-text-secondary text-xs uppercase tracking-wider">{locale === 'en' ? 'Parana' : 'पारण'}</div>
                     <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
-                    {f.paranaDate && <div className="text-text-secondary/40 text-xs">{f.paranaDate}</div>}
+                    {f.paranaDate && <div className="text-text-secondary/65 text-xs">{f.paranaDate}</div>}
                   </div>
                 )}
 

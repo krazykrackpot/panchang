@@ -213,7 +213,7 @@ export default function LearnBhavasPage() {
                     </div>
 
                     <p className="text-text-secondary text-sm mb-2">{h.significations[locale]}</p>
-                    <p className="text-text-secondary/60 text-xs">
+                    <p className="text-text-secondary/75 text-xs">
                       {locale === 'en' ? 'Body part:' : locale === 'hi' ? 'शरीर का अंग:' : 'शरीरावयवः:'}{' '}
                       <span className="text-gold-light/70">{h.bodyPart[locale]}</span>
                     </p>

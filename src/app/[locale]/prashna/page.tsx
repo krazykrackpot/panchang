@@ -263,7 +263,7 @@ export default function PrashnaPage() {
                 <p className="text-text-secondary text-sm italic" style={bf}>
                   &ldquo;{question}&rdquo;
                 </p>
-                <p className="text-text-secondary/50 text-xs mt-1">{L.castAt[locale]}: {castTime}</p>
+                <p className="text-text-secondary/70 text-xs mt-1">{L.castAt[locale]}: {castTime}</p>
               </div>
             )}
 

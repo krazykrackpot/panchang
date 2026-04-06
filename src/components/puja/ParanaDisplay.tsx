@@ -108,7 +108,7 @@ export default function ParanaDisplay({
       </div>
 
       {/* Instruction text */}
-      <p className="text-xs text-text-secondary/50 mb-2">
+      <p className="text-xs text-text-secondary/70 mb-2">
         {LABELS.breakFastBetween[locale]}
       </p>
 
@@ -117,14 +117,14 @@ export default function ParanaDisplay({
         <span className="text-2xl font-black tracking-tight text-amber-200">
           {startTime}
         </span>
-        <span className="text-text-secondary/40 text-2xl font-light mx-2">&mdash;</span>
+        <span className="text-text-secondary/65 text-2xl font-light mx-2">&mdash;</span>
         <span className="text-2xl font-black tracking-tight text-amber-200">
           {endTime}
         </span>
       </div>
 
       {/* Duration + Location row */}
-      <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/60">
+      <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/75">
         <span>
           {LABELS.duration[locale]}:{' '}
           <span className="text-text-secondary/80 font-medium">{duration}</span>
@@ -137,7 +137,7 @@ export default function ParanaDisplay({
 
       {/* Parana description */}
       <div className="mt-4 pt-3 border-t border-amber-500/10">
-        <p className="text-xs text-text-secondary/50 leading-relaxed">
+        <p className="text-xs text-text-secondary/70 leading-relaxed">
           {parana.description[locale]}
         </p>
       </div>

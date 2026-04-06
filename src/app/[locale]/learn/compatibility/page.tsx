@@ -235,7 +235,7 @@ export default function CompatibilityPage() {
               {/* Houses visual */}
               <div className="flex flex-wrap gap-2 justify-center">
                 {[1,2,3,4,5,6,7,8,9,10,11,12].map((h) => (
-                  <div key={h} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold border ${MANGAL_HOUSES.includes(h) ? 'bg-red-500/20 border-red-500/40 text-red-400' : 'bg-white/3 border-white/10 text-text-secondary/40'}`}>{h}</div>
+                  <div key={h} className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold border ${MANGAL_HOUSES.includes(h) ? 'bg-red-500/20 border-red-500/40 text-red-400' : 'bg-white/3 border-white/10 text-text-secondary/65'}`}>{h}</div>
                 ))}
               </div>
               <div className="mt-2 text-center text-xs text-text-secondary">

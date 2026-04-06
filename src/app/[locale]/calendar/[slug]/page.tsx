@@ -514,7 +514,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
         {mantra.devanagari}
       </p>
 
-      <p className="text-text-secondary/60 text-sm italic mt-2">{mantra.iast}</p>
+      <p className="text-text-secondary/75 text-sm italic mt-2">{mantra.iast}</p>
 
       <p className="text-text-secondary text-sm mt-2 leading-relaxed" style={bodyFont}>
         {mantra.meaning[lk as keyof typeof mantra.meaning]}
@@ -642,7 +642,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
               <div key={i} className="flex items-center justify-between rounded-lg bg-bg-tertiary/30 px-4 py-3">
                 <div>
                   <p className="text-gold-light text-sm font-semibold" style={bodyFont}>{t(stotra.name)}</p>
-                  {stotra.note && <p className="text-text-secondary/60 text-xs mt-0.5" style={bodyFont}>{t(stotra.note)}</p>}
+                  {stotra.note && <p className="text-text-secondary/75 text-xs mt-0.5" style={bodyFont}>{t(stotra.note)}</p>}
                 </div>
                 {stotra.duration && (
                   <span className="text-xs text-text-secondary px-2 py-1 rounded-full bg-bg-tertiary/50 font-mono">
@@ -670,7 +670,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
           >
             {puja.aarti.devanagari}
           </p>
-          <p className="text-text-secondary/60 text-sm italic whitespace-pre-line leading-relaxed">
+          <p className="text-text-secondary/75 text-sm italic whitespace-pre-line leading-relaxed">
             {puja.aarti.iast}
           </p>
         </div>

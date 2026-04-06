@@ -50,7 +50,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
             <span className="text-text-primary font-medium whitespace-nowrap" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
               {isHi ? p.hi : p.en}
             </span>
-            <span className="text-text-secondary/40 text-[9px]">{p.years}</span>
+            <span className="text-text-secondary/65 text-[9px]">{p.years}</span>
           </button>
         ))}
       </div>
@@ -64,7 +64,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                 {isHi ? `चक्र ${round + 1}` : `Round ${round + 1}`}
               </div>
               <div className="flex-1 h-px bg-gold-primary/10" />
-              <div className="text-text-secondary/30 text-[10px]">
+              <div className="text-text-secondary/55 text-[10px]">
                 #{round * 9 + 1} – #{round * 9 + 9}
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                     />
                     {/* Nakshatra name */}
                     <div
-                      className={`text-[9px] font-medium leading-tight ${isHighlighted ? 'text-gold-light' : 'text-text-secondary/60'}`}
+                      className={`text-[9px] font-medium leading-tight ${isHighlighted ? 'text-gold-light' : 'text-text-secondary/75'}`}
                       style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                     >
                       {a.nakshatra.name[locale].length > 9
@@ -115,7 +115,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                       {isHi ? a.planet.hi : a.planet.en}
                     </div>
                     {/* Number badge */}
-                    <div className="text-[7px] text-text-secondary/25 mt-0.5">#{globalIdx + 1}</div>
+                    <div className="text-[7px] text-text-secondary/50 mt-0.5">#{globalIdx + 1}</div>
                   </div>
                 );
               })}
@@ -144,12 +144,12 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                   <span className="text-xs font-bold w-14" style={{ color: planet.color, ...(isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>
                     {isHi ? planet.hi : planet.en}
                   </span>
-                  <span className="text-text-secondary/30 text-[9px]">({planet.years}yr)</span>
+                  <span className="text-text-secondary/55 text-[9px]">({planet.years}yr)</span>
                 </div>
                 <div className="flex items-center gap-1 flex-wrap ml-6 sm:ml-0">
                   {naks.map((n, ni) => (
                     <span key={ni} className="flex items-center gap-1 whitespace-nowrap">
-                      <span className="text-text-secondary/40 text-[9px]">#{pi + ni * 9 + 1}</span>
+                      <span className="text-text-secondary/65 text-[9px]">#{pi + ni * 9 + 1}</span>
                       <span className="text-text-primary text-xs font-medium" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                         {n.name[locale]}
                       </span>
@@ -161,7 +161,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
             );
           })}
         </div>
-        <div className="text-center text-text-secondary/30 text-[10px] mt-3">
+        <div className="text-center text-text-secondary/55 text-[10px] mt-3">
           {isHi
             ? 'प्रत्येक ग्रह ठीक 3 नक्षत्रों का शासन करता है, 9 अन्तराल पर (जैसे केतु: #1, #10, #19)'
             : 'Each planet rules exactly 3 nakshatras, spaced 9 apart (e.g., Ketu: #1, #10, #19)'}

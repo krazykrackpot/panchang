@@ -174,7 +174,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
         <h3 className="text-gold-gradient text-2xl font-bold mb-2" style={headingFont}>
           {locale === 'en' ? 'Sudarshana Chakra' : 'सुदर्शन चक्र'}
         </h3>
-        <p className="text-text-secondary/60 text-sm max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+        <p className="text-text-secondary/75 text-sm max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {locale === 'en'
             ? 'Three concentric rings — outer: Lagna-based, middle: Moon-based, inner: Sun-based. An event is confirmed when all three rings agree.'
             : 'तीन संकेन्द्रित वलय — बाह्य: लग्न आधारित, मध्य: चन्द्र आधारित, आन्तरिक: सूर्य आधारित। जब तीनों वलय सहमत हों, तभी घटना की पुष्टि होती है।'}
@@ -187,7 +187,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <div key={i} className="flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border-2" style={{ borderColor: rp.color, backgroundColor: rp.color + '22' }} />
             <span className="text-text-secondary/70">{rp.label}: {RASHIS[rp.sign - 1]?.name[locale]}</span>
-            <span className="text-text-secondary/40 text-[10px]">{i === 0 ? (locale === 'en' ? 'outer' : 'बाह्य') : i === 1 ? (locale === 'en' ? 'middle' : 'मध्य') : (locale === 'en' ? 'inner' : 'आन्तरिक')}</span>
+            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? (locale === 'en' ? 'outer' : 'बाह्य') : i === 1 ? (locale === 'en' ? 'middle' : 'मध्य') : (locale === 'en' ? 'inner' : 'आन्तरिक')}</span>
           </div>
         ))}
       </div>
@@ -253,7 +253,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
                   {allTrikona && <span className="text-[9px] px-1 py-0.5 rounded bg-gold-primary/20 text-gold-light">Trikona ✦</span>}
                   {allKendra && !allTrikona && <span className="text-[9px] px-1 py-0.5 rounded bg-purple-500/15 text-purple-300">Kendra</span>}
                 </div>
-                <div className="text-[10px] text-text-secondary/60 font-mono">
+                <div className="text-[10px] text-text-secondary/75 font-mono">
                   Lg:{hL}H · Mo:{hM}H · Su:{hS}H
                 </div>
               </div>

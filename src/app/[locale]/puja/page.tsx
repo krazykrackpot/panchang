@@ -91,7 +91,7 @@ function PujaCard({
             {deity[locale]}
           </h3>
           {locale !== 'en' && (
-            <p className="text-text-secondary/40 text-xs mb-3">{deity.en}</p>
+            <p className="text-text-secondary/65 text-xs mb-3">{deity.en}</p>
           )}
           <div className="flex items-center justify-between mt-3">
             <span

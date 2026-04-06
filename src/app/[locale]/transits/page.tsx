@@ -432,7 +432,7 @@ export default function TransitsPage() {
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
             {locale === 'en' ? `Mesha Sankranti ${year}` : `मेष संक्रान्ति ${year}`}
           </h2>
-          <p className="text-text-secondary/50 text-xs text-center mb-5" style={bodyFont}>
+          <p className="text-text-secondary/70 text-xs text-center mb-5" style={bodyFont}>
             {locale === 'en'
               ? 'Sun enters 0° sidereal Aries — the astrological new year. This chart governs mundane affairs for the entire solar year. Source: Brihat Samhita.'
               : 'सूर्य 0° सायन मेष में प्रवेश करता है — ज्योतिषीय नव वर्ष। यह चार्ट वर्षभर के सांसारिक विषयों का संकेत देता है।'}
@@ -444,7 +444,7 @@ export default function TransitsPage() {
             <div className="text-gold-primary/70 text-sm mt-1">
               {meshaSankranti.date.toLocaleTimeString(locale === 'en' ? 'en-GB' : 'hi-IN', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
-            <div className="text-text-secondary/50 text-xs mt-2" style={bodyFont}>
+            <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>
               {locale === 'en' ? 'Exact moment of Sun\'s ingress into sidereal Aries (Lahiri Ayanamsha)' : 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)'}
             </div>
           </div>

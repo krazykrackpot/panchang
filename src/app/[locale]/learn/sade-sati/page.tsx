@@ -255,7 +255,7 @@ export default function SadeSatiLearnPage() {
                 </div>
                 <div>
                   <h4 className="text-gold-light font-semibold">{phase.name[locale]}</h4>
-                  <span className="text-text-secondary/50 text-xs font-mono">{phase.transit[locale]}</span>
+                  <span className="text-text-secondary/70 text-xs font-mono">{phase.transit[locale]}</span>
                 </div>
               </div>
               <p className="text-text-secondary text-sm mb-3 leading-relaxed">{phase.themes[locale]}</p>
@@ -399,7 +399,7 @@ export default function SadeSatiLearnPage() {
               className="block p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{ref.label[loc]}</div>
-              <p className="text-text-secondary/60 text-xs mt-1">{ref.desc[loc]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{ref.desc[loc]}</p>
             </Link>
           ))}
         </div>

@@ -159,11 +159,11 @@ function SectionAccordion({
             {title}
           </h2>
           {subtitle && (
-            <span className="text-text-secondary/50 text-xs">{subtitle}</span>
+            <span className="text-text-secondary/70 text-xs">{subtitle}</span>
           )}
         </div>
         <ChevronDown
-          className={`w-5 h-5 text-text-secondary/50 transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-text-secondary/70 transition-transform flex-shrink-0 ${open ? 'rotate-180' : ''}`}
         />
       </button>
       <AnimatePresence>
@@ -475,7 +475,7 @@ export default function PujaVidhiPage() {
               timezoneOffset={timezoneOffset}
             />
           ) : (
-            <p className="text-text-secondary/50 text-sm">
+            <p className="text-text-secondary/70 text-sm">
               {locale === 'en' ? 'Detecting your location...' : locale === 'hi' ? 'आपका स्थान खोज रहे हैं...' : 'भवतः स्थानं अन्विष्यते...'}
             </p>
           )}
@@ -511,11 +511,11 @@ export default function PujaVidhiPage() {
                         {step.title[locale]}
                       </span>
                       {step.duration && (
-                        <span className="text-text-secondary/40 text-xs ml-2">({step.duration})</span>
+                        <span className="text-text-secondary/65 text-xs ml-2">({step.duration})</span>
                       )}
                     </div>
                     <ChevronDown
-                      className={`w-4 h-4 text-text-secondary/40 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+                      className={`w-4 h-4 text-text-secondary/65 transition-transform flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                     />
                   </button>
                   <AnimatePresence>
@@ -569,7 +569,7 @@ export default function PujaVidhiPage() {
                 className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                   displayMode === mode
                     ? 'bg-gold-primary/20 text-gold-primary border border-gold-primary/25'
-                    : 'text-text-secondary/60 hover:text-text-secondary border border-transparent'
+                    : 'text-text-secondary/75 hover:text-text-secondary border border-transparent'
                 }`}
               >
                 {l[mode]}
@@ -608,12 +608,12 @@ export default function PujaVidhiPage() {
                   >
                     {stotra.name[locale]}
                     {locale !== 'en' && (
-                      <span className="text-text-secondary/40 text-xs ml-2 font-normal">
+                      <span className="text-text-secondary/65 text-xs ml-2 font-normal">
                         ({stotra.name.en})
                       </span>
                     )}
                   </h3>
-                  <div className="flex items-center gap-3 text-xs text-text-secondary/50 mb-2">
+                  <div className="flex items-center gap-3 text-xs text-text-secondary/70 mb-2">
                     {stotra.verseCount && (
                       <span>
                         {stotra.verseCount} {l.verses}
@@ -622,7 +622,7 @@ export default function PujaVidhiPage() {
                     {stotra.duration && <span>{stotra.duration}</span>}
                   </div>
                   {stotra.note && (
-                    <p className="text-text-secondary/60 text-xs">{stotra.note[locale]}</p>
+                    <p className="text-text-secondary/75 text-xs">{stotra.note[locale]}</p>
                   )}
                   {stotra.text && (
                     <div className="mt-3 p-3 rounded-md bg-gold-primary/[0.03] border border-gold-primary/8">
@@ -662,7 +662,7 @@ export default function PujaVidhiPage() {
                     className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
                       displayMode === mode
                         ? 'bg-gold-primary/20 text-gold-primary border border-gold-primary/25'
-                        : 'text-text-secondary/60 hover:text-text-secondary border border-transparent'
+                        : 'text-text-secondary/75 hover:text-text-secondary border border-transparent'
                     }`}
                   >
                     {l[mode]}

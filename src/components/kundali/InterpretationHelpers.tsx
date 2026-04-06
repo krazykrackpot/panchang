@@ -397,7 +397,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: TIER_COLORS[tier] }} />
                     <span className={`font-medium text-sm ${isCurrent ? 'text-gold-light' : 'text-text-secondary'}`}>{displayName}</span>
-                    <span className="text-text-secondary/50 text-xs">{startY}–{endY}</span>
+                    <span className="text-text-secondary/70 text-xs">{startY}–{endY}</span>
                     {isCurrent && (
                       <span className="text-xs bg-gold-primary/20 text-gold-light px-1.5 py-0.5 rounded-full font-medium">{isHi ? 'अभी' : 'Now'}</span>
                     )}
@@ -406,7 +406,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     </span>
                   </div>
                   {!isPast && forecast && (
-                    <p className="text-text-secondary/65 text-xs mt-1 pl-4 leading-relaxed">{forecast}</p>
+                    <p className="text-text-secondary/75 text-xs mt-1 pl-4 leading-relaxed">{forecast}</p>
                   )}
                 </div>
               );
@@ -466,7 +466,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     <span className="text-green-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
                     <span className="text-text-secondary text-xs ml-2">{isHi ? '— सुनहरा काल' : '— Golden period'}</span>
                     {PLANET_DASHA_FORECAST[id] && (
-                      <p className="text-text-secondary/65 text-xs mt-0.5">
+                      <p className="text-text-secondary/75 text-xs mt-0.5">
                         {isHi ? PLANET_DASHA_FORECAST[id].actionHi : PLANET_DASHA_FORECAST[id].actionEn}
                       </p>
                     )}
@@ -487,7 +487,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     <span className="text-amber-400 font-medium text-sm">{displayName} ({startY}–{endY})</span>
                     <span className="text-text-secondary text-xs ml-2">{isHi ? '— सावधान रहें' : '— Proceed with care'}</span>
                     {PLANET_REMEDIES[id] && (
-                      <p className="text-text-secondary/65 text-xs mt-0.5">
+                      <p className="text-text-secondary/75 text-xs mt-0.5">
                         {isHi ? `उपाय: ${PLANET_REMEDIES[id].hi}` : `Remedy: ${PLANET_REMEDIES[id].en}`}
                       </p>
                     )}
@@ -537,7 +537,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
           <div className="text-gold-primary text-xs uppercase tracking-wider font-bold">
             {isHi ? 'बल क्रमांकन — अनुपात सहित' : 'Strength Ranking & Ratio'}
           </div>
-          <div className="text-text-secondary/40 text-xs font-mono">
+          <div className="text-text-secondary/65 text-xs font-mono">
             {isHi ? 'न्यूनतम = 1.0' : 'Min. = 1.0'}
           </div>
         </div>
@@ -560,7 +560,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
             return (
               <div key={sb.planetId}>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 text-center text-[10px] text-text-secondary/40 font-mono flex-shrink-0">{i + 1}</span>
+                  <span className="w-4 text-center text-[10px] text-text-secondary/65 font-mono flex-shrink-0">{i + 1}</span>
                   <span className="w-16 font-semibold text-sm flex-shrink-0" style={{ color: barColor }}>
                     {pName(sb.planetId, isHi)}
                   </span>
@@ -571,10 +571,10 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                     <div className="absolute top-0 bottom-0 w-px bg-white/30" style={{ left: '50%' }} />
                   </div>
                   <span className="text-[11px] font-mono flex-shrink-0 w-10 text-right" style={{ color: barColor }}>{sb.strengthRatio.toFixed(2)}</span>
-                  <span className="text-[10px] text-text-secondary/40 font-mono flex-shrink-0 w-12 text-right">{sb.rupas.toFixed(2)}R</span>
+                  <span className="text-[10px] text-text-secondary/65 font-mono flex-shrink-0 w-12 text-right">{sb.rupas.toFixed(2)}R</span>
                 </div>
                 {implication && (
-                  <p className="text-text-secondary/50 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>
+                  <p className="text-text-secondary/70 text-xs pl-6 mt-0.5 leading-relaxed">{implication}</p>
                 )}
               </div>
             );

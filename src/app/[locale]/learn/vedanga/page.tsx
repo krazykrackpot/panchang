@@ -189,11 +189,11 @@ export default function VedangaPage() {
                 transition={{ delay: i * 0.08 }}
                 className={`rounded-lg p-3 border ${v.highlight ? 'border-gold-primary/40 bg-gold-primary/[0.08] ring-1 ring-gold-primary/20' : 'border-white/[0.06] bg-white/[0.02]'}`}
               >
-                <div className="text-xs text-text-secondary/40 mb-1">{v.icon}/6</div>
+                <div className="text-xs text-text-secondary/65 mb-1">{v.icon}/6</div>
                 <div className={`font-bold text-sm ${v.highlight ? 'text-gold-primary' : 'text-gold-light'}`}>
-                  {v.name} <span className="text-text-secondary/40 font-normal" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({v.nameHi})</span>
+                  {v.name} <span className="text-text-secondary/65 font-normal" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({v.nameHi})</span>
                 </div>
-                <div className="text-xs text-text-secondary/60 mt-0.5">{t(v.meaning)}</div>
+                <div className="text-xs text-text-secondary/75 mt-0.5">{t(v.meaning)}</div>
               </motion.div>
             ))}
           </div>
@@ -255,7 +255,7 @@ export default function VedangaPage() {
                     <h4 className="text-gold-light font-bold text-base sm:text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
                       {a.name}
                     </h4>
-                    <span className="text-text-secondary/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{a.nameHi}</span>
+                    <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{a.nameHi}</span>
                   </div>
                   <span className="text-xs font-mono text-gold-primary/70 bg-gold-primary/10 px-2.5 py-1 rounded-full">{a.era}</span>
                 </div>
@@ -297,14 +297,14 @@ export default function VedangaPage() {
                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
                     <span className="text-xs font-mono text-gold-primary/80 font-bold min-w-[90px]">{item.year}</span>
                     <span className="text-sm font-semibold text-gold-light">{t(item.text)}</span>
-                    <span className="text-xs text-text-secondary/50 hidden sm:inline">—</span>
-                    <span className="text-xs text-text-secondary/60">{t(item.detail)}</span>
+                    <span className="text-xs text-text-secondary/70 hidden sm:inline">—</span>
+                    <span className="text-xs text-text-secondary/75">{t(item.detail)}</span>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
-          <p className="text-text-secondary/50 text-xs mt-6 italic text-center">
+          <p className="text-text-secondary/70 text-xs mt-6 italic text-center">
             {hi ? '3,000 वर्षों का निरन्तर खगोलीय अन्वेषण — विश्व में अद्वितीय।' : '3,000 years of continuous astronomical investigation — unmatched anywhere in the world.'}
           </p>
         </LessonSection>
@@ -333,7 +333,7 @@ export default function VedangaPage() {
                   >
                     <td className="py-2.5 px-2 text-gold-light font-medium">{t(row.concept)}</td>
                     <td className="py-2.5 px-2 text-amber-300/80">{row.india}</td>
-                    <td className="py-2.5 px-2 text-text-secondary/60">{row.west}</td>
+                    <td className="py-2.5 px-2 text-text-secondary/75">{row.west}</td>
                     <td className="py-2.5 px-2 text-right font-bold text-emerald-400/80">{row.gap}</td>
                   </motion.tr>
                 ))}
@@ -468,7 +468,7 @@ export default function VedangaPage() {
             ))}
           </div>
           <div className="mt-4 pt-4 border-t border-white/[0.05]">
-            <Link href="/learn" className="text-sm text-text-secondary/60 hover:text-gold-light transition-colors">
+            <Link href="/learn" className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors">
               &larr; {t(L.backToLearn)}
             </Link>
           </div>

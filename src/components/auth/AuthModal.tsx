@@ -119,7 +119,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
+              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none"
               aria-label="Name"
             />
           )}
@@ -130,7 +130,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             onChange={(e) => setEmail(e.target.value)}
             required
             autoComplete="email"
-            className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
+            className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none"
             aria-label="Email"
           />
           {mode !== 'forgot' && (
@@ -142,7 +142,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               required
               minLength={6}
               autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
+              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none"
               aria-label="Password"
             />
           )}
@@ -155,7 +155,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               required
               minLength={6}
               autoComplete="new-password"
-              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/50 focus:border-gold-primary/40 focus:outline-none"
+              className="w-full px-4 py-3 bg-bg-secondary/50 border border-gold-primary/15 rounded-xl text-text-primary placeholder:text-text-secondary/70 focus:border-gold-primary/40 focus:outline-none"
               aria-label="Confirm Password"
             />
           )}
@@ -184,7 +184,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <p>
                 <button
                   onClick={() => { setMode('forgot'); setError(''); setSuccessMsg(''); }}
-                  className="text-text-secondary/60 hover:text-gold-light transition-colors text-xs"
+                  className="text-text-secondary/75 hover:text-gold-light transition-colors text-xs"
                 >
                   Forgot password?
                 </button>

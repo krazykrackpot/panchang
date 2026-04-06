@@ -329,7 +329,7 @@ export default function RetrogradePage() {
                   <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{r.planetName[locale]}</div>
                     <div className="text-red-400 text-xs font-bold uppercase">{locale === 'en' ? 'Retrograde' : 'वक्री'}</div>
-                    {hasBirthData && <div className="text-text-secondary/50 text-xs mt-1">{locale === 'en' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
+                    {hasBirthData && <div className="text-text-secondary/70 text-xs mt-1">{locale === 'en' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
                   </div>
                 ))}
                 {activeCombusts.map(c => (
@@ -438,7 +438,7 @@ export default function RetrogradePage() {
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.startDate)}</span>
                         <span className="text-gold-dark">→</span>
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.endDate)}</span>
-                        <span className="text-text-secondary/40 text-xs">({p.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
+                        <span className="text-text-secondary/65 text-xs">({p.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs mb-3">
                         <RashiIconById id={p.startSign} size={16} />
@@ -545,7 +545,7 @@ export default function RetrogradePage() {
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.startDate)}</span>
                       <span className="text-gold-dark">→</span>
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.endDate)}</span>
-                      <span className="text-text-secondary/40 text-xs">({e.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
+                      <span className="text-text-secondary/65 text-xs">({e.durationDays} {locale === 'en' ? 'days' : 'दिन'})</span>
                       {sunSignName && (
                         <>
                           <span className="text-gold-primary/20">|</span>

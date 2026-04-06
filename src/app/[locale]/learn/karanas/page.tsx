@@ -388,8 +388,8 @@ export default function LearnKaranasPage() {
                       <span className={`font-bold text-xl w-8 ${k.type === 'sthira' ? 'text-amber-400' : 'text-gold-primary'}`}>{k.number}</span>
                       <div>
                         <span className="text-gold-light font-bold">{k.name[locale]}</span>
-                        {locale !== 'en' && <span className="ml-2 text-text-secondary/50 text-xs">{k.name.en}</span>}
-                        <span className="ml-2 text-text-secondary/40 text-xs">({detail.deity[loc]})</span>
+                        {locale !== 'en' && <span className="ml-2 text-text-secondary/70 text-xs">{k.name.en}</span>}
+                        <span className="ml-2 text-text-secondary/65 text-xs">({detail.deity[loc]})</span>
                         {k.type === 'sthira' && (
                           <span className="ml-2 px-1.5 py-0.5 bg-amber-500/15 text-amber-300 text-xs rounded-full font-bold uppercase">
                             {loc === 'en' ? 'Fixed' : 'स्थिर'}
@@ -401,7 +401,7 @@ export default function LearnKaranasPage() {
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(detail.nature)}`}>
                         {natureLabel(detail.nature, loc)}
                       </span>
-                      <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
                   <p className="text-text-secondary/70 text-sm ml-11 mt-1">{detail.meaning[loc]}</p>
@@ -481,20 +481,20 @@ export default function LearnKaranasPage() {
                   <span className="text-amber-400 text-2xl font-bold">#{posInfo?.pos}</span>
                   <div>
                     <div className="text-gold-light font-bold text-lg">{k.name[locale]}</div>
-                    {locale !== 'en' && <div className="text-text-secondary/50 text-xs">{k.name.en}</div>}
+                    {locale !== 'en' && <div className="text-text-secondary/70 text-xs">{k.name.en}</div>}
                   </div>
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-text-secondary/60">{loc === 'en' ? 'Deity' : 'देवता'}</span>
+                    <span className="text-text-secondary/75">{loc === 'en' ? 'Deity' : 'देवता'}</span>
                     <span className="text-gold-light">{detail.deity[loc]}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-text-secondary/60">{loc === 'en' ? 'Nature' : 'स्वभाव'}</span>
+                    <span className="text-text-secondary/75">{loc === 'en' ? 'Nature' : 'स्वभाव'}</span>
                     <span className={natureColor(detail.nature).split(' ')[0]}>{natureLabel(detail.nature, loc)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-text-secondary/60">{loc === 'en' ? 'Occurs at' : 'स्थान'}</span>
+                    <span className="text-text-secondary/75">{loc === 'en' ? 'Occurs at' : 'स्थान'}</span>
                     <span className="text-text-secondary text-xs text-right">{posInfo?.tithi[loc]}</span>
                   </div>
                   <div className="pt-2 border-t border-gold-primary/10">
@@ -576,8 +576,8 @@ export default function LearnKaranasPage() {
                           <td className={`p-2 font-medium ${cp.name === 'Vishti' ? 'text-red-400' : cp.type === 'sthira' ? 'text-amber-300' : 'text-gold-light'}`}>
                             {cp.name}
                           </td>
-                          <td className="p-2 text-text-secondary/50">{cp.type}</td>
-                          <td className="p-2 text-text-secondary/60">{cp.tithi}</td>
+                          <td className="p-2 text-text-secondary/70">{cp.type}</td>
+                          <td className="p-2 text-text-secondary/75">{cp.tithi}</td>
                         </tr>
                       ))}
                     </tbody>

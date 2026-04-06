@@ -15,11 +15,11 @@ export default function Footer() {
             <span className="text-gold-primary/60 text-sm font-semibold" style={{ fontFamily: 'var(--font-heading)' }}>
               Dekho Panchang
             </span>
-            <span className="text-text-secondary/30 text-xs">&copy; 2026</span>
+            <span className="text-text-secondary/55 text-xs">&copy; 2026</span>
           </div>
 
           {/* Center — links */}
-          <div className="flex items-center gap-4 text-xs text-text-secondary/50">
+          <div className="flex items-center gap-4 text-xs text-text-secondary/70">
             <Link href="/panchang" className="hover:text-gold-light transition-colors">
               {locale === 'en' ? 'Panchang' : 'पंचांग'}
             </Link>

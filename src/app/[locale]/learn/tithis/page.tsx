@@ -294,7 +294,7 @@ export default function LearnTithisPage() {
           <div className="p-5 bg-bg-primary/50 rounded-xl border border-gold-primary/15">
             <p className="text-gold-light font-mono text-base mb-2">D = (Moon_longitude - Sun_longitude + 360) mod 360</p>
             <p className="text-gold-light font-mono text-base mb-3">Tithi_number = floor(D / 12) + 1</p>
-            <div className="text-text-secondary/60 font-mono text-xs space-y-1">
+            <div className="text-text-secondary/75 font-mono text-xs space-y-1">
               <p>{isHi ? 'यदि Tithi 1-15 → शुक्ल पक्ष' : 'If Tithi 1-15 \u2192 Shukla Paksha'}</p>
               <p>{isHi ? 'यदि Tithi 16-30 → कृष्ण पक्ष' : 'If Tithi 16-30 \u2192 Krishna Paksha'}</p>
               <p>{isHi ? 'तिथि तब बदलती है जब D अगले 12\u00b0 के गुणज को पार करता है' : 'Tithi changes when D crosses the next multiple of 12\u00b0'}</p>
@@ -350,7 +350,7 @@ export default function LearnTithisPage() {
                   >
                     <div className="text-gold-primary text-lg font-bold">{ti.number}</div>
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
-                    {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{ti.name.en}</div>}
+                    {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
                     <div className="text-text-tertiary text-xs">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
@@ -381,7 +381,7 @@ export default function LearnTithisPage() {
                   >
                     <div className="text-indigo-300/80 text-lg font-bold">{ti.number - 15}</div>
                     <div className="text-gold-light text-sm font-semibold">{ti.name[locale]}</div>
-                    {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{ti.name.en}</div>}
+                    {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
                     <div className="text-text-tertiary text-xs">{TITHI_PLANETS[(ti.number - 15) - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
@@ -464,7 +464,7 @@ export default function LearnTithisPage() {
               className={`rounded-xl p-5 border ${cat.border} ${cat.bg}`}
             >
               <div className={`text-lg font-bold ${cat.color} mb-1`} style={headingFont}>{l(cat.name)}</div>
-              <div className="text-text-secondary/60 text-xs mb-2">{l(cat.meaning)}</div>
+              <div className="text-text-secondary/75 text-xs mb-2">{l(cat.meaning)}</div>
               <div className="text-text-tertiary text-xs font-mono mb-3">
                 {isHi ? 'तिथि' : 'Tithis'}: {cat.tithis}
               </div>

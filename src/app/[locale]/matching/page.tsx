@@ -476,11 +476,11 @@ export default function MatchingPage() {
                   </p>
                   <div className="flex items-center gap-3 justify-center">
                     <span className="text-amber-300 font-bold">{sn(bNak)}</span>
-                    <span className="text-text-secondary/50">↔</span>
+                    <span className="text-text-secondary/70">↔</span>
                     <span className="text-amber-300 font-bold">{sn(gNak)}</span>
                     <span className="text-amber-400/60 text-xs">({lk === 'en' ? 'Veda pair' : 'वेध जोड़ी'})</span>
                   </div>
-                  <p className="text-text-secondary/50 text-xs text-center mt-2" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  <p className="text-text-secondary/70 text-xs text-center mt-2" style={lk !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                     {lk === 'en'
                       ? `The ${dominant === 'boy' ? 'boy/groom' : 'girl/bride'}'s nakshatra (${sn(Math.min(bNak, gNak))}) traditionally has stronger influence. Veda pairs are additional insight — consult the full Ashta Kuta score for the overall picture.`
                       : `${dominant === 'boy' ? 'वर' : 'वधू'} का नक्षत्र (${sn(Math.min(bNak, gNak))}) परम्परागत रूप से अधिक प्रभावशाली। पूर्ण चित्र के लिए अष्ट कूट देखें।`}

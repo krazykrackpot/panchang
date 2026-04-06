@@ -209,7 +209,7 @@ export default function SankalpaDisplay({
                 value={userName}
                 onChange={e => setUserName(e.target.value)}
                 placeholder={l.name}
-                className="flex-1 px-4 py-2.5 rounded-lg bg-white/5 border border-gold-primary/15 text-gold-light placeholder:text-text-secondary/30 text-sm focus:outline-none focus:border-gold-primary/40 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-lg bg-white/5 border border-gold-primary/15 text-gold-light placeholder:text-text-secondary/55 text-sm focus:outline-none focus:border-gold-primary/40 transition-colors"
                 style={{ fontFamily: 'var(--font-devanagari-body)' }}
               />
 
@@ -230,7 +230,7 @@ export default function SankalpaDisplay({
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/40 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary/65 pointer-events-none" />
               </div>
             </div>
           </motion.div>
@@ -244,7 +244,7 @@ export default function SankalpaDisplay({
             key={f.key}
             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-gold-primary/[0.06] border border-gold-primary/10 text-text-secondary/70"
           >
-            <span className="text-text-secondary/40">{f.label}:</span>
+            <span className="text-text-secondary/65">{f.label}:</span>
             <span
               className="font-semibold text-gold-primary/80"
               style={{ fontFamily: 'var(--font-devanagari-body)' }}

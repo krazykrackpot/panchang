@@ -125,7 +125,7 @@ export default function BabyNamesPage() {
       <div className="mb-6">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
           {locale === 'en' ? 'Select Birth Nakshatra' : 'जन्म नक्षत्र चुनें'}
-          {detectedNak > 0 && <span className="text-text-secondary/40 font-normal ml-2">({locale === 'en' ? 'or change below' : 'या नीचे बदलें'})</span>}
+          {detectedNak > 0 && <span className="text-text-secondary/65 font-normal ml-2">({locale === 'en' ? 'or change below' : 'या नीचे बदलें'})</span>}
         </label>
         <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
           {NAKSHATRAS.map(n => {
@@ -203,7 +203,7 @@ export default function BabyNamesPage() {
               <h3 className="text-gold-light text-xl font-bold mb-2 text-center" style={headingFont}>
                 {locale === 'en' ? 'Name Starting Syllables' : 'नाम के प्रारम्भिक अक्षर'}
               </h3>
-              <p className="text-text-secondary/60 text-sm text-center mb-6">
+              <p className="text-text-secondary/75 text-sm text-center mb-6">
                 {locale === 'en'
                   ? 'Your baby\'s name should ideally start with one of these syllables'
                   : 'आपके बच्चे का नाम इनमें से किसी एक अक्षर से शुरू होना चाहिए'}
@@ -222,13 +222,13 @@ export default function BabyNamesPage() {
                     <div className="text-text-secondary text-sm">
                       {locale === 'en' ? syl.hi : syl.en}
                     </div>
-                    <div className="text-text-secondary/30 text-xs mt-1">
+                    <div className="text-text-secondary/55 text-xs mt-1">
                       {locale === 'en' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
                     </div>
                   </motion.div>
                 ))}
               </div>
-              <p className="text-text-secondary/40 text-xs text-center mt-6">
+              <p className="text-text-secondary/65 text-xs text-center mt-6">
                 {locale === 'en'
                   ? 'For example, if the syllable is "Chu", names like "Chudamani", "Chulbul" etc. are auspicious.'
                   : 'उदाहरण: यदि अक्षर "चू" है तो "चूड़ामणि", "चुलबुल" आदि नाम शुभ हैं।'}
@@ -244,7 +244,7 @@ export default function BabyNamesPage() {
         <h3 className="text-gold-gradient text-2xl font-bold mb-2 text-center" style={headingFont}>
           {locale === 'en' ? 'Complete Syllable Reference' : 'सम्पूर्ण अक्षर सन्दर्भ'}
         </h3>
-        <p className="text-text-secondary/50 text-sm text-center mb-6">
+        <p className="text-text-secondary/70 text-sm text-center mb-6">
           {locale === 'en'
             ? 'All 27 Nakshatras × 4 Padas — find the starting syllable for any birth star'
             : 'सभी 27 नक्षत्र × 4 पाद — किसी भी जन्म तारे के लिए प्रारम्भिक अक्षर'}
@@ -273,7 +273,7 @@ export default function BabyNamesPage() {
                     <span className={`font-bold ${isHighlighted ? 'text-gold-light text-base' : 'text-text-primary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {n.name[locale]}
                     </span>
-                    <span className="text-text-secondary/30 text-xs ml-2">#{n.id}</span>
+                    <span className="text-text-secondary/55 text-xs ml-2">#{n.id}</span>
                   </div>
                 </div>
                 {/* 4 Pada syllables in a row */}
@@ -290,7 +290,7 @@ export default function BabyNamesPage() {
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {syl ? (locale === 'en' ? syl.en : syl.hi) : '—'}
                         </div>
-                        <div className="text-xs text-text-secondary/30 mt-0.5">P{pi + 1}</div>
+                        <div className="text-xs text-text-secondary/55 mt-0.5">P{pi + 1}</div>
                       </div>
                     );
                   })}

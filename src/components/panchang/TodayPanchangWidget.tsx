@@ -93,7 +93,7 @@ export default function TodayPanchangWidget() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={locale === 'en' ? 'Search city or place...' : 'शहर या स्थान खोजें...'}
-              className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-secondary/50 focus:outline-none"
+              className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none"
               autoFocus
             />
             {searching && <Loader2 className="w-4 h-4 text-gold-primary animate-spin" />}
@@ -153,7 +153,7 @@ export default function TodayPanchangWidget() {
           <p className="text-text-secondary text-lg mb-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {locale === 'en' ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
           </p>
-          <p className="text-text-secondary/60 text-sm mb-6">
+          <p className="text-text-secondary/75 text-sm mb-6">
             {locale === 'en' ? 'Panchang calculations depend on sunrise/sunset at your location' : 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है'}
           </p>
           <button onClick={() => setShowSearch(true)}
@@ -212,16 +212,16 @@ export default function TodayPanchangWidget() {
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
                 <div className="flex items-center justify-center gap-3">
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Starts' : 'आरम्भ'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{locale === 'en' ? 'Starts' : 'आरम्भ'}</div>
                     <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
                   </div>
-                  <span className="text-text-secondary/20 text-lg">→</span>
+                  <span className="text-text-secondary/50 text-lg">→</span>
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/40 mb-0.5">{locale === 'en' ? 'Ends' : 'समाप्ति'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{locale === 'en' ? 'Ends' : 'समाप्ति'}</div>
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
                   </div>
                 </div>
-                <div className="text-xs text-text-secondary/30 text-center mt-1">24h</div>
+                <div className="text-xs text-text-secondary/55 text-center mt-1">24h</div>
               </div>
             )}
           </motion.div>

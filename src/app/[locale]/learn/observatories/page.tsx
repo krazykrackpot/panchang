@@ -138,7 +138,7 @@ const OBSERVATORIES = [
   { city: 'Delhi', cityHi: 'दिल्ली', instruments: 13, status: { en: 'Most accessible. 13 instruments near Connaught Place. Home to the unique Mishra Yantra.', hi: 'सबसे सुलभ। कनॉट प्लेस के निकट 13 यन्त्र। अद्वितीय मिश्र यन्त्र का स्थान।' }, color: 'text-emerald-400' },
   { city: 'Ujjain', cityHi: 'उज्जैन', instruments: 13, status: { en: 'On the Tropic of Cancer — astronomically ideal. Ujjain was India\'s prime meridian for centuries.', hi: 'कर्क रेखा पर — खगोलीय रूप से आदर्श। उज्जैन शताब्दियों तक भारत की प्रधान याम्योत्तर रेखा रही।' }, color: 'text-violet-400' },
   { city: 'Varanasi', cityHi: 'वाराणसी', instruments: 6, status: { en: 'Smaller but significant. On the rooftop of Man Singh Observatory near the ghats.', hi: 'छोटी किन्तु महत्वपूर्ण। घाटों के निकट मानसिंह वेधशाला की छत पर।' }, color: 'text-cyan-400' },
-  { city: 'Mathura', cityHi: 'मथुरा', instruments: 0, status: { en: 'No longer extant — destroyed over the centuries. Only historical references remain.', hi: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।' }, color: 'text-text-secondary/50' },
+  { city: 'Mathura', cityHi: 'मथुरा', instruments: 0, status: { en: 'No longer extant — destroyed over the centuries. Only historical references remain.', hi: 'अब अस्तित्व में नहीं — शताब्दियों में नष्ट। केवल ऐतिहासिक सन्दर्भ शेष।' }, color: 'text-text-secondary/70' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
@@ -205,10 +205,10 @@ export default function ObservatoriesPage() {
                   <div className="flex items-center gap-2 mb-1">
                     <MapPin className={`w-3.5 h-3.5 ${obs.color}`} />
                     <span className="font-bold text-sm text-gold-light">{obs.city}</span>
-                    <span className="text-text-secondary/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({obs.cityHi})</span>
+                    <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({obs.cityHi})</span>
                   </div>
                   {obs.instruments > 0 && (
-                    <div className="text-xs text-text-secondary/50">{obs.instruments} {hi ? 'यन्त्र' : 'instruments'}</div>
+                    <div className="text-xs text-text-secondary/70">{obs.instruments} {hi ? 'यन्त्र' : 'instruments'}</div>
                   )}
                 </motion.div>
               ))}
@@ -254,7 +254,7 @@ export default function ObservatoriesPage() {
                       {inst.name}
                     </h4>
                     <div className="flex items-center gap-2">
-                      <span className="text-text-secondary/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{inst.nameHi}</span>
+                      <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{inst.nameHi}</span>
                       <span className="text-xs text-gold-primary/60">|</span>
                       <span className="text-xs text-gold-primary/70">{t(inst.purpose)}</span>
                     </div>
@@ -386,10 +386,10 @@ export default function ObservatoriesPage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-sm text-gold-light">{obs.city}</span>
-                    <span className="text-text-secondary/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({obs.cityHi})</span>
+                    <span className="text-text-secondary/65 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>({obs.cityHi})</span>
                     <span className="text-xs font-mono text-gold-primary/50">{obs.instruments} {hi ? 'यन्त्र' : 'instruments'}</span>
                   </div>
-                  <p className="text-xs text-text-secondary/65 leading-relaxed mt-1">{t(obs.status)}</p>
+                  <p className="text-xs text-text-secondary/75 leading-relaxed mt-1">{t(obs.status)}</p>
                 </div>
               </motion.div>
             ))}
@@ -458,7 +458,7 @@ export default function ObservatoriesPage() {
             ))}
           </div>
           <div className="mt-4 pt-4 border-t border-white/[0.05]">
-            <Link href="/learn" className="text-sm text-text-secondary/60 hover:text-gold-light transition-colors">
+            <Link href="/learn" className="text-sm text-text-secondary/75 hover:text-gold-light transition-colors">
               &larr; {t(L.backToLearn)}
             </Link>
           </div>

@@ -144,7 +144,7 @@ export default function KPSubLordLabPage() {
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-violet-200 via-purple-100 to-violet-200 bg-clip-text text-transparent mb-3">
             {L.title[locale]}
           </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
+          <p className="text-white/75 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
         </motion.div>
 
         {/* Input */}
@@ -152,7 +152,7 @@ export default function KPSubLordLabPage() {
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 sm:p-8 mb-8"
         >
-          <label className="block text-sm text-white/50 mb-3">{L.degree[locale]}: <span className="text-violet-300 font-mono text-lg">{degree.toFixed(2)}&deg;</span></label>
+          <label className="block text-sm text-white/70 mb-3">{L.degree[locale]}: <span className="text-violet-300 font-mono text-lg">{degree.toFixed(2)}&deg;</span></label>
           <input
             type="range"
             min={0}
@@ -162,7 +162,7 @@ export default function KPSubLordLabPage() {
             onChange={(e) => setDegree(parseFloat(e.target.value))}
             className="w-full h-2 rounded-full appearance-none bg-white/10 accent-violet-500 cursor-pointer"
           />
-          <div className="flex justify-between text-xs text-white/30 mt-2 font-mono">
+          <div className="flex justify-between text-xs text-white/55 mt-2 font-mono">
             <span>0&deg;</span>
             <span>90&deg;</span>
             <span>180&deg;</span>
@@ -179,7 +179,7 @@ export default function KPSubLordLabPage() {
               onChange={(e) => setDegree(Math.min(360, Math.max(0, parseFloat(e.target.value) || 0)))}
               className="w-32 px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-center focus:border-violet-500/50 focus:outline-none"
             />
-            <span className="text-white/40 text-sm">{L.degree[locale]}</span>
+            <span className="text-white/65 text-sm">{L.degree[locale]}</span>
           </div>
         </motion.div>
 
@@ -254,7 +254,7 @@ export default function KPSubLordLabPage() {
               className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5"
             >
               <h3 className="text-sm font-bold text-violet-300 mb-3">{L.step1[locale]}</h3>
-              <div className="text-xs text-white/40 font-mono mb-2">
+              <div className="text-xs text-white/65 font-mono mb-2">
                 floor({result.deg.toFixed(2)} / 30) = sign #{result.signIdx + 1}
               </div>
               <div className="flex items-center gap-4">
@@ -263,10 +263,10 @@ export default function KPSubLordLabPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-white text-lg">{result.sign.name[locale]}</div>
-                  <div className="text-sm text-white/50">
+                  <div className="text-sm text-white/70">
                     {L.signLord[locale]}: <span className="text-violet-300">{GRAHAS[result.signLordId].symbol} {GRAHAS[result.signLordId].name[locale]}</span>
                   </div>
-                  <div className="text-xs text-white/30 font-mono mt-1">
+                  <div className="text-xs text-white/55 font-mono mt-1">
                     {L.posInSign[locale]}: {result.posInSign.toFixed(2)}&deg; / 30&deg;
                   </div>
                 </div>
@@ -279,7 +279,7 @@ export default function KPSubLordLabPage() {
               className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-5"
             >
               <h3 className="text-sm font-bold text-violet-300 mb-3">{L.step2[locale]}</h3>
-              <div className="text-xs text-white/40 font-mono mb-2">
+              <div className="text-xs text-white/65 font-mono mb-2">
                 floor({result.deg.toFixed(2)} / {NAK_SPAN.toFixed(4)}) = nak #{result.nakIdx + 1}
               </div>
               <div className="flex items-center gap-4">
@@ -288,10 +288,10 @@ export default function KPSubLordLabPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-white text-lg">{result.nak.name[locale]}</div>
-                  <div className="text-sm text-white/50">
+                  <div className="text-sm text-white/70">
                     {L.starLord[locale]}: <span className="text-violet-300">{GRAHAS[VIMSHOTTARI[result.starLordIdx].id].name[locale]}</span>
                   </div>
-                  <div className="text-xs text-white/30 font-mono mt-1">
+                  <div className="text-xs text-white/55 font-mono mt-1">
                     {L.posInNak[locale]}: {result.posInNak.toFixed(2)}&deg; / {NAK_SPAN.toFixed(2)}&deg;
                   </div>
                 </div>
@@ -315,10 +315,10 @@ export default function KPSubLordLabPage() {
                 </div>
                 <div>
                   <div className="font-semibold text-white text-lg">{GRAHAS[result.currentSub.planetId].name[locale]}</div>
-                  <div className="text-sm text-white/50">
+                  <div className="text-sm text-white/70">
                     {L.subLord[locale]}
                   </div>
-                  <div className="text-xs text-white/30 font-mono mt-1">
+                  <div className="text-xs text-white/55 font-mono mt-1">
                     {result.currentSub.startDeg.toFixed(4)}&deg; &mdash; {result.currentSub.endDeg.toFixed(4)}&deg;
                     ({result.currentSub.spanDeg.toFixed(4)}&deg;)
                   </div>
@@ -337,12 +337,12 @@ export default function KPSubLordLabPage() {
                 { label: L.subLord[locale], id: result.currentSub.planetId },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-2">
-                  {i > 0 && <span className="text-white/20 text-lg">&rarr;</span>}
+                  {i > 0 && <span className="text-white/50 text-lg">&rarr;</span>}
                   <div className="text-center">
                     <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-xl mx-auto mb-1">
                       {GRAHAS[item.id].symbol}
                     </div>
-                    <div className="text-xs text-white/40">{item.label}</div>
+                    <div className="text-xs text-white/65">{item.label}</div>
                     <div className="text-xs text-white font-semibold">{GRAHAS[item.id].name[locale]}</div>
                   </div>
                 </div>
@@ -360,7 +360,7 @@ export default function KPSubLordLabPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-white/40 text-xs border-b border-white/5">
+                <tr className="text-white/65 text-xs border-b border-white/5">
                   <th className="text-left py-2 px-3">#</th>
                   <th className="text-left py-2 px-3">{L.ruler[locale]}</th>
                   <th className="text-left py-2 px-3">{L.degRange[locale]}</th>
@@ -375,7 +375,7 @@ export default function KPSubLordLabPage() {
                       sub.isCurrent ? 'bg-violet-500/10' : 'hover:bg-white/[0.02]'
                     }`}
                   >
-                    <td className="py-2.5 px-3 text-white/30">{i + 1}</td>
+                    <td className="py-2.5 px-3 text-white/55">{i + 1}</td>
                     <td className="py-2.5 px-3">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{GRAHAS[sub.planetId].symbol}</span>
@@ -385,10 +385,10 @@ export default function KPSubLordLabPage() {
                         {sub.isCurrent && <span className="text-xs px-1.5 py-0.5 rounded bg-violet-500/20 text-violet-300">ACTIVE</span>}
                       </div>
                     </td>
-                    <td className="py-2.5 px-3 font-mono text-xs text-white/60">
+                    <td className="py-2.5 px-3 font-mono text-xs text-white/75">
                       {sub.startDeg.toFixed(4)}&deg; &mdash; {sub.endDeg.toFixed(4)}&deg;
                     </td>
-                    <td className="py-2.5 px-3 text-right font-mono text-xs text-white/50">
+                    <td className="py-2.5 px-3 text-right font-mono text-xs text-white/70">
                       {VIMSHOTTARI.find(v => v.id === sub.planetId)?.years}/{TOTAL_YEARS} = {sub.spanDeg.toFixed(4)}&deg;
                     </td>
                   </tr>
@@ -427,9 +427,9 @@ export default function KPSubLordLabPage() {
             {VIMSHOTTARI.map((v, i) => (
               <div key={i} className="p-2 rounded-lg bg-white/5 border border-white/5">
                 <div className="text-lg">{GRAHAS[v.id].symbol}</div>
-                <div className="text-xs text-white/50">{v.label}</div>
+                <div className="text-xs text-white/70">{v.label}</div>
                 <div className="text-sm font-mono text-white font-bold">{v.years}yr</div>
-                <div className="text-xs text-white/30">{((v.years / TOTAL_YEARS) * NAK_SPAN).toFixed(3)}&deg;</div>
+                <div className="text-xs text-white/55">{((v.years / TOTAL_YEARS) * NAK_SPAN).toFixed(3)}&deg;</div>
               </div>
             ))}
           </div>

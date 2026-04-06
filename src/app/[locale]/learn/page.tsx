@@ -183,7 +183,7 @@ export default function LearnPage() {
               </div>
             ))}
           </div>
-          <span className="text-text-secondary/60 text-sm">{l.freeForever}</span>
+          <span className="text-text-secondary/75 text-sm">{l.freeForever}</span>
         </div>
       </motion.div>
 

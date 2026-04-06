@@ -145,7 +145,7 @@ export default function SavedChartsPage() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-12 text-center">
           <Star className="w-12 h-12 text-gold-primary/30 mx-auto mb-4" />
           <p className="text-text-secondary text-lg mb-2" style={bf}>{locale === 'en' ? 'No saved charts yet' : 'अभी तक कोई सहेजा गया चार्ट नहीं'}</p>
-          <p className="text-text-secondary/50 text-sm mb-4">{locale === 'en' ? 'Save birth charts for family members, friends, or clients' : 'परिवार, मित्रों या ग्राहकों की जन्म कुण्डली सहेजें'}</p>
+          <p className="text-text-secondary/70 text-sm mb-4">{locale === 'en' ? 'Save birth charts for family members, friends, or clients' : 'परिवार, मित्रों या ग्राहकों की जन्म कुण्डली सहेजें'}</p>
           <button onClick={() => setShowForm(true)} className="px-6 py-2 rounded-lg bg-gold-primary/20 border border-gold-primary/30 text-gold-light text-sm font-bold">
             {locale === 'en' ? 'Add Your First Chart' : 'अपना पहला चार्ट जोड़ें'}
           </button>
@@ -161,12 +161,12 @@ export default function SavedChartsPage() {
                   {c.is_primary && <span className="text-xs px-1.5 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary font-bold">{locale === 'en' ? 'Primary' : 'प्राथमिक'}</span>}
                 </div>
                 <button onClick={() => handleDelete(c.id)} disabled={deleting === c.id}
-                  className="text-text-secondary/40 hover:text-red-400 transition-colors p-1">
+                  className="text-text-secondary/65 hover:text-red-400 transition-colors p-1">
                   {deleting === c.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Trash2 className="w-4 h-4" />}
                 </button>
               </div>
               <p className="text-text-secondary text-xs mb-1">{c.birth_data.date} | {c.birth_data.time}</p>
-              <p className="text-text-secondary/50 text-xs mb-3">{c.birth_data.place}</p>
+              <p className="text-text-secondary/70 text-xs mb-3">{c.birth_data.place}</p>
               <a href={`/${locale}/kundali?n=${encodeURIComponent(c.birth_data.name || c.label)}&d=${c.birth_data.date}&t=${c.birth_data.time}&la=${c.birth_data.lat}&lo=${c.birth_data.lng}&p=${encodeURIComponent(c.birth_data.place)}`}
                 className="flex items-center gap-1.5 text-gold-primary text-xs font-bold hover:text-gold-light transition-colors">
                 <Eye className="w-3.5 h-3.5" />{locale === 'en' ? 'View Chart' : 'चार्ट देखें'}

@@ -175,7 +175,7 @@ export default function ShraddhaPage() {
                   </div>
                 </div>
               )}
-              <div className="text-center text-text-secondary/60 text-xs mt-4">
+              <div className="text-center text-text-secondary/75 text-xs mt-4">
                 {locale === 'en'
                   ? 'The Shraddha ceremony should be performed on the matching tithi during Pitru Paksha (Krishna Paksha of Bhadrapada/Ashwina).'
                   : 'श्राद्ध कर्म पितृ पक्ष (भाद्रपद/आश्विन कृष्ण पक्ष) में संबंधित तिथि पर करना चाहिए।'}

@@ -555,7 +555,7 @@ export default function SadeSatiPage() {
                       <div className="mt-2 space-y-1">
                         {cycle.phases.map((ph) => (
                           <div key={ph.phase} className={`text-xs flex justify-between ${
-                            cycle.isActive && analysis.currentPhase === ph.phase ? 'text-red-300 font-bold' : 'text-text-secondary/60'
+                            cycle.isActive && analysis.currentPhase === ph.phase ? 'text-red-300 font-bold' : 'text-text-secondary/75'
                           }`} style={bodyFont}>
                             <span>{t(LABELS.phase[ph.phase], locale)}</span>
                             <span className="font-mono">{ph.startYear}–{ph.endYear}</span>

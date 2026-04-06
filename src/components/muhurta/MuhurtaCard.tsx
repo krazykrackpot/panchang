@@ -44,16 +44,16 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-gold-light font-semibold">{m.name[locale]}</span>
-            {locale !== 'en' && <span className="text-text-secondary/50 text-xs">({m.name.en})</span>}
+            {locale !== 'en' && <span className="text-text-secondary/70 text-xs">({m.name.en})</span>}
             {isAbhijit && <span className="text-xs px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-primary font-bold">ABHIJIT</span>}
             {isBrahma && <span className="text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">{locale === 'en' ? 'BRAHMA' : 'ब्राह्म'}</span>}
           </div>
-          <div className="text-text-secondary/60 text-xs">{m.deity[locale]}</div>
+          <div className="text-text-secondary/75 text-xs">{m.deity[locale]}</div>
         </div>
         <span className={`text-xs px-2 py-0.5 rounded-full border ${natureBadge.color}`}>
           {natureBadge.text}
         </span>
-        <ChevronDown className={`w-4 h-4 text-text-secondary/50 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${expanded ? 'rotate-180' : ''}`} />
       </button>
 
       <AnimatePresence>

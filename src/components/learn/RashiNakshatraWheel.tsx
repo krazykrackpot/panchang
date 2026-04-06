@@ -48,7 +48,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
       <h3 className="text-gold-gradient text-xl font-bold text-center" style={{ fontFamily: 'var(--font-heading)' }}>
         {isHi ? 'राशि-नक्षत्र सम्बन्ध चक्र' : 'Rashi–Nakshatra Relationship Wheel'}
       </h3>
-      <p className="text-text-secondary/60 text-sm text-center max-w-xl mx-auto">
+      <p className="text-text-secondary/75 text-sm text-center max-w-xl mx-auto">
         {isHi
           ? 'बाहरी वलय: 12 राशियाँ (30° प्रत्येक)। भीतरी वलय: 27 नक्षत्र (13°20\' प्रत्येक)। देखें कैसे नक्षत्र राशियों में फैले हुए हैं।'
           : 'Outer ring: 12 Rashis (30° each). Inner ring: 27 Nakshatras (13°20\' each). See how nakshatras span across rashi boundaries.'}
@@ -181,7 +181,7 @@ export default function RashiNakshatraWheel({ locale }: Props) {
       </div>
 
       {/* Key insight */}
-      <div className="text-center text-text-secondary/50 text-xs max-w-lg mx-auto leading-relaxed">
+      <div className="text-center text-text-secondary/70 text-xs max-w-lg mx-auto leading-relaxed">
         {isHi
           ? 'ध्यान दें: कुछ नक्षत्र दो राशियों में फैले हैं (जैसे कृत्तिका मेष और वृषभ दोनों में)। इसीलिए एक ही नक्षत्र के अलग-अलग पादों में जन्मे लोगों की राशि भिन्न हो सकती है।'
           : 'Notice: Some nakshatras span two rashis (e.g., Krittika spans Aries and Taurus). This is why people born in the same nakshatra but different padas can have different rashis.'}

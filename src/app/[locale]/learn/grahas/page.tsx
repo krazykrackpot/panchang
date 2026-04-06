@@ -419,7 +419,7 @@ export default function LearnGrahasPage() {
             <div key={row.planet} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
               <span className="text-gold-light font-medium text-sm w-36 flex-shrink-0">{row.planet}</span>
               <span className="text-red-400 font-mono text-sm w-28 flex-shrink-0">{locale === 'en' ? 'within' : ''} {row.degrees} {locale === 'en' ? 'of Sun' : 'सूर्य से'}</span>
-              <span className="text-text-secondary/60 text-xs">{locale === 'en' ? row.note : ''}</span>
+              <span className="text-text-secondary/75 text-xs">{locale === 'en' ? row.note : ''}</span>
             </div>
           ))}
         </div>
@@ -508,7 +508,7 @@ export default function LearnGrahasPage() {
                 <tr key={row.planet} className="border-b border-gold-primary/5 hover:bg-gold-primary/5 transition-colors">
                   <td className="py-2 px-3 text-gold-light font-medium text-xs">{row.planet}</td>
                   {[row.h3, row.h4, row.h5, row.h7, row.h8, row.h9, row.h10].map((val, j) => (
-                    <td key={j} className={`py-2 px-3 text-center text-xs font-mono ${val === '100%' ? 'text-gold-primary font-bold' : 'text-text-secondary/60'}`}>
+                    <td key={j} className={`py-2 px-3 text-center text-xs font-mono ${val === '100%' ? 'text-gold-primary font-bold' : 'text-text-secondary/75'}`}>
                       {val}
                     </td>
                   ))}
@@ -585,15 +585,15 @@ export default function LearnGrahasPage() {
                   <span className="text-3xl" style={{ color: g.color }}>{g.symbol}</span>
                   <div className="flex-1">
                     <div className="text-gold-light font-semibold">{g.name[locale]}</div>
-                    {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{g.name.en}</div>}
+                    {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{g.name.en}</div>}
                   </div>
                   <div className="text-right">
-                    <span className="text-text-secondary/50 text-xs font-mono">{details.orbit}</span>
+                    <span className="text-text-secondary/70 text-xs font-mono">{details.orbit}</span>
                     <div className="text-gold-primary/70 text-xs">{details.dashaYears} yr Dasha</div>
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm mb-2">{details.signifies[locale]}</p>
-                <p className="text-text-secondary/60 text-xs italic mb-2">{details.dignity[locale]}</p>
+                <p className="text-text-secondary/75 text-xs italic mb-2">{details.dignity[locale]}</p>
                 <div className="grid grid-cols-2 gap-2 text-xs text-text-secondary/70">
                   <div><span className="text-gold-primary/60">{locale === 'en' ? 'Own Sign:' : 'स्वराशि:'}</span> {details.ownSigns[loc]}</div>
                   <div><span className="text-gold-primary/60">{locale === 'en' ? 'Moolatrikona:' : 'मूलत्रिकोण:'}</span> {details.moolatrikona[loc]}</div>
@@ -628,7 +628,7 @@ export default function LearnGrahasPage() {
             >
               <span className="text-xs font-semibold" style={{ color: d.color }}>{d.name}</span>
               <span className="text-gold-primary text-lg font-bold">{d.years}</span>
-              <span className="text-text-secondary/50 text-xs">{locale === 'en' ? 'years' : 'वर्ष'}</span>
+              <span className="text-text-secondary/70 text-xs">{locale === 'en' ? 'years' : 'वर्ष'}</span>
             </div>
           ))}
         </div>
@@ -654,7 +654,7 @@ export default function LearnGrahasPage() {
               className="block p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{ref.label[loc]}</div>
-              <p className="text-text-secondary/60 text-xs mt-1">{ref.desc[loc]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{ref.desc[loc]}</p>
             </Link>
           ))}
         </div>

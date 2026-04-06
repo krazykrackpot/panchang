@@ -179,7 +179,7 @@ export default function LearnCalculationsPage() {
                 <span className="text-gold-primary font-semibold text-sm w-20">{calc.name}</span>
                 <span className="text-gold-light/80 font-mono text-xs flex-1">{calc.formula}</span>
               </div>
-              <p className="text-text-secondary/60 text-xs mt-1 ml-20">{locale === 'en' ? calc.note : calc.note}</p>
+              <p className="text-text-secondary/75 text-xs mt-1 ml-20">{locale === 'en' ? calc.note : calc.note}</p>
             </motion.div>
           ))}
         </div>

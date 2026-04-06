@@ -258,12 +258,12 @@ export default function LearnDashasPage() {
               >
                 {d.years} {locale === 'en' ? 'yrs' : 'वर्ष'}
               </div>
-              <div className="text-text-secondary/60 text-xs hidden sm:block">
+              <div className="text-text-secondary/75 text-xs hidden sm:block">
                 {isHi ? d.nakshatrasHi : d.nakshatras}
               </div>
             </motion.div>
           ))}
-          <div className="mt-2 text-center text-text-secondary/50 text-xs font-mono">
+          <div className="mt-2 text-center text-text-secondary/70 text-xs font-mono">
             Total: 7+20+6+10+7+18+16+19+17 = 120 {locale === 'en' ? 'years' : 'वर्ष'}
           </div>
         </div>

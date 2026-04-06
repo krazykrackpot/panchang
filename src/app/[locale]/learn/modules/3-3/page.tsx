@@ -161,8 +161,8 @@ function Page1() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">The lordship pattern is beautifully symmetric around the Leo-Cancer axis (the two luminary signs). Moving outward from this center:</p>
         <div className="p-3 bg-bg-primary/50 rounded-lg border border-gold-primary/10 font-mono text-xs text-text-secondary space-y-1">
           <p className="text-center text-gold-light">... Saturn | Jupiter | Mars | Venus | Mercury | <span className="text-amber-400">Moon</span> | <span className="text-amber-400">Sun</span> | Mercury | Venus | Mars | Jupiter | Saturn ...</p>
-          <p className="text-center text-text-secondary/50">Cap | Sag | Sco | Lib | Vir | <span className="text-amber-300">Can</span> | <span className="text-amber-300">Leo</span> | Gem | Tau | Ari | Pis | Aqu</p>
-          <p className="text-center text-text-secondary/30 text-xs">10 | 9 | 8 | 7 | 6 | 4 | 5 | 3 | 2 | 1 | 12 | 11</p>
+          <p className="text-center text-text-secondary/70">Cap | Sag | Sco | Lib | Vir | <span className="text-amber-300">Can</span> | <span className="text-amber-300">Leo</span> | Gem | Tau | Ari | Pis | Aqu</p>
+          <p className="text-center text-text-secondary/55 text-xs">10 | 9 | 8 | 7 | 6 | 4 | 5 | 3 | 2 | 1 | 12 | 11</p>
         </div>
         <p className="text-text-secondary text-xs mt-3 leading-relaxed">This mirrors the solar system: Mercury (closest planet) rules signs adjacent to the luminaries. Saturn (farthest visible planet) rules the outermost signs. The ancients encoded the structure of the solar system into the zodiac.</p>
       </section>

@@ -207,7 +207,7 @@ export default function LearnYogasPage() {
               <span className="text-gold-primary/60 text-lg font-bold w-8 text-center">{y.number}</span>
               <div className="flex-1 min-w-0">
                 <div className="text-gold-light font-semibold text-sm">{y.name[locale]}</div>
-                {locale !== 'en' && <div className="text-text-secondary/60 text-xs">{y.name.en}</div>}
+                {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{y.name.en}</div>}
               </div>
               <div className="text-right">
                 <div className="text-text-secondary text-xs">{y.meaning[locale]}</div>

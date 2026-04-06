@@ -122,7 +122,7 @@ export default function MuhurtaCountdown({
         )}
 
         {status === 'passed' && (
-          <span className="text-xs text-text-secondary/40 font-medium">
+          <span className="text-xs text-text-secondary/65 font-medium">
             {LABELS.passed[loc]}
           </span>
         )}
@@ -137,7 +137,7 @@ export default function MuhurtaCountdown({
         >
           {startTime}
         </span>
-        <span className="text-text-secondary/40 text-2xl font-light mx-2">&mdash;</span>
+        <span className="text-text-secondary/65 text-2xl font-light mx-2">&mdash;</span>
         <span
           className={`text-2xl font-black tracking-tight ${
             status === 'active' ? 'text-emerald-300' : 'text-gold-light'
@@ -148,7 +148,7 @@ export default function MuhurtaCountdown({
       </div>
 
       {/* Duration + Location row */}
-      <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/60">
+      <div className="flex items-center flex-wrap gap-x-4 gap-y-1.5 text-xs text-text-secondary/75">
         <span>
           {LABELS.duration[loc]}: <span className="text-text-secondary/80 font-medium">{duration}</span>
         </span>
@@ -165,7 +165,7 @@ export default function MuhurtaCountdown({
         if (!isWithin24h) return null;
         return (
           <div className="mt-4 pt-3 border-t border-gold-primary/10">
-            <span className="text-xs text-text-secondary/50">{LABELS.startsIn[loc]}: </span>
+            <span className="text-xs text-text-secondary/70">{LABELS.startsIn[loc]}: </span>
             <span className="text-sm font-bold text-gold-primary">
               {formatCountdown(msUntil)}
             </span>

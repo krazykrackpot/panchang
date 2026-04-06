@@ -213,7 +213,7 @@ export default function PricingPage() {
           >
             {t(LABELS.heading, locale)}
           </h1>
-          <p className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-white/75 max-w-2xl mx-auto">
             {t(LABELS.subtitle, locale)}
           </p>
         </motion.div>
@@ -228,7 +228,7 @@ export default function PricingPage() {
             className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
               billing === 'monthly'
                 ? 'bg-[#d4a853] text-[#0a0e27]'
-                : 'text-white/60 hover:text-white/80'
+                : 'text-white/75 hover:text-white/80'
             }`}
           >
             {t(LABELS.monthly, locale)}
@@ -238,7 +238,7 @@ export default function PricingPage() {
             className={`px-5 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
               billing === 'annual'
                 ? 'bg-[#d4a853] text-[#0a0e27]'
-                : 'text-white/60 hover:text-white/80'
+                : 'text-white/75 hover:text-white/80'
             }`}
           >
             {t(LABELS.annual, locale)}
@@ -255,7 +255,7 @@ export default function PricingPage() {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               currency === 'INR'
                 ? 'bg-[#d4a853] text-[#0a0e27]'
-                : 'text-white/60 hover:text-white/80'
+                : 'text-white/75 hover:text-white/80'
             }`}
           >
             INR (₹)
@@ -265,7 +265,7 @@ export default function PricingPage() {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               currency === 'USD'
                 ? 'bg-[#d4a853] text-[#0a0e27]'
-                : 'text-white/60 hover:text-white/80'
+                : 'text-white/75 hover:text-white/80'
             }`}
           >
             USD ($)
@@ -326,7 +326,7 @@ export default function PricingPage() {
                     {formatPrice(price)}
                   </span>
                   {price > 0 && (
-                    <span className="text-white/40 text-sm">
+                    <span className="text-white/65 text-sm">
                       {billing === 'monthly'
                         ? t(LABELS.perMonth, locale)
                         : t(LABELS.perYear, locale)}
@@ -334,7 +334,7 @@ export default function PricingPage() {
                   )}
                 </div>
                 {crossedOut !== null && crossedOut > 0 && (
-                  <p className="text-sm text-white/40 mt-1">
+                  <p className="text-sm text-white/65 mt-1">
                     <span className="line-through">{formatPrice(crossedOut)}</span>
                     <span className="text-green-400 ml-2">
                       {locale === 'en'
@@ -352,11 +352,11 @@ export default function PricingPage() {
                     {feat.included ? (
                       <Check className="w-5 h-5 text-green-400 shrink-0 mt-0.5" />
                     ) : (
-                      <X className="w-5 h-5 text-white/20 shrink-0 mt-0.5" />
+                      <X className="w-5 h-5 text-white/50 shrink-0 mt-0.5" />
                     )}
                     <span
                       className={
-                        feat.included ? 'text-white/80' : 'text-white/30'
+                        feat.included ? 'text-white/80' : 'text-white/55'
                       }
                     >
                       {t(feat, locale)}
@@ -369,7 +369,7 @@ export default function PricingPage() {
               {isFree ? (
                 <button
                   disabled
-                  className="w-full py-3 rounded-xl text-sm font-semibold bg-white/5 text-white/40 border border-white/10 cursor-not-allowed"
+                  className="w-full py-3 rounded-xl text-sm font-semibold bg-white/5 text-white/65 border border-white/10 cursor-not-allowed"
                 >
                   {t(LABELS.currentPlan, locale)}
                 </button>
@@ -379,7 +379,7 @@ export default function PricingPage() {
                   disabled={isCurrentPlan}
                   className={`w-full py-3 rounded-xl text-sm font-semibold transition-all ${
                     isCurrentPlan
-                      ? 'bg-white/5 text-white/40 border border-white/10 cursor-not-allowed'
+                      ? 'bg-white/5 text-white/65 border border-white/10 cursor-not-allowed'
                       : isPro
                         ? 'bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#8a6d2b] text-[#0a0e27] hover:shadow-lg hover:shadow-[#d4a853]/20'
                         : 'bg-white/10 text-white border border-[#d4a853]/30 hover:bg-[#d4a853]/10 hover:border-[#d4a853]/50'
@@ -439,7 +439,7 @@ export default function PricingPage() {
                   transition={{ duration: 0.25 }}
                   className="px-6 pb-4"
                 >
-                  <p className="text-white/60 leading-relaxed">
+                  <p className="text-white/75 leading-relaxed">
                     {t(item.a, locale)}
                   </p>
                 </motion.div>

@@ -624,7 +624,7 @@ export default function PanchangPage() {
                           <div className="font-mono text-sm text-amber-300 font-bold">
                             {fmt(tithiTr.startTime, tithiTr.startDate)} — {fmt(tithiTr.endTime, tithiTr.endDate)}
                           </div>
-                          <div className="text-xs text-text-secondary/30 mt-0.5">24h</div>
+                          <div className="text-xs text-text-secondary/55 mt-0.5">24h</div>
                         </div>
                       </>
                     )}
@@ -644,7 +644,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   {/* Tithi contextual tip */}
-                  <div className="text-text-secondary/50 text-xs mt-1.5 leading-snug">
+                  <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {panchang.tithi.paksha === 'shukla'
                       ? (locale === 'en' ? 'Waxing Moon' : 'शुक्ल पक्ष')
                       : (locale === 'en' ? 'Waning Moon' : 'कृष्ण पक्ष')
@@ -676,7 +676,7 @@ export default function PanchangPage() {
                         <div className="font-mono text-sm text-amber-300 font-bold">
                           {fmt(nakTr.startTime, nakTr.startDate)} — {fmt(nakTr.endTime, nakTr.endDate)}
                         </div>
-                        <div className="text-xs text-text-secondary/30 mt-0.5">24h</div>
+                        <div className="text-xs text-text-secondary/55 mt-0.5">24h</div>
                       </div>
                     )}
                   </div>
@@ -695,7 +695,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   {/* Nakshatra contextual tip */}
-                  <div className="text-text-secondary/50 text-xs mt-1.5 leading-snug">
+                  <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {locale === 'en' ? 'Nature:' : 'स्वभाव:'}{' '}{panchang.nakshatra.nature[locale]}{' — '}{locale === 'en' ? 'Ruler:' : 'स्वामी:'}{' '}{panchang.nakshatra.rulerName[locale]}
                   </div>
                 </motion.div>
@@ -715,7 +715,7 @@ export default function PanchangPage() {
                   {panchang.yogaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
                       <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
-                      <div className="text-xs text-text-secondary/30">24h</div>
+                      <div className="text-xs text-text-secondary/55">24h</div>
                       {!yogaPassed && (
                         <div className="text-xs text-text-secondary mt-1">
                           {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.yogaTransition.nextName[locale]}</span>
@@ -724,7 +724,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   {/* Yoga contextual tip */}
-                  <div className="text-text-secondary/50 text-xs mt-1.5 leading-snug">
+                  <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {activeYoga.nature === 'auspicious'
                       ? (locale === 'en' ? 'Favorable — good for new beginnings' : 'शुभ — नए कार्यों के लिए अच्छा')
                       : activeYoga.nature === 'inauspicious'
@@ -751,7 +751,7 @@ export default function PanchangPage() {
                   {panchang.karanaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
                       <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.karanaTransition.startTime, panchang.karanaTransition.startDate)} — {fmt(panchang.karanaTransition.endTime, panchang.karanaTransition.endDate)}</div>
-                      <div className="text-xs text-text-secondary/30">24h</div>
+                      <div className="text-xs text-text-secondary/55">24h</div>
                       {!karanaPassed && (
                         <div className="text-xs text-text-secondary mt-1">
                           {t('then')} <span className="text-gold-light font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.karanaTransition.nextName[locale]}</span>
@@ -760,7 +760,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   {/* Karana contextual tip */}
-                  <div className="text-text-secondary/50 text-xs mt-1.5 leading-snug">
+                  <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {activeKarana.type === 'chara'
                       ? (locale === 'en' ? 'Movable — good for travel & new work' : 'चर — यात्रा व नए कार्य के लिए')
                       : activeKarana.type === 'sthira'
@@ -783,7 +783,7 @@ export default function PanchangPage() {
                   <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{panchang.vara.name[locale]}</div>
                   <div className="text-text-secondary text-xs mt-2">{panchang.vara.ruler[locale]}</div>
                   {/* Vara contextual tip */}
-                  <div className="text-text-secondary/50 text-xs mt-1.5 leading-snug">
+                  <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {locale === 'en' ? 'Ruled by' : 'स्वामी:'}{' '}{panchang.vara.ruler[locale]}{' — '}{
                       panchang.vara.day === 0 ? (locale === 'en' ? 'good for spirituality' : 'आध्यात्मिक कार्यों के लिए')
                       : panchang.vara.day === 1 ? (locale === 'en' ? 'good for new starts' : 'नई शुरुआत के लिए')
@@ -1761,7 +1761,7 @@ export default function PanchangPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="text-text-secondary/50 text-xs mt-2 text-center font-mono">
+                  <div className="text-text-secondary/70 text-xs mt-2 text-center font-mono">
                     {locale === 'en' ? 'Kalpa = 1,000 Mahayugas = 4.32 billion years (one Day of Brahma)' : 'कल्प = 1,000 महायुग = 4.32 अरब वर्ष (ब्रह्मा का एक दिन)'}
                   </div>
                 </div>
@@ -1962,7 +1962,7 @@ export default function PanchangPage() {
                             </span>
                             {isAbhijit && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
                             {isCurrent && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
-                            {info && <span className="ml-2 text-text-secondary/50 text-xs">{info.deity[locale]}</span>}
+                            {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
                           </div>
                         </div>
                         <div className="flex items-center gap-3 flex-shrink-0">
@@ -2026,7 +2026,7 @@ export default function PanchangPage() {
                               <div>
                                 <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
                                 {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' ? 'BRAHMA MUHURTA' : 'ब्राह्म मुहूर्त'}</span>}
-                                {info && <span className="ml-2 text-text-secondary/50 text-xs">{info.deity[locale]}</span>}
+                                {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
                               </div>
                             </div>
                             <div className="flex items-center gap-3 flex-shrink-0">
@@ -2289,7 +2289,7 @@ export default function PanchangPage() {
             const AUSPICIOUS_BADGE: Record<string, string> = {
               excellent: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
               good:      'bg-gold-primary/20 text-gold-light border-gold-primary/30',
-              neutral:   'bg-bg-secondary text-text-secondary/60 border-gold-primary/10',
+              neutral:   'bg-bg-secondary text-text-secondary/75 border-gold-primary/10',
               avoid:     'bg-red-500/15 text-red-400 border-red-500/25',
             };
             return (
@@ -2297,7 +2297,7 @@ export default function PanchangPage() {
                 <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
                   {locale === 'en' ? 'Pancha Pakshi Shastra' : 'पञ्च पक्षी शास्त्र'}
                 </h2>
-                <p className="text-text-secondary/60 text-sm text-center mb-6 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                <p className="text-text-secondary/75 text-sm text-center mb-6 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {locale === 'en'
                     ? `Kerala tradition — your ruling bird is ${pp.birthBirdName.en}. Five periods divide the ${pp.isDay ? 'day' : 'night'}; your bird's current activity determines auspiciousness.`
                     : `केरल परम्परा — आपका राशि पक्षी ${pp.birthBirdName.hi} है। ${pp.isDay ? 'दिन' : 'रात्रि'} के पाँच काल; पक्षी की वर्तमान क्रिया शुभाशुभ निर्धारित करती है।`}
@@ -2325,12 +2325,12 @@ export default function PanchangPage() {
                       <div className={`text-[10px] font-bold mb-1 ${
                         period.auspicious === 'excellent' ? 'text-emerald-400' :
                         period.auspicious === 'good'      ? 'text-gold-primary' :
-                        period.auspicious === 'avoid'     ? 'text-red-400' : 'text-text-secondary/50'
+                        period.auspicious === 'avoid'     ? 'text-red-400' : 'text-text-secondary/70'
                       }`}>
                         {period.activityName[locale === 'en' ? 'en' : 'hi']}
                       </div>
-                      <div className="text-[9px] text-text-secondary/50 font-mono">{period.periodStart}</div>
-                      <div className="text-[9px] text-text-secondary/40 font-mono">—{period.periodEnd}</div>
+                      <div className="text-[9px] text-text-secondary/70 font-mono">{period.periodStart}</div>
+                      <div className="text-[9px] text-text-secondary/65 font-mono">—{period.periodEnd}</div>
                       {i === pp.periodIndex && <div className="text-[9px] text-gold-primary font-bold mt-0.5">▶ Now</div>}
                     </div>
                   ))}
@@ -2385,7 +2385,7 @@ export default function PanchangPage() {
                             <span className="text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{nak?.name[locale]}</span>
                           </td>
                           <td className="px-5 py-4 text-center">
-                            {planet.isRetrograde ? <span className="text-red-400 font-bold text-lg">R</span> : <span className="text-text-secondary/30">—</span>}
+                            {planet.isRetrograde ? <span className="text-red-400 font-bold text-lg">R</span> : <span className="text-text-secondary/55">—</span>}
                           </td>
                         </tr>
                       );

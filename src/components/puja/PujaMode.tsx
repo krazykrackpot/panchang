@@ -168,7 +168,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             type="button"
             onClick={() => setQuickMode(true)}
             className={`relative z-10 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-              quickMode ? 'text-[#070b1f]' : 'text-text-secondary/60'
+              quickMode ? 'text-[#070b1f]' : 'text-text-secondary/75'
             }`}
           >
             {labels.quick}
@@ -177,7 +177,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             type="button"
             onClick={() => setQuickMode(false)}
             className={`relative z-10 rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-              !quickMode ? 'text-[#070b1f]' : 'text-text-secondary/60'
+              !quickMode ? 'text-[#070b1f]' : 'text-text-secondary/75'
             }`}
           >
             {labels.full}
@@ -217,7 +217,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             className="flex w-full max-w-lg flex-col items-center gap-6"
           >
             {/* Step indicator */}
-            <p className="text-sm font-medium tracking-wider text-text-secondary/50 uppercase">
+            <p className="text-sm font-medium tracking-wider text-text-secondary/70 uppercase">
               {labels.step} {currentIndex + 1} {labels.of} {totalSteps}
             </p>
 
@@ -275,11 +275,11 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                 >
                   {linkedMantra.devanagari}
                 </p>
-                <p className="mt-3 text-center text-sm italic text-text-secondary/50">
+                <p className="mt-3 text-center text-sm italic text-text-secondary/70">
                   {linkedMantra.iast}
                 </p>
                 <p
-                  className="mt-2 text-center text-sm text-text-secondary/60"
+                  className="mt-2 text-center text-sm text-text-secondary/75"
                   style={{ fontFamily: locale !== 'en' ? 'var(--font-devanagari-body)' : undefined }}
                 >
                   {linkedMantra.meaning[locale]}
@@ -294,7 +294,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                   target={linkedMantra.japaCount}
                   mantraName={linkedMantra.name[locale]}
                 />
-                <p className="text-xs text-text-secondary/40">{labels.chant}</p>
+                <p className="text-xs text-text-secondary/65">{labels.chant}</p>
               </div>
             )}
           </motion.div>
@@ -312,7 +312,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
           <ChevronLeft className="h-5 w-5" />
         </button>
 
-        <span className="text-sm font-medium text-text-secondary/50">
+        <span className="text-sm font-medium text-text-secondary/70">
           {currentIndex + 1} / {totalSteps}
         </span>
 

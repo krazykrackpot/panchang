@@ -107,7 +107,7 @@ export default function ShadbalaLabPage() {
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-200 via-green-100 to-emerald-200 bg-clip-text text-transparent mb-3">
             {L.title[locale]}
           </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
+          <p className="text-white/75 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
         </motion.div>
 
         {/* Input Card */}
@@ -117,7 +117,7 @@ export default function ShadbalaLabPage() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <Calendar className="w-4 h-4 inline mr-1" />{L.birthDate[locale]}
               </label>
               <input
@@ -128,7 +128,7 @@ export default function ShadbalaLabPage() {
               />
             </div>
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <Clock className="w-4 h-4 inline mr-1" />{L.birthTime[locale]}
               </label>
               <input
@@ -139,7 +139,7 @@ export default function ShadbalaLabPage() {
               />
             </div>
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <MapPin className="w-4 h-4 inline mr-1" />{L.birthPlace[locale]}
               </label>
               <LocationSearch
@@ -180,7 +180,7 @@ export default function ShadbalaLabPage() {
                     {GRAHAS[result.captain.planetId].name[locale]}
                     <span className="text-lg font-mono text-amber-300/60 ml-2">{result.captain.rupas.toFixed(2)} {L.rupas[locale]}</span>
                   </div>
-                  <div className="text-xs text-white/40 mt-1">{L.captainDesc[locale]}</div>
+                  <div className="text-xs text-white/65 mt-1">{L.captainDesc[locale]}</div>
                 </div>
               </div>
 
@@ -192,7 +192,7 @@ export default function ShadbalaLabPage() {
                     <div key={b.key} className="p-3 rounded-xl bg-white/5 border border-white/5 text-center">
                       <div className="w-3 h-3 rounded-full mx-auto mb-2" style={{ backgroundColor: b.color }} />
                       <div className="text-sm font-semibold text-white">{L[b.label][locale]}</div>
-                      <div className="text-xs text-white/40 mt-1">{L[b.desc][locale]}</div>
+                      <div className="text-xs text-white/65 mt-1">{L[b.desc][locale]}</div>
                     </div>
                   ))}
                 </div>
@@ -218,14 +218,14 @@ export default function ShadbalaLabPage() {
                           <span className="text-2xl">{graha.symbol}</span>
                           <div>
                             <div className="font-bold text-white">{graha.name[locale]}</div>
-                            <div className="text-xs text-white/40">Rank #{sb.rank}</div>
+                            <div className="text-xs text-white/65">Rank #{sb.rank}</div>
                           </div>
                         </div>
                         <div className="text-right">
                           <div className="text-xl font-mono font-bold" style={{ color: totalColor }}>
                             {sb.rupas.toFixed(2)}
                           </div>
-                          <div className="text-xs text-white/30">{L.minRequired[locale]}: {sb.minRequired.toFixed(2)}</div>
+                          <div className="text-xs text-white/55">{L.minRequired[locale]}: {sb.minRequired.toFixed(2)}</div>
                         </div>
                       </div>
 
@@ -237,7 +237,7 @@ export default function ShadbalaLabPage() {
                           const pct = Math.min((absVal / barMax) * 100, 100);
                           return (
                             <div key={b.key} className="flex items-center gap-2">
-                              <div className="w-16 text-xs text-white/40 shrink-0 text-right">{L[b.label][locale]}</div>
+                              <div className="w-16 text-xs text-white/65 shrink-0 text-right">{L[b.label][locale]}</div>
                               <div className="flex-1 relative h-4 rounded-full bg-white/5 overflow-hidden">
                                 <motion.div
                                   initial={{ width: 0 }}
@@ -252,7 +252,7 @@ export default function ShadbalaLabPage() {
                                   style={{ left: `${Math.min((sb.minRequired / 7 / barMax) * 100, 100)}%` }}
                                 />
                               </div>
-                              <div className="w-12 text-xs font-mono text-white/50 text-right">{val.toFixed(1)}</div>
+                              <div className="w-12 text-xs font-mono text-white/70 text-right">{val.toFixed(1)}</div>
                             </div>
                           );
                         })}
@@ -261,7 +261,7 @@ export default function ShadbalaLabPage() {
                       {/* Total bar */}
                       <div className="mt-3 pt-3 border-t border-white/5">
                         <div className="flex items-center gap-2">
-                          <div className="w-16 text-xs text-white/60 shrink-0 text-right font-bold">{L.total[locale]}</div>
+                          <div className="w-16 text-xs text-white/75 shrink-0 text-right font-bold">{L.total[locale]}</div>
                           <div className="flex-1 relative h-5 rounded-full bg-white/5 overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
@@ -278,7 +278,7 @@ export default function ShadbalaLabPage() {
                           </div>
                           <div className="w-12 text-xs font-mono font-bold text-right" style={{ color: totalColor }}>{sb.rupas.toFixed(2)}</div>
                         </div>
-                        <div className="flex justify-between mt-1 text-xs text-white/20">
+                        <div className="flex justify-between mt-1 text-xs text-white/50">
                           <span>{L.strength[locale]}: {sb.strengthRatio.toFixed(2)}x</span>
                           <span className={sb.rupas >= sb.minRequired ? 'text-emerald-400/50' : 'text-red-400/50'}>
                             {sb.rupas >= sb.minRequired ? 'ABOVE' : 'BELOW'} min
@@ -311,7 +311,7 @@ export default function ShadbalaLabPage() {
                           i === 0 ? 'bg-amber-500/10 border-amber-500/20' : 'bg-white/[0.02] border-white/5'
                         }`}
                       >
-                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm font-bold text-white/50">
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-sm font-bold text-white/70">
                           #{i + 1}
                         </div>
                         <span className="text-xl">{graha.symbol}</span>
@@ -329,7 +329,7 @@ export default function ShadbalaLabPage() {
                         </div>
                         <div className="text-right shrink-0">
                           <div className="text-lg font-mono font-bold" style={{ color }}>{sb.rupas.toFixed(2)}</div>
-                          <div className="text-xs text-white/30">{sb.strengthRatio.toFixed(2)}x</div>
+                          <div className="text-xs text-white/55">{sb.strengthRatio.toFixed(2)}x</div>
                         </div>
                       </motion.div>
                     );

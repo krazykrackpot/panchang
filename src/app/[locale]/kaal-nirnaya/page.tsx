@@ -308,7 +308,7 @@ export default function KaalNirnayaPage() {
               )}
               <div className="mb-4">
                 <div className={`font-bold text-xl mb-1 ${yuga.text}`} style={headingFont}>{yuga.name[locale]}</div>
-                <div className="text-text-secondary/60 text-xs">{yuga.altName[locale]}</div>
+                <div className="text-text-secondary/75 text-xs">{yuga.altName[locale]}</div>
               </div>
               <div className="font-mono text-2xl font-bold text-text-primary mb-3">
                 {yuga.years.toLocaleString()}
@@ -339,7 +339,7 @@ export default function KaalNirnayaPage() {
                   <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden mb-1">
                     <div className="h-full bg-red-400/50 rounded-full" style={{ width: `${kaliPct}%` }} />
                   </div>
-                  <div className="flex justify-between text-xs text-text-secondary/60 font-mono">
+                  <div className="flex justify-between text-xs text-text-secondary/75 font-mono">
                     <span>3102 BCE</span>
                     <span className="text-red-300">{kaliPct}%</span>
                     <span>+{(KALI_YUGA_TOTAL - KALI_ELAPSED).toLocaleString()}y</span>
@@ -384,7 +384,7 @@ export default function KaalNirnayaPage() {
               <div className="h-full rounded-full bg-gradient-to-r from-emerald-500/50 via-gold-primary/50 to-rose-500/50" style={{ width: '50.5%' }} />
               <div className="absolute top-0 left-[50.5%] w-0.5 h-full bg-gold-light animate-pulse" />
             </div>
-            <div className="flex justify-between text-xs text-text-secondary/50 mt-1 font-mono">
+            <div className="flex justify-between text-xs text-text-secondary/70 mt-1 font-mono">
               <span>{locale === 'en' ? 'Brahma born' : 'ब्रह्मा जन्म'}</span>
               <span className="text-gold-light/60">{locale === 'en' ? 'WE ARE HERE' : 'हम यहाँ हैं'}</span>
               <span>{locale === 'en' ? 'Mahapralaya' : 'महाप्रलय'}</span>
@@ -405,7 +405,7 @@ export default function KaalNirnayaPage() {
               <div className="rounded-xl p-4 bg-bg-primary/40 border border-gold-primary/10">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-emerald-400 font-bold text-sm">{locale === 'en' ? 'Prathama Parardha' : 'प्रथम परार्ध'}</span>
-                  <span className="text-text-secondary/40 text-xs">{locale === 'en' ? '(First Half)' : '(पहला भाग)'}</span>
+                  <span className="text-text-secondary/65 text-xs">{locale === 'en' ? '(First Half)' : '(पहला भाग)'}</span>
                 </div>
                 <div className="text-text-secondary text-xs leading-relaxed mb-2">
                   {locale === 'en'
@@ -481,14 +481,14 @@ export default function KaalNirnayaPage() {
                 { n: 30, en: 'Pitri', hi: 'पितृ', meaning: { en: 'Of the ancestors', hi: 'पितरों का कल्प' } },
               ] as { n: number; en: string; hi: string; meaning: { en: string; hi: string }; current?: boolean }[]).map((k) => (
                 <div key={k.n} className={`rounded-lg px-3 py-2.5 flex items-start gap-2.5 ${k.current ? 'bg-gold-primary/8 border border-gold-primary/25' : 'bg-bg-primary/30 border border-gold-primary/5'}`}>
-                  <span className={`text-xs font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/40'}`}>{String(k.n).padStart(2, '0')}</span>
+                  <span className={`text-xs font-mono font-bold mt-0.5 flex-shrink-0 ${k.current ? 'text-gold-primary' : 'text-text-secondary/65'}`}>{String(k.n).padStart(2, '0')}</span>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <span className={`font-bold text-xs ${k.current ? 'text-gold-light' : 'text-text-primary'}`}>{locale === 'en' ? k.en : k.hi}</span>
                       {locale === 'en' && <span className="text-gold-dark/40 text-xs" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.hi}</span>}
                       {k.current && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase leading-tight">{locale === 'en' ? 'CURRENT' : 'वर्तमान'}</span>}
                     </div>
-                    <p className="text-text-secondary/60 text-xs leading-snug mt-0.5">{t2(k.meaning)}</p>
+                    <p className="text-text-secondary/75 text-xs leading-snug mt-0.5">{t2(k.meaning)}</p>
                   </div>
                 </div>
               ))}
@@ -686,7 +686,7 @@ export default function KaalNirnayaPage() {
                   {/* Level badge + vertical dot */}
                   <div className="flex items-center sm:flex-col sm:items-center gap-3 sm:gap-1 flex-shrink-0 sm:w-16">
                     <div className={`w-3 h-3 rounded-full ${tier.dotColor}`} />
-                    <span className="text-text-secondary/40 text-xs font-mono uppercase">{locale === 'en' ? `Level ${tier.level}` : `स्तर ${tier.level}`}</span>
+                    <span className="text-text-secondary/65 text-xs font-mono uppercase">{locale === 'en' ? `Level ${tier.level}` : `स्तर ${tier.level}`}</span>
                   </div>
 
                   <div className="flex-1 min-w-0">
@@ -936,7 +936,7 @@ export default function KaalNirnayaPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <span className={`font-bold text-sm ${m.color}`}>{m.name}</span>
-                      <span className="text-text-secondary/60 text-xs font-mono">{m.time}</span>
+                      <span className="text-text-secondary/75 text-xs font-mono">{m.time}</span>
                     </div>
                     <p className="text-text-secondary text-xs">{m.desc}</p>
                   </div>

@@ -86,7 +86,7 @@ export default function HeroCard({
           </span>
 
           {puja.muhurtaWindow && (
-            <span className="text-xs text-text-secondary/60 font-medium">
+            <span className="text-xs text-text-secondary/75 font-medium">
               {MUHURTA_WINDOW_LABELS[puja.muhurtaWindow.type][locale]}
             </span>
           )}
@@ -109,7 +109,7 @@ export default function HeroCard({
 
         {/* Muhurta description */}
         <p
-          className="text-sm text-text-secondary/50"
+          className="text-sm text-text-secondary/70"
           style={{ fontFamily: isDevanagari ? 'var(--font-devanagari-body)' : undefined }}
         >
           {puja.muhurtaDescription[locale]}

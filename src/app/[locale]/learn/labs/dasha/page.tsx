@@ -185,7 +185,7 @@ export default function DashaLabPage() {
           <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 bg-clip-text text-transparent mb-3">
             {L.title[locale]}
           </h1>
-          <p className="text-white/60 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
+          <p className="text-white/75 max-w-2xl mx-auto">{L.subtitle[locale]}</p>
         </motion.div>
 
         {/* Input Card */}
@@ -195,7 +195,7 @@ export default function DashaLabPage() {
         >
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <Calendar className="w-4 h-4 inline mr-1" />{L.birthDate[locale]}
               </label>
               <input
@@ -206,7 +206,7 @@ export default function DashaLabPage() {
               />
             </div>
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <Clock className="w-4 h-4 inline mr-1" />{L.birthTime[locale]}
               </label>
               <input
@@ -217,7 +217,7 @@ export default function DashaLabPage() {
               />
             </div>
             <div>
-              <label className="block text-sm text-white/50 mb-2">
+              <label className="block text-sm text-white/70 mb-2">
                 <MapPin className="w-4 h-4 inline mr-1" />{L.birthPlace[locale]}
               </label>
               <LocationSearch
@@ -254,17 +254,17 @@ export default function DashaLabPage() {
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                    <div className="text-xs text-white/40 mb-1">{L.moonLong[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.moonLong[locale]}</div>
                     <div className="text-2xl font-mono text-white">{result.tropMoon.toFixed(4)}&deg;</div>
                   </div>
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                    <div className="text-xs text-white/40 mb-1">{L.moonSid[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.moonSid[locale]}</div>
                     <div className="text-2xl font-mono text-amber-300">{result.sidMoon.toFixed(4)}&deg;</div>
                   </div>
                 </div>
                 {/* Visual: position in nakshatra */}
                 <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/5">
-                  <div className="text-xs text-white/40 mb-2">{L.nakshatra[locale]}: <span className="text-amber-300">{result.nak.name[locale]}</span> (#{result.nakNum})</div>
+                  <div className="text-xs text-white/65 mb-2">{L.nakshatra[locale]}: <span className="text-amber-300">{result.nak.name[locale]}</span> (#{result.nakNum})</div>
                   <div className="relative h-6 rounded-full bg-white/10 overflow-hidden">
                     <div
                       className="absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-amber-500/60 to-amber-400/30"
@@ -275,7 +275,7 @@ export default function DashaLabPage() {
                       style={{ left: `${(result.posInNak / NAK_SPAN) * 100}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-xs text-white/30 mt-1 font-mono">
+                  <div className="flex justify-between text-xs text-white/55 mt-1 font-mono">
                     <span>{((result.nakNum - 1) * NAK_SPAN).toFixed(1)}&deg;</span>
                     <span>{result.sidMoon.toFixed(2)}&deg;</span>
                     <span>{(result.nakNum * NAK_SPAN).toFixed(1)}&deg;</span>
@@ -291,16 +291,16 @@ export default function DashaLabPage() {
                 </h2>
                 <div className="flex items-center gap-4 flex-wrap">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                    <div className="text-xs text-white/40 mb-1">{L.nakshatra[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.nakshatra[locale]}</div>
                     <div className="text-lg font-semibold text-white">{result.nak.name[locale]}</div>
                   </div>
-                  <ChevronRight className="w-5 h-5 text-white/30" />
+                  <ChevronRight className="w-5 h-5 text-white/55" />
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5 text-center min-w-[120px]">
-                    <div className="text-xs text-white/40 mb-1">{L.lord[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.lord[locale]}</div>
                     <div className="text-lg font-semibold" style={{ color: DASHA_COLORS[result.startPlanet.id] }}>
                       {GRAHAS[result.startPlanet.id].symbol} {GRAHAS[result.startPlanet.id].name[locale]}
                     </div>
-                    <div className="text-xs text-white/40 mt-1">{result.startPlanet.years} {L.years[locale]}</div>
+                    <div className="text-xs text-white/65 mt-1">{result.startPlanet.years} {L.years[locale]}</div>
                   </div>
                 </div>
                 {/* Nakshatra-lord mapping table */}
@@ -311,7 +311,7 @@ export default function DashaLabPage() {
                       className={`p-2 rounded-lg ${i === result.vIdx ? 'bg-amber-500/20 border border-amber-500/40' : 'bg-white/5 border border-white/5'}`}
                     >
                       <div className="text-lg">{GRAHAS[v.id].symbol}</div>
-                      <div className={i === result.vIdx ? 'text-amber-300 font-bold' : 'text-white/50'}>{v.years}yr</div>
+                      <div className={i === result.vIdx ? 'text-amber-300 font-bold' : 'text-white/70'}>{v.years}yr</div>
                     </div>
                   ))}
                 </div>
@@ -324,14 +324,14 @@ export default function DashaLabPage() {
                   {L.step3[locale]}
                 </h2>
                 <div className="p-4 rounded-xl bg-black/30 border border-white/10 font-mono text-sm mb-4">
-                  <div className="text-white/40 mb-2">{L.formula[locale]}:</div>
+                  <div className="text-white/65 mb-2">{L.formula[locale]}:</div>
                   <div className="text-amber-200">
                     balance = (degRemaining / nakSpan) &times; fullPeriod
                   </div>
-                  <div className="text-white/60 mt-2">
+                  <div className="text-white/75 mt-2">
                     = ({result.degRemaining.toFixed(4)} / {NAK_SPAN.toFixed(4)}) &times; {result.startPlanet.years}
                   </div>
-                  <div className="text-white/60">
+                  <div className="text-white/75">
                     = {(result.degRemaining / NAK_SPAN).toFixed(6)} &times; {result.startPlanet.years}
                   </div>
                   <div className="text-amber-300 text-lg mt-2 font-bold">
@@ -340,15 +340,15 @@ export default function DashaLabPage() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                    <div className="text-xs text-white/40 mb-1">{L.remaining[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.remaining[locale]}</div>
                     <div className="text-xl font-mono text-white">{result.degRemaining.toFixed(4)}&deg;</div>
                   </div>
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                    <div className="text-xs text-white/40 mb-1">{L.balance[locale]}</div>
+                    <div className="text-xs text-white/65 mb-1">{L.balance[locale]}</div>
                     <div className="text-xl font-mono text-amber-300">{formatDuration(result.balanceYears, locale)}</div>
                   </div>
                   <div className="p-4 rounded-xl bg-white/5 border border-white/5">
-                    <div className="text-xs text-white/40 mb-1">{GRAHAS[result.startPlanet.id].name[locale]} Dasha Ends</div>
+                    <div className="text-xs text-white/65 mb-1">{GRAHAS[result.startPlanet.id].name[locale]} Dasha Ends</div>
                     <div className="text-xl font-mono text-white">{formatDate(result.segments[0].endDate)}</div>
                   </div>
                 </div>
@@ -435,7 +435,7 @@ export default function DashaLabPage() {
                             {i === 0 && <span className="text-xs px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-300">PARTIAL</span>}
                             {isCurrent && <span className="text-xs px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 animate-pulse">{L.current[locale]}</span>}
                           </div>
-                          <div className="text-xs text-white/40">
+                          <div className="text-xs text-white/65">
                             {formatDate(seg.startDate)} &mdash; {formatDate(seg.endDate)}
                           </div>
                         </div>

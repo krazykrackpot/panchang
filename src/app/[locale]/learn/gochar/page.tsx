@@ -186,7 +186,7 @@ export default function LearnGocharPage() {
             </motion.div>
           ))}
         </div>
-        <p className="mt-4 text-text-secondary/60 text-sm italic" style={bodyFont}>
+        <p className="mt-4 text-text-secondary/75 text-sm italic" style={bodyFont}>
           {locale === 'en'
             ? 'Slower planets (Jupiter, Saturn, Rahu/Ketu) have the most profound and lasting effects since they influence a house for months or years. Fast-moving planets (Moon, Sun, Mercury, Venus) are used for fine-tuning predictions within the framework set by the slow movers.'
             : 'धीमे ग्रह (गुरु, शनि, राहु/केतु) सबसे गहरे और स्थायी प्रभाव डालते हैं क्योंकि वे महीनों या वर्षों तक एक भाव को प्रभावित करते हैं। तीव्र ग्रह (चन्द्र, सूर्य, बुध, शुक्र) धीमे ग्रहों द्वारा निर्धारित ढाँचे के भीतर भविष्यवाणियों को सूक्ष्म-समायोजित करते हैं।'}

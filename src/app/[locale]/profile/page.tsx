@@ -347,7 +347,7 @@ export default function ProfilePage() {
                     <Moon className="w-9 h-9 text-gold-primary/30 shrink-0" />
                     <div>
                       <p className="text-xs uppercase tracking-widest text-text-secondary">{T.tithi}</p>
-                      <p className="text-sm text-text-secondary/50">&mdash;</p>
+                      <p className="text-sm text-text-secondary/70">&mdash;</p>
                     </div>
                   </div>
                 )}
@@ -384,7 +384,7 @@ export default function ProfilePage() {
                   <h3 className="text-xs uppercase tracking-widest text-text-secondary mb-4">{T.currentDasha}</h3>
                   <div className="flex items-center gap-6">
                     <div className="flex-1">
-                      <p className="text-xs uppercase tracking-wider text-text-secondary/60">{T.mahaDasha}</p>
+                      <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.mahaDasha}</p>
                       <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.maha.planetName?.[locale] || snapshot.currentDasha.maha.planet}</p>
                       <p className="text-xs text-text-secondary mt-0.5">
                         {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
@@ -394,7 +394,7 @@ export default function ProfilePage() {
                       <>
                         <div className="w-px h-14 bg-gold-primary/15" />
                         <div className="flex-1">
-                          <p className="text-xs uppercase tracking-wider text-text-secondary/60">{T.antarDasha}</p>
+                          <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.antarDasha}</p>
                           <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.antar.planetName?.[locale] || snapshot.currentDasha.antar.planet}</p>
                           <p className="text-xs text-text-secondary mt-0.5">
                             {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}

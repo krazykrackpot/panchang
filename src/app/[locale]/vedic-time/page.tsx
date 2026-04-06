@@ -338,7 +338,7 @@ export default function VedicTimePage() {
             ? 'The ancient Indian time system — Ghati, Pala, Vipala'
             : 'प्राचीन भारतीय समय पद्धति — घटी, पल, विपल'}
         </p>
-        {locationName && <p className="text-text-secondary/50 text-sm mt-2">{locationName}</p>}
+        {locationName && <p className="text-text-secondary/70 text-sm mt-2">{locationName}</p>}
       </motion.div>
 
       {/* Clock mode toggle */}
@@ -360,7 +360,7 @@ export default function VedicTimePage() {
       </div>
 
       {/* Clock description */}
-      <div className="text-center text-xs text-text-secondary/60 mb-6 max-w-xl mx-auto">
+      <div className="text-center text-xs text-text-secondary/75 mb-6 max-w-xl mx-auto">
         {clockMode === '60'
           ? (locale === 'en'
             ? 'Sunrise → Next Sunrise = 60 equal Ghati. Sunset floats. Preferred for Kundali / Astrology.'
@@ -385,16 +385,16 @@ export default function VedicTimePage() {
               <span className="text-gold-primary/40">:</span>
               {String(vedic.vipala).padStart(2, '0')}
             </div>
-            <div className="text-text-secondary/50 text-xs mt-1">
+            <div className="text-text-secondary/70 text-xs mt-1">
               {locale === 'en' ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunriseVedic}</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunsetVedic}</div>
               </div>
             </div>
@@ -402,29 +402,29 @@ export default function VedicTimePage() {
 
           {/* Gregorian Clock */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
-            <div className="text-text-secondary/50 text-xs uppercase tracking-[0.3em] mb-2">
+            <div className="text-text-secondary/70 text-xs uppercase tracking-[0.3em] mb-2">
               {locale === 'en' ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
             </div>
             <div className="text-gold-light text-4xl font-bold font-mono tracking-wider">
               {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
             </div>
-            <div className="text-text-secondary/50 text-xs mt-1">
+            <div className="text-text-secondary/70 text-xs mt-1">
               {locale === 'en' ? 'Hours : Minutes : Seconds' : 'घंटे : मिनट : सेकंड'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunriseStr}</div>
               </div>
               <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
-                <div className="text-text-secondary/50 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunsetStr}</div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div className="text-center py-8 text-text-secondary/50 text-sm">
+        <div className="text-center py-8 text-text-secondary/70 text-sm">
           {locale === 'en' ? 'Detecting your location for accurate sunrise/sunset...' : 'सटीक सूर्योदय/सूर्यास्त के लिए स्थान खोज रहे हैं...'}
         </div>
       )}
@@ -440,13 +440,13 @@ export default function VedicTimePage() {
             {panchangCtx.tithi?.name?.[locale] || panchangCtx.tithi?.name?.en},{' '}
             {panchangCtx.vikramSamvat} {locale === 'en' ? 'Vikram' : 'विक्रम'} / {panchangCtx.shakaSamvat} {locale === 'en' ? 'Shaka' : 'शक'}
           </div>
-          <div className="text-text-secondary/60 text-xs mt-1">
+          <div className="text-text-secondary/75 text-xs mt-1">
             {panchangCtx.vara?.name?.[locale] || panchangCtx.vara?.name?.en}
             {' — '}
             {panchangCtx.samvatsara?.[locale] || panchangCtx.samvatsara?.en}{' '}
             {locale === 'en' ? 'Samvatsara' : 'संवत्सर'}
           </div>
-          <div className="text-text-secondary/40 text-xs mt-0.5">
+          <div className="text-text-secondary/65 text-xs mt-0.5">
             {panchangCtx.gregorianDate.toLocaleDateString(locale === 'en' ? 'en-GB' : 'hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
         </div>
@@ -483,7 +483,7 @@ export default function VedicTimePage() {
                   <span className="text-gold-light text-sm font-semibold" style={bodyFont}>
                     {locale === 'sa' ? vedic.kalaName.sa : locale === 'hi' ? vedic.kalaName.hi : vedic.kalaName.en}
                   </span>
-                  <span className="text-text-secondary/50 text-xs ml-2">
+                  <span className="text-text-secondary/70 text-xs ml-2">
                     ({vedic.isDaytime
                       ? (locale === 'en' ? 'Dinamana' : 'दिनमान')
                       : (locale === 'en' ? 'Ratrimana' : 'रात्रिमान')})
@@ -524,7 +524,7 @@ export default function VedicTimePage() {
                     <div className="text-gold-light text-sm font-bold mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                       {unit.label[locale === 'en' ? 'en' : 'hi']}
                     </div>
-                    <div className="text-text-secondary/50 text-xs">{locale === 'en' ? unit.desc.en : unit.desc.hi}</div>
+                    <div className="text-text-secondary/70 text-xs">{locale === 'en' ? unit.desc.en : unit.desc.hi}</div>
                   </motion.div>
                 );
               })}
@@ -541,7 +541,7 @@ export default function VedicTimePage() {
                   {locale === 'en' ? vedic.praharName.en : vedic.praharName.hi}
                 </div>
               )}
-              <div className="text-text-secondary/50 text-xs mt-0.5">
+              <div className="text-text-secondary/70 text-xs mt-0.5">
                 {locale === 'en' ? `${vedic.praharDurationMin} min each` : `${vedic.praharDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
@@ -559,7 +559,7 @@ export default function VedicTimePage() {
                   }`} title={vedic.muhurtaName.nature} />
                 </div>
               )}
-              <div className="text-text-secondary/50 text-xs mt-0.5">
+              <div className="text-text-secondary/70 text-xs mt-0.5">
                 {locale === 'en' ? `${vedic.muhurtaDurationMin} min each` : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
@@ -580,7 +580,7 @@ export default function VedicTimePage() {
                     <div key={i} className={`text-center p-2 rounded-lg text-xs transition-all ${
                       isActive
                         ? 'bg-gold-primary/15 border border-gold-primary/30 text-gold-light'
-                        : 'bg-bg-secondary/30 border border-gold-primary/5 text-text-secondary/50'
+                        : 'bg-bg-secondary/30 border border-gold-primary/5 text-text-secondary/70'
                     }`}>
                       <div className="font-semibold" style={bodyFont}>
                         {locale === 'sa' ? kala.sa : locale === 'hi' ? kala.hi : kala.en}

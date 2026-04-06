@@ -237,7 +237,7 @@ export default function ArgalaPage() {
                 </div>
                 <div>
                   <h4 className="text-gold-light font-semibold text-sm">{a.name[locale]}</h4>
-                  <span className="text-text-secondary/50 text-xs font-mono">
+                  <span className="text-text-secondary/70 text-xs font-mono">
                     {locale === 'en' ? 'Virodha:' : 'विरोध:'} {a.virodha}
                   </span>
                 </div>
@@ -316,7 +316,7 @@ export default function ArgalaPage() {
                     {step.house}
                   </span>
                   <span className="text-gold-light font-semibold text-sm">{step.type[locale]}</span>
-                  <ArrowRight className="w-3 h-3 text-text-secondary/40" />
+                  <ArrowRight className="w-3 h-3 text-text-secondary/65" />
                   <span className="text-text-secondary text-sm">{step.planets[locale]}</span>
                 </div>
                 <p className="text-text-secondary text-sm leading-relaxed">{step.result[locale]}</p>
@@ -422,7 +422,7 @@ export default function ArgalaPage() {
               className="block p-4 rounded-lg border border-gold-primary/10 bg-bg-primary/30 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">{ref.label[loc]}</div>
-              <p className="text-text-secondary/60 text-xs mt-1">{ref.desc[loc]}</p>
+              <p className="text-text-secondary/75 text-xs mt-1">{ref.desc[loc]}</p>
             </Link>
           ))}
         </div>

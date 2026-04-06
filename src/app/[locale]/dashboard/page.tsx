@@ -429,7 +429,7 @@ export default function DashboardPage() {
           transition={{ delay: 0.1 }}
           className="mb-6 px-6 py-4 rounded-2xl border border-gold-primary/15 bg-gradient-to-r from-gold-primary/[0.04] via-transparent to-gold-primary/[0.04] backdrop-blur-sm"
         >
-          <p className="text-xs uppercase tracking-widest text-text-secondary/50 mb-1">{L.welcome}</p>
+          <p className="text-xs uppercase tracking-widest text-text-secondary/70 mb-1">{L.welcome}</p>
           <h2 className="text-xl font-bold text-gold-light" style={{ fontFamily: 'var(--font-heading)' }}>
             {displayName || user?.email?.split('@')[0] || ''}
           </h2>
@@ -507,7 +507,7 @@ export default function DashboardPage() {
                 <span className="text-2xl font-bold text-gold-light">{pd.chandraBala.houseFromMoon || '—'}</span>
               </div>
               <div>
-                <p className="text-text-secondary/60 text-xs">{L.houseFromMoon}</p>
+                <p className="text-text-secondary/75 text-xs">{L.houseFromMoon}</p>
                 <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mt-1 ${pd.chandraBala.isFavorable ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>
                   {pd.chandraBala.isFavorable ? L.favorable : L.unfavorable}
                 </span>
@@ -750,7 +750,7 @@ export default function DashboardPage() {
                 <span className="text-text-secondary group-hover:text-gold-light transition-colors text-sm font-medium">
                   {link.label}
                 </span>
-                <ArrowRight className="w-4 h-4 text-text-secondary/40 group-hover:text-gold-light ml-auto transition-colors" />
+                <ArrowRight className="w-4 h-4 text-text-secondary/65 group-hover:text-gold-light ml-auto transition-colors" />
               </Link>
             ))}
           </div>

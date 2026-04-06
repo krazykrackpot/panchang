@@ -323,7 +323,7 @@ export default function MuhurtaAIPage() {
                     )}
                     {!hasBirthData && (
                       <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gold-primary/10 bg-bg-secondary/30">
-                        <span className="text-text-secondary/50 text-xs">
+                        <span className="text-text-secondary/70 text-xs">
                           {locale === 'en' ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
                         </span>
                       </div>

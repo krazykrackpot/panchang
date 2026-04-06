@@ -365,7 +365,7 @@ export default function UpagrahaPage() {
                 <span className={`w-2 h-2 rounded-full ${c.dot}`} />
                 <span className="text-text-primary text-xs font-bold">{c.label}</span>
               </div>
-              <span className="text-text-secondary/60 text-xs">{c.names}</span>
+              <span className="text-text-secondary/75 text-xs">{c.names}</span>
             </div>
           ))}
         </div>
@@ -512,7 +512,7 @@ export default function UpagrahaPage() {
                     {locale === 'en' ? h.name.en.split(' ')[0] : h.name.hi}
                   </div>
                   <div className="text-gold-light text-lg font-bold font-mono">{h.house}</div>
-                  <div className="text-text-secondary/50 text-xs">
+                  <div className="text-text-secondary/70 text-xs">
                     {locale === 'en'
                       ? `${h.house}${['st','nd','rd'][h.house-1]||'th'} house`
                       : `${h.house}वाँ भाव`}
@@ -574,7 +574,7 @@ export default function UpagrahaPage() {
                         <span className={`px-2 py-0.5 text-xs font-bold uppercase rounded-full border ${natureBg(u.info.nature)}`}>
                           {natureLabel(u.info.nature)}
                         </span>
-                        <span className="text-text-secondary/50 text-xs">
+                        <span className="text-text-secondary/70 text-xs">
                           {locale === 'en' ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{u.info.ruler[locale]}</span>
                         </span>
                       </div>
@@ -585,7 +585,7 @@ export default function UpagrahaPage() {
                         <span className="text-text-secondary text-sm" style={bodyFont}>
                           {locale === 'en' ? 'in' : 'में'} <span className="text-gold-light font-semibold">{u.signName[locale]}</span>
                         </span>
-                        <span className="text-text-secondary/40 text-xs font-mono">({u.longitude.toFixed(2)}°)</span>
+                        <span className="text-text-secondary/65 text-xs font-mono">({u.longitude.toFixed(2)}°)</span>
                       </div>
 
                       {/* Sign-specific interpretation — always visible */}
@@ -680,7 +680,7 @@ export default function UpagrahaPage() {
                                   </span>
                                   {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
                                 </div>
-                                <p className="text-text-secondary/60 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
+                                <p className="text-text-secondary/75 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
                               </div>
                             </div>
                           );
@@ -715,7 +715,7 @@ export default function UpagrahaPage() {
           ].map(f => (
             <div key={f.formula} className="flex items-start gap-3 rounded-lg p-3 bg-bg-primary/30 border border-gold-primary/5">
               <span className="text-gold-light font-bold text-xs flex-shrink-0 w-56">{f.formula}</span>
-              <span className="text-text-secondary/60 text-xs">{f.desc}</span>
+              <span className="text-text-secondary/75 text-xs">{f.desc}</span>
             </div>
           ))}
         </div>

@@ -618,7 +618,7 @@ function moonAltitude(jdAt: number, latRad: number, lng: number): number {
  * Calculate moonrise time for a given date and location.
  * Returns UT decimal hours from midnight, or null if Moon doesn't rise.
  */
-function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
+export function calculateMoonriseUT(jd: number, lat: number, lng: number): number | null {
   // Moonrise occurs when the Moon's upper limb appears at the horizon.
   // Since moonAltitude() returns topocentric altitude (parallax already applied),
   // we need: h₀ = Moon_semi_diameter - atmospheric_refraction = 16'/60 - 34'/60 ≈ -0.3°

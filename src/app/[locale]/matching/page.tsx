@@ -91,11 +91,54 @@ export default function MatchingPage() {
 
   const [mode, setMode] = useState<'birth' | 'direct'>('birth');
 
+  // Nakshatra → primary rashi mapping (1-indexed, follows classical assignment)
+  // Each nakshatra maps to the rashi that contains its majority padas.
+  const NAKSHATRA_TO_RASHI = [
+    0,  // placeholder (1-based, index 0 unused)
+    1,  // 1  Ashwini → Aries
+    1,  // 2  Bharani → Aries
+    2,  // 3  Krittika → Taurus (1st pada Aries, rest Taurus)
+    2,  // 4  Rohini → Taurus
+    2,  // 5  Mrigashira → Taurus (1–2 pada Taurus, 3–4 Gemini; Taurus primary)
+    3,  // 6  Ardra → Gemini
+    3,  // 7  Punarvasu → Gemini (4th pada Cancer)
+    4,  // 8  Pushya → Cancer
+    4,  // 9  Ashlesha → Cancer
+    5,  // 10 Magha → Leo
+    5,  // 11 P.Phalguni → Leo
+    6,  // 12 U.Phalguni → Virgo (1st pada Leo)
+    6,  // 13 Hasta → Virgo
+    6,  // 14 Chitra → Virgo (1–2 pada Virgo, 3–4 Libra; Virgo primary)
+    7,  // 15 Swati → Libra
+    7,  // 16 Vishakha → Libra (4th pada Scorpio)
+    8,  // 17 Anuradha → Scorpio
+    8,  // 18 Jyeshtha → Scorpio
+    9,  // 19 Mula → Sagittarius
+    9,  // 20 P.Ashadha → Sagittarius
+    10, // 21 U.Ashadha → Capricorn (1st pada Sagittarius)
+    10, // 22 Shravana → Capricorn
+    10, // 23 Dhanishtha → Capricorn (1–2 pada Cap, 3–4 Aquarius; Cap primary)
+    11, // 24 Shatabhisha → Aquarius
+    11, // 25 P.Bhadrapada → Aquarius (4th pada Pisces)
+    12, // 26 U.Bhadrapada → Pisces
+    12, // 27 Revati → Pisces
+  ];
+
   // Direct mode state
   const [boyNakshatra, setBoyNakshatra] = useState(0);
   const [boyRashi, setBoyRashi] = useState(0);
   const [girlNakshatra, setGirlNakshatra] = useState(0);
   const [girlRashi, setGirlRashi] = useState(0);
+
+  const handleBoyNakshatra = useCallback((n: number) => {
+    setBoyNakshatra(n);
+    if (n > 0) setBoyRashi(NAKSHATRA_TO_RASHI[n]);
+  }, []);
+
+  const handleGirlNakshatra = useCallback((n: number) => {
+    setGirlNakshatra(n);
+    if (n > 0) setGirlRashi(NAKSHATRA_TO_RASHI[n]);
+  }, []);
 
   // Birth mode state
   const emptyBirth: PersonBirth = { name: '', date: '', time: '06:00', placeName: '', placeLat: null, placeLng: null, placeTimezone: null };
@@ -229,7 +272,7 @@ export default function MatchingPage() {
             <div className="space-y-4">
               <div>
                 <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonNakshatra')}</label>
-                <select value={boyNakshatra} onChange={(e) => setBoyNakshatra(Number(e.target.value))}
+                <select value={boyNakshatra} onChange={(e) => handleBoyNakshatra(Number(e.target.value))}
                   className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
                   style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   <option value={0}>{t('selectNakshatra')}</option>
@@ -237,9 +280,13 @@ export default function MatchingPage() {
                 </select>
               </div>
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonRashi')}</label>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
+                  {t('moonRashi')}
+                  {boyNakshatra > 0 && <span className="text-gold-primary/50 text-xs ml-2 normal-case font-normal">(auto)</span>}
+                </label>
                 <select value={boyRashi} onChange={(e) => setBoyRashi(Number(e.target.value))}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
+                  disabled={boyNakshatra > 0}
+                  className={`w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 ${boyNakshatra > 0 ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   <option value={0}>{t('selectRashi')}</option>
                   {RASHIS.map((r) => (<option key={r.id} value={r.id}>{r.name[locale]}</option>))}
@@ -297,7 +344,7 @@ export default function MatchingPage() {
             <div className="space-y-4">
               <div>
                 <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonNakshatra')}</label>
-                <select value={girlNakshatra} onChange={(e) => setGirlNakshatra(Number(e.target.value))}
+                <select value={girlNakshatra} onChange={(e) => handleGirlNakshatra(Number(e.target.value))}
                   className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
                   style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   <option value={0}>{t('selectNakshatra')}</option>
@@ -305,9 +352,13 @@ export default function MatchingPage() {
                 </select>
               </div>
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonRashi')}</label>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
+                  {t('moonRashi')}
+                  {girlNakshatra > 0 && <span className="text-gold-primary/50 text-xs ml-2 normal-case font-normal">(auto)</span>}
+                </label>
                 <select value={girlRashi} onChange={(e) => setGirlRashi(Number(e.target.value))}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
+                  disabled={girlNakshatra > 0}
+                  className={`w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 ${girlNakshatra > 0 ? 'opacity-60 cursor-not-allowed' : ''}`}
                   style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   <option value={0}>{t('selectRashi')}</option>
                   {RASHIS.map((r) => (<option key={r.id} value={r.id}>{r.name[locale]}</option>))}

@@ -211,16 +211,16 @@ function computeGana(boy: MatchInput, girl: MatchInput): number {
 function computeBhakoot(boy: MatchInput, girl: MatchInput): number {
   const diff = ((boy.moonRashi - girl.moonRashi + 12) % 12);
 
-  // Inauspicious: 2/12, 5/9, 6/8
+  // Inauspicious positions: 2/12, 5/9, 6/8 (one sign is 2nd, 5th, or 6th from the other)
   const inauspicious = diff === 1 || diff === 11 || diff === 4 || diff === 8 || diff === 5 || diff === 7;
   if (!inauspicious) return 7;
 
-  // Cancellation: same lord or mutual friendship cancels Bhakoot dosha
+  // Cancellation (Bhakoot Dosha Parihara): ONLY same lord cancels.
+  // Friendship-based cancellation is too liberal and makes Bhakoot trivially 7 for most pairs.
+  // Classical parihara: Aries–Scorpio (Mars), Taurus–Libra (Venus), Cap–Aquarius (Saturn)
   const bl = RASHI_LORD[boy.moonRashi - 1];
   const gl = RASHI_LORD[girl.moonRashi - 1];
   if (bl === gl) return 7;
-  const friendship = (GRAHA_MAITRI[bl]?.[gl] ?? 1) + (GRAHA_MAITRI[gl]?.[bl] ?? 1);
-  if (friendship >= 4) return 7;
 
   return 0;
 }

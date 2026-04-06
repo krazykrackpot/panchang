@@ -137,9 +137,7 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
     const idx = (lordIndex + i) % 9;
     const planet = DASHA_ORDER[idx];
     const years = i === 0 ? remainingYears : DASHA_YEARS[planet];
-    const endDate = new Date(currentDate);
-    endDate.setFullYear(endDate.getFullYear() + Math.floor(years));
-    endDate.setMonth(endDate.getMonth() + Math.floor((years % 1) * 12));
+    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 
     // Calculate sub-periods (Antardasha)
     const subPeriods: DashaEntry[] = [];
@@ -148,9 +146,7 @@ function calculateVimshottariDasha(moonSidLong: number, birthDate: Date): DashaE
       const subIdx = (idx + j) % 9;
       const subPlanet = DASHA_ORDER[subIdx];
       const subYears = (years * DASHA_YEARS[subPlanet]) / 120;
-      const subEnd = new Date(subDate);
-      subEnd.setFullYear(subEnd.getFullYear() + Math.floor(subYears));
-      subEnd.setMonth(subEnd.getMonth() + Math.floor((subYears % 1) * 12));
+      const subEnd = new Date(subDate.getTime() + subYears * 365.25 * 24 * 60 * 60 * 1000);
 
       subPeriods.push({
         planet: subPlanet,
@@ -217,9 +213,7 @@ function calculateYoginiDasha(moonSidLong: number, birthDate: Date): DashaEntry[
     const idx = (startIdx + i) % 8;
     const yogini = YOGINI_DASHAS[idx];
     const years = i === 0 ? remainingYears : yogini.years;
-    const endDate = new Date(currentDate);
-    endDate.setFullYear(endDate.getFullYear() + Math.floor(years));
-    endDate.setMonth(endDate.getMonth() + Math.floor((years % 1) * 12));
+    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 
     dashas.push({
       planet: yogini.planet,
@@ -269,9 +263,7 @@ function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEn
     const idx = (startIdx + i) % 8;
     const dasha = ASHTOTTARI_DASHAS[idx];
     const years = i === 0 ? remainingYears : dasha.years;
-    const endDate = new Date(currentDate);
-    endDate.setFullYear(endDate.getFullYear() + Math.floor(years));
-    endDate.setMonth(endDate.getMonth() + Math.floor((years % 1) * 12));
+    const endDate = new Date(currentDate.getTime() + years * 365.25 * 24 * 60 * 60 * 1000);
 
     dashas.push({
       planet: dasha.planet,
@@ -288,15 +280,18 @@ function calculateAshtottariDasha(moonSidLong: number, birthDate: Date): DashaEn
 /**
  * Calculate simplified Shadbala
  */
-function calculateShadbala(planets: PlanetPosition[]): ShadBala[] {
+function calculateShadbala(planets: PlanetPosition[], ascDeg: number): ShadBala[] {
   return planets.filter(p => p.planet.id <= 6).map((p) => {
     // Simplified strength calculation
     const sthanaBala = p.isExalted ? 80 : p.isDebilitated ? 20 : p.isOwnSign ? 70 : 50;
-    const digBala = Math.random() * 40 + 30; // Would need house-based calc
-    const kalaBala = Math.random() * 30 + 35;
+    // Dig Bala: Sun/Mars strong in 10H, Moon/Venus in 4H, Jupiter/Mercury in 1H, Saturn in 7H
+    const digBalaHouse = [10, 4, 10, 1, 1, 4, 7][p.planet.id];
+    const houseNum = ((Math.floor(p.longitude / 30) - Math.floor(ascDeg / 30) + 12) % 12) + 1;
+    const digBala = Math.abs(houseNum - digBalaHouse) <= 1 ? 60 : 30;
+    const kalaBala = 35; // simplified deterministic value
     const cheshtaBala = Math.abs(p.speed) > 0.5 ? 60 : 40;
     const naisargikaBala = [60, 51, 17, 25, 34, 42, 8][p.planet.id] || 30;
-    const drikBala = Math.random() * 30 + 20;
+    const drikBala = 30; // simplified deterministic value
     const total = (sthanaBala + digBala + kalaBala + cheshtaBala + naisargikaBala + drikBala) / 6;
 
     return {
@@ -317,19 +312,12 @@ function calculateShadbala(planets: PlanetPosition[]): ShadBala[] {
  * Generate Navamsha (D9) chart data
  */
 function calculateNavamsha(planets: PlanetPosition[], ascDeg: number): ChartData {
-  const navAscDeg = normalizeDeg(ascDeg * 9);
-  const navAscSign = Math.floor(navAscDeg / 30) + 1;
+  const navAscSign = getDivisionalSign(normalizeDeg(ascDeg), 9);
+  const navAscDeg = (navAscSign - 1) * 30; // representative degree for the sign
   const houses: number[][] = Array.from({ length: 12 }, () => []);
 
   planets.forEach((p) => {
-    const navDeg = normalizeDeg((p.longitude % 30) * (360 / 30) * (30 / (360/9)));
-    const sidLong = p.longitude;
-    // Navamsha sign: each 3°20' = one navamsha
-    const navamshaIndex = Math.floor((sidLong % 30) / (30/9));
-    const startSign = Math.floor(sidLong / 30);
-    // Navamsha sign depends on the rashi element
-    const element = startSign % 4; // 0=fire, 1=earth, 2=air, 3=water
-    const navSign = ((element * 9 + navamshaIndex) % 12) + 1;
+    const navSign = getDivisionalSign(p.longitude, 9);
     const houseNum = ((navSign - navAscSign + 12) % 12);
     houses[houseNum].push(p.planet.id);
   });
@@ -390,6 +378,11 @@ function getDivisionalSign(sidLong: number, division: number): number {
       return ((signIndex % 2 === 0 ? signIndex : signIndex + 6) + part) % 12 + 1;
     case 8: // Ashtamsha: movable→same, fixed→9th, dual→5th
       return (((signIndex % 3 === 0 ? signIndex : signIndex % 3 === 1 ? signIndex + 8 : signIndex + 4) + part) % 12) + 1;
+    case 9: { // Navamsha: fire→Ar, earth→Cp, air→Li, water→Cn
+      const elem9 = signIndex % 4; // 0=fire, 1=earth, 2=air, 3=water
+      const start9 = [0, 9, 6, 3][elem9];
+      return ((start9 + part) % 12) + 1;
+    }
     case 10: // Dasamsha: odd from same, even from 9th
       return ((signIndex + (signIndex % 2 === 0 ? 0 : 8) + part) % 12) + 1;
     case 12: // Dwadasamsha: from same sign
@@ -438,7 +431,7 @@ function calculateDivisionalChart(
   division: number,
 ): ChartData {
   const divAscSign = getDivisionalSign(normalizeDeg(ascDeg), division);
-  const divAscDeg = normalizeDeg(ascDeg * division);
+  const divAscDeg = (divAscSign - 1) * 30; // representative degree for the sign
 
   const houses: number[][] = Array.from({ length: 12 }, () => []);
   planets.forEach((p) => {
@@ -794,7 +787,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const ashtottariDashas = calculateAshtottariDasha(moonSidLong, birthDate);
 
   // Shadbala (legacy simplified)
-  const shadbala = calculateShadbala(planets);
+  const shadbala = calculateShadbala(planets, siderealAsc);
 
   // --- Extended calculations for new tabs ---
 

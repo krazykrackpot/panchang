@@ -196,7 +196,7 @@ export function getAyanamsha(jd: number, type: AyanamshaType = 'lahiri'): number
   const t = (jd - 2451545.0) / 36525.0;
   switch (type) {
     case 'lahiri':
-      return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
+      return lahiriAyanamsha(jd); // delegates to Swiss Ephem when available
     case 'raman':
       // CV Raman: 22°27'37.7" at J2000.0 — slower precession rate
       return 22.46047 + 1.38472 * t + 0.00015 * t * t;

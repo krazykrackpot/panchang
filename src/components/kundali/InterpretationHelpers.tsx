@@ -735,27 +735,63 @@ export function AvasthasInterpretation({ avasthas, planets, locale }: AvasthasIn
 
   if (!avasthas.length) return null;
 
-  // Build a combined personality sketch for each planet
+  // Plain-language meaning per Baladi (age) state
+  const BALADI_PLAIN: Record<string, { en: string; hi: string }> = {
+    Bala:    { en: 'still developing its full potential — expect gradual, building results', hi: 'अभी क्षमता विकसित हो रही है — क्रमिक परिणाम' },
+    Kumara:  { en: 'actively learning and building — solid but not yet at peak', hi: 'सक्रिय और सीख रहा है — ठोस पर चरम पर नहीं' },
+    Yuva:    { en: 'at peak power — delivering its best, most dependable results', hi: 'चरम शक्ति पर — सर्वोत्तम, विश्वसनीय परिणाम' },
+    Vriddha: { en: 'slowing down — results come, but with delays and reduced intensity', hi: 'धीमा हो रहा है — परिणाम आते हैं, पर देर से' },
+    Mrita:   { en: 'blocked or exhausted — this area of life needs conscious effort to activate', hi: 'अवरुद्ध या थका हुआ — सचेत प्रयास चाहिए' },
+  };
+
+  // Plain-language meaning per Jagradadi (alertness) state
+  const JAGRADADI_PLAIN: Record<string, { en: string; hi: string }> = {
+    Jaagrit:  { en: 'fully alert — giving ~100% of its chart-promised results', hi: 'पूरी तरह जाग्रत — ~100% वादे पूरे कर रहा है' },
+    Swapna:   { en: 'half-awake — giving ~50% results; potential is there but under-expressing', hi: 'आधा जाग्रत — ~50% परिणाम; क्षमता है पर कम व्यक्त' },
+    Sushupti: { en: 'deep sleep — giving only ~25% results; needs external activation (remedies/effort)', hi: 'गहरी नींद — ~25% परिणाम; बाहरी सक्रियता चाहिए' },
+  };
+
+  // Plain-language meaning per Lajjitadi (emotional) state
+  const LAJJITADI_PLAIN: Record<string, { en: string; hi: string }> = {
+    Lajjita:  { en: 'ashamed — in a difficult environment, giving uncomfortable or blocked results', hi: 'लज्जित — कठिन वातावरण, असहज परिणाम' },
+    Garvita:  { en: 'proud — exalted or own-sign power, delivering with confidence', hi: 'गर्वित — उच्च या स्वगृह, आत्मविश्वास से देता है' },
+    Kshudita: { en: 'hungry — with enemies, giving insatiable or restless results', hi: 'क्षुधित — शत्रुओं के साथ, बेचैन परिणाम' },
+    Trishita: { en: 'thirsty — craving balance; results come through persistent effort', hi: 'तृषित — संतुलन की चाह; लगातार प्रयास से परिणाम' },
+    Mudita:   { en: 'happy — with friendly planets, giving warm and willing results', hi: 'मुदित — मित्र ग्रहों के साथ, उत्साहपूर्ण परिणाम' },
+    Kshobhita:{ en: 'agitated — under stress from aspects, giving volatile results', hi: 'क्षोभित — दृष्टि तनाव, अस्थिर परिणाम' },
+    Neutral:  { en: 'neutral — neither particularly helped nor hindered', hi: 'तटस्थ — न विशेष सहायता, न बाधा' },
+  };
+
+  // Build a plain-language personal summary for each planet
   function buildSketch(av: PlanetAvasthas): string {
     const name = pName(av.planetId, isHi);
-    const baladi = isHi ? av.baladi.name.hi : av.baladi.name.en;
-    const deeptadi = isHi ? av.deeptadi.name.hi : av.deeptadi.name.en;
-    const lajjitadi = isHi ? av.lajjitadi.name.hi : av.lajjitadi.name.en;
-    const jagradadi = isHi ? av.jagradadi.name.hi : av.jagradadi.name.en;
 
     // Determine overall quality
     const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
-    const quality = avgStrength >= 70 ? (isHi ? 'बलवान' : 'strong') :
-                    avgStrength >= 40 ? (isHi ? 'मिश्रित' : 'mixed') :
-                    (isHi ? 'कमजोर' : 'weak');
-    const flavor = av.lajjitadi.effect === 'benefic' ? (isHi ? 'शुभ' : 'positive') :
-                   av.lajjitadi.effect === 'malefic' ? (isHi ? 'कठिन' : 'challenging') :
-                   (isHi ? 'तटस्थ' : 'neutral');
+
+    // Get plain meanings
+    const baladiKey = av.baladi.name.en || 'Yuva';
+    const jagradadiKey = av.jagradadi.name.en || 'Jaagrit';
+    const lajjitadiKey = av.lajjitadi.name.en || 'Neutral';
+
+    const baladiMeaning = BALADI_PLAIN[baladiKey] ?? { en: `in ${baladiKey} state`, hi: `${baladiKey} अवस्था में` };
+    const jagradadiMeaning = JAGRADADI_PLAIN[jagradadiKey] ?? { en: `${jagradadiKey}`, hi: `${jagradadiKey}` };
+    const lajjitadiMeaning = LAJJITADI_PLAIN[lajjitadiKey] ?? { en: 'neutral', hi: 'तटस्थ' };
+
+    const overallTone = avgStrength >= 65 ? (isHi ? 'शक्तिशाली' : 'strong') :
+                        avgStrength >= 40 ? (isHi ? 'मध्यम' : 'moderate') :
+                        (isHi ? 'कमज़ोर' : 'weak');
+
+    const recommendation = av.lajjitadi.effect === 'malefic'
+      ? (isHi ? 'इस ग्रह के क्षेत्र में अतिरिक्त सचेत रहें और उपाय सहायक हो सकते हैं।' : 'Be extra mindful in this planet\'s life domain; remedies may help.')
+      : av.jagradadi.quality === 'full'
+      ? (isHi ? 'यह ग्रह आपके लिए एक शक्तिशाली संपत्ति है — इसके जीवन क्षेत्र में सक्रिय रूप से निवेश करें।' : 'This planet is a strong asset for you — actively invest in its life domain.')
+      : (isHi ? 'इस ग्रह की ऊर्जा सक्रिय करने के लिए सचेत प्रयास करें।' : 'Conscious effort helps activate this planet\'s energy.');
 
     if (isHi) {
-      return `आपका ${name} ${baladi} अवस्था (आयु), ${deeptadi} (दीप्ति), ${lajjitadi} (भावनात्मक), ${jagradadi} (जागृति) में है। संयुक्त अर्थ: ${name} ${quality} परिणाम ${flavor} स्वभाव के साथ देता है।`;
+      return `आपका ${name} (${overallTone}) ${baladiMeaning.hi}, ${jagradadiMeaning.hi}, और ${lajjitadiMeaning.hi}। ${recommendation}`;
     }
-    return `Your ${name} is in ${baladi} state (age), ${deeptadi} (luminosity), ${lajjitadi} (emotional), ${jagradadi} (wakefulness). Combined meaning: ${name} delivers ${quality} results with a ${flavor} flavor.`;
+    return `Your ${name} is ${overallTone} — it is ${baladiMeaning.en}, ${jagradadiMeaning.en}, and ${lajjitadiMeaning.en}. ${recommendation}`;
   }
 
   return (

@@ -107,10 +107,28 @@ function HouseDetailPanel({
         </p>
       )}
 
-      {/* House significations */}
-      <div className="mt-4 pt-4 border-t border-gold-primary/10">
-        <p className="text-gold-dark text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Significations' : 'कारकत्व'}</p>
-        <p className="text-text-secondary text-sm">{getHouseSignifications(houseNum, locale)}</p>
+      {/* House significations + layperson personal implication */}
+      <div className="mt-4 pt-4 border-t border-gold-primary/10 space-y-3">
+        <div>
+          <p className="text-gold-dark text-xs uppercase tracking-wider mb-1">{locale === 'en' ? 'Life Area' : 'जीवन क्षेत्र'}</p>
+          <p className="text-text-secondary text-sm">{getHouseSignifications(houseNum, locale)}</p>
+        </div>
+        <div className="rounded-lg bg-gold-primary/5 border border-gold-primary/15 p-3">
+          <p className="text-gold-dark text-xs uppercase tracking-wider mb-1.5">{locale === 'en' ? 'What this means for you' : 'आपके लिए इसका अर्थ'}</p>
+          <p className="text-text-secondary text-xs leading-relaxed">
+            {locale === 'en'
+              ? planetsInHouse.length === 0
+                ? `House ${houseNum} has no planets — its results depend primarily on the condition of its lord (${house?.lordName.en}). Trace ${house?.lordName.en}'s sign and house to understand how this life area performs for you.`
+                : planetsInHouse.length === 1
+                ? `${planetsInHouse[0].planet.name.en} occupies this house, making it the dominant force in your ${getHouseSignifications(houseNum, 'en').split(',')[0].trim().toLowerCase()} area. ${planetsInHouse[0].isExalted ? `${planetsInHouse[0].planet.name.en} is exalted here — this is a major strength.` : planetsInHouse[0].isDebilitated ? `${planetsInHouse[0].planet.name.en} is debilitated here — this area requires extra effort and attention.` : planetsInHouse[0].isRetrograde ? `${planetsInHouse[0].planet.name.en} is retrograde — results come through reflection, revisiting, and internal processing rather than direct action.` : `${planetsInHouse[0].planet.name.en} directs its themes (${planetsInHouse[0].planet.name.en === 'Sun' ? 'authority, recognition' : planetsInHouse[0].planet.name.en === 'Moon' ? 'emotions, instincts' : planetsInHouse[0].planet.name.en === 'Mars' ? 'drive, courage' : planetsInHouse[0].planet.name.en === 'Mercury' ? 'intellect, communication' : planetsInHouse[0].planet.name.en === 'Jupiter' ? 'wisdom, expansion' : planetsInHouse[0].planet.name.en === 'Venus' ? 'relationships, pleasure' : planetsInHouse[0].planet.name.en === 'Saturn' ? 'discipline, karmic lessons' : planetsInHouse[0].planet.name.en === 'Rahu' ? 'ambition, obsession' : 'spirituality, detachment'}) into this life area.`}`
+                : `Multiple planets (${planetsInHouse.map(p => p.planet.name.en).join(', ')}) occupy this house — this life area is highly activated and complex. Expect significant activity, both opportunities and challenges, related to ${getHouseSignifications(houseNum, 'en').split(',').slice(0, 2).join(' and ').toLowerCase()}.`
+              : planetsInHouse.length === 0
+                ? `भाव ${houseNum} में कोई ग्रह नहीं है — परिणाम मुख्यतः इसके स्वामी (${house?.lordName.hi}) की स्थिति पर निर्भर करते हैं।`
+                : planetsInHouse.length === 1
+                ? `${planetsInHouse[0].planet.name.hi} इस भाव में है, जो इस जीवन क्षेत्र की प्रमुख शक्ति है। ${planetsInHouse[0].isExalted ? `${planetsInHouse[0].planet.name.hi} उच्च में है — यह एक प्रमुख शक्ति है।` : planetsInHouse[0].isDebilitated ? `${planetsInHouse[0].planet.name.hi} नीच में है — इस क्षेत्र में अतिरिक्त प्रयास चाहिए।` : planetsInHouse[0].isRetrograde ? `${planetsInHouse[0].planet.name.hi} वक्री है — परिणाम आत्म-विचार और पुनरावलोकन से आते हैं।` : `${planetsInHouse[0].planet.name.hi} अपने विषय इस जीवन क्षेत्र में लाता है।`}`
+                : `एकाधिक ग्रह (${planetsInHouse.map(p => p.planet.name.hi).join(', ')}) इस भाव में हैं — यह जीवन क्षेत्र अत्यंत सक्रिय और जटिल है।`}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
@@ -1251,6 +1269,39 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
+              <InfoBlock
+                id="kundali-dasha"
+                title={locale === 'en' ? 'What is a Dasha? (Your Life Chapters)' : 'दशा क्या है? (आपके जीवन के अध्याय)'}
+                defaultOpen={false}
+              >
+                {locale === 'en' ? (
+                  <div className="space-y-3">
+                    <p>A <strong>Dasha</strong> is a planetary period — a specific chunk of time when one planet &quot;runs the show&quot; in your life. Think of it like chapters in a book: during a Jupiter Dasha, your life chapter is about wisdom, growth, and expansion; during a Saturn Dasha, the chapter is about hard work, discipline, and karmic lessons.</p>
+                    <p><strong>How is it calculated?</strong> Vimshottari Dasha (the most widely used system) is based on your <em>Moon nakshatra at birth</em>. The system assigns each of 9 planets a fixed number of years: Ketu 7yr, Venus 20yr, Sun 6yr, Moon 10yr, Mars 7yr, Rahu 18yr, Jupiter 16yr, Saturn 19yr, Mercury 17yr — totaling 120 years. Within each Mahadasha (main period), there are sub-periods called Antardasha, and within those, Pratyantardasha — increasingly fine time slices.</p>
+                    <p><strong>What this means for you:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li>Your <strong className="text-gold-light">current Mahadasha</strong> defines the main theme of this phase of your life. Check which planet you&apos;re under and read its forecast.</li>
+                      <li>Your <strong className="text-gold-light">current Antardasha</strong> (sub-period) fine-tunes the energy — a beneficial Antardasha within a difficult Mahadasha can still bring relief.</li>
+                      <li>Planets that are <strong className="text-emerald-400">strong in your chart</strong> give excellent results during their Dasha. Weak planets give challenging periods but also the most growth.</li>
+                      <li>You cannot change your Dasha timing, but you CAN change how you respond — Dashas point to themes, not fixed outcomes.</li>
+                    </ul>
+                    <p className="text-text-secondary/70 text-xs"><strong>Which system to use?</strong> Start with <em>Vimshottari</em> (most tested, most widely used). Use other systems for additional confirmation once you understand the basics.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p><strong>दशा</strong> एक ग्रह काल है — एक विशिष्ट समय जब एक ग्रह आपके जीवन को चलाता है। इसे किसी किताब के अध्यायों की तरह सोचें: बृहस्पति दशा में जीवन ज्ञान और विस्तार का अध्याय है; शनि दशा में कठिन परिश्रम और कर्म पाठों का।</p>
+                    <p><strong>गणना कैसे होती है?</strong> विंशोत्तरी दशा आपके जन्म चन्द्र नक्षत्र पर आधारित है। 9 ग्रहों को निश्चित वर्ष मिलते हैं — कुल 120 वर्ष। महादशा में अन्तर्दशा और प्रत्यन्तर्दशा होती हैं।</p>
+                    <p><strong>आपके लिए इसका अर्थ:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li>आपकी वर्तमान <strong className="text-gold-light">महादशा</strong> इस जीवन चरण का मुख्य विषय है।</li>
+                      <li>वर्तमान <strong className="text-gold-light">अन्तर्दशा</strong> ऊर्जा को सूक्ष्म बनाती है।</li>
+                      <li>कुण्डली में <strong className="text-emerald-400">बलवान ग्रह</strong> अपनी दशा में उत्कृष्ट परिणाम देते हैं।</li>
+                      <li>दशा का समय नहीं बदल सकते, पर अपनी प्रतिक्रिया बदल सकते हैं।</li>
+                    </ul>
+                  </div>
+                )}
+              </InfoBlock>
+
               {/* Dasha system selector */}
               <div className="flex items-center justify-center gap-2 mb-4 flex-wrap">
                 {[
@@ -1614,6 +1665,37 @@ export default function KundaliPage() {
           {/* ===== YOGAS TAB ===== */}
           {activeTab === 'yogas' && kundali.yogasComplete && (
             <div className="space-y-6">
+              <InfoBlock
+                id="kundali-yogas"
+                title={locale === 'en' ? 'What are Yogas and why do they matter for your life?' : 'योग क्या हैं और वे आपके जीवन के लिए क्यों मायने रखते हैं?'}
+                defaultOpen={false}
+              >
+                {locale === 'en' ? (
+                  <div className="space-y-3">
+                    <p>A <strong>Yoga</strong> (literally &quot;union&quot;) is a special planetary combination that, when formed, creates a distinct life theme or talent. Think of them as <em>bonus features</em> installed at birth — certain yogas give natural wealth, others give fame, spiritual gifts, or leadership abilities.</p>
+                    <p><strong>Key types of Yogas and what they mean for you:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-emerald-400">Raj Yogas</strong> (royal combinations) — Planets owning trikona (1st/5th/9th) and kendra (1st/4th/7th/10th) houses are conjunct or mutually aspect. Effect: authority, success, high social status, career breakthroughs. The more Raj Yogas you have, the more natural momentum towards achievement.</li>
+                      <li><strong className="text-amber-300">Dhana Yogas</strong> (wealth combinations) — 1st, 2nd, 5th, 9th, 11th house lords linking together. Effect: financial gains, prosperity, material comfort. Strong Dhana Yogas mean money flows more easily.</li>
+                      <li><strong className="text-sky-300">Viparita Raj Yogas</strong> — Lords of the challenging houses (6th, 8th, 12th) weakening each other. Effect: transformation through adversity — what seems like misfortune turns into a hidden advantage. These people bounce back stronger from setbacks.</li>
+                      <li><strong className="text-gold-light">Pancha Mahapurusha Yogas</strong> — A strong planet in its own or exaltation sign in a kendra house. Creates an exceptional person in that planet&apos;s domain (e.g., Ruchaka = warrior/Mars energy; Hamsa = wisdom/Jupiter energy; Malavya = beauty/Venus energy).</li>
+                      <li><strong className="text-red-400">Arishta Yogas</strong> — Challenging combinations. These are obstacles, but also opportunities for growth. Many great people have significant Arishta Yogas.</li>
+                    </ul>
+                    <p><strong>Important:</strong> A Yoga&apos;s strength depends on: (1) whether both planets are strong, (2) whether they are aspected by malefics, (3) whether the dasha of those planets is active. A yoga in a chart gives its results fully during its planet&apos;s dasha period.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p><strong>योग</strong> एक विशेष ग्रह संयोजन है जो जन्म से एक विशिष्ट जीवन विषय या प्रतिभा बनाता है — जैसे <em>बोनस सुविधाएं</em> जन्म में स्थापित। कुछ योग स्वाभाविक धन देते हैं, कुछ यश, आध्यात्मिक शक्ति या नेतृत्व।</p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-emerald-400">राज योग</strong> — त्रिकोण और केन्द्र भाव के स्वामी एक साथ। प्रभाव: अधिकार, सफलता, उच्च सामाजिक स्थिति।</li>
+                      <li><strong className="text-amber-300">धन योग</strong> — 1, 2, 5, 9, 11 भाव के स्वामी जुड़े हों। प्रभाव: आर्थिक समृद्धि।</li>
+                      <li><strong className="text-sky-300">विपरीत राज योग</strong> — कठिन भावों (6, 8, 12) के स्वामी एक-दूसरे को कमज़ोर करें। प्रभाव: प्रतिकूलता से सफलता।</li>
+                      <li><strong className="text-gold-light">पंचमहापुरुष योग</strong> — स्वगृह या उच्च में केन्द्र भाव में बलवान ग्रह। उस ग्रह के क्षेत्र में असाधारण व्यक्ति।</li>
+                    </ul>
+                    <p><strong>महत्वपूर्ण:</strong> योग का फल उसके ग्रहों की दशा में सबसे अधिक मिलता है।</p>
+                  </div>
+                )}
+              </InfoBlock>
               <YogasTab yogas={kundali.yogasComplete} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
               <YogasInterpretation yogas={kundali.yogasComplete} locale={locale} />
             </div>
@@ -1664,6 +1746,41 @@ export default function KundaliPage() {
               <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
                 {locale === 'en' ? 'Planetary Avasthas (States)' : 'ग्रह अवस्थाएं'}
               </h3>
+
+              <InfoBlock
+                id="kundali-avasthas"
+                title={locale === 'en' ? 'What are Avasthas and why do they matter?' : 'अवस्थाएं क्या हैं और वे क्यों मायने रखती हैं?'}
+                defaultOpen={false}
+              >
+                {locale === 'en' ? (
+                  <div className="space-y-3">
+                    <p>Think of <strong>Avasthas</strong> as the <em>mood and energy level</em> of each planet. A planet can be very powerful (high Shadbala) but still express itself awkwardly — like a strong person who is embarrassed or sleepy. Avasthas explain exactly HOW each planet is feeling and delivering its results.</p>
+                    <p><strong>The 5 Avastha systems (each measures a different dimension):</strong></p>
+                    <ul className="list-disc ml-4 space-y-2 text-xs">
+                      <li><strong className="text-gold-light">Baladi (Age State)</strong> — Is the planet young and eager, middle-aged and settled, or old and tired? <em>Bala</em> (infant) = still developing its potential; <em>Kumara</em> (youth) = active and learning; <em>Yuva</em> (young adult) = full power and giving best results; <em>Vriddha</em> (old) = slowing down; <em>Mrita</em> (dead) = blocked, giving minimal results. <strong>Impact on you:</strong> Planets in Yuva state are your biggest assets right now.</li>
+                      <li><strong className="text-gold-light">Jagradadi (Alertness)</strong> — Is the planet awake, dreaming, or asleep? <em>Jaagrit</em> (awake) = giving 100% of promised results; <em>Swapna</em> (dreaming) = giving 50%; <em>Sushupti</em> (deep sleep) = giving only 25%. <strong>Impact on you:</strong> An awake planet actively shapes your life; a sleeping one underperforms despite its placement.</li>
+                      <li><strong className="text-gold-light">Deeptadi (Brightness)</strong> — How brightly is the planet shining? <em>Deepta</em> (radiant) = expressing fully and positively; <em>Swastha</em> (comfortable) = at ease; <em>Mudita</em> (pleased) = happy; <em>Shanta</em> (calm); <em>Dina</em> (dim); <em>Dukhita</em> (distressed) = struggling to express; <em>Vikala</em> (defective) = giving erratic results. <strong>Impact on you:</strong> Radiant planets perform with confidence; distressed ones give unpredictable or painful results.</li>
+                      <li><strong className="text-gold-light">Lajjitadi (Emotional State)</strong> — Is the planet in a dignified or compromised emotional state? <em>Lajjita</em> (ashamed) = in a difficult sign with enemy planets; <em>Garvita</em> (proud) = exalted or own sign; <em>Kshudita</em> (hungry) = with enemies; <em>Trishita</em> (thirsty) = in a watery sign with enemy; <em>Mudita</em> (happy) = with friends; <em>Kshobhita</em> (agitated). <strong>Impact on you:</strong> Proud planets deliver results you can be proud of; ashamed planets create obstacles in their domain.</li>
+                      <li><strong className="text-gold-light">Shayanadi (Activity Mode)</strong> — Is the planet active or resting? <em>Shayan</em> (sleeping/resting) = in a long resting phase, results come slowly; <em>Upaveshan</em> (seated) = stable; <em>Netrapani</em> (alert); <em>Prakashana</em> (radiant); <em>Gaman</em> (moving/active) = actively delivering results. <strong>Impact on you:</strong> Active (Gaman) planets are bringing their themes into your life right now.</li>
+                    </ul>
+                    <p className="text-text-secondary/70 text-xs"><strong>How to read the table:</strong> Green = positive/strong, Amber = mixed/moderate, Red = challenging. The AvasthaInterpretation section below gives you the combined personal meaning.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p><strong>अवस्थाएं</strong> प्रत्येक ग्रह का <em>मूड और ऊर्जा स्तर</em> हैं। एक शक्तिशाली ग्रह भी असहज तरीके से काम कर सकता है — जैसे एक ताकतवर व्यक्ति जो शर्मिंदा या नींद में हो। अवस्थाएं बताती हैं कि हर ग्रह ठीक कैसा महसूस कर रहा है।</p>
+                    <p><strong>5 अवस्था पद्धतियाँ:</strong></p>
+                    <ul className="list-disc ml-4 space-y-2 text-xs">
+                      <li><strong className="text-gold-light">बालादि (आयु अवस्था)</strong> — बाल (शिशु) = क्षमता विकसित हो रही है; कुमार (युवा) = सक्रिय; युव (युवा वयस्क) = पूर्ण शक्ति; वृद्ध (वृद्ध) = धीमा; मृत = अवरुद्ध। <strong>आपके लिए:</strong> युव अवस्था में ग्रह आपकी सबसे बड़ी संपत्ति हैं।</li>
+                      <li><strong className="text-gold-light">जागृतादि (सजगता)</strong> — जाग्रत = 100% परिणाम; स्वप्न = 50%; सुषुप्ति = केवल 25%। <strong>आपके लिए:</strong> जाग्रत ग्रह आपके जीवन को सक्रिय रूप से आकार देता है।</li>
+                      <li><strong className="text-gold-light">दीप्तादि (प्रकाश)</strong> — दीप्त = पूरी तरह चमकता है; सुस्थ = सहज; मुदित = प्रसन्न; दीन = मंद; दुःखित = संघर्षशील। <strong>आपके लिए:</strong> दीप्त ग्रह आत्मविश्वास से परिणाम देते हैं।</li>
+                      <li><strong className="text-gold-light">लज्जितादि (भावनात्मक)</strong> — गर्वित (गर्व) = उच्च/स्वगृह; लज्जित (शर्मिंदा) = शत्रु के साथ; मुदित (प्रसन्न) = मित्रों के साथ। <strong>आपके लिए:</strong> गर्वित ग्रह ऐसे परिणाम देते हैं जिन पर गर्व हो।</li>
+                      <li><strong className="text-gold-light">शयनादि (गतिविधि)</strong> — गमन (सक्रिय) = अभी परिणाम दे रहा है; शयन (विश्राम) = परिणाम धीरे आते हैं। <strong>आपके लिए:</strong> गमन ग्रह अभी आपके जीवन में अपने विषय ला रहे हैं।</li>
+                    </ul>
+                    <p className="text-text-secondary/70 text-xs"><strong>तालिका पढ़ने का तरीका:</strong> हरा = सकारात्मक, पीला = मिश्रित, लाल = चुनौतीपूर्ण।</p>
+                  </div>
+                )}
+              </InfoBlock>
+
               <p className="text-text-secondary text-xs text-center mb-4">
                 {locale === 'en' ? 'HOW each planet expresses its energy — 5 classification systems from BPHS Ch.44-45' : 'प्रत्येक ग्रह अपनी ऊर्जा कैसे व्यक्त करता है — BPHS अ.44-45 से 5 वर्गीकरण'}
               </p>
@@ -3553,11 +3670,43 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
       <h3 className="text-2xl font-bold text-gold-gradient text-center" style={headingFont}>{t('ashtakavarga')}</h3>
 
       {/* What is Ashtakavarga */}
-      <div className="text-center text-text-secondary/70 text-sm max-w-2xl mx-auto leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-        {locale === 'en'
-          ? 'Ashtakavarga is a point-based transit prediction system. Each planet contributes "bindu" (beneficial points) to signs. Signs with more bindus give better results during transits. SAV (Sarvashtakavarga) shows the total strength per sign; BPI (Bhinnashtakavarga) shows each planet\'s individual contribution.'
-          : 'अष्टकवर्ग एक बिन्दु-आधारित गोचर फल पद्धति है। प्रत्येक ग्रह राशियों को "बिन्दु" (शुभ अंक) देता है। अधिक बिन्दु वाली राशियों में गोचर शुभ फल देते हैं। SAV कुल बल दर्शाता है; BPI प्रत्येक ग्रह का व्यक्तिगत योगदान।'}
-      </div>
+      <InfoBlock
+        id="kundali-ashtakavarga"
+        title={locale === 'en' ? 'What is Ashtakavarga and how does it affect you?' : 'अष्टकवर्ग क्या है और यह आपको कैसे प्रभावित करता है?'}
+        defaultOpen={false}
+      >
+        {locale === 'en' ? (
+          <div className="space-y-3">
+            <p><strong>Ashtakavarga</strong> is a point-based system that tells you which zodiac signs are <em>lucky zones</em> for transiting planets to pass through — and which are challenging. Every planet in your birth chart casts "votes" (called <strong>bindus</strong>) to every sign. The sign that gets the most votes is the most receptive for planetary transits.</p>
+            <p><strong>Reading the score (what the numbers mean for YOU):</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-emerald-400">30+ bindus</strong> — Excellent zone. When a planet transits this sign, it brings its best results. Great time to launch ventures, make investments, or take action in that planet&apos;s domain.</li>
+              <li><strong className="text-amber-300">25–29 bindus</strong> — Above average. Generally favourable transits with some friction.</li>
+              <li><strong className="text-text-secondary">22–24 bindus</strong> — Average. Mixed results — modest gains, no major setbacks.</li>
+              <li><strong className="text-red-400">Below 22 bindus</strong> — Weak zone. Planets transiting here underperform. Saturn or Rahu transiting a weak sign can be a difficult period — plan conservatively.</li>
+            </ul>
+            <p><strong>Practical examples:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li>Jupiter (wealth/wisdom) transiting a sign with 30+ bindus = excellent year for education, spiritual growth, and financial gains.</li>
+              <li>Saturn transiting a sign with &lt;22 bindus = a challenging 2.5-year stretch — not a time to take on heavy debt or risky ventures.</li>
+              <li>Your current transits page shows where planets are NOW — cross-reference with your bindus for precise timing.</li>
+            </ul>
+            <p><strong>SAV vs BPI:</strong> SAV (Sarvashtakavarga) = total votes for each sign from ALL planets combined — your general lucky/unlucky sign map. BPI (Bhinnashtakavarga) = each planet&apos;s individual score — more specific, used when checking a specific planet&apos;s transit.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p><strong>अष्टकवर्ग</strong> एक बिन्दु-आधारित पद्धति है जो बताती है कि गोचर ग्रहों के लिए कौन-सी राशियाँ <em>शुभ क्षेत्र</em> हैं। आपकी जन्म कुण्डली के प्रत्येक ग्रह प्रत्येक राशि को &quot;बिन्दु&quot; (शुभ अंक) देते हैं।</p>
+            <p><strong>स्कोर का अर्थ (आपके लिए):</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-emerald-400">30+ बिन्दु</strong> — उत्कृष्ट क्षेत्र। जब कोई ग्रह इस राशि से गुजरे, तो नए कार्य, निवेश और उद्यम शुरू करें।</li>
+              <li><strong className="text-amber-300">25–29 बिन्दु</strong> — औसत से ऊपर। सामान्यतः अनुकूल।</li>
+              <li><strong className="text-text-secondary">22–24 बिन्दु</strong> — औसत। मिश्रित परिणाम।</li>
+              <li><strong className="text-red-400">22 से कम बिन्दु</strong> — कमज़ोर क्षेत्र। यहाँ से गुजरने वाले ग्रह कम फल देते हैं। शनि/राहु का गोचर कठिन हो सकता है।</li>
+            </ul>
+            <p><strong>SAV बनाम BPI:</strong> SAV = सभी ग्रहों का कुल स्कोर (समग्र शुभ/अशुभ राशि नक्शा)। BPI = प्रत्येक ग्रह का व्यक्तिगत स्कोर — किसी विशेष ग्रह गोचर की जाँच हेतु।</p>
+          </div>
+        )}
+      </InfoBlock>
 
       {/* Quick insight */}
       {(strongSigns.length > 0 || weakSigns.length > 0) && (

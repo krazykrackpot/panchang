@@ -1,4 +1,5 @@
-import { normalizeDeg } from '@/lib/ephem/astronomical';
+import { normalizeDeg, lahiriAyanamsha } from '@/lib/ephem/astronomical';
+import { getSunTimes } from '@/lib/astronomy/sunrise';
 
 // ---------------------------------------------------------------------------
 // Input types (local — not imported)
@@ -375,13 +376,17 @@ function tribhagaBala(
   return 0;
 }
 
-function abdaBala(p: PlanetInput, julianDay: number): number {
-  const yearLordIdx = Math.floor(julianDay / 365.25) % 7;
+function abdaBala(p: PlanetInput, birthDateObj: Date): number {
+  // Year lord = lord of the weekday of Jan 1 of the birth year (Gregorian approx of Mesha Sankranti)
+  const jan1 = new Date(Date.UTC(birthDateObj.getUTCFullYear(), 0, 1));
+  const yearLordIdx = WEEKDAY_LORD[jan1.getUTCDay()];
   return p.id === yearLordIdx ? 15 : 0;
 }
 
-function masaBala(p: PlanetInput, julianDay: number): number {
-  const monthLordIdx = Math.floor(julianDay / 30.4375) % 7;
+function masaBala(p: PlanetInput, birthDateObj: Date): number {
+  // Month lord = lord of weekday of 1st day of birth Gregorian month (approx of Vedic lunar month start)
+  const monthStart = new Date(Date.UTC(birthDateObj.getUTCFullYear(), birthDateObj.getUTCMonth(), 1));
+  const monthLordIdx = WEEKDAY_LORD[monthStart.getUTCDay()];
   return p.id === monthLordIdx ? 30 : 0;
 }
 
@@ -391,15 +396,15 @@ function varaBala(p: PlanetInput, julianDay: number): number {
   return p.id === lordId ? 45 : 0;
 }
 
-function horaBala(p: PlanetInput, birthHour: number, julianDay: number): number {
+function horaBala(p: PlanetInput, birthHour: number, julianDay: number, sunriseHour: number): number {
   const weekday = Math.floor(julianDay + 1.5) % 7;
   const dayLord = WEEKDAY_LORD[weekday];
 
   // Find position of day lord in Chaldean order
   const dayLordPos = CHALDEAN.indexOf(dayLord);
 
-  // Hour index from sunrise (~6 AM)
-  let hourIndex = Math.floor(birthHour - 6);
+  // Hour index from actual sunrise
+  let hourIndex = Math.floor(birthHour - sunriseHour);
   if (hourIndex < 0) hourIndex += 24;
 
   // Current hora lord = advance from day lord position by hourIndex steps
@@ -409,10 +414,11 @@ function horaBala(p: PlanetInput, birthHour: number, julianDay: number): number 
   return p.id === horaLord ? 60 : 0;
 }
 
-function ayanaBala(p: PlanetInput): number {
-  // Simplified declination from sidereal longitude
+function ayanaBala(p: PlanetInput, ayanamsha: number): number {
+  // Declination must use tropical longitude (sidereal + ayanamsha)
+  const tropicalLong = normalizeDeg(p.longitude + ayanamsha);
   const dec =
-    Math.asin(Math.sin(OBLIQUITY * DEG2RAD) * Math.sin(p.longitude * DEG2RAD)) *
+    Math.asin(Math.sin(OBLIQUITY * DEG2RAD) * Math.sin(tropicalLong * DEG2RAD)) *
     RAD2DEG;
 
   let value: number;
@@ -470,7 +476,20 @@ function computeKalaBala(
     input.birthDateObj.getUTCHours() +
     input.birthDateObj.getUTCMinutes() / 60 +
     input.timezone;
-  const isDayBirth = birthHour >= 6 && birthHour < 18;
+
+  // Compute actual sunrise for this birth location/date
+  const sunTimes = getSunTimes(
+    input.birthDateObj.getUTCFullYear(),
+    input.birthDateObj.getUTCMonth() + 1,
+    input.birthDateObj.getUTCDate(),
+    input.latitude,
+    input.longitude,
+    input.timezone,
+  );
+  // Convert sunrise/sunset Date to local decimal hours
+  const sunriseHour = sunTimes.sunrise.getUTCHours() + sunTimes.sunrise.getUTCMinutes() / 60 + input.timezone;
+  const sunsetHour = sunTimes.sunset.getUTCHours() + sunTimes.sunset.getUTCMinutes() / 60 + input.timezone;
+  const isDayBirth = birthHour >= sunriseHour && birthHour < sunsetHour;
 
   const sunPlanet = planets.find((pl) => pl.id === 0);
   const moonPlanet = planets.find((pl) => pl.id === 1);
@@ -480,11 +499,12 @@ function computeKalaBala(
   const nn = natonnataBala(p, isDayBirth);
   const pk = pakshaBala(p, sunLong, moonLong);
   const tb = tribhagaBala(p, birthHour, isDayBirth);
-  const ab = abdaBala(p, input.julianDay);
-  const mb = masaBala(p, input.julianDay);
+  const ab = abdaBala(p, input.birthDateObj);
+  const mb = masaBala(p, input.birthDateObj);
   const vb = varaBala(p, input.julianDay);
-  const hb = horaBala(p, birthHour, input.julianDay);
-  const ay = ayanaBala(p);
+  const hb = horaBala(p, birthHour, input.julianDay, sunriseHour);
+  const ayanamsha = lahiriAyanamsha(input.julianDay);
+  const ay = ayanaBala(p, ayanamsha);
   const yb = yuddhaBalaMap[p.id] ?? 0;
 
   const total = nn + pk + tb + ab + mb + vb + hb + ay + yb;
@@ -577,7 +597,8 @@ export function calculateFullShadbala(input: ShadBalaInput): ShadBalaComplete[] 
     const sthana = computeSthanaBala(p);
     const digBala = r2(computeDigBala(p, input.ascendantDeg));
     const kala = computeKalaBala(p, input, planets, yuddhaBalaMap);
-    const ay = ayanaBala(p);
+    const ayanamsha = lahiriAyanamsha(input.julianDay);
+    const ay = ayanaBala(p, ayanamsha);
     const cheshtaBala = r2(computeCheshtaBala(p, ay));
     const naisargikaBala = NAISARGIKA[p.id];
     const drikBala = r2(computeDrikBala(p, planets));

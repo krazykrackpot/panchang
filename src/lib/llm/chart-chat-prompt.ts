@@ -102,11 +102,17 @@ export function buildChartChatSystemPrompt(kundali: KundaliData, locale: string)
     lines.push('');
   }
 
+  const PLANET_NAME_MAP: Record<number, string> = {
+    0: 'Sun', 1: 'Moon', 2: 'Mars', 3: 'Mercury', 4: 'Jupiter',
+    5: 'Venus', 6: 'Saturn', 7: 'Rahu', 8: 'Ketu',
+  };
+
   // Sphutas (sensitive points)
   if (kundali.sphutas) {
+    const yogiPlanetName = PLANET_NAME_MAP[kundali.sphutas.yogiPoint.yogiPlanet] ?? `Planet ${kundali.sphutas.yogiPoint.yogiPlanet}`;
     lines.push('## Sensitive Points (Sphutas)');
     lines.push(`- Yogi Point: ${kundali.sphutas.yogiPoint.degree.toFixed(1)}° in sign ${kundali.sphutas.yogiPoint.sign} — MOST BENEFIC degree`);
-    lines.push(`- Yogi Planet: Planet ${kundali.sphutas.yogiPoint.yogiPlanet} (brings maximum good fortune)`);
+    lines.push(`- Yogi Planet: ${yogiPlanetName} (brings maximum good fortune)`);
     lines.push(`- Avayogi Point: ${kundali.sphutas.avayogiPoint.degree.toFixed(1)}° — most challenging degree`);
     lines.push(`- Prana Sphuta (vitality): ${kundali.sphutas.pranaSphuta.degree.toFixed(1)}°`);
     lines.push(`- Mrityu Sphuta (longevity): ${kundali.sphutas.mrityuSphuta.degree.toFixed(1)}°`);

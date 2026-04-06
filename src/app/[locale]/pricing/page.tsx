@@ -7,6 +7,7 @@ import { Check, X, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import type { Locale } from '@/types/panchang';
+import { trackSubscriptionStarted } from '@/lib/analytics';
 
 const PLANS = [
   {
@@ -168,8 +169,10 @@ export default function PricingPage() {
         body: JSON.stringify({ tier, billing, currency }),
       });
       const data = await res.json();
-      if (data.url) window.location.href = data.url;
-      else if (data.error) alert(data.error);
+      if (data.url) {
+        trackSubscriptionStarted({ tier, period: billing, currency: currency.toLowerCase() as 'usd' | 'inr' });
+        window.location.href = data.url;
+      } else if (data.error) alert(data.error);
     } catch {
       alert('Checkout failed');
     }

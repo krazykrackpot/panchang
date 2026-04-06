@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
 
@@ -46,8 +45,8 @@ export default async function LearnLayout({ children, params }: { children: Reac
 
   return (
     <>
-      <Script id="learn-breadcrumb-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify(breadcrumbJsonLd)}</Script>
-      <Script id="learn-course-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify(courseJsonLd)}</Script>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }} />
       <LearnLayoutShell>{children}</LearnLayoutShell>
     </>
   );

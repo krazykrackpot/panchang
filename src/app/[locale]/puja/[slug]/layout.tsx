@@ -45,23 +45,59 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         sa: `/sa/puja/${slug}`,
       },
     },
-    other: {
-      'script:ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'HowTo',
-        name: `${deityEn} Puja Vidhi`,
-        description,
-        step: puja.vidhiSteps.map((s, i) => ({
-          '@type': 'HowToStep',
-          position: i + 1,
-          name: s.title.en,
-          text: s.description.en,
-        })),
-      }),
-    },
   };
 }
 
-export default function PujaSlugLayout({ children }: { children: React.ReactNode }) {
-  return children;
+export default async function PujaSlugLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  const puja = PUJA_VIDHIS[slug];
+
+  if (!puja) return <>{children}</>;
+
+  const BASE_URL = 'https://www.dekhopanchang.com';
+  const deityEn = puja.deity.en;
+  const description = `Complete ${deityEn} puja vidhi with step-by-step procedure, mantras in Devanagari & IAST, samagri list, and auspicious timing. ${puja.muhurtaDescription.en}`.slice(0, 160);
+
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: `${deityEn} Puja Vidhi`,
+    description,
+    step: puja.vidhiSteps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.title.en,
+      text: s.description.en,
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE_URL}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: 'Puja Vidhi', item: `${BASE_URL}/${locale}/puja` },
+      { '@type': 'ListItem', position: 3, name: `${deityEn} Puja Vidhi`, item: `${BASE_URL}/${locale}/puja/${slug}` },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

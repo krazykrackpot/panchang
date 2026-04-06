@@ -97,9 +97,6 @@ const routes = [
   '/horoscope',
   '/kaal-nirnaya',
   '/nivas-shool',
-  // Kundali sub-pages
-  '/kundali/compare',
-  '/kundali/rectify',
   // Learn modules (structured curriculum)
   '/learn/track/cosmology',
   '/learn/track/panchang',

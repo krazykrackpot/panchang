@@ -9,6 +9,7 @@
   --color-gold-dark: #8a6d2b;
   --color-text-primary: #e8e6e3;
   --color-text-secondary: #9b97a0;
+  --color-text-tertiary: #5c5870;
   --color-text-devanagari: #f0d48a;
   --color-graha-sun: #e67e22;
   --color-graha-moon: #ecf0f1;
@@ -103,6 +104,7 @@ html.light {
   --color-bg-tertiary: #e8e0d4;
   --color-text-primary: #1a1a2e;
   --color-text-secondary: #5a5570;
+  --color-text-tertiary: #8c8598;
   --color-text-devanagari: #8a6d2b;
   color-scheme: light;
 }

@@ -272,7 +272,8 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
           {/* ── Sade Sati overlay ──────────────────────────────────────────── */}
           {data.sadeSatiPeriods.map((ss, i) => {
             const x1 = Math.max(ML, yearToX(ss.startYear));
-            const x2 = Math.min(TW - 4, yearToX(ss.endYear));
+            // +1 because endYear is the last year Saturn is in target sign — bar should cover full year
+            const x2 = Math.min(TW - 4, yearToX(ss.endYear + 1));
             if (x2 <= x1) return null;
             const w = x2 - x1;
             return (
@@ -285,7 +286,7 @@ export default function LifeTimeline({ kundali, locale, isDevanagari, headingFon
                 {/* Phase stripes */}
                 {ss.phases?.map((ph, j) => {
                   const px1 = Math.max(x1, yearToX(ph.startYear));
-                  const px2 = Math.min(x2, yearToX(ph.endYear));
+                  const px2 = Math.min(x2, yearToX(ph.endYear + 1));
                   if (px2 <= px1) return null;
                   const intensity = ph.phase === 'peak' ? 0.35 : 0.15;
                   return (

@@ -82,6 +82,69 @@ function planetId(name: string): number {
   return map[name] ?? -1;
 }
 
+// ─── Drekkana faces (36 archetypes — Varahamihira, Brihat Jataka Ch.27) ────
+// Index = (sign-1)*3 + (face-1), face = floor((longitude%30)/10)+1, sign = floor(longitude/30)+1
+
+const DREKKANA_FACES: Array<{ archetype: Bi; quality: Bi }> = [
+  // Aries: faces 1-3 (index 0-2)
+  { archetype: { en: 'The Warrior', hi: 'योद्धा' }, quality: { en: 'Aggressive pioneer; bold, impulsive, initiating force — planet here gains martial vigour and competitive drive.', hi: 'आक्रामक अग्रदूत; साहसी, आवेगशील, प्रारंभ-शक्ति — यहाँ ग्रह युद्ध-वृत्ति और प्रतिस्पर्धी प्रेरणा पाता है।' } },
+  { archetype: { en: 'The Amazon', hi: 'योद्धा-स्त्री' }, quality: { en: 'Fierce feminine energy in conflict; emotional battles, protective instincts, warrior-mother archetype.', hi: 'संघर्ष में तीव्र स्त्री-ऊर्जा; भावनात्मक युद्ध, सुरक्षात्मक वृत्ति, योद्धा-माता आदर्श।' } },
+  { archetype: { en: 'The Armed Noble', hi: 'सशस्त्र अभिजात' }, quality: { en: 'Disciplined martial authority; force combined with status — leadership through demonstrated courage.', hi: 'अनुशासित सैन्य-अधिकार; बल और प्रतिष्ठा का संयोग — सिद्ध साहस द्वारा नेतृत्व।' } },
+  // Taurus: faces 1-3 (index 3-5)
+  { archetype: { en: 'The Adorned Beauty', hi: 'अलंकृत सौंदर्य' }, quality: { en: 'Sensual abundance; love of beauty, art, and pleasure — planet here gains receptivity and magnetic attraction.', hi: 'इंद्रिय-प्राचुर्य; सौंदर्य, कला और आनंद-प्रेम — यहाँ ग्रह ग्रहणशीलता और आकर्षण पाता है।' } },
+  { archetype: { en: 'The Toiler', hi: 'परिश्रमी' }, quality: { en: 'Patient builder; steady accumulation through persistent, earthy effort — productive and reliable.', hi: 'धैर्यवान निर्माता; निरंतर भूमिगत प्रयास से संचय — उत्पादक और विश्वसनीय।' } },
+  { archetype: { en: 'The Steadfast Guardian', hi: 'अटल संरक्षक' }, quality: { en: 'Stubborn protector of resources; fierce when provoked, immovable in defence of what is valued.', hi: 'संसाधनों का जिद्दी रक्षक; उकसाने पर भयंकर, मूल्यवान वस्तु की रक्षा में अडिग।' } },
+  // Gemini: faces 1-3 (index 6-8)
+  { archetype: { en: 'The Learned Maiden', hi: 'विद्वान कन्या' }, quality: { en: 'Intellectual beauty; writing, communication, and mental agility — charm combined with quick wit.', hi: 'बौद्धिक सौंदर्य; लेखन, संचार और मानसिक चपलता — आकर्षण और तीव्र बुद्धि का संयोग।' } },
+  { archetype: { en: 'The Merchant-Scholar', hi: 'व्यापारी-विद्वान' }, quality: { en: 'Commercial intelligence; knowledge united with practical exchange — versatile communicator and trader.', hi: 'वाणिज्यिक बुद्धि; ज्ञान और व्यावहारिक विनिमय का एकीकरण — बहुमुखी संचारक।' } },
+  { archetype: { en: 'The Focused Archer', hi: 'एकाग्र धनुर्धर' }, quality: { en: 'Sharp mental aim; precision in argument and analysis — debates skillfully, cuts to the truth.', hi: 'तीव्र मानसिक लक्ष्य; तर्क और विश्लेषण में सटीकता — कुशल वाद-विवाद, सत्य की खोज।' } },
+  // Cancer: faces 1-3 (index 9-11)
+  { archetype: { en: 'The Nurturing Mother', hi: 'पोषण-माता' }, quality: { en: 'Deep nourishment and care; emotional intuition, psychic receptivity, and protective love.', hi: 'गहरा पोषण और देखभाल; भावनात्मक अंतर्ज्ञान, मानसिक ग्रहणशीलता और सुरक्षात्मक प्रेम।' } },
+  { archetype: { en: 'The Serpent Keeper', hi: 'नाग-पालक' }, quality: { en: 'Holder of hidden emotional power; karmic wisdom through suffering, occult sensitivity.', hi: 'छिपी भावनात्मक शक्ति का धारक; कष्ट से कार्मिक ज्ञान, गुप्त संवेदनशीलता।' } },
+  { archetype: { en: 'The Weeping Woman', hi: 'करुणा-नारी' }, quality: { en: 'Deep emotional sensitivity; grief transformed into compassion — profound empathy and emotional intelligence.', hi: 'गहरी भावनात्मक संवेदनशीलता; शोक से करुणा — गहरी सहानुभूति और भावनात्मक बुद्धि।' } },
+  // Leo: faces 1-3 (index 12-14)
+  { archetype: { en: 'The Crowned King', hi: 'मुकुटधारी राजा' }, quality: { en: 'Regal natural authority; born to lead, radiate, and inspire — commanding presence and dignity.', hi: 'राजसी प्राकृतिक अधिकार; नेतृत्व, प्रकाश और प्रेरणा के लिए जन्मे — प्रभावशाली उपस्थिति।' } },
+  { archetype: { en: 'The Blazing Champion', hi: 'ज्वलंत योद्धा' }, quality: { en: 'Fierce solar pride; power expressed through dramatic action, passionate defence of honour.', hi: 'तीव्र सौर-गर्व; नाटकीय कार्य और सम्मान की भावुक रक्षा में व्यक्त शक्ति।' } },
+  { archetype: { en: 'The Ritual King', hi: 'अनुष्ठान-राजा' }, quality: { en: 'Power sanctified by dharma; rulership through ceremony, tradition, and divine mandate — kingly magnanimity.', hi: 'धर्म द्वारा पवित्र शक्ति; समारोह, परंपरा और दिव्य-आदेश से शासन — राजकीय उदारता।' } },
+  // Virgo: faces 1-3 (index 15-17)
+  { archetype: { en: 'The Grain Maiden', hi: 'धान्य-कन्या' }, quality: { en: 'Humble practical service; discrimination between pure and impure, healing through detail and diligence.', hi: 'विनम्र व्यावहारिक सेवा; शुद्ध-अशुद्ध का विवेक, विस्तार और परिश्रम से उपचार।' } },
+  { archetype: { en: 'The Analyst', hi: 'विश्लेषक' }, quality: { en: 'Methodical intelligence; accounting, classification, and systematic problem-solving — perfects what it touches.', hi: 'क्रमबद्ध बुद्धि; लेखा, वर्गीकरण और व्यवस्थित समस्या-समाधान — जो छूता है उसे परिष्कृत करता है।' } },
+  { archetype: { en: 'The Discerning Traveller', hi: 'विवेकशील यात्री' }, quality: { en: 'Discriminating movement; strategic journeys in search of knowledge and improvement — critical observer.', hi: 'विवेकशील गति; ज्ञान और सुधार की खोज में रणनीतिक यात्राएं — आलोचनात्मक पर्यवेक्षक।' } },
+  // Libra: faces 1-3 (index 18-20)
+  { archetype: { en: 'The Just Judge', hi: 'न्यायी न्यायाधीश' }, quality: { en: 'Fair weigher of opposites; diplomatic, balanced, seeking harmony through rational deliberation.', hi: 'विपरीतताओं का न्यायपूर्ण तुलाकार; कूटनीतिक, संतुलित, तर्कसंगत विचार-विमर्श से सौहार्द।' } },
+  { archetype: { en: 'The Social Grace', hi: 'सामाजिक सौजन्य' }, quality: { en: 'Aesthetic and social mastery; arts, beauty, relationship harmony — natural magnetism and charm.', hi: 'सौंदर्य और सामाजिक निपुणता; कला, सौंदर्य, संबंध-सौहार्द — प्राकृतिक चुंबकत्व।' } },
+  { archetype: { en: 'The Righteous Sword', hi: 'धर्मी तलवार' }, quality: { en: 'Justice enforced; balance restored through decisive action — fights for fairness, cuts through deception.', hi: 'न्याय का प्रवर्तन; निर्णायक कार्य से संतुलन — निष्पक्षता के लिए लड़ता है, कपट काटता है।' } },
+  // Scorpio: faces 1-3 (index 21-23)
+  { archetype: { en: 'The Serpent Queen', hi: 'नागिन रानी' }, quality: { en: 'Occult power and hidden control; penetrates surface to reach core truth — magnetic and dangerous.', hi: 'गुप्त शक्ति और छिपा नियंत्रण; मूल सत्य तक पहुँचने के लिए सतह भेदना — चुंबकीय और घातक।' } },
+  { archetype: { en: 'The Investigator', hi: 'जांचकर्ता' }, quality: { en: 'Relentless seeker of the hidden; research, investigation, and exposure of secrets — psychological depth.', hi: 'छिपे की अथक खोज; अनुसंधान, जांच और रहस्य उद्घाटन — मनोवैज्ञानिक गहराई।' } },
+  { archetype: { en: 'The Transformer', hi: 'परिवर्तक' }, quality: { en: 'Death-and-rebirth cycle; profound alchemical transformation and spiritual regeneration from destruction.', hi: 'मृत्यु-पुनर्जन्म चक्र; विनाश से गहरा कायाकल्प और आध्यात्मिक पुनर्जन्म।' } },
+  // Sagittarius: faces 1-3 (index 24-26)
+  { archetype: { en: 'The Centaur Archer', hi: 'अश्व-धनुर्धर' }, quality: { en: 'Adventurous truth-seeker; aims high, explores distant horizons — bold philosophical questioning.', hi: 'साहसिक सत्य-साधक; ऊँचा लक्ष्य, दूर-क्षितिज अन्वेषण — साहसी दार्शनिक प्रश्न।' } },
+  { archetype: { en: 'The Dharma Teacher', hi: 'धर्म-गुरु' }, quality: { en: 'Philosophical guide and guru; wisdom transmitted through teaching, scripture, and lived example.', hi: 'दार्शनिक मार्गदर्शक और गुरु; शिक्षण, शास्त्र और जीवन-उदाहरण से ज्ञान-प्रसार।' } },
+  { archetype: { en: 'The Summit Seeker', hi: 'शिखर-अन्वेषक' }, quality: { en: 'Aspiring toward the highest truth; spiritual mountain-climber reaching for transcendent knowledge.', hi: 'उच्चतम सत्य की ओर आकांक्षा; अतिक्रामक ज्ञान के लिए आध्यात्मिक पर्वतारोहण।' } },
+  // Capricorn: faces 1-3 (index 27-29)
+  { archetype: { en: 'The Crocodile', hi: 'मगरमच्छ' }, quality: { en: 'Patient predator of achievement; lurks below the surface, waits for the right moment, seizes decisively.', hi: 'उपलब्धि का धैर्यवान शिकारी; सतह के नीचे इंतजार, सही समय पर दृढ़ता से ग्रहण।' } },
+  { archetype: { en: 'The Mountain Climber', hi: 'पर्वतारोही' }, quality: { en: 'Determined ascent through toil; earthy ambition, step-by-step mastery — built to last.', hi: 'परिश्रम से दृढ़ आरोहण; भूमिगत महत्वाकांक्षा, क्रमशः महारत — स्थायित्व के लिए निर्मित।' } },
+  { archetype: { en: 'The Enduring Sovereign', hi: 'चिरस्थायी संप्रभु' }, quality: { en: 'Authority through tested endurance; rules with gravitas and the weight of hard-won experience.', hi: 'परखी सहनशक्ति से अधिकार; गंभीरता और कठिन अनुभव के भार से शासन।' } },
+  // Aquarius: faces 1-3 (index 30-32)
+  { archetype: { en: 'The Water Bearer', hi: 'जल-वाहक' }, quality: { en: 'Universal distributor of wisdom; progressive, altruistic, pouring knowledge for collective benefit.', hi: 'ज्ञान का सार्वभौमिक वितरक; प्रगतिशील, परोपकारी, सामूहिक लाभ के लिए ज्ञान प्रदान।' } },
+  { archetype: { en: 'The Innovator', hi: 'नवप्रवर्तक' }, quality: { en: 'Radical thinker and inventor; breaks existing forms to create new systems, technologies, and social structures.', hi: 'कट्टरपंथी विचारक और आविष्कारक; नई प्रणालियाँ, प्रौद्योगिकियाँ और सामाजिक संरचनाएं।' } },
+  { archetype: { en: 'The Humanitarian Healer', hi: 'मानवतावादी उपचारक' }, quality: { en: 'Service to humanity at scale; combines scientific understanding with compassionate action for all.', hi: 'बड़े पैमाने पर मानवता-सेवा; वैज्ञानिक समझ और सर्वहित करुणापूर्ण कार्य का संयोग।' } },
+  // Pisces: faces 1-3 (index 33-35)
+  { archetype: { en: 'The Dreaming Fish', hi: 'स्वप्न-मछली' }, quality: { en: 'Boundless imagination and spiritual receptivity; psychic, visionary, dissolving into the cosmic ocean.', hi: 'असीमित कल्पना और आध्यात्मिक ग्रहणशीलता; मानसिक, द्रष्टा, ब्रह्मांडीय सागर में विलीन।' } },
+  { archetype: { en: 'The Mystic Meditator', hi: 'रहस्यमय ध्यानी' }, quality: { en: 'Contemplative seeker of the formless; inward journey transcending mundane reality toward liberation.', hi: 'निराकार का चिंतनशील साधक; सांसारिक वास्तविकता से परे मुक्ति की ओर अंतर्यात्रा।' } },
+  { archetype: { en: 'The Liberated Soul', hi: 'मुक्त आत्मा' }, quality: { en: 'Moksha-seeking consciousness; spiritual liberation, complete dissolution of ego, return to the source.', hi: 'मोक्ष-साधना चेतना; आध्यात्मिक मुक्ति, अहंकार का पूर्ण विसर्जन, स्रोत में वापसी।' } },
+];
+
+/** Return the Drekkana face (0-35) from sidereal longitude (0-360) */
+function getDrekkanaFace(longitude: number): { faceIndex: number; sign: number; face: number } {
+  const norm = ((longitude % 360) + 360) % 360;
+  const sign = Math.floor(norm / 30) + 1;          // 1-12
+  const face = Math.floor((norm % 30) / 10) + 1;   // 1-3
+  const faceIndex = (sign - 1) * 3 + (face - 1);   // 0-35
+  return { faceIndex, sign, face };
+}
+
 // ─── Chart-specific commentary generators ──────────────────────────────────
 
 // Domain descriptions for each varga
@@ -197,6 +260,36 @@ function analyzeChart(
       en: `Rahu-Ketu axis in ${ord(rahuH)}-${ord(ketuH)} houses — karmic growth axis active in these domains. Rahu brings obsessive desire, Ketu brings detachment and spiritual insight.`,
       hi: `राहु-केतु अक्ष ${rahuH}-${ketuH} भावों में — इन क्षेत्रों में कार्मिक विकास अक्ष सक्रिय। राहु तीव्र इच्छा, केतु वैराग्य और आध्यात्मिक अंतर्दृष्टि लाता है।`,
     });
+  }
+
+  // ─── D3-specific: Drekkana face archetypes per planet ────────
+  if (chartKey === 'D3' && kundali.planets && kundali.planets.length > 0) {
+    const SIGN_NAMES: Record<number, Bi> = {
+      1: { en: 'Aries', hi: 'मेष' }, 2: { en: 'Taurus', hi: 'वृष' }, 3: { en: 'Gemini', hi: 'मिथुन' },
+      4: { en: 'Cancer', hi: 'कर्क' }, 5: { en: 'Leo', hi: 'सिंह' }, 6: { en: 'Virgo', hi: 'कन्या' },
+      7: { en: 'Libra', hi: 'तुला' }, 8: { en: 'Scorpio', hi: 'वृश्चिक' }, 9: { en: 'Sagittarius', hi: 'धनु' },
+      10: { en: 'Capricorn', hi: 'मकर' }, 11: { en: 'Aquarius', hi: 'कुंभ' }, 12: { en: 'Pisces', hi: 'मीन' },
+    };
+    // Add section header
+    findings.push({
+      en: '— Drekkana Face Archetypes (Varahamihira, Brihat Jataka Ch.27) —',
+      hi: '— द्रेष्काण मुख आदर्श (वराहमिहिर, बृहज्जातक अ.27) —',
+    });
+    for (const pp of kundali.planets) {
+      const pid = pp.planet.id;
+      if (pid === 7 || pid === 8) continue; // skip Rahu/Ketu — shadow, no physical face
+      const { faceIndex, sign, face } = getDrekkanaFace(pp.longitude);
+      const df = DREKKANA_FACES[faceIndex];
+      if (!df) continue;
+      const signNameEn = SIGN_NAMES[sign]?.en || '';
+      const signNameHi = SIGN_NAMES[sign]?.hi || '';
+      const pName = PN[pid];
+      if (!pName) continue;
+      findings.push({
+        en: `${pName.en} — "${df.archetype.en}" (${signNameEn} face ${face}): ${df.quality.en}`,
+        hi: `${pName.hi} — "${df.archetype.hi}" (${signNameHi} मुख ${face}): ${df.quality.hi}`,
+      });
+    }
   }
 
   // ─── Overall Commentary ──────────────────────────────────────

@@ -9,6 +9,63 @@ import type { PlanetPosition } from '@/types/kundali';
 import type { TajikaYoga } from '@/types/varshaphal';
 import type { Trilingual } from '@/types/panchang';
 
+// ─── P2-04: Planet-pair year-prediction matrix ──────────────────────────────
+// Classical Tajika: planet pairs have specific annual meanings based on their nature.
+// This gives richer interpretation for Ithasala / Ishrafa yogas.
+// Reference: Neelakantha's Tajika Neelakanthi, Somanatha's Tajika Shastra
+
+const PLANET_PAIR_YEAR_MEANING: Record<string, { en: string; hi: string }> = {
+  // Sun combinations
+  '0-4': { en: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.',      hi: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।' },
+  '4-0': { en: 'Sun–Jupiter: Career elevation, recognition from authorities, dharmic growth, honors and promotions likely.',      hi: 'सूर्य–गुरु: करियर उन्नति, अधिकारियों से मान्यता, धर्मिक विकास, पदोन्नति संभव।' },
+  '0-1': { en: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.',           hi: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।' },
+  '1-0': { en: 'Sun–Moon: Public recognition, emotional and professional harmony, relationship with father and public.',           hi: 'सूर्य–चन्द्र: सार्वजनिक मान्यता, भावनात्मक और व्यावसायिक सामंजस्य।' },
+  '0-2': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.',  hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।' },
+  '2-0': { en: 'Sun–Mars: Dynamic ambition, competitive success, physical vitality — but also injury, conflict, or aggression.',  hi: 'सूर्य–मंगल: गतिशील महत्वाकांक्षा, प्रतिस्पर्धात्मक सफलता — किन्तु चोट, विवाद की भी संभावना।' },
+  '0-5': { en: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.',              hi: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।' },
+  '5-0': { en: 'Sun–Venus: Success in arts, creativity, government favor, romantic developments, social prestige.',              hi: 'सूर्य–शुक्र: कला में सफलता, रचनात्मकता, सरकारी कृपा, प्रेम संबंध, सामाजिक प्रतिष्ठा।' },
+  '0-6': { en: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', hi: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।' },
+  '6-0': { en: 'Sun–Saturn: Challenges from authority, hard-won success after delays, disciplined effort rewarded late in year.', hi: 'सूर्य–शनि: सत्ता से चुनौती, विलंब के बाद कड़ी मेहनत से सफलता, अनुशासित प्रयास।' },
+  '0-3': { en: 'Sun–Mercury: Intellectual recognition, administrative success, writing/publishing matters, communication with government.', hi: 'सूर्य–बुध: बौद्धिक मान्यता, प्रशासनिक सफलता, लेखन/प्रकाशन, सरकार से संवाद।' },
+  '3-0': { en: 'Sun–Mercury: Intellectual recognition, administrative success, writing/publishing matters, communication with government.', hi: 'सूर्य–बुध: बौद्धिक मान्यता, प्रशासनिक सफलता, लेखन/प्रकाशन, सरकार से संवाद।' },
+  // Moon combinations
+  '1-4': { en: 'Moon–Jupiter: Emotional fulfillment, family expansion, financial gains through public, spiritual contentment.',   hi: 'चन्द्र–गुरु: भावनात्मक तृप्ति, परिवार विस्तार, सार्वजनिक लाभ, आध्यात्मिक संतोष।' },
+  '4-1': { en: 'Moon–Jupiter: Emotional fulfillment, family expansion, financial gains through public, spiritual contentment.',   hi: 'चन्द्र–गुरु: भावनात्मक तृप्ति, परिवार विस्तार, सार्वजनिक लाभ, आध्यात्मिक संतोष।' },
+  '1-5': { en: 'Moon–Venus: Romantic happiness, domestic beauty, artistic success, social pleasure, good food and hospitality.', hi: 'चन्द्र–शुक्र: रोमांटिक खुशी, घरेलू सुंदरता, कलात्मक सफलता, सामाजिक आनंद।' },
+  '5-1': { en: 'Moon–Venus: Romantic happiness, domestic beauty, artistic success, social pleasure, good food and hospitality.', hi: 'चन्द्र–शुक्र: रोमांटिक खुशी, घरेलू सुंदरता, कलात्मक सफलता, सामाजिक आनंद।' },
+  '1-6': { en: 'Moon–Saturn: Emotional discipline tested, separation possible, property dealings, service matters, endurance required.', hi: 'चन्द्र–शनि: भावनात्मक परीक्षण, विच्छेद संभव, संपत्ति व्यवहार, सेवा, धैर्य आवश्यक।' },
+  '6-1': { en: 'Moon–Saturn: Emotional discipline tested, separation possible, property dealings, service matters, endurance required.', hi: 'चन्द्र–शनि: भावनात्मक परीक्षण, विच्छेद संभव, संपत्ति व्यवहार, सेवा, धैर्य आवश्यक।' },
+  '1-2': { en: 'Moon–Mars: Emotional intensity, domestic conflicts or passion, quick financial decisions, health of mother, accidents possible.', hi: 'चन्द्र–मंगल: भावनात्मक तीव्रता, घरेलू संघर्ष या जुनून, त्वरित वित्तीय निर्णय।' },
+  '2-1': { en: 'Moon–Mars: Emotional intensity, domestic conflicts or passion, quick financial decisions, health of mother, accidents possible.', hi: 'चन्द्र–मंगल: भावनात्मक तीव्रता, घरेलू संघर्ष या जुनून, त्वरित वित्तीय निर्णय।' },
+  // Mars combinations
+  '2-4': { en: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', hi: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।' },
+  '4-2': { en: 'Mars–Jupiter: Courageous expansion, legal matters resolved favorably, surgery/medical success, religious travel, property gains.', hi: 'मंगल–गुरु: साहसी विस्तार, कानूनी विजय, शल्य चिकित्सा सफलता, धार्मिक यात्रा।' },
+  '2-5': { en: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', hi: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।' },
+  '5-2': { en: 'Mars–Venus: Passionate creativity, romantic intensity, artistic or athletic achievement, property beautification, sensual excess possible.', hi: 'मंगल–शुक्र: भावुक रचनात्मकता, रोमांटिक तीव्रता, संपत्ति सौंदर्यीकरण।' },
+  '2-6': { en: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।' },
+  '6-2': { en: 'Mars–Saturn: Iron discipline — either great engineering achievement or injury, accident, obstruction. Karmic tests of strength.', hi: 'मंगल–शनि: लौह अनुशासन — महान इंजीनियरिंग उपलब्धि या चोट, दुर्घटना, अवरोध।' },
+  // Mercury combinations
+  '3-4': { en: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', hi: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।' },
+  '4-3': { en: 'Mercury–Jupiter: Exceptional learning and teaching year, publishing success, legal matters, philosophical study, financial wisdom.', hi: 'बुध–गुरु: असाधारण सीखने और पढ़ाने का वर्ष, प्रकाशन सफलता, कानूनी मामले।' },
+  '3-5': { en: 'Mercury–Venus: Creative writing, music, arts, business partnerships, social diplomacy, lucrative communication-based work.', hi: 'बुध–शुक्र: रचनात्मक लेखन, संगीत, कला, व्यापार साझेदारी, सामाजिक कूटनीति।' },
+  '5-3': { en: 'Mercury–Venus: Creative writing, music, arts, business partnerships, social diplomacy, lucrative communication-based work.', hi: 'बुध–शुक्र: रचनात्मक लेखन, संगीत, कला, व्यापार साझेदारी, सामाजिक कूटनीति।' },
+  '3-6': { en: 'Mercury–Saturn: Systematic analysis, legal documentation, disciplined research, delayed communication, structural work succeeds.', hi: 'बुध–शनि: व्यवस्थित विश्लेषण, कानूनी दस्तावेज़ीकरण, अनुशासित शोध, संरचनात्मक कार्य।' },
+  '6-3': { en: 'Mercury–Saturn: Systematic analysis, legal documentation, disciplined research, delayed communication, structural work succeeds.', hi: 'बुध–शनि: व्यवस्थित विश्लेषण, कानूनी दस्तावेज़ीकरण, अनुशासित शोध, संरचनात्मक कार्य।' },
+  // Jupiter combinations
+  '4-5': { en: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', hi: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।' },
+  '5-4': { en: 'Jupiter–Venus: Prosperous year for marriage, arts, luxury, spiritual devotion, financial abundance and social grace.', hi: 'गुरु–शुक्र: विवाह, कला, विलासिता, आध्यात्मिक भक्ति के लिए समृद्ध वर्ष।' },
+  '4-6': { en: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।' },
+  '6-4': { en: 'Jupiter–Saturn: Karmic turning point — hard work eventually yields lasting reward. Wisdom through restriction. Structural life changes.', hi: 'गुरु–शनि: कार्मिक転换点 — कठिन परिश्रम स्थायी पुरस्कार देता है। संरचनात्मक जीवन परिवर्तन।' },
+  // Venus–Saturn
+  '5-6': { en: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', hi: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।' },
+  '6-5': { en: 'Venus–Saturn: Dedication to art or partnership, delayed pleasures, disciplined beauty, long-term commitments solidify.', hi: 'शुक्र–शनि: कला या साझेदारी के प्रति समर्पण, विलंबित सुख, दीर्घकालिक प्रतिबद्धता।' },
+};
+
+function getPairMeaning(id1: number, id2: number): { en: string; hi: string } | null {
+  const key = `${Math.min(id1, id2)}-${Math.max(id1, id2)}`;
+  return PLANET_PAIR_YEAR_MEANING[`${id1}-${id2}`] || PLANET_PAIR_YEAR_MEANING[`${id2}-${id1}`] || null;
+}
+
 // Tajika aspect angles
 const TAJIKA_ASPECTS = [
   { angle: 0, name: 'conjunction', label: { en: 'Conjunction', hi: 'युति', sa: 'युतिः' } },
@@ -62,20 +119,24 @@ export function detectTajikaYogas(planets: PlanetPosition[]): TajikaYoga[] {
 
           if (isApplying) {
             // ITHASALA — faster planet applies to slower
+            const pairMeaning = getPairMeaning(faster.planet.id, slower.planet.id);
+            const aspectQuality = aspect.angle === 120 || aspect.angle === 60 ? 'harmoniously' : aspect.angle === 90 || aspect.angle === 180 ? 'with tension' : 'powerfully';
+            const ithasalaCore = {
+              en: `${faster.planet.name.en} applies to ${slower.planet.name.en} by ${aspect.label.en} ${aspectQuality} — this year's matter will materialise. ${pairMeaning ? pairMeaning.en : ''}`,
+              hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से ${aspect.label.hi} बना रहा है — कार्य सिद्ध होगा। ${pairMeaning ? pairMeaning.hi : ''}`,
+              sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} योगं करोति — कार्यसिद्धिः।`,
+            };
             yogas.push({
               name: { en: `Ithasala (${aspect.label.en})`, hi: `इत्थशाल (${aspect.label.hi})`, sa: `इत्थशालः (${aspect.label.sa})` },
               type: 'ithasala',
               planet1: faster.planet.name,
               planet2: slower.planet.name,
               favorable: aspect.angle !== 90 && aspect.angle !== 180,
-              description: {
-                en: `${faster.planet.name.en} applies to ${slower.planet.name.en} by ${aspect.label.en} — event will materialize.`,
-                hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से ${aspect.label.hi} बना रहा है — कार्य सिद्ध होगा।`,
-                sa: `${faster.planet.name.sa} ${slower.planet.name.sa} ${aspect.label.sa} योगं करोति — कार्यसिद्धिः।`,
-              },
+              description: ithasalaCore,
             });
           } else {
             // ISHRAFA — separating aspect
+            const pairMeaning = getPairMeaning(faster.planet.id, slower.planet.id);
             yogas.push({
               name: { en: `Ishrafa (${aspect.label.en})`, hi: `ईशराफ (${aspect.label.hi})`, sa: `ईशराफः (${aspect.label.sa})` },
               type: 'ishrafa',
@@ -83,9 +144,9 @@ export function detectTajikaYogas(planets: PlanetPosition[]): TajikaYoga[] {
               planet2: slower.planet.name,
               favorable: false,
               description: {
-                en: `${faster.planet.name.en} separates from ${slower.planet.name.en} — opportunity may have passed.`,
-                hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से अलग हो रहा है — अवसर बीत सकता है।`,
-                sa: `${faster.planet.name.sa} ${slower.planet.name.sa} विमुखः — अवसरः अतीतः।`,
+                en: `${faster.planet.name.en} separates from ${slower.planet.name.en} — the window for this matter has partially closed; results from its earlier activation may still arrive. ${pairMeaning ? pairMeaning.en : ''}`,
+                hi: `${faster.planet.name.hi} ${slower.planet.name.hi} से विमुख हो रहा है — यह अवसर आंशिक रूप से बीत चुका है; पहले के प्रभाव से परिणाम अभी भी आ सकते हैं। ${pairMeaning ? pairMeaning.hi : ''}`,
+                sa: `${faster.planet.name.sa} ${slower.planet.name.sa} विमुखः — अवसरः आंशिकतः अतीतः।`,
               },
             });
           }

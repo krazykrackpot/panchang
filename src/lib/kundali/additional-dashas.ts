@@ -212,6 +212,104 @@ export function calculateSudarsanaDasha(
   return entries;
 }
 
+// ─── SHOOLA DASHA — BRAHMA / RUDRA / MAHESHWARA LORDS ───────────────────────
+// Jaimini Sutras: Three cosmic lords modify each Shoola period.
+// Brahma = Creator (new beginnings), Rudra = Destroyer (transformation),
+// Maheshwara = Sustainer (preservation, great events).
+// Reference: Jaimini Sutras 3.1-3.3, PVR Narasimha Rao's Jaimini commentary
+
+export interface ShoolaLords {
+  brahma: { planetId: number; name: Tri };
+  rudra: { planetId: number; name: Tri };
+  maheshwara: { planetId: number; name: Tri };
+}
+
+const SHOOLA_PLANET_NAMES: Tri[] = [
+  { en: 'Sun', hi: 'सूर्य', sa: 'सूर्यः' },
+  { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्रः' },
+  { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' },
+  { en: 'Mercury', hi: 'बुध', sa: 'बुधः' },
+  { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' },
+  { en: 'Venus', hi: 'शुक्र', sa: 'शुक्रः' },
+  { en: 'Saturn', hi: 'शनि', sa: 'शनिः' },
+  { en: 'Rahu', hi: 'राहु', sa: 'राहुः' },
+  { en: 'Ketu', hi: 'केतु', sa: 'केतुः' },
+];
+
+const EXALTATION: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
+const DEBILITATION: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
+const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
+
+function planetSign(pid: number, planets: PlanetPosition[]): number {
+  const p = planets.find(x => x.planet.id === pid);
+  return p ? Math.floor(((p.longitude % 360) + 360) % 360 / 30) + 1 : 0;
+}
+
+function planetStrengthScore(pid: number, planets: PlanetPosition[]): number {
+  const sign = planetSign(pid, planets);
+  if (!sign) return 0;
+  if (EXALTATION[pid] === sign) return 4;
+  if ((OWN_SIGNS[pid] || []).includes(sign)) return 3;
+  if (DEBILITATION[pid] === sign) return 1;
+  return 2;
+}
+
+/**
+ * Calculate Shoola Dasha's three presiding lords.
+ *
+ * Brahma (Creator):
+ *   Odd Lagna → strongest planet in 3rd, 6th, or 11th from Lagna (excluding Rahu/Ketu)
+ *   Even Lagna → strongest planet in 1st, 8th, or 9th from Lagna (excluding Rahu/Ketu)
+ *   Default: Jupiter
+ *
+ * Rudra (Destroyer/Transformer):
+ *   Stronger of 2nd lord (maraka) and 8th lord (longevity). Indicates major transitions.
+ *
+ * Maheshwara (Sustainer):
+ *   Lord of the sign 8th from Brahma's natal sign. Presides over great events.
+ */
+export function calculateShoolaLords(ascSign: number, planets: PlanetPosition[]): ShoolaLords {
+  const isOddLagna = ascSign % 2 === 1;
+  const brahmaHouseOffsets = isOddLagna ? [2, 5, 10] : [0, 7, 8]; // 0-indexed offsets (3rd=+2, 6th=+5, 11th=+10)
+
+  const brahmaSigns = brahmaHouseOffsets.map(offset => ((ascSign - 1 + offset) % 12) + 1);
+
+  // Find planets (excluding Rahu/Ketu) in those signs
+  const brahmaEligible: number[] = [];
+  for (const p of planets) {
+    if (p.planet.id >= 7) continue; // skip Rahu/Ketu
+    const sign = Math.floor(((p.longitude % 360) + 360) % 360 / 30) + 1;
+    if (brahmaSigns.includes(sign)) brahmaEligible.push(p.planet.id);
+  }
+
+  let brahmaId = 4; // Jupiter as default Brahma
+  if (brahmaEligible.length > 0) {
+    brahmaId = brahmaEligible.reduce((best, pid) =>
+      planetStrengthScore(pid, planets) > planetStrengthScore(best, planets) ? pid : best,
+      brahmaEligible[0]
+    );
+  }
+
+  // Rudra: stronger of 2nd lord and 8th lord
+  const secondSign = ((ascSign - 1 + 1) % 12) + 1;
+  const eighthSign = ((ascSign - 1 + 7) % 12) + 1;
+  const rudraId1 = SIGN_LORD[secondSign];
+  const rudraId2 = SIGN_LORD[eighthSign];
+  const rudraId = planetStrengthScore(rudraId1, planets) >= planetStrengthScore(rudraId2, planets)
+    ? rudraId1 : rudraId2;
+
+  // Maheshwara: 8th lord from Brahma's natal sign
+  const brahmaSign = planetSign(brahmaId, planets) || ascSign;
+  const maheshwaraSign = ((brahmaSign - 1 + 7) % 12) + 1;
+  const maheshwaraId = SIGN_LORD[maheshwaraSign];
+
+  return {
+    brahma: { planetId: brahmaId, name: SHOOLA_PLANET_NAMES[brahmaId] },
+    rudra: { planetId: rudraId, name: SHOOLA_PLANET_NAMES[rudraId] },
+    maheshwara: { planetId: maheshwaraId, name: SHOOLA_PLANET_NAMES[maheshwaraId] },
+  };
+}
+
 // ─── Additional Graha (Nakshatra-based) Dasha Systems ────────────────────────
 
 const PLANET_NAME_MAP: Record<string, { en: string; hi: string; sa: string }> = {

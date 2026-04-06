@@ -22,6 +22,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import { calculateShoolaLords } from '@/lib/kundali/additional-dashas';
 import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
@@ -1306,7 +1307,21 @@ export default function KundaliPage() {
                     : dashaSystem === 'drig' ? kundali.drigDasha
                     : dashaSystem === 'navamsha_dasha' ? kundali.navamshaDasha
                     : kundali.shoolaDasha;
-                  // P2-07: Narayana Dasha classical prediction rules
+                  // P2-07: Narayana Dasha — 12 sign-specific profiles (BPHS Ch.19)
+                  const NARAYANA_SIGN_PROFILES: Record<number, { en: string; hi: string }> = {
+                    1:  { en: 'Aries Dasha — dynamic, pioneering period. New ventures launch; courage is tested. Competitive environments, conflicts, and breakthroughs in tandem. Events come suddenly; decisions must be made swiftly. Body, head, and Mars-ruled matters are activated. If Mars is well-placed, decisive victories; if afflicted, accidents or surgeries are possible.', hi: 'मेष दशा — गतिशील, अग्रणी काल। नए उद्यम प्रारंभ; साहस की परीक्षा। प्रतिस्पर्धा, संघर्ष और सफलता साथ-साथ। घटनाएं अचानक; त्वरित निर्णय आवश्यक। यदि मंगल बलवान हो तो विजय; पीड़ित हो तो दुर्घटना संभव।' },
+                    2:  { en: 'Taurus Dasha — stable, accumulative period. Financial matters dominate; property, land, and fixed assets are acquired or transacted. Marriage and partnerships come into focus. Pleasures and comforts increase. Progress is slow but steady; patience is rewarded with lasting prosperity. Venus-ruled arts and aesthetic pursuits flourish.', hi: 'वृष दशा — स्थिर, संचयशील काल। वित्तीय मामले प्रमुख; सम्पत्ति, भूमि अर्जित या हस्तांतरित। विवाह और साझेदारियां केंद्र में। सुख-सुविधाएं बढ़ती हैं। धीमी किन्तु स्थिर प्रगति; धैर्य से स्थायी समृद्धि।' },
+                    3:  { en: 'Gemini Dasha — intellectual, communicative period. Education, writing, and short journeys multiply. Siblings play a significant role. Two paths or dual involvements are common. Business dealings and negotiations succeed. The mind is sharp and restless — channelled well, it achieves brilliance; scattered, it produces anxiety.', hi: 'मिथुन दशा — बौद्धिक, संचार-प्रधान काल। शिक्षा, लेखन और लघु यात्राएं बढ़ती हैं। भाई-बहनों की भूमिका महत्वपूर्ण। दोहरी राहें सामान्य। व्यापार और वार्ता में सफलता। मन तीव्र और बेचैन — सुनिर्देशित हो तो प्रतिभाशाली।' },
+                    4:  { en: 'Cancer Dasha — domestic, emotional period. Home, mother, and property matters dominate. Residential changes or renovations are common. Emotional sensitivity peaks — intuition is strong. Real estate deals are favourable. Mother\'s health may require attention. Psychic experiences and vivid dreams are possible.', hi: 'कर्क दशा — गृह, भावनात्मक काल। घर, माता और सम्पत्ति मामले प्रमुख। आवासीय परिवर्तन सामान्य। भावनात्मक संवेदनशीलता शिखर पर। अचल सम्पत्ति अनुकूल। माता का स्वास्थ्य ध्यान योग्य। अतींद्रिय अनुभव संभव।' },
+                    5:  { en: 'Leo Dasha — authoritative, prestigious period. Career advancement and social recognition are prominent. Father\'s influence is strong. Dealings with government or authority figures feature. Children may be a central theme. Creative expression and leadership roles come naturally. Pride and dignity are tested — humility prevents falls.', hi: 'सिंह दशा — अधिकार, प्रतिष्ठा काल। कैरियर उन्नति और सामाजिक मान्यता प्रमुख। पिता का प्रभाव बलवान। सरकार या अधिकारियों से व्यवहार। संतान केंद्रीय विषय। रचनात्मक अभिव्यक्ति स्वाभाविक। अहंकार की परीक्षा — विनम्रता आवश्यक।' },
+                    6:  { en: 'Virgo Dasha — service, health-focused period. Work routines and employment matters are central. Health issues may arise and be resolved. Enemies or disputes surface — detailed attention to contracts and agreements is crucial. Debts are settled. Service-oriented activities succeed. The native works harder than usual, with tangible rewards.', hi: 'कन्या दशा — सेवा, स्वास्थ्य-केंद्रित काल। कार्य दिनचर्या और रोजगार मामले केंद्रीय। स्वास्थ्य समस्याएं उठ सकती और सुलझ सकती हैं। शत्रु या विवाद उभरते हैं। ऋण चुकाए जाते हैं। सेवा-कार्य सफल होते हैं।' },
+                    7:  { en: 'Libra Dasha — partnership, justice-seeking period. Marriage, business partnerships, and legal agreements dominate. Travel is prominent. Balance and fairness are sought in all dealings. Collaborative ventures succeed; solo efforts struggle. Venus-ruled pleasures abound. Legal settlements or court matters may conclude.', hi: 'तुला दशा — साझेदारी, न्याय-साधना काल। विवाह, व्यापारिक साझेदारी और कानूनी समझौते प्रमुख। यात्रा महत्वपूर्ण। सहयोगी उद्यम सफल। वीनस-प्रभावित सुख प्रचुर। कानूनी निपटान संभव।' },
+                    8:  { en: 'Scorpio Dasha — transformative, crisis-prone period. Hidden matters surface; secrets are revealed. Inheritance, insurance, or joint finances may be involved. Accidents, surgeries, or near-death experiences are possible if 8th lord is afflicted. Occult research and spiritual depth are favoured. Profound inner transformation accompanies outer disruption.', hi: 'वृश्चिक दशा — परिवर्तनकारी, संकट-सम्भावित काल। छिपे विषय उजागर; रहस्य प्रकट। विरासत, बीमा या संयुक्त वित्त जुड़ा। दुर्घटना या शल्य संभव। आध्यात्मिक गहराई अनुकूल। बाहरी उथल-पुथल के साथ गहरा आंतरिक परिवर्तन।' },
+                    9:  { en: 'Sagittarius Dasha — expansive, dharmic period. Higher education, philosophy, and long-distance travel feature prominently. Father\'s health and teacher/guru influence are strong. Religious activities, foreign journeys, and charitable work flourish. Optimism expands; fortune smiles. The native reaches beyond familiar boundaries and grows.', hi: 'धनु दशा — विस्तारशील, धार्मिक काल। उच्च शिक्षा, दर्शन और दूर यात्राएं प्रमुख। पिता का स्वास्थ्य और गुरु का प्रभाव बलवान। धार्मिक कार्य, विदेश यात्रा फलती है। आशावाद बढ़ता है। परिचित सीमाओं से परे जाना।' },
+                    10: { en: 'Capricorn Dasha — career-peak, ambition-activated period. Professional life demands maximum effort and delivers maximum reward when Saturn is strong. Government dealings, structured work, and long-term projects bear fruit. Property gains are possible. Discipline and perseverance are the keys — karmic lessons from past effort arrive as results.', hi: 'मकर दशा — कैरियर शिखर, महत्वाकांक्षा-सक्रिय काल। व्यावसायिक जीवन अधिकतम प्रयास मांगता और देता है। सरकारी कार्य, दीर्घकालिक परियोजनाएं फलती हैं। अनुशासन और अध्यवसाय मुख्य कुंजी।' },
+                    11: { en: 'Aquarius Dasha — social, gain-oriented period. Community involvement, friendship networks, and collective causes are activated. Gains from groups, elder siblings, and unexpected sources arrive. Unconventional events and sudden opportunities appear. Technology and innovation benefit the native. Ambitions find fulfilment through social means.', hi: 'कुंभ दशा — सामाजिक, लाभ-उन्मुख काल। समुदाय, मित्र नेटवर्क और सामूहिक कारण सक्रिय। समूहों से लाभ। अप्रत्याशित घटनाएं और अवसर। प्रौद्योगिकी और नवाचार लाभकारी। सामाजिक साधनों से महत्वाकांक्षा पूरी।' },
+                    12: { en: 'Pisces Dasha — spiritual, introspective period. Foreign travel, ashrams, hospitals, and retreats feature. Intuition and psychic gifts peak. Hidden losses are possible but offset by spiritual gains. Charitable work and service to the suffering are favoured. The soul turns inward — those who embrace this find liberation; those who resist find confusion.', hi: 'मीन दशा — आध्यात्मिक, आत्मनिरीक्षण काल। विदेश, आश्रम, अस्पताल और एकांत प्रमुख। अंतर्ज्ञान शिखर पर। छिपे नुकसान संभव। दान और पीड़ितों की सेवा अनुकूल। आत्मा अंतर्मुखी होती है — जो स्वीकारते हैं उन्हें मुक्ति, जो विरोध करते हैं उन्हें भ्रम।' },
+                  };
                   const SIGN_NAMES_EN = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
                   const lagnaSign = kundali.ascendant.sign;
                   const getNarayanaHouseTheme = (dashSign: number): { en: string; hi: string } | null => {
@@ -1319,7 +1334,7 @@ export default function KundaliPage() {
                     const houseFromLagna = ((dashSign - lagnaSign + 12) % 12) + 1;
                     const sn = (s: number) => SIGN_NAMES_EN[s - 1];
                     return {
-                      en: `H${houseFromLagna} activated (from Lagna). Father: ${sn(fatherSign)} | Children: ${sn(childSign)} | Spouse: ${sn(spouseSign)} | Mother: ${sn(motherSign)} | Career: ${sn(careerSign)}`,
+                      en: `H${houseFromLagna} from Lagna activated. Father: ${sn(fatherSign)} | Children: ${sn(childSign)} | Spouse: ${sn(spouseSign)} | Mother: ${sn(motherSign)} | Career: ${sn(careerSign)}`,
                       hi: `लग्न से भाव ${houseFromLagna} सक्रिय। पिता: ${sn(fatherSign)} | सन्तान: ${sn(childSign)} | जीवनसाथी: ${sn(spouseSign)} | माता: ${sn(motherSign)} | कैरियर: ${sn(careerSign)}`,
                     };
                   };
@@ -1330,6 +1345,7 @@ export default function KundaliPage() {
                     const isCurrent = now >= start && now <= end;
                     const isPast = now > end;
                     const theme = getNarayanaHouseTheme(d.sign);
+                    const signProfile = dashaSystem === 'narayana' ? NARAYANA_SIGN_PROFILES[d.sign] : null;
                     return (
                       <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
                         className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
@@ -1341,9 +1357,16 @@ export default function KundaliPage() {
                           </div>
                           <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
                         </div>
-                        {isCurrent && theme && (
+                        {signProfile && (
                           <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                            <p className="text-text-secondary/60 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            <p className={`text-xs leading-relaxed ${isCurrent ? 'text-text-secondary/80' : 'text-text-secondary/45'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {signProfile[locale === 'en' ? 'en' : 'hi']}
+                            </p>
+                          </div>
+                        )}
+                        {isCurrent && theme && (
+                          <div className="mt-1 pt-1 border-t border-gold-primary/8">
+                            <p className="text-text-secondary/50 text-xs leading-relaxed font-mono" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                               {theme[locale === 'en' ? 'en' : 'hi']}
                             </p>
                           </div>
@@ -2301,32 +2324,55 @@ export default function KundaliPage() {
                   1:14, 2:28, 3:7, 4:12, 5:13, 6:23,
                   7:8,  8:18, 9:9, 10:22, 11:17, 12:17,
                 };
+                // P2-11: Per-planet PKN profiles (Saravali tradition)
+                const PKN_PROFILES: Record<number, { en: string; hi: string }> = {
+                  0: { en: 'Sun in PKN — Authority and recognition arrive with grace. Career advancement and government support are unobstructed. Father\'s blessings are active. Soul\'s dharmic purpose is clearly supported; fame through righteous leadership. Even if Sun is debilitated, the PKN protects its significations.', hi: 'सूर्य पुष्कर नवांश में — अधिकार और मान्यता सहजता से प्राप्त। कैरियर और सरकारी सहायता निर्बाध। पिता का आशीर्वाद सक्रिय। आत्मा का धर्म स्पष्ट रूप से समर्थित; धर्मी नेतृत्व से यश।' },
+                  1: { en: 'Moon in PKN — Emotional life is rich, stable, and fulfilling. Exceptional intuition and psychic clarity. Mother is a source of blessing and support. Public life, popularity, and goodwill come naturally. Mind remains calm even in adversity. A muhurta Moon in PKN is deeply auspicious.', hi: 'चन्द्र पुष्कर नवांश में — भावनात्मक जीवन समृद्ध, स्थिर और संतोषजनक। असाधारण अंतर्ज्ञान। माता का आशीर्वाद। जनता में लोकप्रियता स्वाभाविक। विपरीत परिस्थितियों में भी मन शांत।' },
+                  2: { en: 'Mars in PKN — Courage becomes righteous — decisive action without destructive recklessness. Land, property, and sibling matters are protected and favourable. If surgery is needed, outcomes are positive. Competitive victories follow. Physical vitality and stamina are amplified by the PKN\'s grace.', hi: 'मंगल पुष्कर नवांश में — साहस धर्मी बनता है — विनाशकारी उतावलेपन के बिना। भूमि, सम्पत्ति, भाई-बहन के मामले अनुकूल। शल्य चिकित्सा के परिणाम सकारात्मक। प्रतिस्पर्धी जीत। शारीरिक जीवनी बढ़ती है।' },
+                  3: { en: 'Mercury in PKN — Intellectual gifts bloom fully; communication is eloquent and persuasive. Business and trade reach their highest potential. Writing, publishing, and teaching bring recognition and wealth. Wit and analytical intelligence serve every life domain. Education attains excellent fruition.', hi: 'बुध पुष्कर नवांश में — बौद्धिक प्रतिभा पूर्णतः खिलती है; वाणी वाग्मी और प्रभावशाली। व्यापार और वाणिज्य अपनी ऊंचाई पर। लेखन, शिक्षण से यश और धन। बुद्धि और विश्लेषणात्मक क्षमता हर क्षेत्र में सेवा करती है।' },
+                  4: { en: 'Jupiter in PKN — The highest of all PKN blessings. Wisdom, spiritual growth, and prosperity are enormously amplified. Children are joyful and carry forward blessings. Financial gains through dharmic channels. Guru\'s grace is overwhelmingly strong; spiritual progress is swift. The entire chart benefits from Jupiter in PKN.', hi: 'बृहस्पति पुष्कर नवांश में — सर्वोच्च पुष्कर आशीर्वाद। ज्ञान, आध्यात्मिक विकास और समृद्धि अत्यधिक बढ़ती है। संतान आनंदमय। धर्मी मार्ग से धनलाभ। गुरु कृपा अत्यंत बलवान। पूरी कुंडली इससे लाभान्वित होती है।' },
+                  5: { en: 'Venus in PKN — Love and partnership reach their fullest, most beautiful expression. Artistic genius emerges naturally — music, poetry, visual arts. Marriage is harmonious; the spouse is gifted. Luxury, aesthetic pleasure, and beauty are fully enjoyed. Social grace attracts abundance and goodwill from all directions.', hi: 'शुक्र पुष्कर नवांश में — प्रेम और साझेदारी अपनी परिपूर्णता पर। कलात्मक प्रतिभा स्वाभाविक रूप से उभरती है। विवाह सौहार्दपूर्ण; जीवनसाथी प्रतिभाशाली। विलासिता और सौंदर्य पूर्णतः भोगे जाते हैं। सामाजिक आकर्षण प्रचुरता लाता है।' },
+                  6: { en: 'Saturn in PKN — Hard work reaches full fruition without being wasted or stolen. Patience is rewarded with lasting, respected achievement. Service to the downtrodden earns honour. Longevity and physical endurance are protected. Karmic debts are cleared methodically — suffering comes, but not catastrophically, and yields wisdom.', hi: 'शनि पुष्कर नवांश में — कठोर परिश्रम बिना बर्बाद हुए परिणाम देता है। धैर्य को स्थायी, सम्मानित उपलब्धि से पुरस्कृत। वंचितों की सेवा को सम्मान। दीर्घायु। कार्मिक ऋण व्यवस्थित रूप से चुकाए जाते हैं।' },
+                  7: { en: 'Rahu in PKN — Unconventional ambitions find their highest expression and succeed beyond ordinary measures. Foreign connections, technology, and research flourish without undue disruption. Mass influence and social impact are amplified. The shadow\'s hunger finds constructive channels rather than destructive obsession.', hi: 'राहु पुष्कर नवांश में — अपरम्परागत महत्वाकांक्षाएं सर्वोच्च अभिव्यक्ति पाती हैं। विदेश, प्रौद्योगिकी, शोध सफल। जन-प्रभाव और सामाजिक प्रभाव बढ़ा। छाया की भूख विनाशकारी जुनून के बजाय रचनात्मक मार्ग पाती है।' },
+                  8: { en: 'Ketu in PKN — Past-life gifts bloom into extraordinary, unexplained abilities. Spiritual liberation is accelerated; moksha is near or already within reach. Occult knowledge, intuition, and psychic gifts are amplified beyond ordinary measure. The soul completes significant karma in this life and moves toward completion.', hi: 'केतु पुष्कर नवांश में — पूर्वजन्म की प्रतिभाएं असाधारण क्षमताओं में खिलती हैं। आध्यात्मिक मुक्ति त्वरित; मोक्ष निकट। गुप्त विद्या, अंतर्ज्ञान, मानसिक शक्तियां बढ़ती हैं। आत्मा इस जीवन में महत्वपूर्ण कर्म पूर्ण करती है।' },
+                };
                 const pknPlanets = kundali.planets.filter(p => p.isPushkarNavamsha);
                 const pkbPlanets = kundali.planets.filter(p => p.isPushkarBhaga);
                 if (pknPlanets.length === 0 && pkbPlanets.length === 0) return null;
                 return (
                 <div className="rounded-xl bg-gradient-to-br from-[#0e1a0a]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-emerald-500/20 p-5 space-y-4">
                   <h4 className="text-emerald-400 text-sm uppercase tracking-widest font-bold">
-                    {isHi ? 'पुष्कर नवांश + पुष्कर भाग (P2-11)' : 'Pushkar Navamsha + Pushkar Bhaga (P2-11)'}
+                    {isHi ? 'पुष्कर नवांश + पुष्कर भाग' : 'Pushkar Navamsha + Pushkar Bhaga'}
                   </h4>
                   {pknPlanets.length > 0 && (
                     <div>
                       <div className="text-sky-300 text-xs font-bold mb-1.5 uppercase tracking-wider">
                         {isHi ? 'पुष्कर नवांश (PKN) — 24 अत्यंत शुभ नवांश स्थितियाँ' : 'Pushkar Navamsha (PKN) — 24 supremely auspicious navamsha positions'}
                       </div>
-                      <p className="text-text-secondary/60 text-xs leading-relaxed mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      <p className="text-text-secondary/60 text-xs leading-relaxed mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                         {isHi
-                          ? 'जब कोई ग्रह पुष्कर नवांश में हो, तो उसकी स्थिति शुभ फल देती है — यहाँ तक कि नीच या अस्त ग्रह भी सुरक्षित रहता है। मुहूर्त में चन्द्रमा का पुष्कर नवांश में होना अत्यंत शुभ है।'
-                          : 'A planet in Pushkar Navamsha gives auspicious results even if debilitated or combust — the navamsha protects it. In muhurta, Moon in PKN is extremely auspicious and greatly strengthens the muhurta.'}
+                          ? 'जब कोई ग्रह पुष्कर नवांश में हो, तो उसकी स्थिति शुभ फल देती है — यहाँ तक कि नीच या अस्त ग्रह भी सुरक्षित रहता है। नीचे प्रत्येक PKN ग्रह का विशिष्ट फल दर्शाया गया है।'
+                          : 'A planet in Pushkar Navamsha gives auspicious results even if debilitated or combust — the navamsha protects it. Below are classical per-planet interpretations (Saravali tradition).'}
                       </p>
-                      <div className="flex flex-wrap gap-2">
-                        {pknPlanets.map(p => (
-                          <div key={p.planet.id} className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500/10 border border-sky-400/20 rounded-lg">
-                            <span className="text-sky-200 font-bold text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
-                            <span className="text-text-secondary/50 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
-                            <span className="text-sky-400 text-[10px] font-bold">PKN</span>
-                          </div>
-                        ))}
+                      <div className="space-y-3">
+                        {pknPlanets.map(p => {
+                          const profile = PKN_PROFILES[p.planet.id];
+                          return (
+                            <div key={p.planet.id} className="rounded-lg bg-sky-500/8 border border-sky-400/20 p-3">
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <GrahaIconById id={p.planet.id} size={20} />
+                                <span className="text-sky-200 font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
+                                <span className="text-text-secondary/50 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
+                                <span className="ml-auto text-sky-400 text-[10px] font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20">PKN</span>
+                              </div>
+                              {profile && (
+                                <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                  {profile[locale === 'en' ? 'en' : 'hi']}
+                                </p>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   )}
@@ -2581,6 +2627,7 @@ export default function KundaliPage() {
                 // Classical Swamsha combinations: planet sets -> meaning
                 interface SwamshaCombo { ids: number[]; en: string; hi: string; tag?: 'career' | 'spiritual' | 'health' | 'wealth' | 'relationship' }
                 const SWAMSHA_COMBOS: SwamshaCombo[] = [
+                  // ─── Single planets ───────────────────────────────────────────────────
                   { ids: [0],    en: 'Sun in Swamsha — Government, authority, politics, fame, royal connections. Natural leader with a strong dharmic drive.', hi: 'सूर्य स्वांश में — शासन, सत्ता, राजनीति, यश। स्वाभाविक नेता।', tag: 'career' },
                   { ids: [1],    en: 'Moon in Swamsha — Healing, psychology, nursing, catering, import-export, public life. Emotional intelligence is the soul\'s gift.', hi: 'चन्द्र स्वांश में — उपचार, मनोविज्ञान, जनसेवा, भोजन व्यापार। भावनात्मक बुद्धि।', tag: 'career' },
                   { ids: [2],    en: 'Mars in Swamsha — Military, engineering, surgery, fire, land dealings, martial arts. Courage and decisive action define the soul.', hi: 'मंगल स्वांश में — सेना, इंजीनियरिंग, शल्य चिकित्सा, भूमि। साहस और निर्णायकता।', tag: 'career' },
@@ -2590,16 +2637,51 @@ export default function KundaliPage() {
                   { ids: [6],    en: 'Saturn in Swamsha — Labour, agriculture, oil, iron, real estate, service industries. Patience and perseverance are karmic tools.', hi: 'शनि स्वांश में — श्रम, कृषि, तेल, लोहा, सेवा उद्योग। धैर्य और अध्यवसाय।', tag: 'career' },
                   { ids: [7],    en: 'Rahu in Swamsha — Foreign connections, unconventional paths, technology, research, mass influence. Soul is pulled toward the unknown.', hi: 'राहु स्वांश में — विदेश, अपरम्परागत मार्ग, प्रौद्योगिकी, शोध। अज्ञात की ओर खिंचाव।', tag: 'career' },
                   { ids: [8],    en: 'Ketu in Swamsha — Moksha orientation, occult, past-life gifts, detachment, spiritual research. Soul seeks liberation over worldly achievement.', hi: 'केतु स्वांश में — मोक्ष उन्मुखता, गुप्त विद्या, वैराग्य, अध्यात्म। भौतिक से अधिक आत्मिक।', tag: 'spiritual' },
-                  { ids: [3, 5], en: 'Mercury + Venus in Swamsha — Eloquent writer, poet, orator, performer. The soul communicates beauty. Literary or performing arts distinction.', hi: 'बुध + शुक्र स्वांश में — वाग्मी लेखक, कवि, वक्ता, कलाकार। साहित्य या प्रदर्शन कला।', tag: 'career' },
-                  { ids: [2, 7], en: 'Mars + Rahu in Swamsha — Surgeon, weapons technician, military engineer, butcher, aggressive profession involving cutting or fire.', hi: 'मंगल + राहु स्वांश में — शल्य चिकित्सक, शस्त्र तकनीशियन, सैन्य इंजीनियर। कर्तन या अग्नि से जुड़ा कार्य।', tag: 'career' },
-                  { ids: [4, 7], en: 'Jupiter + Rahu in Swamsha — Foreign teacher, international law, religious innovation, unconventional philosophy.', hi: 'बृहस्पति + राहु स्वांश में — विदेशी शिक्षक, अन्तर्राष्ट्रीय कानून, धार्मिक नवाचार।', tag: 'career' },
-                  { ids: [0, 4], en: 'Sun + Jupiter in Swamsha — Royal sage, judge, high government official, spiritual authority. Dharma and power united.', hi: 'सूर्य + बृहस्पति स्वांश में — राजसी ऋषि, न्यायाधीश, उच्च पदाधिकारी। धर्म और शक्ति एकीकृत।', tag: 'career' },
-                  { ids: [1, 5], en: 'Moon + Venus in Swamsha — Artistic sensitivity, fashion, hospitality, beauty industry, music. The soul lives through sensory pleasure and elegance.', hi: 'चन्द्र + शुक्र स्वांश में — कलात्मक संवेदनशीलता, फैशन, आतिथ्य, सौन्दर्य उद्योग।', tag: 'career' },
-                  { ids: [6, 7], en: 'Saturn + Rahu in Swamsha — Oil & gas, iron & steel, mining, mass labour, unconventional service. Karmic work in industrial or foreign settings.', hi: 'शनि + राहु स्वांश में — तेल और गैस, लौह और इस्पात, खनन, औद्योगिक कार्य।', tag: 'career' },
-                  { ids: [4, 8], en: 'Jupiter + Ketu in Swamsha — Mystical teacher, astrologer, past-life wisdom bearer, moksha-oriented philosophy. Rare spiritual authority.', hi: 'बृहस्पति + केतु स्वांश में — रहस्यवादी शिक्षक, ज्योतिषी, पूर्वजन्म ज्ञानी। आध्यात्मिक अधिकार।', tag: 'spiritual' },
-                  { ids: [2, 8], en: 'Mars + Ketu in Swamsha — Occult researcher, forensic analyst, military strategist with hidden knowledge, past-life warrior.', hi: 'मंगल + केतु स्वांश में — गुप्त शोधकर्ता, फोरेंसिक विश्लेषक, रणनीतिकार।', tag: 'spiritual' },
-                  { ids: [0, 2], en: 'Sun + Mars in Swamsha — Military commander, police, fire service, competitive sports. The soul is a warrior and protector.', hi: 'सूर्य + मंगल स्वांश में — सैन्य कमांडर, पुलिस, अग्निशमन, खेल। आत्मा एक योद्धा है।', tag: 'career' },
-                  { ids: [1, 8], en: 'Moon + Ketu in Swamsha — Psychic ability, healing past wounds, spiritual nursing, renunciation. Intuition is unusually deep.', hi: 'चन्द्र + केतु स्वांश में — अतींद्रिय क्षमता, आध्यात्मिक उपचार, वैराग्य। अन्तर्ज्ञान असाधारण रूप से गहरा।', tag: 'spiritual' },
+                  // ─── Two-planet combinations ──────────────────────────────────────────
+                  { ids: [0, 1],  en: 'Sun + Moon in Swamsha — Integration of authority and emotion; public-facing leaders with deep intuition. Likely to excel in politics, public service, or healing with a regal touch.', hi: 'सूर्य + चन्द्र स्वांश में — सत्ता और भावना का एकीकरण; गहरे अन्तर्ज्ञान वाले सार्वजनिक नेता। राजनीति, सार्वजनिक सेवा।', tag: 'career' },
+                  { ids: [0, 2],  en: 'Sun + Mars in Swamsha — Military commander, police, fire service, competitive sports. The soul is a warrior and protector.', hi: 'सूर्य + मंगल स्वांश में — सैन्य कमांडर, पुलिस, अग्निशमन, खेल। आत्मा एक योद्धा है।', tag: 'career' },
+                  { ids: [0, 3],  en: 'Sun + Mercury in Swamsha — Leadership through communication; statesman, royal spokesperson, diplomat, media authority, or administrator with oratory gifts.', hi: 'सूर्य + बुध स्वांश में — संचार द्वारा नेतृत्व; राजनयिक, मीडिया प्राधिकरण, वक्ता-प्रशासक।', tag: 'career' },
+                  { ids: [0, 4],  en: 'Sun + Jupiter in Swamsha — Royal sage, judge, high government official, spiritual authority. Dharma and power united.', hi: 'सूर्य + बृहस्पति स्वांश में — राजसी ऋषि, न्यायाधीश, उच्च पदाधिकारी। धर्म और शक्ति एकीकृत।', tag: 'career' },
+                  { ids: [0, 5],  en: 'Sun + Venus in Swamsha — Royal aesthete; authority expressed through art, film, culture. Leaders in fashion, hospitality luxury, or creative industries at high levels.', hi: 'सूर्य + शुक्र स्वांश में — राजसी सौंदर्यशास्त्री; कला, फिल्म, संस्कृति में अधिकार। फैशन, आतिथ्य नेतृत्व।', tag: 'career' },
+                  { ids: [0, 6],  en: 'Sun + Saturn in Swamsha — Iron authority built through sustained effort; ambition tempered by karma. Success comes late but lasts; government service with discipline.', hi: 'सूर्य + शनि स्वांश में — निरंतर प्रयास से निर्मित लौह-अधिकार; कर्म से तंपित महत्वाकांक्षा। देर से किन्तु स्थायी सफलता।', tag: 'career' },
+                  { ids: [0, 7],  en: 'Sun + Rahu in Swamsha — Unconventional authority; magnetic, politically ambitious, foreign connections to power. Fame can be sudden and dramatic.', hi: 'सूर्य + राहु स्वांश में — अपरम्परागत अधिकार; चुंबकीय, राजनीतिक महत्वाकांक्षा, सत्ता से विदेशी संबंध।', tag: 'career' },
+                  { ids: [0, 8],  en: 'Sun + Ketu in Swamsha — Detached authority; past-life royalty, spiritual leadership, renunciant with natural dignity. Temple governance or religious institution head.', hi: 'सूर्य + केतु स्वांश में — वैरागी अधिकार; पूर्वजन्म की रॉयल्टी, आध्यात्मिक नेतृत्व। मंदिर प्रशासन।', tag: 'spiritual' },
+                  { ids: [1, 2],  en: 'Moon + Mars in Swamsha — Emotional courage; passionate protectors, nurses in crisis, emergency responders, activists. Drive and caring combine powerfully.', hi: 'चन्द्र + मंगल स्वांश में — भावनात्मक साहस; संकट में देखभाल, आपातकालीन सेवा, कार्यकर्ता।', tag: 'career' },
+                  { ids: [1, 4],  en: 'Moon + Jupiter in Swamsha — Wisdom with nurturing compassion; counsellors, spiritual teachers, child psychologists. Deep devotional nature and teaching gifts.', hi: 'चन्द्र + बृहस्पति स्वांश में — पोषण करुणा के साथ ज्ञान; परामर्शदाता, आध्यात्मिक शिक्षक, बाल मनोवैज्ञानिक।', tag: 'career' },
+                  { ids: [1, 5],  en: 'Moon + Venus in Swamsha — Artistic sensitivity, fashion, hospitality, beauty industry, music. The soul lives through sensory pleasure and elegance.', hi: 'चन्द्र + शुक्र स्वांश में — कलात्मक संवेदनशीलता, फैशन, आतिथ्य, सौन्दर्य उद्योग।', tag: 'career' },
+                  { ids: [1, 6],  en: 'Moon + Saturn in Swamsha — Emotional discipline; karmic responsibilities in family or community. Service with restraint, maternal authority, administration with empathy.', hi: 'चन्द्र + शनि स्वांश में — भावनात्मक अनुशासन; परिवार में कार्मिक जिम्मेदारियां। संयम के साथ सेवा।', tag: 'career' },
+                  { ids: [1, 7],  en: 'Moon + Rahu in Swamsha — Psychic sensitivity, unusual emotional life, drawn to foreign cultures or unconventional lifestyles. Powerful imagination and mass influence.', hi: 'चन्द्र + राहु स्वांश में — मानसिक संवेदनशीलता, असामान्य भावनात्मक जीवन, विदेशी संस्कृति की ओर आकर्षण।', tag: 'spiritual' },
+                  { ids: [1, 8],  en: 'Moon + Ketu in Swamsha — Psychic ability, healing past wounds, spiritual nursing, renunciation. Intuition is unusually deep.', hi: 'चन्द्र + केतु स्वांश में — अतींद्रिय क्षमता, आध्यात्मिक उपचार, वैराग्य। अन्तर्ज्ञान असाधारण रूप से गहरा।', tag: 'spiritual' },
+                  { ids: [2, 3],  en: 'Mars + Mercury in Swamsha — Technical genius; engineering writing, software, debate champion, surgical precision combined with analytical intelligence.', hi: 'मंगल + बुध स्वांश में — तकनीकी प्रतिभा; इंजीनियरिंग लेखन, सॉफ्टवेयर, शल्य-विश्लेषणात्मक बुद्धि।', tag: 'career' },
+                  { ids: [2, 4],  en: 'Mars + Jupiter in Swamsha — Righteous warrior, dharma defender; military with ethics, sports with sportsmanship. Command that serves a noble cause.', hi: 'मंगल + बृहस्पति स्वांश में — धर्मी योद्धा; नैतिकता सहित सैन्य, खेल कौशल। महान उद्देश्य की सेवा।', tag: 'career' },
+                  { ids: [2, 6],  en: 'Mars + Saturn in Swamsha — Iron discipline and relentless endurance; Jaimini indicates mechanical/engineering mastery, construction, or mining. Builds the indestructible.', hi: 'मंगल + शनि स्वांश में — लौह-अनुशासन; यांत्रिक/इंजीनियरिंग निपुणता, निर्माण, खनन। अविनाशी निर्माण।', tag: 'career' },
+                  { ids: [2, 7],  en: 'Mars + Rahu in Swamsha — Surgeon, weapons technician, military engineer, aggressive profession involving cutting or fire. Fearless in high-stakes environments.', hi: 'मंगल + राहु स्वांश में — शल्य चिकित्सक, शस्त्र तकनीशियन, सैन्य इंजीनियर। कर्तन या अग्नि से जुड़ा कार्य।', tag: 'career' },
+                  { ids: [2, 8],  en: 'Mars + Ketu in Swamsha — Occult researcher, forensic analyst, military strategist with hidden knowledge, past-life warrior.', hi: 'मंगल + केतु स्वांश में — गुप्त शोधकर्ता, फोरेंसिक विश्लेषक, रणनीतिकार।', tag: 'spiritual' },
+                  { ids: [3, 4],  en: 'Mercury + Jupiter in Swamsha — Scholarly wisdom; gifted teacher, author of scripture or law, financial advisor, academic of highest distinction. Combines intellect with wisdom.', hi: 'बुध + बृहस्पति स्वांश में — पांडित्यपूर्ण ज्ञान; प्रतिभाशाली शिक्षक, शास्त्रकार, वित्तीय सलाहकार।', tag: 'career' },
+                  { ids: [3, 5],  en: 'Mercury + Venus in Swamsha — Eloquent writer, poet, orator, performer. The soul communicates beauty. Literary or performing arts distinction.', hi: 'बुध + शुक्र स्वांश में — वाग्मी लेखक, कवि, वक्ता, कलाकार। साहित्य या प्रदर्शन कला।', tag: 'career' },
+                  { ids: [3, 6],  en: 'Mercury + Saturn in Swamsha — Methodical intellect; auditor, actuary, legal drafter, precise analyst. Slow but deeply thorough — the soul builds knowledge brick by brick.', hi: 'बुध + शनि स्वांश में — क्रमबद्ध बुद्धि; लेखा परीक्षक, कानूनी मसौदाकार, सटीक विश्लेषक।', tag: 'career' },
+                  { ids: [4, 5],  en: 'Jupiter + Venus in Swamsha — Aesthetic philosopher; spiritual beauty, sacred arts, luxury with wisdom. Teacher of art or beauty, or philosopher of love and aesthetics.', hi: 'बृहस्पति + शुक्र स्वांश में — सौंदर्यात्मक दार्शनिक; आध्यात्मिक सौंदर्य, पवित्र कला। प्रेम और सौंदर्य का दार्शनिक।', tag: 'career' },
+                  { ids: [4, 6],  en: 'Jupiter + Saturn in Swamsha — Disciplined philosopher; structural wisdom, institutional religion, administrative guru. Builds lasting spiritual or educational institutions.', hi: 'बृहस्पति + शनि स्वांश में — अनुशासित दार्शनिक; संरचनात्मक ज्ञान, संस्थागत धर्म। स्थायी संस्थाएं।', tag: 'career' },
+                  { ids: [4, 7],  en: 'Jupiter + Rahu in Swamsha — Foreign teacher, international law, religious innovation, unconventional philosophy. Guru to the masses across cultural boundaries.', hi: 'बृहस्पति + राहु स्वांश में — विदेशी शिक्षक, अन्तर्राष्ट्रीय कानून, धार्मिक नवाचार।', tag: 'career' },
+                  { ids: [4, 8],  en: 'Jupiter + Ketu in Swamsha — Mystical teacher, astrologer, past-life wisdom bearer, moksha-oriented philosophy. Rare spiritual authority — the guru of gurus.', hi: 'बृहस्पति + केतु स्वांश में — रहस्यवादी शिक्षक, ज्योतिषी, पूर्वजन्म ज्ञानी। दुर्लभ आध्यात्मिक अधिकार।', tag: 'spiritual' },
+                  { ids: [5, 6],  en: 'Venus + Saturn in Swamsha — Luxury with discipline; high-end craftsmanship, jewellery, architecture, refined taste with structure. Success in luxury goods or heritage arts.', hi: 'शुक्र + शनि स्वांश में — अनुशासन सहित विलासिता; उच्च शिल्पकारी, आभूषण, वास्तुकला।', tag: 'wealth' },
+                  { ids: [5, 7],  en: 'Venus + Rahu in Swamsha — Glamour with an edge; film, media, unconventional relationships, foreign arts. The soul magnetises through charisma and breaks norms in beauty.', hi: 'शुक्र + राहु स्वांश में — तीखी चमक; फिल्म, मीडिया, अपरम्परागत संबंध, विदेशी कला।', tag: 'career' },
+                  { ids: [5, 8],  en: 'Venus + Ketu in Swamsha — Renunciation of pleasure for spirit; sacred artist, monastic with aesthetic sensibility, or one who finds beauty in the divine formless.', hi: 'शुक्र + केतु स्वांश में — आत्मा के लिए सुख का त्याग; पवित्र कलाकार, सौंदर्यबोध वाला वैरागी।', tag: 'spiritual' },
+                  { ids: [6, 7],  en: 'Saturn + Rahu in Swamsha — Oil & gas, iron & steel, mining, mass labour, unconventional service. Karmic work in industrial or foreign settings.', hi: 'शनि + राहु स्वांश में — तेल और गैस, लौह और इस्पात, खनन, औद्योगिक कार्य।', tag: 'career' },
+                  { ids: [6, 8],  en: 'Saturn + Ketu in Swamsha — Austere renunciant, hermit, ascetic scholar; deep karmic purification. Past-life patterns of service and sacrifice — spiritual liberation through hardship.', hi: 'शनि + केतु स्वांश में — कठोर वैरागी, तपस्वी विद्वान; गहरी कार्मिक शुद्धि। कठिनाई से मुक्ति।', tag: 'spiritual' },
+                  // ─── Three-planet combinations ────────────────────────────────────────
+                  { ids: [0, 1, 4], en: 'Sun + Moon + Jupiter in Swamsha — King with dharma and emotional wisdom; great statesman, spiritual monarch, or head of a sacred lineage. Rare triple blessing.', hi: 'सूर्य + चन्द्र + बृहस्पति स्वांश में — धर्म और भावनात्मक ज्ञान वाला राजा; महान राजनेता, आध्यात्मिक राजा।', tag: 'career' },
+                  { ids: [0, 2, 4], en: 'Sun + Mars + Jupiter in Swamsha — Military-spiritual authority; warrior who fights for dharma. Combines royal command, courage, and wisdom — generals, warrior-saints.', hi: 'सूर्य + मंगल + बृहस्पति स्वांश में — सैन्य-आध्यात्मिक अधिकार; धर्म के लिए लड़ने वाला योद्धा।', tag: 'career' },
+                  { ids: [0, 4, 8], en: 'Sun + Jupiter + Ketu in Swamsha — Spiritual-royal authority; temple leadership, detached sovereign, or teacher of kings. The rarest of spiritual authority patterns.', hi: 'सूर्य + बृहस्पति + केतु स्वांश में — आध्यात्मिक-राजसी अधिकार; मंदिर नेतृत्व, राजाओं के शिक्षक।', tag: 'spiritual' },
+                  { ids: [1, 2, 4], en: 'Moon + Mars + Jupiter in Swamsha — Emotional warrior with wisdom; combines courage, nurturing, and ethical judgment. Excellent doctors, counsellors in the military, or dharmic leaders.', hi: 'चन्द्र + मंगल + बृहस्पति स्वांश में — ज्ञान के साथ भावनात्मक योद्धा; साहस, पोषण और नैतिक निर्णय।', tag: 'career' },
+                  { ids: [1, 4, 8], en: 'Moon + Jupiter + Ketu in Swamsha — Spiritual nurturer; past-life healer, devoted monastic, or psychic teacher. Compassionate wisdom directed toward liberation.', hi: 'चन्द्र + बृहस्पति + केतु स्वांश में — आध्यात्मिक पोषक; पूर्वजन्म उपचारक, भक्त संन्यासी, मानसिक शिक्षक।', tag: 'spiritual' },
+                  { ids: [1, 5, 4], en: 'Moon + Venus + Jupiter in Swamsha — Artistic devotee; spiritual artist, composer of sacred music, aesthetic philosopher. Beauty in service of the divine.', hi: 'चन्द्र + शुक्र + बृहस्पति स्वांश में — कलात्मक भक्त; आध्यात्मिक कलाकार, पवित्र संगीत रचयिता।', tag: 'spiritual' },
+                  { ids: [2, 4, 6], en: 'Mars + Jupiter + Saturn in Swamsha — Warrior-philosopher-builder; combines courageous action, wisdom, and patient endurance. Engineers great and lasting achievements.', hi: 'मंगल + बृहस्पति + शनि स्वांश में — योद्धा-दार्शनिक-निर्माता; साहसी कार्य, ज्ञान और धैर्य।', tag: 'career' },
+                  { ids: [2, 3, 4], en: 'Mars + Mercury + Jupiter in Swamsha — Technical scholar; combines engineering precision with intellectual depth and wisdom. Expert in strategic planning, defence research, or law.', hi: 'मंगल + बुध + बृहस्पति स्वांश में — तकनीकी विद्वान; इंजीनियरिंग सटीकता, बौद्धिक गहराई और ज्ञान।', tag: 'career' },
+                  { ids: [3, 4, 5], en: 'Mercury + Jupiter + Venus in Swamsha — Learned aesthete; combines eloquence, wisdom, and beauty — poet-philosopher, Sanskrit scholar, or master of sacred aesthetics.', hi: 'बुध + बृहस्पति + शुक्र स्वांश में — विद्वान सौंदर्यशास्त्री; वाग्मिता, ज्ञान और सौंदर्य — कवि-दार्शनिक।', tag: 'career' },
+                  { ids: [3, 4, 7], en: 'Mercury + Jupiter + Rahu in Swamsha — Foreign educator or researcher; international scholarship, interdisciplinary innovation, teaching across cultural boundaries.', hi: 'बुध + बृहस्पति + राहु स्वांश में — विदेशी शिक्षक/शोधकर्ता; अन्तर्राष्ट्रीय छात्रवृत्ति, सांस्कृतिक सीमाओं को पार।', tag: 'career' },
+                  { ids: [4, 6, 7], en: 'Jupiter + Saturn + Rahu in Swamsha — Unconventional institution builder; systems thinking that disrupts and rebuilds. Creates new paradigms for education, law, or religion.', hi: 'बृहस्पति + शनि + राहु स्वांश में — अपरम्परागत संस्था-निर्माता; प्रणाली सोच जो बाधित और पुनर्निर्माण करती है।', tag: 'career' },
+                  { ids: [1, 6, 7], en: 'Moon + Saturn + Rahu in Swamsha — Psychic with karmic burdens; deep karmic work in public healing, social work, or large-scale service — the soul carries collective suffering.', hi: 'चन्द्र + शनि + राहु स्वांश में — कार्मिक बोझ वाला मानसिक; सार्वजनिक उपचार, सामाजिक कार्य में गहरा कार्मिक।', tag: 'spiritual' },
                 ];
 
                 // Find all matching combos (single planet OR multi-planet combos where ALL ids are present)
@@ -2989,30 +3071,44 @@ export default function KundaliPage() {
 
               <JaiminiInterpretation jaimini={kundali.jaimini} locale={locale} />
 
-              {/* P2-08: Brahma / Rudra / Maheshwara — Jaimini Longevity Significators */}
+              {/* P2-08: Brahma / Rudra / Maheshwara — Jaimini Longevity Significators (classical calculation) */}
               {(() => {
-                const SIGN_LORD_MAP: Record<number, number> = { 1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4 };
+                const SIGN_NAMES_3: Record<number, string> = { 1:'Aries',2:'Taurus',3:'Gemini',4:'Cancer',5:'Leo',6:'Virgo',7:'Libra',8:'Scorpio',9:'Sagittarius',10:'Capricorn',11:'Aquarius',12:'Pisces' };
+                const shoolaLords = calculateShoolaLords(kundali.ascendant.sign, kundali.planets);
+                const brahmaP  = kundali.planets.find(p => p.planet.id === shoolaLords.brahma.planetId);
+                const rudraP   = kundali.planets.find(p => p.planet.id === shoolaLords.rudra.planetId);
+                const maheshP  = kundali.planets.find(p => p.planet.id === shoolaLords.maheshwara.planetId);
+
+                // For descriptor context
                 const ascSign = kundali.ascendant.sign;
-                const moonPlanet = kundali.planets.find(p => p.planet.id === 1);
-                const moonSign = moonPlanet?.sign ?? 1;
-
-                // Rudra = lord of 8H from Lagna
-                const h8Sign = ((ascSign - 1 + 7) % 12) + 1;
-                const rudraId = SIGN_LORD_MAP[h8Sign];
-                const rudra = kundali.planets.find(p => p.planet.id === rudraId);
-
-                // Maheshwara = lord of 8H from Moon
-                const h8fromMoonSign = ((moonSign - 1 + 7) % 12) + 1;
-                const maheshvaraId = SIGN_LORD_MAP[h8fromMoonSign];
-                const maheshvara = kundali.planets.find(p => p.planet.id === maheshvaraId);
-
-                // Brahma = Jupiter (natural karaka of life/creation; modify based on dignity)
-                const brahma = kundali.planets.find(p => p.planet.id === 4); // Jupiter
+                const isOddLagna = ascSign % 2 === 1;
+                const brahmaHousesEn = isOddLagna ? '3rd, 6th, or 11th' : '1st, 8th, or 9th';
+                const brahmaHousesHi = isOddLagna ? '3, 6, 11वें' : '1, 8, 9वें';
+                const brahmaSignEn = brahmaP ? SIGN_NAMES_3[brahmaP.sign] ?? '' : '';
+                const maheshSignEn = maheshP ? SIGN_NAMES_3[maheshP.sign] ?? '' : '';
 
                 const triplet = [
-                  { titleEn: 'Brahma', titleHi: 'ब्रह्मा', planet: brahma, descEn: 'Natural life-giver (Jupiter). Its strength indicates vitality, dharmic protection, and capacity for recovery from illness.', descHi: 'प्राकृतिक जीवनदाता (बृहस्पति)। इसकी शक्ति जीवनी, धार्मिक संरक्षण और रोग से उबरने की क्षमता बताती है।', color: 'border-amber-500/20 bg-amber-500/5' },
-                  { titleEn: 'Rudra', titleHi: 'रुद्र', planet: rudra, descEn: `Lord of the 8th house (H8 = ${h8Sign}). Controls timing of health crises, transformation, and near-death events. Shoola Dasha periods of this planet require caution.`, descHi: `अष्टम भाव स्वामी (H8 = ${h8Sign})। स्वास्थ्य संकट, परिवर्तन और महत्वपूर्ण घटनाओं का समय नियंत्रित करता है।`, color: 'border-red-500/20 bg-red-500/5' },
-                  { titleEn: 'Maheshvara', titleHi: 'महेश्वर', planet: maheshvara, descEn: `Lord of the 8th from Moon (Moon in H${((moonSign-ascSign+12)%12)+1} → 8th = ${h8fromMoonSign}). Governs emotional transformation, psychological health, and karmic release.`, descHi: `चन्द्र से अष्टम भाव स्वामी। भावनात्मक परिवर्तन, मानसिक स्वास्थ्य और कार्मिक मुक्ति।`, color: 'border-purple-500/20 bg-purple-500/5' },
+                  {
+                    titleEn: 'Brahma', titleHi: 'ब्रह्मा',
+                    planet: brahmaP,
+                    descEn: `Strongest planet in ${brahmaHousesEn} from Lagna (Jaimini Sutras). The Creator — its strength indicates vitality, dharmic protection, and capacity for recovery. Brahma's dasha periods bring new beginnings and life-affirming events.`,
+                    descHi: `लग्न से ${brahmaHousesHi} भाव में बलवान ग्रह (जैमिनी सूत्र)। सृष्टिकर्ता — इसकी शक्ति जीवनी, धर्म-संरक्षण और रोग से उबरने की क्षमता बताती है। ब्रह्मा की दशा में नव आरंभ होते हैं।`,
+                    color: 'border-amber-500/20 bg-amber-500/5',
+                  },
+                  {
+                    titleEn: 'Rudra', titleHi: 'रुद्र',
+                    planet: rudraP,
+                    descEn: `Stronger of 2nd lord (maraka) and 8th lord from Lagna. The Destroyer — controls the timing of health crises, major transformations, and near-death transitions. Shoola Dasha periods of ${shoolaLords.rudra.name.en} require careful health monitoring.`,
+                    descHi: `लग्न से 2वें और 8वें भाव के स्वामी में बलवान। संहारक — स्वास्थ्य संकट, परिवर्तन और महत्वपूर्ण घटनाओं का समय। ${shoolaLords.rudra.name.hi} की शूल दशा में स्वास्थ्य पर ध्यान।`,
+                    color: 'border-red-500/20 bg-red-500/5',
+                  },
+                  {
+                    titleEn: 'Maheshwara', titleHi: 'महेश्वर',
+                    planet: maheshP,
+                    descEn: `Lord of the 8th from Brahma's sign (${brahmaSignEn} → 8th = ${maheshSignEn}). The Sustainer — presides over great karmic events, spiritual transformation, and liberation. Governs the bridge between life and moksha.`,
+                    descHi: `ब्रह्मा की राशि से 8वें भाव का स्वामी (${brahmaSignEn} → ${maheshSignEn})। पालनकर्ता — महान कार्मिक घटनाओं, आध्यात्मिक परिवर्तन और मोक्ष की ओर सेतु।`,
+                    color: 'border-purple-500/20 bg-purple-500/5',
+                  },
                 ];
 
                 return (

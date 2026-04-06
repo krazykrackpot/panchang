@@ -5,6 +5,8 @@ import { runConvergenceEngine } from '@/lib/tippanni/convergence/engine';
 import { generateLLMSynthesis, generateLLMSynthesisStream } from '@/lib/tippanni/convergence-llm/synthesizer';
 import type { ChartSummary } from '@/lib/tippanni/convergence-llm/synthesizer';
 import { RASHIS } from '@/lib/constants/rashis';
+import { getServerSupabase } from '@/lib/supabase/server';
+import { getUserTier } from '@/lib/subscription/check-access';
 
 // ─── Response cache: store AI readings per chart to avoid re-generation ──────
 
@@ -101,6 +103,42 @@ function getChartKey(kundali: KundaliData): string {
   return `${kundali.ascendant.sign}-${kundali.planets.map(p => `${p.planet.id}:${p.house}`).join(',')}`;
 }
 
+/** Extracts authenticated user ID and subscription tier from the request. */
+async function extractAuthContext(req: NextRequest): Promise<{ userId: string | null; tier: 'free' | 'pro' | 'jyotishi' }> {
+  const supabase = getServerSupabase();
+  if (!supabase) return { userId: null, tier: 'free' };
+
+  let userId: string | null = null;
+
+  const authHeader = req.headers.get('authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    const { data } = await supabase.auth.getUser(authHeader.slice(7));
+    userId = data.user?.id ?? null;
+  }
+
+  if (!userId) {
+    const cookie = req.headers.get('cookie');
+    if (cookie) {
+      const match = cookie.match(/sb-[^=]+-auth-token=([^;]+)/);
+      if (match) {
+        try {
+          const tokenData = JSON.parse(decodeURIComponent(match[1]));
+          const accessToken = Array.isArray(tokenData) ? tokenData[0] : tokenData?.access_token;
+          if (accessToken) {
+            const { data } = await supabase.auth.getUser(accessToken);
+            userId = data.user?.id ?? null;
+          }
+        } catch { /* invalid cookie */ }
+      }
+    }
+  }
+
+  if (!userId) return { userId: null, tier: 'free' };
+
+  const { tier } = await getUserTier(userId);
+  return { userId, tier };
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -133,6 +171,9 @@ export async function POST(request: NextRequest) {
     // Clean caches periodically
     cleanCaches();
 
+    // Resolve authenticated user + subscription tier
+    const { userId, tier } = await extractAuthContext(request);
+
     // Check for cached reading (if convergence patterns haven't changed)
     if (!compare) {
       const cached = readingCache.get(chartKey);
@@ -148,14 +189,18 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      // Monthly usage limit (use chartKey as user proxy for now; replace with actual user ID when auth is wired)
-      const userKey = chartKey; // TODO: replace with authenticated user ID
+      // Monthly usage limit — keyed by authenticated user ID (falls back to chart fingerprint for anonymous users)
+      const userKey = userId ?? chartKey;
       const monthlyUsage = getMonthlyUsage(userKey);
-      const monthlyLimit = MONTHLY_LIMITS['pro'] || 5; // TODO: check actual user tier
-      if (monthlyUsage >= monthlyLimit) {
+      const monthlyLimit = MONTHLY_LIMITS[tier] ?? 0;
+      if (monthlyLimit === 0 || monthlyUsage >= monthlyLimit) {
+        const message = monthlyLimit === 0
+          ? 'AI readings require a Pro or Jyotishi subscription.'
+          : `Monthly AI reading limit reached (${monthlyLimit} per month on ${tier} plan). Your last reading is still available above.`;
         return NextResponse.json({
-          error: `Monthly AI reading limit reached (${monthlyLimit} per month). Your last reading is still available above.`,
+          error: message,
           rateLimited: true,
+          tier,
           usage: { used: monthlyUsage, limit: monthlyLimit },
         }, { status: 429 });
       }
@@ -189,7 +234,7 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const userKey = compare ? '' : chartKey;
+    const userKey = compare ? '' : (userId ?? chartKey);
     const currentHash = getConvergenceHash(convergence);
 
     // Streaming mode (default) — Opus

@@ -22,6 +22,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { getPlanetaryPositions, toSidereal, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
 import { generateTippanni } from '@/lib/kundali/tippanni-engine';
+import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
@@ -384,6 +385,7 @@ export default function KundaliPage() {
         return;
       }
       setKundali(data);
+      trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
       if (data.planets) {
         const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: number }) => p.planet.id === 1);
@@ -611,7 +613,7 @@ export default function KundaliPage() {
                 ]).map((tab) => (
                   <button
                     key={tab.key}
-                    onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); }}
+                    onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); trackTabViewed({ tab: tab.key }); }}
                     className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                       activeTab === tab.key
                         ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'

@@ -288,6 +288,17 @@ export function calculateJaiminiRajayogas(
   const akSign  = ak  >= 0 ? pSign(ak)  : null;
   const amkSign = amk >= 0 ? pSign(amk) : null;
 
+  // All planet signs (used in combos below)
+  const sunSign = pSign(0);
+  const moonSign = pSign(1);
+  const marsSign = pSign(2);
+  const mercSign = pSign(3);
+  const jupSign = pSign(4);
+  const venusSign = pSign(5);
+  const satSign = pSign(6);
+  const rahuSign = pSign(7);
+  const ketuSign = pSign(8);
+
   // 1. AK + AmK in mutual kendra or trikona — classic Rajayoga
   if (akSign && amkSign) {
     const isMutualKendra  = mutualKendra(akSign, amkSign);
@@ -337,7 +348,6 @@ export function calculateJaiminiRajayogas(
   }
 
   // 3. Ketu in Karakamsha — moksha/spiritual attainment
-  const ketuSign = pSign(8);
   if (ketuSign) {
     const ketuFromKm = fromKarakamsha(km, ketuSign);
     if (ketuFromKm === 1 || ketuFromKm === 12) {
@@ -354,7 +364,6 @@ export function calculateJaiminiRajayogas(
   }
 
   // 4. Venus in Karakamsha or 7H from it — spouse beauty, vehicles, arts
-  const venusSign = pSign(5);
   if (venusSign) {
     const venusFromKm = fromKarakamsha(km, venusSign);
     if (venusFromKm === 1 || venusFromKm === 7) {
@@ -371,7 +380,6 @@ export function calculateJaiminiRajayogas(
   }
 
   // 5. Jupiter in Karakamsha — Hamsa Yoga equivalent (wisdom, dharma)
-  const jupSign = pSign(4);
   if (jupSign) {
     const jupFromKm = fromKarakamsha(km, jupSign);
     if (jupFromKm === 1 || jupFromKm === 5 || jupFromKm === 9) {
@@ -388,7 +396,6 @@ export function calculateJaiminiRajayogas(
   }
 
   // 6. Rahu in Karakamsha — foreign connections, technology, unconventional life
-  const rahuSign = pSign(7);
   if (rahuSign) {
     const rahuFromKm = fromKarakamsha(km, rahuSign);
     if (rahuFromKm === 1) {
@@ -453,6 +460,179 @@ export function calculateJaiminiRajayogas(
         });
       }
     }
+  }
+
+  // ─── 2H from Karakamsha — Profession (Jaimini Sutras 2.1) ──────────────────
+  const PROF_2H: Array<[number, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [0, sunSign, { en: 'Sun in 2H from Karakamsha — Government Service', hi: 'कारकांश से 2H में सूर्य — सरकारी सेवा' },
+      { en: 'Sun in the 2nd from Karakamsha: this soul earns through government, authority, politics, or public administration. A natural administrator who finds livelihood in positions of power.', hi: 'कारकांश से 2H में सूर्य: इस आत्मा की आजीविका सरकार, अधिकार, राजनीति या प्रशासन से। स्वाभाविक प्रशासक।' }],
+    [1, moonSign, { en: 'Moon in 2H from Karakamsha — Trade & Public Dealings', hi: 'कारकांश से 2H में चंद्र — व्यापार' },
+      { en: 'Moon in the 2nd from Karakamsha: income from trade, public service, hospitality, or agriculture. Emotionally driven livelihood — wealth fluctuates with public mood.', hi: 'कारकांश से 2H में चंद्र: व्यापार, जन सेवा, आतिथ्य या कृषि से आजीविका।' }],
+    [2, marsSign, { en: 'Mars in 2H from Karakamsha — Craft & Military', hi: 'कारकांश से 2H में मंगल — शिल्प एवं सेना' },
+      { en: 'Mars in the 2nd from Karakamsha: this soul earns through fire, metal, the military, surgery, cooking, or craft. Skilled hands and physical courage are the primary earning tools.', hi: 'कारकांश से 2H में मंगल: अग्नि, धातु, सेना, शल्य, पाक कला या शिल्प से आजीविका।' }],
+    [3, mercSign, { en: 'Mercury in 2H from Karakamsha — Scholarship & Trade', hi: 'कारकांश से 2H में बुध — शिक्षा एवं वाणिज्य' },
+      { en: 'Mercury in the 2nd from Karakamsha: income from writing, accounting, trade, mathematics, or astrology. Mercury here gives multiple income streams through intellectual work.', hi: 'कारकांश से 2H में बुध: लेखन, लेखा, व्यापार, गणित या ज्योतिष से आजीविका।' }],
+    [6, satSign, { en: 'Saturn in 2H from Karakamsha — Agriculture & Industry', hi: 'कारकांश से 2H में शनि — कृषि एवं उद्योग' },
+      { en: 'Saturn in the 2nd from Karakamsha: livelihood through farming, mining, construction, or heavy industry. Wealth comes slowly through persistent, systematic effort.', hi: 'कारकांश से 2H में शनि: कृषि, खनन, निर्माण या भारी उद्योग से आजीविका। धन धीरे-धीरे आता है।' }],
+    [7, rahuSign, { en: 'Rahu in 2H from Karakamsha — Foreign Trade & Technology', hi: 'कारकांश से 2H में राहु — विदेशी व्यापार' },
+      { en: 'Rahu in the 2nd from Karakamsha: income from foreign trade, import-export, metals, technology, or unconventional industries. Wealth through crossing cultural or geographic boundaries.', hi: 'कारकांश से 2H में राहु: विदेशी व्यापार, धातु, प्रौद्योगिकी से आजीविका।' }],
+    [8, ketuSign, { en: 'Ketu in 2H from Karakamsha — Spiritual Vocation', hi: 'कारकांश से 2H में केतु — आध्यात्मिक वृत्ति' },
+      { en: 'Ketu in the 2nd from Karakamsha: spiritual practitioner, healer, renunciant, or someone who monetizes ancient knowledge — astrology, medicine, or sacred arts.', hi: 'कारकांश से 2H में केतु: आध्यात्मिक साधक, वैद्य, संन्यासी या प्राचीन ज्ञान से आजीविका।' }],
+  ];
+
+  for (const [pid, psign, name, description] of PROF_2H) {
+    if (!psign) continue;
+    const pos = fromKarakamsha(km, psign);
+    if (pos === 2) {
+      yogas.push({ name, present: true, strength: 'moderate', description });
+    }
+  }
+
+  // ─── 5H from Karakamsha — Intelligence, Children, Learning ─────────────────
+  const FIFTH_KM: Array<[number, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [0, sunSign, { en: 'Sun in 5H from Karakamsha — Leadership Intelligence', hi: 'कारकांश से 5H में सूर्य — नेतृत्व बुद्धि' },
+      { en: 'Sun in the 5th from Karakamsha: commanding intellect, governmental or political intelligence, natural authority in teaching or advisory roles. Children may hold positions of authority.', hi: 'कारकांश से 5H में सूर्य: सरकारी बुद्धि, राजनीतिक बौद्धिकता, शिक्षण में स्वाभाविक अधिकार।' }],
+    [1, moonSign, { en: 'Moon in 5H from Karakamsha — Public & Agricultural Intelligence', hi: 'कारकांश से 5H में चंद्र — सार्वजनिक बुद्धि' },
+      { en: 'Moon in the 5th from Karakamsha: intuitive intelligence suited to public life, agriculture, and food-related work. Excellent memory, emotionally perceptive children.', hi: 'कारकांश से 5H में चंद्र: सार्वजनिक जीवन, कृषि के लिए सहज बुद्धि। उत्कृष्ट स्मृति।' }],
+    [3, mercSign, { en: 'Mercury in 5H from Karakamsha — Mathematical & Oratorical Genius', hi: 'कारकांश से 5H में बुध — गणितीय प्रतिभा' },
+      { en: 'Mercury in the 5th from Karakamsha: exceptional mathematical ability, oratory, writing, and linguistic intelligence. A natural astrologer, writer, or mathematician. Gifted communicator children.', hi: 'कारकांश से 5H में बुध: असाधारण गणितीय क्षमता, वक्तृत्व, लेखन। स्वाभाविक ज्योतिषी या गणितज्ञ।' }],
+    [6, satSign, { en: 'Saturn in 5H from Karakamsha — Research & Depth Intelligence', hi: 'कारकांश से 5H में शनि — शोध बुद्धि' },
+      { en: 'Saturn in the 5th from Karakamsha: slow but deep intelligence — excels in research, philosophy, occult sciences, and systematic study. Children may arrive late or be few but significant.', hi: 'कारकांश से 5H में शनि: धीर लेकिन गहरी बुद्धि, शोध, दर्शन, गुप्त विज्ञान में उत्कृष्टता।' }],
+  ];
+
+  for (const [pid, psign, name, description] of FIFTH_KM) {
+    if (!psign) continue;
+    const pos = fromKarakamsha(km, psign);
+    if (pos === 5) {
+      yogas.push({ name, present: true, strength: 'moderate', description });
+    }
+    void pid;
+  }
+
+  // ─── 7H from Karakamsha — Spouse Characteristics ────────────────────────────
+  const SEVENTH_KM: Array<[number, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [0, sunSign, { en: 'Sun in 7H from Karakamsha — Prominent Spouse', hi: 'कारकांश से 7H में सूर्य — प्रतिष्ठित जीवनसाथी' },
+      { en: 'Sun in the 7th from Karakamsha: an authoritative, prominent spouse — government servant, executive, or someone with natural command. The relationship brings social status.', hi: 'कारकांश से 7H में सूर्य: प्रतिष्ठित जीवनसाथी — सरकारी अधिकारी या कार्यकारी।' }],
+    [1, moonSign, { en: 'Moon in 7H from Karakamsha — Beautiful & Emotional Spouse', hi: 'कारकांश से 7H में चंद्र — सुन्दर जीवनसाथी' },
+      { en: 'Moon in the 7th from Karakamsha: an attractive, emotionally rich spouse. The partner is nurturing, publicly loved, and possibly connected to trade or public life.', hi: 'कारकांश से 7H में चंद्र: आकर्षक, भावनात्मक रूप से समृद्ध जीवनसाथी।' }],
+    [2, marsSign, { en: 'Mars in 7H from Karakamsha — Athletic or Volatile Spouse', hi: 'कारकांश से 7H में मंगल — ऊर्जावान जीवनसाथी' },
+      { en: 'Mars in the 7th from Karakamsha: a physically strong, courageous, or militaristic spouse. The marriage may involve friction — both parties are spirited and independent.', hi: 'कारकांश से 7H में मंगल: शारीरिक रूप से मजबूत, साहसी जीवनसाथी। विवाह में घर्षण संभव।' }],
+    [3, mercSign, { en: 'Mercury in 7H from Karakamsha — Intelligent & Communicative Spouse', hi: 'कारकांश से 7H में बुध — बुद्धिमान जीवनसाथी' },
+      { en: 'Mercury in the 7th from Karakamsha: a witty, educated, and communicative spouse. The relationship thrives on intellectual exchange and shared learning.', hi: 'कारकांश से 7H में बुध: चतुर, शिक्षित, संवादशील जीवनसाथी।' }],
+    [6, satSign, { en: 'Saturn in 7H from Karakamsha — Mature or Delayed Marriage', hi: 'कारकांश से 7H में शनि — परिपक्व विवाह' },
+      { en: 'Saturn in the 7th from Karakamsha: marriage may be delayed or to an older/more serious partner. The relationship deepens with age and is built on mutual duty and reliability.', hi: 'कारकांश से 7H में शनि: विवाह में विलंब या अधिक परिपक्व जीवनसाथी। संबंध कर्तव्य पर बनता है।' }],
+  ];
+
+  for (const [pid, psign, name, description] of SEVENTH_KM) {
+    if (!psign) continue;
+    const pos = fromKarakamsha(km, psign);
+    if (pos === 7) {
+      yogas.push({ name, present: true, strength: 'moderate', description });
+    }
+    void pid;
+  }
+
+  // ─── 8H from Karakamsha — Longevity & Transformation ────────────────────────
+  const EIGHTH_KM: Array<[number, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [4, jupSign, { en: 'Jupiter in 8H from Karakamsha — Longevity & Wisdom', hi: 'कारकांश से 8H में बृहस्पति — दीर्घायु' },
+      { en: 'Jupiter in the 8th from Karakamsha: long life, deep spiritual transformation, and wisdom through crisis. The soul learns profound lessons through loss and regeneration.', hi: 'कारकांश से 8H में बृहस्पति: दीर्घायु, गहरा आध्यात्मिक परिवर्तन, संकट से ज्ञान।' }],
+    [2, marsSign, { en: 'Mars in 8H from Karakamsha — Surgery & Transformation', hi: 'कारकांश से 8H में मंगल — शल्य व परिवर्तन' },
+      { en: 'Mars in the 8th from Karakamsha: the soul works with the body through surgery, wounds, or martial transformation. A powerful indicator for surgeons, military officers, or those who transmute physical crisis.', hi: 'कारकांश से 8H में मंगल: शल्य चिकित्सा, घाव या मार्शल परिवर्तन। सर्जन या सैन्य अधिकारी का संकेत।' }],
+    [6, satSign, { en: 'Saturn in 8H from Karakamsha — Endurance & Research', hi: 'कारकांश से 8H में शनि — सहनशक्ति एवं शोध' },
+      { en: 'Saturn in the 8th from Karakamsha: this soul endures chronic hardship and emerges stronger. Proficiency in research, mining, deep investigation, and occult sciences. Long life through sheer endurance.', hi: 'कारकांश से 8H में शनि: दीर्घकालिक कष्ट सहने के बाद मजबूती। खनन, गहरी जांच, गुप्त विज्ञान में प्रवीणता।' }],
+    [1, moonSign, { en: 'Moon in 8H from Karakamsha — Psychic Depth', hi: 'कारकांश से 8H में चंद्र — मानसिक गहराई' },
+      { en: 'Moon in the 8th from Karakamsha: heightened psychic sensitivity, hidden knowledge, and emotional depth that borders on mysticism. This soul works with the unseen and the hidden.', hi: 'कारकांश से 8H में चंद्र: तीव्र मानसिक संवेदनशीलता, छुपा ज्ञान, गूढ़ता की सीमा पर भावनात्मक गहराई।' }],
+  ];
+
+  for (const [pid, psign, name, description] of EIGHTH_KM) {
+    if (!psign) continue;
+    const pos = fromKarakamsha(km, psign);
+    if (pos === 8) {
+      yogas.push({ name, present: true, strength: 'moderate', description });
+    }
+    void pid;
+  }
+
+  // ─── 10H from Karakamsha — Karma & Profession ────────────────────────────────
+  const TENTH_KM: Array<[number, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [0, sunSign, { en: 'Sun in 10H from Karakamsha — Political Authority', hi: 'कारकांश से 10H में सूर्य — राजनीतिक अधिकार' },
+      { en: 'Sun in the 10th from Karakamsha: the soul is destined for political or governmental authority. High public office, administration, or leadership is the karma-purpose of this lifetime.', hi: 'कारकांश से 10H में सूर्य: आत्मा राजनीतिक या सरकारी अधिकार के लिए नियत है।' }],
+    [4, jupSign, { en: 'Jupiter in 10H from Karakamsha — Teacher & Advisor', hi: 'कारकांश से 10H में बृहस्पति — गुरु एवं सलाहकार' },
+      { en: 'Jupiter in the 10th from Karakamsha: the professional karma is that of teacher, priest, philosopher, or advisor. This soul fulfills its purpose by guiding others toward wisdom.', hi: 'कारकांश से 10H में बृहस्पति: गुरु, पुजारी, दार्शनिक या सलाहकार का कर्म।' }],
+    [6, satSign, { en: 'Saturn in 10H from Karakamsha — Builder Through Discipline', hi: 'कारकांश से 10H में शनि — अनुशासन से निर्माता' },
+      { en: 'Saturn in the 10th from Karakamsha: the soul rises through persistent, disciplined work. Late career success, heavy karmic responsibilities, but ultimately a lasting legacy through sheer endurance.', hi: 'कारकांश से 10H में शनि: निरंतर, अनुशासित कार्य से उत्थान। देर से करियर सफलता, स्थायी विरासत।' }],
+    [2, marsSign, { en: 'Mars in 10H from Karakamsha — Military & Technical Karma', hi: 'कारकांश से 10H में मंगल — सैन्य एवं तकनीकी कर्म' },
+      { en: 'Mars in the 10th from Karakamsha: the soul fulfills its dharma through the military, police, engineering, or competitive sports. Action and precision are the professional hallmarks.', hi: 'कारकांश से 10H में मंगल: सेना, पुलिस, इंजीनियरिंग या प्रतिस्पर्धी खेल में कर्म पूर्ति।' }],
+    [3, mercSign, { en: 'Mercury in 10H from Karakamsha — Commerce & Writing Karma', hi: 'कारकांश से 10H में बुध — वाणिज्य एवं लेखन कर्म' },
+      { en: 'Mercury in the 10th from Karakamsha: the soul fulfills its karma through business, writing, communication, or financial services. Versatile professional who succeeds through intelligence and adaptability.', hi: 'कारकांश से 10H में बुध: व्यापार, लेखन, संचार या वित्तीय सेवाओं से कर्म पूर्ति।' }],
+  ];
+
+  for (const [pid, psign, name, description] of TENTH_KM) {
+    if (!psign) continue;
+    const pos = fromKarakamsha(km, psign);
+    if (pos === 10) {
+      yogas.push({ name, present: true, strength: 'moderate', description });
+    }
+    void pid;
+  }
+
+  // ─── Multi-planet combos in Karakamsha trikona ──────────────────────────────
+  const MULTI_COMBOS: Array<[number, number, number | null, number | null, { en: string; hi: string }, { en: string; hi: string }]> = [
+    [4, 5, jupSign, venusSign, { en: 'Jupiter + Venus in Karakamsha Trikona — Srinatha Yoga', hi: 'कारकांश त्रिकोण में बृहस्पति + शुक्र — श्रीनाथ योग' },
+      { en: 'Jupiter and Venus together in a trikona from Karakamsha — Srinatha Yoga. This rare combination blesses the soul with great wealth, luxury, wisdom, and dharmic prosperity. A life of material and spiritual abundance simultaneously.', hi: 'कारकांश त्रिकोण में बृहस्पति और शुक्र — श्रीनाथ योग। दुर्लभ संयोग — धन, विलासिता, ज्ञान और धार्मिक समृद्धि।' }],
+    [0, 4, sunSign, jupSign, { en: 'Sun + Jupiter in Karakamsha — Solar Dharma Yoga', hi: 'कारकांश में सूर्य + बृहस्पति — सौर धर्म योग' },
+      { en: 'Sun and Jupiter together in Karakamsha or its trikona: the soul is destined for dharmic leadership — a king, high priest, or great teacher who leads by example and wisdom.', hi: 'कारकांश में सूर्य और बृहस्पति: धार्मिक नेतृत्व के लिए नियत आत्मा — राजा, महायाजक या महान शिक्षक।' }],
+    [0, 2, sunSign, marsSign, { en: 'Sun + Mars in Karakamsha — Warrior King Yoga', hi: 'कारकांश में सूर्य + मंगल — योद्धा-राजा योग' },
+      { en: 'Sun and Mars together in or near Karakamsha: the soul of a commander — military leader, executive authority, or surgeon who wields both power and precision. Aggressive self-assertion in service of dharma.', hi: 'कारकांश में सूर्य और मंगल: सेनापति की आत्मा — सैन्य नेता, कार्यकारी या सर्जन।' }],
+    [6, 2, satSign, marsSign, { en: 'Saturn + Mars in Karakamsha — Engineer & Builder Yoga', hi: 'कारकांश में शनि + मंगल — इंजीनियर योग' },
+      { en: 'Saturn and Mars together in Karakamsha: systematic application of force — civil engineering, architecture, heavy construction, or mechanical mastery. The combination of patience (Saturn) and drive (Mars) creates lasting structures.', hi: 'कारकांश में शनि और मंगल: बल का व्यवस्थित प्रयोग — सिविल इंजीनियरिंग, वास्तुकला, यांत्रिक महारत।' }],
+    [3, 5, mercSign, venusSign, { en: 'Mercury + Venus in Karakamsha — Arts & Commerce Genius', hi: 'कारकांश में बुध + शुक्र — कला एवं वाणिज्य प्रतिभा' },
+      { en: 'Mercury and Venus together in Karakamsha: the soul excels where art meets commerce — fashion, music industry, entertainment business, or luxury marketing. An aesthetically intelligent entrepreneur.', hi: 'कारकांश में बुध और शुक्र: कला और वाणिज्य का संगम — फैशन, संगीत उद्योग, मनोरंजन व्यवसाय।' }],
+  ];
+
+  for (const [pid1, pid2, psign1, psign2, name, description] of MULTI_COMBOS) {
+    if (!psign1 || !psign2) continue;
+    const pos1 = fromKarakamsha(km, psign1);
+    const pos2 = fromKarakamsha(km, psign2);
+    // Both in same trikona (1,5,9) from KM
+    const trikona = new Set([1, 5, 9]);
+    if (trikona.has(pos1) && trikona.has(pos2)) {
+      yogas.push({ name, present: true, strength: 'strong', description });
+    }
+    void pid1; void pid2;
+  }
+
+  // ─── Karakamsha Sign Profiles (12 signs) — soul's primary orientation ────────
+  const KM_SIGN_PROFILES: Record<number, { name: { en: string; hi: string }; description: { en: string; hi: string } }> = {
+    1:  { name: { en: 'Karakamsha in Aries — Pioneer Soul', hi: 'मेष कारकांश — पथप्रदर्शक आत्मा' },
+          description: { en: 'Karakamsha in Aries: the soul is oriented toward pioneering, leadership, and self-reliance. Courageous, independent, and often a trailblazer in their field. The life path involves initiating new ventures and confronting challenges directly.', hi: 'मेष कारकांश: पथप्रदर्शन, नेतृत्व और आत्मनिर्भरता की ओर उन्मुख आत्मा। साहसी, स्वतंत्र, और क्षेत्र में अग्रदूत।' } },
+    2:  { name: { en: 'Karakamsha in Taurus — Wealth-Accumulating Soul', hi: 'वृष कारकांश — धन-संचयकारी आत्मा' },
+          description: { en: 'Karakamsha in Taurus: the soul seeks stability, beauty, and material security. Strong affinity for land, art, music, and accumulated wealth. Patient builder of lasting value.', hi: 'वृष कारकांश: स्थिरता, सौंदर्य और भौतिक सुरक्षा की आत्मा। भूमि, कला, संगीत और स्थायी धन के प्रति आकर्षण।' } },
+    3:  { name: { en: 'Karakamsha in Gemini — Scholar Soul', hi: 'मिथुन कारकांश — विद्वान आत्मा' },
+          description: { en: 'Karakamsha in Gemini: the soul is destined for intellectual versatility — writing, teaching, communication, and commerce. Curious, adaptable, with multiple simultaneous interests and projects.', hi: 'मिथुन कारकांश: बौद्धिक बहुमुखिता — लेखन, शिक्षण, संचार और वाणिज्य के लिए नियत आत्मा।' } },
+    4:  { name: { en: 'Karakamsha in Cancer — Nurturing Soul', hi: 'कर्क कारकांश — पोषण-कर्त्री आत्मा' },
+          description: { en: 'Karakamsha in Cancer: the soul is oriented toward nurturing, public service, and protecting the vulnerable. Strong connection to mother, homeland, and the collective emotional wellbeing.', hi: 'कर्क कारकांश: पोषण, जन सेवा और संरक्षण की आत्मा। माता, मातृभूमि और सामूहिक कल्याण से गहरा जुड़ाव।' } },
+    5:  { name: { en: 'Karakamsha in Leo — Royal Soul', hi: 'सिंह कारकांश — राजकीय आत्मा' },
+          description: { en: 'Karakamsha in Leo: the soul carries a regal quality — natural authority, creative power, and the desire to lead and inspire. Political, theatrical, or leadership roles fulfill this karma.', hi: 'सिंह कारकांश: राजकीय गुण — स्वाभाविक अधिकार, सृजनात्मक शक्ति, नेतृत्व की इच्छा। राजनीतिक या नेतृत्व भूमिकाएं।' } },
+    6:  { name: { en: 'Karakamsha in Virgo — Analytical Soul', hi: 'कन्या कारकांश — विश्लेषणात्मक आत्मा' },
+          description: { en: 'Karakamsha in Virgo: the soul finds purpose through precision, service, and healing. Excellent analytical, medical, or editorial work. This soul perfects whatever it touches.', hi: 'कन्या कारकांश: सटीकता, सेवा और उपचार से उद्देश्य। उत्कृष्ट विश्लेषणात्मक, चिकित्सा या संपादकीय कार्य।' } },
+    7:  { name: { en: 'Karakamsha in Libra — Diplomatic Soul', hi: 'तुला कारकांश — राजनयिक आत्मा' },
+          description: { en: 'Karakamsha in Libra: the soul is oriented toward balance, justice, and beauty. Diplomatic, artistic, and relationship-focused. Law, design, mediation, and partnership are the natural domains.', hi: 'तुला कारकांश: संतुलन, न्याय और सौंदर्य की आत्मा। कूटनीतिक, कलात्मक। कानून, डिजाइन, मध्यस्थता।' } },
+    8:  { name: { en: 'Karakamsha in Scorpio — Investigative Soul', hi: 'वृश्चिक कारकांश — अनुसंधानी आत्मा' },
+          description: { en: 'Karakamsha in Scorpio: the soul seeks transformation through depth and hidden knowledge. Research, investigation, occult sciences, psychology, and spiritual transformation are the soul-level drives.', hi: 'वृश्चिक कारकांश: गहराई और छिपे ज्ञान से परिवर्तन। अनुसंधान, गुप्त विज्ञान, मनोविज्ञान, आत्मिक रूपांतरण।' } },
+    9:  { name: { en: 'Karakamsha in Sagittarius — Philosopher Soul', hi: 'धनु कारकांश — दार्शनिक आत्मा' },
+          description: { en: 'Karakamsha in Sagittarius: the soul is oriented toward truth, philosophy, and higher education. Teaching, religion, law, long-distance travel, and spiritual quest are the soul-level karma.', hi: 'धनु कारकांश: सत्य, दर्शन और उच्च शिक्षा। शिक्षण, धर्म, कानून, तीर्थयात्रा और आध्यात्मिक खोज।' } },
+    10: { name: { en: 'Karakamsha in Capricorn — Executive Soul', hi: 'मकर कारकांश — कार्यकारी आत्मा' },
+          description: { en: 'Karakamsha in Capricorn: the soul builds slowly and surely — ambitious, patient, and destined for late-career peak. Administration, engineering, and corporate leadership are the soul-path.', hi: 'मकर कारकांश: धीमे और निश्चित निर्माण — महत्वाकांक्षी, धैर्यवान। प्रशासन, इंजीनियरिंग, कॉर्पोरेट नेतृत्व।' } },
+    11: { name: { en: 'Karakamsha in Aquarius — Humanitarian Soul', hi: 'कुंभ कारकांश — मानवतावादी आत्मा' },
+          description: { en: 'Karakamsha in Aquarius: the soul works for collective betterment — science, social reform, technology, and humanitarian causes. Innovative, unconventional, and group-oriented.', hi: 'कुंभ कारकांश: सामूहिक उन्नति — विज्ञान, सामाजिक सुधार, प्रौद्योगिकी। नवाचारी, अपरंपरागत।' } },
+    12: { name: { en: 'Karakamsha in Pisces — Mystical Soul', hi: 'मीन कारकांश — रहस्यमय आत्मा' },
+          description: { en: 'Karakamsha in Pisces: the soul is oriented toward transcendence — mysticism, compassion, and dissolution of the ego. Spiritual service, healing, and moksha-pursuit are the life-purpose.', hi: 'मीन कारकांश: अतिक्रमण — रहस्यवाद, करुणा, अहंकार का विसर्जन। आध्यात्मिक सेवा और मोक्ष।' } },
+  };
+
+  const kmProfile = KM_SIGN_PROFILES[km];
+  if (kmProfile) {
+    yogas.push({ name: kmProfile.name, present: true, strength: 'mild', description: kmProfile.description });
   }
 
   // Filter: only return present yogas

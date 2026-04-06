@@ -36,6 +36,14 @@ describe('Subscription Tiers', () => {
       expect(checkFeatureAccess('varshaphal', 'free')).toBe(true);
     });
 
+    it('free tier has kp_system', () => {
+      expect(checkFeatureAccess('kp_system', 'free')).toBe(true);
+    });
+
+    it('free tier has prashna', () => {
+      expect(checkFeatureAccess('prashna', 'free')).toBe(true);
+    });
+
     it('free tier does NOT have batch', () => {
       expect(checkFeatureAccess('batch', 'free')).toBe(false);
     });
@@ -166,8 +174,8 @@ describe('Subscription Tiers', () => {
   // ── Free tier limited features ──────────────────────────────────────
 
   describe('Free tier limitations', () => {
-    it('free tier has exactly 5 features', () => {
-      expect(TIER_CONFIG.free.features.size).toBe(5);
+    it('free tier has exactly 7 features', () => {
+      expect(TIER_CONFIG.free.features.size).toBe(7);
     });
 
     it('free tier saved_charts total limit = 4', () => {

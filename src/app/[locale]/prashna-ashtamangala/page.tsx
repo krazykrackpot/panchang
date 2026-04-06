@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useAuthStore } from '@/stores/auth-store';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -73,6 +74,7 @@ export default function PrashnaAshtamangalaPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const locationStore = useLocationStore();
+  const session = useAuthStore(s => s.session);
 
   useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -80,25 +82,30 @@ export default function PrashnaAshtamangalaPage() {
   const [numbers, setNumbers] = useState<[number, number, number]>([7, 21, 54]);
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [upgradeRequired, setUpgradeRequired] = useState(false);
 
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
+    setUpgradeRequired(false);
     const now = new Date();
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
     try {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
       const res = await fetch('/api/prashna-ashtamangala', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
       const result = await res.json();
+      if (result.error === 'upgrade_required') { setUpgradeRequired(true); return; }
       if (result.error) throw new Error(result.error);
       setData(result);
     } catch (e) { console.error(e); }
-    setLoading(false);
-  }, [category, numbers, locationStore.lat, locationStore.lng]);
+    finally { setLoading(false); }
+  }, [category, numbers, locationStore.lat, locationStore.lng, session]);
 
   const verdictColors = { favorable: 'text-green-400', unfavorable: 'text-red-400', mixed: 'text-yellow-400' };
   const objLabels = [t.primary, t.supporting, t.timingObj];
@@ -152,6 +159,19 @@ export default function PrashnaAshtamangalaPage() {
           </motion.button>
         </div>
       </div>
+
+      {upgradeRequired && (
+        <div className="mt-6 rounded-xl bg-amber-500/10 border border-amber-500/30 p-5 text-center">
+          <p className="text-amber-300 font-bold text-base mb-1" style={headingFont}>
+            {locale === 'en' ? 'Pro or Jyotishi plan required' : 'प्रो या ज्योतिषी योजना आवश्यक'}
+          </p>
+          <p className="text-text-secondary/70 text-sm" style={bodyFont}>
+            {locale === 'en'
+              ? 'Prashna Kundali is a paid feature. Upgrade your plan to access it.'
+              : 'प्रश्न कुण्डली एक सशुल्क सुविधा है। इसे एक्सेस करने के लिए अपनी योजना अपग्रेड करें।'}
+          </p>
+        </div>
+      )}
 
       <AnimatePresence>
         {data && (

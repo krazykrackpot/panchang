@@ -67,6 +67,7 @@ export default function VarshaphalPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const user = useAuthStore(s => s.user);
+  const session = useAuthStore(s => s.session);
 
   const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', ayanamsha: 'lahiri' as const });
   const [placeName, setPlaceName] = useState('');
@@ -76,6 +77,7 @@ export default function VarshaphalPage() {
   const [year, setYear] = useState(new Date().getFullYear());
   const [data, setData] = useState<VarshaphalData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [upgradeRequired, setUpgradeRequired] = useState(false);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
 
   // Pre-populate form from user profile
@@ -110,22 +112,26 @@ export default function VarshaphalPage() {
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
+    setUpgradeRequired(false);
     const [y, m, d] = form.date.split('-').map(Number);
     const tz = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
     try {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
       const res = await fetch('/api/varshaphal', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           birthData: { ...form, place: placeName, lat: placeLat, lng: placeLng, timezone: String(tz), ayanamsha: form.ayanamsha },
           year,
         }),
       });
       const result = await res.json();
+      if (result.error === 'upgrade_required') { setUpgradeRequired(true); return; }
       if (result.error) throw new Error(result.error);
       setData(result);
     } catch (e) { console.error(e); }
-    setLoading(false);
+    finally { setLoading(false); }
   };
 
   return (
@@ -177,6 +183,19 @@ export default function VarshaphalPage() {
           </motion.button>
         </div>
       </div>
+
+      {upgradeRequired && (
+        <div className="mt-6 rounded-xl bg-amber-500/10 border border-amber-500/30 p-5 text-center">
+          <p className="text-amber-300 font-bold text-base mb-1" style={headingFont}>
+            {locale === 'en' ? 'Pro or Jyotishi plan required' : 'प्रो या ज्योतिषी योजना आवश्यक'}
+          </p>
+          <p className="text-text-secondary/70 text-sm" style={bodyFont}>
+            {locale === 'en'
+              ? 'Varshaphal analysis is a paid feature. Upgrade your plan to access it.'
+              : 'वर्षफल एक सशुल्क सुविधा है। इसे एक्सेस करने के लिए अपनी योजना अपग्रेड करें।'}
+          </p>
+        </div>
+      )}
 
       <AnimatePresence>
         {data && (

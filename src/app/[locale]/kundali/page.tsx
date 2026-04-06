@@ -3333,16 +3333,17 @@ export default function KundaliPage() {
 
                 <div className="border-t border-gold-primary/10" />
 
-                {/* Key Doshas */}
+                {/* Key Doshas — only shown when at least one is present */}
+                {doshas.some(d => d.present) && (
                 <div>
                   <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
                     {locale === 'en' ? 'Key Doshas' : 'प्रमुख दोष'}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {doshas.map((dosha, i) => (
-                      <div key={i} className={`rounded-xl p-4 border ${dosha.present ? 'bg-red-500/5 border-red-500/20' : 'bg-emerald-500/5 border-emerald-500/15'}`}>
+                    {doshas.filter(d => d.present).map((dosha, i) => (
+                      <div key={i} className="rounded-xl p-4 border bg-red-500/5 border-red-500/20">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className={`w-2.5 h-2.5 rounded-full ${dosha.present ? 'bg-red-400' : 'bg-emerald-400'}`} />
+                          <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                           <span className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                             {dosha.name[locale === 'en' ? 'en' : 'hi']}
                           </span>
@@ -3354,6 +3355,7 @@ export default function KundaliPage() {
                     ))}
                   </div>
                 </div>
+                )}
 
                 <div className="border-t border-gold-primary/10" />
 

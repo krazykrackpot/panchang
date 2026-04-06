@@ -1,0 +1,19 @@
+import type { Metadata } from 'next';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/learn/modules/1-1`,
+      languages: {
+        en: `${BASE_URL}/en/learn/modules/1-1`,
+        hi: `${BASE_URL}/hi/learn/modules/1-1`,
+        sa: `${BASE_URL}/sa/learn/modules/1-1`,
+        'x-default': `${BASE_URL}/en/learn/modules/1-1`,
+      },
+    },
+  };
+}
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}

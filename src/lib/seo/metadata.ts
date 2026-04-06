@@ -541,6 +541,113 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['sade sati', 'saturn transit', 'shani sade sati', 'saturn 7.5 years'],
   },
 
+  // ─── Learn core topics (missing entries — added for canonical coverage) ───────
+  '/learn/grahas': {
+    title: { en: 'The Nine Grahas (Planets) in Vedic Astrology', hi: 'वैदिक ज्योतिष में नव ग्रह', sa: 'वैदिकज्योतिषे नवग्रहाः' },
+    description: { en: 'Complete guide to the nine Grahas: Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn, Rahu, Ketu — their significations, natures, and roles in Jyotish.', hi: 'नौ ग्रहों का सम्पूर्ण मार्गदर्शन — सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र, शनि, राहु, केतु।', sa: 'नवग्रहाणां सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['grahas vedic astrology', 'nine planets jyotish', 'navagraha', 'planets in astrology'],
+  },
+  '/learn/rashis': {
+    title: { en: 'The 12 Rashis (Zodiac Signs) in Vedic Astrology', hi: 'वैदिक ज्योतिष में 12 राशियाँ', sa: 'वैदिकज्योतिषे द्वादशराशयः' },
+    description: { en: 'Learn the 12 Rashis from Mesha to Meena — their elements, qualities, ruling planets, and meanings in Jyotish birth chart interpretation.', hi: 'मेष से मीन तक 12 राशियाँ — तत्त्व, गुण, स्वामी ग्रह और जन्म कुण्डली में अर्थ।', sa: 'मेषादिमीनान्तं द्वादशराशयः।' },
+    keywords: ['12 rashis', 'zodiac signs vedic', 'mesha aries', 'vedic zodiac'],
+  },
+  '/learn/nakshatras': {
+    title: { en: 'The 27 Nakshatras — Lunar Mansions in Jyotish', hi: '27 नक्षत्र — ज्योतिष में चन्द्र मंडल', sa: 'सप्तविंशतिनक्षत्राणि — ज्योतिषे चन्द्रमण्डलम्' },
+    description: { en: 'Complete reference for all 27 Nakshatras — their deities, ruling planets, qualities, syllables, and roles in birth chart analysis and muhurta.', hi: '27 नक्षत्रों का सम्पूर्ण संदर्भ — देवता, स्वामी ग्रह, गुण, अक्षर और कुण्डली विश्लेषण में भूमिका।', sa: 'सर्वेषां सप्तविंशतिनक्षत्राणां सम्पूर्णः सन्दर्भः।' },
+    keywords: ['27 nakshatras', 'lunar mansions', 'nakshatra astrology', 'birth star'],
+  },
+  '/learn/tithis': {
+    title: { en: 'Tithis — The 30 Lunar Days in Hindu Calendar', hi: 'तिथियाँ — हिन्दू पंचांग में 30 चन्द्र दिवस', sa: 'तिथयः — हिन्दुपञ्चाङ्गे त्रिंशच्चन्द्रदिवसाः' },
+    description: { en: 'Learn the 30 Tithis of the Hindu lunar month — from Pratipada to Amavasya. Their meanings, ruling deities, auspicious and inauspicious nature.', hi: 'प्रतिपदा से अमावस्या तक 30 तिथियाँ — अर्थ, अधिदेवता, शुभ और अशुभ स्वभाव।', sa: 'प्रतिपदादि अमावस्यान्तं त्रिंशत् तिथयः।' },
+    keywords: ['tithi', 'lunar day', 'panchang tithi', 'pratipada purnima amavasya'],
+  },
+  '/learn/yogas': {
+    title: { en: 'Yogas in Vedic Astrology — Raj, Dhana, Dosha Yogas', hi: 'वैदिक ज्योतिष में योग — राज, धन, दोष योग', sa: 'वैदिकज्योतिषे योगाः — राजयोगः धनयोगः' },
+    description: { en: 'Master the major yogas of Jyotish — Pancha Mahapurusha, Raj Yoga, Dhana Yoga, Neecha Bhanga, and dosha yogas. How they form and what they mean in your chart.', hi: 'पञ्च महापुरुष, राज योग, धन योग, नीच भंग और दोष योगों की सम्पूर्ण जानकारी।', sa: 'पञ्चमहापुरुषाः राजयोगाः धनयोगाः नीचभङ्गाश्च।' },
+    keywords: ['yogas in astrology', 'raj yoga', 'dhana yoga', 'pancha mahapurusha'],
+  },
+  '/learn/karanas': {
+    title: { en: 'Karanas — The 11 Half-Day Units in Panchang', hi: 'करण — पंचांग में 11 अर्द्ध-दिवस इकाइयाँ', sa: 'करणानि — पञ्चाङ्गे एकादशार्धदिवसाः' },
+    description: { en: 'Learn the 11 Karanas (half-Tithis) used in Panchang: Bava, Balava, Kaulava, Taitila, Garaja, Vanija, Vishti (Bhadra), Sakuni, Chatushpada, Naga, Kimstughna.', hi: '11 करण — बव, बालव, कौलव, तैतिल, गर, वणिज, विष्टि, शकुनि, चतुष्पद, नाग, किंस्तुघ्न।', sa: 'पञ्चाङ्गस्य एकादशकरणानि।' },
+    keywords: ['karana panchang', 'half tithi', 'bhadra karana', 'vishti karana'],
+  },
+  '/learn/muhurtas': {
+    title: { en: 'Muhurta — Auspicious Timing in Vedic Astrology', hi: 'मुहूर्त — वैदिक ज्योतिष में शुभ समय', sa: 'मुहूर्तः — वैदिकज्योतिषे शुभकालः' },
+    description: { en: 'Learn how to choose auspicious Muhurtas for marriage, travel, business, and ceremonies. Tithi, Nakshatra, Vara, and Yoga combinations explained.', hi: 'विवाह, यात्रा, व्यापार और उत्सवों के लिए शुभ मुहूर्त कैसे चुनें।', sa: 'विवाहयात्राव्यापारोत्सवेभ्यः शुभमुहूर्तचयनम्।' },
+    keywords: ['muhurta', 'auspicious timing', 'shubh muhurat', 'vedic timing'],
+  },
+  '/learn/kundali': {
+    title: { en: 'Reading a Kundali — Vedic Birth Chart Interpretation', hi: 'कुण्डली पढ़ना — वैदिक जन्म कुण्डली व्याख्या', sa: 'कुण्डलीपठनम् — वैदिकजन्मकुण्डलीव्याख्या' },
+    description: { en: 'Step-by-step guide to reading a Vedic birth chart (Kundali): houses, planets, signs, aspects, dashas, and yogas. From beginner to advanced interpretation.', hi: 'वैदिक जन्म कुण्डली पढ़ने की चरणबद्ध मार्गदर्शिका — भाव, ग्रह, राशि, दशा और योग।', sa: 'वैदिकजन्मकुण्डलीपठनस्य क्रमबद्धमार्गदर्शिका।' },
+    keywords: ['how to read kundali', 'birth chart interpretation', 'jyotish chart', 'kundali reading'],
+  },
+  '/learn/lagna': {
+    title: { en: 'Lagna (Ascendant) — The Most Important Point in Kundali', hi: 'लग्न — कुण्डली का सबसे महत्त्वपूर्ण बिन्दु', sa: 'लग्नम् — कुण्डल्यां सर्वाधिकमहत्त्वपूर्णः बिन्दुः' },
+    description: { en: 'Understand the Lagna (rising sign / ascendant) in Vedic astrology — how it is calculated, its role as chart ruler, and its meaning for personality and life path.', hi: 'वैदिक ज्योतिष में लग्न — गणना, कुण्डली में भूमिका और व्यक्तित्व पर प्रभाव।', sa: 'वैदिकज्योतिषे लग्नस्य गणना कुण्डल्यां भूमिका च।' },
+    keywords: ['lagna astrology', 'ascendant vedic', 'rising sign jyotish', 'udaya lagna'],
+  },
+  '/learn/matching': {
+    title: { en: 'Kundali Matching — How Guna Milan Works', hi: 'कुण्डली मिलान — गुण मिलान कैसे काम करता है', sa: 'कुण्डलीमेलनम् — गुणमेलनं कथं कार्यं करोति' },
+    description: { en: 'Learn the 8-factor Ashta Kuta Guna Milan system for marriage compatibility — Varna, Vashya, Tara, Yoni, Graha Maitri, Gana, Bhakoot, Nadi, and Nadi Dosha.', hi: 'विवाह अनुकूलता के लिए अष्ट कूट गुण मिलान — वर्ण, वश्य, तारा, योनि, ग्रह मैत्री, गण, भकूट, नाड़ी।', sa: 'विवाहानुकूलतायां अष्टकूटगुणमेलनम्।' },
+    keywords: ['kundali matching', 'guna milan', 'ashta kuta', 'marriage compatibility astrology'],
+  },
+  '/learn/vara': {
+    title: { en: 'Vara — The 7 Weekdays in Vedic Astrology', hi: 'वार — वैदिक ज्योतिष में 7 दिन', sa: 'वाराः — वैदिकज्योतिषे सप्तदिनानि' },
+    description: { en: 'Learn the 7 Varas (weekdays) in Jyotish — their ruling planets, auspicious activities, and role in Panchang and Muhurta.', hi: '7 वार — रवि से शनि तक — स्वामी ग्रह, शुभ कार्य और मुहूर्त में भूमिका।', sa: 'रव्यादिशन्यन्तं सप्तवाराः।' },
+    keywords: ['vara weekday astrology', 'panchang vara', 'day of week jyotish'],
+  },
+  '/learn/vargas': {
+    title: { en: 'Varga Charts — Divisional Charts in Vedic Astrology', hi: 'वर्ग कुण्डलियाँ — वैदिक ज्योतिष में विभागीय चार्ट', sa: 'वर्गकुण्डलयः — वैदिकज्योतिषे विभागीयपत्रिकाः' },
+    description: { en: 'Master the 16 Varga charts — Rasi, Hora, Drekkana, Navamsha, Dashamsha, and more. How divisional charts reveal deeper life themes.', hi: '16 वर्ग कुण्डलियाँ — राशि, होरा, द्रेक्काण, नवमांश, दशमांश आदि।', sa: 'षोडशवर्गकुण्डलयः।' },
+    keywords: ['varga charts', 'divisional charts', 'navamsha', 'shodashamsha astrology'],
+  },
+  '/learn/dashas': {
+    title: { en: 'Dashas — Planetary Period Systems in Vedic Astrology', hi: 'दशा — वैदिक ज्योतिष में ग्रहकाल प्रणाली', sa: 'दशाः — वैदिकज्योतिषे ग्रहकालप्रणाली' },
+    description: { en: 'Complete guide to Vimshottari Dasha — maha dasha, antar dasha, pratyantar dasha, and how planetary periods shape life events.', hi: 'विंशोत्तरी दशा — महादशा, अन्तर्दशा, प्रत्यन्तर दशा और जीवन घटनाओं पर प्रभाव।', sa: 'विंशोत्तरीदशा — महादशा अन्तर्दशा प्रत्यन्तर्दशा च।' },
+    keywords: ['dasha system', 'vimshottari dasha', 'mahadasha', 'planetary periods vedic'],
+  },
+  '/learn/doshas': {
+    title: { en: 'Doshas in Vedic Astrology — Manglik, Kaal Sarp, Sade Sati', hi: 'वैदिक ज्योतिष में दोष — मांगलिक, काल सर्प, साढ़े साती', sa: 'वैदिकज्योतिषे दोषाः' },
+    description: { en: 'Understand the major Doshas in Jyotish — Manglik Dosha, Kaal Sarp Dosha, Sade Sati, Ganda Mula, and Pitra Dosha. Their formation, effects, and remedies.', hi: 'ज्योतिष के प्रमुख दोष — मांगलिक, काल सर्प, साढ़े साती, गण्ड मूल, पितृ दोष — निर्माण, प्रभाव और उपाय।', sa: 'ज्योतिषस्य प्रमुखदोषाः।' },
+    keywords: ['manglik dosha', 'kaal sarp dosha', 'astrological doshas', 'pitra dosha'],
+  },
+  '/learn/gochar': {
+    title: { en: 'Gochar — Planetary Transits in Vedic Astrology', hi: 'गोचर — वैदिक ज्योतिष में ग्रह गोचर', sa: 'गोचरः — वैदिकज्योतिषे ग्रहगोचरः' },
+    description: { en: 'Learn how planetary transits (Gochar) interact with your natal chart — Jupiter, Saturn, Rahu-Ketu transits and their effects on life areas.', hi: 'ग्रह गोचर — बृहस्पति, शनि, राहु-केतु का जन्म कुण्डली पर प्रभाव।', sa: 'ग्रहगोचरः — ग्रहाणां जन्मकुण्डल्यां प्रभावः।' },
+    keywords: ['gochar transit', 'planetary transits vedic', 'jupiter transit', 'saturn transit'],
+  },
+  '/learn/advanced': {
+    title: { en: 'Advanced Vedic Astrology — Deeper Jyotish Techniques', hi: 'उन्नत वैदिक ज्योतिष — गहन ज्योतिष तकनीकें', sa: 'उन्नतवैदिकज्योतिषम्' },
+    description: { en: 'Advanced Jyotish topics — Jaimini Sutras, Ashtakavarga, Shadbala, Bhavabala, Argala, Varga charts, special lagnas, and predictive techniques.', hi: 'उन्नत ज्योतिष — जैमिनी सूत्र, अष्टकवर्ग, षड्बल, भावबल, अर्गल, वर्ग कुण्डली।', sa: 'उन्नतज्योतिषम् — जैमिनीसूत्राणि अष्टकवर्गः षड्बलं भावबलम्।' },
+    keywords: ['advanced vedic astrology', 'jaimini astrology', 'advanced jyotish', 'predictive astrology'],
+  },
+  '/learn/ayanamsha': {
+    title: { en: 'Ayanamsha — The Vedic Sidereal Correction Explained', hi: 'अयनांश — वैदिक नाक्षत्र संशोधन की व्याख्या', sa: 'अयनांशः — वैदिकनाक्षत्रसंशोधनम्' },
+    description: { en: 'Understand Ayanamsha — the difference between tropical and sidereal zodiacs. Lahiri, Raman, Krishnamurti ayanamshas compared.', hi: 'अयनांश — उष्णकटिबंधीय और नाक्षत्र राशिचक्र का अंतर। लाहिड़ी, रमण, कृष्णमूर्ति अयनांश।', sa: 'अयनांशः — उष्णकटिबन्धीय नाक्षत्रराशिचक्रयोः भेदः।' },
+    keywords: ['ayanamsha', 'lahiri ayanamsha', 'sidereal zodiac', 'tropical vs sidereal'],
+  },
+  '/learn/bhavas': {
+    title: { en: 'The 12 Bhavas (Houses) in Vedic Astrology', hi: 'वैदिक ज्योतिष में 12 भाव', sa: 'वैदिकज्योतिषे द्वादशभावाः' },
+    description: { en: 'Complete guide to the 12 Bhavas (houses) in Jyotish — their significations, natural rulers, Kendra/Trikona/Dusthana classification, and interpretation.', hi: 'ज्योतिष के 12 भाव — अर्थ, प्राकृतिक स्वामी, केन्द्र/त्रिकोण/दुःस्थान वर्गीकरण।', sa: 'ज्योतिषस्य द्वादशभावाः।' },
+    keywords: ['12 houses vedic astrology', 'bhavas jyotish', 'kendra trikona', 'house astrology'],
+  },
+  '/learn/calculations': {
+    title: { en: 'How Vedic Astrology Calculations Work', hi: 'वैदिक ज्योतिष गणनाएँ कैसे काम करती हैं', sa: 'वैदिकज्योतिषगणनाः' },
+    description: { en: 'The mathematics behind Vedic astrology — Julian Day Number, sidereal time, tropical to sidereal conversion, and Lahiri Ayanamsha calculation.', hi: 'वैदिक ज्योतिष का गणित — जूलियन दिन संख्या, नाक्षत्र समय, ग्रह स्थिति और लाहिड़ी अयनांश।', sa: 'वैदिकज्योतिषस्य गणितम्।' },
+    keywords: ['vedic astrology calculation', 'julian day number', 'astronomical calculation', 'ayanamsha calculation'],
+  },
+  '/learn/classical-texts': {
+    title: { en: 'Classical Texts of Vedic Astrology — Brihat Parashari & More', hi: 'वैदिक ज्योतिष के शास्त्रीय ग्रन्थ', sa: 'वैदिकज्योतिषस्य शास्त्रीयग्रन्थाः' },
+    description: { en: 'Overview of the major classical texts of Jyotish — Brihat Parashari Hora Shastra, Saravali, Phaladeepika, Jataka Parijata, Brihat Jataka, and Jaimini Sutras.', hi: 'ज्योतिष के प्रमुख ग्रन्थ — बृहत् पाराशरी, सारावली, फलदीपिका, जातक परिजात।', sa: 'ज्योतिषस्य प्रमुखशास्त्रीयग्रन्थाः।' },
+    keywords: ['classical astrology texts', 'brihat parashari', 'jaimini sutras', 'saravali astrology'],
+  },
+  '/learn/masa': {
+    title: { en: 'Masa — The Hindu Lunar Month System', hi: 'मास — हिन्दू चन्द्र मास प्रणाली', sa: 'मासः — हिन्दुचन्द्रमासप्रणाली' },
+    description: { en: 'Learn the Hindu Masa (lunar month) system — Chaitra to Phalguna, Amanta vs Purnimanta traditions, Adhika Masa (leap month), and regional variations.', hi: 'हिन्दू मास — चैत्र से फाल्गुन, अमान्त और पूर्णिमान्त परम्परा, अधिक मास।', sa: 'हिन्दुमासप्रणाली — चैत्रादिफाल्गुनान्तः अमान्तः पूर्णिमान्तः अधिकमासश्च।' },
+    keywords: ['hindu month', 'masa panchang', 'chaitra masa', 'lunar calendar month'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

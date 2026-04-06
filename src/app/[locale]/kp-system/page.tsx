@@ -20,11 +20,13 @@ const T = {
     generate: 'Generate KP Chart', generating: 'Computing Sub-Lords...',
     name: 'Name', date: 'Birth Date', time: 'Birth Time', place: 'Place', lat: 'Latitude', lng: 'Longitude', tz: 'Timezone',
     cuspalTable: 'Cuspal Sub-Lord Table', planetTable: 'Planetary Sub-Lord Table',
+    cuspalAnalysis: 'Cuspal Sub-Lord Signification (P2-05)',
     significators: 'Significator Table', rulingPlanets: 'Ruling Planets',
-    cusp: 'Cusp', sign: 'Sign Lord', star: 'Star Lord', sub: 'Sub Lord', degree: 'Degree',
+    cusp: 'Cusp', sign: 'Sign Lord', star: 'Star Lord', sub: 'Sub Lord', subsub: 'Sub-Sub Lord', degree: 'Degree',
     planet: 'Planet', house: 'House', h: 'House', l1: 'L1', l2: 'L2', l3: 'L3', l4: 'L4', combined: 'Combined',
     predictions: 'Quick Predictions', asc: 'Asc', moon: 'Moon', day: 'Day',
     marriage: 'Marriage (2/7/11)', career: 'Career (2/6/10)', wealth: 'Wealth (2/6/11)', health: 'Health (1/5/11)',
+    signifies: 'Signifies', required: 'Required', materialises: 'Materialises', denied: 'Denied',
   },
   hi: {
     title: 'केपी पद्धति', subtitle: 'कृष्णमूर्ति पद्धति — उप-स्वामी विश्लेषण',
@@ -32,11 +34,13 @@ const T = {
     generate: 'केपी कुण्डली बनाएं', generating: 'उप-स्वामी गणना...',
     name: 'नाम', date: 'जन्म तिथि', time: 'जन्म समय', place: 'स्थान', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समयक्षेत्र',
     cuspalTable: 'कस्प उप-स्वामी तालिका', planetTable: 'ग्रह उप-स्वामी तालिका',
+    cuspalAnalysis: 'कस्प उप-स्वामी सूचन विश्लेषण',
     significators: 'कारक तालिका', rulingPlanets: 'शासक ग्रह',
-    cusp: 'कस्प', sign: 'राशि स्वामी', star: 'नक्षत्र स्वामी', sub: 'उप-स्वामी', degree: 'अंश',
+    cusp: 'कस्प', sign: 'राशि स्वामी', star: 'नक्षत्र स्वामी', sub: 'उप-स्वामी', subsub: 'उप-उप-स्वामी', degree: 'अंश',
     planet: 'ग्रह', house: 'भाव', h: 'भाव', l1: 'स्तर1', l2: 'स्तर2', l3: 'स्तर3', l4: 'स्तर4', combined: 'संयुक्त',
     predictions: 'त्वरित भविष्यवाणी', asc: 'लग्न', moon: 'चन्द्र', day: 'वार',
     marriage: 'विवाह (2/7/11)', career: 'करियर (2/6/10)', wealth: 'धन (2/6/11)', health: 'स्वास्थ्य (1/5/11)',
+    signifies: 'सूचित भाव', required: 'आवश्यक', materialises: 'फलदायी', denied: 'अभाव',
   },
   sa: {
     title: 'केपी पद्धतिः', subtitle: 'कृष्णमूर्तिपद्धतिः — उपस्वामिविश्लेषणम्',
@@ -44,11 +48,13 @@ const T = {
     generate: 'केपी कुण्डलीं रचयतु', generating: 'उपस्वामिगणना...',
     name: 'नाम', date: 'जन्मतिथिः', time: 'जन्मसमयः', place: 'स्थानम्', lat: 'अक्षांशः', lng: 'देशान्तरः', tz: 'समयक्षेत्रम्',
     cuspalTable: 'कस्पोपस्वामिसारणी', planetTable: 'ग्रहोपस्वामिसारणी',
+    cuspalAnalysis: 'कस्पोपस्वामिसूचनविश्लेषणम्',
     significators: 'कारकसारणी', rulingPlanets: 'शासकग्रहाः',
-    cusp: 'कस्पः', sign: 'राशिस्वामी', star: 'नक्षत्रस्वामी', sub: 'उपस्वामी', degree: 'अंशः',
+    cusp: 'कस्पः', sign: 'राशिस्वामी', star: 'नक्षत्रस्वामी', sub: 'उपस्वामी', subsub: 'उपउपस्वामी', degree: 'अंशः',
     planet: 'ग्रहः', house: 'भावः', h: 'भावः', l1: 'स्तर1', l2: 'स्तर2', l3: 'स्तर3', l4: 'स्तर4', combined: 'संयुक्तम्',
     predictions: 'त्वरितभविष्यवाणी', asc: 'लग्नम्', moon: 'चन्द्रः', day: 'वारः',
     marriage: 'विवाहः (2/7/11)', career: 'व्यवसायः (2/6/10)', wealth: 'धनम् (2/6/11)', health: 'स्वास्थ्यम् (1/5/11)',
+    signifies: 'सूचितभावाः', required: 'आवश्यकम्', materialises: 'फलितम्', denied: 'अभावः',
   },
 };
 
@@ -154,6 +160,7 @@ export default function KPSystemPage() {
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
+                  <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
                 </tr></thead>
                 <tbody>{data.cusps.map(c => (
                   <tr key={c.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
@@ -162,9 +169,35 @@ export default function KPSystemPage() {
                     <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.signLord.name[locale]}</td>
                     <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.starLord.name[locale]}</td>
                     <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{c.subLordInfo.subLord.name[locale]}</td>
+                    <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{c.subLordInfo.subSubLord.name[locale]}</td>
                   </tr>
                 ))}</tbody>
               </table>
+            </div>
+
+            {/* P2-05: Cuspal Sub-Lord Signification Analysis */}
+            <div className="bg-gradient-to-br from-[#1a1040]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-amber-500/20 rounded-xl p-6">
+              <h2 className="text-amber-400 text-sm uppercase tracking-wider mb-1 font-bold">{t.cuspalAnalysis}</h2>
+              <p className="text-text-secondary text-xs mb-4">The sub-lord of each house cusp determines whether that house&apos;s matters will materialise.</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {data.cuspalAnalysis.map(ca => (
+                  <div key={ca.house} className={`rounded-lg p-3 border ${ca.favorable ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
+                    <div className="flex items-start justify-between mb-1">
+                      <span className="text-gold-light font-bold text-sm">H{ca.house}</span>
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${ca.favorable ? 'bg-emerald-500/15 text-emerald-400' : 'bg-red-500/15 text-red-400'}`}>
+                        {ca.favorable ? t.materialises : t.denied}
+                      </span>
+                    </div>
+                    <div className="text-xs text-text-secondary mb-1" style={bodyFont}>
+                      <span className="text-text-primary">{ca.subLordName[locale]}</span> → <span className="text-amber-400/80">{ca.subSubLordName[locale]}</span>
+                    </div>
+                    <div className="text-xs text-text-secondary">
+                      {t.signifies}: <span className="text-gold-primary">{ca.signifiedHouses.length > 0 ? ca.signifiedHouses.join(', ') : '—'}</span>
+                    </div>
+                    <p className="text-xs text-text-secondary mt-1.5 leading-relaxed">{ca.interpretation[locale]}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Planetary Sub-Lord Table */}
@@ -178,6 +211,7 @@ export default function KPSystemPage() {
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
                   <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
+                  <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
                 </tr></thead>
                 <tbody>{data.planets.map(p => (
                   <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
@@ -187,6 +221,7 @@ export default function KPSystemPage() {
                     <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.signLord.name[locale]}</td>
                     <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.starLord.name[locale]}</td>
                     <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{p.subLordInfo.subLord.name[locale]}</td>
+                    <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{p.subLordInfo.subSubLord.name[locale]}</td>
                   </tr>
                 ))}</tbody>
               </table>

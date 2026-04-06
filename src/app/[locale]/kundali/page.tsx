@@ -137,6 +137,7 @@ function PlanetDetailRow({ planet: p, locale, isDevanagari }: { planet: PlanetPo
             {p.isVargottama && <span className="text-gold-light text-xs font-bold px-1.5 py-0.5 bg-gold-primary/15 rounded border border-gold-primary/30" title={locale === 'en' ? 'Strength equal to double exaltation — same sign in D1 and D9' : 'वर्गोत्तम — D1 और D9 में एक ही राशि'}>Vgm</span>}
             {p.isMrityuBhaga && <span className="text-rose-400 text-xs font-bold px-1.5 py-0.5 bg-rose-500/10 rounded" title={locale === 'en' ? 'At or near Mrityu Bhaga — dangerous degree, severely weakened' : 'मृत्यु भाग — खतरनाक अंश, बल में गिरावट'}>MB</span>}
             {p.isPushkarNavamsha && <span className="text-sky-300 text-xs font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20" title={locale === 'en' ? 'Pushkar Navamsha — supremely auspicious navamsha position' : 'पुष्कर नवांश — अत्यंत शुभ नवांश स्थिति'}>PKN</span>}
+            {p.isPushkarBhaga && <span className="text-emerald-300 text-xs font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded border border-emerald-400/20" title={locale === 'en' ? 'Pushkar Bhaga — most auspicious degree in the sign. Greatly strengthens this planet.' : 'पुष्कर भाग — राशि में सर्वाधिक शुभ अंश। ग्रह को अत्यंत बल मिलता है।'}>PKB</span>}
           </div>
           <div className="text-text-secondary text-xs mt-0.5">
             <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.signName[locale]}</span>
@@ -1040,6 +1041,7 @@ export default function KundaliPage() {
                         {p.isVargottama && <span className="text-gold-light text-xs font-bold px-1.5 py-0.5 bg-gold-primary/15 rounded border border-gold-primary/30" title={locale === 'en' ? 'Same sign in D1 & D9 — strength equal to double exaltation' : 'वर्गोत्तम — D1 और D9 में एक ही राशि'}>Vgm</span>}
                         {p.isMrityuBhaga && <span className="text-rose-400 text-xs font-bold px-1.5 py-0.5 bg-rose-500/10 rounded" title={locale === 'en' ? 'At or near Mrityu Bhaga — dangerous degree, severely weakened' : 'मृत्यु भाग — खतरनाक अंश, बल में गिरावट'}>MB</span>}
                         {p.isPushkarNavamsha && <span className="text-sky-300 text-xs font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20" title={locale === 'en' ? 'Pushkar Navamsha — supremely auspicious navamsha position' : 'पुष्कर नवांश — अत्यंत शुभ नवांश स्थिति'}>PKN</span>}
+            {p.isPushkarBhaga && <span className="text-emerald-300 text-xs font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded border border-emerald-400/20" title={locale === 'en' ? 'Pushkar Bhaga — most auspicious degree in the sign. Greatly strengthens this planet.' : 'पुष्कर भाग — राशि में सर्वाधिक शुभ अंश। ग्रह को अत्यंत बल मिलता है।'}>PKB</span>}
                       </div>
                       <div className="text-text-secondary text-sm mt-0.5 flex flex-wrap gap-x-4 gap-y-0.5">
                         <span>
@@ -1271,6 +1273,7 @@ export default function KundaliPage() {
                   { key: 'vimshottari', desc: { en: 'The most widely used dasha system in Vedic astrology. Based on the Moon\'s nakshatra at birth, it divides life into 9 planetary periods totaling 120 years. Each planet\'s dasha activates its significations in your chart.', hi: 'वैदिक ज्योतिष में सर्वाधिक प्रचलित दशा पद्धति। जन्म के चन्द्र नक्षत्र पर आधारित, 120 वर्षों में 9 ग्रह काल। प्रत्येक ग्रह की दशा उसके कुण्डली-संकेतों को सक्रिय करती है।' } },
                   { key: 'yogini', desc: { en: 'A fast 36-year cycle with 8 yogini periods. Excellent for timing specific events. Preferred by some astrologers for its simplicity and accuracy in predicting short-term events.', hi: '8 योगिनी कालों का तीव्र 36 वर्षीय चक्र। विशिष्ट घटनाओं के समय निर्धारण में उत्कृष्ट।' } },
                   { key: 'narayana', desc: { en: 'A sign-based (rashi) dasha from Jaimini astrology. Shows external life events — career changes, relocations, relationship milestones — based on which sign is activated.', hi: 'जैमिनी ज्योतिष से राशि-आधारित दशा। बाह्य जीवन घटनाएँ — कैरियर, स्थानान्तरण, सम्बन्ध — कौन-सी राशि सक्रिय है।' } },
+                  { key: 'shoola', desc: { en: 'Shoola Dasha (Jaimini) — "Trident" dasha used exclusively for longevity, health crises, and death-timing analysis. Each activated sign can indicate periods of acute pain, major health events, or transformative endings. Cross-reference with 8H and Rudra. NOT for general prediction.', hi: 'शूल दशा (जैमिनी) — दीर्घायु, स्वास्थ्य संकट और मृत्यु-काल विश्लेषण हेतु। सक्रिय राशि तीव्र पीड़ा, स्वास्थ्य घटनाओं या परिवर्तनकारी अंत की अवधि बता सकती है। अष्टम भाव और रुद्र से मिलाएँ।' } },
                 ];
                 const found = allSystems.find(s => s.key === dashaSystem);
                 if (!found) return null;
@@ -2277,6 +2280,72 @@ export default function KundaliPage() {
                 );
               })()}
 
+              {/* P2-11: Pushkar Navamsha + Pushkar Bhaga Details */}
+              {(() => {
+                const PUSHKAR_BHAGA_DEGREES: Record<number, number> = {
+                  1:14, 2:28, 3:7, 4:12, 5:13, 6:23,
+                  7:8,  8:18, 9:9, 10:22, 11:17, 12:17,
+                };
+                const pknPlanets = kundali.planets.filter(p => p.isPushkarNavamsha);
+                const pkbPlanets = kundali.planets.filter(p => p.isPushkarBhaga);
+                if (pknPlanets.length === 0 && pkbPlanets.length === 0) return null;
+                return (
+                <div className="rounded-xl bg-gradient-to-br from-[#0e1a0a]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-emerald-500/20 p-5 space-y-4">
+                  <h4 className="text-emerald-400 text-sm uppercase tracking-widest font-bold">
+                    {isHi ? 'पुष्कर नवांश + पुष्कर भाग (P2-11)' : 'Pushkar Navamsha + Pushkar Bhaga (P2-11)'}
+                  </h4>
+                  {pknPlanets.length > 0 && (
+                    <div>
+                      <div className="text-sky-300 text-xs font-bold mb-1.5 uppercase tracking-wider">
+                        {isHi ? 'पुष्कर नवांश (PKN) — 24 अत्यंत शुभ नवांश स्थितियाँ' : 'Pushkar Navamsha (PKN) — 24 supremely auspicious navamsha positions'}
+                      </div>
+                      <p className="text-text-secondary/60 text-xs leading-relaxed mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {isHi
+                          ? 'जब कोई ग्रह पुष्कर नवांश में हो, तो उसकी स्थिति शुभ फल देती है — यहाँ तक कि नीच या अस्त ग्रह भी सुरक्षित रहता है। मुहूर्त में चन्द्रमा का पुष्कर नवांश में होना अत्यंत शुभ है।'
+                          : 'A planet in Pushkar Navamsha gives auspicious results even if debilitated or combust — the navamsha protects it. In muhurta, Moon in PKN is extremely auspicious and greatly strengthens the muhurta.'}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {pknPlanets.map(p => (
+                          <div key={p.planet.id} className="flex items-center gap-1.5 px-3 py-1.5 bg-sky-500/10 border border-sky-400/20 rounded-lg">
+                            <span className="text-sky-200 font-bold text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
+                            <span className="text-text-secondary/50 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
+                            <span className="text-sky-400 text-[10px] font-bold">PKN</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {pkbPlanets.length > 0 && (
+                    <div>
+                      <div className="text-emerald-300 text-xs font-bold mb-1.5 uppercase tracking-wider">
+                        {isHi ? 'पुष्कर भाग (PKB) — प्रत्येक राशि में सर्वाधिक शुभ अंश' : 'Pushkar Bhaga (PKB) — single most auspicious degree per sign'}
+                      </div>
+                      <p className="text-text-secondary/60 text-xs leading-relaxed mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                        {isHi
+                          ? 'पुष्कर भाग प्रत्येक राशि में सर्वाधिक पवित्र अंश है। यहाँ स्थित ग्रह असाधारण शक्ति पाता है। विशेष रूप से मुहूर्त में: जब चन्द्रमा पुष्कर भाग पर हो, तो मुहूर्त की ताकत चरम पर होती है।'
+                          : 'Pushkar Bhaga is the single most sacred degree in each sign (±0.8° orb). A planet here gains extraordinary strength. For muhurta: Moon at Pushkar Bhaga is the pinnacle of muhurta power in that sign.'}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {pkbPlanets.map(p => (
+                          <div key={p.planet.id} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-400/20 rounded-lg">
+                            <span className="text-emerald-200 font-bold text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
+                            <span className="text-text-secondary/50 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
+                            <span className="text-emerald-400 text-[10px]">(PB={PUSHKAR_BHAGA_DEGREES[p.sign]}°)</span>
+                            <span className="text-emerald-400 text-[10px] font-bold">PKB</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <p className="text-text-secondary/40 text-xs">
+                    {isHi
+                      ? 'स्रोत: सरावली परम्परा। पुष्कर नवांश: 24 स्थितियाँ। पुष्कर भाग: एक अंश प्रति राशि।'
+                      : 'Source: Saravali tradition. PKN: 24 navamsha positions across 12 signs. PKB: one degree per sign.'}
+                  </p>
+                </div>
+                );
+              })()}
+
               {/* How to use this */}
               <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-emerald-500/15">
                 <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">
@@ -2488,6 +2557,92 @@ export default function KundaliPage() {
                   )}
                 </div>
               </div>
+
+              {/* P2-06: Swamsha (Karakamsha) Full Profile Library */}
+              {(() => {
+                const kmSign = kundali.jaimini.karakamsha.sign;
+                // Planets in the karakamsha sign of D9 (houses array is sign-indexed, 0-based)
+                const planetsInKM: number[] = kundali.navamshaChart?.houses?.[kmSign - 1] ?? [];
+                // Classical Swamsha combinations: planet sets -> meaning
+                interface SwamshaCombo { ids: number[]; en: string; hi: string; tag?: 'career' | 'spiritual' | 'health' | 'wealth' | 'relationship' }
+                const SWAMSHA_COMBOS: SwamshaCombo[] = [
+                  { ids: [0],    en: 'Sun in Swamsha — Government, authority, politics, fame, royal connections. Natural leader with a strong dharmic drive.', hi: 'सूर्य स्वांश में — शासन, सत्ता, राजनीति, यश। स्वाभाविक नेता।', tag: 'career' },
+                  { ids: [1],    en: 'Moon in Swamsha — Healing, psychology, nursing, catering, import-export, public life. Emotional intelligence is the soul\'s gift.', hi: 'चन्द्र स्वांश में — उपचार, मनोविज्ञान, जनसेवा, भोजन व्यापार। भावनात्मक बुद्धि।', tag: 'career' },
+                  { ids: [2],    en: 'Mars in Swamsha — Military, engineering, surgery, fire, land dealings, martial arts. Courage and decisive action define the soul.', hi: 'मंगल स्वांश में — सेना, इंजीनियरिंग, शल्य चिकित्सा, भूमि। साहस और निर्णायकता।', tag: 'career' },
+                  { ids: [3],    en: 'Mercury in Swamsha — Writing, trade, communication, mathematics, accounting, publishing. The soul speaks and thinks in words and numbers.', hi: 'बुध स्वांश में — लेखन, व्यापार, संवाद, गणित। आत्मा शब्दों और अंकों में सोचती है।', tag: 'career' },
+                  { ids: [4],    en: 'Jupiter in Swamsha — Teaching, law, religion, philosophy, medicine, finance. Wisdom and counsel are the soul\'s calling.', hi: 'बृहस्पति स्वांश में — शिक्षण, कानून, धर्म, दर्शन, चिकित्सा। ज्ञान और परामर्श।', tag: 'career' },
+                  { ids: [5],    en: 'Venus in Swamsha — Arts, music, luxury goods, beauty, hospitality, film, romance. Aesthetic refinement and pleasure define the soul.', hi: 'शुक्र स्वांश में — कला, संगीत, विलासिता, सौन्दर्य, आतिथ्य। सौन्दर्यबोध।', tag: 'career' },
+                  { ids: [6],    en: 'Saturn in Swamsha — Labour, agriculture, oil, iron, real estate, service industries. Patience and perseverance are karmic tools.', hi: 'शनि स्वांश में — श्रम, कृषि, तेल, लोहा, सेवा उद्योग। धैर्य और अध्यवसाय।', tag: 'career' },
+                  { ids: [7],    en: 'Rahu in Swamsha — Foreign connections, unconventional paths, technology, research, mass influence. Soul is pulled toward the unknown.', hi: 'राहु स्वांश में — विदेश, अपरम्परागत मार्ग, प्रौद्योगिकी, शोध। अज्ञात की ओर खिंचाव।', tag: 'career' },
+                  { ids: [8],    en: 'Ketu in Swamsha — Moksha orientation, occult, past-life gifts, detachment, spiritual research. Soul seeks liberation over worldly achievement.', hi: 'केतु स्वांश में — मोक्ष उन्मुखता, गुप्त विद्या, वैराग्य, अध्यात्म। भौतिक से अधिक आत्मिक।', tag: 'spiritual' },
+                  { ids: [3, 5], en: 'Mercury + Venus in Swamsha — Eloquent writer, poet, orator, performer. The soul communicates beauty. Literary or performing arts distinction.', hi: 'बुध + शुक्र स्वांश में — वाग्मी लेखक, कवि, वक्ता, कलाकार। साहित्य या प्रदर्शन कला।', tag: 'career' },
+                  { ids: [2, 7], en: 'Mars + Rahu in Swamsha — Surgeon, weapons technician, military engineer, butcher, aggressive profession involving cutting or fire.', hi: 'मंगल + राहु स्वांश में — शल्य चिकित्सक, शस्त्र तकनीशियन, सैन्य इंजीनियर। कर्तन या अग्नि से जुड़ा कार्य।', tag: 'career' },
+                  { ids: [4, 7], en: 'Jupiter + Rahu in Swamsha — Foreign teacher, international law, religious innovation, unconventional philosophy.', hi: 'बृहस्पति + राहु स्वांश में — विदेशी शिक्षक, अन्तर्राष्ट्रीय कानून, धार्मिक नवाचार।', tag: 'career' },
+                  { ids: [0, 4], en: 'Sun + Jupiter in Swamsha — Royal sage, judge, high government official, spiritual authority. Dharma and power united.', hi: 'सूर्य + बृहस्पति स्वांश में — राजसी ऋषि, न्यायाधीश, उच्च पदाधिकारी। धर्म और शक्ति एकीकृत।', tag: 'career' },
+                  { ids: [1, 5], en: 'Moon + Venus in Swamsha — Artistic sensitivity, fashion, hospitality, beauty industry, music. The soul lives through sensory pleasure and elegance.', hi: 'चन्द्र + शुक्र स्वांश में — कलात्मक संवेदनशीलता, फैशन, आतिथ्य, सौन्दर्य उद्योग।', tag: 'career' },
+                  { ids: [6, 7], en: 'Saturn + Rahu in Swamsha — Oil & gas, iron & steel, mining, mass labour, unconventional service. Karmic work in industrial or foreign settings.', hi: 'शनि + राहु स्वांश में — तेल और गैस, लौह और इस्पात, खनन, औद्योगिक कार्य।', tag: 'career' },
+                  { ids: [4, 8], en: 'Jupiter + Ketu in Swamsha — Mystical teacher, astrologer, past-life wisdom bearer, moksha-oriented philosophy. Rare spiritual authority.', hi: 'बृहस्पति + केतु स्वांश में — रहस्यवादी शिक्षक, ज्योतिषी, पूर्वजन्म ज्ञानी। आध्यात्मिक अधिकार।', tag: 'spiritual' },
+                  { ids: [2, 8], en: 'Mars + Ketu in Swamsha — Occult researcher, forensic analyst, military strategist with hidden knowledge, past-life warrior.', hi: 'मंगल + केतु स्वांश में — गुप्त शोधकर्ता, फोरेंसिक विश्लेषक, रणनीतिकार।', tag: 'spiritual' },
+                  { ids: [0, 2], en: 'Sun + Mars in Swamsha — Military commander, police, fire service, competitive sports. The soul is a warrior and protector.', hi: 'सूर्य + मंगल स्वांश में — सैन्य कमांडर, पुलिस, अग्निशमन, खेल। आत्मा एक योद्धा है।', tag: 'career' },
+                  { ids: [1, 8], en: 'Moon + Ketu in Swamsha — Psychic ability, healing past wounds, spiritual nursing, renunciation. Intuition is unusually deep.', hi: 'चन्द्र + केतु स्वांश में — अतींद्रिय क्षमता, आध्यात्मिक उपचार, वैराग्य। अन्तर्ज्ञान असाधारण रूप से गहरा।', tag: 'spiritual' },
+                ];
+
+                // Find all matching combos (single planet OR multi-planet combos where ALL ids are present)
+                const matchedCombos = SWAMSHA_COMBOS.filter(combo =>
+                  combo.ids.every(id => planetsInKM.includes(id))
+                );
+
+                if (planetsInKM.length === 0 && matchedCombos.length === 0) return null;
+
+                const TAG_COLORS: Record<string, string> = {
+                  career: 'bg-blue-500/15 text-blue-300',
+                  spiritual: 'bg-purple-500/15 text-purple-300',
+                  health: 'bg-emerald-500/15 text-emerald-300',
+                  wealth: 'bg-gold-primary/15 text-gold-light',
+                  relationship: 'bg-rose-500/15 text-rose-300',
+                };
+
+                return (
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Swamsha Profile (Karakamsha Combinations)' : 'स्वांश प्रोफाइल (कारकांश संयोग)'}
+                  </h3>
+                  <p className="text-text-secondary/50 text-xs text-center mb-4">
+                    {locale === 'en' ? 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation' : 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या'}
+                  </p>
+                  {planetsInKM.length === 0 ? (
+                    <p className="text-text-secondary/40 text-sm text-center">
+                      {locale === 'en' ? 'No planets occupy the Karakamsha sign in D9 — soul\'s path is shaped purely by the Karakamsha sign\'s qualities above.' : 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।'}
+                    </p>
+                  ) : matchedCombos.length === 0 ? (
+                    <p className="text-text-secondary/40 text-sm text-center">
+                      {locale === 'en' ? 'Planets present but no specific classical combination applies — see individual planet meanings above.' : 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।'}
+                    </p>
+                  ) : (
+                    <div className="space-y-3 max-w-2xl mx-auto">
+                      {matchedCombos.map((combo, idx) => (
+                        <div key={idx} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-4">
+                          <div className="flex items-start justify-between gap-3 mb-1">
+                            <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {combo.ids.map(id => kundali.planets.find(p => p.planet.id === id)?.planet.name[locale] || '').filter(Boolean).join(' + ')}
+                              <span className="text-text-secondary/40 font-normal"> {locale === 'en' ? 'in Swamsha' : 'स्वांश में'}</span>
+                            </div>
+                            {combo.tag && (
+                              <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${TAG_COLORS[combo.tag]}`}>
+                                {combo.tag}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            {locale === 'en' ? combo.en : combo.hi}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                );
+              })()}
 
               {/* Arudha Padas */}
               <div>
@@ -2818,6 +2973,64 @@ export default function KundaliPage() {
               )}
 
               <JaiminiInterpretation jaimini={kundali.jaimini} locale={locale} />
+
+              {/* P2-08: Brahma / Rudra / Maheshwara — Jaimini Longevity Significators */}
+              {(() => {
+                const SIGN_LORD_MAP: Record<number, number> = { 1:2,2:5,3:3,4:1,5:0,6:3,7:5,8:2,9:4,10:6,11:6,12:4 };
+                const ascSign = kundali.ascendant.sign;
+                const moonPlanet = kundali.planets.find(p => p.planet.id === 1);
+                const moonSign = moonPlanet?.sign ?? 1;
+
+                // Rudra = lord of 8H from Lagna
+                const h8Sign = ((ascSign - 1 + 7) % 12) + 1;
+                const rudraId = SIGN_LORD_MAP[h8Sign];
+                const rudra = kundali.planets.find(p => p.planet.id === rudraId);
+
+                // Maheshwara = lord of 8H from Moon
+                const h8fromMoonSign = ((moonSign - 1 + 7) % 12) + 1;
+                const maheshvaraId = SIGN_LORD_MAP[h8fromMoonSign];
+                const maheshvara = kundali.planets.find(p => p.planet.id === maheshvaraId);
+
+                // Brahma = Jupiter (natural karaka of life/creation; modify based on dignity)
+                const brahma = kundali.planets.find(p => p.planet.id === 4); // Jupiter
+
+                const triplet = [
+                  { titleEn: 'Brahma', titleHi: 'ब्रह्मा', planet: brahma, descEn: 'Natural life-giver (Jupiter). Its strength indicates vitality, dharmic protection, and capacity for recovery from illness.', descHi: 'प्राकृतिक जीवनदाता (बृहस्पति)। इसकी शक्ति जीवनी, धार्मिक संरक्षण और रोग से उबरने की क्षमता बताती है।', color: 'border-amber-500/20 bg-amber-500/5' },
+                  { titleEn: 'Rudra', titleHi: 'रुद्र', planet: rudra, descEn: `Lord of the 8th house (H8 = ${h8Sign}). Controls timing of health crises, transformation, and near-death events. Shoola Dasha periods of this planet require caution.`, descHi: `अष्टम भाव स्वामी (H8 = ${h8Sign})। स्वास्थ्य संकट, परिवर्तन और महत्वपूर्ण घटनाओं का समय नियंत्रित करता है।`, color: 'border-red-500/20 bg-red-500/5' },
+                  { titleEn: 'Maheshvara', titleHi: 'महेश्वर', planet: maheshvara, descEn: `Lord of the 8th from Moon (Moon in H${((moonSign-ascSign+12)%12)+1} → 8th = ${h8fromMoonSign}). Governs emotional transformation, psychological health, and karmic release.`, descHi: `चन्द्र से अष्टम भाव स्वामी। भावनात्मक परिवर्तन, मानसिक स्वास्थ्य और कार्मिक मुक्ति।`, color: 'border-purple-500/20 bg-purple-500/5' },
+                ];
+
+                return (
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Brahma · Rudra · Maheshvara' : 'ब्रह्मा · रुद्र · महेश्वर'}
+                  </h3>
+                  <p className="text-text-secondary/50 text-xs text-center mb-4 max-w-2xl mx-auto">
+                    {locale === 'en' ? 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release' : 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं'}
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {triplet.map(({ titleEn, titleHi, planet, descEn, descHi, color }) => (
+                      <div key={titleEn} className={`rounded-xl p-4 border ${color}`}>
+                        <div className="text-center mb-3">
+                          {planet && <GrahaIconById id={planet.planet.id} size={36} />}
+                          <div className="text-gold-light font-bold text-base mt-1" style={headingFont}>
+                            {locale === 'en' ? titleEn : titleHi}
+                          </div>
+                          {planet && (
+                            <div className="text-text-secondary/60 text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {planet.planet.name[locale]} · H{planet.house} · {planet.signName[locale]}
+                            </div>
+                          )}
+                        </div>
+                        <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          {locale === 'en' ? descEn : descHi}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                );
+              })()}
             </div>
             );
           })()}

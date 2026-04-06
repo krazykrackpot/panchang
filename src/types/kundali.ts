@@ -39,6 +39,7 @@ export interface PlanetPosition {
   isVargottama?: boolean;
   isMrityuBhaga?: boolean;
   isPushkarNavamsha?: boolean;
+  isPushkarBhaga?: boolean;
 }
 
 export interface BhriguBindu {

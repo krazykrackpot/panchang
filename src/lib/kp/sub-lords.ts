@@ -57,6 +57,7 @@ export interface SubLordTableEntry {
   signLord: number;
   starLord: number;
   subLord: number;
+  subSubLord: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -90,18 +91,30 @@ function buildSubLordTable(): SubLordTableEntry[] {
         const subEnd = subCursor + subSpan;
         const subLordId = NAKSHATRA_LORD_IDS[subIdx];
 
-        // Determine sign lord from degree
-        const midDeg = (subCursor + subEnd) / 2;
-        const signNum = Math.floor(midDeg / 30) + 1;
-        const signLordId = SIGN_LORD_IDS[signNum] ?? 0;
+        // Sub-sub lord divisions
+        let sssCursor = subCursor;
+        for (let v = 0; v < 9; v++) {
+          const sssIdx = (subIdx + v) % 9;
+          const sssSpan = (VIMSHOTTARI_YEARS[sssIdx] / TOTAL_DASHA_YEARS) * subSpan;
+          const sssEnd = sssCursor + sssSpan;
+          const subSubLordId = NAKSHATRA_LORD_IDS[sssIdx];
 
-        table.push({
-          start: subCursor,
-          end: subEnd,
-          signLord: signLordId,
-          starLord: starLordId,
-          subLord: subLordId,
-        });
+          // Determine sign lord from degree
+          const midDeg = (sssCursor + sssEnd) / 2;
+          const signNum = Math.floor(midDeg / 30) + 1;
+          const signLordId = SIGN_LORD_IDS[signNum] ?? 0;
+
+          table.push({
+            start: sssCursor,
+            end: sssEnd,
+            signLord: signLordId,
+            starLord: starLordId,
+            subLord: subLordId,
+            subSubLord: subSubLordId,
+          });
+
+          sssCursor = sssEnd;
+        }
 
         subCursor = subEnd;
       }
@@ -151,6 +164,7 @@ export function getSubLordForDegree(degree: number): SubLordInfo {
         signLord: { id: entry.signLord, name: grahaName(entry.signLord) },
         starLord: { id: entry.starLord, name: grahaName(entry.starLord) },
         subLord: { id: entry.subLord, name: grahaName(entry.subLord) },
+        subSubLord: { id: entry.subSubLord, name: grahaName(entry.subSubLord) },
       };
     }
   }
@@ -162,5 +176,6 @@ export function getSubLordForDegree(degree: number): SubLordInfo {
     signLord: { id: first.signLord, name: grahaName(first.signLord) },
     starLord: { id: first.starLord, name: grahaName(first.starLord) },
     subLord: { id: first.subLord, name: grahaName(first.subLord) },
+    subSubLord: { id: first.subSubLord, name: grahaName(first.subSubLord) },
   };
 }

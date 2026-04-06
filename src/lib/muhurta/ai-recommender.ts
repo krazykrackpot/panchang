@@ -121,6 +121,29 @@ export function scoreTransitFactors(
     factors.push({ en: 'No benefic retrograde', hi: 'कोई शुभ ग्रह वक्री नहीं', sa: 'शुभग्रहवक्रता नास्ति' });
   }
 
+  // P2-11: Pushkar Navamsha and Pushkar Bhaga (Moon only — most impactful for muhurta)
+  const moonPlanet = planets.find(p => p.id === 1);
+  if (moonPlanet) {
+    const moonSid = toSidereal(moonPlanet.longitude, jd);
+    const moonSign = getRashiNumber(moonSid); // 1-based
+    const degInSign = moonSid % 30;
+    const navamshaIdx = Math.floor(degInSign / (30 / 9)); // 0-8
+    const signIdx = moonSign - 1; // 0-based
+    // 24 Pushkar Navamsha positions
+    const PUSHKAR_NAV = new Set([0,4,13,17,20,24,27,33,36,40,47,51,54,60,65,67,76,80,83,87,90,96,101,103]);
+    if (PUSHKAR_NAV.has(signIdx * 9 + navamshaIdx)) {
+      score += 8;
+      factors.push({ en: 'Moon in Pushkar Navamsha — supremely auspicious', hi: 'चन्द्र पुष्कर नवांश में — अत्यंत शुभ', sa: 'चन्द्रः पुष्करनवांशे — अत्यन्तशुभम्' });
+    }
+    // Pushkar Bhaga — one sacred degree per sign
+    const PUSHKAR_BHAGA: Record<number, number> = { 1:14, 2:28, 3:7, 4:12, 5:13, 6:23, 7:8, 8:18, 9:9, 10:22, 11:17, 12:17 };
+    const pb = PUSHKAR_BHAGA[moonSign];
+    if (pb !== undefined && Math.abs(degInSign - pb) <= 0.8) {
+      score += 10;
+      factors.push({ en: `Moon at Pushkar Bhaga in ${['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'][moonSign-1]} — peak muhurta strength`, hi: `चन्द्र पुष्कर भाग पर — मुहूर्त का उच्चतम बल`, sa: `चन्द्रः पुष्करभागे — मुहूर्तशक्तिः परमा` });
+    }
+  }
+
   return { score: Math.max(0, Math.min(25, score)), factors };
 }
 

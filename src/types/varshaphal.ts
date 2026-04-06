@@ -18,7 +18,7 @@ export interface SahamData {
 
 export interface TajikaYoga {
   name: Trilingual;
-  type: 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau' | 'conjunction';
+  type: 'ithasala' | 'ishrafa' | 'nakta' | 'yamaya' | 'manau' | 'conjunction' | 'khallasara' | 'dutthottha';
   planet1: Trilingual;
   planet2: Trilingual;
   favorable: boolean;

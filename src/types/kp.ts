@@ -6,6 +6,16 @@ export interface SubLordInfo {
   signLord: { id: number; name: Trilingual };
   starLord: { id: number; name: Trilingual };
   subLord: { id: number; name: Trilingual };
+  subSubLord: { id: number; name: Trilingual };
+}
+
+export interface CuspalSubLordAnalysis {
+  house: number;
+  subLordName: Trilingual;
+  subSubLordName: Trilingual;
+  signifiedHouses: number[];
+  favorable: boolean;
+  interpretation: Trilingual;
 }
 
 export interface KPCusp extends HouseCusp {
@@ -38,6 +48,7 @@ export interface KPChartData {
   cusps: KPCusp[];
   planets: KPPlanet[];
   significators: SignificatorEntry[];
+  cuspalAnalysis: CuspalSubLordAnalysis[];
   rulingPlanets: RulingPlanets;
   chart: ChartData;
   ayanamshaValue: number;

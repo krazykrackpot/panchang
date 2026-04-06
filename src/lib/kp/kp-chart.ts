@@ -24,7 +24,7 @@ import type { KPChartData, KPCusp, KPPlanet } from '@/types/kp';
 
 import { calculatePlacidusCusps } from './placidus';
 import { getSubLordForDegree } from './sub-lords';
-import { calculateSignificators } from './significators';
+import { calculateSignificators, calculateCuspalAnalysis } from './significators';
 import { getRulingPlanets } from './ruling-planets';
 
 // ---------------------------------------------------------------------------
@@ -202,6 +202,9 @@ export function generateKPChart(birthData: BirthData): KPChartData {
   // 6. Significators
   const significators = calculateSignificators(planets, cusps);
 
+  // 6b. Cuspal sub-lord analysis (P2-05)
+  const cuspalAnalysis = calculateCuspalAnalysis(cusps, significators);
+
   // 7. Ruling planets
   const ascDeg = cusps[0]?.degree ?? 0;
   const moonPlanet = planets.find((p) => p.planet.id === 1);
@@ -228,6 +231,7 @@ export function generateKPChart(birthData: BirthData): KPChartData {
     cusps,
     planets,
     significators,
+    cuspalAnalysis,
     rulingPlanets,
     chart,
     ayanamshaValue: ayanamshaVal,

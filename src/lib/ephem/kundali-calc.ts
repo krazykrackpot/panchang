@@ -741,6 +741,18 @@ export function generateKundali(birthData: BirthData): KundaliData {
     p.isPushkarNavamsha = PUSHKAR_NAV.has(signIdx * 9 + navamshaIdx);
   });
 
+  // Pushkar Bhaga — most auspicious single degree per sign (Saravali tradition)
+  // Orb: ±0.8 degrees
+  const PUSHKAR_BHAGA: Record<number, number> = {
+    1: 14, 2: 28, 3: 7, 4: 12, 5: 13, 6: 23,
+    7: 8,  8: 18, 9: 9, 10: 22, 11: 17, 12: 17,
+  };
+  planets.forEach((p) => {
+    const degInSign = p.longitude % 30;
+    const pb = PUSHKAR_BHAGA[p.sign];
+    p.isPushkarBhaga = pb !== undefined && Math.abs(degInSign - pb) <= 0.8;
+  });
+
   // Bhav Chalit
   const bhavChalitChart = calculateBhavChalit(planets, siderealAsc);
 

@@ -99,8 +99,23 @@ function computeTara(boy: MatchInput, girl: MatchInput): number {
 // Each nakshatra has an animal yoni. Same yoni = 4, friendly = 3, neutral = 2, enemy = 1, bitter = 0
 
 // Yoni for each nakshatra (1-27) indexed 0-26
-// 0=Horse, 1=Elephant, 2=Sheep, 3=Snake, 4=Dog, 5=Cat, 6=Rat, 7=Cow, 8=Buffalo, 9=Tiger, 10=Deer, 11=Monkey, 12=Mongoose, 13=Lion
-const NAKSHATRA_YONI = [0, 1, 2, 5, 3, 4, 6, 2, 5, 6, 7, 8, 9, 7, 8, 9, 10, 11, 12, 11, 0, 13, 1, 13, 12, 10, 3];
+// 0=Horse, 1=Elephant, 2=Sheep/Goat, 3=Serpent, 4=Dog, 5=Cat, 6=Rat, 7=Cow, 8=Buffalo, 9=Tiger, 10=Deer/Hare, 11=Monkey, 12=Mongoose, 13=Lion
+// Classical pairs (male+female of same animal):
+//   Horse:    Ashwini(1)   & Shatabhisha(24)
+//   Elephant: Bharani(2)   & Revati(27)
+//   Sheep:    Krittika(3)  & Pushya(8)
+//   Serpent:  Rohini(4)    & Mrigashira(5)
+//   Dog:      Ardra(6)     & Mula(19)
+//   Cat:      Punarvasu(7) & Ashlesha(9)
+//   Rat:      Magha(10)    & P.Phalguni(11)
+//   Cow:      U.Phalguni(12) & U.Bhadrapada(26)
+//   Buffalo:  Hasta(13)    & Swati(15)
+//   Tiger:    Chitra(14)   & Vishakha(16)
+//   Deer:     Anuradha(17) & Jyeshtha(18)
+//   Monkey:   P.Ashadha(20) & Shravana(22)
+//   Mongoose: U.Ashadha(21) only (Abhijit not in 27-nakshatra cycle)
+//   Lion:     Dhanishtha(23) & P.Bhadrapada(25)
+const NAKSHATRA_YONI = [0, 1, 2, 3, 3, 4, 5, 2, 5, 6, 6, 7, 8, 9, 8, 9, 10, 10, 4, 11, 12, 11, 13, 0, 13, 7, 1];
 
 // Enemy pairs (bitter enemies get 0)
 const YONI_ENEMIES: [number, number][] = [
@@ -168,7 +183,12 @@ function computeGrahaMaitri(boy: MatchInput, girl: MatchInput): number {
 // ──────────────────────────────────────────────────────────────
 // Each nakshatra belongs to Deva(0), Manushya(1), or Rakshasa(2)
 
-const NAKSHATRA_GANA = [0, 1, 2, 0, 1, 2, 0, 1, 2, 2, 1, 0, 0, 1, 2, 2, 1, 0, 0, 1, 2, 0, 1, 2, 0, 1, 0];
+// Classical Gana by nakshatra (Deva=0, Manushya=1, Rakshasa=2)
+// Source: Parasara / Muhurta Chintamani
+//   Deva:     Ashwini, Mrigashira, Punarvasu, Pushya, Hasta, Swati, Anuradha, Shravana, Revati
+//   Manushya: Bharani, Rohini, Ardra, P.Phalguni, U.Phalguni, P.Ashadha, U.Ashadha, P.Bhadrapada, U.Bhadrapada
+//   Rakshasa: Krittika, Ashlesha, Magha, Chitra, Vishakha, Jyeshtha, Mula, Dhanishtha, Shatabhisha
+const NAKSHATRA_GANA = [0, 1, 2, 1, 0, 1, 0, 0, 2, 2, 1, 1, 0, 2, 0, 2, 0, 2, 2, 1, 1, 0, 2, 2, 1, 1, 0];
 
 function computeGana(boy: MatchInput, girl: MatchInput): number {
   const bg = NAKSHATRA_GANA[boy.moonNakshatra - 1];

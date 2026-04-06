@@ -129,11 +129,10 @@ describe('Ashta Kuta Matching', () => {
   });
 
   it('should compute Yoni as 0 for enemy animals (Horse vs Buffalo)', () => {
-    // Ashwini(1) = Horse(0), Hasta(13) is not buffalo. Let's find buffalo: nk 11=Cow(7), nk 12=Buffalo(8)
-    // Horse(0) nk 1 or 21. Buffalo(8) nk 12 or 15.
+    // Ashwini(1)=Horse(0), Shatabhisha(24)=Horse; Hasta(13)=Buffalo(8), Swati(15)=Buffalo
     // Horse-Buffalo = enemy pair [0,8]
-    const boy: MatchInput = { moonNakshatra: 1, moonRashi: 1 };   // Horse
-    const girl: MatchInput = { moonNakshatra: 12, moonRashi: 5 }; // Buffalo (P.Phalguni)
+    const boy: MatchInput = { moonNakshatra: 1, moonRashi: 1 };   // Ashwini = Horse
+    const girl: MatchInput = { moonNakshatra: 13, moonRashi: 6 }; // Hasta = Buffalo
     const result = computeAshtaKuta(boy, girl);
     expect(result.kutas[3].scored).toBe(0); // Yoni = 0 for bitter enemies
   });

@@ -3333,12 +3333,12 @@ export default function KundaliPage() {
 
                 <div className="border-t border-gold-primary/10" />
 
-                {/* Key Doshas — only shown when at least one is present */}
-                {doshas.some(d => d.present) && (
+                {/* Key Doshas */}
                 <div>
                   <h3 className="text-gold-gradient text-xl font-bold text-center mb-4" style={headingFont}>
                     {locale === 'en' ? 'Key Doshas' : 'प्रमुख दोष'}
                   </h3>
+                  {doshas.some(d => d.present) ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {doshas.filter(d => d.present).map((dosha, i) => (
                       <div key={i} className="rounded-xl p-4 border bg-red-500/5 border-red-500/20">
@@ -3354,8 +3354,12 @@ export default function KundaliPage() {
                       </div>
                     ))}
                   </div>
+                  ) : (
+                  <p className="text-emerald-400/70 text-sm text-center py-2">
+                    {locale === 'en' ? 'None present' : 'कोई दोष नहीं'}
+                  </p>
+                  )}
                 </div>
-                )}
 
                 <div className="border-t border-gold-primary/10" />
 

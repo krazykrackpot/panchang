@@ -8,6 +8,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import type { Locale, Trilingual } from '@/types/panchang';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber } from '@/lib/ephem/astronomical';
+import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 
 interface Recommendation {
   title: Trilingual;
@@ -113,8 +114,8 @@ export default function DevotionalPage() {
             <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
               {locale === 'en' ? 'Today\'s Nakshatra' : 'आज का नक्षत्र'}
             </div>
-            <div className="text-gold-light text-sm font-bold">
-              {locale === 'en' ? `Nakshatra ${today.nakshatra}` : `नक्षत्र ${today.nakshatra}`}
+            <div className="text-gold-light text-sm font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+              {NAKSHATRAS[today.nakshatra - 1]?.name[locale] ?? `Nakshatra ${today.nakshatra}`}
             </div>
           </div>
         </div>

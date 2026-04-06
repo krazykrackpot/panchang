@@ -8,6 +8,7 @@ import { ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
+import ChartNorth from '@/components/kundali/ChartNorth';
 
 function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string; timezone: string } | null {
   const name = params.get('n');
@@ -158,6 +159,18 @@ export default function SharedKundaliPage() {
           </div>
         )}
       </div>
+
+      {/* Birth Chart Diagram */}
+      {kundali?.chart && (
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8 flex flex-col items-center">
+          <h2 className="text-xl text-gold-gradient font-bold mb-6 self-start" style={headingFont}>
+            {locale === 'en' ? 'Birth Chart (D1 — Rashi)' : locale === 'hi' ? 'जन्म कुण्डली (D1 — राशि)' : 'जन्मकुण्डली (D1 — राशिः)'}
+          </h2>
+          <div className="w-full max-w-md mx-auto">
+            <ChartNorth data={kundali.chart} title={chartData?.name || ''} size={400} />
+          </div>
+        </div>
+      )}
 
       {/* Planet Positions */}
       {kundali && (

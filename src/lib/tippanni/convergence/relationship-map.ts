@@ -221,28 +221,51 @@ export function buildConvergenceInput(kundali: KundaliData): ConvergenceInput {
   const ashtakavargaSAV = kundali.ashtakavarga?.savTable ?? new Array(12).fill(0);
   const ashtakavargaBPI = kundali.ashtakavarga?.bpiTable ?? [];
 
-  // 11. Navamsha confirmations — check if natal planet dignity is confirmed in navamsha
+  // 11. Navamsha confirmations — check if key planets for each theme are strong in D9
+  // Keyed by theme name (career, relationship, wealth, health, spiritual, family)
+  // so the meta-interaction rule `navamsha-confirmation` can look them up by theme.
   const navamshaConfirmations: Record<string, boolean> = {};
+
   if (kundali.navamshaChart) {
+    // First, determine which planet IDs are "confirmed" (own/exalted sign) in D9
+    const confirmedPlanetIds = new Set<number>();
+    const navHouses = kundali.navamshaChart.houses;
+    const navAsc = kundali.navamshaChart.ascendantSign;
+
+    // EXALTED signs per planet: Sun→1(Aries), Moon→2(Taurus), Mars→10(Capricorn),
+    // Mercury→6(Virgo), Jupiter→4(Cancer), Venus→12(Pisces), Saturn→7(Libra)
+    const EXALT_SIGN: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
+    // OWN signs per planet (simplified — first own sign)
+    const OWN_SIGN: Record<number, number[]> = {
+      0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
+    };
+
     for (const p of planets) {
-      // A planet is "navamsha confirmed" if it occupies the same sign in D9
-      // or occupies its own/exalted sign in D9
-      const navHouses = kundali.navamshaChart.houses;
-      // navamshaChart.houses is number[][] (house index -> planet ids)
-      // Find which house this planet is in within navamsha
+      if (p.id > 6) continue; // Skip Rahu/Ketu — no exaltation/own sign
       for (let hIdx = 0; hIdx < navHouses.length; hIdx++) {
         if (navHouses[hIdx]?.includes(p.id)) {
-          // House sign in navamsha: ascendantSign + hIdx
-          const navAsc = kundali.navamshaChart.ascendantSign;
           const navSign = ((navAsc - 1 + hIdx) % 12) + 1;
-          // Confirmed if same sign as natal, or own sign, or exalted
-          const signLord = getSignLord(navSign);
-          const isOwnSign = signLord === p.id;
-          const isSameSign = navSign === p.sign;
-          navamshaConfirmations[`planet_${p.id}_confirmed`] = isSameSign || isOwnSign;
+          const isExalted = EXALT_SIGN[p.id] === navSign;
+          const isOwnSign = (OWN_SIGN[p.id] ?? []).includes(navSign);
+          if (isExalted || isOwnSign) confirmedPlanetIds.add(p.id);
           break;
         }
       }
+    }
+
+    // Map confirmed planet IDs to themes
+    // A theme is "confirmed" if at least one key planet for it is strong in D9
+    const THEME_PLANETS: Record<string, number[]> = {
+      career:       [0, 2, 3, 4, 6], // Sun, Mars, Mercury, Jupiter, Saturn
+      relationship: [1, 4, 5],        // Moon, Jupiter, Venus
+      wealth:       [3, 4, 5, 6],     // Mercury, Jupiter, Venus, Saturn
+      health:       [0, 2, 4],        // Sun, Mars, Jupiter (vitality)
+      spiritual:    [4, 8, 6],        // Jupiter, Ketu, Saturn
+      family:       [1, 4, 5],        // Moon, Jupiter, Venus
+    };
+
+    for (const [theme, pids] of Object.entries(THEME_PLANETS)) {
+      navamshaConfirmations[theme] = pids.some((id) => confirmedPlanetIds.has(id));
     }
   }
 

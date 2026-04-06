@@ -6,6 +6,7 @@
  */
 
 import { dateToJD, approximateSunrise, approximateSunset, formatTime, normalizeDeg, toSidereal } from '@/lib/ephem/astronomical';
+import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
 
 /**
  * Find when a sidereal sign occupies a specific horizon.
@@ -280,7 +281,7 @@ function computeSimpleParana(date: string, lat: number, lon: number, timezone: s
     return { paranaDate, paranaStart: ft(srUT), paranaEnd: ft(srUT + 3) };
   }
   if (type === 'chaturthi') {
-    const moonriseUT = ssUT + 2; // approximate
+    const moonriseUT = calculateMoonriseUT(jd, lat, lon) ?? (ssUT + 2);
     return { paranaDate: date, paranaStart: ft(moonriseUT % 24), paranaEnd: ft((moonriseUT + 1) % 24) };
   }
   // Pradosham

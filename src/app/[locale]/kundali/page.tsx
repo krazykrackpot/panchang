@@ -1154,10 +1154,15 @@ export default function KundaliPage() {
                     <div className="text-gold-primary/80 text-xs uppercase tracking-wider font-bold mb-1">
                       {locale === 'en' ? 'Functional Nature per Lagna (Laghu Parashari)' : 'लग्न अनुसार क्रियात्मक स्वभाव'}
                     </div>
-                    <p className="text-text-secondary/40 text-[11px] mb-4">
+                    <p className="text-text-secondary/40 text-[11px] mb-1">
                       {locale === 'en'
-                        ? `For ${kundali.ascendant.signName.en} lagna — how each planet functions in your chart`
-                        : `${kundali.ascendant.signName.hi} लग्न के लिए — प्रत्येक ग्रह का क्रियात्मक स्वभाव`}
+                        ? `For ${kundali.ascendant.signName.en} lagna — based on which houses each planet rules`
+                        : `${kundali.ascendant.signName.hi} लग्न के लिए — प्रत्येक ग्रह किस भाव का स्वामी है`}
+                    </p>
+                    <p className="text-text-secondary/30 text-[10px] mb-4 italic">
+                      {locale === 'en'
+                        ? 'Lords = houses this planet rules · In = house where it is placed in your birth chart (these are different things)'
+                        : 'भावेश = ग्रह किस भाव का स्वामी है · स्थान = ग्रह किस भाव में है (ये दो अलग बातें हैं)'}
                     </p>
                     {/* Summary badges */}
                     <div className="flex flex-wrap gap-1.5 mb-4">
@@ -1179,24 +1184,32 @@ export default function KundaliPage() {
                     </div>
                     {/* Grid of all 7 planets */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {fn.planets.map(p => (
-                        <div key={p.planetId} className={`rounded-lg border p-2.5 ${COLOR[p.nature] || COLOR.neutral}`}>
-                          <div className="font-bold text-sm mb-0.5" style={headingFont}>
-                            {locale === 'en' ? p.planetName.en : p.planetName.hi}
-                          </div>
-                          <div className="text-[10px] font-semibold mb-1 opacity-80">
-                            {p.label[locale === 'en' ? 'en' : 'hi']}
-                          </div>
-                          <div className="text-[10px] opacity-60 font-mono">
-                            {locale === 'en' ? `Lords ${p.houseRulership.join(', ')}H` : `${p.houseRulership.join(', ')}वें भाव`}
-                          </div>
-                          {p.note && (
-                            <div className="text-[10px] opacity-55 mt-1 leading-tight" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {p.note[locale === 'en' ? 'en' : 'hi']}
+                      {fn.planets.map(p => {
+                        const placedInHouse = kundali.planets.find(pl => pl.planet.id === p.planetId)?.house;
+                        return (
+                          <div key={p.planetId} className={`rounded-lg border p-2.5 ${COLOR[p.nature] || COLOR.neutral}`}>
+                            <div className="font-bold text-sm mb-0.5" style={headingFont}>
+                              {locale === 'en' ? p.planetName.en : p.planetName.hi}
                             </div>
-                          )}
-                        </div>
-                      ))}
+                            <div className="text-[10px] font-semibold mb-1 opacity-80">
+                              {p.label[locale === 'en' ? 'en' : 'hi']}
+                            </div>
+                            <div className="text-[10px] opacity-60 font-mono">
+                              {locale === 'en' ? `Lords ${p.houseRulership.join(', ')}H` : `${p.houseRulership.join(', ')}वें भाव`}
+                            </div>
+                            {placedInHouse !== undefined && (
+                              <div className="text-[10px] opacity-45 font-mono mt-0.5">
+                                {locale === 'en' ? `Placed in ${placedInHouse}H` : `${placedInHouse}वें भाव में`}
+                              </div>
+                            )}
+                            {p.note && (
+                              <div className="text-[10px] opacity-55 mt-1 leading-tight" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                {p.note[locale === 'en' ? 'en' : 'hi']}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );

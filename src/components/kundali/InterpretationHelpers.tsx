@@ -971,6 +971,23 @@ const LAGNA_SKETCHES: Record<number, { en: string; hi: string }> = {
   12: { en: 'Intuitive, spiritual, compassionate, creative', hi: 'अंतर्ज्ञानी, आध्यात्मिक, करुणामय, रचनात्मक' },
 };
 
+// Separate sketches for Moon sign — emphasise inner emotional experience,
+// not outer personality projection (those belong to Lagna).
+const MOON_SKETCHES: Record<number, { en: string; hi: string }> = {
+  1:  { en: 'You feel best when taking action and leading. Emotions run hot and fast — you need movement to stay grounded.', hi: 'कार्य और नेतृत्व में आपको भावनात्मक शांति मिलती है। भावनाएं तीव्र और त्वरित होती हैं।' },
+  2:  { en: 'You find comfort in stability, familiar surroundings, and sensory pleasure. Security is an emotional need.', hi: 'स्थिरता, परिचित वातावरण और इंद्रिय सुख में आपको सुकून मिलता है। सुरक्षा भावनात्मक आवश्यकता है।' },
+  3:  { en: 'Your mood lifts when you\'re learning, talking, or writing. Mental stimulation is emotional nourishment for you.', hi: 'सीखने, बोलने या लिखने से आपका मन प्रसन्न होता है। मानसिक उत्तेजना आपका भावनात्मक पोषण है।' },
+  4:  { en: 'Home, family, and belonging are your emotional bedrock. You feel deeply and need a safe space to recharge.', hi: 'घर, परिवार और अपनेपन की भावना आपका आधार है। आप गहराई से महसूस करते हैं।' },
+  5:  { en: 'You need joy, play, and creative expression to feel alive. Recognition and love fuel your emotional wellbeing.', hi: 'आनंद, खेल और रचनात्मकता आपको जीवंत रखती है। मान्यता और प्रेम भावनात्मक शक्ति देते हैं।' },
+  6:  { en: 'You feel settled when things are orderly and you\'re being useful. Helping others calms your inner world.', hi: 'व्यवस्था और उपयोगिता से आपको सुकून मिलता है। दूसरों की मदद करना आंतरिक शांति देता है।' },
+  7:  { en: 'Harmony, connection, and partnership are emotional necessities. Conflict unsettles you deeply.', hi: 'सौहार्द, जुड़ाव और साझेदारी भावनात्मक आवश्यकताएं हैं। संघर्ष आपको गहराई से अस्थिर करता है।' },
+  8:  { en: 'Emotions run intense and private. You feel things at a depth others rarely reach. Trust is everything.', hi: 'भावनाएं तीव्र और निजी होती हैं। आप उस गहराई तक महसूस करते हैं जो दूसरे शायद ही छू पाएं।' },
+  9:  { en: 'Freedom, meaning, and exploration lift your spirit. You need purpose and philosophical grounding to feel secure.', hi: 'स्वतंत्रता, अर्थ और अन्वेषण आपकी आत्मा को ऊँचा उठाता है। उद्देश्य और दर्शन से भावनात्मक सुरक्षा मिलती है।' },
+  10: { en: 'Achievement and respect nourish you emotionally. You feel secure when you have structure and a clear direction.', hi: 'उपलब्धि और सम्मान भावनात्मक पोषण देते हैं। संरचना और स्पष्ट दिशा से सुरक्षा महसूस होती है।' },
+  11: { en: 'Belonging to a community and working for a larger cause gives you deep emotional satisfaction. You need intellectual freedom to feel at peace.', hi: 'समुदाय से जुड़ाव और बड़े उद्देश्य के लिए कार्य भावनात्मक संतुष्टि देता है। मानसिक स्वतंत्रता शांति के लिए आवश्यक है।' },
+  12: { en: 'Solitude, spirituality, and quiet restoration replenish you. You feel most like yourself when the noise of the world fades.', hi: 'एकांत, आध्यात्मिकता और शांत विश्राम आपको पुनर्जीवित करता है। दुनिया का शोर शांत होने पर आप स्वयं को पाते हैं।' },
+};
+
 const RASHI_NAMES_EN = ['', 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 const RASHI_NAMES_HI = ['', 'मेष', 'वृषभ', 'मिथुन', 'कर्क', 'सिंह', 'कन्या', 'तुला', 'वृश्चिक', 'धनु', 'मकर', 'कुम्भ', 'मीन'];
 
@@ -1000,20 +1017,51 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
   const lagnaSketch = LAGNA_SKETCHES[ascendant.sign];
   const lagnaName = isHi ? ascendant.signName.hi : ascendant.signName.en;
 
+  const moonSketch = moonPlanet ? MOON_SKETCHES[moonPlanet.sign] : undefined;
+  const moonNameEn = moonPlanet ? (RASHI_NAMES_EN[moonPlanet.sign] ?? moonPlanet.signName.en) : '';
+  const moonNameHi = moonPlanet ? (RASHI_NAMES_HI[moonPlanet.sign] ?? moonPlanet.signName.hi) : '';
+
+  // Overall takeaway: tone based on dignities
+  const strongCount = exalted.length + ownSign.length;
+  const weakCount = debilitated.length + combust.length;
+  const overallTone = strongCount >= 2 ? 'strong' : weakCount >= 2 ? 'mixed' : 'balanced';
+  const overallTakeaway = {
+    strong: {
+      en: `With ${strongCount} planet${strongCount > 1 ? 's' : ''} in strength, your chart has significant natural advantages. Focus on leveraging these dignified planets — they are your key allies for growth.`,
+      hi: `${strongCount} ग्रह${strongCount > 1 ? '' : ''} बलवान होने से आपकी कुंडली में प्राकृतिक अनुकूलताएं हैं। इन बलवान ग्रहों का उपयोग करें।`,
+    },
+    mixed: {
+      en: `Your chart shows both strengths and challenges. The dignified planets provide a solid foundation — work with them consciously while being mindful of the areas where challenged planets operate.`,
+      hi: `आपकी कुंडली में शक्तियां और चुनौतियां दोनों हैं। बलवान ग्रह ठोस आधार देते हैं — उनके साथ सचेत रूप से कार्य करें।`,
+    },
+    balanced: {
+      en: `A balanced chart — no extreme strengths or weaknesses. Your planets work through effort and intent. Consistent action and awareness will unlock their full potential.`,
+      hi: `एक संतुलित कुंडली — न अत्यधिक शक्तियां, न अत्यधिक चुनौतियां। ग्रह प्रयास और इरादे से काम करते हैं।`,
+    },
+  }[overallTone];
+
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
         {isHi ? 'ग्रह विश्लेषण' : 'Planets Interpretation'}
       </h3>
 
-      {/* Intro */}
+      {/* Intro — clarifies this is birth chart data */}
       <SectionCard>
-        <SectionHeading>{isHi ? 'आपकी कुंडली एक नज़र में' : 'Your Chart at a Glance'}</SectionHeading>
+        <SectionHeading>{isHi ? 'आपकी जन्म कुंडली एक नज़र में' : 'Your Birth Chart at a Glance'}</SectionHeading>
         <InfoParagraph>
           {isHi
-            ? 'यह आपकी जन्म कुंडली की प्रमुख विशेषताओं का सरल सारांश है। यह समझने का सबसे आसान तरीका है कि आपके ग्रह क्या कहते हैं।'
-            : 'This is a beginner-friendly summary of your birth chart\'s key features. It\'s the simplest way to understand what your planets are telling you.'}
+            ? 'यह आपके जन्म के क्षण आकाश में ग्रहों की स्थिति है — एक स्थायी स्नैपशॉट जो आपके जन्म के समय तय हुआ था। यह वर्तमान ग्रह स्थिति नहीं है।'
+            : 'This shows where the planets were at the exact moment of your birth — a permanent snapshot fixed at that instant. These are your natal (birth) positions, not the current sky.'}
         </InfoParagraph>
+      </SectionCard>
+
+      {/* Overall Takeaway */}
+      <SectionCard border="border-[#d4a853]/20" className="bg-[#d4a853]/5">
+        <SectionHeading>{isHi ? 'समग्र सारांश' : 'Overall Takeaway'}</SectionHeading>
+        <p className="text-sm text-gray-200 leading-relaxed">
+          {isHi ? overallTakeaway.hi : overallTakeaway.en}
+        </p>
       </SectionCard>
 
       {/* Lagna */}
@@ -1021,19 +1069,19 @@ export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInt
         <SectionHeading>{isHi ? 'लग्न (उदय राशि)' : 'Lagna (Ascendant)'}</SectionHeading>
         <p className="text-sm text-gray-200 leading-relaxed">
           {isHi
-            ? `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको ऐसे देखती है। ${lagnaSketch?.hi ?? ''}`
-            : `Your Lagna is ${lagnaName}. This is your 'rising sign' — how the world sees you. ${lagnaSketch?.en ?? ''}`}
+            ? `आपका लग्न ${lagnaName} है। यह आपकी "उदय राशि" है — दुनिया आपको बाहर से ऐसे देखती है। ${lagnaSketch?.hi ?? ''}`
+            : `Your Lagna is ${lagnaName}. This is your rising sign — your outer self, how the world perceives you. ${lagnaSketch?.en ?? ''}`}
         </p>
       </SectionCard>
 
       {/* Moon Sign */}
       {moonPlanet && (
         <SectionCard border="border-sky-500/15">
-          <SectionHeading>{isHi ? 'चन्द्र राशि' : 'Moon Sign (Rashi)'}</SectionHeading>
+          <SectionHeading>{isHi ? 'चन्द्र राशि (मन)' : 'Moon Sign (Rashi)'}</SectionHeading>
           <p className="text-sm text-gray-200 leading-relaxed">
             {isHi
-              ? `आपका चन्द्रमा ${RASHI_NAMES_HI[moonPlanet.sign] ?? moonPlanet.signName.hi} राशि में है। यह आपका भावनात्मक केंद्र है — आप कैसा महसूस करते हैं, क्या आपको सुकून देता है। ${LAGNA_SKETCHES[moonPlanet.sign]?.hi ?? ''}`
-              : `Your Moon is in ${RASHI_NAMES_EN[moonPlanet.sign] ?? moonPlanet.signName.en}. This is your emotional core — how you FEEL, what gives you comfort. ${LAGNA_SKETCHES[moonPlanet.sign]?.en ?? ''}`}
+              ? `आपका चन्द्रमा ${moonNameHi} राशि में है। यह आपका आंतरिक स्वभाव है — आपकी भावनाएं, मानसिक आवश्यकताएं और वह जो आपको भीतर से सुकून देता है। ${moonSketch?.hi ?? ''}`
+              : `Your Moon is in ${moonNameEn}. This is your inner world — your emotional needs, instinctive reactions, and what truly gives you comfort beneath the surface. ${moonSketch?.en ?? ''}`}
           </p>
         </SectionCard>
       )}

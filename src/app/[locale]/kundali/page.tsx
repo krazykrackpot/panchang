@@ -976,6 +976,70 @@ export default function KundaliPage() {
               ))}
               <PlanetsInterpretation planets={kundali.planets} ascendant={kundali.ascendant} locale={locale} />
 
+              {/* ── Functional Nature per Lagna ── */}
+              {kundali.functionalNature && (() => {
+                const fn = kundali.functionalNature!;
+                const COLOR: Record<string, string> = {
+                  yogaKaraka:  'bg-gold-primary/25 text-gold-light border-gold-primary/30',
+                  funcBenefic: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/20',
+                  neutral:     'bg-bg-secondary/60 text-text-secondary/70 border-gold-primary/8',
+                  funcMalefic: 'bg-red-500/12 text-red-400 border-red-500/20',
+                  maraka:      'bg-orange-500/15 text-orange-300 border-orange-500/20',
+                  badhak:      'bg-purple-500/15 text-purple-300 border-purple-500/20',
+                };
+                return (
+                  <div className="mt-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-5">
+                    <div className="text-gold-primary/80 text-xs uppercase tracking-wider font-bold mb-1">
+                      {locale === 'en' ? 'Functional Nature per Lagna (Laghu Parashari)' : 'लग्न अनुसार क्रियात्मक स्वभाव'}
+                    </div>
+                    <p className="text-text-secondary/40 text-[11px] mb-4">
+                      {locale === 'en'
+                        ? `For ${kundali.ascendant.signName.en} lagna — how each planet functions in your chart`
+                        : `${kundali.ascendant.signName.hi} लग्न के लिए — प्रत्येक ग्रह का क्रियात्मक स्वभाव`}
+                    </p>
+                    {/* Summary badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {fn.yogaKaraka !== null && (
+                        <span className="text-xs px-2 py-1 rounded-full bg-gold-primary/20 text-gold-light border border-gold-primary/30 font-bold">
+                          {locale === 'en' ? 'Yoga Karaka:' : 'योगकारक:'} {GRAHAS.find(g => g.id === fn.yogaKaraka)?.name.en || '—'}
+                        </span>
+                      )}
+                      {fn.marakaLords.map(id => (
+                        <span key={id} className="text-xs px-2 py-1 rounded-full bg-orange-500/15 text-orange-300 border border-orange-500/20 font-semibold">
+                          {locale === 'en' ? 'Maraka:' : 'मारक:'} {GRAHAS.find(g => g.id === id)?.name.en || '—'}
+                        </span>
+                      ))}
+                      {fn.badhakLord !== null && (
+                        <span className="text-xs px-2 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-semibold">
+                          {locale === 'en' ? `Badhak (${fn.badhakHouse}H):` : `बाधक (${fn.badhakHouse}वाँ):`} {GRAHAS.find(g => g.id === fn.badhakLord)?.name.en || '—'}
+                        </span>
+                      )}
+                    </div>
+                    {/* Grid of all 7 planets */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      {fn.planets.map(p => (
+                        <div key={p.planetId} className={`rounded-lg border p-2.5 ${COLOR[p.nature] || COLOR.neutral}`}>
+                          <div className="font-bold text-sm mb-0.5" style={headingFont}>
+                            {locale === 'en' ? p.planetName.en : p.planetName.hi}
+                          </div>
+                          <div className="text-[10px] font-semibold mb-1 opacity-80">
+                            {p.label[locale === 'en' ? 'en' : 'hi']}
+                          </div>
+                          <div className="text-[10px] opacity-60 font-mono">
+                            {locale === 'en' ? `Lords ${p.houseRulership.join(', ')}H` : `${p.houseRulership.join(', ')}वें भाव`}
+                          </div>
+                          {p.note && (
+                            <div className="text-[10px] opacity-55 mt-1 leading-tight" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {p.note[locale === 'en' ? 'en' : 'hi']}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
+
               {/* ── Graha Yuddha (Planetary War) ── */}
               {kundali.grahaYuddha && kundali.grahaYuddha.length > 0 && (
                 <div className="mt-4 rounded-xl bg-gradient-to-br from-red-900/20 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/30 p-5">
@@ -2389,6 +2453,48 @@ export default function KundaliPage() {
                   })}
                 </div>
               </div>
+              {/* Jaimini Rajayogas */}
+              {kundali.jaimini?.rajayogas && kundali.jaimini.rajayogas.length > 0 && (
+                <div>
+                  <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
+                    {locale === 'en' ? 'Jaimini Rajayogas (from Karakamsha)' : 'जैमिनी राजयोग (कारकांश से)'}
+                  </h3>
+                  <p className="text-text-secondary/50 text-xs text-center mb-4 max-w-2xl mx-auto">
+                    {locale === 'en'
+                      ? 'Planetary combinations assessed from the Karakamsha — the Navamsha sign of your soul-significator'
+                      : 'कारकांश से आकलित ग्रह संयोग — आपके आत्मकारक की नवांश राशि से'}
+                  </p>
+                  <div className="space-y-3">
+                    {kundali.jaimini.rajayogas.map((yoga, i) => (
+                      <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border p-4 ${
+                        yoga.strength === 'strong' ? 'border-gold-primary/30 shadow-sm shadow-gold-primary/10' :
+                        yoga.strength === 'moderate' ? 'border-gold-primary/15' : 'border-gold-primary/8'
+                      }`}>
+                        <div className="flex items-start gap-3">
+                          <span className={`shrink-0 px-2 py-0.5 rounded-full text-[10px] font-bold mt-0.5 ${
+                            yoga.strength === 'strong'   ? 'bg-gold-primary/25 text-gold-light' :
+                            yoga.strength === 'moderate' ? 'bg-purple-500/20 text-purple-300' :
+                                                           'bg-bg-secondary text-text-secondary/60'
+                          }`}>
+                            {yoga.strength === 'strong' ? (locale === 'en' ? 'Strong' : 'प्रबल') :
+                             yoga.strength === 'moderate' ? (locale === 'en' ? 'Moderate' : 'मध्यम') :
+                             (locale === 'en' ? 'Mild' : 'मृदु')}
+                          </span>
+                          <div className="flex-1">
+                            <div className="text-gold-primary font-bold text-sm mb-1" style={headingFont}>
+                              {yoga.name[locale === 'en' ? 'en' : 'hi']}
+                            </div>
+                            <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {yoga.description[locale === 'en' ? 'en' : 'hi']}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <JaiminiInterpretation jaimini={kundali.jaimini} locale={locale} />
             </div>
             );
@@ -2854,33 +2960,107 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
       </div>
 
       {viewMode === 'sav' ? (
-        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
-          <h4 className="text-gold-light text-lg font-semibold mb-4" style={headingFont}>{t('sarvashtakavarga')}</h4>
-          <p className="text-text-secondary text-xs mb-4">
-            {locale === 'en' ? 'Total bindu points per sign from all 7 planets. Houses with 28+ points are strong.' : 'सभी 7 ग्रहों के कुल बिन्दु प्रति राशि। 28+ बिन्दु वाले भाव बलवान हैं।'}
-          </p>
-          <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
-            {RASHIS.map((r, i) => {
-              const val = ashtakavarga.savTable[i];
-              const strong = val >= 28;
-              const weak = val < 22;
-              return (
-                <motion.div key={r.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.04 }}
-                  className={`rounded-xl p-3 text-center border ${strong ? 'border-emerald-500/30 bg-emerald-500/10' : weak ? 'border-red-500/20 bg-red-500/5' : 'border-gold-primary/10 bg-bg-tertiary/30'}`}
-                >
-                  <RashiIconById id={r.id} size={24} />
-                  <div className="text-xs text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
-                  <div className={`text-xl font-bold mt-1 ${strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-gold-light'}`}>{val}</div>
-                </motion.div>
-              );
-            })}
+        <div className="space-y-6">
+          {/* Bar chart */}
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
+            <h4 className="text-gold-light text-lg font-semibold mb-1" style={headingFont}>{t('sarvashtakavarga')} — {locale === 'en' ? 'Bar Chart' : 'बार चार्ट'}</h4>
+            <p className="text-text-secondary/50 text-xs mb-4">
+              {locale === 'en' ? 'Total bindu per sign. ≥28 = strong (green), <22 = weak (red). Threshold 25 = average.' : 'प्रति राशि कुल बिन्दु। ≥28 = बलवान (हरा), <22 = दुर्बल (लाल)।'}
+            </p>
+            <div className="flex items-end gap-1 h-36 sm:h-44">
+              {ashtakavarga.savTable.map((val, i) => {
+                const pct = Math.round((val / 56) * 100); // max theoretical = 56
+                const color = val >= 28 ? 'bg-emerald-500/70' : val < 22 ? 'bg-red-500/60' : 'bg-gold-primary/50';
+                return (
+                  <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                    <span className={`text-[9px] font-bold ${val >= 28 ? 'text-emerald-400' : val < 22 ? 'text-red-400' : 'text-gold-primary/70'}`}>{val}</span>
+                    <div className="w-full flex items-end justify-center" style={{ height: '100%' }}>
+                      <div className={`w-full rounded-t ${color}`} style={{ height: `${Math.max(pct, 4)}%` }} />
+                    </div>
+                    <span className="text-[9px] text-text-secondary/40 text-center leading-none" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {RASHIS[i].name[locale].slice(0, 2)}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex items-center justify-center gap-4 mt-3 text-[10px]">
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-emerald-500/70" />{locale === 'en' ? '≥28 Strong' : '≥28 बलवान'}</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-gold-primary/50" />{locale === 'en' ? '22–27 Average' : '22–27 औसत'}</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-red-500/60" />{locale === 'en' ? '<22 Weak' : '<22 दुर्बल'}</span>
+            </div>
+            <div className="text-center text-text-secondary/50 text-xs mt-2">
+              {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
+            </div>
           </div>
-          <div className="text-center text-text-secondary text-xs mt-4">
-            {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
+
+          {/* Sign grid */}
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
+            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
+              {RASHIS.map((r, i) => {
+                const val = ashtakavarga.savTable[i];
+                const strong = val >= 28;
+                const weak = val < 22;
+                return (
+                  <motion.div key={r.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: i * 0.04 }}
+                    className={`rounded-xl p-3 text-center border ${strong ? 'border-emerald-500/30 bg-emerald-500/10' : weak ? 'border-red-500/20 bg-red-500/5' : 'border-gold-primary/10 bg-bg-tertiary/30'}`}
+                  >
+                    <RashiIconById id={r.id} size={24} />
+                    <div className="text-xs text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
+                    <div className={`text-xl font-bold mt-1 ${strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-gold-light'}`}>{val}</div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
+
+          {/* Trikona Shodhana */}
+          {(() => {
+            // Trikona Shodhana: subtract minimum of each trikona group (signs 1-5-9, 2-6-10, 3-7-11, 4-8-12)
+            const sav = ashtakavarga.savTable;
+            const trikonas = [[0,4,8],[1,5,9],[2,6,10],[3,7,11]];
+            const afterTrikona = [...sav];
+            trikonas.forEach(trio => {
+              const mn = Math.min(sav[trio[0]], sav[trio[1]], sav[trio[2]]);
+              trio.forEach(i => { afterTrikona[i] = sav[i] - mn; });
+            });
+            // Ekadhipatya Shodhana: signs with same lord
+            // Mars: 1,8 | Venus: 2,7 | Mercury: 3,6 | Moon: 4 | Sun: 5 | Jupiter: 9,12 | Saturn: 10,11
+            const SHARED_LORDS = [[0,7],[1,6],[2,5],[9,11]]; // 0-based sign pairs sharing a lord
+            const shodhana = [...afterTrikona];
+            SHARED_LORDS.forEach(([a, b]) => {
+              const mn = Math.min(afterTrikona[a], afterTrikona[b]);
+              shodhana[a] = afterTrikona[a] - mn;
+              shodhana[b] = afterTrikona[b] - mn;
+            });
+            return (
+              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
+                <h4 className="text-gold-light font-semibold text-sm mb-1" style={headingFont}>
+                  {locale === 'en' ? 'Trikona + Ekadhipatya Shodhana (Refined SAV)' : 'त्रिकोण + एकाधिपत्य शोधन (परिष्कृत SAV)'}
+                </h4>
+                <p className="text-text-secondary/50 text-xs mb-4">
+                  {locale === 'en'
+                    ? 'After subtracting trikona minimums and ekadhipatya excess — the essential signal. Higher = genuinely strong for transits.'
+                    : 'त्रिकोण न्यूनतम और एकाधिपत्य अधिक्य घटाने के बाद — मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
+                </p>
+                <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-1.5">
+                  {RASHIS.map((r, i) => {
+                    const val = shodhana[i];
+                    const color = val >= 5 ? 'text-emerald-400' : val <= 1 ? 'text-red-400' : 'text-gold-primary/80';
+                    return (
+                      <div key={r.id} className="text-center p-2 rounded-lg bg-bg-secondary/30 border border-gold-primary/8">
+                        <div className="text-[9px] text-text-secondary/40 mb-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale].slice(0, 3)}</div>
+                        <div className={`text-lg font-bold font-mono ${color}`}>{val}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       ) : (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">

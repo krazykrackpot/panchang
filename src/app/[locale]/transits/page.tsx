@@ -98,6 +98,27 @@ export default function TransitsPage() {
     return { total: events.length, major: majorCount, planets: uniquePlanets };
   }, [events]);
 
+  // Jupiter Vedha — 12 classical blocking pairs: Jupiter sign → Saturn sign that blocks
+  // Source: Gochar classics; when Saturn is in the listed sign, Jupiter's transit is Vedha-blocked
+  const JUPITER_VEDHA: Record<number, number> = {
+    1: 11, 2: 9, 3: 10, 4: 8, 5: 7, 6: 5,
+    7: 6, 8: 4, 9: 3, 10: 2, 11: 1, 12: 12,
+  };
+  const jupiterVedha = useMemo(() => {
+    const jup = currentTransits.find(c => c.planetId === 4);
+    const sat = currentTransits.find(c => c.planetId === 6);
+    if (!jup || !sat) return null;
+    const blockerSign = JUPITER_VEDHA[jup.sign];
+    if (blockerSign === sat.sign) {
+      return {
+        jupiterSign: jup.signName,
+        saturnSign: sat.signName,
+      };
+    }
+    return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTransits]);
+
   const sigColors: Record<string, string> = {
     major: 'border-gold-primary/30 bg-gold-primary/5',
     moderate: 'border-amber-500/20 bg-amber-500/5',
@@ -156,6 +177,22 @@ export default function TransitsPage() {
               </div>
             ))}
           </div>
+          {/* Jupiter Vedha warning */}
+          {jupiterVedha && (
+            <div className="mt-4 rounded-xl bg-amber-500/8 border border-amber-500/25 p-3 flex items-start gap-3">
+              <span className="text-amber-400 text-lg mt-0.5">⚠</span>
+              <div>
+                <div className="text-amber-400 font-bold text-sm mb-1" style={headingFont}>
+                  {locale === 'en' ? 'Jupiter Vedha Active' : 'गुरु वेध सक्रिय'}
+                </div>
+                <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
+                  {locale === 'en'
+                    ? `Jupiter transiting ${jupiterVedha.jupiterSign.en} is Vedha-blocked by Saturn in ${jupiterVedha.saturnSign.en} — Jupiter's transit benefits are reduced or negated this period. Classical Gochar texts state that Vedha negates the positive results of the transiting planet.`
+                    : `${jupiterVedha.jupiterSign.hi} में गोचर करते गुरु को ${jupiterVedha.saturnSign.hi} में शनि का वेध है — गुरु गोचर के शुभ फल इस काल में घटित अथवा निष्फल होते हैं।`}
+                </p>
+              </div>
+            </div>
+          )}
         </motion.div>
       )}
 

@@ -124,12 +124,14 @@ export interface KundaliData {
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
   bhriguBindu?: BhriguBindu;
   grahaYuddha?: import('@/lib/kundali/graha-yuddha').GrahaYuddhaResult[];
+  functionalNature?: import('@/lib/kundali/functional-nature').FunctionalNatureResult;
   jaimini?: {
     charaKarakas: { planet: number; planetName: { en: string; hi: string; sa: string }; karaka: string; karakaName: { en: string; hi: string; sa: string }; degree: number }[];
     karakamsha: { sign: number; signName: { en: string; hi: string; sa: string } };
     arudhaPadas: { house: number; sign: number; signName: { en: string; hi: string; sa: string }; label: { en: string; hi: string; sa: string } }[];
     charaDasha: { sign: number; signName: { en: string; hi: string; sa: string }; years: number; startDate: string; endDate: string }[];
     grahaArudhas?: { planetId: number; planetName: { en: string; hi: string; sa: string }; arudhaSign: number; arudhaSignName: { en: string; hi: string; sa: string } }[];
+    rajayogas?: import('@/lib/jaimini/jaimini-calc').JaiminiRajayoga[];
   };
 }
 

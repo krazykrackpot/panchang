@@ -21,6 +21,7 @@ import { calculateAvasthas } from '@/lib/kundali/avasthas';
 import { calculateArgala } from '@/lib/kundali/argala';
 import { calculateSphutas } from '@/lib/kundali/sphutas';
 import { detectGrahaYuddha } from '@/lib/kundali/graha-yuddha';
+import { calculateFunctionalNature } from '@/lib/kundali/functional-nature';
 
 /**
  * Calculate the Ascendant (Lagna) degree
@@ -991,6 +992,7 @@ export function generateKundali(birthData: BirthData): KundaliData {
     grahaYuddha: detectGrahaYuddha(
       planets.map(p => ({ id: p.planet.id, longitude: p.longitude, latitude: p.latitude }))
     ),
+    functionalNature: calculateFunctionalNature(ascSign),
     sphutas: (() => {
       const sunP = planets.find(p => p.planet.id === 0);
       const jupP = planets.find(p => p.planet.id === 4);

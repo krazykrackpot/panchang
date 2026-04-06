@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
     domains: [],
   },
   trailingSlash: false,
+  async redirects() {
+    return [
+      // /learn/yogas-detailed was removed; redirect to merged yogas page
+      {
+        source: '/:locale/learn/yogas-detailed',
+        destination: '/:locale/learn/yogas',
+        permanent: true,
+      },
+    ];
+  },
   // Include sweph native binary in serverless function bundles
   outputFileTracingIncludes: {
     '/api/**': ['./node_modules/sweph/**'],

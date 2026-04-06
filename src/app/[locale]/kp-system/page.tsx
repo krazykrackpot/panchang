@@ -14,6 +14,293 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 import type { KPChartData } from '@/types/kp';
 
+// ---------------------------------------------------------------------------
+// Life area readings: per-planet × per-area (strong / weak)
+// ---------------------------------------------------------------------------
+const LIFE_READINGS: Record<string, Record<number, { strong: string; weak: string }>> = {
+  marriage: {
+    0: {
+      strong: 'The Sun presides over your 7th cusp — marriage brings social prominence and public recognition. Your partner will be dignified, commanding, and likely prominent in their field. This is a union built on mutual respect and shared social standing, not mere romance.',
+      weak: 'The Sun at the 7th cusp creates ego-friction within partnership. Pride and the need for dominance may delay or disrupt committed relationships. Marriage flourishes when solar pride consciously makes room for another sovereign.',
+    },
+    1: {
+      strong: 'The Moon governs your 7th cusp — a deeply emotional, nurturing marriage is promised. Your partner is caring, domestic, and family-centred. The bond forms instinctively and deepens through daily attunement. Home and children become the very heart of this union.',
+      weak: 'The Moon creates emotional turbulence in partnerships — partners who are changeable, moody, or unstable. The promise of deep love exists but timing fluctuates. Emotional groundedness within yourself is the key to stabilising this bond.',
+    },
+    2: {
+      strong: 'Mars rules your 7th sub-lord — marriage is passionate, courageous, and dynamic. Your partner will be energetic, action-oriented, and strong-willed. The union thrives when both channel this fire into shared achievements rather than conflict with each other.',
+      weak: 'Mars disrupts the 7th cusp with arguments, legal friction, and possible separation. Marriage timing is delayed until Mars-related karma is resolved. The passion is undeniable; sustained harmony requires significant conscious effort.',
+    },
+    3: {
+      strong: 'Mercury governs your 7th sub-lordship — your partner is intelligent, communicative, and commercially astute. Business and romance naturally combine. The relationship thrives on mental stimulation, wit, and shared curiosity. A youthful or versatile spouse is indicated.',
+      weak: 'Mercury here creates indecision and mental incompatibility in choosing a partner. Over-analysis delays commitment. Multiple short alliances precede the lasting bond. Learning to feel first and think second opens the door to enduring love.',
+    },
+    4: {
+      strong: 'Jupiter as 7th cusp sub-lord is the supreme blessing for marriage. A wise, generous, and spiritually evolved partner is promised. The union brings abundance, children, and mutual elevation. This is a dharmic marriage — purposeful, expansive, and deeply fulfilling.',
+      weak: 'Even a challenged Jupiter promises marriage — but delays and over-idealisation hinder commitment. You place your partner on a pedestal no human can sustain. Accepting a real, imperfect person with grace is the key to this placement\'s fulfilment.',
+    },
+    5: {
+      strong: 'Venus sub-lords your 7th cusp — marriage is written in gold. Beauty, harmony, and deep mutual affection define this union. Your partner is charming, creative, and pleasure-loving. Venus in its home domain makes marriage not just promised but glorified — a source of enduring joy.',
+      weak: 'Venus denied at the 7th cusp creates romantic dissatisfaction — beautiful partners who disappoint, or beauty without depth. The promise of love is present but requires moving beyond surface attraction into genuine vulnerability and shared values.',
+    },
+    6: {
+      strong: 'Saturn sub-lords your 7th cusp — marriage arrives late but proves enduring beyond measure. Your partner may be older, serious, or from a different background. Saturn demands patience; the reward is a partnership forged in deep trust, duty, and the alchemy of shared time.',
+      weak: 'Saturn delaying the 7th cusp creates significant postponement or a marriage burdened by karmic weight. Loneliness or separation may accompany this placement until Saturn\'s discipline is internalised. Late marriage brings greater wisdom to the union.',
+    },
+    7: {
+      strong: 'Rahu governs your 7th sub-lordship — marriage has a destined, unconventional character. Your partner may be foreign, from a different culture, or uniquely unconventional. The relationship defies convention, carries intense karmic charge, and is ultimately written in the cosmic plan.',
+      weak: 'Rahu disrupts the 7th cusp with obsessive attractions, illusions, and unusual complications in marriage timing. Attraction to unsuitable partners recurs. Clarity of intent and spiritual grounding are essential before committing to partnership.',
+    },
+    8: {
+      strong: 'Ketu as 7th sub-lord indicates a spiritually charged, karmic marriage. This partner is known from past lives — the recognition is instantaneous. The union transcends ordinary convention and is oriented toward liberation rather than material satisfaction.',
+      weak: 'Ketu at the 7th cusp creates themes of detachment and separation in partnership. Marriage may be avoided, or spiritualised to the point of avoiding human intimacy. The soul is learning non-attachment through the school of relationship.',
+    },
+  },
+  career: {
+    0: {
+      strong: 'The Sun governs your 10th cusp — career in government, administration, medicine, or authority is powerfully indicated. Public recognition and social status through your profession are promised. You are built for leadership; the professional world acknowledges your solar presence.',
+      weak: 'The Sun\'s pride at the 10th cusp creates conflicts with authority figures and bosses. Career advancement comes through periods of resistance. Learning to work within systems before reshaping them is the Sun\'s necessary lesson.',
+    },
+    1: {
+      strong: 'The Moon governs your 10th cusp — career in nurturing, public service, hospitality, or emotional commerce is indicated. Your professional life is people-oriented and emotionally rich. Public reputation waxes and wanes but always returns to prominence.',
+      weak: 'The Moon\'s fluctuating nature at the 10th cusp creates career inconsistency — frequent changes of direction, emotional professional decisions, or instability of reputation. A stable professional anchor transforms this fluid energy.',
+    },
+    2: {
+      strong: 'Mars commands your 10th cusp — career in engineering, surgery, military, law enforcement, or competitive business is powerfully favoured. You execute with precision and courage. Professional success comes through decisive action and the willingness to lead under pressure.',
+      weak: 'Mars frustrated at the 10th cusp brings conflicts with colleagues, impulsive career decisions, and professional setbacks through aggression or haste. Channelling Mars into disciplined action rather than reaction reshapes the trajectory dramatically.',
+    },
+    3: {
+      strong: 'Mercury governs your 10th cusp — career in communications, commerce, technology, writing, or education is strongly indicated. Your professional currency is intelligence and adaptability. Multiple career streams may coexist simultaneously and all may prosper.',
+      weak: 'Mercury\'s duality at the 10th cusp creates professional indecision, multiple false starts, or difficulty committing to a single career path. Scattering energy dilutes impact. Focus and follow-through are the essential correctives.',
+    },
+    4: {
+      strong: 'Jupiter blesses your 10th cusp — career in law, finance, education, spirituality, or consulting brings recognition and abundance. Professional growth is expansive and dharmic. You are sought as a teacher, guide, or advisor. The world rewards your wisdom generously.',
+      weak: 'Jupiter over-expanding at the 10th cusp leads to over-promising in commitments or ethical lapses in career ambition. The lesson is integrity above opportunity. When ethics anchor the career, Jupiter\'s promised abundance arrives.',
+    },
+    5: {
+      strong: 'Venus presides over your 10th cusp — career in the arts, fashion, beauty, entertainment, finance, or diplomacy is strongly favoured. Professional success comes with elegance and natural charm. You make difficult things look effortless; recognition in aesthetics defines your identity.',
+      weak: 'Venus at the 10th cusp delayed or denied creates professional dissatisfaction — aesthetics without impact, charm without substance. Moving from superficiality to depth in professional expression unlocks this placement\'s considerable promise.',
+    },
+    6: {
+      strong: 'Saturn governs your 10th cusp — career is built slowly, methodically, and to exceptional durability. Success comes later in life but is more solid than any other placement. You excel in law, administration, real estate, or construction. Endurance is your professional superpower.',
+      weak: 'Saturn delaying the 10th cusp creates a career that struggles to gain momentum — obstacles, late recognition, and systemic resistance. Consistent effort over time without attachment to immediate reward is the only remedy Saturn accepts.',
+    },
+    7: {
+      strong: 'Rahu governs your 10th cusp — unconventional, innovative, or foreign-connected career is strongly indicated. You excel in technology, media, politics, or any field that rewards disruption and ambition. Professional rise can be rapid and startling in its trajectory.',
+      weak: 'Rahu at the 10th cusp creates professional instability, sudden reversals of fortune, or career advancement through questionable means that leads to eventual fall. Authentic ambition with ethical foundations is the only stable path through Rahu\'s professional maze.',
+    },
+    8: {
+      strong: 'Ketu governs your 10th cusp — career in healing, occult sciences, spirituality, research, or ancient knowledge fields is strongly favoured. You bring wisdom to professional contexts that others cannot replicate. Extraordinary mastery in a narrow specialisation is your professional gift.',
+      weak: 'Ketu at the 10th cusp creates professional detachment, difficulty sustaining career ambition, or sudden abandonments of promising paths. Finding purpose-aligned work rather than conventional success activates this placement\'s deep competence.',
+    },
+  },
+  wealth: {
+    0: {
+      strong: 'The Sun governs your 2nd cusp — wealth flows through authority, government, or professional prominence. Financial resources are tied to your social status and reputation. Income rises with your public standing. Gold and stable assets are the Sun\'s favoured investments.',
+      weak: 'The Sun blocked at the 2nd cusp creates financial struggles tied to pride — overspending to maintain status, conflicts over family wealth, or losses through authoritative figures. Humility in financial matters preserves what the Sun otherwise scatters.',
+    },
+    1: {
+      strong: 'The Moon governs your 2nd cusp — wealth through nurturing, public service, hospitality, or emotional commerce. Financial flow is cyclical — waxing and waning but always returning. Real estate, liquid assets, and businesses serving the public are especially favoured.',
+      weak: 'The Moon at the 2nd cusp creates financial instability — emotional spending, fluctuating income, or loss through domestic situations. Building emotional discipline around money decisions stabilises this otherwise fluid energy.',
+    },
+    2: {
+      strong: 'Mars governs your 2nd cusp — wealth through industry, technical work, real estate, or competitive business. Financial gains come through courage and decisive action. Mars gives strong earning power; guard against impulsive expenditure that erodes accumulated wealth.',
+      weak: 'Mars frustrated at the 2nd cusp brings financial losses through aggression, legal disputes over money, or reckless spending on impulse. Patience and planning around finances — virtues Mars resists — are the keys to turning this placement toward prosperity.',
+    },
+    3: {
+      strong: 'Mercury governs your 2nd cusp — wealth through commerce, communication, technology, or trade. You are financially intelligent and versatile. Multiple income streams serve you well. Your financial mind is sharp; you understand markets, negotiations, and the value of information.',
+      weak: 'Mercury\'s dual nature at the 2nd cusp leads to financial inconsistency — smart decisions followed by poor ones, or wealth scattered across too many ventures. Concentrating financial energy on fewer, deeper commitments dramatically improves the outcome.',
+    },
+    4: {
+      strong: 'Jupiter blesses your 2nd cusp — one of the most auspicious positions for accumulated wealth. Fortune grows through wisdom, generosity, and righteous action. Financial gains through education, law, or growth investments are strongly promised. What you give returns multiplied.',
+      weak: 'Jupiter over-expanding at the 2nd cusp leads to over-generosity at the expense of savings, or financial speculation beyond one\'s means. Dharmic wealth requires both giving and responsible stewardship. Jupiter still promises abundance — on the condition of financial integrity.',
+    },
+    5: {
+      strong: 'Venus governs your 2nd cusp — wealth through arts, beauty, luxury, entertainment, or relationship-based commerce. Financial comfort is a natural companion to your life. Home, adornment, and aesthetic pleasures are both the source and reward of your wealth.',
+      weak: 'Venus denied at the 2nd cusp creates financial dissatisfaction — income that comes but is quickly spent on pleasures, or loss through partnerships and luxury. Distinguishing genuine enjoyment from compensatory spending is the financial discipline this placement demands.',
+    },
+    6: {
+      strong: 'Saturn governs your 2nd cusp — wealth arrives through disciplined effort, service industries, or slow-compounding investments. Financial success is delayed but extremely durable once established. You build wealth the way Saturn builds character — one year of honest work at a time.',
+      weak: 'Saturn delaying the 2nd cusp creates financial hardship early in life and a slow climb toward stability. A fear-based relationship with money may develop. Breaking this pattern requires Saturn\'s own remedy: consistent, structured savings regardless of how small the amount.',
+    },
+    7: {
+      strong: 'Rahu governs your 2nd cusp — wealth through unconventional, foreign, or technology-linked channels. Financial gains can be sudden and dramatic. You may accumulate wealth in ways others find puzzling. Foreign income and digital economy opportunities are especially favoured.',
+      weak: 'Rahu at the 2nd cusp creates sudden financial reversals — money appearing and vanishing in unusual ways. Deceptive dealings around finances or losses through speculation are risks. Conservative, transparent financial practices provide the grounding Rahu lacks.',
+    },
+    8: {
+      strong: 'Ketu governs your 2nd cusp — wealth through specialised mastery, research, or healing arts. Financial gains may come through unconventional means or unexpected sources. Ketu is indifferent to wealth but paradoxically often receives it through accumulated past-life karma.',
+      weak: 'Ketu at the 2nd cusp creates financial detachment and possible sudden losses in family wealth or inherited assets. The soul\'s disinterest in accumulation requires practical compensation — disciplined financial habits imposed from outside when inner motivation for wealth is minimal.',
+    },
+  },
+  health: {
+    0: {
+      strong: 'The Sun governs your 1st cusp — vitality is strong, constitution robust, and physical resilience considerable. Heart, spine, and eyes are areas of natural strength. You radiate health when in alignment with your life\'s purpose. Solar energy makes you naturally vitalising to others.',
+      weak: 'The Sun blocked at the 1st cusp creates vulnerability in heart, circulation, or vision. Pride about health may delay seeking treatment. The physical body needs conscious rest; the Sun\'s fire burns bright but requires fuel. Preventive care is essential.',
+    },
+    1: {
+      strong: 'The Moon governs your 1st cusp — health is closely tied to emotional wellbeing. When your inner life is settled, physical health flourishes. Digestion, lungs, and the lymphatic system are key strength areas. Aligning lifestyle with lunar rhythms brings natural vitality.',
+      weak: 'The Moon at the 1st cusp creates health that fluctuates with emotional states — psychosomatic tendencies, digestive sensitivity, and fluid imbalances. Emotional hygiene is as important as physical. Unprocessed feelings manifest physically with this placement.',
+    },
+    2: {
+      strong: 'Mars governs your 1st cusp — physical constitution is strong, muscular, and energetic. You possess considerable stamina and recover rapidly from illness. Mars here gives athletic potential and a proactive relationship with your body. Direct, physical activity is essential for wellbeing.',
+      weak: 'Mars frustrated at the 1st cusp creates accident-proneness, fevers, and inflammatory conditions. Recklessness in physical activities risks the very body Mars energises. Disciplined exercise and preventive care transform this placement\'s challenging potential.',
+    },
+    3: {
+      strong: 'Mercury governs your 1st cusp — health is mental in orientation. A clear, active mind correlates with physical vitality. Nervousness and over-thinking are the primary health risks. Lungs, nervous system, and communication organs are key areas of natural capability.',
+      weak: 'Mercury at the 1st cusp creates nervous disorders, respiratory sensitivity, or anxiety-related physical symptoms. The mind\'s constant activity becomes a health liability when unmanaged. Meditation, structured rest, and limiting information overload are the most effective remedies.',
+    },
+    4: {
+      strong: 'Jupiter governs your 1st cusp — constitution is generally robust and self-repairing. The body\'s natural intelligence is high. Liver, fat metabolism, and arterial health are key focus areas. Spiritual practice enhances physical immunity dramatically.',
+      weak: 'Jupiter over-expanding at the 1st cusp creates weight-related health concerns, liver vulnerabilities, or excess in lifestyle that undermines what should be a strong constitution. Moderation — Jupiter\'s most challenging teaching — is the primary health prescription.',
+    },
+    5: {
+      strong: 'Venus governs your 1st cusp — physical constitution favours beauty, balance, and grace. The reproductive system, kidneys, and skin are areas of natural vitality. Pleasurable lifestyle interventions — good food, beautiful environments, satisfying relationships — literally improve your physical health.',
+      weak: 'Venus denied at the 1st cusp creates health concerns in the reproductive system, kidneys, or skin. Indulgence in pleasures undermines what it promises. The remedy is beauty in moderation — enjoying Venus\'s gifts without allowing excess to erode the physical foundation.',
+    },
+    6: {
+      strong: 'Saturn governs your 1st cusp — constitution is lean, durable, and built for longevity rather than explosive energy. Joints, bones, and the musculoskeletal system are key strength areas. Health challenges early in life build extraordinary physical resilience over time.',
+      weak: 'Saturn at the 1st cusp creates chronic conditions, joint and bone vulnerabilities, or constitutional weakness demanding ongoing management. The body ages but endures. Structured lifestyle, consistent routine, and avoiding cold and damp environments are Saturn\'s specific prescriptions.',
+    },
+    7: {
+      strong: 'Rahu governs your 1st cusp — health is unconventional in its expression. You may be drawn to alternative medicine, foreign health systems, or cutting-edge interventions. The immune system operates unusually; trust your body\'s unique signals even when they defy convention.',
+      weak: 'Rahu disrupting the 1st cusp creates mysterious or difficult-to-diagnose health conditions and unusual susceptibilities. Mainstream medicine may not fully capture what ails you. Integrative, holistic approaches — including addressing karmic dimensions of health — are particularly effective.',
+    },
+    8: {
+      strong: 'Ketu governs your 1st cusp — health has a strong psychic and karmic dimension. Acute illness and rapid recovery alternate through life. You possess unusual healing ability — both to heal yourself and to intuit others\' health needs. Past-life karma surfaces through the body as wisdom.',
+      weak: 'Ketu at the 1st cusp creates abrupt health events, sudden energy losses, or chronic conditions of mysterious origin tied to past-life karma. The body serves as the karmic settlement ledger. Spiritual practice — especially mantra and pranayama — is uniquely effective for Ketu-type conditions.',
+    },
+  },
+  property: {
+    0: {
+      strong: 'The Sun governing your 4th cusp brings property through authority, government, or prominent family connections. Grand, status-affirming property is indicated. Ancestral and institutional real estate may feature prominently in your story.',
+      weak: 'The Sun blocked at the 4th cusp creates conflict over ancestral or domestic property. Disputes with father or authority figures over home matters are common. Ego-driven property decisions invite unnecessary loss.',
+    },
+    1: {
+      strong: 'The Moon governs your 4th cusp — domestic happiness and property are emotionally fulfilling. Multiple residential changes through life, but each home is deeply felt. Real estate near water or in emotionally resonant locations is especially favoured.',
+      weak: 'The Moon at the 4th cusp creates domestic instability — frequent moves and emotional disruption in the home environment. Building emotional security independently of physical address is the essential inner work.',
+    },
+    2: {
+      strong: 'Mars governs your 4th cusp — property is acquired through decisive action, competitive bidding, or construction. You may own land or property with industrial or agricultural utility. Mars gives the drive to acquire property even against significant obstacles.',
+      weak: 'Mars frustrated at the 4th cusp brings property disputes, legal battles over real estate, or losses through fire or conflict at home. Patience in real estate decisions prevents the impulsive moves Mars tempts here.',
+    },
+    3: {
+      strong: 'Mercury governs your 4th cusp — property may involve commercial utility: shops, technology-linked real estate, or multi-purpose spaces. Multiple properties or frequent renegotiation of terms is characteristic. Smart investment through information advantage is your edge.',
+      weak: 'Mercury at the 4th cusp creates indecision in property matters — many options, no clear choice. Rental and short-term arrangements may dominate over outright ownership. Committing to one decision and following through is the necessary corrective.',
+    },
+    4: {
+      strong: 'Jupiter governs your 4th cusp — a powerful blessing for property and domestic happiness. Large, auspicious property in excellent locations is strongly indicated. The home becomes a place of learning, gathering, and abundance. Ancestral blessings through property are common.',
+      weak: 'Jupiter over-expanding at the 4th cusp leads to over-investment in property or domestic comfort beyond one\'s means. Grounding Jupiter\'s expansive property dreams in financial reality protects the considerable promise this placement still carries.',
+    },
+    5: {
+      strong: 'Venus governs your 4th cusp — property is beautiful, comfortable, and aesthetically refined. Your home is a sanctuary of beauty and pleasure. Real estate in artistic, scenic, or luxurious locations is favoured. Property acquired through partnership or the arts is strongly indicated.',
+      weak: 'Venus denied at the 4th cusp creates domestic dissatisfaction — beautiful homes that remain out of reach, or property obtained at significant personal cost. Examining the relationship between home comfort and personal values brings clarity.',
+    },
+    6: {
+      strong: 'Saturn governs your 4th cusp — property is acquired slowly and with sustained effort, but what is built endures for generations. Old property, farmland, and structural real estate are favoured. Late in life, a solid and permanent home base is firmly established.',
+      weak: 'Saturn at the 4th cusp creates domestic hardship, austere home environments, and delayed property acquisition. Living arrangements impose karmic lessons. Building practical home security without waiting for ideal conditions is Saturn\'s counsel.',
+    },
+    7: {
+      strong: 'Rahu governs your 4th cusp — property in foreign lands, unconventional locations, or connected to unusual circumstances. Sudden property gains are possible. Technology-linked real estate or property in rapidly changing areas features prominently in your story.',
+      weak: 'Rahu at the 4th cusp creates domestic upheaval, property matters connected to deception, or a home environment that is never quite stable. Realistic assessment of domestic commitments prevents Rahu from dispersing domestic peace.',
+    },
+    8: {
+      strong: 'Ketu governs your 4th cusp — domestic life has a spiritual or hermit-like quality. Ancestral property with deep karmic history may feature. The home as a place of retreat, meditation, and inner work is especially meaningful and productive for your soul\'s evolution.',
+      weak: 'Ketu at the 4th cusp creates sudden domestic disruptions, detachment from property, or loss of ancestral land through unusual circumstances. The home as a karmic completion point — what was given must eventually return — is the underlying theme.',
+    },
+  },
+  fortune: {
+    0: {
+      strong: 'The Sun governs your 9th cusp — fortune comes through authority, government connections, and your father\'s lineage. Higher education in prestigious institutions is favoured. Dharmic action in public roles generates extraordinary luck. Divine protection follows you in public life.',
+      weak: 'The Sun blocked at the 9th cusp creates conflicts with teachers, gurus, or father figures that delay fortune. Pride in belief systems closes doors that humility would open. True fortune arrives when the solar ego submits to a higher principle.',
+    },
+    1: {
+      strong: 'The Moon governs your 9th cusp — fortune flows through emotional intelligence, intuition, and the wisdom of the feminine principle. Long journeys and foreign lands bring unexpected blessings. Your mother\'s karma carries auspicious grace into your life.',
+      weak: 'The Moon at the 9th cusp creates fluctuating fortune — periods of extraordinary luck followed by drought. Faith waxes and wanes. Anchoring spiritual practice regardless of external fortune stabilises the Moon\'s promised blessings.',
+    },
+    2: {
+      strong: 'Mars governs your 9th cusp — fortune is earned through courage, pioneering action, and willingness to venture into unknown territory. Long journeys, especially to challenging destinations, bring significant blessings. Dharmic warriors are especially favoured by Mars here.',
+      weak: 'Mars frustrated at the 9th cusp creates conflicts with religious or educational establishments and losses through long journeys. Righteous anger misdirected as intolerance invites misfortune. Disciplined courage rather than reactive bravado is the corrective.',
+    },
+    3: {
+      strong: 'Mercury governs your 9th cusp — fortune through education, publishing, communication, and the exchange of ideas across distances. Multiple gurus and teachers contribute to your wisdom. The life of the mind is where your fortune multiplies most readily.',
+      weak: 'Mercury at the 9th cusp creates scattered philosophical thinking or fortune lost to intellectual pride. The mind must serve wisdom rather than replace it. Committing to a genuine spiritual path — Mercury\'s greatest challenge — unlocks the considerable promise of this placement.',
+    },
+    4: {
+      strong: 'Jupiter governing your 9th cusp is the most auspicious position for fortune, dharma, and divine grace. You are cosmically protected. Higher wisdom, genuine gurus, and the full spectrum of life\'s blessings are accessible to you. This indicates a soul that has earned extraordinary fortune through past-life dharmic action.',
+      weak: 'Even a challenged Jupiter on the 9th cusp carries profound promise — fortune is not absent but access is blocked by dogma, over-expansion of belief, or misuse of knowledge. Genuine humility before the infinite opens what pride has temporarily closed.',
+    },
+    5: {
+      strong: 'Venus governs your 9th cusp — fortune flows through beauty, the arts, and the grace of relationship. Study in aesthetics, law, or diplomacy brings recognition. Foreign cultures and artistic traditions are sources of spiritual enrichment and material fortune. Love itself is a dharmic path for you.',
+      weak: 'Venus denied at the 9th cusp creates fortune lost to indulgence or over-attachment to pleasures that derail spiritual development. The path of beauty must be walked with discernment — grace rather than excess — for Venus\'s considerable fortune to materialise.',
+    },
+    6: {
+      strong: 'Saturn governs your 9th cusp — fortune is built slowly through disciplined dharmic action and service to those who suffer. Legal work and service-based institutions carry karmic rewards. Your spiritual path is one of structured practice. Fortune arrives reliably in the second half of life.',
+      weak: 'Saturn at the 9th cusp creates a heavy, burdensome relationship with dharma and fortune. Spiritual practice feels laborious; gurus bring more challenge than liberation. Consistent, humble adherence to dharmic duty — even when luck seems absent — is the only path through Saturn\'s intentional obstruction.',
+    },
+    7: {
+      strong: 'Rahu governs your 9th cusp — fortune through unconventional spiritual paths, foreign pilgrimages, or cutting-edge philosophical systems. You attract unusual gurus and exotic blessings. Rahu\'s ambition applied to dharma creates a unique and powerful spiritual biography. Foreign lands are specifically lucky for you.',
+      weak: 'Rahu disrupting the 9th cusp creates false gurus, spiritual illusions, or fortune lost to unconventional belief systems. Authentic spiritual seeking — rather than exotic or trendy alternatives — is Rahu\'s corrective. Discernment is the single most important spiritual faculty here.',
+    },
+    8: {
+      strong: 'Ketu governs your 9th cusp — fortune through mystical knowledge, past-life wisdom, and the deep inner spiritual life. You are naturally drawn to esoteric traditions. Pilgrimage, renunciation, and the pursuit of liberation carry extraordinary karmic rewards. True fortune for you is freedom from the cycle itself.',
+      weak: 'Ketu at the 9th cusp creates detachment from conventional dharma — a disinterest in organised religion or outer spiritual forms. The universe\'s blessings arrive through the internal rather than external. Surrendering to the deeper spiritual current without needing tradition\'s validation resolves this placement.',
+    },
+  },
+};
+
+// Life area configuration
+const LIFE_AREAS_CONFIG = [
+  {
+    key: 'marriage', keyCusp: 7,
+    title: { en: 'Marriage & Partnership', hi: 'विवाह और साझेदारी', sa: 'विवाहः' },
+    axis: { en: 'H2 · H7 · H11', hi: 'भाव 2, 7, 11', sa: 'भावाः 2, 7, 11' },
+    border: 'border-rose-500/25', bg: 'bg-rose-500/5', label: 'bg-rose-500/15 text-rose-300', hue: 'text-rose-300',
+  },
+  {
+    key: 'career', keyCusp: 10,
+    title: { en: 'Career & Status', hi: 'करियर और प्रतिष्ठा', sa: 'व्यवसायः' },
+    axis: { en: 'H2 · H6 · H10 · H11', hi: 'भाव 2, 6, 10, 11', sa: 'भावाः 2, 6, 10, 11' },
+    border: 'border-blue-500/25', bg: 'bg-blue-500/5', label: 'bg-blue-500/15 text-blue-300', hue: 'text-blue-300',
+  },
+  {
+    key: 'wealth', keyCusp: 2,
+    title: { en: 'Wealth & Prosperity', hi: 'धन और समृद्धि', sa: 'धनम्' },
+    axis: { en: 'H2 · H6 · H11', hi: 'भाव 2, 6, 11', sa: 'भावाः 2, 6, 11' },
+    border: 'border-amber-500/25', bg: 'bg-amber-500/5', label: 'bg-amber-500/15 text-amber-300', hue: 'text-amber-300',
+  },
+  {
+    key: 'health', keyCusp: 1,
+    title: { en: 'Health & Vitality', hi: 'स्वास्थ्य और जीवनशक्ति', sa: 'स्वास्थ्यम्' },
+    axis: { en: 'H1 · H5 · H11', hi: 'भाव 1, 5, 11', sa: 'भावाः 1, 5, 11' },
+    border: 'border-emerald-500/25', bg: 'bg-emerald-500/5', label: 'bg-emerald-500/15 text-emerald-300', hue: 'text-emerald-300',
+  },
+  {
+    key: 'property', keyCusp: 4,
+    title: { en: 'Property & Home', hi: 'संपत्ति और घर', sa: 'गृहम्' },
+    axis: { en: 'H4 · H11', hi: 'भाव 4, 11', sa: 'भावाः 4, 11' },
+    border: 'border-cyan-500/25', bg: 'bg-cyan-500/5', label: 'bg-cyan-500/15 text-cyan-300', hue: 'text-cyan-300',
+  },
+  {
+    key: 'fortune', keyCusp: 9,
+    title: { en: 'Fortune & Wisdom', hi: 'भाग्य और ज्ञान', sa: 'भाग्यम्' },
+    axis: { en: 'H3 · H9 · H12', hi: 'भाव 3, 9, 12', sa: 'भावाः 3, 9, 12' },
+    border: 'border-violet-500/25', bg: 'bg-violet-500/5', label: 'bg-violet-500/15 text-violet-300', hue: 'text-violet-300',
+  },
+];
+
+// Ruling planet oracle text
+const RULING_PLANET_ORACLE: Record<number, { role: string; oracle: string }> = {
+  0: { role: 'Power & Authority', oracle: 'Solar energy governs this moment. Acts connected to authority, government, or public life carry maximum cosmic force. Stand tall; the Sun rewards those who act from a place of genuine dignity.' },
+  1: { role: 'Emotion & Intuition', oracle: 'Lunar energy holds this moment. Decisions made from the heart, especially around family and domestic matters, are especially favoured. Let feeling guide intellect, not the reverse.' },
+  2: { role: 'Energy & Action', oracle: 'Mars charges this moment. Courageous action and technical execution are cosmically supported. This is a time to move decisively on plans already formed. Conflicts, however, should be consciously avoided.' },
+  3: { role: 'Intellect & Commerce', oracle: 'Mercury quickens this moment. Communications, contracts, and commerce initiated now carry Mercury\'s precision and adaptability. The written word and spoken idea have unusual force here.' },
+  4: { role: 'Wisdom & Expansion', oracle: 'Jupiter blesses this moment with divine grace. Undertakings begun now carry dharmic protection. Spiritual practices, acts of genuine generosity, and decisions rooted in wisdom yield extraordinary results.' },
+  5: { role: 'Love & Beauty', oracle: 'Venus graces this moment. Matters of love, art, finance, and beauty are under divine favour. Elegance in action brings the best results; harshness closes doors that charm would open.' },
+  6: { role: 'Discipline & Karma', oracle: 'Saturn presides over this moment with karmic authority. Patience and structured action are required. Shortcuts will fail. What is begun now endures — build it carefully, for it will last exactly as well as it is built.' },
+  7: { role: 'Ambition & Innovation', oracle: 'Rahu charges this moment with intense, unconventional ambition. Innovative, foreign, and technologically-oriented approaches succeed where traditional ones stall. Guard carefully against illusion and deception from all directions.' },
+  8: { role: 'Liberation & Insight', oracle: 'Ketu purifies this moment of worldly noise. Spiritual practice, deep research, and conscious detachment from outcomes bring the most enduring rewards now. What the ego grasps for, Ketu dissolves; what the soul is ready for, Ketu delivers.' },
+};
+
 const T = {
   en: {
     title: 'KP System', subtitle: 'Krishnamurti Paddhati — Sub-Lord Analysis',
@@ -21,13 +308,16 @@ const T = {
     generate: 'Generate KP Chart', generating: 'Computing Sub-Lords...',
     name: 'Name', date: 'Birth Date', time: 'Birth Time', place: 'Place', lat: 'Latitude', lng: 'Longitude', tz: 'Timezone',
     cuspalTable: 'Cuspal Sub-Lord Table', planetTable: 'Planetary Sub-Lord Table',
-    cuspalAnalysis: 'Cuspal Sub-Lord Signification (P2-05)',
+    cuspalAnalysis: 'House-by-House Signification',
     significators: 'Significator Table', rulingPlanets: 'Ruling Planets',
     cusp: 'Cusp', sign: 'Sign Lord', star: 'Star Lord', sub: 'Sub Lord', subsub: 'Sub-Sub Lord', degree: 'Degree',
     planet: 'Planet', house: 'House', h: 'House', l1: 'L1', l2: 'L2', l3: 'L3', l4: 'L4', combined: 'Combined',
-    predictions: 'Quick Predictions', asc: 'Asc', moon: 'Moon', day: 'Day',
-    marriage: 'Marriage (2/7/11)', career: 'Career (2/6/10)', wealth: 'Wealth (2/6/11)', health: 'Health (1/5/11)',
-    signifies: 'Signifies', required: 'Required', materialises: 'Materialises', denied: 'Denied',
+    asc: 'Asc', moon: 'Moon', day: 'Day',
+    signifies: 'Signifies', materialises: 'Promised', denied: 'Denied',
+    lifeMandate: 'Life Mandate', lifeMandateDesc: 'KP\'s verdict on the six domains of your life — what is written, what is withheld.',
+    sublord: 'Sub-lord', signifiedHouses: 'Signifies houses',
+    oracle: 'Ruling Planet Oracle', oracleDesc: 'The five planets governing this moment — your current cosmic operating system.',
+    referenceData: 'Reference Data',
   },
   hi: {
     title: 'केपी पद्धति', subtitle: 'कृष्णमूर्ति पद्धति — उप-स्वामी विश्लेषण',
@@ -35,27 +325,33 @@ const T = {
     generate: 'केपी कुण्डली बनाएं', generating: 'उप-स्वामी गणना...',
     name: 'नाम', date: 'जन्म तिथि', time: 'जन्म समय', place: 'स्थान', lat: 'अक्षांश', lng: 'देशान्तर', tz: 'समयक्षेत्र',
     cuspalTable: 'कस्प उप-स्वामी तालिका', planetTable: 'ग्रह उप-स्वामी तालिका',
-    cuspalAnalysis: 'कस्प उप-स्वामी सूचन विश्लेषण',
+    cuspalAnalysis: 'भाव-दर-भाव सूचन विश्लेषण',
     significators: 'कारक तालिका', rulingPlanets: 'शासक ग्रह',
     cusp: 'कस्प', sign: 'राशि स्वामी', star: 'नक्षत्र स्वामी', sub: 'उप-स्वामी', subsub: 'उप-उप-स्वामी', degree: 'अंश',
     planet: 'ग्रह', house: 'भाव', h: 'भाव', l1: 'स्तर1', l2: 'स्तर2', l3: 'स्तर3', l4: 'स्तर4', combined: 'संयुक्त',
-    predictions: 'त्वरित भविष्यवाणी', asc: 'लग्न', moon: 'चन्द्र', day: 'वार',
-    marriage: 'विवाह (2/7/11)', career: 'करियर (2/6/10)', wealth: 'धन (2/6/11)', health: 'स्वास्थ्य (1/5/11)',
-    signifies: 'सूचित भाव', required: 'आवश्यक', materialises: 'फलदायी', denied: 'अभाव',
+    asc: 'लग्न', moon: 'चन्द्र', day: 'वार',
+    signifies: 'सूचित भाव', materialises: 'फलदायी', denied: 'अभाव',
+    lifeMandate: 'जीवन आदेश', lifeMandateDesc: 'आपके जीवन के छह क्षेत्रों पर केपी का निर्णय।',
+    sublord: 'उप-स्वामी', signifiedHouses: 'सूचित भाव',
+    oracle: 'शासक ग्रह ओरेकल', oracleDesc: 'इस क्षण के पाँच शासक ग्रह — आपका वर्तमान ब्रह्मांडीय संचालन तंत्र।',
+    referenceData: 'संदर्भ डेटा',
   },
   sa: {
     title: 'केपी पद्धतिः', subtitle: 'कृष्णमूर्तिपद्धतिः — उपस्वामिविश्लेषणम्',
-    desc: 'प्लेसिडसभावपद्धतिः 249 उपस्वामिसारणी च। प्रत्येकांशस्य राशिस्वामी नक्षत्रस्वामी उपस्वामी च।',
+    desc: 'प्लेसिडसभावपद्धतिः 249 उपस्वामिसारणी च।',
     generate: 'केपी कुण्डलीं रचयतु', generating: 'उपस्वामिगणना...',
     name: 'नाम', date: 'जन्मतिथिः', time: 'जन्मसमयः', place: 'स्थानम्', lat: 'अक्षांशः', lng: 'देशान्तरः', tz: 'समयक्षेत्रम्',
     cuspalTable: 'कस्पोपस्वामिसारणी', planetTable: 'ग्रहोपस्वामिसारणी',
-    cuspalAnalysis: 'कस्पोपस्वामिसूचनविश्लेषणम्',
+    cuspalAnalysis: 'भावशःसूचनविश्लेषणम्',
     significators: 'कारकसारणी', rulingPlanets: 'शासकग्रहाः',
     cusp: 'कस्पः', sign: 'राशिस्वामी', star: 'नक्षत्रस्वामी', sub: 'उपस्वामी', subsub: 'उपउपस्वामी', degree: 'अंशः',
     planet: 'ग्रहः', house: 'भावः', h: 'भावः', l1: 'स्तर1', l2: 'स्तर2', l3: 'स्तर3', l4: 'स्तर4', combined: 'संयुक्तम्',
-    predictions: 'त्वरितभविष्यवाणी', asc: 'लग्नम्', moon: 'चन्द्रः', day: 'वारः',
-    marriage: 'विवाहः (2/7/11)', career: 'व्यवसायः (2/6/10)', wealth: 'धनम् (2/6/11)', health: 'स्वास्थ्यम् (1/5/11)',
-    signifies: 'सूचितभावाः', required: 'आवश्यकम्', materialises: 'फलितम्', denied: 'अभावः',
+    asc: 'लग्नम्', moon: 'चन्द्रः', day: 'वारः',
+    signifies: 'सूचितभावाः', materialises: 'फलितम्', denied: 'अभावः',
+    lifeMandate: 'जीवनादेशः', lifeMandateDesc: 'षट्क्षेत्रेषु केपीनिर्णयः।',
+    sublord: 'उपस्वामी', signifiedHouses: 'सूचितभावाः',
+    oracle: 'शासकग्रहओरेकल', oracleDesc: 'अस्य क्षणस्य पञ्च शासकग्रहाः।',
+    referenceData: 'संदर्भडेटा',
   },
 };
 
@@ -74,6 +370,7 @@ export default function KPSystemPage() {
   const [data, setData] = useState<KPChartData | null>(null);
   const [loading, setLoading] = useState(false);
   const [upgradeRequired, setUpgradeRequired] = useState(false);
+  const [showRefData, setShowRefData] = useState(false);
   const session = useAuthStore(s => s.session);
 
   const handleSubmit = async () => {
@@ -101,6 +398,22 @@ export default function KPSystemPage() {
   const planetName = (id: number) => {
     const g = GRAHAS[id];
     return g ? g.name[locale] : `P${id}`;
+  };
+
+  // Compute a life area reading from cuspal analysis + per-planet table
+  const getAreaReading = (areaKey: string, keyCusp: number) => {
+    if (!data) return null;
+    const cusp = data.cusps.find(c => c.house === keyCusp);
+    const analysis = data.cuspalAnalysis.find(ca => ca.house === keyCusp);
+    if (!cusp || !analysis) return null;
+    const subLordId = cusp.subLordInfo.subLord.id;
+    const subLordName = cusp.subLordInfo.subLord.name[locale];
+    const areaReadings = LIFE_READINGS[areaKey];
+    const planetReadings = areaReadings?.[subLordId];
+    const reading = planetReadings
+      ? (analysis.favorable ? planetReadings.strong : planetReadings.weak)
+      : analysis.interpretation[locale];
+    return { favorable: analysis.favorable, subLordName, subLordId, reading, signifiedHouses: analysis.signifiedHouses };
   };
 
   return (
@@ -162,7 +475,7 @@ export default function KPSystemPage() {
 
       <AnimatePresence>
         {data && (
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="space-y-10">
             <GoldDivider />
 
             {/* Chart */}
@@ -170,35 +483,149 @@ export default function KPSystemPage() {
               <ChartNorth data={data.chart} title={t.title} size={460} />
             </div>
 
-            {/* Cuspal Sub-Lord Table */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.cuspalTable}</h2>
-              <table className="w-full text-sm">
-                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-2">{t.cusp}</th>
-                  <th className="text-left py-2 px-2">{t.degree}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
-                  <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
-                </tr></thead>
-                <tbody>{data.cusps.map(c => (
-                  <tr key={c.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-bold">{c.house}</td>
-                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{c.degree.toFixed(2)}°</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.signLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.starLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{c.subLordInfo.subLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{c.subLordInfo.subSubLord.name[locale]}</td>
-                  </tr>
-                ))}</tbody>
-              </table>
+            {/* ── LIFE MANDATE ─────────────────────────────────────────────── */}
+            <div>
+              <div className="mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gold-light mb-2" style={headingFont}>{t.lifeMandate}</h2>
+                <p className="text-text-secondary text-sm" style={bodyFont}>{t.lifeMandateDesc}</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {LIFE_AREAS_CONFIG.map(area => {
+                  const r = getAreaReading(area.key, area.keyCusp);
+                  if (!r) return null;
+                  return (
+                    <motion.div
+                      key={area.key}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`rounded-2xl p-5 border ${area.border} ${area.bg} flex flex-col gap-3`}
+                    >
+                      {/* Header */}
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className={`font-bold text-base ${area.hue}`} style={headingFont}>{area.title[locale]}</h3>
+                          <p className="text-text-secondary text-xs mt-0.5">{area.axis[locale]}</p>
+                        </div>
+                        <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${r.favorable ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300'}`}>
+                          {r.favorable ? (locale === 'en' ? 'PROMISED' : locale === 'hi' ? 'फलदायी' : 'फलितम्') : (locale === 'en' ? 'WITHHELD' : locale === 'hi' ? 'अभाव' : 'अभावः')}
+                        </span>
+                      </div>
+
+                      {/* Sub-lord + what it signifies */}
+                      <div className="flex items-center gap-3 bg-black/20 rounded-xl px-3 py-2">
+                        <GrahaIconById id={r.subLordId} size={28} />
+                        <div className="min-w-0">
+                          <p className="text-text-primary text-sm font-semibold" style={bodyFont}>{r.subLordName}</p>
+                          <p className="text-text-secondary text-xs">{t.sublord} H{area.keyCusp} · {t.signifies}: <span className="text-gold-primary">{r.signifiedHouses.length > 0 ? r.signifiedHouses.join(', ') : '—'}</span></p>
+                        </div>
+                      </div>
+
+                      {/* The prophecy */}
+                      <p className="text-text-primary text-sm leading-relaxed flex-1" style={bodyFont}>{r.reading}</p>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* P2-05: Cuspal Sub-Lord Signification Analysis */}
+            {/* ── RULING PLANET ORACLE ─────────────────────────────────────── */}
+            <div className="bg-gradient-to-br from-[#1a1040]/70 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6">
+              <div className="mb-5">
+                <h2 className="text-xl font-bold text-gold-light mb-1" style={headingFont}>{t.oracle}</h2>
+                <p className="text-text-secondary text-sm" style={bodyFont}>{t.oracleDesc}</p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
+                {[
+                  { label: locale === 'en' ? 'Asc Sign Lord' : locale === 'hi' ? 'लग्न राशि स्वामी' : 'लग्नराशिस्वामी', planet: data.rulingPlanets.ascSignLord },
+                  { label: locale === 'en' ? 'Asc Star Lord' : locale === 'hi' ? 'लग्न नक्षत्र स्वामी' : 'लग्ननक्षत्रस्वामी', planet: data.rulingPlanets.ascStarLord },
+                  { label: locale === 'en' ? 'Moon Sign Lord' : locale === 'hi' ? 'चन्द्र राशि स्वामी' : 'चन्द्रराशिस्वामी', planet: data.rulingPlanets.moonSignLord },
+                  { label: locale === 'en' ? 'Moon Star Lord' : locale === 'hi' ? 'चन्द्र नक्षत्र स्वामी' : 'चन्द्रनक्षत्रस्वामी', planet: data.rulingPlanets.moonStarLord },
+                  { label: locale === 'en' ? 'Day Lord' : locale === 'hi' ? 'वार स्वामी' : 'वारस्वामी', planet: data.rulingPlanets.dayLord },
+                ].map((rp, i) => {
+                  const oracle = RULING_PLANET_ORACLE[rp.planet.id];
+                  return (
+                    <div key={i} className="rounded-xl p-3 bg-gold-primary/5 border border-gold-primary/15 text-center">
+                      <GrahaIconById id={rp.planet.id} size={30} />
+                      <p className="text-gold-light font-bold text-sm mt-2" style={bodyFont}>{rp.planet.name[locale]}</p>
+                      <p className="text-text-secondary text-xs mt-0.5">{rp.label}</p>
+                      {oracle && (
+                        <p className="text-text-secondary/70 text-xs mt-1.5 leading-relaxed">{oracle.role}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              {/* Combined oracle reading */}
+              {(() => {
+                const allPlanets = [
+                  data.rulingPlanets.ascSignLord.id,
+                  data.rulingPlanets.ascStarLord.id,
+                  data.rulingPlanets.moonSignLord.id,
+                  data.rulingPlanets.moonStarLord.id,
+                  data.rulingPlanets.dayLord.id,
+                ];
+                const BENEFICS = new Set([1, 3, 4, 5]);
+                const MALEFICS = new Set([2, 6, 7, 8]);
+                const beneficCount = allPlanets.filter(id => BENEFICS.has(id)).length;
+                const maleficCount = allPlanets.filter(id => MALEFICS.has(id)).length;
+                const hasJupiter = allPlanets.includes(4);
+                const hasVenus = allPlanets.includes(5);
+                const hasSaturnMars = allPlanets.includes(6) && allPlanets.includes(2);
+
+                let summary = '';
+                if (locale === 'en') {
+                  if (hasJupiter && hasVenus) {
+                    summary = 'Jupiter and Venus both rule this moment — a Dhana Yoga of the cosmos. Material and spiritual blessings converge. Auspicious beginnings of all kinds are especially favoured right now.';
+                  } else if (hasSaturnMars) {
+                    summary = 'Saturn and Mars together rule this moment. Conflict karaka energy is present. This is a time for disciplined, patient action — not impulsive decisions. What is built carefully now will endure.';
+                  } else if (beneficCount >= 3) {
+                    summary = `${beneficCount} of your 5 ruling planets are natural benefics — this is a highly auspicious moment for beginning any important endeavour. The cosmic currents are running in your favour.`;
+                  } else if (maleficCount >= 3) {
+                    summary = `${maleficCount} of your 5 ruling planets are natural malefics. This is a period of karmic intensity — actions taken now have heavy, lasting consequences. Proceed with exceptional care and deliberation.`;
+                  } else {
+                    summary = 'A balanced mix of ruling planets governs this moment — neither overwhelmingly auspicious nor challenging. Your intentions and the care with which you act will determine the outcome more than cosmic timing will.';
+                  }
+                } else {
+                  summary = locale === 'hi'
+                    ? `आपके शासक ग्रहों का संयोजन ${beneficCount >= 3 ? 'अत्यंत शुभ' : maleficCount >= 3 ? 'कर्म की दृष्टि से सतर्क रहने वाला' : 'संतुलित'} है।`
+                    : `शासकग्रहसंयोगः ${beneficCount >= 3 ? 'अत्यन्तशुभः' : 'सन्तुलितः'} अस्ति।`;
+                }
+
+                return (
+                  <div className="rounded-xl bg-gold-primary/5 border border-gold-primary/15 p-4">
+                    <p className="text-text-secondary text-xs uppercase tracking-wider mb-2 font-semibold">
+                      {locale === 'en' ? 'Combined Oracle' : locale === 'hi' ? 'संयुक्त ओरेकल' : 'संयुक्तओरेकल'}
+                    </p>
+                    <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{summary}</p>
+                    {locale === 'en' && (
+                      <div className="mt-3 space-y-1.5">
+                        {[
+                          data.rulingPlanets.ascSignLord,
+                          data.rulingPlanets.ascStarLord,
+                          data.rulingPlanets.moonSignLord,
+                          data.rulingPlanets.moonStarLord,
+                          data.rulingPlanets.dayLord,
+                        ].map((p, i) => {
+                          const oracle = RULING_PLANET_ORACLE[p.id];
+                          return oracle ? (
+                            <p key={i} className="text-xs text-text-secondary leading-relaxed">
+                              <span className="text-gold-primary font-medium">{p.name.en}:</span> {oracle.oracle}
+                            </p>
+                          ) : null;
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+            </div>
+
+            {/* ── HOUSE-BY-HOUSE SIGNIFICATION ─────────────────────────────── */}
             <div className="bg-gradient-to-br from-[#1a1040]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-amber-500/20 rounded-xl p-6">
               <h2 className="text-amber-400 text-sm uppercase tracking-wider mb-1 font-bold">{t.cuspalAnalysis}</h2>
-              <p className="text-text-secondary text-xs mb-4">The sub-lord of each house cusp determines whether that house&apos;s matters will materialise.</p>
+              <p className="text-text-secondary text-xs mb-4">
+                {locale === 'en' ? 'The sub-lord of each cusp determines whether that house\'s matters will materialise in this lifetime.' : locale === 'hi' ? 'प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।' : 'प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।'}
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {data.cuspalAnalysis.map(ca => (
                   <div key={ca.house} className={`rounded-lg p-3 border ${ca.favorable ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
@@ -220,76 +647,103 @@ export default function KPSystemPage() {
               </div>
             </div>
 
-            {/* Planetary Sub-Lord Table */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.planetTable}</h2>
-              <table className="w-full text-sm">
-                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
-                  <th className="text-left py-2 px-2">{t.degree}</th>
-                  <th className="text-left py-2 px-2">{t.house}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
-                  <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
-                  <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
-                </tr></thead>
-                <tbody>{data.planets.map(p => (
-                  <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                    <td className="py-2 px-2"><div className="flex items-center gap-2"><GrahaIconById id={p.planet.id} size={20} /><span className="text-gold-light font-medium" style={bodyFont}>{p.planet.name[locale]}</span></div></td>
-                    <td className="py-2 px-2 text-text-secondary font-mono text-xs">{p.longitude.toFixed(2)}°</td>
-                    <td className="py-2 px-2 text-text-secondary">{p.house}</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.signLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.starLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{p.subLordInfo.subLord.name[locale]}</td>
-                    <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{p.subLordInfo.subSubLord.name[locale]}</td>
-                  </tr>
-                ))}</tbody>
-              </table>
-            </div>
+            {/* ── REFERENCE DATA (collapsible) ─────────────────────────────── */}
+            <div>
+              <button
+                onClick={() => setShowRefData(v => !v)}
+                className="w-full flex items-center justify-between px-5 py-3 rounded-xl border border-gold-primary/15 bg-gold-primary/5 hover:bg-gold-primary/10 transition-colors"
+              >
+                <span className="text-gold-primary text-sm font-semibold uppercase tracking-wider">{t.referenceData}</span>
+                <span className="text-text-secondary text-xs">{showRefData ? (locale === 'en' ? 'Hide' : 'छुपाएं') : (locale === 'en' ? 'Show tables' : 'तालिकाएं देखें')}</span>
+              </button>
 
-            {/* Significator Table */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.significators}</h2>
-              <table className="w-full text-sm">
-                <thead><tr className="text-text-secondary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-2">{t.h}</th>
-                  <th className="text-left py-2 px-2">{t.l1}</th>
-                  <th className="text-left py-2 px-2">{t.l2}</th>
-                  <th className="text-left py-2 px-2">{t.l3}</th>
-                  <th className="text-left py-2 px-2">{t.l4}</th>
-                  <th className="text-left py-2 px-2 text-gold-light">{t.combined}</th>
-                </tr></thead>
-                <tbody>{data.significators.map(s => (
-                  <tr key={s.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-bold">{s.house}</td>
-                    <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level1.map(id => planetName(id)).join(', ') || '-'}</td>
-                    <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level2.map(id => planetName(id)).join(', ') || '-'}</td>
-                    <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level3.map(id => planetName(id)).join(', ') || '-'}</td>
-                    <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level4.map(id => planetName(id)).join(', ') || '-'}</td>
-                    <td className="py-2 px-2 text-gold-light text-xs font-medium" style={bodyFont}>{s.combined.map(id => planetName(id)).join(', ') || '-'}</td>
-                  </tr>
-                ))}</tbody>
-              </table>
-            </div>
+              <AnimatePresence>
+                {showRefData && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden space-y-6 mt-4"
+                  >
+                    {/* Cuspal Sub-Lord Table */}
+                    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
+                      <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.cuspalTable}</h2>
+                      <table className="w-full text-sm">
+                        <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                          <th className="text-left py-2 px-2">{t.cusp}</th>
+                          <th className="text-left py-2 px-2">{t.degree}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
+                          <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
+                        </tr></thead>
+                        <tbody>{data.cusps.map(c => (
+                          <tr key={c.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                            <td className="py-2 px-2 text-gold-light font-bold">{c.house}</td>
+                            <td className="py-2 px-2 text-text-secondary font-mono text-xs">{c.degree.toFixed(2)}°</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.signLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.starLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{c.subLordInfo.subLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{c.subLordInfo.subSubLord.name[locale]}</td>
+                          </tr>
+                        ))}</tbody>
+                      </table>
+                    </div>
 
-            {/* Ruling Planets */}
-            <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
-              <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.rulingPlanets}</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
-                {[
-                  { label: `${t.asc} ${t.sign}`, data: data.rulingPlanets.ascSignLord },
-                  { label: `${t.asc} ${t.star}`, data: data.rulingPlanets.ascStarLord },
-                  { label: `${t.moon} ${t.sign}`, data: data.rulingPlanets.moonSignLord },
-                  { label: `${t.moon} ${t.star}`, data: data.rulingPlanets.moonStarLord },
-                  { label: `${t.day}`, data: data.rulingPlanets.dayLord },
-                ].map((rp, i) => (
-                  <div key={i} className="text-center p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/15">
-                    <GrahaIconById id={rp.data.id} size={32} />
-                    <p className="text-gold-light font-bold text-sm mt-2" style={bodyFont}>{rp.data.name[locale]}</p>
-                    <p className="text-text-secondary text-xs mt-1">{rp.label}</p>
-                  </div>
-                ))}
-              </div>
+                    {/* Planetary Sub-Lord Table */}
+                    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
+                      <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.planetTable}</h2>
+                      <table className="w-full text-sm">
+                        <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.planet}</th>
+                          <th className="text-left py-2 px-2">{t.degree}</th>
+                          <th className="text-left py-2 px-2">{t.house}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.sign}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.star}</th>
+                          <th className="text-left py-2 px-2" style={bodyFont}>{t.sub}</th>
+                          <th className="text-left py-2 px-2 text-amber-400/80" style={bodyFont}>{t.subsub}</th>
+                        </tr></thead>
+                        <tbody>{data.planets.map(p => (
+                          <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                            <td className="py-2 px-2"><div className="flex items-center gap-2"><GrahaIconById id={p.planet.id} size={20} /><span className="text-gold-light font-medium" style={bodyFont}>{p.planet.name[locale]}</span></div></td>
+                            <td className="py-2 px-2 text-text-secondary font-mono text-xs">{p.longitude.toFixed(2)}°</td>
+                            <td className="py-2 px-2 text-text-secondary">{p.house}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.signLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.starLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{p.subLordInfo.subLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{p.subLordInfo.subSubLord.name[locale]}</td>
+                          </tr>
+                        ))}</tbody>
+                      </table>
+                    </div>
+
+                    {/* Significator Table */}
+                    <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 overflow-x-auto">
+                      <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold">{t.significators}</h2>
+                      <table className="w-full text-sm">
+                        <thead><tr className="text-text-secondary border-b border-gold-primary/10">
+                          <th className="text-left py-2 px-2">{t.h}</th>
+                          <th className="text-left py-2 px-2">{t.l1}</th>
+                          <th className="text-left py-2 px-2">{t.l2}</th>
+                          <th className="text-left py-2 px-2">{t.l3}</th>
+                          <th className="text-left py-2 px-2">{t.l4}</th>
+                          <th className="text-left py-2 px-2 text-gold-light">{t.combined}</th>
+                        </tr></thead>
+                        <tbody>{data.significators.map(s => (
+                          <tr key={s.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
+                            <td className="py-2 px-2 text-gold-light font-bold">{s.house}</td>
+                            <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level1.map(id => planetName(id)).join(', ') || '-'}</td>
+                            <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level2.map(id => planetName(id)).join(', ') || '-'}</td>
+                            <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level3.map(id => planetName(id)).join(', ') || '-'}</td>
+                            <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{s.level4.map(id => planetName(id)).join(', ') || '-'}</td>
+                            <td className="py-2 px-2 text-gold-light text-xs font-medium" style={bodyFont}>{s.combined.map(id => planetName(id)).join(', ') || '-'}</td>
+                          </tr>
+                        ))}</tbody>
+                      </table>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         )}

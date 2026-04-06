@@ -450,3 +450,88 @@ test.describe('Error Handling', () => {
     expect(res?.status()).toBeDefined();
   });
 });
+
+// ═══════════════════════════════════════════════════════════════════════
+// SECTION 9: FEATURE GATE REGRESSION (free-tier API access)
+// These tests catch the class of bug where an API endpoint incorrectly
+// requires a paid plan for features that should be free.
+// ═══════════════════════════════════════════════════════════════════════
+
+const FREE_TIER_BIRTH_DATA = {
+  name: 'Test',
+  date: '1990-06-15',
+  time: '10:30',
+  lat: 28.6139,
+  lng: 77.2090,
+  timezone: '5.5',
+  place: 'Delhi',
+  ayanamsha: 'lahiri',
+};
+
+test.describe('Feature Gate — Free Tier Access (unauthenticated)', () => {
+  test('POST /api/kp-system returns 200 for unauthenticated request (free tier)', async ({ request }) => {
+    const res = await request.post('/api/kp-system', { data: FREE_TIER_BIRTH_DATA });
+    expect(res.status()).not.toBe(403);
+    expect(res.status()).toBe(200);
+    const data = await res.json();
+    expect(data).not.toHaveProperty('error');
+    expect(data).toHaveProperty('chart');
+  });
+
+  test('POST /api/prashna-ashtamangala returns 200 for unauthenticated request (free tier)', async ({ request }) => {
+    const res = await request.post('/api/prashna-ashtamangala', {
+      data: {
+        numbers: [7, 21, 54],
+        category: 'wealth',
+        lat: 28.6139,
+        lng: 77.2090,
+        tz: 5.5,
+        timezone: 'Asia/Kolkata',
+      },
+    });
+    expect(res.status()).not.toBe(403);
+    expect(res.status()).toBe(200);
+    const data = await res.json();
+    expect(data).not.toHaveProperty('error');
+  });
+
+  test('POST /api/varshaphal returns 200 for unauthenticated request (free tier)', async ({ request }) => {
+    const res = await request.post('/api/varshaphal', {
+      data: {
+        birthData: FREE_TIER_BIRTH_DATA,
+        year: 2025,
+      },
+    });
+    expect(res.status()).not.toBe(403);
+    expect(res.status()).toBe(200);
+    const data = await res.json();
+    expect(data).not.toHaveProperty('error');
+  });
+
+  test('POST /api/kundali returns 200 for unauthenticated request (free tier)', async ({ request }) => {
+    const res = await request.post('/api/kundali', { data: FREE_TIER_BIRTH_DATA });
+    expect(res.status()).not.toBe(403);
+    expect(res.status()).toBe(200);
+    const data = await res.json();
+    expect(data).not.toHaveProperty('error');
+    expect(data).toHaveProperty('ascendant');
+  });
+
+  test('POST /api/muhurta-ai returns 200 for unauthenticated request (free tier)', async ({ request }) => {
+    const res = await request.post('/api/muhurta-ai', {
+      data: {
+        lat: 28.6139,
+        lng: 77.2090,
+        tz: 5.5,
+        timezone: 'Asia/Kolkata',
+        activity: 'travel',
+        startDate: '2025-06-01',
+        endDate: '2025-06-07',
+      },
+    });
+    // muhurta-ai uses usage gate — may return 429 if limit hit, but never 403
+    const status = res.status();
+    expect(status).not.toBe(403);
+    expect([200, 429]).toContain(status);
+  });
+});

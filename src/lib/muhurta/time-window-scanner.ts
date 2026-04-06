@@ -20,13 +20,32 @@ interface ScanOptions {
   lat: number;
   lng: number;
   tz: number;
+  birthNakshatra?: number; // 1-27, for Tara Bala
+  birthRashi?: number;     // 1-12, for Chandra Bala
+}
+
+// Tara Bala — count from birth nakshatra to muhurta nakshatra (mod 9)
+// Returns tara number 1-9: 3(Vipat),5(Pratyari),7(Vadha) = inauspicious; others = auspicious
+function getTaraBala(birthNak: number, muhurtaNak: number): { tara: number; auspicious: boolean; name: string } {
+  const count = ((muhurtaNak - birthNak + 27) % 27) + 1;
+  const tara = ((count - 1) % 9) + 1;
+  const TARA_NAMES = ['Janma','Sampat','Vipat','Kshema','Pratyari','Sadhaka','Vadha','Mitra','Atimitra'];
+  const inauspicious = [3, 5, 7];
+  return { tara, name: TARA_NAMES[tara - 1], auspicious: !inauspicious.includes(tara) };
+}
+
+// Chandra Bala — count muhurta moon sign from birth moon sign
+// Good positions: 1, 3, 6, 7, 10, 11
+function getChandraBala(birthRashi: number, muhurtaMoonSign: number): boolean {
+  const pos = ((muhurtaMoonSign - birthRashi + 12) % 12) + 1;
+  return [1, 3, 6, 7, 10, 11].includes(pos);
 }
 
 /**
  * Scan a date range and return scored time windows
  */
 export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
-  const { startDate, endDate, activity, lat, lng, tz } = options;
+  const { startDate, endDate, activity, lat, lng, tz, birthNakshatra, birthRashi } = options;
   const rules = getExtendedActivity(activity);
   if (!rules) return [];
 
@@ -92,6 +111,14 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
         if (rules.goodWeekdays.includes(snap.weekday)) shuddhi++; // Vara favorable
 
         const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        // Tara Bala and Chandra Bala (personal factors, require birth data)
+        const taraBala = birthNakshatra && birthNakshatra > 0
+          ? getTaraBala(birthNakshatra, snap.nakshatra)
+          : undefined;
+        const chandraBala = birthRashi && birthRashi > 0
+          ? getChandraBala(birthRashi, snap.moonSign)
+          : undefined;
+
         windows.push({
           date: dateStr,
           startTime: formatHour(slot.startH),
@@ -100,6 +127,8 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
           breakdown,
           keyFactors: allFactors.slice(0, 5), // Top 5 factors
           panchangaShuddhi: shuddhi,
+          taraBala,
+          chandraBala,
         });
       }
     }

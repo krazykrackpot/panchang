@@ -22,6 +22,7 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { KARANAS } from '@/lib/constants/karanas';
 import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { computeBalam } from '@/lib/panchang/balam';
+import { calculatePanchaPakshi } from '@/lib/prashna/pancha-pakshi';
 import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
@@ -2263,6 +2264,80 @@ export default function PanchangPage() {
               </AnimatePresence>
             </div>
           </div>
+
+          <GoldDivider />
+
+          {/* ═══ PANCHA PAKSHI SHASTRA ═══ */}
+          {panchang && birthNakshatra > 0 && (() => {
+            // Parse sunrise / sunset into today's Date objects
+            const today = selectedDate || new Date().toISOString().split('T')[0];
+            const [ty, tm, td] = today.split('-').map(Number);
+            function parseTimeToMs(timeStr: string): number {
+              const [h, m] = timeStr.split(':').map(Number);
+              return new Date(ty, tm - 1, td, h, m, 0, 0).getTime();
+            }
+            const sunriseMs = parseTimeToMs(panchang.sunrise);
+            const sunsetMs  = parseTimeToMs(panchang.sunset);
+            const now = new Date();
+            const pp = calculatePanchaPakshi(now, sunriseMs, sunsetMs, birthNakshatra);
+            const AUSPICIOUS_COLOR: Record<string, string> = {
+              excellent: 'border-emerald-500/30 bg-emerald-500/8',
+              good:      'border-gold-primary/25 bg-gold-primary/5',
+              neutral:   'border-gold-primary/10 bg-bg-secondary/30',
+              avoid:     'border-red-500/25 bg-red-500/8',
+            };
+            const AUSPICIOUS_BADGE: Record<string, string> = {
+              excellent: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+              good:      'bg-gold-primary/20 text-gold-light border-gold-primary/30',
+              neutral:   'bg-bg-secondary text-text-secondary/60 border-gold-primary/10',
+              avoid:     'bg-red-500/15 text-red-400 border-red-500/25',
+            };
+            return (
+              <div className="my-14">
+                <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
+                  {locale === 'en' ? 'Pancha Pakshi Shastra' : 'पञ्च पक्षी शास्त्र'}
+                </h2>
+                <p className="text-text-secondary/60 text-sm text-center mb-6 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {locale === 'en'
+                    ? `Kerala tradition — your ruling bird is ${pp.birthBirdName.en}. Five periods divide the ${pp.isDay ? 'day' : 'night'}; your bird's current activity determines auspiciousness.`
+                    : `केरल परम्परा — आपका राशि पक्षी ${pp.birthBirdName.hi} है। ${pp.isDay ? 'दिन' : 'रात्रि'} के पाँच काल; पक्षी की वर्तमान क्रिया शुभाशुभ निर्धारित करती है।`}
+                </p>
+
+                {/* Current period — hero */}
+                <div className={`rounded-2xl border p-6 text-center mb-6 ${AUSPICIOUS_COLOR[pp.currentPeriod.auspicious]}`}>
+                  <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold mb-4 ${AUSPICIOUS_BADGE[pp.currentPeriod.auspicious]}`}>
+                    {pp.currentPeriod.activityName[locale === 'en' ? 'en' : 'hi']}
+                    {pp.currentPeriod.auspicious === 'excellent' && ' ✦'}
+                    {pp.currentPeriod.auspicious === 'avoid' && ' ✗'}
+                  </div>
+                  <div className="text-gold-light font-bold text-xl mb-1" style={headingFont}>
+                    {pp.birthBirdName[locale === 'en' ? 'en' : 'hi']} — {pp.currentPeriod.periodStart}–{pp.currentPeriod.periodEnd}
+                  </div>
+                  <p className="text-text-secondary/80 text-sm max-w-xl mx-auto leading-relaxed mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {pp.currentPeriod.interpretation[locale === 'en' ? 'en' : 'hi']}
+                  </p>
+                </div>
+
+                {/* All 5 periods timeline */}
+                <div className="grid grid-cols-5 gap-1.5">
+                  {pp.allPeriods.map((period, i) => (
+                    <div key={i} className={`rounded-xl border p-2.5 text-center ${i === pp.periodIndex ? AUSPICIOUS_COLOR[period.auspicious] + ' ring-1 ring-gold-primary/30' : 'border-gold-primary/8 bg-bg-secondary/20 opacity-60'}`}>
+                      <div className={`text-[10px] font-bold mb-1 ${
+                        period.auspicious === 'excellent' ? 'text-emerald-400' :
+                        period.auspicious === 'good'      ? 'text-gold-primary' :
+                        period.auspicious === 'avoid'     ? 'text-red-400' : 'text-text-secondary/50'
+                      }`}>
+                        {period.activityName[locale === 'en' ? 'en' : 'hi']}
+                      </div>
+                      <div className="text-[9px] text-text-secondary/50 font-mono">{period.periodStart}</div>
+                      <div className="text-[9px] text-text-secondary/40 font-mono">—{period.periodEnd}</div>
+                      {i === pp.periodIndex && <div className="text-[9px] text-gold-primary font-bold mt-0.5">▶ Now</div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           <GoldDivider />
 

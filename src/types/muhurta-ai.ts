@@ -16,6 +16,8 @@ export interface ScoredTimeWindow {
   breakdown: ScoreBreakdown;
   keyFactors: Trilingual[];
   panchangaShuddhi?: number; // 0-5 count of favorable panchanga elements
+  taraBala?: { tara: number; name: string; auspicious: boolean };
+  chandraBala?: boolean;
 }
 
 export type ExtendedActivityId =

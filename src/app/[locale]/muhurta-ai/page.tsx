@@ -8,6 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
 
@@ -109,6 +110,9 @@ export default function MuhurtaAIPage() {
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [data, setData] = useState<MuhurtaAIResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const { birthNakshatra, birthRashi, isSet: hasBirthData, loadFromStorage } = useBirthDataStore();
+
+  useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
 
   useEffect(() => {
     if ('geolocation' in navigator) {
@@ -165,7 +169,7 @@ export default function MuhurtaAIPage() {
       const res = await fetch('/api/muhurta-ai', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz, timezone: location.timezone }),
+        body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz, timezone: location.timezone, ...(hasBirthData ? { birthNakshatra, birthRashi } : {}) }),
       });
       const result = await res.json();
       if (result.error) throw new Error(result.error);
@@ -291,18 +295,40 @@ export default function MuhurtaAIPage() {
                     <ScoreGauge score={top.breakdown.personalScore} label={t.personal} />
                   </div>
 
-                  {/* Panchanga Shuddhi Score */}
-                  {top.panchangaShuddhi !== undefined && (
-                    <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20">
-                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
-                      <span className={`font-bold text-sm ${top.panchangaShuddhi >= 4 ? 'text-emerald-400' : top.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>
-                        {top.panchangaShuddhi}/5
-                      </span>
-                      <span className="text-text-secondary/50 text-xs">
-                        {top.panchangaShuddhi === 5 ? (locale === 'en' ? '✦ Rare' : '✦ दुर्लभ') : top.panchangaShuddhi >= 4 ? (locale === 'en' ? '· Excellent' : '· उत्तम') : top.panchangaShuddhi >= 3 ? (locale === 'en' ? '· Acceptable' : '· स्वीकार्य') : (locale === 'en' ? '· Proceed with care' : '· सावधानी से')}
-                      </span>
-                    </div>
-                  )}
+                  {/* Panchanga Shuddhi + Tara Bala + Chandra Bala */}
+                  <div className="mt-4 flex flex-wrap justify-center gap-2">
+                    {top.panchangaShuddhi !== undefined && (
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20">
+                        <span className="text-text-secondary text-xs">{locale === 'en' ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
+                        <span className={`font-bold text-sm ${top.panchangaShuddhi >= 4 ? 'text-emerald-400' : top.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>
+                          {top.panchangaShuddhi}/5
+                        </span>
+                      </div>
+                    )}
+                    {top.taraBala && (
+                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.taraBala.auspicious ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-red-500/10 border-red-500/20'}`}>
+                        <span className="text-text-secondary text-xs">{locale === 'en' ? 'Tara Bala' : 'तारा बल'}</span>
+                        <span className={`font-bold text-sm ${top.taraBala.auspicious ? 'text-emerald-400' : 'text-red-400'}`}>
+                          {top.taraBala.name} {top.taraBala.auspicious ? '✓' : '✗'}
+                        </span>
+                      </div>
+                    )}
+                    {top.chandraBala !== undefined && (
+                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.chandraBala ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-amber-500/8 border-amber-500/20'}`}>
+                        <span className="text-text-secondary text-xs">{locale === 'en' ? 'Chandra Bala' : 'चन्द्र बल'}</span>
+                        <span className={`font-bold text-sm ${top.chandraBala ? 'text-emerald-400' : 'text-amber-400'}`}>
+                          {top.chandraBala ? (locale === 'en' ? '✓ Present' : '✓ उपस्थित') : (locale === 'en' ? '✗ Absent' : '✗ अनुपस्थित')}
+                        </span>
+                      </div>
+                    )}
+                    {!hasBirthData && (
+                      <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gold-primary/10 bg-bg-secondary/30">
+                        <span className="text-text-secondary/50 text-xs">
+                          {locale === 'en' ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
+                        </span>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Key Factors */}
                   {top.keyFactors.length > 0 && (
@@ -325,6 +351,8 @@ export default function MuhurtaAIPage() {
                       <th className="text-left py-2 px-2">{t.score}</th>
                       <th className="text-left py-2 px-2">{t.panchang}</th>
                       <th className="text-left py-2 px-2">{locale === 'en' ? 'Shuddhi' : 'शुद्धि'}</th>
+                      {hasBirthData && <th className="text-left py-2 px-2">{locale === 'en' ? 'Tara' : 'तारा'}</th>}
+                      {hasBirthData && <th className="text-left py-2 px-2">{locale === 'en' ? 'Chandra' : 'चन्द्र'}</th>}
                       <th className="text-left py-2 px-2">{t.transit}</th>
                       <th className="text-left py-2 px-2">{t.timing}</th>
                       <th className="text-left py-2 px-2">{t.keyFactors}</th>
@@ -343,6 +371,12 @@ export default function MuhurtaAIPage() {
                             <span className={`font-bold text-xs ${w.panchangaShuddhi >= 4 ? 'text-emerald-400' : w.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>{w.panchangaShuddhi}/5</span>
                           )}
                         </td>
+                        {hasBirthData && <td className="py-2 px-2">
+                          {w.taraBala && <span className={`text-xs font-semibold ${w.taraBala.auspicious ? 'text-emerald-400' : 'text-red-400'}`}>{w.taraBala.name.slice(0,4)}</span>}
+                        </td>}
+                        {hasBirthData && <td className="py-2 px-2">
+                          {w.chandraBala !== undefined && <span className={`text-xs font-bold ${w.chandraBala ? 'text-emerald-400' : 'text-amber-400'}`}>{w.chandraBala ? '✓' : '✗'}</span>}
+                        </td>}
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.transitScore}</td>
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.timingScore}</td>
                         <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{w.keyFactors.map(f => f[locale]).join(', ')}</td>

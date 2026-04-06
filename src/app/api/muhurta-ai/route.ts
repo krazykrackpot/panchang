@@ -19,6 +19,8 @@ export async function POST(request: Request) {
       lng = 0, // DEPRECATED fallback: client should always provide location
       tz: tzFallback = 0,
       timezone,
+      birthNakshatra,
+      birthRashi,
     } = body as {
       activity: ExtendedActivityId;
       startDate: string;
@@ -27,6 +29,8 @@ export async function POST(request: Request) {
       lng?: number;
       tz?: number;
       timezone?: string;
+      birthNakshatra?: number;
+      birthRashi?: number;
     };
 
     // Resolve tz from IANA timezone string if provided, using startDate for offset
@@ -52,7 +56,7 @@ export async function POST(request: Request) {
     }
 
     const topRecommendations = scanDateRange({
-      startDate, endDate, activity, lat, lng, tz,
+      startDate, endDate, activity, lat, lng, tz, birthNakshatra, birthRashi,
     });
 
     const result: MuhurtaAIResult = {

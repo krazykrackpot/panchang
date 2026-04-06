@@ -583,7 +583,7 @@ function generateNakshatraTransit(moonSign: number, moonNakshatra: number | unde
   // Compute approximate year ranges for each nakshatra transit using quarterly sampling
   const nakYearRanges = new Map<number, { first: number; last: number }>();
   if (cycle) {
-    const MONTHS = [1, 4, 7, 10]; // quarterly sampling
+    const MONTHS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // monthly sampling for accuracy
     for (let y = cycle.startYear; y <= cycle.endYear; y++) {
       for (const m of MONTHS) {
         const jd = dateToJD(y, m, 15, 12);

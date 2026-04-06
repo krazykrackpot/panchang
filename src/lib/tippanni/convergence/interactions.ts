@@ -8,19 +8,19 @@ import type { MetaRule, MatchedPattern, ConvergenceInput, MetaInsight } from './
 const POSITIVE_PATTERNS: Record<string, string[]> = {
   career: ['career-peak', 'public-recognition', 'entrepreneur-window', 'foreign-career-window'],
   relationship: ['marriage-window', 'partnership-blessing', 'new-romantic-encounter', 'commitment-deepening'],
-  wealth: ['sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition'],
+  wealth: ['sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition', 'inheritance', 'charity-phase'],
   health: ['recovery', 'vitality-peak'],
-  spiritual: ['awakening', 'guru-connection', 'moksha-activation'],
+  spiritual: ['awakening', 'guru-connection', 'moksha-activation', 'pilgrimage', 'meditation', 'occult'],
   family: ['childbirth', 'family-harmony'],
 };
 
 const NEGATIVE_PATTERNS: Record<string, string[]> = {
   career: ['authority-conflict', 'career-change', 'professional-stagnation'],
   relationship: ['relationship-storm', 'divorce-separation'],
-  wealth: ['financial-crisis', 'speculative-losses', 'debt-trap'],
-  health: ['chronic-illness', 'mental-health', 'accident-prone'],
+  wealth: ['financial-crisis', 'speculative-losses', 'debt-trap', 'income-change'],
+  health: ['chronic-illness', 'mental-health', 'accident-prone', 'surgery', 'eye-head', 'digestive'],
   spiritual: ['detachment'],
-  family: ['child-health', 'mother-health', 'father-health', 'property-dispute'],
+  family: ['child-health', 'mother-health', 'father-health', 'property-dispute', 'sibling-dynamics'],
 };
 
 // ─── Helper: Theme display names ─────────────────────────────────────────────

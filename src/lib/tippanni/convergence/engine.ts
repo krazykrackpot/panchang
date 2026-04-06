@@ -21,17 +21,18 @@ const POSITIVE_PATTERN_IDS = new Set([
   'career-peak', 'public-recognition', 'entrepreneur-window', 'foreign-career-window',
   'marriage-window', 'partnership-blessing', 'new-romantic-encounter', 'commitment-deepening',
   'sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition',
+  'inheritance', 'charity-phase',
   'recovery', 'vitality-peak',
-  'awakening', 'guru-connection', 'moksha-activation',
+  'awakening', 'guru-connection', 'moksha-activation', 'pilgrimage', 'meditation', 'occult',
   'childbirth', 'family-harmony',
 ]);
 
 const NEGATIVE_PATTERN_IDS = new Set([
   'authority-conflict', 'relationship-storm', 'divorce-separation',
   'professional-stagnation', 'career-change',
-  'financial-crisis', 'speculative-losses', 'debt-trap',
-  'chronic-illness', 'mental-health', 'accident-prone',
-  'child-health', 'mother-health', 'father-health', 'property-dispute',
+  'financial-crisis', 'speculative-losses', 'debt-trap', 'income-change',
+  'chronic-illness', 'mental-health', 'accident-prone', 'surgery', 'eye-head', 'digestive',
+  'child-health', 'mother-health', 'father-health', 'property-dispute', 'sibling-dynamics',
 ]);
 
 // ─── Favorability computation ─────────────────────────────────────────────────

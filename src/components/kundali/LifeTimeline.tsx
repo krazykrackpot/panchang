@@ -609,10 +609,10 @@ function DashaSynthesisTable({ data, isHi, headingFont }: {
               const color = PC[d.planet] ?? { bg: '#333', fg: '#ccc', glow: '#666' };
               // Find which specific Sade Sati cycle(s) overlap this dasha, and the overlap years
               const overlappingCycles = data.sadeSatiPeriods
-                .filter(ss => d.startYear < ss.endYear && d.endYear > ss.startYear)
+                .filter(ss => d.startYear < ss.endYear + 1 && d.endYear > ss.startYear)
                 .map(ss => {
                   const overlapStart = Math.max(d.startYear, ss.startYear);
-                  const overlapEnd = Math.min(d.endYear, ss.endYear);
+                  const overlapEnd = Math.min(d.endYear, ss.endYear + 1);
                   return `${Math.round(overlapStart)}–${Math.round(overlapEnd)}`;
                 });
               const qualityColor = d.quality === 'strong' ? 'text-emerald-300' : d.quality === 'weak' ? 'text-red-300' : 'text-amber-300';
@@ -949,9 +949,9 @@ function computeTimeline(kundali: KundaliData): TimelineData {
     if (d.hasYoga) score += 15;
     // Sade Sati overlap
     for (const ss of sadeSatiPeriods) {
-      if (d.startYear < ss.endYear && d.endYear > ss.startYear) {
+      if (d.startYear < ss.endYear + 1 && d.endYear > ss.startYear) {
         const peakPhase = ss.phases?.find(p => p.phase === 'peak');
-        if (peakPhase && d.startYear < peakPhase.endYear && d.endYear > peakPhase.startYear) {
+        if (peakPhase && d.startYear < peakPhase.endYear + 1 && d.endYear > peakPhase.startYear) {
           score -= 25;
         } else {
           score -= 15;

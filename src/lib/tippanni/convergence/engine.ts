@@ -18,8 +18,8 @@ import { TippanniSection, CONVERGENCE_VERSION } from './types';
 // ─── Positive / Negative pattern IDs for favorability ────────────────────────
 
 const POSITIVE_PATTERN_IDS = new Set([
-  'career-peak', 'public-recognition',
-  'marriage-window', 'partnership-blessing',
+  'career-peak', 'public-recognition', 'entrepreneur-window', 'foreign-career-window',
+  'marriage-window', 'partnership-blessing', 'new-romantic-encounter', 'commitment-deepening',
   'sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition',
   'recovery', 'vitality-peak',
   'awakening', 'guru-connection', 'moksha-activation',

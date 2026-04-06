@@ -140,6 +140,74 @@ export const CAREER_PATTERNS: ConvergencePattern[] = [
   },
 
   {
+    id: 'entrepreneur-window',
+    theme: 'career',
+    significance: 4,
+    conditions: [
+      { type: 'natal', check: 'lord-strong', house: 11 },
+      { type: 'transit', check: 'planet-in-house-from-moon', planet: 4, house: 11 },
+      { type: 'dasha', check: 'lord-rules-or-occupies', house: 7 },
+    ],
+    text: {
+      full: {
+        en: "A convergence for independent ventures. Your 11th house of gains is natally strong, Jupiter's transit through your 11th amplifies income and networks, and your dasha activates the 7th house of partnerships and business. This is a window for launching ventures, building alliances, and shifting from employment to enterprise.",
+        hi: 'स्वतंत्र उद्यम का संयोग। एकादश भाव बलवान, बृहस्पति एकादश में आय और नेटवर्क बढ़ाता है, दशा व्यापार और साझेदारी सक्रिय करती है। नौकरी से उद्यम की ओर जाने की खिड़की।',
+      },
+      mild: {
+        en: 'Independent earning potential is strong. Side ventures and business partnerships are favored.',
+        hi: 'स्वतंत्र आय क्षमता मजबूत। साइड वेंचर और व्यापारिक साझेदारी अनुकूल।',
+      },
+    },
+    advice: {
+      en: 'Build your network actively. Explore partnerships and freelance opportunities. Financial gains come through collaboration, not solo effort.',
+      hi: 'नेटवर्क बनाएँ। साझेदारी और फ्रीलांस अवसर खोजें।',
+    },
+    laypersonNote: {
+      en: "Your chart's earnings potential is being amplified by transits — perfect timing for business launches.",
+      hi: 'आपकी कुंडली की आय क्षमता गोचर से बढ़ रही है।',
+    },
+    relatedSections: [
+      TippanniSection.PlanetInsights,
+      TippanniSection.DashaSynthesis,
+      TippanniSection.LifeAreas,
+    ],
+  },
+
+  {
+    id: 'foreign-career-window',
+    theme: 'career',
+    significance: 4,
+    conditions: [
+      { type: 'natal', check: 'planet-in-house', planet: 7, house: 10 },
+      { type: 'transit', check: 'planet-in-house-from-moon', planet: 7, house: 9 },
+      { type: 'dasha', check: 'lord-rules-or-occupies', house: 12 },
+    ],
+    text: {
+      full: {
+        en: "A rare foreign career alignment. Natal Rahu in the 10th house gives unconventional ambitions, Rahu's transit through your 9th activates international connections, and your dasha activates the 12th house of foreign lands. Immigration, international positions, remote work, or global business opportunities are highlighted.",
+        hi: 'दुर्लभ विदेशी करियर संरेखण। दशम में राहु अपरंपरागत महत्वाकांक्षा, नवम में राहु गोचर अंतर्राष्ट्रीय संपर्क, द्वादश दशा विदेश सक्रिय। आव्रजन, अंतर्राष्ट्रीय पद, या वैश्विक व्यापार।',
+      },
+      mild: {
+        en: 'International career opportunities are emerging. Foreign connections are becoming significant.',
+        hi: 'अंतर्राष्ट्रीय करियर अवसर उभर रहे हैं।',
+      },
+    },
+    advice: {
+      en: 'Apply for international roles. Explore remote work for global companies. Rahu rewards bold unconventional moves.',
+      hi: 'अंतर्राष्ट्रीय भूमिकाओं के लिए आवेदन करें। वैश्विक कंपनियों के लिए रिमोट वर्क।',
+    },
+    laypersonNote: {
+      en: "Rahu's nature is foreign, unconventional, and ambitious — when it activates your career area, overseas opportunities arise.",
+      hi: 'राहु का स्वभाव विदेशी, अपरंपरागत — करियर क्षेत्र में विदेशी अवसर।',
+    },
+    relatedSections: [
+      TippanniSection.PlanetInsights,
+      TippanniSection.DashaSynthesis,
+      TippanniSection.YearPredictions,
+    ],
+  },
+
+  {
     id: 'professional-stagnation',
     theme: 'career',
     significance: 3,

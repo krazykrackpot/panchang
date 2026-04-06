@@ -6,8 +6,8 @@ import type { MetaRule, MatchedPattern, ConvergenceInput, MetaInsight } from './
 // ─── Helper: Pattern sets by theme ───────────────────────────────────────────
 
 const POSITIVE_PATTERNS: Record<string, string[]> = {
-  career: ['career-peak', 'public-recognition'],
-  relationship: ['marriage-window', 'partnership-blessing'],
+  career: ['career-peak', 'public-recognition', 'entrepreneur-window', 'foreign-career-window'],
+  relationship: ['marriage-window', 'partnership-blessing', 'new-romantic-encounter', 'commitment-deepening'],
   wealth: ['sudden-wealth', 'steady-accumulation', 'speculative-gains', 'property-acquisition'],
   health: ['recovery', 'vitality-peak'],
   spiritual: ['awakening', 'guru-connection', 'moksha-activation'],

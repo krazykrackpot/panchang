@@ -142,6 +142,73 @@ export const RELATIONSHIP_PATTERNS: ConvergencePattern[] = [
   },
 
   {
+    id: 'new-romantic-encounter',
+    theme: 'relationship',
+    significance: 4,
+    conditions: [
+      { type: 'natal', check: 'benefic-aspect-to-house', house: 5 },
+      { type: 'transit', check: 'planet-in-house-from-moon', planet: 5, house: 5 },
+      { type: 'dasha', check: 'lord-rules-or-occupies', house: 5 },
+    ],
+    text: {
+      full: {
+        en: "A convergence of love energies. Benefic planets bless your 5th house natally, Venus transits your 5th house of romance, and your dasha activates this same theme. This is a window for new romantic encounters — spontaneous, meaningful, and potentially life-changing. Open yourself to connection.",
+        hi: 'प्रेम ऊर्जाओं का संयोग। शुभ ग्रह पंचम भाव में जन्म से, शुक्र गोचर प्रेम का भाव, दशा इसी विषय को सक्रिय। नए रोमांटिक मिलन की खिड़की।',
+      },
+      mild: {
+        en: 'Romance and attraction energies are heightened. New connections carry unusual depth.',
+        hi: 'रोमांस और आकर्षण ऊर्जा बढ़ी हुई। नए संबंध असामान्य गहराई लिए होंगे।',
+      },
+    },
+    advice: {
+      en: 'Say yes to social invitations. Be present in gatherings. The next meaningful connection may arise unexpectedly.',
+      hi: 'सामाजिक निमंत्रण स्वीकार करें। अगला सार्थक संबंध अप्रत्याशित रूप से उत्पन्न होगा।',
+    },
+    laypersonNote: {
+      en: 'Three forces aligned on your romance area create a window where love finds you.',
+      hi: 'तीन बल प्रेम क्षेत्र पर — प्यार खोजने की खिड़की।',
+    },
+    relatedSections: [
+      TippanniSection.PlanetInsights,
+      TippanniSection.LifeAreas,
+      TippanniSection.DashaSynthesis,
+    ],
+  },
+
+  {
+    id: 'commitment-deepening',
+    theme: 'relationship',
+    significance: 4,
+    conditions: [
+      { type: 'natal', check: 'lord-strong', house: 7 },
+      { type: 'dasha', check: 'lord-is-planet', planet: 1 },
+      { type: 'transit', check: 'planet-in-house-from-moon', planet: 4, house: 2 },
+    ],
+    text: {
+      full: {
+        en: "A stabilizing convergence. Your 7th lord is natally strong, Moon dasha brings emotional depth and nurturing toward partnerships, and Jupiter's transit through your 2nd house strengthens family bonds and shared resources. Existing relationships deepen. Commitments made now carry long-term weight.",
+        hi: 'स्थिर करने वाला संयोग। सप्तमेश बलवान, चंद्र दशा भावनात्मक गहराई लाती है, बृहस्पति द्वितीय में पारिवारिक बंधन मजबूत। वर्तमान संबंध गहरे होंगे।',
+      },
+      mild: {
+        en: 'Existing relationships are becoming more emotionally rich. Shared values and security are emphasized.',
+        hi: 'मौजूदा संबंध अधिक भावनात्मक रूप से समृद्ध हो रहे हैं।',
+      },
+    },
+    advice: {
+      en: 'Invest in your committed relationships — this is a season for deepening, not searching. Joint financial decisions carry favorable energy.',
+      hi: 'प्रतिबद्ध संबंधों में निवेश करें। साझा वित्तीय निर्णय अनुकूल।',
+    },
+    laypersonNote: {
+      en: 'These planets create a nurturing, stabilizing energy around existing partnerships.',
+      hi: 'ये ग्रह मौजूदा साझेदारी के आसपास पोषण और स्थिरता बनाते हैं।',
+    },
+    relatedSections: [
+      TippanniSection.PlanetInsights,
+      TippanniSection.LifeAreas,
+    ],
+  },
+
+  {
     id: 'past-love-returns',
     theme: 'relationship',
     significance: 3,

@@ -18,53 +18,62 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { calculatePanchang, type PanchangInput } from '@/lib/panchang/calculator';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+
+// ─── Adapter: normalize computePanchang output to the shape tests expect ──────
+// computePanchang (Swiss Eph) uses different field names and returns times as
+// "HH:MM" strings instead of Date objects. This adapter maps to the test API.
+function parseToClock(timeStr: string): Date {
+  const [h, m] = (timeStr || '00:00').split(':').map(Number);
+  const d = new Date(2024, 0, 1); // fixed date — tests only check hours/minutes
+  d.setHours(h, m, 0, 0);
+  return d;
+}
+
+function normalize(p: ReturnType<typeof computePanchang>) {
+  return {
+    tithi: {
+      number: p.tithi.number,
+      paksha: p.tithi.paksha === 'shukla' ? 'Shukla' : 'Krishna',
+      name: p.tithi.name.en,
+    },
+    nakshatra: {
+      number: p.nakshatra.id,
+      name: p.nakshatra.name.en,
+    },
+    yoga: { number: p.yoga.number, name: p.yoga.name.en },
+    sunrise: parseToClock(p.sunrise),
+    sunset: parseToClock(p.sunset),
+    rahuKalam: {
+      start: parseToClock(p.rahuKaal.start),
+      end: parseToClock(p.rahuKaal.end),
+    },
+    yamagandam: {
+      start: parseToClock(p.yamaganda.start),
+      end: parseToClock(p.yamaganda.end),
+    },
+    gulikaKalam: {
+      start: parseToClock(p.gulikaKaal.start),
+      end: parseToClock(p.gulikaKaal.end),
+    },
+    ayanamsa: p.ayanamsha,
+    sunLongitude: p.sunLongitude,
+  };
+}
 
 // ─── Delhi defaults ────────────────────────────────────────────────
-const DELHI: Omit<PanchangInput, 'year' | 'month' | 'day'> = {
-  latitude: 28.6139,
-  longitude: 77.2090,
-  timezoneOffset: 5.5,
-  locationName: 'New Delhi',
-  ayanamsaType: 'lahiri',
-};
-
 function delhiPanchang(year: number, month: number, day: number) {
-  return calculatePanchang({ year, month, day, ...DELHI });
+  return normalize(computePanchang({ year, month, day, lat: 28.6139, lng: 77.2090, tzOffset: 5.5, locationName: 'New Delhi' }));
 }
 
 // ─── Bern, Switzerland defaults ─────────────────────────────────────
-const BERN: Omit<PanchangInput, 'year' | 'month' | 'day'> = {
-  latitude: 46.9480,
-  longitude: 7.4474,
-  timezoneOffset: 1, // CET (winter); CEST=2 (summer) — tests specify per-date
-  locationName: 'Bern',
-  ayanamsaType: 'lahiri',
-};
-
 function bernPanchang(year: number, month: number, day: number, summerTime = false) {
-  return calculatePanchang({
-    year, month, day,
-    ...BERN,
-    timezoneOffset: summerTime ? 2 : 1,
-  });
+  return normalize(computePanchang({ year, month, day, lat: 46.9480, lng: 7.4474, tzOffset: summerTime ? 2 : 1, locationName: 'Bern' }));
 }
 
 // ─── Seattle, USA defaults ──────────────────────────────────────────
-const SEATTLE: Omit<PanchangInput, 'year' | 'month' | 'day'> = {
-  latitude: 47.6062,
-  longitude: -122.3321,
-  timezoneOffset: -8, // PST (winter); PDT=-7 (summer) — tests specify per-date
-  locationName: 'Seattle',
-  ayanamsaType: 'lahiri',
-};
-
 function seattlePanchang(year: number, month: number, day: number, summerTime = false) {
-  return calculatePanchang({
-    year, month, day,
-    ...SEATTLE,
-    timezoneOffset: summerTime ? -7 : -8,
-  });
+  return normalize(computePanchang({ year, month, day, lat: 47.6062, lng: -122.3321, tzOffset: summerTime ? -7 : -8, locationName: 'Seattle' }));
 }
 
 // ═══════════════════════════════════════════════════════════════════════

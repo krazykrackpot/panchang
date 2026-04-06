@@ -1173,6 +1173,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     yoga: yogaData,
     karana: karanaData,
     vara: { day: weekday, name: varaData.name, ruler: varaData.ruler },
+    sunLongitude: sunSidLong,
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
     moonrise: (() => { const mr = calculateMoonriseUT(jd, lat, lng); return mr !== null ? formatTime(mr, tzOffset) : '--:--'; })(),

@@ -122,6 +122,7 @@ export interface PanchangData {
   purnimantMasa?: Trilingual;
   amantMasa?: Trilingual;
   ayanamsha?: number;
+  sunLongitude?: number;  // sidereal Sun longitude 0-360
   sunSign?: { rashi: number; nakshatra: number };
   moonSign?: { rashi: number; nakshatra: number; pada: number };
   dinamana?: string;  // day duration HH:MM

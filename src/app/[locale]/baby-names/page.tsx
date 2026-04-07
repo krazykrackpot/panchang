@@ -10,8 +10,7 @@ import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { dateToJD, moonLongitude, toSidereal, getNakshatraNumber, getNakshatraPada } from '@/lib/ephem/astronomical';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import { computeBirthSigns } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 
 export default function BabyNamesPage() {
@@ -54,22 +53,16 @@ export default function BabyNamesPage() {
       });
   }, [initialized, user]);
 
-  // Auto-compute nakshatra from birth details
+  // Auto-compute nakshatra from birth details — uses centralized computeBirthSigns
   useEffect(() => {
-    if (!birthDate || birthLat == null || birthLng == null) return;
-    const [y, m, d] = birthDate.split('-').map(Number);
-    const [h, min] = birthTime.split(':').map(Number);
-    if (!birthTz) return;
-    const tzOffset = getUTCOffsetForDate(y, m, d, birthTz);
-    const utHour = h + min / 60 - tzOffset;
-    const jd = dateToJD(y, m, d, utHour);
-    const moonSid = toSidereal(moonLongitude(jd), jd);
-    const nak = getNakshatraNumber(moonSid);
-    const pada = getNakshatraPada(moonSid);
-    setDetectedNak(nak);
-    setDetectedPada(pada);
-    setSelectedNak(nak);
-    setSelectedPada(pada);
+    if (!birthDate || birthLat == null || birthLng == null || !birthTz) return;
+    try {
+      const b = computeBirthSigns(birthDate, birthTime, birthLat, birthLng, birthTz);
+      setDetectedNak(b.moonNakshatra);
+      setDetectedPada(b.moonPada);
+      setSelectedNak(b.moonNakshatra);
+      setSelectedPada(b.moonPada);
+    } catch { /* timezone invalid — wait for user to select location */ }
   }, [birthDate, birthTime, birthLat, birthLng, birthTz]);
 
   const syllables = useMemo(() => {

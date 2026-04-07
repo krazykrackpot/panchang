@@ -598,6 +598,57 @@ export function getAyana(sunSidLong: number): { en: string; hi: string; sa: stri
   return { en: 'Uttarayana', hi: 'उत्तरायण', sa: 'उत्तरायणम्' };
 }
 
+// ─── Centralized birth sign computation ──────────────────────────────────
+// ONE function for computing Sun sign, Moon sign, Moon nakshatra, Moon pada
+// from birth details. Every page that needs birth signs must use this —
+// no inline dateToJD + moonLongitude + toSidereal chains anywhere else.
+
+import { resolveTimezone } from '@/lib/utils/timezone';
+
+export interface BirthSignResult {
+  sunSign: number;        // 1-12
+  sunLong: number;        // sidereal degrees 0-360
+  moonSign: number;       // 1-12
+  moonLong: number;       // sidereal degrees 0-360
+  moonNakshatra: number;  // 1-27
+  moonPada: number;       // 1-4
+  tzOffset: number;       // resolved UTC offset
+  ayanamsha: number;      // ayanamsha value used
+}
+
+export function computeBirthSigns(
+  date: string,       // YYYY-MM-DD
+  time: string,       // HH:MM
+  lat: number,
+  lng: number,
+  timezone: string,   // IANA timezone string (e.g. 'Asia/Kolkata') — REQUIRED
+  ayanamshaType: 'lahiri' | 'raman' | 'kp' = 'lahiri',
+): BirthSignResult {
+  const [y, m, d] = date.split('-').map(Number);
+  const [h, min] = time.split(':').map(Number);
+  const decimalHour = h + min / 60;
+  const tzOffset = resolveTimezone(timezone, y, m, d);
+  const utHour = decimalHour - tzOffset;
+  const jd = dateToJD(y, m, d, utHour);
+
+  const ayan = getAyanamsha(jd, ayanamshaType);
+  const sunTrop = sunLongitude(jd);
+  const moonTrop = moonLongitude(jd);
+  const sunSid = normalizeDeg(sunTrop - ayan);
+  const moonSid = normalizeDeg(moonTrop - ayan);
+
+  return {
+    sunSign: getRashiNumber(sunSid),
+    sunLong: sunSid,
+    moonSign: getRashiNumber(moonSid),
+    moonLong: moonSid,
+    moonNakshatra: getNakshatraNumber(moonSid),
+    moonPada: getNakshatraPada(moonSid),
+    tzOffset,
+    ayanamsha: ayan,
+  };
+}
+
 // Format degrees as DD°MM'SS"
 export function formatDegrees(deg: number): string {
   const d = Math.floor(deg);

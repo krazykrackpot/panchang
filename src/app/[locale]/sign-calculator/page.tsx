@@ -9,14 +9,9 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import {
-  dateToJD, sunLongitude, moonLongitude, toSidereal,
-  getRashiNumber, getNakshatraNumber, getNakshatraPada,
-  formatDegrees,
-} from '@/lib/ephem/astronomical';
+import { computeBirthSigns, formatDegrees } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 
 export default function SignCalculatorPage() {
@@ -60,40 +55,25 @@ export default function SignCalculatorPage() {
   }, [initialized, user, autoFilled]);
 
   const result = useMemo(() => {
-    if (!dateStr || !placeLat || !placeLng) return null;
-    const [y, m, d] = dateStr.split('-').map(Number);
-    const [h, min] = timeStr.split(':').map(Number);
-    const decimalHour = h + min / 60;
-    if (!placeTimezone) return null; // Location timezone is required — never use browser timezone
-    const tzOffset = getUTCOffsetForDate(y, m, d, placeTimezone);
-    const utHour = decimalHour - tzOffset;
-
-    const jd = dateToJD(y, m, d, utHour);
-    const sunTrop = sunLongitude(jd);
-    const moonTrop = moonLongitude(jd);
-    const sunSid = toSidereal(sunTrop, jd);
-    const moonSid = toSidereal(moonTrop, jd);
-
-    const sunSign = getRashiNumber(sunSid);
-    const moonSign = getRashiNumber(moonSid);
-    const moonNak = getNakshatraNumber(moonSid);
-    const moonPada = getNakshatraPada(moonSid);
-
-    return {
-      sunSign,
-      sunSignName: RASHIS[sunSign - 1].name,
-      sunDegree: formatDegrees(sunSid % 30),
-      sunLong: sunSid,
-      moonSign,
-      moonSignName: RASHIS[moonSign - 1].name,
-      moonDegree: formatDegrees(moonSid % 30),
-      moonLong: moonSid,
-      moonNakshatra: NAKSHATRAS[moonNak - 1],
-      moonNakNum: moonNak,
-      moonPada,
-      location: placeName,
-      tzOffset,
-    };
+    if (!dateStr || !placeLat || !placeLng || !placeTimezone) return null;
+    try {
+      const b = computeBirthSigns(dateStr, timeStr, placeLat, placeLng, placeTimezone);
+      return {
+        sunSign: b.sunSign,
+        sunSignName: RASHIS[b.sunSign - 1].name,
+        sunDegree: formatDegrees(b.sunLong % 30),
+        sunLong: b.sunLong,
+        moonSign: b.moonSign,
+        moonSignName: RASHIS[b.moonSign - 1].name,
+        moonDegree: formatDegrees(b.moonLong % 30),
+        moonLong: b.moonLong,
+        moonNakshatra: NAKSHATRAS[b.moonNakshatra - 1],
+        moonNakNum: b.moonNakshatra,
+        moonPada: b.moonPada,
+        location: placeName,
+        tzOffset: b.tzOffset,
+      };
+    } catch { return null; }
   }, [dateStr, timeStr, placeLat, placeLng, placeName, placeTimezone]);
 
   return (

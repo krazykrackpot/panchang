@@ -8,11 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
-import { getUTCOffsetForDate } from '@/lib/utils/timezone';
-import {
-  dateToJD, moonLongitude, toSidereal,
-  getRashiNumber, getNakshatraNumber,
-} from '@/lib/ephem/astronomical';
+import { computeBirthSigns } from '@/lib/ephem/astronomical';
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
@@ -66,19 +62,11 @@ interface PersonBirth {
 }
 
 function computeMoonFromBirth(birth: PersonBirth): { nakshatra: number; rashi: number } | null {
-  if (!birth.date || !birth.time || birth.placeLat === null || birth.placeLng === null) return null;
-  const [y, m, d] = birth.date.split('-').map(Number);
-  const [h, min] = birth.time.split(':').map(Number);
-  const decimalHour = h + min / 60;
-  if (!birth.placeTimezone) return { nakshatra: 1, rashi: 1 }; // Location timezone required
-  const tz = getUTCOffsetForDate(y, m, d, birth.placeTimezone);
-  const utHour = decimalHour - tz;
-  const jd = dateToJD(y, m, d, utHour);
-  const moonSid = toSidereal(moonLongitude(jd), jd);
-  return {
-    nakshatra: getNakshatraNumber(moonSid),
-    rashi: getRashiNumber(moonSid),
-  };
+  if (!birth.date || !birth.time || birth.placeLat === null || birth.placeLng === null || !birth.placeTimezone) return null;
+  try {
+    const b = computeBirthSigns(birth.date, birth.time, birth.placeLat, birth.placeLng, birth.placeTimezone);
+    return { nakshatra: b.moonNakshatra, rashi: b.moonSign };
+  } catch { return null; }
 }
 
 export default function MatchingPage() {

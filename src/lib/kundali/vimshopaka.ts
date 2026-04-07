@@ -14,7 +14,7 @@ const DEBILITATION: Record<number, number> = { 0:7,1:8,2:4,3:12,4:10,5:6,6:1 };
 const OWN_SIGNS: Record<number, number[]> = { 0:[5],1:[4],2:[1,8],3:[3,6],4:[9,12],5:[2,7],6:[10,11] };
 const MOOLATRIKONA: Record<number, number> = { 0:5,1:2,2:1,3:6,4:9,5:7,6:11 };
 
-// Friendly signs for each planet
+// Natural friends for each planet (classical Jyotish — BPHS Ch.3)
 const FRIENDS: Record<number, Set<number>> = {
   0: new Set([1,2,4]),       // Sun: Moon, Mars, Jupiter
   1: new Set([0,3]),         // Moon: Sun, Mercury
@@ -23,6 +23,24 @@ const FRIENDS: Record<number, Set<number>> = {
   4: new Set([0,1,2]),       // Jupiter: Sun, Moon, Mars
   5: new Set([3,6]),         // Venus: Mercury, Saturn
   6: new Set([3,5]),         // Saturn: Mercury, Venus
+};
+
+// Natural enemies for each planet (classical Jyotish — BPHS Ch.3)
+// HISTORICAL BUG (now fixed): no ENEMIES table existed.  The dignityScore()
+// function computed "neutral" as "neither planet considers the other a friend"
+// and "enemy" as the else-case — which fired when the SIGN LORD considers the
+// PLANET a friend (mutual asymmetry).  This is the opposite of the classical
+// rule: a planet is an enemy of another if the OTHER planet lists it as an
+// enemy.  Without an explicit enemy table, planets that should score 4 (enemy
+// sign) were scoring 8 (neutral), inflating vimshopaka totals.
+const ENEMIES: Record<number, Set<number>> = {
+  0: new Set([5,6]),         // Sun: Venus, Saturn
+  1: new Set([]),            // Moon: none (Moon has no natural enemies)
+  2: new Set([3]),           // Mars: Mercury
+  3: new Set([1]),           // Mercury: Moon
+  4: new Set([3,5]),         // Jupiter: Mercury, Venus
+  5: new Set([0,1]),         // Venus: Sun, Moon
+  6: new Set([0,1,2]),       // Saturn: Sun, Moon, Mars
 };
 
 // Varga weights for Shodashavarga (16 charts) — BPHS Ch.16
@@ -42,11 +60,11 @@ function dignityScore(planetId: number, sign: number): number {
   if (MOOLATRIKONA[planetId] === sign) return 18;
   if ((OWN_SIGNS[planetId] || []).includes(sign)) return 16;
   const lord = SIGN_LORD[sign];
-  if (FRIENDS[planetId]?.has(lord)) return 12;
-  // Check if enemy (not friend and not neutral)
-  const isNeutral = !FRIENDS[planetId]?.has(lord) && !FRIENDS[lord]?.has(planetId);
-  if (isNeutral) return 8;
-  return 4; // Enemy
+  if (FRIENDS[planetId]?.has(lord)) return 12; // friend's sign
+  // Check explicit natural enemy table first.
+  // "Neutral" = not a friend, not an enemy (the residual category).
+  if (ENEMIES[planetId]?.has(lord)) return 4; // enemy's sign
+  return 8; // neutral sign (residual — neither friend nor enemy)
 }
 
 export interface VimshopakaBala {

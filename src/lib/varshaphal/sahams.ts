@@ -19,8 +19,22 @@ interface SahamFormula {
 // 16 Tajika Sahams
 // Formula: Saham = A - B + Asc (day) or B - A + Asc (night)
 const SAHAM_FORMULAS: SahamFormula[] = [
-  { name: { en: 'Punya Saham', hi: 'पुण्य सहम', sa: 'पुण्यसहमः' }, a: 1, b: 0, reverse: true },      // Moon - Sun + Asc
-  { name: { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्यासहमः' }, a: 0, b: 1, reverse: true },      // Sun - Moon + Asc
+  // Punya Saham: Day = Moon − Sun + Asc; Night = Sun − Moon + Asc
+  // a=Moon(1), b=Sun(0), reverse=false → day uses (a−b) = Moon−Sun. Correct.
+  //
+  // HISTORICAL BUG (now fixed): reverse: true was set, which caused the day
+  // formula to use the else-branch (b−a = Sun−Moon) and the night formula to
+  // use the if-branch (a−b = Moon−Sun) — i.e., day and night formulas were
+  // completely swapped.  Day-born natives received the night formula and vice
+  // versa, making Punya Saham wrong for 100% of charts.
+  { name: { en: 'Punya Saham', hi: 'पुण्य सहम', sa: 'पुण्यसहमः' }, a: 1, b: 0, reverse: false },     // Moon - Sun + Asc (day); Sun - Moon + Asc (night)
+
+  // Vidya Saham: Day = Sun − Moon + Asc; Night = Moon − Sun + Asc
+  // a=Sun(0), b=Moon(1), reverse=false → day uses (a−b) = Sun−Moon. Correct.
+  //
+  // HISTORICAL BUG (now fixed): same swap as Punya Saham — reverse: true gave
+  // day births Moon−Sun and night births Sun−Moon (both wrong).
+  { name: { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्यासहमः' }, a: 0, b: 1, reverse: false },    // Sun - Moon + Asc (day); Moon - Sun + Asc (night)
   { name: { en: 'Yashas Saham', hi: 'यशः सहम', sa: 'यशःसहमः' }, a: 4, b: 0, reverse: false },         // Jupiter - Sun + Asc
   { name: { en: 'Mitra Saham', hi: 'मित्र सहम', sa: 'मित्रसहमः' }, a: 4, b: 5, reverse: false },       // Jupiter - Venus + Asc
   { name: { en: 'Mahatmya Saham', hi: 'महात्म्य सहम', sa: 'महात्म्यसहमः' }, a: 0, b: 6, reverse: false },  // Sun - Saturn + Asc

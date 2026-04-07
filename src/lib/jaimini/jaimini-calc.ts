@@ -148,8 +148,22 @@ export function calculateArudhaPadas(ascSign: number, planets: PlanetPosition[])
     const countForward = ((lordSign - houseSign + 12) % 12);
     // Arudha = count same distance from lord sign
     let arudhaSign = ((lordSign - 1 + countForward) % 12) + 1;
-    // Exception: if arudha falls in same sign or 7th, advance by 10 signs
-    if (arudhaSign === houseSign) arudhaSign = ((houseSign - 1 + 9) % 12) + 1;
+
+    // Exception rule (BPHS Ch.29 / Jaimini Sutras 1.2.5-7):
+    // If the computed arudha falls in the SAME sign as the house, OR in the
+    // 7th sign from the house, it must be advanced by 10 more signs.
+    //
+    // 7th from houseSign (1-based, wraps at 12):
+    //   seventh = ((houseSign - 1 + 6) % 12) + 1
+    //
+    // HISTORICAL BUG (now fixed): only the "same sign" case was handled.
+    // The "7th from house" exception was noted in a comment but never
+    // implemented, causing incorrect arudha signs whenever the formula
+    // naturally placed the arudha in the 7th from the house sign.
+    const seventhFromHouse = ((houseSign - 1 + 6) % 12) + 1;
+    if (arudhaSign === houseSign || arudhaSign === seventhFromHouse) {
+      arudhaSign = ((arudhaSign - 1 + 9) % 12) + 1; // advance 10 signs (= +9 mod 12)
+    }
     padas.push({
       house: h + 1,
       sign: arudhaSign,
@@ -223,8 +237,12 @@ export function calculateGrahaArudhas(planets: PlanetPosition[]): GrahaArudha[] 
 
     const countForward = ((lordSign - planetSign + 12) % 12);
     let arudhaSign = ((lordSign - 1 + countForward) % 12) + 1;
-    // Exception: if arudha = planet's own sign or 7th, advance by 10
-    if (arudhaSign === planetSign) arudhaSign = ((planetSign - 1 + 9) % 12) + 1;
+    // Same exception as Bhava Arudhas: advance by 10 if computed arudha falls
+    // in the planet's own sign OR in the 7th from it (BPHS Ch.29 / Jaimini 1.2.5-7).
+    const seventhFromPlanetSign = ((planetSign - 1 + 6) % 12) + 1;
+    if (arudhaSign === planetSign || arudhaSign === seventhFromPlanetSign) {
+      arudhaSign = ((arudhaSign - 1 + 9) % 12) + 1;
+    }
 
     arudhas.push({
       planetId: p.planet.id,

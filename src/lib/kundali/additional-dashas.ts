@@ -130,18 +130,34 @@ export function calculateSthiraDasha(ascSign: number, birthDate: Date): RasiDash
 // Simplified implementation using standard Savya/Apasavya patterns.
 // Reference: BPHS Ch.21
 
-// Kalachakra: nakshatras alternate between Savya (clockwise) and Apasavya (anticlockwise)
-const SAVYA_NAKSHATRAS = new Set([1,2,3,4,  10,11,12,13,  19,20,21,22]); // groups of 4
-// Apasavya: 5,6,7,8,9, 14,15,16,17,18, 23,24,25,26,27
+// ── Kalachakra Dasha ─────────────────────────────────────────────────────────
+// Source: BPHS Ch.21 ("Kalachakra Dasha Adhyaya")
+//
+// The 27 nakshatras are divided into three groups of 9, alternating direction:
+//   Group 1 (nakshatras  1- 9, Ashvini–Ashlesha):  Savya   (clockwise)
+//   Group 2 (nakshatras 10-18, Magha–Jyeshtha):    Apasavya (anticlockwise)
+//   Group 3 (nakshatras 19-27, Mula–Revati):        Savya   (clockwise)
+//
+// HISTORICAL BUG (now fixed in SAVYA_NAKSHATRAS): the code used groups of 4
+// within each 9-group: [1,2,3,4, 10,11,12,13, 19,20,21,22].  This left half
+// of each group (nakshatras 5-9, 14-18, 23-27) incorrectly classified as
+// Apasavya even though nakshatras 19-27 are Savya.
+//
+// Savya sequence: Cancer(4) → Leo(5) → … → Pisces(12).  One sign per nakshatra
+// in the group.  Dasha years per sign follow the classical Kalachakra table.
+// Apasavya sequence is the reverse: Capricorn(10) → Sagittarius(9) → … → Aquarius(11).
 
-// Savya sequence durations (years per sign, 4 padas × 9 signs = 36 entries)
-const KALACHAKRA_SAVYA_YEARS = [7,16,21,9,7,10,4,4,5]; // 83 total
-const KALACHAKRA_APASAVYA_YEARS = [5,4,4,10,7,9,21,16,7]; // 83 total, reversed
+const SAVYA_NAKSHATRAS = new Set([1,2,3,4,5,6,7,8,9,  19,20,21,22,23,24,25,26,27]);
+// Apasavya nakshatras: 10-18 (Magha to Jyeshtha)
 
-// Savya sign order: Cancer→Leo→...→Pisces then Aries→...→Gemini (zodiacal from Cancer)
-// Apasavya: Capricorn→Sagittarius→...→Cancer then Pisces→...→Capricorn (reverse)
-const SAVYA_SIGNS = [4,5,6,7,8,9,10,11,12]; // Cancer to Pisces (1-based)
-const APASAVYA_SIGNS = [10,9,8,7,6,5,4,3,2]; // Capricorn backward
+// Classical Kalachakra dasha years per sign (BPHS Ch.21):
+const KALACHAKRA_SAVYA_YEARS    = [7,16,21,9,7,10,4,4,5]; // Cancer→Pisces, 83 yrs total
+const KALACHAKRA_APASAVYA_YEARS = [5,4,4,10,7,9,21,16,7]; // Capricorn→Aquarius, 83 yrs total
+
+// Savya sign sequence: Cancer(4) to Pisces(12)
+const SAVYA_SIGNS    = [4,5,6,7,8,9,10,11,12];
+// Apasavya sign sequence: Capricorn(10) backward to Aquarius(11)
+const APASAVYA_SIGNS = [10,9,8,7,6,5,4,3,2];
 
 export function calculateKalachakraDasha(moonSidLong: number, birthDate: Date): RasiDashaEntry[] {
   const nakshatra = Math.floor(moonSidLong / (360 / 27)) + 1; // 1-27
@@ -151,8 +167,20 @@ export function calculateKalachakraDasha(moonSidLong: number, birthDate: Date): 
   const years = isSavya ? KALACHAKRA_SAVYA_YEARS : KALACHAKRA_APASAVYA_YEARS;
   const signs = isSavya ? SAVYA_SIGNS : APASAVYA_SIGNS;
 
-  // Start from the pada's starting position
-  const startIdx = pada * 2; // rough mapping, simplified
+  // Starting sign index within the 9-sign sequence.
+  //
+  // Each of the 9 signs in a Savya/Apasavya cycle corresponds to one nakshatra
+  // in the 9-nakshatra group.  The nakshatra's position within its group (0-8)
+  // directly maps to the sign index (0-8) in SAVYA_SIGNS / APASAVYA_SIGNS.
+  //
+  // HISTORICAL BUG (now fixed): the code used `pada * 2` as the startIdx.
+  // The pada (0-3) describes how far the Moon is WITHIN the current nakshatra
+  // — it determines how much of the first dasha is already elapsed, but it does
+  // NOT select which sign the dasha starts from.  Using `pada * 2` caused the
+  // starting sign to jump by 2 signs per pada, producing wildly different dasha
+  // sequences for closely-spaced Moon positions within the same nakshatra.
+  const nakInGroup = (nakshatra - 1) % 9; // 0-8 within its 9-nakshatra group
+  const startIdx = nakInGroup;             // maps 1:1 to sign index
   const dashas: RasiDashaEntry[] = [];
   let cur = new Date(birthDate);
 

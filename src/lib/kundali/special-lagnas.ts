@@ -46,10 +46,18 @@ export function calculateSpecialLagnas(
   const horaLagna = Math.floor(horaLagnaDeg / 30) + 1;
 
   // ── Ghati Lagna (GL) ──
-  // GL = Sun's degree + (ghatis from sunrise * 360/60)
-  // 1 ghati = 24 min, so hours * 2.5 = ghatis
-  const ghatis = hoursFromSunrise * 2.5;
-  const ghatiLagnaDeg = normalizeDeg(sunDeg + ghatis * (360 / 60));
+  // GL = Sun's sidereal degree + (ghatis from sunrise × 30°)
+  //
+  // BPHS Ch.4 specifies: "Ghati Lagna moves one Rashi (sign = 30°) per ghati."
+  // 1 ghati = 24 minutes; 1 ghati → 1 sign = 30°.
+  //
+  // HISTORICAL BUG (now fixed): the formula used (360/60) = 6° per ghati,
+  // which is the rate of the full zodiac completing in 60 ghatis — that is the
+  // ascendant's rate for Hora Lagna, NOT Ghati Lagna.  Using 6°/ghati instead
+  // of 30°/ghati produced a GL five times too slow, placing it in the wrong
+  // sign in most charts.
+  const ghatis = hoursFromSunrise * 2.5; // 1 hour = 2.5 ghatis
+  const ghatiLagnaDeg = normalizeDeg(sunDeg + ghatis * 30);
   const ghatiLagna = Math.floor(ghatiLagnaDeg / 30) + 1;
 
   // ── Sree Lagna (SL) ──

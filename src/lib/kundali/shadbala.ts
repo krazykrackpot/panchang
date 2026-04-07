@@ -15,7 +15,8 @@ interface PlanetInput {
   isExalted: boolean;
   isDebilitated: boolean;
   isOwnSign: boolean;
-  navamshaSign: number; // 1-12, sign in D9
+  navamshaSign: number;     // 1-12, sign in D9
+  eclipticLatitude?: number; // degrees — used for Graha Yuddha winner determination
 }
 
 interface ShadBalaInput {
@@ -359,11 +360,22 @@ function computeDigBala(p: PlanetInput, ascendantDeg: number): number {
 // ---------------------------------------------------------------------------
 
 function natonnataBala(p: PlanetInput, isDayBirth: boolean): number {
-  // Mercury always 60
+  // Mercury is always fully strong (60 Shashtiamsas) regardless of birth time.
+  // Classical source: BPHS Ch.27 — "Budha is Mishra (both day and night strong)."
   if (p.id === 3) return 60;
-  // Day-strong: Sun(0), Jupiter(4), Venus(5)
-  const dayStrong = [0, 4, 5];
-  // Night-strong: Moon(1), Mars(2), Saturn(6)
+
+  // Diurnal (day-strong) planets: Sun(0), Jupiter(4), Saturn(6).
+  // They receive full 60 Shashtiamsas at day births, 0 at night.
+  //
+  // Nocturnal (night-strong) planets: Moon(1), Mars(2), Venus(5).
+  // They receive full 60 Shashtiamsas at night births, 0 at day.
+  //
+  // HISTORICAL BUG (now fixed): the list was [0,4,5] — Venus(5) was in the
+  // day-strong group and Saturn(6) was missing entirely.  Venus is nocturnal
+  // (BPHS Ch.27: "Shukra is Ratri-bali"), and Saturn is diurnal ("Shani is
+  // Diva-bali").  This inflated Venus's kalaBala for day births and deflated
+  // Saturn's, distorting the total Shadbala ranking.
+  const dayStrong = [0, 4, 6]; // Sun, Jupiter, Saturn
   if (isDayBirth) return dayStrong.includes(p.id) ? 60 : 0;
   return dayStrong.includes(p.id) ? 0 : 60;
 }
@@ -505,10 +517,28 @@ function yuddhaBala(planets: PlanetInput[]): Record<number, number> {
       const b = eligible[j];
       const diff = arcDiff(a.longitude, b.longitude);
       if (diff <= 1) {
-        // Planetary war — planet with higher longitude wins (simplified)
-        const aLong = normalizeDeg(a.longitude);
-        const bLong = normalizeDeg(b.longitude);
-        if (aLong >= bLong) {
+        // Planetary war (Graha Yuddha) — winner determined by lower absolute
+        // ecliptic latitude.  Source: BPHS Ch.28 ("that planet whose latitude
+        // is less wins the war").  This is also the rule used in graha-yuddha.ts.
+        //
+        // HISTORICAL BUG (now fixed): the code used ecliptic LONGITUDE to pick
+        // the winner (higher longitude wins).  Longitude has nothing to do with
+        // the classical rule and gave wrong results for every planetary war.
+        //
+        // Fallback: if eclipticLatitude was not supplied (older call sites), fall
+        // back to the longitude comparison to avoid a breaking change — but this
+        // path should not occur in normal usage since kundali-calc now passes it.
+        const aLat = a.eclipticLatitude;
+        const bLat = b.eclipticLatitude;
+        let aWins: boolean;
+        if (aLat !== undefined && bLat !== undefined) {
+          // Lower absolute latitude = more northerly (less deviated) = wins
+          aWins = Math.abs(aLat) <= Math.abs(bLat);
+        } else {
+          // Legacy fallback: higher longitude (graceful degradation only)
+          aWins = normalizeDeg(a.longitude) >= normalizeDeg(b.longitude);
+        }
+        if (aWins) {
           result[a.id] += 5;
           result[b.id] -= 5;
         } else {

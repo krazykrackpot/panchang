@@ -656,15 +656,36 @@ export function generateKundali(birthData: BirthData): KundaliData {
   // Navamsha
   const navamshaChart = calculateNavamsha(planets, siderealAsc);
 
-  // Vargottama — planet in same sign in D1 and D9
-  const navamshaSignMap = new Map<number, number>(); // planetId -> navamsha sign (0-based)
-  navamshaChart.houses.forEach((planetIds, signIdx) => {
-    planetIds.forEach((id) => navamshaSignMap.set(id, signIdx));
+  // Vargottama — planet occupies the same sidereal sign in both D1 and D9.
+  //
+  // HOW calculateNavamsha() STORES PLANETS:
+  //   navamshaChart.houses is a 12-element array indexed by HOUSE NUMBER (0-based),
+  //   where house 0 = the D9 ascendant sign, house 1 = D9 2nd house, etc.
+  //   Concretely:  houseOffset = (navSign - navAscSign + 12) % 12
+  //   So navamshaChart.houses[k] holds planets in the (D9 Asc + k)th sign from Aries.
+  //
+  // HISTORICAL BUG (now fixed): the code used signIdx (the loop variable over
+  //   navamshaChart.houses) directly as a 0-based sign index from Aries.  This
+  //   is only correct when the D9 ascendant is Aries (navAscSign = 1).  For any
+  //   other D9 ascendant, signIdx is a house OFFSET, not a sign index, so
+  //   Vargottama flags were wrong for the majority of charts.
+  //
+  // FIX: convert from house offset back to absolute 0-based sign index by adding
+  //   the D9 ascendant sign back in:
+  //     actualD9SignIdx = (navAscSign - 1 + houseOffset) % 12
+  //   where navAscSign is 1-based (from navamshaChart.ascendantSign).
+  const navAscSign = navamshaChart.ascendantSign; // 1-based (1=Aries … 12=Pisces)
+  const navamshaSignMap = new Map<number, number>(); // planetId → actual D9 sign (0-based from Aries)
+  navamshaChart.houses.forEach((planetIds, houseOffset) => {
+    // houseOffset 0 = D9 ascendant sign, 1 = next sign clockwise, etc.
+    const actualD9SignIdx = (navAscSign - 1 + houseOffset) % 12;
+    planetIds.forEach((id) => navamshaSignMap.set(id, actualD9SignIdx));
   });
   planets.forEach((p) => {
-    const d1Sign = p.sign - 1; // 1-based to 0-based
-    const d9Sign = navamshaSignMap.get(p.planet.id);
-    p.isVargottama = d9Sign !== undefined && d1Sign === d9Sign;
+    const d1SignIdx = p.sign - 1;                    // D1 sign, 0-based from Aries
+    const d9SignIdx = navamshaSignMap.get(p.planet.id);
+    // Vargottama: D1 sign index === D9 sign index (both 0-based from Aries)
+    p.isVargottama = d9SignIdx !== undefined && d1SignIdx === d9SignIdx;
   });
 
   // Mrityu Bhaga — one dangerous degree per sign per planet (Narada Purana/BPHS tradition)
@@ -863,6 +884,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
         isDebilitated: p.isDebilitated,
         isOwnSign: p.isOwnSign,
         navamshaSign: navSign,
+        // Ecliptic latitude is required for correct Graha Yuddha winner detection
+        // (lower absolute latitude wins — BPHS Ch.28). computeFullCoordinates()
+        // already stores this on each planet via coords.latitude.
+        eclipticLatitude: p.latitude,
       };
     }),
     ascendantDeg: siderealAsc,

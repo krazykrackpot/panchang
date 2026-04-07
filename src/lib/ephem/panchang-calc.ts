@@ -728,8 +728,19 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Rahu Kaal
   const rahuKaal = calculateRahuKaal(sunriseUT, sunsetUT, weekday);
 
-  // Yamaganda (similar pattern)
-  const yamaOrder = [5, 4, 3, 2, 1, 7, 6];
+  // Yamaganda (inauspicious period, similar 1/8-day segment structure to Rahu Kaal)
+  //
+  // Traditional order from Dharma Sindhu / Muhurta Chintamani:
+  //   Sun=5, Mon=4, Tue=3, Wed=7, Thu=2, Fri=1, Sat=6
+  //
+  // The segment number is 1-based: segment N occupies
+  //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
+  //
+  // HISTORICAL BUG (now fixed): the array previously had Wed=2, Thu=1, Fri=7
+  // i.e., [5,4,3,2,1,7,6] — swapping the Wed/Thu/Fri values against the
+  // classical source. This caused Yamaganda to be shown at the wrong time
+  // every Wednesday, Thursday, and Friday.
+  const yamaOrder = [5, 4, 3, 7, 2, 1, 6]; // Sun Mon Tue Wed Thu Fri Sat
   const yamaDuration = (sunsetUT - sunriseUT) / 8;
   const yamaSegment = yamaOrder[weekday] - 1;
   const yamaganda = {
@@ -783,12 +794,23 @@ export function computePanchang(input: PanchangInput): PanchangData {
     };
   });
 
-  // Abhijit Muhurta — the 8th daytime muhurta (around midday)
+  // Abhijit Muhurta — the 8th daytime muhurta (around midday).
+  // This is universally considered auspicious EXCEPT on Wednesdays.
+  //
+  // Classical rule (Muhurta Chintamani, Dharma Sindhu): "On Budha-vara
+  // (Wednesday), Abhijit Muhurta is inauspicious and should be avoided."
+  //
+  // HISTORICAL BUG (now fixed): the Wednesday exclusion was described in a
+  // comment nearby but never implemented in code.  The muhurta was returned
+  // as auspicious on all 7 weekdays.  Now `available: false` is set on
+  // Wednesdays so callers and the UI can present the correct guidance.
   const abhijitStart = sunriseUT + 7 * dayMuhurtaDuration;
   const abhijitEnd = abhijitStart + dayMuhurtaDuration;
   const abhijitMuhurta = {
     start: formatTime(abhijitStart, tzOffset),
     end: formatTime(abhijitEnd, tzOffset),
+    // available=false on Wednesday (weekday=3); true all other days
+    available: weekday !== 3,
   };
 
   // Masa, Ritu, Samvatsara
@@ -852,12 +874,27 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Shaka Samvat: offset ~78 years from CE
   const shakaSamvat = (month >= 4) ? year - 78 : year - 79;
 
-  // Purnimant / Amant masa — same index, different naming in some months
-  // Purnimant: lunar month ends on Purnima; Amant: ends on Amavasya
-  // For simplicity, Amant = same month, Purnimant may lag by 1
-  const purnimantMasa = MASA_NAMES[masaIndex] || MASA_NAMES[0];
-  const amantMasaIdx = tithiResult.number > 15 ? (masaIndex + 1) % 12 : masaIndex;
-  const amantMasa = MASA_NAMES[amantMasaIdx] || MASA_NAMES[0];
+  // Purnimant vs Amant masa — two competing calendar systems used across India
+  //
+  // DEFINITIONS:
+  //   • Amant (South India, Gujarat, Maharashtra): lunar month ends at Amavasya.
+  //     The month name tracks the current solar month (masaIndex).
+  //     Month does NOT change during Krishna Paksha — only at Amavasya.
+  //
+  //   • Purnimant (North India, Punjab, Rajasthan): lunar month ends at Purnima.
+  //     After Purnima (i.e., during Krishna Paksha, tithis 16–30), Purnimant has
+  //     already entered the NEXT month, even though Amant still shows the old one.
+  //     So during Krishna Paksha: purnimantIndex = (masaIndex + 1) % 12.
+  //
+  // RELATIONSHIP: The two systems are always either in sync (Shukla Paksha)
+  // or exactly one month apart (Krishna Paksha).
+  //
+  // HISTORICAL BUG (now fixed): the code previously advanced Amant (not Purnimant)
+  // during Krishna Paksha — exactly backwards.  Both systems are derived from the
+  // same masaIndex (Sun's sidereal position); only the advancement rule differs.
+  const amantMasa      = MASA_NAMES[masaIndex] || MASA_NAMES[0]; // never changes within the month
+  const purnimantMasaIdx = tithiResult.number > 15 ? (masaIndex + 1) % 12 : masaIndex;
+  const purnimantMasa  = MASA_NAMES[purnimantMasaIdx] || MASA_NAMES[0];
 
   // Ayanamsha value
   const ayanamsha = lahiriAyanamsha(jdSunrise);
@@ -930,7 +967,20 @@ export function computePanchang(input: PanchangInput): PanchangData {
     { en: 'Roga',     hi: 'रोग',      sa: 'रोगः' },
   ];
   const ANANDADI_AUSPICIOUS = new Set([0, 4, 7]); // Ananda, Kshema, Susthira
-  const anandadiIdx = (tithiResult.number + weekday - 2 + 9 * 100) % 9;
+
+  // Anandadi Yoga index formula (Muhurta Chintamani / Drik Panchang convention):
+  //   index = (tithi + vara - 2) % 9
+  // where tithi is 1-based (1–30) and vara is 1-based (Sun=1 … Sat=7).
+  //
+  // JS Date.getDay() returns 0-based (Sun=0 … Sat=6), so vara = weekday + 1.
+  // Substituting: (tithi + (weekday+1) - 2) % 9 = (tithi + weekday - 1) % 9
+  //
+  // HISTORICAL BUG (now fixed): the expression used -2 instead of -1, which
+  // shifted every result by -1 mod 9.  Concrete example — Sunday Pratipada:
+  //   Wrong:   (1 + 0 - 2 + 900) % 9 = 8  → Roga (inauspicious)
+  //   Correct: (1 + 0 - 1 + 900) % 9 = 0  → Ananda (auspicious)
+  // Every Anandadi Yoga label shown in the app was wrong before this fix.
+  const anandadiIdx = (tithiResult.number + weekday - 1 + 9 * 100) % 9;
   const anandadiYoga = {
     number: anandadiIdx + 1,
     name: ANANDADI_NAMES[anandadiIdx],
@@ -958,13 +1008,22 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // 7. Panchaka (Moon in nakshatras 23-27)
   const PANCHAKA_NAKSHATRAS = new Set([23, 24, 25, 26, 27]);
   const panchakaActive = PANCHAKA_NAKSHATRAS.has(nakshatraNum);
+  // Panchaka type by weekday — Dharma Sindhu / Nirṇaya Sindhu classification.
+  // Determines the nature of the Panchaka period when Moon is in nakshatras 23-27.
+  //
+  // HISTORICAL BUG (now fixed): key 3 (Wednesday = Chora Panchaka) was missing.
+  // When the Moon was in Panchaka nakshatras on a Wednesday, the PANCHAKA_TYPE
+  // lookup returned undefined, and the `|| PANCHAKA_DEFAULT` fallback silently
+  // produced a generic "Panchaka" label with no qualifying type name.  The
+  // correct Wednesday type is Chora Panchaka (associated with theft/deception).
   const PANCHAKA_TYPE: Record<number, { en: string; hi: string; sa: string }> = {
-    0: { en: 'Mrityu Panchaka',  hi: 'मृत्यु पंचक',  sa: 'मृत्युपञ्चकम्' },
-    1: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },
-    2: { en: 'Agni Panchaka',    hi: 'अग्नि पंचक',   sa: 'अग्निपञ्चकम्' },
-    4: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },
-    5: { en: 'Chora Panchaka',   hi: 'चोर पंचक',     sa: 'चोरपञ्चकम्' },
-    6: { en: 'Roga Panchaka',    hi: 'रोग पंचक',     sa: 'रोगपञ्चकम्' },
+    0: { en: 'Mrityu Panchaka',  hi: 'मृत्यु पंचक',  sa: 'मृत्युपञ्चकम्' }, // Sunday
+    1: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },    // Monday
+    2: { en: 'Agni Panchaka',    hi: 'अग्नि पंचक',   sa: 'अग्निपञ्चकम्' },  // Tuesday
+    3: { en: 'Chora Panchaka',   hi: 'चोर पंचक',     sa: 'चोरपञ्चकम्' },    // Wednesday (was missing)
+    4: { en: 'Raja Panchaka',    hi: 'राज पंचक',     sa: 'राजपञ्चकम्' },    // Thursday
+    5: { en: 'Chora Panchaka',   hi: 'चोर पंचक',     sa: 'चोरपञ्चकम्' },    // Friday
+    6: { en: 'Roga Panchaka',    hi: 'रोग पंचक',     sa: 'रोगपञ्चकम्' },    // Saturday
   };
   const PANCHAKA_DEFAULT = { en: 'Panchaka', hi: 'पंचक', sa: 'पञ्चकम्' };
   const panchaka = {
@@ -1001,11 +1060,28 @@ export function computePanchang(input: PanchangInput): PanchangData {
     { en: 'Servant', hi: 'सेवक', sa: 'सेवकः' },
     { en: 'Enemy', hi: 'शत्रु', sa: 'शत्रुः' },
   ];
-  // Day lord is King, sunrise hora lord is Minister
-  const HORA_SEQUENCE = [0, 3, 6, 2, 5, 1, 4]; // Sun,Moon,Mars,Merc,Jup,Ven,Sat → planet IDs 0,3,6,2,5,1,4
-  const WEEKDAY_PLANET_MAP = [0, 3, 6, 2, 5, 1, 4]; // Sun=0,Mon=3(Moon),Tue=6(Mars),...
+
+  // Weekday → ruling planet (day lord) mapping.
+  // JS weekday: 0=Sunday, 1=Monday, …, 6=Saturday.
+  // Planet IDs: 0=Sun, 1=Moon, 2=Mars, 3=Mercury, 4=Jupiter, 5=Venus, 6=Saturn.
+  // This is simply the one-to-one correspondence between day names and their
+  // ruling grahas (Sun-day, Moon-day, Mars-day, Mercury-day, Jupiter-day,
+  // Venus-day, Saturn-day).
+  //
+  // HISTORICAL BUG (now fixed): WEEKDAY_PLANET_MAP was identical to the Hora
+  // sequence [0,3,6,2,5,1,4], which is a CHALDEAN order used for computing
+  // hora lords — NOT weekday lords.  As a result Monday→Mercury(3),
+  // Tuesday→Saturn(6), etc., were all wrong.  Only Sunday was accidentally
+  // correct because both arrays start with Sun(0).
+  const WEEKDAY_PLANET_MAP = [0, 1, 2, 3, 4, 5, 6]; // Sun Mon Tue Wed Thu Fri Sat → planet IDs
+
   const dayLordPlanet = WEEKDAY_PLANET_MAP[weekday];
-  const horaLordPlanet = HORA_SEQUENCE[weekday]; // sunrise hora planet
+
+  // Sunrise hora lord: in the Chaldean hora system, each day's first hora (at
+  // sunrise) is always ruled by the day's own planet lord.  Both King and
+  // Minister therefore reference the same graha; the distinction matters only
+  // for intra-day hora calculations (see panchang-calc.ts computeHora()).
+  const horaLordPlanet = WEEKDAY_PLANET_MAP[weekday]; // 1st hora at sunrise = day lord
   const mantriMandala = {
     king: { planet: dayLordPlanet, role: MANTRI_ROLES[0] },
     minister: { planet: horaLordPlanet, role: MANTRI_ROLES[1] },

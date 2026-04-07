@@ -1150,17 +1150,27 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
   });
 
   // 43. Viparita Raja Yoga
+  // Classical rule (BPHS Ch.41, Phaladeepika Ch.6): the lords of houses 6, 8,
+  // and 12 (dusthanas) must (a) be placed IN dusthana houses AND (b) exchange
+  // signs with each other.
+  //
+  // HISTORICAL BUG (now fixed): only the sign-exchange condition was checked.
+  // The prerequisite — that each involved lord must actually be LOCATED in a
+  // dusthana house (6, 8, or 12) — was missing entirely.  Without it, two
+  // dusthana lords in, say, houses 1 and 5 but in each other's signs would
+  // incorrectly trigger the yoga, which is a false positive.
   const sixthLord = signLord(houseSign(6));
   const eighthLord = signLord(houseSign(8));
   const twelfthLord = signLord(houseSign(12));
   const d6 = getP(planets, sixthLord);
   const d8 = getP(planets, eighthLord);
   const d12 = getP(planets, twelfthLord);
-  // Sign exchange among dusthana lords
+  const DUSTHANAS = new Set([6, 8, 12]);
+  // Sign exchange AND both lords physically placed in dusthana houses
   const vipPresent =
-    (d6.sign === houseSign(8) && d8.sign === houseSign(6)) ||
-    (d6.sign === houseSign(12) && d12.sign === houseSign(6)) ||
-    (d8.sign === houseSign(12) && d12.sign === houseSign(8));
+    (d6.sign === houseSign(8) && d8.sign === houseSign(6) && DUSTHANAS.has(d6.house) && DUSTHANAS.has(d8.house)) ||
+    (d6.sign === houseSign(12) && d12.sign === houseSign(6) && DUSTHANAS.has(d6.house) && DUSTHANAS.has(d12.house)) ||
+    (d8.sign === houseSign(12) && d12.sign === houseSign(8) && DUSTHANAS.has(d8.house) && DUSTHANAS.has(d12.house));
   results.push({
     id: 'viparita_raja',
     name: { en: 'Viparita Raja Yoga', hi: 'विपरीत राज योग', sa: 'विपरीतराजयोगः' },

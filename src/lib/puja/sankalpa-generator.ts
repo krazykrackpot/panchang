@@ -3,7 +3,7 @@
  * with computed astronomical fields (tithi, nakshatra, yoga, karana, vara, masa, etc.)
  */
 
-import { dateToJD, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunrise, sunLongitude, moonLongitude, toSidereal, calculateTithi, calculateKarana, getNakshatraNumber, getRashiNumber, calculateYoga, getMasa, getSamvatsara, getRitu, getAyana, MASA_NAMES, SAMVATSARA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
 import { TITHIS } from '@/lib/constants/tithis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
@@ -58,13 +58,13 @@ const VARA_NAMES_SA = ['रवि', 'सोम', 'मंगल', 'बुध', '�
 export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const { date, timezoneOffset, userName, gotra, pujaDeity } = input;
 
-  // 1. Compute JD at ~6 AM local time (approximating sunrise)
+  // 1. Compute JD at actual sunrise
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
-  const localHour = 6; // approximate sunrise
-  const utcHour = localHour - timezoneOffset;
-  const jd = dateToJD(year, month, day, utcHour);
+  const jdNoon = dateToJD(year, month, day, 12 - timezoneOffset);
+  const sunriseUT = approximateSunrise(jdNoon, input.lat, input.lng);
+  const jd = dateToJD(year, month, day, sunriseUT);
 
   // 2. Sun & Moon sidereal longitudes
   const sunTrop = sunLongitude(jd);

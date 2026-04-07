@@ -4,7 +4,7 @@
  */
 
 import { generateKundali } from '@/lib/ephem/kundali-calc';
-import { sunLongitude, toSidereal, getNakshatraNumber, normalizeDeg } from '@/lib/ephem/astronomical';
+import { sunLongitude, toSidereal, getNakshatraNumber, normalizeDeg, dateToJD, approximateSunrise, approximateSunset } from '@/lib/ephem/astronomical';
 import { resolveTimezone } from '@/lib/utils/timezone';
 import { findSolarReturn } from './solar-return';
 import { calculateMuntha } from './muntha';
@@ -51,8 +51,15 @@ export function generateVarshaphal(birthData: BirthData, year: number): Varshaph
   const srWeekday = srDate.getDay();
   const varsheshvara = determineVarsheshvara(srWeekday, varshaphalChart.planets);
 
-  // 7. Sahams
-  const isDayBirth = srDate.getHours() >= 6 && srDate.getHours() < 18;
+  // 7. Sahams — use actual sunrise/sunset for day/night determination
+  const srYear = srDate.getFullYear();
+  const srMonth = srDate.getMonth() + 1;
+  const srDay = srDate.getDate();
+  const jdSrNoon = dateToJD(srYear, srMonth, srDay, 12 - tzOffset);
+  const srSunriseUT = approximateSunrise(jdSrNoon, birthData.lat, birthData.lng);
+  const srSunsetUT = approximateSunset(jdSrNoon, birthData.lat, birthData.lng);
+  const srHourUT = srDate.getHours() - tzOffset + srDate.getMinutes() / 60;
+  const isDayBirth = srHourUT >= srSunriseUT && srHourUT < srSunsetUT;
   const sahams = calculateSahams(
     varshaphalChart.ascendant.degree,
     varshaphalChart.planets,

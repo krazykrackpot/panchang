@@ -71,11 +71,15 @@ export function scanDateRange(options: ScanOptions): ScoredTimeWindow[] {
     const jdSunrise = dateToJD(year, month, day, sunriseUT);
     const snap = getPanchangSnapshot(jdSunrise, lat, lng);
 
-    // 3 time windows: morning (6-10), midday (10-14), afternoon (14-18)
+    // 3 time windows: divide daylight into 3 equal parts (sunrise to sunset)
+    const sunriseLocal = sunriseUT + tz;
+    const sunsetLocal = sunsetUT + tz;
+    const dayLen = sunsetLocal - sunriseLocal;
+    const third = dayLen / 3;
     const timeSlots = [
-      { startH: 6 + tz, endH: 10 + tz, label: 'Morning' },
-      { startH: 10 + tz, endH: 14 + tz, label: 'Midday' },
-      { startH: 14 + tz, endH: 18 + tz, label: 'Afternoon' },
+      { startH: sunriseLocal, endH: sunriseLocal + third, label: 'Morning' },
+      { startH: sunriseLocal + third, endH: sunriseLocal + 2 * third, label: 'Midday' },
+      { startH: sunriseLocal + 2 * third, endH: sunsetLocal, label: 'Afternoon' },
     ];
 
     for (const slot of timeSlots) {

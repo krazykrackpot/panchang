@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import type { PlanetPosition, DashaEntry } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
@@ -10,8 +10,8 @@ import HouseVisual, { HouseBadge } from './HouseVisual';
 
 // ─── Planet metadata ────────────────────────────────────────────────────────
 
-const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn'];
-const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि'];
+const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'गुरु', 'शुक्र', 'शनि', 'राहु', 'केतु'];
 
 function pName(id: number, isHi: boolean): string {
   return isHi ? (PLANET_NAMES_HI[id] ?? `Planet ${id}`) : (PLANET_NAMES_EN[id] ?? `Planet ${id}`);
@@ -204,6 +204,7 @@ const AVASTHA_REFERENCE = [
   { state: 'Lajjita (ashamed)', meaning: '5th house with malefics', good: 'Bad', effect: 'Results with embarrassment', meaningHi: '5वें भाव में पाप ग्रह के साथ', effectHi: 'शर्मिंदगी के साथ परिणाम' },
   { state: 'Garvita (proud)', meaning: 'Exalted/moolatrikona', good: 'Best', effect: 'Confident, grand results', meaningHi: 'उच्च/मूलत्रिकोण', effectHi: 'आत्मविश्वासपूर्ण, भव्य परिणाम' },
   { state: 'Kshobhita (agitated)', meaning: 'With Sun + malefic aspect', good: 'Bad', effect: 'Results with stress', meaningHi: 'सूर्य + पाप दृष्टि के साथ', effectHi: 'तनाव के साथ परिणाम' },
+  { state: 'Vikala (afflicted)', meaning: 'Debilitated or combust', good: 'Worst', effect: 'Erratic, blocked, or distorted results', meaningHi: 'नीच या अस्तंगत', effectHi: 'अनियमित, अवरुद्ध या विकृत परिणाम' },
 ];
 
 // ─── Shared UI helpers ──────────────────────────────────────────────────────
@@ -736,30 +737,32 @@ export function AvasthasInterpretation({ avasthas, planets, locale }: AvasthasIn
   if (!avasthas.length) return null;
 
   // Plain-language meaning per Baladi (age) state
+  // Keys match the lowercase `state` field from calculateAvasthas()
   const BALADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    Bala:    { en: 'still developing its full potential — expect gradual, building results', hi: 'अभी क्षमता विकसित हो रही है — क्रमिक परिणाम' },
-    Kumara:  { en: 'actively learning and building — solid but not yet at peak', hi: 'सक्रिय और सीख रहा है — ठोस पर चरम पर नहीं' },
-    Yuva:    { en: 'at peak power — delivering its best, most dependable results', hi: 'चरम शक्ति पर — सर्वोत्तम, विश्वसनीय परिणाम' },
-    Vriddha: { en: 'slowing down — results come, but with delays and reduced intensity', hi: 'धीमा हो रहा है — परिणाम आते हैं, पर देर से' },
-    Mrita:   { en: 'blocked or exhausted — this area of life needs conscious effort to activate', hi: 'अवरुद्ध या थका हुआ — सचेत प्रयास चाहिए' },
+    bala:    { en: 'still developing its full potential — expect gradual, building results', hi: 'अभी क्षमता विकसित हो रही है — क्रमिक परिणाम' },
+    kumara:  { en: 'actively learning and building — solid but not yet at peak', hi: 'सक्रिय और सीख रहा है — ठोस पर चरम पर नहीं' },
+    yuva:    { en: 'at peak power — delivering its best, most dependable results', hi: 'चरम शक्ति पर — सर्वोत्तम, विश्वसनीय परिणाम' },
+    vriddha: { en: 'slowing down — results come, but with delays and reduced intensity', hi: 'धीमा हो रहा है — परिणाम आते हैं, पर देर से' },
+    mrita:   { en: 'blocked or exhausted — this area of life needs conscious effort to activate', hi: 'अवरुद्ध या थका हुआ — सचेत प्रयास चाहिए' },
   };
 
   // Plain-language meaning per Jagradadi (alertness) state
+  // Keys match the lowercase `state` field: 'jagrat', 'swapna', 'sushupta'
   const JAGRADADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    Jaagrit:  { en: 'fully alert — giving ~100% of its chart-promised results', hi: 'पूरी तरह जाग्रत — ~100% वादे पूरे कर रहा है' },
-    Swapna:   { en: 'half-awake — giving ~50% results; potential is there but under-expressing', hi: 'आधा जाग्रत — ~50% परिणाम; क्षमता है पर कम व्यक्त' },
-    Sushupti: { en: 'deep sleep — giving only ~25% results; needs external activation (remedies/effort)', hi: 'गहरी नींद — ~25% परिणाम; बाहरी सक्रियता चाहिए' },
+    jagrat:   { en: 'fully alert — giving ~100% of its chart-promised results', hi: 'पूरी तरह जाग्रत — ~100% वादे पूरे कर रहा है' },
+    swapna:   { en: 'half-awake — giving ~50% results; potential is there but under-expressing', hi: 'आधा जाग्रत — ~50% परिणाम; क्षमता है पर कम व्यक्त' },
+    sushupta: { en: 'deep sleep — giving only ~25% results; needs external activation (remedies/effort)', hi: 'गहरी नींद — ~25% परिणाम; बाहरी सक्रियता चाहिए' },
   };
 
   // Plain-language meaning per Lajjitadi (emotional) state
+  // Keys match the lowercase `state` field from calculateAvasthas()
   const LAJJITADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    Lajjita:  { en: 'ashamed — in a difficult environment, giving uncomfortable or blocked results', hi: 'लज्जित — कठिन वातावरण, असहज परिणाम' },
-    Garvita:  { en: 'proud — exalted or own-sign power, delivering with confidence', hi: 'गर्वित — उच्च या स्वगृह, आत्मविश्वास से देता है' },
-    Kshudita: { en: 'hungry — with enemies, giving insatiable or restless results', hi: 'क्षुधित — शत्रुओं के साथ, बेचैन परिणाम' },
-    Trishita: { en: 'thirsty — craving balance; results come through persistent effort', hi: 'तृषित — संतुलन की चाह; लगातार प्रयास से परिणाम' },
-    Mudita:   { en: 'happy — with friendly planets, giving warm and willing results', hi: 'मुदित — मित्र ग्रहों के साथ, उत्साहपूर्ण परिणाम' },
-    Kshobhita:{ en: 'agitated — under stress from aspects, giving volatile results', hi: 'क्षोभित — दृष्टि तनाव, अस्थिर परिणाम' },
-    Neutral:  { en: 'neutral — neither particularly helped nor hindered', hi: 'तटस्थ — न विशेष सहायता, न बाधा' },
+    lajjita:   { en: 'ashamed — in a difficult environment, giving uncomfortable or blocked results', hi: 'लज्जित — कठिन वातावरण, असहज परिणाम' },
+    garvita:   { en: 'proud — exalted or own-sign power, delivering with confidence', hi: 'गर्वित — उच्च या स्वगृह, आत्मविश्वास से देता है' },
+    kshudita:  { en: 'hungry — with enemies, giving insatiable or restless results', hi: 'क्षुधित — शत्रुओं के साथ, बेचैन परिणाम' },
+    trushita:  { en: 'thirsty — craving balance; results come through persistent effort', hi: 'तृषित — संतुलन की चाह; लगातार प्रयास से परिणाम' },
+    mudita:    { en: 'happy — with friendly planets, giving warm and willing results', hi: 'मुदित — मित्र ग्रहों के साथ, उत्साहपूर्ण परिणाम' },
+    kshobhita: { en: 'agitated — under stress from aspects, giving volatile results', hi: 'क्षोभित — दृष्टि तनाव, अस्थिर परिणाम' },
   };
 
   // Build a plain-language personal summary for each planet
@@ -769,14 +772,10 @@ export function AvasthasInterpretation({ avasthas, planets, locale }: AvasthasIn
     // Determine overall quality
     const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
 
-    // Get plain meanings
-    const baladiKey = av.baladi.name.en || 'Yuva';
-    const jagradadiKey = av.jagradadi.name.en || 'Jaagrit';
-    const lajjitadiKey = av.lajjitadi.name.en || 'Neutral';
-
-    const baladiMeaning = BALADI_PLAIN[baladiKey] ?? { en: `in ${baladiKey} state`, hi: `${baladiKey} अवस्था में` };
-    const jagradadiMeaning = JAGRADADI_PLAIN[jagradadiKey] ?? { en: `${jagradadiKey}`, hi: `${jagradadiKey}` };
-    const lajjitadiMeaning = LAJJITADI_PLAIN[lajjitadiKey] ?? { en: 'neutral', hi: 'तटस्थ' };
+    // Use the lowercase `state` field for dict lookup — it always matches
+    const baladiMeaning = BALADI_PLAIN[av.baladi.state] ?? { en: `in ${av.baladi.name.en} state`, hi: `${av.baladi.name.hi} अवस्था में` };
+    const jagradadiMeaning = JAGRADADI_PLAIN[av.jagradadi.state] ?? { en: av.jagradadi.name.en, hi: av.jagradadi.name.hi };
+    const lajjitadiMeaning = LAJJITADI_PLAIN[av.lajjitadi.state] ?? { en: 'in a neutral state', hi: 'तटस्थ अवस्था में' };
 
     const overallTone = avgStrength >= 65 ? (isHi ? 'शक्तिशाली' : 'strong') :
                         avgStrength >= 40 ? (isHi ? 'मध्यम' : 'moderate') :

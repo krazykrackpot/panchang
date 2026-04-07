@@ -953,23 +953,41 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // ── Amrit Kalam & Varjyam ──
   // Traditional rule: ghati offsets are measured from NAKSHATRA INGRESS time (not sunrise).
-  // If the current nakshatra transitions to the next one DURING the panchang day
-  // (between sunrise and the following sunrise), use the NEXT nakshatra and its ingress JD.
-  // This matches Drik Panchang behavior (verified April 7 2026, Corseaux: Jyeshtha→Mula
-  // transition during day, Mula AMRIT_GHATI=8 → 13:19+192min=16:31 CEST ✓).
+  //
+  // Timezone-agnostic selection (no arbitrary thresholds):
+  //   Ask "has the current nakshatra's amrit window already expired before today's sunrise?"
+  //   If startJD + amritOffset < jdSunrise → expired → use NEXT nakshatra's ingress (endJD).
+  //   Otherwise → still upcoming → use CURRENT nakshatra's ingress (startJD).
+  //
+  // Why this works for all UTC offsets:
+  //   UTC+2 (Switzerland, Apr 7): Jyeshtha ingress 02:47 UT + 0.8h = 03:35 UT < sunrise 05:01 UT
+  //     → expired → use Mula (endJD = 11:19 UT) → 16:31 CEST ✓
+  //   UTC-5 (New York, Apr 7): Mula ingress 11:19 UT + 3.2h = 14:31 UT > sunrise 11:35 UT
+  //     → still ahead → use Mula (startJD = 11:19 UT) → 09:31 EST ✓
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
   let amritNakshatraNum = nakshatraNum;
   let amritIngressJD: number;
 
-  if (nakshatraTransition?.endJD) {
-    // Nakshatra has a transition — always use next nakshatra from its ingress (matches Drik Panchang).
-    // The previous `<= jdSunrise + 1.0` threshold was too tight: if the transition falls even
-    // 1-2 min past the 24h mark it would fall through to the else branch and use the wrong ingress.
+  if (nakshatraTransition?.startJD) {
+    const currentAmritJD = nakshatraTransition.startJD
+      + (AMRIT_GHATI[nakshatraNum - 1] || 0) * (0.4 / 24);
+
+    if (currentAmritJD >= jdSunrise) {
+      // Amrit window is still ahead of sunrise → use current nakshatra's ingress
+      amritIngressJD = nakshatraTransition.startJD;
+    } else if (nakshatraTransition.endJD) {
+      // Amrit window expired before sunrise → use next nakshatra's ingress
+      amritNakshatraNum = nakshatraTransition.nextNumber;
+      amritIngressJD = nakshatraTransition.endJD;
+    } else {
+      amritIngressJD = jdSunrise - 0.5;
+    }
+  } else if (nakshatraTransition?.endJD) {
+    // No startJD available → fall back to next nakshatra
     amritNakshatraNum = nakshatraTransition.nextNumber;
     amritIngressJD = nakshatraTransition.endJD;
   } else {
-    // No transition data — use current nakshatra's ingress (startJD from transition)
-    amritIngressJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
+    amritIngressJD = jdSunrise - 0.5;
   }
 
   const { amritKalam, varjyam } = computeAmritVarjyam(

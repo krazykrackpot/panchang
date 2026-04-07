@@ -70,9 +70,8 @@ function computeMoonFromBirth(birth: PersonBirth): { nakshatra: number; rashi: n
   const [y, m, d] = birth.date.split('-').map(Number);
   const [h, min] = birth.time.split(':').map(Number);
   const decimalHour = h + min / 60;
-  const tz = birth.placeTimezone
-    ? getUTCOffsetForDate(y, m, d, birth.placeTimezone)
-    : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+  if (!birth.placeTimezone) return { nakshatra: 1, rashi: 1 }; // Location timezone required
+  const tz = getUTCOffsetForDate(y, m, d, birth.placeTimezone);
   const utHour = decimalHour - tz;
   const jd = dateToJD(y, m, d, utHour);
   const moonSid = toSidereal(moonLongitude(jd), jd);

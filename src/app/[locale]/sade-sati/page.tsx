@@ -162,7 +162,8 @@ export default function SadeSatiPage() {
     setLoading(true);
     try {
       const [y, m, d] = birthDate.split('-').map(Number);
-      const tzOffset = birthTimezone ? getUTCOffsetForDate(y, m, d, birthTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+      if (!birthTimezone) { setLoading(false); return; }
+      const tzOffset = getUTCOffsetForDate(y, m, d, birthTimezone);
       const res = await fetch('/api/kundali', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

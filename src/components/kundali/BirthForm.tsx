@@ -29,7 +29,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
     place: initialData?.place || '',
     lat: initialData?.lat || 0,
     lng: initialData?.lng || 0,
-    timezone: initialData?.timezone || (typeof window !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'UTC'),
+    timezone: initialData?.timezone || '', // Must come from LocationSearch — never use browser timezone
     ayanamsha: (initialData?.ayanamsha || 'lahiri') as 'lahiri' | 'raman' | 'kp',
     chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
   });

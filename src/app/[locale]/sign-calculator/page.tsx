@@ -64,7 +64,8 @@ export default function SignCalculatorPage() {
     const [y, m, d] = dateStr.split('-').map(Number);
     const [h, min] = timeStr.split(':').map(Number);
     const decimalHour = h + min / 60;
-    const tzOffset = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+    if (!placeTimezone) return null; // Location timezone is required — never use browser timezone
+    const tzOffset = getUTCOffsetForDate(y, m, d, placeTimezone);
     const utHour = decimalHour - tzOffset;
 
     const jd = dateToJD(y, m, d, utHour);

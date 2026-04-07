@@ -2723,7 +2723,7 @@ export default function KundaliPage() {
                 <p className="text-text-secondary/70 text-xs text-center mb-4">
                   {locale === 'en' ? 'The Navamsha sign of your Atmakaraka — reveals your soul\'s ultimate destination' : 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य'}
                 </p>
-                <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 max-w-lg mx-auto">
+                <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
                   <div className="text-center mb-3">
                     <RashiIconById id={kundali.jaimini.karakamsha.sign} size={48} />
                     <div className="text-gold-light font-bold text-2xl mt-2" style={headingFont}>{kundali.jaimini.karakamsha.signName[locale]}</div>

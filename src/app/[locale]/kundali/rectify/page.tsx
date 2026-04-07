@@ -71,9 +71,8 @@ export default function RectifyPage() {
       return;
     }
     const [y, m, d] = [birthYear, birthMonth, birthDay];
-    const tz = placeTimezone
-      ? getUTCOffsetForDate(y, m, d, placeTimezone)
-      : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+    if (!placeTimezone) return;
+    const tz = getUTCOffsetForDate(y, m, d, placeTimezone);
 
     // Try different times within uncertainty window and score each
     const results: { time: string; score: number; lagna: number }[] = [];

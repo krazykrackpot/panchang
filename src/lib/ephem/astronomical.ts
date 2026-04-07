@@ -396,44 +396,85 @@ export function getPlanetaryPositions(jd: number): {
 function _meeusPlanetaryPositions(jd: number): {
   id: number; longitude: number; speed: number; isRetrograde: boolean
 }[] {
+  // We compute positions at jd AND at jd+1 day so we can derive the actual
+  // daily speed and therefore infer retrograde status via sign(speed) < 0.
+  //
+  // HISTORICAL BUG (now fixed): the function previously returned hardcoded
+  // average speeds and isRetrograde: false for all 7 classical planets.
+  // This meant retrograde status was NEVER reported in the Meeus fallback
+  // path (used when Swiss Ephemeris is unavailable), causing:
+  //   • Cheshta Bala to give every planet its direct-motion strength
+  //   • Yoga detection to miss retro-triggered yogas
+  //   • Deeptadi Avastha to miss Vikala (retrograde) avastha
+  //   • UI retrograde indicators to never appear
+  // Sun and Moon never retrograde. Rahu/Ketu are always retrograde by convention.
+  // For the 5 classical planets we compute speed by finite difference.
+  const computeLong = (jdEval: number): Record<number, number> => {
+    const tv = T(jdEval);
+
+    const sunV = _meesusSunLongitude(jdEval);
+    const moonV = _meeusMoonLongitude(jdEval);
+
+    const marsLv = normalizeDeg(355.433 + 19140.2993 * tv);
+    const marsMv = normalizeDeg(319.839 + 19139.8585 * tv);
+    const marsV = normalizeDeg(marsLv + 6.4 * Math.sin(toRad(marsMv)) + 1.0 * Math.sin(toRad(2 * marsMv)));
+
+    const mercLv = normalizeDeg(252.251 + 149472.6746 * tv);
+    const mercMv = normalizeDeg(174.795 + 149472.5153 * tv);
+    const mercuryV = normalizeDeg(mercLv + 23.44 * Math.sin(toRad(mercMv)) + 2.9 * Math.sin(toRad(2 * mercMv)));
+
+    const jupLv = normalizeDeg(34.351 + 3034.9057 * tv);
+    const jupMv = normalizeDeg(20.020 + 3034.6872 * tv);
+    const jupiterV = normalizeDeg(jupLv + 5.55 * Math.sin(toRad(jupMv)) + 0.17 * Math.sin(toRad(2 * jupMv)));
+
+    const venLv = normalizeDeg(181.979 + 58517.8157 * tv);
+    const venMv = normalizeDeg(50.416 + 58517.8039 * tv);
+    const venusV = normalizeDeg(venLv + 0.78 * Math.sin(toRad(venMv)));
+
+    const satLv = normalizeDeg(50.077 + 1222.1138 * tv);
+    const satMv = normalizeDeg(317.021 + 1222.1116 * tv);
+    const saturnV = normalizeDeg(satLv + 6.4 * Math.sin(toRad(satMv)) + 0.9 * Math.sin(toRad(2 * satMv)));
+
+    return { 0: sunV, 1: moonV, 2: marsV, 3: mercuryV, 4: jupiterV, 5: venusV, 6: saturnV };
+  };
+
   const t = T(jd);
+  const pos0 = computeLong(jd);
+  const pos1 = computeLong(jd + 1); // positions 1 day later
 
-  const sun = _meesusSunLongitude(jd);
-  const moon = _meeusMoonLongitude(jd);
+  // Speed = longitude change in 1 day; handle 360° wrap-around.
+  // A negative speed (retrograde apparent motion) means the planet is
+  // moving westward relative to the fixed stars.
+  const speed = (id: number): number => {
+    let delta = pos1[id] - pos0[id];
+    if (delta > 180)  delta -= 360; // crossed 0°/360° boundary going forward
+    if (delta < -180) delta += 360; // crossed going backward
+    return delta; // degrees per day
+  };
 
-  const marsL = normalizeDeg(355.433 + 19140.2993 * t);
-  const marsM = normalizeDeg(319.839 + 19139.8585 * t);
-  const mars = normalizeDeg(marsL + 6.4 * Math.sin(toRad(marsM)) + 1.0 * Math.sin(toRad(2 * marsM)));
+  // Sun and Moon never retrograde (their apparent motion is always direct)
+  const sunSpeed  = speed(0);  // ~0.985°/day
+  const moonSpeed = speed(1);  // ~12-15°/day
 
-  const mercL = normalizeDeg(252.251 + 149472.6746 * t);
-  const mercM = normalizeDeg(174.795 + 149472.5153 * t);
-  const mercury = normalizeDeg(mercL + 23.44 * Math.sin(toRad(mercM)) + 2.9 * Math.sin(toRad(2 * mercM)));
-
-  const jupL = normalizeDeg(34.351 + 3034.9057 * t);
-  const jupM = normalizeDeg(20.020 + 3034.6872 * t);
-  const jupiter = normalizeDeg(jupL + 5.55 * Math.sin(toRad(jupM)) + 0.17 * Math.sin(toRad(2 * jupM)));
-
-  const venL = normalizeDeg(181.979 + 58517.8157 * t);
-  const venM = normalizeDeg(50.416 + 58517.8039 * t);
-  const venus = normalizeDeg(venL + 0.78 * Math.sin(toRad(venM)));
-
-  const satL = normalizeDeg(50.077 + 1222.1138 * t);
-  const satM = normalizeDeg(317.021 + 1222.1116 * t);
-  const saturn = normalizeDeg(satL + 6.4 * Math.sin(toRad(satM)) + 0.9 * Math.sin(toRad(2 * satM)));
+  const marsSpeed    = speed(2);   // avg +0.52°/day; retrograde ~80 days/year
+  const mercurySpeed = speed(3);   // avg +1.38°/day; retrograde ~21 days/year (3×)
+  const jupiterSpeed = speed(4);   // avg +0.083°/day; retrograde ~120 days/year
+  const venusSpeed   = speed(5);   // avg +1.2°/day; retrograde ~42 days/year
+  const saturnSpeed  = speed(6);   // avg +0.034°/day; retrograde ~138 days/year
 
   const rahu = normalizeDeg(125.044 - 1934.1362 * t);
   const ketu = normalizeDeg(rahu + 180);
 
   return [
-    { id: 0, longitude: sun, speed: 1.0, isRetrograde: false },
-    { id: 1, longitude: moon, speed: 13.2, isRetrograde: false },
-    { id: 2, longitude: mars, speed: 0.52, isRetrograde: false },
-    { id: 3, longitude: mercury, speed: 1.38, isRetrograde: false },
-    { id: 4, longitude: jupiter, speed: 0.083, isRetrograde: false },
-    { id: 5, longitude: venus, speed: 1.2, isRetrograde: false },
-    { id: 6, longitude: saturn, speed: 0.034, isRetrograde: false },
-    { id: 7, longitude: rahu, speed: -0.053, isRetrograde: true },
-    { id: 8, longitude: ketu, speed: -0.053, isRetrograde: true },
+    { id: 0, longitude: pos0[0], speed: sunSpeed,     isRetrograde: false },
+    { id: 1, longitude: pos0[1], speed: moonSpeed,    isRetrograde: false },
+    { id: 2, longitude: pos0[2], speed: marsSpeed,    isRetrograde: marsSpeed    < 0 },
+    { id: 3, longitude: pos0[3], speed: mercurySpeed, isRetrograde: mercurySpeed < 0 },
+    { id: 4, longitude: pos0[4], speed: jupiterSpeed, isRetrograde: jupiterSpeed < 0 },
+    { id: 5, longitude: pos0[5], speed: venusSpeed,   isRetrograde: venusSpeed   < 0 },
+    { id: 6, longitude: pos0[6], speed: saturnSpeed,  isRetrograde: saturnSpeed  < 0 },
+    { id: 7, longitude: rahu,    speed: -0.053,       isRetrograde: true },  // nodes always retrograde
+    { id: 8, longitude: ketu,    speed: -0.053,       isRetrograde: true },
   ];
 }
 

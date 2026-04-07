@@ -104,15 +104,19 @@ export function computePlanetLatitude(planetId: number, jd: number): number {
     return lat;
   }
 
-  // Rahu — negative of Moon's latitude (ascending node)
-  if (planetId === 7) {
-    return -computePlanetLatitude(1, jd);
-  }
-
-  // Ketu — same as Moon's latitude (descending node)
-  if (planetId === 8) {
-    return computePlanetLatitude(1, jd);
-  }
+  // Rahu (ascending node) and Ketu (descending node) — ecliptic latitude = 0
+  //
+  // By definition the lunar nodes are the points where the Moon's orbit
+  // INTERSECTS the ecliptic.  A point on the ecliptic has zero ecliptic
+  // latitude.  The Moon itself has non-zero latitude (up to ±5.15°) because
+  // its orbit is inclined ~5° to the ecliptic, but at the nodes the Moon's
+  // path crosses zero — the nodes themselves are always ON the ecliptic.
+  //
+  // HISTORICAL BUG (now fixed): the code returned ±Moon latitude for Rahu/Ketu,
+  // presumably confusing the inclination of the Moon's ORBIT with the latitude
+  // of the nodes themselves.  This corrupted the RA/declination/altitude output
+  // shown in GrahaDetail panels for these two shadow planets.
+  if (planetId === 7 || planetId === 8) return 0;
 
   // Other planets (2-6): simplified perturbation
   const orbital = PLANET_ORBITALS[planetId];

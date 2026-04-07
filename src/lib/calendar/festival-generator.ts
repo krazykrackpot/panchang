@@ -24,7 +24,24 @@ function findSthiraLagna(
   minDeg: number, maxDeg: number, scanHours: number,
   mode: 'asc' | 'desc' = 'asc',
 ): { startUT: number; endUT: number } | null {
-  // Ascendant calculation (same as kundali-calc)
+  // Ascendant calculation — mirrors kundali-calc.ts calculateTropicalAscendant()
+  //
+  // The raw atan2(y, x) result is the IC (Imum Coeli, nadir of the chart).
+  // Adding 180° converts it to the Ascendant (ASC, eastern horizon).
+  //
+  // HISTORICAL BUG 1 (now fixed): this local copy of the formula omitted the
+  //   asc = normalizeDeg(asc + 180)  step that kundali-calc.ts applies at
+  //   line 47 before subtracting the ayanamsha.  Without it the function was
+  //   returning the Descendant instead of the Ascendant — 180° inverted.
+  //   Festival lagna windows (e.g. Diwali Lakshmi Puja Vrishabha Kaal) were
+  //   therefore computing against the wrong sign entirely.
+  //
+  // HISTORICAL BUG 2 (now fixed): the ayanamsha formula used only the linear
+  //   term (23.85306 + 1.39722*T) rather than the full Meeus cubic polynomial
+  //   used in astronomical.ts _meeeusLahiriAyanamsha().  The quadratic term
+  //   +0.00018*T*T is sub-arcminute for modern dates but grows to ~0.001° for
+  //   dates far from J2000; the code should be consistent with the rest of the
+  //   engine.  Fixed to match astronomical.ts exactly.
   function getAscendant(jd: number): number {
     const T = (jd - 2451545.0) / 36525.0;
     const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * T * T;
@@ -36,8 +53,10 @@ function findSthiraLagna(
     const y = -Math.cos(lstR);
     const x = Math.sin(epsR) * Math.tan(latR) + Math.cos(epsR) * Math.sin(lstR);
     let asc = Math.atan2(y, x) * 180 / Math.PI;
-    // Convert tropical to sidereal
-    const ayan = 23.85306 + 1.39722 * T;
+    // atan2 returns IC; add 180° to get the Ascendant (Bug 1 fix)
+    asc = normalizeDeg(asc + 180);
+    // Convert tropical to sidereal — full cubic Meeus polynomial (Bug 2 fix)
+    const ayan = 23.85306 + 1.39722 * T + 0.00018 * T * T - 0.000005 * T * T * T;
     return normalizeDeg(asc - ayan);
   }
 

@@ -378,7 +378,8 @@ export default function KPSystemPage() {
     setLoading(true);
     setUpgradeRequired(false);
     const [y, m, d] = form.date.split('-').map(Number);
-    const tz = placeTimezone ? getUTCOffsetForDate(y, m, d, placeTimezone) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+    if (!placeTimezone) return;
+    const tz = getUTCOffsetForDate(y, m, d, placeTimezone);
     try {
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;

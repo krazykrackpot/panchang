@@ -29,16 +29,19 @@ describe('computePlanetLatitude', () => {
     expect(Math.abs(lat)).toBeLessThanOrEqual(5.3);
   });
 
-  it('Rahu latitude is negative of Moon latitude', () => {
-    const moonLat = computePlanetLatitude(1, JD_2024);
+  it('Rahu latitude is 0 — nodes lie on the ecliptic by definition', () => {
+    // The lunar nodes are the points where the Moon's orbit crosses the ecliptic.
+    // A point ON the ecliptic has zero ecliptic latitude by definition.
+    // Previously this returned -(Moon latitude), which is astronomically incorrect.
     const rahuLat = computePlanetLatitude(7, JD_2024);
-    expect(rahuLat).toBeCloseTo(-moonLat, 10);
+    expect(rahuLat).toBe(0);
   });
 
-  it('Ketu latitude equals Moon latitude', () => {
-    const moonLat = computePlanetLatitude(1, JD_2024);
+  it('Ketu latitude is 0 — nodes lie on the ecliptic by definition', () => {
+    // Same reasoning as Rahu: the descending node is also on the ecliptic.
+    // Previously this returned +(Moon latitude), which is astronomically incorrect.
     const ketuLat = computePlanetLatitude(8, JD_2024);
-    expect(ketuLat).toBeCloseTo(moonLat, 10);
+    expect(ketuLat).toBe(0);
   });
 
   it('Mars latitude is within plausible range', () => {

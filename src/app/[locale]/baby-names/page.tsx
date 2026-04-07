@@ -59,7 +59,8 @@ export default function BabyNamesPage() {
     if (!birthDate || birthLat == null || birthLng == null) return;
     const [y, m, d] = birthDate.split('-').map(Number);
     const [h, min] = birthTime.split(':').map(Number);
-    const tzOffset = birthTz ? getUTCOffsetForDate(y, m, d, birthTz) : -(new Date(y, m - 1, d).getTimezoneOffset() / 60);
+    if (!birthTz) return;
+    const tzOffset = getUTCOffsetForDate(y, m, d, birthTz);
     const utHour = h + min / 60 - tzOffset;
     const jd = dateToJD(y, m, d, utHour);
     const moonSid = toSidereal(moonLongitude(jd), jd);

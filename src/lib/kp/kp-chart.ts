@@ -15,6 +15,7 @@ import {
   getNakshatraNumber,
   formatDegrees,
 } from '@/lib/ephem/astronomical';
+import { computeCombust } from '@/lib/ephem/coordinates';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { GRAHAS } from '@/lib/constants/grahas';
@@ -171,11 +172,19 @@ export function generateKPChart(birthData: BirthData): KPChartData {
     const isDebilitated = DEBILITATION[rp.id] === signNum;
     const isOwnSign = (OWN_SIGNS[rp.id] ?? []).includes(signNum);
 
-    // Combustion (simplified: within 6 degrees of Sun for inner planets)
+    // Combustion — uses planet-specific orbs from coordinates.ts computeCombust().
+    //
+    // Classical BPHS orbs: Moon=12°, Mars=17°, Mercury=14°(direct)/12°(retro),
+    // Jupiter=11°, Venus=10°(direct)/8°(retro), Saturn=15°.
+    //
+    // HISTORICAL BUG (now fixed): a uniform 6° orb was used for all planets,
+    // which is only close to Mercury's combust orb.  Consequences:
+    //   • Moon (12°) and Saturn (15°) combustion almost never triggered
+    //   • Mars (17°) combustion barely triggered
+    //   • Correct combust status for Jupiter/Venus was a coin flip
+    // Now delegates to computeCombust() which implements the full classical table.
     const sunSid = normalizeDeg(rawPlanets[0].longitude - ayanamshaVal);
-    const distFromSun = Math.abs(sidLong - sunSid);
-    const angularDist = Math.min(distFromSun, 360 - distFromSun);
-    const isCombust = rp.id !== 0 && rp.id !== 7 && rp.id !== 8 && angularDist < 6;
+    const isCombust = computeCombust(rp.id, sidLong, sunSid);
 
     const kpPlanet: KPPlanet = {
       planet: graha,

@@ -118,6 +118,7 @@ const SECTIONS: Section[] = [
       { id: '16-2', title: { en: 'Phaladeepika & Jataka Parijata', hi: 'फलदीपिका एवं जातक पारिजात', sa: 'फलदीपिका जातकपारिजातश्च' } },
       { id: '16-3', title: { en: 'Surya Siddhanta & Mathematics', hi: 'सूर्य सिद्धान्त एवं गणित', sa: 'सूर्यसिद्धान्तः गणितं च' } },
       { id: 'ref:classical', title: { en: 'Classical Texts — Complete Reference', hi: 'शास्त्रीय ग्रन्थ — सम्पूर्ण संदर्भ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
+      { id: 'ref:library', title: { en: 'Text Library — Free Downloads (28 Texts)', hi: 'ग्रंथागार — निःशुल्क डाउनलोड (28 ग्रन्थ)', sa: 'ग्रंथागारम् — निःशुल्कग्रन्थाः' }, href: '/learn/library' },
     ],
     refs: [],
   },

@@ -174,6 +174,8 @@ function computeTransition(
     endDate: jdToLocalDate(endTransitionJd, endTz),
     nextName: nextData.name,
     nextNumber: nextValue,
+    startJD: startJdResult,
+    endJD: endTransitionJd,
   };
 }
 
@@ -361,18 +363,25 @@ const AMRIT_GHATI: number[] = [
 ];
 
 function computeAmritVarjyam(
-  nakshatraNum: number, sunriseUT: number, tzOffset: number
+  nakshatraNum: number,
+  ingressJD: number,   // JD when the nakshatra started
+  jdMidnight: number,  // midnight JD for the panchang date
+  tzOffset: number,
 ): { amritKalam?: { start: string; end: string }; varjyam?: { start: string; end: string } } {
   const nakIdx = nakshatraNum - 1;
   if (nakIdx < 0 || nakIdx >= 27) return {};
 
-  // Convert ghati offset to hours from sunrise (1 ghati = 24 min = 0.4 hr)
+  // 1 ghati = 24 min = 0.4 hr. Offsets are measured from nakshatra ingress time.
   const varjyamOffset = (VARJYAM_GHATI[nakIdx] || 0) * 0.4;
   const amritOffset = (AMRIT_GHATI[nakIdx] || 0) * 0.4;
-  const duration = 0.4 * 4; // 4 ghati duration (96 min)
+  // Duration: 4.5 ghatis = 108 min (matches Drik Panchang reference)
+  const duration = 0.4 * 4.5;
 
-  const varjyamStartUT = sunriseUT + varjyamOffset;
-  const amritStartUT = sunriseUT + amritOffset;
+  // Ingress expressed as UT hours from midnight of the panchang date
+  const ingressUT = (ingressJD - jdMidnight) * 24;
+
+  const varjyamStartUT = ingressUT + varjyamOffset;
+  const amritStartUT = ingressUT + amritOffset;
 
   return {
     amritKalam: {
@@ -685,6 +694,93 @@ function calculateMoonsetUT(jd: number, lat: number, lng: number): number | null
   return null; // Moon doesn't set today
 }
 
+const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+/**
+ * Moonrise time for panchang display.
+ * Scans 36h to catch moonrises that fall past UT midnight (e.g. 00:25 Apr 8 UT).
+ * Returns "HH:MM" for same local calendar day, or "HH:MM, Mon DD" for next day.
+ */
+function getMoonriseForDisplay(jd: number, lat: number, lng: number, tzOffset: number): string {
+  const h0 = -0.3;
+  const latRad = (lat * Math.PI) / 180;
+  const jdMidnight = Math.floor(jd - 0.5) + 0.5;
+  const step = 5 / (24 * 60);
+
+  let prevAlt = moonAltitude(jdMidnight, latRad, lng);
+
+  for (let i = 1; i <= 432; i++) { // 432 × 5min = 36 hours
+    const jdNow = jdMidnight + i * step;
+    const alt = moonAltitude(jdNow, latRad, lng);
+
+    if (prevAlt < h0 && alt >= h0) {
+      let lo = jdNow - step;
+      let hi = jdNow;
+      for (let j = 0; j < 15; j++) {
+        const mid = (lo + hi) / 2;
+        if (moonAltitude(mid, latRad, lng) < h0) lo = mid;
+        else hi = mid;
+      }
+      const riseJd = (lo + hi) / 2;
+      const utHours = (riseJd - jdMidnight) * 24;
+      const localHoursRaw = utHours + tzOffset;
+      const timeStr = formatTime(utHours % 24, tzOffset);
+      if (localHoursRaw >= 24) {
+        // Moonrise falls on the next local calendar day — show date
+        const dateStr = jdToLocalDate(riseJd, tzOffset);
+        const [, mo, dy] = dateStr.split('-');
+        return `${timeStr}, ${MONTH_ABBR[parseInt(mo) - 1]} ${parseInt(dy)}`;
+      }
+      return timeStr;
+    }
+    prevAlt = alt;
+  }
+
+  return '--:--';
+}
+
+/**
+ * Moonset time for panchang display.
+ * Scans 36h to catch moonsets that fall past UT midnight.
+ * Returns "HH:MM" for same local calendar day, or "HH:MM, Mon DD" for next day.
+ */
+function getMoonsetForDisplay(jd: number, lat: number, lng: number, tzOffset: number): string {
+  const h0 = -0.3;
+  const latRad = (lat * Math.PI) / 180;
+  const jdMidnight = Math.floor(jd - 0.5) + 0.5;
+  const step = 5 / (24 * 60);
+
+  let prevAlt = moonAltitude(jdMidnight, latRad, lng);
+
+  for (let i = 1; i <= 432; i++) {
+    const jdNow = jdMidnight + i * step;
+    const alt = moonAltitude(jdNow, latRad, lng);
+
+    if (prevAlt >= h0 && alt < h0) {
+      let lo = jdNow - step;
+      let hi = jdNow;
+      for (let j = 0; j < 15; j++) {
+        const mid = (lo + hi) / 2;
+        if (moonAltitude(mid, latRad, lng) >= h0) lo = mid;
+        else hi = mid;
+      }
+      const setJd = (lo + hi) / 2;
+      const utHours = (setJd - jdMidnight) * 24;
+      const localHoursRaw = utHours + tzOffset;
+      const timeStr = formatTime(utHours % 24, tzOffset);
+      if (localHoursRaw >= 24) {
+        const dateStr = jdToLocalDate(setJd, tzOffset);
+        const [, mo, dy] = dateStr.split('-');
+        return `${timeStr}, ${MONTH_ABBR[parseInt(mo) - 1]} ${parseInt(dy)}`;
+      }
+      return timeStr;
+    }
+    prevAlt = alt;
+  }
+
+  return '--:--';
+}
+
 export function computePanchang(input: PanchangInput): PanchangData {
   const { year, month, day, lat, lng, tzOffset, timezone, locationName } = input;
 
@@ -856,7 +952,27 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const hora = computeHora(sunriseUT, sunsetUT, weekday, tzOffset);
 
   // ── Amrit Kalam & Varjyam ──
-  const { amritKalam, varjyam } = computeAmritVarjyam(nakshatraNum, sunriseUT, tzOffset);
+  // Traditional rule: ghati offsets are measured from NAKSHATRA INGRESS time (not sunrise).
+  // If the current nakshatra transitions to the next one DURING the panchang day
+  // (between sunrise and the following sunrise), use the NEXT nakshatra and its ingress JD.
+  // This matches Drik Panchang behavior (verified April 7 2026, Corseaux: Jyeshtha→Mula
+  // transition during day, Mula AMRIT_GHATI=8 → 13:19+192min=16:31 CEST ✓).
+  const jdMidnight = Math.floor(jd - 0.5) + 0.5;
+  let amritNakshatraNum = nakshatraNum;
+  let amritIngressJD: number;
+
+  if (nakshatraTransition?.endJD && nakshatraTransition.endJD <= jdSunrise + 1.0) {
+    // Nakshatra transitions during today — use next nakshatra from its ingress
+    amritNakshatraNum = nakshatraTransition.nextNumber;
+    amritIngressJD = nakshatraTransition.endJD;
+  } else {
+    // No transition today — use current nakshatra's ingress (startJD from transition)
+    amritIngressJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
+  }
+
+  const { amritKalam, varjyam } = computeAmritVarjyam(
+    amritNakshatraNum, amritIngressJD, jdMidnight, tzOffset
+  );
 
   // ── Named Muhurtas ──
   const namedMuhurtas = computeNamedMuhurtas(sunriseUT, sunsetUT, tzOffset);
@@ -1252,8 +1368,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     sunLongitude: sunSidLong,
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
-    moonrise: (() => { const mr = calculateMoonriseUT(jd, lat, lng); return mr !== null ? formatTime(mr, tzOffset) : '--:--'; })(),
-    moonset: (() => { const ms = calculateMoonsetUT(jd, lat, lng); return ms !== null ? formatTime(ms, tzOffset) : '--:--'; })(),
+    moonrise: getMoonriseForDisplay(jd, lat, lng, tzOffset),
+    moonset: getMoonsetForDisplay(jd, lat, lng, tzOffset),
     rahuKaal: { start: formatTime(rahuKaal.start, tzOffset), end: formatTime(rahuKaal.end, tzOffset) },
     yamaganda: { start: formatTime(yamaganda.start, tzOffset), end: formatTime(yamaganda.end, tzOffset) },
     gulikaKaal: { start: formatTime(gulikaKaal.start, tzOffset), end: formatTime(gulikaKaal.end, tzOffset) },

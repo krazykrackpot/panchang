@@ -72,6 +72,8 @@ export interface TransitionInfo {
   endDate: string;       // "YYYY-MM-DD" date of end
   nextName: Trilingual;  // name of the next element
   nextNumber: number;    // index/number of the next element
+  startJD?: number;      // raw Julian Day of start (for internal calculations)
+  endJD?: number;        // raw Julian Day of end (for internal calculations)
 }
 
 export interface PanchangData {

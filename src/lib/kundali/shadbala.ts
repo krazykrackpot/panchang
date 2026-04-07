@@ -382,40 +382,51 @@ function pakshaBala(p: PlanetInput, sunLong: number, moonLong: number): number {
     : (180 - krishnaElongation) / 3;
 }
 
+/**
+ * Tribhaga Bala — the "three-thirds" strength.
+ * Divides the actual day (sunrise→sunset) and night (sunset→sunrise) each into 3
+ * equal portions based on computed sunrise/sunset (not hardcoded 6 AM).
+ * BPHS rule:
+ *   Day:   1st third = Mercury (3), 2nd = Sun (0), 3rd = Saturn (6)
+ *   Night: 1st third = Moon (1), 2nd = Venus (5), 3rd = Mars (2)
+ *   Jupiter (4) always earns 60 regardless.
+ */
 function tribhagaBala(
   p: PlanetInput,
   birthHour: number,
   isDayBirth: boolean,
+  sunriseHour: number,
+  sunsetHour: number,
 ): number {
-  // Jupiter always gets 60
-  if (p.id === 4) return 60;
+  if (p.id === 4) return 60; // Jupiter always 60
 
-  // Determine which third of the day/night portion we are in
-  // Day: 6-18 (12 hrs, each third = 4 hrs)
-  // Night: 18-6 (12 hrs, each third = 4 hrs)
-  let third: number;
-  if (isDayBirth) {
-    const dayElapsed = birthHour - 6;
-    if (dayElapsed < 4) third = 1;
-    else if (dayElapsed < 8) third = 2;
-    else third = 3;
-  } else {
-    const nightHour = birthHour >= 18 ? birthHour - 18 : birthHour + 6;
-    if (nightHour < 4) third = 1;
-    else if (nightHour < 8) third = 2;
-    else third = 3;
-  }
+  let third = 1; // default to 1st third (safe fallback)
 
   if (isDayBirth) {
-    // Day: 1st=Mercury(3), 2nd=Sun(0), 3rd=Saturn(6)
-    if (third === 1 && p.id === 3) return 60;
-    if (third === 2 && p.id === 0) return 60;
-    if (third === 3 && p.id === 6) return 60;
+    const dayDuration = sunsetHour - sunriseHour;
+    const thirdDur = dayDuration / 3;
+    const elapsed = birthHour - sunriseHour;
+    if (elapsed < thirdDur)       third = 1;
+    else if (elapsed < 2 * thirdDur) third = 2;
+    else                          third = 3;
+
+    if (third === 1 && p.id === 3) return 60; // Mercury in 1st day third
+    if (third === 2 && p.id === 0) return 60; // Sun in 2nd day third
+    if (third === 3 && p.id === 6) return 60; // Saturn in 3rd day third
   } else {
-    // Night: 1st=Moon(1), 2nd=Venus(5), 3rd=Mars(2)
-    if (third === 1 && p.id === 1) return 60;
-    if (third === 2 && p.id === 5) return 60;
-    if (third === 3 && p.id === 2) return 60;
+    // Night: sunset → (sunset + night_duration); normalize birth hour past midnight
+    const nightDuration = 24 - (sunsetHour - sunriseHour);
+    const thirdDur = nightDuration / 3;
+    const nightElapsed = birthHour >= sunsetHour
+      ? birthHour - sunsetHour
+      : birthHour + (24 - sunsetHour); // handle past-midnight hours
+    if (nightElapsed < thirdDur)       third = 1;
+    else if (nightElapsed < 2 * thirdDur) third = 2;
+    else                               third = 3;
+
+    if (third === 1 && p.id === 1) return 60; // Moon in 1st night third
+    if (third === 2 && p.id === 5) return 60; // Venus in 2nd night third
+    if (third === 3 && p.id === 2) return 60; // Mars in 3rd night third
   }
 
   return 0;
@@ -543,7 +554,7 @@ function computeKalaBala(
 
   const nn = natonnataBala(p, isDayBirth);
   const pk = pakshaBala(p, sunLong, moonLong);
-  const tb = tribhagaBala(p, birthHour, isDayBirth);
+  const tb = tribhagaBala(p, birthHour, isDayBirth, sunriseHour, sunsetHour);
   const ab = abdaBala(p, input.birthDateObj);
   const mb = masaBala(p, input.birthDateObj);
   const vb = varaBala(p, input.julianDay);

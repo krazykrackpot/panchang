@@ -262,7 +262,8 @@ export function calculateFunctionalNature(lagna: number): FunctionalNatureResult
   const ORDER: Record<FunctionalNature, number> = {
     yogaKaraka: 0, funcBenefic: 1, neutral: 2, funcMalefic: 3, maraka: 4, badhak: 5,
   };
-  planets.sort((a, b) => ORDER[a.nature] - ORDER[b.nature]);
+  // Primary: by nature (yogaKaraka first ... badhak last); secondary: by planetId for stability
+  planets.sort((a, b) => ORDER[a.nature] - ORDER[b.nature] || a.planetId - b.planetId);
 
   return {
     lagna,

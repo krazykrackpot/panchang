@@ -842,16 +842,16 @@ export function generateKundali(birthData: BirthData): KundaliData {
     };
   });
 
-  // Full Shadbala
-  const navChart = navamshaChart;
+  // Full Shadbala — pass ALL 9 planets so Rahu/Ketu contribute DrikBala aspects;
+  // calculateFullShadbala internally filters to 0-6 for the main bala calculation
   const fullShadbala = calculateFullShadbala({
-    planets: planets.filter(p => p.planet.id <= 6).map(p => {
-      // Compute navamsha sign for this planet
+    planets: planets.map(p => {
+      // Compute navamsha sign for this planet using the same element-based formula
       const sidLong = p.longitude;
       const navamshaIndex = Math.floor((sidLong % 30) / (30 / 9));
       const startSign = Math.floor(sidLong / 30);
-      const element = startSign % 4;
-      const navSign = ((element * 9 + navamshaIndex) % 12) + 1;
+      const element = startSign % 4; // 0=fire→Aries, 1=earth→Cap, 2=air→Libra, 3=water→Cancer
+      const navSign = ((element === 1 ? 9 : element === 2 ? 6 : element === 3 ? 3 : 0) + navamshaIndex) % 12 + 1;
       return {
         id: p.planet.id,
         longitude: p.longitude,

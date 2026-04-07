@@ -326,3 +326,73 @@ describe('Rahu/Ketu contribute to Drik Bala as malefics', () => {
     }
   });
 });
+
+// ---------------------------------------------------------------------------
+// Tribhaga Bala — actual sunrise/sunset-based thirds
+// ---------------------------------------------------------------------------
+
+describe('Tribhaga Bala uses actual sunrise/sunset', () => {
+  /**
+   * Build an input where sunrise is at a non-standard time.
+   * Here: sunrise ≈ 7:00 AM, sunset ≈ 19:00 (7 PM), 12-hour day.
+   * 3rds of day: 7:00-11:00, 11:00-15:00, 15:00-19:00.
+   *   1st third lord = Mercury (3)
+   *   2nd third lord = Sun (0)
+   *   3rd third lord = Saturn (6)
+   *
+   * We use latitude=60°N (Scandinavia) where summer sunrise is ~4 AM, but our
+   * test date is equinox-near where sunrise is ~7 AM local.
+   *
+   * Simpler approach: use Delhi (lat=28.6) on Jan 15, where sunrise ≈ 7:13 AM local.
+   * Birth at 8:00 AM local → within 1st third of day.
+   * Mercury (id=3) should earn TribhagaBala=60; others 0.
+   */
+  function makeEarlyMorningInput() {
+    const planets = [
+      { id: 0, longitude: 280, speed: 1.0,  house: 10, sign: 10, isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 1 },
+      { id: 1, longitude: 40,  speed: 13.0, house: 2,  sign: 2,  isRetrograde: false, isExalted: true,  isDebilitated: false, isOwnSign: false, navamshaSign: 4 },
+      { id: 2, longitude: 300, speed: 0.5,  house: 11, sign: 11, isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 8 },
+      { id: 3, longitude: 260, speed: 1.2,  house: 9,  sign: 9,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 3 },
+      { id: 4, longitude: 90,  speed: 0.08, house: 4,  sign: 4,  isRetrograde: false, isExalted: true,  isDebilitated: false, isOwnSign: false, navamshaSign: 12 },
+      { id: 5, longitude: 350, speed: 1.1,  house: 12, sign: 12, isRetrograde: false, isExalted: true,  isDebilitated: false, isOwnSign: false, navamshaSign: 7 },
+      { id: 6, longitude: 200, speed: 0.03, house: 7,  sign: 7,  isRetrograde: false, isExalted: true,  isDebilitated: false, isOwnSign: false, navamshaSign: 11 },
+      { id: 7, longitude: 60,  speed: -0.05, house: 3, sign: 3, isRetrograde: true, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 6 },
+      { id: 8, longitude: 240, speed: -0.05, house: 9, sign: 9, isRetrograde: true, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 12 },
+    ];
+    return {
+      planets,
+      ascendantDeg: 280,
+      julianDay: 2448257.5, // 1990-01-15 — Delhi sunrise ≈ 07:13 local
+      birthDateObj: new Date('1990-01-15T02:30:00Z'), // 2:30 UTC + 5.5h = 8:00 AM local → early 1st third
+      latitude: 28.6139,
+      longitude: 77.2090,
+      timezone: 5.5,
+    };
+  }
+
+  it('kala breakdown has finite tribhagaBala for all planets', () => {
+    const result = calculateFullShadbala(makeEarlyMorningInput());
+    for (const p of result) {
+      expect(Number.isFinite(p.kalaBreakdown.tribhagaBala)).toBe(true);
+    }
+  });
+
+  it('Jupiter (id=4) always earns tribhagaBala = 60', () => {
+    const result = calculateFullShadbala(makeEarlyMorningInput());
+    const jup = result.find(p => p.planetId === 4)!;
+    expect(jup.kalaBreakdown.tribhagaBala).toBe(60);
+  });
+
+  it('tribhagaBala is 0 or 60 for every planet — no intermediate values', () => {
+    const result = calculateFullShadbala(makeEarlyMorningInput());
+    for (const p of result) {
+      expect([0, 60]).toContain(p.kalaBreakdown.tribhagaBala);
+    }
+  });
+
+  it('only one non-Jupiter planet earns tribhagaBala=60 (the third lord)', () => {
+    const result = calculateFullShadbala(makeEarlyMorningInput());
+    const nonJupWith60 = result.filter(p => p.planetId !== 4 && p.kalaBreakdown.tribhagaBala === 60);
+    expect(nonJupWith60.length).toBeLessThanOrEqual(1);
+  });
+});

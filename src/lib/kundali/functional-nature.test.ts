@@ -147,4 +147,42 @@ describe('calculateFunctionalNature', () => {
       }
     }
   });
+
+  it('planets with the same nature are sorted by ascending planetId (stable output)', () => {
+    for (const lagna of allLagnas) {
+      const result = calculateFunctionalNature(lagna);
+      // Within each nature group, planetIds must be ascending
+      const groups: Record<string, number[]> = {};
+      for (const p of result.planets) {
+        if (!groups[p.nature]) groups[p.nature] = [];
+        groups[p.nature].push(p.planetId);
+      }
+      for (const ids of Object.values(groups)) {
+        for (let i = 1; i < ids.length; i++) {
+          expect(ids[i]).toBeGreaterThan(ids[i - 1]);
+        }
+      }
+    }
+  });
+
+  it('Rahu (7) and Ketu (8) always sort after planets 0-6 within funcMalefic group', () => {
+    for (const lagna of allLagnas) {
+      const result = calculateFunctionalNature(lagna);
+      const funcMalefics = result.planets.filter(p => p.nature === 'funcMalefic');
+      const rahuIdx = funcMalefics.findIndex(p => p.planetId === 7);
+      const ketuIdx = funcMalefics.findIndex(p => p.planetId === 8);
+      // Rahu and Ketu present
+      expect(rahuIdx).toBeGreaterThanOrEqual(0);
+      expect(ketuIdx).toBeGreaterThanOrEqual(0);
+      // Ketu (8) comes after Rahu (7)
+      expect(ketuIdx).toBeGreaterThan(rahuIdx);
+      // All other funcMalefics (0-6 range) come before Rahu
+      for (const fm of funcMalefics) {
+        if (fm.planetId < 7) {
+          const fmIdx = funcMalefics.indexOf(fm);
+          expect(fmIdx).toBeLessThan(rahuIdx);
+        }
+      }
+    }
+  });
 });

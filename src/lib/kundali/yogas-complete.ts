@@ -637,7 +637,16 @@ function detectRajaYogas(planets: PlanetData[], ascSign: number): YogaComplete[]
   // 23. Amala
   const tenthHouse = 10;
   const planetsIn10 = getPlanetsInHouse(planets, tenthHouse);
-  const amalaPresent = planetsIn10.length > 0 && planetsIn10.every(p => isBenefic(p.id));
+  // Classical rule (BPHS Ch.36): Amala Yoga forms when a benefic planet is in
+  // the 10th from the Lagna.  "AT LEAST ONE" benefic suffices — the yoga is
+  // not cancelled by co-tenants.
+  //
+  // HISTORICAL BUG (now fixed): `.every(isBenefic)` required ALL planets in
+  // the 10th to be benefics.  A single malefic co-tenant (e.g. Saturn in a
+  // chart where Jupiter is also in the 10th) would suppress the yoga entirely.
+  // The Moon-based version at line ~2035 correctly used `.filter().length > 0`
+  // (equivalent to `.some()`).  Now both use the same correct criterion.
+  const amalaPresent = planetsIn10.some(p => isBenefic(p.id));
   results.push({
     id: 'amala',
     name: { en: 'Amala Yoga', hi: 'अमल योग', sa: 'अमलयोगः' },
@@ -1266,38 +1275,18 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     },
   });
 
-  // 47. Parivartana Yoga (sign exchange)
-  let parivPresent = false;
-  for (let a = 0; a <= 5; a++) {
-    for (let b = a + 1; b <= 6; b++) {
-      const pA = getP(planets, a);
-      const pB = getP(planets, b);
-      // A is in B's sign and B is in A's sign
-      if (signLord(pA.sign) === b && signLord(pB.sign) === a) {
-        parivPresent = true;
-        break;
-      }
-    }
-    if (parivPresent) break;
-  }
-  results.push({
-    id: 'parivartana',
-    name: { en: 'Parivartana Yoga', hi: 'परिवर्तन योग', sa: 'परिवर्तनयोगः' },
-    category: 'other',
-    isAuspicious: true,
-    present: parivPresent,
-    strength: parivPresent ? 'Strong' : 'Weak',
-    formationRule: {
-      en: 'Two planets (Sun-Saturn) exchanging signs with each other',
-      hi: 'दो ग्रह (सूर्य-शनि) परस्पर राशि परिवर्तन',
-      sa: 'द्वौ ग्रहौ (सूर्य-शनि) परस्परं राशिपरिवर्तनम्',
-    },
-    description: {
-      en: 'Mutual sign exchange strengthens both planets and deeply connects the houses they rule.',
-      hi: 'परस्पर राशि परिवर्तन। दोनों ग्रह सशक्त, उनके भाव गहनता से जुड़ते हैं।',
-      sa: 'परस्परं राशिपरिवर्तनम्। उभौ ग्रहौ बलिनौ तद्भावयोः गाढसम्बन्धः।',
-    },
-  });
+  // NOTE: Parivartana Yoga is NOT detected here.
+  //
+  // HISTORICAL BUG (now fixed): a generic id='parivartana' entry was pushed in
+  // this function, producing a flat present/absent boolean alongside the fully
+  // classified Maha/Khala/Dainya entries from detectParivartanaYogas().  The
+  // two functions are concatenated in detectAllYogas(), so every chart that had
+  // any sign exchange produced two entries for the same yoga.
+  //
+  // detectParivartanaYogas() (called from detectAllYogas) uses house-based
+  // classification (Maha/Khala/Dainya) with unique IDs like
+  // 'maha_parivartana_1_5'.  Those entries fully supersede the generic one.
+  // The generic detection block has been removed.
 
   return results;
 }
@@ -2024,11 +2013,11 @@ function detectExtendedMoonYogas(planets: PlanetData[]): YogaComplete[] {
   const mars = getP(planets, 2);
   const saturn = getP(planets, 6);
 
-  // Shakata Yoga — Moon in 6th or 8th from Jupiter
-  const moonFromJup = houseOffset(jupiter.house, moon.house);
-  if (moonFromJup === 6 || moonFromJup === 8) {
-    results.push({ id: 'shakata', category: 'inauspicious', isAuspicious: false, present: true, strength: 'Moderate', name: { en: 'Shakata Yoga', hi: 'शकट योग', sa: 'शकटयोगः' }, formationRule: { en: `Moon in ${moonFromJup}th from Jupiter`, hi: `चंद्र गुरु से ${moonFromJup}वें भाव में`, sa: '' }, description: { en: 'Cart/chariot yoga — life of ups and downs like a cart wheel, fortune fluctuates. May lose wealth repeatedly and regain. Cancelled if Moon is in kendra from lagna.', hi: 'शकट योग — गाड़ी के पहिये जैसे उतार-चढ़ाव, बार-बार धन हानि और पुनर्प्राप्ति।', sa: '' } });
-  }
+  // NOTE: Shakata Yoga (id='shakata') is detected in detectMoonBasedYogas().
+  // It was previously duplicated here with the Moon-from-Jupiter direction
+  // (complementary to Jupiter-from-Moon in the canonical version). The two
+  // directions are equivalent for the same conjunction, so this duplicate
+  // produced two 'shakata' entries in the merged yoga list.  REMOVED.
 
   // Amala Yoga — benefic in 10th from Moon
   const tenthFromMoon = ((moon.house + 8) % 12) + 1;

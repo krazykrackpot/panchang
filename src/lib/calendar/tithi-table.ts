@@ -39,6 +39,11 @@ export interface TithiEntry {
   startDate: string;       // YYYY-MM-DD
   endDate: string;
   isKshaya: boolean;
+  // isVriddhi: tithi spans 2+ sunrises (spans more than one full day).
+  // HISTORICAL BUG (now fixed): was absent from both RawEntry and TithiEntry.
+  // When sunriseDates.length > 1, the tithi is Vriddhi — festival engines need
+  // this flag to identify Vriddhi Ekadashi, Vriddhi Amavasya, etc.
+  isVriddhi: boolean;
   sunriseDate: string;     // date where tithi prevails at sunrise
   lunarMonth: LunarMonthInfo;  // Amanta month (boundaries: Amavasya to Amavasya)
   masa: {
@@ -249,7 +254,13 @@ export function buildYearlyTithiTable(
     number: number; startJd: number; endJd: number;
     startDateStr: string; endDateStr: string;
     startTimeStr: string; endTimeStr: string;
-    sunriseDate: string; isKshaya: boolean; paksha: 'shukla' | 'krishna';
+    sunriseDate: string; isKshaya: boolean;
+    // isVriddhi: tithi spans 2+ sunrises (opposite of Kshaya).
+    // Festival engines use this to distinguish which sunrise day to use for
+    // dual-tithi observances.  Previously missing — callers had no way to flag
+    // Vriddhi tithis.
+    isVriddhi: boolean;
+    paksha: 'shukla' | 'krishna';
     name: Trilingual;
   }
 
@@ -299,6 +310,8 @@ export function buildYearlyTithiTable(
       endTimeStr,
       sunriseDate,
       isKshaya,
+      // Vriddhi = the tithi spans 2 or more sunrises (the opposite of Kshaya).
+      isVriddhi: sunriseDates.length > 1,
       paksha: currentTithi <= 15 ? 'shukla' : 'krishna',
       name: tithiData.name,
     });
@@ -419,6 +432,7 @@ export function buildYearlyTithiTable(
       startDate: raw.startDateStr,
       endDate: raw.endDateStr,
       isKshaya: raw.isKshaya,
+      isVriddhi: raw.isVriddhi,
       sunriseDate: raw.sunriseDate,
       lunarMonth,
       masa: {

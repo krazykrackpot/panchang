@@ -63,6 +63,29 @@ const VARSHESHVARA_DESCRIPTIONS: Record<number, Trilingual> = {
   },
 };
 
+// Sign ownership map: planet id → signs owned (1-based, 1-12)
+// Used for Parivartana tiebreaker only.
+const OWN_SIGNS: Record<number, number[]> = {
+  0: [5],          // Sun owns Leo (5)
+  1: [4],          // Moon owns Cancer (4)
+  2: [1, 8],       // Mars owns Aries (1) & Scorpio (8)
+  3: [3, 6],       // Mercury owns Gemini (3) & Virgo (6)
+  4: [9, 12],      // Jupiter owns Sagittarius (9) & Pisces (12)
+  5: [2, 7],       // Venus owns Taurus (2) & Libra (7)
+  6: [10, 11],     // Saturn owns Capricorn (10) & Aquarius (11)
+};
+
+/**
+ * Returns true if planetA is in a sign owned by planetB AND
+ * planetB is in a sign owned by planetA (mutual sign exchange).
+ * Rahu/Ketu (ids 7/8) own no signs and cannot form Parivartana.
+ */
+function areInParivartana(a: PlanetPosition, b: PlanetPosition): boolean {
+  const aInBSign = OWN_SIGNS[b.planet.id]?.includes(a.sign) ?? false;
+  const bInASign = OWN_SIGNS[a.planet.id]?.includes(b.sign) ?? false;
+  return aInBSign && bInASign;
+}
+
 export function determineVarsheshvara(
   solarReturnWeekday: number,
   planets: PlanetPosition[],
@@ -70,7 +93,7 @@ export function determineVarsheshvara(
   const candidates = VARSHESHVARA_CANDIDATES[solarReturnWeekday] || [0, 4, 2, 6, 5];
 
   // Score each candidate based on dignity and house placement
-  let bestId = candidates[0];
+  const scores: Record<number, number> = {};
   let bestScore = -1;
 
   for (const pid of candidates) {
@@ -87,9 +110,34 @@ export function determineVarsheshvara(
     // Trikona (1,5,9) placement bonus
     if ([1, 5, 9].includes(planet.house)) score += 10;
 
-    if (score > bestScore) {
-      bestScore = score;
-      bestId = pid;
+    scores[pid] = score;
+    if (score > bestScore) bestScore = score;
+  }
+
+  // Collect all candidates that share the top score.
+  const tied = candidates.filter(pid => scores[pid] === bestScore);
+
+  // Tiebreaker per Tajika Shastra: among tied candidates, prefer the one that
+  // is in Parivartana (mutual sign exchange) with any other tied candidate.
+  //
+  // HISTORICAL BUG (now fixed): on a tie the function silently picked the
+  // first candidate in the weekday-ordered list, ignoring Parivartana.
+  // Tajika texts (Neelakantha's commentary) give Parivartana as the explicit
+  // tiebreaker before falling back to list order.
+  let bestId = tied[0]; // default: first in list (original behaviour)
+  if (tied.length > 1) {
+    for (const pid of tied) {
+      const pPlanet = planets.find(p => p.planet.id === pid);
+      if (!pPlanet) continue;
+      const inPariv = tied.some(otherId => {
+        if (otherId === pid) return false;
+        const other = planets.find(p => p.planet.id === otherId);
+        return other ? areInParivartana(pPlanet, other) : false;
+      });
+      if (inPariv) {
+        bestId = pid;
+        break; // first tied candidate in Parivartana wins
+      }
     }
   }
 

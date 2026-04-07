@@ -961,12 +961,14 @@ export function computePanchang(input: PanchangInput): PanchangData {
   let amritNakshatraNum = nakshatraNum;
   let amritIngressJD: number;
 
-  if (nakshatraTransition?.endJD && nakshatraTransition.endJD <= jdSunrise + 1.0) {
-    // Nakshatra transitions during today — use next nakshatra from its ingress
+  if (nakshatraTransition?.endJD) {
+    // Nakshatra has a transition — always use next nakshatra from its ingress (matches Drik Panchang).
+    // The previous `<= jdSunrise + 1.0` threshold was too tight: if the transition falls even
+    // 1-2 min past the 24h mark it would fall through to the else branch and use the wrong ingress.
     amritNakshatraNum = nakshatraTransition.nextNumber;
     amritIngressJD = nakshatraTransition.endJD;
   } else {
-    // No transition today — use current nakshatra's ingress (startJD from transition)
+    // No transition data — use current nakshatra's ingress (startJD from transition)
     amritIngressJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
   }
 

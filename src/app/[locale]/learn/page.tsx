@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
-import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond } from 'lucide-react';
+import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 const STATS = { modules: 89, references: 44, labs: 5, tracks: 3 };
@@ -251,6 +251,50 @@ export default function LearnPage() {
           ))}
         </div>
       </div>
+
+      {/* ── Classical Text Library Banner ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="mb-16"
+      >
+        <Link href="/learn/library" className="block group">
+          <div className="relative overflow-hidden rounded-2xl border border-amber-500/25 hover:border-amber-500/50 bg-gradient-to-r from-[#1a1200]/80 via-[#1a1000]/60 to-[#0a0e27] p-6 sm:p-8 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/10">
+            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-amber-500/5 blur-3xl group-hover:bg-amber-500/10 transition-all duration-500" />
+            <div className="absolute -bottom-10 left-1/3 w-48 h-48 rounded-full bg-amber-700/5 blur-3xl" />
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center gap-5">
+              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center">
+                <Library className="w-7 h-7 text-amber-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-bold uppercase tracking-widest text-amber-500/70">
+                    {locale === 'en' ? 'Free Resource' : locale === 'hi' ? 'निःशुल्क संसाधन' : 'निःशुल्कसाधनम्'}
+                  </span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium">28 texts</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-amber-200 group-hover:text-amber-100 transition-colors mb-1" style={hf}>
+                  {locale === 'en' ? 'Classical Jyotish Text Library' : locale === 'hi' ? 'शास्त्रीय ज्योतिष ग्रंथागार' : 'शास्त्रीयज्योतिषग्रंथागारम्'}
+                </h3>
+                <p className="text-amber-200/55 text-sm leading-relaxed" style={bf}>
+                  {locale === 'en'
+                    ? 'Parashara · Varahamihira · Jaimini · Krishnamurti · Surya Siddhanta — all free via archive.org'
+                    : locale === 'hi'
+                    ? 'पाराशर · वराहमिहिर · जैमिनी · कृष्णमूर्ति · सूर्य सिद्धान्त — archive.org पर निःशुल्क'
+                    : 'पाराशरः · वराहमिहिरः · जैमिनिः · कृष्णमूर्तिः — archive.org इत्यत्र निःशुल्काः'}
+                </p>
+              </div>
+              <div className="flex-shrink-0 flex items-center gap-2 text-amber-400/70 group-hover:text-amber-400 transition-colors">
+                <span className="text-sm font-semibold hidden sm:inline">
+                  {locale === 'en' ? 'Browse Library' : locale === 'hi' ? 'ग्रंथागार देखें' : 'ग्रंथागारं पश्यतु'}
+                </span>
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </motion.div>
 
       {/* ── Reference Library (grouped by track) ── */}
       <div>

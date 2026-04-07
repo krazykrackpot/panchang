@@ -1103,26 +1103,54 @@ export default function PanchangPage() {
                 </motion.div>
               )}
 
-              {/* Mantri Mandala */}
+              {/* Mantri Mandala + Hora Table */}
               {panchang.mantriMandala && (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.45 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-                    {locale === 'en' ? 'Mantri Mandala' : 'मंत्री मण्डल'}
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
+                    {locale === 'en' ? 'Mantri Mandala & Hora' : 'मंत्री मण्डल एवं होरा'}
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-text-secondary text-xs">{panchang.mantriMandala.king.role[locale]}</span>
+                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Day Lord (King)' : 'दिन स्वामी (राजा)'}</span>
                       <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.king.planet]?.name[locale]}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-text-secondary text-xs">{panchang.mantriMandala.minister.role[locale]}</span>
+                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Midday Hora Lord (Minister)' : 'मध्याह्न होरा स्वामी (मंत्री)'}</span>
                       <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.minister.planet]?.name[locale]}</span>
                     </div>
                   </div>
-                  <div className="text-text-tertiary text-xs mt-2">
-                    {locale === 'en' ? 'Day lord governs as King, sunrise Hora lord serves as Minister' : 'दिन स्वामी राजा, सूर्योदय होरा स्वामी मंत्री'}
+                  <div className="text-text-tertiary text-xs mb-3">
+                    {locale === 'en' ? 'Day lord rules the entire day. Each hora (~1 hour) is ruled by a different planet in Chaldean sequence.' : 'दिन स्वामी सम्पूर्ण दिन का शासक। प्रत्येक होरा (~1 घंटा) कल्डियन क्रम में भिन्न ग्रह द्वारा शासित।'}
                   </div>
+                  {/* Hora timetable */}
+                  {panchang.mantriMandala.horas && (
+                    <details className="group">
+                      <summary className="text-gold-primary/70 text-xs cursor-pointer hover:text-gold-light transition-colors">
+                        {locale === 'en' ? '▸ View all 24 Horas' : '▸ सभी 24 होरा देखें'}
+                      </summary>
+                      <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
+                        <div>
+                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Day Horas' : 'दिन होरा'}</div>
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => (
+                            <div key={i} className="flex justify-between py-0.5 border-b border-gold-primary/5">
+                              <span className="text-text-secondary">{h.start}–{h.end}</span>
+                              <span className="text-gold-light font-semibold">{GRAHAS[h.planet]?.name[locale]}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <div>
+                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Night Horas' : 'रात्रि होरा'}</div>
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => (
+                            <div key={i} className="flex justify-between py-0.5 border-b border-gold-primary/5">
+                              <span className="text-text-secondary">{h.start}–{h.end}</span>
+                              <span className="text-gold-light font-semibold">{GRAHAS[h.planet]?.name[locale]}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </details>
+                  )}
                 </motion.div>
               )}
             </div>

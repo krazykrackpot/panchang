@@ -1216,14 +1216,41 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   const dayLordPlanet = WEEKDAY_PLANET_MAP[weekday];
 
-  // Sunrise hora lord: in the Chaldean hora system, each day's first hora (at
-  // sunrise) is always ruled by the day's own planet lord.  Both King and
-  // Minister therefore reference the same graha; the distinction matters only
-  // for intra-day hora calculations (see panchang-calc.ts computeHora()).
-  const horaLordPlanet = WEEKDAY_PLANET_MAP[weekday]; // 1st hora at sunrise = day lord
+  // Chaldean hora sequence: Sun(0)→Venus(5)→Mercury(3)→Moon(1)→Saturn(6)→Jupiter(4)→Mars(2)
+  // Each hora lasts 1/12 of daylight (day horas) or 1/12 of night (night horas).
+  // The 1st hora at sunrise belongs to the day lord; subsequent horas advance
+  // through the Chaldean sequence from the day lord's position.
+  const CHALDEAN_SEQ = [0, 5, 3, 1, 6, 4, 2]; // planet IDs in Chaldean order
+  const dayLordChaldeanIdx = CHALDEAN_SEQ.indexOf(dayLordPlanet);
+  const horaDayLen = sunsetUT - sunriseUT;        // hours of daylight
+  const horaNightLen = 24 - horaDayLen;           // hours of night
+  const dayHoraDur = horaDayLen / 12;             // each day hora duration
+  const nightHoraDur = horaNightLen / 12;         // each night hora duration
+
+  // Compute all 24 horas for the day (12 day + 12 night)
+  const horas: { planet: number; start: number; end: number; isDay: boolean }[] = [];
+  for (let i = 0; i < 12; i++) {
+    const start = sunriseUT + i * dayHoraDur;
+    horas.push({ planet: CHALDEAN_SEQ[(dayLordChaldeanIdx + i) % 7], start, end: start + dayHoraDur, isDay: true });
+  }
+  for (let i = 0; i < 12; i++) {
+    const start = sunsetUT + i * nightHoraDur;
+    horas.push({ planet: CHALDEAN_SEQ[(dayLordChaldeanIdx + 12 + i) % 7], start, end: start + nightHoraDur, isDay: false });
+  }
+
+  // Find current hora (use noon as representative "current" time for daily panchang)
+  const noonUT = sunriseUT + horaDayLen / 2;
+  const currentHora = horas.find(h => noonUT >= h.start && noonUT < h.end) || horas[0];
+
   const mantriMandala = {
     king: { planet: dayLordPlanet, role: MANTRI_ROLES[0] },
-    minister: { planet: horaLordPlanet, role: MANTRI_ROLES[1] },
+    minister: { planet: currentHora.planet, role: MANTRI_ROLES[1] },
+    horas: horas.map(h => ({
+      planet: h.planet,
+      start: formatTime(h.start, tzOffset),
+      end: formatTime(h.end, tzOffset),
+      isDay: h.isDay,
+    })),
   };
 
   // 10. Homahuti (Fire oblation direction)

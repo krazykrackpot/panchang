@@ -146,7 +146,7 @@ export interface PanchangData {
   rahuVaas?: { direction: Trilingual };
   udayaLagna?: { rashi: number; name: Trilingual; start: string; end: string }[];
   tamilYoga?: { name: Trilingual; nature: 'auspicious' | 'inauspicious' };
-  mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual } };
+  mantriMandala?: { king: { planet: number; role: Trilingual }; minister: { planet: number; role: Trilingual }; horas?: { planet: number; start: string; end: string; isDay: boolean }[] };
   homahuti?: { direction: Trilingual; deity: Trilingual };
   dagdhaTithi?: boolean;
   amritSiddhiYoga?: boolean;

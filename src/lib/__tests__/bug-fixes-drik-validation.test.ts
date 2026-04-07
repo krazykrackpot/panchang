@@ -132,13 +132,17 @@ describe('Bug 2 — WEEKDAY_PLANET_MAP (day lord identity, not Hora sequence)', 
     expect(p.mantriMandala.king.planet).not.toBe(4); // Old bug: Jupiter
   });
 
-  it('Sunrise hora lord equals day lord (1st hora always belongs to day lord)', () => {
-    // Classical hora rule: the first hora of the day (at sunrise) belongs to the
-    // day lord itself. King and minister should therefore have the same planet ID.
+  it('First hora of the day belongs to the day lord', () => {
+    // Classical hora rule: the first hora at sunrise belongs to the day lord.
+    // Minister is now the midday hora lord (different from king).
+    // Verify the horas array starts with the day lord.
     const dates = ['2026-04-03', '2026-04-04', '2026-04-05', '2026-04-06'];
     for (const dateStr of dates) {
       const p = panchang(dateStr);
-      expect(p.mantriMandala.king.planet).toBe(p.mantriMandala.minister.planet);
+      // First hora planet should equal the day lord (king)
+      expect(p.mantriMandala.horas[0].planet).toBe(p.mantriMandala.king.planet);
+      // Should have 24 horas total (12 day + 12 night)
+      expect(p.mantriMandala.horas.length).toBe(24);
     }
   });
 });

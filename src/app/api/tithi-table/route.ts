@@ -10,7 +10,8 @@ export async function GET(request: Request) {
   const year = parseInt(searchParams.get('year') || '2026');
   const lat = parseFloat(searchParams.get('lat') || '0'); // DEPRECATED fallback: client should always provide location
   const lon = parseFloat(searchParams.get('lon') || '0'); // DEPRECATED fallback: client should always provide location
-  const timezone = searchParams.get('timezone') || Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const timezone = searchParams.get('timezone');
+  if (!timezone) return Response.json({ error: 'timezone parameter required' }, { status: 400 });
 
   try {
     const table = buildYearlyTithiTable(year, lat, lon, timezone);

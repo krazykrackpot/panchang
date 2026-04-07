@@ -138,7 +138,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
         profileData.birth_place = birthLocation.name;
         profileData.birth_lat = birthLocation.lat;
         profileData.birth_lng = birthLocation.lng;
-        profileData.birth_timezone = birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+        profileData.birth_timezone = birthLocation.timezone || '';
       }
 
       const { error: updateError } = await supabase
@@ -171,7 +171,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
                 birthPlace: birthLocation.name,
                 birthLat: birthLocation.lat,
                 birthLng: birthLocation.lng,
-                birthTimezone: birthLocation.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone,
+                birthTimezone: birthLocation.timezone || '',
               }),
             });
           }

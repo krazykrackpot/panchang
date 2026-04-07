@@ -110,6 +110,7 @@ export default function LearnPage() {
       { name: { en: 'Combustion', hi: 'अस्त', sa: 'अस्तम्' }, href: '/learn/combustion' },
       { name: { en: 'Remedies', hi: 'उपाय', sa: 'उपायाः' }, href: '/learn/remedies' },
       { name: { en: 'Classical Texts', hi: 'शास्त्रीय ग्रन्थ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
+      { name: { en: 'Text Library', hi: 'ग्रंथागार', sa: 'ग्रंथागारम्' }, href: '/learn/library' },
       { name: { en: 'Vedanga Heritage', hi: 'वेदांग विरासत', sa: 'वेदाङ्गपरम्परा' }, href: '/learn/vedanga' },
       { name: { en: 'Observatories', hi: 'वेधशालाएं', sa: 'वेधशालाः' }, href: '/learn/observatories' },
     ]},

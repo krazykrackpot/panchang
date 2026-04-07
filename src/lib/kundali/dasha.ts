@@ -98,10 +98,9 @@ function calculateAntarDasha(mahaLordIndex: number, startDate: Date, totalYears:
     const antarLord = DASHA_SEQUENCE[antarLordIndex];
     const mahaLord = DASHA_SEQUENCE[mahaLordIndex];
 
-    // Antar dasha duration = (Maha lord years * Antar lord years) / Total dasha years
-    const antarYears = (mahaLord.years * antarLord.years) / TOTAL_DASHA_YEARS;
-    // Scale to the actual maha dasha duration
-    const scaledYears = (antarYears / mahaLord.years) * totalYears;
+    // Antar dasha duration (BPHS): (antarLord.years / TOTAL_DASHA_YEARS) × totalYears
+    // Equivalent to the 2-step form: (mahaYears × antarYears / 120) / mahaYears × totalYears
+    const scaledYears = (antarLord.years * totalYears) / TOTAL_DASHA_YEARS;
 
     const endDate = addYearsToDate(currentDate, scaledYears);
 

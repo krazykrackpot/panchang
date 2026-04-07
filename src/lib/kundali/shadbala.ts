@@ -179,6 +179,27 @@ const MOOLATRIKONA_SIGN_SB: Record<number, number> = {
   0: 5, 1: 2, 2: 1, 3: 6, 4: 9, 5: 7, 6: 11,
 };
 
+/**
+ * Classical Moolatrikona degree ranges per BPHS / Laghu Parashari.
+ * Outside these ranges within the sign the planet is treated as own-sign only.
+ *   Sun   : Leo  0°-20°
+ *   Moon  : Taurus 0°-3°20' (3.33°)
+ *   Mars  : Aries 0°-12°
+ *   Mercury: Virgo 15°-20°
+ *   Jupiter: Sagittarius 0°-10°
+ *   Venus  : Libra 0°-10°
+ *   Saturn : Aquarius 0°-20°
+ */
+const MOOLATRIKONA_RANGES: Record<number, { sign: number; minDeg: number; maxDeg: number }> = {
+  0: { sign: 5,  minDeg: 0,   maxDeg: 20   }, // Sun: Leo 0°-20°
+  1: { sign: 2,  minDeg: 0,   maxDeg: 3.33 }, // Moon: Taurus 0°-3°20'
+  2: { sign: 1,  minDeg: 0,   maxDeg: 12   }, // Mars: Aries 0°-12°
+  3: { sign: 6,  minDeg: 15,  maxDeg: 20   }, // Mercury: Virgo 15°-20°
+  4: { sign: 9,  minDeg: 0,   maxDeg: 10   }, // Jupiter: Sagittarius 0°-10°
+  5: { sign: 7,  minDeg: 0,   maxDeg: 10   }, // Venus: Libra 0°-10°
+  6: { sign: 11, minDeg: 0,   maxDeg: 20   }, // Saturn: Aquarius 0°-20°
+};
+
 const OWN_SIGNS_SB: Record<number, number[]> = {
   0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11],
 };
@@ -192,10 +213,30 @@ const NAT_ENEMIES_SB: Record<number, number[]> = {
   0: [5, 6], 1: [], 2: [3], 3: [1], 4: [3, 5], 5: [0, 1], 6: [0, 1, 2],
 };
 
-function vargaDignityPoints(planetId: number, sign: number): number {
+/**
+ * Returns dignity points for a planet in a given sign.
+ * @param planetId  0-6
+ * @param sign      1-12
+ * @param degInSign degree within sign (0-30), supplied only for D1 to enable
+ *                  precise Moolatrikona range checks. Other vargas pass undefined
+ *                  and fall back to sign-level Moolatrikona treatment per BPHS.
+ */
+function vargaDignityPoints(planetId: number, sign: number, degInSign?: number): number {
   if (EXALTATION_SIGN_SB[planetId] === sign) return 45;
   if (DEBILITATION_SIGN_SB[planetId] === sign) return 1.875;
-  if (MOOLATRIKONA_SIGN_SB[planetId] === sign) return 45;
+
+  // Moolatrikona: for D1 use exact degree bounds; for other vargas use sign-level
+  const mt = MOOLATRIKONA_RANGES[planetId];
+  if (mt?.sign === sign) {
+    if (degInSign !== undefined) {
+      // D1: check actual degree — outside range falls through to own-sign check
+      if (degInSign >= mt.minDeg && degInSign < mt.maxDeg) return 45;
+    } else {
+      // Non-D1 vargas: grant Moolatrikona at sign level (no degree info available)
+      return 45;
+    }
+  }
+
   if (OWN_SIGNS_SB[planetId]?.includes(sign)) return 30;
   const lord = SIGN_LORDS_SB[sign - 1];
   if (NAT_FRIENDS_SB[planetId]?.includes(lord)) return 15;
@@ -236,8 +277,12 @@ function computeVargaSigns(p: PlanetInput): number[] {
 }
 
 function saptavargajaBala(p: PlanetInput): number {
-  const vargas = computeVargaSigns(p);
-  return vargas.reduce((sum, sign) => sum + vargaDignityPoints(p.id, sign), 0);
+  const vargas = computeVargaSigns(p); // [d1, d2, d3, d9, d12, d27]
+  const degInSign = p.longitude % 30;  // D1 degree within sign
+  return vargas.reduce((sum, sign, idx) =>
+    // Pass degInSign only for D1 (idx=0) to enable precise Moolatrikona range check
+    sum + vargaDignityPoints(p.id, sign, idx === 0 ? degInSign : undefined),
+  0);
 }
 
 function ojhayugmaRashiBala(p: PlanetInput): number {
@@ -545,32 +590,44 @@ function computeCheshtaBala(p: PlanetInput, ay: number): number {
 // VI. Drik Bala
 // ---------------------------------------------------------------------------
 
-function computeDrikBala(p: PlanetInput, planets: PlanetInput[]): number {
-  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus
+/**
+ * Computes Drik Bala (aspect strength) for planet p.
+ * @param p          The planet being assessed
+ * @param allPlanets All 9 planets (0-8) including Rahu/Ketu — they contribute
+ *                   aspects as malefics per BPHS: Rahu/Ketu aspect 5th, 7th, 9th
+ *                   from their position (same as Jupiter but as malefics).
+ */
+function computeDrikBala(p: PlanetInput, allPlanets: PlanetInput[]): number {
+  const beneficIds = new Set([1, 3, 4, 5]); // Moon, Mercury, Jupiter, Venus (natural)
+  // Rahu (7) and Ketu (8) are shadow-planet malefics — not in beneficIds
   let drikBala = 0;
 
-  for (const other of planets) {
+  for (const other of allPlanets) {
     if (other.id === p.id) continue;
 
     // Determine which houses this planet aspects
     const aspectedHouses: number[] = [];
 
-    // All planets aspect 7th from their own house
+    // All planets aspect the 7th from their position
     aspectedHouses.push(((other.house - 1 + 6) % 12) + 1);
 
     // Special aspects
     if (other.id === 4) {
-      // Jupiter → 5th, 9th
+      // Jupiter → 5th and 9th additional
       aspectedHouses.push(((other.house - 1 + 4) % 12) + 1);
       aspectedHouses.push(((other.house - 1 + 8) % 12) + 1);
     } else if (other.id === 2) {
-      // Mars → 4th, 8th
+      // Mars → 4th and 8th additional
       aspectedHouses.push(((other.house - 1 + 3) % 12) + 1);
       aspectedHouses.push(((other.house - 1 + 7) % 12) + 1);
     } else if (other.id === 6) {
-      // Saturn → 3rd, 10th
+      // Saturn → 3rd and 10th additional
       aspectedHouses.push(((other.house - 1 + 2) % 12) + 1);
       aspectedHouses.push(((other.house - 1 + 9) % 12) + 1);
+    } else if (other.id === 7 || other.id === 8) {
+      // Rahu/Ketu: aspect 5th and 9th in addition to 7th (BPHS shadow-planet aspects)
+      aspectedHouses.push(((other.house - 1 + 4) % 12) + 1);
+      aspectedHouses.push(((other.house - 1 + 8) % 12) + 1);
     }
 
     if (aspectedHouses.includes(p.house)) {
@@ -601,7 +658,8 @@ export function calculateFullShadbala(input: ShadBalaInput): ShadBalaComplete[] 
     const ay = ayanaBala(p, ayanamsha);
     const cheshtaBala = r2(computeCheshtaBala(p, ay));
     const naisargikaBala = NAISARGIKA[p.id];
-    const drikBala = r2(computeDrikBala(p, planets));
+    // Pass all 9 planets so Rahu/Ketu contribute their aspects as malefics
+    const drikBala = r2(computeDrikBala(p, input.planets));
 
     const totalPinda = r2(
       sthana.total + digBala + kala.total + cheshtaBala + naisargikaBala + drikBala,

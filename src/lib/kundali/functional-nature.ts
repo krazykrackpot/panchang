@@ -36,6 +36,8 @@ const PLANET_NAMES: Record<number, { en: string; hi: string; sa: string }> = {
   4: { en: 'Jupiter', hi: 'बृहस्पति', sa: 'बृहस्पतिः' },
   5: { en: 'Venus',   hi: 'शुक्र',    sa: 'शुक्रः'    },
   6: { en: 'Saturn',  hi: 'शनि',      sa: 'शनिः'      },
+  7: { en: 'Rahu',    hi: 'राहु',     sa: 'राहुः'     },
+  8: { en: 'Ketu',    hi: 'केतु',     sa: 'केतुः'     },
 };
 
 // Sign lord: sign 1-12 → planet id
@@ -229,6 +231,32 @@ export function calculateFunctionalNature(lagna: number): FunctionalNatureResult
       note,
     });
   }
+
+  // Rahu (7) and Ketu (8): shadow planets — no sign lordship, always functional malefics.
+  // Per BPHS / Laghu Parashari: they inherit the signification of their sign dispositors
+  // and behave as functional malefics regardless of lagna.
+  planets.push({
+    planetId: 7,
+    planetName: PLANET_NAMES[7],
+    nature: 'funcMalefic',
+    houseRulership: [], // shadow planets own no signs
+    label: { en: 'Functional Malefic (Shadow Planet)', hi: 'क्रियात्मक अशुभ (छाया ग्रह)' },
+    note: {
+      en: 'Rahu (North Node): amplifies the themes of its sign lord; acts as a malefic in all lagnas',
+      hi: 'राहु (उत्तर नोड): अपने राशि स्वामी के विषयों को प्रबल करता है; सभी लग्नों में अशुभ',
+    },
+  });
+  planets.push({
+    planetId: 8,
+    planetName: PLANET_NAMES[8],
+    nature: 'funcMalefic',
+    houseRulership: [], // shadow planets own no signs
+    label: { en: 'Functional Malefic (Shadow Planet)', hi: 'क्रियात्मक अशुभ (छाया ग्रह)' },
+    note: {
+      en: 'Ketu (South Node): brings detachment and moksha-seeking energy; acts as a malefic in all lagnas',
+      hi: 'केतु (दक्षिण नोड): वैराग्य और मोक्ष की ऊर्जा; सभी लग्नों में अशुभ',
+    },
+  });
 
   // Sort: yogaKaraka first, then funcBenefic, neutral, funcMalefic, maraka, badhak
   const ORDER: Record<FunctionalNature, number> = {

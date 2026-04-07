@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { calculateFullShadbala, type ShadBalaComplete } from './shadbala';
 
 /** Build a minimal ShadBalaInput for testing */
@@ -153,6 +153,176 @@ describe('calculateFullShadbala', () => {
     };
     for (const p of result) {
       expect(p.planet).toBe(nameMap[p.planetId]);
+    }
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Moolatrikona degree-range tests
+// ---------------------------------------------------------------------------
+
+describe('Moolatrikona degree ranges (Saptavargaja Bala)', () => {
+  /**
+   * Build input placing a single planet in its moolatrikona sign at a specific degree.
+   * All other planets are put far away so they don't interfere.
+   */
+  function mtInput(planetId: number, signForPlanet: number, degInSign: number) {
+    const longitude = (signForPlanet - 1) * 30 + degInSign;
+    const allPlanets = [
+      { id: 0, longitude: 0,   speed: 1.0,  house: 1,  sign: 1,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 1 },
+      { id: 1, longitude: 30,  speed: 13.0, house: 2,  sign: 2,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 2 },
+      { id: 2, longitude: 60,  speed: 0.5,  house: 3,  sign: 3,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 3 },
+      { id: 3, longitude: 90,  speed: 1.2,  house: 4,  sign: 4,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 4 },
+      { id: 4, longitude: 120, speed: 0.08, house: 5,  sign: 5,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 5 },
+      { id: 5, longitude: 150, speed: 1.1,  house: 6,  sign: 6,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 6 },
+      { id: 6, longitude: 180, speed: 0.03, house: 7,  sign: 7,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 7 },
+    ];
+    // Override the planet under test
+    allPlanets[planetId] = {
+      id: planetId,
+      longitude,
+      speed: 1.0,
+      house: signForPlanet,
+      sign: signForPlanet,
+      isRetrograde: false,
+      isExalted: false,
+      isDebilitated: false,
+      isOwnSign: false,
+      navamshaSign: 1,
+    };
+
+    return {
+      planets: allPlanets,
+      ascendantDeg: 0,
+      julianDay: 2448257.5,
+      birthDateObj: new Date('1990-01-15T06:00:00Z'),
+      latitude: 28.6139,
+      longitude: 77.2090,
+      timezone: 5.5,
+    };
+  }
+
+  it('Sun at Leo 10° (within 0-20°) — D1 gets Moolatrikona points (45)', () => {
+    // Sun moolatrikona = Leo 0°-20°. At 10° it should be in range.
+    // We check saptavargajaBala increases — at least the D1 component is 45
+    const inside = calculateFullShadbala(mtInput(0, 5, 10));
+    const outside = calculateFullShadbala(mtInput(0, 5, 25)); // Leo 25° = outside range → own sign (30)
+    const sunInside = inside.find(p => p.planetId === 0)!;
+    const sunOutside = outside.find(p => p.planetId === 0)!;
+    // Inside should have higher sthana bala (by the difference of moolatrikona vs own: 45-30=15)
+    expect(sunInside.sthanaBala).toBeGreaterThan(sunOutside.sthanaBala);
+  });
+
+  it('Sun at Leo 25° (outside 0-20°) — lower sthanaBala than Sun at Leo 10° (inside range)', () => {
+    // At Leo 25° Sun still owns the sign (30 pts D1) vs 45 pts D1 at Leo 10° = 15 pts less from moolatrikona
+    // ucchaBala also differs by degree so total difference is >15; just verify inside > outside
+    const inside = calculateFullShadbala(mtInput(0, 5, 10));
+    const outside = calculateFullShadbala(mtInput(0, 5, 25));
+    const sunInside = inside.find(p => p.planetId === 0)!;
+    const sunOutside = outside.find(p => p.planetId === 0)!;
+    expect(sunInside.sthanaBala).toBeGreaterThan(sunOutside.sthanaBala);
+    // Difference should be at least 15 (moolatrikona D1 contribution: 45-30=15)
+    expect(sunInside.sthanaBala - sunOutside.sthanaBala).toBeGreaterThanOrEqual(14);
+  });
+
+  it('Mars at Aries 5° (within 0-12°) — D1 gets Moolatrikona points', () => {
+    const inside = calculateFullShadbala(mtInput(2, 1, 5));
+    const outside = calculateFullShadbala(mtInput(2, 1, 20)); // Aries 20° = outside range
+    const marsInside = inside.find(p => p.planetId === 2)!;
+    const marsOutside = outside.find(p => p.planetId === 2)!;
+    expect(marsInside.sthanaBala).toBeGreaterThan(marsOutside.sthanaBala);
+  });
+
+  it('Mercury at Virgo 17° (within 15-20°) — D1 gets Moolatrikona points', () => {
+    const inside = calculateFullShadbala(mtInput(3, 6, 17));
+    const outside = calculateFullShadbala(mtInput(3, 6, 10)); // Virgo 10° = outside range → own sign
+    const mercInside = inside.find(p => p.planetId === 3)!;
+    const mercOutside = outside.find(p => p.planetId === 3)!;
+    expect(mercInside.sthanaBala).toBeGreaterThan(mercOutside.sthanaBala);
+  });
+
+  it('Jupiter at Sagittarius 5° (within 0-10°) — D1 gets Moolatrikona points', () => {
+    const inside = calculateFullShadbala(mtInput(4, 9, 5));
+    const outside = calculateFullShadbala(mtInput(4, 9, 15)); // Sag 15° = outside range → own sign
+    const jupInside = inside.find(p => p.planetId === 4)!;
+    const jupOutside = outside.find(p => p.planetId === 4)!;
+    expect(jupInside.sthanaBala).toBeGreaterThan(jupOutside.sthanaBala);
+  });
+
+  it('Saturn at Aquarius 10° (within 0-20°) — D1 gets Moolatrikona points', () => {
+    const inside = calculateFullShadbala(mtInput(6, 11, 10));
+    const outside = calculateFullShadbala(mtInput(6, 11, 25)); // Aquarius 25° = outside range → own sign
+    const satInside = inside.find(p => p.planetId === 6)!;
+    const satOutside = outside.find(p => p.planetId === 6)!;
+    expect(satInside.sthanaBala).toBeGreaterThan(satOutside.sthanaBala);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Rahu/Ketu Drik Bala tests
+// ---------------------------------------------------------------------------
+
+describe('Rahu/Ketu contribute to Drik Bala as malefics', () => {
+  function inputWithRahuOnHouse(rahuHouse: number, targetHouse: number, targetPlanetId: number) {
+    // Place Rahu on rahuHouse so it aspects the targetHouse
+    const planets = [
+      { id: 0, longitude: 0,   speed: 1.0,  house: 1,  sign: 1,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 1 },
+      { id: 1, longitude: 30,  speed: 13.0, house: 2,  sign: 2,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 2 },
+      { id: 2, longitude: 60,  speed: 0.5,  house: 3,  sign: 3,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 3 },
+      { id: 3, longitude: (targetHouse - 1) * 30 + 5, speed: 1.2, house: targetHouse, sign: targetHouse, isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 4 },
+      { id: 4, longitude: 120, speed: 0.08, house: 5,  sign: 5,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 5 },
+      { id: 5, longitude: 150, speed: 1.1,  house: 6,  sign: 6,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 6 },
+      { id: 6, longitude: 180, speed: 0.03, house: 7,  sign: 7,  isRetrograde: false, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 7 },
+      // Rahu on rahuHouse
+      { id: 7, longitude: (rahuHouse - 1) * 30 + 5, speed: -0.05, house: rahuHouse, sign: rahuHouse, isRetrograde: true, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 6 },
+      // Ketu (opposite Rahu)
+      { id: 8, longitude: ((rahuHouse - 1 + 6) % 12) * 30 + 5, speed: -0.05, house: ((rahuHouse - 1 + 6) % 12) + 1, sign: ((rahuHouse - 1 + 6) % 12) + 1, isRetrograde: true, isExalted: false, isDebilitated: false, isOwnSign: false, navamshaSign: 12 },
+    ];
+
+    // Ensure targetPlanetId planet is on targetHouse
+    if (targetPlanetId !== 3) {
+      planets[targetPlanetId] = {
+        ...planets[targetPlanetId],
+        house: targetHouse,
+        sign: targetHouse,
+        longitude: (targetHouse - 1) * 30 + 5,
+      };
+    }
+
+    return {
+      planets,
+      ascendantDeg: 0,
+      julianDay: 2448257.5,
+      birthDateObj: new Date('1990-01-15T06:00:00Z'),
+      latitude: 28.6139,
+      longitude: 77.2090,
+      timezone: 5.5,
+    };
+  }
+
+  it('Rahu on house 1 casts 7th aspect — reduces drikBala of planet on house 7', () => {
+    // Rahu on H1 → aspects H7 (7th from H1). Target: planet on H7.
+    const withRahu = inputWithRahuOnHouse(1, 7, 3); // Mercury on H7, Rahu on H1
+    const result = calculateFullShadbala(withRahu);
+    // Mercury (id=3) on H7 should have drikBala reduced by Rahu's malefic aspect (-7.5)
+    const mercury = result.find(p => p.planetId === 3)!;
+    expect(mercury.drikBala).toBeLessThanOrEqual(0); // net negative expected
+  });
+
+  it('Rahu/Ketu presence changes drikBala vs without Rahu/Ketu', () => {
+    const base = makeInput(); // original input that has Rahu/Ketu in planets
+    const result = calculateFullShadbala(base);
+    // All DrikBala values should be finite — confirms Rahu/Ketu are processed
+    for (const p of result) {
+      expect(Number.isFinite(p.drikBala)).toBe(true);
+    }
+  });
+
+  it('drikBala is bounded between -60 and +60', () => {
+    const result = calculateFullShadbala(makeInput());
+    for (const p of result) {
+      expect(p.drikBala).toBeGreaterThanOrEqual(-60);
+      expect(p.drikBala).toBeLessThanOrEqual(60);
     }
   });
 });

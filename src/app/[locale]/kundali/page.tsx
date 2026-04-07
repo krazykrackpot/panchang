@@ -474,9 +474,35 @@ export default function KundaliPage() {
             <div className="flex items-center justify-center gap-3 mt-2">
               <RashiIconById id={kundali.ascendant.sign} size={28} />
               <span className="text-gold-primary text-base font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                {locale === 'en' ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
+                {locale === 'en' ? 'Lagna (Ascendant)' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)
               </span>
             </div>
+            {/* Key birth details — nakshatra, tithi, yoga, masa */}
+            {(() => {
+              const moonP = kundali.planets.find(p => p.planet.id === 1);
+              const { calculateTithi, calculateYoga, sunLongitude: sunLon, toSidereal: toSid, getMasa, MASA_NAMES } = require('@/lib/ephem/astronomical');
+              const { TITHIS } = require('@/lib/constants/tithis');
+              const { YOGAS } = require('@/lib/constants/yogas');
+              const jd = kundali.julianDay;
+              const tR = calculateTithi(jd);
+              const tD = TITHIS[tR.number - 1];
+              const yN = calculateYoga(jd);
+              const yD = YOGAS[yN - 1];
+              const sS = toSid(sunLon(jd), jd);
+              const mI = getMasa(sS);
+              const mD = MASA_NAMES[mI];
+              return (
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3 text-xs">
+                  <span><span className="text-text-secondary/70">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({locale === 'en' ? 'Pada' : 'पाद'} {moonP?.pada || '—'})</span></span>
+                  <span className="text-gold-primary/15">|</span>
+                  <span><span className="text-text-secondary/70">{locale === 'en' ? 'Tithi' : 'तिथि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? (locale === 'en' ? 'Shukla' : 'शुक्ल') : (locale === 'en' ? 'Krishna' : 'कृष्ण')})</span></span>
+                  <span className="text-gold-primary/15">|</span>
+                  <span><span className="text-text-secondary/70">{locale === 'en' ? 'Yoga' : 'योग'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{yD?.name?.[locale] || '—'}</span></span>
+                  <span className="text-gold-primary/15">|</span>
+                  <span><span className="text-text-secondary/70">{locale === 'en' ? 'Masa' : 'मास'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{mD?.[locale] || '—'}</span></span>
+                </div>
+              );
+            })()}
             {/* Actions */}
             <div className="flex items-center justify-center gap-3 mt-4">
               <button
@@ -3371,7 +3397,7 @@ export default function KundaliPage() {
                 {/* Header: Swastika + Om + Name + Birth Details */}
                 <div className="text-center space-y-3">
                   <div className="text-5xl text-red-500" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>卐</div>
-                  <div className="text-orange-500 text-xl font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः</div>
+                  <div className="text-orange-500 text-xl font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>ॐ श्री गणेशाय नमः॥</div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-gold-light" style={headingFont}>
                     {locale === 'en' ? 'Janma Patrika' : 'जन्म पत्रिका'}
                   </h2>

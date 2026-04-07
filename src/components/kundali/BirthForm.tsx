@@ -76,6 +76,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.timezone) return; // Location with timezone required
     onSubmit(
       {
         name: formData.name,

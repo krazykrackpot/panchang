@@ -101,6 +101,7 @@ describe('Kundali API (/api/kundali)', () => {
       lng: 77.209,
       name: 'Test User',
       location: 'Delhi',
+      timezone: 'Asia/Kolkata',
     });
     const res = await handler.POST(req);
     if (res.status === 200) {

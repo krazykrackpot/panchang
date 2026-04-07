@@ -50,7 +50,7 @@ export function getUTCOffsetForDate(year: number, month: number, day: number, ti
     // If timezone string is invalid, try parsing as numeric offset
     const num = parseFloat(timezone);
     if (!isNaN(num)) return num;
-    return 0;
+    throw new Error(`Invalid timezone: "${timezone}" — must be IANA timezone string (e.g. Asia/Kolkata) or numeric offset`);
   }
 }
 
@@ -72,6 +72,9 @@ export function getBrowserTimezone(): string {
  */
 export function resolveTimezone(tz: string | number, year: number, month: number, day: number): number {
   if (typeof tz === 'number') return tz;
+  if (!tz || tz.trim() === '') {
+    throw new Error('Timezone is required — birth calculations must use the birth location timezone, not the browser timezone');
+  }
   // Try as numeric string first
   const num = parseFloat(tz);
   if (!isNaN(num) && tz.match(/^-?\d+\.?\d*$/)) return num;

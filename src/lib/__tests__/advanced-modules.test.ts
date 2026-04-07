@@ -182,9 +182,8 @@ describe('Timezone Utils', () => {
     expect(offset).toBe(0);
   });
 
-  it('should handle invalid timezone gracefully and return 0', () => {
-    const offset = getUTCOffsetForDate(2026, 1, 1, 'Invalid/Zone');
-    expect(offset).toBe(0);
+  it('should throw on invalid timezone — never silently return 0', () => {
+    expect(() => getUTCOffsetForDate(2026, 1, 1, 'Invalid/Zone')).toThrow('Invalid timezone');
   });
 
   it('should handle numeric string as timezone fallback', () => {

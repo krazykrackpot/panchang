@@ -83,6 +83,39 @@ export function resolveTimezone(tz: string | number, year: number, month: number
 }
 
 /**
+ * Resolve IANA timezone from lat/lng coordinates.
+ * Uses timeapi.io API; falls back to longitude-based estimation.
+ * The birth location's coordinates determine the timezone — never the browser.
+ */
+export async function resolveTimezoneFromCoords(lat: number, lng: number): Promise<string> {
+  try {
+    const res = await fetch(
+      `https://timeapi.io/api/timezone/coordinate?latitude=${lat}&longitude=${lng}`,
+      { signal: AbortSignal.timeout(3000) }
+    );
+    if (res.ok) {
+      const data = await res.json();
+      if (data.timeZone) return data.timeZone;
+    }
+  } catch { /* API failed — use fallback */ }
+
+  // Fallback: estimate from longitude
+  const offsetHours = Math.round(lng / 15);
+  const OFFSET_TO_IANA: Record<string, string> = {
+    '-12': 'Etc/GMT+12', '-11': 'Pacific/Midway', '-10': 'Pacific/Honolulu',
+    '-9': 'America/Anchorage', '-8': 'America/Los_Angeles', '-7': 'America/Denver',
+    '-6': 'America/Chicago', '-5': 'America/New_York', '-4': 'America/Halifax',
+    '-3': 'America/Sao_Paulo', '-2': 'Atlantic/South_Georgia', '-1': 'Atlantic/Azores',
+    '0': 'UTC', '1': 'Europe/Paris', '2': 'Europe/Helsinki',
+    '3': 'Europe/Moscow', '4': 'Asia/Dubai', '5': 'Asia/Karachi',
+    '6': 'Asia/Kolkata', '7': 'Asia/Bangkok', '8': 'Asia/Shanghai',
+    '9': 'Asia/Tokyo', '10': 'Australia/Sydney', '11': 'Pacific/Noumea',
+    '12': 'Pacific/Auckland',
+  };
+  return OFFSET_TO_IANA[String(offsetHours)] || 'UTC';
+}
+
+/**
  * Validate an IANA timezone string.
  */
 export function isValidTimezone(tz: string): boolean {

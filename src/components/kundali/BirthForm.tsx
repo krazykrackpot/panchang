@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import type { BirthData, ChartStyle } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
@@ -70,13 +71,27 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
         if (Object.keys(newData).length > 0) {
           setFormData(prev => ({ ...prev, ...newData }));
+          // If we have lat/lng but no timezone, resolve from coordinates
+          const lat = newData.lat || initialData?.lat;
+          const lng = newData.lng || initialData?.lng;
+          if (!newData.timezone && lat && lng) {
+            resolveTimezoneFromCoords(lat, lng).then(tz => {
+              setFormData(prev => ({ ...prev, timezone: tz }));
+            });
+          }
         }
       });
   }, [user]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.timezone) return; // Location with timezone required
+    // Timezone must come from birth location coordinates — never from browser
+    let tz = formData.timezone;
+    if (!tz && formData.lat && formData.lng) {
+      tz = await resolveTimezoneFromCoords(formData.lat, formData.lng);
+      setFormData(prev => ({ ...prev, timezone: tz }));
+    }
+    if (!tz) return;
     onSubmit(
       {
         name: formData.name,
@@ -85,7 +100,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         place: formData.place,
         lat: formData.lat,
         lng: formData.lng,
-        timezone: formData.timezone,
+        timezone: tz,
         ayanamsha: formData.ayanamsha,
       },
       formData.chartStyle

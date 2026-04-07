@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import BirthForm from '@/components/kundali/BirthForm';
@@ -392,9 +393,8 @@ export default function KundaliPage() {
     setSelectedHouse(null);
     setSelectedPlanet(null);
     try {
-      const res = await fetch('/api/kundali', {
+      const res = await authedFetch('/api/kundali', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(birthData),
       });
       const data = await res.json();

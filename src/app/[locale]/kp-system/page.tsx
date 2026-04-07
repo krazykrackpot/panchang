@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
-import { useAuthStore } from '@/stores/auth-store';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -371,7 +371,6 @@ export default function KPSystemPage() {
   const [loading, setLoading] = useState(false);
   const [upgradeRequired, setUpgradeRequired] = useState(false);
   const [showRefData, setShowRefData] = useState(false);
-  const session = useAuthStore(s => s.session);
 
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;
@@ -381,11 +380,8 @@ export default function KPSystemPage() {
     if (!placeTimezone) return;
     const tz = getUTCOffsetForDate(y, m, d, placeTimezone);
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
-      const res = await fetch('/api/kp-system', {
+      const res = await authedFetch('/api/kp-system', {
         method: 'POST',
-        headers,
         body: JSON.stringify({ ...form, place: placeName, lat: placeLat, lng: placeLng, timezone: String(tz) }),
       });
       const result = await res.json();

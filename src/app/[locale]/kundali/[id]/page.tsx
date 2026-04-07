@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { useSearchParams } from 'next/navigation';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowLeft, Share2, Copy, Check } from 'lucide-react';
@@ -46,9 +47,8 @@ export default function SharedKundaliPage() {
 
     const fetchKundali = async () => {
       try {
-        const response = await fetch('/api/kundali', {
+        const response = await authedFetch('/api/kundali', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: chartData.name,
             date: chartData.date,

@@ -6,7 +6,7 @@ import { Sparkles, X, AlertTriangle } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useSubscription } from '@/hooks/useSubscription';
-import { useAuthStore } from '@/stores/auth-store';
+import { authedFetch } from '@/lib/api/authed-fetch';
 
 interface Props {
   kundali: KundaliData;
@@ -27,7 +27,6 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
 
   // Check subscription — only Pro/Jyotishi can use AI readings
   const { tier } = useSubscription();
-  const session = useAuthStore(s => s.session);
   const isPaid = tier === 'pro' || tier === 'jyotishi';
 
   const generateReading = useCallback(async () => {
@@ -38,14 +37,8 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
     setRateLimited(false);
 
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (session?.access_token) {
-        headers['Authorization'] = `Bearer ${session.access_token}`;
-      }
-
-      const res = await fetch('/api/tippanni-llm', {
+      const res = await authedFetch('/api/tippanni-llm', {
         method: 'POST',
-        headers,
         body: JSON.stringify({
           kundali,
           stream: true,

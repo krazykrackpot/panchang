@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { getSupabase } from '@/lib/supabase/client';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
@@ -67,7 +68,6 @@ export default function VarshaphalPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const user = useAuthStore(s => s.user);
-  const session = useAuthStore(s => s.session);
 
   const [form, setForm] = useState({ name: '', date: '1990-01-15', time: '08:00', ayanamsha: 'lahiri' as const });
   const [placeName, setPlaceName] = useState('');
@@ -117,11 +117,8 @@ export default function VarshaphalPage() {
     if (!placeTimezone) return;
     const tz = getUTCOffsetForDate(y, m, d, placeTimezone);
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
-      const res = await fetch('/api/varshaphal', {
+      const res = await authedFetch('/api/varshaphal', {
         method: 'POST',
-        headers,
         body: JSON.stringify({
           birthData: { ...form, place: placeName, lat: placeLat, lng: placeLng, timezone: String(tz), ayanamsha: form.ayanamsha },
           year,

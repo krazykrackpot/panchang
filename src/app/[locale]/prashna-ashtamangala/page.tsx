@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
-import { useAuthStore } from '@/stores/auth-store';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -74,7 +74,6 @@ export default function PrashnaAshtamangalaPage() {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const locationStore = useLocationStore();
-  const session = useAuthStore(s => s.session);
 
   useEffect(() => { locationStore.detect(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -92,11 +91,8 @@ export default function PrashnaAshtamangalaPage() {
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
     try {
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`;
-      const res = await fetch('/api/prashna-ashtamangala', {
+      const res = await authedFetch('/api/prashna-ashtamangala', {
         method: 'POST',
-        headers,
         body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
       const result = await res.json();
@@ -105,7 +101,7 @@ export default function PrashnaAshtamangalaPage() {
       setData(result);
     } catch (e) { console.error(e); }
     finally { setLoading(false); }
-  }, [category, numbers, locationStore.lat, locationStore.lng, session]);
+  }, [category, numbers, locationStore.lat, locationStore.lng]);
 
   const verdictColors = { favorable: 'text-green-400', unfavorable: 'text-red-400', mixed: 'text-yellow-400' };
   const objLabels = [t.primary, t.supporting, t.timingObj];

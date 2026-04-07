@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Clock, HelpCircle, ArrowRight, CheckCircle, AlertTriangle,
@@ -112,9 +113,8 @@ export default function PrashnaPage() {
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
     try {
-      const res = await fetch('/api/kundali', {
+      const res = await authedFetch('/api/kundali', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: locale === 'en' ? 'Prashna Chart' : 'प्रश्न कुण्डली',
           date: now.toISOString().split('T')[0],

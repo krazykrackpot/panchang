@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { Clock, ChevronDown, ChevronUp } from 'lucide-react';
@@ -87,9 +88,8 @@ export default function RectifyPage() {
       const timeStr = `${h.toString().padStart(2, '0')}:${Math.round(m).toString().padStart(2, '0')}`;
 
       try {
-        const res = await fetch('/api/kundali', {
+        const res = await authedFetch('/api/kundali', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             year: birthYear, month: birthMonth, day: birthDay,
             hour: h, minute: Math.round(m),

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -166,9 +167,8 @@ export default function MuhurtaAIPage() {
     if (!activity) return;
     setLoading(true);
     try {
-      const res = await fetch('/api/muhurta-ai', {
+      const res = await authedFetch('/api/muhurta-ai', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz, timezone: location.timezone, ...(hasBirthData ? { birthNakshatra, birthRashi } : {}) }),
       });
       const result = await res.json();

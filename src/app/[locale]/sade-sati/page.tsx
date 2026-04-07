@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { useLocale } from 'next-intl';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { RashiIconById } from '@/components/icons/RashiIcons';
@@ -164,9 +165,8 @@ export default function SadeSatiPage() {
       const [y, m, d] = birthDate.split('-').map(Number);
       if (!birthTimezone) { setLoading(false); return; }
       const tzOffset = getUTCOffsetForDate(y, m, d, birthTimezone);
-      const res = await fetch('/api/kundali', {
+      const res = await authedFetch('/api/kundali', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: '',
           date: birthDate,

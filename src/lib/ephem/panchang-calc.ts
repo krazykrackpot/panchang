@@ -338,59 +338,69 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // Amrit Kalam & Varjyam
 // ──────────────────────────────────────────────────────────────
 
-// These are derived from Nakshatra-Vara combination.
-// The time windows are specific portions of the day based on traditional tables.
-// Each nakshatra (1-27) has a specific ghati (1 ghati = 24 min) offset for varjyam and amrit kalam.
+// Varjyam (Thyajyam) and Amrit Kalam ghati offset tables.
+// Source: Drik Panchang Thyajyam tutorial + WisdomLib Prashna Marga.
+//
+// IMPORTANT: 1 ghati = 1/60th of the nakshatra's ACTUAL duration (NOT fixed 24 min).
+// Offset formula: nakshatra_start + (ghati / 60) * nakshatra_duration
+// Duration of window: 4 ghatis = (4/60) * nakshatra_duration
 
-// Varjyam ghati offset from nakshatra start (in ghatis, 1 ghati = 24 min)
+// Varjyam (inauspicious) ghati offset from nakshatra start
 const VARJYAM_GHATI: number[] = [
-  50, 44, 30, 20, 32, // Ashwini-Mrigashira
-  30, 20, 32, 44, 50, // Ardra-Magha
-  20, 32, 44, 50, 30, // P.Phalguni-Swati
-  32, 44, 50, 20, 30, // Vishakha-P.Ashadha
-  50, 20, 44, 30, 32, // U.Ashadha-P.Bhadra
-  50, 44,             // U.Bhadra-Revati
+  50, 24, 30, 40, 14,  // Ashwini(1)-Mrigashira(5)
+  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)
+  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15)
+  14, 10, 14, 56, 24,  // Vishakha(16)-P.Ashadha(20)
+  20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
+  24, 30,              // U.Bhadra(26)-Revati(27)
 ];
 
-// Amrit Kalam ghati offset from nakshatra start
+// Amrit Kalam (auspicious) ghati offset from nakshatra start
+// Source: WisdomLib Amrutha Ghatika (Prashna Marga), verified vs Drik Panchang output
 const AMRIT_GHATI: number[] = [
-  2, 46, 36, 8, 14,   // Ashwini-Mrigashira
-  22, 8, 14, 46, 2,    // Ardra-Magha
-  8, 14, 46, 2, 36,    // P.Phalguni-Swati
-  14, 46, 2, 8, 36,    // Vishakha-P.Ashadha
-  2, 8, 46, 36, 14,    // U.Ashadha-P.Bhadra
-  2, 46,               // U.Bhadra-Revati
+  42, 48, 54, 52, 38,  // Ashwini(1)-Mrigashira(5)
+  35, 54, 44, 56, 54,  // Ardra(6)-Magha(10)
+  44, 42, 45, 44, 38,  // P.Phalguni(11)-Swati(15)
+  38, 34, 38, 44, 48,  // Vishakha(16)-P.Ashadha(20)
+  44, 34, 34, 42, 40,  // U.Ashadha(21)-P.Bhadra(25)
+  48, 54,              // U.Bhadra(26)-Revati(27)
 ];
 
 function computeAmritVarjyam(
   nakshatraNum: number,
-  ingressJD: number,   // JD when the nakshatra started
-  jdMidnight: number,  // midnight JD for the panchang date
+  nakshatraStartJD: number,  // JD when the nakshatra started
+  nakshatraEndJD: number,    // JD when the nakshatra ends
+  jdMidnight: number,        // midnight JD for the panchang date
   tzOffset: number,
 ): { amritKalam?: { start: string; end: string }; varjyam?: { start: string; end: string } } {
   const nakIdx = nakshatraNum - 1;
   if (nakIdx < 0 || nakIdx >= 27) return {};
 
-  // 1 ghati = 24 min = 0.4 hr. Offsets are measured from nakshatra ingress time.
-  const varjyamOffset = (VARJYAM_GHATI[nakIdx] || 0) * 0.4;
-  const amritOffset = (AMRIT_GHATI[nakIdx] || 0) * 0.4;
-  // Duration: 4.5 ghatis = 108 min (matches Drik Panchang reference)
-  const duration = 0.4 * 4.5;
+  // Nakshatra duration in hours — ghatis are proportional to this, not fixed 24 min
+  const nakshatraDurationHrs = (nakshatraEndJD - nakshatraStartJD) * 24;
+  if (nakshatraDurationHrs <= 0) return {};
 
-  // Ingress expressed as UT hours from midnight of the panchang date
-  const ingressUT = (ingressJD - jdMidnight) * 24;
+  const ghatiToHrs = nakshatraDurationHrs / 60;
 
-  const varjyamStartUT = ingressUT + varjyamOffset;
-  const amritStartUT = ingressUT + amritOffset;
+  const varjyamOffsetHrs = VARJYAM_GHATI[nakIdx] * ghatiToHrs;
+  const amritOffsetHrs = AMRIT_GHATI[nakIdx] * ghatiToHrs;
+  // Window duration: 4 ghatis (standard for both Varjyam and Amrit Kalam)
+  const durationHrs = 4 * ghatiToHrs;
+
+  // Express as UT hours from midnight of the panchang date
+  const ingressUT = (nakshatraStartJD - jdMidnight) * 24;
+
+  const varjyamStartUT = ingressUT + varjyamOffsetHrs;
+  const amritStartUT = ingressUT + amritOffsetHrs;
 
   return {
     amritKalam: {
-      start: formatTime(amritStartUT % 24, tzOffset),
-      end: formatTime((amritStartUT + duration) % 24, tzOffset),
+      start: formatTime(amritStartUT, tzOffset),
+      end: formatTime(amritStartUT + durationHrs, tzOffset),
     },
     varjyam: {
-      start: formatTime(varjyamStartUT % 24, tzOffset),
-      end: formatTime((varjyamStartUT + duration) % 24, tzOffset),
+      start: formatTime(varjyamStartUT, tzOffset),
+      end: formatTime(varjyamStartUT + durationHrs, tzOffset),
     },
   };
 }
@@ -492,15 +502,16 @@ const DISHA_SHOOL_DATA: Record<number, DishaShoolInfo> = {
 // ──────────────────────────────────────────────────────────────
 
 // Sarvartha Siddhi occurs on specific Nakshatra + Vara combinations
+// Source: Drik Panchang, Prokerala, Shubh Panchang (all three agree)
 // Key: weekday (0-6) → set of nakshatra numbers that form Sarvartha Siddhi
 const SARVARTHA_SIDDHI: Record<number, Set<number>> = {
-  0: new Set([2, 5, 7, 9, 12, 16, 21, 26]),     // Sunday
-  1: new Set([1, 6, 11, 15, 17, 22, 27]),        // Monday
-  2: new Set([3, 7, 12, 14, 18, 23, 25]),        // Tuesday
-  3: new Set([2, 5, 8, 13, 17, 19, 24, 26]),     // Wednesday
-  4: new Set([1, 4, 7, 10, 14, 16, 20, 25, 27]), // Thursday
-  5: new Set([3, 6, 9, 12, 15, 19, 21, 26]),     // Friday
-  6: new Set([4, 8, 11, 14, 18, 22, 24, 27]),    // Saturday
+  0: new Set([8, 9, 12, 13, 19, 21, 26]),  // Sunday: Pushya, Ashlesha, U.Phalguni, Hasta, Mula, U.Ashadha, U.Bhadra
+  1: new Set([4, 5, 8, 17, 22]),            // Monday: Rohini, Mrigashira, Pushya, Anuradha, Shravana
+  2: new Set([1, 3, 9, 26]),                // Tuesday: Ashwini, Krittika, Ashlesha, U.Bhadra
+  3: new Set([3, 4, 5, 13, 17]),            // Wednesday: Krittika, Rohini, Mrigashira, Hasta, Anuradha
+  4: new Set([1, 7, 8, 17, 27]),            // Thursday: Ashwini, Punarvasu, Pushya, Anuradha, Revati
+  5: new Set([1, 7, 17, 22, 27]),           // Friday: Ashwini, Punarvasu, Anuradha, Shravana, Revati
+  6: new Set([4, 15, 22]),                  // Saturday: Rohini, Swati, Shravana
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -952,46 +963,34 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const hora = computeHora(sunriseUT, sunsetUT, weekday, tzOffset);
 
   // ── Amrit Kalam & Varjyam ──
-  // Traditional rule: ghati offsets are measured from NAKSHATRA INGRESS time (not sunrise).
+  // Ghati offsets are PROPORTIONAL to the nakshatra's actual duration (1 ghati = 1/60th).
+  // We always use the current nakshatra (active at sunrise) since with correct AMRIT_GHATI
+  // values (range 34-56), the amrit window always falls in the latter half of the nakshatra
+  // and will be after sunrise for any nakshatra that started within the last ~20h.
   //
-  // Timezone-agnostic selection (no arbitrary thresholds):
-  //   Ask "has the current nakshatra's amrit window already expired before today's sunrise?"
-  //   If startJD + amritOffset < jdSunrise → expired → use NEXT nakshatra's ingress (endJD).
-  //   Otherwise → still upcoming → use CURRENT nakshatra's ingress (startJD).
-  //
-  // Why this works for all UTC offsets:
-  //   UTC+2 (Switzerland, Apr 7): Jyeshtha ingress 02:47 UT + 0.8h = 03:35 UT < sunrise 05:01 UT
-  //     → expired → use Mula (endJD = 11:19 UT) → 16:31 CEST ✓
-  //   UTC-5 (New York, Apr 7): Mula ingress 11:19 UT + 3.2h = 14:31 UT > sunrise 11:35 UT
-  //     → still ahead → use Mula (startJD = 11:19 UT) → 09:31 EST ✓
+  // If the amrit window falls before sunrise (very rare — only for nakshatras that started
+  // 18+ hours ago), we fall back to the next nakshatra with an approximate duration.
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
-  let amritNakshatraNum = nakshatraNum;
-  let amritIngressJD: number;
+  let amritNakNum = nakshatraNum;
+  let amritStartJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
+  let amritEndJD = nakshatraTransition?.endJD ?? (jdSunrise + 0.5);
 
-  if (nakshatraTransition?.startJD) {
-    const currentAmritJD = nakshatraTransition.startJD
-      + (AMRIT_GHATI[nakshatraNum - 1] || 0) * (0.4 / 24);
+  if (nakshatraTransition?.startJD && nakshatraTransition?.endJD) {
+    const nakDuration = nakshatraTransition.endJD - nakshatraTransition.startJD;
+    const amritOffsetDays = (AMRIT_GHATI[nakshatraNum - 1] || 40) / 60 * nakDuration;
+    const currentAmritJD = nakshatraTransition.startJD + amritOffsetDays;
 
-    if (currentAmritJD >= jdSunrise) {
-      // Amrit window is still ahead of sunrise → use current nakshatra's ingress
-      amritIngressJD = nakshatraTransition.startJD;
-    } else if (nakshatraTransition.endJD) {
-      // Amrit window expired before sunrise → use next nakshatra's ingress
-      amritNakshatraNum = nakshatraTransition.nextNumber;
-      amritIngressJD = nakshatraTransition.endJD;
-    } else {
-      amritIngressJD = jdSunrise - 0.5;
+    if (currentAmritJD < jdSunrise) {
+      // Rare: amrit expired before sunrise → use next nakshatra
+      amritNakNum = nakshatraTransition.nextNumber;
+      amritStartJD = nakshatraTransition.endJD;
+      // Approximate next nakshatra duration as same as current (~24h avg)
+      amritEndJD = nakshatraTransition.endJD + nakDuration;
     }
-  } else if (nakshatraTransition?.endJD) {
-    // No startJD available → fall back to next nakshatra
-    amritNakshatraNum = nakshatraTransition.nextNumber;
-    amritIngressJD = nakshatraTransition.endJD;
-  } else {
-    amritIngressJD = jdSunrise - 0.5;
   }
 
   const { amritKalam, varjyam } = computeAmritVarjyam(
-    amritNakshatraNum, amritIngressJD, jdMidnight, tzOffset
+    amritNakNum, amritStartJD, amritEndJD, jdMidnight, tzOffset
   );
 
   // ── Named Muhurtas ──
@@ -1001,7 +1000,11 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const dishaShool = DISHA_SHOOL_DATA[weekday];
 
   // ── Sarvartha Siddhi Yoga ──
-  const sarvarthaSiddhi = SARVARTHA_SIDDHI[weekday]?.has(nakshatraNum) ?? false;
+  // Check both sunrise nakshatra AND the next nakshatra (if it transitions during the day).
+  // Drik Panchang shows SS from the transition time when the next nakshatra qualifies.
+  const ssSet = SARVARTHA_SIDDHI[weekday];
+  const sarvarthaSiddhi = (ssSet?.has(nakshatraNum) ?? false)
+    || (nakshatraTransition?.nextNumber !== undefined && (ssSet?.has(nakshatraTransition.nextNumber) ?? false));
 
   // ── Enhanced fields (Drikpanchang-style) ──
 

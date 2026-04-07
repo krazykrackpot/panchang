@@ -211,6 +211,8 @@ export default function PanchangPage() {
 
   const fetchPanchang = useCallback(() => {
     if (!selectedDate) return;
+    // Don't fetch until we have a real location (avoid erroneous data at lat=0,lng=0)
+    if (location.lat === 0 && location.lng === 0) return;
     setLoading(true);
     const [year, month, day] = selectedDate.split('-').map(Number);
     const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';

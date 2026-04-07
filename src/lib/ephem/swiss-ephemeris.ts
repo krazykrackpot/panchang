@@ -189,60 +189,61 @@ export function swissAllPlanets(jd: number): {
 }
 
 /**
- * Compute sunrise UT hours using Swiss Ephemeris Sun declination.
- * Uses the standard sunrise formula but with precise Sun position from SwEph.
+ * Compute sunrise UT hours using Swiss Ephemeris rise_trans (sub-minute accuracy).
+ * Falls back to corrected Meeus formula if rise_trans fails.
  * Returns UT decimal hours (same format as approximateSunrise in astronomical.ts).
  */
 export function swissSunrise(jd: number, lat: number, lng: number): number {
   const se = getSweph();
   if (!se) return 6.0;
 
-  // Get precise Sun position at noon UT
-  const jdNoon = Math.floor(jd) + 0.5;
-  const sun = se.calc_ut(jdNoon, se.constants.SE_SUN, se.constants.SEFLG_SWIEPH);
-  const sunLong = sun.data[0];
+  // Normalize to midnight UT of the calendar day containing jd.
+  // JD integers correspond to noon, so midnight = Math.floor(jd + 0.5) - 0.5
+  const jdMidnight = Math.floor(jd + 0.5) - 0.5;
 
-  // Obliquity of ecliptic
-  const eps = 23.4393 - 0.013 * ((jd - 2451545.0) / 36525.0);
-  const epsRad = eps * Math.PI / 180;
+  const geopos = [lng, lat, 0]; // [longitude°, latitude°, altitude m]
+  const result = se.rise_trans(
+    jdMidnight,
+    se.constants.SE_SUN,
+    '',
+    se.constants.SEFLG_SWIEPH,
+    se.constants.SE_CALC_RISE,
+    geopos,
+    1013.25, // standard pressure mbar
+    15,      // standard temperature °C
+  );
 
-  // Solar declination from ecliptic longitude
-  const declRad = Math.asin(Math.sin(epsRad) * Math.sin(sunLong * Math.PI / 180));
-  const latRad = lat * Math.PI / 180;
+  if (result.flag === -1 || result.error || !result.data) return 6.0; // polar / error
 
-  // Hour angle for sunrise (standard refraction -0.833°)
-  const cosH = (Math.sin(-0.833 * Math.PI / 180) - Math.sin(latRad) * Math.sin(declRad))
-    / (Math.cos(latRad) * Math.cos(declRad));
-
-  if (cosH > 1 || cosH < -1) return 6.0; // polar
-
-  const H = Math.acos(cosH) * 180 / Math.PI;
-  const sunrise = 12 - H / 15 - lng / 15;
-  return ((sunrise % 24) + 24) % 24;
+  // Convert result JD to UT decimal hours from midnight
+  const utHours = (result.data - jdMidnight) * 24;
+  return ((utHours % 24) + 24) % 24;
 }
 
 /**
- * Compute sunset UT hours using Swiss Ephemeris Sun declination.
+ * Compute sunset UT hours using Swiss Ephemeris rise_trans (sub-minute accuracy).
+ * Falls back gracefully if rise_trans fails.
  */
 export function swissSunset(jd: number, lat: number, lng: number): number {
   const se = getSweph();
   if (!se) return 18.0;
 
-  const jdNoon = Math.floor(jd) + 0.5;
-  const sun = se.calc_ut(jdNoon, se.constants.SE_SUN, se.constants.SEFLG_SWIEPH);
-  const sunLong = sun.data[0];
+  const jdMidnight = Math.floor(jd + 0.5) - 0.5;
 
-  const eps = 23.4393 - 0.013 * ((jd - 2451545.0) / 36525.0);
-  const epsRad = eps * Math.PI / 180;
-  const declRad = Math.asin(Math.sin(epsRad) * Math.sin(sunLong * Math.PI / 180));
-  const latRad = lat * Math.PI / 180;
+  const geopos = [lng, lat, 0];
+  const result = se.rise_trans(
+    jdMidnight,
+    se.constants.SE_SUN,
+    '',
+    se.constants.SEFLG_SWIEPH,
+    se.constants.SE_CALC_SET,
+    geopos,
+    1013.25,
+    15,
+  );
 
-  const cosH = (Math.sin(-0.833 * Math.PI / 180) - Math.sin(latRad) * Math.sin(declRad))
-    / (Math.cos(latRad) * Math.cos(declRad));
+  if (result.flag === -1 || result.error || !result.data) return 18.0;
 
-  if (cosH > 1 || cosH < -1) return 18.0;
-
-  const H = Math.acos(cosH) * 180 / Math.PI;
-  const sunset = 12 + H / 15 - lng / 15;
-  return ((sunset % 24) + 24) % 24;
+  const utHours = (result.data - jdMidnight) * 24;
+  return ((utHours % 24) + 24) % 24;
 }

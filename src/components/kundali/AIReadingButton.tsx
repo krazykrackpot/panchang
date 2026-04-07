@@ -6,6 +6,7 @@ import { Sparkles, X, AlertTriangle } from 'lucide-react';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useSubscription } from '@/hooks/useSubscription';
+import { useAuthStore } from '@/stores/auth-store';
 
 interface Props {
   kundali: KundaliData;
@@ -19,12 +20,14 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
   const [error, setError] = useState<string | null>(null);
   const [showReading, setShowReading] = useState(false);
   const [rateLimited, setRateLimited] = useState(false);
+  const [rateLimitMsg, setRateLimitMsg] = useState('');
   const readingRef = useRef<HTMLDivElement>(null);
   const isDevanagari = locale !== 'en';
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
   // Check subscription — only Pro/Jyotishi can use AI readings
   const { tier } = useSubscription();
+  const session = useAuthStore(s => s.session);
   const isPaid = tier === 'pro' || tier === 'jyotishi';
 
   const generateReading = useCallback(async () => {
@@ -35,9 +38,14 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
     setRateLimited(false);
 
     try {
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (session?.access_token) {
+        headers['Authorization'] = `Bearer ${session.access_token}`;
+      }
+
       const res = await fetch('/api/tippanni-llm', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           kundali,
           stream: true,
@@ -46,7 +54,9 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
       });
 
       if (res.status === 429) {
+        const data = await res.json().catch(() => ({}));
         setRateLimited(true);
+        setRateLimitMsg(data.error || '');
         setLoading(false);
         return;
       }
@@ -174,12 +184,12 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-amber-200 text-sm font-bold">
-                      {locale === 'en' ? 'Already generated today' : 'आज पहले ही जनरेट किया गया'}
+                      {locale === 'en' ? 'AI Reading Limit Reached' : 'AI विश्लेषण सीमा पूर्ण'}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">
-                      {locale === 'en'
-                        ? 'AI readings are limited to once per chart per day. Your rule-based convergence analysis above is always available.'
-                        : 'AI विश्लेषण प्रति कुंडली प्रति दिन एक बार सीमित है। ऊपर नियम-आधारित विश्लेषण हमेशा उपलब्ध है।'}
+                      {rateLimitMsg || (locale === 'en'
+                        ? 'Monthly AI reading limit reached. Your rule-based convergence analysis above is always available.'
+                        : 'मासिक AI विश्लेषण सीमा पूर्ण। ऊपर नियम-आधारित विश्लेषण हमेशा उपलब्ध है।')}
                     </p>
                   </div>
                 </div>

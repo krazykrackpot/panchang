@@ -731,138 +731,400 @@ interface AvasthasInterpretationProps {
   locale: string;
 }
 
-export function AvasthasInterpretation({ avasthas, planets, locale }: AvasthasInterpretationProps) {
+export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: AvasthasInterpretationProps) {
   const isHi = locale !== 'en';
+  const [expanded, setExpanded] = useState<number | null>(null);
+  const [showHowChange, setShowHowChange] = useState(false);
 
   if (!avasthas.length) return null;
 
-  // Plain-language meaning per Baladi (age) state
-  // Keys match the lowercase `state` field from calculateAvasthas()
-  const BALADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    bala:    { en: 'still developing its full potential — expect gradual, building results', hi: 'अभी क्षमता विकसित हो रही है — क्रमिक परिणाम' },
-    kumara:  { en: 'actively learning and building — solid but not yet at peak', hi: 'सक्रिय और सीख रहा है — ठोस पर चरम पर नहीं' },
-    yuva:    { en: 'at peak power — delivering its best, most dependable results', hi: 'चरम शक्ति पर — सर्वोत्तम, विश्वसनीय परिणाम' },
-    vriddha: { en: 'slowing down — results come, but with delays and reduced intensity', hi: 'धीमा हो रहा है — परिणाम आते हैं, पर देर से' },
-    mrita:   { en: 'blocked or exhausted — this area of life needs conscious effort to activate', hi: 'अवरुद्ध या थका हुआ — सचेत प्रयास चाहिए' },
+  // Planet domain keywords for synthesis text
+  const PLANET_DOMAIN: Record<number, { en: string }> = {
+    0: { en: 'career, authority, father, soul-purpose' },
+    1: { en: 'emotions, mind, mother, public perception' },
+    2: { en: 'courage, energy, property, siblings' },
+    3: { en: 'intellect, communication, business, education' },
+    4: { en: 'wisdom, children, wealth, spirituality' },
+    5: { en: 'relationships, beauty, creativity, pleasure' },
+    6: { en: 'discipline, longevity, service, karma' },
+    7: { en: 'ambition, foreign connections, unusual gains/losses' },
+    8: { en: 'detachment, past karma, intuition, liberation' },
   };
 
-  // Plain-language meaning per Jagradadi (alertness) state
-  // Keys match the lowercase `state` field: 'jagrat', 'swapna', 'sushupta'
-  const JAGRADADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    jagrat:   { en: 'fully alert — giving ~100% of its chart-promised results', hi: 'पूरी तरह जाग्रत — ~100% वादे पूरे कर रहा है' },
-    swapna:   { en: 'half-awake — giving ~50% results; potential is there but under-expressing', hi: 'आधा जाग्रत — ~50% परिणाम; क्षमता है पर कम व्यक्त' },
-    sushupta: { en: 'deep sleep — giving only ~25% results; needs external activation (remedies/effort)', hi: 'गहरी नींद — ~25% परिणाम; बाहरी सक्रियता चाहिए' },
+  // Baladi state implications per planet — uses av.baladi.state as key
+  const BALADI_PLANET: Record<string, Record<number, string>> = {
+    bala: {
+      0: 'Career and authority are still forming — recognition is coming but requires patience. Father relationship is developing.',
+      1: 'Emotions and mind are unsteady, learning to regulate — moods fluctuate but grow more stable with time.',
+      2: 'Courage and initiative are forming — bursts of energy exist but sustained drive is still being built.',
+      3: 'Intellect is sharp but inconsistent — great ideas arrive, but follow-through is still developing.',
+      4: 'Wisdom and prosperity are in early stages — good judgment is forming, guidance comes intermittently.',
+      5: 'Relationships and pleasures are new territory — attraction is there but lasting partnerships are still forming.',
+      6: 'Discipline is being learned — routines help but consistency is not yet established. Career is on a building track.',
+      7: 'Ambition is waking up — unconventional opportunities arise but direction is not yet clear.',
+      8: 'Spiritual intuition is awakening — past-life patterns are just beginning to surface.',
+    },
+    kumara: {
+      0: 'Career is steadily building toward recognition. Authority is growing; father is a constructive presence.',
+      1: 'Emotional intelligence is developing well — mind is more stable, mother is a positive influence.',
+      2: 'Courage and physical energy are solid — property goals and sibling relationships are constructive.',
+      3: 'Communication and business skills are developing well — good for studies, deals, writing, and analysis.',
+      4: 'Wisdom is expanding meaningfully — children, wealth, and spiritual practice show positive momentum.',
+      5: 'Relationships are developing with real depth — creative projects are gaining traction.',
+      6: 'Discipline is becoming a genuine strength — career and health both show steady, reliable improvement.',
+      7: 'Ambition is channeling constructively — foreign or unconventional opportunities are within reach.',
+      8: 'Spiritual depth is building — intuition is growing more reliable, karmic lessons are being integrated.',
+    },
+    yuva: {
+      0: 'Career and authority are at peak potential — recognition flows naturally. Father brings blessings and support.',
+      1: 'Emotional and mental wellbeing are excellent — strong public image, mother is very supportive.',
+      2: 'Courage and energy are at maximum — property, siblings, and physical vitality all thrive.',
+      3: 'Intellect and communication fire on all cylinders — business, education, and writing all excel.',
+      4: 'Wisdom and prosperity at peak — excellent period for children, wealth accumulation, and spiritual growth.',
+      5: 'Relationships and pleasures are deeply fulfilling — creativity shines and partnerships genuinely flourish.',
+      6: 'Discipline and karma are fully rewarding — career is solid, health is reliable, longevity is favored.',
+      7: 'Ambition is at full force — foreign ventures and unconventional paths open wide.',
+      8: 'Spiritual insights are powerful and clear — intuition is sharp and karmic purposes are understood.',
+    },
+    vriddha: {
+      0: 'Career and authority are waning — still functional but peak has passed. Father may need care or attention.',
+      1: 'Emotional sensitivity is high — the mind tires easily. Mother\'s health or wellbeing may need attention.',
+      2: 'Energy and courage are fading — avoid reckless physical risks. Property and sibling matters can drag.',
+      3: 'Communication and intellect are slowing — good ideas come but execution is harder. Review agreements carefully.',
+      4: 'Wisdom is rich but material prosperity is declining — avoid overleveraging. Children benefit from independence.',
+      5: 'Relationship energy is dimming — creativity still flows but pleasure-seeking needs moderation.',
+      6: 'Discipline is still present but tiring — avoid overwork. Joint, bone, and dental health deserve attention.',
+      7: 'Ambition is fading — past opportunities feel better than present ones. Consolidate rather than expand.',
+      8: 'Spiritual detachment is deepening naturally — this is not a loss but a shift toward inner orientation.',
+    },
+    mrita: {
+      0: 'Career and authority feel blocked or denied — recognition may be withdrawn. Father relationship is strained. Targeted remedies are essential.',
+      1: 'Emotional turbulence is significant — anxiety, depression risk, or a mother\'s serious health concern. Moon remedies are needed.',
+      2: 'Courage and energy are very depleted — accident risk, property loss, sibling conflict possible. Extra caution required.',
+      3: 'Intellect and communication are severely hampered — poor decisions, misunderstandings likely. Avoid signing major agreements.',
+      4: 'Wisdom and prosperity are blocked — financial misjudgments, poor advice, children may face hardship. Seek trusted counsel.',
+      5: 'Relationship and pleasure energies are suppressed — relationship dissolution risk, creative blocks. Deep Venus remedies are needed.',
+      6: 'Discipline and karma are exhausted — serious career obstacles, chronic health issues possible. Rest and patient rebuilding required.',
+      7: 'Ambition backfires — foreign ventures or unconventional risks tend toward losses. Extreme caution with speculation.',
+      8: 'Spiritual confusion or past-karma weight is heavy — escapism and isolation risk. Consistent spiritual practice is the remedy.',
+    },
   };
 
-  // Plain-language meaning per Lajjitadi (emotional) state
-  // Keys match the lowercase `state` field from calculateAvasthas()
-  const LAJJITADI_PLAIN: Record<string, { en: string; hi: string }> = {
-    lajjita:   { en: 'ashamed — in a difficult environment, giving uncomfortable or blocked results', hi: 'लज्जित — कठिन वातावरण, असहज परिणाम' },
-    garvita:   { en: 'proud — exalted or own-sign power, delivering with confidence', hi: 'गर्वित — उच्च या स्वगृह, आत्मविश्वास से देता है' },
-    kshudita:  { en: 'hungry — with enemies, giving insatiable or restless results', hi: 'क्षुधित — शत्रुओं के साथ, बेचैन परिणाम' },
-    trushita:  { en: 'thirsty — craving balance; results come through persistent effort', hi: 'तृषित — संतुलन की चाह; लगातार प्रयास से परिणाम' },
-    mudita:    { en: 'happy — with friendly planets, giving warm and willing results', hi: 'मुदित — मित्र ग्रहों के साथ, उत्साहपूर्ण परिणाम' },
-    kshobhita: { en: 'agitated — under stress from aspects, giving volatile results', hi: 'क्षोभित — दृष्टि तनाव, अस्थिर परिणाम' },
+  // Jagradadi state: planet-specific % output meaning
+  const JAGRADADI_PLANET: Record<string, Record<number, string>> = {
+    jagrat: {
+      0: 'Fully delivering career recognition and authority — what your Sun promises in your chart is arriving completely.',
+      1: 'Emotions and intuition are sharp and reliable — full mental and emotional output, responsive and clear.',
+      2: 'Physical energy, courage, and initiative are at 100% — this is the time for bold, decisive action.',
+      3: 'Intellect and communication are at maximum clarity — best window for negotiations, studies, and decisions.',
+      4: 'Wisdom and good fortune are fully active — Jupiter\'s blessings flow without obstruction.',
+      5: 'Relationships and pleasures are fully alive — partnerships are at their most rewarding and generative.',
+      6: 'Discipline and karma are fully delivering — consistent efforts are paying off completely and visibly.',
+      7: 'Ambition and unusual opportunities are fully awake — foreign or unconventional paths genuinely deliver.',
+      8: 'Spiritual insight and detachment are clear and reliable — past-karma lessons are fully conscious.',
+    },
+    swapna: {
+      0: 'Career and authority at ~50% — opportunities exist but aren\'t fully materializing. You sense the potential but it stays just out of reach.',
+      1: 'Emotions are half-aware — you feel things deeply but can\'t always act on them. Mind drifts between clarity and fog.',
+      2: 'Courage is present in your mind but doesn\'t always translate into action. Energy comes in waves rather than sustained flow.',
+      3: 'Good ideas arrive but execution is inconsistent. About half of your intellectual potential is expressing.',
+      4: 'Wisdom is present but only partially guiding decisions. Luck comes and goes without a clear pattern.',
+      5: 'Relationship potential exists but isn\'t fully actualized — creative ideas start but often stay half-finished.',
+      6: 'Discipline is inconsistent — good days and bad days alternate. Karma pays back at roughly half rate.',
+      7: 'Ambition is dreaming but not executing — opportunities appear but feel just out of reach.',
+      8: 'Spiritual awareness flickers — glimpses of insight but not sustained clarity. Dedicated meditation helps enormously.',
+    },
+    sushupta: {
+      0: 'Career and authority are deeply suppressed — only ~25% of what your Sun promises arrives. Recognition feels inexplicably blocked.',
+      1: 'Emotional and mental energies are deeply inward — depression risk, difficulty connecting. The mind is asleep to its own potential.',
+      2: 'Courage and physical drive are very low — passivity, conflict avoidance, property matters stall without apparent reason.',
+      3: 'Intellect and communication are muted — decisions feel foggy, words don\'t come easily, mental clarity is hard to sustain.',
+      4: 'Wisdom and prosperity are locked away — good fortune doesn\'t arrive despite clear potential. Effort feels unrewarded.',
+      5: 'Relationship fulfillment is deeply blocked — loneliness, unfulfilled desires, creativity unexpressed despite genuine talent.',
+      6: 'Discipline and karma are in deep freeze — career stagnates and health routines are very hard to maintain consistently.',
+      7: 'Ambitions are dormant — nothing unusual manifests; life feels static and ordinary despite the inner drive.',
+      8: 'Spiritual connection feels absent — no intuition, no guidance, feeling lost. Seeking a teacher or lineage is very helpful.',
+    },
   };
 
-  // Build a plain-language personal summary for each planet
-  function buildSketch(av: PlanetAvasthas): string {
-    const name = pName(av.planetId, isHi);
+  // Deeptadi visual tags
+  const DEEPTA_TAG: Record<string, { label: string; color: string; meaning: string }> = {
+    deepta:   { label: 'Shining', color: 'bg-yellow-500/20 text-yellow-200', meaning: 'Exalted — peak luminosity, delivering brilliantly' },
+    swastha:  { label: 'Stable', color: 'bg-emerald-500/20 text-emerald-300', meaning: 'Own sign — comfortable, reliable, natural results' },
+    mudita:   { label: 'Happy', color: 'bg-sky-500/20 text-sky-300', meaning: 'Friend\'s sign — cooperative, warm, willing' },
+    shanta:   { label: 'Calm', color: 'bg-teal-500/20 text-teal-300', meaning: 'Great friend\'s sign — steady and peaceful output' },
+    dina:     { label: 'Dim', color: 'bg-orange-500/20 text-orange-300', meaning: 'Enemy sign — reduced output, needs supportive transits' },
+    dukhita:  { label: 'Sad', color: 'bg-amber-500/20 text-amber-400', meaning: 'Defeated in planetary war — results come with struggle' },
+    vikala:   { label: 'Afflicted', color: 'bg-red-500/20 text-red-300', meaning: 'Debilitated or combust — distorted, erratic, blocked results' },
+    khala:    { label: 'Harsh', color: 'bg-rose-500/20 text-rose-300', meaning: 'Retrograde in enemy sign — results arrive forcefully or abruptly' },
+  };
 
-    // Determine overall quality
-    const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
+  // Lajjitadi visual tags
+  const LAJJITA_TAG: Record<string, { label: string; color: string; meaning: string }> = {
+    lajjita:   { label: 'Ashamed', color: 'bg-red-500/20 text-red-300', meaning: 'In 5th house with Rahu/Ketu/Saturn — uncomfortable, blocked delivery' },
+    garvita:   { label: 'Proud', color: 'bg-yellow-500/20 text-yellow-200', meaning: 'Exalted or Moolatrikona — delivers with full confidence' },
+    kshudita:  { label: 'Hungry', color: 'bg-amber-500/20 text-amber-300', meaning: 'With enemy planet — insatiable, restless, craving output' },
+    trushita:  { label: 'Thirsty', color: 'bg-orange-500/20 text-orange-300', meaning: 'With watery planet in enemy sign — craving, persistent effort needed' },
+    mudita:    { label: 'Happy', color: 'bg-emerald-500/20 text-emerald-300', meaning: 'With friendly planet — warm, cooperative, willing delivery' },
+    kshobhita: { label: 'Agitated', color: 'bg-purple-500/20 text-purple-300', meaning: 'With Sun + malefic aspect — volatile, stressed, unpredictable results' },
+  };
 
-    // Use the lowercase `state` field for dict lookup — it always matches
-    const baladiMeaning = BALADI_PLAIN[av.baladi.state] ?? { en: `in ${av.baladi.name.en} state`, hi: `${av.baladi.name.hi} अवस्था में` };
-    const jagradadiMeaning = JAGRADADI_PLAIN[av.jagradadi.state] ?? { en: av.jagradadi.name.en, hi: av.jagradadi.name.hi };
-    const lajjitadiMeaning = LAJJITADI_PLAIN[av.lajjitadi.state] ?? { en: 'in a neutral state', hi: 'तटस्थ अवस्था में' };
+  // Shayanadi visual tags
+  const SHAYANA_TAG: Record<string, { label: string; color: string; meaning: string }> = {
+    nidraa:     { label: 'Sleeping', color: 'bg-indigo-500/20 text-indigo-300', meaning: 'Deeply inactive — needs activation through effort or remedies' },
+    gamana:     { label: 'Moving', color: 'bg-sky-500/20 text-sky-300', meaning: 'Actively in motion — pursuing results with energy' },
+    agama:      { label: 'Returning', color: 'bg-teal-500/20 text-teal-300', meaning: 'Retrograde echo — results come back around, second chances' },
+    bhojana:    { label: 'Nourishing', color: 'bg-emerald-500/20 text-emerald-300', meaning: 'Absorbing resources — building strength, receiving phase' },
+    kautuka:    { label: 'Curious', color: 'bg-lime-500/20 text-lime-300', meaning: 'Playful — results arrive in unexpected, light-touch ways' },
+    upavesha:   { label: 'Settled', color: 'bg-amber-500/20 text-amber-300', meaning: 'Seated and stable — consistent but not dynamic results' },
+    netrapani:  { label: 'Watchful', color: 'bg-cyan-500/20 text-cyan-300', meaning: 'Alert and observing — results come through patience and strategy' },
+  };
 
-    const overallTone = avgStrength >= 65 ? (isHi ? 'शक्तिशाली' : 'strong') :
-                        avgStrength >= 40 ? (isHi ? 'मध्यम' : 'moderate') :
-                        (isHi ? 'कमज़ोर' : 'weak');
+  // Per-planet synthesis paragraph
+  function getSynthesis(av: PlanetAvasthas): string {
+    const bState = av.baladi.state;
+    const jState = av.jagradadi.state;
+    const dState = av.deeptadi.state;
+    const lState = av.lajjitadi.state;
+    const domain = PLANET_DOMAIN[av.planetId]?.en ?? 'this planet\'s domain';
+    const name = PLANET_NAMES_EN[av.planetId] ?? `Planet ${av.planetId}`;
 
-    const recommendation = av.lajjitadi.effect === 'malefic'
-      ? (isHi ? 'इस ग्रह के क्षेत्र में अतिरिक्त सचेत रहें और उपाय सहायक हो सकते हैं।' : 'Be extra mindful in this planet\'s life domain; remedies may help.')
-      : av.jagradadi.quality === 'full'
-      ? (isHi ? 'यह ग्रह आपके लिए एक शक्तिशाली संपत्ति है — इसके जीवन क्षेत्र में सक्रिय रूप से निवेश करें।' : 'This planet is a strong asset for you — actively invest in its life domain.')
-      : (isHi ? 'इस ग्रह की ऊर्जा सक्रिय करने के लिए सचेत प्रयास करें।' : 'Conscious effort helps activate this planet\'s energy.');
+    const isStrong = bState === 'yuva' || bState === 'kumara';
+    const isWeak = bState === 'mrita' || bState === 'vriddha';
+    const isAwake = jState === 'jagrat';
+    const isSleeping = jState === 'sushupta';
+    const isShining = ['deepta', 'swastha', 'mudita', 'shanta'].includes(dState);
+    const isAfflicted = dState === 'vikala' || dState === 'khala';
+    const isHappy = lState === 'garvita' || lState === 'mudita';
+    const isDistressed = lState === 'lajjita' || lState === 'kshobhita' || lState === 'kshudita';
 
-    if (isHi) {
-      return `आपका ${name} (${overallTone}) ${baladiMeaning.hi}, ${jagradadiMeaning.hi}, और ${lajjitadiMeaning.hi}। ${recommendation}`;
+    if (isStrong && isAwake && isShining && isHappy) {
+      return `Your ${name} is in an exceptionally powerful configuration — at its age-peak, fully awake, luminously placed, and emotionally content. Everything connected to ${domain} is primed to deliver its finest results. Actively invest in this planet's themes now.`;
     }
-    return `Your ${name} is ${overallTone} — it is ${baladiMeaning.en}, ${jagradadiMeaning.en}, and ${lajjitadiMeaning.en}. ${recommendation}`;
+    if (isWeak && isSleeping && isAfflicted) {
+      return `Your ${name} is under significant multi-layered pressure — declining in age-strength, dormant in output, and luminously afflicted. The domain of ${domain} requires conscious remediation and patient rebuilding. This is not permanent — states shift meaningfully with dashas and transits.`;
+    }
+    if (isStrong && isSleeping) {
+      return `Interesting tension: your ${name} has real age-strength (${bState}) but is dormant in output (Sushupta — ~25%). Like a powerful engine in sleep mode. The right dasha activation, or targeted remedies, can unlock significant results in ${domain} that are clearly present but not yet manifesting.`;
+    }
+    if (isWeak && isAwake) {
+      return `Your ${name} is fully awake (Jagrat) but declining in age-strength (${bState}). It is visibly trying to deliver — you may see genuine effort without proportionate reward in ${domain}. Targeted remedies to support this planet's energy will sustain its output through this phase.`;
+    }
+    if (isAfflicted && isDistressed) {
+      return `Your ${name} faces a double challenge: luminous affliction (${dState}) and emotional distress (${lState}). Results in ${domain} may arrive with complications or through difficult circumstances. Working on the specific affliction — combustion, debilitation, or planetary war — can bring meaningful and lasting improvement.`;
+    }
+    const strengthWord = isStrong ? 'solid age-strength' : isWeak ? 'reduced age-strength' : 'moderate age-strength';
+    const awakenessWord = isAwake ? 'is fully awake' : isSleeping ? 'is in deep sleep mode (~25% output)' : 'is partially awake (~50% output)';
+    const moodWord = isHappy ? 'is emotionally content' : isDistressed ? 'is emotionally stressed' : 'is emotionally neutral';
+    return `Your ${name} carries ${strengthWord}, ${awakenessWord}, and ${moodWord}. In the domain of ${domain}, expect ${isStrong && isAwake ? 'reliable, meaningful' : isWeak || isSleeping ? 'inconsistent or reduced' : 'moderate'} results. ${isDistressed ? 'Mantra and charitable acts for this planet will help ease the emotional strain.' : ''}`;
   }
+
+  // Activation guidance for weak/sleeping planets
+  const HOW_TO_ACTIVATE: Record<string, string> = {
+    sushupta: 'Activate from deep sleep: (1) Daily mantra for this planet — even 7–10 minutes creates a "wake signal" over weeks. (2) Entering this planet\'s own Mahadasha or Antardasha naturally stirs it. (3) Neecha Bhanga rules — if debilitation is cancelled, Sushupti lifts substantially. (4) Jupiter transiting this planet\'s natal degree (conjunction or trine) gives a 1–2 month temporary awakening. (5) The right gemstone worn consistently acts as a long-duration activation.',
+    swapna: 'Elevate from half-awake: (1) Strengthen the sign lord (Bhava lord) — improving the "container" the planet operates in raises output. (2) Reduce opposing malefic influence through that planet\'s remedies. (3) Consistent aligned action in this planet\'s domain — actively working in its themes slowly lifts Swapna toward Jagrat.',
+    mrita: 'For a blocked Mrita planet: (1) Remedies are most essential — Mantra japa, gemstone, fasting on this planet\'s day, donating its associated items. (2) During its Mahadasha: life will push you to confront this domain — cooperate actively. (3) Neecha Bhanga check: if the debilitation lord is angular or the dispositor is exalted, the block is partially lifted even if fixed in the chart. (4) The Mrita state is natally fixed, but dashas and supportive transits can substantially revive it.',
+    vriddha: 'Sustaining a Vriddha planet: (1) Work with what remains — Vriddha still delivers, just with more effort. (2) Avoid overextending in this domain. (3) Dashas of this planet can temporarily revive Vriddha energy toward its former peak. (4) Rest and consolidation preserve output better than forcing.',
+  };
+
+  const HOW_CHANGE_SECTIONS = [
+    {
+      title: 'Baladi (Age) — When Does It Change?',
+      body: 'Baladi states are fixed in the NATAL chart by the planet\'s degree within its sign: Bala (0°–6°), Kumara (6°–12°), Yuva (12°–18°), Vriddha (18°–24°), Mrita (24°–30°). These never change in your birth chart.\n\nIn TRANSITS, however, a moving planet cycles through all 5 states every 30° (one sign). Watch when a transiting planet enters the Yuva zone (12°–18°) in a key house — that window is when it delivers its strongest transiting results.',
+    },
+    {
+      title: 'Jagradadi (Wakefulness) — How Does a Planet Wake Up?',
+      body: 'Natal Sushupti is fixed — it does not automatically become Jagrat with time. What can shift it:\n\n1. Neecha Bhanga (Debilitation Cancellation): If debilitated AND (a) the lord of its exaltation sign is in a kendra (1st/4th/7th/10th) from lagna or Moon, OR (b) the dispositor is in a kendra, OR (c) it is exalted in navamsha — debilitation is cancelled and Sushupti lifts substantially.\n\n2. Dasha Activation: The planet\'s own Mahadasha or a strong Antardasha naturally stirs even a sleeping planet.\n\n3. Jupiter Transit: When Jupiter transits the natal degree of a Sushupta planet by conjunction or trine, it grants 1–2 months of temporary wakefulness.\n\n4. Daily Remedies: Mantra practice, gemstone, fasting on the planet\'s day — the "alarm clocks" of Jyotish. They do not change the natal state permanently but measurably increase the planet\'s tendency to express.\n\n5. Eclipse Activation: A solar or lunar eclipse near the natal planet\'s degree can trigger a sudden, often dramatic, temporary awakening.',
+    },
+    {
+      title: 'Deeptadi (Luminosity) — When Does Vikala Clear?',
+      body: 'Combust Vikala: Combustion is caused by proximity to the Sun. Orbs are: Moon ±12°, Mars ±17°, Mercury ±14° (retrograde ±12°), Jupiter ±11°, Venus ±10° (retrograde ±8°), Saturn ±15°. Natal combustion is fixed. Remedy: Sun strengthening (Surya Namaskar + Gayatri mantra) reduces the burning quality without eliminating it.\n\nDebilitation Vikala: Fixed natally unless Neecha Bhanga applies. Apply the three cancellation tests above.\n\nRetrograde → Shakta: A retrograde planet in enemy/debilitation carries Khala or Vikala. When it stations direct in transit near its natal degree, a brief Shakta (powerful) window opens — a period of unusual strength in that planet\'s domain.',
+    },
+    {
+      title: 'Lajjitadi (Emotional State) — What Lifts the Distress?',
+      body: 'Lajjita (ashamed — 5th house with Rahu/Ketu/Saturn): Jupiter transiting the 5th house for ~1 year gradually relieves this. Ganesha puja (for Rahu) or Hanuman worship (for Saturn) helps directly.\n\nKshobhita (agitated — with Sun and a malefic aspect): Two things ease this: (a) the malefic\'s transiting aspect shifts as planets move, or (b) Sun strengthening via Surya Namaskar + Gayatri reduces the combative tension.\n\nMudita (happy — in friend\'s sign): Maintained while no strong malefic transit conjuncts or opposes. Jupiter aspecting this planet sustains Mudita.\n\nGarvita (proud — exalted or moolatrikona): The strongest state — very stable, needs no special help. In transit it shifts when the planet leaves the exaltation zone.',
+    },
+    {
+      title: 'Shayanadi (Activity) — The Planet\'s Journey Through Its Sign',
+      body: 'Shayanadi maps the planet\'s activity pattern by position within its sign: roughly Nidraa (sleeping) in the first degrees, settling and becoming watchful through the middle, Gamana (actively moving) around the 12°–18° zone, and various states toward the sign end.\n\nIn the natal chart, Shayanadi is fixed. In transits, the most active delivery window for any transiting planet is when it passes through the Gamana zone (12°–18°) in a key house.\n\nFor a natal Nidraa planet: remedies during its Mahadasha help the planet "complete its journey" in terms of result-delivery. Entering the sign\'s active zone in a progressed or Tajaka chart can also trigger results.',
+    },
+  ];
 
   return (
     <div className="space-y-4 mt-6">
       <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'अवस्था विश्लेषण' : 'Avasthas Interpretation'}
+        {isHi ? 'अवस्था विश्लेषण' : 'Avasthas — Planetary State Analysis'}
       </h3>
 
-      {/* What are Avasthas? */}
+      {/* Intro */}
       <SectionCard>
         <SectionHeading>{isHi ? 'अवस्था क्या हैं?' : 'What are Avasthas?'}</SectionHeading>
         <InfoParagraph>
           {isHi
-            ? 'अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। इसे ऐसे समझें: एक ग्रह "शक्तिशाली" (षड्बल) हो सकता है लेकिन "क्रोधित" (अवस्था) — वह परिणाम देगा, लेकिन कठोर तरीके से।'
-            : 'Avasthas describe the MOOD and QUALITY of how each planet delivers its results. Think of it like this: a planet can be "powerful" (Shadbala) but "angry" (Avastha) — it will give results, but in a harsh way.'}
+            ? 'अवस्थाएं बताती हैं कि प्रत्येक ग्रह किस मनोदशा और गुणवत्ता के साथ अपने परिणाम देता है। पांच प्रणालियां एक साथ काम करती हैं — बलादि (आयु-शक्ति), जाग्रदादि (जागरूकता), दीप्तादि (चमक), लज्जितादि (भावनात्मक स्थिति), और शयनादि (गतिविधि) — और मिलकर बताती हैं कि ग्रह वास्तव में आपके जीवन में कैसा प्रदर्शन कर रहा है।'
+            : 'Avasthas describe the MOOD and QUALITY with which each planet delivers its results. Five separate systems operate simultaneously — Baladi (age-strength), Jagradadi (wakefulness), Deeptadi (luminosity), Lajjitadi (emotional state), and Shayanadi (activity pattern) — together revealing exactly how each planet is actually performing in your life. Click any planet to see the full breakdown.'}
         </InfoParagraph>
       </SectionCard>
 
-      {/* Per-planet personality sketch */}
-      <SectionCard border="border-sky-500/15">
-        <SectionHeading>{isHi ? 'ग्रह अवस्था सारांश' : 'Planet Avastha Summary'}</SectionHeading>
-        <div className="space-y-3">
-          {avasthas.map(av => {
-            const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
-            const colorClass = avgStrength >= 70 ? 'border-emerald-500/15 bg-emerald-500/5' :
-                               avgStrength >= 40 ? 'border-sky-500/15 bg-sky-500/5' :
-                               'border-amber-500/15 bg-amber-500/5';
-            return (
-              <div key={av.planetId} className={`p-3 rounded-lg border ${colorClass}`}>
-                <span className="font-semibold text-sm text-[#d4a853]">{pName(av.planetId, isHi)}</span>
-                <p className="text-xs text-gray-300 leading-relaxed mt-1">{buildSketch(av)}</p>
-              </div>
-            );
-          })}
-        </div>
-      </SectionCard>
+      {/* Per-planet accordion cards */}
+      <div className="space-y-2">
+        {avasthas.map((av, idx) => {
+          const planetName = pName(av.planetId, isHi);
+          const bState = av.baladi.state;
+          const jState = av.jagradadi.state;
+          const dState = av.deeptadi.state;
+          const lState = av.lajjitadi.state;
+          const sState = av.shayanadi.state;
 
-      {/* Quick Reference Table */}
-      <SectionCard>
-        <SectionHeading>{isHi ? 'त्वरित संदर्भ' : 'Quick Reference Table'}</SectionHeading>
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="border-b border-white/10">
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'अवस्था' : 'State'}</th>
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'अर्थ' : 'Meaning'}</th>
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'शुभ?' : 'Good?'}</th>
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'परिणामों पर प्रभाव' : 'Effect on Results'}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {AVASTHA_REFERENCE.map(r => (
-                <tr key={r.state} className="border-b border-white/5">
-                  <td className="py-2 px-2 text-[#d4a853] font-medium">{r.state}</td>
-                  <td className="py-2 px-2 text-gray-300">{isHi ? r.meaningHi : r.meaning}</td>
-                  <td className="py-2 px-2">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
-                      r.good === 'Best' ? 'bg-emerald-500/20 text-emerald-300' :
-                      r.good === 'Great' || r.good === 'Good' ? 'bg-sky-500/20 text-sky-300' :
-                      r.good === 'Neutral' ? 'bg-gray-500/20 text-gray-400' :
-                      'bg-red-500/20 text-red-300'
-                    }`}>
-                      {r.good}
-                    </span>
-                  </td>
-                  <td className="py-2 px-2 text-gray-400">{isHi ? r.effectHi : r.effect}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </SectionCard>
+          const baladiText = BALADI_PLANET[bState]?.[av.planetId] ?? `${bState} state — in an age-transition zone`;
+          const jagraText = JAGRADADI_PLANET[jState]?.[av.planetId] ?? `${jState} state — moderate output level`;
+          const deepTag = DEEPTA_TAG[dState] ?? { label: dState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Neutral luminosity state' };
+          const lajTag = LAJJITA_TAG[lState] ?? { label: lState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Neutral emotional state' };
+          const shayTag = SHAYANA_TAG[sState] ?? { label: sState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Activity state in its sign-cycle' };
+
+          const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
+          const isOpen = expanded === idx;
+          const needsActivation = jState === 'sushupta' || bState === 'mrita' || bState === 'vriddha';
+
+          const borderColor = avgStrength >= 65
+            ? 'border-emerald-500/20'
+            : avgStrength >= 35
+            ? 'border-sky-500/20'
+            : 'border-amber-500/20';
+
+          return (
+            <div key={av.planetId} className={`rounded-xl border ${borderColor} bg-white/[0.025] overflow-hidden`}>
+              {/* Header row — always visible */}
+              <button
+                className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/[0.02] transition-colors"
+                onClick={() => setExpanded(isOpen ? null : idx)}
+              >
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="font-bold text-[#d4a853] text-sm min-w-[60px]">{planetName}</span>
+                  <span className="text-gray-500 text-xs hidden sm:inline">{PLANET_DOMAIN[av.planetId]?.en}</span>
+                </div>
+                <div className="flex items-center gap-1.5 flex-shrink-0">
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                    jState === 'jagrat' ? 'bg-emerald-500/20 text-emerald-300' :
+                    jState === 'swapna' ? 'bg-yellow-500/20 text-yellow-300' :
+                    'bg-red-500/20 text-red-300'
+                  }`}>
+                    {jState === 'jagrat' ? '100%' : jState === 'swapna' ? '50%' : '25%'}
+                  </span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                    bState === 'yuva' ? 'bg-emerald-500/20 text-emerald-300' :
+                    bState === 'kumara' ? 'bg-sky-500/20 text-sky-300' :
+                    bState === 'bala' ? 'bg-teal-500/20 text-teal-300' :
+                    bState === 'mrita' ? 'bg-red-500/20 text-red-300' :
+                    'bg-amber-500/20 text-amber-300'
+                  }`}>
+                    {av.baladi.name.en}
+                  </span>
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${deepTag.color}`}>{deepTag.label}</span>
+                  <span className="text-gray-500 text-xs ml-1">{isOpen ? '▲' : '▼'}</span>
+                </div>
+              </button>
+
+              {/* Expanded detail */}
+              {isOpen && (
+                <div className="px-4 pb-4 space-y-3 border-t border-white/[0.05]">
+                  {/* Synthesis */}
+                  <p className="text-xs text-gray-200 leading-relaxed bg-white/[0.04] p-3 rounded-lg mt-3 italic border border-white/[0.06]">
+                    {getSynthesis(av)}
+                  </p>
+
+                  {/* Baladi */}
+                  <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
+                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                        bState === 'yuva' ? 'bg-emerald-500/20 text-emerald-300' :
+                        bState === 'kumara' ? 'bg-sky-500/20 text-sky-300' :
+                        bState === 'bala' ? 'bg-teal-500/20 text-teal-300' :
+                        bState === 'mrita' ? 'bg-red-500/20 text-red-300' :
+                        'bg-amber-500/20 text-amber-300'
+                      }`}>
+                        Baladi: {av.baladi.name.en}
+                      </span>
+                      <span className="text-gray-500 text-xs">Age-strength: {Math.round(av.baladi.strength)}%</span>
+                    </div>
+                    <p className="text-xs text-gray-300 leading-relaxed">{baladiText}</p>
+                  </div>
+
+                  {/* Jagradadi */}
+                  <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
+                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                        jState === 'jagrat' ? 'bg-emerald-500/20 text-emerald-300' :
+                        jState === 'swapna' ? 'bg-yellow-500/20 text-yellow-300' :
+                        'bg-red-500/20 text-red-300'
+                      }`}>
+                        Jagradadi: {av.jagradadi.name.en}
+                      </span>
+                      <span className="text-gray-500 text-xs">
+                        ~{av.jagradadi.quality === 'full' ? '100' : av.jagradadi.quality === 'half' ? '50' : '25'}% output
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-300 leading-relaxed">{jagraText}</p>
+                  </div>
+
+                  {/* Deeptadi + Lajjitadi + Shayanadi */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
+                      <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${deepTag.color}`}>
+                        Deeptadi: {deepTag.label}
+                      </div>
+                      <p className="text-xs text-gray-400 leading-relaxed">{deepTag.meaning}</p>
+                    </div>
+                    <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
+                      <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${lajTag.color}`}>
+                        Lajjitadi: {lajTag.label}
+                      </div>
+                      <p className="text-xs text-gray-400 leading-relaxed">{lajTag.meaning}</p>
+                    </div>
+                    <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
+                      <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${shayTag.color}`}>
+                        Shayanadi: {shayTag.label}
+                      </div>
+                      <p className="text-xs text-gray-400 leading-relaxed">{shayTag.meaning}</p>
+                    </div>
+                  </div>
+
+                  {/* Activation guidance for weak/sleeping planets */}
+                  {needsActivation && (
+                    <div className="text-xs text-emerald-400/90 bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3 leading-relaxed">
+                      <span className="font-semibold text-emerald-300">How to activate: </span>
+                      {HOW_TO_ACTIVATE[jState === 'sushupta' ? 'sushupta' : bState === 'mrita' ? 'mrita' : 'vriddha']}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* How States Change accordion */}
+      <div className="rounded-xl border border-[#d4a853]/20 bg-white/[0.02] overflow-hidden">
+        <button
+          className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-white/[0.02] transition-colors"
+          onClick={() => setShowHowChange(v => !v)}
+        >
+          <span className="font-semibold text-[#d4a853] text-sm">
+            {isHi ? 'अवस्थाएं कैसे बदलती हैं?' : 'How Do Avasthas Change?'}
+          </span>
+          <span className="text-gray-500 text-xs">{showHowChange ? '▲ Close' : '▼ Expand'}</span>
+        </button>
+        {showHowChange && (
+          <div className="px-4 pb-4 space-y-3 border-t border-white/[0.05]">
+            {HOW_CHANGE_SECTIONS.map((s, i) => (
+              <div key={i} className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3 mt-3">
+                <p className="text-xs font-semibold text-[#f0d48a] mb-2">{s.title}</p>
+                <p className="text-xs text-gray-300 leading-relaxed whitespace-pre-line">{s.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

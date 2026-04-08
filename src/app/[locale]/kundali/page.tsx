@@ -269,6 +269,20 @@ export default function KundaliPage() {
   const patrikaRef = useRef<HTMLDivElement>(null);
   const [transitData, setTransitData] = useState<{ planets: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }[] } | null>(null);
 
+  // Restore last kundali from sessionStorage on mount (survives locale switches)
+  useEffect(() => {
+    try {
+      const cached = sessionStorage.getItem('kundali_last_result');
+      if (cached) {
+        const { kundali: k, chartStyle: cs } = JSON.parse(cached);
+        if (k?.planets) {
+          setKundali(k);
+          setChartStyle(cs || 'north');
+        }
+      }
+    } catch { /* ignore */ }
+  }, []);
+
   // Fetch current transits when toggled on
   useEffect(() => {
     if (showTransits && !transitData) {
@@ -404,6 +418,9 @@ export default function KundaliPage() {
         return;
       }
       setKundali(data);
+      try {
+        sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style }));
+      } catch { /* quota exceeded or private browsing */ }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
       if (data.planets) {

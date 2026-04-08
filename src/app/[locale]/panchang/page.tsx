@@ -893,13 +893,16 @@ export default function PanchangPage() {
               </motion.div>
             )}
 
-            {/* Ravi Yoga badge */}
-            {panchang.raviYoga && (
+            {/* Ravi Yoga badge with time window */}
+            {panchang.raviYogaWindow?.active && (
               <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-6 flex justify-center">
                 <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/40 bg-amber-500/10">
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                   <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">
-                    {locale === 'en' ? 'Ravi Yoga Active' : 'रवि योग सक्रिय'}
+                    {locale === 'en' ? 'Ravi Yoga' : 'रवि योग'}
+                  </span>
+                  <span className="text-amber-400/70 text-xs font-mono">
+                    {panchang.raviYogaWindow.start} — {panchang.raviYogaWindow.end}{panchang.raviYogaWindow.endDate ? `, ${panchang.raviYogaWindow.endDate.split('-').slice(1).join('/')}` : ''}
                   </span>
                   <span className="text-amber-400/70 text-xs">{locale === 'en' ? '· Highly Auspicious' : '· अत्यंत शुभ'}</span>
                 </div>
@@ -982,12 +985,14 @@ export default function PanchangPage() {
                 </motion.div>
               )}
 
-              {/* Amrit Kalam */}
-              {panchang.amritKalam && (
+              {/* Amrit Kalam — show all windows */}
+              {((panchang as any).amritKalamAll?.length > 0 || panchang.amritKalam) && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent">
+                  className="rounded-xl p-5 text-center border border-emerald-500/30 bg-gradient-to-br from-emerald-500/5 to-transparent">
                   <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">{t('amritKalam')}</div>
-                  <div className="font-mono text-xl font-bold text-amber-300">{panchang.amritKalam.start} — {panchang.amritKalam.end}</div>
+                  {((panchang as any).amritKalamAll || [panchang.amritKalam]).map((a: { start: string; end: string }, i: number) => (
+                    <div key={i} className="font-mono text-xl font-bold text-amber-300">{a.start} — {a.end}</div>
+                  ))}
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('amritKalamDesc')}</div>
                 </motion.div>
               )}
@@ -1236,20 +1241,40 @@ export default function PanchangPage() {
                 </motion.div>
               )}
 
-              {/* Varjyam */}
-              {panchang.varjyam && (
+              {/* Varjyam — show all windows */}
+              {((panchang as any).varjyamAll?.length > 0 || panchang.varjyam) && (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.17 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-red-400/25 bg-gradient-to-br from-red-400/5 to-transparent">
                   <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('varjyam')}</div>
-                  <div className="font-mono text-2xl font-bold text-red-300">{panchang.varjyam.start} — {panchang.varjyam.end}</div>
+                  {((panchang as any).varjyamAll || [panchang.varjyam]).map((v: { start: string; end: string }, i: number) => (
+                    <div key={i} className="font-mono text-xl font-bold text-red-300">{v.start} — {v.end}</div>
+                  ))}
                   <div className="text-text-secondary text-xs mt-2">{t('varjyamDesc')}</div>
                 </motion.div>
               )}
 
-              {/* Ganda Moola — pulsing red warning */}
+              {/* Bhadra (Vishti Karana) */}
+              {panchang.bhadra && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.18 }}
+                  className="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/8 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {locale === 'en' ? 'Bhadra (Vishti)' : 'भद्रा (विष्टि)'}
+                  </div>
+                  {((panchang as any).bhadraAll || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
+                    <div key={i} className="font-mono text-xl font-bold text-orange-300">
+                      {b.start} — {b.end}{b.endDate ? `, ${b.endDate.split('-').reverse().join('/')}` : ''}
+                    </div>
+                  ))}
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Inauspicious karana — avoid important activities' : 'अशुभ करण — महत्वपूर्ण कार्यों से बचें'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Ganda Moola — with time window */}
               {panchang.gandaMoola?.active && (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.20 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border-2 border-red-500/50 bg-gradient-to-br from-red-500/10 to-transparent">
+                  className="rounded-xl p-3 sm:p-4 md:p-6 text-center border-2 border-red-500/50 bg-gradient-to-br from-red-500/10 to-transparent">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                     <div className="text-red-400 text-xs uppercase tracking-widest font-bold">
@@ -1259,11 +1284,48 @@ export default function PanchangPage() {
                   </div>
                   {panchang.gandaMoola.nakshatra && (
                     <div className="text-red-300 font-bold text-base" style={headingFont}>
-                      {panchang.gandaMoola.nakshatra[locale]}
+                      {(panchang.gandaMoola as any).nakshatra[locale]}
+                    </div>
+                  )}
+                  {(panchang.gandaMoola as any).start && (
+                    <div className="font-mono text-lg font-bold text-red-300 mt-1">
+                      {(panchang.gandaMoola as any).start} — {(panchang.gandaMoola as any).end}{(panchang.gandaMoola as any).endDate ? `, ${(panchang.gandaMoola as any).endDate.split('-').slice(1).join('/')}` : ''}
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">
                     {locale === 'en' ? 'Inauspicious nakshatra junction — exercise caution' : 'अशुभ नक्षत्र संधि — सावधानी बरतें'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Aadal Yoga */}
+              {panchang.aadalYoga && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.21 }}
+                  className="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-amber-400 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {locale === 'en' ? 'Aadal Yoga' : 'आदल योग'}
+                  </div>
+                  <div className="font-mono text-xl font-bold text-amber-300">
+                    {panchang.aadalYoga.start} — {panchang.aadalYoga.end}{panchang.aadalYoga.endDate ? `, ${panchang.aadalYoga.endDate.split('-').slice(1).join('/')}` : ''}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Post-Ganda Moola junction — inauspicious transition' : 'गण्डमूल उपरांत संधिकाल — अशुभ संक्रमण'}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Vidaal Yoga */}
+              {panchang.vidaalYoga && (
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.22 }}
+                  className="rounded-xl border border-rose-500/25 bg-gradient-to-br from-rose-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
+                  <div className="text-rose-400 text-xs uppercase tracking-widest mb-2 font-bold">
+                    {locale === 'en' ? 'Vidaal Yoga' : 'विदाल योग'}
+                  </div>
+                  <div className="font-mono text-xl font-bold text-rose-300">
+                    {panchang.vidaalYoga.start} — {panchang.vidaalYoga.end}{panchang.vidaalYoga.endDate ? `, ${panchang.vidaalYoga.endDate.split('-').slice(1).join('/')}` : ''}
+                  </div>
+                  <div className="text-text-secondary text-xs mt-2">
+                    {locale === 'en' ? 'Malefic Moon-nakshatra yoga — avoid new ventures' : 'अशुभ चन्द्र-नक्षत्र योग — नए कार्य टालें'}
                   </div>
                 </motion.div>
               )}

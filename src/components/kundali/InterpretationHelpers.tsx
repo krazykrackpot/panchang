@@ -245,7 +245,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
 
   const sorted = useMemo(() => [...shadbala].sort((a, b) => b.rupas - a.rupas), [shadbala]);
   const strongest = sorted[0];
-  const weakPlanets = sorted.filter(p => p.rupas < 1.0);
+  const weakPlanets = sorted.filter(p => p.strengthRatio < 1.0);
   const mahadashas = useMemo(() => dashas.filter(d => d.level === 'maha'), [dashas]);
 
   const now = useMemo(() => new Date(), []);
@@ -261,8 +261,8 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
     const name = d.planetName?.en || d.planet;
     const sb = shadByName[name];
     if (!sb) return { tier: 'node', rupas: 0 };
-    if (sb.rupas >= 1.2) return { tier: 'strong', rupas: sb.rupas };
-    if (sb.rupas >= 1.0) return { tier: 'adequate', rupas: sb.rupas };
+    if (sb.strengthRatio >= 1.5) return { tier: 'strong', rupas: sb.rupas };
+    if (sb.strengthRatio >= 1.0) return { tier: 'adequate', rupas: sb.rupas };
     return { tier: 'weak', rupas: sb.rupas };
   }
 

@@ -665,12 +665,24 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
       if (!bb || bbMax <= 0) return 5;
       return Math.max(1, Math.min(10, Math.round((bb.total / bbMax) * 10)));
     };
-    // Override crude rateHouse with real bhavabala-derived ratings
-    enhancedCareer.rating = bbRating(10);
-    enhancedWealth.rating = Math.round((bbRating(2) + bbRating(11)) / 2);
-    enhancedMarriage.rating = bbRating(7);
-    enhancedHealth.rating = Math.round((bbRating(1) + bbRating(6)) / 2);
-    enhancedEducation.rating = Math.round((bbRating(4) + bbRating(5)) / 2);
+    // Override crude rateHouse with real bhavabala-derived ratings + regenerate summary quality text
+    const fixRating = (area: LifeArea, r: number) => {
+      area.rating = r;
+      // Prepend bhavabala-derived quality label with score
+      const qualEn = r >= 9 ? 'Exceptional' : r >= 7 ? 'Strong' : r >= 5 ? 'Moderate' : r >= 3 ? 'Challenging' : 'Difficult';
+      const qualHi = r >= 9 ? 'असाधारण' : r >= 7 ? 'मजबूत' : r >= 5 ? 'मध्यम' : r >= 3 ? 'चुनौतीपूर्ण' : 'कठिन';
+      const qualLabel = locale === 'en' ? qualEn : qualHi;
+      // Strip any existing quality prefix (old or new format)
+      area.summary = area.summary
+        .replace(/^(?:Exceptional|Strong|Moderate|Excellent|Challenging|Difficult|Good|Favorable|मजबूत|मध्यम|उत्कृष्ट|चुनौतीपूर्ण|कठिन|असाधारण|अच्छी|अनुकूल)\s*(?:\(\d+\/\d+\)\.?\s*)?/i, '')
+        .replace(/^\[.*?\]\s*/, '');
+      area.summary = `${qualLabel} (${r}/10). ${area.summary}`;
+    };
+    fixRating(enhancedCareer, bbRating(10));
+    fixRating(enhancedWealth, Math.round((bbRating(2) + bbRating(11)) / 2));
+    fixRating(enhancedMarriage, bbRating(7));
+    fixRating(enhancedHealth, Math.round((bbRating(1) + bbRating(6)) / 2));
+    fixRating(enhancedEducation, Math.round((bbRating(4) + bbRating(5)) / 2));
   }
 
   // Enrich details with ashtakavarga SAV scores for relevant houses
@@ -816,7 +828,7 @@ function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
     ? kundali.fullShadbala.map(s => ({
         planet: s.planet,
         planetName: GRAHAS[s.planetId]?.name || { en: s.planet, hi: s.planet, sa: s.planet },
-        totalStrength: Math.round(s.strengthRatio * 40), // ratio 1.0 → 40 (threshold), <1.0 → weak
+        totalStrength: Math.floor(s.strengthRatio * 40), // ratio < 1.0 → < 40 (flagged weak), ratio >= 1.0 → >= 40 (safe)
         sthanaBala: 0, digBala: 0, kalaBala: 0, cheshtaBala: 0, naisargikaBala: 0, drikBala: 0,
       }))
     : kundali.shadbala;
@@ -828,16 +840,18 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
   if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
     return kundali.fullShadbala.map(s => {
       const graha = GRAHAS.find(g => g.id === s.planetId);
-      // strengthRatio = rupas / minRequired. 1.0 = meets minimum threshold.
-      // Display as percentage: ratio of 1.5 → 75%, 2.0 → 100% (cap at 100)
+      // strengthRatio = rupas / minRequired. 1.0 = meets minimum.
+      // Map to 0-100 percentage where: <1.0 = weak zone, 1.0-1.5 = adequate, >1.5 = strong
+      // Use consistent thresholds: <50 = Weak, 50-74 = Adequate, >=75 = Strong
       const pct = Math.min(100, Math.round(s.strengthRatio * 50));
+      const status = pct >= 75 ? t(locale, 'Strong', 'बलवान')
+        : pct >= 50 ? t(locale, 'Adequate', 'पर्याप्त')
+        : t(locale, 'Weak', 'दुर्बल');
       return {
         planetName: graha?.name[locale] || s.planet,
         planetColor: graha?.color || '#888',
         strength: pct,
-        status: t(locale,
-          s.strengthRatio >= 1.5 ? 'Strong' : s.strengthRatio >= 1.0 ? 'Adequate' : 'Weak',
-          s.strengthRatio >= 1.5 ? 'बलवान' : s.strengthRatio >= 1.0 ? 'पर्याप्त' : 'दुर्बल'),
+        status,
       };
     });
   }
@@ -849,8 +863,8 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
       planetColor: graha?.color || '#888',
       strength: s.totalStrength,
       status: t(locale,
-        s.totalStrength >= 60 ? 'Strong' : s.totalStrength >= 40 ? 'Average' : 'Weak',
-        s.totalStrength >= 60 ? 'बलवान' : s.totalStrength >= 40 ? 'सामान्य' : 'दुर्बल'),
+        s.totalStrength >= 60 ? 'Strong' : s.totalStrength >= 40 ? 'Adequate' : 'Weak',
+        s.totalStrength >= 60 ? 'बलवान' : s.totalStrength >= 40 ? 'पर्याप्त' : 'दुर्बल'),
     };
   });
 }

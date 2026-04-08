@@ -82,7 +82,7 @@ export function detectAfflictedPlanets(planets: PlanetInput[]): AfflictedPlanet[
     }
 
     // 5. Low Shadbala
-    if (p.shadbalaPercent !== undefined && p.shadbalaPercent < 60) {
+    if (p.shadbalaPercent !== undefined && p.shadbalaPercent < 50) {
       if (severity === 'mild') {
         severity = 'moderate';
       }

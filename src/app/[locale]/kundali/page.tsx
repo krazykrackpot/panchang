@@ -5771,7 +5771,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                     style={{ backgroundColor: s.planetColor, opacity: 0.7 }}
                   />
                 </div>
-                <span className={`text-xs w-16 ${s.strength >= 60 ? 'text-green-400' : s.strength >= 40 ? 'text-yellow-400' : 'text-red-400'}`}>
+                <span className={`text-xs w-20 ${s.strength >= 75 ? 'text-green-400' : s.strength >= 50 ? 'text-yellow-400' : 'text-red-400'}`}>
                   {s.strength}% — {s.status}
                 </span>
               </div>

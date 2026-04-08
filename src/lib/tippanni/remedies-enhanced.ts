@@ -247,13 +247,17 @@ export function getRemediesForWeakPlanets(
     p.isDebilitated || (p.planet.id <= 6 && (shadbala.find(s => s.planet === p.planet.name.en)?.totalStrength ?? 50) < 40)
   );
 
-  // Also consider lagna lord
+  // Also consider lagna lord — but only if it is actually weak
   const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
   const lagnaLordId = signLords[ascSign];
 
   const targetIds = new Set<number>();
   for (const p of weakPlanets) targetIds.add(p.planet.id);
-  if (lagnaLordId !== undefined) targetIds.add(lagnaLordId);
+  // Only add lagna lord if it's weak too (totalStrength < 40)
+  if (lagnaLordId !== undefined) {
+    const lagnaLordStrength = shadbala.find(s => s.planet === planets.find(p => p.planet.id === lagnaLordId)?.planet.name.en)?.totalStrength ?? 50;
+    if (lagnaLordStrength < 40) targetIds.add(lagnaLordId);
+  }
 
   for (const id of targetIds) {
     if (id > 8) continue;

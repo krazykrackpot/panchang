@@ -4,7 +4,7 @@
  * Each festival is defined by its Purnimant calendar coordinates:
  * masa (lunar month) + paksha + tithi number.
  *
- * IMPORTANT: masa names use PURNIMANT system (same as Drik Panchang).
+ * IMPORTANT: masa names use PURNIMANT system (Purnimant system).
  * The lookup engine converts to Amanta internally when needed.
  *
  * Adding a new festival = adding one entry to the appropriate array.

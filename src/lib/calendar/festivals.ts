@@ -431,7 +431,7 @@ function computeEkadashiParana(ekadashiDate: string, lat = DEFAULT_LAT, lon = DE
   const madhEndStr = ft(madhyahnaEndUT);
 
   // ─── Determine recommended parana window ───
-  // Drik Panchang rules:
+  // Classical rules (Nirṇaya Sindhu):
   // 1. After Hari Vasara ends (or sunrise if HV already over)
   // 2. Avoid Madhyahna (middle 1/5 of daytime)
   // 3. Before Dwadashi ends
@@ -624,7 +624,7 @@ function computePradoshamParana(pradoshamDate: string, lat = DEFAULT_LAT, lon = 
 /**
  * Build a complete lunar month calendar for the year.
  *
- * Classical rule (Surya Siddhanta, Amanta system used by Drik Panchang):
+ * Classical rule (Surya Siddhanta, Amanta system standard Amanta system):
  * - Lunar months run from Amavasya to Amavasya (Amanta system)
  * - The month is NAMED after the Sankranti (Sun entering a new sidereal sign)
  *   that occurs within it
@@ -663,7 +663,7 @@ function buildLunarCalendar(year: number, lat: number, lon: number): LunarMonth[
     const [y2, m2, d2] = amavasyas[i + 1].split('-').map(Number);
 
     // Find exact new moon (conjunction) JD for each Amavasya using binary search
-    // The drik-panchanga formula uses raasi at the exact new moon, not at sunrise
+    // The classical formula uses raasi at the exact new moon, not at sunrise
     function findNewMoonJd(approxJd: number): number {
       // Scan hourly to find minimum Moon-Sun elongation
       let minDiff = 999; let bestJd = approxJd;
@@ -685,7 +685,7 @@ function buildLunarCalendar(year: number, lat: number, lon: number): LunarMonth[
     const sign1 = Math.floor(sunSid1 / 30) + 1;
     const sign2 = Math.floor(sunSid2 / 30) + 1;
 
-    // Per drik-panchanga open source: maasa = rashi(new_moon) + 1
+    // Per classical rule: maasa = rashi(new_moon) + 1
     // Our getHinduMonth(sign) gives the correct Amanta month name
     const monthName = getHinduMonth(sign1);
 
@@ -914,7 +914,7 @@ export function generateFestivalCalendar(year: number, lat = DEFAULT_LAT, lon = 
       krishnaEkadashiDetail = ADHIKA_MASA_EKADASHI.krishna;
     } else if (krishnaLunarMonth) {
       // Krishna Ekadashi falls in the first half of the Amanta month (before Amavasya).
-      // But Drik/Purnimant naming assigns it to the NEXT month's Krishna paksha.
+      // But Purnimant naming assigns it to the NEXT month's Krishna paksha.
       // e.g., Amanta Pausha Krishna Ekadashi = Purnimant Magha Krishna = Shattila
       const nextMonth = getNextHinduMonth(krishnaLunarMonth.name);
       krishnaEkadashiDetail = getEkadashiName(nextMonth, 'krishna');

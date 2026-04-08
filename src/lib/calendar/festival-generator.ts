@@ -16,7 +16,7 @@ import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
  *
  * For Diwali Lakshmi Puja, tradition prescribes "Vrishabha Lagna" — but at
  * evening time Taurus (30°-60°) is setting in the west, not rising in the east.
- * Drik Panchang's "Vrishabha Kaal" matches the period when the *descendant*
+ * The classical "Vrishabha Kaal" matches the period when the *descendant*
  * (ascendant + 180°) transits Taurus.  Pass mode='desc' for this case.
  */
 function findSthiraLagna(
@@ -142,7 +142,7 @@ function resolveEkadashiName(entry: TithiEntry): { name: Trilingual; detail?: Ek
     return { name: detail.name, detail };
   }
 
-  // EKADASHI_NAMES is keyed by Purnimant month names (same as Drik).
+  // EKADASHI_NAMES is keyed by Purnimant month names (standard Purnimant system).
   // entry.masa.purnimanta gives the correct Purnimant month — direct lookup.
   const monthForLookup = masa.purnimanta;
 
@@ -193,7 +193,7 @@ function computeEkadashiParanaFromTable(
   // Day division (5 parts of daytime, per Dharma Sindhu):
   // Pratahkala (1/5), Sangava (1/5), Madhyahna (1/5), Aparahna (1/5), Sayahna (1/5)
   // Madhyahna = 3rd fifth of daytime. Parana MUST avoid this period.
-  // Ideal parana = first 1/5 of daytime (Pratahkala) = Drik Panchang standard.
+  // Ideal parana = first 1/5 of daytime (Pratahkala) = classical standard.
   const dayLen = sunsetUT - sunriseUT;
   const pratahEndUT = sunriseUT + dayLen / 5;         // End of first 1/5 — ideal parana deadline
   const madhStartUT = sunriseUT + dayLen * (2 / 5);   // Madhyahna start — hard avoid
@@ -330,7 +330,7 @@ function computePujaMuhurat(
   const srNextUT = approximateSunrise(jdNext, lat, lon);
   const nightLen = (srNextUT + 24) - ssUT; // hours from sunset to next sunrise
 
-  // Madhyahna = middle 1/5 of daytime (2/5 to 3/5) — matches Drik's definition
+  // Madhyahna = middle 1/5 of daytime (2/5 to 3/5) — matches The classical definition
   const madhStart = srUT + dayLen * (2 / 5);
   const madhEnd = srUT + dayLen * (3 / 5);
   // Aparahna = 3/5 to 4/5 of daytime
@@ -341,7 +341,7 @@ function computePujaMuhurat(
     case 'diwali': {
       // Lakshmi Puja during Vrishabha Kaal — when Taurus (30°-60°) is on the
       // western horizon (descendant / 7th cusp).  At evening time, the ascendant
-      // is in Scorpio; Taurus is the setting sign.  Drik's "Vrishabha Kaal"
+      // is in Scorpio; Taurus is the setting sign.  The classical "Vrishabha Kaal"
       // matches this descendant-based window.
       const vr = findSthiraLagna(dateToJD(y, m, d, ssUT), lat, lon, 30, 60, 4, 'desc');
       if (vr) return { start: ft(vr.startUT), end: ft(vr.endUT), name: 'Lakshmi Puja (Vrishabha Kaal)' };
@@ -350,14 +350,14 @@ function computePujaMuhurat(
     }
     case 'dussehra': {
       // Vijay Muhurat: during Aparahna, specifically the 2nd quarter
-      // Drik's window is ~43 minutes within Aparahna
+      // The classical window is ~43 minutes within Aparahna
       const midApar = (aparStart + aparEnd) / 2;
       const startUT = midApar - 0.36; // ~22 min before mid-aparahna
       const endUT = midApar + 0.36;   // ~22 min after
       return { start: ft(startUT), end: ft(endUT), name: 'Vijay Muhurat (Aparahna)' };
     }
     case 'ganesh-chaturthi': {
-      // Madhyahna Puja: middle 1/5 of daytime (Drik's definition)
+      // Madhyahna Puja: middle 1/5 of daytime (The classical definition)
       return { start: ft(madhStart), end: ft(madhEnd), name: 'Ganesh Puja (Madhyahna)' };
     }
     case 'navaratri': {
@@ -382,7 +382,7 @@ function computePujaMuhurat(
       return { start: ft(ssUT + 17 / 60), end: ft(ssUT + 103 / 60), name: 'Dhanteras Puja (Pradosh Kaal)' };
     }
     case 'ram-navami': {
-      // Madhyahna: middle 1/5 of daytime (Drik definition, birth time of Lord Rama)
+      // Madhyahna: middle 1/5 of daytime (classical definition, birth time of Lord Rama)
       const startUT = madhStart;
       const endUT = madhEnd;
       return { start: ft(startUT), end: ft(endUT), name: 'Ram Navami Puja (Madhyahna)' };
@@ -406,7 +406,7 @@ export function generateFestivalCalendarV2(
   // ── 1. Major Festivals from declarative definitions ───
   for (const def of MAJOR_FESTIVALS) {
     const tithiNum = defToTithiNumber(def);
-    // Festival defs use Purnimant month names (same as Drik).
+    // Festival defs use Purnimant month names (standard Purnimant system).
     // Match against entry.masa.purnimanta — computed from Purnima boundaries.
     const matches = table.entries.filter(e =>
       e.number === tithiNum &&

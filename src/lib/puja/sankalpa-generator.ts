@@ -119,7 +119,7 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   // Vikram Samvat
   const vikramSamvat = year + 57;
 
-  // 5. Assemble the full traditional sankalpa in Devanagari (Drik Panchang format)
+  // 5. Assemble the full traditional sankalpa in Devanagari (traditional Dharma Sindhu format)
   const nameField = userName || '............';
   const gotraField = gotra || '............';
   const place = input.placeName || '............';

@@ -270,6 +270,69 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       description = description + '\n\n' + signText;
     }
 
+    // Enrich with avasthas (planetary state) from real computed data
+    if (kundali.avasthas) {
+      const av = kundali.avasthas.find((a: { planetId: number }) => a.planetId === p.planet.id);
+      if (av) {
+        const parts: string[] = [];
+        if (av.baladi) parts.push(t(locale, `Age state: ${av.baladi.name}`, `आयु अवस्था: ${av.baladi.name}`));
+        if (av.deeptadi) parts.push(t(locale, `Luminosity: ${av.deeptadi.name}`, `दीप्ति: ${av.deeptadi.name}`));
+        if (parts.length > 0) {
+          description += '\n\n' + parts.join('. ') + '.';
+        }
+      }
+    }
+
+    // Enrich with functional nature (yogaKaraka, maraka, etc.)
+    if (kundali.functionalNature) {
+      const fn = kundali.functionalNature.planets?.find((f: { planetId: number }) => f.planetId === p.planet.id);
+      if (fn) {
+        const roleText = fn.nature === 'yogaKaraka'
+          ? t(locale, `${graha.name.en} is your YogaKaraka — the single most beneficial planet for your lagna.`, `${graha.name.hi} आपका योगकारक है — आपके लग्न के लिए सबसे शुभ ग्रह।`)
+          : fn.nature === 'maraka'
+          ? t(locale, `${graha.name.en} is a Maraka (death-inflicting) planet for your lagna — handle its periods with care.`, `${graha.name.hi} आपके लग्न के लिए मारक ग्रह है।`)
+          : fn.nature === 'badhak'
+          ? t(locale, `${graha.name.en} is the Badhaka (obstructing) planet for your lagna.`, `${graha.name.hi} आपके लग्न के लिए बाधक ग्रह है।`)
+          : fn.nature === 'funcBenefic'
+          ? t(locale, `${graha.name.en} is a functional benefic for your lagna.`, `${graha.name.hi} आपके लग्न के लिए कार्यात्मक शुभ ग्रह है।`)
+          : fn.nature === 'funcMalefic'
+          ? t(locale, `${graha.name.en} is a functional malefic for your lagna.`, `${graha.name.hi} आपके लग्न के लिए कार्यात्मक पापी ग्रह है।`)
+          : '';
+        if (roleText) description += '\n\n' + roleText;
+      }
+    }
+
+    // Enrich with Vimshopaka Bala (multi-varga dignity score)
+    if (kundali.vimshopakaBala) {
+      const vb = kundali.vimshopakaBala.find((v: { planetId: number }) => v.planetId === p.planet.id);
+      if (vb) {
+        const vbScore = vb.total || 0;
+        if (vbScore > 0) {
+          const vbLabel = vbScore >= 15 ? t(locale, 'excellent', 'उत्कृष्ट')
+            : vbScore >= 10 ? t(locale, 'good', 'अच्छा')
+            : vbScore >= 5 ? t(locale, 'moderate', 'मध्यम')
+            : t(locale, 'weak', 'दुर्बल');
+          description += '\n\n' + t(locale,
+            `Vimshopaka dignity: ${vbScore.toFixed(1)}/20 (${vbLabel}) — strength across all divisional charts.`,
+            `विंशोपक बल: ${vbScore.toFixed(1)}/20 (${vbLabel}) — सभी वर्ग कुण्डलियों में बल।`);
+        }
+      }
+    }
+
+    // Enrich with real Shadbala strength
+    if (kundali.fullShadbala) {
+      const sb = kundali.fullShadbala.find(s => s.planetId === p.planet.id);
+      if (sb) {
+        const ratio = sb.strengthRatio;
+        const sbLabel = ratio >= 1.5 ? t(locale, 'strong', 'बलवान')
+          : ratio >= 1.0 ? t(locale, 'adequate', 'पर्याप्त')
+          : t(locale, 'weak', 'दुर्बल');
+        description += '\n\n' + t(locale,
+          `Shadbala: ${sb.rupas.toFixed(1)} rupas (${sbLabel}, ${(ratio * 100).toFixed(0)}% of required minimum).`,
+          `षड्बल: ${sb.rupas.toFixed(1)} रूप (${sbLabel}, आवश्यक न्यूनतम का ${(ratio * 100).toFixed(0)}%)।`);
+      }
+    }
+
     return {
       planetId: p.planet.id,
       planetName: graha.name[locale],
@@ -310,6 +373,23 @@ function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
 }
 
 function generateDoshas(kundali: KundaliData, locale: Locale): DoshaInsight[] {
+  // Use yogasComplete dosha category when available
+  if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
+    const doshaYogas = kundali.yogasComplete.filter(y => y.category === 'dosha' && y.present);
+    if (doshaYogas.length > 0) {
+      return doshaYogas.map(y => ({
+        name: y.name[locale === 'sa' ? 'sa' : locale] || y.name.en,
+        present: true,
+        severity: y.strength === 'Strong' ? 'severe' as const : y.strength === 'Moderate' ? 'moderate' as const : 'mild' as const,
+        description: (y.description[locale === 'sa' ? 'sa' : locale] || y.description.en)
+          + '\n\n' + t(locale, 'Formation: ', 'निर्माण: ') + (y.formationRule[locale === 'sa' ? 'sa' : locale] || y.formationRule.en),
+        remedies: '',
+      }));
+    }
+    return []; // No doshas present
+  }
+
+  // Fallback: manual detection
   const doshas: DoshaInsight[] = [];
   const planets = kundali.planets;
   const getP = (id: number) => planets.find(p => p.planet.id === id);
@@ -607,7 +687,18 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
 }
 
 function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
-  return getRemediesForWeakPlanets(kundali.planets, kundali.shadbala, kundali.ascendant.sign, locale);
+  // Build a synthetic ShadBala[] from fullShadbala so the remedies function gets real data.
+  // The remedies function checks totalStrength < 40 to identify weak planets.
+  // With fullShadbala, we map strengthRatio to that scale: ratio < 1.0 → weak (totalStrength ~30).
+  const shadbalaForRemedies = kundali.fullShadbala && kundali.fullShadbala.length > 0
+    ? kundali.fullShadbala.map(s => ({
+        planet: s.planet,
+        planetName: GRAHAS[s.planetId]?.name || { en: s.planet, hi: s.planet, sa: s.planet },
+        totalStrength: Math.round(s.strengthRatio * 40), // ratio 1.0 → 40 (threshold), <1.0 → weak
+        sthanaBala: 0, digBala: 0, kalaBala: 0, cheshtaBala: 0, naisargikaBala: 0, drikBala: 0,
+      }))
+    : kundali.shadbala;
+  return getRemediesForWeakPlanets(kundali.planets, shadbalaForRemedies, kundali.ascendant.sign, locale);
 }
 
 function generateStrengthOverview(kundali: KundaliData, locale: Locale): StrengthEntry[] {

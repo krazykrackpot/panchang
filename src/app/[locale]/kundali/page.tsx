@@ -2010,62 +2010,95 @@ export default function KundaliPage() {
                 );
               })()}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Visual house cards with force balance bars */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {kundali.argala.map((ar) => {
                   const sig = HOUSE_SIGNIFICATIONS[ar.house - 1];
                   const remedy = OBSTRUCTION_REMEDIES[ar.house - 1];
+                  const total = ar.argalas.length + ar.virodha.length;
+                  const supportPct = total > 0 ? Math.round((ar.argalas.length / total) * 100) : 50;
+                  const borderColor = ar.netEffect === 'supported' ? 'border-emerald-500/30' : ar.netEffect === 'obstructed' ? 'border-red-500/30' : 'border-gold-primary/15';
+                  const glowColor = ar.netEffect === 'supported' ? 'shadow-emerald-500/5' : ar.netEffect === 'obstructed' ? 'shadow-red-500/5' : '';
+
                   return (
-                  <div key={ar.house} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden border ${ar.netEffect === 'supported' ? 'border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'border-red-500/20' : 'border-gold-primary/10'}`}>
-                    {/* Header */}
-                    <div className={`px-4 py-2.5 flex items-center justify-between ${ar.netEffect === 'supported' ? 'bg-emerald-500/5' : ar.netEffect === 'obstructed' ? 'bg-red-500/5' : 'bg-bg-secondary/30'}`}>
+                  <motion.div key={ar.house}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: ar.house * 0.04 }}
+                    className={`rounded-xl border ${borderColor} ${glowColor} shadow-lg overflow-hidden bg-gradient-to-b from-[#1a1040]/60 to-[#0a0e27]`}
+                  >
+                    {/* House number + status badge */}
+                    <div className="px-4 pt-4 pb-2 flex items-start justify-between">
                       <div>
-                        <span className="text-gold-light font-bold text-sm">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</span>
-                        <span className="text-text-secondary/70 text-xs ml-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {sig[locale === 'en' ? 'en' : 'hi']}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className={`text-2xl font-bold ${ar.netEffect === 'supported' ? 'text-emerald-400' : ar.netEffect === 'obstructed' ? 'text-red-400' : 'text-gold-light'}`}>
+                            {ar.house}
+                          </span>
+                          <div>
+                            <div className="text-gold-light text-sm font-semibold">{locale === 'en' ? `House ${ar.house}` : `भाव ${ar.house}`}</div>
+                            <div className="text-text-secondary/60 text-[10px] leading-tight" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                              {sig[locale === 'en' ? 'en' : 'hi']}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400' : 'bg-amber-500/15 text-amber-300'}`}>
-                        {ar.netEffect === 'supported' ? (locale === 'en' ? 'Supported' : 'समर्थित') : ar.netEffect === 'obstructed' ? (locale === 'en' ? 'Obstructed' : 'अवरुद्ध') : (locale === 'en' ? 'Neutral' : 'तटस्थ')}
+                      <span className={`text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wider ${ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/20' : ar.netEffect === 'obstructed' ? 'bg-red-500/15 text-red-400 border border-red-500/20' : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'}`}>
+                        {ar.netEffect === 'supported' ? '✓' : ar.netEffect === 'obstructed' ? '✗' : '='} {ar.netEffect === 'supported' ? (locale === 'en' ? 'Supported' : 'समर्थित') : ar.netEffect === 'obstructed' ? (locale === 'en' ? 'Blocked' : 'अवरुद्ध') : (locale === 'en' ? 'Neutral' : 'तटस्थ')}
                       </span>
                     </div>
-                    <div className="px-4 py-3 space-y-2">
+
+                    {/* Force balance bar */}
+                    {total > 0 && (
+                      <div className="px-4 py-2">
+                        <div className="flex items-center gap-2 text-[10px] text-text-secondary/50 mb-1">
+                          <span className="text-emerald-400">{ar.argalas.length} {locale === 'en' ? 'support' : 'समर्थन'}</span>
+                          <span className="flex-1" />
+                          <span className="text-red-400">{ar.virodha.length} {locale === 'en' ? 'oppose' : 'प्रतिकार'}</span>
+                        </div>
+                        <div className="h-2.5 rounded-full bg-red-500/20 overflow-hidden">
+                          <div className="h-full rounded-full bg-emerald-500/60 transition-all duration-700" style={{ width: `${supportPct}%` }} />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Planet icons — support vs opposition */}
+                    <div className="px-4 py-2 space-y-1.5">
                       {ar.argalas.length > 0 && (
-                        <div className="text-xs">
-                          <span className="text-emerald-400/60">{locale === 'en' ? 'Support:' : 'समर्थन:'}</span>{' '}
-                          <span className="text-emerald-300">{ar.argalas.map(a => a.planetName[locale as Locale] || a.planetName.en).join(', ')}</span>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-emerald-500/50 text-[10px]">▲</span>
+                          {ar.argalas.map((a, idx) => (
+                            <span key={idx} className="inline-flex items-center gap-0.5">
+                              <GrahaIconById id={a.planetId} size={16} />
+                              <span className="text-emerald-300 text-[10px] font-medium">{(a.planetName[locale as Locale] || a.planetName.en).slice(0, 3)}</span>
+                            </span>
+                          ))}
                         </div>
                       )}
                       {ar.virodha.length > 0 && (
-                        <div className="text-xs">
-                          <span className="text-red-400/60">{locale === 'en' ? 'Counter:' : 'प्रतिकार:'}</span>{' '}
-                          <span className="text-red-400">{ar.virodha.map(v => v.planetName[locale as Locale] || v.planetName.en).join(', ')}</span>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-red-500/50 text-[10px]">▼</span>
+                          {ar.virodha.map((v, idx) => (
+                            <span key={idx} className="inline-flex items-center gap-0.5">
+                              <GrahaIconById id={v.planetId} size={16} />
+                              <span className="text-red-400/70 text-[10px] font-medium">{(v.planetName[locale as Locale] || v.planetName.en).slice(0, 3)}</span>
+                            </span>
+                          ))}
                         </div>
                       )}
-                      {ar.argalas.length === 0 && ar.virodha.length === 0 && (
-                        <div className="text-xs text-text-tertiary">{locale === 'en' ? 'No planetary intervention on this house.' : 'इस भाव पर कोई ग्रह हस्तक्षेप नहीं।'}</div>
-                      )}
-                      {/* Implication */}
-                      {ar.netEffect === 'supported' && (
-                        <p className="text-emerald-400/50 text-xs leading-relaxed mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {locale === 'en'
-                            ? `Positive: ${sig.en.split(',')[0]} matters receive planetary support — expect growth and ease in these areas.`
-                            : `शुभ: ${sig.hi.split(',')[0]} विषयों को ग्रह समर्थन — इन क्षेत्रों में वृद्धि और सहजता।`}
-                        </p>
-                      )}
-                      {ar.netEffect === 'obstructed' && (
-                        <div className="mt-1">
-                          <p className="text-red-400/50 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            {locale === 'en'
-                              ? `Challenge: ${sig.en.split(',')[0]} matters face obstruction — delays or difficulties likely.`
-                              : `चुनौती: ${sig.hi.split(',')[0]} विषयों में अवरोध — विलम्ब या कठिनाइयाँ सम्भावित।`}
-                          </p>
-                          <p className="text-amber-400/40 text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            {locale === 'en' ? 'Upaya: ' : 'उपाय: '}{remedy[locale === 'en' ? 'en' : 'hi']}
-                          </p>
-                        </div>
+                      {total === 0 && (
+                        <div className="text-text-tertiary text-xs py-1">{locale === 'en' ? 'No intervention' : 'कोई हस्तक्षेप नहीं'}</div>
                       )}
                     </div>
-                  </div>
+
+                    {/* Remedy for obstructed */}
+                    {ar.netEffect === 'obstructed' && (
+                      <div className="px-4 pb-3 pt-1 border-t border-red-500/10">
+                        <p className="text-amber-400/60 text-[10px] leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          <span className="font-bold">{locale === 'en' ? 'Remedy: ' : 'उपाय: '}</span>{remedy[locale === 'en' ? 'en' : 'hi']}
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
                   );
                 })}
               </div>

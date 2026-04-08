@@ -346,8 +346,8 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
             : vbScore >= 5 ? t(locale, 'moderate', 'मध्यम')
             : t(locale, 'weak', 'दुर्बल');
           description += '\n\n' + t(locale,
-            `Vimshopaka dignity: ${vbScore.toFixed(1)}/20 (${vbLabel}) — strength across all divisional charts.`,
-            `विंशोपक बल: ${vbScore.toFixed(1)}/20 (${vbLabel}) — सभी वर्ग कुण्डलियों में बल।`);
+            `Vimshopaka dignity: ${vbScore.toFixed(1)}/20 (${vbLabel}) — dignity across 16 divisional charts (separate from Shadbala strength).`,
+            `विंशोपक बल: ${vbScore.toFixed(1)}/20 (${vbLabel}) — 16 वर्ग कुण्डलियों में गरिमा (षड्बल से पृथक)।`);
         }
       }
     }
@@ -841,11 +841,13 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
     return kundali.fullShadbala.map(s => {
       const graha = GRAHAS.find(g => g.id === s.planetId);
       // strengthRatio = rupas / minRequired. 1.0 = meets minimum.
-      // Map to 0-100 percentage where: <1.0 = weak zone, 1.0-1.5 = adequate, >1.5 = strong
-      // Use consistent thresholds: <50 = Weak, 50-74 = Adequate, >=75 = Strong
-      const pct = Math.min(100, Math.round(s.strengthRatio * 50));
-      const status = pct >= 75 ? t(locale, 'Strong', 'बलवान')
-        : pct >= 50 ? t(locale, 'Adequate', 'पर्याप्त')
+      // Map to a user-friendly percentage where:
+      //   ratio 0.5 → 33%, ratio 1.0 → 65%, ratio 1.5 → 83%, ratio 2.0 → 100%
+      // This avoids the "50% feels bad" problem — meeting minimum reads as ~65%.
+      // Thresholds: <60 = Weak, 60-79 = Adequate, >=80 = Strong
+      const pct = Math.min(100, Math.round(30 + s.strengthRatio * 35));
+      const status = pct >= 80 ? t(locale, 'Strong', 'बलवान')
+        : pct >= 60 ? t(locale, 'Adequate', 'पर्याप्त')
         : t(locale, 'Weak', 'दुर्बल');
       return {
         planetName: graha?.name[locale] || s.planet,

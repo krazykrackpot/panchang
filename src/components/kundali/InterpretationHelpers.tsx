@@ -631,9 +631,9 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-semibold text-emerald-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    y.strength === 'Strong' ? 'bg-emerald-500/20 text-emerald-300' :
-                    y.strength === 'Moderate' ? 'bg-sky-500/20 text-sky-300' :
-                    'bg-gray-500/20 text-gray-400'
+                    y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
+                    y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
+                    'bg-orange-500/20 text-orange-400'
                   }`}>
                     {y.strength}
                   </span>
@@ -667,9 +667,9 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-semibold text-amber-400 text-sm">{isHi ? y.name.hi : y.name.en}</span>
                   <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    y.strength === 'Strong' ? 'bg-red-500/20 text-red-300' :
-                    y.strength === 'Moderate' ? 'bg-amber-500/20 text-amber-300' :
-                    'bg-gray-500/20 text-gray-400'
+                    y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
+                    y.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' :
+                    'bg-orange-500/20 text-orange-400'
                   }`}>
                     {y.strength}
                   </span>

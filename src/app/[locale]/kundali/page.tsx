@@ -5171,7 +5171,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
             const isInauspicious = yoga.type === 'Arishta' || yoga.type === 'Dosha';
             const borderColor = isInauspicious ? 'border-rose-500/20 bg-rose-500/5 hover:border-rose-500/30' : 'border-green-500/20 bg-green-500/5 hover:border-green-500/30';
             const badgeColor = isInauspicious ? 'bg-rose-500/20 text-rose-400' : 'bg-green-500/20 text-green-400';
-            const strengthColor = yoga.strength === 'Strong' ? badgeColor : 'bg-yellow-500/20 text-yellow-400';
+            const strengthColor = yoga.strength === 'Strong' ? 'bg-green-500/20 text-green-400' : yoga.strength === 'Moderate' ? 'bg-yellow-500/20 text-yellow-400' : 'bg-orange-500/20 text-orange-400';
             return (
             <div key={i}>
               <motion.div
@@ -5771,7 +5771,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                     style={{ backgroundColor: s.planetColor, opacity: 0.7 }}
                   />
                 </div>
-                <span className={`text-xs w-20 ${s.strength >= 75 ? 'text-green-400' : s.strength >= 50 ? 'text-yellow-400' : 'text-red-400'}`}>
+                <span className={`text-xs w-20 ${s.strength >= 80 ? 'text-green-400' : s.strength >= 60 ? 'text-yellow-400' : 'text-red-400'}`}>
                   {s.strength}% — {s.status}
                 </span>
               </div>

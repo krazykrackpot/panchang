@@ -698,6 +698,24 @@ function generateRemedies(kundali: KundaliData, locale: Locale): RemedySection {
 }
 
 function generateStrengthOverview(kundali: KundaliData, locale: Locale): StrengthEntry[] {
+  // Use fullShadbala (proper 6-fold calculation) when available; fall back to simplified
+  if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
+    return kundali.fullShadbala.map(s => {
+      const graha = GRAHAS.find(g => g.id === s.planetId);
+      // strengthRatio = rupas / minRequired. 1.0 = meets minimum threshold.
+      // Display as percentage: ratio of 1.5 → 75%, 2.0 → 100% (cap at 100)
+      const pct = Math.min(100, Math.round(s.strengthRatio * 50));
+      return {
+        planetName: graha?.name[locale] || s.planet,
+        planetColor: graha?.color || '#888',
+        strength: pct,
+        status: t(locale,
+          s.strengthRatio >= 1.5 ? 'Strong' : s.strengthRatio >= 1.0 ? 'Adequate' : 'Weak',
+          s.strengthRatio >= 1.5 ? 'बलवान' : s.strengthRatio >= 1.0 ? 'पर्याप्त' : 'दुर्बल'),
+      };
+    });
+  }
+  // Fallback to simplified shadbala
   return kundali.shadbala.map(s => {
     const graha = GRAHAS.find(g => g.name.en === s.planet);
     return {

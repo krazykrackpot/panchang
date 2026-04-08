@@ -1204,48 +1204,39 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
         </div>
       </SectionCard>
 
-      {/* Visual overview — all 12 houses */}
+      {/* Combined House Strength — horizontal bar chart ranked by strength */}
       <SectionCard border="border-sky-500/15">
-        <SectionHeading>{isHi ? 'भाव बल दृश्य अवलोकन' : 'House Strength Visual Overview'}</SectionHeading>
-        <p className="text-xs text-gray-400 mb-3">
-          {isHi ? 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर। प्रत्येक भाव जीवन के एक क्षेत्र को दर्शाता है।' : 'Green = strong, Yellow = moderate, Red = weak. Each house represents a life area.'}
+        <SectionHeading>{isHi ? 'भाव बल रैंकिंग' : 'House Strength'}</SectionHeading>
+        <p className="text-xs text-gray-400 mb-4">
+          {isHi ? 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर' : 'Green = strong, Amber = moderate, Red = weak'}
         </p>
-        <div className="flex flex-wrap gap-2 justify-center">
-          {sorted.map(h => {
-            const sig = HOUSE_SIGNIFICATIONS[h.bhava];
-            const strength = h.total;
-            const max = sorted[0].total;
-            const pct = max > 0 ? strength / max : 0;
-            const barColor = pct >= 0.7 ? 'bg-emerald-500' : pct >= 0.4 ? 'bg-amber-500' : 'bg-red-500';
-            return (
-              <div key={h.bhava} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-2 w-[60px] sm:w-[72px] text-center">
-                <div className="text-gold-light font-bold text-sm">H{h.bhava}</div>
-                <div className="text-text-tertiary text-xs">{isHi ? sig?.hi : sig?.en}</div>
-                <div className="w-full h-1.5 bg-bg-tertiary/50 rounded-full mt-1.5 overflow-hidden">
-                  <div className={`h-full rounded-full ${barColor}`} style={{ width: `${pct * 100}%` }} />
-                </div>
-                <div className="text-xs text-text-tertiary mt-0.5">{strength.toFixed(0)}</div>
-              </div>
-            );
-          })}
-        </div>
-      </SectionCard>
-
-      {/* House ranking */}
-      <SectionCard>
-        <SectionHeading>{isHi ? 'भाव बल क्रमांकन' : 'House Strength Ranking'}</SectionHeading>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {sorted.map((bh, i) => {
             const sig = HOUSE_SIGNIFICATIONS[bh.bhava];
             const max = sorted[0].total;
             const pct = max > 0 ? bh.total / max : 0;
-            const color = pct >= 0.7 ? 'emerald' : pct >= 0.4 ? 'amber' : 'red';
+            const barColor = pct >= 0.7 ? 'bg-emerald-500' : pct >= 0.4 ? 'bg-amber-500' : 'bg-red-500';
+            const textColor = pct >= 0.7 ? 'text-emerald-400' : pct >= 0.4 ? 'text-amber-400' : 'text-red-400';
+            const glowColor = pct >= 0.7 ? 'shadow-emerald-500/20' : pct >= 0.4 ? 'shadow-amber-500/20' : 'shadow-red-500/20';
             return (
-              <div key={bh.bhava} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
-                <span className="w-6 text-center text-xs text-gray-500 font-mono">{i + 1}</span>
-                <HouseBadge house={bh.bhava} locale={locale} color={color} />
-                <span className={`w-16 text-xs font-mono ${pct >= 0.7 ? 'text-emerald-400' : pct >= 0.4 ? 'text-amber-400' : 'text-red-400'}`}>{bh.total.toFixed(1)}</span>
-                <span className="text-xs text-gray-400 flex-1">{isHi ? sig?.hi : sig?.en}</span>
+              <div key={bh.bhava} className="group flex items-center gap-2">
+                {/* Rank */}
+                <span className="w-5 text-right text-xs text-gray-600 font-mono tabular-nums">{i + 1}</span>
+                {/* House label */}
+                <span className={`w-8 text-right font-bold text-sm ${textColor}`}>H{bh.bhava}</span>
+                {/* Signification */}
+                <span className="w-20 sm:w-24 text-xs text-gray-400 truncate">{isHi ? sig?.hi : sig?.en}</span>
+                {/* Bar */}
+                <div className="flex-1 h-5 bg-bg-tertiary/30 rounded-md overflow-hidden relative">
+                  <div
+                    className={`h-full rounded-md ${barColor} shadow-sm ${glowColor} transition-all duration-500`}
+                    style={{ width: `${Math.max(pct * 100, 3)}%` }}
+                  />
+                  {/* Score inside bar if wide enough, otherwise outside */}
+                  <span className={`absolute right-2 top-0 h-full flex items-center text-xs font-mono font-bold ${pct >= 0.3 ? 'text-white/90' : textColor}`}>
+                    {bh.total.toFixed(0)}
+                  </span>
+                </div>
               </div>
             );
           })}

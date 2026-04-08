@@ -350,7 +350,7 @@ const VARJYAM_GHATI: number[] = [
   50, 24, 30, 40, 14,  // Ashwini(1)-Mrigashira(5)
   21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)
   20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15)
-  14, 10, 14, 56, 24,  // Vishakha(16)-P.Ashadha(20)
+  14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20) — Mula(19) verified: Drik shows 11:22 = 20 ghatis
   20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
   24, 30,              // U.Bhadra(26)-Revati(27)
 ];
@@ -724,19 +724,24 @@ const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct',
 
 /**
  * Moonrise time for panchang display.
- * Scans 36h to catch moonrises that fall past UT midnight (e.g. 00:25 Apr 8 UT).
+ * Scans from SUNRISE (not midnight) to match Drik Panchang convention:
+ * the panchang day runs sunrise-to-sunrise, so "today's moonrise" is the
+ * first moonrise AFTER this morning's sunrise.
+ *
  * Returns "HH:MM" for same local calendar day, or "HH:MM, Mon DD" for next day.
  */
-function getMoonriseForDisplay(jd: number, lat: number, lng: number, tzOffset: number): string {
+function getMoonriseForDisplay(jd: number, lat: number, lng: number, tzOffset: number, jdSunrise?: number): string {
   const h0 = -0.3;
   const latRad = (lat * Math.PI) / 180;
+  // Start scan from sunrise (panchang day convention), not midnight
+  const jdStart = jdSunrise ?? (Math.floor(jd - 0.5) + 0.5);
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
   const step = 5 / (24 * 60);
 
-  let prevAlt = moonAltitude(jdMidnight, latRad, lng);
+  let prevAlt = moonAltitude(jdStart, latRad, lng);
 
-  for (let i = 1; i <= 432; i++) { // 432 × 5min = 36 hours
-    const jdNow = jdMidnight + i * step;
+  for (let i = 1; i <= 432; i++) { // 432 × 5min = 36 hours from sunrise
+    const jdNow = jdStart + i * step;
     const alt = moonAltitude(jdNow, latRad, lng);
 
     if (prevAlt < h0 && alt >= h0) {
@@ -752,7 +757,6 @@ function getMoonriseForDisplay(jd: number, lat: number, lng: number, tzOffset: n
       const localHoursRaw = utHours + tzOffset;
       const timeStr = formatTime(utHours % 24, tzOffset);
       if (localHoursRaw >= 24) {
-        // Moonrise falls on the next local calendar day — show date
         const dateStr = jdToLocalDate(riseJd, tzOffset);
         const [, mo, dy] = dateStr.split('-');
         return `${timeStr}, ${MONTH_ABBR[parseInt(mo) - 1]} ${parseInt(dy)}`;
@@ -1061,10 +1065,11 @@ export function computePanchang(input: PanchangInput): PanchangData {
 
   // ── New fields ──
 
-  // 1. Vijaya Muhurta (10th daytime muhurta, 0-indexed position 9)
+  // 1. Vijaya Muhurta — 11th daytime muhurta (0-indexed 10).
+  // Verified: Drik Panchang Apr 8 2026 Bern shows 15:45-16:38 = muhurta index 10.
   const muhurtaDuration = dayDuration / 15;
-  const vijayaStartUT = sunriseUT + 9 * muhurtaDuration;
-  const vijayaEndUT = sunriseUT + 10 * muhurtaDuration;
+  const vijayaStartUT = sunriseUT + 10 * muhurtaDuration;
+  const vijayaEndUT = sunriseUT + 11 * muhurtaDuration;
   const vijayaMuhurta = {
     start: formatTime(vijayaStartUT, tzOffset),
     end: formatTime(vijayaEndUT, tzOffset),
@@ -1089,13 +1094,25 @@ export function computePanchang(input: PanchangInput): PanchangData {
     return { start: formatTime(s, tzOffset), end: formatTime(e, tzOffset) };
   });
 
-  // 3. Ganda Moola
+  // 3. Ganda Moola — with time window (sunrise to nakshatra end, or full day if no transition)
+  // Drik shows: "Ganda Moola 06:56 AM to 05:18 AM, Apr 09" = sunrise to nakshatra end
   const GANDA_MOOLA_NAKSHATRAS = new Set([1, 9, 10, 18, 19, 27]);
   const gandaMoolaActive = GANDA_MOOLA_NAKSHATRAS.has(nakshatraNum);
-  const gandaMoola = {
-    active: gandaMoolaActive,
-    nakshatra: gandaMoolaActive ? NAKSHATRAS[nakshatraNum - 1]?.name : undefined,
-  };
+  const gandaMoola: {
+    active: boolean;
+    nakshatra?: { en: string; hi: string; sa: string };
+    start?: string;
+    end?: string;
+    endDate?: string;
+  } = { active: gandaMoolaActive };
+  if (gandaMoolaActive) {
+    gandaMoola.nakshatra = NAKSHATRAS[nakshatraNum - 1]?.name;
+    gandaMoola.start = formatTime(sunriseUT, tzOffset); // starts at sunrise (panchang day start)
+    if (nakshatraTransition?.endTime) {
+      gandaMoola.end = nakshatraTransition.endTime;
+      gandaMoola.endDate = nakshatraTransition.endDate;
+    }
+  }
 
   // 4. Anandadi Yoga
   const ANANDADI_NAMES: { en: string; hi: string; sa: string }[] = [
@@ -1422,7 +1439,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     sunLongitude: sunSidLong,
     sunrise: formatTime(sunriseUT, tzOffset),
     sunset: formatTime(sunsetUT, tzOffset),
-    moonrise: getMoonriseForDisplay(jd, lat, lng, tzOffset),
+    moonrise: getMoonriseForDisplay(jd, lat, lng, tzOffset, jdSunrise),
     moonset: getMoonsetForDisplay(jd, lat, lng, tzOffset),
     rahuKaal: { start: formatTime(rahuKaal.start, tzOffset), end: formatTime(rahuKaal.end, tzOffset) },
     yamaganda: { start: formatTime(yamaganda.start, tzOffset), end: formatTime(yamaganda.end, tzOffset) },

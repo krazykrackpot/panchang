@@ -3814,29 +3814,29 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
             <p className="text-text-secondary/70 text-xs mb-4">
               {locale === 'en' ? 'Total bindu per sign. ≥28 = strong (green), <22 = weak (red). Threshold 25 = average.' : 'प्रति राशि कुल बिन्दु। ≥28 = बलवान (हरा), <22 = दुर्बल (लाल)।'}
             </p>
-            <div className="flex items-end gap-1 h-36 sm:h-44">
+            <div className="flex items-end gap-2 sm:gap-3 h-56 sm:h-72 md:h-80">
               {ashtakavarga.savTable.map((val, i) => {
-                const pct = Math.round((val / 56) * 100); // max theoretical = 56
+                const pct = Math.round((val / 56) * 100);
                 const color = val >= 28 ? 'bg-emerald-500/70' : val < 22 ? 'bg-red-500/60' : 'bg-gold-primary/50';
                 return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-1">
-                    <span className={`text-[9px] font-bold ${val >= 28 ? 'text-emerald-400' : val < 22 ? 'text-red-400' : 'text-gold-primary/70'}`}>{val}</span>
+                  <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
+                    <span className={`text-sm sm:text-base font-bold ${val >= 28 ? 'text-emerald-400' : val < 22 ? 'text-red-400' : 'text-gold-primary/70'}`}>{val}</span>
                     <div className="w-full flex items-end justify-center" style={{ height: '100%' }}>
-                      <div className={`w-full rounded-t ${color}`} style={{ height: `${Math.max(pct, 4)}%` }} />
+                      <div className={`w-full rounded-t-md ${color}`} style={{ height: `${Math.max(pct, 5)}%` }} />
                     </div>
-                    <span className="text-[9px] text-text-secondary/65 text-center leading-none" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {RASHIS[i].name[locale].slice(0, 2)}
+                    <span className="text-xs sm:text-sm font-semibold text-text-secondary text-center leading-none" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {RASHIS[i].name[locale].slice(0, 3)}
                     </span>
                   </div>
                 );
               })}
             </div>
-            <div className="flex items-center justify-center gap-4 mt-3 text-[10px]">
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-emerald-500/70" />{locale === 'en' ? '≥28 Strong' : '≥28 बलवान'}</span>
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-gold-primary/50" />{locale === 'en' ? '22–27 Average' : '22–27 औसत'}</span>
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-sm bg-red-500/60" />{locale === 'en' ? '<22 Weak' : '<22 दुर्बल'}</span>
+            <div className="flex items-center justify-center gap-6 mt-4 text-xs">
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500/70" />{locale === 'en' ? '≥28 Strong' : '≥28 बलवान'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-gold-primary/50" />{locale === 'en' ? '22–27 Average' : '22–27 औसत'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-500/60" />{locale === 'en' ? '<22 Weak' : '<22 दुर्बल'}</span>
             </div>
-            <div className="text-center text-text-secondary/70 text-xs mt-2">
+            <div className="text-center text-text-secondary text-sm font-semibold mt-3">
               {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
             </div>
           </div>
@@ -4208,10 +4208,12 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
 }) {
   const synthesis = useMemo(() => generateVargaTippanni(kundali, locale), [kundali, locale]);
   const isHi = locale === 'hi';
+  const [selectedVarga, setSelectedVarga] = useState<string | null>(null);
   const sC: Record<string, string> = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
   const sL: Record<string, { en: string; hi: string }> = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
   const PLANET_NAMES_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
   const PLANET_NAMES_HI = ['सूर्य','चन्द्र','मंगल','बुध','गुरु','शुक्र','शनि','राहु','केतु'];
+  const selectedInsight = synthesis.vargaInsights.find(v => v.chart === selectedVarga);
 
   return (
     <div className="space-y-8">
@@ -4241,39 +4243,44 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         </div>
       </div>
 
-      {/* Strength grid */}
+      {/* Clickable strength grid */}
       <div>
-        <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
+        <h3 className="text-gold-light text-lg font-bold mb-2 text-center" style={headingFont}>
           {isHi ? 'वर्ग बल अवलोकन' : 'Varga Strength Overview'}
         </h3>
+        <p className="text-text-secondary/60 text-xs text-center mb-4">
+          {isHi ? 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें' : 'Click any chart for detailed analysis'}
+        </p>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
           {synthesis.vargaInsights.map((v, i) => (
-            <div key={i} className={`rounded-lg p-2 border text-center ${sC[v.strength]}`}>
+            <button key={i}
+              onClick={() => setSelectedVarga(prev => prev === v.chart ? null : v.chart)}
+              className={`rounded-lg p-2 border text-center transition-all cursor-pointer ${sC[v.strength]} ${selectedVarga === v.chart ? 'ring-2 ring-gold-primary/50 scale-105' : 'hover:scale-[1.03] hover:brightness-110'}`}
+            >
               <div className="font-bold text-xs">{v.chart}</div>
               <div className="text-xs text-text-tertiary leading-tight mt-0.5">{isHi ? v.meaning.hi : v.meaning.en}</div>
               <div className="text-xs font-medium mt-0.5">{isHi ? sL[v.strength].hi : sL[v.strength].en}</div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Per-chart detailed commentary */}
-      <div>
-        <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-          {isHi ? 'प्रति-चार्ट विस्तृत टिप्पणी' : 'Detailed Per-Chart Commentary'}
-        </h3>
-        <div className="space-y-4">
-          {synthesis.vargaInsights.map((v, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.03 }}
-              className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
+      {/* Selected chart detailed commentary */}
+      <AnimatePresence mode="wait">
+        {selectedInsight && (
+          <motion.div key={selectedInsight.chart}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            className="space-y-6"
+          >
+            <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
               {/* Header */}
-              <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[v.strength].split(' ').slice(1).join(' ')}`}>
+              <div className={`flex items-center justify-between px-5 py-3 border-b border-gold-primary/10 ${sC[selectedInsight.strength].split(' ').slice(1).join(' ')}`}>
                 <div className="flex items-center gap-3">
-                  <span className="text-gold-light font-bold text-lg">{v.chart}</span>
-                  <span className="text-text-secondary text-xs">{isHi ? v.label.hi : v.label.en}</span>
+                  <span className="text-gold-light font-bold text-lg">{selectedInsight.chart}</span>
+                  <span className="text-text-secondary text-xs">{isHi ? selectedInsight.label.hi : selectedInsight.label.en}</span>
                 </div>
-                <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[v.strength]}`}>
-                  {isHi ? sL[v.strength].hi : sL[v.strength].en}
+                <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${sC[selectedInsight.strength]}`}>
+                  {isHi ? sL[selectedInsight.strength].hi : sL[selectedInsight.strength].en}
                 </span>
               </div>
 
@@ -4284,18 +4291,18 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     {isHi ? 'समग्र टिप्पणी' : 'Overall Commentary'}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed whitespace-pre-line">
-                    {isHi ? v.overallCommentary.hi : v.overallCommentary.en}
+                    {isHi ? selectedInsight.overallCommentary.hi : selectedInsight.overallCommentary.en}
                   </div>
                 </div>
 
                 {/* Key Findings */}
-                {v.keyFindings.length > 0 && (
+                {selectedInsight.keyFindings.length > 0 && (
                   <div>
                     <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
                       {isHi ? 'प्रमुख निष्कर्ष' : 'Key Findings'}
                     </div>
                     <div className="space-y-1">
-                      {v.keyFindings.map((f, j) => (
+                      {selectedInsight.keyFindings.map((f, j) => (
                         <div key={j} className="text-text-secondary text-xs leading-relaxed flex gap-2">
                           <span className="text-gold-dark mt-0.5 shrink-0">•</span>
                           <span>{isHi ? f.hi : f.en}</span>
@@ -4311,15 +4318,17 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                     {isHi ? '1-2 वर्ष की प्रगति' : '1-2 Year Prognosis'}
                   </div>
                   <div className="text-text-secondary text-xs leading-relaxed">
-                    {isHi ? v.prognosis.hi : v.prognosis.en}
+                    {isHi ? selectedInsight.prognosis.hi : selectedInsight.prognosis.en}
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            </div>
 
+            {/* Deep-dive sections — only shown for the selected chart */}
+
+            {/* D2 Hora */}
+            {selectedVarga === 'D2' && (
+              <>
       {/* P2-09: D2 Hora Chart — Full Classical Interpretation */}
       {(() => {
         const lagnaSign = kundali.ascendant.sign;
@@ -4420,9 +4429,11 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
           </div>
         );
       })()}
+              </>
+            )}
 
-      {/* D9 Navamsha — Marriage, Dharma & Soul Nature */}
-      {kundali.divisionalCharts?.D9 && (() => {
+            {/* D9 Navamsha */}
+            {selectedVarga === 'D9' && kundali.divisionalCharts?.D9 && (() => {
         const d9 = kundali.divisionalCharts.D9;
         const d9Asc = d9.ascendantSign;
         const d9AscName = RASHIS[(d9Asc - 1) % 12]?.name;
@@ -4562,8 +4573,8 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         );
       })()}
 
-      {/* D10 Dashamsha — Career & Professional Life */}
-      {kundali.divisionalCharts?.D10 && (() => {
+            {/* D10 Dashamsha */}
+            {selectedVarga === 'D10' && kundali.divisionalCharts?.D10 && (() => {
         const d10 = kundali.divisionalCharts.D10;
         const d10Asc = d10.ascendantSign;
         const d10AscName = RASHIS[(d10Asc - 1) % 12]?.name;
@@ -4692,8 +4703,8 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         );
       })()}
 
-      {/* D7 Saptamsha — Children & Progeny */}
-      {kundali.divisionalCharts?.D7 && (() => {
+            {/* D7 Saptamsha */}
+            {selectedVarga === 'D7' && kundali.divisionalCharts?.D7 && (() => {
         const d7 = kundali.divisionalCharts.D7;
         const d7Asc = d7.ascendantSign;
         const d7AscName = RASHIS[(d7Asc - 1) % 12]?.name;
@@ -4742,6 +4753,10 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
           </div>
         );
       })()}
+
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

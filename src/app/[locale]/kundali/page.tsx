@@ -6520,22 +6520,35 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
             </div>
           </div>
 
-          {/* Progress bar */}
-          <div className="mt-5">
-            <div className="flex justify-between text-xs text-text-secondary mb-1">
-              <span>{sadeSati.cycleStart}</span>
-              <span className="text-gold-light font-bold">{Math.round(sadeSati.phaseProgress * 100)}%</span>
-              <span>{sadeSati.cycleEnd}</span>
+          {/* Timeline progress — shows elapsed vs remaining years */}
+          {(() => {
+            const startYr = parseInt(String(sadeSati.cycleStart));
+            const endYr = parseInt(String(sadeSati.cycleEnd));
+            const totalYrs = endYr - startYr;
+            const currentYr = new Date().getFullYear();
+            const elapsedYrs = Math.min(totalYrs, Math.max(0, currentYr - startYr));
+            const remainingYrs = totalYrs - elapsedYrs;
+            return (
+            <div className="mt-5">
+              <div className="flex justify-between text-xs text-text-secondary mb-1">
+                <span>{sadeSati.cycleStart}</span>
+                <span className="text-gold-light font-semibold">
+                  {locale === 'en' ? `${elapsedYrs} of ${totalYrs} years` : `${totalYrs} में से ${elapsedYrs} वर्ष`}
+                  {remainingYrs > 0 && <span className="text-text-tertiary ml-1">({locale === 'en' ? `${remainingYrs} remaining` : `${remainingYrs} शेष`})</span>}
+                </span>
+                <span>{sadeSati.cycleEnd}</span>
+              </div>
+              <div className="h-2.5 rounded-full bg-bg-primary/60 overflow-hidden">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${sadeSati.phaseProgress * 100}%` }}
+                  transition={{ duration: 1, ease: 'easeOut' as const }}
+                  className="h-full rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-gold-primary"
+                />
+              </div>
             </div>
-            <div className="h-2.5 rounded-full bg-bg-primary/60 overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${sadeSati.phaseProgress * 100}%` }}
-                transition={{ duration: 1, ease: 'easeOut' as const }}
-                className="h-full rounded-full bg-gradient-to-r from-red-500 via-orange-400 to-gold-primary"
-              />
-            </div>
-          </div>
+            );
+          })()}
         </motion.div>
       ) : (
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 border border-green-500/30 bg-green-500/5 text-center">
@@ -6584,7 +6597,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className={`text-3xl font-bold font-mono ${intensityColor(sadeSati.overallIntensity)}`}>
-                  {sadeSati.overallIntensity.toFixed(1)}
+                  {sadeSati.overallIntensity.toFixed(1)}<span className="text-base text-text-secondary/50">/10</span>
                 </span>
                 <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>
                   {intensityLabel(sadeSati.overallIntensity)[lk]}

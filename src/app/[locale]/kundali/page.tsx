@@ -1931,12 +1931,84 @@ export default function KundaliPage() {
                 )}
               </InfoBlock>
 
-              {/* Summary */}
-              <div className="flex justify-center gap-4 text-xs">
-                <span className="text-emerald-400">{supported.length} {locale === 'en' ? 'supported' : 'समर्थित'}</span>
-                <span className="text-red-400">{obstructed.length} {locale === 'en' ? 'obstructed' : 'अवरुद्ध'}</span>
-                <span className="text-amber-400">{12 - supported.length - obstructed.length} {locale === 'en' ? 'neutral' : 'तटस्थ'}</span>
-              </div>
+              {/* ── Narrative Synthesis ── */}
+              {(() => {
+                const neutral = kundali.argala.filter(a => a.netEffect === 'neutral');
+                const LIFE_AREAS: Record<number, { en: string; hi: string }> = {
+                  1: { en: 'health and personality', hi: 'स्वास्थ्य और व्यक्तित्व' },
+                  2: { en: 'wealth and family', hi: 'धन और परिवार' },
+                  3: { en: 'courage and communication', hi: 'साहस और संवाद' },
+                  4: { en: 'home and emotional peace', hi: 'घर और मानसिक शान्ति' },
+                  5: { en: 'children and education', hi: 'सन्तान और शिक्षा' },
+                  6: { en: 'health challenges and competition', hi: 'स्वास्थ्य चुनौतियाँ और प्रतिस्पर्धा' },
+                  7: { en: 'marriage and partnerships', hi: 'विवाह और साझेदारी' },
+                  8: { en: 'longevity and transformation', hi: 'दीर्घायु और परिवर्तन' },
+                  9: { en: 'fortune and spiritual growth', hi: 'भाग्य और आध्यात्मिक विकास' },
+                  10: { en: 'career and public reputation', hi: 'कैरियर और सार्वजनिक प्रतिष्ठा' },
+                  11: { en: 'income and fulfillment of desires', hi: 'आय और इच्छापूर्ति' },
+                  12: { en: 'spiritual liberation and foreign connections', hi: 'मोक्ष और विदेश सम्बन्ध' },
+                };
+                const lk = locale === 'en' ? 'en' : 'hi';
+                const supportedAreas = supported.map(a => LIFE_AREAS[a.house][lk]).slice(0, 4);
+                const obstructedAreas = obstructed.map(a => LIFE_AREAS[a.house][lk]).slice(0, 3);
+
+                return (
+                  <div className="rounded-xl border border-gold-primary/20 bg-gradient-to-br from-[#1a1040]/60 to-[#0a0e27] p-5 sm:p-6">
+                    <h4 className="text-gold-light text-base font-bold mb-3" style={headingFont}>
+                      {locale === 'en' ? 'Your Argala Summary' : 'आपका अर्गला सारांश'}
+                    </h4>
+
+                    {/* Counts */}
+                    <div className="flex justify-center gap-6 mb-4">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-emerald-400">{supported.length}</div>
+                        <div className="text-xs text-emerald-400/70">{locale === 'en' ? 'Supported' : 'समर्थित'}</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-amber-400">{neutral.length}</div>
+                        <div className="text-xs text-amber-400/70">{locale === 'en' ? 'Neutral' : 'तटस्थ'}</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-red-400">{obstructed.length}</div>
+                        <div className="text-xs text-red-400/70">{locale === 'en' ? 'Obstructed' : 'अवरुद्ध'}</div>
+                      </div>
+                    </div>
+
+                    {/* Narrative */}
+                    <div className="text-sm text-text-secondary leading-relaxed space-y-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {supported.length > 0 && (
+                        <p>
+                          {locale === 'en'
+                            ? <>Your chart shows <span className="text-emerald-400 font-semibold">strong planetary support</span> for {supportedAreas.join(', ')}. Planets positioned around these houses actively push energy toward them — efforts in these areas get natural cosmic momentum. These are your strengths; lean into them.</>
+                            : <>आपकी कुण्डली में <span className="text-emerald-400 font-semibold">मजबूत ग्रह समर्थन</span> है — {supportedAreas.join(', ')} के लिए। इन भावों के आसपास स्थित ग्रह सक्रिय रूप से ऊर्जा देते हैं। ये आपकी शक्तियाँ हैं; इन पर ध्यान दें।</>
+                          }
+                        </p>
+                      )}
+                      {obstructed.length > 0 && (
+                        <p>
+                          {locale === 'en'
+                            ? <>However, <span className="text-red-400 font-semibold">{obstructedAreas.join(', ')}</span> face planetary resistance — counter-forces outweigh the support. This does not mean failure; it means these areas require <span className="text-gold-light">conscious effort, patience, and the specific remedies</span> listed below for each house.</>
+                            : <>लेकिन <span className="text-red-400 font-semibold">{obstructedAreas.join(', ')}</span> को ग्रह प्रतिरोध का सामना है। इसका अर्थ विफलता नहीं; बल्कि इन क्षेत्रों में <span className="text-gold-light">सचेत प्रयास, धैर्य और नीचे दिए गए विशिष्ट उपायों</span> की आवश्यकता है।</>
+                          }
+                        </p>
+                      )}
+                      {obstructed.length === 0 && (
+                        <p>
+                          {locale === 'en'
+                            ? <><span className="text-emerald-400 font-semibold">No houses face net obstruction</span> — a rare and fortunate pattern. All life areas either receive active support or are neutrally balanced.</>
+                            : <><span className="text-emerald-400 font-semibold">किसी भी भाव को शुद्ध अवरोध नहीं</span> — दुर्लभ और भाग्यशाली स्थिति। सभी जीवन क्षेत्र सक्रिय समर्थन या तटस्थता में हैं।</>
+                          }
+                        </p>
+                      )}
+                      <p className="text-text-tertiary text-xs">
+                        {locale === 'en'
+                          ? 'Scroll down for house-by-house details with supporting/countering planets and specific remedies.'
+                          : 'समर्थक/प्रतिकारक ग्रहों और विशिष्ट उपायों के साथ भाव-वार विवरण नीचे देखें।'}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {kundali.argala.map((ar) => {

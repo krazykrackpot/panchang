@@ -1919,7 +1919,7 @@ export default function KundaliPage() {
                 ) : (
                   <div className="space-y-3">
                     <p><strong>अर्गला</strong> (जैमिनी सूत्र, BPHS अ.31) दर्शाती है कि कौन से ग्रह आपके जीवन के प्रत्येक क्षेत्र को सक्रिय रूप से <strong>बढ़ावा</strong> या <strong>अवरुद्ध</strong> करते हैं। भावबल (जो भाव की अन्तर्निहित शक्ति मापता है) से भिन्न, अर्गला <strong>बाह्य शक्तियों</strong> को दर्शाती है।</p>
-                    <p><strong>कैसे काम करती है:</strong> किसी भाव से 2, 4, 5, 8, 11वें भाव के ग्रह <strong>अर्गला</strong> (समर्थन) बनाते हैं। 12, 10, 9, 6, 3वें भाव के ग्रह <strong>विरोध अर्गला</strong> बनाते हैं।</p>
+                    <p><strong>कैसे काम करती है:</strong> किसी भाव से 2, 4, 5, 8, 11वें भाव के ग्रह <strong>अर्गला</strong> (समर्थन) बनाते हैं। 12, 10, 9, 6, 3वें भाव के ग्रह <strong>विरोध अर्गला</strong> बनाते हैं। सभी हस्तक्षेप समान नहीं — <strong>केवल बलवान समर्थन और बलवान विरोध</strong> निर्णय निर्धारित करते हैं। एक भाव में विरोधी अधिक हो सकते हैं फिर भी &quot;समर्थित&quot; हो यदि समर्थक अधिक बलवान हैं।</p>
                     <p><strong>भावबल और अर्गला में अन्तर क्यों:</strong> एक भाव अन्तर्निहित रूप से बलवान (उच्च भावबल) हो सकता है फिर भी बाह्य अवरोध (अर्गला) झेल सकता है। उदाहरण: बलवान 7वाँ भाव + अर्गला अवरोध = विवाह की क्षमता उत्कृष्ट, पर बाहरी परिस्थितियाँ बाधा डालती हैं।</p>
                     <p><strong>उपयोग:</strong></p>
                     <ul className="list-disc ml-4 space-y-1 text-xs">
@@ -5949,32 +5949,54 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
       </div>
 
       {/* Planetary Interpretations */}
-      {planetInsights && planetInsights.length > 0 && (
-        <div className="mt-8">
-          <h4 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
-            {locale === 'en' ? 'Planetary Interpretations' : 'ग्रह व्याख्या'}
-          </h4>
-          <div className="space-y-3">
-            {grahaDetails.map((g) => {
-              const insight = planetInsights.find(pi => pi.planetId === g.planetId);
-              if (!insight) return null;
-              return (
-                <div key={g.planetId} className="p-4 rounded-lg border border-gold-primary/10 bg-gold-primary/[0.02]">
-                  <div className="flex items-center gap-2 mb-2">
-                    <GrahaIconById id={g.planetId} size={24} />
-                    <span className="text-gold-light font-semibold" style={bodyFont}>{g.planetName[locale]}</span>
-                    <span className="text-text-secondary/70 text-xs">{locale === 'en' ? 'in' : 'में'} {g.signName[locale]} — {locale === 'en' ? 'House' : 'भाव'} {insight.house}</span>
+      {planetInsights && planetInsights.length > 0 && (() => {
+        const PLANET_PALETTE: Record<number, { border: string; glow: string; badge: string; label: string }> = {
+          0: { border: 'border-amber-500/30',  glow: 'bg-amber-500/5',   badge: 'bg-amber-500/15 border-amber-500/25 text-amber-300',   label: 'text-amber-200' },  // Sun
+          1: { border: 'border-slate-400/30',  glow: 'bg-slate-400/5',   badge: 'bg-slate-400/15 border-slate-400/25 text-slate-300',   label: 'text-slate-200' },  // Moon
+          2: { border: 'border-red-500/30',    glow: 'bg-red-500/5',     badge: 'bg-red-500/15 border-red-500/25 text-red-300',         label: 'text-red-200'   },  // Mars
+          3: { border: 'border-emerald-500/30',glow: 'bg-emerald-500/5', badge: 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300', label: 'text-emerald-200' }, // Mercury
+          4: { border: 'border-yellow-500/30', glow: 'bg-yellow-500/5',  badge: 'bg-yellow-500/15 border-yellow-500/25 text-yellow-300', label: 'text-yellow-200' }, // Jupiter
+          5: { border: 'border-rose-400/30',   glow: 'bg-rose-400/5',    badge: 'bg-rose-400/15 border-rose-400/25 text-rose-300',       label: 'text-rose-200'  },  // Venus
+          6: { border: 'border-indigo-400/30', glow: 'bg-indigo-400/5',  badge: 'bg-indigo-400/15 border-indigo-400/25 text-indigo-300', label: 'text-indigo-200' }, // Saturn
+          7: { border: 'border-violet-500/30', glow: 'bg-violet-500/5',  badge: 'bg-violet-500/15 border-violet-500/25 text-violet-300', label: 'text-violet-200' }, // Rahu
+          8: { border: 'border-orange-700/30', glow: 'bg-orange-700/5',  badge: 'bg-orange-700/15 border-orange-700/25 text-orange-300', label: 'text-orange-200' }, // Ketu
+        };
+        return (
+          <div className="mt-8">
+            <h4 className="text-lg font-bold text-gold-light mb-4" style={headingFont}>
+              {locale === 'en' ? 'Planetary Interpretations' : 'ग्रह व्याख्या'}
+            </h4>
+            <div className="space-y-3">
+              {grahaDetails.map((g) => {
+                const insight = planetInsights.find(pi => pi.planetId === g.planetId);
+                if (!insight) return null;
+                const pal = PLANET_PALETTE[g.planetId] ?? PLANET_PALETTE[0];
+                return (
+                  <div key={g.planetId} className={`relative overflow-hidden rounded-xl border ${pal.border} bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-4`}>
+                    <div className={`absolute -top-8 -right-8 w-28 h-28 rounded-full ${pal.glow} blur-2xl pointer-events-none`} />
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <GrahaIconById id={g.planetId} size={22} />
+                        <span className={`font-bold text-sm ${pal.label}`} style={bodyFont}>{g.planetName[locale]}</span>
+                        <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${pal.badge}`} style={bodyFont}>
+                          {g.signName[locale]}
+                        </span>
+                        <span className="text-text-secondary/70 text-xs" style={bodyFont}>
+                          {locale === 'en' ? `House ${insight.house}` : `भाव ${insight.house}`}
+                        </span>
+                      </div>
+                      <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>{insight.description}</p>
+                      {insight.implications && (
+                        <p className="text-text-secondary/65 text-sm mt-2 leading-relaxed border-t border-white/5 pt-2" style={bodyFont}>{insight.implications}</p>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-text-secondary text-sm leading-relaxed">{insight.description}</p>
-                  {insight.implications && (
-                    <p className="text-text-secondary/70 text-sm mt-2 italic">{insight.implications}</p>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
 
       {/* Upagrahas */}
       {upagrahas.length > 0 && (() => {

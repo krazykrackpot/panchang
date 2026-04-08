@@ -840,14 +840,11 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
   if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
     return kundali.fullShadbala.map(s => {
       const graha = GRAHAS.find(g => g.id === s.planetId);
-      // strengthRatio = rupas / minRequired. 1.0 = meets minimum.
-      // Map to a user-friendly percentage where:
-      //   ratio 0.5 → 33%, ratio 1.0 → 65%, ratio 1.5 → 83%, ratio 2.0 → 100%
-      // This avoids the "50% feels bad" problem — meeting minimum reads as ~65%.
-      // Thresholds: <60 = Weak, 60-79 = Adequate, >=80 = Strong
+      // strengthRatio = rupas / minRequired (BPHS Ch.27). 1.0 = meets minimum.
+      // Thresholds consistent with Shadbala tab: ≥1.5 Strong, ≥1.0 Adequate, <1.0 Weak
       const pct = Math.min(100, Math.round(30 + s.strengthRatio * 35));
-      const status = pct >= 80 ? t(locale, 'Strong', 'बलवान')
-        : pct >= 60 ? t(locale, 'Adequate', 'पर्याप्त')
+      const status = s.strengthRatio >= 1.5 ? t(locale, 'Strong', 'बलवान')
+        : s.strengthRatio >= 1.0 ? t(locale, 'Adequate', 'पर्याप्त')
         : t(locale, 'Weak', 'दुर्बल');
       return {
         planetName: graha?.name[locale] || s.planet,

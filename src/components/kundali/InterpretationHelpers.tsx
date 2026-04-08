@@ -544,9 +544,10 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
         </div>
         {/* Legend */}
         <div className="flex gap-3 mb-3 text-[10px]">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" />{isHi ? 'प्रबल ≥1.5' : 'Strong ≥1.5'}</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />{isHi ? 'पर्याप्त ≥1.0' : 'Adequate ≥1.0'}</span>
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" />{isHi ? 'दुर्बल <1.0' : 'Weak <1.0'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-400 inline-block" />{isHi ? 'प्रबल ≥1.5×' : 'Strong ≥1.5× min'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />{isHi ? 'पर्याप्त ≥1.0×' : 'Adequate ≥1.0× min'}</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-400 inline-block" />{isHi ? 'दुर्बल <1.0×' : 'Weak <1.0× min'}</span>
+          <span className="text-text-tertiary/40 ml-1">{isHi ? '(BPHS अ.27)' : '(BPHS Ch.27)'}</span>
         </div>
         <div className="space-y-3">
           {sorted.map((sb, i) => {

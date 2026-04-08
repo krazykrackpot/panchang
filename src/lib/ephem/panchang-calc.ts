@@ -366,43 +366,58 @@ const AMRIT_GHATI: number[] = [
   48, 54,              // U.Bhadra(26)-Revati(27)
 ];
 
-function computeAmritVarjyam(
+interface TimeWindow { start: string; end: string }
+
+function computeAmritVarjyamForNakshatra(
   nakshatraNum: number,
-  nakshatraStartJD: number,  // JD when the nakshatra started
-  nakshatraEndJD: number,    // JD when the nakshatra ends
-  jdMidnight: number,        // midnight JD for the panchang date
+  nakshatraStartJD: number,
+  nakshatraEndJD: number,
+  jdMidnight: number,
   tzOffset: number,
-): { amritKalam?: { start: string; end: string }; varjyam?: { start: string; end: string } } {
+): { amrit?: TimeWindow; varjyam?: TimeWindow } {
   const nakIdx = nakshatraNum - 1;
   if (nakIdx < 0 || nakIdx >= 27) return {};
-
-  // Nakshatra duration in hours — ghatis are proportional to this, not fixed 24 min
   const nakshatraDurationHrs = (nakshatraEndJD - nakshatraStartJD) * 24;
   if (nakshatraDurationHrs <= 0) return {};
 
   const ghatiToHrs = nakshatraDurationHrs / 60;
-
-  const varjyamOffsetHrs = VARJYAM_GHATI[nakIdx] * ghatiToHrs;
-  const amritOffsetHrs = AMRIT_GHATI[nakIdx] * ghatiToHrs;
-  // Window duration: 4 ghatis (standard for both Varjyam and Amrit Kalam)
   const durationHrs = 4 * ghatiToHrs;
-
-  // Express as UT hours from midnight of the panchang date
   const ingressUT = (nakshatraStartJD - jdMidnight) * 24;
 
-  const varjyamStartUT = ingressUT + varjyamOffsetHrs;
-  const amritStartUT = ingressUT + amritOffsetHrs;
+  const varjyamStartUT = ingressUT + VARJYAM_GHATI[nakIdx] * ghatiToHrs;
+  const amritStartUT = ingressUT + AMRIT_GHATI[nakIdx] * ghatiToHrs;
 
   return {
-    amritKalam: {
-      start: formatTime(amritStartUT, tzOffset),
-      end: formatTime(amritStartUT + durationHrs, tzOffset),
-    },
-    varjyam: {
-      start: formatTime(varjyamStartUT, tzOffset),
-      end: formatTime(varjyamStartUT + durationHrs, tzOffset),
-    },
+    amrit: { start: formatTime(amritStartUT, tzOffset), end: formatTime(amritStartUT + durationHrs, tzOffset) },
+    varjyam: { start: formatTime(varjyamStartUT, tzOffset), end: formatTime(varjyamStartUT + durationHrs, tzOffset) },
   };
+}
+
+// Compute Amrit Kalam & Varjyam for BOTH nakshatras active during the panchang day.
+// Drik Panchang shows windows from the current nakshatra AND the next one if it
+// transitions during the day. Returns arrays of windows, not just one.
+function computeAllAmritVarjyam(
+  nakNum1: number, nak1StartJD: number, nak1EndJD: number,
+  nakNum2: number | undefined, nak2EndJD: number | undefined,
+  jdMidnight: number, jdSunrise: number, tzOffset: number,
+): { amritKalam: TimeWindow[]; varjyam: TimeWindow[] } {
+  const amritAll: TimeWindow[] = [];
+  const varjyamAll: TimeWindow[] = [];
+
+  // Current nakshatra
+  const w1 = computeAmritVarjyamForNakshatra(nakNum1, nak1StartJD, nak1EndJD, jdMidnight, tzOffset);
+  if (w1.amrit) amritAll.push(w1.amrit);
+  if (w1.varjyam) varjyamAll.push(w1.varjyam);
+
+  // Next nakshatra (if it starts during this panchang day, i.e. before next sunrise)
+  if (nakNum2 && nak2EndJD) {
+    const nak2StartJD = nak1EndJD; // next nakshatra starts where current ends
+    const w2 = computeAmritVarjyamForNakshatra(nakNum2, nak2StartJD, nak2EndJD, jdMidnight, tzOffset);
+    if (w2.amrit) amritAll.push(w2.amrit);
+    if (w2.varjyam) varjyamAll.push(w2.varjyam);
+  }
+
+  return { amritKalam: amritAll, varjyam: varjyamAll };
 }
 
 // ──────────────────────────────────────────────────────────────
@@ -961,35 +976,23 @@ export function computePanchang(input: PanchangInput): PanchangData {
   const hora = computeHora(sunriseUT, sunsetUT, weekday, tzOffset);
 
   // ── Amrit Kalam & Varjyam ──
-  // Ghati offsets are PROPORTIONAL to the nakshatra's actual duration (1 ghati = 1/60th).
-  // We always use the current nakshatra (active at sunrise) since with correct AMRIT_GHATI
-  // values (range 34-56), the amrit window always falls in the latter half of the nakshatra
-  // and will be after sunrise for any nakshatra that started within the last ~20h.
-  //
-  // If the amrit window falls before sunrise (very rare — only for nakshatras that started
-  // 18+ hours ago), we fall back to the next nakshatra with an approximate duration.
+  // Compute for BOTH nakshatras active during the panchang day (sunrise to next sunrise).
+  // Drik Panchang shows all Varjyam/Amrit windows from both nakshatras.
   const jdMidnight = Math.floor(jd - 0.5) + 0.5;
-  let amritNakNum = nakshatraNum;
-  let amritStartJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
-  let amritEndJD = nakshatraTransition?.endJD ?? (jdSunrise + 0.5);
+  const nak1StartJD = nakshatraTransition?.startJD ?? (jdSunrise - 0.5);
+  const nak1EndJD = nakshatraTransition?.endJD ?? (jdSunrise + 0.5);
+  const nextNakNum = nakshatraTransition?.nextNumber;
+  // Approximate next nakshatra end: same duration as current (~1 day avg)
+  const nak2EndJD = nextNakNum ? nak1EndJD + (nak1EndJD - nak1StartJD) : undefined;
 
-  if (nakshatraTransition?.startJD && nakshatraTransition?.endJD) {
-    const nakDuration = nakshatraTransition.endJD - nakshatraTransition.startJD;
-    const amritOffsetDays = (AMRIT_GHATI[nakshatraNum - 1] || 40) / 60 * nakDuration;
-    const currentAmritJD = nakshatraTransition.startJD + amritOffsetDays;
-
-    if (currentAmritJD < jdSunrise) {
-      // Rare: amrit expired before sunrise → use next nakshatra
-      amritNakNum = nakshatraTransition.nextNumber;
-      amritStartJD = nakshatraTransition.endJD;
-      // Approximate next nakshatra duration as same as current (~24h avg)
-      amritEndJD = nakshatraTransition.endJD + nakDuration;
-    }
-  }
-
-  const { amritKalam, varjyam } = computeAmritVarjyam(
-    amritNakNum, amritStartJD, amritEndJD, jdMidnight, tzOffset
+  const { amritKalam: amritKalamAll, varjyam: varjyamAll } = computeAllAmritVarjyam(
+    nakshatraNum, nak1StartJD, nak1EndJD,
+    nextNakNum, nak2EndJD,
+    jdMidnight, jdSunrise, tzOffset,
   );
+  // For backward compatibility: single-window fields use first entry
+  const amritKalam = amritKalamAll[0] ?? undefined;
+  const varjyam = varjyamAll[0] ?? undefined;
 
   // ── Named Muhurtas ──
   const namedMuhurtas = computeNamedMuhurtas(sunriseUT, sunsetUT, tzOffset);
@@ -1068,14 +1071,17 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
 
   // 2. Dur Muhurtam (inauspicious muhurta windows by weekday)
+  // Dur Muhurtam (inauspicious muhurta) — 0-indexed muhurta positions from sunrise.
+  // Source: Nirṇaya Sindhu / Kaala Prakashika, verified against Drik Panchang
+  // (Wednesday Apr 8 2026 = single window 13:02-13:55 = muhurta index 7).
   const DUR_MUHURTAM_INDICES: number[][] = [
-    [6, 7],  // Sunday
-    [6],     // Monday
-    [5, 6],  // Tuesday
-    [3, 10], // Wednesday
-    [4],     // Thursday
-    [7, 8],  // Friday
-    [2],     // Saturday
+    [6, 10], // Sunday    — 7th & 11th muhurta
+    [5],     // Monday    — 6th muhurta
+    [7],     // Tuesday   — 8th muhurta
+    [7],     // Wednesday — 8th muhurta (Drik verified)
+    [3],     // Thursday  — 4th muhurta
+    [4, 8],  // Friday    — 5th & 9th muhurta
+    [1],     // Saturday  — 2nd muhurta
   ];
   const durMuhurtam = (DUR_MUHURTAM_INDICES[weekday] || [6]).map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;
@@ -1436,6 +1442,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     hora,
     amritKalam,
     varjyam,
+    amritKalamAll,
+    varjyamAll,
     brahmaMuhurta: namedMuhurtas.brahmaMuhurta,
     godhuli: namedMuhurtas.godhuli,
     sandhyaKaal: namedMuhurtas.sandhyaKaal,

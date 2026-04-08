@@ -107,9 +107,11 @@ export interface PanchangData {
   choghadiya?: ChoghadiyaSlot[];
   // Hora (planetary hours)
   hora?: HoraSlot[];
-  // Special time windows
+  // Special time windows (single window for backward compat + arrays for multi-nakshatra display)
   amritKalam?: { start: string; end: string };
   varjyam?: { start: string; end: string };
+  amritKalamAll?: { start: string; end: string }[];
+  varjyamAll?: { start: string; end: string }[];
   // Named muhurtas
   brahmaMuhurta?: { start: string; end: string };
   godhuli?: { start: string; end: string };

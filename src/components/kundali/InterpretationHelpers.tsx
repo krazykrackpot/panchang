@@ -270,7 +270,7 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
     strong: isHi ? 'बलवान' : 'Strong',
     adequate: isHi ? 'पर्याप्त' : 'Adequate',
     weak: isHi ? 'कमज़ोर' : 'Weak',
-    node: isHi ? 'छाया ग्रह' : 'Node',
+    node: isHi ? 'छाया ग्रह' : 'Shadow Planet',
   };
 
   const currentDasha = mahadashas.find(d => new Date(d.startDate) <= now && new Date(d.endDate) >= now);

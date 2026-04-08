@@ -678,10 +678,10 @@ export default function KundaliPage() {
                   <button
                     key={tab.key}
                     onClick={() => { setActiveTab(tab.key); setSelectedHouse(null); setSelectedPlanet(null); trackTabViewed({ tab: tab.key }); }}
-                    className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                    className={`px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
                       activeTab === tab.key
-                        ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40'
-                        : 'text-text-secondary hover:text-text-primary border border-transparent hover:border-gold-primary/20'
+                        ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border border-gold-primary/40 shadow-lg shadow-gold-primary/5'
+                        : 'text-text-secondary/70 hover:text-gold-light bg-bg-secondary/30 border border-gold-primary/8 hover:border-gold-primary/25 hover:bg-[#1a1040]/40'
                     }`}
                   >
                     {tab.label}

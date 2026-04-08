@@ -345,14 +345,27 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // Offset formula: nakshatra_start + (ghati / 60) * nakshatra_duration
 // Duration of window: 4 ghatis = (4/60) * nakshatra_duration
 
-// Varjyam (inauspicious) ghati offset from nakshatra start
+// Varjyam (inauspicious) ghati offsets from nakshatra start.
+// Some nakshatras have TWO Varjyam windows (dual Thyajyam).
+// Primary offset is always used; secondary (if present) gives a second window.
+// Drik Panchang shows whichever window falls within the panchang day.
 const VARJYAM_GHATI: number[] = [
   50, 24, 30, 40, 14,  // Ashwini(1)-Mrigashira(5)
   21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)
   20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15)
-  14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20) — Mula(19) verified: Drik shows 11:22 = 20 ghatis
+  14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20)
   20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
   24, 30,              // U.Bhadra(26)-Revati(27)
+];
+// Secondary Varjyam offset for nakshatras with dual Thyajyam.
+// -1 means no second window. Verified against Drik: Mula has dual at 20+56.
+const VARJYAM_GHATI_2: number[] = [
+  -1, -1, -1, -1, -1,  // Ashwini(1)-Mrigashira(5)
+  -1, -1, -1, -1, -1,  // Ardra(6)-Magha(10)
+  -1, -1, -1, -1, -1,  // P.Phalguni(11)-Swati(15)
+  -1, -1, -1, 56, -1,  // Vishakha(16)-P.Ashadha(20) — Mula(19) dual verified
+  -1, -1, -1, -1, -1,  // U.Ashadha(21)-P.Bhadra(25)
+  -1, -1,              // U.Bhadra(26)-Revati(27)
 ];
 
 // Amrit Kalam (auspicious) ghati offset from nakshatra start
@@ -374,22 +387,33 @@ function computeAmritVarjyamForNakshatra(
   nakshatraEndJD: number,
   jdMidnight: number,
   tzOffset: number,
-): { amrit?: TimeWindow; varjyam?: TimeWindow } {
+): { amrit?: TimeWindow; varjyam: TimeWindow[] } {
   const nakIdx = nakshatraNum - 1;
-  if (nakIdx < 0 || nakIdx >= 27) return {};
+  if (nakIdx < 0 || nakIdx >= 27) return { varjyam: [] };
   const nakshatraDurationHrs = (nakshatraEndJD - nakshatraStartJD) * 24;
-  if (nakshatraDurationHrs <= 0) return {};
+  if (nakshatraDurationHrs <= 0) return { varjyam: [] };
 
   const ghatiToHrs = nakshatraDurationHrs / 60;
   const durationHrs = 4 * ghatiToHrs;
   const ingressUT = (nakshatraStartJD - jdMidnight) * 24;
 
-  const varjyamStartUT = ingressUT + VARJYAM_GHATI[nakIdx] * ghatiToHrs;
+  // Primary Varjyam window
+  const varjyamWindows: TimeWindow[] = [];
+  const v1Start = ingressUT + VARJYAM_GHATI[nakIdx] * ghatiToHrs;
+  varjyamWindows.push({ start: formatTime(v1Start, tzOffset), end: formatTime(v1Start + durationHrs, tzOffset) });
+
+  // Secondary Varjyam window (dual Thyajyam — e.g. Mula has 20 AND 56 ghatis)
+  if (VARJYAM_GHATI_2[nakIdx] >= 0) {
+    const v2Start = ingressUT + VARJYAM_GHATI_2[nakIdx] * ghatiToHrs;
+    varjyamWindows.push({ start: formatTime(v2Start, tzOffset), end: formatTime(v2Start + durationHrs, tzOffset) });
+  }
+
+  // Amrit Kalam
   const amritStartUT = ingressUT + AMRIT_GHATI[nakIdx] * ghatiToHrs;
 
   return {
     amrit: { start: formatTime(amritStartUT, tzOffset), end: formatTime(amritStartUT + durationHrs, tzOffset) },
-    varjyam: { start: formatTime(varjyamStartUT, tzOffset), end: formatTime(varjyamStartUT + durationHrs, tzOffset) },
+    varjyam: varjyamWindows,
   };
 }
 
@@ -404,17 +428,17 @@ function computeAllAmritVarjyam(
   const amritAll: TimeWindow[] = [];
   const varjyamAll: TimeWindow[] = [];
 
-  // Current nakshatra
+  // Current nakshatra (may produce 1-2 Varjyam windows for dual-Thyajyam nakshatras)
   const w1 = computeAmritVarjyamForNakshatra(nakNum1, nak1StartJD, nak1EndJD, jdMidnight, tzOffset);
   if (w1.amrit) amritAll.push(w1.amrit);
-  if (w1.varjyam) varjyamAll.push(w1.varjyam);
+  varjyamAll.push(...w1.varjyam);
 
   // Next nakshatra (if it starts during this panchang day, i.e. before next sunrise)
   if (nakNum2 && nak2EndJD) {
-    const nak2StartJD = nak1EndJD; // next nakshatra starts where current ends
+    const nak2StartJD = nak1EndJD;
     const w2 = computeAmritVarjyamForNakshatra(nakNum2, nak2StartJD, nak2EndJD, jdMidnight, tzOffset);
     if (w2.amrit) amritAll.push(w2.amrit);
-    if (w2.varjyam) varjyamAll.push(w2.varjyam);
+    varjyamAll.push(...w2.varjyam);
   }
 
   return { amritKalam: amritAll, varjyam: varjyamAll };
@@ -1481,6 +1505,34 @@ export function computePanchang(input: PanchangInput): PanchangData {
   }
   const bhadra = bhadraWindows[0] ?? undefined;
 
+  // ── Aadal Yoga & Vidaal Yoga (Ganda Moola related) ──
+  // Vidaal Yoga: active when Moon is in a Ganda Moola nakshatra (same window as Ganda Moola)
+  // Aadal Yoga: junction period (~96 min) immediately AFTER the Ganda Moola nakshatra ends
+  // Both shown by Drik Panchang when Ganda Moola is active.
+  let aadalYoga: { start: string; end: string; endDate?: string } | undefined;
+  let vidaalYoga: { start: string; end: string; endDate?: string } | undefined;
+  if (gandaMoolaActive && nakshatraTransition?.endJD) {
+    // Vidaal = same as Ganda Moola window
+    vidaalYoga = {
+      start: gandaMoola.start!,
+      end: gandaMoola.end!,
+      endDate: gandaMoola.endDate,
+    };
+    // Aadal = 96 min after Ganda Moola nakshatra ends
+    const aadalStartJD = nakshatraTransition.endJD;
+    const aadalEndJD = aadalStartJD + 96 / (24 * 60); // 96 minutes
+    const panchMidnight = Math.floor(jd - 0.5) + 0.5;
+    const aStartUT = ((aadalStartJD - panchMidnight) * 24) % 24;
+    const aEndUT = ((aadalEndJD - panchMidnight) * 24) % 24;
+    const aStartDate = jdToLocalDate(aadalStartJD, tzOffset);
+    const aEndDate = jdToLocalDate(aadalEndJD, tzOffset);
+    aadalYoga = {
+      start: formatTime(aStartUT, tzOffset),
+      end: formatTime(aEndUT, tzOffset),
+      endDate: aEndDate !== aStartDate ? aEndDate : undefined,
+    };
+  }
+
   // ── Ravi Yoga time window (when active) ──
   // Ravi Yoga = Sun in specific nakshatra on specific weekday.
   // Active from sunrise to nakshatra end (when Sun moves to next nakshatra, it's no longer active).
@@ -1562,6 +1614,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     vishaGhatika,
     bhadra,
     bhadraAll: bhadraWindows.length > 0 ? bhadraWindows : undefined,
+    aadalYoga,
+    vidaalYoga,
     raviYogaWindow,
   };
 }

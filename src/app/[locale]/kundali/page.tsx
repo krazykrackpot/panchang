@@ -3808,59 +3808,47 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
 
       {viewMode === 'sav' ? (
         <div className="space-y-6">
-          {/* Bar chart */}
-          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6">
-            <h4 className="text-gold-light text-lg font-semibold mb-1" style={headingFont}>{t('sarvashtakavarga')} — {locale === 'en' ? 'Bar Chart' : 'बार चार्ट'}</h4>
+          {/* SAV — combined visual grid with integrated bars */}
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6">
+            <h4 className="text-gold-light text-lg font-semibold mb-1" style={headingFont}>{t('sarvashtakavarga')}</h4>
             <p className="text-text-secondary/70 text-xs mb-4">
-              {locale === 'en' ? 'Total bindu per sign. ≥28 = strong (green), <22 = weak (red). Threshold 25 = average.' : 'प्रति राशि कुल बिन्दु। ≥28 = बलवान (हरा), <22 = दुर्बल (लाल)।'}
+              {locale === 'en' ? 'Total bindu per sign. ≥28 = strong (green), <22 = weak (red).' : 'प्रति राशि कुल बिन्दु। ≥28 = बलवान (हरा), <22 = दुर्बल (लाल)।'}
             </p>
-            <div className="flex items-end gap-2 sm:gap-3 h-56 sm:h-72 md:h-80">
-              {ashtakavarga.savTable.map((val, i) => {
-                const pct = Math.round((val / 56) * 100);
-                const color = val >= 28 ? 'bg-emerald-500/70' : val < 22 ? 'bg-red-500/60' : 'bg-gold-primary/50';
-                return (
-                  <div key={i} className="flex-1 flex flex-col items-center gap-1.5">
-                    <span className={`text-sm sm:text-base font-bold ${val >= 28 ? 'text-emerald-400' : val < 22 ? 'text-red-400' : 'text-gold-primary/70'}`}>{val}</span>
-                    <div className="w-full flex items-end justify-center" style={{ height: '100%' }}>
-                      <div className={`w-full rounded-t-md ${color}`} style={{ height: `${Math.max(pct, 5)}%` }} />
-                    </div>
-                    <span className="text-xs sm:text-sm font-semibold text-text-secondary text-center leading-none" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {RASHIS[i].name[locale].slice(0, 3)}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="flex items-center justify-center gap-6 mt-4 text-xs">
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500/70" />{locale === 'en' ? '≥28 Strong' : '≥28 बलवान'}</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-gold-primary/50" />{locale === 'en' ? '22–27 Average' : '22–27 औसत'}</span>
-              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-500/60" />{locale === 'en' ? '<22 Weak' : '<22 दुर्बल'}</span>
-            </div>
-            <div className="text-center text-text-secondary text-sm font-semibold mt-3">
-              {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
-            </div>
-          </div>
-
-          {/* Sign grid */}
-          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 overflow-x-auto">
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3">
               {RASHIS.map((r, i) => {
                 const val = ashtakavarga.savTable[i];
                 const strong = val >= 28;
                 const weak = val < 22;
+                const pct = Math.round((val / 56) * 100);
+                const barColor = strong ? 'bg-emerald-500/60' : weak ? 'bg-red-500/50' : 'bg-gold-primary/40';
+                const borderColor = strong ? 'border-emerald-500/40' : weak ? 'border-red-500/30' : 'border-gold-primary/15';
+                const bgColor = strong ? 'bg-emerald-500/8' : weak ? 'bg-red-500/5' : 'bg-bg-tertiary/30';
                 return (
                   <motion.div key={r.id}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.04 }}
-                    className={`rounded-xl p-3 text-center border ${strong ? 'border-emerald-500/30 bg-emerald-500/10' : weak ? 'border-red-500/20 bg-red-500/5' : 'border-gold-primary/10 bg-bg-tertiary/30'}`}
+                    transition={{ delay: i * 0.03 }}
+                    className={`rounded-xl p-3 text-center border ${borderColor} ${bgColor} relative overflow-hidden`}
                   >
-                    <RashiIconById id={r.id} size={24} />
-                    <div className="text-xs text-text-secondary mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
-                    <div className={`text-xl font-bold mt-1 ${strong ? 'text-emerald-400' : weak ? 'text-red-400' : 'text-gold-light'}`}>{val}</div>
+                    {/* Background fill bar — proportional to bindu value */}
+                    <div className={`absolute bottom-0 left-0 right-0 ${barColor} transition-all duration-700`} style={{ height: `${pct}%` }} />
+                    {/* Content on top of bar */}
+                    <div className="relative z-10">
+                      <RashiIconById id={r.id} size={32} />
+                      <div className="text-sm font-semibold text-text-secondary mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{r.name[locale]}</div>
+                      <div className={`text-2xl font-bold mt-1 ${strong ? 'text-emerald-300' : weak ? 'text-red-300' : 'text-gold-light'}`}>{val}</div>
+                    </div>
                   </motion.div>
                 );
               })}
+            </div>
+            <div className="flex items-center justify-center gap-6 mt-5 text-xs">
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-500/60" />{locale === 'en' ? '≥28 Strong' : '≥28 बलवान'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-gold-primary/40" />{locale === 'en' ? '22–27 Average' : '22–27 औसत'}</span>
+              <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-500/50" />{locale === 'en' ? '<22 Weak' : '<22 दुर्बल'}</span>
+            </div>
+            <div className="text-center text-text-secondary text-sm font-semibold mt-3">
+              {t('totalBindu')}: {ashtakavarga.savTable.reduce((a, b) => a + b, 0)}
             </div>
           </div>
 

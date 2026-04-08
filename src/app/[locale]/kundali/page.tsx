@@ -3949,20 +3949,27 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                         {years.map(y => (
                           <div key={y} className="absolute top-0 bottom-0 border-l border-white/[0.03]" style={{ left: `${toPercent(y, 0)}%` }} />
                         ))}
-                        {/* Transit bars */}
+                        {/* Transit bars with date tooltips */}
                         {transits.map((tr, idx) => {
                           const left = toPercent(tr.startYear, tr.startMonth);
                           const right = toPercent(tr.endYear, tr.endMonth);
                           const width = Math.max(right - left, 1);
                           const isStrong = tr.type === 'strong';
-                          const barClass = isStrong ? 'bg-emerald-500/70' : 'bg-red-500/70';
+                          const barClass = isStrong ? 'bg-emerald-500/70 hover:bg-emerald-500/90' : 'bg-red-500/70 hover:bg-red-500/90';
                           return (
-                            <div key={idx} className={`absolute top-0.5 bottom-0.5 rounded-sm ${barClass}`} style={{ left: `${left}%`, width: `${width}%` }}>
+                            <div key={idx} className={`absolute top-0.5 bottom-0.5 rounded-sm ${barClass} cursor-default group/bar transition-colors`} style={{ left: `${left}%`, width: `${width}%` }} title={`${tr.sign}: ${tr.period}`}>
                               {width > 5 && (
                                 <span className="absolute inset-0 flex items-center justify-center text-[8px] font-bold text-white/90 truncate px-0.5">
                                   {tr.sign}
                                 </span>
                               )}
+                              {/* Hover tooltip with exact dates */}
+                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover/bar:block z-10 pointer-events-none">
+                                <div className="bg-bg-primary/95 border border-gold-primary/20 rounded-md px-2 py-1 shadow-lg whitespace-nowrap">
+                                  <span className={`text-[9px] font-bold ${isStrong ? 'text-emerald-400' : 'text-red-400'}`}>{tr.sign}</span>
+                                  <span className="text-[9px] text-gray-400 ml-1">{tr.period}</span>
+                                </div>
+                              </div>
                             </div>
                           );
                         })}

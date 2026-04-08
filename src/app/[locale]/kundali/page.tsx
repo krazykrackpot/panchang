@@ -4210,6 +4210,8 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
   const isHi = locale === 'hi';
   const sC: Record<string, string> = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
   const sL: Record<string, { en: string; hi: string }> = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
+  const PLANET_NAMES_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
+  const PLANET_NAMES_HI = ['सूर्य','चन्द्र','मंगल','बुध','गुरु','शुक्र','शनि','राहु','केतु'];
 
   return (
     <div className="space-y-8">
@@ -4415,6 +4417,328 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
                 ? `सूर्य होरा: ${sunHoraCount} ग्रह | चन्द्र होरा: ${moonHoraCount} ग्रह | लग्न राशि: ${RASHIS[lagnaSign-1]?.name?.hi || lagnaSign}`
                 : `Sun Hora: ${sunHoraCount} planets | Moon Hora: ${moonHoraCount} planets | Lagna: ${RASHIS[lagnaSign-1]?.name?.en || lagnaSign}`}
             </p>
+          </div>
+        );
+      })()}
+
+      {/* D9 Navamsha — Marriage, Dharma & Soul Nature */}
+      {kundali.divisionalCharts?.D9 && (() => {
+        const d9 = kundali.divisionalCharts.D9;
+        const d9Asc = d9.ascendantSign;
+        const d9AscName = RASHIS[(d9Asc - 1) % 12]?.name;
+        const d1Asc = kundali.ascendant.sign;
+        const isVargottamaLagna = d9Asc === d1Asc;
+
+        // Map planets to their D9 sign
+        const planetD9 = kundali.planets.map(p => {
+          let d9Sign = 0;
+          for (let h = 0; h < 12; h++) {
+            if (d9.houses[h]?.includes(p.planet.id)) { d9Sign = ((d9Asc - 1 + h) % 12) + 1; break; }
+          }
+          const isVgm = d9Sign === p.sign;
+          return { planet: p, d9Sign, isVargottama: isVgm };
+        });
+
+        const D9_PLANET_MEANING: Record<number, { en: string; hi: string }> = {
+          0: { en: 'Soul purpose and dharma — how your inner authority and father-karma truly manifest after maturity.', hi: 'आत्मा का उद्देश्य और धर्म — आपका आंतरिक अधिकार और पिता-कर्म परिपक्वता के बाद कैसे प्रकट होता है।' },
+          1: { en: 'Inner emotional nature — how your mind and feelings truly operate beneath the surface. Spouse\'s emotional quality.', hi: 'आंतरिक भावनात्मक स्वभाव — मन और भावनाएं सतह के नीचे कैसे कार्य करती हैं। जीवनसाथी का भावनात्मक गुण।' },
+          2: { en: 'Courage and initiative in marriage/dharma — how drive and energy express in partnerships and spiritual pursuits.', hi: 'विवाह/धर्म में साहस और पहल — भागीदारी और आध्यात्मिक साधना में ऊर्जा की अभिव्यक्ति।' },
+          3: { en: 'Communication in relationships — how intellect and expression function in marriage and spiritual life.', hi: 'रिश्तों में संवाद — विवाह और आध्यात्मिक जीवन में बुद्धि और अभिव्यक्ति कैसे कार्य करती है।' },
+          4: { en: 'Wisdom and dharma — Jupiter\'s D9 placement is crucial for spiritual evolution, children\'s destiny, and guru connections.', hi: 'ज्ञान और धर्म — गुरु की D9 स्थिति आध्यात्मिक विकास, संतान भाग्य और गुरु संबंध के लिए महत्वपूर्ण।' },
+          5: { en: 'Marriage quality — Venus\'s D9 sign is the PRIMARY indicator of spouse nature, marital happiness, and partnership quality.', hi: 'विवाह गुणवत्ता — शुक्र की D9 राशि जीवनसाथी के स्वभाव, वैवाहिक सुख और साझेदारी की प्राथमिक सूचक है।' },
+          6: { en: 'Karmic discipline in relationships — how Saturn\'s lessons manifest in marriage and dharmic responsibilities.', hi: 'रिश्तों में कार्मिक अनुशासन — शनि के पाठ विवाह और धार्मिक जिम्मेदारियों में कैसे प्रकट होते हैं।' },
+          7: { en: 'Obsessive desires in partnerships — Rahu\'s D9 sign shows what you crave most in relationships and spiritual path.', hi: 'साझेदारी में तीव्र इच्छा — राहु की D9 राशि बताती है कि रिश्तों और आध्यात्मिक मार्ग में आप सबसे अधिक क्या चाहते हैं।' },
+          8: { en: 'Spiritual detachment — Ketu\'s D9 placement shows where past-life mastery exists and what you naturally release in relationships.', hi: 'आध्यात्मिक वैराग्य — केतु की D9 स्थिति पूर्वजन्म की महारत और रिश्तों में स्वाभाविक विरक्ति दर्शाती है।' },
+        };
+
+        const DIGNITY_IN_D9: Record<string, { en: string; hi: string }> = {
+          exalted: { en: 'Exalted in D9 — this planet\'s marriage/dharma results are exceptionally strong. Its promises in D1 are confirmed and amplified.', hi: 'D9 में उच्च — इस ग्रह के विवाह/धर्म परिणाम असाधारण रूप से बलवान। D1 के वादे निश्चित और प्रवर्धित।' },
+          own: { en: 'Own sign in D9 — comfortable and natural expression in marriage/dharma. Reliable, self-sufficient results.', hi: 'D9 में स्वगृह — विवाह/धर्म में सहज और प्राकृतिक अभिव्यक्ति। विश्वसनीय, आत्मनिर्भर परिणाम।' },
+          debilitated: { en: 'Debilitated in D9 — this planet\'s marriage/dharma results face challenges. May need Neecha Bhanga or remedies to unlock potential.', hi: 'D9 में नीच — विवाह/धर्म में चुनौतियां। नीच भंग या उपायों से क्षमता मुक्त हो सकती है।' },
+          vargottama: { en: 'Vargottama — same sign in D1 and D9. Considered equal to exaltation strength. This planet\'s results are doubly confirmed.', hi: 'वर्गोत्तम — D1 और D9 में एक ही राशि। उच्च बल के समान। इस ग्रह के परिणाम दोहरे निश्चित।' },
+        };
+
+        const EXALTATION_SIGNS: Record<number, number> = { 0: 1, 1: 2, 2: 10, 3: 6, 4: 4, 5: 12, 6: 7 };
+        const DEBILITATION_SIGNS: Record<number, number> = { 0: 7, 1: 8, 2: 4, 3: 12, 4: 10, 5: 6, 6: 1 };
+        const OWN_SIGNS: Record<number, number[]> = { 0: [5], 1: [4], 2: [1, 8], 3: [3, 6], 4: [9, 12], 5: [2, 7], 6: [10, 11] };
+
+        function getDignity(pid: number, sign: number, isVgm: boolean): string | null {
+          if (isVgm) return 'vargottama';
+          if (EXALTATION_SIGNS[pid] === sign) return 'exalted';
+          if (DEBILITATION_SIGNS[pid] === sign) return 'debilitated';
+          if (OWN_SIGNS[pid]?.includes(sign)) return 'own';
+          return null;
+        }
+
+        return (
+          <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-purple-500/20 p-6 mt-8">
+            <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+              {isHi ? 'D9 नवांश — विवाह, धर्म और आत्म स्वरूप' : 'D9 Navamsha — Marriage, Dharma & Soul Nature'}
+            </h3>
+            <p className="text-text-secondary/70 text-xs text-center mb-5">
+              {isHi
+                ? 'नवांश D1 के बाद सबसे महत्वपूर्ण चार्ट है। यह विवाह, आध्यात्मिक विकास और आपके आंतरिक स्व को दर्शाता है। स्रोत: BPHS अ. 6'
+                : 'Navamsha is the most important chart after D1. It reveals marriage quality, spiritual evolution, and your inner self. Source: BPHS Ch. 6'}
+            </p>
+
+            {/* D9 Lagna */}
+            <div className={`rounded-xl p-4 mb-4 text-center border ${isVargottamaLagna ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-purple-500/10 border-purple-500/25'}`}>
+              <div className={`font-bold text-lg mb-1 ${isVargottamaLagna ? 'text-emerald-300' : 'text-purple-300'}`} style={headingFont}>
+                {isHi ? 'D9 लग्न: ' : 'D9 Ascendant: '}{d9AscName?.[locale] || d9AscName?.en}
+              </div>
+              <p className="text-text-secondary/70 text-xs">
+                {isVargottamaLagna
+                  ? (isHi ? 'वर्गोत्तम लग्न — D1 और D9 में एक ही राशि। आपका बाहरी व्यक्तित्व और आंतरिक आत्मा एक ही दिशा में हैं। अत्यंत शुभ।' : 'Vargottama Lagna — same sign in D1 and D9. Your outer personality and inner soul are aligned. Extremely auspicious.')
+                  : (isHi ? `D1 लग्न ${RASHIS[(d1Asc-1)%12]?.name?.hi} से D9 लग्न ${d9AscName?.hi} में — यह आपका आंतरिक स्व है, जो विशेषतः 36 वर्ष के बाद प्रमुख होता है।` : `D1 Ascendant ${RASHIS[(d1Asc-1)%12]?.name?.en} shifts to D9 ${d9AscName?.en} — this is your inner self, which becomes dominant especially after age 36.`)}
+              </p>
+            </div>
+
+            {/* Planet grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {planetD9.map((pd, i) => {
+                const pid = pd.planet.planet.id;
+                const d9SignName = RASHIS[(pd.d9Sign - 1) % 12]?.name;
+                const dignity = getDignity(pid, pd.d9Sign, pd.isVargottama);
+                const dignityInfo = dignity ? DIGNITY_IN_D9[dignity] : null;
+                const meaning = D9_PLANET_MEANING[pid];
+
+                return (
+                  <div key={i} className={`rounded-xl p-3 border ${
+                    dignity === 'exalted' || dignity === 'vargottama' ? 'border-emerald-500/15 bg-emerald-500/5' :
+                    dignity === 'debilitated' ? 'border-red-500/15 bg-red-500/5' :
+                    dignity === 'own' ? 'border-sky-500/15 bg-sky-500/5' :
+                    'border-purple-500/15 bg-purple-500/5'
+                  }`}>
+                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
+                      <span className="text-text-secondary/65 text-xs">
+                        {isHi ? 'D9 राशि:' : 'D9 Sign:'} {d9SignName?.[locale] || d9SignName?.en}
+                      </span>
+                      {dignity && (
+                        <span className={`text-xs font-bold px-1.5 py-0.5 rounded ${
+                          dignity === 'exalted' ? 'bg-emerald-500/20 text-emerald-300' :
+                          dignity === 'vargottama' ? 'bg-gold-primary/20 text-gold-light' :
+                          dignity === 'own' ? 'bg-sky-500/20 text-sky-300' :
+                          'bg-red-500/20 text-red-300'
+                        }`}>
+                          {dignity === 'vargottama' ? 'Vgm' : dignity === 'exalted' ? (isHi ? 'उच्च' : 'Exalted') : dignity === 'own' ? (isHi ? 'स्वगृह' : 'Own') : (isHi ? 'नीच' : 'Debil.')}
+                        </span>
+                      )}
+                    </div>
+                    {meaning && (
+                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[isHi ? 'hi' : 'en']}</p>
+                    )}
+                    {dignityInfo && (
+                      <p className={`text-xs leading-relaxed mt-1 italic ${
+                        dignity === 'exalted' || dignity === 'vargottama' ? 'text-emerald-400/80' :
+                        dignity === 'debilitated' ? 'text-red-400/80' : 'text-sky-400/80'
+                      }`}>{dignityInfo[isHi ? 'hi' : 'en']}</p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 7th house of D9 = spouse nature */}
+            {(() => {
+              const h7planets = d9.houses[6] || [];
+              const h7Sign = ((d9Asc - 1 + 6) % 12) + 1;
+              const h7SignName = RASHIS[(h7Sign - 1) % 12]?.name;
+              return (
+                <div className="mt-4 p-4 rounded-xl bg-purple-500/5 border border-purple-500/15">
+                  <div className="text-purple-300 text-xs uppercase tracking-wider font-bold mb-2">
+                    {isHi ? 'D9 7वां भाव — जीवनसाथी संकेत' : 'D9 7th House — Spouse Indicator'}
+                  </div>
+                  <p className="text-text-secondary/75 text-xs leading-relaxed">
+                    {isHi ? `7वां भाव ${h7SignName?.hi} में` : `7th house in ${h7SignName?.en}`}
+                    {h7planets.length > 0
+                      ? (isHi ? ` — ग्रह: ${h7planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह जीवनसाथी के स्वभाव और विवाह गुणवत्ता को सीधे प्रभावित करते हैं।` : ` — planets: ${h7planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence spouse nature and marriage quality.`)
+                      : (isHi ? '। कोई ग्रह नहीं — जीवनसाथी का स्वभाव 7वें भावेश और उसके D9 स्थान से निर्धारित।' : '. No planets — spouse nature determined by 7th lord and its D9 placement.')}
+                  </p>
+                </div>
+              );
+            })()}
+          </div>
+        );
+      })()}
+
+      {/* D10 Dashamsha — Career & Professional Life */}
+      {kundali.divisionalCharts?.D10 && (() => {
+        const d10 = kundali.divisionalCharts.D10;
+        const d10Asc = d10.ascendantSign;
+        const d10AscName = RASHIS[(d10Asc - 1) % 12]?.name;
+
+        const planetD10 = kundali.planets.map(p => {
+          let d10House = 0;
+          for (let h = 0; h < 12; h++) {
+            if (d10.houses[h]?.includes(p.planet.id)) { d10House = h + 1; break; }
+          }
+          return { planet: p, d10House };
+        });
+
+        const D10_PLANET_MEANING: Record<number, { en: string; hi: string }> = {
+          0: { en: 'Authority and leadership in career — government, executive roles, public visibility. Sun in kendras of D10 gives commanding professional presence.', hi: 'करियर में अधिकार और नेतृत्व — सरकार, कार्यकारी भूमिकाएं, सार्वजनिक दृश्यता।' },
+          1: { en: 'Public-facing career — popularity, emotional intelligence in work, changing roles. Moon in D10 kendras suits public service, hospitality, healthcare.', hi: 'सार्वजनिक करियर — लोकप्रियता, कार्य में भावनात्मक बुद्धि। जनसेवा, आतिथ्य, स्वास्थ्य सेवा।' },
+          2: { en: 'Technical and action-oriented career — engineering, military, surgery, sports, real estate. Mars in D10 kendras gives dominant professional drive.', hi: 'तकनीकी और क्रियाशील करियर — इंजीनियरिंग, सैन्य, शल्य, खेल, रियल एस्टेट।' },
+          3: { en: 'Communication and analytical career — business, writing, media, accounting, IT. Mercury in D10 kendras excels in commerce and information work.', hi: 'संचार और विश्लेषणात्मक करियर — व्यापार, लेखन, मीडिया, लेखा, आईटी।' },
+          4: { en: 'Wisdom and advisory career — teaching, law, finance, religion, counselling. Jupiter in D10 kendras is one of the strongest career indicators.', hi: 'ज्ञान और सलाहकार करियर — शिक्षण, कानून, वित्त, धर्म, परामर्श। D10 केंद्र में गुरु सबसे शक्तिशाली करियर संकेत।' },
+          5: { en: 'Creative and luxury career — arts, entertainment, fashion, beauty, hospitality. Venus in D10 kendras brings success through aesthetics and relationships.', hi: 'रचनात्मक और विलासिता करियर — कला, मनोरंजन, फैशन, सौंदर्य, आतिथ्य।' },
+          6: { en: 'Structured and disciplined career — management, administration, agriculture, mining, manufacturing. Saturn in D10 kendras gives lasting but slow-building career success.', hi: 'संरचित और अनुशासित करियर — प्रबंधन, प्रशासन, कृषि, खनन, विनिर्माण।' },
+          7: { en: 'Unconventional career — technology, foreign companies, research, aviation, innovation. Rahu in D10 kendras drives ambitious, boundary-breaking career moves.', hi: 'अपारंपरिक करियर — प्रौद्योगिकी, विदेशी कंपनियां, अनुसंधान, विमानन, नवाचार।' },
+          8: { en: 'Spiritual or research career — healing, astrology, occult sciences, renunciation-oriented work. Ketu in D10 gives expertise through intuition rather than formal training.', hi: 'आध्यात्मिक या अनुसंधान करियर — उपचार, ज्योतिष, गुप्त विज्ञान। केतु औपचारिक प्रशिक्षण के बजाय अंतर्ज्ञान से विशेषज्ञता देता है।' },
+        };
+
+        const KENDRAS_SET = new Set([1, 4, 7, 10]);
+        const TRIKONAS_SET = new Set([1, 5, 9]);
+
+        return (
+          <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-sky-500/20 p-6 mt-8">
+            <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+              {isHi ? 'D10 दशांश — करियर और व्यावसायिक जीवन' : 'D10 Dashamsha — Career & Professional Life'}
+            </h3>
+            <p className="text-text-secondary/70 text-xs text-center mb-5">
+              {isHi
+                ? 'दशांश चार्ट करियर, व्यवसाय और सार्वजनिक जीवन का विशिष्ट सूचक है। केंद्र में ग्रह करियर को शक्तिशाली बनाते हैं। स्रोत: BPHS अ. 6'
+                : 'Dashamsha chart is the specific indicator of career, profession, and public life. Planets in kendras powerfully shape career. Source: BPHS Ch. 6'}
+            </p>
+
+            {/* D10 Lagna */}
+            <div className="rounded-xl p-4 mb-4 text-center border bg-sky-500/10 border-sky-500/25">
+              <div className="font-bold text-lg mb-1 text-sky-300" style={headingFont}>
+                {isHi ? 'D10 लग्न: ' : 'D10 Ascendant: '}{d10AscName?.[locale] || d10AscName?.en}
+              </div>
+              <p className="text-text-secondary/70 text-xs">
+                {isHi
+                  ? 'D10 लग्न आपके करियर के स्वरूप और पेशेवर व्यक्तित्व को दर्शाता है — आप कार्यस्थल पर कैसे दिखते हैं।'
+                  : 'D10 ascendant shows the nature of your professional persona — how you appear in the workplace and your career\'s fundamental character.'}
+              </p>
+            </div>
+
+            {/* Planet grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {planetD10.map((pd, i) => {
+                const pid = pd.planet.planet.id;
+                const meaning = D10_PLANET_MEANING[pid];
+                const isInKendra = KENDRAS_SET.has(pd.d10House);
+                const isInTrikona = TRIKONAS_SET.has(pd.d10House);
+                const isInDusthana = new Set([6, 8, 12]).has(pd.d10House);
+
+                return (
+                  <div key={i} className={`rounded-xl p-3 border ${
+                    isInKendra ? 'border-emerald-500/15 bg-emerald-500/5' :
+                    isInTrikona ? 'border-sky-500/15 bg-sky-500/5' :
+                    isInDusthana ? 'border-amber-500/15 bg-amber-500/5' :
+                    'border-sky-500/10 bg-sky-500/3'
+                  }`}>
+                    <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                      <span className="text-gold-light font-semibold text-sm" style={headingFont}>{pd.planet.planet.name[locale] || pd.planet.planet.name.en}</span>
+                      <span className="text-text-secondary/65 text-xs">
+                        {isHi ? 'D10 भाव:' : 'D10 House:'} {pd.d10House}
+                      </span>
+                      {isInKendra && (
+                        <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">
+                          {isHi ? 'केंद्र' : 'Kendra'}
+                        </span>
+                      )}
+                      {isInTrikona && !isInKendra && (
+                        <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-sky-500/20 text-sky-300">
+                          {isHi ? 'त्रिकोण' : 'Trikona'}
+                        </span>
+                      )}
+                      {isInDusthana && (
+                        <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">
+                          {isHi ? 'दुःस्थान' : 'Dusthana'}
+                        </span>
+                      )}
+                    </div>
+                    {meaning && (
+                      <p className="text-text-secondary/75 text-xs leading-relaxed">{meaning[isHi ? 'hi' : 'en']}</p>
+                    )}
+                    {isInKendra && (
+                      <p className="text-emerald-400/80 text-xs mt-1 italic">
+                        {isHi ? 'केंद्र स्थान — करियर में प्रत्यक्ष, शक्तिशाली प्रभाव।' : 'Kendra placement — direct, powerful career influence.'}
+                      </p>
+                    )}
+                    {isInDusthana && (
+                      <p className="text-amber-400/80 text-xs mt-1 italic">
+                        {isHi ? 'दुःस्थान — करियर में चुनौतियां, लेकिन इनसे पार पाने पर विशेष शक्ति मिलती है।' : 'Dusthana placement — career challenges exist, but overcoming them builds unique professional strength.'}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* 10th house summary */}
+            {(() => {
+              const h10planets = d10.houses[9] || [];
+              const h10Sign = ((d10Asc - 1 + 9) % 12) + 1;
+              const h10SignName = RASHIS[(h10Sign - 1) % 12]?.name;
+              return (
+                <div className="mt-4 p-4 rounded-xl bg-sky-500/5 border border-sky-500/15">
+                  <div className="text-sky-300 text-xs uppercase tracking-wider font-bold mb-2">
+                    {isHi ? 'D10 10वां भाव — करियर शिखर' : 'D10 10th House — Career Zenith'}
+                  </div>
+                  <p className="text-text-secondary/75 text-xs leading-relaxed">
+                    {isHi ? `10वां भाव ${h10SignName?.hi} में` : `10th house in ${h10SignName?.en}`}
+                    {h10planets.length > 0
+                      ? (isHi ? ` — ग्रह: ${h10planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ये ग्रह सीधे करियर के उच्चतम बिंदु को प्रभावित करते हैं — आपकी सबसे दृश्यमान व्यावसायिक उपलब्धियां।` : ` — planets: ${h10planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. These planets directly influence your career zenith — your most visible professional achievements.`)
+                      : (isHi ? '। कोई ग्रह नहीं — करियर शिखर 10वें भावेश और उसकी D10 स्थिति से निर्धारित।' : '. No planets — career zenith determined by 10th lord and its placement in D10.')}
+                  </p>
+                </div>
+              );
+            })()}
+          </div>
+        );
+      })()}
+
+      {/* D7 Saptamsha — Children & Progeny */}
+      {kundali.divisionalCharts?.D7 && (() => {
+        const d7 = kundali.divisionalCharts.D7;
+        const d7Asc = d7.ascendantSign;
+        const d7AscName = RASHIS[(d7Asc - 1) % 12]?.name;
+
+        const h5planets = d7.houses[4] || []; // 5th house = first child
+        const h5Sign = ((d7Asc - 1 + 4) % 12) + 1;
+        const jupHouse = (() => { for (let h = 0; h < 12; h++) { if (d7.houses[h]?.includes(4)) return h + 1; } return 0; })();
+
+        return (
+          <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-teal-500/20 p-6 mt-8">
+            <h3 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
+              {isHi ? 'D7 सप्तांश — संतान और वंश' : 'D7 Saptamsha — Children & Progeny'}
+            </h3>
+            <p className="text-text-secondary/70 text-xs text-center mb-5">
+              {isHi
+                ? 'सप्तांश चार्ट संतान का प्राथमिक सूचक है — संख्या, स्वभाव, जातक से संबंध और उनकी सफलता। स्रोत: BPHS अ. 6'
+                : 'Saptamsha is the primary children indicator — number, nature, relationship with you, and their success. Source: BPHS Ch. 6'}
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {/* Jupiter placement — most important for children */}
+              <div className={`rounded-xl p-4 border ${jupHouse && new Set([1,4,5,7,9,10]).has(jupHouse) ? 'border-emerald-500/20 bg-emerald-500/5' : 'border-teal-500/15 bg-teal-500/5'}`}>
+                <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
+                  {isHi ? 'गुरु स्थिति (सबसे महत्वपूर्ण)' : 'Jupiter Placement (Most Important)'}
+                </div>
+                <p className="text-text-secondary/75 text-xs leading-relaxed">
+                  {jupHouse
+                    ? (isHi ? `D7 में गुरु ${jupHouse}वें भाव में — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'शुभ स्थान — संतान सुख और उनकी सफलता का बलवान संकेत।' : new Set([6,8,12]).has(jupHouse) ? 'चुनौतीपूर्ण स्थान — संतान में विलंब या कठिनाई संभव। गुरु उपाय सहायक।' : 'मध्यम स्थान — सामान्य संतान सुख।'}` : `Jupiter in ${jupHouse}th house of D7 — ${new Set([1,4,5,7,9,10]).has(jupHouse) ? 'Auspicious position — strong indicator of children\'s happiness and success.' : new Set([6,8,12]).has(jupHouse) ? 'Challenging position — delay or difficulty with children possible. Jupiter remedies help.' : 'Moderate position — normal children fortune.'}`)
+                    : (isHi ? 'D7 में गुरु की स्थिति अनिर्धारित।' : 'Jupiter position in D7 undetermined.')}
+                </p>
+              </div>
+
+              {/* 5th house — first child */}
+              <div className="rounded-xl p-4 border border-teal-500/15 bg-teal-500/5">
+                <div className="text-teal-300 text-xs uppercase tracking-wider font-bold mb-2">
+                  {isHi ? '5वां भाव — प्रथम संतान' : '5th House — First Child'}
+                </div>
+                <p className="text-text-secondary/75 text-xs leading-relaxed">
+                  {isHi ? `${RASHIS[(h5Sign-1)%12]?.name?.hi} में` : `In ${RASHIS[(h5Sign-1)%12]?.name?.en}`}
+                  {h5planets.length > 0
+                    ? (isHi ? ` — ग्रह: ${h5planets.map(p => PLANET_NAMES_HI[p] || '').join(', ')}। ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'शुभ ग्रह — प्रथम संतान से सुख।' : 'पाप ग्रह — प्रथम संतान में चुनौतियां संभव।'}` : ` — planets: ${h5planets.map(p => PLANET_NAMES_EN[p] || '').join(', ')}. ${h5planets.some(p => new Set([1,3,4,5]).has(p)) ? 'Benefic influence — happiness from first child.' : 'Malefic influence — challenges possible with first child.'}`)
+                    : (isHi ? '। कोई ग्रह नहीं — 5वें भावेश की स्थिति से आकलन।' : '. No planets — assess from 5th lord placement.')}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })()}

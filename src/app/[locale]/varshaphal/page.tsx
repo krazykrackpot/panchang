@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { getSupabase } from '@/lib/supabase/client';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import ChartSouth from '@/components/kundali/ChartSouth';
@@ -103,7 +104,10 @@ export default function VarshaphalPage() {
           if (loc.name && !placeName) setPlaceName(loc.name);
           if (loc.lat != null && placeLat === null) setPlaceLat(loc.lat);
           if (loc.lng != null && placeLng === null) setPlaceLng(loc.lng);
-          if (loc.timezone && !placeTimezone) setPlaceTimezone(loc.timezone);
+          // ALWAYS resolve timezone from coordinates — never trust stored timezone
+          if (loc.lat != null && loc.lng != null && !placeTimezone) {
+            resolveTimezoneFromCoords(loc.lat, loc.lng).then(tz => setPlaceTimezone(tz));
+          }
         }
       });
   // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -6,6 +6,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { TITHIS } from '@/lib/constants/tithis';
 import { YOGAS } from '@/lib/constants/yogas';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 
 // ---------------------------------------------------------------------------
 // GET /api/user/profile — fetch profile + snapshot summary
@@ -42,9 +43,8 @@ export async function GET(req: NextRequest) {
 
   // Compute birth panchang from profile birth data
   let birthPanchang = null;
-  if (profile?.date_of_birth && profile?.birth_timezone) {
+  if (profile?.date_of_birth && profile?.birth_lat && profile?.birth_lng) {
     try {
-      // date_of_birth is DATE (YYYY-MM-DD), time_of_birth is TIME (HH:MM or HH:MM:SS)
       const dobStr = String(profile.date_of_birth);
       const tobStr = String(profile.time_of_birth || '12:00');
       const dateParts = dobStr.split('-').map(Number);
@@ -52,17 +52,16 @@ export async function GET(req: NextRequest) {
       const year = dateParts[0], month = dateParts[1], day = dateParts[2];
       const hour = timeParts[0] || 0, minute = timeParts[1] || 0;
 
-      // Resolve timezone offset from IANA name
-      // Use a fixed reference date to get the offset for the birth timezone
-      const refDate = new Date(year, month - 1, day, hour, minute);
+      // ALWAYS resolve timezone from birth coordinates — never use stored birth_timezone
+      const birthTzIana = await resolveTimezoneFromCoords(Number(profile.birth_lat), Number(profile.birth_lng));
       let tzOffsetHours = 0;
       try {
+        const refDate = new Date(year, month - 1, day, hour, minute);
         const tzFormatter = new Intl.DateTimeFormat('en-US', {
-          timeZone: profile.birth_timezone,
+          timeZone: birthTzIana,
           timeZoneName: 'longOffset',
         });
         const formatted = tzFormatter.format(refDate);
-        // Output like "4/2/2026, GMT+05:30" or "4/2/2026, GMT-08:00"
         const gmtMatch = formatted.match(/GMT([+-])(\d{1,2}):?(\d{2})?/);
         if (gmtMatch) {
           const sign = gmtMatch[1] === '-' ? -1 : 1;
@@ -70,12 +69,7 @@ export async function GET(req: NextRequest) {
           const mins = parseInt(gmtMatch[3] || '0', 10);
           tzOffsetHours = sign * (hrs + mins / 60);
         }
-      } catch {
-        // Fallback: try to get offset from JS Date
-        const localDate = new Date(refDate.toLocaleString('en-US', { timeZone: profile.birth_timezone }));
-        const utcDate = new Date(refDate.toLocaleString('en-US', { timeZone: 'UTC' }));
-        tzOffsetHours = (localDate.getTime() - utcDate.getTime()) / 3600000;
-      }
+      } catch { /* fallback to 0 */ }
 
       const utHour = hour + minute / 60 - tzOffsetHours;
       const jd = dateToJD(year, month, day, utHour);
@@ -203,6 +197,8 @@ export async function POST(req: NextRequest) {
   // 2. Generate kundali chart
   let kundali;
   try {
+    // ALWAYS resolve timezone from birth coordinates — never trust client-sent timezone
+    const resolvedTz = await resolveTimezoneFromCoords(birthLat, birthLng);
     kundali = generateKundali({
       name: name || 'User',
       date: dateOfBirth,
@@ -210,7 +206,7 @@ export async function POST(req: NextRequest) {
       place: birthPlace,
       lat: birthLat,
       lng: birthLng,
-      timezone: birthTimezone,
+      timezone: resolvedTz,
       ayanamsha: 'lahiri',
     });
   } catch (calcError) {

@@ -327,7 +327,7 @@ export default function SettingsPage() {
               birthPlace: profile.birth_place,
               birthLat: profile.birth_lat,
               birthLng: profile.birth_lng,
-              birthTimezone: profile.birth_timezone,
+              birthTimezone: profile.birth_timezone, // Server re-resolves from coords — this is for display only
             }),
           });
         }

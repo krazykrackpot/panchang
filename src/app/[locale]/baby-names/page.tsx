@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
+import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { motion, AnimatePresence } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
@@ -48,7 +49,10 @@ export default function BabyNamesPage() {
           setBirthPlaceName(data.birth_place || '');
           setBirthLat(data.birth_lat);
           setBirthLng(data.birth_lng);
-          setBirthTz(data.birth_timezone || null);
+          // ALWAYS resolve timezone from coordinates — never trust stored birth_timezone
+          if (data.birth_lat && data.birth_lng) {
+            resolveTimezoneFromCoords(Number(data.birth_lat), Number(data.birth_lng)).then(tz => setBirthTz(tz));
+          }
         }
       });
   }, [initialized, user]);

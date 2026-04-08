@@ -153,6 +153,9 @@ export interface PanchangData {
   dagdhaTithi?: boolean;
   amritSiddhiYoga?: boolean;
   vishaGhatika?: { start: string; end: string };
+  bhadra?: { start: string; end: string; endDate?: string };
+  bhadraAll?: { start: string; end: string; endDate?: string }[];
+  raviYogaWindow?: { active: boolean; start?: string; end?: string; endDate?: string };
   // Festivals & Vrats for this date
   festivals?: {
     name: Trilingual;

@@ -1428,6 +1428,69 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
   const amritSiddhiYoga = AMRIT_SIDDHI_TABLE[weekday] === nakshatraNum;
 
+  // ── Bhadra (Vishti Karana) — scan entire panchang day for all Vishti windows ──
+  // Vishti (#7) recurs every ~7 karanas (~3.5 tithis). Multiple Bhadra windows
+  // can fall within one panchang day. Scan sunrise to sunrise+24h.
+  const VISHTI_KARANA = 7;
+  const bhadraWindows: { start: string; end: string; endDate?: string }[] = [];
+  {
+    const scanStep = 1 / 48; // 30 min steps
+    const scanEnd = jdSunrise + 1.0; // 24h from sunrise
+    let inBhadra = calculateKarana(jdSunrise) === VISHTI_KARANA;
+    let bhadraStartJD = inBhadra ? jdSunrise : 0;
+    const panchMidnight = Math.floor(jd - 0.5) + 0.5;
+
+    for (let scan = jdSunrise + scanStep; scan <= scanEnd; scan += scanStep) {
+      const isVishti = calculateKarana(scan) === VISHTI_KARANA;
+      if (!inBhadra && isVishti) {
+        // Entered Bhadra — refine start
+        let lo = scan - scanStep, hi = scan;
+        for (let j = 0; j < 12; j++) { const mid = (lo+hi)/2; if (calculateKarana(mid) !== VISHTI_KARANA) lo = mid; else hi = mid; }
+        bhadraStartJD = (lo + hi) / 2;
+        inBhadra = true;
+      } else if (inBhadra && !isVishti) {
+        // Exited Bhadra — refine end
+        let lo = scan - scanStep, hi = scan;
+        for (let j = 0; j < 12; j++) { const mid = (lo+hi)/2; if (calculateKarana(mid) === VISHTI_KARANA) lo = mid; else hi = mid; }
+        const bhadraEndJD = (lo + hi) / 2;
+        const sUT = ((bhadraStartJD - panchMidnight) * 24) % 24;
+        const eUT = ((bhadraEndJD - panchMidnight) * 24) % 24;
+        const startDate = jdToLocalDate(bhadraStartJD, tzOffset);
+        const endDate = jdToLocalDate(bhadraEndJD, tzOffset);
+        const panchDate = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        bhadraWindows.push({
+          start: formatTime(sUT, tzOffset),
+          end: formatTime(eUT, tzOffset),
+          endDate: endDate !== startDate ? endDate : undefined,
+        });
+        inBhadra = false;
+      }
+    }
+    // If still in Bhadra at scan end, close the window
+    if (inBhadra && bhadraStartJD > 0) {
+      const sUT = ((bhadraStartJD - panchMidnight) * 24) % 24;
+      const eUT = ((scanEnd - panchMidnight) * 24) % 24;
+      const endDate = jdToLocalDate(scanEnd, tzOffset);
+      const startDate = jdToLocalDate(bhadraStartJD, tzOffset);
+      bhadraWindows.push({
+        start: formatTime(sUT, tzOffset),
+        end: formatTime(eUT, tzOffset),
+        endDate: endDate !== startDate ? endDate : undefined,
+      });
+    }
+  }
+  const bhadra = bhadraWindows[0] ?? undefined;
+
+  // ── Ravi Yoga time window (when active) ──
+  // Ravi Yoga = Sun in specific nakshatra on specific weekday.
+  // Active from sunrise to nakshatra end (when Sun moves to next nakshatra, it's no longer active).
+  const raviYogaWindow = raviYoga ? {
+    active: true,
+    start: formatTime(sunriseUT, tzOffset),
+    end: nakshatraTransition?.endTime || formatTime(sunsetUT, tzOffset),
+    endDate: nakshatraTransition?.endDate,
+  } : { active: false };
+
   return {
     date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`,
     location: { lat, lng, name: locationName || `${lat.toFixed(2)}°N, ${lng.toFixed(2)}°E` },
@@ -1497,5 +1560,8 @@ export function computePanchang(input: PanchangInput): PanchangData {
     dagdhaTithi,
     amritSiddhiYoga,
     vishaGhatika,
+    bhadra,
+    bhadraAll: bhadraWindows.length > 0 ? bhadraWindows : undefined,
+    raviYogaWindow,
   };
 }

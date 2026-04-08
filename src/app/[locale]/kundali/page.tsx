@@ -1906,7 +1906,7 @@ export default function KundaliPage() {
                 {locale === 'en' ? (
                   <div className="space-y-3">
                     <p><strong>Argala</strong> (from Jaimini Sutras, BPHS Ch.31) reveals which planets actively <strong>push</strong> or <strong>block</strong> each area of your life. Unlike Bhavabala (which measures a house&apos;s built-in strength), Argala shows <strong>external forces</strong> acting on each house.</p>
-                    <p><strong>How it works:</strong> Planets positioned in the 2nd, 4th, 5th, 8th, and 11th houses from any house create <strong>Argala</strong> (intervention/support). Planets in the 12th, 10th, 9th, 6th, and 3rd houses respectively create <strong>Virodha</strong> (counter-intervention). If the supporting planets outnumber the countering ones, the house is &quot;Supported.&quot;</p>
+                    <p><strong>How it works:</strong> Planets positioned in the 2nd, 4th, 5th, 8th, and 11th houses from any house create <strong>Argala</strong> (support). Planets in the 12th, 10th, 9th, 6th, and 3rd houses respectively create <strong>Virodha</strong> (counter). Not all interventions carry equal weight — <strong>only strong support and strong opposition</strong> determine the verdict. A house can have more total opponents than supporters yet still be &quot;Supported&quot; if the supporters are stronger (well-placed, benefic, or in key positions). The bar chart below each house shows this effective balance, not just raw planet counts.</p>
                     <p><strong>Why Bhavabala and Argala can differ:</strong> A house can be inherently strong (high Bhavabala) yet face external obstruction (Argala). For example, a strong 7th house with Argala obstruction means: your marriage capacity is excellent, but outside circumstances create friction. Conversely, a weak house with strong Argala support means: external help compensates for inherent weakness.</p>
                     <p><strong>How to use it:</strong></p>
                     <ul className="list-disc ml-4 space-y-1 text-xs">
@@ -2047,19 +2047,25 @@ export default function KundaliPage() {
                       </span>
                     </div>
 
-                    {/* Force balance bar */}
-                    {total > 0 && (
+                    {/* Force balance bar — effective strength, not raw count */}
+                    {total > 0 && (() => {
+                      const effS = ar.argalas.filter(a => a.strength !== 'weak').length;
+                      const effO = ar.virodha.filter(v => v.strength === 'strong').length;
+                      const effT = effS + effO;
+                      const effPct = effT > 0 ? Math.round((effS / effT) * 100) : 50;
+                      return (
                       <div className="px-4 py-2">
                         <div className="flex items-center gap-2 text-[10px] text-text-secondary/50 mb-1">
-                          <span className="text-emerald-400">{ar.argalas.length} {locale === 'en' ? 'support' : 'समर्थन'}</span>
-                          <span className="flex-1" />
-                          <span className="text-red-400">{ar.virodha.length} {locale === 'en' ? 'oppose' : 'प्रतिकार'}</span>
+                          <span className="text-emerald-400 font-semibold">{effS} {locale === 'en' ? 'strong support' : 'बलवान समर्थन'}</span>
+                          <span className="flex-1 text-center text-text-tertiary/40">{ar.argalas.length} vs {ar.virodha.length} {locale === 'en' ? 'total' : 'कुल'}</span>
+                          <span className="text-red-400 font-semibold">{effO} {locale === 'en' ? 'strong oppose' : 'बलवान प्रतिकार'}</span>
                         </div>
                         <div className="h-2.5 rounded-full bg-red-500/20 overflow-hidden">
-                          <div className="h-full rounded-full bg-emerald-500/60 transition-all duration-700" style={{ width: `${supportPct}%` }} />
+                          <div className="h-full rounded-full bg-emerald-500/60 transition-all duration-700" style={{ width: `${effPct}%` }} />
                         </div>
                       </div>
-                    )}
+                      );
+                    })()}
 
                     {/* Planet icons — support vs opposition */}
                     <div className="px-4 py-2 space-y-1.5">
@@ -3753,14 +3759,15 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   // Compute insights from SAV
   const strongSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] >= 28).map(r => r.name[locale]);
   const weakSigns = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.name[locale]);
+  const strongSignIds = RASHIS.filter((_, i) => ashtakavarga.savTable[i] >= 28).map(r => r.id);
   const weakSignIds = RASHIS.filter((_, i) => ashtakavarga.savTable[i] < 22).map(r => r.id);
 
-  // Compute accurate transit windows for slow planets through weak signs
-  // Scan monthly from now for 15 years using actual ephemeris
-  const weakTransits = useMemo(() => {
-    if (weakSignIds.length === 0) return [];
-    const results: { planet: string; planetId: number; sign: string; period: string; startYear: number; startMonth: number; endYear: number; endMonth: number }[] = [];
-    // Planet IDs: Saturn=6, Jupiter=4, Rahu=7
+  // Compute transit windows for slow planets through strong AND weak signs
+  type TransitEntry = { planet: string; planetId: number; sign: string; period: string; startYear: number; startMonth: number; endYear: number; endMonth: number; type: 'strong' | 'weak' };
+  const allTransits = useMemo(() => {
+    const targetIds = [...strongSignIds.map(id => ({ id, type: 'strong' as const })), ...weakSignIds.map(id => ({ id, type: 'weak' as const }))];
+    if (targetIds.length === 0) return [] as TransitEntry[];
+    const results: TransitEntry[] = [];
     const slowPlanets = [
       { id: 6, name: { en: 'Saturn', hi: 'शनि' } },
       { id: 4, name: { en: 'Jupiter', hi: 'बृहस्पति' } },
@@ -3768,57 +3775,57 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
     ];
     const now = new Date();
     const startJd = dateToJD(now.getFullYear(), now.getMonth() + 1, 15, 12);
-    const monthsToScan = 180; // 15 years
+    const monthsToScan = 180;
 
     for (const planet of slowPlanets) {
-      for (const weakId of weakSignIds) {
+      for (const target of targetIds) {
         let entryMonth: string | null = null;
         let entryDate: Date | null = null;
         let lastInSign = false;
 
         for (let m = 0; m <= monthsToScan; m++) {
-          const jd = startJd + m * 30.44; // ~1 month
+          const jd = startJd + m * 30.44;
           const positions = getPlanetaryPositions(jd);
           const pos = positions.find(p => p.id === planet.id);
           if (!pos) continue;
           const sidLon = toSidereal(pos.longitude, jd);
           const sign = Math.floor(sidLon / 30) + 1;
-          const inWeakSign = sign === weakId;
+          const inSign = sign === target.id;
 
-          if (inWeakSign && !lastInSign) {
+          if (inSign && !lastInSign) {
             entryDate = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
             entryMonth = entryDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
           }
-          if (!inWeakSign && lastInSign && entryMonth && entryDate) {
+          if (!inSign && lastInSign && entryMonth && entryDate) {
             const exitDate = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
             const exitMonth = exitDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
             results.push({
-              planet: planet.name[locale === 'en' ? 'en' : 'hi'],
-              planetId: planet.id,
-              sign: RASHIS[weakId - 1].name[locale],
-              period: `${entryMonth} – ${exitMonth}`,
+              planet: planet.name[locale === 'en' ? 'en' : 'hi'], planetId: planet.id,
+              sign: RASHIS[target.id - 1].name[locale], period: `${entryMonth} – ${exitMonth}`,
               startYear: entryDate.getFullYear(), startMonth: entryDate.getMonth(),
-              endYear: exitDate.getFullYear(), endMonth: exitDate.getMonth(),
+              endYear: exitDate.getFullYear(), endMonth: exitDate.getMonth(), type: target.type,
             });
             entryMonth = null; entryDate = null;
           }
-          lastInSign = inWeakSign;
+          lastInSign = inSign;
         }
         if (lastInSign && entryMonth && entryDate) {
           const scanEnd = new Date(now.getTime() + monthsToScan * 30.44 * 24 * 3600000);
           results.push({
-            planet: planet.name[locale === 'en' ? 'en' : 'hi'],
-            planetId: planet.id,
-            sign: RASHIS[weakId - 1].name[locale],
-            period: `${entryMonth} – ...`,
+            planet: planet.name[locale === 'en' ? 'en' : 'hi'], planetId: planet.id,
+            sign: RASHIS[target.id - 1].name[locale], period: `${entryMonth} – ...`,
             startYear: entryDate.getFullYear(), startMonth: entryDate.getMonth(),
-            endYear: scanEnd.getFullYear(), endMonth: scanEnd.getMonth(),
+            endYear: scanEnd.getFullYear(), endMonth: scanEnd.getMonth(), type: target.type,
           });
         }
       }
     }
+    // Sort chronologically
+    results.sort((a, b) => a.startYear * 12 + a.startMonth - b.startYear * 12 - b.startMonth);
     return results;
-  }, [weakSignIds, locale]);
+  }, [strongSignIds, weakSignIds, locale]);
+  const weakTransits = allTransits.filter(t => t.type === 'weak');
+  const strongTransits = allTransits.filter(t => t.type === 'strong');
   const totalBindu = ashtakavarga.savTable.reduce((a, b) => a + b, 0);
 
   return (
@@ -3883,77 +3890,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                     ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
                     : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
                 </p>
-                {weakTransits.length > 0 && (() => {
-                  const minY = Math.min(...weakTransits.map(w => w.startYear));
-                  const maxY = Math.max(...weakTransits.map(w => w.endYear));
-                  const totalMonths = (maxY - minY) * 12 + 12;
-                  const toPercent = (y: number, m: number) => Math.max(0, Math.min(100, ((y - minY) * 12 + m) / totalMonths * 100));
-                  const PLANET_COLORS: Record<number, { bar: string; text: string; glow: string }> = {
-                    6: { bar: 'bg-indigo-500', text: 'text-indigo-300', glow: 'shadow-indigo-500/30' },
-                    4: { bar: 'bg-amber-500', text: 'text-amber-300', glow: 'shadow-amber-500/30' },
-                    7: { bar: 'bg-slate-400', text: 'text-slate-300', glow: 'shadow-slate-400/30' },
-                  };
-                  // Year tick marks
-                  const years: number[] = [];
-                  for (let y = minY; y <= maxY; y++) years.push(y);
-                  return (
-                    <div className="mt-4 rounded-xl bg-bg-secondary/60 border border-red-500/10 p-4">
-                      <p className="text-xs font-bold text-red-400/80 mb-3">{locale === 'en' ? 'Challenging Transit Timeline' : 'चुनौतीपूर्ण गोचर समयरेखा'}</p>
-                      {/* Year axis */}
-                      <div className="relative h-5 mb-1">
-                        {years.map(y => (
-                          <span key={y} className="absolute text-[9px] text-gray-600 font-mono -translate-x-1/2" style={{ left: `${toPercent(y, 0)}%` }}>
-                            {`'${String(y).slice(2)}`}
-                          </span>
-                        ))}
-                      </div>
-                      {/* Grid lines */}
-                      <div className="relative">
-                        <div className="absolute inset-0 pointer-events-none">
-                          {years.map(y => (
-                            <div key={y} className="absolute top-0 bottom-0 border-l border-white/5" style={{ left: `${toPercent(y, 0)}%` }} />
-                          ))}
-                        </div>
-                        {/* Transit bars */}
-                        <div className="space-y-1.5 relative">
-                          {weakTransits.map((wt, idx) => {
-                            const colors = PLANET_COLORS[wt.planetId] || PLANET_COLORS[6];
-                            const left = toPercent(wt.startYear, wt.startMonth);
-                            const right = toPercent(wt.endYear, wt.endMonth);
-                            const width = Math.max(right - left, 1.5);
-                            return (
-                              <div key={idx} className="flex items-center gap-0 h-6">
-                                {/* Planet label */}
-                                <div className="w-14 sm:w-16 shrink-0 text-right pr-2">
-                                  <span className={`text-[10px] font-bold ${colors.text}`}>{wt.planet}</span>
-                                </div>
-                                {/* Bar track */}
-                                <div className="flex-1 relative h-5 bg-bg-tertiary/20 rounded-md overflow-hidden">
-                                  <div
-                                    className={`absolute top-0.5 bottom-0.5 rounded-sm ${colors.bar} shadow-sm ${colors.glow} opacity-80`}
-                                    style={{ left: `${left}%`, width: `${width}%` }}
-                                  />
-                                  {/* Sign label inside bar */}
-                                  {width > 6 && (
-                                    <span className="absolute top-0 h-full flex items-center text-[9px] font-bold text-white/90 px-1" style={{ left: `${left}%` }}>
-                                      {wt.sign}
-                                    </span>
-                                  )}
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                      {/* Now marker */}
-                      <div className="relative h-3 mt-1">
-                        <div className="absolute top-0 w-px h-full bg-gold-primary" style={{ left: `${toPercent(new Date().getFullYear(), new Date().getMonth())}%` }}>
-                          <span className="absolute -top-0.5 -translate-x-1/2 text-[8px] text-gold-primary font-bold">NOW</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })()}
+                {/* Transit timeline is rendered below, outside the weak/strong text blocks */}
               </div>
             )}
             <p className="text-text-secondary/70 text-xs">
@@ -3964,6 +3901,90 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           </div>
         </div>
       )}
+
+      {/* Transit Timeline — strong + weak periods */}
+      {allTransits.length > 0 && (() => {
+        const minY = Math.min(...allTransits.map(t => t.startYear));
+        const maxY = Math.max(...allTransits.map(t => t.endYear));
+        const totalMonths = (maxY - minY) * 12 + 12;
+        const toPercent = (y: number, m: number) => Math.max(0, Math.min(100, ((y - minY) * 12 + m) / totalMonths * 100));
+        const years: number[] = [];
+        for (let y = minY; y <= maxY; y++) years.push(y);
+        // Group transits by planet for a cleaner layout
+        const planetGroups = [
+          { id: 4, name: locale === 'en' ? 'Jupiter' : 'बृहस्पति' },
+          { id: 6, name: locale === 'en' ? 'Saturn' : 'शनि' },
+          { id: 7, name: locale === 'en' ? 'Rahu' : 'राहु' },
+        ];
+        const PLANET_TEXT: Record<number, string> = { 4: 'text-amber-300', 6: 'text-indigo-300', 7: 'text-slate-300' };
+        return (
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-5">
+            <h4 className="text-gold-light text-sm font-bold mb-1">{locale === 'en' ? 'Transit Forecast — Next 15 Years' : 'गोचर पूर्वानुमान — अगले 15 वर्ष'}</h4>
+            <p className="text-text-secondary/60 text-xs mb-4">
+              {locale === 'en'
+                ? 'Green = transiting your strong signs (favorable). Red = transiting your weak signs (challenging).'
+                : 'हरा = आपकी बलवान राशियों में गोचर (शुभ)। लाल = दुर्बल राशियों में गोचर (चुनौतीपूर्ण)।'}
+            </p>
+            {/* Year axis */}
+            <div className="relative h-5 mb-1 ml-14 sm:ml-16">
+              {years.map(y => (
+                <span key={y} className="absolute text-[9px] text-gray-600 font-mono -translate-x-1/2" style={{ left: `${toPercent(y, 0)}%` }}>
+                  {`'${String(y).slice(2)}`}
+                </span>
+              ))}
+            </div>
+            {/* Per-planet swim lanes */}
+            <div className="space-y-3">
+              {planetGroups.map(pg => {
+                const transits = allTransits.filter(t => t.planetId === pg.id);
+                if (transits.length === 0) return null;
+                return (
+                  <div key={pg.id}>
+                    <div className="flex items-center gap-0">
+                      <div className="w-14 sm:w-16 shrink-0 text-right pr-2">
+                        <span className={`text-[10px] font-bold ${PLANET_TEXT[pg.id] || 'text-gray-400'}`}>{pg.name}</span>
+                      </div>
+                      <div className="flex-1 relative h-6 bg-bg-tertiary/15 rounded-md overflow-hidden">
+                        {/* Grid lines */}
+                        {years.map(y => (
+                          <div key={y} className="absolute top-0 bottom-0 border-l border-white/[0.03]" style={{ left: `${toPercent(y, 0)}%` }} />
+                        ))}
+                        {/* Transit bars */}
+                        {transits.map((tr, idx) => {
+                          const left = toPercent(tr.startYear, tr.startMonth);
+                          const right = toPercent(tr.endYear, tr.endMonth);
+                          const width = Math.max(right - left, 1);
+                          const isStrong = tr.type === 'strong';
+                          const barClass = isStrong ? 'bg-emerald-500/70' : 'bg-red-500/70';
+                          return (
+                            <div key={idx} className={`absolute top-0.5 bottom-0.5 rounded-sm ${barClass}`} style={{ left: `${left}%`, width: `${width}%` }}>
+                              {width > 5 && (
+                                <span className="absolute inset-0 flex items-center justify-center text-[8px] font-bold text-white/90 truncate px-0.5">
+                                  {tr.sign}
+                                </span>
+                              )}
+                            </div>
+                          );
+                        })}
+                        {/* NOW marker */}
+                        <div className="absolute top-0 bottom-0 w-px bg-gold-primary/80" style={{ left: `${toPercent(new Date().getFullYear(), new Date().getMonth())}%` }} />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {/* Legend + NOW label */}
+            <div className="flex items-center justify-between mt-3 ml-14 sm:ml-16">
+              <div className="flex items-center gap-4 text-[10px]">
+                <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-emerald-500/70" /><span className="text-gray-500">{locale === 'en' ? 'Favorable' : 'शुभ'}</span></span>
+                <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{locale === 'en' ? 'Challenging' : 'चुनौतीपूर्ण'}</span></span>
+                <span className="flex items-center gap-1"><span className="w-px h-3 bg-gold-primary/80" /><span className="text-gold-primary/70">NOW</span></span>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="flex justify-center gap-3 mb-6">
         <button onClick={() => setViewMode('sav')}

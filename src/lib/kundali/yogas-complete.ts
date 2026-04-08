@@ -2161,13 +2161,10 @@ function detectClassicalPlanetYogas(planets: PlanetData[], ascSign: number): Yog
     results.push({ id: 'bheri', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Bheri Yoga', hi: 'भेरी योग', sa: 'भेरीयोगः' }, formationRule: { en: '9th lord strong + most planets in 1/2/7/12', hi: '9 स्वामी बलवान + अधिकांश ग्रह 1/2/7/12 में', sa: '' }, description: { en: 'Drum yoga — long life, freedom from disease, religious and charitable, wealthy, commands respect.', hi: 'भेरी योग — दीर्घ आयु, निरोगी, धार्मिक, दानशील, धनवान।', sa: '' } });
   }
 
-  // Veshi Yoga — planet (not Moon) in 2nd from Sun
+  // Veshi Yoga — already detected in the main sun-based yoga section (id: 'veshi').
+  // We still compute planetIn2ndFromSun because Ubhayachari Yoga needs it below.
   const secondFromSun = (sun.house % 12) + 1;
   const planetIn2ndFromSun = planets.filter(p => p.id !== 1 && p.id >= 2 && p.id <= 6 && p.house === secondFromSun);
-  if (planetIn2ndFromSun.length > 0) {
-    const pNames = planetIn2ndFromSun.map(p => ['','','Mars','Mer','Jup','Ven','Sat'][p.id]).join(', ');
-    results.push({ id: 'veshi', category: 'other', isAuspicious: true, present: true, strength: 'Moderate', name: { en: 'Veshi Yoga', hi: 'वेशी योग', sa: 'वेशीयोगः' }, formationRule: { en: `${pNames} in 2nd from Sun`, hi: `${pNames} सूर्य से 2वें में`, sa: '' }, description: { en: 'Planet ahead of Sun — good memory, balanced temperament, truthful, charitable, steady fortune.', hi: 'वेशी योग — अच्छी स्मृति, संतुलित स्वभाव, सत्यवादी, दानी।', sa: '' } });
-  }
 
   // Voshi Yoga — planet (not Moon) in 12th from Sun
   const twelfthFromSun = ((sun.house - 2 + 12) % 12) + 1;

@@ -618,7 +618,10 @@ export function generateKundali(birthData: BirthData): KundaliData {
     const sign = getRashiNumber(sidLong);
     const nakNum = getNakshatraNumber(sidLong);
     const pada = getNakshatraPada(sidLong);
-    const house = getHouse(sidLong, cuspDegrees);
+    // Whole-sign house system (Rashi = Bhava): standard Vedic convention (BPHS).
+    // Each sign IS a house. House 1 = ascendant sign, house 2 = next sign, etc.
+    // Equal-house cusps are used only for Bhav Chalit (separate calculation).
+    const house = ((sign - ascSign + 12) % 12) + 1;
     const rashi = RASHIS[sign - 1];
     const nak = NAKSHATRAS[nakNum - 1];
     const coords = computeFullCoordinates(p.id, sidLong, jd);

@@ -205,10 +205,43 @@ function generatePersonality(kundali: KundaliData, locale: Locale): PersonalityS
         `${sunSign.name.sa} राशौ सूर्यः भवतः मूलपहचानम् अहम्अभिव्यक्तिं जीवनोद्देश्यं च परिभाषयति।`)
     : '';
 
-  const summary = t(locale,
+  let summary = t(locale,
     `With ${rashi.name.en} rising${moonSign ? `, Moon in ${moonSign.name.en}` : ''}${sunSign ? `, and Sun in ${sunSign.name.en}` : ''}, you blend ${rashi.element.en.toLowerCase()} ascendant energy with ${moonSign?.element.en.toLowerCase() || ''} emotional nature${sunSign ? ` and ${sunSign.element.en.toLowerCase()} soul purpose` : ''}. This combination shapes a personality that is ${rashi.element.en === 'Fire' ? 'dynamic and action-oriented' : rashi.element.en === 'Earth' ? 'grounded and practical' : rashi.element.en === 'Air' ? 'intellectual and communicative' : 'intuitive and emotionally deep'}.`,
     `${rashi.name.hi} लग्न${moonSign ? `, ${moonSign.name.hi} में चन्द्रमा` : ''}${sunSign ? `, और ${sunSign.name.hi} में सूर्य` : ''} के साथ, आपका व्यक्तित्व ${rashi.element.hi} लग्न ऊर्जा${moonSign ? ` और ${moonSign.element.hi} भावनात्मक प्रकृति` : ''} का मिश्रण है।`
   );
+
+  // Enrich with lagna lord's condition from real data
+  const signLords: Record<number, number> = { 1: 2, 2: 5, 3: 3, 4: 1, 5: 0, 6: 3, 7: 5, 8: 2, 9: 4, 10: 6, 11: 6, 12: 4 };
+  const lagnaLordId = signLords[ascSign];
+  if (lagnaLordId !== undefined) {
+    const lagnaLordGraha = GRAHAS[lagnaLordId];
+    const enrichParts: string[] = [];
+
+    // Lagna lord shadbala
+    if (kundali.fullShadbala) {
+      const sb = kundali.fullShadbala.find(s => s.planetId === lagnaLordId);
+      if (sb) {
+        const strong = sb.strengthRatio >= 1.0;
+        enrichParts.push(t(locale,
+          `Your lagna lord ${lagnaLordGraha.name.en} has ${sb.rupas.toFixed(1)} rupas (${strong ? 'strong — personality traits manifest fully' : 'weak — personality may feel suppressed or delayed in expression'}).`,
+          `आपका लग्नेश ${lagnaLordGraha.name.hi} ${sb.rupas.toFixed(1)} रूप (${strong ? 'बलवान — व्यक्तित्व पूर्ण रूप से प्रकट' : 'दुर्बल — व्यक्तित्व अभिव्यक्ति में विलम्ब'})।`));
+      }
+    }
+
+    // Lagna lord avastha
+    if (kundali.avasthas) {
+      const av = kundali.avasthas.find((a: { planetId: number }) => a.planetId === lagnaLordId);
+      if (av?.baladi) {
+        enrichParts.push(t(locale,
+          `Lagna lord in ${av.baladi.name.en} avastha — ${av.baladi.state === 'bala' ? 'youthful energy, still developing' : av.baladi.state === 'kumara' ? 'adolescent energy, growing confidence' : av.baladi.state === 'yuva' ? 'peak expression, full vitality' : av.baladi.state === 'vriddha' ? 'mature wisdom, measured expression' : 'diminished vitality, inner focus'}.`,
+          `लग्नेश ${av.baladi.name.hi} अवस्था में।`));
+      }
+    }
+
+    if (enrichParts.length > 0) {
+      summary += '\n\n' + enrichParts.join(' ');
+    }
+  }
 
   return {
     lagna: {
@@ -275,8 +308,8 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
       const av = kundali.avasthas.find((a: { planetId: number }) => a.planetId === p.planet.id);
       if (av) {
         const parts: string[] = [];
-        if (av.baladi) parts.push(t(locale, `Age state: ${av.baladi.name}`, `आयु अवस्था: ${av.baladi.name}`));
-        if (av.deeptadi) parts.push(t(locale, `Luminosity: ${av.deeptadi.name}`, `दीप्ति: ${av.deeptadi.name}`));
+        if (av.baladi) parts.push(t(locale, `Age state: ${av.baladi.name.en}`, `आयु अवस्था: ${av.baladi.name.hi}`));
+        if (av.deeptadi) parts.push(t(locale, `Luminosity: ${av.deeptadi.name.en}`, `दीप्ति: ${av.deeptadi.name.hi}`));
         if (parts.length > 0) {
           description += '\n\n' + parts.join('. ') + '.';
         }
@@ -624,6 +657,42 @@ function generateLifeAreas(kundali: KundaliData, locale: Locale): LifeAreaSectio
   const enhancedHealth = analyzeHealthEnhanced(planets, houses, ascSign, locale);
   const enhancedEducation = analyzeEducationEnhanced(planets, houses, ascSign, locale);
 
+  // Enrich ratings with bhavabala when available (proper 4-component house strength)
+  if (kundali.bhavabala && kundali.bhavabala.length > 0) {
+    const bbMax = Math.max(...kundali.bhavabala.map(b => b.total));
+    const bbRating = (houseNum: number) => {
+      const bb = kundali.bhavabala!.find(b => b.bhava === houseNum);
+      if (!bb || bbMax <= 0) return 5;
+      return Math.max(1, Math.min(10, Math.round((bb.total / bbMax) * 10)));
+    };
+    // Override crude rateHouse with real bhavabala-derived ratings
+    enhancedCareer.rating = bbRating(10);
+    enhancedWealth.rating = Math.round((bbRating(2) + bbRating(11)) / 2);
+    enhancedMarriage.rating = bbRating(7);
+    enhancedHealth.rating = Math.round((bbRating(1) + bbRating(6)) / 2);
+    enhancedEducation.rating = Math.round((bbRating(4) + bbRating(5)) / 2);
+  }
+
+  // Enrich details with ashtakavarga SAV scores for relevant houses
+  if (kundali.ashtakavarga) {
+    const sav = kundali.ashtakavarga.savTable;
+    const savNote = (houseNums: number[], label: string) => {
+      const scores = houseNums.map(h => {
+        const signIdx = ((ascSign - 1 + h - 1) % 12); // house to sign index
+        return { house: h, bindu: sav[signIdx] || 0 };
+      });
+      const parts = scores.map(s => `H${s.house}: ${s.bindu} bindu`).join(', ');
+      const avg = scores.reduce((a, s) => a + s.bindu, 0) / scores.length;
+      const quality = avg >= 28 ? t(locale, 'strong support', 'मजबूत समर्थन') : avg < 22 ? t(locale, 'needs attention', 'ध्यान आवश्यक') : t(locale, 'moderate', 'मध्यम');
+      return `\n\n${t(locale, 'Ashtakavarga', 'अष्टकवर्ग')} (${label}): ${parts} — ${quality}.`;
+    };
+    enhancedCareer.details += savNote([10], t(locale, 'career house', 'कैरियर भाव'));
+    enhancedWealth.details += savNote([2, 11], t(locale, 'wealth houses', 'धन भाव'));
+    enhancedMarriage.details += savNote([7], t(locale, 'marriage house', 'विवाह भाव'));
+    enhancedHealth.details += savNote([1, 6], t(locale, 'health houses', 'स्वास्थ्य भाव'));
+    enhancedEducation.details += savNote([4, 5], t(locale, 'education houses', 'शिक्षा भाव'));
+  }
+
   return {
     career: enhancedCareer,
     wealth: enhancedWealth,
@@ -680,6 +749,59 @@ function generateDashaInsight(kundali: KundaliData, locale: Locale): DashaInsigh
         }
       }
       break;
+    }
+  }
+
+  // Enrich maha dasha analysis with real computed data for the dasha lord
+  if (currentMahaAnalysis) {
+    const dashaLordName = kundali.dashas.find(d => {
+      const start = new Date(d.startDate); const end = new Date(d.endDate);
+      return now >= start && now <= end;
+    })?.planet;
+    const PLANET_NAME_TO_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
+    const dlId = dashaLordName ? PLANET_NAME_TO_ID[dashaLordName] : undefined;
+    if (dlId !== undefined) {
+      const enrichParts: string[] = [];
+
+      // Shadbala of dasha lord
+      if (kundali.fullShadbala) {
+        const sb = kundali.fullShadbala.find(s => s.planetId === dlId);
+        if (sb) {
+          const label = sb.strengthRatio >= 1.5 ? t(locale, 'strong', 'बलवान') : sb.strengthRatio >= 1.0 ? t(locale, 'adequate', 'पर्याप्त') : t(locale, 'weak', 'दुर्बल');
+          enrichParts.push(t(locale,
+            `Shadbala of dasha lord: ${sb.rupas.toFixed(1)} rupas (${label}). ${sb.strengthRatio >= 1.0 ? 'Capable of delivering good results.' : 'May underperform — remedies recommended.'}`,
+            `दशा स्वामी का षड्बल: ${sb.rupas.toFixed(1)} रूप (${label})। ${sb.strengthRatio >= 1.0 ? 'अच्छे परिणाम देने में सक्षम।' : 'कम प्रदर्शन सम्भव — उपाय अनुशंसित।'}`));
+        }
+      }
+
+      // Avastha of dasha lord
+      if (kundali.avasthas) {
+        const av = kundali.avasthas.find((a: { planetId: number }) => a.planetId === dlId);
+        if (av?.baladi) {
+          enrichParts.push(t(locale,
+            `Dasha lord is in ${av.baladi.name.en} avastha${av.deeptadi ? ` (${av.deeptadi.name.en} luminosity)` : ''}.`,
+            `दशा स्वामी ${av.baladi.name.hi} अवस्था में${av.deeptadi ? ` (${av.deeptadi.name.hi} दीप्ति)` : ''}।`));
+        }
+      }
+
+      // Functional nature of dasha lord
+      if (kundali.functionalNature) {
+        const fn = kundali.functionalNature.planets?.find((f: { planetId: number }) => f.planetId === dlId);
+        if (fn) {
+          const natureLabel = fn.nature === 'yogaKaraka' ? t(locale, 'YogaKaraka — most beneficial', 'योगकारक — सर्वाधिक शुभ')
+            : fn.nature === 'funcBenefic' ? t(locale, 'functional benefic', 'कार्यात्मक शुभ')
+            : fn.nature === 'funcMalefic' ? t(locale, 'functional malefic', 'कार्यात्मक पापी')
+            : fn.nature === 'maraka' ? t(locale, 'Maraka — handle with care', 'मारक — सावधानी से')
+            : t(locale, 'neutral', 'तटस्थ');
+          enrichParts.push(t(locale,
+            `For your lagna, this dasha lord is: ${natureLabel}.`,
+            `आपके लग्न के लिए यह दशा स्वामी: ${natureLabel}।`));
+        }
+      }
+
+      if (enrichParts.length > 0) {
+        currentMahaAnalysis += '\n\n' + enrichParts.join('\n');
+      }
     }
   }
 

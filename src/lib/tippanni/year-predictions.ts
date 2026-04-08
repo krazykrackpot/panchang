@@ -301,7 +301,7 @@ function buildQuarterlyForecasts(
   return quarterLabels.map((label, qi) => {
     // Count events in this quarter
     const qEvents = events.filter(e => {
-      if (e.period.includes('/') || e.period.includes('-')) {
+      if (e.period && (e.period.includes('/') || e.period.includes('-'))) {
         const d = new Date(e.period);
         const m = d.getMonth();
         return Math.floor(m / 3) === qi;
@@ -461,9 +461,27 @@ export function generateYearPredictions(
   // Collect all events
   const events: YearEvent[] = [];
 
-  // A. Sade Sati detection
-  const sadeSatiEvent = detectSadeSati(transits.saturnSign, natalMoonSign, locale);
-  if (sadeSatiEvent) events.push(sadeSatiEvent);
+  // A. Sade Sati — use pre-computed data when available, fall back to transit-based detection
+  if (kundali.sadeSati?.isActive) {
+    const ss = kundali.sadeSati;
+    const phaseMap: Record<string, string> = { rising: t(locale, 'Rising Phase', 'चढ़ाव चरण'), peak: t(locale, 'Peak Phase', 'चरम चरण'), setting: t(locale, 'Setting Phase', 'उतार चरण') };
+    const phaseLabel = phaseMap[ss.currentPhase || ''] || ss.currentPhase || '';
+    events.push({
+      type: 'sade_sati',
+      title: t(locale, `Sade Sati — ${phaseLabel}`, `साढ़े साती — ${phaseLabel}`),
+      period: t(locale, 'Ongoing', 'जारी'),
+      impact: 'challenging',
+      description: t(locale,
+        `Saturn is transiting ${ss.currentPhase === 'rising' ? '12th' : ss.currentPhase === 'peak' ? '1st (over Moon)' : '2nd'} from your natal Moon. ${ss.overallIntensity ? `Intensity: ${ss.overallIntensity}/10.` : ''} This is a period of karmic restructuring requiring patience and discipline.`,
+        `शनि आपके चन्द्रमा से ${ss.currentPhase === 'rising' ? '12वें' : ss.currentPhase === 'peak' ? '1ले (चन्द्र पर)' : '2रे'} भाव में गोचर कर रहा है। धैर्य और अनुशासन का समय।`),
+      remedies: t(locale,
+        'Recite Shani Chalisa on Saturdays. Donate black sesame and mustard oil. Visit Shani temples. Practice patience and serve elders.',
+        'शनिवार को शनि चालीसा पाठ। काले तिल और सरसों तेल दान। शनि मन्दिर। धैर्य और वृद्धजन सेवा।'),
+    });
+  } else {
+    const sadeSatiEvent = detectSadeSati(transits.saturnSign, natalMoonSign, locale);
+    if (sadeSatiEvent) events.push(sadeSatiEvent);
+  }
 
   // B. Jupiter transit
   const jupiterEvent = analyzeJupiterTransit(transits.jupiterSign, natalMoonSign, ascSign, locale);

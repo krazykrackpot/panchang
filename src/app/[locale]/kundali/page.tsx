@@ -5758,8 +5758,19 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
             {locale === 'en' ? 'Planetary Strength (Shadbala)' : locale === 'hi' ? 'ग्रह बल (षड्बल)' : 'ग्रहबलम् (षड्बलम्)'}
           </h3>
+          <p className="text-text-secondary/60 text-xs mb-4">
+            {locale === 'en'
+              ? 'Ratio = actual Rupas ÷ minimum required (BPHS Ch.27). ≥1.5× = Strong, ≥1.0× = Adequate, <1.0× = Weak.'
+              : 'अनुपात = वास्तविक रूपा ÷ न्यूनतम आवश्यक (BPHS अ.27)। ≥1.5× = बलवान, ≥1.0× = पर्याप्त, <1.0× = दुर्बल।'}
+          </p>
           <div className="space-y-3">
-            {tip.strengthOverview.map((s, i) => (
+            {tip.strengthOverview.map((s, i) => {
+              const ratio = (s as any).ratio as number | undefined;
+              const rupas = (s as any).rupas as number | undefined;
+              const ratioColor = ratio !== undefined
+                ? (ratio >= 1.5 ? 'text-green-400' : ratio >= 1.0 ? 'text-amber-300' : 'text-red-400')
+                : (s.strength >= 80 ? 'text-green-400' : s.strength >= 60 ? 'text-amber-300' : 'text-red-400');
+              return (
               <div key={i} className="flex items-center gap-3">
                 <span className="text-sm w-20 text-right font-medium" style={{ color: s.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>{s.planetName}</span>
                 <div className="flex-1 bg-bg-primary/40 rounded-full h-4 overflow-hidden">
@@ -5771,11 +5782,14 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                     style={{ backgroundColor: s.planetColor, opacity: 0.7 }}
                   />
                 </div>
-                <span className={`text-xs w-20 ${s.strength >= 80 ? 'text-green-400' : s.strength >= 60 ? 'text-yellow-400' : 'text-red-400'}`}>
-                  {s.strength}% — {s.status}
+                <span className={`text-xs w-28 text-right font-mono ${ratioColor}`}>
+                  {ratio !== undefined ? `${ratio.toFixed(2)}×` : `${s.strength}%`}
+                  {rupas !== undefined && <span className="text-text-secondary/40 ml-1">({rupas.toFixed(1)}R)</span>}
+                  <span className="ml-1 font-sans">{s.status}</span>
                 </span>
               </div>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}

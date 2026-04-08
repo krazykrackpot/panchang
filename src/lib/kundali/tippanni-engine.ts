@@ -850,6 +850,8 @@ function generateStrengthOverview(kundali: KundaliData, locale: Locale): Strengt
         planetName: graha?.name[locale] || s.planet,
         planetColor: graha?.color || '#888',
         strength: pct,
+        ratio: s.strengthRatio,
+        rupas: s.rupas,
         status,
       };
     });

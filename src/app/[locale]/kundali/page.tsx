@@ -510,6 +510,8 @@ export default function KundaliPage() {
               const mD = MASA_NAMES[mI];
               return (
                 <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3 text-xs">
+                  <span><span className="text-text-secondary/70">{locale === 'en' ? 'Rashi' : 'राशि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.signName?.[locale] || '—'}</span></span>
+                  <span className="text-gold-primary/15">|</span>
                   <span><span className="text-text-secondary/70">{locale === 'en' ? 'Nakshatra' : 'नक्षत्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonP?.nakshatra?.name?.[locale] || '—'} ({locale === 'en' ? 'Pada' : 'पाद'} {moonP?.pada || '—'})</span></span>
                   <span className="text-gold-primary/15">|</span>
                   <span><span className="text-text-secondary/70">{locale === 'en' ? 'Tithi' : 'तिथि'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tD?.name?.[locale] || '—'} ({tD?.paksha === 'shukla' ? (locale === 'en' ? 'Shukla' : 'शुक्ल') : (locale === 'en' ? 'Krishna' : 'कृष्ण')})</span></span>

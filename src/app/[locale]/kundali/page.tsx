@@ -5773,7 +5773,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
               return (
               <div key={i} className="flex items-center gap-3">
                 <span className="text-sm w-20 text-right font-medium" style={{ color: s.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {}) }}>{s.planetName}</span>
-                <div className="flex-1 bg-bg-primary/40 rounded-full h-4 overflow-hidden">
+                <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${s.strength}%` }}
@@ -6414,7 +6414,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
                 <div className="w-20 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
-                <div className="flex-1 bg-bg-primary/60 rounded-full h-4 overflow-hidden">
+                <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>
                 <div className="w-12 text-right text-xs font-mono" style={{ color }}>{b.strengthPercent}%</div>
@@ -6552,7 +6552,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                 </span>
                 <span>{sadeSati.cycleEnd}</span>
               </div>
-              <div className="h-2.5 rounded-full bg-bg-primary/60 overflow-hidden">
+              <div className="h-2.5 rounded-full bg-gold-primary/10 overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${sadeSati.phaseProgress * 100}%` }}
@@ -6627,7 +6627,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
                     <div className="w-28 text-right text-xs text-text-secondary truncate" style={bodyFont}>
                       {f.description[lk]}
                     </div>
-                    <div className="flex-1 bg-bg-primary/60 rounded-full h-3 overflow-hidden">
+                    <div className="flex-1 bg-gold-primary/10 rounded-full h-3 overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${(f.score / 10) * 100}%` }}

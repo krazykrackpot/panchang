@@ -6,7 +6,7 @@ import { alertEmail } from '@/lib/email/templates/alert';
 // Runs daily at 6 AM UTC — checks for dasha transitions and festival reminders
 export async function GET(req: Request) {
   const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

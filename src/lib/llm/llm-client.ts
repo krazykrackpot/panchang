@@ -8,15 +8,16 @@ import Anthropic from '@anthropic-ai/sdk';
 let client: Anthropic | null = null;
 
 export function getClaudeClient(): Anthropic | null {
-  if (!process.env.ANTHROPIC_API_KEY) return null;
+  const key = process.env.ANTHROPIC_API_KEY?.trim();
+  if (!key) return null;
   if (!client) {
-    client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+    client = new Anthropic({ apiKey: key });
   }
   return client;
 }
 
 export function isLLMAvailable(): boolean {
-  return !!process.env.ANTHROPIC_API_KEY;
+  return !!process.env.ANTHROPIC_API_KEY?.trim();
 }
 
 export const DEFAULT_MODEL = 'claude-sonnet-4-20250514';

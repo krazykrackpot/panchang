@@ -4973,9 +4973,8 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
   const fetchRagTippanni = useCallback(async () => {
     setRagLoading(true);
     try {
-      const res = await fetch('/api/tippanni', {
+      const res = await authedFetch('/api/tippanni', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ kundali, locale, ragEnabled: true }),
       });
       if (res.ok) {

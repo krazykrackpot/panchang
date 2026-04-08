@@ -22,10 +22,10 @@ const BALA_INFO = [
   { key: 'drikBala' as const,      color: '#f39c12', label: 'Drik Bala',      icon: '👁️', plain: 'Aspectual strength — what aspects does the planet receive from benefics or malefics?', detail: 'Benefic planets (Jupiter, Venus, Moon, Mercury) aspecting a planet give it positive Drik Bala. Malefic aspects (Saturn, Mars, Rahu, Ketu) reduce it. A planet heavily aspected by Jupiter is like having a powerful mentor.' },
 ];
 
-function getBarColor(rupas: number): string {
-  if (rupas >= 1.0) return '#22c55e';
-  if (rupas >= 0.7) return '#eab308';
-  return '#ef4444';
+function getBarColor(strengthRatio: number): string {
+  if (strengthRatio >= 1.5) return '#22c55e'; // green — strong
+  if (strengthRatio >= 1.0) return '#eab308'; // yellow — adequate
+  return '#ef4444'; // red — weak
 }
 
 // ── UI Primitives ───────────────────────────────────────────────────────────
@@ -391,7 +391,7 @@ export default function ShadbalaLabPage() {
               <div className="space-y-4">
                 {result.shadbala.map((sb, idx) => {
                   const graha = GRAHAS[sb.planetId];
-                  const totalColor = getBarColor(sb.rupas);
+                  const totalColor = getBarColor(sb.strengthRatio);
                   const barMax = result.maxBala * 1.1;
 
                   return (
@@ -475,7 +475,7 @@ export default function ShadbalaLabPage() {
                 {result.ranked.map((sb, i) => {
                   const graha = GRAHAS[sb.planetId];
                   const pct = (sb.rupas / result.ranked[0].rupas) * 100;
-                  const color = getBarColor(sb.rupas);
+                  const color = getBarColor(sb.strengthRatio);
                   return (
                     <motion.div key={sb.planetId}
                       initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Loader2, Bot, User } from 'lucide-react';
+import { authedFetch } from '@/lib/api/authed-fetch';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 
@@ -59,9 +60,8 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
     setLoading(true);
 
     try {
-      const res = await fetch('/api/chart-chat', {
+      const res = await authedFetch('/api/chart-chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: text.trim(),
           kundali,

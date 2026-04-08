@@ -10,7 +10,7 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 // Runs every Monday at 6 AM UTC
 export async function GET(req: Request) {
   const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

@@ -14,7 +14,7 @@ import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 export async function GET(req: NextRequest) {
   // Verify cron secret to prevent unauthorized calls
   const authHeader = req.headers.get('authorization');
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET?.trim()}`) {
     return new NextResponse('Unauthorized', { status: 401 });
   }
 

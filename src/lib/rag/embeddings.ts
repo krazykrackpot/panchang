@@ -25,7 +25,7 @@ export class CohereEmbeddingProvider implements EmbeddingProvider {
   private apiKey: string;
 
   constructor(config?: Partial<EmbeddingConfig>) {
-    this.apiKey = config?.apiKey || process.env.COHERE_API_KEY || '';
+    this.apiKey = config?.apiKey || process.env.COHERE_API_KEY?.trim() || '';
     if (!this.apiKey) {
       throw new Error('CohereEmbeddingProvider: No API key. Set COHERE_API_KEY or pass apiKey in config.');
     }
@@ -112,7 +112,7 @@ export class OpenAIEmbeddingProvider implements EmbeddingProvider {
   private apiKey: string;
 
   constructor(config?: Partial<EmbeddingConfig>) {
-    this.apiKey = config?.apiKey || process.env.OPENAI_API_KEY || '';
+    this.apiKey = config?.apiKey || process.env.OPENAI_API_KEY?.trim() || '';
     if (!this.apiKey) {
       throw new Error('OpenAIEmbeddingProvider: No API key. Set OPENAI_API_KEY or pass apiKey in config.');
     }

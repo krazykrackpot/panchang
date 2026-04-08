@@ -435,12 +435,20 @@ export default function LearnDashasPage() {
             { label: { en: 'Dasha Lord debilitated or combust', hi: 'दशा स्वामी नीच या अस्त', sa: 'दशास्वामी नीचे अस्ते वा' }, result: { en: 'Weakened results, delays', hi: 'कमज़ोर परिणाम, देरी', sa: 'दुर्बलफलानि, विलम्बः' }, color: 'amber' },
             { label: { en: 'Yogakaraka Dasha (owns Kendra + Trikona)', hi: 'योगकारक दशा (केन्द्र + त्रिकोण स्वामी)', sa: 'योगकारकदशा (केन्द्र + त्रिकोणस्वामी)' }, result: { en: 'Raja Yoga results — power, wealth, status', hi: 'राजयोग फल — शक्ति, धन, प्रतिष्ठा', sa: 'राजयोगफलानि — शक्तिः, धनं, प्रतिष्ठा' }, color: 'emerald' },
             { label: { en: 'Maha Dasha & Antardasha lords are enemies', hi: 'महादशा और अन्तर्दशा स्वामी शत्रु', sa: 'महादशा-अन्तर्दशास्वामिनौ शत्रू' }, result: { en: 'Internal conflict, contradictory events', hi: 'आन्तरिक संघर्ष, विरोधाभासी घटनाएँ', sa: 'आन्तरिकसंघर्षः, विरोधाभासीघटनाः' }, color: 'red' },
-          ].map((item) => (
-            <div key={item.label.en} className={`rounded-lg p-3 border border-${item.color}-400/20 bg-${item.color}-400/5`}>
-              <div className={`text-${item.color}-400 text-sm font-semibold mb-1`} style={headingFont}>{item.label[locale]}</div>
+          ].map((item) => {
+            const colorClasses: Record<string, string> = {
+              emerald: 'border-emerald-400/20 bg-emerald-400/5 text-emerald-400',
+              amber: 'border-amber-400/20 bg-amber-400/5 text-amber-400',
+              red: 'border-red-400/20 bg-red-400/5 text-red-400',
+            };
+            const cls = colorClasses[item.color] || colorClasses.amber;
+            return (
+            <div key={item.label.en} className={`rounded-lg p-3 border ${cls.split(' ').slice(0, 2).join(' ')}`}>
+              <div className={`${cls.split(' ')[2]} text-sm font-semibold mb-1`} style={headingFont}>{item.label[locale]}</div>
               <div className="text-text-secondary text-xs" style={bodyFont}>{item.result[locale]}</div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </LessonSection>
 

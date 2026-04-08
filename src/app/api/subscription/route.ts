@@ -98,8 +98,8 @@ export async function POST(req: Request) {
 
       if (subscription.provider === 'razorpay' && subscription.provider_subscription_id) {
         try {
-          const keyId = process.env.RAZORPAY_KEY_ID;
-          const keySecret = process.env.RAZORPAY_KEY_SECRET;
+          const keyId = process.env.RAZORPAY_KEY_ID?.trim();
+          const keySecret = process.env.RAZORPAY_KEY_SECRET?.trim();
           if (keyId && keySecret) {
             const Razorpay = (await import('razorpay')).default;
             const razorpay = new Razorpay({ key_id: keyId, key_secret: keySecret });

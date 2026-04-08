@@ -375,12 +375,21 @@ export default function LearnPlanetsPage() {
             { label: L.debilitationLabel[locale], desc: { en: 'Planet at weakest. Results are delayed, distorted, or come through struggle. Can be cancelled by Neechabhanga Raja Yoga.', hi: 'ग्रह सबसे कमज़ोर। परिणाम विलम्बित या संघर्ष से आते हैं। नीचभंग राजयोग से रद्द हो सकता है।', sa: 'ग्रहः दुर्बलतमः। फलानि विलम्बितानि संघर्षेण वा।' }, color: 'red' },
             { label: L.ownSignLabel[locale], desc: { en: 'Planet comfortable and reliable. Gives steady, dependable results in its significations. Like being at home.', hi: 'ग्रह सुखी और विश्वसनीय। अपने संकेतों में स्थिर, भरोसेमन्द परिणाम देता है। घर पर होने जैसा।', sa: 'ग्रहः सुखी विश्वसनीयश्च। स्वसङ्केतेषु स्थिरफलानि ददाति।' }, color: 'blue' },
             { label: L.moolTriLabel[locale], desc: { en: 'A special zone of strength within a sign. Planet performs with authority and clarity, especially for its primary significations.', hi: 'राशि के भीतर बल का विशेष क्षेत्र। ग्रह अधिकार और स्पष्टता से कार्य करता है, विशेषकर प्राथमिक संकेतों के लिए।', sa: 'राशेः अन्तः बलस्य विशेषक्षेत्रम्। ग्रहः अधिकारेण स्पष्टतया च कार्यं करोति।' }, color: 'amber' },
-          ].map((item) => (
-            <div key={item.label} className={`rounded-lg p-3 border border-${item.color}-400/20 bg-${item.color}-400/5`}>
-              <div className={`text-${item.color}-400 text-sm font-semibold mb-1`} style={headingFont}>{item.label}</div>
+          ].map((item) => {
+            const colorClasses: Record<string, string> = {
+              emerald: 'border-emerald-400/20 bg-emerald-400/5 text-emerald-400',
+              amber: 'border-amber-400/20 bg-amber-400/5 text-amber-400',
+              red: 'border-red-400/20 bg-red-400/5 text-red-400',
+              blue: 'border-blue-400/20 bg-blue-400/5 text-blue-400',
+            };
+            const cls = colorClasses[item.color] || colorClasses.amber;
+            return (
+            <div key={item.label} className={`rounded-lg p-3 border ${cls.split(' ').slice(0, 2).join(' ')}`}>
+              <div className={`${cls.split(' ')[2]} text-sm font-semibold mb-1`} style={headingFont}>{item.label}</div>
               <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{item.desc[locale]}</div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </LessonSection>
 

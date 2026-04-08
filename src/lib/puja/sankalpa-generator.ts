@@ -124,13 +124,56 @@ export function generateSankalpa(input: SankalpaInput): GeneratedSankalpa {
   const gotraField = gotra || '............';
   const place = input.placeName || '............';
 
-  // Geographic context — Ganga reference based on latitude
-  const isIndia = input.lat >= 8 && input.lat <= 37 && input.lng >= 68 && input.lng <= 97;
-  const gangaRef = input.lat >= 25 ? 'उत्तरे' : 'दक्षिणे'; // North/South of Ganga (~25°N)
+  // Geographic context — dvipa, varsha, khanda based on actual location
+  // Classical Puranic geography adapted for modern global use.
+  // India retains the full traditional form; other regions use appropriate Sanskrit terms.
+  function getGeography(lat: number, lng: number): { dvipa: string; varsha: string; khanda: string; gangaRef?: string } {
+    // India (8-37°N, 68-97°E)
+    if (lat >= 8 && lat <= 37 && lng >= 68 && lng <= 97) {
+      return { dvipa: 'जम्बूद्वीपे', varsha: 'भारतवर्षे', khanda: 'भरतखण्डे', gangaRef: lat >= 25 ? 'उत्तरे' : 'दक्षिणे' };
+    }
+    // Nepal, Sri Lanka, Bangladesh, Myanmar — South Asian subcontinent
+    if (lat >= 5 && lat <= 35 && lng >= 68 && lng <= 100) {
+      return { dvipa: 'जम्बूद्वीपे', varsha: 'भारतवर्षे', khanda: 'भरतखण्डे' };
+    }
+    // Europe
+    if (lat >= 35 && lat <= 72 && lng >= -25 && lng <= 45) {
+      return { dvipa: 'जम्बूद्वीपे', varsha: 'यूरोपवर्षे', khanda: 'यूरोपखण्डे' };
+    }
+    // Middle East / West Asia
+    if (lat >= 12 && lat <= 45 && lng >= 25 && lng <= 68) {
+      return { dvipa: 'जम्बूद्वीपे', varsha: 'एशियावर्षे', khanda: 'पश्चिमएशियाखण्डे' };
+    }
+    // East/Southeast Asia
+    if (lat >= -10 && lat <= 55 && lng >= 95 && lng <= 180) {
+      return { dvipa: 'जम्बूद्वीपे', varsha: 'एशियावर्षे', khanda: 'पूर्वएशियाखण्डे' };
+    }
+    // North America
+    if (lat >= 15 && lat <= 85 && lng >= -170 && lng <= -50) {
+      return { dvipa: 'क्रौञ्चद्वीपे', varsha: 'अमेरिकावर्षे', khanda: 'उत्तरअमेरिकाखण्डे' };
+    }
+    // South America
+    if (lat >= -60 && lat <= 15 && lng >= -85 && lng <= -30) {
+      return { dvipa: 'क्रौञ्चद्वीपे', varsha: 'अमेरिकावर्षे', khanda: 'दक्षिणअमेरिकाखण्डे' };
+    }
+    // Africa
+    if (lat >= -35 && lat <= 37 && lng >= -20 && lng <= 55) {
+      return { dvipa: 'कुशद्वीपे', varsha: 'आफ्रिकावर्षे', khanda: 'आफ्रिकाखण्डे' };
+    }
+    // Australia / Oceania
+    if (lat >= -50 && lat <= 0 && lng >= 110 && lng <= 180) {
+      return { dvipa: 'शाकद्वीपे', varsha: 'ऑस्ट्रेलियावर्षे', khanda: 'ऑस्ट्रेलियाखण्डे' };
+    }
+    // Default fallback
+    return { dvipa: 'जम्बूद्वीपे', varsha: 'भूखण्डे', khanda: 'देशखण्डे' };
+  }
+
+  const geo = getGeography(input.lat, input.lng);
+  const isIndia = !!geo.gangaRef;
 
   const geoPreamble = isIndia
-    ? `भूर्लोके भारतवर्षे जम्बूद्वीपे भरतखण्डे आर्यावर्तान्तर्गतब्रह्मावर्तस्य ${place} क्षेत्रे ${place} नाम्निनगरे श्रीगङ्गायाः ${gangaRef} दिग्भागे`
-    : `भूर्लोके भारतवर्षे जम्बूद्वीपे भरतखण्डे आर्यावर्तान्तर्गतब्रह्मावर्तस्य ${place} क्षेत्रे ${place} नाम्निनगरे`;
+    ? `भूर्लोके ${geo.dvipa} ${geo.varsha} ${geo.khanda} आर्यावर्तान्तर्गतब्रह्मावर्तस्य ${place} क्षेत्रे ${place} नाम्निनगरे श्रीगङ्गायाः ${geo.gangaRef} दिग्भागे`
+    : `भूर्लोके ${geo.dvipa} ${geo.varsha} ${geo.khanda} ${place} क्षेत्रे ${place} नाम्निनगरे`;
 
   const devanagari = [
     // Invocation

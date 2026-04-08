@@ -286,113 +286,26 @@ function generatePlanetInsights(kundali: KundaliData, locale: Locale): PlanetIns
 }
 
 function generateYogas(kundali: KundaliData, locale: Locale): YogaInsight[] {
+  // Use yogasComplete (150+ properly computed yogas) when available
+  if (kundali.yogasComplete && kundali.yogasComplete.length > 0) {
+    return kundali.yogasComplete
+      .filter(y => y.present)
+      .map(y => ({
+        name: y.name[locale === 'sa' ? 'sa' : locale] || y.name.en,
+        present: true,
+        type: y.category === 'raja' ? 'Raja' : (y.category as string) === 'dhana' ? 'Dhana' :
+              (y.category as string) === 'pancha_mahapurusha' ? 'Pancha Mahapurusha' : 'Other',
+        description: y.description[locale === 'sa' ? 'sa' : locale] || y.description.en,
+        implications: y.formationRule[locale === 'sa' ? 'sa' : locale] || y.formationRule.en,
+        strength: y.strength,
+      }));
+  }
+
+  // Fallback: manual detection (only if yogasComplete is unavailable)
   const yogas: YogaInsight[] = [];
   const planets = kundali.planets;
-  const getP = (id: number) => planets.find(p => p.planet.id === id);
-  const KENDRA = [1, 4, 7, 10];
-  const TRIKONA = [1, 5, 9];
-
-  const jup = getP(4); const moon = getP(1); const sun = getP(0);
-  const merc = getP(3); const ven = getP(5); const mars = getP(2);
-  const sat = getP(6); const rahu = getP(7); const ketu = getP(8);
-
-  // Gajakesari
-  const gkPresent = !!(jup && moon && KENDRA.includes(((jup.house - moon.house + 12) % 12) + 1));
-  yogas.push({
-    name: t(locale, 'Gajakesari Yoga', 'गजकेसरी योग', 'गजकेसरीयोगः'),
-    present: gkPresent, type: 'Raja',
-    description: t(locale, 'Jupiter in a Kendra from Moon. Bestows wisdom, fame, wealth, and a respected position in society.', 'बृहस्पति चन्द्रमा से केन्द्र में। ज्ञान, यश, धन और समाज में सम्मानित स्थान प्रदान करता है।'),
-    implications: gkPresent ? t(locale, 'You will gain recognition through wisdom and good counsel. Financial stability comes through knowledge-based careers. Children and students benefit from your guidance. Social status rises naturally.', 'ज्ञान और अच्छे परामर्श से मान्यता मिलेगी। ज्ञान-आधारित कैरियर से आर्थिक स्थिरता।') : '',
-    strength: gkPresent ? (jup?.isRetrograde ? 'Moderate' : 'Strong') : 'Weak',
-  });
-
-  // Budhaditya
-  const baPresent = !!(sun && merc && sun.house === merc.house);
-  yogas.push({
-    name: t(locale, 'Budhaditya Yoga', 'बुधादित्य योग', 'बुधादित्ययोगः'),
-    present: baPresent, type: 'Other',
-    description: t(locale, 'Sun and Mercury conjunct. Grants sharp intellect, analytical mind, and success in education and communication.', 'सूर्य और बुध युति। तीक्ष्ण बुद्धि, विश्लेषणात्मक मन, शिक्षा और संवाद में सफलता।'),
-    implications: baPresent ? t(locale, 'Your intelligence combined with communication ability makes you effective in writing, teaching, business, and administration. Intellectual authority develops naturally.', 'बुद्धि और संवाद क्षमता का संयोग लेखन, शिक्षण, व्यापार में प्रभावी बनाता है।') : '',
-    strength: baPresent ? (sun && merc && Math.abs(sun.longitude - merc.longitude) < 10 ? 'Strong' : 'Moderate') : 'Weak',
-  });
-
-  // Pancha Mahapurusha: Ruchaka, Bhadra, Hamsa, Malavya, Shasha
-  const mahapurusha: Array<{ id: number; name: Record<Locale, string>; own: number[]; exalt: number; desc: Record<Locale, string>; impl: Record<Locale, string> }> = [
-    { id: 2, name: { en: 'Ruchaka Yoga', hi: 'रुचक योग', sa: 'रुचकयोगः' }, own: [1, 8], exalt: 10, desc: { en: 'Mars exalted/own sign in Kendra. Grants courage, military leadership, physical strength.', hi: 'मंगल केन्द्र में उच्च/स्वगृह। साहस, सैनिक नेतृत्व, शारीरिक बल।', sa: 'मङ्गलः केन्द्रे उच्चे स्वगृहे वा।' }, impl: { en: 'Commanding presence and leadership in competitive fields. Property gains through courage. Physical prowess sustains throughout life.', hi: 'प्रतिस्पर्धी क्षेत्रों में नेतृत्व। साहस से सम्पत्ति लाभ।', sa: '' } },
-    { id: 3, name: { en: 'Bhadra Yoga', hi: 'भद्र योग', sa: 'भद्रयोगः' }, own: [3, 6], exalt: 6, desc: { en: 'Mercury exalted/own sign in Kendra. Grants eloquence, intelligence, business acumen.', hi: 'बुध केन्द्र में उच्च/स्वगृह। वाक्पटुता, बुद्धिमत्ता, व्यापार कौशल।', sa: 'बुधः केन्द्रे उच्चे स्वगृहे वा।' }, impl: { en: 'Exceptional communication creates business and academic success. Multiple income sources through intellectual ability.', hi: 'असाधारण संवाद से व्यापार और शैक्षिक सफलता।', sa: '' } },
-    { id: 4, name: { en: 'Hamsa Yoga', hi: 'हंस योग', sa: 'हंसयोगः' }, own: [9, 12], exalt: 4, desc: { en: 'Jupiter exalted/own sign in Kendra. Grants wisdom, spirituality, good fortune.', hi: 'बृहस्पति केन्द्र में उच्च/स्वगृह। ज्ञान, आध्यात्मिकता, सौभाग्य।', sa: 'बृहस्पतिः केन्द्रे उच्चे स्वगृहे वा।' }, impl: { en: 'Profound wisdom attracts respect and prosperity. Natural spiritual authority. Children and education are blessed.', hi: 'गहन ज्ञान सम्मान और समृद्धि आकर्षित करता है।', sa: '' } },
-    { id: 5, name: { en: 'Malavya Yoga', hi: 'मालव्य योग', sa: 'मालव्ययोगः' }, own: [2, 7], exalt: 12, desc: { en: 'Venus exalted/own sign in Kendra. Grants beauty, luxury, artistic talent.', hi: 'शुक्र केन्द्र में उच्च/स्वगृह। सौन्दर्य, विलासिता, कलात्मक प्रतिभा।', sa: 'शुक्रः केन्द्रे उच्चे स्वगृहे वा।' }, impl: { en: 'Artistic talent brings fame and wealth. Attractive personality opens doors. Comfortable, luxurious lifestyle.', hi: 'कलात्मक प्रतिभा से यश और धन। आकर्षक व्यक्तित्व।', sa: '' } },
-    { id: 6, name: { en: 'Shasha Yoga', hi: 'शश योग', sa: 'शशयोगः' }, own: [10, 11], exalt: 7, desc: { en: 'Saturn exalted/own sign in Kendra. Grants authority, discipline, longevity.', hi: 'शनि केन्द्र में उच्च/स्वगृह। अधिकार, अनुशासन, दीर्घायु।', sa: 'शनिः केन्द्रे उच्चे स्वगृहे वा।' }, impl: { en: 'Authority through discipline and persistence. Organizational leadership. Long, productive career that improves with age.', hi: 'अनुशासन और दृढ़ता से अधिकार। संगठनात्मक नेतृत्व।', sa: '' } },
-  ];
-
-  for (const mp of mahapurusha) {
-    const planet = getP(mp.id);
-    const present = !!(planet && KENDRA.includes(planet.house) && (mp.own.includes(planet.sign) || mp.exalt === planet.sign));
-    yogas.push({
-      name: mp.name[locale], present, type: 'Pancha Mahapurusha',
-      description: mp.desc[locale], implications: present ? mp.impl[locale] : '',
-      strength: present ? (mp.exalt === planet?.sign ? 'Strong' : 'Moderate') : 'Weak',
-    });
-  }
-
-  // Raja Yoga
-  const beneficsK = planets.filter(p => [3, 4, 5].includes(p.planet.id) && KENDRA.includes(p.house));
-  const beneficsT = planets.filter(p => [3, 4, 5].includes(p.planet.id) && TRIKONA.includes(p.house));
-  const rajaPresent = beneficsK.length > 0 && beneficsT.length > 0;
-  yogas.push({
-    name: t(locale, 'Raja Yoga', 'राजयोग', 'राजयोगः'),
-    present: rajaPresent, type: 'Raja',
-    description: t(locale, 'Benefics in both Kendra and Trikona. Indicates power, authority, and social elevation.', 'शुभ ग्रह केन्द्र और त्रिकोण दोनों में। शक्ति, अधिकार और सामाजिक उन्नति।'),
-    implications: rajaPresent ? t(locale, 'Rise to positions of power through merit. Social influence and authority grow over time. May hold office or advisory positions.', 'योग्यता से शक्ति पदों तक पहुँच। सामाजिक प्रभाव और अधिकार समय के साथ बढ़ते हैं।') : '',
-    strength: rajaPresent ? 'Moderate' : 'Weak',
-  });
-
-  // Dhana Yoga
-  const h2 = planets.filter(p => p.house === 2 && [4, 5].includes(p.planet.id));
-  const h11 = planets.filter(p => p.house === 11 && [4, 5].includes(p.planet.id));
-  const dhanaPresent = h2.length > 0 || h11.length > 0;
-  yogas.push({
-    name: t(locale, 'Dhana Yoga', 'धनयोग', 'धनयोगः'),
-    present: dhanaPresent, type: 'Dhana',
-    description: t(locale, 'Benefics in wealth houses (2nd/11th). Indicates financial prosperity and abundance.', 'शुभ ग्रह धन भावों (2/11) में। आर्थिक समृद्धि और प्रचुरता।'),
-    implications: dhanaPresent ? t(locale, 'Financial prosperity flows through ethical means. Multiple income streams develop. Wealth accumulates especially after 35.', 'नैतिक साधनों से आर्थिक समृद्धि। विशेषकर 35 के बाद धन संचय।') : '',
-    strength: dhanaPresent ? 'Moderate' : 'Weak',
-  });
-
-  // Chandra-Mangala Yoga
-  const cmPresent = !!(moon && mars && moon.house === mars.house);
-  yogas.push({
-    name: t(locale, 'Chandra-Mangala Yoga', 'चन्द्र-मंगल योग', 'चन्द्रमङ्गलयोगः'),
-    present: cmPresent, type: 'Dhana',
-    description: t(locale, 'Moon-Mars conjunction. Wealth through self-effort, enterprise, and courage.', 'चन्द्र-मंगल युति। स्वप्रयास, उद्यम और साहस से धन।'),
-    implications: cmPresent ? t(locale, 'Entrepreneurial spirit and earning through personal effort. Emotional courage drives financial success. Real estate and property dealings favorable.', 'उद्यमशीलता और व्यक्तिगत प्रयास से कमाई। भावनात्मक साहस आर्थिक सफलता प्रेरित करता है।') : '',
-    strength: cmPresent ? 'Moderate' : 'Weak',
-  });
-
-  // Adhi Yoga
-  if (moon) {
-    const adhiH = [((moon.house + 4) % 12) + 1, ((moon.house + 5) % 12) + 1, ((moon.house + 6) % 12) + 1];
-    const adhiP = planets.filter(p => [3, 4, 5].includes(p.planet.id) && adhiH.includes(p.house));
-    const adhiPresent = adhiP.length >= 2;
-    yogas.push({
-      name: t(locale, 'Adhi Yoga', 'अधियोग', 'अधियोगः'),
-      present: adhiPresent, type: 'Raja',
-      description: t(locale, 'Benefics in 6th/7th/8th from Moon. Indicates prosperity, fame, and virtue.', 'चन्द्र से 6/7/8 में शुभ ग्रह। समृद्धि, यश और सद्गुण।'),
-      implications: adhiPresent ? t(locale, 'Trustworthy reputation leads to positions of responsibility. Victory over adversaries through virtue. Polite demeanor attracts support.', 'विश्वसनीय प्रतिष्ठा से उत्तरदायित्व के पद। सद्गुण से शत्रुओं पर विजय।') : '',
-      strength: adhiPresent ? (adhiP.length >= 3 ? 'Strong' : 'Moderate') : 'Weak',
-    });
-  }
-
-  // Merge extended yogas from new module
   const extendedYogas = detectExtendedYogas(planets, kundali.houses, kundali.ascendant.sign, locale);
-  // Avoid duplicates by checking names
-  const existingNames = new Set(yogas.map(y => y.name));
-  for (const ey of extendedYogas) {
-    if (!existingNames.has(ey.name)) {
-      yogas.push(ey);
-    }
-  }
-
+  for (const ey of extendedYogas) yogas.push(ey);
   return yogas;
 }
 

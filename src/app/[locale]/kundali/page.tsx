@@ -3726,7 +3726,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
   // Scan monthly from now for 15 years using actual ephemeris
   const weakTransits = useMemo(() => {
     if (weakSignIds.length === 0) return [];
-    const results: { planet: string; sign: string; period: string }[] = [];
+    const results: { planet: string; planetId: number; sign: string; period: string; startYear: number; startMonth: number; endYear: number; endMonth: number }[] = [];
     // Planet IDs: Saturn=6, Jupiter=4, Rahu=7
     const slowPlanets = [
       { id: 6, name: { en: 'Saturn', hi: 'शनि' } },
@@ -3740,6 +3740,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
     for (const planet of slowPlanets) {
       for (const weakId of weakSignIds) {
         let entryMonth: string | null = null;
+        let entryDate: Date | null = null;
         let lastInSign = false;
 
         for (let m = 0; m <= monthsToScan; m++) {
@@ -3752,29 +3753,33 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           const inWeakSign = sign === weakId;
 
           if (inWeakSign && !lastInSign) {
-            // Entry into weak sign
-            const d = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
-            entryMonth = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+            entryDate = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
+            entryMonth = entryDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
           }
-          if (!inWeakSign && lastInSign && entryMonth) {
-            // Exit from weak sign
-            const d = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
-            const exitMonth = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+          if (!inWeakSign && lastInSign && entryMonth && entryDate) {
+            const exitDate = new Date(now.getTime() + m * 30.44 * 24 * 3600000);
+            const exitMonth = exitDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
             results.push({
               planet: planet.name[locale === 'en' ? 'en' : 'hi'],
+              planetId: planet.id,
               sign: RASHIS[weakId - 1].name[locale],
               period: `${entryMonth} – ${exitMonth}`,
+              startYear: entryDate.getFullYear(), startMonth: entryDate.getMonth(),
+              endYear: exitDate.getFullYear(), endMonth: exitDate.getMonth(),
             });
-            entryMonth = null;
+            entryMonth = null; entryDate = null;
           }
           lastInSign = inWeakSign;
         }
-        // If still in sign at end of scan
-        if (lastInSign && entryMonth) {
+        if (lastInSign && entryMonth && entryDate) {
+          const scanEnd = new Date(now.getTime() + monthsToScan * 30.44 * 24 * 3600000);
           results.push({
             planet: planet.name[locale === 'en' ? 'en' : 'hi'],
+            planetId: planet.id,
             sign: RASHIS[weakId - 1].name[locale],
             period: `${entryMonth} – ...`,
+            startYear: entryDate.getFullYear(), startMonth: entryDate.getMonth(),
+            endYear: scanEnd.getFullYear(), endMonth: scanEnd.getMonth(),
           });
         }
       }
@@ -3845,17 +3850,77 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                     ? `Weak signs (<22 bindu): ${weakSigns.join(', ')} — transits through these signs may bring challenges.`
                     : `दुर्बल राशियाँ (<22 बिन्दु): ${weakSigns.join(', ')} — इन राशियों में गोचर चुनौतीपूर्ण हो सकते हैं।`}
                 </p>
-                {weakTransits.length > 0 && (
-                  <div className="mt-2 ml-2 space-y-1">
-                    <p className="text-text-secondary/65 text-xs">{locale === 'en' ? 'Upcoming challenging transits:' : 'आगामी चुनौतीपूर्ण गोचर:'}</p>
-                    {weakTransits.map((wt, idx) => (
-                      <p key={idx} className="text-red-400/50 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-400/40 shrink-0" />
-                        <span className="font-medium text-red-400/70">{wt.planet}</span> {locale === 'en' ? 'in' : ''} {wt.sign}: <span className="font-mono">{wt.period}</span>
-                      </p>
-                    ))}
-                  </div>
-                )}
+                {weakTransits.length > 0 && (() => {
+                  const minY = Math.min(...weakTransits.map(w => w.startYear));
+                  const maxY = Math.max(...weakTransits.map(w => w.endYear));
+                  const totalMonths = (maxY - minY) * 12 + 12;
+                  const toPercent = (y: number, m: number) => Math.max(0, Math.min(100, ((y - minY) * 12 + m) / totalMonths * 100));
+                  const PLANET_COLORS: Record<number, { bar: string; text: string; glow: string }> = {
+                    6: { bar: 'bg-indigo-500', text: 'text-indigo-300', glow: 'shadow-indigo-500/30' },
+                    4: { bar: 'bg-amber-500', text: 'text-amber-300', glow: 'shadow-amber-500/30' },
+                    7: { bar: 'bg-slate-400', text: 'text-slate-300', glow: 'shadow-slate-400/30' },
+                  };
+                  // Year tick marks
+                  const years: number[] = [];
+                  for (let y = minY; y <= maxY; y++) years.push(y);
+                  return (
+                    <div className="mt-4 rounded-xl bg-bg-secondary/60 border border-red-500/10 p-4">
+                      <p className="text-xs font-bold text-red-400/80 mb-3">{locale === 'en' ? 'Challenging Transit Timeline' : 'चुनौतीपूर्ण गोचर समयरेखा'}</p>
+                      {/* Year axis */}
+                      <div className="relative h-5 mb-1">
+                        {years.map(y => (
+                          <span key={y} className="absolute text-[9px] text-gray-600 font-mono -translate-x-1/2" style={{ left: `${toPercent(y, 0)}%` }}>
+                            {`'${String(y).slice(2)}`}
+                          </span>
+                        ))}
+                      </div>
+                      {/* Grid lines */}
+                      <div className="relative">
+                        <div className="absolute inset-0 pointer-events-none">
+                          {years.map(y => (
+                            <div key={y} className="absolute top-0 bottom-0 border-l border-white/5" style={{ left: `${toPercent(y, 0)}%` }} />
+                          ))}
+                        </div>
+                        {/* Transit bars */}
+                        <div className="space-y-1.5 relative">
+                          {weakTransits.map((wt, idx) => {
+                            const colors = PLANET_COLORS[wt.planetId] || PLANET_COLORS[6];
+                            const left = toPercent(wt.startYear, wt.startMonth);
+                            const right = toPercent(wt.endYear, wt.endMonth);
+                            const width = Math.max(right - left, 1.5);
+                            return (
+                              <div key={idx} className="flex items-center gap-0 h-6">
+                                {/* Planet label */}
+                                <div className="w-14 sm:w-16 shrink-0 text-right pr-2">
+                                  <span className={`text-[10px] font-bold ${colors.text}`}>{wt.planet}</span>
+                                </div>
+                                {/* Bar track */}
+                                <div className="flex-1 relative h-5 bg-bg-tertiary/20 rounded-md overflow-hidden">
+                                  <div
+                                    className={`absolute top-0.5 bottom-0.5 rounded-sm ${colors.bar} shadow-sm ${colors.glow} opacity-80`}
+                                    style={{ left: `${left}%`, width: `${width}%` }}
+                                  />
+                                  {/* Sign label inside bar */}
+                                  {width > 6 && (
+                                    <span className="absolute top-0 h-full flex items-center text-[9px] font-bold text-white/90 px-1" style={{ left: `${left}%` }}>
+                                      {wt.sign}
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      {/* Now marker */}
+                      <div className="relative h-3 mt-1">
+                        <div className="absolute top-0 w-px h-full bg-gold-primary" style={{ left: `${toPercent(new Date().getFullYear(), new Date().getMonth())}%` }}>
+                          <span className="absolute -top-0.5 -translate-x-1/2 text-[8px] text-gold-primary font-bold">NOW</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             )}
             <p className="text-text-secondary/70 text-xs">

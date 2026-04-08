@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     const kundali = generateKundali(body);
 
     return NextResponse.json(kundali, {
-      headers: { 'Cache-Control': 'private, max-age=3600' }, // Cache kundali result for 1 hour
+      headers: { 'Cache-Control': 'no-store' }, // Never cache — birth data varies per request
     });
   } catch {
     return NextResponse.json(

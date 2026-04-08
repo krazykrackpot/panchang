@@ -70,11 +70,13 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
         if (!newData.timezone && loc?.timezone) newData.timezone = loc.timezone;
 
         if (Object.keys(newData).length > 0) {
+          // ALWAYS resolve timezone from birth coordinates — never trust stored timezone.
+          // Stored timezone may be stale, wrong (browser tz instead of birth location tz), or corrupted.
+          delete newData.timezone;
           setFormData(prev => ({ ...prev, ...newData }));
-          // If we have lat/lng but no timezone, resolve from coordinates
           const lat = newData.lat || initialData?.lat;
           const lng = newData.lng || initialData?.lng;
-          if (!newData.timezone && lat && lng) {
+          if (lat && lng) {
             resolveTimezoneFromCoords(lat, lng).then(tz => {
               setFormData(prev => ({ ...prev, timezone: tz }));
             });
@@ -85,12 +87,10 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Timezone must come from birth location coordinates — never from browser
-    let tz = formData.timezone;
-    if (!tz && formData.lat && formData.lng) {
-      tz = await resolveTimezoneFromCoords(formData.lat, formData.lng);
-      setFormData(prev => ({ ...prev, timezone: tz }));
-    }
+    // ALWAYS resolve timezone from birth coordinates at submit time — never trust any stored value
+    if (!formData.lat || !formData.lng) return;
+    const tz = await resolveTimezoneFromCoords(formData.lat, formData.lng);
+    setFormData(prev => ({ ...prev, timezone: tz }));
     if (!tz) return;
     onSubmit(
       {

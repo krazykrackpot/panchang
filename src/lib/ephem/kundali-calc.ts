@@ -810,8 +810,8 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const yoginiDashas = calculateYoginiDasha(moonSidLong, birthDate);
   const ashtottariDashas = calculateAshtottariDasha(moonSidLong, birthDate);
 
-  // Shadbala (legacy simplified)
-  const shadbala = calculateShadbala(planets, siderealAsc);
+  // Shadbala placeholder — populated from fullShadbala below
+  let shadbala: ShadBala[] = [];
 
   // --- Extended calculations for new tabs ---
 
@@ -899,6 +899,22 @@ export function generateKundali(birthData: BirthData): KundaliData {
     latitude: birthData.lat,
     longitude: birthData.lng,
     timezone: tzOffset,
+  });
+
+  // Derive legacy shadbala format from fullShadbala (real data, not hardcoded)
+  shadbala = fullShadbala.map(s => {
+    const graha = GRAHAS[s.planetId];
+    return {
+      planet: s.planet,
+      planetName: graha?.name || { en: s.planet, hi: s.planet, sa: s.planet },
+      totalStrength: Math.round(s.strengthRatio * 50),
+      sthanaBala: Math.round(s.sthanaBala),
+      digBala: Math.round(s.digBala),
+      kalaBala: Math.round(s.kalaBala),
+      cheshtaBala: Math.round(s.cheshtaBala),
+      naisargikaBala: Math.round(s.naisargikaBala),
+      drikBala: Math.round(s.drikBala),
+    };
   });
 
   // Bhavabala

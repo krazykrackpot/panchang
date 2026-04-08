@@ -136,6 +136,7 @@ export default function MatchingPage() {
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);
+  const [matchError, setMatchError] = useState<string | null>(null);
   const matchResultRef = useRef<HTMLDivElement>(null);
 
   const handleMatch = useCallback(async () => {
@@ -154,11 +155,12 @@ export default function MatchingPage() {
           girl: { moonNakshatra: gNak, moonRashi: gRashi },
         }),
       });
-      if (!res.ok) { setResult(null); setLoading(false); return; }
+      if (!res.ok) { setMatchError(locale === 'en' ? 'Matching failed. Please try again.' : 'मिलान विफल। कृपया पुनः प्रयास करें।'); setResult(null); setLoading(false); return; }
       const data = await res.json();
-      if (data.error) { setResult(null); setLoading(false); return; }
+      if (data.error) { setMatchError(data.error); setResult(null); setLoading(false); return; }
+      setMatchError(null);
       setResult(data);
-    } catch { setResult(null); }
+    } catch { setMatchError(locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); }
     setLoading(false);
   }, [mode, boyComputed, girlComputed, boyNakshatra, boyRashi, girlNakshatra, girlRashi]);
 
@@ -367,6 +369,13 @@ export default function MatchingPage() {
           {loading ? <Loader2 className="w-6 h-6 animate-spin inline" /> : t('matchNow')}
         </button>
       </div>
+
+      {/* Error */}
+      {matchError && !loading && (
+        <div className="rounded-xl p-4 border border-red-500/20 bg-red-500/5 text-center">
+          <p className="text-red-400 text-sm">{matchError}</p>
+        </div>
+      )}
 
       {/* Results */}
       <AnimatePresence>

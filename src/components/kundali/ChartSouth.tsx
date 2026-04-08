@@ -13,6 +13,8 @@ interface ChartSouthProps {
   size?: number;
   selectedHouse?: number | null;
   onSelectHouse?: (house: number) => void;
+  retrogradeIds?: Set<number>;
+  combustIds?: Set<number>;
 }
 
 // South Indian chart: 4x4 outer ring with fixed sign positions
@@ -48,7 +50,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse }: ChartSouthProps) {
+export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds }: ChartSouthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
   const cell = 110;
@@ -196,7 +198,9 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 const rowIdx = Math.floor(pIdx / cols);
                 const startX = px + 12 + colIdx * (cell / 2 - 4);
                 const startY = py + 38 + rowIdx * 20;
-                const abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+                let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+                if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
+                if (combustIds?.has(planetId)) abbr += '☄';
 
                 return (
                   <g key={planetId}>

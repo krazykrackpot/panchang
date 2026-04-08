@@ -295,6 +295,10 @@ export default function KundaliPage() {
   // Tippanni insights for planet commentary in Planets & Graha tabs
   const tip = useMemo(() => kundali ? generateTippanni(kundali, locale) : null, [kundali, locale]);
 
+  // Retrograde and combust planet sets for chart rendering
+  const retrogradeIds = useMemo(() => kundali ? new Set(kundali.planets.filter(p => p.isRetrograde).map(p => p.planet.id)) : new Set<number>(), [kundali]);
+  const combustIds = useMemo(() => kundali ? new Set(kundali.planets.filter(p => p.isCombust).map(p => p.planet.id)) : new Set<number>(), [kundali]);
+
   // ── Sphuta transit windows ────────────────────────────────────────────────
   // Estimates when key planets will next cross each sensitive sphuta degree.
   // Uses average daily motions + birth positions; retrograde adds ~4-6 week variance.
@@ -817,13 +821,13 @@ export default function KundaliPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                     {chartStyle === 'north' ? (
                       <>
-                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />}
+                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} />}
                         <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
                         {!showD1Companion && <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     ) : (
                       <>
-                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} />}
+                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} />}
                         <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
                         {!showD1Companion && <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
@@ -3606,9 +3610,9 @@ export default function KundaliPage() {
                       </h3>
                       <div className="flex justify-center">
                         {chartStyle === 'south' ? (
-                          <ChartSouth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} />
+                          <ChartSouth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
                         ) : (
-                          <ChartNorth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} />
+                          <ChartNorth data={kundali.chart} title={locale === 'en' ? 'D1 Rashi' : 'D1 राशि'} size={280} retrogradeIds={retrogradeIds} combustIds={combustIds} />
                         )}
                       </div>
                     </div>

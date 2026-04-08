@@ -13,6 +13,8 @@ interface ChartNorthProps {
   size?: number;
   selectedHouse?: number | null;
   onSelectHouse?: (house: number) => void;
+  retrogradeIds?: Set<number>;  // planet IDs that are retrograde
+  combustIds?: Set<number>;      // planet IDs that are combust
 }
 
 // North Indian diamond chart — 12 house regions (scaled to 500x500)
@@ -49,7 +51,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartNorth({ data, title, size = 500, selectedHouse, onSelectHouse }: ChartNorthProps) {
+export default function ChartNorth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds }: ChartNorthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
 
@@ -194,7 +196,9 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 const spacing = count <= 2 ? 36 : 28;
                 const offsetX = (col - (cols - 1) / 2) * spacing;
                 const offsetY = row * 22 - (count > cols ? 8 : 0);
-                const abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+                let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+                if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
+                if (combustIds?.has(planetId)) abbr += '☄';
 
                 return (
                   <g key={planetId}>

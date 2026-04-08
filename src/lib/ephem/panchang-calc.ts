@@ -350,12 +350,12 @@ function computeHora(sunriseUT: number, sunsetUT: number, weekday: number, tzOff
 // Primary offset is always used; secondary (if present) gives a second window.
 // Drik Panchang shows whichever window falls within the panchang day.
 const VARJYAM_GHATI: number[] = [
-  50, 24, 30, 40, 14,  // Ashwini(1)-Mrigashira(5)
-  21, 30, 20, 32, 30,  // Ardra(6)-Magha(10)
-  20, 18, 22, 20, 14,  // P.Phalguni(11)-Swati(15)
+  50, 24, 30, 40, 15,  // Ashwini(1)-Mrigashira(5) — Mrigashira(5):14→15
+  26, 17, 31, 32, 30,  // Ardra(6)-Magha(10) — Ardra(6):21→26, Punarvasu(7):30→17, Pushya(8):20→31
+  20, 24, 22, 20, 14,  // P.Phalguni(11)-Swati(15) — U.Phalguni(12): 18→24 Drik verified
   14, 10, 14, 20, 24,  // Vishakha(16)-P.Ashadha(20)
   20, 10, 10, 18, 16,  // U.Ashadha(21)-P.Bhadra(25)
-  24, 30,              // U.Bhadra(26)-Revati(27)
+  26, 30,              // U.Bhadra(26)-Revati(27) — U.Bhadra(26): 24→26 Drik verified
 ];
 // Secondary Varjyam offset for nakshatras with dual Thyajyam.
 // -1 means no second window. Verified against Drik: Mula has dual at 20+56.
@@ -375,8 +375,8 @@ const AMRIT_GHATI: number[] = [
   35, 54, 44, 56, 54,  // Ardra(6)-Magha(10)
   44, 42, 45, 44, 38,  // P.Phalguni(11)-Swati(15)
   38, 34, 38, 44, 48,  // Vishakha(16)-P.Ashadha(20)
-  44, 34, 34, 42, 40,  // U.Ashadha(21)-P.Bhadra(25)
-  48, 54,              // U.Bhadra(26)-Revati(27)
+  38, 34, 43, 42, 40,  // U.Ashadha(21)-P.Bhadra(25) — U.Ash(21):44→38, Dhanishtha(23):34→43 Drik verified
+  49, 54,              // U.Bhadra(26)-Revati(27) — U.Bhadra(26):48→49 Drik verified
 ];
 
 interface TimeWindow { start: string; end: string }

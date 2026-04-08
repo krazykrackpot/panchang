@@ -842,12 +842,10 @@ export function computePanchang(input: PanchangInput): PanchangData {
   //
   // The segment number is 1-based: segment N occupies
   //   [sunrise + (N-1) * 1/8 day, sunrise + N * 1/8 day].
-  //
-  // HISTORICAL BUG (now fixed): the array previously had Wed=2, Thu=1, Fri=7
-  // i.e., [5,4,3,2,1,7,6] — swapping the Wed/Thu/Fri values against the
-  // classical source. This caused Yamaganda to be shown at the wrong time
-  // every Wednesday, Thursday, and Friday.
-  const yamaOrder = [5, 4, 3, 7, 2, 1, 6]; // Sun Mon Tue Wed Thu Fri Sat
+  // Verified against Drik Panchang output (Apr 8 2026 Wed = segment 2).
+  // The descending 5→4→3→2→1 pattern from Sunday to Thursday is standard.
+  // Friday/Saturday get segments 7 and 6 respectively.
+  const yamaOrder = [5, 4, 3, 2, 1, 7, 6]; // Sun Mon Tue Wed Thu Fri Sat
   const yamaDuration = (sunsetUT - sunriseUT) / 8;
   const yamaSegment = yamaOrder[weekday] - 1;
   const yamaganda = {

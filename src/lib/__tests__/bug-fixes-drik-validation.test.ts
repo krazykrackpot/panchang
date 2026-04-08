@@ -196,75 +196,49 @@ describe('Bug 3 — Purnimant/Amant masa (variable names were swapped)', () => {
 // The segment number (1-7) indicates which 1/8-of-daylight slot is inauspicious.
 // Segment 1 = starts at sunrise; segment 7 = last slot before sunset.
 //
-// Verification (Dharma Sindhu):
-//   Friday  = segment 1 (starts at sunrise)
-//   Thursday = segment 2 (starts at sunrise + 1/8 day)
-//   Wednesday = segment 7 (starts at sunrise + 6/8 day, i.e., last slot)
+// Verification (Drik Panchang cross-check Apr 8 2026 Corseaux):
+//   Wednesday = segment 2 (08:30-10:10, verified against Drik)
+//   Descending pattern: Sun=5, Mon=4, Tue=3, Wed=2, Thu=1, Fri=7, Sat=6
 // ───────────────────────────────────────────────────────────────────────────
-describe('Bug 4 — Yamaganda order (Dharma Sindhu)', () => {
-  it('Fixed array [5,4,3,7,2,1,6] contains all segment numbers 1–7 (no duplicates)', () => {
-    // The corrected Dharma Sindhu order for Sun–Sat
-    const YAMA_ORDER_FIXED = [5, 4, 3, 7, 2, 1, 6];
-    const OLD_WRONG_ORDER  = [5, 4, 3, 2, 1, 7, 6];
-
-    // Fixed: all 7 unique values 1–7
-    const fixedSet = new Set(YAMA_ORDER_FIXED);
-    expect(fixedSet.size).toBe(7);
-    for (let i = 1; i <= 7; i++) expect(fixedSet.has(i)).toBe(true);
-
-    // Old order also has unique values but different entries — confirm they differ
-    expect(YAMA_ORDER_FIXED[3]).toBe(7); // Wednesday = segment 7 (correct)
-    expect(OLD_WRONG_ORDER[3]).toBe(2);  // Wednesday = segment 2 (wrong)
-    expect(YAMA_ORDER_FIXED[4]).toBe(2); // Thursday = segment 2 (correct)
-    expect(OLD_WRONG_ORDER[4]).toBe(1);  // Thursday = segment 1 (wrong)
-    expect(YAMA_ORDER_FIXED[5]).toBe(1); // Friday = segment 1 (correct)
-    expect(OLD_WRONG_ORDER[5]).toBe(7);  // Friday = segment 7 (wrong)
+describe('Bug 4 — Yamaganda order (Drik Panchang verified)', () => {
+  it('Array [5,4,3,2,1,7,6] contains all segment numbers 1–7 (no duplicates)', () => {
+    const YAMA_ORDER = [5, 4, 3, 2, 1, 7, 6];
+    const set = new Set(YAMA_ORDER);
+    expect(set.size).toBe(7);
+    for (let i = 1; i <= 7; i++) expect(set.has(i)).toBe(true);
+    // Verify specific values verified against Drik
+    expect(YAMA_ORDER[3]).toBe(2); // Wednesday = segment 2 (Drik verified)
+    expect(YAMA_ORDER[4]).toBe(1); // Thursday = segment 1
   });
 
-  it('Friday Apr 3 2026: Yamaganda starts at/near sunrise (segment 1)', () => {
-    // Friday's Yamaganda is segment 1 = the FIRST 1/8 slot of daylight.
-    // It should start at or very close to sunrise and end at sunrise + 1/8 day.
-    // Delhi sunrise on Apr 3 is approx 06:10 IST. Day length ~12h30m.
-    // Segment duration = ~12h30m / 8 ≈ 93.75 min.
-    // Yamaganda should start around 06:10 and end around 07:43.
-    const p = panchang('2026-04-03');
-    const [yamaHour, yamaMin] = p.yamaganda.start.split(':').map(Number);
-    const [sunriseHour, sunriseMin] = p.sunrise.split(':').map(Number);
-    const yamaStartMinTotal    = yamaHour * 60 + yamaMin;
-    const sunriseMinTotal      = sunriseHour * 60 + sunriseMin;
-
-    // Yamaganda should start within 5 minutes of sunrise for Friday (segment 1)
-    expect(Math.abs(yamaStartMinTotal - sunriseMinTotal)).toBeLessThan(5);
-  });
-
-  it('Thursday Apr 9 2026: Yamaganda starts ~1 segment after sunrise (segment 2)', () => {
-    // Thursday's Yamaganda is segment 2: starts at sunrise + 1/8 of daylight duration.
-    // Approx 6:12 sunrise; 1/8 of ~12h = 90 min → Yamaganda ~07:42.
-    const p = panchang('2026-04-09');
-    const [yamaHour, yamaMin] = p.yamaganda.start.split(':').map(Number);
-    const [sunriseHour, sunriseMin] = p.sunrise.split(':').map(Number);
-    const yamaStartMinTotal = yamaHour * 60 + yamaMin;
-    const sunriseMinTotal   = sunriseHour * 60 + sunriseMin;
-    const offsetMin = yamaStartMinTotal - sunriseMinTotal;
-
-    // Should be roughly 1 segment (80–105 min) after sunrise, not at sunrise (which was the old bug)
-    expect(offsetMin).toBeGreaterThan(75);
-    expect(offsetMin).toBeLessThan(110);
-  });
-
-  it('Wednesday Apr 8 2026: Yamaganda is the LAST segment (segment 7, near sunset)', () => {
-    // Wednesday's Yamaganda is segment 7: starts at sunrise + 6/8 of daylight.
-    // Approx 6:11 sunrise, sunset ~18:49 → daylight ~12h38m → 6 segments = 474 min.
-    // Yamaganda start ≈ 6:11 + 474 min ≈ 14:05.
+  it('Wednesday Apr 8 2026 Delhi: Yamaganda ~1 segment after sunrise (segment 2)', () => {
+    // Drik Panchang shows Wednesday Yamaganda at 08:30-10:10 for Corseaux
+    // = segment 2 (starts at sunrise + 1/8 of daylight). Delhi should be similar.
     const p = panchang('2026-04-08');
     const [yamaHour, yamaMin] = p.yamaganda.start.split(':').map(Number);
     const [sunriseHour, sunriseMin] = p.sunrise.split(':').map(Number);
-    const yamaStartMinTotal = yamaHour * 60 + yamaMin;
-    const sunriseMinTotal   = sunriseHour * 60 + sunriseMin;
-    const offsetMin = yamaStartMinTotal - sunriseMinTotal;
+    const offsetMin = (yamaHour * 60 + yamaMin) - (sunriseHour * 60 + sunriseMin);
+    // Segment 2 starts at sunrise + 1 segment (~75-110 min)
+    expect(offsetMin).toBeGreaterThan(70);
+    expect(offsetMin).toBeLessThan(115);
+  });
 
-    // Should be ~6 segments after sunrise (450–570 min), NOT ~0 or ~1 segment
-    expect(offsetMin).toBeGreaterThan(430);
-    expect(offsetMin).toBeLessThanOrEqual(570);
+  it('Thursday Apr 9 2026 Delhi: Yamaganda at sunrise (segment 1)', () => {
+    // Thursday = segment 1 = starts at sunrise
+    const p = panchang('2026-04-09');
+    const [yamaHour, yamaMin] = p.yamaganda.start.split(':').map(Number);
+    const [sunriseHour, sunriseMin] = p.sunrise.split(':').map(Number);
+    expect(Math.abs((yamaHour * 60 + yamaMin) - (sunriseHour * 60 + sunriseMin))).toBeLessThan(5);
+  });
+
+  it('Sunday Apr 5 2026 Delhi: Yamaganda at segment 5 (mid-afternoon)', () => {
+    // Sunday = segment 5 = starts at sunrise + 4/8 daylight (midday)
+    const p = panchang('2026-04-05');
+    const [yamaHour, yamaMin] = p.yamaganda.start.split(':').map(Number);
+    const [sunriseHour, sunriseMin] = p.sunrise.split(':').map(Number);
+    const offsetMin = (yamaHour * 60 + yamaMin) - (sunriseHour * 60 + sunriseMin);
+    // 4 segments from sunrise (~300-400 min)
+    expect(offsetMin).toBeGreaterThan(280);
+    expect(offsetMin).toBeLessThan(420);
   });
 });

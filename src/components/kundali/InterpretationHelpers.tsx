@@ -1237,12 +1237,14 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
         <div className="space-y-2">
           {sorted.map((bh, i) => {
             const sig = HOUSE_SIGNIFICATIONS[bh.bhava];
-            const isTop = i < 4;
+            const max = sorted[0].total;
+            const pct = max > 0 ? bh.total / max : 0;
+            const color = pct >= 0.7 ? 'emerald' : pct >= 0.4 ? 'amber' : 'red';
             return (
               <div key={bh.bhava} className="flex items-center gap-3 py-2 border-b border-white/5 last:border-0">
                 <span className="w-6 text-center text-xs text-gray-500 font-mono">{i + 1}</span>
-                <HouseBadge house={bh.bhava} locale={locale} color={isTop ? 'emerald' : 'gold'} />
-                <span className="w-16 text-xs text-gray-400 font-mono">{bh.total.toFixed(1)}</span>
+                <HouseBadge house={bh.bhava} locale={locale} color={color} />
+                <span className={`w-16 text-xs font-mono ${pct >= 0.7 ? 'text-emerald-400' : pct >= 0.4 ? 'text-amber-400' : 'text-red-400'}`}>{bh.total.toFixed(1)}</span>
                 <span className="text-xs text-gray-400 flex-1">{isHi ? sig?.hi : sig?.en}</span>
               </div>
             );

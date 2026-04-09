@@ -11,6 +11,7 @@ import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { generateSoftwareApplicationLD } from '@/lib/seo/structured-data';
 import '@/styles/globals.css';
 
 import InstallPrompt from '@/components/pwa/InstallPrompt';
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   for (const l of locales) {
     alternateLanguages[l] = `${BASE_URL}/${l}`;
   }
+  alternateLanguages['x-default'] = `${BASE_URL}/en`;
 
   return {
     title: {
@@ -110,18 +112,10 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased" suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
-        <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'WebApplication',
-          name: 'Dekho Panchang',
-          url: `${BASE_URL}/${locale}`,
-          description: 'Vedic astrology Panchang calculations, Kundali birth charts, and Jyotish tools with trilingual support.',
-          applicationCategory: 'LifestyleApplication',
-          operatingSystem: 'Web',
-          inLanguage: [locale],
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-          creator: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
-        })}</Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareApplicationLD()) }}
+        />
         <NextIntlClientProvider locale={locale} messages={messages}>
           {/* Skip to main content — accessibility */}
           <a

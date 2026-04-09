@@ -352,14 +352,14 @@ export default function PanchangPage() {
       <div className="mb-8">
         <div className="flex flex-wrap items-center justify-center gap-3">
           {/* Date */}
-          <div className="flex items-center gap-2 rounded-lg border border-gold-primary/12 bg-bg-secondary/30 px-3 py-2">
+          <div className="flex items-center gap-2 rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
             <label className="text-gold-dark text-xs whitespace-nowrap">{t('selectDate')}</label>
             <input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}
               className="bg-transparent border border-gold-primary/15 rounded-md px-2 py-1 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40 [color-scheme:dark]" />
           </div>
 
           {/* Location */}
-          <div className="flex items-center gap-2 rounded-lg border border-gold-primary/12 bg-bg-secondary/30 px-3 py-2">
+          <div className="flex items-center gap-2 rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
             <MapPin className="w-3.5 h-3.5 text-gold-primary shrink-0" />
             <span className="text-text-primary text-sm font-medium max-w-[180px] truncate">
               {detectingLocation ? (
@@ -376,7 +376,7 @@ export default function PanchangPage() {
         {/* Location search expand */}
         {showLocationSearch && (
           <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="flex justify-center mt-3">
-            <div className="rounded-lg border border-gold-primary/12 bg-bg-secondary/30 p-2 flex gap-2 w-full max-w-sm">
+            <div className="rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-2 flex gap-2 w-full max-w-sm">
               <input type="text" value={locationInput} onChange={(e) => setLocationInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleLocationSearch()}
                 placeholder={locale === 'en' ? 'Search city...' : 'शहर खोजें...'}
@@ -2390,7 +2390,7 @@ export default function PanchangPage() {
             const AUSPICIOUS_COLOR: Record<string, string> = {
               excellent: 'border-emerald-500/30 bg-emerald-500/8',
               good:      'border-gold-primary/25 bg-gold-primary/5',
-              neutral:   'border-gold-primary/10 bg-bg-secondary/30',
+              neutral:   'border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
               avoid:     'border-red-500/25 bg-red-500/8',
             };
             const AUSPICIOUS_BADGE: Record<string, string> = {

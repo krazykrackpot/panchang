@@ -1463,8 +1463,25 @@ export default function KundaliPage() {
                     const end = new Date(d.endDate);
                     const isCurrent = now >= start && now <= end;
                     const isPast = now > end;
+                    const houseFromLagna = ((d.sign - lagnaSign + 12) % 12) + 1;
+                    const HOUSE_THEMES: Record<number, { en: string; hi: string }> = {
+                      1: { en: 'Self, body, health, personality', hi: 'आत्म, शरीर, स्वास्थ्य' },
+                      2: { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी' },
+                      3: { en: 'Courage, siblings, short travel', hi: 'साहस, भाई-बहन, लघु यात्रा' },
+                      4: { en: 'Home, mother, property, comfort', hi: 'घर, माता, सम्पत्ति, सुख' },
+                      5: { en: 'Children, education, creativity', hi: 'सन्तान, शिक्षा, रचनात्मकता' },
+                      6: { en: 'Enemies, health issues, service', hi: 'शत्रु, स्वास्थ्य, सेवा' },
+                      7: { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
+                      8: { en: 'Transformation, longevity, occult', hi: 'परिवर्तन, दीर्घायु, गुप्त विद्या' },
+                      9: { en: 'Fortune, father, dharma, guru', hi: 'भाग्य, पिता, धर्म, गुरु' },
+                      10: { en: 'Career, status, authority', hi: 'कैरियर, प्रतिष्ठा, अधिकार' },
+                      11: { en: 'Gains, income, friends, wishes', hi: 'लाभ, आय, मित्र, इच्छाएँ' },
+                      12: { en: 'Expenses, liberation, foreign', hi: 'व्यय, मोक्ष, विदेश' },
+                    };
                     const theme = getNarayanaHouseTheme(d.sign);
-                    const signProfile = dashaSystem === 'narayana' ? NARAYANA_SIGN_PROFILES[d.sign] : null;
+                    // Sign profiles apply to ALL sign-based dashas, not just Narayana
+                    const signProfile = NARAYANA_SIGN_PROFILES[d.sign] || null;
+                    const houseTheme = HOUSE_THEMES[houseFromLagna];
                     return (
                       <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}
                         className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
@@ -1472,13 +1489,16 @@ export default function KundaliPage() {
                           <div className="flex items-center gap-3">
                             <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                             <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{d.signName[locale as 'en' | 'hi' | 'sa']}</span>
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded ${isCurrent ? 'bg-gold-primary/15 text-gold-light' : 'bg-bg-secondary/30 text-text-tertiary'}`}>
+                              H{houseFromLagna} — {houseTheme?.[locale === 'en' ? 'en' : 'hi'] || ''}
+                            </span>
                             <span className="text-text-tertiary text-xs">{d.years} {locale === 'en' ? 'yrs' : 'वर्ष'}</span>
                           </div>
                           <span className="text-text-secondary text-xs font-mono">{d.startDate} → {d.endDate}</span>
                         </div>
-                        {signProfile && (
+                        {signProfile && (isCurrent || !isPast) && (
                           <div className="mt-2 pt-2 border-t border-gold-primary/10">
-                            <p className={`text-xs leading-relaxed ${isCurrent ? 'text-text-secondary/80' : 'text-text-secondary/65'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                            <p className={`text-xs leading-relaxed ${isCurrent ? 'text-text-secondary/80' : 'text-text-secondary/50'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                               {signProfile[locale === 'en' ? 'en' : 'hi']}
                             </p>
                           </div>

@@ -5,7 +5,7 @@
  * to generate the complete festival calendar. Replaces the scanning-based approach.
  */
 
-import { dateToJD, approximateSunrise, approximateSunset, formatTime, normalizeDeg, toSidereal } from '@/lib/ephem/astronomical';
+import { dateToJD, approximateSunrise, approximateSunset, formatTime, normalizeDeg, toSidereal, sunLongitude } from '@/lib/ephem/astronomical';
 import { calculateMoonriseUT } from '@/lib/ephem/panchang-calc';
 
 /**
@@ -450,6 +450,33 @@ export function generateFestivalCalendarV2(
       }
 
       festivals.push(entry);
+    }
+  }
+
+  // ── 1b. Solar festivals (Sankranti — Sun entering a sign) ───
+  // Makar Sankranti: Sun enters Capricorn (sidereal longitude crosses 270°)
+  {
+    // Scan January for the date when Sun's sidereal longitude crosses 270° (Capricorn)
+    for (let d = 10; d <= 18; d++) {
+      const jd = dateToJD(year, 1, d, 12 - (timezone === 'Asia/Kolkata' ? 5.5 : 0));
+      const sunSid = toSidereal(sunLongitude(jd), jd);
+      const jdNext = dateToJD(year, 1, d + 1, 12 - (timezone === 'Asia/Kolkata' ? 5.5 : 0));
+      const sunSidNext = toSidereal(sunLongitude(jdNext), jdNext);
+      // Check if Sun crosses 270° between day d and d+1
+      if (sunSid < 270 && sunSidNext >= 270) {
+        festivals.push({
+          name: { en: 'Makar Sankranti', hi: 'मकर संक्रान्ति', sa: 'मकरसंक्रान्तिः' },
+          date: `${year}-01-${String(d).padStart(2, '0')}`, // Day Sun crosses into Capricorn
+          tithi: 'Makar Sankranti (Solar)',
+          masa: { purnimanta: 'Pausha', amanta: 'Pausha', isAdhika: false },
+          paksha: 'shukla', // Solar festival — paksha not applicable, using placeholder
+          type: 'major',
+          category: 'festival',
+          description: { en: 'Sun enters Capricorn — marks the northward journey (Uttarayana). Sacred bathing, charity, and sesame offerings.', hi: 'सूर्य मकर राशि में प्रवेश — उत्तरायण का आरम्भ। पवित्र स्नान, दान और तिल।', sa: 'सूर्यः मकरराशिं प्रविशति — उत्तरायणारम्भः।' },
+          slug: 'makar-sankranti',
+        });
+        break;
+      }
     }
   }
 

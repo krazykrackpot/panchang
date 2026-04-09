@@ -138,9 +138,10 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '23-3', phase: 10, topic: 'Prediction',      title: { en: 'Chakra Systems',            hi: 'चक्र प्रणालियाँ' } },
   { id: '23-4', phase: 10, topic: 'Prediction',      title: { en: 'Sphutas & Sensitive Points', hi: 'स्फुट एवं संवेदनशील बिन्दु' } },
   { id: '23-5', phase: 10, topic: 'Prediction',      title: { en: 'Prashna Yogas',             hi: 'प्रश्न योग' } },
+  { id: '24-1', phase: 10, topic: 'Prediction',      title: { en: 'Ganda Mula Nakshatras',    hi: 'गण्ड मूल नक्षत्र' } },
 ];
 
-export const TOTAL_MODULES = MODULE_SEQUENCE.length; // 88 (55 original + 33 added)
+export const TOTAL_MODULES = MODULE_SEQUENCE.length; // 89
 
 // ── Phase metadata ────────────────────────────────────────────────────────────
 

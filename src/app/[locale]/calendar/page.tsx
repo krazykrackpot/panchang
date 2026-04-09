@@ -391,20 +391,20 @@ export default function CalendarPage() {
       <div className="flex justify-center gap-1 mb-4">
         <button
           onClick={() => { setViewMode('western'); setSelectedMonth(null); }}
-          className={`px-4 py-2 rounded-l-lg text-xs font-bold transition-all border ${
+          className={`px-4 py-2 rounded-l-xl text-xs font-bold transition-all border ${
             viewMode === 'western'
-              ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40'
-              : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
           {locale === 'en' ? 'Western Months' : 'अंग्रेज़ी महीने'}
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
-          className={`px-4 py-2 rounded-r-lg text-xs font-bold transition-all border ${
+          className={`px-4 py-2 rounded-r-xl text-xs font-bold transition-all border ${
             viewMode === 'lunar'
-              ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40'
-              : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
           {locale === 'en' ? 'Hindu Lunar Months' : 'हिन्दू चान्द्र मास'}
@@ -415,8 +415,10 @@ export default function CalendarPage() {
       <div className="flex flex-wrap justify-center gap-2 mb-6">
         <button
           onClick={() => setSelectedMonth(null)}
-          className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
-            selectedMonth === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+          className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+            selectedMonth === null
+              ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+              : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
           {locale === 'en' ? 'All' : 'सभी'}
@@ -426,8 +428,10 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
-                selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+                selectedMonth === i
+                  ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+                  : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
               {locale === 'en' ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
@@ -438,8 +442,10 @@ export default function CalendarPage() {
             <button
               key={i}
               onClick={() => setSelectedMonth(selectedMonth === i ? null : i)}
-              className={`px-3 py-2 rounded-lg text-xs font-bold transition-all ${
-                selectedMonth === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+              className={`px-3 py-2 rounded-xl text-xs font-bold transition-all border ${
+                selectedMonth === i
+                  ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+                  : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
               {locale === 'en' ? hm.en : hm.hi}
@@ -454,8 +460,10 @@ export default function CalendarPage() {
           <button
             key={f.key}
             onClick={() => setFilter(f.key)}
-            className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-              filter === f.key ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
+            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+              filter === f.key
+                ? 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5'
+                : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
             }`}
           >
             {locale === 'en' ? f.label : f.labelHi}

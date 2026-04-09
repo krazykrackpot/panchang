@@ -246,12 +246,13 @@ export default function FestivalDetailPage() {
                 <h1
                   className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gold-gradient leading-tight mb-3"
                   style={headingFont}
+                  suppressHydrationWarning
                 >
                   {l(displayName, locale)}
                 </h1>
                 {/* Show specific date for date-parameterized pages (e.g., ekadashi?date=2026-04-13) */}
                 {(dateParam || ekadashiParana?.date) && (
-                  <p className="text-xl sm:text-2xl font-black text-gold-light mb-3" style={headingFont}>
+                  <p className="text-xl sm:text-2xl font-black text-gold-light mb-3" style={headingFont} suppressHydrationWarning>
                     {(() => {
                       const d = dateParam || ekadashiParana?.date || '';
                       const [y, m, day] = d.split('-').map(Number);

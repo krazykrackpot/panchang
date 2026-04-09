@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_12_3', phase: 3, topic: 'Transits', moduleNumber: '12.3',
@@ -287,6 +288,12 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'उदाहरण — विवाह समय' : 'Worked Example — Marriage Timing'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 1: [1], 7: [4, 6] }}
+          title={isHi ? 'मेष लग्न — चन्द्र प्रथम में, बृहस्पति और शनि सप्तम में' : 'Aries Lagna — Moon in 1st, Jupiter & Saturn aspecting 7th'}
+          highlight={[1, 7]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <>एक जातक पर विचार करें जिसका चन्द्रमा मेष में है। विवाह के लिए हमें गुरु और शनि दोनों को 7वें भाव (तुला) को प्रभावित करने की आवश्यकता है। मिथुन में गुरु अपनी 5वीं दृष्टि से तुला को देखता है। कुम्भ में शनि अपनी 10वीं दृष्टि (शनि की विशेष दृष्टि) से तुला को देखता है। चूँकि दोनों ग्रह एक साथ 7वें भाव को प्रभावित करते हैं, यह काल विवाह की सम्भावना खोलता है — बशर्ते दशा भी समर्थन करे।</> : <>Consider a native with Moon in Aries (Mesha). For marriage, we need Jupiter and Saturn to both influence the 7th house (Libra/Tula) from Moon. Jupiter in Gemini (Mithuna) aspects Libra with its 5th aspect. Saturn in Aquarius (Kumbha) aspects Libra with its 10th aspect (Saturn&apos;s special Vishesh Drishti). Since both planets simultaneously influence the 7th house, this period opens a marriage window — provided the dasha also supports it.</>}</p>
       </section>
 

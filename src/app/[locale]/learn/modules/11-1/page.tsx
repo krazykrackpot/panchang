@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_11_1', phase: 3, topic: 'Dashas', moduleNumber: '11.1',
@@ -482,6 +483,11 @@ function Page2() {
       {/* Worked Example Card */}
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: दिल्ली जन्म कुण्डली' : 'Worked Example: Delhi Birth Chart'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title={isHi ? 'मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में' : 'Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th'}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           {isHi
             ? <><span className="text-gold-light font-medium">जन्म विवरण:</span> 15 जनवरी 1990, 10:30 IST, दिल्ली। चन्द्रमा 140.13° निरयन पर। नक्षत्र = floor(140.13 / 13.333) + 1 = floor(10.509) + 1 = 11 = पूर्वा फाल्गुनी। पू.फा. का स्वामी = शुक्र। अतः जन्म पर शुक्र महादशा चल रही है।</>

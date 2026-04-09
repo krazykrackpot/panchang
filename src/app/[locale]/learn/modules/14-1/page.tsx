@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_14_1', phase: 4, topic: 'Compatibility', moduleNumber: '14.1',
@@ -264,6 +265,11 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">Worked Example</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Case A — High Score, Troubled Marriage:</span> Groom&apos;s Moon in Rohini, Bride&apos;s Moon in Hasta. Kuta score: 30/36 (excellent). But: Groom has Saturn in 7th aspecting Venus, Mars in 8th (severe Mangal Dosha). Bride has 7th lord debilitated in 12th, Rahu-Ketu across 1-7 axis. Despite the stellar Kuta score, both charts independently show marital difficulty.
         </p>

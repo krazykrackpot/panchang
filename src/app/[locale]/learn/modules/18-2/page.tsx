@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_18_2', phase: 5, topic: 'Strength', moduleNumber: '18.2',
@@ -239,6 +240,12 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: विवाह हेतु सप्तम भाव' : 'Worked Example: 7th House for Marriage'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 12: [5], 5: [4], 3: [6] }}
+          title={isHi ? 'मेष लग्न — शुक्र मीन में (12वें), बृहस्पति 5वें में, शनि 3रे में' : 'Aries Lagna — Venus in Pisces (12th), Jupiter in 5th, Saturn in 3rd'}
+          highlight={[7, 12]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart: Aries Lagna, 7th lord Venus in Pisces (exalted), Jupiter aspects the 7th house, Saturn also aspects the 7th.</span>
         </p>

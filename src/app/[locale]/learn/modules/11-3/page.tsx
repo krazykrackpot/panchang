@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_11_3', phase: 3, topic: 'Dashas', moduleNumber: '11.3',
@@ -246,6 +247,12 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <ExampleChart
+          ascendant={2}
+          planets={{ 6: [6], 9: [5] }}
+          title={isHi ? 'वृषभ लग्न — शनि उच्च षष्ठ में, शुक्र नवम में' : 'Taurus Lagna — Saturn exalted in 6th, Venus in 9th'}
+          highlight={[6, 9]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Chart:</span> Taurus ascendant. Saturn (yogakaraka, ruling 9th and 10th) is exalted in Libra in the 6th house. Current period: Saturn Mahadasha / Venus Antardasha (Venus rules 1st and 6th, sits in 9th). Transit: Jupiter entering Taurus (1st house) in 2026, Saturn in Pisces (11th house) aspecting 1st, 5th, 8th.
         </p>

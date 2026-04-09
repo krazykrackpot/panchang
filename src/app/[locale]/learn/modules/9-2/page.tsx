@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_9_2', phase: 3, topic: 'Kundali', moduleNumber: '9.2',
@@ -222,6 +223,12 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Examples'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 1: [2], 2: [5], 9: [4] }}
+          title={isHi ? 'मेष लग्न — मंगल प्रथम में, शुक्र द्वितीय में, बृहस्पति नवम में' : 'Aries Lagna — Mars in 1st, Venus in 2nd, Jupiter in 9th'}
+          highlight={[1, 2, 9]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">मेष लग्न:</span> मंगल प्रथम (मेष) और अष्टम (वृश्चिक) दोनों का स्वामी है। शुक्र द्वितीय (वृषभ) और सप्तम (तुला) का स्वामी है। बृहस्पति नवम (धनु) और द्वादश (मीन) का स्वामी है। यहाँ बृहस्पति नवम स्वामी के रूप में सर्वाधिक शुभ ग्रह है — यदि यह लग्न पर दृष्टि डाले या केन्द्र में बैठे, तो पूरी कुण्डली उन्नत होती है।</> : <><span className="text-gold-light font-medium">Aries Lagna:</span> Mars owns both the 1st (Aries) and 8th (Scorpio). Venus owns the 2nd (Taurus) and 7th (Libra). Jupiter owns the 9th (Sagittarius) and 12th (Pisces). Here, Jupiter as 9th lord is the most benefic planet — if it aspects the Lagna or sits in a Kendra, it uplifts the entire chart.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <><span className="text-gold-light font-medium">कर्क लग्न:</span> चन्द्र प्रथम, सूर्य द्वितीय, मंगल पंचम और दशम का स्वामी है (अतः मंगल कर्क लग्न के लिए राजयोगकारक है क्योंकि यह त्रिकोण और केन्द्र दोनों का स्वामी है)। बृहस्पति षष्ठ और नवम का स्वामी है। शनि सप्तम और अष्टम का स्वामी है (मारक ग्रह — संभावित हानि)।</> : <><span className="text-gold-light font-medium">Cancer Lagna:</span> Moon rules the 1st, Sun rules the 2nd, Mars rules the 5th and 10th (hence Mars forms Raja Yoga for Cancer Lagna as it rules both a Trikona and a Kendra). Jupiter rules the 6th and 9th. Saturn rules the 7th and 8th (a Maraka planet — potential harm).</>}</p>
       </section>

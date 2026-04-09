@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_7_2', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.2',
@@ -209,6 +210,11 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 1:</span> Moon-Sun elongation = 179°. Karana index = floor(179 / 6) = 29. Mapping: index 0 = Kimstughna (fixed). Indices 1-56 cycle through the 7 Chara karanas. For index 29: (29 - 1) mod 7 = 0, mapping to Bava (the 1st Chara karana). Bava is auspicious — suitable for new ventures.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 2:</span> Elongation = 42°. Index = floor(42 / 6) = 7. (7 - 1) mod 7 = 6, mapping to Vishti (Bhadra, the 7th Chara karana). Check the tithi: 42° / 12° = Tithi 4 (Chaturthi). During Shukla Chaturthi, Bhadra is said to be in Patala — effects diminished. Nonetheless, caution is advised.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Example 3:</span> Elongation = 354°. Index = floor(354 / 6) = 59. Index 59 is slot 60 (0-based 59) = Nagava (fixed karana). Nagava appears only once per month, near the end of Krishna Amavasya. It is considered neutral to mildly inauspicious.</p>

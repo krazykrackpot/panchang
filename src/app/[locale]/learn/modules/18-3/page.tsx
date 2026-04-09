@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_18_3', phase: 5, topic: 'Strength', moduleNumber: '18.3',
@@ -240,6 +241,12 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण: शनि का BAV' : 'Worked Example: Saturn&apos;s BAV'}</h4>
+        <ExampleChart
+          ascendant={4}
+          planets={{ 7: [6], 1: [0, 3], 4: [1], 9: [4], 11: [5] }}
+          title={isHi ? 'कर्क लग्न — शनि मकर (7वें) में — BAV विश्लेषण' : 'Cancer Lagna — Saturn in Capricorn (7th) — BAV Analysis'}
+          highlight={[7]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">Saturn&apos;s Bhinna Ashtakavarga for a sample chart:</span>
         </p>

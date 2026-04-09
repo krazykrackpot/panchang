@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_9_4', phase: 3, topic: 'Kundali', moduleNumber: '9.4',
@@ -215,6 +216,12 @@ function Page3() {
         <h3 className="text-gold-light font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
           {isHi ? 'कार्यान्वित उदाहरण: वृश्चिक लग्न कुण्डली' : 'Worked Example: Scorpio Lagna Chart'}
         </h3>
+        <ExampleChart
+          ascendant={8}
+          planets={{ 10: [0], 5: [4], 7: [6], 6: [1], 3: [2] }}
+          title={isHi ? 'वृश्चिक लग्न — सूर्य दशम, बृहस्पति पंचम, शनि सप्तम, चन्द्र षष्ठ, मंगल तृतीय' : 'Scorpio Lagna — Sun 10th, Jupiter 5th, Saturn 7th, Moon 6th, Mars 3rd'}
+          highlight={[10, 5, 7, 3]}
+        />
         <p className="text-text-secondary text-sm leading-relaxed mb-3">{isHi ? <>हमारे 5-चरणीय ढाँचे का उपयोग करके एक पूर्ण कुण्डली पठन करते हैं। विचार करें: <strong className="text-gold-light">वृश्चिक लग्न</strong>, सूर्य सिंह (दशम भाव) में, बृहस्पति मीन (पंचम भाव) में, शनि वृषभ (सप्तम भाव) में, चन्द्र मेष (षष्ठ भाव) में, मंगल मकर (तृतीय भाव) में।</> : <>Let us walk through a complete chart reading using our 5-step framework. Consider a chart with: <strong className="text-gold-light">Scorpio (Vrishchika) Lagna</strong>, Sun in Leo (10th house), Jupiter in Pisces (5th house), Saturn in Taurus (7th house), Moon in Aries (6th house), Mars in Capricorn (3rd house).</>}</p>
       </section>
 

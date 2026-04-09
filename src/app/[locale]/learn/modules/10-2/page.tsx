@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_10_2', phase: 3, topic: 'Vargas', moduleNumber: '10.2',
@@ -210,6 +211,11 @@ function Page1() {
             ))}
           </div>
         </div>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-sm leading-relaxed">
           <span className="text-gold-light font-medium">Worked Example:</span> A planet at 15° Aries. Aries is a fire sign, so Navamsha counting starts from Aries. Divide 15 by 3.333 (which is 3°20' in decimal): 15 ÷ 3.333 = 4.5. Take the ceiling: this is the 5th Navamsha. Counting from Aries: Aries(1), Taurus(2), Gemini(3), Cancer(4), <span className="text-gold-light font-medium">Leo(5)</span>. The planet is in Leo Navamsha — it takes on the inner qualities of Leo: pride, creativity, leadership from within.
         </p>

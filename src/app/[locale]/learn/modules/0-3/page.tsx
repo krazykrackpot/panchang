@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 // ─── Module Metadata ────────────────────────────────────────────────────────
 
@@ -250,6 +251,12 @@ function Page2() {
         </p>
 
         {/* Emerald fact card */}
+        <ExampleChart
+          ascendant={6}
+          planets={{ 6: [1], 1: [0], 4: [4] }}
+          title="Moon in Hasta (Virgo) — Birth Nakshatra Example"
+          highlight={[6]}
+        />
         <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
           <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">
             {isHi ? 'उदाहरण' : 'Worked Example'}

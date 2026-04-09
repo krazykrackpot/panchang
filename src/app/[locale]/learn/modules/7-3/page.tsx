@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_7_3', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.3',
@@ -209,6 +210,11 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 1 (Vara from JD):</span> JD = 2460400.5 (a specific date). floor(2460400.5 + 1.5) mod 7 = floor(2460402) mod 7 = 2460402 mod 7 = 0 (Monday). So this date is Somavara — a good day for travel and domestic matters.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 2 (Sarvartha Siddhi):</span> Date: Thursday, Nakshatra: Anuradha. Muhurta Chintamani lists Thursday + Anuradha as a Sarvartha Siddhi Yoga combination. This window is auspicious for virtually all activities — an &quot;all-purpose success&quot; window.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Example 3 (Hora selection):</span> It is Wednesday, and you need to sign a contract at 3 PM. Wednesday starts with Mercury hora at sunrise (~6 AM). Counting 9 horas forward (9 hours later = 3 PM) through the Chaldean sequence: Mercury → Moon → Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon. The 10th hour (3 PM) is Moon hora — favourable for agreements involving public-facing matters.</p>

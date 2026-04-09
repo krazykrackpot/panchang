@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_7_1', phase: 2, topic: 'Yoga Karana', moduleNumber: '7.1',
@@ -209,6 +210,11 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 1:</span> Sun sidereal = 348°, Moon sidereal = 167°. Sum = 515°. Mod 360 = 155°. Yoga index = floor(155 / 13.333) = 11. Yoga number = 11 + 1 = 12. The 12th yoga is Dhruva (&quot;fixed/steady&quot;) — auspicious for stable endeavors like purchasing property or planting trees.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 2:</span> Sun = 45°, Moon = 280°. Sum = 325°. Mod 360 = 325°. Index = floor(325 / 13.333) = 24. Yoga = 24 + 1 = 25 (Brahma). Brahma yoga is highly auspicious — ideal for learning, initiations, and spiritual practices.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Example 3:</span> Sun = 120°, Moon = 100°. Sum = 220°. Index = floor(220 / 13.333) = 16. Yoga = 17 (Vyatipata). This is inauspicious — avoid starting new ventures, journeys, or ceremonies during this yoga.</p>

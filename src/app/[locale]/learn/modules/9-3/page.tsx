@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_9_3', phase: 3, topic: 'Kundali', moduleNumber: '9.3',
@@ -188,6 +189,12 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: नीचभंग' : 'Worked Example: Neecha Bhanga'}</h4>
+        <ExampleChart
+          ascendant={4}
+          planets={{ 7: [4], 10: [6] }}
+          title={isHi ? 'कर्क लग्न — बृहस्पति नीच सप्तम में, शनि दशम में' : 'Cancer Lagna — Jupiter debilitated in 7th, Saturn in 10th'}
+          highlight={[7, 10]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> बृहस्पति मकर में नीच, सप्तम भाव में। मकर का स्वामी शनि है। यदि शनि केन्द्र में हो (मान लें, दशम भाव में मेष में), तो शर्त 1 पूरी होती है — नीचभंग होता है। प्रारम्भ में दुर्बल बृहस्पति शक्तिशाली बल में बदल जाता है। जातक को प्रारम्भ में संबंधों में चुनौतियाँ हो सकती हैं (नीच सप्तम भाव बृहस्पति), लेकिन अंततः प्रारम्भिक बाधाओं को पार करके एक असाधारण अर्थपूर्ण साझेदारी प्राप्त करता है।</> : <><span className="text-gold-light font-medium">Example:</span> Jupiter is debilitated in Capricorn in the 7th house. Capricorn is ruled by Saturn. If Saturn is placed in a Kendra (say, the 10th house in Aries), condition 1 is met — Neecha Bhanga occurs. The initially weak Jupiter transforms into a powerful force. The native may initially face relationship challenges (debilitated 7th house Jupiter), but ultimately achieves an exceptionally meaningful partnership after overcoming early obstacles.</>}</p>
       </section>
 

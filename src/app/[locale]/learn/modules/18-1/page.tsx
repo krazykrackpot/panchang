@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_18_1', phase: 5, topic: 'Strength', moduleNumber: '18.1',
@@ -250,6 +251,12 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यरत उदाहरण' : 'Worked Example'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [2], 2: [4] }}
+          title={isHi ? 'मेष लग्न — मंगल दशम में (मकर), बृहस्पति द्वितीय में' : 'Aries Lagna — Mars in 10th (Capricorn), Jupiter in 2nd'}
+          highlight={[10, 2]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
           <span className="text-gold-light font-medium">{isHi ? 'मंगल मकर में, दशम भाव, दिवस कुण्डली, मार्गी गति, बृहस्पति दृष्टि:' : 'Mars in Capricorn, 10th house, daytime chart, direct motion, Jupiter aspecting:'}</span>
         </p>

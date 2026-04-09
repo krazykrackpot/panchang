@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_15_3', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.3',
@@ -246,6 +247,12 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण: &quot;क्या मुझे नौकरी मिलेगी?&quot;' : 'Worked Example: &quot;Will I Get the Job?&quot;'}</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title={isHi ? 'मेष लग्न — सूर्य दशम में, चन्द्र चतुर्थ में, बृहस्पति नवम में' : 'Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th'}
+          highlight={[10, 4]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">
 
           {isHi

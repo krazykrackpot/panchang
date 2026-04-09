@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_18_4', phase: 5, topic: 'Strength', moduleNumber: '18.4',
@@ -218,6 +219,12 @@ function Page1() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">Worked Example</h4>
+        <ExampleChart
+          ascendant={5}
+          planets={{ 1: [4] }}
+          title="Leo Lagna — Jupiter at 15° Leo (Yuva Avastha)"
+          highlight={[1]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed">
           Jupiter at 15&deg; Leo (odd sign): degree falls in 12-18&deg; range = Yuva (prime). This Jupiter is at full strength by age-state. Now consider Jupiter at 15&deg; Virgo (even sign): in even signs the ranges reverse, so 12-18&deg; = Vriddha (old). Same degree, different sign type, completely different avastha. Always check whether the sign is odd or even first.
         </p>
@@ -265,6 +272,12 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">Worked Example</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [2] }}
+          title="Aries Lagna — Mars at 28° Capricorn (10th) — Deepta + Bala"
+          highlight={[10]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed">
           Mars at 28&deg; Capricorn: Mars is exalted in Capricorn, so its Deeptadi state is Deepta (brilliant). But check the Bala-Panchaka: Capricorn is an even sign, so 24-30&deg; = Bala (infant). This Mars is dignified but young — powerful in quality but immature in delivery. This is exactly why multiple avastha systems exist: they capture different dimensions of a planet&rsquo;s condition that a single system would miss.
         </p>
@@ -312,6 +325,12 @@ function Page3() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">Worked Example</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 4: [5, 4] }}
+          title="Aries Lagna — Venus + Jupiter in Cancer (4th) — Mudita"
+          highlight={[4]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed">
           Venus in Cancer (a friend&rsquo;s sign for Venus) conjoined with Jupiter: this is Mudita (delighted). Venus is happy, well-supported, and Jupiter&rsquo;s benefic presence amplifies the joy. If this Venus rules the 7th house, relationships come with genuine happiness and mutual growth. Now consider Venus in Cancer conjoined with Saturn instead, aspected by Mars — the friend&rsquo;s sign advantage is overshadowed, and Venus becomes Kshudhita (hungry): relationships feel starved of warmth despite potential.
         </p>

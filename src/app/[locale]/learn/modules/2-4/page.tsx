@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_2_4', phase: 1, topic: 'Grahas', moduleNumber: '2.4',
@@ -152,6 +153,12 @@ function Page2() {
         </p>
       </section>
 
+      <ExampleChart
+        ascendant={1}
+        planets={{ 2: [0, 3], 9: [2, 4] }}
+        title="Mercury Combust (near Sun) + Mars-Jupiter War"
+        highlight={[2, 9]}
+      />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-3 text-text-secondary text-xs leading-relaxed">

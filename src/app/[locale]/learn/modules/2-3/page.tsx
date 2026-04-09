@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_2_3', phase: 1, topic: 'Grahas', moduleNumber: '2.3',
@@ -145,6 +146,12 @@ function Page2() {
         </p>
       </section>
 
+      <ExampleChart
+        ascendant={1}
+        planets={{ 10: [4], 7: [2] }}
+        title="Jupiter Debilitated in Capricorn (10th) — Neecha Bhanga Check"
+        highlight={[10, 7]}
+      />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Example: Complete Dignity Assessment</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">

@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_9_1', phase: 3, topic: 'Kundali', moduleNumber: '9.1',
@@ -191,6 +192,13 @@ function Page3() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example: Chart Walkthrough'}</h4>
+        {/* Visual chart for the worked example */}
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [2], 2: [4] }}
+          title={isHi ? 'मेष लग्न — मंगल दशम में, बृहस्पति द्वितीय में' : 'Aries Lagna — Mars in 10th, Jupiter in 2nd'}
+          highlight={[10, 2]}
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> मेष लग्न वाली कुण्डली पर विचार करें। प्रथम भाव का स्वामी मंगल है। यदि मंगल दशम भाव (मकर — उसकी उच्च राशि) में बैठा है, तो यह एक शक्तिशाली संयोजन बनाता है: आत्म (प्रथम भाव स्वामी) कर्म और सार्वजनिक जीवन (दशम भाव) की ओर अधिकतम शक्ति (उच्च) के साथ निर्देशित। ऐसा व्यक्ति स्वाभाविक रूप से नेतृत्व और कैरियर उपलब्धि की ओर आकर्षित होता है।</> : <><span className="text-gold-light font-medium">Example:</span> Consider a chart with Aries (Mesha) Lagna. The 1st house lord is Mars. If Mars sits in the 10th house (Capricorn — its exaltation sign), this creates a powerful combination: the self (1st lord) directed toward career and public life (10th house) with maximum strength (exaltation). This person naturally gravitates toward leadership and career achievement.</>}</p>
         <p className="text-text-secondary text-xs leading-relaxed">{isHi ? <>अब बृहस्पति को द्वितीय भाव से मंगल पर दृष्टि डालते हुए जोड़ें (उसकी 9वीं दृष्टि दशम पर पड़ती है)। बृहस्पति नवम स्वामी (धनु) के रूप में दशम को देखता है — यह एक <strong className="text-gold-light">राजयोग</strong> (त्रिकोण स्वामी केन्द्र पर दृष्टि) है। कैरियर की सफलता अब धर्म, नैतिकता और ज्ञान से जुड़ जाती है।</> : <>Now add Jupiter aspecting Mars from the 2nd house (its 9th aspect hits the 10th). Jupiter as 9th lord (Sagittarius) aspects the 10th — this is a <strong className="text-gold-light">Raja Yoga</strong> (a Trikona lord aspecting a Kendra). The career success now comes with dharma, ethics, and wisdom attached to it.</>}</p>
       </section>

@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_4_2', phase: 1, topic: 'Ayanamsha', moduleNumber: '4.2',
@@ -175,6 +176,11 @@ function Page2() {
           The key principle: always be consistent within a single chart reading. Never mix Lahiri positions with KP sub-lord tables, or Raman positions with Lahiri-based dasha calculations. The system is self-consistent — the interpretive rules were developed and tested under a specific ayanamsha, and switching mid-analysis introduces errors.
         </p>
       </section>
+      <ExampleChart
+        ascendant={1}
+        planets={{ 1: [0], 4: [1], 10: [4] }}
+        title="Ayanamsha Comparison — Same Planets, Different Systems"
+      />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">

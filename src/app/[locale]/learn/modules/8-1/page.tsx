@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_8_1', phase: 2, topic: 'Muhurta', moduleNumber: '8.1',
@@ -212,6 +213,11 @@ function Page2() {
       </section>
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
+        <ExampleChart
+          ascendant={1}
+          planets={{ 10: [0], 4: [1], 9: [4] }}
+          title="Aries Lagna — Sun in 10th, Moon in 4th, Jupiter in 9th"
+        />
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 1 (Perfect window):</span> Thursday + Shukla Panchami (Nanda tithi, auspicious) + Pushya Nakshatra + Siddhi Yoga + Bava Karana. All five elements are favourable. Additionally, Thursday + Pushya = Sarvartha Siddhi Yoga. This is an exceptional muhurta for almost any positive activity — marriage, business, travel, education.</p>
         <p className="text-text-secondary text-xs leading-relaxed mb-2"><span className="text-gold-light font-medium">Example 2 (Vetoed window):</span> Wednesday + Shukla Saptami + Rohini Nakshatra + Dhruva Yoga + Vishti Karana. Four elements are excellent, but Vishti (Bhadra) karana is active. Despite the stellar combination, classical texts advise postponing the ceremony until Bhadra passes — typically 6 hours — and rechecking the Panchang at the new time.</p>
         <p className="text-text-secondary text-xs leading-relaxed"><span className="text-gold-light font-medium">Example 3 (Mixed assessment):</span> Tuesday + Krishna Ekadashi + Ashlesha Nakshatra + Parigha Yoga + Balava Karana. Tuesday is a malefic vara, Ashlesha is a Tikshna (sharp) nakshatra, and Parigha is an inauspicious yoga. However, Ekadashi is sacred (fasting day), and Balava karana is auspicious. This window is unsuitable for material ceremonies but excellent for spiritual practices, fasting, and meditation.</p>

@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_3_3', phase: 1, topic: 'Rashis', moduleNumber: '3.3',
@@ -251,6 +252,12 @@ function Page3() {
         <p className="text-text-secondary text-sm leading-relaxed mb-3">For example: If Aries is on the 5th house cusp, then Mars (lord of Aries) becomes the &quot;5th lord.&quot; The 5th house governs children, education, creativity, intelligence, and past-life merit. To predict 5th house outcomes, you analyze Mars: What sign is Mars in? (dignity) What house is Mars in? (area of life activated) What planets aspect Mars? (influences) What planets conjoin Mars? (modification) Is Mars retrograde, combust, or in planetary war? (condition)</p>
       </section>
 
+      <ExampleChart
+        ascendant={1}
+        planets={{ 12: [5], 7: [2] }}
+        title="Aries Lagna — Venus (7th Lord) Exalted in 12th"
+        highlight={[7, 12]}
+      />
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">Worked Examples</h4>
         <div className="space-y-4 text-text-secondary text-xs leading-relaxed">

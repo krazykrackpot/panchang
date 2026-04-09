@@ -11,7 +11,7 @@ import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
-import { generateSoftwareApplicationLD } from '@/lib/seo/structured-data';
+import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
 import '@/styles/globals.css';
 
 import InstallPrompt from '@/components/pwa/InstallPrompt';
@@ -112,6 +112,14 @@ export default async function LocaleLayout({
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased" suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateOrganizationLD()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebSiteLD()) }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(generateSoftwareApplicationLD()) }}

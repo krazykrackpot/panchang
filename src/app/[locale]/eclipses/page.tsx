@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 
 interface EclipseEvent {
@@ -66,6 +67,51 @@ export default function EclipsesPage() {
           <ChevronRight className="w-5 h-5 text-gold-primary" />
         </button>
       </div>
+
+      {/* Grahan Kaal & Sutak Explained */}
+      <InfoBlock
+        id="eclipse-grahan-kaal"
+        title={locale === 'en' ? 'What is Grahan Kaal & Sutak? What should you do during an eclipse?' : 'ग्रहण काल और सूतक क्या है? ग्रहण में क्या करें?'}
+        defaultOpen={false}
+      >
+        {locale === 'en' ? (
+          <div className="space-y-3">
+            <p><strong>Grahan Kaal</strong> is the duration of the eclipse itself — from the moment the shadow first touches the Sun/Moon to the moment it leaves. During this period, the luminaries (Sun or Moon) are considered weakened, which affects their significations in your life.</p>
+            <p><strong>Sutak Period</strong> is the preparatory restriction period <em>before</em> the eclipse:</p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-amber-300">Solar Eclipse (Surya Grahan)</strong> — Sutak begins <strong>12 hours</strong> before the eclipse. The Sun governs vitality, authority, and the father.</li>
+              <li><strong className="text-indigo-300">Lunar Eclipse (Chandra Grahan)</strong> — Sutak begins <strong>9 hours</strong> before the eclipse. The Moon governs mind, emotions, and the mother.</li>
+            </ul>
+            <p><strong>What to do during Sutak & Grahan Kaal:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li>Chant mantras (Maha Mrityunjaya, Gayatri, or your Ishta Devata mantra)</li>
+              <li>Meditate and practice pranayama</li>
+              <li>Take a bath after the eclipse ends (purification)</li>
+              <li>Donate food, clothes, or money after the eclipse</li>
+            </ul>
+            <p><strong>What to avoid:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li>Do not eat during Sutak (especially cooked food) — pre-cooked food with Tulsi/Kusha grass is acceptable</li>
+              <li>Do not start new ventures, sign contracts, or make major decisions</li>
+              <li>Pregnant women should stay indoors and avoid using sharp objects</li>
+              <li>Do not look at the eclipse directly (especially solar)</li>
+            </ul>
+            <p className="text-text-secondary/60 text-xs">Note: Sutak rules are observed when the eclipse is visible from your location. If not visible, Sutak is not applicable but meditation is still recommended.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p><strong>ग्रहण काल</strong> वह अवधि है जब ग्रहण चल रहा हो। इस दौरान सूर्य/चन्द्र कमज़ोर माने जाते हैं।</p>
+            <p><strong>सूतक काल</strong> ग्रहण से पहले की प्रतिबन्ध अवधि है:</p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-amber-300">सूर्य ग्रहण</strong> — सूतक ग्रहण से <strong>12 घंटे</strong> पहले शुरू।</li>
+              <li><strong className="text-indigo-300">चन्द्र ग्रहण</strong> — सूतक ग्रहण से <strong>9 घंटे</strong> पहले शुरू।</li>
+            </ul>
+            <p><strong>क्या करें:</strong> मन्त्र जाप (महामृत्युंजय, गायत्री), ध्यान, प्राणायाम, ग्रहण बाद स्नान और दान।</p>
+            <p><strong>क्या न करें:</strong> सूतक में भोजन (विशेषकर पका हुआ), नए कार्य, बड़े निर्णय, गर्भवती महिलाएं घर में रहें, ग्रहण सीधे न देखें।</p>
+            <p className="text-text-secondary/60 text-xs">नोट: सूतक नियम तभी लागू होते हैं जब ग्रहण आपके स्थान से दृश्य हो।</p>
+          </div>
+        )}
+      </InfoBlock>
 
       <GoldDivider />
 

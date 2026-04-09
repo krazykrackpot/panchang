@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale, Trilingual } from '@/types/panchang';
@@ -201,6 +202,38 @@ export default function TransitsPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>{t('subtitle')}</p>
       </motion.div>
+
+      {/* What are Transits? */}
+      <InfoBlock
+        id="transits-intro"
+        title={locale === 'en' ? 'What are Transits and why do they matter?' : 'गोचर क्या हैं और वे क्यों मायने रखते हैं?'}
+        defaultOpen={false}
+      >
+        {locale === 'en' ? (
+          <div className="space-y-3">
+            <p>A <strong>transit</strong> (Gochara) is the <em>current</em> movement of a planet through the zodiac. While your birth chart is fixed, transiting planets keep moving and activate different areas of your life as they pass through different signs.</p>
+            <p><strong>How transits affect you:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-amber-300">Jupiter transits</strong> (12 months per sign) — expansion, opportunities, and wisdom in the life area ruled by that sign. Jupiter in your 7th house from Moon = new relationships or marriage.</li>
+              <li><strong className="text-indigo-300">Saturn transits</strong> (2.5 years per sign) — discipline, hard work, and restructuring. Saturn in your 10th house from Moon = career pressure but also career-defining achievements.</li>
+              <li><strong className="text-slate-300">Rahu/Ketu transits</strong> (18 months per sign) — obsessions, unconventional paths, and karmic lessons. Rahu in your 1st house = identity transformation.</li>
+              <li><strong className="text-red-400">Mars transits</strong> (45 days per sign) — energy, conflict, and initiative. Mars in your 2nd house = financial drive but watch for impulsive spending.</li>
+            </ul>
+            <p><strong>Key rule:</strong> Transits are read from your <em>Moon sign</em> (Chandra Rashi), not your ascendant. The house a transiting planet occupies from your Moon determines which life area is activated.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p><strong>गोचर</strong> राशिचक्र में ग्रहों की <em>वर्तमान</em> गति है। आपकी जन्म कुण्डली स्थिर है, लेकिन गोचर ग्रह चलते रहते हैं और विभिन्न राशियों से गुजरते हुए जीवन के अलग-अलग क्षेत्रों को सक्रिय करते हैं।</p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-amber-300">बृहस्पति गोचर</strong> (प्रति राशि 12 माह) — विस्तार, अवसर और ज्ञान।</li>
+              <li><strong className="text-indigo-300">शनि गोचर</strong> (प्रति राशि 2.5 वर्ष) — अनुशासन, कठोर परिश्रम और पुनर्गठन।</li>
+              <li><strong className="text-slate-300">राहु/केतु गोचर</strong> (प्रति राशि 18 माह) — जुनून, अपरम्परागत मार्ग और कर्म पाठ।</li>
+              <li><strong className="text-red-400">मंगल गोचर</strong> (प्रति राशि 45 दिन) — ऊर्जा, संघर्ष और पहल।</li>
+            </ul>
+            <p><strong>मुख्य नियम:</strong> गोचर आपकी <em>चन्द्र राशि</em> से पढ़ा जाता है, लग्न से नहीं।</p>
+          </div>
+        )}
+      </InfoBlock>
 
       {/* Year selector */}
       <div className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-8">

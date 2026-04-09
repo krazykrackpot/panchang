@@ -64,14 +64,14 @@ const PLANET_THEMES: Record<number, { strong: string; weak: string; strongHi: st
   },
 };
 
-const PLANET_REMEDIES: Record<number, { en: string; hi: string }> = {
-  0: { en: 'Offer water to Sun at sunrise, recite Aditya Hridayam, wear Ruby', hi: 'सूर्य को जल अर्पित करें, आदित्य हृदयम का पाठ करें, माणिक्य धारण करें' },
-  1: { en: 'Wear Pearl, Monday fasting, recite Chandra mantra, serve mother', hi: 'मोती धारण करें, सोमवार व्रत, चन्द्र मंत्र, माता की सेवा' },
-  2: { en: 'Wear Red Coral, Hanuman Chalisa on Tuesday, donate jaggery', hi: 'मूंगा धारण करें, मंगलवार को हनुमान चालीसा, गुड़ दान करें' },
-  3: { en: 'Wear Emerald, recite Vishnu Sahasranama, feed green moong', hi: 'पन्ना धारण करें, विष्णु सहस्रनाम, हरी मूंग दान करें' },
-  4: { en: 'Wear Yellow Sapphire, Thursday fasting, recite Guru Stotra', hi: 'पुखराज धारण करें, गुरुवार व्रत, गुरु स्तोत्र का पाठ' },
-  5: { en: 'Wear Diamond/White Sapphire, Friday puja, recite Lakshmi Stotra', hi: 'हीरा/श्वेत पुखराज धारण करें, शुक्रवार पूजा, लक्ष्मी स्तोत्र' },
-  6: { en: 'Wear Blue Sapphire (with caution), Saturday charity, feed crows', hi: 'नीलम (सावधानी से) धारण करें, शनिवार दान, कौवों को खिलाएं' },
+const PLANET_REMEDIES: Record<number, { en: string; hi: string; whyEn: string; whyHi: string }> = {
+  0: { en: 'Offer water to Sun at sunrise, recite Aditya Hridayam, wear Ruby', hi: 'सूर्य को जल अर्पित करें, आदित्य हृदयम का पाठ करें, माणिक्य धारण करें', whyEn: 'Ruby resonates with Sun\'s red-spectrum energy, amplifying confidence and vitality. Sunrise water offering aligns you with Sun\'s daily cycle.', whyHi: 'माणिक्य सूर्य की लाल-स्पेक्ट्रम ऊर्जा से गुंजित होता है, आत्मविश्वास और जीवनशक्ति बढ़ाता है। सूर्योदय जलार्पण सूर्य के दैनिक चक्र से जोड़ता है।' },
+  1: { en: 'Wear Pearl, Monday fasting, recite Chandra mantra, serve mother', hi: 'मोती धारण करें, सोमवार व्रत, चन्द्र मंत्र, माता की सेवा', whyEn: 'Pearl forms from the ocean under moonlight, carrying lunar energy. Serving mother strengthens Moon\'s signification (nurturing, emotional security).', whyHi: 'मोती चन्द्र प्रकाश में समुद्र से बनता है, चन्द्र ऊर्जा धारण करता है। माता की सेवा चन्द्र के कारकत्व (पोषण, भावनात्मक सुरक्षा) को मजबूत करती है।' },
+  2: { en: 'Wear Red Coral, Hanuman Chalisa on Tuesday, donate jaggery', hi: 'मूंगा धारण करें, मंगलवार को हनुमान चालीसा, गुड़ दान करें', whyEn: 'Red Coral is formed from living organisms under the sea — it carries Mars\'s raw life-force energy. Hanuman embodies Mars\'s courage and protective strength.', whyHi: 'लाल मूंगा समुद्र में जीवित जीवों से बनता है — मंगल की कच्ची जीवन-शक्ति ऊर्जा। हनुमान मंगल के साहस और रक्षा बल के प्रतीक हैं।' },
+  3: { en: 'Wear Emerald, recite Vishnu Sahasranama, feed green moong', hi: 'पन्ना धारण करें, विष्णु सहस्रनाम, हरी मूंग दान करें', whyEn: 'Emerald\'s green frequency matches Mercury\'s wavelength, enhancing communication and intellect. Green offerings resonate with Mercury\'s color signature.', whyHi: 'पन्ने की हरी आवृत्ति बुध की तरंगदैर्घ्य से मेल खाती है, संचार और बुद्धि बढ़ाती है। हरे दान बुध के रंग से गुंजित होते हैं।' },
+  4: { en: 'Wear Yellow Sapphire, Thursday fasting, recite Guru Stotra', hi: 'पुखराज धारण करें, गुरुवार व्रत, गुरु स्तोत्र का पाठ', whyEn: 'Yellow Sapphire channels Jupiter\'s golden-yellow frequency — wisdom, expansion, and prosperity. Thursday (Guruvar) is Jupiter\'s day; fasting purifies its energy channel.', whyHi: 'पुखराज बृहस्पति की स्वर्ण-पीली आवृत्ति प्रसारित करता है — ज्ञान, विस्तार और समृद्धि। गुरुवार बृहस्पति का दिन; व्रत उसकी ऊर्जा शुद्ध करता है।' },
+  5: { en: 'Wear Diamond/White Sapphire, Friday puja, recite Lakshmi Stotra', hi: 'हीरा/श्वेत पुखराज धारण करें, शुक्रवार पूजा, लक्ष्मी स्तोत्र', whyEn: 'Diamond refracts all light frequencies, matching Venus\'s all-embracing aesthetic nature. Lakshmi is Venus\'s presiding deity (beauty, love, prosperity).', whyHi: 'हीरा सभी प्रकाश आवृत्तियों को अपवर्तित करता है, शुक्र के सर्वसमावेशी सौन्दर्य से मेल। लक्ष्मी शुक्र की अधिष्ठात्री देवी हैं (सौन्दर्य, प्रेम, समृद्धि)।' },
+  6: { en: 'Wear Blue Sapphire (with caution), Saturday charity, feed crows', hi: 'नीलम (सावधानी से) धारण करें, शनिवार दान, कौवों को खिलाएं', whyEn: 'Blue Sapphire resonates with Saturn\'s deep blue energy — discipline and endurance. Feeding crows honors Saturn\'s vahana (vehicle); charity on Saturday earns Saturn\'s grace.', whyHi: 'नीलम शनि की गहरी नीली ऊर्जा से गुंजित — अनुशासन और धैर्य। कौवों को खिलाना शनि के वाहन का सम्मान; शनिवार दान शनि की कृपा अर्जित करता है।' },
 };
 
 // ─── Per-planet dasha forecasts ─────────────────────────────────────────────
@@ -527,6 +527,11 @@ export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: Sh
                   <p className="text-gold-primary/70 text-xs italic">
                     {isHi ? 'उपाय: ' : 'Remedy: '}{isHi ? PLANET_REMEDIES[wp.planetId]?.hi : PLANET_REMEDIES[wp.planetId]?.en}
                   </p>
+                  {PLANET_REMEDIES[wp.planetId]?.whyEn && (
+                    <p className="text-text-secondary/50 text-xs mt-1">
+                      {isHi ? `क्यों: ${PLANET_REMEDIES[wp.planetId].whyHi}` : `Why: ${PLANET_REMEDIES[wp.planetId].whyEn}`}
+                    </p>
+                  )}
                 </div>
               );
             })}

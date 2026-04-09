@@ -93,5 +93,55 @@ export function generateSoftwareApplicationLD(): object {
     description:
       'Free Vedic Astrology — Daily Panchang, Kundali Generator, Muhurta Finder, and Kundali Matching.',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: 'Dekho Panchang' },
+  };
+}
+
+/**
+ * Generate Organization JSON-LD — establishes "Dekho Panchang" as a known entity for Google.
+ * This is critical for brand recognition and avoiding "Did you mean" suggestions.
+ */
+export function generateOrganizationLD(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Dekho Panchang',
+    alternateName: ['DekhoPanchang', 'dekhopanchang', 'Dekho Panchang - Vedic Astrology'],
+    url: BASE_URL,
+    logo: `${BASE_URL}/apple-touch-icon.png`,
+    description:
+      'Dekho Panchang is a free Vedic astrology platform offering daily Panchang, Kundali generation, Muhurta finding, and Kundali matching — powered by precise astronomical calculations.',
+    foundingDate: '2024',
+    sameAs: [
+      // Add social profiles as you create them — each one strengthens brand signals
+      // 'https://twitter.com/dekhopanchang',
+      // 'https://www.youtube.com/@dekhopanchang',
+      // 'https://www.instagram.com/dekhopanchang/',
+      // 'https://github.com/dekhopanchang',
+    ].filter(Boolean),
+  };
+}
+
+/**
+ * Generate WebSite JSON-LD with SearchAction.
+ * Enables Google sitelinks search box and reinforces the site as a distinct web property.
+ */
+export function generateWebSiteLD(): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dekho Panchang',
+    alternateName: ['DekhoPanchang', 'dekhopanchang'],
+    url: BASE_URL,
+    inLanguage: ['en', 'hi', 'sa'],
+    publisher: { '@type': 'Organization', name: 'Dekho Panchang' },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${BASE_URL}/en?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
   };
 }

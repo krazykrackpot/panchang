@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
+import InfoBlock from '@/components/ui/InfoBlock';
 import { useLocationStore } from '@/stores/location-store';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
 import {
@@ -340,6 +341,38 @@ export default function VedicTimePage() {
         </p>
         {locationName && <p className="text-text-secondary/70 text-sm mt-2">{locationName}</p>}
       </motion.div>
+
+      {/* Why Vedic Time? */}
+      <InfoBlock
+        id="vedic-time-intro"
+        title={locale === 'en' ? 'Why does Vedic time exist? How is it used?' : 'वैदिक समय क्यों है? इसका उपयोग कैसे होता है?'}
+        defaultOpen={false}
+      >
+        {locale === 'en' ? (
+          <div className="space-y-3">
+            <p>Unlike the fixed 24-hour clock, <strong>Vedic time is sunrise-based</strong> — the day begins at sunrise, not midnight. This means each time unit (Ghati, Pala) is tied to the Sun&apos;s actual position, making it astronomically meaningful rather than arbitrary.</p>
+            <p><strong>Why this matters:</strong></p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-gold-light">Brahma Muhurta</strong> (1.5 hours before sunrise) — the most spiritually potent time for meditation, study, and prayer. Yogis and rishis practice during this window.</li>
+              <li><strong className="text-gold-light">Abhijit Muhurta</strong> (midday, ~24 minutes) — the most auspicious moment of the day. Ideal for starting new ventures, signing contracts, or any important action.</li>
+              <li><strong className="text-gold-light">Rahu Kaal</strong> (varies by weekday) — an inauspicious 1.5-hour window each day. Avoid starting new work during this period.</li>
+              <li><strong className="text-gold-light">Hora</strong> — each hour of the day is ruled by a different planet. Use the planet&apos;s hora for activities aligned with that planet (e.g., Jupiter&apos;s hora for education, Venus&apos;s hora for romance).</li>
+            </ul>
+            <p><strong>Practical use:</strong> If you want to meditate, wake up during Brahma Muhurta. Starting a business? Choose Abhijit Muhurta. Scheduling a meeting? Avoid Rahu Kaal. This clock shows you the current Vedic time division so you can align your actions with cosmic rhythms.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            <p>24 घंटे की निश्चित घड़ी से भिन्न, <strong>वैदिक समय सूर्योदय पर आधारित</strong> है — दिन सूर्योदय से शुरू होता है, मध्यरात्रि से नहीं।</p>
+            <ul className="list-disc ml-4 space-y-1 text-xs">
+              <li><strong className="text-gold-light">ब्रह्म मुहूर्त</strong> (सूर्योदय से 1.5 घंटे पहले) — ध्यान, अध्ययन और प्रार्थना के लिए सर्वोत्तम समय।</li>
+              <li><strong className="text-gold-light">अभिजित मुहूर्त</strong> (दोपहर, ~24 मिनट) — दिन का सबसे शुभ क्षण। नए कार्य आरम्भ के लिए आदर्श।</li>
+              <li><strong className="text-gold-light">राहु काल</strong> (प्रतिदिन भिन्न) — अशुभ 1.5 घंटे की अवधि। इसमें नया कार्य न करें।</li>
+              <li><strong className="text-gold-light">होरा</strong> — दिन का प्रत्येक घंटा एक ग्रह द्वारा शासित। ग्रह की होरा में उससे सम्बन्धित कार्य करें।</li>
+            </ul>
+            <p><strong>व्यावहारिक उपयोग:</strong> यह घड़ी वर्तमान वैदिक समय विभाजन दर्शाती है ताकि आप अपने कार्यों को ब्रह्माण्डीय लय से जोड़ सकें।</p>
+          </div>
+        )}
+      </InfoBlock>
 
       {/* Clock mode toggle */}
       <div className="flex justify-center mb-6">

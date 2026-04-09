@@ -80,11 +80,23 @@ function KundaliYogasSection({ locale }: { locale: Locale }) {
       {/* House classification */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'भाव वर्गीकरण' : 'House Classification'}</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-          <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/15"><div className="text-emerald-400 font-bold mb-0.5">Kendras</div><div className="text-text-secondary">1, 4, 7, 10</div></div>
-          <div className="p-2 rounded-lg bg-blue-500/5 border border-blue-500/15"><div className="text-blue-300 font-bold mb-0.5">Trikonas</div><div className="text-text-secondary">1, 5, 9</div></div>
-          <div className="p-2 rounded-lg bg-red-500/5 border border-red-500/15"><div className="text-red-400 font-bold mb-0.5">Dusthanas</div><div className="text-text-secondary">6, 8, 12</div></div>
-          <div className="p-2 rounded-lg bg-amber-500/5 border border-amber-500/15"><div className="text-amber-400 font-bold mb-0.5">Upachayas</div><div className="text-text-secondary">3, 6, 10, 11</div></div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+            <div className="text-emerald-400 font-bold mb-1">{isHi ? 'केन्द्र' : 'Kendras'} (1, 4, 7, 10)</div>
+            <div className="text-text-secondary leading-relaxed">{isHi ? 'चार स्तम्भ भाव — आत्म, गृह, साझेदार, कैरियर। ये शक्ति के केन्द्र हैं। केन्द्र और त्रिकोण स्वामी मिलकर राजयोग बनाते हैं।' : 'The 4 pillar houses — self, home, partner, career. These are the centers of power in your chart. When Kendra and Trikona lords combine, they form Raj Yogas (royal combinations).'}</div>
+          </div>
+          <div className="p-3 rounded-lg bg-blue-500/5 border border-blue-500/15">
+            <div className="text-blue-300 font-bold mb-1">{isHi ? 'त्रिकोण' : 'Trikonas'} (1, 5, 9)</div>
+            <div className="text-text-secondary leading-relaxed">{isHi ? 'तीन भाग्य भाव — आत्म, रचनात्मकता/पूर्व पुण्य, भाग्य/धर्म। ये सबसे शुभ भाव हैं। इनके स्वामी सदैव शुभ फल देते हैं।' : 'The 3 luck houses — self, creativity/past-life merit, fortune/dharma. These are the most auspicious houses. Their lords always give beneficial results regardless of their natural nature.'}</div>
+          </div>
+          <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/15">
+            <div className="text-red-400 font-bold mb-1">{isHi ? 'दुःस्थान' : 'Dusthanas'} (6, 8, 12)</div>
+            <div className="text-text-secondary leading-relaxed">{isHi ? 'तीन कठिनाई भाव — शत्रु/रोग, संकट/परिवर्तन, व्यय/हानि। चुनौतीपूर्ण पर विकास के लिए आवश्यक। इनके स्वामी परस्पर कमज़ोर हों तो विपरीत राजयोग बनता है।' : 'The 3 challenge houses — enemies/disease, crisis/transformation, loss/expenses. Challenging but essential for growth. When their lords weaken each other, Viparita Raj Yoga forms — turning adversity into hidden advantage.'}</div>
+          </div>
+          <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/15">
+            <div className="text-amber-400 font-bold mb-1">{isHi ? 'उपचय' : 'Upachayas'} (3, 6, 10, 11)</div>
+            <div className="text-text-secondary leading-relaxed">{isHi ? 'चार विकास भाव — साहस, प्रतिस्पर्धा, कैरियर, लाभ। ये समय के साथ बेहतर होते हैं। यहाँ पाप ग्रह भी शुभ फल देते हैं क्योंकि उनकी आक्रामक ऊर्जा विकास को आगे बढ़ाती है।' : 'The 4 growth houses — courage, competition, career, gains. These improve over time. Even malefic planets give good results here because their aggressive energy drives growth and achievement.'}</div>
+          </div>
         </div>
       </div>
 

@@ -11,7 +11,7 @@ import { NAKSHATRA_SYLLABLES } from '@/lib/constants/nakshatra-syllables';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
-import { computeBirthSigns } from '@/lib/ephem/astronomical';
+import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import type { Locale } from '@/types/panchang';
 
 export default function BabyNamesPage() {
@@ -57,16 +57,20 @@ export default function BabyNamesPage() {
       });
   }, [initialized, user]);
 
-  // Auto-compute nakshatra from birth details — uses centralized computeBirthSigns
+  // Server action: compute nakshatra on server where Swiss Ephemeris is available
   useEffect(() => {
     if (!birthDate || birthLat == null || birthLng == null || !birthTz) return;
-    try {
-      const b = computeBirthSigns(birthDate, birthTime, birthLat, birthLng, birthTz);
-      setDetectedNak(b.moonNakshatra);
-      setDetectedPada(b.moonPada);
-      setSelectedNak(b.moonNakshatra);
-      setSelectedPada(b.moonPada);
-    } catch { /* timezone invalid — wait for user to select location */ }
+    let cancelled = false;
+    computeBirthSignsAction(birthDate, birthTime, birthLat, birthLng, birthTz)
+      .then(b => {
+        if (cancelled) return;
+        setDetectedNak(b.moonNakshatra);
+        setDetectedPada(b.moonPada);
+        setSelectedNak(b.moonNakshatra);
+        setSelectedPada(b.moonPada);
+      })
+      .catch(() => { /* timezone invalid or server error */ });
+    return () => { cancelled = true; };
   }, [birthDate, birthTime, birthLat, birthLng, birthTz]);
 
   const syllables = useMemo(() => {

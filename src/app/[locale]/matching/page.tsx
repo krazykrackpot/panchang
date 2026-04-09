@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Calendar, Star } from 'lucide-react';
@@ -8,7 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
-import { computeBirthSigns } from '@/lib/ephem/astronomical';
+import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
@@ -61,10 +61,10 @@ interface PersonBirth {
   placeTimezone: string | null;
 }
 
-function computeMoonFromBirth(birth: PersonBirth): { nakshatra: number; rashi: number } | null {
+async function computeMoonFromBirth(birth: PersonBirth): Promise<{ nakshatra: number; rashi: number } | null> {
   if (!birth.date || !birth.time || birth.placeLat === null || birth.placeLng === null || !birth.placeTimezone) return null;
   try {
-    const b = computeBirthSigns(birth.date, birth.time, birth.placeLat, birth.placeLng, birth.placeTimezone);
+    const b = await computeBirthSignsAction(birth.date, birth.time, birth.placeLat, birth.placeLng, birth.placeTimezone);
     return { nakshatra: b.moonNakshatra, rashi: b.moonSign };
   } catch { return null; }
 }
@@ -132,8 +132,22 @@ export default function MatchingPage() {
   const emptyBirth: PersonBirth = { name: '', date: '', time: '06:00', placeName: '', placeLat: null, placeLng: null, placeTimezone: null };
   const [boyBirth, setBoyBirth] = useState<PersonBirth>(emptyBirth);
   const [girlBirth, setGirlBirth] = useState<PersonBirth>(emptyBirth);
-  const boyComputed = computeMoonFromBirth(boyBirth);
-  const girlComputed = computeMoonFromBirth(girlBirth);
+  const [boyComputed, setBoyComputed] = useState<{ nakshatra: number; rashi: number } | null>(null);
+  const [girlComputed, setGirlComputed] = useState<{ nakshatra: number; rashi: number } | null>(null);
+
+  // Server-side Moon computation for boy
+  useEffect(() => {
+    let cancelled = false;
+    computeMoonFromBirth(boyBirth).then(r => { if (!cancelled) setBoyComputed(r); });
+    return () => { cancelled = true; };
+  }, [boyBirth.date, boyBirth.time, boyBirth.placeLat, boyBirth.placeLng, boyBirth.placeTimezone]);
+
+  // Server-side Moon computation for girl
+  useEffect(() => {
+    let cancelled = false;
+    computeMoonFromBirth(girlBirth).then(r => { if (!cancelled) setGirlComputed(r); });
+    return () => { cancelled = true; };
+  }, [girlBirth.date, girlBirth.time, girlBirth.placeLat, girlBirth.placeLng, girlBirth.placeTimezone]);
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<MatchResult | null>(null);

@@ -1087,6 +1087,46 @@ export default function KundaliPage() {
                   ? 'Each planet represents a force in your life: Sun=ego/authority/father, Moon=mind/emotions/mother, Mars=energy/courage/property, Mercury=communication/business/intellect, Jupiter=wisdom/children/wealth, Venus=love/marriage/luxury, Saturn=discipline/karma/hard work, Rahu=ambition/foreign/technology, Ketu=spirituality/detachment/liberation. The SIGN a planet is in colors its expression. The HOUSE it occupies determines which life area it affects. Retrograde (R) planets work inwardly — their effects are felt more internally.'
                   : 'प्रत्येक ग्रह आपके जीवन में एक शक्ति का प्रतिनिधित्व करता है: सूर्य=अहंकार/अधिकार/पिता, चंद्र=मन/भावनाएं/माता, मंगल=ऊर्जा/साहस/संपत्ति, बुध=संचार/व्यापार/बुद्धि, गुरु=ज्ञान/संतान/धन, शुक्र=प्रेम/विवाह/विलास, शनि=अनुशासन/कर्म/परिश्रम, राहु=महत्वाकांक्षा/विदेश/तकनीक, केतु=आध्यात्म/वैराग्य/मोक्ष। ग्रह जिस राशि में हो वह उसकी अभिव्यक्ति रंगती है। जिस भाव में हो वह जीवन क्षेत्र प्रभावित होता है। वक्री (R) ग्रह अंतर्मुखी होकर कार्य करते हैं।'}
               </InfoBlock>
+              {/* Badge Legend */}
+              <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/10 p-4">
+                <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2.5">
+                  {locale === 'en' ? 'Badge Guide' : 'बैज मार्गदर्शिका'}
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="text-red-400 font-bold px-1.5 py-0.5 bg-red-500/10 rounded shrink-0">R</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Retrograde — planet appears to move backward; its energy turns inward, causing delays but deeper insight' : 'वक्री — ग्रह पीछे चलता दिखता है; ऊर्जा अंतर्मुखी, विलम्ब पर गहन अंतर्दृष्टि'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded shrink-0">{locale === 'en' ? 'Exalted' : 'उच्च'}</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Planet at peak strength — delivers its best results with full confidence' : 'ग्रह चरम शक्ति पर — पूर्ण आत्मविश्वास से सर्वोत्तम फल'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-orange-400 font-bold px-1.5 py-0.5 bg-orange-500/10 rounded shrink-0">{locale === 'en' ? 'Debilitated' : 'नीच'}</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Planet at weakest expression — struggles to deliver, needs remedial support' : 'ग्रह सबसे कमज़ोर — फल देने में संघर्ष, उपचार आवश्यक'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400 font-bold px-1.5 py-0.5 bg-blue-500/10 rounded shrink-0">{locale === 'en' ? 'Own Sign' : 'स्वगृह'}</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Planet in its own sign — comfortable and reliable, like being at home' : 'ग्रह अपनी राशि में — सहज और विश्वसनीय, अपने घर जैसा'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-gold-light font-bold px-1.5 py-0.5 bg-gold-primary/15 rounded border border-gold-primary/30 shrink-0">Vgm</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Vargottama — same sign in birth chart & navamsha; exceptionally strong and reliable' : 'वर्गोत्तम — D1 और D9 में समान राशि; अत्यंत बलवान और विश्वसनीय'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-rose-400 font-bold px-1.5 py-0.5 bg-rose-500/10 rounded shrink-0">MB</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Mrityu Bhaga — planet at a vulnerable degree; health and that planet\'s themes need extra care' : 'मृत्यु भाग — संवेदनशील अंश; स्वास्थ्य और उस ग्रह के विषयों पर ध्यान दें'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sky-300 font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20 shrink-0">Pushkar Nav.</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Pushkar Navamsha — planet in a supremely auspicious navamsha; greatly amplifies positive results' : 'पुष्कर नवांश — अत्यंत शुभ नवांश; सकारात्मक फलों में भारी वृद्धि'}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-300 font-bold px-1.5 py-0.5 bg-emerald-500/10 rounded border border-emerald-400/20 shrink-0">Pushkar Bh.</span>
+                    <span className="text-text-secondary">{locale === 'en' ? 'Pushkar Bhaga — most auspicious degree in the sign; greatly strengthens this planet' : 'पुष्कर भाग — राशि में सर्वाधिक शुभ अंश; ग्रह को अत्यंत बल'}</span>
+                  </div>
+                </div>
+              </div>
               {kundali.planets.map((p) => (
                 <motion.div
                   key={p.planet.id}
@@ -2903,12 +2943,37 @@ export default function KundaliPage() {
                 <h3 className="text-gold-gradient text-2xl font-bold mb-3" style={headingFont}>
                   {locale === 'en' ? 'Jaimini Astrology' : 'जैमिनी ज्योतिष'}
                 </h3>
-                <p className="text-text-secondary/85 text-sm max-w-2xl mx-auto leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {locale === 'en'
-                    ? 'Jaimini system uses Chara Karakas (variable significators) — planets ranked by degree to determine who plays what role in your life. Unlike Parashara where planet roles are fixed, Jaimini assigns roles based on your unique chart. The planet with the highest degree becomes your Atmakaraka (soul significator), the next becomes Amatyakaraka (career), and so on.'
-                    : 'जैमिनी पद्धति चर कारकों का उपयोग करती है — ग्रह अंश के अनुसार क्रमबद्ध होकर निर्धारित करते हैं कि आपके जीवन में कौन क्या भूमिका निभाता है। पाराशर से भिन्न जहाँ ग्रह भूमिकाएँ निश्चित हैं, जैमिनी आपकी अद्वितीय कुण्डली के आधार पर भूमिकाएँ देती है।'}
-                </p>
               </div>
+              <InfoBlock
+                id="kundali-jaimini"
+                title={locale === 'en' ? 'What is Jaimini Astrology and how is it different?' : 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?'}
+                defaultOpen={false}
+              >
+                {locale === 'en' ? (
+                  <div className="space-y-3">
+                    <p>Most Vedic astrology uses the <strong>Parashara</strong> system where each planet has fixed significations (Sun always = father, Moon always = mother). <strong>Jaimini</strong> is a complementary system that assigns roles based on <em>your unique chart</em> — the planet with the highest degree becomes your <strong>Atmakaraka</strong> (soul significator), the next becomes <strong>Amatyakaraka</strong> (career), and so on.</p>
+                    <p><strong>Why this matters for you:</strong></p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-gold-light">Soul Purpose (Atmakaraka)</strong> — reveals your soul&apos;s deepest desire and the lesson you&apos;re here to learn. This is the king of your chart.</li>
+                      <li><strong className="text-gold-light">Career Direction (Amatyakaraka)</strong> — the planet guiding your professional path and how you serve society.</li>
+                      <li><strong className="text-gold-light">Karakamsha</strong> — the navamsha sign of your Atmakaraka, revealing your soul&apos;s ultimate destination and deepest calling.</li>
+                      <li><strong className="text-gold-light">Arudha Padas</strong> — how the world <em>perceives</em> each area of your life (your image vs your reality). This is uniquely Jaimini.</li>
+                    </ul>
+                    <p>Think of Parashara as showing <em>what you have</em>, and Jaimini as showing <em>who you are and how the world sees you</em>.</p>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <p>अधिकांश वैदिक ज्योतिष <strong>पाराशर</strong> पद्धति का उपयोग करता है जहाँ प्रत्येक ग्रह की निश्चित भूमिकाएँ हैं। <strong>जैमिनी</strong> एक पूरक पद्धति है जो <em>आपकी अद्वितीय कुण्डली</em> के आधार पर भूमिकाएँ देती है — सबसे ऊँचे अंश वाला ग्रह <strong>आत्मकारक</strong> (आत्मा का कारक) बनता है।</p>
+                    <ul className="list-disc ml-4 space-y-1 text-xs">
+                      <li><strong className="text-gold-light">आत्मकारक</strong> — आत्मा की गहनतम इच्छा और जीवन उद्देश्य।</li>
+                      <li><strong className="text-gold-light">अमात्यकारक</strong> — कैरियर दिशा और पेशेवर मार्ग।</li>
+                      <li><strong className="text-gold-light">कारकांश</strong> — आत्मकारक की नवांश राशि, आत्मा का अन्तिम गन्तव्य।</li>
+                      <li><strong className="text-gold-light">आरूढ़ पद</strong> — विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है।</li>
+                    </ul>
+                    <p>पाराशर दर्शाता है <em>आपके पास क्या है</em>, जैमिनी दर्शाता है <em>आप कौन हैं और विश्व आपको कैसे देखता है</em>।</p>
+                  </div>
+                )}
+              </InfoBlock>
 
               {/* Chara Karakas */}
               <div>

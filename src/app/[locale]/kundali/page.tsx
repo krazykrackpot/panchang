@@ -4000,6 +4000,10 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                 ? 'Green = transiting your strong signs (favorable). Red = transiting your weak signs (challenging).'
                 : 'हरा = आपकी बलवान राशियों में गोचर (शुभ)। लाल = दुर्बल राशियों में गोचर (चुनौतीपूर्ण)।'}
             </p>
+            {/* Year axis + swim lanes wrapper */}
+            <div className="relative overflow-x-auto">
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#0a0e27] to-transparent sm:hidden z-10" />
+            <div className="min-w-[480px]">
             {/* Year axis */}
             <div className="relative h-5 mb-1 ml-14 sm:ml-16">
               {years.map(y => (
@@ -4056,6 +4060,8 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                 );
               })}
             </div>
+            </div>{/* close min-w wrapper */}
+            </div>{/* close overflow-x-auto wrapper */}
             {/* Legend + NOW label */}
             <div className="flex items-center justify-between mt-3 ml-14 sm:ml-16">
               <div className="flex items-center gap-4 text-[10px]">
@@ -4176,8 +4182,8 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           <p className="text-text-secondary text-xs mb-4">
             {locale === 'en' ? 'Individual planet bindu points per sign (max 8 per cell).' : 'प्रत्येक ग्रह के बिन्दु प्रति राशि (अधिकतम 8 प्रति कक्ष)।'}
           </p>
-          <div className="min-w-[700px]">
-            <table className="w-full text-sm">
+          <div className="min-w-[640px]">
+            <table className="w-full text-[10px] sm:text-xs md:text-sm">
               <thead>
                 <tr>
                   <th className="text-left text-gold-dark text-xs p-2">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
@@ -6521,7 +6527,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
             return (
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
-                <div className="w-20 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
+                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
                 <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>

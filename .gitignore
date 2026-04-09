@@ -45,3 +45,6 @@ next-env.d.ts
 /data/texts/
 ephe/
 .superpowers/
+
+# Playwright test artifacts
+test-results/

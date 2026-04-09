@@ -85,10 +85,16 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
       });
   }, [user]);
 
+  const [locationError, setLocationError] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // ALWAYS resolve timezone from birth coordinates at submit time — never trust any stored value
-    if (!formData.lat || !formData.lng) return;
+    if (!formData.lat || !formData.lng) {
+      setLocationError(true);
+      return;
+    }
+    setLocationError(false);
     const tz = await resolveTimezoneFromCoords(formData.lat, formData.lng);
     setFormData(prev => ({ ...prev, timezone: tz }));
     if (!tz) return;
@@ -168,6 +174,9 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             }}
             placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />
+          {locationError && (
+            <p className="text-red-400 text-xs mt-1">{locale === 'en' ? 'Please select a birth location' : 'कृपया जन्म स्थान चुनें'}</p>
+          )}
         </div>
 
         {/* Ayanamsha */}

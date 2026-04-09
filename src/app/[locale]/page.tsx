@@ -11,6 +11,10 @@ import { getSupabase } from '@/lib/supabase/client';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import dynamic from 'next/dynamic';
 
+const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'), {
+  ssr: false,
+});
+
 const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), {
   ssr: false,
   loading: () => (
@@ -560,6 +564,9 @@ export default function HomePage() {
             <span className="text-gold-gradient">{t('todayPanchang')}</span>
           </h2>
           <TodayPanchangWidget />
+          <div className="mt-6">
+            <TransitForecastWidget locale={locale} />
+          </div>
         </motion.div>
       </section>
 

@@ -582,6 +582,12 @@ export function generateKundali(birthData: BirthData): KundaliData {
   const utHour = decimalHour - tzOffset;
 
   const jd = dateToJD(year, month, day, utHour);
+
+  // Warn if date is outside the high-accuracy ayanamsha range (1900-2100)
+  const warnings: string[] = [];
+  if (year < 1900 || year > 2100) {
+    warnings.push(`Ayanamsha accuracy degrades for dates outside 1900-2100 (birth year: ${year}). Rashi/nakshatra boundaries may shift by ±1°.`);
+  }
   // Use selected ayanamsha system (default: lahiri)
   const ayanamshaType = (birthData.ayanamsha === 'raman' || birthData.ayanamsha === 'kp')
     ? birthData.ayanamsha : 'lahiri';

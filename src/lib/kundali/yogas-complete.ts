@@ -1199,16 +1199,30 @@ function detectAdditionalAuspiciousYogas(planets: PlanetData[], ascSign: number)
     },
   });
 
-  // 44. Neechabhanga Raja Yoga
+  // 44. Neechabhanga Raja Yoga — 5 classical cancellation rules (BPHS Ch.28)
   let neechPresent = false;
+  const EXALT_SIGN_NB: Record<number, number> = { 0:1, 1:2, 2:10, 3:6, 4:4, 5:12, 6:7 };
   const debPlanets = planets.filter(p => p.isDebilitated && p.id <= 6);
   for (const dp of debPlanets) {
-    const debLord = signLord(dp.sign); // lord of the sign where planet is debilitated
+    const debLord = signLord(dp.sign);
     const debLordP = getP(planets, debLord);
+    const exaltSign = EXALT_SIGN_NB[dp.id];
+    const exaltLord = exaltSign !== undefined ? signLord(exaltSign) : -1;
+    const exaltLordP = exaltLord >= 0 ? getP(planets, exaltLord) : null;
+    // Rule 1: Debilitation sign lord in kendra from Lagna
     if (KENDRA.includes(debLordP.house)) { neechPresent = true; break; }
-    // Also check from Moon
-    const moonH = moon.house;
-    if (KENDRA.includes(houseOffset(moonH, debLordP.house))) { neechPresent = true; break; }
+    // Rule 2: Debilitation sign lord in kendra from Moon
+    if (KENDRA.includes(houseOffset(moon.house, debLordP.house))) { neechPresent = true; break; }
+    // Rule 3: Exaltation sign lord in kendra from Lagna
+    if (exaltLordP && KENDRA.includes(exaltLordP.house)) { neechPresent = true; break; }
+    // Rule 4: Mutual reception with debilitation sign lord
+    const dpOwnSigns: number[] = [];
+    for (let s = 1; s <= 12; s++) { if (signLord(s) === dp.id) dpOwnSigns.push(s); }
+    if (dpOwnSigns.includes(debLordP.sign)) { neechPresent = true; break; }
+    // Rule 5: Planet is Vargottama (same sign in D1 and D9 = strong dignity)
+    const navamshaSign = Math.floor((dp.longitude % 30) / (30 / 9)) % 12 + 1;
+    const d1Sign = dp.sign;
+    if (navamshaSign === d1Sign) { neechPresent = true; break; }
   }
   results.push({
     id: 'neechabhanga_raja',

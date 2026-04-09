@@ -61,7 +61,10 @@ function computeVarna(boy: MatchInput, girl: MatchInput): number {
 // Each rashi has a vashya group. Compatible pairs get points.
 // Groups: Chatushpada(0), Manava(1), Jalachara(2), Vanachara(3), Keeta(4)
 
-const RASHI_VASHYA = [0, 0, 1, 2, 3, 1, 1, 4, 0, 2, 1, 2]; // Aries..Pisces
+// Chatushpada(0)=Aries,Taurus,Leo,Sagittarius  Manava(1)=Gemini,Virgo,Libra
+// Jalachara(2)=Cancer,Pisces  Vanachara(3)=Capricorn,Aquarius  Keeta(4)=Scorpio
+// Source: BPHS, Muhurta Chintamani
+const RASHI_VASHYA = [0, 0, 1, 2, 0, 1, 1, 4, 0, 3, 3, 2]; // Aries..Pisces
 
 // Compatibility matrix: [boy][girl] => points
 function computeVashya(boy: MatchInput, girl: MatchInput): number {

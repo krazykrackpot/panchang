@@ -28,6 +28,7 @@ import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
+import TransitRadar from '@/components/kundali/TransitRadar';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
@@ -423,14 +424,16 @@ export default function KundaliPage() {
       }
       setKundali(data);
       try {
-        sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style }));
+        sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data, chartStyle: style, sig: `${birthData.lat}|${birthData.lng}|${birthData.date}|${birthData.time}|${birthData.timezone}` }));
       } catch { /* quota exceeded or private browsing */ }
       trackKundaliGenerated({ location: birthData.place || 'unknown', hasBirthTime: !!birthData.time });
       // Persist Moon nakshatra & rashi for Chandrabalam/Tarabalam on panchang page
       if (data.planets) {
-        const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: number }) => p.planet.id === 1);
+        const moon = data.planets.find((p: { planet: { id: number }; sign: number; nakshatra: { id: number } }) => p.planet.id === 1);
         if (moon) {
-          useBirthDataStore.getState().setBirthData(moon.nakshatra, moon.sign, birthData.name || '');
+          // nakshatra is an object { id, name, ... } — extract the numeric id
+          const nakId = typeof moon.nakshatra === 'number' ? moon.nakshatra : moon.nakshatra?.id || 0;
+          useBirthDataStore.getState().setBirthData(nakId, moon.sign, birthData.name || '');
         }
       }
     } catch (e) {
@@ -5865,6 +5868,15 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         </section>
         );
       })()}
+
+      {/* ===== TRANSIT RADAR ===== */}
+      {kundali.ashtakavarga && (
+        <TransitRadar
+          ascendantSign={kundali.ascendant.sign}
+          savTable={kundali.ashtakavarga.savTable}
+          locale={locale}
+        />
+      )}
 
       {/* ===== PLANETARY STRENGTH ===== */}
       {tip.strengthOverview.length > 0 && (

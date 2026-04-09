@@ -183,7 +183,7 @@ export default function MuhurtaAIPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t.title}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto" style={bodyFont}>{t.desc}</p>
@@ -205,7 +205,7 @@ export default function MuhurtaAIPage() {
       {/* Activity Grid */}
       <div className="mb-8">
         <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-4 font-bold text-center">{t.step1}</h2>
-        <div className="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-10 gap-2">
+        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-10 gap-2">
           {ACTIVITY_LIST.map(a => (
             <motion.button key={a.id} onClick={() => setActivity(a.id)}
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -284,7 +284,7 @@ export default function MuhurtaAIPage() {
                 {/* Hero recommendation */}
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 text-center border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
                   <p className="text-gold-primary text-xs uppercase tracking-wider mb-2 font-bold">{t.hero}</p>
-                  <p className="text-5xl font-bold text-gold-light mb-1" style={headingFont}>{top.totalScore}<span className="text-2xl text-gold-dark">/100</span></p>
+                  <p className="text-3xl sm:text-5xl font-bold text-gold-light mb-1" style={headingFont}>{top.totalScore}<span className="text-xl sm:text-2xl text-gold-dark">/100</span></p>
                   <p className="text-text-secondary">{top.date} &middot; {top.startTime} — {top.endTime}</p>
 
                   {/* Score breakdown gauges */}

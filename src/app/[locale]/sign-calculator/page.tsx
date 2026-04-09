@@ -83,7 +83,7 @@ export default function SignCalculatorPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{locale === 'en' ? 'Sun & Moon Sign Calculator' : 'सूर्य एवं चन्द्र राशि गणक'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>

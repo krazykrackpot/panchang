@@ -185,7 +185,7 @@ export default function MatchingPage() {
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <div className="flex justify-center mb-6"><NakshatraIcon size={80} /></div>
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>

@@ -342,7 +342,7 @@ export default function PanchangPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
-        <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
@@ -2411,7 +2411,7 @@ export default function PanchangPage() {
                 </div>
 
                 {/* All 5 periods timeline */}
-                <div className="grid grid-cols-5 gap-1.5">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
                   {pp.allPeriods.map((period, i) => (
                     <div key={i} className={`rounded-xl border p-2.5 text-center ${i === pp.periodIndex ? AUSPICIOUS_COLOR[period.auspicious] + ' ring-1 ring-gold-primary/30' : 'border-gold-primary/8 bg-bg-secondary/20 opacity-60'}`}>
                       <div className={`text-[10px] font-bold mb-1 ${
@@ -2538,7 +2538,7 @@ export default function PanchangPage() {
         <h2 className="text-3xl font-bold text-gold-gradient mb-10 text-center" style={headingFont}>
           {locale === 'en' ? 'Explore the Elements' : locale === 'hi' ? 'तत्वों का अन्वेषण करें' : 'तत्त्वानाम् अन्वेषणम्'}
         </h2>
-        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
           {deepDiveLinks.map((link, i) => (
             <motion.div
               key={link.key}

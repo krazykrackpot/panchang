@@ -5,131 +5,41 @@ export const alt = 'Dekho Panchang — Vedic Astrology';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-export default async function Image() {
+export default function Image() {
   return new ImageResponse(
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #0a0e27 0%, #111638 40%, #1a1f4e 70%, #0a0e27 100%)',
+          background: 'linear-gradient(135deg, #0a0e27 0%, #1a1040 50%, #0a0e27 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          fontFamily: 'serif',
-          position: 'relative',
+          fontFamily: 'sans-serif',
         }}
       >
-        {/* Gold border */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: '16px',
-            border: '1px solid rgba(212, 168, 83, 0.3)',
-            borderRadius: '16px',
-            display: 'flex',
-          }}
-        />
-
-        {/* Decorative corner ornaments */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '32px',
-            left: '32px',
-            width: '40px',
-            height: '40px',
-            borderTop: '2px solid #d4a853',
-            borderLeft: '2px solid #d4a853',
-            display: 'flex',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '32px',
-            right: '32px',
-            width: '40px',
-            height: '40px',
-            borderTop: '2px solid #d4a853',
-            borderRight: '2px solid #d4a853',
-            display: 'flex',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '32px',
-            left: '32px',
-            width: '40px',
-            height: '40px',
-            borderBottom: '2px solid #d4a853',
-            borderLeft: '2px solid #d4a853',
-            display: 'flex',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '32px',
-            right: '32px',
-            width: '40px',
-            height: '40px',
-            borderBottom: '2px solid #d4a853',
-            borderRight: '2px solid #d4a853',
-            display: 'flex',
-          }}
-        />
+        {/* Gold decorative line */}
+        <div style={{ width: 80, height: 3, background: '#d4a853', marginBottom: 24, borderRadius: 2, display: 'flex' }} />
 
         {/* Title */}
-        <div
-          style={{
-            fontSize: '72px',
-            fontWeight: 700,
-            background: 'linear-gradient(135deg, #d4a853, #f0d48a, #d4a853)',
-            backgroundClip: 'text',
-            color: 'transparent',
-            marginBottom: '16px',
-            display: 'flex',
-          }}
-        >
+        <div style={{ fontSize: 64, fontWeight: 800, color: '#f0d48a', letterSpacing: -1, marginBottom: 12, display: 'flex' }}>
           Dekho Panchang
         </div>
 
-        {/* Divider */}
-        <div
-          style={{
-            width: '200px',
-            height: '2px',
-            background: 'linear-gradient(90deg, transparent, #d4a853, transparent)',
-            marginBottom: '24px',
-            display: 'flex',
-          }}
-        />
-
         {/* Subtitle */}
-        <div
-          style={{
-            fontSize: '28px',
-            color: '#9b97a0',
-            display: 'flex',
-          }}
-        >
-          The Science of Indian Astronomy
+        <div style={{ fontSize: 28, color: '#8a8478', letterSpacing: 2, display: 'flex' }}>
+          VEDIC ASTROLOGY
         </div>
 
-        {/* Sanskrit shloka */}
-        <div
-          style={{
-            fontSize: '20px',
-            color: '#8a6d2b',
-            marginTop: '24px',
-            display: 'flex',
-          }}
-        >
-          ज्योतिषां सूर्यादिग्रहाणां बोधकं शास्त्रम्
+        {/* Features line */}
+        <div style={{ fontSize: 22, color: '#d4a853', marginTop: 32, opacity: 0.8, display: 'flex' }}>
+          Panchang · Kundali · Muhurta · Matching
         </div>
+
+        {/* Bottom decorative line */}
+        <div style={{ width: 80, height: 3, background: '#d4a853', marginTop: 24, borderRadius: 2, display: 'flex' }} />
       </div>
     ),
     { ...size }

@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       images: [
         {
-          url: `${BASE_URL}/opengraph-image`,
+          url: `${BASE_URL}/${locale}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: 'Dekho Panchang — Vedic Astrology',
@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title,
       description,
-      images: [`${BASE_URL}/opengraph-image`],
+      images: [`${BASE_URL}/${locale}/twitter-image`],
     },
     icons: {
       icon: '/favicon.svg',

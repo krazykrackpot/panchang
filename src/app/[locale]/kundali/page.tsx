@@ -1649,12 +1649,45 @@ export default function KundaliPage() {
                               </div>
                             )}
 
-                            {/* Dasha meaning */}
-                            {meaning && !isPast && (
-                              <p className="text-text-secondary/70 text-xs mt-1 ml-7 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                {locale === 'en' ? meaning.en : meaning.hi}
-                              </p>
-                            )}
+                            {/* Dasha meaning — generic keywords + chart-specific context */}
+                            {meaning && !isPast && (() => {
+                              // Chart-specific: where is this planet in YOUR chart?
+                              const planetData = kundali.planets.find(p => p.planet.name.en === planetEn);
+                              const HOUSE_KEYWORDS: Record<number, { en: string; hi: string }> = {
+                                1: { en: 'self, health, personality', hi: 'आत्म, स्वास्थ्य, व्यक्तित्व' },
+                                2: { en: 'wealth, family, speech', hi: 'धन, परिवार, वाणी' },
+                                3: { en: 'courage, siblings, communication', hi: 'साहस, भाई-बहन, संवाद' },
+                                4: { en: 'home, mother, comfort', hi: 'घर, माता, सुख' },
+                                5: { en: 'children, education, creativity', hi: 'सन्तान, शिक्षा, रचनात्मकता' },
+                                6: { en: 'health challenges, competition, service', hi: 'स्वास्थ्य चुनौतियाँ, प्रतिस्पर्धा, सेवा' },
+                                7: { en: 'marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
+                                8: { en: 'transformation, longevity, hidden matters', hi: 'परिवर्तन, दीर्घायु, गुप्त विषय' },
+                                9: { en: 'fortune, dharma, guru, father', hi: 'भाग्य, धर्म, गुरु, पिता' },
+                                10: { en: 'career, status, authority', hi: 'कैरियर, प्रतिष्ठा, अधिकार' },
+                                11: { en: 'gains, income, friends', hi: 'लाभ, आय, मित्र' },
+                                12: { en: 'expenses, liberation, foreign', hi: 'व्यय, मोक्ष, विदेश' },
+                              };
+                              const houseKw = planetData ? HOUSE_KEYWORDS[planetData.house] : null;
+                              const dignity = planetData?.isExalted ? (locale === 'en' ? 'exalted (very strong)' : 'उच्च (अत्यन्त बलवान)')
+                                : planetData?.isDebilitated ? (locale === 'en' ? 'debilitated (weakened)' : 'नीच (दुर्बल)')
+                                : planetData?.isOwnSign ? (locale === 'en' ? 'in own sign (comfortable)' : 'स्वगृही (सहज)')
+                                : null;
+                              return (
+                                <div className="mt-2 ml-7 space-y-1">
+                                  <p className="text-text-secondary/60 text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                    {locale === 'en' ? meaning.en : meaning.hi}
+                                  </p>
+                                  {planetData && houseKw && (
+                                    <p className={`text-xs leading-relaxed ${isCurrent ? 'text-gold-light/70' : 'text-text-secondary/50'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                      {locale === 'en'
+                                        ? <>{planetEn} is in your <strong>house {planetData.house}</strong> ({houseKw.en}) in {planetData.signName.en}.{dignity ? ` ${planetEn} is ${dignity}.` : ''} This dasha activates these life areas most strongly.</>
+                                        : <>{dasha.planetName.hi} आपके <strong>भाव {planetData.house}</strong> ({houseKw.hi}) में {planetData.signName.hi} राशि में है।{dignity ? ` ${dasha.planetName.hi} ${dignity}।` : ''} यह दशा इन जीवन क्षेत्रों को सबसे अधिक सक्रिय करती है।</>
+                                      }
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })()}
 
                             {/* Current dasha progress detail */}
                             {isCurrent && (

@@ -413,7 +413,7 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
             <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
@@ -442,7 +442,7 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
             <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
@@ -528,7 +528,7 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
             <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
@@ -602,7 +602,7 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35 }}
-          className="rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-4 border-b border-gold-primary/10 bg-gold-primary/5">
             <h2 className="text-lg font-semibold text-gold-light flex items-center gap-2">
@@ -673,7 +673,7 @@ export default function SettingsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
-          className="rounded-2xl border border-gold-primary/10 bg-bg-secondary/20 backdrop-blur-sm overflow-hidden"
+          className="rounded-2xl border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="px-6 py-5 space-y-3">
             <button

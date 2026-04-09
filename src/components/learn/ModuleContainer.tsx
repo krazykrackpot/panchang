@@ -5,6 +5,9 @@ import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen, HelpCircle } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { Link } from '@/lib/i18n/navigation';
+import { useLearningProgressStore } from '@/stores/learning-progress-store';
+import { getNextModuleId, getModuleRef, isLastInPhase } from '@/lib/learn/module-sequence';
 
 // ─── Bilingual text helper for module content ──────────────────────────────
 // Modules can import `useT` and call `t(en, hi)` to get the locale-appropriate string
@@ -120,6 +123,31 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
 
   const passThreshold = Math.ceil(quizQuestions.length * 0.7);
   const passed = score >= passThreshold;
+
+  const { markPageRead, markQuizPassed, getPhaseProgress, hydrateFromStorage, hydrated } = useLearningProgressStore();
+
+  // Hydrate store on mount
+  useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
+
+  // Track page reads
+  useEffect(() => {
+    if (hydrated) {
+      markPageRead(meta.id, currentPage);
+    }
+  }, [currentPage, meta.id, hydrated, markPageRead]);
+
+  // Track quiz pass
+  useEffect(() => {
+    if (quizComplete && passed && hydrated) {
+      markQuizPassed(meta.id, score);
+    }
+  }, [quizComplete, passed, score, meta.id, hydrated, markQuizPassed]);
+
+  // Next module info for post-quiz flow
+  const nextId = getNextModuleId(meta.id);
+  const nextRef = nextId ? getModuleRef(nextId) : null;
+  const phaseProgress = hydrated ? getPhaseProgress(meta.phase) : null;
+  const lastInPhase = isLastInPhase(meta.id);
 
   return (
     <ModuleLocaleContext.Provider value={locale}>
@@ -268,32 +296,86 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
         ) : (
           <motion.div key="results"
             initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
-            {/* Results */}
-            <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 text-center border ${passed ? 'border-emerald-500/30' : 'border-red-500/30'}`}>
-              <div className={`text-5xl mb-4`}>{passed ? '🎉' : '📚'}</div>
-              <h3 className={`text-2xl font-bold mb-2 ${passed ? 'text-emerald-400' : 'text-red-400'}`} style={hf}>
-                {passed
-                  ? (isHi ? 'उत्तीर्ण!' : 'Passed!')
-                  : (isHi ? 'पुनः प्रयास करें' : 'Try Again')}
-              </h3>
-              <p className="text-text-secondary text-lg font-mono mb-2">{score}/{quizQuestions.length}</p>
-              <p className="text-text-secondary text-sm mb-6">
-                {passed
-                  ? (isHi ? 'बहुत बढ़िया! आप अगले मॉड्यूल पर आगे बढ़ सकते हैं।' : 'Excellent! You can proceed to the next module.')
-                  : (isHi ? `उत्तीर्ण के लिए ${passThreshold}/${quizQuestions.length} आवश्यक। सामग्री की समीक्षा करें और पुनः प्रयास करें।` : `Need ${passThreshold}/${quizQuestions.length} to pass. Review the content and try again.`)}
-              </p>
-              <div className="flex justify-center gap-3">
-                {!passed && (
-                  <button onClick={handleRetry}
-                    className="px-6 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/25 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
-                    {isHi ? 'पुनः प्रयास' : 'Retry Quiz'}
-                  </button>
-                )}
-                <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
-                  className="px-6 py-2.5 rounded-xl border border-gold-primary/15 text-text-secondary text-sm hover:text-text-primary transition-colors">
-                  {isHi ? 'सामग्री पर वापस' : 'Back to Content'}
-                </button>
-              </div>
+            <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border rounded-2xl p-8 text-center ${passed ? 'border-emerald-500/30' : 'border-red-500/30'}`}>
+              {passed ? (
+                <>
+                  <div className="text-5xl mb-3">🎉</div>
+                  <h3 className="text-2xl font-bold text-emerald-400 mb-1" style={hf}>
+                    {isHi ? 'उत्तीर्ण!' : 'Mastered!'}
+                  </h3>
+                  <p className="text-text-secondary text-lg font-mono mb-4">{score}/{quizQuestions.length}</p>
+
+                  {phaseProgress && (
+                    <div className="max-w-xs mx-auto mb-6">
+                      {lastInPhase && phaseProgress.mastered === phaseProgress.total ? (
+                        <div className="text-sm text-gold-light font-semibold mb-2" style={hf}>
+                          {isHi ? `चरण ${meta.phase} पूर्ण!` : `Phase ${meta.phase} Complete!`}
+                        </div>
+                      ) : null}
+                      <div className="h-1.5 bg-white/5 rounded-full overflow-hidden mb-1">
+                        <motion.div
+                          initial={{ width: `${Math.max(0, ((phaseProgress.mastered - 1) / phaseProgress.total) * 100)}%` }}
+                          animate={{ width: `${phaseProgress.percent}%` }}
+                          transition={{ duration: 0.8, ease: 'easeOut' as const }}
+                          className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full"
+                        />
+                      </div>
+                      <p className="text-text-secondary/60 text-xs">
+                        {isHi
+                          ? `चरण ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} पूर्ण`
+                          : `Phase ${meta.phase} — ${phaseProgress.mastered}/${phaseProgress.total} mastered`}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="flex flex-col items-center gap-3">
+                    {nextRef ? (
+                      <Link href={`/learn/modules/${nextRef.id}`}
+                        className="inline-flex items-center gap-2 px-8 py-3 rounded-xl bg-emerald-500/15 border-2 border-emerald-500/30 text-emerald-300 font-bold text-sm hover:bg-emerald-500/25 transition-colors"
+                        style={hf}>
+                        {isHi ? 'अगला:' : 'Next:'} {nextRef.id.replace('-', '.')} {isHi ? nextRef.title.hi : nextRef.title.en} →
+                      </Link>
+                    ) : (
+                      <div className="px-8 py-3 rounded-xl bg-gold-primary/15 border-2 border-gold-primary/30 text-gold-light font-bold text-sm" style={hf}>
+                        {isHi ? 'सम्पूर्ण पाठ्यक्रम पूर्ण!' : 'Entire Curriculum Complete!'}
+                      </div>
+                    )}
+                    <div className="flex gap-3">
+                      <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
+                        className="px-4 py-2 rounded-xl border border-gold-primary/15 text-text-secondary text-xs hover:text-text-primary transition-colors">
+                        {isHi ? 'सामग्री समीक्षा' : 'Review Content'}
+                      </button>
+                      <Link href="/learn/modules"
+                        className="px-4 py-2 rounded-xl border border-gold-primary/15 text-text-secondary text-xs hover:text-text-primary transition-colors">
+                        {isHi ? 'सभी मॉड्यूल' : 'All Modules'}
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-5xl mb-4">📚</div>
+                  <h3 className="text-2xl font-bold text-red-400 mb-2" style={hf}>
+                    {isHi ? 'पुनः प्रयास करें' : 'Try Again'}
+                  </h3>
+                  <p className="text-text-secondary text-lg font-mono mb-2">{score}/{quizQuestions.length}</p>
+                  <p className="text-text-secondary text-sm mb-6">
+                    {isHi
+                      ? `उत्तीर्ण के लिए ${passThreshold}/${quizQuestions.length} आवश्यक। सामग्री की समीक्षा करें और पुनः प्रयास करें।`
+                      : `Need ${passThreshold}/${quizQuestions.length} to pass. Review the content and try again.`}
+                  </p>
+                  <div className="flex justify-center gap-3">
+                    <button onClick={handleRetry}
+                      className="px-6 py-2.5 rounded-xl bg-gold-primary/10 border border-gold-primary/25 text-gold-light text-sm font-medium hover:bg-gold-primary/20 transition-colors">
+                      {isHi ? 'पुनः प्रयास' : 'Retry Quiz'}
+                    </button>
+                    <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
+                      className="px-6 py-2.5 rounded-xl border border-gold-primary/15 text-text-secondary text-sm hover:text-text-primary transition-colors">
+                      {isHi ? 'सामग्री पर वापस' : 'Back to Content'}
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </motion.div>
         )}

@@ -208,11 +208,12 @@ export const META_RULES: MetaRule[] = [
         if (matched.length >= 2) {
           const themeNameEn = THEME_NAMES[theme]?.en ?? theme;
           const themeNameHi = THEME_NAMES[theme]?.hi ?? theme;
+          const patternNames = matched.map(m => m.patternId.replace(/-/g, ' ')).join(' + ');
           return {
             ruleId: 'double-benefic',
             text: {
-              en: `Rare double blessing in ${themeNameEn} — multiple protective forces align. This is your green light. When two independent positive patterns reinforce each other, the effect is multiplicative, not additive.`,
-              hi: `${themeNameHi} में दुर्लभ दोहरा आशीर्वाद — कई सुरक्षात्मक बल संरेखित। यह आपकी हरी बत्ती है।`,
+              en: `Rare double blessing in ${themeNameEn}: ${patternNames}. Multiple protective forces align — this is your green light. The effect is multiplicative, not additive.`,
+              hi: `${themeNameHi} में दुर्लभ दोहरा आशीर्वाद: ${patternNames}। कई सुरक्षात्मक बल संरेखित — यह आपकी हरी बत्ती है।`,
             },
             severity: 1,
           };
@@ -240,11 +241,12 @@ export const META_RULES: MetaRule[] = [
         if (matched.length >= 2) {
           const themeNameEn = THEME_NAMES[theme]?.en ?? theme;
           const themeNameHi = THEME_NAMES[theme]?.hi ?? theme;
+          const patternNames = matched.map(m => m.patternId.replace(/-/g, ' ')).join(' + ');
           return {
             ruleId: 'double-malefic',
             text: {
-              en: `Compounding pressure in ${themeNameEn} — this requires conscious navigation, not passive endurance. Multiple challenges in the same area create a crisis that demands active response. Seek professional guidance.`,
-              hi: `${themeNameHi} में संयुक्त दबाव — यह सचेत नेविगेशन की माँग करता है, निष्क्रिय सहन की नहीं।`,
+              en: `Compounding pressure in ${themeNameEn}: ${patternNames}. Multiple challenges in the same area demand active response, not passive endurance. Seek professional guidance.`,
+              hi: `${themeNameHi} में संयुक्त दबाव: ${patternNames}। सचेत नेविगेशन की माँग — निष्क्रिय सहन की नहीं।`,
             },
             severity: 3,
           };
@@ -271,12 +273,19 @@ export const META_RULES: MetaRule[] = [
       // Fire if any planet (natal or transit) is retrograde while patterns are active
       return retroPlanetIds.size > 0 || natalRetroPlanetIds.size > 0;
     },
-    generate(_patterns, _input, _locale): MetaInsight {
+    generate(_patterns, input, _locale): MetaInsight {
+      const PLANET_NAMES_EN = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+      const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल', 'बुध', 'बृहस्पति', 'शुक्र', 'शनि', 'राहु', 'केतु'];
+      const retroTransits = input.transits.filter(t => t.isRetrograde).map(t => PLANET_NAMES_EN[t.planetId] || `Planet ${t.planetId}`);
+      const retroNatal = input.planets.filter(p => p.isRetrograde && p.id <= 6).map(p => PLANET_NAMES_EN[p.id] || `Planet ${p.id}`);
+      const allRetro = [...new Set([...retroTransits, ...retroNatal])];
+      const retroListEn = allRetro.join(', ');
+      const retroListHi = allRetro.map(n => PLANET_NAMES_HI[PLANET_NAMES_EN.indexOf(n)] || n).join(', ');
       return {
         ruleId: 'retrograde-amplifier',
         text: {
-          en: 'A key planet in your convergence pattern is retrograde, intensifying the effects inward — you may feel the impacts more psychologically than externally. Inner work, reflection, and journaling are especially productive.',
-          hi: 'आपके संयोग पैटर्न का एक प्रमुख ग्रह वक्री है — प्रभाव बाहरी से अधिक मनोवैज्ञानिक। आंतरिक कार्य और चिंतन विशेष रूप से उत्पादक।',
+          en: `${retroListEn} ${allRetro.length === 1 ? 'is' : 'are'} retrograde in your convergence pattern, intensifying effects inward — you may feel impacts more psychologically than externally. Inner work, reflection, and journaling are especially productive.`,
+          hi: `${retroListHi} आपके संयोग पैटर्न में वक्री — प्रभाव बाहरी से अधिक मनोवैज्ञानिक। आंतरिक कार्य और चिंतन विशेष रूप से उत्पादक।`,
         },
         severity: 1,
       };
@@ -296,17 +305,20 @@ export const META_RULES: MetaRule[] = [
       return false;
     },
     generate(_patterns, input, _locale): MetaInsight | null {
+      const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+      const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
       const transitPlanetIds = getTransitPlanetIds(input);
       for (const planetId of transitPlanetIds) {
         const sav = getSAVForPlanetTransit(input, planetId);
         if (sav !== null && sav >= 30) {
-          // Convert SAV (0–56 range) to a /8 scale for display
-          const bindus = Math.round((sav / 56) * 8);
+          const transit = input.transits.find(t => t.planetId === planetId);
+          const planetName = PLANET_NAMES[planetId] || `Planet ${planetId}`;
+          const signName = transit ? RASHI_NAMES[transit.sign - 1] || '' : '';
           return {
             ruleId: 'ashtakavarga-boost',
             text: {
-              en: `A transit in your convergence pattern has exceptional Ashtakavarga strength (${bindus}/8 points) — its effects will be pronounced and unmistakable. Pay close attention to events related to this transit house.`,
-              hi: `संयोग पैटर्न में एक गोचर की असाधारण अष्टकवर्ग शक्ति (${bindus}/8 अंक) — प्रभाव स्पष्ट और अचूक।`,
+              en: `${planetName} transiting ${signName} has exceptional Ashtakavarga strength (${sav} bindus) — its effects will be pronounced and unmistakable.`,
+              hi: `${planetName} ${signName} में गोचर — असाधारण अष्टकवर्ग शक्ति (${sav} बिन्दु) — प्रभाव स्पष्ट और अचूक।`,
             },
             severity: 1,
           };
@@ -329,16 +341,20 @@ export const META_RULES: MetaRule[] = [
       return false;
     },
     generate(_patterns, input, _locale): MetaInsight | null {
+      const PLANET_NAMES = ['Sun', 'Moon', 'Mars', 'Mercury', 'Jupiter', 'Venus', 'Saturn', 'Rahu', 'Ketu'];
+      const RASHI_NAMES = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
       const transitPlanetIds = getTransitPlanetIds(input);
       for (const planetId of transitPlanetIds) {
         const sav = getSAVForPlanetTransit(input, planetId);
         if (sav !== null && sav <= 22) {
-          const bindus = Math.round((sav / 56) * 8);
+          const transit = input.transits.find(t => t.planetId === planetId);
+          const planetName = PLANET_NAMES[planetId] || `Planet ${planetId}`;
+          const signName = transit ? RASHI_NAMES[transit.sign - 1] || '' : '';
           return {
             ruleId: 'ashtakavarga-weakness',
             text: {
-              en: `Despite the transit pattern, its Ashtakavarga support is weak (${bindus}/8 points) — the effects may be muted or delayed. Don't overreact to this transit; it lacks the strength to deliver full impact.`,
-              hi: `गोचर पैटर्न के बावजूद अष्टकवर्ग समर्थन कमजोर (${bindus}/8 अंक) — प्रभाव मंद या विलंबित। अतिप्रतिक्रिया न करें।`,
+              en: `${planetName} transiting ${signName} has weak Ashtakavarga support (${sav} bindus) — effects may be muted or delayed. Don't overreact; this transit lacks strength to deliver full impact.`,
+              hi: `${planetName} ${signName} में गोचर — कमजोर अष्टकवर्ग समर्थन (${sav} बिन्दु) — प्रभाव मंद या विलंबित।`,
             },
             severity: 1,
           };
@@ -356,12 +372,17 @@ export const META_RULES: MetaRule[] = [
         (p) => input.navamshaConfirmations[p.theme] === true,
       );
     },
-    generate(_patterns, _input, _locale): MetaInsight {
+    generate(patterns, input, _locale): MetaInsight {
+      const confirmedThemes = Object.keys(input.navamshaConfirmations).filter(t => input.navamshaConfirmations[t]);
+      const themeListEn = confirmedThemes.map(t => THEME_NAMES[t]?.en || t).join(', ');
+      const themeListHi = confirmedThemes.map(t => THEME_NAMES[t]?.hi || t).join(', ');
+      const confirmedPatterns = patterns.filter(p => confirmedThemes.includes(p.theme)).map(p => p.patternId.replace(/-/g, ' '));
+      const patternListEn = confirmedPatterns.length > 0 ? ` (${confirmedPatterns.join(', ')})` : '';
       return {
         ruleId: 'navamsha-confirmation',
         text: {
-          en: 'This convergence pattern is confirmed in your Navamsha (D9) chart — indicating deeper karmic significance, not just a surface-level transit effect. The pattern carries weight across multiple dimensions of your chart.',
-          hi: 'यह संयोग पैटर्न नवांश (D9) कुंडली में पुष्ट — गहरा कार्मिक महत्व, केवल सतही गोचर प्रभाव नहीं।',
+          en: `Your ${themeListEn} convergence pattern${patternListEn} is confirmed in the Navamsha (D9) chart — deeper karmic significance, not just a surface-level transit. This carries weight across multiple dimensions.`,
+          hi: `${themeListHi} संयोग पैटर्न नवांश (D9) कुंडली में पुष्ट — गहरा कार्मिक महत्व, केवल सतही गोचर नहीं।`,
         },
         severity: 2,
       };

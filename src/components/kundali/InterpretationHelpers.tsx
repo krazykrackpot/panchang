@@ -7,6 +7,8 @@ import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
 import type { YogaComplete } from '@/lib/kundali/yogas-complete';
 import type { PlanetAvasthas } from '@/lib/kundali/avasthas';
 import HouseVisual, { HouseBadge } from './HouseVisual';
+import { GrahaIconById } from '@/components/icons/GrahaIcons';
+import { GRAHAS } from '@/lib/constants/grahas';
 
 // ─── Planet metadata ────────────────────────────────────────────────────────
 
@@ -1525,62 +1527,89 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
     } catch { return dateStr; }
   };
 
+  const NAME_TO_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8 };
+  const mahaPlanetId = NAME_TO_ID[mahaPlanet] ?? 0;
+  const mahaGraha = GRAHAS[mahaPlanetId];
+  const antarPlanet = currentAntar ? (currentAntar.planet || currentAntar.planetName?.en || 'Unknown') : '';
+  const antarPlanetId = NAME_TO_ID[antarPlanet] ?? 0;
+  const antarGraha = GRAHAS[antarPlanetId];
+  const antarTheme = currentAntar ? MAHADASHA_THEMES[antarPlanet] : null;
+
   return (
     <div className="space-y-4 mt-6">
-      <h3 className="text-xl font-bold text-[#d4a853] border-b border-[#d4a853]/20 pb-2">
-        {isHi ? 'दशा विश्लेषण' : 'Dasha Interpretation'}
-      </h3>
+      {/* Header */}
+      <div className="flex items-center gap-4 pb-3 border-b border-gold-primary/15">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-gold-primary/20 to-gold-dark/10 border border-gold-primary/25 flex items-center justify-center">
+          <GrahaIconById id={mahaPlanetId} size={28} />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-gold-light">{isHi ? 'दशा विश्लेषण' : 'Dasha Interpretation'}</h3>
+          <p className="text-text-secondary/50 text-xs">{isHi ? 'आपका वर्तमान ग्रह काल' : 'Your current planetary period'}</p>
+        </div>
+      </div>
 
-      {/* Current Chapter */}
-      <SectionCard border="border-emerald-500/15">
-        <SectionHeading>{isHi ? 'आपका वर्तमान अध्याय' : 'Your Current Chapter'}</SectionHeading>
-        <p className="text-sm text-gray-200 leading-relaxed mb-3">
+      {/* Current Mahadasha — mega card */}
+      <div className="rounded-xl p-5 border-2 border-gold-primary/20 bg-gradient-to-r from-gold-primary/8 via-transparent to-transparent">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: mahaGraha?.color || '#d4a853' }} />
+          <span className="text-gold-light font-bold text-lg">
+            {isHi ? `${mahaPlanet} महादशा` : `${mahaPlanet} Mahadasha`}
+          </span>
+          <span className="text-text-secondary/60 text-xs ml-auto">{formatDate(currentMaha.startDate)} — {formatDate(currentMaha.endDate)}</span>
+        </div>
+        <p className="text-sm text-gray-200/80 leading-relaxed mb-2">
           {isHi
-            ? `आप वर्तमान में ${mahaPlanet} महादशा में हैं (${formatDate(currentMaha.startDate)} से ${formatDate(currentMaha.endDate)})। यह ${mahaDuration} वर्षों की अवधि है जो ${mahaPlanet} के विषयों से प्रभावित है।`
-            : `You are currently in ${mahaPlanet} Mahadasha (${formatDate(currentMaha.startDate)} to ${formatDate(currentMaha.endDate)}). This is a ${mahaDuration}-year period dominated by ${mahaPlanet}'s themes.`}
+            ? `${mahaDuration} वर्षों की अवधि जो ${mahaPlanet} के विषयों से प्रभावित है।`
+            : `A ${mahaDuration}-year period dominated by ${mahaPlanet}'s themes.`}
         </p>
-      </SectionCard>
-
-      {/* What this means */}
-      {mahaTheme && (
-        <SectionCard border="border-sky-500/15">
-          <SectionHeading>{isHi ? 'आपके लिए इसका क्या अर्थ है' : 'What this means for you'}</SectionHeading>
-          <p className="text-sm text-gray-200 leading-relaxed">
+        {mahaTheme && (
+          <p className="text-sm text-text-primary/80 leading-relaxed">
             {isHi ? mahaTheme.hi : mahaTheme.en}
           </p>
-        </SectionCard>
-      )}
+        )}
+      </div>
 
       {/* Current Antardasha */}
       {currentAntar && (
-        <SectionCard border="border-sky-500/15">
-          <SectionHeading>{isHi ? 'वर्तमान अन्तर्दशा' : 'Current Antardasha'}</SectionHeading>
-          <p className="text-sm text-gray-200 leading-relaxed">
-            {(() => {
-              const antarPlanet = currentAntar.planet || (isHi ? currentAntar.planetName?.hi : currentAntar.planetName?.en) || 'Unknown';
-              const antarTheme = MAHADASHA_THEMES[antarPlanet];
-              return isHi
-                ? `इसमें, आप ${mahaPlanet}-${antarPlanet} अन्तर्दशा में हैं (${formatDate(currentAntar.startDate)} से ${formatDate(currentAntar.endDate)})। ${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi.split('.')[0]}.` : '।'}`
-                : `Within this, you're in ${mahaPlanet}-${antarPlanet} Antardasha (${formatDate(currentAntar.startDate)} to ${formatDate(currentAntar.endDate)}). ${antarPlanet}'s energy blends with ${mahaPlanet}'s broader themes${antarTheme ? `: ${antarTheme.en.split('.')[0]}.` : '.'}`;
-            })()}
+        <div className="rounded-xl p-4 border border-white/5 bg-bg-secondary/40 ml-2 sm:ml-4">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center bg-bg-primary/50">
+              <GrahaIconById id={antarPlanetId} size={18} />
+            </div>
+            <div>
+              <span className="font-semibold text-sm" style={{ color: antarGraha?.color || '#e6e2d8' }}>
+                {isHi ? `${mahaPlanet}-${antarPlanet} अन्तर्दशा` : `${mahaPlanet}-${antarPlanet} Antardasha`}
+              </span>
+              <p className="text-text-secondary/50 text-[10px]">{formatDate(currentAntar.startDate)} — {formatDate(currentAntar.endDate)}</p>
+            </div>
+          </div>
+          <p className="text-text-secondary text-sm leading-relaxed ml-11">
+            {isHi
+              ? `${mahaPlanet} के व्यापक विषयों में ${antarPlanet} की ऊर्जा मिलती है${antarTheme ? `: ${antarTheme.hi.split('.')[0]}.` : '।'}`
+              : `${antarPlanet}'s energy blends with ${mahaPlanet}'s broader themes${antarTheme ? `: ${antarTheme.en.split('.')[0]}.` : '.'}`}
           </p>
-        </SectionCard>
+        </div>
       )}
 
       {/* Next Transition */}
-      {nextMaha && (
-        <SectionCard border="border-amber-500/15">
-          <SectionHeading>{isHi ? 'अगला परिवर्तन' : 'Next Transition'}</SectionHeading>
-          <p className="text-sm text-gray-200 leading-relaxed">
-            {(() => {
-              const nextPlanet = nextMaha.planet || (isHi ? nextMaha.planetName?.hi : nextMaha.planetName?.en) || 'Unknown';
-              return isHi
-                ? `आपकी अगली महादशा: ${nextPlanet} ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।`
-                : `Your next Mahadasha change: ${nextPlanet} starts on ${formatDate(nextMaha.startDate)}. Prepare for a shift in life themes.`;
-            })()}
-          </p>
-        </SectionCard>
-      )}
+      {nextMaha && (() => {
+        const nextPlanet = nextMaha.planet || nextMaha.planetName?.en || 'Unknown';
+        const nextId = NAME_TO_ID[nextPlanet] ?? 0;
+        return (
+          <div className="rounded-xl p-4 border border-indigo-500/15 bg-indigo-500/5 ml-2 sm:ml-4">
+            <div className="flex items-center gap-2 mb-2">
+              <GrahaIconById id={nextId} size={16} />
+              <span className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'अगला परिवर्तन' : 'Next Transition'}</span>
+              <span className="w-4 h-px bg-indigo-500/30 flex-1" />
+            </div>
+            <p className="text-text-secondary/80 text-sm">
+              {isHi
+                ? `${nextPlanet} महादशा ${formatDate(nextMaha.startDate)} से शुरू होगी। जीवन के विषयों में बदलाव के लिए तैयार रहें।`
+                : `${nextPlanet} Mahadasha starts on ${formatDate(nextMaha.startDate)}. Prepare for a shift in life themes.`}
+            </p>
+          </div>
+        );
+      })()}
     </div>
   );
 }

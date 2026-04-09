@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { useEffect } from 'react';
+import { useLearningProgressStore } from '@/stores/learning-progress-store';
+import ProgressIndicator from '@/components/learn/ProgressIndicator';
 
 const PHASES = [
   { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार' }, color: 'border-gold-primary/20', topics: [
@@ -118,6 +121,13 @@ export default function ModuleIndexPage() {
   let moduleCount = 0;
   PHASES.forEach(p => p.topics.forEach(t => { moduleCount += t.modules.length; }));
 
+  const { hydrated, hydrateFromStorage, getModuleStatus, getPhaseProgress, getOverallProgress, getNextModule } = useLearningProgressStore();
+
+  useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
+
+  const overall = hydrated ? getOverallProgress() : null;
+  const nextModuleId = hydrated ? getNextModule() : null;
+
   return (
     <div className="space-y-8">
       <div>
@@ -130,6 +140,24 @@ export default function ModuleIndexPage() {
             : 'Each module is a 10-15 minute deep lesson with content, worked examples, and a knowledge check. Start with Module 1.1 and progress in order.'}
         </p>
       </div>
+
+      {/* Overall progress */}
+      {hydrated && overall && overall.mastered > 0 && (
+        <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-gold-light font-bold text-lg" style={hf}>
+              {isHi ? 'आपकी प्रगति' : 'Your Progress'}
+            </span>
+            <span className="text-gold-primary text-sm font-mono">{overall.mastered}/{overall.total}</span>
+          </div>
+          <div className="h-2 bg-white/5 rounded-full overflow-hidden mb-2">
+            <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${overall.percent}%` }} />
+          </div>
+          <p className="text-text-secondary/60 text-xs">
+            {isHi ? `${overall.percent}% पूर्ण` : `${overall.percent}% complete`}
+          </p>
+        </div>
+      )}
 
       {/* Start button */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5 bg-gradient-to-r from-gold-primary/5 to-indigo-500/5 flex items-center justify-between">
@@ -148,6 +176,18 @@ export default function ModuleIndexPage() {
           <div className="flex items-center gap-2 mb-4">
             <span className="w-6 h-6 rounded-full bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-xs text-gold-primary font-bold">{phase.phase}</span>
             <h3 className="text-gold-light font-bold text-lg" style={hf}>{isHi ? phase.label.hi : phase.label.en}</h3>
+            {hydrated && (() => {
+              const pp = getPhaseProgress(phase.phase);
+              return pp.mastered > 0 ? (
+                <div className="flex items-center gap-2 ml-auto">
+                  <div className="w-20 h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${pp.mastered === pp.total ? 'bg-emerald-500' : 'bg-gold-primary'}`}
+                      style={{ width: `${pp.percent}%` }} />
+                  </div>
+                  <span className="text-[10px] text-text-secondary/40">{pp.mastered}/{pp.total}</span>
+                </div>
+              ) : null;
+            })()}
           </div>
 
           <div className="space-y-3">
@@ -162,10 +202,18 @@ export default function ModuleIndexPage() {
                       <Link href={`/learn/modules/${mod.id}`}
                         className="flex items-center justify-between px-4 py-3 hover:bg-gold-primary/5 transition-colors group">
                         <div className="flex items-center gap-3">
+                          {hydrated && <ProgressIndicator status={getModuleStatus(mod.id)} size={14} />}
                           <span className="text-text-tertiary text-xs font-mono w-8">{mod.id.replace('-', '.')}</span>
-                          <span className="text-text-primary text-sm group-hover:text-gold-light transition-colors" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                          <span className={`text-sm group-hover:text-gold-light transition-colors ${
+                            hydrated && getModuleStatus(mod.id) === 'mastered' ? 'text-text-secondary/60' : 'text-text-primary'
+                          }`} style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                             {isHi ? mod.title.hi : mod.title.en}
                           </span>
+                          {mod.id === nextModuleId && (
+                            <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 font-bold">
+                              {isHi ? 'अगला' : 'NEXT'}
+                            </span>
+                          )}
                         </div>
                         <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-primary transition-colors" />
                       </Link>

@@ -1,6 +1,7 @@
 import type { KundaliData } from '@/types/kundali';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
+import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
 
 type Locale = 'en' | 'hi' | 'sa';
 
@@ -167,6 +168,64 @@ export function generateKundaliPrintHtml(kundali: KundaliData, locale: Locale): 
       </div>`;
   }
 
+  // Transit Radar
+  let transitHtml = '';
+  const ascSignId = kundali.ascendant?.sign;
+  const savTable = kundali.ashtakavarga?.savTable;
+  if (ascSignId && savTable) {
+    const transits = computePersonalTransits(ascSignId, savTable);
+    if (transits.length > 0) {
+      const transitHeaders = locale === 'en'
+        ? ['Planet', 'Sign', 'House', 'SAV Bindus', 'Quality']
+        : ['ग्रह', 'राशि', 'भाव', 'बिन्दु', 'गुणवत्ता'];
+
+      const qualityColor = (q: string) =>
+        q === 'strong' ? '#64c878' : q === 'weak' ? '#dc6464' : '#d4a853';
+      const qualityLabel = (q: string) =>
+        q === 'strong' ? (locale === 'en' ? 'Favorable' : 'शुभ')
+          : q === 'weak' ? (locale === 'en' ? 'Challenging' : 'चुनौतीपूर्ण')
+          : (locale === 'en' ? 'Moderate' : 'मध्यम');
+
+      const transitRows = transits.map(tr => `<tr>
+        <td${devaClass}><strong>${t(tr.planetName, locale)}</strong></td>
+        <td${devaClass}>${t(tr.signName, locale)}</td>
+        <td>${tr.house}</td>
+        <td>${tr.savBindu}</td>
+        <td style="color:${qualityColor(tr.quality)};font-weight:bold">${qualityLabel(tr.quality)}</td>
+      </tr>`).join('');
+
+      let upcomingHtml = '';
+      const upcoming = computeUpcomingTransitions();
+      if (upcoming.length > 0) {
+        const uHeaders = locale === 'en'
+          ? ['Planet', 'From', 'To', 'Approx. Date']
+          : ['ग्रह', 'से', 'को', 'अनुमानित तिथि'];
+        const uRows = upcoming.map(u => `<tr>
+          <td${devaClass}>${t(u.planetName, locale)}</td>
+          <td${devaClass}>${t(u.fromSign, locale)}</td>
+          <td${devaClass}>${t(u.toSign, locale)}</td>
+          <td>${u.approximateDate}</td>
+        </tr>`).join('');
+        upcomingHtml = `
+          <h3${devaClass} style="color:#f0d48a;margin-top:12px">${locale === 'en' ? 'Upcoming Sign Changes' : 'आगामी राशि परिवर्तन'}</h3>
+          <table>
+            <thead><tr>${uHeaders.map(h => `<th${devaClass}>${h}</th>`).join('')}</tr></thead>
+            <tbody>${uRows}</tbody>
+          </table>`;
+      }
+
+      transitHtml = `
+        <div class="section">
+          <h2${devaClass}>${locale === 'en' ? 'Current Transit Analysis' : 'वर्तमान गोचर विश्लेषण'}</h2>
+          <table>
+            <thead><tr>${transitHeaders.map(h => `<th${devaClass}>${h}</th>`).join('')}</tr></thead>
+            <tbody>${transitRows}</tbody>
+          </table>
+          ${upcomingHtml}
+        </div>`;
+    }
+  }
+
   return `
     <h1${devaClass}>${locale === 'en' ? 'Vedic Birth Chart' : 'वैदिक जन्मकुण्डली'} — ${name}</h1>
     ${birthTable}
@@ -176,5 +235,6 @@ export function generateKundaliPrintHtml(kundali: KundaliData, locale: Locale): 
     ${dashaHtml}
     ${yogaHtml}
     ${shadbalaHtml}
+    ${transitHtml}
   `;
 }

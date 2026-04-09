@@ -4,6 +4,8 @@ import type { Locale } from '@/types/panchang';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import { GRAHAS, GRAHA_ABBREVIATIONS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
+import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
+import type { ConvergenceResult } from '@/lib/tippanni/convergence/types';
 
 // ─── Theme constants ────────────────────────────────────────────────────────
 const GOLD = '#d4a853';
@@ -830,6 +832,211 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   addPageFooter(doc, pageNum);
 }
 
+// ─── Transit Radar ─────────────────────────────────────────────────────────
+
+function renderTransitRadar(doc: jsPDF, kundali: KundaliData, locale: Locale) {
+  doc.addPage();
+  pageNum++;
+  addPageBackground(doc);
+  let y = addContinuationHeader(doc);
+
+  y = goldHeading(doc, 'Current Transit Analysis', y);
+
+  const ascSign = kundali.ascendant.sign;
+  const savTable = kundali.ashtakavarga?.savTable;
+
+  if (!savTable || !ascSign) {
+    doc.setFontSize(8);
+    doc.setTextColor(155, 151, 160);
+    doc.text('Transit analysis requires Ashtakavarga data. Not available for this chart.', MARGIN + 2, y);
+    y += 8;
+    addPageFooter(doc, pageNum);
+    return;
+  }
+
+  const transits = computePersonalTransits(ascSign, savTable);
+
+  if (transits.length === 0) {
+    doc.setFontSize(8);
+    doc.setTextColor(155, 151, 160);
+    doc.text('No transit data computed.', MARGIN + 2, y);
+    y += 8;
+    addPageFooter(doc, pageNum);
+    return;
+  }
+
+  // Transit table
+  const tHeaders = ['Planet', 'Sign', 'House', 'SAV Bindus', 'Quality'];
+  const tColWidths = [36, 36, 24, 30, 56];
+  y = drawTableHeader(doc, tHeaders, tColWidths, y);
+
+  transits.forEach((tr, idx) => {
+    y = ensureSpace(doc, y, 7);
+    const qualityLabel = tr.quality === 'strong' ? 'Favorable'
+      : tr.quality === 'weak' ? 'Challenging' : 'Moderate';
+    const row = [
+      t(tr.planetName, locale),
+      t(tr.signName, locale),
+      `${tr.house}`,
+      `${tr.savBindu}`,
+      qualityLabel,
+    ];
+
+    // Custom row with quality color
+    const isEven = idx % 2 === 0;
+    if (isEven) {
+      doc.setFillColor(14, 18, 45);
+      doc.rect(MARGIN, y - 4, CONTENT_W, 6.5, 'F');
+    }
+    doc.setFontSize(7);
+    doc.setTextColor(232, 230, 227);
+    let x = MARGIN;
+    row.forEach((cell, ci) => {
+      if (ci === 4) {
+        // Color the quality text
+        if (tr.quality === 'strong') {
+          doc.setTextColor(100, 200, 120); // green
+        } else if (tr.quality === 'weak') {
+          doc.setTextColor(220, 100, 100); // red
+        } else {
+          doc.setTextColor(212, 168, 83); // gold for neutral
+        }
+      }
+      doc.text(cell.substring(0, Math.floor(tColWidths[ci] / 1.8)), x + 1, y);
+      if (ci === 4) {
+        doc.setTextColor(232, 230, 227); // reset
+      }
+      x += tColWidths[ci];
+    });
+    y += 6.5;
+  });
+
+  // Interpretations
+  y += 4;
+  y = ensureSpace(doc, y, 14);
+  y = subHeading(doc, 'Transit Interpretations', y);
+
+  transits.forEach(tr => {
+    y = ensureSpace(doc, y, 10);
+    const interp = t(tr.interpretation, locale);
+    y = drawWrappedText(doc, interp, y, CONTENT_W - 4, 7, TEXT_PRIMARY);
+    y += 2;
+  });
+
+  // Upcoming transitions
+  const upcoming = computeUpcomingTransitions();
+  if (upcoming.length > 0) {
+    y += 4;
+    y = ensureSpace(doc, y, 20);
+    y = subHeading(doc, 'Upcoming Sign Changes', y);
+
+    const uHeaders = ['Planet', 'From', 'To', 'Approx. Date'];
+    const uColWidths = [40, 40, 40, 62];
+    y = drawTableHeader(doc, uHeaders, uColWidths, y);
+
+    upcoming.forEach((u, idx) => {
+      y = ensureSpace(doc, y, 7);
+      const row = [
+        t(u.planetName, locale),
+        t(u.fromSign, locale),
+        t(u.toSign, locale),
+        u.approximateDate,
+      ];
+      y = drawTableRow(doc, row, uColWidths, y, idx % 2 === 0);
+    });
+  }
+
+  addPageFooter(doc, pageNum);
+}
+
+// ─── Convergence Insights ──────────────────────────────────────────────────
+
+function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, locale: Locale) {
+  doc.addPage();
+  pageNum++;
+  addPageBackground(doc);
+  let y = addContinuationHeader(doc);
+
+  y = goldHeading(doc, 'Chart Synthesis — Convergence Insights', y);
+
+  const lk = locale === 'sa' ? 'hi' : locale;
+  const exec = convergence.executive;
+
+  // Overall tone
+  const toneLabel = exec.tone.charAt(0).toUpperCase() + exec.tone.slice(1);
+  doc.setFontSize(9);
+  doc.setTextColor(240, 212, 138);
+  doc.text(`Overall Tone: ${toneLabel}  |  Activation: ${exec.activation}/10  |  Favorability: ${exec.favorability}/10`, MARGIN + 2, y);
+  y += 8;
+
+  // Executive insights
+  if (exec.insights.length > 0) {
+    y = subHeading(doc, 'Key Insights', y);
+
+    exec.insights.forEach(ins => {
+      y = ensureSpace(doc, y, 16);
+      doc.setFontSize(8);
+      doc.setTextColor(240, 212, 138);
+      doc.text(`${ins.theme} (${ins.temporalFrame})`, MARGIN + 2, y);
+      y += 5;
+      y = drawWrappedText(doc, ins.summary[lk], y, CONTENT_W - 4, 7, TEXT_PRIMARY);
+      if (ins.advice[lk]) {
+        y = drawWrappedText(doc, `Advice: ${ins.advice[lk]}`, y, CONTENT_W - 4, 7, TEXT_SECONDARY);
+      }
+      y += 3;
+    });
+  }
+
+  // Urgent flags
+  if (exec.urgentFlags.length > 0) {
+    y = ensureSpace(doc, y, 14);
+    y = subHeading(doc, 'Urgent Flags', y);
+
+    exec.urgentFlags.forEach(flag => {
+      y = ensureSpace(doc, y, 10);
+      const severityLabel = flag.severity === 3 ? 'HIGH' : flag.severity === 2 ? 'MEDIUM' : 'LOW';
+      doc.setFontSize(7.5);
+      // Color by severity
+      if (flag.severity === 3) {
+        doc.setTextColor(220, 100, 100);
+      } else if (flag.severity === 2) {
+        doc.setTextColor(212, 168, 83);
+      } else {
+        doc.setTextColor(155, 151, 160);
+      }
+      doc.text(`[${severityLabel}]`, MARGIN + 2, y);
+      y += 5;
+      y = drawWrappedText(doc, flag.message[lk], y, CONTENT_W - 4, 7, TEXT_PRIMARY);
+      y += 2;
+    });
+  }
+
+  // Meta-insights (convergence interactions)
+  if (exec.metaInsights.length > 0) {
+    y = ensureSpace(doc, y, 14);
+    y = subHeading(doc, 'Meta-Interactions', y);
+
+    exec.metaInsights.forEach(mi => {
+      y = ensureSpace(doc, y, 10);
+      const severityLabel = mi.severity === 3 ? 'HIGH' : mi.severity === 2 ? 'MEDIUM' : 'LOW';
+      doc.setFontSize(7.5);
+      if (mi.severity === 3) {
+        doc.setTextColor(220, 100, 100);
+      } else if (mi.severity === 2) {
+        doc.setTextColor(212, 168, 83);
+      } else {
+        doc.setTextColor(155, 151, 160);
+      }
+      doc.text(`[${severityLabel}]`, MARGIN + 2, y);
+      y += 5;
+      y = drawWrappedText(doc, mi.text[lk], y, CONTENT_W - 4, 7, TEXT_PRIMARY);
+      y += 3;
+    });
+  }
+
+  addPageFooter(doc, pageNum);
+}
+
 // ─── Page 10+: Tippanni (Interpretations) ───────────────────────────────────
 
 function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
@@ -1093,6 +1300,16 @@ export function exportKundaliPDF(
   // Sade Sati Analysis
   if (kundali.sadeSati) {
     renderSadeSati(doc, kundali, locale);
+  }
+
+  // Transit Radar
+  if (kundali.ashtakavarga?.savTable && kundali.ascendant?.sign) {
+    renderTransitRadar(doc, kundali, locale);
+  }
+
+  // Convergence Insights
+  if (tippanni?.convergence) {
+    renderConvergenceInsights(doc, tippanni.convergence, locale);
   }
 
   // Page 10+: Tippanni (Interpretations)

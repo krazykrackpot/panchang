@@ -31,7 +31,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
     lat: initialData?.lat || 0,
     lng: initialData?.lng || 0,
     timezone: initialData?.timezone || '', // Must come from LocationSearch — never use browser timezone
-    ayanamsha: (initialData?.ayanamsha || 'lahiri') as 'lahiri' | 'raman' | 'kp',
+    ayanamsha: initialData?.ayanamsha || 'lahiri',
     chartStyle: (initialData?.chartStyle || 'north') as ChartStyle,
   });
 
@@ -184,12 +184,27 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
           <label className="block text-gold-dark text-sm mb-2">{t('ayanamsha')}</label>
           <select
             value={formData.ayanamsha}
-            onChange={(e) => setFormData({ ...formData, ayanamsha: e.target.value as 'lahiri' | 'raman' | 'kp' })}
+            onChange={(e) => setFormData({ ...formData, ayanamsha: e.target.value })}
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
           >
-            <option value="lahiri">{t('lahiri')}</option>
-            <option value="raman">{t('raman')}</option>
-            <option value="kp">{t('kp')}</option>
+            <optgroup label={locale === 'en' ? 'Standard' : 'मानक'}>
+              <option value="lahiri">{locale === 'en' ? 'Lahiri (Chitrapaksha) — Indian Standard' : 'लाहिरी (चित्रपक्ष) — भारतीय मानक'}</option>
+              <option value="true_chitra">{locale === 'en' ? 'True Chitrapaksha — Tracks Spica live' : 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति'}</option>
+              <option value="kp">{locale === 'en' ? 'KP (Krishnamurti)' : 'केपी (कृष्णमूर्ति)'}</option>
+            </optgroup>
+            <optgroup label={locale === 'en' ? 'Classical' : 'शास्त्रीय'}>
+              <option value="raman">{locale === 'en' ? 'BV Raman' : 'बीवी रमण'}</option>
+              <option value="yukteshwar">{locale === 'en' ? 'Sri Yukteshwar' : 'श्री युक्तेश्वर'}</option>
+              <option value="jn_bhasin">{locale === 'en' ? 'JN Bhasin' : 'जेएन भसीन'}</option>
+            </optgroup>
+            <optgroup label={locale === 'en' ? 'Star-Anchored' : 'तारा-आधारित'}>
+              <option value="true_revati">{locale === 'en' ? 'True Revati — Revati star at 0° Aries' : 'यथार्थ रेवती — रेवती तारा 0° मेष पर'}</option>
+              <option value="true_pushya">{locale === 'en' ? 'True Pushya — Pushya star anchored' : 'यथार्थ पुष्य — पुष्य तारा आधारित'}</option>
+              <option value="galactic_center">{locale === 'en' ? 'Galactic Center at 0° Sagittarius' : 'गैलेक्टिक केन्द्र 0° धनु पर'}</option>
+            </optgroup>
+            <optgroup label={locale === 'en' ? 'Western Sidereal' : 'पश्चिमी सायन'}>
+              <option value="fagan_bradley">{locale === 'en' ? 'Fagan-Bradley' : 'फगन-ब्रैडले'}</option>
+            </optgroup>
           </select>
         </div>
 

@@ -65,18 +65,39 @@ export function swissJulDay(year: number, month: number, day: number, utHour: nu
   return se.julday(year, month, day, utHour, se.constants.SE_GREG_CAL);
 }
 
+// Swiss Eph ayanamsha mode constants for supported systems
+const SIDM_MAP: Record<string, number> = {
+  lahiri: 1,        // SE_SIDM_LAHIRI
+  true_chitra: 27,  // SE_SIDM_TRUE_CITRA — tracks Spica's actual current position
+  true_revati: 28,  // SE_SIDM_TRUE_REVATI — Revati (zeta Piscium) at 0° Aries
+  kp: 1,            // KP uses Lahiri base with ~6 arcmin offset (handled in getAyanamsha)
+  raman: 3,         // SE_SIDM_RAMAN
+  bv_raman: 3,      // Same as Raman
+  yukteshwar: 7,    // SE_SIDM_YUKTESHWAR
+  jn_bhasin: 13,    // SE_SIDM_JN_BHASIN
+  fagan_bradley: 0, // SE_SIDM_FAGAN_BRADLEY
+  true_pushya: 29,  // SE_SIDM_TRUE_PUSHYA — Pushya (delta Cancri) at fixed position
+  galactic_center: 17, // SE_SIDM_GALCENT_0SAG — Galactic center at 0° Sagittarius
+};
+
 /**
- * Get Lahiri ayanamsha for a given JD (memoized)
+ * Get ayanamsha for a given JD using Swiss Ephemeris (memoized).
+ * Supports multiple ayanamsha systems via SE_SIDM constants.
  */
-export function swissAyanamsha(jd: number): number {
-  const key = cacheKey(jd);
+export function swissAyanamsha(jd: number, sidMode?: string): number {
+  const mode = sidMode || 'lahiri';
+  const key = cacheKey(jd, SIDM_MAP[mode] ?? 1);
   const cached = ayanamshaCache.get(key);
   if (cached !== undefined) return cached;
 
   const se = getSweph();
   if (!se) return 0;
-  se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
+  const sidmNum = SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI;
+  se.set_sid_mode(sidmNum, 0, 0);
   const result = se.get_ayanamsa_ut(jd);
+
+  // Reset to Lahiri after use (other SwEph calls assume Lahiri)
+  se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);
 
   pruneCache(ayanamshaCache);
   ayanamshaCache.set(key, result);

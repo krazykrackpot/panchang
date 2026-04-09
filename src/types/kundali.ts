@@ -8,7 +8,7 @@ export interface BirthData {
   lat: number;
   lng: number;
   timezone: string;
-  ayanamsha: 'lahiri' | 'raman' | 'kp';
+  ayanamsha: string; // AyanamshaType from astronomical.ts
 }
 
 export interface HouseCusp {

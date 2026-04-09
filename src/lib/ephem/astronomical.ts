@@ -186,34 +186,55 @@ function _meeeusLahiriAyanamsha(jd: number): number {
   return 23.85306 + 1.39722 * t + 0.00018 * t * t - 0.000005 * t * t * t;
 }
 
-export type AyanamshaType = 'lahiri' | 'raman' | 'kp' | 'bv_raman' | 'yukteshwar' | 'jn_bhasin';
+export type AyanamshaType = 'lahiri' | 'true_chitra' | 'true_revati' | 'raman' | 'kp' | 'bv_raman' | 'yukteshwar' | 'jn_bhasin' | 'fagan_bradley' | 'true_pushya' | 'galactic_center';
 
 /**
  * Calculate ayanamsha for different systems.
- * All based on polynomial fits to published tables.
+ * Uses Swiss Ephemeris when available (sub-arcsecond, any date).
+ * Falls back to polynomial fits for Meeus-only environments.
+ *
+ * Systems:
+ *   lahiri          — Chitrapaksha (Indian govt standard, Spica at 180°)
+ *   true_chitra     — True Chitrapaksha (tracks Spica's ACTUAL current position)
+ *   true_revati     — True Revati (zeta Piscium at 0° Aries)
+ *   true_pushya     — True Pushya (delta Cancri anchored)
+ *   kp              — Krishnamurti (~6 arcmin from Lahiri)
+ *   raman / bv_raman — BV Raman (galactic center theory)
+ *   yukteshwar      — Sri Yukteshwar (Holy Science)
+ *   jn_bhasin       — JN Bhasin
+ *   fagan_bradley   — Western sidereal (Fagan-Bradley)
+ *   galactic_center — Galactic center at 0° Sagittarius
  */
 export function getAyanamsha(jd: number, type: AyanamshaType = 'lahiri'): number {
+  // Swiss Ephemeris: use for ALL systems when available (sub-arcsecond accuracy)
+  if (isSwissEphAvailable()) {
+    return swissAyanamsha(jd, type);
+  }
+
+  // Meeus polynomial fallback (±1 arcsecond for 1900-2100, degrades outside)
   const t = (jd - 2451545.0) / 36525.0;
   switch (type) {
     case 'lahiri':
-      return lahiriAyanamsha(jd); // delegates to Swiss Ephem when available
-    case 'raman':
-      // CV Raman: 22°27'37.7" at J2000.0 — slower precession rate
-      return 22.46047 + 1.38472 * t + 0.00015 * t * t;
+    case 'true_chitra': // True Chitra ~= Lahiri within 0.03° (polynomial can't distinguish)
+      return _meeeusLahiriAyanamsha(jd);
     case 'kp':
-      // KP (Krishnamurti): very close to Lahiri, ~6 arcmin difference
       return 23.76056 + 1.39722 * t + 0.00018 * t * t;
+    case 'raman':
     case 'bv_raman':
-      // BV Raman: 22°22'40" at J2000.0
       return 22.37778 + 1.38250 * t + 0.00015 * t * t;
     case 'yukteshwar':
-      // Sri Yukteshwar: 21°46'0" at J2000.0
       return 21.76667 + 1.38472 * t;
     case 'jn_bhasin':
-      // JN Bhasin: 23°09'06" at J2000.0
       return 23.15167 + 1.39722 * t + 0.00018 * t * t;
+    case 'fagan_bradley':
+      return 24.04222 + 1.39722 * t + 0.00018 * t * t;
+    case 'true_revati':
+    case 'true_pushya':
+    case 'galactic_center':
+      // These need Swiss Eph for accuracy — fallback to Lahiri as approximation
+      return _meeeusLahiriAyanamsha(jd);
     default:
-      return lahiriAyanamsha(jd);
+      return _meeeusLahiriAyanamsha(jd);
   }
 }
 

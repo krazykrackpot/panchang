@@ -113,6 +113,7 @@ export function generateOrganizationLD(): object {
       'Dekho Panchang is a free Vedic astrology platform offering daily Panchang, Kundali generation, Muhurta finding, and Kundali matching — powered by precise astronomical calculations.',
     foundingDate: '2024',
     sameAs: [
+      'https://www.wikidata.org/wiki/Q139054863',
       // Add social profiles as you create them — each one strengthens brand signals
       // 'https://twitter.com/dekhopanchang',
       // 'https://www.youtube.com/@dekhopanchang',

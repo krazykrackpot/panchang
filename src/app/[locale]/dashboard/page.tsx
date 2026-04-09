@@ -327,7 +327,7 @@ export default function DashboardPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-8 rounded-2xl border border-gold-primary/20 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <LayoutDashboard className="w-12 h-12 text-gold-primary mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -365,7 +365,7 @@ export default function DashboardPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-8 rounded-2xl border border-gold-primary/20 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <Calendar className="w-12 h-12 text-gold-primary mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -468,7 +468,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.2 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm"
+            className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-4">
               <Star className="w-5 h-5 text-gold-primary" />
@@ -496,7 +496,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.25 }}
-            className="p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm"
+            className="p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-4">
               <Moon className="w-5 h-5 text-gold-primary" />
@@ -524,7 +524,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.3 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-5">
               <TrendingUp className="w-5 h-5 text-gold-primary" />
@@ -588,7 +588,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.33 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-2">
               <Compass className="w-5 h-5 text-gold-primary" />
@@ -670,7 +670,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.37 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-2">
               <Calendar className="w-5 h-5 text-gold-primary" />
@@ -709,7 +709,7 @@ export default function DashboardPage() {
           <motion.div
             {...fadeUp}
             transition={{ delay: 0.4 }}
-            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm"
+            className="mb-8 p-6 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <div className="flex items-center gap-2 mb-4">
               <Eye className="w-5 h-5 text-gold-primary" />
@@ -744,7 +744,7 @@ export default function DashboardPage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-3 p-4 rounded-xl border border-gold-primary/15 bg-bg-secondary/50 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
+                className="flex items-center gap-3 p-4 rounded-xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
               >
                 <link.icon className="w-5 h-5 text-gold-primary" />
                 <span className="text-text-secondary group-hover:text-gold-light transition-colors text-sm font-medium">

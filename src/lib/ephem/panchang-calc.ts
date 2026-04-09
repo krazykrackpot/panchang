@@ -1106,25 +1106,38 @@ export function computePanchang(input: PanchangInput): PanchangData {
   };
 
   // 2. Dur Muhurtam (inauspicious muhurta windows by weekday)
-  // Dur Muhurtam (inauspicious muhurta) — 0-indexed muhurta positions from sunrise.
-  // Source: Nirṇaya Sindhu / Kaala Prakashika
-  // (Wednesday Apr 8 2026 = single window 13:02-13:55 = muhurta index 7).
-  // Cross-validated against Prokerala (Ujjain, Apr 5-11 2026) and Drik (Bern).
-  // All 7 weekdays verified against Prokerala's computed output.
-  const DUR_MUHURTAM_INDICES: number[][] = [
-    [13],    // Sunday    — 14th muhurta (Prokerala Apr 5: 17:01)
-    [8, 11], // Monday    — 9th & 12th muhurta (Prokerala Apr 6: 12:53, 15:22)
-    [3],     // Tuesday   — 4th muhurta (Prokerala Apr 7: 08:46)
-    [7],     // Wednesday — 8th muhurta (Drik+Prokerala verified Apr 8)
-    [5, 11], // Thursday  — 6th & 12th muhurta (Prokerala+Drik verified Apr 9)
-    [3, 8],  // Friday    — 4th & 9th muhurta (Prokerala Apr 10: 08:44, 12:53)
-    [2],     // Saturday  — 3rd muhurta (Prokerala verified Apr 11)
+  // Two classical traditions exist with different muhurta indices per weekday.
+  // Both are shown to the user — they can follow their preferred tradition.
+  //
+  // Tradition A: Kaala Prakashika / South Indian (matches Prokerala, Drik)
+  // Tradition B: Nirṇaya Sindhu / North Indian (older Dharma Sindhu lineage)
+  const DUR_MUHURTAM_A: number[][] = [ // Kaala Prakashika (verified against Prokerala Apr 5-11 2026)
+    [13],    // Sunday    — 14th muhurta
+    [8, 11], // Monday    — 9th & 12th muhurta
+    [3],     // Tuesday   — 4th muhurta
+    [7],     // Wednesday — 8th muhurta
+    [5, 11], // Thursday  — 6th & 12th muhurta
+    [3, 8],  // Friday    — 4th & 9th muhurta
+    [2],     // Saturday  — 3rd muhurta
   ];
-  const durMuhurtam = (DUR_MUHURTAM_INDICES[weekday] || [6]).map(idx => {
+  const DUR_MUHURTAM_B: number[][] = [ // Nirṇaya Sindhu
+    [6, 10], // Sunday    — 7th & 11th muhurta
+    [5],     // Monday    — 6th muhurta
+    [7],     // Tuesday   — 8th muhurta
+    [7],     // Wednesday — 8th muhurta
+    [3],     // Thursday  — 4th muhurta
+    [4, 8],  // Friday    — 5th & 9th muhurta
+    [1],     // Saturday  — 2nd muhurta
+  ];
+  const formatDurWindows = (indices: number[]) => indices.map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;
     const e = s + muhurtaDuration;
     return { start: formatTime(s, tzOffset), end: formatTime(e, tzOffset) };
   });
+  const durMuhurtamA = formatDurWindows(DUR_MUHURTAM_A[weekday] || [7]);
+  const durMuhurtamB = formatDurWindows(DUR_MUHURTAM_B[weekday] || [7]);
+  // Primary: Kaala Prakashika (matches modern panchangs). Both exposed to UI.
+  const durMuhurtam = durMuhurtamA;
 
   // 3. Ganda Moola — with time window (sunrise to nakshatra end, or full day if no transition)
   // Ganda Moola window: sunrise to nakshatra end (standard panchang convention)
@@ -1602,6 +1615,7 @@ export function computePanchang(input: PanchangInput): PanchangData {
     madhyahna,
     vijayaMuhurta,
     durMuhurtam,
+    durMuhurtamAlt: durMuhurtamB, // Nirṇaya Sindhu tradition (alternate)
     gandaMoola,
     anandadiYoga,
     raviYoga,

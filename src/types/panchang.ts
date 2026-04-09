@@ -135,6 +135,7 @@ export interface PanchangData {
   // New fields — Drik Panchang additions
   vijayaMuhurta?: { start: string; end: string };
   durMuhurtam?: { start: string; end: string }[];
+  durMuhurtamAlt?: { start: string; end: string }[]; // Nirṇaya Sindhu tradition (alternate)
   gandaMoola?: { active: boolean; nakshatra?: Trilingual };
   anandadiYoga?: { number: number; name: Trilingual; nature: 'auspicious' | 'inauspicious' };
   raviYoga?: boolean;

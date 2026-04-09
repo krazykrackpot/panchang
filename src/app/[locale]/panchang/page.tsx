@@ -1213,16 +1213,31 @@ export default function PanchangPage() {
                 <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Gulika\'s period — avoid travel' : 'गुलिक काल — यात्रा टालें'}</div>
               </motion.div>
 
-              {/* Dur Muhurtam */}
+              {/* Dur Muhurtam — two classical traditions */}
               {panchang.durMuhurtam && panchang.durMuhurtam.length > 0 && (
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.14 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent">
+                  className="rounded-xl border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
                     {locale === 'en' ? 'Dur Muhurtam' : 'दुर्मुहूर्त'}
+                  </div>
+                  <div className="text-text-secondary/50 text-[10px] mb-2">
+                    {locale === 'en' ? 'Kaala Prakashika tradition' : 'काल प्रकाशिका परम्परा'}
                   </div>
                   {panchang.durMuhurtam.map((w, i) => (
                     <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
                   ))}
+                  {panchang.durMuhurtamAlt && panchang.durMuhurtamAlt.length > 0 && (
+                    <details className="mt-3 text-left">
+                      <summary className="text-text-tertiary/50 text-[10px] cursor-pointer hover:text-text-secondary transition-colors text-center">
+                        {locale === 'en' ? '▸ Nirṇaya Sindhu tradition (alternate)' : '▸ निर्णय सिन्धु परम्परा (वैकल्पिक)'}
+                      </summary>
+                      <div className="mt-2 text-center">
+                        {panchang.durMuhurtamAlt.map((w: { start: string; end: string }, i: number) => (
+                          <div key={i} className="font-mono text-sm text-red-400/60 leading-tight">{w.start} — {w.end}</div>
+                        ))}
+                      </div>
+                    </details>
+                  )}
                   <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Inauspicious — avoid all new work' : 'अशुभ — सभी नए कार्य टालें'}</div>
                 </motion.div>
               )}

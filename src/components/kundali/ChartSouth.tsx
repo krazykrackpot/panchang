@@ -74,12 +74,12 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
       </h3>
       <motion.svg
         viewBox={`0 0 ${totalW} ${totalW}`}
-        width={size}
-        height={size}
+        role="img"
+        aria-label="South Indian birth chart showing planets in 12 houses"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="drop-shadow-2xl w-full max-w-[500px]"
+        className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
       >
         <defs>
           <radialGradient id="sBg" cx="50%" cy="50%" r="72%">

@@ -62,12 +62,12 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
       </h3>
       <motion.svg
         viewBox="0 0 500 500"
-        width={size}
-        height={size}
+        role="img"
+        aria-label="North Indian birth chart showing planets in 12 houses"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        className="drop-shadow-2xl w-full max-w-[500px]"
+        className="drop-shadow-2xl w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px]"
       >
         <defs>
           {/* Background gradient — deeper, richer */}

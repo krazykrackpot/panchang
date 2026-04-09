@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_12_1', phase: 3, topic: 'Transits', moduleNumber: '12.1',
@@ -258,6 +259,7 @@ function Page3() {
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-500/15">
         <h4 className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'व्यावहारिक प्रयोग' : 'Practical Application'}</h4>
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">उदाहरण:</span> चन्द्र से 8वें भाव में शनि गोचर सामान्यतः अत्यन्त कठिन है। परन्तु यदि जातक के अष्टकवर्ग में उस राशि में शनि के 5 बिन्दु हों, तो गोचर काफी शमित होगा — चुनौतियाँ हैं परन्तु सम्भालने योग्य हैं और छिपे लाभ भी ला सकता है (8वें भाव का रूपान्तरण)।</> : <><span className="text-gold-light font-medium">Example:</span> Saturn transiting the 8th from Moon is generally very difficult. But if Saturn has 5 bindus in that sign in the native&apos;s Ashtakavarga chart, the transit will be significantly mitigated — challenges exist but are manageable and may even bring hidden gains (8th house transformation).</>}</p>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
         <p className="text-text-secondary text-xs leading-relaxed">
           <span className="text-gold-light font-medium">Conversely:</span> Jupiter in the 5th from Moon is classically excellent. But if Jupiter has only 1-2 bindus in that sign, the promised bounty may be delayed, partial, or manifest through struggle rather than ease. Ashtakavarga reveals the hidden quality behind the surface-level transit rule.
         </p>

@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_20_1', phase: 7, topic: 'KP System', moduleNumber: '20.1',
@@ -239,6 +240,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-500/15">
         <h4 className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
         <p className="text-text-secondary text-xs leading-relaxed">
           {isHi
             ? <><span className="text-gold-light font-medium">47 अंश उत्तर अक्षांश की कुण्डली (जैसे स्विट्ज़रलैण्ड):</span> लग्न = 5 अंश कर्क, MC = 15 अंश मीन। समान भावों में प्रत्येक भाव ठीक 30 अंश होता। किन्तु इस अक्षांश पर प्लेसिडस में भाव नाटकीय रूप से असमान हो जाते हैं: प्रथम भाव = 5 अंश कर्क से 28 अंश कर्क (केवल 23 अंश चौड़ा), द्वितीय भाव = 28 अंश कर्क से 25 अंश सिंह (27 अंश), तृतीय भाव = 25 अंश सिंह से 27 अंश कन्या (32 अंश)। वहीं दशम भाव 15 अंश मीन से 20 अंश मेष तक (35 अंश चौड़ा)। 23 से 35 अंश तक का अन्तर दिखाता है कि ग्रह स्थान भावों के बीच कैसे बदल सकता है।</>

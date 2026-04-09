@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import ExampleChart from '@/components/learn/ExampleChart';
 
 const META: ModuleMeta = {
   id: 'mod_22_1', phase: 9, topic: 'Astronomy', moduleNumber: '22.1',
@@ -226,6 +227,7 @@ function Page2() {
 
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-blue-500/15">
         <h4 className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-3">{isHi ? 'कार्यान्वित उदाहरण' : 'Worked Example'}</h4>
+        <ExampleChart ascendant={1} planets={{ 1: [2], 4: [1], 9: [4], 10: [0] }} title={isHi ? 'उदाहरण कुण्डली' : 'Example Chart'} />
         <p className="text-text-secondary text-xs leading-relaxed mb-2">{isHi ? <><span className="text-gold-light font-medium">2 अप्रैल, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12। M &gt; 2 होने से कोई समायोजन नहीं। A = floor(2026/100) = 20। B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13। JD = floor(365.25 × 6742) + floor(30.6001 × 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0।</> : <><span className="text-gold-light font-medium">April 2, 2026, 12:00 UT:</span> Y = 2026, M = 4, D = 2, H = 12. Since M &gt; 2, no adjustment needed. A = floor(2026/100) = 20. B = 2 - 20 + floor(20/4) = 2 - 20 + 5 = -13. JD = floor(365.25 x 6742) + floor(30.6001 x 5) + 2 + 0.5 + (-13) - 1524.5 = 2,462,979.5 + 153 + 2 + 0.5 - 13 - 1524.5 = 2,461,132.0.</>}</p>
       </section>
     </div>

@@ -5725,35 +5725,69 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       })()}
 
       {/* ===== DASHA INSIGHT (fallback when synthesis unavailable) ===== */}
-      {!tip.dashaSynthesis && tip.dashaInsight.currentMaha && (
-        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
-          <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>{tTip('dashaAnalysis')}</h3>
-          <div className="space-y-4">
-            <div className="p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/20">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="w-3 h-3 rounded-full bg-gold-primary animate-pulse" />
-                <span className="text-gold-light font-semibold">{tip.dashaInsight.currentMaha}</span>
-              </div>
-              <p className="text-text-secondary text-sm leading-relaxed">{tip.dashaInsight.currentMahaAnalysis}</p>
+      {!tip.dashaSynthesis && tip.dashaInsight.currentMaha && (() => {
+        // Extract planet name from "Mercury Mahadasha" or "बुध महादशा"
+        const mahaText = tip.dashaInsight.currentMaha;
+        const PLANET_NAME_TO_ID: Record<string, number> = { Sun: 0, Moon: 1, Mars: 2, Mercury: 3, Jupiter: 4, Venus: 5, Saturn: 6, Rahu: 7, Ketu: 8, सूर्य: 0, चन्द्र: 1, मंगल: 2, बुध: 3, बृहस्पति: 4, शुक्र: 5, शनि: 6, राहु: 7, केतु: 8 };
+        const mahaPlanetId = Object.entries(PLANET_NAME_TO_ID).find(([name]) => mahaText.includes(name))?.[1] ?? 0;
+        const antarText = tip.dashaInsight.currentAntar || '';
+        const antarPlanetId = Object.entries(PLANET_NAME_TO_ID).find(([name]) => antarText.includes(name))?.[1] ?? 0;
+        const mahaGraha = GRAHAS[mahaPlanetId];
+        const antarGraha = GRAHAS[antarPlanetId];
+
+        return (
+        <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
+          {/* Header with planet icon */}
+          <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-4 flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-primary/20 to-gold-dark/10 border border-gold-primary/25 flex items-center justify-center shadow-lg shadow-gold-primary/10">
+              <GrahaIconById id={mahaPlanetId} size={32} />
             </div>
+            <div>
+              <h3 className="text-xl text-gold-light font-bold" style={headingFont}>{tTip('dashaAnalysis')}</h3>
+              <p className="text-text-secondary/60 text-xs">{locale === 'en' ? 'Your current planetary period' : 'आपका वर्तमान ग्रह काल'}</p>
+            </div>
+          </div>
+
+          <div className="px-6 sm:px-8 pb-6 sm:pb-8 space-y-4">
+            {/* Current Mahadasha — mega card */}
+            <div className="rounded-xl p-5 border-2 border-gold-primary/20 bg-gradient-to-r from-gold-primary/8 via-transparent to-transparent">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: mahaGraha?.color || '#d4a853' }} />
+                <span className="text-gold-light font-bold text-lg" style={headingFont}>{tip.dashaInsight.currentMaha}</span>
+              </div>
+              <p className="text-text-primary/80 text-sm leading-relaxed whitespace-pre-line" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tip.dashaInsight.currentMahaAnalysis}</p>
+            </div>
+
+            {/* Current Antardasha */}
             {tip.dashaInsight.currentAntar && (
-              <div className="p-4 rounded-lg bg-bg-primary/40 border border-gold-primary/10 ml-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2 h-2 rounded-full bg-gold-primary" />
-                  <span className="text-gold-light font-medium text-sm">{tip.dashaInsight.currentAntar}</span>
+              <div className="rounded-xl p-4 border border-white/5 bg-bg-secondary/40 ml-2 sm:ml-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center bg-bg-primary/50">
+                    <GrahaIconById id={antarPlanetId} size={18} />
+                  </div>
+                  <div>
+                    <span className="font-semibold text-sm" style={{ color: antarGraha?.color || '#e6e2d8' }}>{tip.dashaInsight.currentAntar}</span>
+                    <p className="text-text-secondary/50 text-[10px]">{locale === 'en' ? 'Sub-period within the main period' : 'मुख्य काल के भीतर उपकाल'}</p>
+                  </div>
                 </div>
-                <p className="text-text-secondary text-sm">{tip.dashaInsight.currentAntarAnalysis}</p>
+                <p className="text-text-secondary text-sm leading-relaxed ml-11" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tip.dashaInsight.currentAntarAnalysis}</p>
               </div>
             )}
+
+            {/* Next Transition */}
             {tip.dashaInsight.upcoming && (
-              <div className="p-3 bg-indigo-500/5 rounded-lg border border-indigo-500/10 ml-4">
-                <p className="text-indigo-400 text-xs uppercase tracking-wider mb-1">{tTip('upcoming')}</p>
-                <p className="text-text-secondary text-sm">{tip.dashaInsight.upcoming}</p>
+              <div className="rounded-xl p-4 border border-indigo-500/15 bg-indigo-500/5 ml-2 sm:ml-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{tTip('upcoming')}</span>
+                  <span className="w-4 h-px bg-indigo-500/30 flex-1" />
+                </div>
+                <p className="text-text-secondary/80 text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tip.dashaInsight.upcoming}</p>
               </div>
             )}
           </div>
         </section>
-      )}
+        );
+      })()}
 
       {/* ===== PLANETARY STRENGTH ===== */}
       {tip.strengthOverview.length > 0 && (

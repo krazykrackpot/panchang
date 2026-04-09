@@ -40,6 +40,10 @@ import { ANANT_CHATURDASHI_PUJA } from './anant-chaturdashi';
 import { GURU_NANAK_JAYANTI_PUJA } from './guru-nanak-jayanti';
 import { MAHA_NAVAMI_PUJA } from './maha-navami';
 import { PURNIMA_VRAT_PUJA } from './purnima-vrat';
+import { PONGAL_PUJA } from './pongal';
+import { BAISAKHI_PUJA } from './baisakhi';
+import { UGADI_PUJA } from './ugadi';
+import { BIHU_PUJA } from './bihu';
 
 export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'ganesh-chaturthi': GANESH_CHATURTHI_PUJA,
@@ -82,6 +86,10 @@ export const PUJA_VIDHIS: Record<string, PujaVidhi> = {
   'guru-nanak-jayanti': GURU_NANAK_JAYANTI_PUJA,
   'maha-navami': MAHA_NAVAMI_PUJA,
   'purnima-vrat': PURNIMA_VRAT_PUJA,
+  'pongal': PONGAL_PUJA,
+  'baisakhi': BAISAKHI_PUJA,
+  'ugadi': UGADI_PUJA,
+  'bihu': BIHU_PUJA,
   ...GRAHA_SHANTI_VIDHIS,
 };
 

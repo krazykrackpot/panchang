@@ -152,6 +152,7 @@ const pujaVidhiSlugs = [
   'govardhan-puja', 'bhai-dooj', 'buddha-purnima', 'chaitra-navratri',
   'durga-ashtami', 'holika-dahan', 'anant-chaturdashi', 'guru-nanak-jayanti',
   'maha-navami', 'purnima-vrat',
+  'pongal', 'baisakhi', 'ugadi', 'bihu',
   // Graha Shanti
   'graha-shanti-surya', 'graha-shanti-chandra', 'graha-shanti-mangal',
   'graha-shanti-budha', 'graha-shanti-guru', 'graha-shanti-shukra',

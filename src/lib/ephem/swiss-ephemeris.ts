@@ -86,15 +86,20 @@ const SIDM_MAP: Record<string, number> = {
  */
 export function swissAyanamsha(jd: number, sidMode?: string): number {
   const mode = sidMode || 'lahiri';
-  const key = cacheKey(jd, SIDM_MAP[mode] ?? 1);
+  // Use mode string hash for cache key to avoid collisions (KP vs Lahiri share same SIDM constant)
+  const modeHash = mode.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  const key = cacheKey(jd, modeHash);
   const cached = ayanamshaCache.get(key);
   if (cached !== undefined) return cached;
 
   const se = getSweph();
   if (!se) return 0;
-  const sidmNum = SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI;
+  // KP (Krishnamurti) is Lahiri with a ~6 arcmin offset — no dedicated Swiss Eph constant
+  const isKP = mode === 'kp';
+  const sidmNum = isKP ? (se.constants.SE_SIDM_LAHIRI ?? 1) : (SIDM_MAP[mode] ?? se.constants.SE_SIDM_LAHIRI);
   se.set_sid_mode(sidmNum, 0, 0);
-  const result = se.get_ayanamsa_ut(jd);
+  let result = se.get_ayanamsa_ut(jd);
+  if (isKP) result -= 0.09444; // KP offset: ~6 arcmin (0.094°) less than Lahiri
 
   // Reset to Lahiri after use (other SwEph calls assume Lahiri)
   se.set_sid_mode(se.constants.SE_SIDM_LAHIRI, 0, 0);

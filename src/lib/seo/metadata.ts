@@ -658,6 +658,27 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['hindu month', 'masa panchang', 'chaitra masa', 'lunar calendar month'],
   },
 
+  '/learn/birth-chart': {
+    title: { en: 'Understanding Your Birth Chart (Kundali)', hi: 'अपनी जन्म कुण्डली को समझें', sa: 'जन्मकुण्डलीं बोधत' },
+    description: { en: 'Complete beginner guide to reading a Vedic birth chart — 12 houses, 9 planets, 12 signs, degrees, chart styles, and common misconceptions.', hi: 'वैदिक जन्म कुण्डली पढ़ने की सम्पूर्ण शुरुआती मार्गदर्शिका — 12 भाव, 9 ग्रह, 12 राशियाँ, अंश, चार्ट शैली।', sa: 'वैदिकजन्मकुण्डलीपठनस्य सम्पूर्णमार्गदर्शिका।' },
+    keywords: ['birth chart', 'kundali', 'janam kundli', 'vedic chart reading', 'how to read birth chart'],
+  },
+  '/learn/tippanni': {
+    title: { en: 'Tippanni — Chart Interpretation Guide', hi: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका', sa: 'टिप्पणी — कुण्डलीव्याख्यामार्गदर्शिका' },
+    description: { en: 'How Tippanni (interpretive commentary) transforms raw chart data into life insights — personality, planets, yogas, doshas, dashas, and remedies.', hi: 'कैसे टिप्पणी कच्चे कुण्डली डेटा को जीवन अन्तर्दृष्टि में बदलती है — व्यक्तित्व, ग्रह, योग, दोष, दशा, उपाय।', sa: 'टिप्पणी कथं कुण्डलीसमाचारं जीवनबोधे परिणमयति।' },
+    keywords: ['tippanni', 'chart interpretation', 'kundali reading', 'vedic astrology interpretation'],
+  },
+  '/learn/transits': {
+    title: { en: 'Understanding Planetary Transits (Gochar)', hi: 'ग्रह गोचर को समझें', sa: 'ग्रहगोचरं बोधत' },
+    description: { en: 'How planetary transits activate your birth chart — slow planets, Ashtakavarga scores, Transit Radar, Sade Sati, and practical transit advice.', hi: 'कैसे ग्रह गोचर आपकी जन्म कुण्डली सक्रिय करते हैं — धीमे ग्रह, अष्टकवर्ग, गोचर रडार, साढ़े साती।', sa: 'ग्रहगोचरः जन्मकुण्डलीं कथं सक्रियां करोति।' },
+    keywords: ['planetary transits', 'gochar', 'transit astrology', 'ashtakavarga transit', 'sade sati'],
+  },
+  '/learn/patrika': {
+    title: { en: 'Patrika — Your Complete Astrological Document', hi: 'पत्रिका — सम्पूर्ण ज्योतिषीय दस्तावेज़', sa: 'पत्रिका — सम्पूर्णज्योतिषदस्तावेजः' },
+    description: { en: 'What is a Janam Patrika — traditional vs digital format, contents, how to read it, when you need it, and export features.', hi: 'जन्म पत्रिका क्या है — पारम्परिक बनाम डिजिटल, विषयवस्तु, कैसे पढ़ें, कब चाहिए।', sa: 'जन्मपत्रिका किम् — पारम्परिकं डिजिटलं च।' },
+    keywords: ['patrika', 'janam patri', 'birth chart document', 'kundali document'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

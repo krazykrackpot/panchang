@@ -701,6 +701,9 @@ export default function KundaliPage() {
           {/* ===== CHART TAB ===== */}
           {activeTab === 'chart' && (
             <div>
+              <a href={`/${locale}/learn/birth-chart`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Birth Charts \u2192' : 'जन्म कुण्डली के बारे में जानें \u2192'}
+              </a>
               {/* Chart type selector — all Parashara vargas */}
               <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-4">
               <div className="flex sm:flex-wrap sm:justify-center gap-1.5 min-w-max sm:min-w-0">
@@ -1078,6 +1081,9 @@ export default function KundaliPage() {
           {/* ===== PLANETS TAB ===== */}
           {activeTab === 'planets' && (
             <div className="space-y-3">
+              <a href={`/${locale}/learn/planets`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Planets \u2192' : 'ग्रहों के बारे में जानें \u2192'}
+              </a>
               <InfoBlock
                 id="kundali-planets"
                 title={locale === 'en' ? 'What do Planet Positions mean?' : 'ग्रह स्थितियों का क्या अर्थ है?'}
@@ -1362,6 +1368,9 @@ export default function KundaliPage() {
           {/* ===== DASHA TAB ===== */}
           {activeTab === 'dasha' && (
             <div className="space-y-3">
+              <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}
+              </a>
               <InfoBlock
                 id="kundali-dasha"
                 title={locale === 'en' ? 'What is a Dasha? (Your Life Chapters)' : 'दशा क्या है? (आपके जीवन के अध्याय)'}
@@ -1786,15 +1795,30 @@ export default function KundaliPage() {
 
           {/* ===== ASHTAKAVARGA TAB ===== */}
           {activeTab === 'ashtakavarga' && kundali.ashtakavarga && (
-            <AshtakavargaTab ashtakavarga={kundali.ashtakavarga} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} t={t} />
+            <>
+              <a href={`/${locale}/learn/ashtakavarga`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Ashtakavarga \u2192' : 'अष्टकवर्ग के बारे में जानें \u2192'}
+              </a>
+              <AshtakavargaTab ashtakavarga={kundali.ashtakavarga} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} t={t} />
+            </>
           )}
 
           {/* ===== TIPPANNI TAB ===== */}
-          {activeTab === 'tippanni' && <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />}
+          {activeTab === 'tippanni' && (
+            <>
+              <a href={`/${locale}/learn/tippanni`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Tippanni \u2192' : 'टिप्पणी के बारे में जानें \u2192'}
+              </a>
+              <TippanniTab kundali={kundali} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} tTip={tTip} />
+            </>
+          )}
 
           {/* ===== VARGA ANALYSIS TAB ===== */}
           {activeTab === 'varga' && (
             <>
+              <a href={`/${locale}/learn/vargas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Varga Charts \u2192' : 'वर्ग चार्ट के बारे में जानें \u2192'}
+              </a>
               <InfoBlock
                 id="kundali-varga"
                 title={locale === 'en' ? 'What are Divisional Charts (Varga)?' : 'विभागीय चार्ट (वर्ग) क्या हैं?'}
@@ -1813,6 +1837,9 @@ export default function KundaliPage() {
           {/* ===== GRAHA TAB ===== */}
           {activeTab === 'graha' && kundali.grahaDetails && (
             <>
+              <a href={`/${locale}/learn/grahas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Grahas \u2192' : 'ग्रहों के बारे में जानें \u2192'}
+              </a>
               <InfoBlock
                 id="kundali-graha"
                 title={locale === 'hi' ? 'ग्रह विश्लेषण क्या है?' : 'What is Graha Analysis?'}
@@ -1829,6 +1856,9 @@ export default function KundaliPage() {
           {/* ===== YOGAS TAB ===== */}
           {activeTab === 'yogas' && kundali.yogasComplete && (
             <div className="space-y-6">
+              <a href={`/${locale}/learn/yogas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Yogas \u2192' : 'योगों के बारे में जानें \u2192'}
+              </a>
               <InfoBlock
                 id="kundali-yogas"
                 title={locale === 'en' ? 'What are Yogas and why do they matter for your life?' : 'योग क्या हैं और वे आपके जीवन के लिए क्यों मायने रखते हैं?'}
@@ -1870,6 +1900,9 @@ export default function KundaliPage() {
           {activeTab === 'shadbala' && kundali.fullShadbala && (
             <PaywallGate feature="shadbala_full" blurContent={<ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
               <div className="space-y-6">
+                <a href={`/${locale}/learn/shadbala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                  {locale === 'en' ? 'Learn about Shadbala \u2192' : 'षड्बल के बारे में जानें \u2192'}
+                </a>
                 <InfoBlock
                   id="kundali-shadbala"
                   title={locale === 'hi' ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
@@ -1889,6 +1922,9 @@ export default function KundaliPage() {
           {activeTab === 'bhavabala' && kundali.bhavabala && (
             <PaywallGate feature="shadbala_full" blurContent={<BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
               <div className="space-y-6">
+                <a href={`/${locale}/learn/bhavabala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                  {locale === 'en' ? 'Learn about Bhavabala \u2192' : 'भावबल के बारे में जानें \u2192'}
+                </a>
                 <InfoBlock
                   id="kundali-bhavabala"
                   title={locale === 'hi' ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
@@ -1907,6 +1943,9 @@ export default function KundaliPage() {
           {/* ===== AVASTHAS TAB ===== */}
           {activeTab === 'avasthas' && kundali.avasthas && (
             <div className="space-y-6">
+              <a href={`/${locale}/learn/avasthas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Avasthas \u2192' : 'अवस्थाओं के बारे में जानें \u2192'}
+              </a>
               <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
                 {locale === 'en' ? 'Planetary Avasthas (States)' : 'ग्रह अवस्थाएं'}
               </h3>
@@ -1982,6 +2021,7 @@ export default function KundaliPage() {
           )}
 
           {/* ===== ARGALA TAB ===== */}
+          {activeTab === 'argala' && kundali.argala && (<a href={`/${locale}/learn/argala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' ? 'Learn about Argala \u2192' : 'अर्गला के बारे में जानें \u2192'}</a>)}
           {activeTab === 'argala' && kundali.argala && (() => {
             const HOUSE_SIGNIFICATIONS: { en: string; hi: string }[] = [
               { en: 'Self, body, personality, health', hi: 'आत्म, शरीर, व्यक्तित्व, स्वास्थ्य' },
@@ -2231,6 +2271,7 @@ export default function KundaliPage() {
           })()}
 
           {/* ===== SPHUTAS TAB ===== */}
+          {activeTab === 'sphutas' && kundali.sphutas && (<a href={`/${locale}/learn/sphutas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' ? 'Learn about Sphutas \u2192' : 'स्फुट के बारे में जानें \u2192'}</a>)}
           {activeTab === 'sphutas' && kundali.sphutas && (() => {
             const isHi = locale !== 'en';
             const yogiPlanetName = GRAHAS[kundali.sphutas.yogiPoint.yogiPlanet]?.name[locale as Locale] || '';
@@ -2839,6 +2880,9 @@ export default function KundaliPage() {
           {/* ===== SADE SATI TAB ===== */}
           {activeTab === 'sadesati' && kundali.sadeSati && (
             <div className="space-y-6">
+              <a href={`/${locale}/learn/sade-sati`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Sade Sati \u2192' : 'साढ़े साती के बारे में जानें \u2192'}
+              </a>
               <InfoBlock id="kundali-sadesati" title={locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'}>
                 {locale === 'en' ? (
                   <div className="space-y-2">
@@ -2869,6 +2913,7 @@ export default function KundaliPage() {
           )}
 
           {/* ===== JAIMINI TAB ===== */}
+          {activeTab === 'jaimini' && kundali.jaimini && (<a href={`/${locale}/learn/jaimini`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' ? 'Learn about Jaimini \u2192' : 'जैमिनी के बारे में जानें \u2192'}</a>)}
           {activeTab === 'jaimini' && kundali.jaimini && (() => {
             // Karaka explanations
             const KARAKA_INFO: Record<string, { full: { en: string; hi: string }; meaning: { en: string; hi: string }; governs: { en: string; hi: string } }> = {
@@ -3565,15 +3610,21 @@ export default function KundaliPage() {
 
           {/* ===== LIFE TIMELINE TAB ===== */}
           {activeTab === 'timeline' && (
-            <LifeTimeline
+            <>
+              <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
+                {locale === 'en' ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}
+              </a>
+              <LifeTimeline
               kundali={kundali}
               locale={locale}
               isDevanagari={isDevanagari}
               headingFont={headingFont}
             />
+            </>
           )}
 
           {/* ===== PATRIKA TAB ===== */}
+          {activeTab === 'patrika' && (<a href={`/${locale}/learn/patrika`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">{locale === 'en' ? 'Learn about Patrika \u2192' : 'पत्रिका के बारे में जानें \u2192'}</a>)}
           {activeTab === 'patrika' && (() => {
             const bd = kundali.birthData;
             const mahaDashas = kundali.dashas.filter(d => d.level === 'maha');
@@ -5936,11 +5987,16 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
 
       {/* ===== TRANSIT RADAR ===== */}
       {kundali.ashtakavarga && (
+        <>
+        <a href={`/${locale}/learn/transits`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-2">
+          {locale === 'en' ? 'Learn about Transits \u2192' : 'गोचर के बारे में जानें \u2192'}
+        </a>
         <TransitRadar
           ascendantSign={kundali.ascendant.sign}
           savTable={kundali.ashtakavarga.savTable}
           locale={locale}
         />
+        </>
       )}
 
       {/* ===== PLANETARY STRENGTH ===== */}

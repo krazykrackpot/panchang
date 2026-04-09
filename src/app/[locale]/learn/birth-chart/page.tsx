@@ -228,6 +228,28 @@ const L = {
     },
   ],
 
+  nakshatrasTitle: { en: 'The 27 Nakshatras — The Lunar Mansions', hi: '27 नक्षत्र — चन्द्र भवन' },
+  nakshatrasP1: {
+    en: 'Beyond the 12 signs, Vedic astrology uses a finer division of the zodiac into 27 Nakshatras (lunar mansions). Each nakshatra spans 13°20\' and has a unique personality, ruling deity, symbol, and planetary lord. The Moon\'s nakshatra at birth is one of the most important data points in your chart:',
+    hi: '12 राशियों से परे, वैदिक ज्योतिष राशिचक्र को 27 नक्षत्रों (चन्द्र भवन) में सूक्ष्म विभाजन करता है। प्रत्येक नक्षत्र 13°20\' फैला है और इसका एक अद्वितीय व्यक्तित्व, अधिष्ठात्र देवता, प्रतीक और ग्रह स्वामी है। जन्म के समय चन्द्र का नक्षत्र आपकी कुण्डली के सबसे महत्वपूर्ण डेटा बिन्दुओं में से एक है:',
+  },
+  nakshatraPoints: [
+    { point: { en: 'Your Moon nakshatra determines your Vimshottari Dasha starting point — the master timing system of your entire life', hi: 'आपका चन्द्र नक्षत्र विंशोत्तरी दशा प्रारम्भ बिन्दु निर्धारित करता है — आपके सम्पूर्ण जीवन की मास्टर समय प्रणाली' } },
+    { point: { en: 'Each nakshatra has 4 padas (quarters) of 3°20\' each, which determine the starting syllable for baby naming (Namakarana)', hi: 'प्रत्येक नक्षत्र के 4 पाद (चतुर्थांश) 3°20\' के हैं, जो शिशु नामकरण का प्रारम्भिक अक्षर निर्धारित करते हैं' } },
+    { point: { en: 'Your nakshatra lord becomes a key planet — if its Dasha runs during your productive years, it significantly shapes your life', hi: 'आपका नक्षत्र स्वामी प्रमुख ग्रह बनता है — यदि उसकी दशा आपके उत्पादक वर्षों में चले तो जीवन को महत्वपूर्ण रूप से आकार देता है' } },
+    { point: { en: 'Nakshatras add psychological depth that signs alone cannot provide — two people with Moon in the same sign but different nakshatras can have very different temperaments', hi: 'नक्षत्र मनोवैज्ञानिक गहराई जोड़ते हैं जो केवल राशियाँ प्रदान नहीं कर सकतीं — एक ही राशि में चन्द्र पर भिन्न नक्षत्रों वाले दो लोगों का स्वभाव बहुत भिन्न हो सकता है' } },
+    { point: { en: 'Compatibility matching (Guna Milan) heavily relies on nakshatra — matching gana, nadi, yoni, and other factors from both nakshatras', hi: 'मिलान (गुण मिलान) नक्षत्र पर बहुत निर्भर करता है — दोनों नक्षत्रों से गण, नाड़ी, योनि और अन्य कारकों का मिलान' } },
+  ],
+
+  importantConcepts: { en: 'Key Concepts to Remember', hi: 'याद रखने के लिए प्रमुख अवधारणाएँ' },
+  concepts: [
+    { concept: { en: 'Functional vs Natural Benefics/Malefics', hi: 'कार्यात्मक बनाम प्राकृतिक शुभ/पाप' }, detail: { en: 'Jupiter is a natural benefic, but if it rules the 6th and 3rd houses for your Ascendant (Libra rising), it becomes a functional malefic. Conversely, Saturn (natural malefic) becomes a functional benefic for Taurus and Libra Ascendants. Always assess from your specific Ascendant.', hi: 'गुरु प्राकृतिक शुभ है, लेकिन यदि यह आपके लग्न के लिए 6वें और 3रे भाव का स्वामी है (तुला लग्न), तो यह कार्यात्मक पाप बनता है। इसके विपरीत, शनि (प्राकृतिक पाप) वृषभ और तुला लग्न के लिए कार्यात्मक शुभ बनता है।' } },
+    { concept: { en: 'Yogakaraka — The Best Planet for Your Chart', hi: 'योगकारक — आपकी कुण्डली का सर्वश्रेष्ठ ग्रह' }, detail: { en: 'A Yogakaraka is a planet that rules both a Kendra (1/4/7/10) and a Trikona (1/5/9) house for your Ascendant. Example: Saturn is Yogakaraka for Taurus and Libra Ascendants (rules 9th+10th and 4th+5th respectively). Its Dasha typically brings the best results in the chart.', hi: 'योगकारक वह ग्रह है जो आपके लग्न के लिए केन्द्र (1/4/7/10) और त्रिकोण (1/5/9) दोनों का स्वामी है। उदाहरण: शनि वृषभ और तुला लग्न के लिए योगकारक है। इसकी दशा आमतौर पर सर्वोत्तम परिणाम देती है।' } },
+    { concept: { en: 'House Lordship — The Backbone of Interpretation', hi: 'भाव स्वामित्व — व्याख्या की रीढ़' }, detail: { en: 'A planet\'s behavior depends more on which houses it RULES than on its natural nature. Mars rules the 9th and 4th for Leo Ascendant — making it a powerful benefic despite being a natural malefic. House lordship is the single most important concept for accurate chart reading.', hi: 'ग्रह का व्यवहार उसकी प्राकृतिक प्रकृति से अधिक इस पर निर्भर करता है कि वह किन भावों का स्वामी है। मंगल सिंह लग्न के लिए 9वें और 4थे का स्वामी है — प्राकृतिक पाप होते हुए भी शक्तिशाली शुभ। भाव स्वामित्व सटीक कुण्डली पठन की सबसे महत्वपूर्ण अवधारणा है।' } },
+    { concept: { en: 'Aspects (Drishti) — Planets Influence from Afar', hi: 'दृष्टि — ग्रह दूर से प्रभावित करते हैं' }, detail: { en: 'In Vedic astrology, all planets aspect the 7th house from their position. Additionally, Mars has special aspects on 4th and 8th houses, Jupiter on 5th and 9th, Saturn on 3rd and 10th. These aspects significantly modify house results even without physical occupation.', hi: 'वैदिक ज्योतिष में सभी ग्रह अपनी स्थिति से 7वें भाव पर दृष्टि डालते हैं। इसके अतिरिक्त, मंगल 4वें और 8वें पर, गुरु 5वें और 9वें पर, शनि 3रे और 10वें पर विशेष दृष्टि डालते हैं। ये दृष्टियाँ बिना भौतिक उपस्थिति के भी भाव परिणामों को महत्वपूर्ण रूप से संशोधित करती हैं।' } },
+    { concept: { en: 'Combustion — When the Sun Overwhelms', hi: 'अस्तत्व — जब सूर्य दबाता है' }, detail: { en: 'When a planet comes too close to the Sun in degrees, it becomes "combust" — its light is absorbed by the Sun\'s brilliance. A combust planet loses some ability to deliver results, especially in matters of confidence and visibility. The closer to the Sun, the stronger the combustion effect.', hi: 'जब कोई ग्रह अंशों में सूर्य के बहुत निकट आता है तो वह "अस्त" हो जाता है — उसका प्रकाश सूर्य की तेजस्विता में विलीन हो जाता है। अस्त ग्रह परिणाम देने की कुछ क्षमता खो देता है, विशेषकर आत्मविश्वास और दृश्यता के मामलों में।' } },
+  ],
+
   misconceptionsTitle: { en: 'Common Misconceptions', hi: 'सामान्य भ्रान्तियाँ' },
   misconceptions: [
     {
@@ -265,6 +287,15 @@ const L = {
         hi: 'कुण्डली प्रवृत्तियाँ, झुकाव और समय दिखाती है — निश्चित भाग्य नहीं। इसे मौसम पूर्वानुमान समझें: बारिश की सम्भावना जानने से छाता ले जाते हैं, पर बारिश में चलने के लिए मजबूर नहीं करती। वैदिक ज्योतिष स्पष्ट सिखाता है कि पुरुषार्थ प्रारब्ध को संशोधित कर सकता है।',
       },
     },
+  ],
+
+  practicalTitle: { en: 'Practical First Steps After Getting Your Chart', hi: 'कुण्डली प्राप्त करने के बाद व्यावहारिक पहले कदम' },
+  practicalSteps: [
+    { step: { en: 'Generate your chart on our Kundali page — you need accurate birth date, time (to the minute), and place', hi: 'हमारे कुण्डली पृष्ठ पर अपना चार्ट बनाएं — आपको सटीक जन्म तिथि, समय (मिनट तक) और स्थान चाहिए' } },
+    { step: { en: 'Read the Tippanni (interpretation) tab first — it translates the raw chart into plain language insights about your personality, career, relationships, and timing', hi: 'पहले टिप्पणी (व्याख्या) टैब पढ़ें — यह कच्ची कुण्डली को व्यक्तित्व, कैरियर, सम्बन्ध और समय के बारे में सरल भाषा में बताती है' } },
+    { step: { en: 'Check your current Dasha — go to the Dasha tab to see which planetary period you are currently living in, and read its implications', hi: 'अपनी वर्तमान दशा देखें — दशा टैब पर जाकर देखें कि वर्तमान में कौन सी ग्रह अवधि चल रही है और उसके निहितार्थ पढ़ें' } },
+    { step: { en: 'Validate with life events — compare past Dasha periods with what actually happened. If Saturn Dasha coincided with hard work and delayed rewards, your chart time is confirmed', hi: 'जीवन घटनाओं से मान्य करें — पिछली दशा अवधियों की तुलना वास्तव में हुई घटनाओं से करें। यदि शनि दशा कठिन परिश्रम और विलम्बित पुरस्कारों से मेल खाती है, तो आपका कुण्डली समय पुष्ट है' } },
+    { step: { en: 'Explore the Yogas tab — identify which special combinations are active in your chart and what talents or challenges they indicate', hi: 'योग टैब का पता लगाएं — पहचानें कि कौन से विशेष संयोग आपकी कुण्डली में सक्रिय हैं और वे कौन सी प्रतिभाएँ या चुनौतियाँ इंगित करते हैं' } },
   ],
 
   furtherTitle: { en: 'Continue Your Learning', hi: 'आगे सीखें' },
@@ -502,8 +533,42 @@ export default function BirthChartPage() {
         </div>
       </LessonSection>
 
-      {/* 9. Misconceptions */}
-      <LessonSection number={9} title={isHi ? L.misconceptionsTitle.hi : L.misconceptionsTitle.en}>
+      {/* 9. Nakshatras */}
+      <LessonSection number={9} title={isHi ? L.nakshatrasTitle.hi : L.nakshatrasTitle.en}>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+          <p>{isHi ? L.nakshatrasP1.hi : L.nakshatrasP1.en}</p>
+          <ul className="space-y-2 mt-3">
+            {L.nakshatraPoints.map((n, i) => (
+              <li key={i} className="flex gap-2 text-xs">
+                <span className="text-gold-primary shrink-0 mt-0.5">&#x2022;</span>
+                <span className="text-text-secondary">{isHi ? n.point.hi : n.point.en}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs">
+            <Link href="/learn/nakshatras" className="text-gold-primary/70 hover:text-gold-light transition-colors">
+              {isHi ? '27 नक्षत्रों का गहन अध्ययन →' : 'Deep dive into the 27 Nakshatras →'}
+            </Link>
+          </p>
+        </div>
+      </LessonSection>
+
+      {/* 10. Key Concepts */}
+      <LessonSection number={10} title={isHi ? L.importantConcepts.hi : L.importantConcepts.en}>
+        <div className="space-y-3">
+          {L.concepts.map((c, i) => (
+            <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
+              <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
+                {isHi ? c.concept.hi : c.concept.en}
+              </h4>
+              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? c.detail.hi : c.detail.en}</p>
+            </div>
+          ))}
+        </div>
+      </LessonSection>
+
+      {/* 11. Misconceptions */}
+      <LessonSection number={11} title={isHi ? L.misconceptionsTitle.hi : L.misconceptionsTitle.en}>
         <div className="space-y-4">
           {L.misconceptions.map((m, i) => (
             <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
@@ -511,6 +576,26 @@ export default function BirthChartPage() {
               <p className="text-text-secondary text-xs leading-relaxed">{isHi ? m.truth.hi : m.truth.en}</p>
             </div>
           ))}
+        </div>
+      </LessonSection>
+
+      {/* 12. Practical first steps */}
+      <LessonSection number={12} title={isHi ? L.practicalTitle.hi : L.practicalTitle.en}>
+        <div className="space-y-3">
+          {L.practicalSteps.map((s, i) => (
+            <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
+              <span className="text-gold-primary font-bold text-xs shrink-0 mt-0.5">{i + 1}.</span>
+              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? s.step.hi : s.step.en}</p>
+            </div>
+          ))}
+          <div className="mt-4 text-center">
+            <Link
+              href="/kundali"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light text-sm font-semibold hover:bg-gold-primary/25 transition-all"
+            >
+              {isHi ? 'अपनी कुण्डली बनाएं →' : 'Generate Your Kundali →'}
+            </Link>
+          </div>
         </div>
       </LessonSection>
 

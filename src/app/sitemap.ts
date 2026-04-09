@@ -73,6 +73,10 @@ const routes = [
   '/learn/hora',
   '/learn/advanced-houses',
   '/learn/compatibility',
+  '/learn/birth-chart',
+  '/learn/tippanni',
+  '/learn/transits',
+  '/learn/patrika',
   // Calendars
   '/calendar',
   '/transits',

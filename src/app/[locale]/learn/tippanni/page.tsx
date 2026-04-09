@@ -149,6 +149,79 @@ const L = {
     { type: { en: 'Practices (Upaya)', hi: 'अभ्यास (उपाय)' }, detail: { en: 'Specific actions aligned with each planet: charity on the planet\'s day, fasting, serving the planet\'s karakas (e.g., serving the elderly for Saturn), visiting related temples, and lifestyle adjustments. These redirect the planetary energy constructively.', hi: 'प्रत्येक ग्रह से सम्बद्ध विशिष्ट क्रियाएँ: ग्रह के दिन दान, उपवास, ग्रह के कारकों की सेवा (शनि के लिए बुज़ुर्गों की सेवा), सम्बन्धित मन्दिर यात्रा और जीवनशैली समायोजन।' } },
   ],
 
+  lifeQuestionsTitle: { en: 'Mapping Life Questions to Tippanni Sections', hi: 'जीवन प्रश्नों को टिप्पणी खण्डों से जोड़ना' },
+  lifeQuestionsP1: {
+    en: 'When you have a specific life question, here is which Tippanni section to consult:',
+    hi: 'जब आपके पास कोई विशिष्ट जीवन प्रश्न हो, तो यहाँ बताया गया है कि कौन सा टिप्पणी खण्ड देखें:',
+  },
+  lifeQuestions: [
+    { question: { en: '"What is my core personality?"', hi: '"मेरा मूल व्यक्तित्व क्या है?"' }, section: { en: 'Personality section — Ascendant + Moon + Sun analysis', hi: 'व्यक्तित्व खण्ड — लग्न + चन्द्र + सूर्य विश्लेषण' } },
+    { question: { en: '"When will my career improve?"', hi: '"मेरा कैरियर कब सुधरेगा?"' }, section: { en: 'Dasha Insight + Year Predictions — check when 10th house lord\'s Dasha or favorable transit activates', hi: 'दशा अन्तर्दृष्टि + वार्षिक भविष्यवाणी — जब 10वें भाव स्वामी की दशा या अनुकूल गोचर सक्रिय हो' } },
+    { question: { en: '"Am I Manglik? Will it affect my marriage?"', hi: '"क्या मैं मांगलिक हूँ? क्या यह विवाह प्रभावित करेगा?"' }, section: { en: 'Dosha section — checks Mars position, cancellation factors, and actual severity', hi: 'दोष खण्ड — मंगल स्थिति, रद्दीकरण कारक और वास्तविक गम्भीरता जाँचता है' } },
+    { question: { en: '"What are my natural talents?"', hi: '"मेरी प्राकृतिक प्रतिभाएँ क्या हैं?"' }, section: { en: 'Yogas section — Raja and Dhana yogas reveal inherent gifts', hi: 'योग खण्ड — राज और धन योग अन्तर्निहित प्रतिभाएँ प्रकट करते हैं' } },
+    { question: { en: '"Why am I struggling right now?"', hi: '"मैं अभी क्यों संघर्ष कर रहा/रही हूँ?"' }, section: { en: 'Dasha Insight + Strength Overview — a weak planet\'s Dasha or challenging transit explains current difficulties', hi: 'दशा अन्तर्दृष्टि + बल अवलोकन — दुर्बल ग्रह की दशा या चुनौतीपूर्ण गोचर वर्तमान कठिनाइयों की व्याख्या करते हैं' } },
+    { question: { en: '"What gemstone should I wear?"', hi: '"मुझे कौन सा रत्न पहनना चाहिए?"' }, section: { en: 'Remedies section — recommends stones ONLY for functional benefics, not just any planet', hi: 'उपाय खण्ड — केवल कार्यात्मक शुभ ग्रहों के रत्न सुझाता है, कोई भी ग्रह नहीं' } },
+    { question: { en: '"Is this a good time to start a business?"', hi: '"क्या यह व्यापार शुरू करने का अच्छा समय है?"' }, section: { en: 'Year Predictions + Dasha Insight — check if current Dasha and transits support entrepreneurship (2nd, 7th, 10th, 11th houses active)', hi: 'वार्षिक भविष्यवाणी + दशा अन्तर्दृष्टि — जाँचें कि वर्तमान दशा और गोचर उद्यमशीलता का समर्थन करते हैं (2, 7, 10, 11वें भाव सक्रिय)' } },
+    { question: { en: '"What will the next few years bring?"', hi: '"अगले कुछ वर्ष क्या लाएंगे?"' }, section: { en: 'Year Predictions — combines Dasha transitions with major transit events (Jupiter/Saturn sign changes)', hi: 'वार्षिक भविष्यवाणी — दशा परिवर्तनों को प्रमुख गोचर घटनाओं (गुरु/शनि राशि परिवर्तन) के साथ जोड़ती है' } },
+  ],
+
+  convergenceTitle: { en: 'Understanding Convergence — When Multiple Factors Agree', hi: 'अभिसरण को समझें — जब कई कारक सहमत हों' },
+  convergenceP1: {
+    en: 'The most reliable predictions come from convergence — when multiple independent factors point to the same conclusion. A single placement can be misleading, but when 3-4 factors agree, the prediction becomes highly reliable:',
+    hi: 'सबसे विश्वसनीय भविष्यवाणियाँ अभिसरण से आती हैं — जब कई स्वतंत्र कारक एक ही निष्कर्ष की ओर इंगित करें। एक अकेली स्थिति भ्रामक हो सकती है, लेकिन जब 3-4 कारक सहमत हों तो भविष्यवाणी अत्यन्त विश्वसनीय बनती है:',
+  },
+  convergenceExamples: [
+    {
+      scenario: { en: 'Career Success Convergence', hi: 'कैरियर सफलता अभिसरण' },
+      factors: {
+        en: '10th lord in Kendra + Raja Yoga involving 10th house + Strong Shadbala for 10th lord + Current Dasha activating 10th house + Jupiter transiting 10th house = almost certain career advancement',
+        hi: '10वाँ स्वामी केन्द्र में + 10वें भाव से राज योग + 10वें स्वामी का बलवान षड्बल + वर्तमान दशा 10वें भाव को सक्रिय + गुरु 10वें भाव से गोचर = लगभग निश्चित कैरियर उन्नति',
+      },
+    },
+    {
+      scenario: { en: 'Relationship Challenge Convergence', hi: 'सम्बन्ध चुनौती अभिसरण' },
+      factors: {
+        en: '7th lord debilitated + Manglik Dosha active + Venus combust + Saturn transiting 7th house + Rahu Dasha running = relationship area requires patience and inner work',
+        hi: '7वाँ स्वामी नीच + मांगलिक दोष सक्रिय + शुक्र अस्त + शनि 7वें भाव से गोचर + राहु दशा चल रही = सम्बन्ध क्षेत्र में धैर्य और आन्तरिक कार्य आवश्यक',
+      },
+    },
+    {
+      scenario: { en: 'Spiritual Growth Convergence', hi: 'आध्यात्मिक विकास अभिसरण' },
+      factors: {
+        en: 'Ketu in 12th house + Jupiter aspecting Ketu + Ketu Dasha running + Saturn transiting 12th from Moon + Viparita Raja Yoga involving 12th lord = profound spiritual transformation period',
+        hi: 'केतु 12वें भाव में + गुरु केतु पर दृष्टि + केतु दशा चल रही + शनि चन्द्र से 12वें से गोचर + 12वें स्वामी से विपरीत राज योग = गहन आध्यात्मिक परिवर्तन काल',
+      },
+    },
+  ],
+
+  humanVsAutoTitle: { en: 'Algorithmic vs Human Tippanni', hi: 'एल्गोरिदमिक बनाम मानवीय टिप्पणी' },
+  humanVsAutoP1: {
+    en: 'Our algorithmic Tippanni covers the core framework systematically — it never misses a yoga, never miscalculates a shadbala score, and processes every chart consistently. However, a human astrologer brings intuitive synthesis that algorithms currently cannot replicate: reading the "story" of the chart as a whole, sensing which factors matter most for a specific question, and incorporating the client\'s lived experience into the interpretation.',
+    hi: 'हमारी एल्गोरिदमिक टिप्पणी मूल ढाँचे को व्यवस्थित रूप से कवर करती है — यह कभी कोई योग नहीं चूकती, कभी षड्बल गलत नहीं गणती, और प्रत्येक कुण्डली को सुसंगत रूप से प्रसंस्करित करती है। हालाँकि, एक मानवीय ज्योतिषी सहज संश्लेषण लाता है जो एल्गोरिदम वर्तमान में दोहरा नहीं सकते: कुण्डली की सम्पूर्ण "कहानी" पढ़ना, विशिष्ट प्रश्न के लिए कौन से कारक सबसे महत्वपूर्ण हैं यह समझना, और व्यक्ति के जीवित अनुभव को व्याख्या में शामिल करना।',
+  },
+  humanVsAutoP2: {
+    en: 'We recommend using our Tippanni as a foundation — a comprehensive, accurate, objective analysis — and then consulting a qualified astrologer for specific life questions where context and nuance matter. The two approaches complement each other: our system provides data integrity, and the astrologer provides wisdom.',
+    hi: 'हम अनुशंसा करते हैं कि हमारी टिप्पणी को आधार के रूप में उपयोग करें — एक व्यापक, सटीक, वस्तुनिष्ठ विश्लेषण — और फिर विशिष्ट जीवन प्रश्नों के लिए एक योग्य ज्योतिषी से परामर्श करें जहाँ सन्दर्भ और सूक्ष्मता मायने रखती है। दोनों दृष्टिकोण एक दूसरे के पूरक हैं: हमारी प्रणाली डेटा अखण्डता प्रदान करती है, और ज्योतिषी ज्ञान।',
+  },
+  humanVsAutoStrengths: [
+    { aspect: { en: 'Calculation accuracy', hi: 'गणना सटीकता' }, algo: { en: 'Perfect — arc-second precision, every time', hi: 'परिपूर्ण — हर बार विकला सटीकता' }, human: { en: 'Prone to manual errors', hi: 'मैन्युअल त्रुटियों की सम्भावना' } },
+    { aspect: { en: 'Yoga detection', hi: 'योग पहचान' }, algo: { en: 'Exhaustive — checks 40+ classical yogas', hi: 'व्यापक — 40+ शास्त्रीय योग जाँचता है' }, human: { en: 'May miss rare yogas', hi: 'दुर्लभ योग चूक सकता है' } },
+    { aspect: { en: 'Life context', hi: 'जीवन सन्दर्भ' }, algo: { en: 'Cannot incorporate', hi: 'शामिल नहीं कर सकता' }, human: { en: 'Integrates your story', hi: 'आपकी कहानी समाहित करता है' } },
+    { aspect: { en: 'Intuitive synthesis', hi: 'सहज संश्लेषण' }, algo: { en: 'Rule-based only', hi: 'केवल नियम-आधारित' }, human: { en: 'Sees the whole picture', hi: 'सम्पूर्ण चित्र देखता है' } },
+  ],
+
+  readingTipsTitle: { en: 'Tips for Getting the Most from Your Tippanni', hi: 'अपनी टिप्पणी से अधिकतम लाभ के सुझाव' },
+  readingTips: [
+    { tip: { en: 'Read the personality section first — if the Ascendant and Moon descriptions resonate with you, the chart time is likely accurate. If they feel completely wrong, your birth time may need rectification.', hi: 'पहले व्यक्तित्व खण्ड पढ़ें — यदि लग्न और चन्द्र विवरण आपसे मेल खाते हैं, तो कुण्डली समय सम्भवतः सटीक है। यदि बिल्कुल गलत लगे, तो जन्म समय शोधन आवश्यक हो सकता है।' } },
+    { tip: { en: 'Focus on the current Dasha period — while the entire chart is your life blueprint, the active Dasha tells you what chapter you are living RIGHT NOW.', hi: 'वर्तमान दशा अवधि पर ध्यान दें — जबकि सम्पूर्ण कुण्डली आपका जीवन ब्लूप्रिंट है, सक्रिय दशा बताती है कि आप अभी कौन सा अध्याय जी रहे हैं।' } },
+    { tip: { en: 'Don\'t cherry-pick only positive yogas — the challenging combinations are equally valuable because they show where growth happens. A chart with zero challenges produces zero resilience.', hi: 'केवल सकारात्मक योग न चुनें — चुनौतीपूर्ण संयोग भी उतने ही मूल्यवान हैं क्योंकि वे दिखाते हैं कि विकास कहाँ होता है। शून्य चुनौतियों वाली कुण्डली शून्य लचीलापन उत्पन्न करती है।' } },
+    { tip: { en: 'Cross-reference with actual life events — the best way to validate your Tippanni is to check past Dasha periods against what actually happened during those years. This builds confidence in the system.', hi: 'वास्तविक जीवन घटनाओं से तुलना करें — टिप्पणी को मान्य करने का सबसे अच्छा तरीका पिछली दशा अवधियों को उन वर्षों में वास्तव में हुई घटनाओं से जाँचना है।' } },
+    { tip: { en: 'Remedies are suggestions, not obligations — the Tippanni may suggest gemstones, mantras, or practices. These are tools for optimization, not mandatory rituals. Use what resonates with you.', hi: 'उपाय सुझाव हैं, बाध्यताएँ नहीं — टिप्पणी रत्न, मन्त्र या अभ्यास सुझा सकती है। ये अनुकूलन के साधन हैं, अनिवार्य कर्मकांड नहीं। जो आपको उचित लगे उसे अपनाएँ।' } },
+    { tip: { en: 'Revisit your Tippanni when Dasha changes — each new Dasha period activates different parts of your chart. The same Tippanni becomes freshly relevant as different themes come to the foreground.', hi: 'दशा बदलने पर अपनी टिप्पणी पुनः देखें — प्रत्येक नई दशा अवधि आपकी कुण्डली के विभिन्न भागों को सक्रिय करती है। वही टिप्पणी भिन्न विषयों के अग्रभूमि में आने पर नए सिरे से प्रासंगिक हो जाती है।' } },
+    { tip: { en: 'Compare the Tippanni with the Transit Radar — the Radar shows which zodiac zones are currently favorable for you, while the Tippanni shows the permanent natal blueprint. Together, they give you both the terrain and the weather forecast.', hi: 'टिप्पणी की गोचर रडार से तुलना करें — रडार दिखाता है कि कौन से राशिचक्र क्षेत्र वर्तमान में आपके लिए अनुकूल हैं, जबकि टिप्पणी स्थायी जन्म ब्लूप्रिंट दिखाती है। मिलकर ये भूभाग और मौसम पूर्वानुमान दोनों देते हैं।' } },
+    { tip: { en: 'Share your Patrika with family or a trusted astrologer — the Tippanni gains depth when discussed with someone who understands both the chart AND your life context. An astrologer can refine the algorithmic interpretation with human insight.', hi: 'अपनी पत्रिका परिवार या विश्वसनीय ज्योतिषी के साथ साझा करें — टिप्पणी की गहराई तब बढ़ती है जब इसे किसी ऐसे व्यक्ति के साथ चर्चा करें जो कुण्डली और आपके जीवन सन्दर्भ दोनों समझता है।' } },
+  ],
+
   furtherTitle: { en: 'Explore Each Section in Depth', hi: 'प्रत्येक खण्ड का गहन अध्ययन करें' },
   furtherLinks: [
     { href: '/learn/birth-chart', label: { en: 'Understanding Your Birth Chart', hi: 'अपनी जन्म कुण्डली समझें' } },
@@ -338,6 +411,88 @@ export default function TippanniPage() {
               </div>
             ))}
           </div>
+        </div>
+      </LessonSection>
+
+      {/* 12. Life Questions */}
+      <LessonSection number={12} title={isHi ? L.lifeQuestionsTitle.hi : L.lifeQuestionsTitle.en}>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+          <p>{isHi ? L.lifeQuestionsP1.hi : L.lifeQuestionsP1.en}</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs mt-2">
+              <thead>
+                <tr className="border-b border-gold-primary/20">
+                  <th className="text-left text-gold-light py-2 px-3">{isHi ? 'प्रश्न' : 'Question'}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{isHi ? 'कौन सा खण्ड देखें' : 'Which Section to Check'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {L.lifeQuestions.map((lq, i) => (
+                  <tr key={i} className="border-b border-gold-primary/8">
+                    <td className="py-2 px-3 text-gold-primary/80 font-medium">{isHi ? lq.question.hi : lq.question.en}</td>
+                    <td className="py-2 px-3 text-text-secondary">{isHi ? lq.section.hi : lq.section.en}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* 13. Convergence */}
+      <LessonSection number={13} title={isHi ? L.convergenceTitle.hi : L.convergenceTitle.en}>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+          <p>{isHi ? L.convergenceP1.hi : L.convergenceP1.en}</p>
+          <div className="space-y-3 mt-4">
+            {L.convergenceExamples.map((ex, i) => (
+              <div key={i} className="rounded-lg bg-bg-primary/40 border border-gold-primary/10 p-4">
+                <h4 className="text-gold-light font-bold text-sm mb-2" style={headingFont}>
+                  {isHi ? ex.scenario.hi : ex.scenario.en}
+                </h4>
+                <p className="text-text-secondary text-xs leading-relaxed">{isHi ? ex.factors.hi : ex.factors.en}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </LessonSection>
+
+      {/* 14. Human vs Algorithmic */}
+      <LessonSection number={14} title={isHi ? L.humanVsAutoTitle.hi : L.humanVsAutoTitle.en}>
+        <div className="space-y-4 text-text-secondary text-sm leading-relaxed">
+          <p>{isHi ? L.humanVsAutoP1.hi : L.humanVsAutoP1.en}</p>
+          <div className="overflow-x-auto mt-4">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-gold-primary/20">
+                  <th className="text-left text-gold-light py-2 px-3">{isHi ? 'पहलू' : 'Aspect'}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{isHi ? 'एल्गोरिदमिक' : 'Algorithmic'}</th>
+                  <th className="text-left text-gold-light py-2 px-3">{isHi ? 'मानवीय' : 'Human'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {L.humanVsAutoStrengths.map((s, i) => (
+                  <tr key={i} className="border-b border-gold-primary/8">
+                    <td className="py-2 px-3 text-gold-primary/80 font-medium">{isHi ? s.aspect.hi : s.aspect.en}</td>
+                    <td className="py-2 px-3 text-text-secondary">{isHi ? s.algo.hi : s.algo.en}</td>
+                    <td className="py-2 px-3 text-text-secondary">{isHi ? s.human.hi : s.human.en}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>{isHi ? L.humanVsAutoP2.hi : L.humanVsAutoP2.en}</p>
+        </div>
+      </LessonSection>
+
+      {/* 15. Reading tips */}
+      <LessonSection number={15} title={isHi ? L.readingTipsTitle.hi : L.readingTipsTitle.en}>
+        <div className="space-y-3">
+          {L.readingTips.map((t, i) => (
+            <div key={i} className="flex gap-3 p-3 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
+              <span className="text-gold-primary font-bold text-xs shrink-0 mt-0.5">{i + 1}.</span>
+              <p className="text-text-secondary text-xs leading-relaxed">{isHi ? t.tip.hi : t.tip.en}</p>
+            </div>
+          ))}
         </div>
       </LessonSection>
 

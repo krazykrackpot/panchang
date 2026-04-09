@@ -58,7 +58,7 @@ export default function LearnSidebarMobile() {
       {/* Floating Pill — mobile only */}
       <button
         onClick={() => setOpen(true)}
-        className="lg:hidden fixed bottom-4 left-4 z-40 flex items-center gap-2 px-3 py-1.5 rounded-full bg-bg-secondary/95 border border-gold-dark/30 shadow-lg backdrop-blur-sm text-sm font-medium text-gold-light"
+        className="lg:hidden fixed bottom-4 left-4 z-40 flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-br from-[#2d1b69]/90 via-[#1a1040]/95 to-[#0a0e27] border border-gold-primary/25 shadow-lg shadow-gold-primary/10 backdrop-blur-sm text-sm font-medium text-gold-light"
         aria-label="Open learning progress"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-gold-primary shrink-0" />
@@ -87,15 +87,15 @@ export default function LearnSidebarMobile() {
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="lg:hidden fixed bottom-0 left-0 right-0 z-50 max-h-[80vh] overflow-y-auto rounded-t-2xl bg-bg-secondary border-t border-gold-dark/20"
+              className="lg:hidden fixed bottom-0 left-0 right-0 z-50 max-h-[80vh] overflow-y-auto rounded-t-2xl bg-gradient-to-br from-[#2d1b69]/95 via-[#1a1040]/98 to-[#0a0e27] border-t border-gold-primary/20"
             >
               {/* Drag handle */}
               <div className="flex justify-center pt-3 pb-1">
-                <div className="w-10 h-1 rounded-full bg-white/15" />
+                <div className="w-10 h-1 rounded-full bg-gold-primary/20" />
               </div>
 
               {/* Sticky header */}
-              <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 bg-bg-secondary border-b border-white/5">
+              <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-3 bg-[#0a0e27]/95 backdrop-blur-sm border-b border-gold-primary/10">
                 <div className="flex items-center gap-3">
                   <span className="text-gold-light font-semibold text-base">
                     {isHi ? 'शिक्षा प्रगति' : 'Learning Progress'}
@@ -106,7 +106,7 @@ export default function LearnSidebarMobile() {
                 </div>
                 <button
                   onClick={() => setOpen(false)}
-                  className="p-1.5 rounded-full hover:bg-white/5 transition-colors text-text-secondary"
+                  className="p-1.5 rounded-full hover:bg-gold-primary/5 transition-colors text-text-secondary"
                   aria-label="Close"
                 >
                   <X size={18} />
@@ -154,7 +154,7 @@ export default function LearnSidebarMobile() {
                       </div>
 
                       {/* Progress bar */}
-                      <div className="h-1 rounded-full bg-white/8 mb-3">
+                      <div className="h-1 rounded-full bg-gold-primary/8 mb-3">
                         <div
                           className="h-1 rounded-full bg-gold-primary transition-all duration-500"
                           style={{ width: `${phaseProgress.percent}%` }}
@@ -170,7 +170,7 @@ export default function LearnSidebarMobile() {
                               key={mod.id}
                               href={`/learn/modules/${mod.id}`}
                               onClick={() => setOpen(false)}
-                              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors group"
+                              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gold-primary/5 transition-colors group"
                             >
                               <ProgressIndicator status={status} size={14} />
                               <span

@@ -32,7 +32,7 @@ function t(key: keyof typeof LABELS, locale: Locale): string {
 
 function PhaseProgressBar({ percent }: { percent: number }) {
   return (
-    <div className="h-1 w-full rounded-full bg-white/10 overflow-hidden">
+    <div className="h-1 w-full rounded-full bg-gold-primary/8 overflow-hidden">
       <div
         className="h-full rounded-full transition-all duration-500"
         style={{
@@ -191,13 +191,13 @@ export default function LearnSidebar() {
   if (!sidebarExpanded) {
     return (
       <aside
-        className="flex flex-col items-center gap-3 py-4 px-1 bg-bg-secondary rounded-xl border border-white/8 transition-all duration-200"
+        className="flex flex-col items-center gap-3 py-4 px-1 bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-xl border border-gold-primary/12 transition-all duration-200"
         style={{ width: 64, minHeight: 320 }}
       >
         {/* Overall % circle */}
         <OverallCircle percent={overall.percent} />
 
-        <div className="w-8 h-px bg-white/10" />
+        <div className="w-8 h-px bg-gold-primary/8" />
 
         {/* Phase dots */}
         <div className="flex flex-col items-center gap-2 w-full px-1">
@@ -232,11 +232,11 @@ export default function LearnSidebar() {
   // ── Expanded panel ──────────────────────────────────────────────────────────
   return (
     <aside
-      className="flex flex-col bg-bg-secondary rounded-xl border border-white/8 overflow-hidden transition-all duration-200"
+      className="flex flex-col bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-xl border border-gold-primary/12 overflow-hidden transition-all duration-200"
       style={{ width: 260, minHeight: 320 }}
     >
       {/* ── Header ── */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/8">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gold-primary/10">
         <h2
           className="text-sm font-semibold text-gold-light tracking-wide"
           style={{ fontFamily: isHi ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
@@ -253,7 +253,7 @@ export default function LearnSidebar() {
       </div>
 
       {/* ── Overall progress ── */}
-      <div className="px-4 pt-4 pb-3 border-b border-white/8">
+      <div className="px-4 pt-4 pb-3 border-b border-gold-primary/10">
         <div className="flex items-end gap-2">
           <span className="text-3xl font-bold text-gold-light leading-none">
             {overall.percent}%
@@ -309,7 +309,7 @@ export default function LearnSidebar() {
               {/* Phase header row */}
               <button
                 onClick={() => togglePhase(info.phase)}
-                className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-white/5 transition-colors group text-left"
+                className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-gold-primary/5 transition-colors group text-left"
                 aria-expanded={isExpanded}
               >
                 {/* Phase completion indicator */}
@@ -379,8 +379,8 @@ export default function LearnSidebar() {
                                 isNext
                                   ? 'bg-gold-primary/10 text-gold-light hover:bg-gold-primary/20'
                                   : status === 'mastered'
-                                    ? 'text-emerald-400 hover:bg-white/5'
-                                    : 'text-text-secondary hover:text-text-primary hover:bg-white/5',
+                                    ? 'text-emerald-400 hover:bg-gold-primary/5'
+                                    : 'text-text-secondary hover:text-text-primary hover:bg-gold-primary/5',
                               ].join(' ')}
                             >
                               <ProgressIndicator status={status} size={12} />
@@ -405,8 +405,8 @@ export default function LearnSidebar() {
 
       {/* ── Footer: sign in prompt ── */}
       {!user && hasProgress && (
-        <div className="px-3 pb-3 pt-2 border-t border-white/8">
-          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white/4 border border-white/8">
+        <div className="px-3 pb-3 pt-2 border-t border-gold-primary/10">
+          <div className="flex items-center gap-2 p-2.5 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
             <LogIn size={13} className="text-gold-primary shrink-0" />
             <p
               className="text-[11px] text-text-secondary leading-snug"

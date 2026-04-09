@@ -18,6 +18,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '0-3', phase: 0, topic: 'Getting Started', title: { en: 'Your Cosmic Address',        hi: 'आपका ब्रह्माण्डीय पता' } },
   { id: '0-4', phase: 0, topic: 'Getting Started', title: { en: "Reading Today's Panchang",   hi: 'आज का पंचांग पढ़ना' } },
   { id: '0-5', phase: 0, topic: 'Getting Started', title: { en: 'What is a Kundali?',         hi: 'कुण्डली क्या है?' } },
+  { id: '0-6', phase: 0, topic: 'Foundations',     title: { en: 'Rituals & Astronomy',         hi: 'कर्मकाण्ड और खगोल' } },
 
   // ── Phase 1: The Sky ─────────────────────────────────────────────────────
   // Foundations
@@ -93,9 +94,53 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '16-1', phase: 5, topic: 'Classical Texts',  title: { en: 'Astronomical Texts',       hi: 'खगोलशास्त्रीय' } },
   { id: '16-2', phase: 5, topic: 'Classical Texts',  title: { en: 'Hora Texts',               hi: 'होरा ग्रंथ' } },
   { id: '16-3', phase: 5, topic: 'Classical Texts',  title: { en: "India's Contributions",    hi: 'भारत का योगदान' } },
+  // Muhurta
+  { id: '17-1', phase: 5, topic: 'Muhurta',          title: { en: 'Muhurta Selection',         hi: 'मुहूर्त चयन' } },
+  { id: '17-2', phase: 5, topic: 'Muhurta',          title: { en: 'Muhurta for Marriage',      hi: 'विवाह मुहूर्त' } },
+  { id: '17-3', phase: 5, topic: 'Muhurta',          title: { en: 'Muhurta for Property',      hi: 'सम्पत्ति मुहूर्त' } },
+  { id: '17-4', phase: 5, topic: 'Muhurta',          title: { en: 'Muhurta for Education',     hi: 'शिक्षा मुहूर्त' } },
+  // Strength
+  { id: '18-1', phase: 5, topic: 'Strength',         title: { en: 'Shadbala — 6-Fold Strength', hi: 'षड्बल' } },
+  { id: '18-2', phase: 5, topic: 'Strength',         title: { en: 'Bhavabala — House Strength', hi: 'भावबल' } },
+  { id: '18-3', phase: 5, topic: 'Strength',         title: { en: 'Ashtakavarga — Bindu Scoring', hi: 'अष्टकवर्ग' } },
+  { id: '18-4', phase: 5, topic: 'Strength',         title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएँ' } },
+  { id: '18-5', phase: 5, topic: 'Strength',         title: { en: 'Vimshopaka — Varga Strength', hi: 'विंशोपक बल' } },
+
+  // ── Phase 6: Jaimini ──────────────────────────────────────────────────────
+  { id: '19-1', phase: 6, topic: 'Jaimini',          title: { en: 'Chara Karakas',             hi: 'चर कारक' } },
+  { id: '19-2', phase: 6, topic: 'Jaimini',          title: { en: 'Rashi Drishti',             hi: 'राशि दृष्टि' } },
+  { id: '19-3', phase: 6, topic: 'Jaimini',          title: { en: 'Argala',                    hi: 'अर्गला' } },
+  { id: '19-4', phase: 6, topic: 'Jaimini',          title: { en: 'Special Lagnas',            hi: 'विशेष लग्न' } },
+
+  // ── Phase 7: KP System ────────────────────────────────────────────────────
+  { id: '20-1', phase: 7, topic: 'KP System',        title: { en: 'Placidus Houses',           hi: 'प्लेसिडस भाव' } },
+  { id: '20-2', phase: 7, topic: 'KP System',        title: { en: '249 Sub-Lord Table',        hi: '249 उप-स्वामी सारणी' } },
+  { id: '20-3', phase: 7, topic: 'KP System',        title: { en: 'Significators',             hi: 'कारकत्व' } },
+  { id: '20-4', phase: 7, topic: 'KP System',        title: { en: 'Ruling Planets',            hi: 'शासक ग्रह' } },
+
+  // ── Phase 8: Varshaphal ───────────────────────────────────────────────────
+  { id: '21-1', phase: 8, topic: 'Varshaphal',       title: { en: 'Tajika Aspects',            hi: 'ताजिक दृष्टि' } },
+  { id: '21-2', phase: 8, topic: 'Varshaphal',       title: { en: 'Sahams',                    hi: 'सहम' } },
+  { id: '21-3', phase: 8, topic: 'Varshaphal',       title: { en: 'Mudda Dasha',               hi: 'मुद्दा दशा' } },
+  { id: '21-4', phase: 8, topic: 'Varshaphal',       title: { en: 'Tithi Pravesha',            hi: 'तिथि प्रवेश' } },
+
+  // ── Phase 9: Astronomy ────────────────────────────────────────────────────
+  { id: '22-1', phase: 9, topic: 'Astronomy',        title: { en: 'Julian Day',                hi: 'जूलियन दिवस' } },
+  { id: '22-2', phase: 9, topic: 'Astronomy',        title: { en: 'Finding the Sun',           hi: 'सूर्य की खोज' } },
+  { id: '22-3', phase: 9, topic: 'Astronomy',        title: { en: 'Finding the Moon',          hi: 'चन्द्रमा की खोज' } },
+  { id: '22-4', phase: 9, topic: 'Astronomy',        title: { en: 'Sunrise Calculation',       hi: 'सूर्योदय गणना' } },
+  { id: '22-5', phase: 9, topic: 'Astronomy',        title: { en: 'Moonrise Calculation',      hi: 'चन्द्रोदय गणना' } },
+  { id: '22-6', phase: 9, topic: 'Astronomy',        title: { en: 'Equation of Time',          hi: 'समय का समीकरण' } },
+
+  // ── Phase 10: Advanced Prediction ─────────────────────────────────────────
+  { id: '23-1', phase: 10, topic: 'Prediction',      title: { en: 'Eclipse Prediction',        hi: 'ग्रहण भविष्यवाणी' } },
+  { id: '23-2', phase: 10, topic: 'Prediction',      title: { en: 'Retrograde & Combustion',   hi: 'वक्री और अस्त' } },
+  { id: '23-3', phase: 10, topic: 'Prediction',      title: { en: 'Chakra Systems',            hi: 'चक्र प्रणालियाँ' } },
+  { id: '23-4', phase: 10, topic: 'Prediction',      title: { en: 'Sphutas & Sensitive Points', hi: 'स्फुट एवं संवेदनशील बिन्दु' } },
+  { id: '23-5', phase: 10, topic: 'Prediction',      title: { en: 'Prashna Yogas',             hi: 'प्रश्न योग' } },
 ];
 
-export const TOTAL_MODULES = MODULE_SEQUENCE.length; // 55 (task spec listed 50 but the canonical list has 55)
+export const TOTAL_MODULES = MODULE_SEQUENCE.length; // 88 (55 original + 33 added)
 
 // ── Phase metadata ────────────────────────────────────────────────────────────
 
@@ -112,6 +157,11 @@ export const PHASE_INFO: PhaseInfo[] = [
   { phase: 3, title: { en: 'The Chart',             hi: 'कुण्डली' },            count: MODULE_SEQUENCE.filter(m => m.phase === 3).length },
   { phase: 4, title: { en: 'Applied Jyotish',       hi: 'व्यावहारिक ज्योतिष' }, count: MODULE_SEQUENCE.filter(m => m.phase === 4).length },
   { phase: 5, title: { en: 'Classical Knowledge',   hi: 'शास्त्रीय ज्ञान' },   count: MODULE_SEQUENCE.filter(m => m.phase === 5).length },
+  { phase: 6, title: { en: 'Jaimini System',        hi: 'जैमिनी पद्धति' },     count: MODULE_SEQUENCE.filter(m => m.phase === 6).length },
+  { phase: 7, title: { en: 'KP System',             hi: 'केपी पद्धति' },        count: MODULE_SEQUENCE.filter(m => m.phase === 7).length },
+  { phase: 8, title: { en: 'Varshaphal',            hi: 'वर्षफल' },             count: MODULE_SEQUENCE.filter(m => m.phase === 8).length },
+  { phase: 9, title: { en: 'Astronomy Engine',      hi: 'खगोलीय गणना' },       count: MODULE_SEQUENCE.filter(m => m.phase === 9).length },
+  { phase: 10, title: { en: 'Advanced Prediction',  hi: 'उन्नत भविष्यवाणी' },  count: MODULE_SEQUENCE.filter(m => m.phase === 10).length },
 ];
 
 // ── Internal index map for O(1) lookups ───────────────────────────────────────

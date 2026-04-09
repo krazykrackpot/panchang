@@ -2,6 +2,7 @@
 
 import { create } from 'zustand';
 import { getSupabase } from '@/lib/supabase/client';
+import { useAuthStore } from '@/stores/auth-store';
 import { MODULE_SEQUENCE, getPhaseModules } from '@/lib/learn/module-sequence';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -117,6 +118,30 @@ function writeSidebarToStorage(expanded: boolean): void {
   }
 }
 
+// ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────
+
+function upsertToSupabase(entry: ModuleProgress): void {
+  const userId = useAuthStore.getState().user?.id;
+  if (!userId) return;
+  const supabase = getSupabase();
+  if (!supabase) return;
+
+  supabase
+    .from('learning_progress')
+    .upsert({
+      user_id: userId,
+      module_id: entry.moduleId,
+      status: entry.status,
+      quiz_score: entry.quizScore,
+      quiz_passed_at: entry.quizPassedAt,
+      last_page_read: entry.lastPageRead,
+      last_accessed_at: entry.lastAccessedAt,
+    }, { onConflict: 'user_id,module_id' })
+    .then(({ error }) => {
+      if (error) console.warn('[LearningProgress] Upsert error:', error.message);
+    });
+}
+
 // ── Store ─────────────────────────────────────────────────────────────────────
 
 export const useLearningProgressStore = create<LearningProgressStore>((set, get) => ({
@@ -220,6 +245,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = { ...current, [moduleId]: updated };
     set({ progress: next });
     writeProgressToStorage(next);
+    upsertToSupabase(updated);
   },
 
   markQuizPassed: (moduleId: string, score: number) => {
@@ -243,6 +269,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const next = { ...current, [moduleId]: updated };
     set({ progress: next });
     writeProgressToStorage(next);
+    upsertToSupabase(updated);
   },
 
   // ── Sidebar ──────────────────────────────────────────────────────────────────

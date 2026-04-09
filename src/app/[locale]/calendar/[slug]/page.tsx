@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useParams, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,7 +15,6 @@ import SamagriList from '@/components/puja/SamagriList';
 import PujaMode from '@/components/puja/PujaMode';
 import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
 import { useLocationStore } from '@/stores/location-store';
-import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
 
 /* ═══════════════════════════════════════════
    LABELS
@@ -145,32 +144,26 @@ export default function FestivalDetailPage() {
   const userLng = locationStore.lng;
   const userTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  // Compute Ekadashi parana from festival calendar
-  // If dateParam is present (e.g., ?date=2026-04-13), find that SPECIFIC ekadashi
-  const ekadashiParana = useMemo(() => {
-    if (category !== 'ekadashi' || !userLat || !userLng) return null;
-    try {
-      const targetDate = dateParam; // specific date from URL, e.g., "2026-04-13"
-      const now = new Date();
-      const todayStr = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
-
-      // Search current year and next year
-      for (const yr of [now.getFullYear(), now.getFullYear() + 1]) {
-        const festivals = generateFestivalCalendarV2(yr, userLat, userLng, userTimezone);
-        let entry;
-        if (targetDate) {
-          // Find the exact ekadashi on this date
-          entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date === targetDate && f.paranaStart);
-        } else {
-          // No date param — find next upcoming ekadashi
-          entry = festivals.find(f => f.slug?.includes('ekadashi') && f.date >= todayStr && f.paranaStart);
-        }
-        if (entry?.paranaStart && entry.paranaSunrise && entry.paranaHariVasaraEnd && entry.paranaDwadashiEnd && entry.paranaMadhyahnaStart && entry.paranaMadhyahnaEnd) {
-          return entry;
-        }
-      }
-    } catch { /* fail silently */ }
-    return null;
+  // Compute Ekadashi parana via server action — eliminates hydration mismatch
+  // from new Date() differences between server and client
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [ekadashiParana, setEkadashiParana] = useState<any>(null);
+  useEffect(() => {
+    if (category !== 'ekadashi' || !userLat || !userLng) return;
+    let cancelled = false;
+    import('@/app/actions/festival-lookup').then(({ lookupEkadashiAction }) =>
+      lookupEkadashiAction({
+        slug,
+        dateParam: dateParam || undefined,
+        lat: userLat,
+        lng: userLng,
+        timezone: userTimezone,
+        year: new Date().getFullYear(),
+      }).then(result => {
+        if (!cancelled) setEkadashiParana(result);
+      })
+    ).catch(() => {});
+    return () => { cancelled = true; };
   }, [category, slug, dateParam, userLat, userLng, userTimezone]);
 
   // Now that ekadashiParana is available, look up specific ekadashi detail by name
@@ -461,11 +454,11 @@ function ContentCard({
   accentColor?: 'gold' | 'emerald';
 }) {
   const highlightClasses = accentColor === 'emerald'
-    ? 'bg-emerald-500/5 border-emerald-500/20'
-    : 'bg-gold-primary/5 border-gold-primary/15';
+    ? 'border-emerald-500/25'
+    : 'border-gold-primary/20';
 
   return (
-    <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border ${highlight ? highlightClasses : 'border-gold-primary/10'}`}>
+    <div className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-xl p-5 sm:p-6 border ${highlight ? highlightClasses : 'border-gold-primary/12'}`}>
       <div className="flex items-center gap-2.5 mb-3">
         <span className={accentColor === 'emerald' ? 'text-emerald-400' : 'text-gold-primary'}>{icon}</span>
         <h3 className={`text-sm font-bold uppercase tracking-wider ${accentColor === 'emerald' ? 'text-emerald-300' : 'text-gold-light'}`} style={headingFont}>
@@ -709,7 +702,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
       )}
 
       {/* ─── Phala ─── */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 sm:p-6 border border-emerald-500/20 bg-emerald-500/3">
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 rounded-xl p-5 sm:p-6">
         <div className="flex items-center gap-2.5 mb-3">
           <Star className="w-5 h-5 text-emerald-400" />
           <h3 className="text-sm font-bold text-emerald-300 uppercase tracking-wider" style={headingFont}>

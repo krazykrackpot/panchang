@@ -165,14 +165,14 @@ export default function FestivalDetailModal({
               <div className="relative px-6 pt-6 pb-4 flex-shrink-0">
                 <button
                   onClick={onClose}
-                  className="absolute top-4 right-4 p-2 rounded-lg bg-bg-tertiary/50 hover:bg-bg-tertiary transition-colors"
+                  className="absolute top-4 right-4 p-2 rounded-lg bg-[#1a1040]/40 hover:bg-bg-tertiary transition-colors"
                   aria-label={L.close[locale]}
                 >
                   <X className="w-5 h-5 text-text-secondary" />
                 </button>
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-bg-tertiary/50 flex flex-col items-center justify-center border border-gold-primary/20">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#1a1040]/40 flex flex-col items-center justify-center border border-gold-primary/20">
                     <span className="text-gold-light text-2xl font-bold leading-none">{dayStr}</span>
                     <span className="text-text-secondary text-xs uppercase">{locale === 'en' ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
                   </div>
@@ -264,7 +264,7 @@ export default function FestivalDetailModal({
 
                     {/* Parana (fast-breaking) section */}
                     {hasParana && (
-                      <div className="rounded-xl p-4 bg-emerald-500/5 border border-emerald-500/20">
+                      <div className="rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
                         <div className="flex items-center gap-2 mb-3">
                           <Clock className="w-4 h-4 text-emerald-400" />
                           <h3 className="text-sm font-bold text-emerald-300 uppercase tracking-wider" style={headingFont}>
@@ -291,7 +291,7 @@ export default function FestivalDetailModal({
                         </div>
 
                         {/* ─── Three Rules Summary ─── */}
-                        <div className="rounded-lg bg-bg-tertiary/30 border border-gold-primary/10 p-3 mb-3">
+                        <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 mb-3">
                           <div className="text-xs text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
                             {locale === 'en' ? 'Three Rules of Parana' : locale === 'hi' ? 'पारण के तीन नियम' : 'पारणस्य त्रयो नियमाः'}
                           </div>
@@ -394,7 +394,7 @@ export default function FestivalDetailModal({
                     {hasEclipse && (
                       <>
                         {/* Eclipse type + magnitude */}
-                        <div className="rounded-xl p-4 bg-red-500/5 border border-red-500/20">
+                        <div className="rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/20">
                           <div className="flex items-center gap-2 mb-3">
                             {eclipseType === 'solar'
                               ? <Sun className="w-4 h-4 text-amber-400" />
@@ -404,7 +404,7 @@ export default function FestivalDetailModal({
                             </h3>
                           </div>
                           <div className="grid grid-cols-2 gap-3 mb-3">
-                            <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                            <div className="rounded-lg bg-[#1a1040]/40 p-3 text-center">
                               <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
                                 {LP.magnitude[locale]}
                               </div>
@@ -412,7 +412,7 @@ export default function FestivalDetailModal({
                                 {eclipseMagnitude}
                               </div>
                             </div>
-                            <div className="rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                            <div className="rounded-lg bg-[#1a1040]/40 p-3 text-center">
                               <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
                                 {LP.maxTime[locale]}
                               </div>
@@ -443,7 +443,7 @@ export default function FestivalDetailModal({
                         </div>
 
                         {/* Sutak period */}
-                        <div className={`rounded-xl p-4 ${sutakApplicable ? 'bg-amber-500/5 border border-amber-500/20' : 'bg-bg-tertiary/30'}`}>
+                        <div className={`rounded-xl p-4 ${sutakApplicable ? 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20' : 'bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]'}`}>
                           <div className="flex items-center gap-2 mb-2">
                             <AlertTriangle className={`w-4 h-4 ${sutakApplicable ? 'text-amber-400' : 'text-text-secondary'}`} />
                             <h3 className={`text-sm font-bold uppercase tracking-wider ${sutakApplicable ? 'text-amber-300' : 'text-text-secondary'}`} style={headingFont}>
@@ -453,7 +453,7 @@ export default function FestivalDetailModal({
                           {sutakApplicable ? (
                             <>
                               <div className="flex items-center gap-3 mb-2">
-                                <div className="flex-1 rounded-lg bg-bg-tertiary/50 p-3 text-center">
+                                <div className="flex-1 rounded-lg bg-[#1a1040]/40 p-3 text-center">
                                   <div className="text-xl font-bold text-amber-300 font-mono">
                                     {sutakStart} — {sutakEnd}
                                   </div>
@@ -541,7 +541,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       </div>
 
       {/* Samagri */}
-      <div className="rounded-xl bg-bg-tertiary/30 p-3">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
           {locale === 'en' ? 'Materials (Samagri)' : 'सामग्री'}
         </p>
@@ -597,13 +597,13 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       )}
 
       {/* Naivedya */}
-      <div className="rounded-xl bg-bg-tertiary/30 p-3">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
       </div>
 
       {/* Precautions */}
-      <div className="rounded-xl bg-amber-500/5 border border-amber-500/15 p-3">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3">
         <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{locale === 'en' ? 'Precautions' : 'सावधानियाँ'}</p>
         <ul className="space-y-1">
           {puja.precautions.map((p, i) => (
@@ -616,14 +616,14 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       </div>
 
       {/* Phala */}
-      <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-3">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 p-3">
         <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Benefits (Phala)' : 'फल'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
       </div>
 
       {/* Visarjan */}
       {puja.visarjan && (
-        <div className="rounded-xl bg-bg-tertiary/30 p-3">
+        <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
           <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{locale === 'en' ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
           <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
         </div>
@@ -648,7 +648,7 @@ function Section({
   highlight?: boolean;
 }) {
   return (
-    <div className={`rounded-xl p-4 ${highlight ? 'bg-gold-primary/5 border border-gold-primary/15' : 'bg-bg-tertiary/30'}`}>
+    <div className={`rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] ${highlight ? 'border border-gold-primary/20' : 'border border-gold-primary/10'}`}>
       <div className="flex items-center gap-2 mb-2">
         <span className="text-gold-primary">{icon}</span>
         <h3 className="text-sm font-bold text-gold-light uppercase tracking-wider" style={headingFont}>

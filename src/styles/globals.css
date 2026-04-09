@@ -191,3 +191,13 @@ html[lang="sa"] a {
   background-color: rgba(212, 168, 83, 0.3);
   color: #f0d48a;
 }
+
+/* Print styles — reverse dark theme for readable paper output */
+@media print {
+  nav, footer, .no-print, [data-no-print] { display: none !important; }
+  body { background: white !important; color: black !important; }
+  main { padding-top: 0 !important; }
+  * { box-shadow: none !important; text-shadow: none !important; }
+  @page { margin: 15mm; size: A4; }
+  a[href]::after { content: none !important; }
+}

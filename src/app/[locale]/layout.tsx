@@ -10,6 +10,7 @@ import StarField from '@/components/layout/StarField';
 import ServiceWorkerRegistrar from '@/components/layout/ServiceWorkerRegistrar';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import '@/styles/globals.css';
 
 import InstallPrompt from '@/components/pwa/InstallPrompt';
@@ -132,6 +133,7 @@ export default async function LocaleLayout({
           <StarField />
           <Navbar />
           <main id="main-content" className="relative z-10 pt-16 min-h-screen" role="main">
+            <ScrollToTop />
             {children}
           </main>
           <Footer />

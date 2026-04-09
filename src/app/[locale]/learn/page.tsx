@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
-const STATS = { modules: 89, references: 44, labs: 5, tracks: 11 }; // 11 phases (0-10)
+const STATS = { modules: 88, references: 44, labs: 5, tracks: 11 }; // 88 curriculum modules (24-1 is a reference page, not a module)
 
 export default function LearnPage() {
   const locale = useLocale() as Locale;

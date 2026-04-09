@@ -297,6 +297,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Regional Hindu calendar variants — Tamil, Telugu, Bengali, Marathi, Gujarati, Malayalam, and Kannada Panchang.', hi: 'तमिल, तेलुगु, बंगाली, मराठी, गुजराती, मलयालम और कन्नड़ पंचांग।', sa: 'तमिलतेलुगुबङ्गालमराठीगुजरातीमलयालकन्नडपञ्चाङ्गानि।' },
     keywords: ['tamil calendar', 'telugu calendar', 'bengali calendar', 'regional panchang'],
   },
+  '/calendar/regional/tamil': {
+    title: { en: 'Tamil Calendar (Panchangam) — Monthly Guide with Festivals', hi: 'तमिल कैलेंडर (पंचांगम्) — त्योहारों सहित मासिक मार्गदर्शिका', sa: 'तमिलपञ्चाङ्गम् — पर्वसहितमासिकमार्गदर्शिका' },
+    description: { en: 'Complete Tamil Panchangam guide — 12 solar months from Chithirai to Panguni, festivals like Pongal, Chithirai Thiruvizha, Karthigai Deepam, and how Tamil calendar differs from North Indian systems.', hi: 'सम्पूर्ण तमिल पंचांगम् — चित्तिरै से पंगुनि तक 12 सौर मास, पोंगल, चित्तिरै तिरुविळा, कार्तिगै दीपम् जैसे त्योहार।', sa: 'सम्पूर्णतमिलपञ्चाङ्गम् — चित्तिरैतः पङ्गुनिपर्यन्तं १२ सौरमासाः पर्वाणि च।' },
+    keywords: ['tamil calendar', 'tamil panchangam', 'tamil months', 'pongal', 'puthandu', 'chithirai', 'karthigai deepam'],
+  },
+  '/calendar/regional/bengali': {
+    title: { en: 'Bengali Calendar (Panjika) — Monthly Guide with Festivals', hi: 'बंगाली कैलेंडर (पंजिका) — त्योहारों सहित मासिक मार्गदर्शिका', sa: 'बङ्गालपञ्जिका — पर्वसहितमासिकमार्गदर्शिका' },
+    description: { en: 'Complete Bengali Panjika guide — 12 months from Boishakh to Choitro, Durga Puja schedule, Poila Boishakh, Kali Puja, Saraswati Puja, and how Bengali calendar differs from other systems.', hi: 'सम्पूर्ण बंगाली पंजिका — बैशाख से चैत्र तक 12 मास, दुर्गा पूजा, पहला बैशाख, काली पूजा, सरस्वती पूजा।', sa: 'सम्पूर्णबङ्गालपञ्जिका — बैशाखात् चैत्रपर्यन्तं १२ मासाः दुर्गापूजा च।' },
+    keywords: ['bengali calendar', 'bangla panjika', 'bengali months', 'durga puja', 'poila boishakh', 'kali puja', 'saraswati puja'],
+  },
   '/about': {
     title: { en: 'About Dekho Panchang — Vedic Astronomy Made Accessible', hi: 'देखो पंचांग के बारे में', sa: 'देखोपञ्चाङ्गस्य विषये' },
     description: { en: 'Dekho Panchang brings the precision of Vedic astronomical calculations to the modern web. Built with pure mathematics, no external APIs.', hi: 'देखो पंचांग वैदिक खगोलीय गणनाओं की सटीकता को आधुनिक वेब पर लाता है।', sa: 'देखोपञ्चाङ्गं वैदिकखगोलगणनानां सम्यक्तां आधुनिकजालपृष्ठे आनयति।' },

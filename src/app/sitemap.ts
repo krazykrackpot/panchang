@@ -81,6 +81,8 @@ const routes = [
   '/eclipses',
   '/muhurat',
   '/regional',
+  '/calendar/regional/tamil',
+  '/calendar/regional/bengali',
   // Tools
   '/sign-calculator',
   '/sade-sati',

@@ -123,6 +123,7 @@ export interface KundaliData {
   avasthas?: import('@/lib/kundali/avasthas').PlanetAvasthas[];
   argala?: import('@/lib/kundali/argala').ArgalaResult[];
   sphutas?: import('@/lib/kundali/sphutas').SphuataResults;
+  warnings?: string[];
   bhriguBindu?: BhriguBindu;
   grahaYuddha?: import('@/lib/kundali/graha-yuddha').GrahaYuddhaResult[];
   functionalNature?: import('@/lib/kundali/functional-nature').FunctionalNatureResult;

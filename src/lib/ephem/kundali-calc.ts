@@ -1058,5 +1058,6 @@ export function generateKundali(birthData: BirthData): KundaliData {
         jupP?.longitude || 0, venP?.longitude || 0, marP?.longitude || 0
       );
     })(),
+    warnings: warnings.length > 0 ? warnings : undefined,
   };
 }

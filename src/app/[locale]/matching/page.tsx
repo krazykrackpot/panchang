@@ -76,7 +76,8 @@ export default function MatchingPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const lbl = L[locale] || L.en;
 
-  const [mode, setMode] = useState<'birth' | 'direct'>('birth');
+  // Birth mode only — direct nakshatra picker removed (inaccurate for boundary nakshatras)
+  const mode = 'birth' as const;
 
   // Nakshatra → primary rashi mapping (1-indexed, follows classical assignment)
   // Each nakshatra maps to the rashi that contains its majority padas.
@@ -191,23 +192,11 @@ export default function MatchingPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
       </motion.div>
 
-      {/* Mode Toggle */}
+      {/* Birth details mode only — enter exact birth data for accurate matching */}
       <div className="flex justify-center mb-8">
-        <div className="inline-flex rounded-xl border border-gold-primary/20 overflow-hidden">
-          <button
-            onClick={() => { setMode('birth'); setResult(null); }}
-            className={`flex items-center gap-2 px-5 py-3 text-sm font-bold transition-all ${mode === 'birth' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light'}`}
-          >
-            <Calendar className="w-4 h-4" />
-            {lbl.birthMode}
-          </button>
-          <button
-            onClick={() => { setMode('direct'); setResult(null); }}
-            className={`flex items-center gap-2 px-5 py-3 text-sm font-bold transition-all ${mode === 'direct' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light'}`}
-          >
-            <Star className="w-4 h-4" />
-            {lbl.directMode}
-          </button>
+        <div className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-gold-primary/20 bg-gold-primary/10 text-gold-light text-sm font-bold">
+          <Calendar className="w-4 h-4" />
+          {lbl.birthMode}
         </div>
       </div>
 

@@ -222,6 +222,7 @@ export default function PujaVidhiPage() {
     }
   }, [userTimezone]);
 
+  const [clientDate] = useState(() => new Date()); // Stable date for hydration
   const [pujaMode, setPujaMode] = useState(false);
   const [quickMode, setQuickMode] = useState(false);
   const [displayMode, setDisplayMode] = useState<DisplayMode>('both');
@@ -402,7 +403,7 @@ export default function PujaVidhiPage() {
         ) : puja.parana && userLat && userLng ? (
           <ParanaDisplay
             parana={puja.parana}
-            vratDate={new Date()}
+            vratDate={clientDate}
             lat={userLat}
             lng={userLng}
             timezoneOffset={timezoneOffset}
@@ -469,7 +470,7 @@ export default function PujaVidhiPage() {
             <SankalpaDisplay
               puja={puja}
               locale={locale}
-              date={new Date()}
+              date={clientDate}
               lat={userLat}
               lng={userLng}
               timezoneOffset={timezoneOffset}

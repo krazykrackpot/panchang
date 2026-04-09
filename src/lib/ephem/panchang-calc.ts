@@ -458,9 +458,13 @@ function computeNamedMuhurtas(
   sandhyaKaal: { morning: { start: string; end: string }; evening: { start: string; end: string } };
   nishitaKaal: { start: string; end: string };
 } {
-  // Brahma Muhurta: 96 min (2 muhurtas) before sunrise
-  const brahmaStart = sunriseUT - 96 / 60;
-  const brahmaEnd = sunriseUT - 48 / 60;
+  // Brahma Muhurta: 2 NIGHT muhurtas before sunrise.
+  // Night muhurta = nightDuration / 15 (NOT fixed 48 min).
+  // At high latitudes with short nights, Brahma Muhurta starts closer to sunrise.
+  const nightDurationHrs = 24 - (sunsetUT - sunriseUT);
+  const nightMuhurtaDur = nightDurationHrs / 15; // hours per night muhurta
+  const brahmaStart = sunriseUT - 2 * nightMuhurtaDur;
+  const brahmaEnd = sunriseUT - nightMuhurtaDur;
 
   // Godhuli (cow-dust time): ~24 min around sunset
   const godhuliStart = sunsetUT - 12 / 60;
@@ -1105,17 +1109,15 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Dur Muhurtam (inauspicious muhurta) — 0-indexed muhurta positions from sunrise.
   // Source: Nirṇaya Sindhu / Kaala Prakashika
   // (Wednesday Apr 8 2026 = single window 13:02-13:55 = muhurta index 7).
-  // Source: cross-validated against Prokerala (Ujjain) and Drik (Bern).
-  // Note: classical sources (Nirṇaya Sindhu, Kaala Prakashika, Muhurta Chintamani)
-  // disagree on some weekdays. Values below match Drik+Prokerala consensus.
-  // Thu and Sat verified Apr 9 2026. Wed verified Apr 8. Others pending full verification.
+  // Cross-validated against Prokerala (Ujjain, Apr 5-11 2026) and Drik (Bern).
+  // All 7 weekdays verified against Prokerala's computed output.
   const DUR_MUHURTAM_INDICES: number[][] = [
-    [6, 10], // Sunday    — 7th & 11th muhurta
-    [5],     // Monday    — 6th muhurta
-    [7],     // Tuesday   — 8th muhurta
-    [7],     // Wednesday — 8th muhurta (Drik verified Apr 8)
+    [13],    // Sunday    — 14th muhurta (Prokerala Apr 5: 17:01)
+    [8, 11], // Monday    — 9th & 12th muhurta (Prokerala Apr 6: 12:53, 15:22)
+    [3],     // Tuesday   — 4th muhurta (Prokerala Apr 7: 08:46)
+    [7],     // Wednesday — 8th muhurta (Drik+Prokerala verified Apr 8)
     [5, 11], // Thursday  — 6th & 12th muhurta (Prokerala+Drik verified Apr 9)
-    [4, 8],  // Friday    — 5th & 9th muhurta
+    [3, 8],  // Friday    — 4th & 9th muhurta (Prokerala Apr 10: 08:44, 12:53)
     [2],     // Saturday  — 3rd muhurta (Prokerala verified Apr 11)
   ];
   const durMuhurtam = (DUR_MUHURTAM_INDICES[weekday] || [6]).map(idx => {

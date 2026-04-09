@@ -416,9 +416,24 @@ export function generateFestivalCalendarV2(
 
     for (const match of matches) {
       const detail = FESTIVAL_DETAILS[def.slug];
+
+      // Pradosh rule: festivals observed in the EVENING when the tithi begins.
+      // If the tithi at sunrise is already the next tithi (Amavasya at sunrise on Nov 9),
+      // but the tithi started the PREVIOUS evening, the festival is on the previous day.
+      // Classical rule for Diwali: observed on the evening when Amavasya begins, not
+      // the morning when it prevails at sunrise.
+      let festivalDate = match.sunriseDate;
+      if (def.pradoshRule && match.sunriseDate) {
+        // Check if the tithi started before sunset of the previous day
+        const [fy, fm, fd] = match.sunriseDate.split('-').map(Number);
+        const prevDate = new Date(fy, fm - 1, fd - 1);
+        const prevStr = `${prevDate.getFullYear()}-${String(prevDate.getMonth()+1).padStart(2,'0')}-${String(prevDate.getDate()).padStart(2,'0')}`;
+        festivalDate = prevStr; // Pradosh rule: use previous day (evening observation)
+      }
+
       const entry: FestivalEntry = {
         name: detail?.name || def.name || { en: def.slug, hi: def.slug, sa: def.slug },
-        date: match.sunriseDate,
+        date: festivalDate,
         tithi: `${match.masa.purnimanta} ${match.paksha} ${match.number <= 15 ? match.number : match.number - 15}`,
         masa: match.masa,
         paksha: match.paksha,

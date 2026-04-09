@@ -1105,14 +1105,18 @@ export function computePanchang(input: PanchangInput): PanchangData {
   // Dur Muhurtam (inauspicious muhurta) — 0-indexed muhurta positions from sunrise.
   // Source: Nirṇaya Sindhu / Kaala Prakashika
   // (Wednesday Apr 8 2026 = single window 13:02-13:55 = muhurta index 7).
+  // Source: cross-validated against Prokerala (Ujjain) and Drik (Bern).
+  // Note: classical sources (Nirṇaya Sindhu, Kaala Prakashika, Muhurta Chintamani)
+  // disagree on some weekdays. Values below match Drik+Prokerala consensus.
+  // Thu and Sat verified Apr 9 2026. Wed verified Apr 8. Others pending full verification.
   const DUR_MUHURTAM_INDICES: number[][] = [
     [6, 10], // Sunday    — 7th & 11th muhurta
     [5],     // Monday    — 6th muhurta
     [7],     // Tuesday   — 8th muhurta
-    [7],     // Wednesday — 8th muhurta
-    [3],     // Thursday  — 4th muhurta
+    [7],     // Wednesday — 8th muhurta (Drik verified Apr 8)
+    [5, 11], // Thursday  — 6th & 12th muhurta (Prokerala+Drik verified Apr 9)
     [4, 8],  // Friday    — 5th & 9th muhurta
-    [1],     // Saturday  — 2nd muhurta
+    [2],     // Saturday  — 3rd muhurta (Prokerala verified Apr 11)
   ];
   const durMuhurtam = (DUR_MUHURTAM_INDICES[weekday] || [6]).map(idx => {
     const s = sunriseUT + idx * muhurtaDuration;

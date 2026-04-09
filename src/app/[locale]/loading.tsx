@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
+    <div className="min-h-[70vh] flex items-center justify-center" aria-label="Loading...">
       <div className="text-center">
         <div className="relative w-16 h-16 mx-auto mb-6">
           {/* Outer ring */}

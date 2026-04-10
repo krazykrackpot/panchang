@@ -155,6 +155,30 @@ const L = {
     en: 'In Vedic astrology, this precession is one of the most important transit events — Rahu\'s ingress into a new sign affects mundane predictions, national events, and personal charts (especially for those running Rahu or Ketu Mahadasha). The current transit: Rahu is in Pisces and Ketu is in Virgo (2025-2026).',
     hi: 'वैदिक ज्योतिष में, यह पुरस्सरण सबसे महत्वपूर्ण गोचर घटनाओं में से एक है — राहु का नई राशि में प्रवेश मुण्डन भविष्यवाणियों, राष्ट्रीय घटनाओं और व्यक्तिगत कुण्डलियों को प्रभावित करता है (विशेषकर राहु या केतु महादशा वालों के लिए)। वर्तमान गोचर: राहु मीन में और केतु कन्या में (2025-2026)।',
   },
+  sarosExampleTitle: {
+    en: 'Saros in Action — Predicting Real Eclipses',
+    hi: 'सारोस कार्य में — वास्तविक ग्रहणों की भविष्यवाणी',
+  },
+  sarosExample1: {
+    en: 'Let\'s trace a real Saros chain. The total solar eclipse of August 12, 2026 (Saros 126) is part of a family. Add 18 years, 11 days, 8 hours to each date:',
+    hi: 'एक वास्तविक सारोस श्रृंखला का अनुसरण करें। 12 अगस्त 2026 का पूर्ण सूर्य ग्रहण (सारोस 126) एक परिवार का हिस्सा है। प्रत्येक तिथि में 18 वर्ष, 11 दिन, 8 घण्टे जोड़ें:',
+  },
+  sarosExample2: {
+    en: 'Notice how the path shifts ~120° westward each time (the 8-hour rotation), and the magnitude slowly changes as the series evolves. This is how ancient astronomers could predict eclipses centuries in advance — by knowing the Saros pattern.',
+    hi: 'देखें कि कैसे प्रत्येक बार पथ ~120° पश्चिम की ओर खिसकता है (8 घण्टे का घूर्णन), और श्रृंखला के विकास के साथ परिमाण धीरे-धीरे बदलता है। इसी प्रकार प्राचीन खगोलविद सारोस प्रतिमान जानकर सदियों पहले ग्रहणों की भविष्यवाणी कर सकते थे।',
+  },
+  sarosLunarExample: {
+    en: 'Similarly for lunar eclipses — the total lunar eclipse of March 3, 2026 (Saros 133) connects to:',
+    hi: 'इसी प्रकार चन्द्र ग्रहणों के लिए — 3 मार्च 2026 का पूर्ण चन्द्र ग्रहण (सारोस 133) जुड़ता है:',
+  },
+  sarosSeasonTitle: {
+    en: 'Eclipse Seasons — Why They Shift',
+    hi: 'ग्रहण ऋतुएँ — ये क्यों खिसकती हैं',
+  },
+  sarosSeason1: {
+    en: 'Because the Rahu-Ketu axis precesses backwards, the times when the Sun aligns with a node (eclipse season) shift earlier by ~19 days each year. In 2026, eclipse seasons are in February-March and August. By 2030, they\'ll have shifted to approximately January-February and July. By 2035, to December-January and June.',
+    hi: 'चूँकि राहु-केतु अक्ष पीछे की ओर घूमता है, जब सूर्य किसी पात से संरेखित होता है (ग्रहण ऋतु) वह प्रत्येक वर्ष ~19 दिन पहले खिसकती है। 2026 में ग्रहण ऋतुएँ फरवरी-मार्च और अगस्त में हैं। 2030 तक वे लगभग जनवरी-फरवरी और जुलाई में होंगी। 2035 तक दिसम्बर-जनवरी और जून में।',
+  },
 
   /* Cross refs */
   crossRef: { en: 'Related Topics',                                            hi: 'सम्बन्धित विषय' },
@@ -902,6 +926,113 @@ export default function LearnEclipsesPage() {
                 <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
               </div>
             ))}
+          </div>
+
+          {/* ══ WORKED EXAMPLES ══ */}
+          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{l(L.sarosExampleTitle)}</h4>
+          <p className="text-sm">{l(L.sarosExample1)}</p>
+
+          {/* Solar: Saros 126 chain */}
+          <div className="border border-amber-500/15 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-amber-500/5 border-b border-amber-500/10">
+              <span className="text-amber-300 font-bold text-sm">{isHi ? 'सारोस 126 — पूर्ण सूर्य ग्रहण श्रृंखला' : 'Saros 126 — Total Solar Eclipse Chain'}</span>
+            </div>
+            <div className="divide-y divide-gold-primary/5">
+              {[
+                { date: 'Jul 22, 1990', type: isHi ? 'पूर्ण' : 'Total', path: isHi ? 'फिनलैण्ड → साइबेरिया → प्रशान्त' : 'Finland → Siberia → Pacific', mag: '1.039', highlight: false },
+                { date: 'Aug 1, 2008', type: isHi ? 'पूर्ण' : 'Total', path: isHi ? 'कनाडा → आर्कटिक → साइबेरिया → चीन' : 'Canada → Arctic → Siberia → China', mag: '1.039', highlight: false },
+                { date: 'Aug 12, 2026', type: isHi ? 'पूर्ण' : 'Total', path: isHi ? 'आर्कटिक → ग्रीनलैण्ड → आइसलैण्ड → स्पेन' : 'Arctic → Greenland → Iceland → Spain', mag: '1.039', highlight: true },
+                { date: 'Aug 24, 2044', type: isHi ? 'पूर्ण' : 'Total', path: isHi ? 'कनाडा → मोन्टाना → उत्तरी डकोटा' : 'Canada → Montana → N. Dakota', mag: '1.036', highlight: false },
+                { date: 'Sep 3, 2062', type: isHi ? 'पूर्ण' : 'Total', path: isHi ? 'इण्डोनेशिया → ऑस्ट्रेलिया' : 'Indonesia → Australia', mag: '1.031', highlight: false },
+              ].map((row, i) => (
+                <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-amber-500/8' : ''}`}>
+                  <span className={`font-mono text-xs w-28 shrink-0 ${row.highlight ? 'text-gold-light font-bold' : 'text-text-secondary/70'}`}>{row.date}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full border shrink-0 ${row.highlight ? 'bg-amber-500/15 text-amber-300 border-amber-500/25' : 'bg-amber-500/5 text-amber-400/60 border-amber-500/10'}`}>{row.type}</span>
+                  <span className="text-text-secondary/70 text-xs flex-1" style={bodyFont}>{row.path}</span>
+                  <span className="font-mono text-xs text-text-secondary/50">{row.mag}</span>
+                  {row.highlight && <span className="text-[9px] text-gold-light font-bold">← {isHi ? 'अगला!' : 'NEXT!'}</span>}
+                </div>
+              ))}
+            </div>
+            <div className="px-4 py-2 bg-amber-500/3 text-[10px] text-text-secondary/40">
+              {isHi ? 'प्रत्येक ग्रहण के बीच: +18 वर्ष 11 दिन 8 घण्टे। पथ ~120° पश्चिम खिसकता है।' : 'Between each: +18 years 11 days 8 hours. Path shifts ~120° westward.'}
+            </div>
+          </div>
+
+          <p className="text-sm">{l(L.sarosExample2)}</p>
+
+          {/* Lunar: Saros 133 chain */}
+          <p className="text-sm mt-2">{l(L.sarosLunarExample)}</p>
+          <div className="border border-indigo-500/15 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-indigo-500/5 border-b border-indigo-500/10">
+              <span className="text-indigo-300 font-bold text-sm">{isHi ? 'सारोस 133 — पूर्ण चन्द्र ग्रहण श्रृंखला' : 'Saros 133 — Total Lunar Eclipse Chain'}</span>
+            </div>
+            <div className="divide-y divide-gold-primary/5">
+              {[
+                { date: 'Feb 9, 1990', type: isHi ? 'पूर्ण' : 'Total', region: isHi ? 'यूरोप, अफ्रीका, एशिया' : 'Europe, Africa, Asia', mag: '1.073', highlight: false },
+                { date: 'Feb 20, 2008', type: isHi ? 'पूर्ण' : 'Total', region: isHi ? 'अमेरिका, यूरोप, अफ्रीका' : 'Americas, Europe, Africa', mag: '1.107', highlight: false },
+                { date: 'Mar 3, 2026', type: isHi ? 'पूर्ण' : 'Total', region: isHi ? 'अमेरिका, यूरोप, अफ्रीका' : 'Americas, Europe, Africa', mag: '1.151', highlight: true },
+                { date: 'Mar 14, 2044', type: isHi ? 'पूर्ण' : 'Total', region: isHi ? 'एशिया, ऑस्ट्रेलिया, प्रशान्त' : 'Asia, Australia, Pacific', mag: '1.193', highlight: false },
+                { date: 'Mar 25, 2062', type: isHi ? 'पूर्ण' : 'Total', region: isHi ? 'अमेरिका, यूरोप' : 'Americas, Europe', mag: '1.227', highlight: false },
+              ].map((row, i) => (
+                <div key={i} className={`flex items-center gap-4 px-4 py-2.5 text-sm ${row.highlight ? 'bg-indigo-500/8' : ''}`}>
+                  <span className={`font-mono text-xs w-28 shrink-0 ${row.highlight ? 'text-indigo-300 font-bold' : 'text-text-secondary/70'}`}>{row.date}</span>
+                  <span className={`text-xs px-2 py-0.5 rounded-full border shrink-0 ${row.highlight ? 'bg-indigo-500/15 text-indigo-300 border-indigo-500/25' : 'bg-indigo-500/5 text-indigo-400/60 border-indigo-500/10'}`}>{row.type}</span>
+                  <span className="text-text-secondary/70 text-xs flex-1" style={bodyFont}>{row.region}</span>
+                  <span className="font-mono text-xs text-text-secondary/50">{row.mag}</span>
+                  {row.highlight && <span className="text-[9px] text-indigo-300 font-bold">← {isHi ? 'अगला!' : 'NEXT!'}</span>}
+                </div>
+              ))}
+            </div>
+            <div className="px-4 py-2 bg-indigo-500/3 text-[10px] text-text-secondary/40">
+              {isHi ? 'परिमाण बढ़ रहा है (1.073 → 1.227) — यह श्रृंखला अपने चरम की ओर है!' : 'Magnitude is increasing (1.073 → 1.227) — this series is heading toward its peak!'}
+            </div>
+          </div>
+
+          {/* Eclipse Seasons */}
+          <h4 className="text-lg font-bold text-gold-light mt-6" style={headingFont}>{l(L.sarosSeasonTitle)}</h4>
+          <p className="text-sm">{l(L.sarosSeason1)}</p>
+
+          {/* Eclipse season shift table */}
+          <div className="border border-gold-primary/10 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-gold-primary/5 border-b border-gold-primary/10">
+              <span className="text-gold-light font-bold text-sm">{isHi ? 'ग्रहण ऋतु विचलन (पात पुरस्सरण के कारण)' : 'Eclipse Season Drift (due to Nodal Precession)'}</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b border-gold-primary/10 bg-gold-primary/3">
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{isHi ? 'वर्ष' : 'Year'}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{isHi ? 'ऋतु 1' : 'Season 1'}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{isHi ? 'ऋतु 2' : 'Season 2'}</th>
+                    <th className="text-left px-4 py-2 text-gold-dark font-bold">{isHi ? 'राहु राशि' : 'Rahu Sign'}</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gold-primary/5">
+                  {[
+                    { year: '2024', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: isHi ? 'मीन' : 'Pisces', current: false },
+                    { year: '2025', s1: 'Mar', s2: 'Sep', rahu: isHi ? 'मीन' : 'Pisces', current: false },
+                    { year: '2026', s1: 'Feb-Mar', s2: 'Aug', rahu: isHi ? 'मीन → कुम्भ' : 'Pisces → Aquarius', current: true },
+                    { year: '2028', s1: 'Jan', s2: 'Jul', rahu: isHi ? 'कुम्भ' : 'Aquarius', current: false },
+                    { year: '2030', s1: 'Jun', s2: 'Nov-Dec', rahu: isHi ? 'मकर → धनु' : 'Capricorn → Sagittarius', current: false },
+                    { year: '2033', s1: 'Mar-Apr', s2: 'Sep-Oct', rahu: isHi ? 'वृश्चिक' : 'Scorpio', current: false },
+                    { year: '2035', s1: 'Mar', s2: 'Sep', rahu: isHi ? 'तुला → कन्या' : 'Libra → Virgo', current: false },
+                  ].map((row, i) => (
+                    <tr key={i} className={row.current ? 'bg-gold-primary/5' : ''}>
+                      <td className={`px-4 py-2 font-mono ${row.current ? 'text-gold-light font-bold' : 'text-text-secondary/70'}`}>
+                        {row.year} {row.current && <span className="text-[9px] text-gold-primary">← {isHi ? 'अभी' : 'NOW'}</span>}
+                      </td>
+                      <td className="px-4 py-2 text-text-secondary/70">{row.s1}</td>
+                      <td className="px-4 py-2 text-text-secondary/70">{row.s2}</td>
+                      <td className="px-4 py-2 text-violet-400/70" style={bodyFont}>{row.rahu}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="px-4 py-2 bg-gold-primary/3 text-[10px] text-text-secondary/40">
+              {isHi ? 'ग्रहण ऋतुएँ प्रत्येक वर्ष ~19 दिन पहले खिसकती हैं। राहु हर ~1.5 वर्ष में नई राशि में प्रवेश करता है।' : 'Eclipse seasons shift ~19 days earlier each year. Rahu enters a new sign every ~1.5 years.'}
+            </div>
           </div>
         </div>
       </motion.section>

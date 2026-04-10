@@ -145,7 +145,7 @@ export default function WealthPredictionGuide() {
       <LessonSection number={1} title={isHi ? 'धन भाव' : 'The Wealth Houses'} variant="highlight">
         <div className="space-y-4">
           {WEALTH_HOUSES.map((wh) => (
-            <div key={wh.house} className="p-5 rounded-xl bg-bg-secondary/40 border border-gold-primary/10">
+            <div key={wh.house} className="p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
               <div className="flex items-center gap-3 mb-2">
                 <div className={`w-8 h-8 rounded-lg bg-gold-primary/10 flex items-center justify-center font-bold text-sm ${wh.color}`}>{wh.house}</div>
                 <div>
@@ -160,11 +160,11 @@ export default function WealthPredictionGuide() {
           <div className="p-4 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
             <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{isHi ? 'अक्ष सम्बन्ध' : 'The Axis Connection'}</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-              <div className="p-3 rounded-lg bg-bg-secondary/40">
+              <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
                 <span className="text-emerald-400 font-bold text-xs">{isHi ? '2+11 = कमाई/बचत अक्ष' : '2+11 = Earning/Saving Axis'}</span>
                 <p className="text-text-secondary text-xs mt-1">{isHi ? '11वां कमाता है, 2वां बचाता है। दोनों मजबूत = धन संचय।' : '11th earns, 2nd saves. Both strong = wealth accumulation.'}</p>
               </div>
-              <div className="p-3 rounded-lg bg-bg-secondary/40">
+              <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
                 <span className="text-violet-400 font-bold text-xs">{isHi ? '5+9 = भाग्य/बुद्धि अक्ष' : '5+9 = Fortune/Intelligence Axis'}</span>
                 <p className="text-text-secondary text-xs mt-1">{isHi ? '9वां भाग्य देता है, 5वां बुद्धि से बढ़ाता है।' : '9th gives fortune, 5th multiplies through intelligence.'}</p>
               </div>
@@ -198,7 +198,7 @@ export default function WealthPredictionGuide() {
                   {isOpen && (
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                       <div className="px-4 pb-4 pt-1 space-y-2">
-                        <div className="p-2 rounded-lg bg-bg-secondary/50">
+                        <div className="p-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
                           <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{isHi ? 'शर्त' : 'Condition'}</span>
                           <p className="text-text-secondary text-sm">{t(dy.condition)}</p>
                         </div>
@@ -222,10 +222,10 @@ export default function WealthPredictionGuide() {
             { indicator: { en: 'Saturn + Rahu in 2nd', hi: 'शनि + राहु 2वें में' }, problem: { en: 'Financial anxiety and fear of poverty even when earning. Hoarding tendency. Sudden financial shocks. Debt traps.', hi: 'कमाई के बावजूद वित्तीय चिन्ता और गरीबी का भय। जमाखोरी। आकस्मिक वित्तीय आघात। ऋण जाल।' }, remedy: { en: 'Feed crows and black dogs on Saturdays. Recite Hanuman Chalisa. Avoid gambling and speculative investments.', hi: 'शनिवार को कौवों और काले कुत्तों को खिलाएं। हनुमान चालीसा पाठ। जुआ और सट्टा निवेश से बचें।' }, color: 'border-slate-500/20' },
             { indicator: { en: 'Debilitated Jupiter', hi: 'नीच गुरु' }, problem: { en: 'Jupiter debilitated in Capricorn weakens overall prosperity. Lack of wisdom in financial decisions. Missed opportunities due to pessimism.', hi: 'मकर में नीच गुरु समग्र समृद्धि कमजोर करता है। वित्तीय निर्णयों में ज्ञान की कमी।' }, remedy: { en: 'Wear yellow sapphire (if suitable), donate yellow items on Thursdays, respect teachers and priests.', hi: 'पुखराज धारण (यदि उपयुक्त), गुरुवार को पीली वस्तुएं दान, गुरुजनों का सम्मान।' }, color: 'border-yellow-500/20' },
           ].map((item, i) => (
-            <div key={i} className={`p-4 rounded-xl bg-bg-secondary/40 border ${item.color}`}>
+            <div key={i} className={`p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border ${item.color}`}>
               <h4 className="text-red-400 font-bold text-sm mb-2" style={hf}>{t(item.indicator)}</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-3">{t(item.problem)}</p>
-              <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+              <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                 <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
                 <p className="text-emerald-300/80 text-xs mt-1">{t(item.remedy)}</p>
               </div>
@@ -295,7 +295,7 @@ export default function WealthPredictionGuide() {
             { href: '/learn/planet-in-house' as const, label: { en: 'Planet in House Guide', hi: 'भाव में ग्रह मार्गदर्शिका' } },
             { href: '/learn/yogas' as const, label: { en: 'Yogas (Combinations)', hi: 'योग (ग्रह संयोग)' } },
           ].map((link) => (
-            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
+            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
               <Zap className="w-4 h-4 text-gold-dark group-hover:text-gold-light transition-colors" />
               <span className="text-text-secondary text-sm group-hover:text-gold-light transition-colors">{t(link.label)}</span>
             </Link>

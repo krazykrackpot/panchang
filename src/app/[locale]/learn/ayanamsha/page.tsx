@@ -98,7 +98,7 @@ export default function AyanamshaPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-500/15">
           <p className="text-text-secondary text-xs leading-relaxed">
             {isHi
               ? '💡 आज ध्रुव तारा (Polaris) उत्तरी ध्रुव पर है। ~14,000 CE में, प्रिसेशन के कारण, वेगा (Vega) ध्रुव तारा बनेगा। ~26,000 CE में फिर Polaris होगा। यह चक्र शाश्वत है।'
@@ -192,7 +192,7 @@ export default function AyanamshaPage() {
         </div>
 
         {/* Worked example */}
-        <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15 mb-6">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 mb-6">
           <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उदाहरण: 2026 के लिए गणना' : 'Worked Example: Calculate for 2026'}</div>
           <div className="font-mono text-xs text-text-secondary space-y-1.5">
             <div>1. JD for Jan 1, 2026 = 2461041.5</div>
@@ -205,7 +205,7 @@ export default function AyanamshaPage() {
         </div>
 
         {/* Your sign might be different! */}
-        <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
           <div className="text-red-400 font-bold text-sm mb-2">
             {isHi ? '⚠ आपकी राशि बदल सकती है!' : '⚠ Your Sign Might Be Different!'}
           </div>
@@ -215,7 +215,7 @@ export default function AyanamshaPage() {
               : '~24° difference means ~80% of people have a different Western sign than their Vedic sign. If your Western Sun is "Aries" but at less than 24°, in Vedic astrology you\'re actually Pisces!'}
           </p>
           <div className="grid grid-cols-3 gap-2 text-xs text-center">
-            <div className="p-2 rounded-lg bg-bg-secondary/50">
+            <div className="p-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
               <div className="text-blue-400 font-bold">Western</div>
               <div className="text-text-secondary">Aries ♈ (15°)</div>
             </div>
@@ -307,15 +307,15 @@ export default function AyanamshaPage() {
           {isHi ? 'आपकी कुण्डली पर प्रभाव' : 'Impact on Your Chart'}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/10">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
             <div className="text-gold-light font-bold text-sm mb-2">{isHi ? 'ग्रह स्थिति' : 'Planet Positions'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'सभी 9 ग्रहों की राशि, नक्षत्र, और पाद स्थिति अयनांश सुधार पर निर्भर करती है।' : 'All 9 planets\' sign, nakshatra, and pada placements depend on the ayanamsha correction.'}</p>
           </div>
-          <div className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/10">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
             <div className="text-gold-light font-bold text-sm mb-2">{isHi ? 'लग्न (Ascendant)' : 'Ascendant'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'लग्न राशि — कुण्डली का सबसे महत्वपूर्ण बिंदु — अयनांश से सीधे प्रभावित। गलत अयनांश = गलत लग्न = गलत कुण्डली।' : 'The Lagna — the most critical point in your chart — is directly affected. Wrong ayanamsha = wrong lagna = wrong chart.'}</p>
           </div>
-          <div className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/10">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
             <div className="text-gold-light font-bold text-sm mb-2">{isHi ? 'दशा गणना' : 'Dasha Timing'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi ? 'विंशोत्तरी दशा चंद्र के नक्षत्र पर आधारित है। नक्षत्र बदलने = दशा आरंभ/समाप्ति तिथियाँ बदलना।' : 'Vimshottari Dasha is based on Moon\'s nakshatra. A different nakshatra = different dasha start/end dates.'}</p>
           </div>

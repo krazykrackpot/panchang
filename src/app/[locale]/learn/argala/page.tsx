@@ -283,7 +283,7 @@ export default function ArgalaPage() {
         </div>
 
         {/* Key rule callout */}
-        <div className="mt-4 p-4 rounded-lg bg-amber-500/5 border border-amber-500/20 flex items-start gap-3">
+        <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 flex items-start gap-3">
           <ShieldCheck className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <p className="text-amber-200/80 text-sm">
             {locale === 'en'
@@ -326,7 +326,7 @@ export default function ArgalaPage() {
         </div>
 
         {/* Summary */}
-        <div className="mt-6 p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+        <div className="mt-6 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
           <p className="text-emerald-300/80 text-sm font-semibold mb-1">
             {locale === 'en' ? 'Verdict: This 7th house is WELL-SUPPORTED' : 'निष्कर्ष: यह 7वाँ भाव सुसमर्थित है'}
           </p>
@@ -344,7 +344,7 @@ export default function ArgalaPage() {
         <p>{L.supportedContent[locale]}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+          <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="flex items-center gap-2 mb-2">
               <ShieldCheck className="w-5 h-5 text-emerald-400" />
               <h4 className="text-emerald-300 font-semibold text-sm">{locale === 'en' ? 'Supported House' : 'समर्थित भाव'}</h4>
@@ -355,7 +355,7 @@ export default function ArgalaPage() {
                 : 'जीवन क्षेत्र सक्रिय सहायता से फलता-फूलता है। बाहरी सहायता से परिणाम आते हैं।'}
             </p>
           </div>
-          <div className="p-4 rounded-lg bg-red-500/5 border border-red-500/15">
+          <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="flex items-center gap-2 mb-2">
               <ShieldX className="w-5 h-5 text-red-400" />
               <h4 className="text-red-300 font-semibold text-sm">{locale === 'en' ? 'Obstructed House' : 'अवरुद्ध भाव'}</h4>

@@ -181,7 +181,7 @@ export default function ClassicalTextsPage() {
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
         <h3 className="text-gold-light font-bold text-sm mb-3" style={hf}>{isHi ? 'दो परंपराएं' : 'Two Traditions'}</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सिद्धांत (Astronomical)' : 'Siddhanta (Astronomical)'}</div>
             <p className="text-text-secondary text-xs mb-2">{isHi ? 'गणितीय खगोल विज्ञान — ग्रह कहाँ हैं की गणना' : 'Mathematical astronomy — computing WHERE planets are'}</p>
             <div className="text-text-tertiary text-xs">Surya Siddhanta, Aryabhatiya</div>
@@ -312,7 +312,7 @@ export default function ClassicalTextsPage() {
           {isHi ? 'आधुनिक संश्लेषण — हमारा दृष्टिकोण' : 'Modern Synthesis — Our Approach'}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 font-bold text-sm mb-2">{isHi ? 'हम क्या उपयोग करते हैं' : 'What We Use'}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
               <li>• {isHi ? 'Swiss Ephemeris (NASA JPL DE431) — उप-कोणीय-सेकंड सटीकता' : 'Swiss Ephemeris (NASA JPL DE431) — sub-arcsecond accuracy'}</li>
@@ -321,7 +321,7 @@ export default function ClassicalTextsPage() {
               <li>• {isHi ? 'लाहिरी अयनांश (भारत सरकार आधिकारिक)' : 'Lahiri Ayanamsha (Indian Govt official)'}</li>
             </ul>
           </div>
-          <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 font-bold text-sm mb-2">{isHi ? 'हमने क्या बदला' : 'What We\'ve Updated'}</div>
             <ul className="text-text-secondary space-y-1.5 leading-relaxed">
               <li>• {isHi ? 'भूकेंद्रित → सूर्यकेंद्रित + केप्लर कक्षाएं (गणना में)' : 'Geocentric → Heliocentric + Keplerian orbits (for computation)'}</li>

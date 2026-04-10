@@ -229,7 +229,7 @@ export default function LearnNakshatrasPage() {
       {/* ─── 3. Nakshatra Lords & Dasha ─── */}
       <LessonSection number={3} title={L.dashaTitle[lo]}>
         <p>{L.dashaContent[lo]}</p>
-        <div className="mt-4 rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
+        <div className="mt-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-sm text-text-secondary leading-relaxed">
           {lo === 'en' ? (
             <>
               <p className="mb-2"><strong className="text-gold-light">Starting point:</strong> The mapping begins at <strong className="text-gold-primary">Ashwini</strong> — the very first nakshatra at 0° Aries (the start of the sidereal zodiac). <strong className="text-gold-primary">Ketu</strong> is assigned to Ashwini. From there, the remaining 8 planets follow in a fixed sequence, moving forward through the zodiac in nakshatra order:</p>
@@ -373,17 +373,17 @@ export default function LearnNakshatrasPage() {
           <div className="space-y-3">
             <p>The zodiac (360°) is divided <strong>two ways simultaneously</strong> — and understanding both is the key to Vedic astrology:</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Rashis (Signs)</div>
                 <div className="text-text-secondary/70 text-xs mt-1">30° each — based on the <strong>Sun&apos;s</strong> annual path. Your &quot;Sun sign&quot; in Western astrology. In Vedic astrology, the <strong>Moon&apos;s</strong> rashi matters more.</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Nakshatras (Stars)</div>
                 <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; each — based on the <strong>Moon&apos;s</strong> daily position among star groups. Each has a deity, ruler, and unique personality. The Moon visits one nakshatra per day.</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">Padas (Quarters)</div>
                 <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; each — 27 × 4 = 108, the sacred number. Each pada maps to one Navamsha (D9) sign. 108 padas ÷ 12 signs = 9 padas per rashi.</div>
@@ -396,17 +396,17 @@ export default function LearnNakshatrasPage() {
           <div className="space-y-3">
             <p>राशिचक्र (360°) <strong>दो तरीकों से एक साथ</strong> विभाजित है — दोनों को समझना वैदिक ज्योतिष की कुंजी है:</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">12</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">राशियाँ</div>
                 <div className="text-text-secondary/70 text-xs mt-1">30° प्रत्येक — <strong>सूर्य</strong> के वार्षिक पथ पर आधारित। वैदिक ज्योतिष में <strong>चन्द्र</strong> की राशि अधिक महत्वपूर्ण।</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">27</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">नक्षत्र</div>
                 <div className="text-text-secondary/70 text-xs mt-1">13°20&apos; प्रत्येक — <strong>चन्द्रमा</strong> की दैनिक स्थिति। प्रत्येक का एक देवता, स्वामी और अद्वितीय व्यक्तित्व। चन्द्र प्रतिदिन एक नक्षत्र पार करता है।</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/30 border border-gold-primary/8 p-4 text-center">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 p-4 text-center">
                 <div className="text-3xl font-bold text-gold-light">108</div>
                 <div className="text-gold-primary text-sm font-semibold mt-1">पाद (चतुर्थांश)</div>
                 <div className="text-text-secondary/70 text-xs mt-1">3°20&apos; प्रत्येक — 27 × 4 = 108, पवित्र संख्या। प्रत्येक पाद एक नवांश (D9) राशि से जुड़ता है। 108 ÷ 12 = 9 पाद प्रति राशि।</div>
@@ -658,7 +658,7 @@ export default function LearnNakshatrasPage() {
             </div>
 
             {/* Obliquity */}
-            <div className="p-3 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
               <div className="text-text-primary font-bold text-sm mb-1">
                 {lo === 'en' ? 'Obliquity (Axial Tilt)' : 'अक्षीय झुकाव (Obliquity)'}
               </div>
@@ -668,13 +668,13 @@ export default function LearnNakshatrasPage() {
                   ? 'Earth\'s axial tilt oscillates between 22.1° and 24.5° over ~41,000 years. Currently ~23.44° and decreasing. This changes the intensity of seasons — greater tilt means more extreme summers and winters.'
                   : 'पृथ्वी का अक्षीय झुकाव ~41,000 वर्षों में 22.1° और 24.5° के बीच दोलन करता है। वर्तमान में ~23.44° और घट रहा है। इससे ऋतुओं की तीव्रता बदलती है।'}
               </p>
-              <div className="mt-2 px-2 py-1 rounded bg-bg-tertiary/50 text-text-secondary text-xs text-center">
+              <div className="mt-2 px-2 py-1 rounded bg-white/5 text-text-secondary text-xs text-center">
                 {lo === 'en' ? 'Governs season intensity' : 'ऋतु तीव्रता नियन्त्रित'}
               </div>
             </div>
 
             {/* Eccentricity */}
-            <div className="p-3 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
+            <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
               <div className="text-text-primary font-bold text-sm mb-1">
                 {lo === 'en' ? 'Eccentricity' : 'विकेन्द्रता (Eccentricity)'}
               </div>
@@ -684,7 +684,7 @@ export default function LearnNakshatrasPage() {
                   ? 'Earth\'s orbit stretches between nearly circular and slightly elliptical over ~100,000 years. This changes how much total solar energy Earth receives. Currently eccentricity is ~0.017 (nearly circular).'
                   : 'पृथ्वी की कक्षा ~100,000 वर्षों में लगभग वृत्ताकार से हल्की दीर्घवृत्ताकार के बीच बदलती है। इससे पृथ्वी को प्राप्त कुल सौर ऊर्जा बदलती है। वर्तमान विकेन्द्रता ~0.017 है।'}
               </p>
-              <div className="mt-2 px-2 py-1 rounded bg-bg-tertiary/50 text-text-secondary text-xs text-center">
+              <div className="mt-2 px-2 py-1 rounded bg-white/5 text-text-secondary text-xs text-center">
                 {lo === 'en' ? 'Governs orbit shape' : 'कक्षा आकार नियन्त्रित'}
               </div>
             </div>

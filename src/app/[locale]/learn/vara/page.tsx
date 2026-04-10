@@ -95,7 +95,7 @@ export default function VaraPage() {
             { name: { en: 'Karana', hi: 'करण' }, desc: { en: 'Half tithi', hi: 'अर्ध तिथि' }, color: 'text-violet-400' },
             { name: { en: 'Vara', hi: 'वार' }, desc: { en: 'Weekday', hi: 'सप्ताह दिन' }, color: 'text-gold-light' },
           ].map((anga, i) => (
-            <div key={i} className={`px-4 py-3 rounded-xl border border-gold-primary/15 text-center min-w-[100px] ${i === 4 ? 'bg-gold-primary/10 border-gold-primary/30 ring-1 ring-gold-primary/20' : 'bg-bg-secondary/30'}`}>
+            <div key={i} className={`px-4 py-3 rounded-xl border border-gold-primary/15 text-center min-w-[100px] ${i === 4 ? 'bg-gold-primary/10 border-gold-primary/30 ring-1 ring-gold-primary/20' : 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]'}`}>
               <div className={`font-bold text-sm ${anga.color}`} style={headingFont}>{isHi ? anga.name.hi : anga.name.en}</div>
               <div className="text-text-tertiary text-xs mt-0.5">{isHi ? anga.desc.hi : anga.desc.en}</div>
             </div>
@@ -164,7 +164,7 @@ export default function VaraPage() {
               <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'शनिवार की 24 होराएं' : "Saturday's 24 Horas"}</div>
               <div className="flex flex-wrap gap-1 text-xs">
                 {['Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma','Su','Ve','Me','Mo', 'Sa','Ju','Ma'].map((h, i) => (
-                  <span key={i} className={`px-1.5 py-0.5 rounded ${i === 0 ? 'bg-gold-primary/20 text-gold-light font-bold ring-1 ring-gold-primary/40' : 'bg-bg-secondary/50 text-text-tertiary'}`}>
+                  <span key={i} className={`px-1.5 py-0.5 rounded ${i === 0 ? 'bg-gold-primary/20 text-gold-light font-bold ring-1 ring-gold-primary/40' : 'bg-white/5 text-text-tertiary'}`}>
                     {i+1}:{h}
                   </span>
                 ))}
@@ -222,7 +222,7 @@ export default function VaraPage() {
         </div>
 
         {/* Historical context */}
-        <div className="p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/15">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-500/15">
           <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-2">
             {isHi ? 'ऐतिहासिक संदर्भ' : 'Historical Context'}
           </div>
@@ -306,12 +306,12 @@ export default function VaraPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* Favourable */}
-                  <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                     <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'अनुकूल कार्य' : 'Favorable Activities'}</div>
                     <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.activities.hi : vara.activities.en}</div>
                   </div>
                   {/* Avoid */}
-                  <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
+                  <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
                     <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'वर्जित' : 'Avoid'}</div>
                     <div className="text-text-secondary text-xs leading-relaxed">{isHi ? vara.avoid.hi : vara.avoid.en}</div>
                   </div>

@@ -7,7 +7,7 @@ export default function Loading() {
       <Skeleton className="h-4 w-64 mx-auto" />
       <div className="space-y-4 mt-8">
         {[1, 2, 3].map(i => (
-          <div key={i} className="p-6 rounded-xl border border-gold-primary/10 bg-bg-secondary/20">
+          <div key={i} className="p-6 rounded-xl border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <Skeleton className="h-5 w-48 mb-3" />
             <SkeletonText lines={3} />
           </div>

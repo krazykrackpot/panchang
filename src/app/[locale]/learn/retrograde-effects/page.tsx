@@ -200,7 +200,7 @@ export default function RetrogradeEffectsPage() {
           ].map((item, i) => {
             const Icon = item.icon;
             return (
-              <div key={i} className="flex gap-4 items-start p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+              <div key={i} className="flex gap-4 items-start p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-primary/10 flex items-center justify-center">
                   <Icon className={`w-5 h-5 ${item.color}`} />
                 </div>
@@ -252,7 +252,7 @@ export default function RetrogradeEffectsPage() {
             const Icon = n.icon;
             const isOpen = expandedNatal === i;
             return (
-              <motion.div key={i} layout className="rounded-xl bg-bg-secondary/40 border border-gold-primary/8 overflow-hidden">
+              <motion.div key={i} layout className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 overflow-hidden">
                 <button onClick={() => setExpandedNatal(isOpen ? null : i)}
                   className="w-full flex items-center gap-3 p-4 text-left">
                   <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/10 flex items-center justify-center`}>
@@ -293,7 +293,7 @@ export default function RetrogradeEffectsPage() {
           {TRANSIT_EFFECTS.map((te, i) => {
             const isOpen = expandedTransit === i;
             return (
-              <motion.div key={i} layout className="rounded-xl bg-bg-secondary/40 border border-gold-primary/8 overflow-hidden">
+              <motion.div key={i} layout className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 overflow-hidden">
                 <button onClick={() => setExpandedTransit(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-4 text-left">
                   <span className={`font-bold text-sm ${te.color}`} style={hf}>{t(te.planet)}</span>
@@ -304,11 +304,11 @@ export default function RetrogradeEffectsPage() {
                     <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden">
                       <div className="px-4 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+                        <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                           <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'करें' : 'Do'}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.doList)}</p>
                         </div>
-                        <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/15">
+                        <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
                           <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'न करें' : 'Don\'t'}</span>
                           <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(te.dontList)}</p>
                         </div>
@@ -325,7 +325,7 @@ export default function RetrogradeEffectsPage() {
       {/* Section 5: Mathematical Note */}
       <LessonSection number={5} title={isHi ? 'गणितीय टिप्पणी' : 'Mathematical Note'} variant="formula">
         <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/10 font-mono text-sm">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10 font-mono text-sm">
             <div className="text-emerald-400 mb-2">// {isHi ? 'वक्री पहचान' : 'Retrograde detection'}</div>
             <div className="text-text-secondary">
               <span className="text-cyan-400">if</span> (planet.speed {'<'} <span className="text-amber-400">0</span>) {'{'}
@@ -340,7 +340,7 @@ export default function RetrogradeEffectsPage() {
             { label: { en: 'Cheshta Bala (Shadbala)', hi: 'चेष्टा बल (षड्बल)' }, value: { en: 'Retrograde planets receive maximum motional strength — 60 Shashtiamsas (full score). This makes them among the strongest planets in the Shadbala system.', hi: 'वक्री ग्रह अधिकतम गति बल प्राप्त करते हैं — 60 षष्ट्यंश (पूर्ण अंक)। षड्बल प्रणाली में यह सबसे शक्तिशाली ग्रहों में बनाता है।' } },
             { label: { en: 'Stationary Planets', hi: 'स्थिर ग्रह' }, value: { en: 'Just before going retrograde or turning direct, a planet becomes "stationary" (near-zero speed). Stationary planets are extremely powerful — they "stop" and concentrate all energy on the degree they occupy.', hi: 'वक्री होने या मार्गी होने से ठीक पहले, ग्रह "स्थिर" (लगभग शून्य गति) होता है। स्थिर ग्रह अत्यन्त शक्तिशाली — वे "रुकते" हैं और सारी ऊर्जा उस अंश पर केन्द्रित करते हैं।' } },
           ].map((item, i) => (
-            <div key={i} className="p-3 rounded-xl bg-bg-secondary/30 border border-gold-primary/8">
+            <div key={i} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
               <span className="text-gold-dark text-xs uppercase tracking-wider font-bold">{t(item.label)}</span>
               <p className="text-text-secondary text-sm mt-1 leading-relaxed">{t(item.value)}</p>
             </div>

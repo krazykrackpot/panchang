@@ -196,7 +196,7 @@ export default function TransitsPage() {
       {/* 6. Practical advice */}
       <LessonSection number={6} title={isHi ? L.practicalTitle.hi : L.practicalTitle.en}>
         <div className="space-y-4">
-          <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/15 p-4">
+          <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 p-4">
             <h4 className="text-emerald-400 font-bold text-sm mb-3" style={headingFont}>
               {isHi ? 'अनुकूल गोचर में' : 'During Favorable Transits'}
             </h4>
@@ -209,7 +209,7 @@ export default function TransitsPage() {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-red-500/5 border border-red-500/15 p-4">
+          <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15 p-4">
             <h4 className="text-red-400 font-bold text-sm mb-3" style={headingFont}>
               {isHi ? 'चुनौतीपूर्ण गोचर में' : 'During Challenging Transits'}
             </h4>

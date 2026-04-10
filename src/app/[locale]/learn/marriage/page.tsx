@@ -129,7 +129,7 @@ export default function MarriagePredictionGuide() {
           ].map((s) => {
             const Icon = s.icon;
             return (
-              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-pink-500/10 flex items-center justify-center">
                   <Icon className={`w-5 h-5 ${s.color}`} />
                 </div>
@@ -210,7 +210,7 @@ export default function MarriagePredictionGuide() {
           ].map((item, i) => {
             const Icon = item.icon;
             return (
-              <div key={i} className="p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/10">
+              <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon className={`w-4 h-4 ${item.color}`} />
                   <h4 className={`font-bold text-sm ${item.color}`} style={hf}>{t(item.indicator)}</h4>
@@ -232,7 +232,7 @@ export default function MarriagePredictionGuide() {
             { aspect: { en: 'D9 7th Lord in Dusthana', hi: 'D9 सप्तमेश दुःस्थान में' }, result: { en: 'The 7th lord of D9 in 6/8/12 indicates post-marriage difficulties: health issues of spouse (6th), sudden changes (8th), or separation themes (12th).', hi: 'D9 का सप्तमेश 6/8/12 में = विवाहोपरान्त कठिनाइयां: जीवनसाथी का स्वास्थ्य (6), आकस्मिक परिवर्तन (8), विरह (12)।' } },
             { aspect: { en: 'Venus-Jupiter in D9', hi: 'D9 में शुक्र-गुरु' }, result: { en: 'Venus-Jupiter combination anywhere in D9 is one of the best indicators for a blessed marriage. Mutual respect, devotion, and abundance.', hi: 'D9 में शुक्र-गुरु का संयोग सर्वोत्तम विवाह सूचकों में से एक है। आदर, भक्ति और समृद्धि।' } },
           ].map((item, i) => (
-            <div key={i} className="flex gap-4 p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+            <div key={i} className="flex gap-4 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
               <div className="flex-shrink-0 w-2 h-2 rounded-full bg-pink-400 mt-2" />
               <div>
                 <h4 className="text-gold-light font-bold text-sm mb-1" style={hf}>{t(item.aspect)}</h4>
@@ -253,7 +253,7 @@ export default function MarriagePredictionGuide() {
             { href: '/learn/planet-in-house' as const, label: { en: 'Planet in House Guide', hi: 'भाव में ग्रह मार्गदर्शिका' } },
             { href: '/learn/doshas' as const, label: { en: 'Doshas (Mangal, Kaal Sarp)', hi: 'दोष (मंगल, काल सर्प)' } },
           ].map((link) => (
-            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
+            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
               <Zap className="w-4 h-4 text-gold-dark group-hover:text-gold-light transition-colors" />
               <span className="text-text-secondary text-sm group-hover:text-gold-light transition-colors">{t(link.label)}</span>
             </Link>

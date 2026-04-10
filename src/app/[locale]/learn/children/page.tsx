@@ -136,7 +136,7 @@ export default function ChildrenPredictionPage() {
           ].map((s) => {
             const Icon = s.icon;
             return (
-              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-primary/10 flex items-center justify-center">
                   <Icon className={`w-5 h-5 ${s.color}`} />
                 </div>
@@ -167,7 +167,7 @@ export default function ChildrenPredictionPage() {
           ].map((item, i) => {
             const Icon = item.icon;
             return (
-              <div key={i} className="p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/10">
+              <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                 <div className="flex items-center gap-2 mb-1">
                   <Icon className={`w-4 h-4 ${item.color}`} />
                   <span className="text-gold-light font-bold text-sm" style={hf}>{t(item.trigger)}</span>
@@ -215,7 +215,7 @@ export default function ChildrenPredictionPage() {
               { indicator: { en: '4+ Bindus in 5th (SAV)', hi: '5वें में 4+ बिन्दु (SAV)' }, result: { en: 'Ashtakavarga: 4 or more bindus in the 5th sign = strong likelihood of children.', hi: 'अष्टकवर्ग: पञ्चम राशि में 4 या अधिक बिन्दु = सन्तान प्रबल सम्भावना।' }, positive: true },
               { indicator: { en: 'Multiple planets in 5th', hi: '5वें में बहु ग्रह' }, result: { en: 'Multiple children possibility. 5th lord in dual sign (Gemini/Sagittarius/Pisces/Virgo) = twins.', hi: 'बहु सन्तान सम्भावना। पञ्चमेश द्वि-राशि में = जुड़वां सम्भव।' }, positive: true },
             ].map((item, i) => (
-              <div key={i} className={`p-3 rounded-xl border ${item.positive ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-amber-500/15 bg-amber-500/5'}`}>
+              <div key={i} className={`p-3 rounded-xl border ${item.positive ? 'border-emerald-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]' : 'border-amber-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]'}`}>
                 <span className={`font-bold text-xs ${item.positive ? 'text-emerald-400' : 'text-amber-400'}`} style={hf}>{t(item.indicator)}</span>
                 <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(item.result)}</p>
               </div>
@@ -232,7 +232,7 @@ export default function ChildrenPredictionPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {FIFTH_SIGN.map((s, i) => (
             <button key={i} onClick={() => setExpandedSign(expandedSign === i ? null : i)}
-              className="text-left p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
+              className="text-left p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
               <div className="flex items-center justify-between">
                 <span className={`font-bold text-sm ${s.color}`} style={hf}>{t(s.sign)}</span>
                 <ChevronDown className={`w-3.5 h-3.5 text-gold-dark transition-transform ${expandedSign === i ? 'rotate-180' : ''}`} />
@@ -257,10 +257,10 @@ export default function ChildrenPredictionPage() {
         </p>
         <div className="space-y-4">
           {CHALLENGES.map((c, i) => (
-            <div key={i} className={`p-4 rounded-xl border ${c.color} bg-bg-secondary/30`}>
+            <div key={i} className={`p-4 rounded-xl border ${c.color} bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]`}>
               <h4 className="text-gold-light font-bold text-sm mb-2" style={hf}>{t(c.condition)}</h4>
               <p className="text-text-secondary text-sm leading-relaxed mb-3">{t(c.meaning)}</p>
-              <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
+              <div className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                 <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{isHi ? 'उपाय' : 'Remedy'}</span>
                 <p className="text-text-tertiary text-xs mt-1 leading-relaxed">{t(c.remedy)}</p>
               </div>

@@ -18,6 +18,7 @@ import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance
 import type { GocharResult } from '@/lib/personalization/gochar';
 import type { PersonalFestival } from '@/lib/personalization/festival-relevance';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import EclipseAlert from '@/components/dashboard/EclipseAlert';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
@@ -626,6 +627,9 @@ export default function DashboardPage() {
             </div>
           </motion.div>
         )}
+
+        {/* Upcoming Eclipse Alert */}
+        <EclipseAlert />
 
         {/* Enhanced Transit Alerts */}
         {(enhancedAlerts.length > 0 || pd.transitAlerts.length > 0) && (

@@ -196,7 +196,7 @@ export default function DoshasPage() {
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.effect[locale]}</div>
                         </div>
                       </div>
-                      <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
                           <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{locale === 'en' ? 'Cancellation Conditions' : locale === 'hi' ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
@@ -226,7 +226,7 @@ export default function DoshasPage() {
           {L.guruChandalContent[locale]}
         </p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
             </div>
@@ -234,7 +234,7 @@ export default function DoshasPage() {
               {locale === 'en' ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
             </div>

@@ -311,7 +311,7 @@ export default function LearnKaranasPage() {
               ))}
             </div>
           </div>
-          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+          <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <h4 className="text-amber-300 font-bold mb-1" style={{ fontFamily: 'var(--font-heading)' }}>{L.sthiraLabel[loc]}</h4>
             <p className="text-text-secondary text-sm">{L.sthiraDesc[loc]}</p>
             <div className="flex flex-wrap gap-1.5 mt-2">
@@ -436,17 +436,17 @@ export default function LearnKaranasPage() {
 
         <div className="space-y-4 mt-4">
           {/* Auspicious */}
-          <div className="p-4 rounded-lg border border-emerald-500/20 bg-emerald-500/5">
+          <div className="p-4 rounded-lg border border-emerald-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <h4 className="text-emerald-400 font-bold mb-2">{L.goodLabel[loc]}</h4>
             <p className="text-text-secondary text-sm">{L.goodKaranas[loc]}</p>
           </div>
           {/* Neutral */}
-          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+          <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <h4 className="text-amber-400 font-bold mb-2">{L.neutralLabel[loc]}</h4>
             <p className="text-text-secondary text-sm">{L.neutralKaranas[loc]}</p>
           </div>
           {/* Inauspicious */}
-          <div className="p-4 rounded-lg border border-red-500/20 bg-red-500/5">
+          <div className="p-4 rounded-lg border border-red-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <h4 className="text-red-400 font-bold mb-2">{L.badLabel[loc]}</h4>
             <p className="text-text-secondary text-sm">{L.badKaranas[loc]}</p>
           </div>

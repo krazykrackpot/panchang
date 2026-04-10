@@ -196,7 +196,7 @@ export default function HealthAstrologyPage() {
           ].map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.house} className="flex gap-4 items-start p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+              <div key={item.house} className="flex gap-4 items-start p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-primary/10 flex items-center justify-center">
                   <Icon className={`w-5 h-5 ${item.color}`} />
                 </div>
@@ -248,7 +248,7 @@ export default function HealthAstrologyPage() {
           {LAGNA_HEALTH.map((l, i) => {
             const isOpen = expandedLagna === i;
             return (
-              <motion.div key={i} layout className="rounded-xl bg-bg-secondary/40 border border-gold-primary/8 overflow-hidden">
+              <motion.div key={i} layout className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 overflow-hidden">
                 <button onClick={() => setExpandedLagna(isOpen ? null : i)}
                   className="w-full flex items-center justify-between p-3 text-left">
                   <span className={`font-bold text-sm ${l.color}`} style={hf}>{t(l.sign)}</span>
@@ -291,7 +291,7 @@ export default function HealthAstrologyPage() {
             { trigger: { en: 'Mars transit over 6th/8th', hi: 'मंगल का 6/8 पर गोचर' }, effect: { en: 'Acute illness, accident risk, surgery timing. Mars brings sudden, sharp health events — fevers, injuries, surgical interventions.', hi: 'तीव्र बीमारी, दुर्घटना जोखिम, शल्यक्रिया। मंगल अचानक तीव्र स्वास्थ्य घटनाएं लाता है।' }, severity: 'medium' },
             { trigger: { en: 'Eclipse on natal Moon/Lagna', hi: 'जन्म चन्द्र/लग्न पर ग्रहण' }, effect: { en: 'Major health turning point. Eclipses within 5 degrees of natal Moon or Ascendant degree can trigger significant medical events within 6 months.', hi: 'प्रमुख स्वास्थ्य मोड़। जन्म चन्द्र या लग्न अंश के 5 अंश भीतर ग्रहण 6 माह में महत्वपूर्ण चिकित्सा घटना।' }, severity: 'high' },
           ].map((item, i) => (
-            <div key={i} className={`p-4 rounded-xl border ${item.severity === 'high' ? 'border-red-500/20 bg-red-500/5' : 'border-amber-500/20 bg-amber-500/5'}`}>
+            <div key={i} className={`p-4 rounded-xl border ${item.severity === 'high' ? 'border-red-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]' : 'border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]'}`}>
               <div className="flex items-center gap-2 mb-1">
                 <Activity className={`w-4 h-4 ${item.severity === 'high' ? 'text-red-400' : 'text-amber-400'}`} />
                 <span className="text-gold-light font-bold text-sm" style={hf}>{t(item.trigger)}</span>
@@ -323,7 +323,7 @@ export default function HealthAstrologyPage() {
             </motion.div>
           ))}
         </div>
-        <div className="mt-5 p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/10">
+        <div className="mt-5 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
           <p className="text-text-tertiary text-xs leading-relaxed">
             {isHi
               ? 'गणना विधि: सूर्य से केतु तक सभी 9 ग्रहों की राशि देखें। जिस तत्त्व (अग्नि/पृथ्वी/वायु/जल) में सबसे अधिक ग्रह हों, वह आपकी प्रमुख प्रकृति है। लग्न और चन्द्र राशि को दोहरा भार दें।'

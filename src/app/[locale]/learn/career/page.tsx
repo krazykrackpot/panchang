@@ -154,7 +154,7 @@ export default function CareerPredictionGuide() {
           ].map((s) => {
             const Icon = s.icon;
             return (
-              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/8">
+              <div key={s.step} className="flex gap-4 items-start p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                 <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gold-primary/10 flex items-center justify-center">
                   <Icon className={`w-5 h-5 ${s.color}`} />
                 </div>
@@ -178,7 +178,7 @@ export default function CareerPredictionGuide() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {SIGN_CAREERS.map((s, i) => (
-            <div key={i} className="p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
+            <div key={i} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/20 transition-colors">
               <div className={`font-bold text-sm mb-1 ${s.color}`} style={hf}>{t(s.sign)}</div>
               <div className="text-text-secondary text-xs mb-1">{t(s.nature)}</div>
               <div className="text-text-tertiary text-xs">{t(s.fields)}</div>
@@ -228,7 +228,7 @@ export default function CareerPredictionGuide() {
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {LORD_PLACEMENTS.map((lp) => (
-            <div key={lp.house} className="p-3 rounded-lg bg-bg-secondary/40 border border-gold-primary/8">
+            <div key={lp.house} className="p-3 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
               <span className="text-gold-light font-bold text-xs">{isHi ? `${lp.house} भाव` : `${lp.house} House`}</span>
               <p className="text-text-secondary text-xs mt-1 leading-relaxed">{t(lp.meaning)}</p>
             </div>
@@ -262,7 +262,7 @@ export default function CareerPredictionGuide() {
             { indicator: { en: '10th Lord Retrograde', hi: 'दशमेश वक्री' }, meaning: { en: 'Career rethinking, delayed recognition that comes eventually. May revisit old career paths. Internalized professional growth.', hi: 'करियर पुनर्विचार, विलम्बित मान्यता जो अन्ततः आती है। पुराने मार्गों पर पुनर्विचार।' }, color: 'text-amber-400' },
             { indicator: { en: 'Ketu in 10th House', hi: 'केतु दशम भाव में' }, meaning: { en: 'Detachment from worldly ambition, spiritual or research-oriented career. May feel undervalued despite skills. Past-life career patterns repeat.', hi: 'सांसारिक महत्वाकांक्षा से विरक्ति, आध्यात्मिक या अनुसन्धान करियर। कौशल के बावजूद कम मूल्यांकित।' }, color: 'text-indigo-400' },
           ].map((item, i) => (
-            <div key={i} className="p-4 rounded-xl bg-bg-secondary/40 border border-gold-primary/10">
+            <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
               <h4 className={`font-bold text-sm mb-2 ${item.color}`} style={hf}>{t(item.indicator)}</h4>
               <p className="text-text-secondary text-xs leading-relaxed">{t(item.meaning)}</p>
             </div>
@@ -280,7 +280,7 @@ export default function CareerPredictionGuide() {
             { href: '/learn/planets' as const, label: { en: 'Planet Significations', hi: 'ग्रह सूचनाएं' } },
             { href: '/learn/dashas' as const, label: { en: 'Dasha System', hi: 'दशा प्रणाली' } },
           ].map((link) => (
-            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-bg-secondary/40 border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
+            <Link key={link.href} href={link.href} className="flex items-center gap-2 p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8 hover:border-gold-primary/25 transition-colors group">
               <Zap className="w-4 h-4 text-gold-dark group-hover:text-gold-light transition-colors" />
               <span className="text-text-secondary text-sm group-hover:text-gold-light transition-colors">{t(link.label)}</span>
             </Link>

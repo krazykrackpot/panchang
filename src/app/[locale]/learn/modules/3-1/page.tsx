@@ -59,7 +59,7 @@ function Page1() {
               { sign: 'Aquarius (कुम्भ)', body: 'Calves, Shins', num: 11, color: 'text-indigo-300' },
               { sign: 'Pisces (मीन)', body: 'Feet', num: 12, color: 'text-violet-300' },
             ].map(s => (
-              <div key={s.num} className="p-2 rounded-lg bg-bg-secondary/50 border border-gold-primary/5">
+              <div key={s.num} className="p-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/5">
                 <span className={`font-bold ${s.color}`}>{s.num}. {s.sign}</span>
                 <div className="text-text-tertiary mt-0.5">{s.body}</div>
               </div>

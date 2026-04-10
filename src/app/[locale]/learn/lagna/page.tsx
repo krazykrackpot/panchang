@@ -270,7 +270,7 @@ export default function LagnaPage() {
             </motion.div>
           ))}
         </div>
-        <div className="p-3 bg-red-500/5 rounded-lg border border-red-500/10 mb-3">
+        <div className="p-3 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] rounded-lg border border-red-500/10 mb-3">
           <p className="text-red-400/80 text-sm" style={bodyFont}>{t(L.muhurtaAvoid)}</p>
         </div>
         <div className="p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/20">

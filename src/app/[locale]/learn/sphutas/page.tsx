@@ -155,7 +155,7 @@ export default function LearnSphutasPage() {
             <p className="text-emerald-400 font-mono text-sm">{t(L.yogiFormula)}</p>
           </div>
           {L.yogiDetails.map((d, i) => (
-            <div key={i} className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10">
+            <div key={i} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/10">
               <div className="text-emerald-400 font-bold text-sm mb-1">{t(d.label)}</div>
               <div className="text-text-secondary text-xs leading-relaxed">{t(d.desc)}</div>
             </div>
@@ -173,7 +173,7 @@ export default function LearnSphutasPage() {
             <p className="text-red-400 font-mono text-sm">{t(L.avayogiFormula)}</p>
           </div>
           {L.avayogiDetails.map((d, i) => (
-            <div key={i} className="p-3 rounded-xl bg-red-500/5 border border-red-500/10">
+            <div key={i} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/10">
               <div className="text-red-400 font-bold text-sm mb-1">{t(d.label)}</div>
               <div className="text-text-secondary text-xs leading-relaxed">{t(d.desc)}</div>
             </div>
@@ -187,7 +187,7 @@ export default function LearnSphutasPage() {
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.yogiTransitTitle)}</h2>
         <div className="space-y-3">
           {L.yogiTransits.map((tr, i) => (
-            <div key={i} className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/8">
+            <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
               <div className={`font-bold text-sm mb-1 ${tr.color}`}>{t(tr.trigger)}</div>
               <div className="text-text-secondary text-xs leading-relaxed">{t(tr.effect)}</div>
             </div>
@@ -248,7 +248,7 @@ export default function LearnSphutasPage() {
             <div className="text-text-secondary text-xs leading-relaxed">{t(sp.interpretation)}</div>
           </div>
         ))}
-        <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
+        <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
           <p className="text-amber-400 text-xs leading-relaxed">
             {isHi
               ? 'नोट: विषम राशि + शुभ नक्षत्र = अनुकूल (बीज); सम राशि + शुभ नक्षत्र = अनुकूल (क्षेत्र)। दोनों स्फुट अनुकूल होने पर दम्पति की प्रजनन क्षमता प्रबल मानी जाती है।'
@@ -263,7 +263,7 @@ export default function LearnSphutasPage() {
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.howToTitle)}</h2>
         <div className="space-y-3">
           {L.howToPoints.map((hp, i) => (
-            <div key={i} className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/8">
+            <div key={i} className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-gold-primary font-bold text-sm">{i + 1}.</span>
                 <span className="text-gold-light font-bold text-sm">{t(hp.point)}</span>

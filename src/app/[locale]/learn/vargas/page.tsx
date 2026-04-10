@@ -635,7 +635,7 @@ export default function LearnVargasPage() {
 
         {/* Key Navamsha concepts */}
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="p-4 rounded-lg bg-amber-500/5 border border-amber-500/20">
+          <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20">
             <div className="text-amber-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
               {locale === 'en' ? 'Vargottama' : 'वर्गोत्तम'}
             </div>
@@ -645,7 +645,7 @@ export default function LearnVargasPage() {
                 : 'जब ग्रह D1 और D9 दोनों में एक ही राशि में हो। चर राशियों में 0°-3°20\', स्थिर में 13°20\'-16°40\', और द्विस्वभाव में 26°40\'-30° पर होता है। वर्गोत्तम ग्रह असाधारण रूप से शक्तिशाली होते हैं।'}
             </p>
           </div>
-          <div className="p-4 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+          <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
             <div className="text-emerald-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
               {locale === 'en' ? 'Pushkara Navamsha' : 'पुष्कर नवांश'}
             </div>
@@ -743,7 +743,7 @@ export default function LearnVargasPage() {
 
         <div className="mt-5 space-y-3">
           {/* Essential tier */}
-          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5">
+          <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-amber-400 font-bold text-sm mb-2">
               {locale === 'en' ? 'Tier 1 — Always Consult' : 'स्तर 1 — सदा परामर्श करें'}
             </div>
@@ -763,7 +763,7 @@ export default function LearnVargasPage() {
           </div>
 
           {/* Important tier */}
-          <div className="p-4 rounded-lg border border-emerald-500/20 bg-emerald-500/5">
+          <div className="p-4 rounded-lg border border-emerald-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-emerald-400 font-bold text-sm mb-2">
               {locale === 'en' ? 'Tier 2 — Consult for Specific Questions' : 'स्तर 2 — विशिष्ट प्रश्नों के लिए'}
             </div>

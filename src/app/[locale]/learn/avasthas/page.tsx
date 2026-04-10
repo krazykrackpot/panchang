@@ -532,7 +532,7 @@ export default function LearnAvasthasPage() {
                       <p className="text-text-secondary leading-relaxed text-sm">{t(sys.desc)}</p>
                       <div className="space-y-2">
                         {sys.states.map((state: any, j: number) => (
-                          <div key={j} className="p-3 rounded-xl bg-bg-secondary/50 border border-gold-primary/8">
+                          <div key={j} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                             <div className="flex items-center gap-2 mb-1.5">
                               <span className={`font-bold text-sm ${state.color}`}>{t(state.name)}</span>
                               {state.quality && <span className="text-text-tertiary text-xs ml-auto">{t(state.quality)}</span>}
@@ -626,11 +626,11 @@ export default function LearnAvasthasPage() {
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.synthesisTitle)}</h2>
-        <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
           <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उदाहरण: बलवान गुरु' : 'Example: Strong Jupiter'}</div>
           <p className="text-text-secondary text-sm leading-relaxed">{t(L.synthesisP1)}</p>
         </div>
-        <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+        <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
           <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-2">{isHi ? 'उदाहरण: दुर्बल शुक्र' : 'Example: Weak Venus'}</div>
           <p className="text-text-secondary text-sm leading-relaxed">{t(L.synthesisP2)}</p>
         </div>

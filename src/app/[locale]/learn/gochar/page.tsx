@@ -222,7 +222,7 @@ export default function LearnGocharPage() {
       <LessonSection number={5} title={L.jupiterTitle[locale]}>
         <p style={bodyFont}>{L.jupiterContent[locale]}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Auspicious Jupiter transit houses' : 'शुभ गुरु गोचर भाव'}
             </div>
@@ -232,7 +232,7 @@ export default function LearnGocharPage() {
                 : '2रा (धन), 5वाँ (संतान/शिक्षा), 7वाँ (विवाह/साझेदारी), 9वाँ (भाग्य/धर्म), 11वाँ (लाभ/इच्छा पूर्ति)'}
             </div>
           </div>
-          <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
+          <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">
               {locale === 'en' ? 'Challenging Jupiter transit houses' : 'कठिन गुरु गोचर भाव'}
             </div>

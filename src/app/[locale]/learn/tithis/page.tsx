@@ -77,35 +77,35 @@ const CATEGORIES = [
     name: { en: 'Nanda', hi: 'नन्दा' },
     meaning: { en: 'Joy / Happiness', hi: 'आनन्द / प्रसन्नता' },
     tithis: '1, 6, 11',
-    color: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-emerald-500/5',
+    color: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
     nature: { en: 'Auspicious. Good for celebrations, starting education, religious ceremonies, marriage negotiations, and joyful gatherings.', hi: 'शुभ। उत्सव, शिक्षा आरम्भ, धार्मिक अनुष्ठान, विवाह वार्ता और आनन्दमय सभाओं के लिए उत्तम।' },
   },
   {
     name: { en: 'Bhadra', hi: 'भद्रा' },
     meaning: { en: 'Prosperity / Welfare', hi: 'समृद्धि / कल्याण' },
     tithis: '2, 7, 12',
-    color: 'text-blue-300', border: 'border-blue-500/20', bg: 'bg-blue-500/5',
+    color: 'text-blue-300', border: 'border-blue-500/20', bg: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
     nature: { en: 'Benefic. Favorable for house construction, purchasing property, agriculture, long-term investments, and activities seeking stability.', hi: 'लाभकारी। गृह निर्माण, सम्पत्ति खरीद, कृषि, दीर्घकालिक निवेश और स्थिरता के कार्यों के लिए अनुकूल।' },
   },
   {
     name: { en: 'Jaya', hi: 'जया' },
     meaning: { en: 'Victory / Triumph', hi: 'विजय / जीत' },
     tithis: '3, 8, 13',
-    color: 'text-amber-400', border: 'border-amber-500/20', bg: 'bg-amber-500/5',
+    color: 'text-amber-400', border: 'border-amber-500/20', bg: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
     nature: { en: 'Mixed to strong. Good for competitive activities, legal battles, overcoming enemies, sports, and assertive undertakings.', hi: 'मिश्रित से प्रबल। प्रतिस्पर्धा, कानूनी लड़ाई, शत्रु पर विजय, खेल और दृढ़ कार्यों के लिए उत्तम।' },
   },
   {
     name: { en: 'Rikta', hi: 'रिक्ता' },
     meaning: { en: 'Empty / Void', hi: 'शून्य / रिक्त' },
     tithis: '4, 9, 14',
-    color: 'text-red-400', border: 'border-red-500/20', bg: 'bg-red-500/5',
+    color: 'text-red-400', border: 'border-red-500/20', bg: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
     nature: { en: 'Inauspicious. Avoid starting new ventures, marriages, and auspicious ceremonies. Suitable for destructive activities: demolition, clearing debts, ending contracts, and tantric remedies.', hi: 'अशुभ। नए कार्य, विवाह और शुभ अनुष्ठान से बचें। विध्वंसक कार्यों के लिए उपयुक्त: ध्वंस, ऋण मुक्ति, अनुबंध समाप्ति और तान्त्रिक उपचार।' },
   },
   {
     name: { en: 'Purna', hi: 'पूर्णा' },
     meaning: { en: 'Full / Complete', hi: 'पूर्ण / सम्पूर्ण' },
     tithis: '5, 10, 15',
-    color: 'text-violet-400', border: 'border-violet-500/20', bg: 'bg-violet-500/5',
+    color: 'text-violet-400', border: 'border-violet-500/20', bg: 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]',
     nature: { en: 'Highly auspicious. Excellent for completing tasks, fulfilling promises, grand celebrations, charity, and spiritual practices. Purnima (15th) and Panchami (5th) are particularly powerful.', hi: 'अत्यन्त शुभ। कार्य पूर्ण करने, प्रतिज्ञा पूर्ति, भव्य उत्सव, दान और आध्यात्मिक साधना के लिए उत्कृष्ट। पूर्णिमा (15वीं) और पंचमी (5वीं) विशेष शक्तिशाली हैं।' },
   },
 ];
@@ -512,7 +512,7 @@ export default function LearnTithisPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.06 }}
-              className={`rounded-xl p-5 border ${st.border} bg-bg-secondary/20`}
+              className={`rounded-xl p-5 border ${st.border} bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]`}
             >
               <div className={`text-lg font-bold ${st.color} mb-2`} style={headingFont}>
                 {l(st.name)}
@@ -536,7 +536,7 @@ export default function LearnTithisPage() {
         </h3>
         <div className="text-text-secondary text-base leading-relaxed space-y-5">
           {/* Kshaya */}
-          <div className="rounded-xl p-5 border border-red-500/15 bg-red-500/5">
+          <div className="rounded-xl p-5 border border-red-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-red-400 font-bold text-base mb-2" style={headingFont}>
               {isHi ? 'क्षय तिथि (लुप्त / छूटी हुई)' : 'Kshaya Tithi (Skipped / Elided)'}
             </div>
@@ -552,7 +552,7 @@ export default function LearnTithisPage() {
           </div>
 
           {/* Vriddhi */}
-          <div className="rounded-xl p-5 border border-emerald-500/15 bg-emerald-500/5">
+          <div className="rounded-xl p-5 border border-emerald-500/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-emerald-400 font-bold text-base mb-2" style={headingFont}>
               {isHi ? 'वृद्धि तिथि (दोहरी / बढ़ी हुई)' : 'Vriddhi Tithi (Repeated / Augmented)'}
             </div>
@@ -683,7 +683,7 @@ export default function LearnTithisPage() {
             <Link
               key={ref.href}
               href={ref.href as '/learn/nakshatras'}
-              className="rounded-xl p-4 border border-gold-primary/10 bg-bg-secondary/20 hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
+              className="rounded-xl p-4 border border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] hover:bg-gold-primary/10 hover:border-gold-primary/30 transition-all group"
             >
               <div className="text-gold-light font-bold text-sm group-hover:text-gold-primary transition-colors" style={headingFont}>
                 {l(ref.label)}

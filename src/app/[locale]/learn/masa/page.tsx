@@ -54,7 +54,7 @@ export default function MasaPage() {
               ? 'मास अमावस्या (नवचंद्र) पर समाप्त होता है। दक्षिण भारत (गुजरात, महाराष्ट्र, आंध्र, कर्नाटक, तमिलनाडु) में प्रचलित। भारत सरकार का आधिकारिक मानक (1956 कैलेंडर सुधार)।'
               : 'Month ends on Amavasya (New Moon). Used in South & West India (Gujarat, Maharashtra, Andhra, Karnataka, Tamil Nadu). Official standard of the Indian Government (1956 Calendar Reform).'}</p>
           </div>
-          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-2">{isHi ? 'पूर्णिमान्त' : 'Purnimant'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi
               ? 'मास पूर्णिमा (पूर्ण चंद्र) पर समाप्त होता है। उत्तर भारत (उत्तर प्रदेश, बिहार, राजस्थान, मध्य प्रदेश) में प्रचलित। एक ही चंद्र मास को अमान्त और पूर्णिमान्त में अलग नाम मिल सकता है।'
@@ -115,13 +115,13 @@ export default function MasaPage() {
         </div>
 
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 rounded-xl bg-red-500/5 border border-red-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'अशुभ — वर्जित कार्य' : 'Inauspicious — Avoided'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi
               ? 'अधिक मास में विवाह, गृह प्रवेश, मुंडन, नामकरण, उपनयन जैसे शुभ संस्कार वर्जित हैं। इसे "मलमास" (अशुद्ध मास) भी कहते हैं।'
               : 'Marriage, Griha Pravesh, Mundan, Namakarana, Upanayana and other auspicious samskaras are avoided. It\'s also called "Malamasa" (impure month).'}</p>
           </div>
-          <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'शुभ — विशेष पुण्य' : 'Auspicious — Special Merit'}</div>
             <p className="text-text-secondary text-xs leading-relaxed">{isHi
               ? 'पुरुषोत्तम मास (विष्णु का मास) — दान, जप, व्रत, तीर्थ यात्रा का विशेष पुण्य। इस मास में किया गया कोई भी पुण्य कार्य सामान्य से कई गुना फलदायी। भागवत पुराण पठन विशेष शुभ।'
@@ -229,7 +229,7 @@ export default function MasaPage() {
                 </div>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed mb-3">{isHi ? m.significance.hi : m.significance.en}</p>
-              <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/15">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
                 <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'प्रमुख त्योहार' : 'Key Festivals'}</div>
                 <div className="text-text-secondary text-xs">{isHi ? m.festivals.hi : m.festivals.en}</div>
               </div>

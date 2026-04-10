@@ -60,7 +60,7 @@ function Page1() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
+          <div className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 font-bold text-sm mb-2">Solar Grid: 12 Rashis</div>
             <p className="text-text-secondary text-xs leading-relaxed mb-2">360° ÷ 12 = <span className="text-gold-light font-bold">30° per sign</span></p>
             <p className="text-text-secondary text-xs">Based on the Sun's monthly movement (~1° per day × ~30 days = ~30°). The Sun spends approximately one month in each sign. This is the <span className="text-gold-light">solar</span> measurement.</p>

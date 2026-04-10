@@ -213,7 +213,7 @@ export default function LearnShadbalaPage() {
                         <div className="space-y-3">
                           <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold">{isHi ? '5 उप-भाग' : '5 Sub-parts'}</h4>
                           {L.sthanaSubParts.map((sub, j) => (
-                            <div key={j} className="p-3 rounded-xl bg-bg-secondary/50 border border-gold-primary/8">
+                            <div key={j} className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/8">
                               <div className="text-gold-light font-bold text-sm mb-1">{t(sub.name)}</div>
                               <div className="text-text-secondary text-xs leading-relaxed">{t(sub.desc)}</div>
                             </div>
@@ -249,7 +249,7 @@ export default function LearnShadbalaPage() {
                       {i === 4 && (
                         <div className="flex flex-wrap gap-3">
                           {L.naisargikaValues.map((nv, j) => (
-                            <div key={j} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg-secondary/50 border border-gold-primary/10">
+                            <div key={j} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                               <span className="text-gold-light font-bold text-sm">{t(nv.planet)}</span>
                               <span className="text-text-secondary text-xs">{nv.value}</span>
                             </div>
@@ -313,14 +313,14 @@ export default function LearnShadbalaPage() {
       <motion.section initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 space-y-4">
         <h2 className="text-xl font-bold text-gold-light" style={headingFont}>{t(L.readingTitle)}</h2>
-        <div className="flex items-start gap-3 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
           <TrendingUp className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
           <div>
             <div className="text-emerald-400 font-bold text-sm mb-1">{isHi ? 'सबसे बलवान ग्रह = कुण्डली का कप्तान' : 'Strongest Planet = Chart Captain'}</div>
             <p className="text-text-secondary text-sm leading-relaxed">{t(L.readingP1)}</p>
           </div>
         </div>
-        <div className="flex items-start gap-3 p-4 rounded-xl bg-amber-500/5 border border-amber-500/15">
+        <div className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
           <AlertTriangle className="w-5 h-5 text-amber-400 mt-0.5 shrink-0" />
           <div>
             <div className="text-amber-400 font-bold text-sm mb-1">{isHi ? 'सबसे कमजोर ग्रह = उपचार आवश्यक' : 'Weakest Planet = Needs Remedies'}</div>
@@ -346,11 +346,11 @@ export default function LearnShadbalaPage() {
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.25, ease: 'easeInOut' as const }} className="overflow-hidden">
                     <div className="px-6 pb-5 space-y-3 border-t border-gold-primary/10 pt-4">
-                      <div className="p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/15">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                         <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'बलवान होने पर' : 'When Strong'}</div>
                         <div className="text-text-secondary text-sm leading-relaxed">{t(pe.strong)}</div>
                       </div>
-                      <div className="p-3 rounded-xl bg-red-500/5 border border-red-500/15">
+                      <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
                         <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{isHi ? 'दुर्बल होने पर' : 'When Weak'}</div>
                         <div className="text-text-secondary text-sm leading-relaxed">{t(pe.weak)}</div>
                       </div>

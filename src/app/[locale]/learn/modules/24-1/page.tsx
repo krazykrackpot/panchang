@@ -545,15 +545,15 @@ export default function GandaMulaModule() {
               <div className="px-6 py-5 space-y-5" style={bf}>
                 {/* Quick facts */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm">
-                  <div className="rounded-lg bg-bg-secondary/40 p-3">
+                  <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{locale === 'en' ? 'Junction' : 'सन्धि'}</div>
                     <div className="text-text-primary mt-0.5">{nak.junction[locale === 'en' ? 'en' : 'hi']}</div>
                   </div>
-                  <div className="rounded-lg bg-bg-secondary/40 p-3">
+                  <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{locale === 'en' ? 'Affected Relation' : 'प्रभावित सम्बन्ध'}</div>
                     <div className="text-text-primary mt-0.5">{nak.affected[locale === 'en' ? 'en' : 'hi']}</div>
                   </div>
-                  <div className="rounded-lg bg-bg-secondary/40 p-3">
+                  <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/75">{locale === 'en' ? 'Critical Padas' : 'संवेदनशील पाद'}</div>
                     <div className="text-red-400 font-semibold mt-0.5">{locale === 'en' ? 'Pada' : 'पाद'} {nak.criticalPadas}</div>
                   </div>
@@ -566,7 +566,7 @@ export default function GandaMulaModule() {
                 </div>
 
                 {/* Upayas */}
-                <div className="rounded-xl bg-emerald-500/5 border border-emerald-500/15 p-5">
+                <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15 p-5">
                   <h4 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3">{locale === 'en' ? 'Upayas (Remedies)' : 'उपाय'}</h4>
                   <ol className="space-y-2 text-sm text-text-secondary">
                     {(locale === 'en' ? nak.upayas.en : nak.upayas.hi).map((upaya, i) => (

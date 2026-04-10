@@ -223,7 +223,7 @@ export default function JaiminiPage() {
         <p>{L.karakamshaContent[locale]}</p>
         <p>{L.karakamshaContent2[locale]}</p>
 
-        <div className="mt-4 p-4 rounded-lg bg-indigo-500/5 border border-indigo-500/15">
+        <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-500/15">
           <div className="flex items-center gap-2 mb-2">
             <Compass className="w-5 h-5 text-indigo-400" />
             <h4 className="text-indigo-300 font-semibold text-sm">{locale === 'en' ? 'Quick Karakamsha Guide' : 'त्वरित कारकांश मार्गदर्शिका'}</h4>
@@ -286,7 +286,7 @@ export default function JaiminiPage() {
                 : 'आप वास्तव में कौन हैं — आपका सच्चा स्वभाव, स्वास्थ्य, व्यक्तित्व। आन्तरिक वास्तविकता।'}
             </p>
           </div>
-          <div className="p-4 rounded-lg bg-amber-500/5 border border-amber-500/15">
+          <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-amber-400" />
               <h4 className="text-amber-300 font-semibold text-sm">{locale === 'en' ? 'Arudha Lagna (Perception)' : 'अरूढ़ लग्न (धारणा)'}</h4>

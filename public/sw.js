@@ -1,147 +1,52 @@
-const CACHE_NAME = 'panchang-v3';
-const OFFLINE_URL = '/offline';
+/**
+ * Service Worker — Dekho Panchang PWA
+ * Caching: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst
+ */
+var CV = 'dp-v1';
+var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 
-// Precache on install
-const PRECACHE_URLS = [
-  '/favicon.svg',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-];
-
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
-  );
+self.addEventListener('install', function(e) {
+  e.waitUntil(caches.open(CS).then(function(c) {
+    return c.addAll(['/', '/en', '/en/panchang', '/en/learn', '/manifest.json', '/favicon.svg']).catch(function(){});
+  }));
   self.skipWaiting();
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
-  );
+self.addEventListener('activate', function(e) {
+  e.waitUntil(caches.keys().then(function(ks) {
+    return Promise.all(ks.filter(function(k) { return k.startsWith('dp-') && k !== CS && k !== CP && k !== CA; }).map(function(k) { return caches.delete(k); }));
+  }));
   self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
-
-  // Skip non-GET, API mutations, analytics, external
-  if (
-    request.method !== 'GET' ||
-    url.pathname.startsWith('/api/checkout') ||
-    url.pathname.startsWith('/api/webhooks') ||
-    url.pathname.startsWith('/api/user') ||
-    url.pathname.startsWith('/api/notifications') ||
-    url.hostname.includes('vercel') ||
-    url.hostname.includes('google') ||
-    url.hostname.includes('supabase')
-  ) return;
-
-  // API panchang/calendar: network-first with 1-hour cache
-  if (url.pathname.startsWith('/api/panchang') || url.pathname.startsWith('/api/calendar')) {
-    event.respondWith(
-      fetch(request).then((response) => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            // Add expiry header
-            const headers = new Headers(clone.headers);
-            headers.set('sw-cached-at', Date.now().toString());
-            const cachedResponse = new Response(clone.body, { status: clone.status, statusText: clone.statusText, headers });
-            cache.put(request, cachedResponse);
-          });
-        }
-        return response;
-      }).catch(async () => {
-        const cached = await caches.match(request);
-        if (cached) {
-          // Check if cache is < 1 hour old
-          const cachedAt = parseInt(cached.headers.get('sw-cached-at') || '0');
-          if (Date.now() - cachedAt < 3600000) return cached;
-        }
-        return new Response(JSON.stringify({ error: 'offline' }), { headers: { 'Content-Type': 'application/json' } });
-      })
-    );
-    return;
-  }
-
-  // Static assets: cache-first
-  if (
-    url.pathname.match(/\.(js|css|svg|png|jpg|jpeg|webp|woff2?|ico|json)$/) ||
-    url.pathname.startsWith('/_next/static/')
-  ) {
-    event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) return cached;
-        return fetch(request).then((response) => {
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        });
-      })
-    );
-    return;
-  }
-
-  // Pages: network-first with offline fallback
-  event.respondWith(
-    fetch(request).then((response) => {
-      if (response.ok) {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-      }
-      return response;
-    }).catch(async () => {
-      const cached = await caches.match(request);
-      if (cached) return cached;
-      // Return offline page for navigation requests
-      if (request.mode === 'navigate') {
-        const offlinePage = await caches.match(OFFLINE_URL);
-        if (offlinePage) return offlinePage;
-      }
-      return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
-    })
-  );
+self.addEventListener('fetch', function(e) {
+  var r = e.request, u = new URL(r.url);
+  if (r.method !== 'GET' || !u.protocol.startsWith('http')) return;
+  if (u.pathname.startsWith('/api/')) { e.respondWith(netFirst(r, CA)); return; }
+  if (u.pathname.includes('/learn/')) { e.respondWith(swr(r, CP)); return; }
+  if (u.pathname.startsWith('/_next/static/') || u.pathname.match(/\.(svg|png|woff2)$/)) { e.respondWith(cacheFirst(r, CS)); return; }
+  if (r.headers.get('accept') && r.headers.get('accept').indexOf('text/html') > -1) { e.respondWith(swr(r, CP)); return; }
+  e.respondWith(netFirst(r, CS));
 });
 
-// Push notifications
-self.addEventListener('push', (event) => {
-  let data = { title: 'Dekho Panchang', body: "Check today's Panchang!", url: '/en/panchang' };
-  if (event.data) {
-    try { data = { ...data, ...event.data.json() }; } catch { data.body = event.data.text(); }
-  }
+function cacheFirst(r, n) {
+  return caches.match(r).then(function(c) {
+    if (c) return c;
+    return fetch(r).then(function(res) { if (res.ok) caches.open(n).then(function(ca) { ca.put(r, res.clone()); }); return res; })
+      .catch(function() { return new Response('Offline', {status: 503}); });
+  });
+}
 
-  event.waitUntil(
-    self.registration.showNotification(data.title, {
-      body: data.body,
-      icon: '/icon-192.png',
-      badge: '/favicon.svg',
-      vibrate: [100, 50, 100],
-      data: { url: data.url || '/en/panchang' },
-      actions: [
-        { action: 'open', title: 'Open' },
-        { action: 'dismiss', title: 'Dismiss' },
-      ],
-    })
-  );
-});
+function swr(r, n) {
+  return caches.open(n).then(function(ca) {
+    return ca.match(r).then(function(c) {
+      var fp = fetch(r).then(function(res) { if (res.ok) ca.put(r, res.clone()); return res; }).catch(function() { return null; });
+      return c || fp.then(function(res) { return res || new Response('Offline — visit this page while online first', {status:503, headers:{'Content-Type':'text/plain'}}); });
+    });
+  });
+}
 
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  if (event.action === 'dismiss') return;
-  const url = event.notification.data?.url || '/en/panchang';
-  event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
-      for (const client of list) {
-        if (new URL(client.url).pathname === url && 'focus' in client) return client.focus();
-      }
-      return clients.openWindow(url);
-    })
-  );
-});
+function netFirst(r, n) {
+  return fetch(r).then(function(res) { if (res.ok) caches.open(n).then(function(ca) { ca.put(r, res.clone()); }); return res; })
+    .catch(function() { return caches.match(r).then(function(c) { return c || new Response('Offline', {status:503}); }); });
+}

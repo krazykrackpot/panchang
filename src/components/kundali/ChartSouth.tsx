@@ -15,6 +15,7 @@ interface ChartSouthProps {
   onSelectHouse?: (house: number) => void;
   retrogradeIds?: Set<number>;
   combustIds?: Set<number>;
+  transitData?: ChartData;
 }
 
 // South Indian chart: 4x4 outer ring with fixed sign positions
@@ -50,7 +51,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds }: ChartSouthProps) {
+export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartSouthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
   const cell = 110;

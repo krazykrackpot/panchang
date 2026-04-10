@@ -15,6 +15,7 @@ interface ChartNorthProps {
   onSelectHouse?: (house: number) => void;
   retrogradeIds?: Set<number>;  // planet IDs that are retrograde
   combustIds?: Set<number>;      // planet IDs that are combust
+  transitData?: ChartData;       // optional transit planet overlay
 }
 
 // North Indian diamond chart — 12 house regions (scaled to 500x500)
@@ -51,7 +52,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
   8: { en: 'Ke', hi: 'के', sa: 'के' },
 };
 
-export default function ChartNorth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds }: ChartNorthProps) {
+export default function ChartNorth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartNorthProps) {
   const locale = useLocale() as Locale;
   const isDevanagari = locale !== 'en';
 
@@ -186,54 +187,69 @@ export default function ChartNorth({ data, title, size = 500, selectedHouse, onS
                 {houseNum}
               </text>
 
-              {/* ─── Planets — abbreviation style with colored dots ─── */}
+              {/* ─── Natal Planets — abbreviation style with colored dots ─── */}
               {planetsInHouse.map((planetId, pIdx) => {
                 const color = PLANET_COLORS[planetId] || '#e8e6e3';
-                const count = planetsInHouse.length;
+                const totalNatal = planetsInHouse.length;
+                const transitPlanets = transitData?.houses[hIdx] || [];
+                const totalAll = totalNatal + transitPlanets.length;
+                const count = totalNatal;
                 const cols = count <= 2 ? count : Math.min(count, 3);
                 const col = pIdx % cols;
                 const row = Math.floor(pIdx / cols);
-                const spacing = count <= 2 ? 36 : 28;
+                const spacing = totalAll > 4 ? 24 : count <= 2 ? 36 : 28;
                 const offsetX = (col - (cols - 1) / 2) * spacing;
-                const offsetY = row * 22 - (count > cols ? 8 : 0);
+                const natalRows = Math.ceil(count / cols);
+                const baseOffsetY = transitPlanets.length > 0 ? -6 : 0;
+                const offsetY = row * 22 - (count > cols ? 8 : 0) + baseOffsetY;
                 let abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
                 if (retrogradeIds?.has(planetId)) abbr += 'ᴿ';
                 if (combustIds?.has(planetId)) abbr += '☄';
 
                 return (
                   <g key={planetId}>
-                    {/* Colored indicator dot */}
-                    <circle
-                      cx={cx + offsetX - (isDevanagari ? 11 : 10)}
-                      cy={cy + offsetY}
-                      r="3"
-                      fill={color}
-                      opacity="0.9"
-                    />
-                    {/* Subtle glow behind */}
-                    <circle
-                      cx={cx + offsetX}
-                      cy={cy + offsetY}
-                      r="14"
-                      fill={color}
-                      opacity="0.06"
-                    />
-                    {/* Planet abbreviation */}
+                    <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="3" fill={color} opacity="0.9" />
+                    <circle cx={cx + offsetX} cy={cy + offsetY} r="14" fill={color} opacity="0.06" />
                     <text
-                      x={cx + offsetX + 2}
-                      y={cy + offsetY}
-                      fill={color}
-                      fontSize="13"
-                      fontWeight="700"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
+                      x={cx + offsetX + 2} y={cy + offsetY} fill={color}
+                      fontSize="13" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
-                    >
-                      {abbr}
-                    </text>
+                    >{abbr}</text>
                   </g>
                 );
               })}
+
+              {/* ─── Transit Planets — outlined style, offset below natal ─── */}
+              {transitData && (() => {
+                const transitPlanets = transitData.houses[hIdx] || [];
+                if (transitPlanets.length === 0) return null;
+                const natalCount = planetsInHouse.length;
+                const natalCols = natalCount <= 2 ? natalCount : Math.min(natalCount, 3);
+                const natalRows = Math.ceil(natalCount / (natalCols || 1));
+                const tBaseY = natalCount > 0 ? natalRows * 20 + 2 : 0;
+                return transitPlanets.map((planetId, pIdx) => {
+                  const color = PLANET_COLORS[planetId] || '#e8e6e3';
+                  const count = transitPlanets.length;
+                  const cols = count <= 2 ? count : Math.min(count, 3);
+                  const col = pIdx % cols;
+                  const row = Math.floor(pIdx / cols);
+                  const spacing = count <= 2 ? 36 : 24;
+                  const offsetX = (col - (cols - 1) / 2) * spacing;
+                  const offsetY = tBaseY + row * 18 - 6;
+                  const abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+
+                  return (
+                    <g key={`t-${planetId}`} opacity="0.65">
+                      <circle cx={cx + offsetX - (isDevanagari ? 11 : 10)} cy={cy + offsetY} r="2.5" fill="none" stroke={color} strokeWidth="1" />
+                      <text
+                        x={cx + offsetX + 2} y={cy + offsetY} fill={color}
+                        fontSize="10" fontWeight="600" textAnchor="middle" dominantBaseline="middle"
+                        style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.3px' }}
+                      >{abbr}</text>
+                    </g>
+                  );
+                });
+              })()}
             </g>
           );
         })}

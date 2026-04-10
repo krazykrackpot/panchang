@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
-import { getEclipsesForYear } from '@/lib/calendar/eclipse-data';
+import { getEclipsesForYear, ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
 import { computeLocalEclipse, type LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
 
 interface EnrichedEclipse extends EclipseEvent {
@@ -67,7 +67,35 @@ export async function GET(req: NextRequest) {
     return eclipse;
   });
 
-  return NextResponse.json({ year, eclipses }, {
+  // Check if any eclipse is visible from user's location
+  const hasVisible = eclipses.some(e => e.local?.visible === true && (e.local?.sutakApplicable || (e.local?.maxMagnitude ?? 0) > 0.3));
+
+  // If no significant visible eclipse this year, find the next one across all years
+  let nextSignificant: { date: string; year: number; type: 'solar' | 'lunar'; subtype: string; magnitude: number; visibilityNote: string } | null = null;
+
+  if (!hasVisible && lat !== null && lng !== null && tz) {
+    // Search forward from current year through all table data
+    const startDate = `${year}-01-01`;
+    for (const entry of ECLIPSE_TABLE) {
+      if (entry.date <= startDate) continue;
+      // Skip penumbral lunar eclipses (not significant)
+      if (entry.kind === 'lunar' && entry.type === 'penumbral') continue;
+      const local = computeLocalEclipse(entry, lat, lng, tz);
+      if (local.visible && local.maxMagnitude > 0.3) {
+        nextSignificant = {
+          date: entry.date,
+          year: parseInt(entry.date.slice(0, 4)),
+          type: entry.kind,
+          subtype: entry.type,
+          magnitude: local.maxMagnitude,
+          visibilityNote: local.visibilityNote,
+        };
+        break;
+      }
+    }
+  }
+
+  return NextResponse.json({ year, eclipses, nextSignificant }, {
     headers: { 'Cache-Control': 'public, s-maxage=3600' },
   });
 }

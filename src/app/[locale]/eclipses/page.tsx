@@ -33,6 +33,9 @@ export default function EclipsesPage() {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [showLocationSearch, setShowLocationSearch] = useState(false);
+  const [nextSignificant, setNextSignificant] = useState<{
+    date: string; year: number; type: 'solar' | 'lunar'; subtype: string; magnitude: number; visibilityNote: string;
+  } | null>(null);
 
   // Override location — when set, overrides the auto-detected location
   const [overrideLoc, setOverrideLoc] = useState<{ name: string; lat: number; lng: number; timezone: string } | null>(null);
@@ -63,6 +66,7 @@ export default function EclipsesPage() {
       .then(r => r.json())
       .then(data => {
         setEclipses(data.eclipses || []);
+        setNextSignificant(data.nextSignificant || null);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -188,6 +192,7 @@ export default function EclipsesPage() {
           <p className="text-lg" style={bodyFont}>
             {isHi ? 'इस वर्ष कोई ग्रहण नहीं।' : 'No eclipses this year.'}
           </p>
+          <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y) => setYear(y)} />
         </div>
       ) : (
         <div className="space-y-6 my-10">
@@ -530,6 +535,10 @@ export default function EclipsesPage() {
           <div className="text-center text-text-secondary/50 text-sm mt-6">
             {eclipses.length} {isHi ? 'ग्रहण इस वर्ष' : `eclipse${eclipses.length !== 1 ? 's' : ''} this year`}
           </div>
+          {/* Show next significant if none visible this year */}
+          {!eclipses.some(e => e.local?.visible && (e.local?.sutakApplicable || (e.local?.maxMagnitude ?? 0) > 0.3)) && (
+            <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y) => setYear(y)} />
+          )}
         </div>
       )}
     </div>
@@ -537,6 +546,100 @@ export default function EclipsesPage() {
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
+
+/** Card showing the next significant visible eclipse when current year has none */
+function NextSignificantCard({
+  next,
+  isHi,
+  headingFont,
+  bodyFont,
+  onNavigate,
+}: {
+  next: { date: string; year: number; type: 'solar' | 'lunar'; subtype: string; magnitude: number; visibilityNote: string } | null;
+  isHi: boolean;
+  headingFont: React.CSSProperties;
+  bodyFont: React.CSSProperties | undefined;
+  onNavigate: (year: number) => void;
+}) {
+  if (!next) return null;
+
+  const isSolar = next.type === 'solar';
+  const accentColor = isSolar ? 'text-amber-400' : 'text-indigo-400';
+  const borderAccent = isSolar ? 'border-amber-500/30' : 'border-indigo-500/30';
+
+  const formatDate = (dateStr: string) => {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  };
+
+  const subtypeLabel = {
+    total: isHi ? 'पूर्ण' : 'Total',
+    annular: isHi ? 'वलयाकार' : 'Annular',
+    partial: isHi ? 'आंशिक' : 'Partial',
+    hybrid: isHi ? 'संकर' : 'Hybrid',
+    penumbral: isHi ? 'उपच्छाया' : 'Penumbral',
+  }[next.subtype] || next.subtype;
+
+  const typeLabel = isSolar
+    ? (isHi ? 'सूर्य ग्रहण' : 'Solar Eclipse')
+    : (isHi ? 'चन्द्र ग्रहण' : 'Lunar Eclipse');
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+      className="mt-8"
+    >
+      <p className="text-text-secondary/50 text-xs uppercase tracking-wider font-bold mb-3">
+        {isHi ? 'अगला महत्वपूर्ण दृश्य ग्रहण' : 'Next Significant Visible Eclipse'}
+      </p>
+      <button
+        onClick={() => onNavigate(next.year)}
+        className={`w-full text-left bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-2xl border-2 ${borderAccent} p-6 hover:border-gold-primary/40 hover:scale-[1.01] transition-all group`}
+      >
+        <div className="flex items-center gap-4">
+          {/* Icon */}
+          <div className="flex-shrink-0">
+            <svg viewBox="0 0 48 48" className="w-12 h-12">
+              {isSolar ? (
+                <>
+                  <circle cx="24" cy="24" r="18" fill="#f59e0b" opacity="0.15" />
+                  <circle cx="24" cy="24" r="14" fill="#0a0e27" />
+                  <circle cx="24" cy="24" r="18" fill="none" stroke="#f59e0b" strokeWidth="1.5" />
+                </>
+              ) : (
+                <>
+                  <circle cx="24" cy="24" r="16" fill="#818cf8" opacity="0.15" />
+                  <circle cx="24" cy="24" r="16" fill="none" stroke="#818cf8" strokeWidth="1.5" />
+                  <path d="M 24 8 A 16 16 0 0 1 24 40" fill="#0a0e27" />
+                </>
+              )}
+            </svg>
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap mb-1">
+              <span className={`text-lg font-bold ${accentColor} group-hover:text-gold-light transition-colors`} style={headingFont}>
+                {subtypeLabel} {typeLabel}
+              </span>
+              <span className="text-xs font-mono text-gold-light/70">
+                {isHi ? 'परिमाण' : 'Mag'} {next.magnitude.toFixed(2)}
+              </span>
+            </div>
+            <div className="text-gold-light text-sm font-mono mb-1">{formatDate(next.date)}</div>
+            <div className="text-text-secondary/60 text-xs" style={bodyFont}>{next.visibilityNote}</div>
+          </div>
+
+          <div className="shrink-0 flex flex-col items-center">
+            <ChevronRight className="w-5 h-5 text-gold-primary/50 group-hover:text-gold-light group-hover:translate-x-1 transition-all" />
+            <span className="text-[9px] text-gold-primary/40 mt-1">{isHi ? 'विवरण देखें' : 'View details'}</span>
+          </div>
+        </div>
+      </button>
+    </motion.div>
+  );
+}
 
 /** Visual phase diagram showing eclipse progression */
 function EclipsePhaseDiagram({ local, isSolar, isHi }: { local: LocalEclipseResult; isSolar: boolean; isHi: boolean }) {

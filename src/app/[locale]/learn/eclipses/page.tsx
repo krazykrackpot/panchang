@@ -180,6 +180,52 @@ const L = {
     hi: 'चूँकि राहु-केतु अक्ष पीछे की ओर घूमता है, जब सूर्य किसी पात से संरेखित होता है (ग्रहण ऋतु) वह प्रत्येक वर्ष ~19 दिन पहले खिसकती है। 2026 में ग्रहण ऋतुएँ फरवरी-मार्च और अगस्त में हैं। 2030 तक वे लगभग जनवरी-फरवरी और जुलाई में होंगी। 2035 तक दिसम्बर-जनवरी और जून में।',
   },
 
+  /* Node-Type Matrix */
+  nodeMatrixTitle: {
+    en: 'The 4 Eclipse Types — Rahu vs Ketu, Solar vs Lunar',
+    hi: '4 ग्रहण प्रकार — राहु बनाम केतु, सूर्य बनाम चन्द्र',
+  },
+  nodeMatrixIntro: {
+    en: 'An eclipse can occur at either node (Rahu or Ketu) and can be solar or lunar — giving us a 2×2 matrix of four distinct eclipse types. Classical texts like Brihat Samhita (Varahamihira), Surya Siddhanta, and Arthashastra (Kautilya) assign different mundane and personal significances to each combination. The node where the eclipse occurs determines its karmic flavour.',
+    hi: 'ग्रहण किसी भी पात (राहु या केतु) पर हो सकता है और सूर्य या चन्द्र हो सकता है — जिससे चार विशिष्ट ग्रहण प्रकारों का 2×2 आव्यूह बनता है। बृहत् संहिता (वराहमिहिर), सूर्य सिद्धान्त और अर्थशास्त्र (कौटिल्य) जैसे शास्त्रीय ग्रन्थ प्रत्येक संयोजन को भिन्न मुण्डन और व्यक्तिगत महत्त्व देते हैं। जिस पात पर ग्रहण होता है वह उसका कार्मिक स्वरूप निर्धारित करता है।',
+  },
+  rahuSolar: {
+    en: 'Rahu Solar Eclipse (Amavasya at Rahu)',
+    hi: 'राहु सूर्य ग्रहण (राहु पर अमावस्या)',
+  },
+  rahuSolarDesc: {
+    en: 'Rahu\'s nature: material desire, obsession, foreign influence, technology, illusion. When Rahu swallows the Sun (soul, authority, kings), it signifies: disruption to ruling powers, political upheaval, deception at the highest levels, and ambition overriding dharma. For individuals: ego crises, identity confusion, father\'s health issues, but also breakthroughs in foreign lands, technology, and unconventional paths. Remedies lean toward Surya mantras and Rahu pacification (donation of sesame, mustard oil on Saturday).',
+    hi: 'राहु का स्वभाव: भौतिक इच्छा, जुनून, विदेशी प्रभाव, तकनीक, भ्रम। जब राहु सूर्य (आत्मा, अधिकार, राजा) को ग्रसता है: शासकों में उथल-पुथल, राजनीतिक अस्थिरता, उच्चतम स्तर पर छल, धर्म पर महत्वाकांक्षा का प्रभुत्व। व्यक्तिगत: अहंकार संकट, पहचान भ्रम, पिता का स्वास्थ्य, पर विदेश और तकनीक में सफलता भी। उपाय: सूर्य मन्त्र और राहु शान्ति (तिल, सरसों तेल शनिवार को दान)।',
+  },
+  ketuSolar: {
+    en: 'Ketu Solar Eclipse (Amavasya at Ketu)',
+    hi: 'केतु सूर्य ग्रहण (केतु पर अमावस्या)',
+  },
+  ketuSolarDesc: {
+    en: 'Ketu\'s nature: detachment, liberation, past karma, spirituality, loss. When Ketu eclipses the Sun, it strips away ego and worldly attachment. It signifies: fall of arrogant leaders, exposure of hidden truths, spiritual awakenings forced by loss, and karmic debts coming due. For individuals: sudden detachment from career or status, health scares that redirect life purpose, deep spiritual experiences, liberation from old patterns. Often the more transformative of the two solar eclipses. Remedies: Maha Mrityunjaya mantra, Ketu pacification (cat\'s eye stone, donation of blankets).',
+    hi: 'केतु का स्वभाव: वैराग्य, मोक्ष, पूर्व कर्म, आध्यात्म, हानि। जब केतु सूर्य को ग्रसता है, यह अहंकार और सांसारिक आसक्ति छीन लेता है। अहंकारी नेताओं का पतन, छिपे सत्यों का उद्घाटन, हानि से प्रेरित आध्यात्मिक जागृति, कर्म ऋणों का परिपक्व होना। व्यक्तिगत: कैरियर/प्रतिष्ठा से अचानक वैराग्य, स्वास्थ्य भय जो जीवन उद्देश्य बदले, गहन आध्यात्मिक अनुभव। प्रायः दो सूर्य ग्रहणों में अधिक परिवर्तनकारी। उपाय: महामृत्युंजय मन्त्र, केतु शान्ति (लहसुनिया, कम्बल दान)।',
+  },
+  rahuLunar: {
+    en: 'Rahu Lunar Eclipse (Purnima at Rahu)',
+    hi: 'राहु चन्द्र ग्रहण (राहु पर पूर्णिमा)',
+  },
+  rahuLunarDesc: {
+    en: 'When Rahu eclipses the Moon (mind, emotions, mother, public), it creates: mass emotional manipulation, public hysteria or panic, deceptive media narratives, and collective anxiety. The mind gets clouded by desires and illusions. For individuals: emotional turbulence, mother\'s health issues, mental fog, irrational fears, but also sudden intuitive breakthroughs and psychic awakening. Those in Rahu or Moon dasha feel this most intensely. Remedies: Chandra mantras, pearl, milk donation, Rahu pacification.',
+    hi: 'जब राहु चन्द्र (मन, भावनाएं, माता, जनता) को ग्रसता है: सामूहिक भावनात्मक हेरफेर, जन उन्माद, भ्रामक मीडिया, सामूहिक चिन्ता। मन इच्छाओं और भ्रम से ग्रस्त। व्यक्तिगत: भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक धुंध, अतार्किक भय, पर अचानक सहज ज्ञान और मानसिक जागृति भी। राहु या चन्द्र दशा वाले सबसे तीव्रता से अनुभव करते हैं। उपाय: चन्द्र मन्त्र, मोती, दूध दान, राहु शान्ति।',
+  },
+  ketuLunar: {
+    en: 'Ketu Lunar Eclipse (Purnima at Ketu)',
+    hi: 'केतु चन्द्र ग्रहण (केतु पर पूर्णिमा)',
+  },
+  ketuLunarDesc: {
+    en: 'When Ketu eclipses the Moon, it dissolves emotional attachments and forces inner reckoning. It signifies: collective grief or mourning, revelations about the past, ancestral karma surfacing, and spiritual purification through emotional pain. The famous "Blood Moon" is often a Ketu lunar eclipse — the red colour symbolising the burning away of past-life impressions (samskaras). For individuals: deep introspection, release of emotional baggage, past relationships resurfacing for closure, psychic sensitivity heightened. This is the most spiritually potent of all four eclipse types. Remedies: Ketu pacification, Pitri Tarpan (ancestral offerings), meditation, seven-grain donation.',
+    hi: 'जब केतु चन्द्र को ग्रसता है, यह भावनात्मक आसक्तियों को विलीन करता है और आन्तरिक लेखा-जोखा करवाता है। सामूहिक शोक, अतीत के बारे में रहस्योद्घाटन, पूर्वजों का कर्म सतह पर, भावनात्मक पीड़ा से आध्यात्मिक शुद्धि। प्रसिद्ध "रक्त चन्द्र" प्रायः केतु चन्द्र ग्रहण होता है — लाल रंग पूर्वजन्म संस्कारों के दहन का प्रतीक। व्यक्तिगत: गहन आत्मनिरीक्षण, भावनात्मक बोझ से मुक्ति, पिछले सम्बन्ध समापन हेतु पुनः प्रकट, मानसिक संवेदनशीलता बढ़ी। चारों ग्रहण प्रकारों में सर्वाधिक आध्यात्मिक रूप से शक्तिशाली। उपाय: केतु शान्ति, पितृ तर्पण, ध्यान, सप्तधान्य दान।',
+  },
+  nodeMatrixNote: {
+    en: 'How to know which node? Check if the eclipse is near Rahu\'s longitude or Ketu\'s longitude (Rahu + 180°) in the sidereal zodiac. Our eclipse engine automatically identifies this.',
+    hi: 'कैसे पता करें कौन सा पात? देखें कि ग्रहण सायन राशिचक्र में राहु के अंश या केतु के अंश (राहु + 180°) के निकट है। हमारा ग्रहण इंजन स्वचालित रूप से इसकी पहचान करता है।',
+  },
+
   /* Cross refs */
   crossRef: { en: 'Related Topics',                                            hi: 'सम्बन्धित विषय' },
   viewCalendar: { en: 'View Eclipse Calendar',                                 hi: 'ग्रहण कैलेण्डर देखें' },
@@ -1037,7 +1083,117 @@ export default function LearnEclipsesPage() {
         </div>
       </motion.section>
 
-      {/* ═══ 9. Cross References ═══ */}
+      {/* ═══ 9. The 4 Eclipse Types — Node × Type Matrix ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8"
+      >
+        <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
+          {l(L.nodeMatrixTitle)}
+        </h3>
+        <div className="text-text-secondary text-base leading-relaxed space-y-5" style={bodyFont}>
+          <p>{l(L.nodeMatrixIntro)}</p>
+
+          {/* 2×2 Matrix Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Rahu Solar */}
+            <div className="border border-amber-500/20 rounded-xl overflow-hidden">
+              <div className="px-4 py-2.5 bg-amber-500/8 border-b border-amber-500/10 flex items-center gap-2">
+                <span className="text-lg">☊</span>
+                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{l(L.rahuSolar)}</span>
+              </div>
+              <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
+                {l(L.rahuSolarDesc)}
+              </div>
+              <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
+                <div className="text-[10px] text-amber-400/60 font-mono">
+                  {isHi ? 'स्वरूप: महत्वाकांक्षा, भ्रम, भौतिक उथल-पुथल' : 'Nature: Ambition, illusion, material upheaval'}
+                </div>
+              </div>
+            </div>
+
+            {/* Ketu Solar */}
+            <div className="border border-violet-500/20 rounded-xl overflow-hidden">
+              <div className="px-4 py-2.5 bg-violet-500/8 border-b border-violet-500/10 flex items-center gap-2">
+                <span className="text-lg">☋</span>
+                <span className="text-violet-300 font-bold text-sm" style={headingFont}>{l(L.ketuSolar)}</span>
+              </div>
+              <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
+                {l(L.ketuSolarDesc)}
+              </div>
+              <div className="px-4 py-2 bg-violet-500/3 border-t border-violet-500/8">
+                <div className="text-[10px] text-violet-400/60 font-mono">
+                  {isHi ? 'स्वरूप: वैराग्य, कर्म परिपाक, आध्यात्मिक जागृति' : 'Nature: Detachment, karmic reckoning, spiritual awakening'}
+                </div>
+              </div>
+            </div>
+
+            {/* Rahu Lunar */}
+            <div className="border border-amber-500/20 rounded-xl overflow-hidden">
+              <div className="px-4 py-2.5 bg-amber-500/8 border-b border-amber-500/10 flex items-center gap-2">
+                <span className="text-lg">☊</span>
+                <span className="text-amber-300 font-bold text-sm" style={headingFont}>{l(L.rahuLunar)}</span>
+              </div>
+              <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
+                {l(L.rahuLunarDesc)}
+              </div>
+              <div className="px-4 py-2 bg-amber-500/3 border-t border-amber-500/8">
+                <div className="text-[10px] text-amber-400/60 font-mono">
+                  {isHi ? 'स्वरूप: भावनात्मक भ्रम, सामूहिक चिन्ता, मानसिक जागृति' : 'Nature: Emotional illusion, mass anxiety, psychic awakening'}
+                </div>
+              </div>
+            </div>
+
+            {/* Ketu Lunar */}
+            <div className="border border-red-500/20 rounded-xl overflow-hidden">
+              <div className="px-4 py-2.5 bg-red-500/8 border-b border-red-500/10 flex items-center gap-2">
+                <span className="text-lg">☋</span>
+                <span className="text-red-300 font-bold text-sm" style={headingFont}>{l(L.ketuLunar)}</span>
+              </div>
+              <div className="px-4 py-3 text-xs leading-relaxed text-text-secondary/80" style={bodyFont}>
+                {l(L.ketuLunarDesc)}
+              </div>
+              <div className="px-4 py-2 bg-red-500/3 border-t border-red-500/8">
+                <div className="text-[10px] text-red-400/60 font-mono">
+                  {isHi ? 'स्वरूप: पूर्वज कर्म, शोक, मोक्ष, सर्वाधिक आध्यात्मिक' : 'Nature: Ancestral karma, grief, moksha, most spiritual of all 4'}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick reference table */}
+          <div className="border border-gold-primary/10 rounded-xl overflow-hidden mt-2">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-gold-primary/10 bg-gold-primary/3">
+                  <th className="text-left px-4 py-2 text-gold-dark font-bold"></th>
+                  <th className="text-left px-4 py-2 text-amber-400 font-bold">☊ {isHi ? 'राहु पर' : 'At Rahu'}</th>
+                  <th className="text-left px-4 py-2 text-violet-400 font-bold">☋ {isHi ? 'केतु पर' : 'At Ketu'}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gold-primary/5">
+                <tr>
+                  <td className="px-4 py-2.5 text-amber-300 font-bold">☀ {isHi ? 'सूर्य' : 'Solar'}</td>
+                  <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'सत्ता उथल-पुथल, भ्रम, विदेश प्रभाव' : 'Power upheaval, deception, foreign influence'}</td>
+                  <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'अहंकार पतन, कर्म परिपाक, आध्यात्मिक मोड़' : 'Ego fall, karmic reckoning, spiritual turning point'}</td>
+                </tr>
+                <tr>
+                  <td className="px-4 py-2.5 text-indigo-300 font-bold">☽ {isHi ? 'चन्द्र' : 'Lunar'}</td>
+                  <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'सामूहिक भय, मानसिक धुंध, इच्छा-प्रेरित भ्रम' : 'Mass fear, mental fog, desire-driven illusion'}</td>
+                  <td className="px-4 py-2.5 text-text-secondary/70" style={bodyFont}>{isHi ? 'पूर्वज कर्म सतह पर, शोक, मोक्ष, रक्त चन्द्र' : 'Ancestral karma surfaces, grief, moksha, Blood Moon'}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-text-secondary/50 text-xs italic">{l(L.nodeMatrixNote)}</p>
+        </div>
+      </motion.section>
+
+      {/* ═══ 10. Cross References ═══ */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

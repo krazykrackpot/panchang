@@ -122,6 +122,7 @@ Required in `.env.local`:
 - No emoji icons — use custom SVG icon system
 - Inline LABELS objects for page-specific i18n (not locale files)
 - All new pages must support EN/HI/SA
+- **When creating a new page, ALWAYS integrate it**: add to navbar (if top-level), learn landing REF_GROUPS (if learn/reference), modules index (if curriculum module), sitemap, and cross-link from related pages. An unlinked page is a dead page.
 
 ## Auth Conventions
 - Supabase client MUST have: `detectSessionInUrl: true`, `persistSession: true`, `storageKey: 'dekho-panchang-auth'`

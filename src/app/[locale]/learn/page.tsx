@@ -123,6 +123,7 @@ export default function LearnPage() {
       { name: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, href: '/learn/hora' },
       { name: { en: 'Masa', hi: 'मास', sa: 'मासः' }, href: '/learn/masa' },
       { name: { en: 'Transit Guide', hi: 'गोचर', sa: 'गोचरः' }, href: '/learn/transit-guide' },
+      { name: { en: 'Eclipses (Grahan)', hi: 'ग्रहण', sa: 'ग्रहणम्' }, href: '/learn/eclipses' },
     ]},
     { label: { en: 'Kundali & Prediction', hi: 'कुण्डली एवं भविष्यवाणी', sa: 'कुण्डली भविष्यवाणी च' }, refs: [
       { name: { en: 'Planets', hi: 'ग्रह स्थिति', sa: 'ग्रहस्थितयः' }, href: '/learn/planets' },

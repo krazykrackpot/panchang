@@ -90,6 +90,18 @@ export const ECLIPSE_TABLE: EclipseData[] = [
     magnitude: 1.0566, gamma: 0.3431,
     sunAlt: 70, pathWidth: 198, durationCenter: 268,
     penRadius: 3500, shadowSpeedKmS: 0.72, saros: 139,
+    cities: [
+      { name: 'Dallas', lat: 32.78, lng: -96.80, c1: '17:22', max: '18:40', c4: '20:02', magnitude: 1.05 },
+      { name: 'Indianapolis', lat: 39.77, lng: -86.16, c1: '17:50', max: '19:06', c4: '20:23', magnitude: 1.04 },
+      { name: 'Cleveland', lat: 41.50, lng: -81.69, c1: '17:59', max: '19:15', c4: '20:29', magnitude: 1.04 },
+      { name: 'New York', lat: 40.71, lng: -74.01, c1: '18:10', max: '19:25', c4: '20:36', magnitude: 0.90 },
+      { name: 'Montreal', lat: 45.50, lng: -73.57, c1: '18:14', max: '19:27', c4: '20:37', magnitude: 1.03 },
+      { name: 'Mexico City', lat: 19.43, lng: -99.13, c1: '17:04', max: '18:14', c4: '19:36', magnitude: 0.79 },
+      { name: 'Los Angeles', lat: 34.05, lng: -118.24, c1: '17:06', max: '18:12', c4: '19:32', magnitude: 0.55 },
+      { name: 'Seattle', lat: 47.61, lng: -122.33, c1: '17:37', max: '18:29', c4: '19:20', magnitude: 0.32 },
+      { name: 'London', lat: 51.51, lng: -0.13, c1: '19:00', max: '19:55', c4: '20:40', magnitude: 0.30 },
+      { name: 'Zurich', lat: 47.37, lng: 8.54, c1: '19:20', max: '19:50', c4: '20:15', magnitude: 0.12 },
+    ],
   },
   {
     kind: 'lunar', date: '2024-09-18', type: 'partial',
@@ -178,6 +190,27 @@ export const ECLIPSE_TABLE: EclipseData[] = [
       { name: 'Mumbai', lat: 19.08, lng: 72.88, c1: '18:01', max: '18:12', c4: '18:20', magnitude: 0.06 },
       { name: 'Reykjavik', lat: 64.15, lng: -21.94, c1: '16:33', max: '17:45', c4: '18:51', magnitude: 0.99 },
       { name: 'Cairo', lat: 30.04, lng: 31.24, c1: '17:42', max: '18:15', c4: '18:42', magnitude: 0.50 },
+      // North America (eclipse visible at sunset / very late)
+      { name: 'New York', lat: 40.71, lng: -74.01, c1: '17:48', max: '18:20', c4: 'sunset', magnitude: 0.76 },
+      { name: 'Toronto', lat: 43.65, lng: -79.38, c1: '17:42', max: '18:16', c4: 'sunset', magnitude: 0.80 },
+      { name: 'Chicago', lat: 41.88, lng: -87.63, c1: '17:38', max: '18:10', c4: 'sunset', magnitude: 0.73 },
+      { name: 'Seattle', lat: 47.61, lng: -122.33, c1: '17:20', max: '17:53', c4: '18:22', magnitude: 0.78 },
+      { name: 'Los Angeles', lat: 34.05, lng: -118.24, c1: '17:40', max: '18:04', c4: '18:24', magnitude: 0.52 },
+      { name: 'Denver', lat: 39.74, lng: -104.99, c1: '17:32', max: '18:04', c4: '18:32', magnitude: 0.68 },
+      // Africa
+      { name: 'Nairobi', lat: -1.29, lng: 36.82, c1: '17:54', max: '18:12', c4: '18:26', magnitude: 0.18 },
+      { name: 'Johannesburg', lat: -26.20, lng: 28.05, c1: '18:02', max: '18:10', c4: '18:15', magnitude: 0.04 },
+      // Asia (deep partial visible at sunset)
+      { name: 'Tokyo', lat: 35.68, lng: 139.69, c1: '17:58', max: '18:08', c4: '18:15', magnitude: 0.05 },
+      { name: 'Beijing', lat: 39.90, lng: 116.40, c1: '17:48', max: '18:06', c4: '18:20', magnitude: 0.10 },
+      { name: 'Kolkata', lat: 22.57, lng: 88.36, c1: '17:56', max: '18:12', c4: '18:22', magnitude: 0.10 },
+      { name: 'Karachi', lat: 24.86, lng: 67.01, c1: '17:48', max: '18:10', c4: '18:28', magnitude: 0.20 },
+      { name: 'Dubai', lat: 25.20, lng: 55.27, c1: '17:38', max: '18:08', c4: '18:34', magnitude: 0.35 },
+      // South America (not visible — too far south/west)
+      // Australia (not visible)
+      // Scandinavia (near totality path)
+      { name: 'Oslo', lat: 59.91, lng: 10.75, c1: '17:08', max: '18:04', c4: '18:55', magnitude: 0.96 },
+      { name: 'Copenhagen', lat: 55.68, lng: 12.57, c1: '17:12', max: '18:07', c4: '18:58', magnitude: 0.95 },
     ],
   },
   {

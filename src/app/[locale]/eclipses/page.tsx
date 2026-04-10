@@ -127,6 +127,10 @@ export default function EclipsesPage() {
             </motion.div>
           )}
         </div>
+        {/* Learn more link */}
+        <a href={`/${locale}/learn/eclipses`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mt-2">
+          {isHi ? 'ग्रहण के बारे में विस्तार से जानें →' : 'Learn how eclipses work →'}
+        </a>
       </motion.div>
 
       {/* Year selector */}

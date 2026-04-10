@@ -1,309 +1,836 @@
 'use client';
 
-import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Clock, Sun, Moon, BookOpen, ChevronRight } from 'lucide-react';
-import LessonSection from '@/components/learn/LessonSection';
+import { BookOpen, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
-/* ── Trilingual labels ────────────────────────────────────────────── */
+/* ── Bilingual labels ─────────────────────────────────────────────── */
 const L = {
-  title: { en: 'Hora (Planetary Hours)', hi: 'होरा (ग्रह घण्टे)', sa: 'होरा (ग्रहघण्टाः)' },
-  subtitle: {
-    en: 'The ancient Chaldean system of planetary hours divides each day and night into 12 segments, each ruled by a planet. This is why the days of the week are named after planets — and how to use hora for timing your activities.',
-    hi: 'ग्रह घण्टों की प्राचीन कैल्डियन पद्धति प्रत्येक दिन और रात को 12 खण्डों में विभाजित करती है, प्रत्येक पर एक ग्रह का शासन। इसीलिए सप्ताह के दिनों के नाम ग्रहों पर हैं — और होरा से गतिविधियों का समय कैसे निर्धारित करें।',
-    sa: 'ग्रहघण्टानां प्राचीनकैल्डियनपद्धतिः प्रत्येकं दिनं रात्रिं च 12 खण्डेषु विभजति। एतत्कारणात् सप्ताहवासराणां नामानि ग्रहेषु आधारितानि।'
+  badge: { en: 'Reference', hi: 'सन्दर्भ' },
+  title: {
+    en: 'Why Exactly 7 Days in a Week?',
+    hi: 'सप्ताह में ठीक 7 दिन क्यों?',
   },
-  s1Title: { en: 'What is a Hora?', hi: 'होरा क्या है?', sa: 'होरा का?' },
+  titleSub: {
+    en: 'And Why Does Tuesday Follow Monday? The Answer Is Over 2,000 Years Old.',
+    hi: 'और मंगलवार सोमवार के बाद क्यों? उत्तर 2,000 वर्ष से अधिक पुराना है।',
+  },
+  intro: {
+    en: 'Have you ever wondered why there are exactly 7 days in the week — not 5, not 10, not 12? Why does Tuesday follow Monday and not, say, Thursday? And why do completely unrelated cultures — Indian, Roman, Norse, Japanese — all name their days after the same 7 planets in the same sequence? The answer is one of the most elegant pieces of mathematics in human history, and it comes from ancient India. It starts with a word: "Hora" — derived from the Sanskrit "Ahoratra" (अहोरात्र), meaning "day + night" (Aho = day, Ratra = night). This Sanskrit word likely traveled to Greece as "Hora" (ὥρα), then to Latin, and eventually became the English "Hour". The very concept of an hour may have Indian origins. The Surya Siddhanta (Ch. 12) defines 24 Horas in one Ahoratra. Varahamihira confirms in Brihat Samhita (Ch. 2): "The lord of the first hora of each day gives that day its name." The Arthashastra of Kautilya (~300 BCE) already references the 7-day week with planetary names — centuries before it appeared in Roman records.',
+    hi: 'क्या आपने कभी सोचा है कि सप्ताह में ठीक 7 दिन क्यों हैं — 5 क्यों नहीं, 10 क्यों नहीं? मंगलवार सोमवार के बाद क्यों आता है, बृहस्पतिवार क्यों नहीं? और पूरी तरह असम्बन्धित संस्कृतियाँ — भारतीय, रोमन, नॉर्स, जापानी — सब अपने दिनों के नाम उन्हीं 7 ग्रहों पर उसी क्रम में क्यों रखती हैं? उत्तर मानव इतिहास का सबसे सुन्दर गणित है, और यह प्राचीन भारत से आता है। यह एक शब्द से शुरू होता है: "होरा" — संस्कृत "अहोरात्र" (अहो = दिन + रात्र = रात) से व्युत्पन्न। यह संस्कृत शब्द सम्भवतः ग्रीस में "ὥρα" (होरा), फिर लैटिन, और अन्ततः अंग्रेज़ी "Hour" बना। घण्टे की अवधारणा ही भारतीय मूल की हो सकती है। सूर्य सिद्धान्त (अ.12) एक अहोरात्र में 24 होरा परिभाषित करता है। वराहमिहिर बृहत् संहिता (अ.2) में पुष्टि करते हैं: "प्रत्येक दिन की पहली होरा का स्वामी उस दिन को अपना नाम देता है।" कौटिल्य का अर्थशास्त्र (~300 ई.पू.) पहले से ग्रह नामों वाले 7-दिवसीय सप्ताह का उल्लेख करता है — रोमन अभिलेखों से सदियों पहले।',
+  },
+
+  /* Section 1 */
+  s1Title: {
+    en: 'The Speed of Planets — Why 7 and Not 9?',
+    hi: 'ग्रहों की गति — 7 क्यों, 9 क्यों नहीं?',
+  },
   s1p1: {
-    en: 'The day (sunrise to sunset) is divided into 12 equal parts — these are the 12 day horas. The night (sunset to next sunrise) is similarly divided into 12 night horas. Each hora is ruled by a planet following the Chaldean order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon.',
-    hi: 'दिन (सूर्योदय से सूर्यास्त) 12 बराबर भागों में विभाजित — ये 12 दिन होराएँ हैं। रात (सूर्यास्त से अगले सूर्योदय) भी 12 रात्रि होराओं में। प्रत्येक होरा पर एक ग्रह का शासन कैल्डियन क्रम में: शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र।',
-    sa: 'दिनम् (सूर्योदयात् सूर्यास्तपर्यन्तम्) 12 समभागेषु विभक्तम् — एताः 12 दिनहोराः। रात्रिः अपि 12 रात्रिहोरासु। कैल्डियनक्रमेण: शनिः, गुरुः, मङ्गलः, सूर्यः, शुक्रः, बुधः, चन्द्रः।'
+    en: 'Ancient Indian astronomers observed 7 celestial bodies moving against the fixed stars. They ranked them by how fast each traverses the zodiac — the basis of all hora timekeeping. The Surya Siddhanta (Ch. 12, earliest layers ~400 CE, encoding much older knowledge) lists precise mean motions. The Aryabhatiya (Aryabhata, 499 CE) computes orbital periods to remarkable accuracy. The Yajnavalkya Smriti prescribes hora-based muhurta timing for rituals. The Romaka Siddhanta documents the transmission of this Indian astronomical framework to Alexandria and the wider Mediterranean world.',
+    hi: 'प्राचीन भारतीय खगोलविदों ने तारों के विरुद्ध चलते 7 खगोलीय पिण्ड देखे। उन्होंने प्रत्येक की राशिचक्र गति से क्रमबद्ध किया — सम्पूर्ण होरा काल-गणना का आधार। सूर्य सिद्धान्त (अ.12) माध्य गतियाँ सूचीबद्ध करता है। आर्यभटीय (499 ई.) असाधारण परिशुद्धता से कक्षीय काल गणना करता है। याज्ञवल्क्य स्मृति होरा-आधारित मुहूर्त काल निर्धारित करती है। रोमक सिद्धान्त इस भारतीय खगोलीय ढाँचे के अलेक्ज़ान्ड्रिया और भूमध्यसागरीय विश्व तक संचरण का दस्तावेज़ीकरण करता है।',
   },
   s1p2: {
-    en: 'The FIRST hora of each day belongs to that day\'s ruling planet: Sunday starts with Sun hora, Monday with Moon hora, Tuesday with Mars hora, and so on. This is exactly WHY the days are named the way they are — every 24th hora cycles back to the same planet, creating the 7-day week.',
-    hi: 'प्रत्येक दिन की पहली होरा उस दिन के शासक ग्रह की है: रविवार सूर्य होरा, सोमवार चन्द्र होरा, मंगलवार मंगल होरा। इसीलिए दिनों के ये नाम हैं — प्रत्येक 24वीं होरा उसी ग्रह पर लौटती है, सप्ताह का चक्र बनाते हुए।',
-    sa: 'प्रत्येकदिनस्य प्रथमा होरा तद्दिनस्य शासकग्रहस्य: रविवासरे सूर्यहोरा, सोमवासरे चन्द्रहोरा। एतत्कारणात् वासराणां एतानि नामानि — प्रत्येका 24तमी होरा तस्मिन्नेव ग्रहे प्रत्यागच्छति।'
+    en: 'The seven Grahas visible to the naked eye are: Sun (Surya), Moon (Chandra), Mars (Mangala), Mercury (Budha), Jupiter (Brihaspati), Venus (Shukra), and Saturn (Shani). These are the seven that constitute the Chaldean order and give their names to the seven days of the week.',
+    hi: 'नग्न नेत्र से दृश्य सात ग्रह हैं: सूर्य, चन्द्र, मंगल, बुध, बृहस्पति, शुक्र और शनि। ये सात ही कैल्डियन क्रम का निर्माण करते हैं और सप्ताह के सात दिनों को अपने नाम देते हैं।',
   },
-  s2Title: { en: 'The Hora Sequence', hi: 'होरा अनुक्रम', sa: 'होराक्रमः' },
+  s1p3: {
+    en: 'Rahu and Ketu — the ascending and descending lunar nodes — are the 8th and 9th Grahas in the Indian Navagraha system. They are not physical bodies but mathematical points where the Moon\'s orbital plane intersects the ecliptic. Their ~18.6-year nodal cycle governs eclipse timing with remarkable precision, a contribution unique to Indian astronomy. No other ancient culture incorporated the lunar nodes as named "planets" with this level of sophistication.',
+    hi: 'राहु और केतु — आरोही और अवरोही चंद्र पात — भारतीय नवग्रह पद्धति में 8वें और 9वें ग्रह हैं। ये भौतिक पिण्ड नहीं बल्कि गणितीय बिन्दु हैं जहाँ चंद्रमा की कक्षीय तल क्रान्तिवृत्त को काटती है। उनका ~18.6 वर्षीय पात चक्र ग्रहण के समय को असाधारण परिशुद्धता से नियंत्रित करता है।',
+  },
+
+  /* Section 2 */
+  s2Title: {
+    en: 'The Speed Ranking — Slowest to Fastest',
+    hi: 'गति क्रम — सबसे धीमे से सबसे तेज़',
+  },
   s2p1: {
-    en: 'The sequence starts from the day lord at sunrise and cycles through: Saturn → Jupiter → Mars → Sun → Venus → Mercury → Moon (Chaldean order — reverse of geocentric planetary distance). After Moon, it loops back to Saturn.',
-    hi: 'अनुक्रम सूर्योदय पर दिन-स्वामी से शुरू होता है और चक्रित: शनि → गुरु → मंगल → सूर्य → शुक्र → बुध → चन्द्र (कैल्डियन क्रम — भूकेन्द्रीय ग्रह दूरी का उलटा)। चन्द्र के बाद, शनि पर वापस।',
-    sa: 'क्रमः सूर्योदये दिनस्वामिनः आरभ्यते चक्रेण: शनिः → गुरुः → मङ्गलः → सूर्यः → शुक्रः → बुधः → चन्द्रः। चन्द्रात् पश्चात् शनिं प्रति पुनः।'
+    en: 'Ancient astronomers observed how long each planet takes to complete one full circuit of the zodiac. The planet that takes the longest appears to move slowest against the fixed stars; the one that takes the least time appears fastest. This is the Chaldean order:',
+    hi: 'प्राचीन खगोलशास्त्रियों ने देखा कि प्रत्येक ग्रह राशिचक्र का एक पूर्ण परिक्रमा पूरी करने में कितना समय लेता है। जो ग्रह सबसे अधिक समय लेता है वह स्थिर तारों के सापेक्ष सबसे धीमा दिखता है; जो सबसे कम समय लेता है वह सबसे तेज़। यही कैल्डियन क्रम है:',
   },
-  s2p2: {
-    en: 'KEY INSIGHT: count every 24th hora starting from each planet: Sun → Moon → Mars → Mercury → Jupiter → Venus → Saturn. This is the weekday order! The 7-day week was literally derived from the hora system — an ancient mathematical consequence of dividing 24 hours among 7 planets.',
-    hi: 'मुख्य अन्तर्दृष्टि: प्रत्येक 24वीं होरा गिनें: सूर्य → चन्द्र → मंगल → बुध → गुरु → शुक्र → शनि — यह सप्ताह का क्रम है! 7 दिन का सप्ताह होरा पद्धति से व्युत्पन्न है — 24 घण्टों को 7 ग्रहों में बाँटने का गणितीय परिणाम।',
-    sa: 'मुख्या अन्तर्दृष्टिः: प्रत्येकां 24तमीं होरां गणयत: सूर्यः → चन्द्रः → मङ्गलः → बुधः → गुरुः → शुक्रः → शनिः — एषः सप्ताहक्रमः! 7 दिनानां सप्ताहः होरापद्धतेः व्युत्पन्नः।'
+  s2note: {
+    en: 'This order — Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon — is called the "Chaldean order" because Western historians first documented it through Babylonian (Chaldean) sources. But the astronomical knowledge underlying it was developed independently and in greater depth in India, where it predates the Babylonian attribution by centuries.',
+    hi: 'इस क्रम को — शनि, गुरु, मंगल, सूर्य, शुक्र, बुध, चन्द्र — "कैल्डियन क्रम" कहा जाता है क्योंकि पश्चिमी इतिहासकारों ने इसे पहले बेबीलोनियाई (कैल्डियन) स्रोतों के माध्यम से प्रलेखित किया। किन्तु इसके अन्तर्गत खगोलीय ज्ञान भारत में स्वतन्त्र रूप से और अधिक गहराई से विकसित हुआ।',
   },
-  s3Title: { en: 'Which Hora for Which Activity?', hi: 'किस होरा में कौन सी गतिविधि?', sa: 'कस्यां होरायां का क्रिया?' },
-  s4Title: { en: 'How Our App Computes Horas', hi: 'हमारा ऐप होरा कैसे गणना करता है', sa: 'अस्माकम् अनुप्रयोगः होरां कथं गणयति' },
+
+  /* Section 3 */
+  s3Title: {
+    en: 'How the Hora System Works',
+    hi: 'होरा पद्धति कैसे काम करती है',
+  },
+  s3p1: {
+    en: 'A Hora (होरा) is one twenty-fourth of the day measured from sunrise to the next sunrise. Each of the 24 horas is ruled by one of the seven planets, cycling through the Chaldean order continuously. The first hora of each day belongs to that day\'s ruling planet.',
+    hi: 'होरा एक दिन (एक सूर्योदय से अगले सूर्योदय तक) का चौबीसवाँ भाग है। 24 होराओं में से प्रत्येक पर कैल्डियन क्रम में एक ग्रह का शासन होता है। प्रत्येक दिन की पहली होरा उस दिन के स्वामी ग्रह की होती है।',
+  },
+  s3p2: {
+    en: 'KEY MATHEMATICAL INSIGHT: After 24 horas, the sequence has advanced by 24 positions. Since 24 = 3 × 7 + 3, the 25th hora (which is the first hora of the NEXT day) falls 3 positions ahead in the Chaldean order. This "jump of 3" applied repeatedly to the Chaldean sequence generates exactly the order of the weekdays. This is NOT a coincidence — the 7-day week with these specific day-planet assignments is a direct mathematical consequence of the hora system.',
+    hi: 'मुख्य गणितीय अन्तर्दृष्टि: 24 होराओं के बाद अनुक्रम 24 स्थान आगे बढ़ा है। चूँकि 24 = 3 × 7 + 3, इसलिए 25वीं होरा (= अगले दिन की पहली होरा) कैल्डियन क्रम में 3 स्थान आगे पड़ती है। इस "3 की छलाँग" को बार-बार लागू करने से ठीक सप्ताह के दिनों का क्रम मिलता है। यह संयोग नहीं है — इन विशेष ग्रह नियुक्तियों वाला 7-दिवसीय सप्ताह होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।',
+  },
+  s3weekLabel: {
+    en: 'How each day\'s first hora determines the next day:',
+    hi: 'प्रत्येक दिन की पहली होरा अगले दिन को कैसे निर्धारित करती है:',
+  },
+
+  /* Section 4 */
+  s4Title: {
+    en: 'From India to the World — The Weekday Names',
+    hi: 'भारत से विश्व तक — सप्ताह के दिनों के नाम',
+  },
   s4p1: {
-    en: 'Day duration = sunset - sunrise (varies by location and season). Each day hora = day duration / 12. Night hora = night duration / 12. Day horas are LONGER in summer (more daylight) and shorter in winter. This means hora duration is NOT a fixed 60 minutes — it varies throughout the year.',
-    hi: 'दिन अवधि = सूर्यास्त - सूर्योदय (स्थान और ऋतु अनुसार भिन्न)। प्रत्येक दिन होरा = दिन अवधि / 12। रात्रि होरा = रात्रि अवधि / 12। ग्रीष्म में दिन होराएँ लम्बी (अधिक दिन प्रकाश) और शीत में छोटी। होरा अवधि 60 मिनट निश्चित नहीं — वर्षभर बदलती है।',
-    sa: 'दिनावधिः = सूर्यास्तः - सूर्योदयः। प्रत्येका दिनहोरा = दिनावधिः / 12। रात्रिहोरा = रात्र्यवधिः / 12। ग्रीष्मे दिनहोराः दीर्घतराः, शीते ह्रस्वतराः।'
+    en: 'The Sanskrit names for the days of the week directly use planet names followed by "vara" (वार, meaning "day"). English day names use Norse and Germanic gods — but these gods were explicitly mapped to the same planets by early medieval Europeans. The underlying planetary assignment is identical across every culture, because they all derive from the same hora system.',
+    hi: 'सप्ताह के दिनों के संस्कृत नाम सीधे ग्रह नामों के बाद "वार" (दिन) लगाकर बनते हैं। अंग्रेज़ी नाम नॉर्स और जर्मनिक देवताओं का उपयोग करते हैं — किन्तु इन देवताओं को प्रारम्भिक मध्यकालीन यूरोपीयों ने स्पष्ट रूप से उन्हीं ग्रहों से जोड़ा था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है, क्योंकि सभी उसी होरा पद्धति से उत्पन्न हैं।',
   },
-  s5Title: { en: 'Hora and Muhurta — How They Work Together', hi: 'होरा और मुहूर्त — एक साथ कैसे काम करते हैं', sa: 'होरामुहूर्तौ — कथं सह कार्यं कुरुतः' },
+  s4p2: {
+    en: 'Tuesday = Tyr\'s day (Norse war god = Mars). Wednesday = Woden\'s day (Odin = Mercury). Thursday = Thor\'s day (thunder god = Jupiter). Friday = Freya\'s day (goddess of love = Venus). The correspondence is direct and intentional — medieval European scholars were fully aware they were mapping their gods to the Roman planetary week.',
+    hi: 'Tuesday = Tyr का दिन (नॉर्स युद्ध देवता = मंगल)। Wednesday = Woden का दिन (ओडिन = बुध)। Thursday = Thor का दिन (वज्र देवता = गुरु)। Friday = Freya का दिन (प्रेम देवी = शुक्र)। यह पत्राचार प्रत्यक्ष और जानबूझकर था।',
+  },
+
+  /* Section 5 */
+  s5Title: {
+    en: 'The Hora in Daily Practice',
+    hi: 'दैनिक अभ्यास में होरा',
+  },
   s5p1: {
-    en: 'Hora gives the planetary HOUR quality. Muhurta gives the 30-division (48-minute) quality. Choghadiya gives the 8-division quality. For best timing: choose a good muhurta + the correct hora for your activity + avoid Rahu Kaal. When all three align, the moment is astrologically optimal.',
-    hi: 'होरा ग्रह घण्टे की गुणवत्ता देती है। मुहूर्त 30-विभाजन (48 मिनट) गुणवत्ता। चौघड़िया 8-विभाजन गुणवत्ता। सर्वोत्तम समय: अच्छा मुहूर्त + सही होरा + राहु काल से बचाव। तीनों मेल खाएँ तो क्षण ज्योतिषीय रूप से सर्वोत्तम।',
-    sa: 'होरा ग्रहघण्टगुणवत्तां ददाति। मुहूर्तः 30-विभाजनगुणवत्ताम्। चौघड़िया 8-विभाजनगुणवत्ताम्। सर्वोत्तमसमयः: शुभमुहूर्तः + सम्यक्होरा + राहुकालपरिहारः।'
+    en: 'Hora is still used daily in Vedic astrology for Muhurta (electional timing). Choosing the right hora for an activity significantly strengthens the quality of that action according to classical texts. The hora system is one of the fastest and most practical tools in the Jyotishi\'s toolkit.',
+    hi: 'होरा का उपयोग आज भी वैदिक ज्योतिष में मुहूर्त (इष्ट समय निर्धारण) के लिए प्रतिदिन किया जाता है। किसी गतिविधि के लिए सही होरा चुनना शास्त्रीय ग्रन्थों के अनुसार उस कार्य की गुणवत्ता को महत्वपूर्ण रूप से बढ़ाता है।',
   },
-  related: { en: 'Explore Further', hi: 'और जानें', sa: 'अधिकं जानीत' },
+
+  /* Section 6 */
+  s6Title: {
+    en: 'Rahu & Ketu — India\'s Unique Addition',
+    hi: 'राहु और केतु — भारत का अद्वितीय योगदान',
+  },
+  s6p1: {
+    en: 'The seven Chaldean planets are shared across ancient cultures — Babylonian, Greek, Roman, Indian. But India\'s unique contribution is the elevation of Rahu (the ascending lunar node) and Ketu (the descending lunar node) to the status of full Grahas — the 8th and 9th members of the Navagraha system.',
+    hi: 'सात कैल्डियन ग्रह प्राचीन संस्कृतियों — बेबीलोनियाई, यूनानी, रोमन, भारतीय — में समान हैं। किन्तु भारत का अद्वितीय योगदान राहु (आरोही चंद्र पात) और केतु (अवरोही चंद्र पात) को पूर्ण ग्रह की स्थिति में उठाना है — नवग्रह पद्धति के 8वें और 9वें सदस्य।',
+  },
+  s6p2: {
+    en: 'Rahu and Ketu are the points where the Moon\'s orbital plane crosses the Sun\'s apparent path (the ecliptic). An eclipse can ONLY occur when the Moon is near one of these nodes at the time of a new or full Moon. The ~18.6-year Saros-like nodal cycle that Indian astronomers tracked with precision is what makes eclipse prediction possible. No other ancient culture developed such a systematic mathematical treatment of the lunar nodes.',
+    hi: 'राहु और केतु वे बिन्दु हैं जहाँ चंद्रमा की कक्षीय तल सूर्य के आभासी पथ (क्रान्तिवृत्त) को काटती है। ग्रहण तभी हो सकता है जब नई या पूर्णिमा के समय चंद्रमा इन पातों के निकट हो। ~18.6 वर्षीय पात चक्र जिसे भारतीय खगोलशास्त्रियों ने परिशुद्धता से ट्रैक किया, ग्रहण भविष्यवाणी को सम्भव बनाता है।',
+  },
+  s6p3: {
+    en: 'Rahu Kaal — the inauspicious daily period ruled by Rahu — is calculated from a modified hora sequence applied to the weekday. Each weekday has a fixed Rahu Kaal slot (e.g., Monday 7:30–9:00 AM, Tuesday 3:00–4:30 PM in a standard 12-hour day). This shows how deeply the hora system and the node system are integrated in Indian timekeeping.',
+    hi: 'राहु काल — राहु द्वारा शासित दैनिक अशुभ अवधि — सप्ताह के दिन पर लागू एक संशोधित होरा अनुक्रम से गणना की जाती है। प्रत्येक सप्ताह के दिन में एक निश्चित राहु काल खण्ड होता है (जैसे सोमवार 7:30-9:00 बजे, मंगलवार 3:00-4:30 बजे मानक 12 घंटे के दिन में)।',
+  },
+
+  /* Related */
+  related: { en: 'Explore Further', hi: 'और जानें' },
 };
 
-/* ── Hora planet data ─────────────────────────────────────────────── */
-const HORA_PLANETS = [
-  { id: 'sun', name: { en: 'Sun Hora', hi: 'सूर्य होरा', sa: 'सूर्यहोरा' }, color: '#f59e0b', bg: 'bg-amber-500/10', border: 'border-amber-500/30',
-    activities: {
-      en: 'Government work, meetings with authority figures, father-related matters, applying for jobs, leadership tasks, power and status matters. Ideal for anything requiring confidence and command.',
-      hi: 'सरकारी कार्य, अधिकारियों से मिलना, पिता सम्बन्धित, नौकरी आवेदन, नेतृत्व कार्य, शक्ति-प्रतिष्ठा मामले। आत्मविश्वास और आदेश वाले कार्यों के लिए आदर्श।',
-      sa: 'शासनकार्यम्, अधिकारिभिः सह मेलनम्, पितृसम्बन्धितविषयाः, नेतृत्वकार्याणि।'
-    } },
-  { id: 'moon', name: { en: 'Moon Hora', hi: 'चन्द्र होरा', sa: 'चन्द्रहोरा' }, color: '#94a3b8', bg: 'bg-slate-400/10', border: 'border-slate-400/30',
-    activities: {
-      en: 'Travel initiation, emotional conversations, mother-related matters, buying/selling vehicles, starting creative projects, public dealings, water-related work. Nurturing and receptive activities.',
-      hi: 'यात्रा आरम्भ, भावनात्मक बातचीत, माता सम्बन्धित, वाहन क्रय-विक्रय, रचनात्मक परियोजना आरम्भ, सार्वजनिक व्यवहार, जल सम्बन्धित कार्य।',
-      sa: 'यात्रारम्भः, भावनात्मकसंवादः, मातृसम्बन्धितविषयाः, वाहनक्रयविक्रयः, सृजनात्मकारम्भः।'
-    } },
-  { id: 'mars', name: { en: 'Mars Hora', hi: 'मंगल होरा', sa: 'मङ्गलहोरा' }, color: '#ef4444', bg: 'bg-red-500/10', border: 'border-red-500/30',
-    activities: {
-      en: 'Surgery (if medically needed), property-related work, sports and athletics, unavoidable confrontation, machinery and engineering work, military/police matters, cooking with fire.',
-      hi: 'शल्यक्रिया (चिकित्सकीय आवश्यकता पर), सम्पत्ति कार्य, खेल-कूद, अपरिहार्य टकराव, मशीनरी और इंजीनियरिंग, सेना/पुलिस मामले।',
-      sa: 'शल्यक्रिया (आवश्यकतायां), सम्पत्तिकार्यम्, क्रीडा, अपरिहार्यसंघर्षः, यन्त्रकार्यम्।'
-    } },
-  { id: 'mercury', name: { en: 'Mercury Hora', hi: 'बुध होरा', sa: 'बुधहोरा' }, color: '#4ade80', bg: 'bg-emerald-500/10', border: 'border-emerald-500/30',
-    activities: {
-      en: 'Business deals, signing contracts, communication tasks, education and study, writing, accounting, banking, technology work, short journeys, starting new courses.',
-      hi: 'व्यापारिक सौदे, अनुबन्ध हस्ताक्षर, संवाद कार्य, शिक्षा-अध्ययन, लेखन, लेखा-जोखा, बैंकिंग, प्रौद्योगिकी कार्य, छोटी यात्राएँ।',
-      sa: 'वाणिज्यसौदाः, अनुबन्धहस्ताक्षरम्, संवादकार्याणि, शिक्षाध्ययनम्, लेखनम्, लेखाकर्म।'
-    } },
-  { id: 'jupiter', name: { en: 'Jupiter Hora', hi: 'गुरु होरा', sa: 'गुरुहोरा' }, color: '#facc15', bg: 'bg-yellow-500/10', border: 'border-yellow-500/30',
-    activities: {
-      en: 'Spiritual practices, starting education or teaching, consulting a guru or advisor, charity and donations, legal proceedings, religious ceremonies, marriage-related rituals.',
-      hi: 'आध्यात्मिक साधना, शिक्षा या अध्यापन आरम्भ, गुरु या सलाहकार से परामर्श, दान-पुण्य, कानूनी कार्यवाही, धार्मिक अनुष्ठान, विवाह संस्कार।',
-      sa: 'आध्यात्मिकसाधना, शिक्षारम्भः, गुरुपरामर्शः, दानपुण्यम्, विधिकार्यवाही, धार्मिकानुष्ठानम्।'
-    } },
-  { id: 'venus', name: { en: 'Venus Hora', hi: 'शुक्र होरा', sa: 'शुक्रहोरा' }, color: '#f472b6', bg: 'bg-pink-500/10', border: 'border-pink-500/30',
-    activities: {
-      en: 'Marriage-related activities, romance and courtship, buying luxury items, artistic and creative work, beauty treatments, music and entertainment, fashion, buying jewelry.',
-      hi: 'विवाह सम्बन्धित गतिविधियाँ, प्रेम-प्रणय, विलासिता वस्तुएँ खरीदना, कलात्मक-रचनात्मक कार्य, सौन्दर्य उपचार, संगीत-मनोरंजन, आभूषण खरीदना।',
-      sa: 'विवाहसम्बन्धिताः क्रियाः, प्रणयः, विलासवस्तूनां क्रयः, कलात्मककार्यम्, सौन्दर्यचिकित्सा।'
-    } },
-  { id: 'saturn', name: { en: 'Saturn Hora', hi: 'शनि होरा', sa: 'शनिहोरा' }, color: '#60a5fa', bg: 'bg-blue-500/10', border: 'border-blue-500/30',
-    activities: {
-      en: 'AVOID starting new things. Good for: completing old unfinished work, agriculture and farming, iron and steel work, deep meditation, dealing with servants, mining, oil work, leather work. Saturn hora rewards finishing, not beginning.',
-      hi: 'नई चीजें शुरू करने से बचें। अच्छा: पुराना अधूरा कार्य पूरा करना, कृषि, लोहा-इस्पात कार्य, गहन ध्यान, सेवकों से व्यवहार। शनि होरा समाप्ति का पुरस्कार देती है, आरम्भ का नहीं।',
-      sa: 'नवारम्भं वर्जयेत्। शोभनम्: पुरातनकार्यसमापनम्, कृषिः, लोहकार्यम्, गहनध्यानम्।'
-    } },
+/* ── Planet speed data ────────────────────────────────────────────── */
+const SPEED_TABLE = [
+  {
+    rank: 1, label: { en: 'Slowest', hi: 'सबसे धीमा' },
+    planet: { en: 'Saturn', hi: 'शनि' },
+    period: { en: '29.46 years', hi: '29.46 वर्ष' },
+    note: { en: 'Takes longest to traverse the entire zodiac', hi: 'राशिचक्र पूरा करने में सबसे अधिक समय' },
+    color: '#60a5fa', border: 'border-blue-500/30', bg: 'bg-blue-500/8',
+  },
+  {
+    rank: 2, label: { en: '', hi: '' },
+    planet: { en: 'Jupiter', hi: 'बृहस्पति' },
+    period: { en: '11.86 years', hi: '11.86 वर्ष' },
+    note: { en: 'Completes ~2.4 circuits in Saturn\'s one orbit', hi: 'शनि के एक चक्र में ~2.4 परिक्रमाएँ' },
+    color: '#facc15', border: 'border-yellow-500/30', bg: 'bg-yellow-500/8',
+  },
+  {
+    rank: 3, label: { en: '', hi: '' },
+    planet: { en: 'Mars', hi: 'मंगल' },
+    period: { en: '1.88 years', hi: '1.88 वर्ष' },
+    note: { en: 'Completes ~2 years per zodiac circuit', hi: 'राशिचक्र में ~2 वर्ष प्रति परिक्रमा' },
+    color: '#ef4444', border: 'border-red-500/30', bg: 'bg-red-500/8',
+  },
+  {
+    rank: 4, label: { en: '', hi: '' },
+    planet: { en: 'Sun', hi: 'सूर्य' },
+    period: { en: '1 year', hi: '1 वर्ष' },
+    note: { en: 'Earth\'s orbit defines the tropical year', hi: 'पृथ्वी की कक्षा उष्णकटिबंधीय वर्ष परिभाषित करती है' },
+    color: '#f59e0b', border: 'border-amber-500/30', bg: 'bg-amber-500/8',
+  },
+  {
+    rank: 5, label: { en: '', hi: '' },
+    planet: { en: 'Venus', hi: 'शुक्र' },
+    period: { en: '224.7 days', hi: '224.7 दिन' },
+    note: { en: 'Completes ~1.6 orbits per Earth year', hi: 'प्रति पृथ्वी वर्ष ~1.6 कक्षाएँ' },
+    color: '#f472b6', border: 'border-pink-500/30', bg: 'bg-pink-500/8',
+  },
+  {
+    rank: 6, label: { en: '', hi: '' },
+    planet: { en: 'Mercury', hi: 'बुध' },
+    period: { en: '87.97 days', hi: '87.97 दिन' },
+    note: { en: 'Fastest of the classical planets; ~4 orbits per year', hi: 'शास्त्रीय ग्रहों में सबसे तेज़; ~4 कक्षाएँ प्रति वर्ष' },
+    color: '#4ade80', border: 'border-emerald-500/30', bg: 'bg-emerald-500/8',
+  },
+  {
+    rank: 7, label: { en: 'Fastest', hi: 'सबसे तेज़' },
+    planet: { en: 'Moon', hi: 'चन्द्र' },
+    period: { en: '27.32 days', hi: '27.32 दिन' },
+    note: { en: 'Completes one orbit in under a month', hi: 'एक महीने से कम में एक कक्षा पूरी करता है' },
+    color: '#94a3b8', border: 'border-slate-400/30', bg: 'bg-slate-400/8',
+  },
 ];
 
-/* ── Chaldean order for timeline ──────────────────────────────────── */
-const CHALDEAN = ['saturn', 'jupiter', 'mars', 'sun', 'venus', 'mercury', 'moon'] as const;
-const DAY_LORDS: { day: Record<string, string>; startPlanet: string }[] = [
-  { day: { en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः' }, startPlanet: 'sun' },
-  { day: { en: 'Monday', hi: 'सोमवार', sa: 'सोमवासरः' }, startPlanet: 'moon' },
-  { day: { en: 'Tuesday', hi: 'मंगलवार', sa: 'मङ्गलवासरः' }, startPlanet: 'mars' },
-  { day: { en: 'Wednesday', hi: 'बुधवार', sa: 'बुधवासरः' }, startPlanet: 'mercury' },
-  { day: { en: 'Thursday', hi: 'गुरुवार', sa: 'गुरुवासरः' }, startPlanet: 'jupiter' },
-  { day: { en: 'Friday', hi: 'शुक्रवार', sa: 'शुक्रवासरः' }, startPlanet: 'venus' },
-  { day: { en: 'Saturday', hi: 'शनिवार', sa: 'शनिवासरः' }, startPlanet: 'saturn' },
+/* ── Hora → weekday derivation ────────────────────────────────────── */
+const WEEKDAY_DERIVATION = [
+  {
+    day: { en: 'Saturday', hi: 'शनिवार' },
+    lord: { en: 'Saturn', hi: 'शनि' },
+    color: '#60a5fa',
+    hora25: { en: 'Sun', hi: 'सूर्य' },
+    next: { en: 'Sunday', hi: 'रविवार' },
+    nextColor: '#f59e0b',
+  },
+  {
+    day: { en: 'Sunday', hi: 'रविवार' },
+    lord: { en: 'Sun', hi: 'सूर्य' },
+    color: '#f59e0b',
+    hora25: { en: 'Moon', hi: 'चन्द्र' },
+    next: { en: 'Monday', hi: 'सोमवार' },
+    nextColor: '#94a3b8',
+  },
+  {
+    day: { en: 'Monday', hi: 'सोमवार' },
+    lord: { en: 'Moon', hi: 'चन्द्र' },
+    color: '#94a3b8',
+    hora25: { en: 'Mars', hi: 'मंगल' },
+    next: { en: 'Tuesday', hi: 'मंगलवार' },
+    nextColor: '#ef4444',
+  },
+  {
+    day: { en: 'Tuesday', hi: 'मंगलवार' },
+    lord: { en: 'Mars', hi: 'मंगल' },
+    color: '#ef4444',
+    hora25: { en: 'Mercury', hi: 'बुध' },
+    next: { en: 'Wednesday', hi: 'बुधवार' },
+    nextColor: '#4ade80',
+  },
+  {
+    day: { en: 'Wednesday', hi: 'बुधवार' },
+    lord: { en: 'Mercury', hi: 'बुध' },
+    color: '#4ade80',
+    hora25: { en: 'Jupiter', hi: 'गुरु' },
+    next: { en: 'Thursday', hi: 'गुरुवार' },
+    nextColor: '#facc15',
+  },
+  {
+    day: { en: 'Thursday', hi: 'गुरुवार' },
+    lord: { en: 'Jupiter', hi: 'गुरु' },
+    color: '#facc15',
+    hora25: { en: 'Venus', hi: 'शुक्र' },
+    next: { en: 'Friday', hi: 'शुक्रवार' },
+    nextColor: '#f472b6',
+  },
+  {
+    day: { en: 'Friday', hi: 'शुक्रवार' },
+    lord: { en: 'Venus', hi: 'शुक्र' },
+    color: '#f472b6',
+    hora25: { en: 'Saturn', hi: 'शनि' },
+    next: { en: 'Saturday', hi: 'शनिवार' },
+    nextColor: '#60a5fa',
+  },
 ];
 
-function getHoraSequence(startPlanet: string): string[] {
-  const startIdx = CHALDEAN.indexOf(startPlanet as typeof CHALDEAN[number]);
-  const seq: string[] = [];
-  for (let i = 0; i < 24; i++) {
-    seq.push(CHALDEAN[(startIdx + i) % 7]);
-  }
-  return seq;
-}
+/* ── Weekday names comparison ─────────────────────────────────────── */
+const WEEKDAYS = [
+  {
+    num: 1,
+    sanskrit: 'Ravivara', hi: 'रविवार', en: 'Sunday', latin: 'Dies Solis',
+    planet: { en: 'Sun', hi: 'सूर्य' }, color: '#f59e0b',
+    norse: { en: '(Sun\'s day)', hi: '(सूर्य का दिन)' },
+  },
+  {
+    num: 2,
+    sanskrit: 'Somavara', hi: 'सोमवार', en: 'Monday', latin: 'Dies Lunae',
+    planet: { en: 'Moon', hi: 'चन्द्र' }, color: '#94a3b8',
+    norse: { en: '(Moon\'s day)', hi: '(चंद्र का दिन)' },
+  },
+  {
+    num: 3,
+    sanskrit: 'Mangalavara', hi: 'मंगलवार', en: 'Tuesday', latin: 'Dies Martis',
+    planet: { en: 'Mars', hi: 'मंगल' }, color: '#ef4444',
+    norse: { en: '(Tyr\'s day = Mars)', hi: '(Tyr = मंगल)' },
+  },
+  {
+    num: 4,
+    sanskrit: 'Budhavara', hi: 'बुधवार', en: 'Wednesday', latin: 'Dies Mercurii',
+    planet: { en: 'Mercury', hi: 'बुध' }, color: '#4ade80',
+    norse: { en: '(Woden\'s day = Mercury)', hi: '(Woden = बुध)' },
+  },
+  {
+    num: 5,
+    sanskrit: 'Brihaspativara', hi: 'बृहस्पतिवार / गुरुवार', en: 'Thursday', latin: 'Dies Jovis',
+    planet: { en: 'Jupiter', hi: 'बृहस्पति' }, color: '#facc15',
+    norse: { en: '(Thor\'s day = Jupiter)', hi: '(Thor = बृहस्पति)' },
+  },
+  {
+    num: 6,
+    sanskrit: 'Shukravara', hi: 'शुक्रवार', en: 'Friday', latin: 'Dies Veneris',
+    planet: { en: 'Venus', hi: 'शुक्र' }, color: '#f472b6',
+    norse: { en: '(Freya\'s day = Venus)', hi: '(Freya = शुक्र)' },
+  },
+  {
+    num: 7,
+    sanskrit: 'Shanivara', hi: 'शनिवार', en: 'Saturday', latin: 'Dies Saturni',
+    planet: { en: 'Saturn', hi: 'शनि' }, color: '#60a5fa',
+    norse: { en: '(Saturn\'s day)', hi: '(शनि का दिन)' },
+  },
+];
 
-/* ── 24-hour timeline SVG ─────────────────────────────────────────── */
-function HoraTimeline({ dayIdx, locale }: { dayIdx: number; locale: Locale }) {
-  const dl = DAY_LORDS[dayIdx];
-  const seq = getHoraSequence(dl.startPlanet);
-  const colorMap: Record<string, string> = { sun: '#f59e0b', moon: '#94a3b8', mars: '#ef4444', mercury: '#4ade80', jupiter: '#facc15', venus: '#f472b6', saturn: '#60a5fa' };
-  const nameMap: Record<string, Record<string, string>> = { sun: { en: 'Su', hi: 'सू', sa: 'सू' }, moon: { en: 'Mo', hi: 'च', sa: 'च' }, mars: { en: 'Ma', hi: 'मं', sa: 'मं' }, mercury: { en: 'Me', hi: 'बु', sa: 'बु' }, jupiter: { en: 'Ju', hi: 'गु', sa: 'गु' }, venus: { en: 'Ve', hi: 'शु', sa: 'शु' }, saturn: { en: 'Sa', hi: 'श', sa: 'श' } };
-  const barW = 28, barH = 32, gap = 2;
-  const totalW = seq.length * (barW + gap);
-
-  return (
-    <div className="overflow-x-auto">
-      <svg viewBox={`0 0 ${totalW + 20} 85`} className="min-w-[700px] w-full" style={{ maxHeight: 100 }}>
-        {/* Day / Night labels */}
-        <text x={10 + 6 * (barW + gap)} y={12} fontSize="9" fill="#d4a853" fontWeight="bold" textAnchor="middle">
-          {locale === 'hi' ? '☀ दिन (1-12)' : '☀ Day (1-12)'}
-        </text>
-        <text x={10 + 18 * (barW + gap)} y={12} fontSize="9" fill="#6366f1" fontWeight="bold" textAnchor="middle">
-          {locale === 'hi' ? '☽ रात्रि (13-24)' : '☽ Night (13-24)'}
-        </text>
-
-        {seq.map((p, i) => {
-          const x = 10 + i * (barW + gap);
-          const isDayHora = i < 12;
-          return (
-            <g key={i}>
-              <rect x={x} y={18} width={barW} height={barH} rx={4} fill={colorMap[p]} opacity={isDayHora ? 0.7 : 0.4} />
-              <text x={x + barW / 2} y={38} fontSize="9" fontWeight="bold" fill="#0a0e27" textAnchor="middle" dominantBaseline="middle">
-                {nameMap[p][locale]}
-              </text>
-              <text x={x + barW / 2} y={62} fontSize="8" fill="#94a3b8" textAnchor="middle">{i + 1}</text>
-            </g>
-          );
-        })}
-
-        {/* Divider */}
-        <line x1={10 + 12 * (barW + gap) - gap / 2} y1={16} x2={10 + 12 * (barW + gap) - gap / 2} y2={55} stroke="#6366f1" strokeWidth="1.5" strokeDasharray="3 2" />
-
-        {/* Day name */}
-        <text x={totalW / 2 + 10} y={78} fontSize="10" fill="#d4a853" fontWeight="bold" textAnchor="middle">
-          {dl.day[locale]}
-        </text>
-      </svg>
-    </div>
-  );
-}
+/* ── Hora practice data ───────────────────────────────────────────── */
+const HORA_PRACTICE = [
+  {
+    planet: { en: 'Sun Hora', hi: 'सूर्य होरा' }, color: '#f59e0b', bg: 'bg-amber-500/8', border: 'border-amber-500/25',
+    activities: {
+      en: 'Authority, government work, meetings with officials, leadership tasks, father-related matters, self-expression and command',
+      hi: 'अधिकार, सरकारी कार्य, अधिकारियों से मिलना, नेतृत्व, पिता सम्बन्धित, आत्म-अभिव्यक्ति',
+    },
+  },
+  {
+    planet: { en: 'Moon Hora', hi: 'चन्द्र होरा' }, color: '#94a3b8', bg: 'bg-slate-400/8', border: 'border-slate-400/25',
+    activities: {
+      en: 'Travel, emotional conversations, mother-related, public dealings, water work, starting creative projects',
+      hi: 'यात्रा, भावनात्मक बातचीत, माता सम्बन्धित, सार्वजनिक व्यवहार, जल कार्य, रचनात्मक परियोजना',
+    },
+  },
+  {
+    planet: { en: 'Mars Hora', hi: 'मंगल होरा' }, color: '#ef4444', bg: 'bg-red-500/8', border: 'border-red-500/25',
+    activities: {
+      en: 'Surgery, property work, sports, engineering and machinery, military or police matters, unavoidable confrontation',
+      hi: 'शल्यक्रिया, सम्पत्ति कार्य, खेल, यन्त्र-अभियान्त्रिकी, सेना/पुलिस, अपरिहार्य संघर्ष',
+    },
+  },
+  {
+    planet: { en: 'Mercury Hora', hi: 'बुध होरा' }, color: '#4ade80', bg: 'bg-emerald-500/8', border: 'border-emerald-500/25',
+    activities: {
+      en: 'Business deals, contract signing, communication, education, writing, accounting, banking, technology, short trips',
+      hi: 'व्यापारिक सौदे, अनुबन्ध, संचार, शिक्षा, लेखन, लेखांकन, बैंकिंग, प्रौद्योगिकी, छोटी यात्रा',
+    },
+  },
+  {
+    planet: { en: 'Jupiter Hora', hi: 'गुरु होरा' }, color: '#facc15', bg: 'bg-yellow-500/8', border: 'border-yellow-500/25',
+    activities: {
+      en: 'Spiritual work, teaching, consulting advisors, charity, legal proceedings, religious ceremonies, financial expansion',
+      hi: 'आध्यात्मिक कार्य, अध्यापन, सलाहकार परामर्श, दान, कानूनी कार्यवाही, धार्मिक अनुष्ठान, वित्त',
+    },
+  },
+  {
+    planet: { en: 'Venus Hora', hi: 'शुक्र होरा' }, color: '#f472b6', bg: 'bg-pink-500/8', border: 'border-pink-500/25',
+    activities: {
+      en: 'Romance, marriage-related, arts and music, buying luxury items, beauty treatments, fashion, jewelry purchase',
+      hi: 'प्रेम-प्रणय, विवाह सम्बन्धित, कला-संगीत, विलासिता वस्तुएँ, सौन्दर्य उपचार, आभूषण',
+    },
+  },
+  {
+    planet: { en: 'Saturn Hora', hi: 'शनि होरा' }, color: '#60a5fa', bg: 'bg-blue-500/8', border: 'border-blue-500/25',
+    activities: {
+      en: 'Completing unfinished work, agriculture, iron/steel, deep meditation, dealing with laborers, mining, oil — AVOID starting new ventures',
+      hi: 'अधूरा कार्य पूरा करें, कृषि, लोहा/इस्पात, गहन ध्यान, श्रमिकों से व्यवहार — नई शुरुआत से बचें',
+    },
+  },
+];
 
 /* ── Main Page ────────────────────────────────────────────────────── */
-export default function HoraPage() {
+export default function HoraChaldeanPage() {
   const locale = useLocale() as Locale;
-  const [dayIdx, setDayIdx] = useState(new Date().getDay()); // 0=Sun
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en;
+  const isHi = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isHi;
+  const headingFont = isDevanagari
+    ? { fontFamily: 'var(--font-devanagari-heading)' }
+    : { fontFamily: 'var(--font-heading)' };
+  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+
+  const t = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 
   return (
-    <main className="min-h-screen px-4 py-12 max-w-4xl mx-auto">
-      {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-4">
-          <Clock className="w-4 h-4 text-indigo-400" />
-          <span className="text-indigo-300 text-sm font-medium">{locale === 'hi' ? 'सन्दर्भ' : locale === 'sa' ? 'सन्दर्भः' : 'Reference'}</span>
+    <main className="min-h-screen px-4 py-12 max-w-4xl mx-auto" style={bodyFont}>
+
+      {/* ═══ Header ═══ */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12"
+      >
+        <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-5">
+          <span className="w-2 h-2 rounded-full bg-indigo-400" />
+          <span className="text-indigo-300 text-sm font-medium">{t(L.badge)}</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-2" style={headingFont}>
           {t(L.title)}
         </h1>
-        <p className="text-text-secondary max-w-2xl mx-auto text-base leading-relaxed">{t(L.subtitle)}</p>
-      </motion.div>
-
-      {/* Section 1: What is a Hora */}
-      <LessonSection number={1} title={t(L.s1Title)}>
-        <p>{t(L.s1p1)}</p>
-        <p>{t(L.s1p2)}</p>
-      </LessonSection>
-
-      {/* Interactive Timeline */}
-      <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6"
-      >
-        <div className="flex justify-center gap-2 flex-wrap mb-4">
-          {DAY_LORDS.map((dl, i) => (
-            <button key={i} onClick={() => setDayIdx(i)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                dayIdx === i
-                  ? 'bg-gold-primary/20 border border-gold-primary/40 text-gold-light'
-                  : 'bg-white/5 border border-white/10 text-text-tertiary hover:bg-white/10'
-              }`}
-            >
-              {t(dl.day)}
-            </button>
-          ))}
-        </div>
-        <HoraTimeline dayIdx={dayIdx} locale={locale} />
-        <p className="text-center text-xs text-text-tertiary mt-2">
-          {locale === 'hi' ? 'क्रम सूर्योदय पर दिन-स्वामी से शुरू, 24 होराएँ' : 'Sequence starts at sunrise with day lord, 24 horas total'}
+        <p className="text-xl text-gold-light/70 mb-4" style={headingFont}>
+          {t(L.titleSub)}
+        </p>
+        <p className="text-text-secondary max-w-3xl mx-auto text-base leading-relaxed">
+          {t(L.intro)}
         </p>
       </motion.div>
 
-      {/* Section 2: The Hora Sequence */}
-      <LessonSection number={2} title={t(L.s2Title)}>
-        <p>{t(L.s2p1)}</p>
-        <p>{t(L.s2p2)}</p>
-        {/* Weekday derivation visual */}
-        <div className="mt-4 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
-          <p className="text-xs text-gold-light/70 mb-2">{locale === 'hi' ? 'प्रत्येक 24वीं होरा → सप्ताह क्रम:' : 'Every 24th hora → weekday order:'}</p>
-          <div className="flex flex-wrap gap-2 items-center">
-            {['sun', 'moon', 'mars', 'mercury', 'jupiter', 'venus', 'saturn'].map((p, i) => {
-              const colorMap: Record<string, string> = { sun: '#f59e0b', moon: '#94a3b8', mars: '#ef4444', mercury: '#4ade80', jupiter: '#facc15', venus: '#f472b6', saturn: '#60a5fa' };
-              const nameMap: Record<string, Record<string, string>> = { sun: { en: 'Sun', hi: 'रवि', sa: 'रविः' }, moon: { en: 'Moon', hi: 'सोम', sa: 'सोमः' }, mars: { en: 'Mars', hi: 'मंगल', sa: 'मङ्गलः' }, mercury: { en: 'Merc', hi: 'बुध', sa: 'बुधः' }, jupiter: { en: 'Jup', hi: 'गुरु', sa: 'गुरुः' }, venus: { en: 'Ven', hi: 'शुक्र', sa: 'शुक्रः' }, saturn: { en: 'Sat', hi: 'शनि', sa: 'शनिः' } };
-              return (
-                <span key={p} className="inline-flex items-center gap-1">
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: colorMap[p] + '30', color: colorMap[p] }}>{i + 1}</span>
-                  <span className="text-xs font-medium" style={{ color: colorMap[p] }}>{nameMap[p][locale]}</span>
-                  {i < 6 && <span className="text-text-tertiary mx-0.5">→</span>}
-                </span>
-              );
-            })}
+      {/* ═══ Section 1: Indian Origin ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            1
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s1Title)}
+          </h2>
+        </div>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s1p1)}</p>
+          <p>{t(L.s1p2)}</p>
+
+          {/* 7 Grahas visual row */}
+          <div className="bg-black/20 border border-gold-primary/10 rounded-xl p-4 my-4">
+            <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
+              {isHi ? 'सात दृश्य ग्रह (सप्तग्रह)' : 'The Seven Visible Grahas (Saptagraha)'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {[
+                { en: 'Sun', hi: 'सूर्य', sa: 'Surya', color: '#f59e0b' },
+                { en: 'Moon', hi: 'चन्द्र', sa: 'Chandra', color: '#94a3b8' },
+                { en: 'Mars', hi: 'मंगल', sa: 'Mangala', color: '#ef4444' },
+                { en: 'Mercury', hi: 'बुध', sa: 'Budha', color: '#4ade80' },
+                { en: 'Jupiter', hi: 'बृहस्पति', sa: 'Brihaspati', color: '#facc15' },
+                { en: 'Venus', hi: 'शुक्र', sa: 'Shukra', color: '#f472b6' },
+                { en: 'Saturn', hi: 'शनि', sa: 'Shani', color: '#60a5fa' },
+              ].map((g, i) => (
+                <div key={i} className="flex flex-col items-center px-3 py-2 rounded-lg border border-white/10 bg-white/3 min-w-[72px] text-center">
+                  <span className="text-sm font-bold" style={{ color: g.color }}>{isHi ? g.hi : g.en}</span>
+                  <span className="text-text-tertiary text-xs mt-0.5">{g.sa}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p>{t(L.s1p3)}</p>
+
+          {/* Navagraha note */}
+          <div className="flex gap-3 p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
+            <div className="flex-shrink-0 w-1 rounded-full bg-purple-400/50" />
+            <div>
+              <p className="text-purple-300 text-xs font-bold uppercase tracking-widest mb-1">
+                {isHi ? 'नवग्रह = सप्त + राहु + केतु' : 'Navagraha = Sapta + Rahu + Ketu'}
+              </p>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                {isHi
+                  ? 'भारतीय नवग्रह पद्धति सात कैल्डियन ग्रहों को राहु और केतु के साथ जोड़ती है — कुल 9 ग्रह। यह विस्तार अन्य किसी प्राचीन संस्कृति में नहीं मिलता।'
+                  : 'The Indian Navagraha system extends the seven Chaldean planets with Rahu and Ketu — totaling 9. This extension is not found in any other ancient astronomical tradition.'}
+              </p>
+            </div>
           </div>
         </div>
-      </LessonSection>
+      </motion.section>
 
-      {/* Section 3: Activities per Hora */}
-      <LessonSection number={3} title={t(L.s3Title)}>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {HORA_PLANETS.map(hp => (
-            <motion.div key={hp.id} whileHover={{ scale: 1.015 }}
-              className={`rounded-xl p-4 border ${hp.border} ${hp.bg} transition-colors`}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                {hp.id === 'sun' && <Sun className="w-4 h-4" style={{ color: hp.color }} />}
-                {hp.id === 'moon' && <Moon className="w-4 h-4" style={{ color: hp.color }} />}
-                {hp.id !== 'sun' && hp.id !== 'moon' && <Clock className="w-4 h-4" style={{ color: hp.color }} />}
-                <h4 className="font-bold text-sm" style={{ color: hp.color }}>{t(hp.name)}</h4>
-              </div>
-              <p className="text-xs text-text-secondary leading-relaxed">{t(hp.activities)}</p>
-            </motion.div>
-          ))}
+      {/* ═══ Section 2: Speed Ranking Table ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            2
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s2Title)}
+          </h2>
         </div>
-      </LessonSection>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s2p1)}</p>
 
-      {/* Section 4: How our app computes */}
-      <LessonSection number={4} title={t(L.s4Title)} variant="formula">
-        <p>{t(L.s4p1)}</p>
-        <div className="mt-3 p-3 rounded-lg bg-bg-primary/80 font-mono text-sm text-gold-light">
-          <code>day_hora_duration = (sunset - sunrise) / 12</code><br />
-          <code>night_hora_duration = (next_sunrise - sunset) / 12</code>
+          {/* Speed table */}
+          <div className="overflow-x-auto mt-4">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-gold-primary/20">
+                  <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'क्रम' : 'Rank'}
+                  </th>
+                  <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'ग्रह' : 'Planet'}
+                  </th>
+                  <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'परिक्रमण काल' : 'Sidereal Period'}
+                  </th>
+                  <th className="text-left py-2.5 px-3 text-gold-dark text-xs uppercase tracking-widest font-bold hidden sm:table-cell">
+                    {isHi ? 'विशेषता' : 'Note'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {SPEED_TABLE.map((row, i) => (
+                  <tr
+                    key={i}
+                    className="border-b border-white/5 hover:bg-white/3 transition-colors"
+                  >
+                    <td className="py-3 px-3">
+                      <div className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-[#0a0e27]"
+                          style={{ backgroundColor: row.color }}
+                        >
+                          {row.rank}
+                        </span>
+                        {row.label.en && (
+                          <span className="text-xs text-text-tertiary hidden lg:inline">
+                            {t(row.label)}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-3 px-3">
+                      <span className="font-bold" style={{ color: row.color }}>
+                        {t(row.planet)}
+                      </span>
+                    </td>
+                    <td className="py-3 px-3 font-mono text-xs text-text-primary">
+                      {t(row.period)}
+                    </td>
+                    <td className="py-3 px-3 text-text-tertiary text-xs hidden sm:table-cell">
+                      {t(row.note)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-4 p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
+            <p className="text-text-secondary text-sm leading-relaxed">{t(L.s2note)}</p>
+          </div>
         </div>
-      </LessonSection>
+      </motion.section>
 
-      {/* Section 5: Hora + Muhurta */}
-      <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
-        <p>{t(L.s5p1)}</p>
-        <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-          {[
-            { label: { en: 'Hora', hi: 'होरा', sa: 'होरा' }, desc: { en: '24 divisions', hi: '24 विभाजन', sa: '24 विभाजनानि' }, num: '24' },
-            { label: { en: 'Muhurta', hi: 'मुहूर्त', sa: 'मुहूर्तः' }, desc: { en: '30 divisions', hi: '30 विभाजन', sa: '30 विभाजनानि' }, num: '30' },
-            { label: { en: 'Choghadiya', hi: 'चौघड़िया', sa: 'चतुर्घटिका' }, desc: { en: '8 divisions', hi: '8 विभाजन', sa: '8 विभाजनानि' }, num: '8' },
-          ].map(d => (
-            <div key={d.num} className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/10">
-              <div className="text-2xl font-bold text-gold-light">{d.num}</div>
-              <p className="text-sm font-semibold text-gold-light mt-1">{t(d.label)}</p>
-              <p className="text-xs text-text-tertiary">{t(d.desc)}</p>
+      {/* ═══ Section 3: How the Hora System Works ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            3
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s3Title)}
+          </h2>
+        </div>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s3p1)}</p>
+          <p>{t(L.s3p2)}</p>
+
+          {/* Chaldean cycle visual */}
+          <div className="bg-black/25 border border-gold-primary/15 rounded-xl p-4 my-2">
+            <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 text-center">
+              {isHi ? 'कैल्डियन चक्र (होरा क्रम)' : 'Chaldean Cycle (Hora Sequence)'}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-1.5">
+              {[
+                { en: 'Saturn', hi: 'शनि', color: '#60a5fa' },
+                { en: 'Jupiter', hi: 'गुरु', color: '#facc15' },
+                { en: 'Mars', hi: 'मंगल', color: '#ef4444' },
+                { en: 'Sun', hi: 'सूर्य', color: '#f59e0b' },
+                { en: 'Venus', hi: 'शुक्र', color: '#f472b6' },
+                { en: 'Mercury', hi: 'बुध', color: '#4ade80' },
+                { en: 'Moon', hi: 'चन्द्र', color: '#94a3b8' },
+              ].map((p, i) => (
+                <span key={i} className="inline-flex items-center gap-1">
+                  <span
+                    className="px-2.5 py-1 rounded-lg text-xs font-bold"
+                    style={{ backgroundColor: p.color + '25', color: p.color, border: `1px solid ${p.color}40` }}
+                  >
+                    {isHi ? p.hi : p.en}
+                  </span>
+                  {i < 6 && <span className="text-text-tertiary text-sm">→</span>}
+                  {i === 6 && <span className="text-text-tertiary text-sm">↺</span>}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
-      </LessonSection>
+            <p className="text-text-tertiary text-xs text-center mt-2">
+              {isHi ? '24 होराएँ = 3 पूर्ण चक्र + 3 अतिरिक्त → अगले दिन का स्वामी' : '24 horas = 3 full cycles + 3 extra → determines next day\'s lord'}
+            </p>
+          </div>
 
-      {/* Related Links */}
-      <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mt-10 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
-        <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-gold-light" />
+          {/* Weekday derivation step-by-step */}
+          <div>
+            <p className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3 mt-4">
+              {t(L.s3weekLabel)}
+            </p>
+            <div className="space-y-2">
+              {WEEKDAY_DERIVATION.map((row, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex flex-wrap items-center gap-2 p-3 rounded-lg bg-white/3 border border-white/6 text-sm"
+                >
+                  <span className="font-bold min-w-[90px]" style={{ color: row.color }}>
+                    {t(row.day)}
+                  </span>
+                  <span className="text-text-tertiary text-xs">
+                    ({isHi ? 'स्वामी:' : 'lord:'}{' '}
+                    <span style={{ color: row.color }}>{t(row.lord)}</span>)
+                  </span>
+                  <span className="text-text-tertiary mx-1">→</span>
+                  <span className="text-text-tertiary text-xs">
+                    {isHi ? '25वीं होरा =' : '25th hora ='}
+                  </span>
+                  <span className="font-bold text-xs" style={{ color: row.nextColor }}>
+                    {t(row.hora25)}
+                  </span>
+                  <span className="text-text-tertiary mx-1">→</span>
+                  <span className="font-bold text-xs" style={{ color: row.nextColor }}>
+                    {t(row.next)}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Highlight callout */}
+          <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/25 mt-4">
+            <p className="text-indigo-200 text-sm leading-relaxed font-medium">
+              {isHi
+                ? 'यह संयोग नहीं है। इन विशेष ग्रह-दिन नियुक्तियों वाला 7-दिवसीय सप्ताह कैल्डियन क्रम पर लागू होरा पद्धति का प्रत्यक्ष गणितीय परिणाम है।'
+                : 'This is NOT a coincidence. The 7-day week with these specific day-planet assignments is a DIRECT mathematical consequence of the hora system applied to the Chaldean order.'}
+            </p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ Section 4: Weekday Names Comparison ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            4
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s4Title)}
+          </h2>
+        </div>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s4p1)}</p>
+
+          {/* Weekday comparison table */}
+          <div className="overflow-x-auto mt-4">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="border-b border-gold-primary/20">
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">#</th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'संस्कृत' : 'Sanskrit'}
+                  </th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'हिन्दी' : 'Hindi'}
+                  </th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden sm:table-cell">
+                    {isHi ? 'अंग्रेज़ी' : 'English'}
+                  </th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden md:table-cell">
+                    {isHi ? 'लैटिन' : 'Latin'}
+                  </th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold">
+                    {isHi ? 'ग्रह' : 'Planet'}
+                  </th>
+                  <th className="text-left py-2.5 px-2 text-gold-dark text-xs uppercase tracking-widest font-bold hidden lg:table-cell">
+                    {isHi ? 'अंग्रेज़ी व्युत्पत्ति' : 'English etymology'}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {WEEKDAYS.map((row, i) => (
+                  <tr key={i} className="border-b border-white/5 hover:bg-white/3 transition-colors">
+                    <td className="py-3 px-2 text-text-tertiary text-xs">{row.num}</td>
+                    <td className="py-3 px-2 text-text-primary font-medium text-xs">{row.sanskrit}</td>
+                    <td className="py-3 px-2 font-bold text-sm" style={{ color: row.color, fontFamily: isDevanagari ? 'var(--font-devanagari-body)' : undefined }}>{row.hi}</td>
+                    <td className="py-3 px-2 text-text-primary text-xs hidden sm:table-cell">{row.en}</td>
+                    <td className="py-3 px-2 text-text-tertiary text-xs italic hidden md:table-cell">{row.latin}</td>
+                    <td className="py-3 px-2">
+                      <span className="font-bold text-xs px-2 py-1 rounded-full" style={{ backgroundColor: row.color + '20', color: row.color }}>
+                        {t(row.planet)}
+                      </span>
+                    </td>
+                    <td className="py-3 px-2 text-text-tertiary text-xs hidden lg:table-cell">{t(row.norse)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p>{t(L.s4p2)}</p>
+
+          <div className="p-4 rounded-xl bg-gold-primary/6 border border-gold-primary/20">
+            <p className="text-gold-light/90 text-sm leading-relaxed">
+              {isHi
+                ? 'संस्कृत नाम सीधे ग्रह नाम + "वार" का उपयोग करते हैं। अंग्रेज़ी नाम नॉर्स/जर्मनिक देवताओं का उपयोग करते हैं जिन्हें उन्हीं ग्रहों से मैप किया गया था। सभी संस्कृतियों में अन्तर्निहित ग्रह नियुक्ति समान है — क्योंकि वे सभी एक ही होरा पद्धति से उत्पन्न हैं।'
+                : 'Sanskrit names directly use the planet name + "vara" (वार = day). English names use Norse/Germanic gods mapped to the same planets. The underlying planetary assignment is identical across all cultures — because they all derive from the same hora system.'}
+            </p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ Section 5: Hora in Practice ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            5
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s5Title)}
+          </h2>
+        </div>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s5p1)}</p>
+
+          <div className="grid gap-3 sm:grid-cols-2 mt-4">
+            {HORA_PRACTICE.map((hp, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.015 }}
+                className={`rounded-xl p-4 border ${hp.border} ${hp.bg} transition-colors`}
+              >
+                <h4 className="font-bold text-sm mb-2" style={{ color: hp.color }}>
+                  {t(hp.planet)}
+                </h4>
+                <p className="text-xs text-text-secondary leading-relaxed">{t(hp.activities)}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 mt-4">
+            <Link
+              href="/vedic-time"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+              {isHi ? 'वैदिक समय उपकरण' : 'Vedic Time Tool'}
+            </Link>
+            <Link
+              href="/muhurta-ai"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+              {isHi ? 'मुहूर्त AI' : 'Muhurta AI Tool'}
+            </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ Section 6: Rahu & Ketu ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="rounded-2xl p-6 sm:p-8 mb-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12"
+      >
+        <div className="flex items-start gap-4 mb-5">
+          <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-gold-light text-sm font-bold">
+            6
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold text-gold-gradient" style={headingFont}>
+            {t(L.s6Title)}
+          </h2>
+        </div>
+        <div className="ml-12 space-y-4 text-text-secondary text-base leading-relaxed">
+          <p>{t(L.s6p1)}</p>
+          <p>{t(L.s6p2)}</p>
+
+          {/* Rahu / Ketu visual cards */}
+          <div className="grid sm:grid-cols-2 gap-4 my-4">
+            <div className="p-4 rounded-xl bg-purple-500/8 border border-purple-500/20">
+              <h4 className="text-purple-300 font-bold text-sm mb-2">
+                {isHi ? 'राहु (Rahu)' : 'Rahu — Ascending Node'}
+              </h4>
+              <p className="text-text-secondary text-xs leading-relaxed">
+                {isHi
+                  ? 'आरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा दक्षिण से उत्तर की ओर क्रान्तिवृत्त को पार करता है। उत्तर नोड। ~18.6 वर्षीय चक्र। राहु काल प्रत्येक दिन होरा अनुक्रम से व्युत्पन्न होता है।'
+                  : 'The ascending lunar node — where the Moon crosses the ecliptic moving northward. The North Node. ~18.6-year cycle. Rahu Kaal each day is derived from the hora sequence.'}
+              </p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-500/8 border border-slate-500/20">
+              <h4 className="text-slate-300 font-bold text-sm mb-2">
+                {isHi ? 'केतु (Ketu)' : 'Ketu — Descending Node'}
+              </h4>
+              <p className="text-text-secondary text-xs leading-relaxed">
+                {isHi
+                  ? 'अवरोही चंद्र पात — वह बिन्दु जहाँ चंद्रमा उत्तर से दक्षिण की ओर क्रान्तिवृत्त को पार करता है। दक्षिण नोड। राहु के ठीक सामने (180° विपरीत)। दोनों सदा विपरीत दिशाओं में होते हैं।'
+                  : 'The descending lunar node — where the Moon crosses the ecliptic moving southward. South Node. Always exactly opposite Rahu (180° apart). Eclipses require the Moon near a node at new/full Moon.'}
+              </p>
+            </div>
+          </div>
+
+          <p>{t(L.s6p3)}</p>
+
+          <div className="flex flex-wrap gap-3 mt-2">
+            <Link
+              href="/learn/eclipses"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-200 text-sm hover:bg-purple-500/20 transition-colors"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+              {isHi ? 'ग्रहण के बारे में जानें' : 'Learn about Eclipses'}
+            </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ Cross-references ═══ */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
+      >
+        <h3 className="text-lg font-bold text-gold-gradient mb-4 flex items-center gap-2" style={headingFont}>
+          <BookOpen className="w-5 h-5 text-gold-light flex-shrink-0" />
           {t(L.related)}
         </h3>
         <div className="flex flex-wrap gap-3">
           {[
-            { href: '/panchang', label: { en: 'Today\'s Panchang', hi: 'आज का पंचांग', sa: 'अद्यपञ्चाङ्गम्' } },
-            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त', sa: 'अध्ययनम्: मुहूर्ताः' } },
-            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', sa: 'मुहूर्तयन्त्रम्' } },
+            { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय' } },
+            { href: '/learn/vara', label: { en: 'Learn: Vara (Weekdays)', hi: 'सीखें: वार' } },
+            { href: '/learn/muhurtas', label: { en: 'Learn: Muhurtas', hi: 'सीखें: मुहूर्त' } },
+            { href: '/learn/eclipses', label: { en: 'Learn: Eclipses', hi: 'सीखें: ग्रहण' } },
+            { href: '/learn/grahas', label: { en: 'Learn: The Nine Grahas', hi: 'सीखें: नवग्रह' } },
+            { href: '/muhurta-ai', label: { en: 'Muhurta AI', hi: 'मुहूर्त AI' } },
           ].map((link) => (
-            <Link key={link.href} href={link.href as '/'} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors">
+            <Link
+              key={link.href}
+              href={link.href as '/'}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20 text-gold-light text-sm hover:bg-gold-primary/20 transition-colors"
+            >
               <ChevronRight className="w-3.5 h-3.5" />
               {t(link.label)}
             </Link>
           ))}
         </div>
       </motion.div>
+
     </main>
   );
 }

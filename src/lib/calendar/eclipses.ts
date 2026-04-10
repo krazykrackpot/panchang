@@ -29,7 +29,7 @@
  * and penumbral shadow radius (~1.28°) at Moon's distance.
  */
 
-import { getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg, dateToJD } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg, dateToJD, toSidereal } from '@/lib/ephem/astronomical';
 import { buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from './tithi-table';
 import { getEclipsesForYear } from './eclipse-data';
 import type { Trilingual } from '@/types/panchang';
@@ -43,6 +43,7 @@ export interface EclipseEvent {
   description: Trilingual;
   node: 'rahu' | 'ketu';     // Which node the eclipse occurs at
   nodeName: Trilingual;       // Localized node name
+  eclipseLongitude: number;   // Sidereal longitude of the eclipse point (Sun for solar, Moon for lunar)
 }
 
 const ECLIPSE_TYPE_NAMES = {
@@ -135,6 +136,7 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         magnitudeName: MAG_NAMES[magnitude],
         node,
         nodeName: NODE_NAMES[node],
+        eclipseLongitude: toSidereal(sunL, jd), // Sidereal Sun longitude at eclipse
         description: {
           en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse at ${nodeLabel} — Sun and Moon conjoin at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
           hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण ${nodeLabelHi} पर — सूर्य और चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर युति करते हैं।`,
@@ -198,6 +200,7 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         magnitudeName: MAG_NAMES[magnitude],
         node,
         nodeName: NODE_NAMES[node],
+        eclipseLongitude: toSidereal(moonLon, jd), // Sidereal Moon longitude at eclipse
         description: {
           en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse at ${nodeLabel} — Full Moon passes through Earth's shadow at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
           hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण ${nodeLabelHi} पर — पूर्णिमा का चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर पृथ्वी की छाया से गुजरता है।`,
@@ -263,6 +266,7 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
           magnitudeName: MAG_NAMES[mag] || MAG_NAMES.partial,
           node: tNode,
           nodeName: NODE_NAMES[tNode],
+          eclipseLongitude: toSidereal(tBodyLon, tJd),
           description: t.kind === 'solar' ? {
             en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Solar Eclipse at ${tNode === 'rahu' ? 'Rahu (☊)' : 'Ketu (☋)'}.`,
             hi: `${MAG_NAMES[mag]?.hi || mag} सूर्य ग्रहण ${tNode === 'rahu' ? 'राहु (☊)' : 'केतु (☋)'} पर।`,

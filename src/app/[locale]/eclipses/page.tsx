@@ -10,6 +10,7 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
+import PersonalEclipseInsight from '@/components/eclipses/PersonalEclipseInsight';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
@@ -20,6 +21,7 @@ interface EclipseEvent {
   description: { en: string; hi: string; sa: string };
   node?: 'rahu' | 'ketu';
   nodeName?: { en: string; hi: string; sa: string };
+  eclipseLongitude?: number;
   local?: LocalEclipseResult;
 }
 
@@ -344,6 +346,17 @@ export default function EclipsesPage() {
                         {/* Node implications from classical texts */}
                         {eclipse.node && (
                           <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
+                        )}
+
+                        {/* Personalized analysis from user's kundali */}
+                        {eclipse.node && eclipse.eclipseLongitude != null && (
+                          <PersonalEclipseInsight
+                            eclipseDate={eclipse.date}
+                            eclipseType={eclipse.type}
+                            eclipseNode={eclipse.node}
+                            eclipseLongitude={eclipse.eclipseLongitude}
+                            locale={locale}
+                          />
                         )}
 
                         {local && isVisible && (

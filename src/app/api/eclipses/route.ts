@@ -1,10 +1,71 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateEclipseCalendar } from '@/lib/calendar/eclipses';
+import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
+import { getEclipsesForYear } from '@/lib/calendar/eclipse-data';
+import { computeLocalEclipse, type LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
+
+interface EnrichedEclipse extends EclipseEvent {
+  local?: LocalEclipseResult;
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const year = parseInt(searchParams.get('year') || String(new Date().getFullYear()));
-  const eclipses = generateEclipseCalendar(year);
+  const lat = searchParams.get('lat') ? parseFloat(searchParams.get('lat')!) : null;
+  const lng = searchParams.get('lng') ? parseFloat(searchParams.get('lng')!) : null;
+  const tz = searchParams.get('tz')?.trim() || null;
+
+  // Get base eclipse list from existing engine (detects eclipses dynamically)
+  const baseEclipses = generateEclipseCalendar(year);
+
+  // Get pre-computed table data for this year
+  const tableData = getEclipsesForYear(year);
+
+  // Enrich each eclipse with local circumstances if location provided
+  const eclipses: EnrichedEclipse[] = baseEclipses.map(eclipse => {
+    // Find matching table entry by date
+    const tableEntry = tableData.find(t => t.date === eclipse.date);
+
+    if (tableEntry && lat !== null && lng !== null && tz) {
+      const local = computeLocalEclipse(tableEntry, lat, lng, tz);
+      return { ...eclipse, local };
+    }
+
+    // No table entry or no location — return base data with table metadata
+    if (tableEntry) {
+      return {
+        ...eclipse,
+        local: {
+          date: eclipse.date,
+          type: eclipse.type,
+          subtype: tableEntry.kind === 'lunar' ? tableEntry.type : tableEntry.type === 'hybrid' ? 'total' : tableEntry.type,
+          visible: true, // Unknown without location
+          visibilityNote: 'Provide location for local details',
+          eclipseStart: null,
+          partialStart: null,
+          maximum: tableEntry.kind === 'lunar' ? tableEntry.max : tableEntry.maxUtc.slice(0, 5),
+          partialEnd: null,
+          eclipseEnd: null,
+          endsAtSunset: false,
+          endsAtMoonset: false,
+          maxMagnitude: tableEntry.magnitude,
+          magnitudeAtSunset: null,
+          durationMinutes: 0,
+          durationFormatted: '',
+          sutakApplicable: false,
+          sutakStart: null,
+          sutakEnd: null,
+          sutakVulnerableStart: null,
+          saros: tableEntry.saros,
+          gamma: tableEntry.gamma,
+          sunrise: null,
+          sunset: null,
+        } satisfies LocalEclipseResult,
+      };
+    }
+
+    return eclipse;
+  });
+
   return NextResponse.json({ year, eclipses }, {
     headers: { 'Cache-Control': 'public, s-maxage=3600' },
   });

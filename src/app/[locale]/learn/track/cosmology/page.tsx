@@ -129,7 +129,7 @@ const SECTIONS: Section[] = [
 const L = {
   en: {
     badge: 'Track 1',
-    title: 'Hindu Cosmology & Foundations',
+    title: 'Hindu Cosmology & Mathematics',
     sub: 'The universe, time, planets, stars, and the mathematical framework of Jyotish',
     startHere: 'Start Here',
     modules: 'modules',

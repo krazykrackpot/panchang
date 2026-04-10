@@ -57,7 +57,7 @@ export default function LearnPage() {
       border: 'border-gold-primary/12 hover:border-gold-primary/35',
       glow: 'hover:shadow-gold-primary/10',
       iconColor: 'text-[#f0d48a]',
-      title: { en: 'Hindu Cosmology & Foundations', hi: 'हिन्दू ब्रह्माण्ड विज्ञान एवं आधार', sa: 'हिन्दूब्रह्माण्डविज्ञानम् आधाराश्च' },
+      title: { en: 'Hindu Cosmology & Mathematics', hi: 'हिन्दू ब्रह्माण्ड विज्ञान एवं गणित', sa: 'हिन्दूब्रह्माण्डविज्ञानं गणितं च' },
       subtitle: { en: 'The universe, time, planets, stars, and the mathematical framework', hi: 'ब्रह्माण्ड, समय, ग्रह, तारे और गणितीय ढाँचा', sa: 'ब्रह्माण्डं कालः ग्रहाः ताराः गणितीयढाञ्चश्च' },
       stats: { en: '26 modules · 13 references', hi: '26 मॉड्यूल · 13 संदर्भ', sa: '26 मॉड्यूलाः · 13 सन्दर्भाः' },
       topics: { en: 'Cosmic time scales · Navagraha · 12 Rashis · 27 Nakshatras · Ayanamsha · Precession · Eclipses · Classical texts', hi: 'ब्रह्माण्डीय समय · नवग्रह · 12 राशि · 27 नक्षत्र · अयनांश · पुरस्सरण · ग्रहण · शास्त्रीय ग्रन्थ', sa: 'ब्रह्माण्डीयकालः · नवग्रहाः · 12 राशयः · 27 नक्षत्राणि · अयनांशः · ग्रहणम्' },
@@ -99,7 +99,7 @@ export default function LearnPage() {
 
   // Reference library grouped by track
   const REF_GROUPS = [
-    { label: { en: 'Cosmology & Foundations', hi: 'ब्रह्माण्ड एवं आधार', sa: 'ब्रह्माण्डम् आधाराश्च' }, refs: [
+    { label: { en: 'Cosmology & Mathematics', hi: 'ब्रह्माण्ड एवं गणित', sa: 'ब्रह्माण्डं गणितं च' }, refs: [
       { name: { en: 'Cosmology', hi: 'ब्रह्माण्ड', sa: 'ब्रह्माण्डम्' }, href: '/learn/cosmology' },
       { name: { en: 'Grahas', hi: 'ग्रह', sa: 'ग्रहाः' }, href: '/learn/grahas' },
       { name: { en: 'Rashis', hi: 'राशियाँ', sa: 'राशयः' }, href: '/learn/rashis' },

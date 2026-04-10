@@ -587,6 +587,11 @@ export const PAGE_META: Record<string, PageMeta> = {
     description: { en: 'Learn how to choose auspicious Muhurtas for marriage, travel, business, and ceremonies. Tithi, Nakshatra, Vara, and Yoga combinations explained.', hi: 'विवाह, यात्रा, व्यापार और उत्सवों के लिए शुभ मुहूर्त कैसे चुनें।', sa: 'विवाहयात्राव्यापारोत्सवेभ्यः शुभमुहूर्तचयनम्।' },
     keywords: ['muhurta', 'auspicious timing', 'shubh muhurat', 'vedic timing'],
   },
+  '/learn/eclipses': {
+    title: { en: 'Grahan — Eclipses in Vedic Astrology', hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण', sa: 'ग्रहणम् — वैदिकज्योतिषे सूर्यचन्द्रग्रहणम्' },
+    description: { en: 'Complete guide to solar and lunar eclipses in Jyotish — the Rahu-Ketu mythology, how eclipses are calculated, eclipse types, Sutak rules, and eclipse effects in your Kundali.', hi: 'ज्योतिष में सूर्य और चन्द्र ग्रहणों की सम्पूर्ण मार्गदर्शिका — राहु-केतु पौराणिक कथा, गणना, प्रकार, सूतक नियम और कुण्डली में प्रभाव।', sa: 'ज्योतिषे सूर्यचन्द्रग्रहणानाम् सम्पूर्णः मार्गदर्शिका।' },
+    keywords: ['grahan vedic astrology', 'solar eclipse jyotish', 'lunar eclipse sutak', 'rahu ketu eclipse', 'eclipse kundali'],
+  },
   '/learn/kundali': {
     title: { en: 'Reading a Kundali — Vedic Birth Chart Interpretation', hi: 'कुण्डली पढ़ना — वैदिक जन्म कुण्डली व्याख्या', sa: 'कुण्डलीपठनम् — वैदिकजन्मकुण्डलीव्याख्या' },
     description: { en: 'Step-by-step guide to reading a Vedic birth chart (Kundali): houses, planets, signs, aspects, dashas, and yogas. From beginner to advanced interpretation.', hi: 'वैदिक जन्म कुण्डली पढ़ने की चरणबद्ध मार्गदर्शिका — भाव, ग्रह, राशि, दशा और योग।', sa: 'वैदिकजन्मकुण्डलीपठनस्य क्रमबद्धमार्गदर्शिका।' },

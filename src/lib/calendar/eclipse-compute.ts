@@ -328,8 +328,9 @@ function interpolateFromCities(
   withDist.sort((a, b) => a.dist - b.dist);
   const nearest = withDist.slice(0, 3);
 
-  // If closest city is within 50km, use it directly
-  if (nearest[0].dist < 50) {
+  // If closest city is within 200km, use it directly — shadow geometry
+  // barely changes over this distance (~2-3 min contact time difference)
+  if (nearest[0].dist < 200) {
     const city = nearest[0];
     const c1Utc = parseUtcTime(city.c1);
     const maxUtc = parseUtcTime(city.max);
@@ -344,8 +345,8 @@ function interpolateFromCities(
     };
   }
 
-  // Inverse-distance weighted interpolation
-  const weights = nearest.map(c => 1 / Math.max(c.dist, 1));
+  // Inverse-distance-squared weighted interpolation (heavily favors nearest city)
+  const weights = nearest.map(c => 1 / Math.max(c.dist * c.dist, 1));
   const totalWeight = weights.reduce((a, b) => a + b, 0);
 
   let c1Sum = 0, maxSum = 0, c4Sum = 0, magSum = 0;
@@ -390,16 +391,18 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
       const localSubtype: 'total' | 'annular' | 'partial' | 'hybrid' =
         interp.magnitude >= eclipse.magnitude && eclipse.type !== 'partial' ? eclipse.type : 'partial';
 
-      // Duration: from interpolated times, but ensure minimum based on magnitude
-      // A magnitude-0.05 eclipse lasts ~15-20min; magnitude-1.0 lasts ~150-180min
-      const rawDuration = ((interp.endsAtSunset ? sunset : interp.c4Local) - interp.c1Local) * 60;
-      const minDuration = interp.magnitude * 180; // rough floor: magnitude × 3 hours
-      const durationMinutes = Math.max(rawDuration, minDuration);
+      // Duration from interpolated contact times
+      const effectiveEnd = interp.endsAtSunset ? sunset : interp.c4Local;
+      const rawDuration = (effectiveEnd - interp.c1Local) * 60;
 
-      // If interpolated times are too close, recalculate c1/c4 from max ± half duration
+      // For very low magnitude eclipses (< 0.15) at the edge of the shadow,
+      // interpolation can give near-zero duration. Apply a minimum floor only then.
       let c1Display = interp.c1Local;
-      let c4Display = interp.endsAtSunset ? sunset : interp.c4Local;
-      if (rawDuration < minDuration && interp.maxLocal) {
+      let c4Display = effectiveEnd;
+      let durationMinutes = Math.max(0, rawDuration);
+      if (interp.magnitude < 0.15 && rawDuration < 10) {
+        const minDur = interp.magnitude * 180;
+        durationMinutes = Math.max(rawDuration, minDur);
         const halfDurH = (durationMinutes / 2) / 60;
         c1Display = interp.maxLocal - halfDurH;
         c4Display = interp.endsAtSunset ? sunset : interp.maxLocal + halfDurH;

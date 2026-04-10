@@ -343,12 +343,7 @@ export default function EclipsesPage() {
                           )}
                         </div>
 
-                        {/* Node implications from classical texts */}
-                        {eclipse.node && (
-                          <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
-                        )}
-
-                        {/* Personalized analysis from user's kundali */}
+                        {/* Personalized analysis from user's kundali — shown first */}
                         {eclipse.node && eclipse.eclipseLongitude != null && (
                           <PersonalEclipseInsight
                             eclipseDate={eclipse.date}
@@ -357,6 +352,11 @@ export default function EclipsesPage() {
                             eclipseLongitude={eclipse.eclipseLongitude}
                             locale={locale}
                           />
+                        )}
+
+                        {/* Node implications from classical texts */}
+                        {eclipse.node && (
+                          <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
                         )}
 
                         {local && isVisible && (

@@ -3,9 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Clock, Shield, Eye, EyeOff, Sun, Moon } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Clock, Shield, Eye, EyeOff, Sun, Moon, X } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
+import LocationSearch from '@/components/ui/LocationSearch';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
@@ -31,6 +32,16 @@ export default function EclipsesPage() {
   const [eclipses, setEclipses] = useState<EclipseEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [showLocationSearch, setShowLocationSearch] = useState(false);
+
+  // Override location — when set, overrides the auto-detected location
+  const [overrideLoc, setOverrideLoc] = useState<{ name: string; lat: number; lng: number; timezone: string } | null>(null);
+
+  // Effective location: override > auto-detected
+  const effectiveLat = overrideLoc?.lat ?? locationStore.lat;
+  const effectiveLng = overrideLoc?.lng ?? locationStore.lng;
+  const effectiveTz = overrideLoc?.timezone ?? locationStore.timezone;
+  const effectiveName = overrideLoc?.name ?? locationStore.name;
 
   // Auto-detect location
   useEffect(() => {
@@ -43,10 +54,10 @@ export default function EclipsesPage() {
   useEffect(() => {
     setLoading(true);
     const params = new URLSearchParams({ year: String(year) });
-    if (locationStore.lat != null && locationStore.lng != null && locationStore.timezone) {
-      params.set('lat', String(locationStore.lat));
-      params.set('lng', String(locationStore.lng));
-      params.set('tz', locationStore.timezone);
+    if (effectiveLat != null && effectiveLng != null && effectiveTz) {
+      params.set('lat', String(effectiveLat));
+      params.set('lng', String(effectiveLng));
+      params.set('tz', effectiveTz);
     }
     fetch(`/api/eclipses?${params}`)
       .then(r => r.json())
@@ -55,7 +66,7 @@ export default function EclipsesPage() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [year, locationStore.lat, locationStore.lng, locationStore.timezone]);
+  }, [year, effectiveLat, effectiveLng, effectiveTz]);
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
@@ -78,13 +89,40 @@ export default function EclipsesPage() {
             ? 'सूर्य एवं चन्द्र ग्रहण — स्थानीय समय, सूतक काल और दृश्यता सहित'
             : 'Solar and Lunar eclipses with local timings, Sutak periods, and visibility'}
         </p>
-        {/* Location indicator */}
-        {locationStore.name && (
-          <div className="flex items-center justify-center gap-1.5 mt-3 text-text-secondary/60 text-sm">
+        {/* Location selector */}
+        <div className="mt-4 flex flex-col items-center gap-2">
+          <div className="flex items-center gap-2">
             <MapPin className="w-3.5 h-3.5 text-gold-primary" />
-            <span>{locationStore.name}</span>
+            <span className="text-text-secondary text-sm">{effectiveName || (isHi ? 'स्थान का पता लगा रहे हैं...' : 'Detecting location...')}</span>
+            {overrideLoc && (
+              <button
+                onClick={() => { setOverrideLoc(null); setShowLocationSearch(false); }}
+                className="p-0.5 rounded-full hover:bg-gold-primary/10 text-text-secondary/50 hover:text-gold-light transition-colors"
+                title={isHi ? 'अपना स्थान पुनः उपयोग करें' : 'Reset to my location'}
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+            <button
+              onClick={() => setShowLocationSearch(!showLocationSearch)}
+              className="text-gold-primary hover:text-gold-light text-xs border border-gold-primary/15 px-2 py-0.5 rounded hover:bg-gold-primary/10 transition-all"
+            >
+              {isHi ? 'बदलें' : 'Change'}
+            </button>
           </div>
-        )}
+          {showLocationSearch && (
+            <motion.div initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-sm">
+              <LocationSearch
+                value=""
+                onSelect={(loc) => {
+                  setOverrideLoc({ name: loc.name, lat: loc.lat, lng: loc.lng, timezone: loc.timezone });
+                  setShowLocationSearch(false);
+                }}
+                placeholder={isHi ? 'शहर खोजें...' : 'Search any city...'}
+              />
+            </motion.div>
+          )}
+        </div>
       </motion.div>
 
       {/* Year selector */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,7 +28,6 @@ import { trackKundaliGenerated, trackTabViewed } from '@/lib/analytics';
 import type { TippanniContent, PlanetInsight } from '@/lib/kundali/tippanni-types';
 import type { MahadashaOverview, AntardashaSynthesis, PratyantardashaSynthesis, PeriodAssessment } from '@/lib/tippanni/dasha-synthesis-types';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
-import TransitRadar from '@/components/kundali/TransitRadar';
 import type { KundaliData, BirthData, ChartStyle, PlanetPosition, AshtakavargaData, DivisionalChart, GrahaDetail, UpagrahaPosition } from '@/types/kundali';
 import type { ShadBalaComplete } from '@/lib/kundali/shadbala';
 import type { BhavaBalaResult } from '@/lib/kundali/bhavabala';
@@ -37,18 +36,76 @@ import type { Locale } from '@/types/panchang';
 import type { SadeSatiAnalysis, NakshatraTransitEntry } from '@/lib/kundali/sade-sati-analysis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { useBirthDataStore } from '@/stores/birth-data-store';
-import ChartChatTab from '@/components/kundali/ChartChatTab';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
 import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation, JaiminiInterpretation } from '@/components/kundali/InterpretationHelpers';
 import { hasRashiDrishti, getMutualRashiDrishti } from '@/lib/jaimini/rashi-drishti';
-import LifeTimeline from '@/components/kundali/LifeTimeline';
+
+// Lazy-loaded components for non-critical tabs
+const TransitRadar = lazy(() => import('@/components/kundali/TransitRadar'));
+const ChartChatTab = lazy(() => import('@/components/kundali/ChartChatTab'));
+const LifeTimeline = lazy(() => import('@/components/kundali/LifeTimeline'));
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {
   0: '#e67e22', 1: '#ecf0f1', 2: '#e74c3c', 3: '#2ecc71',
   4: '#f39c12', 5: '#e8e6e3', 6: '#3498db', 7: '#8e44ad', 8: '#95a5a6',
+};
+
+// Extracted to module level to avoid recreation on every render
+const HOUSE_THEMES: Record<number, { en: string; hi: string }> = {
+  1: { en: 'Self, body, health, personality', hi: 'आत्म, शरीर, स्वास्थ्य' },
+  2: { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी' },
+  3: { en: 'Courage, siblings, short travel', hi: 'साहस, भाई-बहन, लघु यात्रा' },
+  4: { en: 'Home, mother, property, comfort', hi: 'घर, माता, सम्पत्ति, सुख' },
+  5: { en: 'Children, education, creativity', hi: 'सन्तान, शिक्षा, रचनात्मकता' },
+  6: { en: 'Enemies, health issues, service', hi: 'शत्रु, स्वास्थ्य, सेवा' },
+  7: { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
+  8: { en: 'Transformation, longevity, occult', hi: 'परिवर्तन, दीर्घायु, गुप्त विद्या' },
+  9: { en: 'Fortune, father, dharma, guru', hi: 'भाग्य, पिता, धर्म, गुरु' },
+  10: { en: 'Career, status, authority', hi: 'कैरियर, प्रतिष्ठा, अधिकार' },
+  11: { en: 'Gains, income, friends, wishes', hi: 'लाभ, आय, मित्र, इच्छाएँ' },
+  12: { en: 'Expenses, liberation, foreign', hi: 'व्यय, मोक्ष, विदेश' },
+};
+
+const NARAYANA_SIGN_PROFILES: Record<number, { en: string; hi: string }> = {
+  1:  { en: 'Aries Dasha — dynamic, pioneering period. New ventures launch; courage is tested. Competitive environments, conflicts, and breakthroughs in tandem. Events come suddenly; decisions must be made swiftly. Body, head, and Mars-ruled matters are activated. If Mars is well-placed, decisive victories; if afflicted, accidents or surgeries are possible.', hi: 'मेष दशा — गतिशील, अग्रणी काल। नए उद्यम प्रारंभ; साहस की परीक्षा। प्रतिस्पर्धा, संघर्ष और सफलता साथ-साथ। घटनाएं अचानक; त्वरित निर्णय आवश्यक। यदि मंगल बलवान हो तो विजय; पीड़ित हो तो दुर्घ���ना संभव।' },
+  2:  { en: 'Taurus Dasha — stable, accumulative period. Financial matters dominate; property, land, and fixed assets are acquired or transacted. Marriage and partnerships come into focus. Pleasures and comforts increase. Progress is slow but steady; patience is rewarded with lasting prosperity. Venus-ruled arts and aesthetic pursuits flourish.', hi: 'वृष दशा — स्थिर, संचयशील काल। वित्तीय मामले प्रमुख; सम्पत्ति, भूमि अर्जित या हस्तांतरित। विवाह और साझेदारियां केंद्र में। सुख-सुविधाएं बढ़ती हैं। धीमी किन्तु स्थिर प्रगति; धैर्य से स्थायी समृद्धि।' },
+  3:  { en: 'Gemini Dasha — intellectual, communicative period. Education, writing, and short journeys multiply. Siblings play a significant role. Two paths or dual involvements are common. Business dealings and negotiations succeed. The mind is sharp and restless — channelled well, it achieves brilliance; scattered, it produces anxiety.', hi: 'मिथुन दशा — बौद्धिक, ���ंचार-प्रधान काल। शिक्षा, लेखन और लघु यात्राएं बढ़ती हैं। भाई-बहनों की भूमिका महत्वपूर्ण। दोहरी राहें सामान्य। व्यापार और वार्ता में सफलता। मन तीव्र और बेचैन — सुनिर्देशित हो तो प्रतिभाशाली।' },
+  4:  { en: 'Cancer Dasha — domestic, emotional period. Home, mother, and property matters dominate. Residential changes or renovations are common. Emotional sensitivity peaks — intuition is strong. Real estate deals are favourable. Mother\'s health may require attention. Psychic experiences and vivid dreams are possible.', hi: 'कर्क दशा — गृह, भावनात्मक काल। घर, माता और सम्पत्ति मामले प्रमुख। आवासीय परिवर्तन सामान्य। भावनात्मक संवेदनशीलता शिखर पर। अचल सम्पत्ति अनुकूल। माता का स्वास्थ्य ध्यान योग्य। अतींद्रिय अनुभव संभव।' },
+  5:  { en: 'Leo Dasha — authoritative, prestigious period. Career advancement and social recognition are prominent. Father\'s influence is strong. Dealings with government or authority figures feature. Children may be a central theme. Creative expression and leadership roles come naturally. Pride and dignity are tested — humility prevents falls.', hi: 'सिंह दशा — अधिकार, प्रतिष्ठा काल। कैरियर उन्नति और सामाजिक मान्यता प्रमुख। पिता का प्रभाव बलवान। सरकार या अधिकारियों से व्यवहार। संतान केंद्रीय विषय। रचनात्मक अभिव्यक्ति स्वाभाविक। अहंकार की परीक्षा — विनम्रता आवश्यक।' },
+  6:  { en: 'Virgo Dasha — service, health-focused period. Work routines and employment matters are central. Health issues may arise and be resolved. Enemies or disputes surface — detailed attention to contracts and agreements is crucial. Debts are settled. Service-oriented activities succeed. The native works harder than usual, with tangible rewards.', hi: 'कन्या दशा — सेवा, स्वास्थ्य-केंद्रित काल। कार्य दिनचर्या और रोजगार मामले केंद्रीय। स्वास्थ्य समस्याएं उठ सकती और सुलझ सकती हैं। शत्रु या विवाद उभरते हैं। ऋण चुकाए जाते हैं। सेवा-कार्य सफल होते हैं।' },
+  7:  { en: 'Libra Dasha — partnership, justice-seeking period. Marriage, business partnerships, and legal agreements dominate. Travel is prominent. Balance and fairness are sought in all dealings. Collaborative ventures succeed; solo efforts struggle. Venus-ruled pleasures abound. Legal settlements or court matters may conclude.', hi: 'तुला दशा — साझेदारी, न्याय-साधना काल। विवाह, व्यापारिक साझेदारी और कानूनी समझौते प्रमुख। यात्रा महत्वपूर्ण। सहयोगी उद्यम सफल। वीनस-प्रभावित सुख प्रचुर। कानूनी निपटान संभव।' },
+  8:  { en: 'Scorpio Dasha — transformative, crisis-prone period. Hidden matters surface; secrets are revealed. Inheritance, insurance, or joint finances may be involved. Accidents, surgeries, or near-death experiences are possible if 8th lord is afflicted. Occult research and spiritual depth are favoured. Profound inner transformation accompanies outer disruption.', hi: 'वृश्चिक दशा — परिवर्तनकारी, संकट-सम्भावित काल। छिपे विषय उजागर; रहस्य प्रकट। विरासत, बीमा या संयुक्त वित्त जुड़ा। दुर्घटना या शल्य संभव। आध्यात���मिक गहराई अनुकूल। बाहरी उथल-पुथल के साथ गहरा आंतरिक परिवर्तन।' },
+  9:  { en: 'Sagittarius Dasha — expansive, dharmic period. Higher education, philosophy, and long-distance travel feature prominently. Father\'s health and teacher/guru influence are strong. Religious activities, foreign journeys, and charitable work flourish. Optimism expands; fortune smiles. The native reaches beyond familiar boundaries and grows.', hi: 'धनु दशा — विस्तारशील, धार्मिक काल। उच्च शिक्षा, दर्शन और दूर यात्राएं प्रमुख। पिता का स्वास्थ्य और गुरु का प्रभाव बलवान। धार्मिक कार्य, विदेश यात्रा फलती है। आशावाद बढ़ता है। परिचित सीमाओं से परे जाना।' },
+  10: { en: 'Capricorn Dasha — career-peak, ambition-activated period. Professional life demands maximum effort and delivers maximum reward when Saturn is strong. Government dealings, structured work, and long-term projects bear fruit. Property gains are possible. Discipline and perseverance are the keys — karmic lessons from past effort arrive as results.', hi: 'मकर दशा — कैरियर शिखर, महत्वाकांक्षा-सक्रिय काल। व्यावसायिक जी���न अधिकतम प्रयास मांगता और देता है। सरकारी कार्य, दीर्घकालिक परियोजनाएं फलती हैं। अनुशासन और अध्यवसाय मुख्य कुंजी।' },
+  11: { en: 'Aquarius Dasha — social, gain-oriented period. Community involvement, friendship networks, and collective causes are activated. Gains from groups, elder siblings, and unexpected sources arrive. Unconventional events and sudden opportunities appear. Technology and innovation benefit the native. Ambitions find fulfilment through social means.', hi: '��ुंभ दशा — सामाजिक, लाभ-उन्मुख काल। समुदाय, मित्र नेटवर्क और सामूहिक कारण सक्रि��। समूहों से लाभ। अप्रत्याशित घटनाएं और अवसर। प्रौद्योगिकी और नवाचार लाभकारी। सामाजिक साधनों से महत्वाकांक्षा पूरी।' },
+  12: { en: 'Pisces Dasha — spiritual, introspective period. Foreign travel, ashrams, hospitals, and retreats feature. Intuition and psychic gifts peak. Hidden losses are possible but offset by spiritual gains. Charitable work and service to the suffering are favoured. The soul turns inward — those who embrace this find liberation; those who resist find confusion.', hi: 'मीन दशा — आध्यात्मिक, आत्मनिरीक्षण काल। विदेश, आश्रम, अस्पताल और एकांत प्रमुख। अंतर्ज्ञान शिखर पर। छिपे नुकसान संभव। दान और पीड़ितों की सेवा अनुकूल। आत्मा अंतर्मुखी होती है — जो स्वीकारते हैं उन्हें मुक्ति, जो विरोध करते हैं उन्हें भ्रम।' },
+};
+
+const GANDA_MULA_DATA: Record<number, { type: { en: string; hi: string }; affected: { en: string; hi: string }; procedure: { en: string; hi: string } }> = {
+  1:  { type: { en: 'Ketu-ruled (Ashwini)', hi: 'केतु-शासित (अश्विनी)' }, affected: { en: 'Father', hi: 'पिता' }, procedure: { en: 'Shanti puja on 27th day', hi: '27वें दिन शांति पूजा' } },
+  10: { type: { en: 'Ketu-ruled (Magha)', hi: 'केतु-शासित (मघा)' }, affected: { en: 'Father', hi: 'पिता' }, procedure: { en: 'Shanti puja on 27th day', hi: '27वें दिन शांति पूजा' } },
+  19: { type: { en: 'Ketu-ruled (Moola)', hi: 'केतु-शासित (मूल)' }, affected: { en: 'Father-in-law', hi: 'ससुर' }, procedure: { en: 'Most intense Ganda Mula. Shanti havan recommended within 27 days.', hi: 'सबसे तीव्र गण्ड मूल। 27 दिनों के भीतर शांति हवन अनुशंसित।' } },
+  9:  { type: { en: 'Mercury-ruled (Ashlesha)', hi: 'बुध-शासित (आश्लेषा)' }, affected: { en: 'Mother-in-law', hi: 'सास' }, procedure: { en: 'Shanti puja on 27th day', hi: '27वें दिन शांति पूजा' } },
+  18: { type: { en: 'Mercury-ruled (Jyeshtha)', hi: 'बुध-शासित (ज्येष्ठा)' }, affected: { en: 'Elder brother', hi: 'बड़ा भाई' }, procedure: { en: 'Shanti puja on 27th day', hi: '27वें दिन शांति पूजा' } },
+  27: { type: { en: 'Mercury-ruled (Revati)', hi: 'बुध-शासित (रेवती)' }, affected: { en: 'Mother', hi: 'माता' }, procedure: { en: 'Generally mild; simple Ganesha puja suffices.', hi: 'सामान्यतः सौम्य; साधारण गणेश पूजा पर्याप्त।' } },
+};
+
+const PLANET_COLORS_SPHUTA: Record<number, string> = {
+  0: 'text-amber-400', 1: 'text-slate-300', 2: 'text-red-400', 3: 'text-emerald-400',
+  4: 'text-yellow-300', 5: 'text-pink-300', 6: 'text-blue-400', 7: 'text-purple-400', 8: 'text-gray-400',
+};
+
+const SIGN_ELEMENTS: Record<number, string> = {
+  1: 'Fire', 2: 'Earth', 3: 'Air', 4: 'Water', 5: 'Fire', 6: 'Earth',
+  7: 'Air', 8: 'Water', 9: 'Fire', 10: 'Earth', 11: 'Air', 12: 'Water',
+};
+
+const SIGN_ELEMENTS_HI: Record<number, string> = {
+  1: 'अग्नि', 2: 'पृथ्वी', 3: 'वायु', 4: 'जल', 5: 'अग्नि', 6: 'पृथ्वी',
+  7: 'वायु', 8: 'जल', 9: 'अग्नि', 10: 'पृथ्वी', 11: 'वायु', 12: 'जल',
 };
 
 function HouseDetailPanel({
@@ -602,14 +659,6 @@ export default function KundaliPage() {
           {(() => {
             const moonP = kundali.planets.find(p => p.planet.id === 1);
             // 6 Ganda Mula nakshatras: 1=Ashwini, 9=Ashlesha, 10=Magha, 18=Jyestha, 19=Moola, 27=Revati
-            const GANDA_MULA_DATA: Record<number, { type: { en: string; hi: string }; affected: { en: string; hi: string }; procedure: { en: string; hi: string } }> = {
-              1:  { type: { en: 'Ashwini — Adi Ganda Mula', hi: 'अश्विनी — आदि गण्ड मूल' }, affected: { en: 'Father (Ketu rules Ashwini)', hi: 'पिता (केतु शासित अश्विनी)' }, procedure: { en: 'Ganda Mula Shanti on the 27th day after birth, then annually on the child\'s birth nakshatra. 27 Navagraha Homa recommended.', hi: 'जन्म के 27वें दिन शान्ति, फिर वार्षिक जन्म नक्षत्र पर। 27 नवग्रह होम अनुशंसित।' } },
-              9:  { type: { en: 'Ashlesha — Sarpa Ganda Mula', hi: 'आश्लेषा — सर्प गण्ड मूल' }, affected: { en: 'Mother (Mercury/Moon rules Ashlesha)', hi: 'माता (बुध/चन्द्र शासित आश्लेषा)' }, procedure: { en: 'Naganam Puja (serpent deity) within 27 days. Avoid showing child to mother for 27 days in traditional practice.', hi: 'नागनाम पूजा 27 दिन में। पारम्परिक रूप से 27 दिन माता-शिशु दर्शन से बचें।' } },
-              10: { type: { en: 'Magha — Pitru Ganda Mula', hi: 'मघा — पितृ गण्ड मूल' }, affected: { en: 'Father\'s family / paternal lineage (Ketu rules Magha)', hi: 'पिता का परिवार / पितृ वंश (केतु शासित मघा)' }, procedure: { en: 'Pitru Tarpana and Magha Nakshatra Shanti. Perform Shraddha rites on Magha nakshatra days.', hi: 'पितृ तर्पण और मघा नक्षत्र शान्ति। मघा नक्षत्र के दिन श्राद्ध कर्म करें।' } },
-              18: { type: { en: 'Jyestha — Avara Ganda Mula', hi: 'ज्येष्ठा — अवर गण्ड मूल' }, affected: { en: 'Elder siblings, family honour (Mercury rules Jyestha)', hi: 'बड़े भाई-बहन, पारिवारिक मान (बुध शासित ज्येष्ठा)' }, procedure: { en: 'Elder sibling should not see the newborn for 27 days. Rudra Abhisheka and Jyestha Nakshatra Puja required.', hi: 'बड़े भाई-बहन 27 दिन नवजात न देखें। रुद्राभिषेक और ज्येष्ठा नक्षत्र पूजा।' } },
-              19: { type: { en: 'Moola — Mukhya Ganda Mula', hi: 'मूल — मुख्य गण्ड मूल' }, affected: { en: 'Father (Ketu rules Moola — most severe for father)', hi: 'पिता (केतु शासित मूल — पिता के लिए सबसे गम्भीर)' }, procedure: { en: 'Father should not see the newborn for 27 days. Navagraha Homa and Moola Nakshatra Shanti within 27 days is mandatory.', hi: 'पिता 27 दिन नवजात न देखें। 27 दिन में नवग्रह होम और मूल नक्षत्र शान्ति अनिवार्य।' } },
-              27: { type: { en: 'Revati — Antya Ganda Mula', hi: 'रेवती — अन्त्य गण्ड मूल' }, affected: { en: 'Child\'s own vitality (Mercury rules Revati)', hi: 'शिशु की स्वयं की जीवन शक्ति (बुध शासित रेवती)' }, procedure: { en: 'Revati Nakshatra Shanti within 27 days. Mercury-related puja. Often mild — Revati is a gentle nakshatra.', hi: 'रेवती नक्षत्र शान्ति 27 दिन में। बुध सम्बन्धित पूजा। अक्सर सौम्य — रेवती कोमल नक्षत्र।' } },
-            };
             const moonNakId = moonP?.nakshatra?.id;
             if (!moonNakId || !GANDA_MULA_DATA[moonNakId]) return null;
             const gm = GANDA_MULA_DATA[moonNakId];
@@ -784,7 +833,7 @@ export default function KundaliPage() {
                   </div>
                   {transitData && (
                     <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 mb-4">
-                      <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2">
                         {transitData.planets?.map((p: { id: number; name: { en: string; hi: string; sa: string }; rashi: number; longitude: number; isRetrograde: boolean }, i: number) => {
                           const rashiName = RASHIS[p.rashi - 1]?.name[locale as Locale] || '';
                           const natalPlanet = kundali.planets.find(np => np.planet.id === p.id);
@@ -1478,21 +1527,6 @@ export default function KundaliPage() {
                     : dashaSystem === 'drig' ? kundali.drigDasha
                     : dashaSystem === 'navamsha_dasha' ? kundali.navamshaDasha
                     : kundali.shoolaDasha;
-                  // P2-07: Narayana Dasha — 12 sign-specific profiles (BPHS Ch.19)
-                  const NARAYANA_SIGN_PROFILES: Record<number, { en: string; hi: string }> = {
-                    1:  { en: 'Aries Dasha — dynamic, pioneering period. New ventures launch; courage is tested. Competitive environments, conflicts, and breakthroughs in tandem. Events come suddenly; decisions must be made swiftly. Body, head, and Mars-ruled matters are activated. If Mars is well-placed, decisive victories; if afflicted, accidents or surgeries are possible.', hi: 'मेष दशा — गतिशील, अग्रणी काल। नए उद्यम प्रारंभ; साहस की परीक्षा। प्रतिस्पर्धा, संघर्ष और सफलता साथ-साथ। घटनाएं अचानक; त्वरित निर्णय आवश्यक। यदि मंगल बलवान हो तो विजय; पीड़ित हो तो दुर्घटना संभव।' },
-                    2:  { en: 'Taurus Dasha — stable, accumulative period. Financial matters dominate; property, land, and fixed assets are acquired or transacted. Marriage and partnerships come into focus. Pleasures and comforts increase. Progress is slow but steady; patience is rewarded with lasting prosperity. Venus-ruled arts and aesthetic pursuits flourish.', hi: 'वृष दशा — स्थिर, संचयशील काल। वित्तीय मामले प्रमुख; सम्पत्ति, भूमि अर्जित या हस्तांतरित। विवाह और साझेदारियां केंद्र में। सुख-सुविधाएं बढ़ती हैं। धीमी किन्तु स्थिर प्रगति; धैर्य से स्थायी समृद्धि।' },
-                    3:  { en: 'Gemini Dasha — intellectual, communicative period. Education, writing, and short journeys multiply. Siblings play a significant role. Two paths or dual involvements are common. Business dealings and negotiations succeed. The mind is sharp and restless — channelled well, it achieves brilliance; scattered, it produces anxiety.', hi: 'मिथुन दशा — बौद्धिक, संचार-प्रधान काल। शिक्षा, लेखन और लघु यात्राएं बढ़ती हैं। भाई-बहनों की भूमिका महत्वपूर्ण। दोहरी राहें सामान्य। व्यापार और वार्ता में सफलता। मन तीव्र और बेचैन — सुनिर्देशित हो तो प्रतिभाशाली।' },
-                    4:  { en: 'Cancer Dasha — domestic, emotional period. Home, mother, and property matters dominate. Residential changes or renovations are common. Emotional sensitivity peaks — intuition is strong. Real estate deals are favourable. Mother\'s health may require attention. Psychic experiences and vivid dreams are possible.', hi: 'कर्क दशा — गृह, भावनात्मक काल। घर, माता और सम्पत्ति मामले प्रमुख। आवासीय परिवर्तन सामान्य। भावनात्मक संवेदनशीलता शिखर पर। अचल सम्पत्ति अनुकूल। माता का स्वास्थ्य ध्यान योग्य। अतींद्रिय अनुभव संभव।' },
-                    5:  { en: 'Leo Dasha — authoritative, prestigious period. Career advancement and social recognition are prominent. Father\'s influence is strong. Dealings with government or authority figures feature. Children may be a central theme. Creative expression and leadership roles come naturally. Pride and dignity are tested — humility prevents falls.', hi: 'सिंह दशा — अधिकार, प्रतिष्ठा काल। कैरियर उन्नति और सामाजिक मान्यता प्रमुख। पिता का प्रभाव बलवान। सरकार या अधिकारियों से व्यवहार। संतान केंद्रीय विषय। रचनात्मक अभिव्यक्ति स्वाभाविक। अहंकार की परीक्षा — विनम्रता आवश्यक।' },
-                    6:  { en: 'Virgo Dasha — service, health-focused period. Work routines and employment matters are central. Health issues may arise and be resolved. Enemies or disputes surface — detailed attention to contracts and agreements is crucial. Debts are settled. Service-oriented activities succeed. The native works harder than usual, with tangible rewards.', hi: 'कन्या दशा — सेवा, स्वास्थ्य-केंद्रित काल। कार्य दिनचर्या और रोजगार मामले केंद्रीय। स्वास्थ्य समस्याएं उठ सकती और सुलझ सकती हैं। शत्रु या विवाद उभरते हैं। ऋण चुकाए जाते हैं। सेवा-कार्य सफल होते हैं।' },
-                    7:  { en: 'Libra Dasha — partnership, justice-seeking period. Marriage, business partnerships, and legal agreements dominate. Travel is prominent. Balance and fairness are sought in all dealings. Collaborative ventures succeed; solo efforts struggle. Venus-ruled pleasures abound. Legal settlements or court matters may conclude.', hi: 'तुला दशा — साझेदारी, न्याय-साधना काल। विवाह, व्यापारिक साझेदारी और कानूनी समझौते प्रमुख। यात्रा महत्वपूर्ण। सहयोगी उद्यम सफल। वीनस-प्रभावित सुख प्रचुर। कानूनी निपटान संभव।' },
-                    8:  { en: 'Scorpio Dasha — transformative, crisis-prone period. Hidden matters surface; secrets are revealed. Inheritance, insurance, or joint finances may be involved. Accidents, surgeries, or near-death experiences are possible if 8th lord is afflicted. Occult research and spiritual depth are favoured. Profound inner transformation accompanies outer disruption.', hi: 'वृश्चिक दशा — परिवर्तनकारी, संकट-सम्भावित काल। छिपे विषय उजागर; रहस्य प्रकट। विरासत, बीमा या संयुक्त वित्त जुड़ा। दुर्घटना या शल्य संभव। आध्यात्मिक गहराई अनुकूल। बाहरी उथल-पुथल के साथ गहरा आंतरिक परिवर्तन।' },
-                    9:  { en: 'Sagittarius Dasha — expansive, dharmic period. Higher education, philosophy, and long-distance travel feature prominently. Father\'s health and teacher/guru influence are strong. Religious activities, foreign journeys, and charitable work flourish. Optimism expands; fortune smiles. The native reaches beyond familiar boundaries and grows.', hi: 'धनु दशा — विस्तारशील, धार्मिक काल। उच्च शिक्षा, दर्शन और दूर यात्राएं प्रमुख। पिता का स्वास्थ्य और गुरु का प्रभाव बलवान। धार्मिक कार्य, विदेश यात्रा फलती है। आशावाद बढ़ता है। परिचित सीमाओं से परे जाना।' },
-                    10: { en: 'Capricorn Dasha — career-peak, ambition-activated period. Professional life demands maximum effort and delivers maximum reward when Saturn is strong. Government dealings, structured work, and long-term projects bear fruit. Property gains are possible. Discipline and perseverance are the keys — karmic lessons from past effort arrive as results.', hi: 'मकर दशा — कैरियर शिखर, महत्वाकांक्षा-सक्रिय काल। व्यावसायिक जीवन अधिकतम प्रयास मांगता और देता है। सरकारी कार्य, दीर्घकालिक परियोजनाएं फलती हैं। अनुशासन और अध्यवसाय मुख्य कुंजी।' },
-                    11: { en: 'Aquarius Dasha — social, gain-oriented period. Community involvement, friendship networks, and collective causes are activated. Gains from groups, elder siblings, and unexpected sources arrive. Unconventional events and sudden opportunities appear. Technology and innovation benefit the native. Ambitions find fulfilment through social means.', hi: 'कुंभ दशा — सामाजिक, लाभ-उन्मुख काल। समुदाय, मित्र नेटवर्क और सामूहिक कारण सक्रिय। समूहों से लाभ। अप्रत्याशित घटनाएं और अवसर। प्रौद्योगिकी और नवाचार लाभकारी। सामाजिक साधनों से महत्वाकांक्षा पूरी।' },
-                    12: { en: 'Pisces Dasha — spiritual, introspective period. Foreign travel, ashrams, hospitals, and retreats feature. Intuition and psychic gifts peak. Hidden losses are possible but offset by spiritual gains. Charitable work and service to the suffering are favoured. The soul turns inward — those who embrace this find liberation; those who resist find confusion.', hi: 'मीन दशा — आध्यात्मिक, आत्मनिरीक्षण काल। विदेश, आश्रम, अस्पताल और एकांत प्रमुख। अंतर्ज्ञान शिखर पर। छिपे नुकसान संभव। दान और पीड़ितों की सेवा अनुकूल। आत्मा अंतर्मुखी होती है — जो स्वीकारते हैं उन्हें मुक्ति, जो विरोध करते हैं उन्हें भ्रम।' },
-                  };
                   const SIGN_NAMES_EN = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
                   const lagnaSign = kundali.ascendant.sign;
                   const getNarayanaHouseTheme = (dashSign: number): { en: string; hi: string } | null => {
@@ -1516,20 +1550,6 @@ export default function KundaliPage() {
                     const isCurrent = now >= start && now <= end;
                     const isPast = now > end;
                     const houseFromLagna = ((d.sign - lagnaSign + 12) % 12) + 1;
-                    const HOUSE_THEMES: Record<number, { en: string; hi: string }> = {
-                      1: { en: 'Self, body, health, personality', hi: 'आत्म, शरीर, स्वास्थ्य' },
-                      2: { en: 'Wealth, family, speech', hi: 'धन, परिवार, वाणी' },
-                      3: { en: 'Courage, siblings, short travel', hi: 'साहस, भाई-बहन, लघु यात्रा' },
-                      4: { en: 'Home, mother, property, comfort', hi: 'घर, माता, सम्पत्ति, सुख' },
-                      5: { en: 'Children, education, creativity', hi: 'सन्तान, शिक्षा, रचनात्मकता' },
-                      6: { en: 'Enemies, health issues, service', hi: 'शत्रु, स्वास्थ्य, सेवा' },
-                      7: { en: 'Marriage, partnerships, business', hi: 'विवाह, साझेदारी, व्यापार' },
-                      8: { en: 'Transformation, longevity, occult', hi: 'परिवर्तन, दीर्घायु, गुप्त विद्या' },
-                      9: { en: 'Fortune, father, dharma, guru', hi: 'भाग्य, पिता, धर्म, गुरु' },
-                      10: { en: 'Career, status, authority', hi: 'कैरियर, प्रतिष्ठा, अधिकार' },
-                      11: { en: 'Gains, income, friends, wishes', hi: 'लाभ, आय, मित्र, इच्छाएँ' },
-                      12: { en: 'Expenses, liberation, foreign', hi: 'व्यय, मोक्ष, विदेश' },
-                    };
                     const theme = getNarayanaHouseTheme(d.sign);
                     // Sign profiles apply to ALL sign-based dashas, not just Narayana
                     const signProfile = NARAYANA_SIGN_PROFILES[d.sign] || null;
@@ -2298,12 +2318,9 @@ export default function KundaliPage() {
 
               {/* ── SYNTHESIS — leads with so-what ────────────────────────────────── */}
               {sphuataTransitData && (() => {
-                const PLANET_COLORS_SPHUTA: Record<number,string> = { 0:'text-amber-400',1:'text-slate-300',2:'text-red-400',3:'text-emerald-400',4:'text-yellow-300',5:'text-pink-300',6:'text-blue-400',7:'text-purple-400',8:'text-gray-400' };
                 const PLANET_NAMES_SPHUTA_EN = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
                 const PLANET_NAMES_SPHUTA_HI = ['सूर्य','चन्द्र','मंगल','बुध','बृहस्पति','शुक्र','शनि','राहु','केतु'];
                 const pName = (pid: number) => isHi ? (PLANET_NAMES_SPHUTA_HI[pid]||'') : (PLANET_NAMES_SPHUTA_EN[pid]||'');
-                const SIGN_ELEMENTS: Record<number,string> = { 1:'Fire',2:'Earth',3:'Air',4:'Water',5:'Fire',6:'Earth',7:'Air',8:'Water',9:'Fire',10:'Earth',11:'Air',12:'Water' };
-                const SIGN_ELEMENTS_HI: Record<number,string> = { 1:'अग्नि',2:'पृथ्वी',3:'वायु',4:'जल',5:'अग्नि',6:'पृथ्वी',7:'वायु',8:'जल',9:'अग्नि',10:'पृथ्वी',11:'वायु',12:'जल' };
                 const elemName = (s: number) => isHi ? SIGN_ELEMENTS_HI[s] : SIGN_ELEMENTS[s];
                 const sp = kundali.sphutas!;
                 // Check if any transit is active right now
@@ -2367,7 +2384,7 @@ export default function KundaliPage() {
                   <h5 className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
                     {isHi ? 'स्वास्थ्य संरचना सारांश' : 'Constitutional Health Summary'}
                   </h5>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
                     {[
                       { label: isHi?'प्राण':'Prana', sign: sp.pranaSphuta.sign, deg: sp.pranaSphuta.degree, color:'text-gold-primary' },
                       { label: isHi?'देह':'Deha', sign: sp.dehaSphuta.sign, deg: sp.dehaSphuta.degree, color:'text-blue-400' },
@@ -2599,22 +2616,6 @@ export default function KundaliPage() {
                 if (!jupNatal) return null;
                 const jupNatalHouse = jupNatal.house;
                 const isHiBCP = locale !== 'en';
-                const HOUSE_THEMES_EN: Record<number, string> = {
-                  1: 'Self, identity, health, and new beginnings', 2: 'Wealth, family, speech, and accumulated resources',
-                  3: 'Siblings, courage, communication, and short travel', 4: 'Home, mother, property, and emotional happiness',
-                  5: 'Children, intelligence, creativity, and romance', 6: 'Enemies, debts, health challenges, and service',
-                  7: 'Marriage, partnerships, business, and public dealings', 8: 'Longevity, transformation, hidden matters, and inheritance',
-                  9: 'Fortune, dharma, father, teachers, and long travel', 10: 'Career, authority, government, and public recognition',
-                  11: 'Gains, income, social network, and desires fulfilled', 12: 'Losses, liberation, foreign lands, and spirituality',
-                };
-                const HOUSE_THEMES_HI: Record<number, string> = {
-                  1: 'स्वयं, स्वास्थ्य, और नई शुरुआत', 2: 'धन, परिवार, वाणी और संचित संसाधन',
-                  3: 'भाई-बहन, साहस, संचार और अल्प यात्रा', 4: 'घर, माता, सम्पत्ति और सुख',
-                  5: 'संतान, बुद्धि, रचनात्मकता और प्रेम', 6: 'शत्रु, ऋण, स्वास्थ्य और सेवा',
-                  7: 'विवाह, साझेदारी, व्यवसाय', 8: 'दीर्घायु, रूपांतरण और विरासत',
-                  9: 'भाग्य, धर्म, पिता और गुरु', 10: 'कैरियर, अधिकार और सार्वजनिक पहचान',
-                  11: 'लाभ, आय और इच्छापूर्ति', 12: 'हानि, मोक्ष, विदेश और आध्यात्म',
-                };
                 const currentAge = kundali.birthData.date
                   ? Math.floor((new Date().getTime() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 3600 * 1000))
                   : null;
@@ -2644,14 +2645,14 @@ export default function KundaliPage() {
                               {isHiBCP ? `इस वर्ष (आयु ${currentAge}) — भाव ${bcpHouse} सक्रिय` : `This Year (Age ${currentAge}) — House ${bcpHouse} Activated`}
                             </div>
                             <div className="text-text-secondary/70 text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                              {isHiBCP ? HOUSE_THEMES_HI[bcpHouse] : HOUSE_THEMES_EN[bcpHouse]}
+                              {isHiBCP ? HOUSE_THEMES[bcpHouse]?.hi : HOUSE_THEMES[bcpHouse]?.en}
                             </div>
                           </div>
                         </div>
                       </div>
                     )}
                     {/* 10-year timeline */}
-                    <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-1.5">
                       {upcoming.map(({ age, house }, i) => (
                         <div key={i} className={`rounded-lg p-2 text-center ${i === 0 ? 'bg-amber-500/20 border border-amber-500/40' : 'bg-bg-primary/30 border border-gold-primary/8'}`}>
                           <div className={`font-bold text-sm ${i === 0 ? 'text-amber-300' : 'text-gold-primary/60'}`}>{house}H</div>
@@ -2738,7 +2739,7 @@ export default function KundaliPage() {
                       <div className="text-purple-200 font-bold text-3xl font-mono">{lo}–{hi2}</div>
                       <div className="text-text-secondary/75 text-xs mt-1">{isHi ? 'वर्ष (अनुमानित सीमा)' : 'years (estimated constitutional range)'}</div>
                     </div>
-                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5">
                       {contributions.map(c => (
                         <div key={c.pid} className="rounded-lg bg-bg-primary/30 border border-purple-500/10 p-2 text-center">
                           <div className="text-gold-primary/60 text-xs font-bold">{PLANET_NAMES[isHi ? 'hi' : 'en'][c.pid]}</div>
@@ -2874,7 +2875,9 @@ export default function KundaliPage() {
 
           {/* ===== CHAT TAB ===== */}
           {activeTab === 'chat' && (
-            <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+            <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading...</div>}>
+              <ChartChatTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
+            </Suspense>
           )}
 
           {/* ===== SADE SATI TAB ===== */}
@@ -3614,12 +3617,14 @@ export default function KundaliPage() {
               <a href={`/${locale}/learn/dashas`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-3">
                 {locale === 'en' ? 'Learn about Dashas \u2192' : 'दशा के बारे में जानें \u2192'}
               </a>
-              <LifeTimeline
-              kundali={kundali}
-              locale={locale}
-              isDevanagari={isDevanagari}
-              headingFont={headingFont}
-            />
+              <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading timeline...</div>}>
+                <LifeTimeline
+                  kundali={kundali}
+                  locale={locale}
+                  isDevanagari={isDevanagari}
+                  headingFont={headingFont}
+                />
+              </Suspense>
             </>
           )}
 
@@ -4122,7 +4127,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
             {/* Year axis + swim lanes wrapper */}
             <div className="relative overflow-x-auto">
             <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#0a0e27] to-transparent sm:hidden z-10" />
-            <div className="min-w-[480px]">
+            <div className="min-w-[320px] sm:min-w-[480px]">
             {/* Year axis */}
             <div className="relative h-5 mb-1 ml-14 sm:ml-16">
               {years.map(y => (
@@ -4212,7 +4217,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
             <p className="text-text-secondary/70 text-xs mb-4">
               {locale === 'en' ? 'Total bindu per sign. ≥28 = strong (green), <22 = weak (red).' : 'प्रति राशि कुल बिन्दु। ≥28 = बलवान (हरा), <22 = दुर्बल (लाल)।'}
             </p>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12 gap-3">
               {RASHIS.map((r, i) => {
                 const val = ashtakavarga.savTable[i];
                 const strong = val >= 28;
@@ -4279,7 +4284,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
                     ? 'After subtracting trikona minimums and ekadhipatya excess — the essential signal. Higher = genuinely strong for transits.'
                     : 'त्रिकोण न्यूनतम और एकाधिपत्य अधिक्य घटाने के बाद — मूल संकेत। अधिक = गोचर के लिए वास्तविक बलवान।'}
                 </p>
-                <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12 gap-1.5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-1.5">
                   {RASHIS.map((r, i) => {
                     const val = shodhana[i];
                     const color = val >= 5 ? 'text-emerald-400' : val <= 1 ? 'text-red-400' : 'text-gold-primary/80';
@@ -4301,7 +4306,7 @@ function AshtakavargaTab({ ashtakavarga, locale, isDevanagari, headingFont, t }:
           <p className="text-text-secondary text-xs mb-4">
             {locale === 'en' ? 'Individual planet bindu points per sign (max 8 per cell).' : 'प्रत्येक ग्रह के बिन्दु प्रति राशि (अधिकतम 8 प्रति कक्ष)।'}
           </p>
-          <div className="min-w-[640px]">
+          <div className="min-w-[320px] sm:min-w-[640px]">
             <table className="w-full text-[10px] sm:text-xs md:text-sm">
               <thead>
                 <tr>
@@ -4637,7 +4642,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
         <p className="text-text-secondary/60 text-xs text-center mb-4">
           {isHi ? 'विस्तृत विश्लेषण के लिए किसी चार्ट पर क्लिक करें' : 'Click any chart for detailed analysis'}
         </p>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-1.5">
           {synthesis.vargaInsights.map((v, i) => (
             <button key={i}
               onClick={() => setSelectedVarga(prev => prev === v.chart ? null : v.chart)}
@@ -5991,11 +5996,13 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         <a href={`/${locale}/learn/transits`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mb-2">
           {locale === 'en' ? 'Learn about Transits \u2192' : 'गोचर के बारे में जानें \u2192'}
         </a>
-        <TransitRadar
-          ascendantSign={kundali.ascendant.sign}
-          savTable={kundali.ashtakavarga.savTable}
-          locale={locale}
-        />
+        <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading...</div>}>
+          <TransitRadar
+            ascendantSign={kundali.ascendant.sign}
+            savTable={kundali.ashtakavarga.savTable}
+            locale={locale}
+          />
+        </Suspense>
         </>
       )}
 

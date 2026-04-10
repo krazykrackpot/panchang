@@ -219,7 +219,7 @@ export default function Navbar() {
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden text-text-primary p-2"
+            className="lg:hidden text-text-primary p-2.5"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
@@ -248,7 +248,7 @@ export default function Navbar() {
                     <div key={i}>
                       <button
                         onClick={() => setMobileExpanded(isExpanded ? null : item.label)}
-                        className="flex items-center justify-between w-full text-left text-text-secondary hover:text-gold-light transition-colors px-3 py-2 rounded-lg"
+                        className="flex items-center justify-between w-full text-left text-text-secondary hover:text-gold-light transition-colors px-3 py-2.5 rounded-lg"
                       >
                         <span className="text-sm font-medium">{item.label}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />

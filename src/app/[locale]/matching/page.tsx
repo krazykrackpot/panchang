@@ -18,7 +18,6 @@ import { RASHIS } from '@/lib/constants/rashis';
 const L = {
   en: {
     birthMode: 'Calculate from Birth Details',
-    directMode: 'I know my Nakshatra & Rashi',
     dateOfBirth: 'Date of Birth',
     timeOfBirth: 'Time of Birth',
     placeOfBirth: 'Place of Birth',
@@ -29,7 +28,6 @@ const L = {
   },
   hi: {
     birthMode: 'जन्म विवरण से गणना करें',
-    directMode: 'मुझे अपनी नक्षत्र व राशि पता है',
     dateOfBirth: 'जन्म तिथि',
     timeOfBirth: 'जन्म समय',
     placeOfBirth: 'जन्म स्थान',
@@ -40,7 +38,6 @@ const L = {
   },
   sa: {
     birthMode: 'जन्मविवरणात् गणयतु',
-    directMode: 'मम नक्षत्रं राशिश्च ज्ञातम्',
     dateOfBirth: 'जन्मतिथिः',
     timeOfBirth: 'जन्मसमयः',
     placeOfBirth: 'जन्मस्थानम्',

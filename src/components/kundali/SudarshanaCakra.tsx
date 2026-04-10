@@ -245,7 +245,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
             const someAgree  = hL === hM || hM === hS || hL === hS;
             const abbr = PLANET_ABBR[p.planet.id];
             return (
-              <div key={p.planet.id} className={`rounded-lg border p-2.5 ${allTrikona ? 'border-gold-primary/30 bg-gold-primary/8' : allKendra ? 'border-purple-500/20 bg-purple-500/8' : someAgree ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-gold-primary/6 bg-bg-secondary/20'}`}>
+              <div key={p.planet.id} className={`rounded-lg border p-2.5 ${allTrikona ? 'border-gold-primary/30 bg-gold-primary/8' : allKendra ? 'border-purple-500/20 bg-purple-500/8' : someAgree ? 'border-emerald-500/15 bg-emerald-500/5' : 'border-gold-primary/6 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27]'}`}>
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="font-bold text-sm" style={{ color: abbr?.color }}>
                     {isHi ? p.planet.name.hi : p.planet.name.en}

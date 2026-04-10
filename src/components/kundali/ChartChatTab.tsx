@@ -103,7 +103,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {suggestions.map((q, i) => (
                 <button key={i} onClick={() => sendMessage(q)}
-                  className="text-left px-3 py-2.5 rounded-lg bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary text-xs sm:text-sm hover:border-gold-primary/30 hover:text-gold-light transition-all">
+                  className="text-left px-3 py-2.5 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10 text-text-secondary text-xs sm:text-sm hover:border-gold-primary/30 hover:text-gold-light transition-all">
                   {q}
                 </button>
               ))}

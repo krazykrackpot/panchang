@@ -264,7 +264,7 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                     {/* Explanation after answering */}
                     {answered && (
                       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                        className="p-4 rounded-xl bg-bg-secondary/50 border border-gold-primary/10">
+                        className="p-4 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10">
                         <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">
                           {isHi ? 'व्याख्या' : 'Explanation'}
                         </div>

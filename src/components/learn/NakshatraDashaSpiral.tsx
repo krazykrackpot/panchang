@@ -82,7 +82,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
                     className={`relative rounded-xl p-2 text-center transition-all cursor-default ${
                       isHighlighted
                         ? 'bg-gold-primary/10 border-2 shadow-lg'
-                        : 'bg-bg-secondary/20 border'
+                        : 'bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border'
                     }`}
                     style={{
                       borderColor: isHighlighted ? `${a.planet.color}60` : 'rgba(212,168,83,0.06)',
@@ -125,7 +125,7 @@ export default function NakshatraDashaSpiral({ locale }: Props) {
       </div>
 
       {/* Vertical alignment lines — show the 3-round pattern */}
-      <div className="rounded-xl bg-bg-secondary/20 border border-gold-primary/8 p-4">
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/8 p-4">
         <div className="text-gold-dark text-[10px] uppercase tracking-widest font-bold mb-3 text-center">
           {isHi ? 'तीन चक्रों में समान स्वामी' : 'Same Lord Across Three Rounds'}
         </div>

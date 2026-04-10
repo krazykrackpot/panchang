@@ -322,7 +322,7 @@ export default function FestivalDetailModal({
                           <div className="space-y-1.5 mb-3">
                             {/* Sunrise */}
                             {paranaSunrise && (
-                              <div className="flex items-center justify-between text-xs rounded-lg bg-bg-tertiary/40 px-3 py-2">
+                              <div className="flex items-center justify-between text-xs rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
                                   {locale === 'en' ? 'Sunrise' : locale === 'hi' ? 'सूर्योदय' : 'सूर्योदयः'}
                                 </span>

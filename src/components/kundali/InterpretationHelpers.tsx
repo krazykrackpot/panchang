@@ -1576,7 +1576,7 @@ export function DashaInterpretation({ dashas, planets, locale }: DashaInterpreta
 
       {/* Current Antardasha */}
       {currentAntar && (
-        <div className="rounded-xl p-4 border border-white/5 bg-bg-secondary/40 ml-2 sm:ml-4">
+        <div className="rounded-xl p-4 border border-white/5 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] ml-2 sm:ml-4">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center bg-bg-primary/50">
               <GrahaIconById id={antarPlanetId} size={18} />

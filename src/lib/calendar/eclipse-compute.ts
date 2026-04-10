@@ -14,8 +14,9 @@
  * Besselian element computation, replace the solar eclipse functions here.
  */
 
-import type { EclipseData, LunarEclipseData, SolarEclipseData, CityEclipseData } from './eclipse-data';
+import type { EclipseData, LunarEclipseData, SolarEclipseData } from './eclipse-data';
 import { getSunTimes } from '@/lib/astronomy/sunrise';
+import { sunLongitude, moonLongitude, getPlanetaryPositions, dateToJD, normalizeDeg } from '@/lib/ephem/astronomical';
 
 // ─── Output Types ────────────────────────────────────────────────────────────
 
@@ -306,324 +307,305 @@ function computeSutakTraditions(
   };
 }
 
-// ─── City-based Interpolation ────────────────────────────────────────────────
+// ─── Solar Eclipse: Direct Topocentric Computation ──────────────────────────
+//
+// For any observer lat/lng, we compute the apparent angular separation between
+// Sun and Moon as seen from that location (applying lunar parallax), then scan
+// for when separation equals the sum of their apparent radii (contact times).
+// No city lookups, no interpolation — pure calculation from Swiss Ephemeris.
 
-/** Interpolate local circumstances from the nearest reference cities using inverse-distance weighting */
-function interpolateFromCities(
-  cities: CityEclipseData[],
-  lat: number,
-  lng: number,
-  tzOffset: number,
-  sunsetLocal: number,
-): { c1Local: number; maxLocal: number; c4Local: number; magnitude: number; endsAtSunset: boolean } | null {
-  if (!cities || cities.length === 0) return null;
+/** Degrees to radians */
+const DEG2RAD = Math.PI / 180;
 
-  // Find distances to all cities
-  const withDist = cities.map(c => ({
-    ...c,
-    dist: greatCircleDistKm(lat, lng, c.lat, c.lng),
-  }));
+/**
+ * Compute the apparent angular separation between Sun and Moon as seen from
+ * a specific point on Earth's surface (topocentric), accounting for lunar parallax.
+ *
+ * The parallax is crucial for solar eclipses — it can shift the Moon's apparent
+ * position by up to ~1°, which is the entire difference between "no eclipse" and
+ * "91% partial eclipse" for a location like Zurich.
+ *
+ * Method: Convert geocentric ecliptic coordinates to topocentric equatorial
+ * coordinates using the observer's geographic position, then compute the
+ * angular separation between the topocentric Sun and Moon.
+ */
+function topocentricSeparation(jd: number, obsLat: number, obsLng: number): {
+  separation: number;
+  sunRadius: number;
+  moonRadius: number;
+} {
+  const positions = getPlanetaryPositions(jd);
+  const sunPos = positions.find(p => p.id === 0);
+  const moonPos = positions.find(p => p.id === 1);
+  if (!sunPos || !moonPos) return { separation: 999, sunRadius: 0.267, moonRadius: 0.259 };
 
-  // Sort by distance, take 3 nearest
-  withDist.sort((a, b) => a.dist - b.dist);
-  const nearest = withDist.slice(0, 3);
+  // Moon distance from speed (proxy): faster = closer
+  const avgDist = 384400;
+  const moonDist = avgDist * (13.2 / Math.max(Math.abs(moonPos.speed), 10));
 
-  // If closest city is within 200km, use it directly — shadow geometry
-  // barely changes over this distance (~2-3 min contact time difference)
-  if (nearest[0].dist < 200) {
-    const city = nearest[0];
-    const c1Utc = parseUtcTime(city.c1);
-    const maxUtc = parseUtcTime(city.max);
-    const isSunset = city.c4 === 'sunset';
-    const c4Utc = isSunset ? (sunsetLocal - tzOffset) : parseUtcTime(city.c4);
-    return {
-      c1Local: utcToLocal(c1Utc, tzOffset),
-      maxLocal: utcToLocal(maxUtc, tzOffset),
-      c4Local: isSunset ? sunsetLocal : utcToLocal(c4Utc, tzOffset),
-      magnitude: city.magnitude,
-      endsAtSunset: isSunset,
-    };
-  }
+  // Moon horizontal parallax
+  const HP = Math.asin(6371 / moonDist) / DEG2RAD; // ~0.9° to ~1.03°
 
-  // Inverse-distance-squared weighted interpolation (heavily favors nearest city)
-  const weights = nearest.map(c => 1 / Math.max(c.dist * c.dist, 1));
-  const totalWeight = weights.reduce((a, b) => a + b, 0);
+  // Obliquity of ecliptic (~23.44°)
+  const obliquity = 23.44;
+  const oblRad = obliquity * DEG2RAD;
 
-  let c1Sum = 0, maxSum = 0, c4Sum = 0, magSum = 0;
-  let anySunset = false;
+  // Convert Sun from ecliptic to equatorial (RA, Dec)
+  const sunLonRad = sunPos.longitude * DEG2RAD;
+  const sunRA = Math.atan2(Math.sin(sunLonRad) * Math.cos(oblRad), Math.cos(sunLonRad));
+  const sunDec = Math.asin(Math.sin(sunLonRad) * Math.sin(oblRad));
 
-  nearest.forEach((city, i) => {
-    const w = weights[i] / totalWeight;
-    c1Sum += parseUtcTime(city.c1) * w;
-    maxSum += parseUtcTime(city.max) * w;
-    magSum += city.magnitude * w;
-    if (city.c4 === 'sunset') {
-      anySunset = true;
-      c4Sum += (sunsetLocal - tzOffset) * w;
-    } else {
-      c4Sum += parseUtcTime(city.c4) * w;
-    }
-  });
+  // Convert Moon from ecliptic to equatorial (RA, Dec)
+  const moonLonRad = moonPos.longitude * DEG2RAD;
+  const moonLatRad = moonPos.latitude * DEG2RAD;
+  const moonRA = Math.atan2(
+    Math.sin(moonLonRad) * Math.cos(oblRad) - Math.tan(moonLatRad) * Math.sin(oblRad),
+    Math.cos(moonLonRad)
+  );
+  const moonDec = Math.asin(
+    Math.sin(moonLatRad) * Math.cos(oblRad) +
+    Math.cos(moonLatRad) * Math.sin(oblRad) * Math.sin(moonLonRad)
+  );
 
-  const c4Local = utcToLocal(c4Sum, tzOffset);
-  const endsAtSunset = anySunset || c4Local > sunsetLocal;
+  // Greenwich Sidereal Time (approximate)
+  const T = (jd - 2451545.0) / 36525.0;
+  const GMST = normalizeDeg(280.46061837 + 360.98564736629 * (jd - 2451545.0) +
+    0.000387933 * T * T) * DEG2RAD;
 
-  return {
-    c1Local: utcToLocal(c1Sum, tzOffset),
-    maxLocal: utcToLocal(maxSum, tzOffset),
-    c4Local: endsAtSunset ? sunsetLocal : c4Local,
-    magnitude: Math.round(magSum * 100) / 100,
-    endsAtSunset,
-  };
+  // Local Sidereal Time
+  const LST = GMST + obsLng * DEG2RAD;
+
+  // Moon's Hour Angle
+  const moonHA = LST - moonRA;
+
+  // Apply topocentric parallax to Moon (Sun parallax is negligible)
+  const obsLatRad = obsLat * DEG2RAD;
+  const HPRad = HP * DEG2RAD;
+
+  // Topocentric Moon RA and Dec (Meeus Ch. 40)
+  const cosHP = Math.cos(HPRad);
+  const sinHP = Math.sin(HPRad);
+  const cosMoonDec = Math.cos(moonDec);
+  const sinMoonDec = Math.sin(moonDec);
+  const cosObsLat = Math.cos(obsLatRad);
+  const sinObsLat = Math.sin(obsLatRad);
+  const cosHA = Math.cos(moonHA);
+  const sinHA = Math.sin(moonHA);
+
+  // Parallax correction in RA
+  const dRA = Math.atan2(
+    -cosObsLat * sinHP * sinHA,
+    cosMoonDec - cosObsLat * sinHP * cosHA
+  );
+
+  // Topocentric declination
+  const topoMoonDec = Math.atan2(
+    (sinMoonDec - sinObsLat * sinHP) * Math.cos(dRA),
+    cosMoonDec - cosObsLat * sinHP * cosHA
+  );
+
+  const topoMoonRA = moonRA + dRA;
+
+  // Angular separation between Sun and topocentric Moon
+  const cosSep = Math.sin(sunDec) * Math.sin(topoMoonDec) +
+    Math.cos(sunDec) * Math.cos(topoMoonDec) * Math.cos(sunRA - topoMoonRA);
+  const separation = Math.acos(Math.max(-1, Math.min(1, cosSep))) / DEG2RAD;
+
+  // Apparent radii
+  const sunRadius = 0.267;
+  const moonRadius = Math.asin(1737.4 / moonDist) / DEG2RAD;
+
+  return { separation, sunRadius, moonRadius };
 }
 
-// ─── Solar Eclipse Computation ───────────────────────────────────────────────
+/**
+ * Compute local solar eclipse circumstances by scanning the topocentric
+ * Sun-Moon separation around the time of greatest eclipse.
+ */
+function computeSolarContactTimes(
+  maxJdUtc: number,
+  obsLat: number,
+  obsLng: number,
+): {
+  c1Jd: number | null;  // First contact (partial begins)
+  maxJd: number | null;  // Local maximum
+  c4Jd: number | null;  // Last contact (partial ends)
+  maxMagnitude: number;  // Local magnitude at maximum
+  visible: boolean;
+} {
+  // Scan window: ±3 hours from greatest eclipse in 1-minute steps
+  const scanStep = 1 / 1440; // 1 minute in days
+  const scanHalfWidth = 3 / 24; // 3 hours in days
+
+  let minSep = 999;
+  let minSepJd = maxJdUtc;
+  let contactRadius = 0;
+
+  // First pass: find local minimum separation and contact radius
+  for (let jd = maxJdUtc - scanHalfWidth; jd <= maxJdUtc + scanHalfWidth; jd += scanStep) {
+    const { separation, sunRadius, moonRadius } = topocentricSeparation(jd, obsLat, obsLng);
+    const sumRadii = sunRadius + moonRadius;
+
+    if (separation < minSep) {
+      minSep = separation;
+      minSepJd = jd;
+      contactRadius = sumRadii;
+    }
+  }
+
+  // Not visible if minimum separation > sum of radii
+  if (minSep >= contactRadius) {
+    return { c1Jd: null, maxJd: null, c4Jd: null, maxMagnitude: 0, visible: false };
+  }
+
+  // Local magnitude: 1.0 when separation = 0 (total), 0 when separation = sumRadii
+  const maxMagnitude = Math.max(0, (contactRadius - minSep) / contactRadius);
+
+  // Second pass: find C1 (first contact) and C4 (last contact)
+  // Scan forward and backward from maximum to find when separation = sumRadii
+  let c1Jd: number | null = null;
+  let c4Jd: number | null = null;
+
+  // Find C1: scan backward from maximum
+  for (let jd = minSepJd; jd >= maxJdUtc - scanHalfWidth; jd -= scanStep) {
+    const { separation, sunRadius, moonRadius } = topocentricSeparation(jd, obsLat, obsLng);
+    if (separation >= sunRadius + moonRadius) {
+      // Refine with binary search
+      let lo = jd, hi = jd + scanStep;
+      for (let i = 0; i < 15; i++) {
+        const mid = (lo + hi) / 2;
+        const s = topocentricSeparation(mid, obsLat, obsLng);
+        if (s.separation >= s.sunRadius + s.moonRadius) lo = mid; else hi = mid;
+      }
+      c1Jd = (lo + hi) / 2;
+      break;
+    }
+  }
+
+  // Find C4: scan forward from maximum
+  for (let jd = minSepJd; jd <= maxJdUtc + scanHalfWidth; jd += scanStep) {
+    const { separation, sunRadius, moonRadius } = topocentricSeparation(jd, obsLat, obsLng);
+    if (separation >= sunRadius + moonRadius) {
+      let lo = jd - scanStep, hi = jd;
+      for (let i = 0; i < 15; i++) {
+        const mid = (lo + hi) / 2;
+        const s = topocentricSeparation(mid, obsLat, obsLng);
+        if (s.separation >= s.sunRadius + s.moonRadius) hi = mid; else lo = mid;
+      }
+      c4Jd = (lo + hi) / 2;
+      break;
+    }
+  }
+
+  return { c1Jd, maxJd: minSepJd, c4Jd, maxMagnitude, visible: true };
+}
+
+// ─── Solar Eclipse Computation (Topocentric) ────────────────────────────────
 
 function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, timezone: string): LocalEclipseResult {
   const tzOffset = getTzOffset(timezone, eclipse.date);
   const sunTimes = getSunriseSunset(eclipse.date, lat, lng, tzOffset);
   const sunset = sunTimes?.sunset ?? 20;
+  const sunrise = sunTimes?.sunrise ?? 6;
 
-  // Try city-based interpolation first (most accurate)
-  if (eclipse.cities && eclipse.cities.length > 0) {
-    const interp = interpolateFromCities(eclipse.cities, lat, lng, tzOffset, sunset);
-    if (interp && interp.magnitude > 0.01) {
-      const localSubtype: 'total' | 'annular' | 'partial' | 'hybrid' =
-        interp.magnitude >= eclipse.magnitude && eclipse.type !== 'partial' ? eclipse.type : 'partial';
+  // Compute local eclipse from first principles using topocentric Sun-Moon separation
+  const maxJdUtc = (() => {
+    // Parse maxUtc (HH:MM:SS) to JD
+    const [y, m, d] = eclipse.date.split('-').map(Number);
+    const utcH = parseUtcTime(eclipse.maxUtc);
+    return dateToJD(y, m, d, utcH);
+  })();
 
-      // Duration from interpolated contact times
-      const effectiveEnd = interp.endsAtSunset ? sunset : interp.c4Local;
-      const rawDuration = (effectiveEnd - interp.c1Local) * 60;
+  const topo = computeSolarContactTimes(maxJdUtc, lat, lng);
 
-      // For very low magnitude eclipses (< 0.15) at the edge of the shadow,
-      // interpolation can give near-zero duration. Apply a minimum floor only then.
-      let c1Display = interp.c1Local;
-      let c4Display = effectiveEnd;
-      let durationMinutes = Math.max(0, rawDuration);
-      if (interp.magnitude < 0.15 && rawDuration < 10) {
-        const minDur = interp.magnitude * 180;
-        durationMinutes = Math.max(rawDuration, minDur);
-        const halfDurH = (durationMinutes / 2) / 60;
-        c1Display = interp.maxLocal - halfDurH;
-        c4Display = interp.endsAtSunset ? sunset : interp.maxLocal + halfDurH;
+  if (topo.visible && topo.c1Jd && topo.maxJd && topo.c4Jd) {
+    // Convert JD to local hours of the day
+    const jdToLocalHours = (jd: number): number => {
+      // JD 0.0 = noon UT, JD 0.5 = midnight UT
+      // Hours UTC = ((JD + 0.5) fraction) * 24
+      const utcHours = ((jd + 0.5) % 1) * 24;
+      return utcToLocal(utcHours, tzOffset);
+    };
+
+    const c1Local = jdToLocalHours(topo.c1Jd);
+    const maxLocal = jdToLocalHours(topo.maxJd);
+    const c4Local = jdToLocalHours(topo.c4Jd);
+
+    const endsAtSunset = c4Local > sunset;
+    const effectiveEnd = endsAtSunset ? sunset : c4Local;
+    const durationMinutes = Math.max(0, (effectiveEnd - c1Local) * 60);
+
+    const localSubtype: LocalEclipseResult['subtype'] =
+      topo.maxMagnitude >= 1.0 && eclipse.type !== 'partial' ? eclipse.type : 'partial';
+
+    // Magnitude at sunset
+    let magAtSunset: number | null = null;
+    if (endsAtSunset && sunset > maxLocal) {
+      const totalPhase = c4Local - maxLocal;
+      const sunsetPhase = sunset - maxLocal;
+      if (totalPhase > 0) {
+        magAtSunset = Math.max(0, topo.maxMagnitude * (1 - sunsetPhase / totalPhase));
+        magAtSunset = Math.round(magAtSunset * 100) / 100;
       }
-
-      // Sutak: compute per 3 traditions
-      const sunrise = sunTimes?.sunrise ?? 6;
-      const sutak = computeSutakTraditions(c1Display, c4Display, true, sunrise, sunset);
-
-      // Magnitude at sunset
-      let magAtSunset: number | null = null;
-      if (interp.endsAtSunset && sunset > interp.maxLocal) {
-        const totalPhase = interp.c4Local - interp.maxLocal;
-        const sunsetPhase = sunset - interp.maxLocal;
-        if (totalPhase > 0) {
-          magAtSunset = Math.max(0, interp.magnitude * (1 - sunsetPhase / totalPhase));
-          magAtSunset = Math.round(magAtSunset * 100) / 100;
-        }
-      }
-
-      let visibilityNote: string;
-      if (localSubtype === 'total') visibilityNote = 'Visible as Total Solar Eclipse';
-      else if (localSubtype === 'annular') visibilityNote = 'Visible as Annular Solar Eclipse';
-      else visibilityNote = `Visible as Partial Solar Eclipse (${Math.round(interp.magnitude * 100)}% coverage)`;
-
-      return {
-        date: eclipse.date,
-        type: 'solar',
-        subtype: localSubtype,
-        visible: true,
-        visibilityNote,
-        eclipseStart: formatTime(c1Display),
-        partialStart: formatTime(c1Display),
-        maximum: formatTime(interp.maxLocal),
-        partialEnd: null,
-        eclipseEnd: formatTime(interp.endsAtSunset ? sunset : c4Display),
-        endsAtSunset: interp.endsAtSunset,
-        endsAtMoonset: false,
-        maxMagnitude: interp.magnitude,
-        magnitudeAtSunset: magAtSunset,
-        durationMinutes,
-        durationFormatted: formatDuration(durationMinutes),
-        sutakApplicable: true,
-        sutakStart: formatTime(sutak.recommended),
-        sutakEnd: formatTime(sutak.end),
-        sutakVulnerableStart: formatTime(sutak.vulnerableStart),
-        sutakTraditions: {
-          nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
-          dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
-          muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
-        },
-        saros: eclipse.saros,
-        gamma: eclipse.gamma,
-        sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
-        sunset: sunTimes ? formatTime(sunset) : null,
-      };
     }
-  }
 
-  // Fallback: geometric approximation (for eclipses without city data)
+    // Sutak
+    const sutak = computeSutakTraditions(c1Local, effectiveEnd, true, sunrise, sunset);
 
-  // Distance from observer to greatest eclipse point
-  const distKm = greatCircleDistKm(lat, lng, eclipse.maxLat, eclipse.maxLon);
+    let visibilityNote: string;
+    if (localSubtype === 'total') visibilityNote = 'Visible as Total Solar Eclipse';
+    else if (localSubtype === 'annular') visibilityNote = 'Visible as Annular Solar Eclipse';
+    else visibilityNote = `Visible as Partial Solar Eclipse (${Math.round(topo.maxMagnitude * 100)}% coverage)`;
 
-  // Check visibility: observer within penumbral shadow radius?
-  // For high-gamma eclipses (polar path), the penumbral shadow can be much larger
-  // because the shadow is projected at a steep angle. Scale the effective radius.
-  const gammaFactor = 1 + Math.abs(eclipse.gamma) * 0.5; // Larger shadow for high-gamma
-  const effectivePenRadius = eclipse.penRadius * gammaFactor;
-  const visible = distKm < effectivePenRadius;
-
-  if (!visible) {
     return {
       date: eclipse.date,
       type: 'solar',
-      subtype: eclipse.type === 'hybrid' ? 'total' : eclipse.type,
-      visible: false,
-      visibilityNote: 'Not visible from your location',
-      eclipseStart: null, partialStart: null, maximum: null, partialEnd: null, eclipseEnd: null,
-      endsAtSunset: false, endsAtMoonset: false,
-      maxMagnitude: 0, magnitudeAtSunset: null,
-      durationMinutes: 0, durationFormatted: '0m',
-      sutakApplicable: false,
-      sutakStart: null, sutakEnd: null, sutakVulnerableStart: null,
-      sutakTraditions: { nirnyaSindhu: null, dharmaSindhu: null, muhurtaChintamani: null },
-      saros: eclipse.saros, gamma: eclipse.gamma,
-      sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
-      sunset: sunTimes ? formatTime(sunTimes.sunset) : null,
+      subtype: localSubtype,
+      visible: true,
+      visibilityNote,
+      eclipseStart: formatTime(c1Local),
+      partialStart: formatTime(c1Local),
+      maximum: formatTime(maxLocal),
+      partialEnd: null,
+      eclipseEnd: formatTime(effectiveEnd),
+      endsAtSunset,
+      endsAtMoonset: false,
+      maxMagnitude: Math.round(topo.maxMagnitude * 100) / 100,
+      magnitudeAtSunset: magAtSunset,
+      durationMinutes,
+      durationFormatted: formatDuration(durationMinutes),
+      sutakApplicable: true,
+      sutakStart: formatTime(sutak.recommended),
+      sutakEnd: formatTime(sutak.end),
+      sutakVulnerableStart: formatTime(sutak.vulnerableStart),
+      sutakTraditions: {
+        nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
+        dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
+        muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
+      },
+      saros: eclipse.saros,
+      gamma: eclipse.gamma,
+      sunrise: sunTimes ? formatTime(sunrise) : null,
+      sunset: sunTimes ? formatTime(sunset) : null,
     };
   }
 
-  // ── Compute local eclipse magnitude ──
-  // Use quadratic falloff for more realistic magnitude distribution
-  // The penumbral shadow has a bell-curve-like magnitude profile
-  const halfPathKm = eclipse.pathWidth / 2;
-  let localMagnitude: number;
-  let localSubtype: 'total' | 'annular' | 'partial' | 'hybrid';
-
-  if (distKm < halfPathKm && eclipse.pathWidth > 0) {
-    // Within the path of totality/annularity
-    localMagnitude = eclipse.magnitude;
-    localSubtype = eclipse.type === 'partial' ? 'partial' : eclipse.type;
-  } else {
-    // Partial eclipse — use cosine-based falloff for better approximation
-    // At center: eclipse.magnitude, at penumbral edge: 0
-    const normalizedDist = distKm / effectivePenRadius;
-    // Cosine falloff gives more realistic magnitude distribution
-    localMagnitude = Math.max(0.01, eclipse.magnitude * Math.cos(normalizedDist * Math.PI / 2));
-    localSubtype = 'partial';
-  }
-
-  // ── Compute local contact times ──
-  // For solar eclipses, the local maximum time depends on the observer's
-  // position relative to the shadow path. We use longitude difference
-  // scaled by the shadow's longitudinal velocity.
-  const maxUtcHours = parseUtcTime(eclipse.maxUtc);
-
-  // The shadow crosses ~360° of longitude during the eclipse.
-  // For a typical eclipse, the shadow takes ~3-5 hours to cross the visible zone.
-  // The longitude-based time offset is approximately:
-  // deltaT = (observerLon - eclipseLon) / (15°/hour * cos correction)
-  // But the shadow doesn't move at constant speed on the ground, and for
-  // polar eclipses the relationship is highly non-linear.
-  //
-  // Better approach: use the fact that the Sun moves 15°/hour in hour angle,
-  // so the eclipse geometry repeats with a ~15°/hour longitude shift.
-  // This gives a first-order correction:
-  const lonDiff = lng - eclipse.maxLon;
-  // Normalize longitude difference to [-180, 180]
-  const lonDiffNorm = ((lonDiff + 180) % 360 + 360) % 360 - 180;
-
-  // Time offset from longitude: the shadow moves roughly with the Sun
-  // at ~15°/hour, but ground speed varies with cos(lat) and eclipse geometry.
-  // For high-gamma eclipses near the pole, longitude compression is extreme.
-  const effectiveSpeedDegPerHour = 15 * Math.cos(eclipse.maxLat * Math.PI / 180);
-  const lonTimeOffset = effectiveSpeedDegPerHour > 1 ? lonDiffNorm / effectiveSpeedDegPerHour : 0;
-
-  // Latitude also affects timing — further from center line = later entry/earlier exit
-  const latDiff = lat - eclipse.maxLat;
-  const latTimeAdjust = Math.abs(latDiff) * 0.01; // Small adjustment
-
-  // Local maximum time (UTC)
-  const localMaxUtc = maxUtcHours + lonTimeOffset;
-
-  // Eclipse half-duration at observer location
-  // Duration depends on depth within shadow. Use quadratic scaling.
-  const normalizedDist = distKm / effectivePenRadius;
-  const depthFraction = Math.max(0, 1 - normalizedDist);
-  // At center of penumbra: ~1.5h half-duration, at edge: ~0
-  // Use sqrt for more gradual falloff (matches observed eclipse durations)
-  const halfDurationHours = 1.5 * Math.sqrt(depthFraction);
-
-  const c1Utc = localMaxUtc - halfDurationHours; // First contact (partial begins)
-  const c4Utc = localMaxUtc + halfDurationHours; // Fourth contact (partial ends)
-
-  // Convert to local time
-  const c1Local = utcToLocal(c1Utc, tzOffset);
-  const maxLocal = utcToLocal(localMaxUtc, tzOffset);
-  const c4Local = utcToLocal(c4Utc, tzOffset);
-
-  // Check if eclipse ends at sunset (sunset already defined above)
-  const endsAtSunset = c4Local > sunset;
-  const effectiveEnd = endsAtSunset ? sunset : c4Local;
-
-  // Magnitude at sunset (if applicable)
-  let magnitudeAtSunset: number | null = null;
-  if (endsAtSunset) {
-    // Linear interpolation: mag decreases from max to 0 as we move from maximum to c4
-    const totalPhase = c4Local - maxLocal;
-    const sunsetPhase = sunset - maxLocal;
-    if (totalPhase > 0 && sunsetPhase > 0) {
-      magnitudeAtSunset = Math.max(0, localMagnitude * (1 - sunsetPhase / totalPhase));
-    }
-  }
-
-  // Duration
-  const durationMinutes = Math.max(0, (effectiveEnd - c1Local) * 60);
-
-  // Sutak: compute per 3 traditions
-  const fallbackSunrise = sunTimes?.sunrise ?? 6;
-  const sutak = computeSutakTraditions(c1Local, effectiveEnd, true, fallbackSunrise, sunset);
-
-  // Visibility note
-  let visibilityNote: string;
-  if (localSubtype === 'total') {
-    visibilityNote = 'Visible as Total Solar Eclipse';
-  } else if (localSubtype === 'annular') {
-    visibilityNote = 'Visible as Annular Solar Eclipse';
-  } else {
-    visibilityNote = `Visible as Partial Solar Eclipse (${(localMagnitude * 100).toFixed(0)}% coverage)`;
-  }
-
+  // Not visible from this location
   return {
     date: eclipse.date,
     type: 'solar',
-    subtype: localSubtype,
-    visible,
-    visibilityNote,
-    eclipseStart: formatTime(c1Local),
-    partialStart: formatTime(c1Local), // Same as eclipseStart for solar
-    maximum: formatTime(maxLocal),
-    partialEnd: null, // No distinct partial end for solar
-    eclipseEnd: endsAtSunset ? formatTime(sunset) : formatTime(c4Local),
-    endsAtSunset,
-    endsAtMoonset: false,
-    maxMagnitude: Math.round(localMagnitude * 100) / 100,
-    magnitudeAtSunset,
-    durationMinutes,
-    durationFormatted: formatDuration(durationMinutes),
-    sutakApplicable: true,
-    sutakStart: formatTime(sutak.recommended),
-    sutakEnd: formatTime(sutak.end),
-    sutakVulnerableStart: formatTime(sutak.vulnerableStart),
-    sutakTraditions: {
-      nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
-      dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
-      muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
-    },
-    saros: eclipse.saros,
-    gamma: eclipse.gamma,
-    sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
+    subtype: eclipse.type === 'hybrid' ? 'total' : eclipse.type,
+    visible: false,
+    visibilityNote: 'Not visible from your location',
+    eclipseStart: null, partialStart: null, maximum: null, partialEnd: null, eclipseEnd: null,
+    endsAtSunset: false, endsAtMoonset: false,
+    maxMagnitude: 0, magnitudeAtSunset: null,
+    durationMinutes: 0, durationFormatted: '0m',
+    sutakApplicable: false,
+    sutakStart: null, sutakEnd: null, sutakVulnerableStart: null,
+    sutakTraditions: { nirnyaSindhu: null, dharmaSindhu: null, muhurtaChintamani: null },
+    saros: eclipse.saros, gamma: eclipse.gamma,
+    sunrise: sunTimes ? formatTime(sunrise) : null,
     sunset: sunTimes ? formatTime(sunset) : null,
   };
 }

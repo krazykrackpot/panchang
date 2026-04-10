@@ -106,14 +106,54 @@ const L = {
   },
 
   /* Saros */
-  sarosTitle: { en: 'The Saros Cycle',                                        hi: 'सारोस चक्र' },
-  saros1: {
-    en: 'Ancient astronomers — both Babylonian and Indian — discovered that eclipses repeat in a cycle of approximately 18 years, 11 days, and 8 hours (6,585.32 days). This is the Saros cycle. After one Saros, the Sun, Moon, and lunar nodes return to nearly the same relative geometry, producing an eclipse that is similar in type and magnitude to its predecessor.',
-    hi: 'प्राचीन खगोलविदों — बेबीलोनियाई और भारतीय दोनों — ने पाया कि ग्रहण लगभग 18 वर्ष, 11 दिन और 8 घण्टे (6,585.32 दिन) के एक चक्र में दोहराते हैं। यह सारोस चक्र है। एक सारोस के बाद, सूर्य, चन्द्रमा और चन्द्र पात लगभग उसी सापेक्ष ज्यामिति में वापस आते हैं।',
+  sarosTitle: { en: 'The Saros Cycle & Eclipse Series',                         hi: 'सारोस चक्र एवं ग्रहण श्रृंखला' },
+  sarosWhy: {
+    en: 'Why do eclipses repeat? Three orbital cycles align almost perfectly:',
+    hi: 'ग्रहण क्यों दोहराते हैं? तीन कक्षीय चक्र लगभग पूर्ण रूप से संरेखित होते हैं:',
   },
-  saros2: {
-    en: 'The extra 8 hours means the repeat eclipse occurs 120° further west on Earth\'s surface — so after three Saros cycles (54 years, 34 days — the Exeligmos), an eclipse returns to nearly the same longitude. Each eclipse belongs to a Saros series, numbered from 1 to ~180 active series at any time. Our eclipse engine identifies the Saros series number for every eclipse it computes.',
-    hi: 'अतिरिक्त 8 घण्टे का अर्थ है कि अगला ग्रहण पृथ्वी की सतह पर 120° पश्चिम में होता है — इसलिए तीन सारोस चक्रों (54 वर्ष, 34 दिन — एक्सेलिग्मोस) के बाद, ग्रहण लगभग उसी देशान्तर पर वापस आता है। प्रत्येक ग्रहण एक सारोस श्रृंखला से सम्बन्धित है, किसी भी समय ~180 सक्रिय श्रृंखलाओं में से।',
+  sarosSynodic: {
+    en: '223 Synodic Months (New Moon to New Moon) = 6,585.32 days. This ensures the Sun-Moon phase (New or Full) repeats.',
+    hi: '223 सिनोडिक मास (अमावस्या से अमावस्या) = 6,585.32 दिन। यह सुनिश्चित करता है कि सूर्य-चन्द्र कला (अमावस्या या पूर्णिमा) दोहराती है।',
+  },
+  sarosDraconic: {
+    en: '242 Draconic Months (node to node) = 6,585.36 days. This ensures the Moon returns to almost the same position relative to its nodes (Rahu/Ketu), so the eclipse geometry repeats.',
+    hi: '242 ड्रैकोनिक मास (पात से पात) = 6,585.36 दिन। यह सुनिश्चित करता है कि चन्द्र अपने पातों (राहु/केतु) के सापेक्ष लगभग उसी स्थिति में वापस आता है।',
+  },
+  sarosAnomalistic: {
+    en: '239 Anomalistic Months (perigee to perigee) = 6,585.54 days. This ensures the Moon is at nearly the same distance from Earth, so the eclipse magnitude and type (total vs annular) are similar.',
+    hi: '239 एनोमैलिस्टिक मास (उपभू से उपभू) = 6,585.54 दिन। यह सुनिश्चित करता है कि चन्द्र पृथ्वी से लगभग समान दूरी पर है, इसलिए ग्रहण का परिमाण और प्रकार समान रहता है।',
+  },
+  sarosResult: {
+    en: 'All three align within 0.04 days of 6,585.32 days — approximately 18 years, 11 days, and 8 hours. After this period, virtually the same eclipse recurs.',
+    hi: 'तीनों 6,585.32 दिनों के 0.04 दिन के भीतर संरेखित होते हैं — लगभग 18 वर्ष, 11 दिन, 8 घण्टे। इस अवधि के बाद, लगभग वही ग्रहण पुनः होता है।',
+  },
+  saros8hours: {
+    en: 'The 8-Hour Shift — The extra ⅓ day means Earth has rotated 120° further. So the repeat eclipse occurs ~120° west on Earth\'s surface. The same eclipse is visible from a completely different part of the world. After THREE Saros cycles (54 years 34 days, called the Exeligmos), the eclipse returns to approximately the same longitude — the same part of the world sees it again.',
+    hi: '8 घण्टे का विचलन — अतिरिक्त ⅓ दिन का अर्थ है कि पृथ्वी 120° और घूम चुकी है। अगला ग्रहण पृथ्वी की सतह पर ~120° पश्चिम में होता है। तीन सारोस चक्रों (54 वर्ष 34 दिन, एक्सेलिग्मोस) के बाद, ग्रहण लगभग उसी देशान्तर पर वापस आता है।',
+  },
+  sarosSeriesTitle: {
+    en: 'What is a Saros Series?',
+    hi: 'सारोस श्रृंखला क्या है?',
+  },
+  sarosSeries1: {
+    en: 'Each eclipse belongs to a Saros series — a family of eclipses recurring every 18.03 years over ~1,200-1,500 years. A typical Saros series contains 70-85 eclipses. The series begins with small partial eclipses near one pole, gradually intensifying to total/annular eclipses near the equator, then fading to small partials at the opposite pole before ending.',
+    hi: 'प्रत्येक ग्रहण एक सारोस श्रृंखला से सम्बन्धित है — ~1,200-1,500 वर्षों में हर 18.03 वर्ष में पुनरावर्ती ग्रहणों का एक परिवार। एक सामान्य श्रृंखला में 70-85 ग्रहण होते हैं। श्रृंखला एक ध्रुव के पास छोटे आंशिक ग्रहणों से शुरू होती है, धीरे-धीरे भूमध्य रेखा के पास पूर्ण/वलयाकार ग्रहणों तक तीव्र होती है, फिर विपरीत ध्रुव पर छोटे आंशिक ग्रहणों में क्षीण होकर समाप्त होती है।',
+  },
+  sarosSeries2: {
+    en: 'At any given time, about 40 Saros series are producing solar eclipses and about 40 are producing lunar eclipses (~80 total active series). Series are numbered: for example, the August 12, 2026 total solar eclipse belongs to Saros 126, and the March 3, 2026 total lunar eclipse belongs to Saros 133.',
+    hi: 'किसी भी समय, लगभग 40 सारोस श्रृंखलाएँ सूर्य ग्रहण और लगभग 40 चन्द्र ग्रहण उत्पन्न कर रही होती हैं (~80 कुल सक्रिय श्रृंखलाएँ)। उदाहरण: 12 अगस्त 2026 का पूर्ण सूर्य ग्रहण सारोस 126 से सम्बन्धित है, और 3 मार्च 2026 का पूर्ण चन्द्र ग्रहण सारोस 133 से।',
+  },
+  sarosNodePrecession: {
+    en: 'The Nodal Precession (18.6 Year Cycle)',
+    hi: 'पात का पुरस्सरण (18.6 वर्ष चक्र)',
+  },
+  sarosNodePrec1: {
+    en: 'The Rahu-Ketu axis is not fixed — it rotates backwards (retrograde) through the zodiac, completing one full revolution in 18.6 years. This means Rahu and Ketu move through all 12 signs over 18.6 years, spending about 1.5 years in each sign. This is why eclipse "seasons" (when the Sun is near a node and eclipses are possible) shift earlier by about 19 days each year.',
+    hi: 'राहु-केतु अक्ष स्थिर नहीं है — यह राशिचक्र में पीछे की ओर (वक्री) घूमता है, 18.6 वर्षों में एक पूर्ण चक्कर पूरा करता है। अर्थात् राहु और केतु 18.6 वर्षों में सभी 12 राशियों से गुजरते हैं, प्रत्येक राशि में लगभग 1.5 वर्ष रहते हैं। इसलिए ग्रहण "ऋतुएँ" प्रत्येक वर्ष लगभग 19 दिन पहले आती हैं।',
+  },
+  sarosNodePrec2: {
+    en: 'In Vedic astrology, this precession is one of the most important transit events — Rahu\'s ingress into a new sign affects mundane predictions, national events, and personal charts (especially for those running Rahu or Ketu Mahadasha). The current transit: Rahu is in Pisces and Ketu is in Virgo (2025-2026).',
+    hi: 'वैदिक ज्योतिष में, यह पुरस्सरण सबसे महत्वपूर्ण गोचर घटनाओं में से एक है — राहु का नई राशि में प्रवेश मुण्डन भविष्यवाणियों, राष्ट्रीय घटनाओं और व्यक्तिगत कुण्डलियों को प्रभावित करता है (विशेषकर राहु या केतु महादशा वालों के लिए)। वर्तमान गोचर: राहु मीन में और केतु कन्या में (2025-2026)।',
   },
 
   /* Cross refs */
@@ -767,18 +807,99 @@ export default function LearnEclipsesPage() {
         <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>
           {l(L.sarosTitle)}
         </h3>
-        <div className="text-text-secondary text-base leading-relaxed space-y-4" style={bodyFont}>
-          <p>{l(L.saros1)}</p>
-          <p>{l(L.saros2)}</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
+        <div className="text-text-secondary text-base leading-relaxed space-y-5" style={bodyFont}>
+          {/* Why eclipses repeat */}
+          <p className="font-semibold text-gold-light">{l(L.sarosWhy)}</p>
+          <div className="space-y-3 ml-1">
+            <div className="flex gap-3 items-start">
+              <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">1.</span>
+              <p className="text-sm">{l(L.sarosSynodic)}</p>
+            </div>
+            <div className="flex gap-3 items-start">
+              <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">2.</span>
+              <p className="text-sm">{l(L.sarosDraconic)}</p>
+            </div>
+            <div className="flex gap-3 items-start">
+              <span className="text-gold-light font-mono text-sm font-bold shrink-0 mt-0.5">3.</span>
+              <p className="text-sm">{l(L.sarosAnomalistic)}</p>
+            </div>
+          </div>
+          <p>{l(L.sarosResult)}</p>
+
+          {/* Stats cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              { value: '18y 11d 8h', label: { en: 'Saros Cycle Length', hi: 'सारोस चक्र अवधि' }, color: 'text-gold-light' },
-              { value: '54y 34d', label: { en: 'Exeligmos (3× Saros)', hi: 'एक्सेलिग्मोस (3× सारोस)' }, color: 'text-violet-400' },
-              { value: '~180', label: { en: 'Active Saros Series', hi: 'सक्रिय सारोस श्रृंखलाएँ' }, color: 'text-blue-300' },
+              { value: '6,585.32', label: { en: 'Days (Saros)', hi: 'दिन (सारोस)' }, color: 'text-gold-light' },
+              { value: '18y 11d 8h', label: { en: 'Duration', hi: 'अवधि' }, color: 'text-gold-light' },
+              { value: '54y 34d', label: { en: 'Exeligmos (3×)', hi: 'एक्सेलिग्मोस' }, color: 'text-violet-400' },
+              { value: '120°', label: { en: 'Westward Shift', hi: 'पश्चिम विचलन' }, color: 'text-blue-300' },
             ].map((stat, i) => (
-              <div key={i} className="text-center p-4 border border-gold-primary/10 rounded-xl bg-bg-primary/30">
-                <div className={`text-2xl font-bold font-mono mb-1 ${stat.color}`}>{stat.value}</div>
-                <div className="text-text-secondary/70 text-xs" style={bodyFont}>{l(stat.label)}</div>
+              <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
+                <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* 8-hour shift */}
+          <p>{l(L.saros8hours)}</p>
+
+          {/* Saros Series */}
+          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{l(L.sarosSeriesTitle)}</h4>
+          <p>{l(L.sarosSeries1)}</p>
+          <p>{l(L.sarosSeries2)}</p>
+
+          {/* Saros lifecycle diagram */}
+          <div className="border border-gold-primary/10 rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
+            <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">{isHi ? 'सारोस श्रृंखला का जीवन चक्र (~1,200-1,500 वर्ष)' : 'Lifecycle of a Saros Series (~1,200-1,500 years)'}</div>
+            <div className="flex items-center gap-1 text-[10px]">
+              <div className="flex-1 h-3 rounded-l-full bg-gradient-to-r from-transparent to-amber-500/30" />
+              <div className="flex-1 h-3 bg-gradient-to-r from-amber-500/30 to-amber-500/60" />
+              <div className="flex-1 h-3 bg-amber-500/60" />
+              <div className="flex-1 h-3 bg-gradient-to-r from-amber-500/60 to-red-500/70" />
+              <div className="flex-1 h-3 bg-red-500/70" />
+              <div className="flex-1 h-3 bg-gradient-to-r from-red-500/70 to-amber-500/60" />
+              <div className="flex-1 h-3 bg-gradient-to-r from-amber-500/60 to-amber-500/30" />
+              <div className="flex-1 h-3 rounded-r-full bg-gradient-to-r from-amber-500/30 to-transparent" />
+            </div>
+            <div className="flex justify-between mt-1 text-[9px] text-text-secondary/50">
+              <span>{isHi ? 'शुरू: छोटे आंशिक (ध्रुव)' : 'Start: Small partials (pole)'}</span>
+              <span className="text-red-400">{isHi ? 'चरम: पूर्ण/वलयाकार (भूमध्य)' : 'Peak: Total/Annular (equator)'}</span>
+              <span>{isHi ? 'अंत: छोटे आंशिक (विपरीत ध्रुव)' : 'End: Small partials (opp. pole)'}</span>
+            </div>
+            <div className="text-center text-text-secondary/40 text-[9px] mt-1">70-85 {isHi ? 'ग्रहण प्रति श्रृंखला' : 'eclipses per series'}</div>
+          </div>
+
+          {/* Series stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {[
+              { value: '~80', label: { en: 'Active Series (any time)', hi: 'सक्रिय श्रृंखलाएँ (किसी भी समय)' }, color: 'text-blue-300' },
+              { value: '70-85', label: { en: 'Eclipses per Series', hi: 'ग्रहण प्रति श्रृंखला' }, color: 'text-emerald-400' },
+              { value: '1,200-1,500y', label: { en: 'Series Lifespan', hi: 'श्रृंखला जीवनकाल' }, color: 'text-amber-400' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
+                <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Nodal Precession */}
+          <h4 className="text-lg font-bold text-gold-light mt-4" style={headingFont}>{l(L.sarosNodePrecession)}</h4>
+          <p>{l(L.sarosNodePrec1)}</p>
+          <p>{l(L.sarosNodePrec2)}</p>
+
+          {/* Nodal precession stats */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { value: '18.6y', label: { en: 'Full Nodal Cycle', hi: 'पूर्ण पात चक्र' }, color: 'text-gold-light' },
+              { value: '~1.5y', label: { en: 'Per Sign', hi: 'प्रति राशि' }, color: 'text-violet-400' },
+              { value: '~19d', label: { en: 'Annual Shift', hi: 'वार्षिक विचलन' }, color: 'text-blue-300' },
+              { value: '~3°/month', label: { en: 'Rahu Speed', hi: 'राहु गति' }, color: 'text-amber-400' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center p-3 border border-gold-primary/10 rounded-xl bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]">
+                <div className={`text-xl font-bold font-mono mb-0.5 ${stat.color}`}>{stat.value}</div>
+                <div className="text-text-secondary/60 text-[10px]" style={bodyFont}>{l(stat.label)}</div>
               </div>
             ))}
           </div>

@@ -4,321 +4,339 @@ import { useState, useEffect, useRef, memo } from 'react';
 import { motion } from 'framer-motion';
 
 type Locale = 'en' | 'hi' | 'sa';
-
-interface Props {
-  locale: Locale;
-}
+interface Props { locale: Locale }
 
 const L = {
-  solarTab:   { en: 'Solar Eclipse',  hi: 'सूर्य ग्रहण' },
-  lunarTab:   { en: 'Lunar Eclipse',  hi: 'चन्द्र ग्रहण' },
-  eclipse:    { en: 'Eclipse! Moon aligned with Sun-Earth at the node', hi: 'ग्रहण! चन्द्र पात पर सूर्य-पृथ्वी के साथ संरेखित' },
-  noEclipse:  { en: 'No eclipse — Moon is above/below the ecliptic plane', hi: 'ग्रहण नहीं — चन्द्र क्रान्तिवृत्त तल से ऊपर/नीचे है' },
-  lunarEclipse: { en: 'Lunar Eclipse! Moon enters Earth\'s shadow at the node', hi: 'चन्द्र ग्रहण! चन्द्र पात पर पृथ्वी की छाया में प्रवेश' },
+  solarTab: { en: 'Solar Eclipse', hi: 'सूर्य ग्रहण' },
+  lunarTab: { en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण' },
   solarExpl: {
-    en: 'Watch the Moon travel along its tilted orbit. When it crosses the ecliptic plane at a node (Rahu or Ketu) during New Moon, it passes between Sun and Earth — casting its shadow on Earth. This is a Solar Eclipse.',
-    hi: 'चन्द्रमा को उसकी झुकी हुई कक्षा में चलते देखें। जब यह अमावस्या के समय किसी पात (राहु या केतु) पर क्रान्तिवृत्त तल को काटता है, तो यह सूर्य और पृथ्वी के बीच से गुजरता है — पृथ्वी पर अपनी छाया डालता है। यह सूर्य ग्रहण है।',
+    en: 'Solar Eclipse: When the Moon crosses the ecliptic plane at Rahu or Ketu during New Moon (Amavasya), it passes directly between Sun and Earth, blocking sunlight. The Moon\'s shadow falls on Earth.',
+    hi: 'सूर्य ग्रहण: जब अमावस्या के समय चन्द्र राहु या केतु पर क्रान्तिवृत्त तल को काटता है, तो वह सूर्य और पृथ्वी के ठीक बीच से गुजरता है। चन्द्रमा की छाया पृथ्वी पर पड़ती है।',
   },
   lunarExpl: {
-    en: 'When the Full Moon crosses the ecliptic at a node, Earth comes between Sun and Moon. Earth\'s shadow falls on the Moon, turning it blood-red. This is a Lunar Eclipse (Blood Moon).',
-    hi: 'जब पूर्णिमा का चन्द्र किसी पात पर क्रान्तिवृत्त को काटता है, तो पृथ्वी सूर्य और चन्द्र के बीच आती है। पृथ्वी की छाया चन्द्र पर पड़ती है, जिससे वह रक्त-लाल हो जाता है। यह चन्द्र ग्रहण (ब्लड मून) है।',
+    en: 'Lunar Eclipse: When the Moon crosses the ecliptic plane at a node during Full Moon (Purnima), Earth comes between Sun and Moon. Earth\'s shadow engulfs the Moon, turning it blood-red (Blood Moon).',
+    hi: 'चन्द्र ग्रहण: जब पूर्णिमा के समय चन्द्र किसी पात पर क्रान्तिवृत्त तल को काटता है, तो पृथ्वी सूर्य और चन्द्र के बीच आती है। पृथ्वी की छाया चन्द्र को ढक लेती है, जिससे वह रक्त-लाल हो जाता है।',
   },
 };
 
-const W = 620;
-const H = 320;
-const CY = 150; // ecliptic y-center
-const ORBIT_AMP = 55; // exaggerated orbital tilt amplitude for visibility
+const W = 800;
+const H = 500;
+const CX = 400;
+const CY = 250;
 
-// Animation: 10 seconds total, with 1.5s pause at each node crossing
-const CYCLE_MS = 10000;
-const PAUSE_DURATION = 1500; // ms to pause at eclipse point
+// Earth's orbit (ecliptic plane): large ellipse, foreshortened for perspective
+const EARTH_RX = 310;
+const EARTH_RY = 130;
 
-/* Static star field */
+// Moon's orbit around Earth
+const MOON_RX = 70;
+const MOON_RY_ECLIPTIC = 30;
+const VISUAL_TILT = 18; // exaggerated for visibility (actual 5.15°)
+const MOON_RY = MOON_RY_ECLIPTIC;
+const MOON_TILT_OFFSET = Math.tan(VISUAL_TILT * Math.PI / 180) * MOON_RX;
+
+// Animation timing
+const CYCLE_MS = 12000;
+const PAUSE_MS = 2000;
+
+// Stars
 const STARS: [number, number, number][] = [
-  [25,18,0.15],[95,42,0.3],[155,12,0.2],[225,32,0.3],[305,18,0.15],
-  [405,38,0.3],[485,12,0.2],[555,28,0.3],[65,95,0.15],[175,82,0.3],
-  [355,88,0.15],[505,72,0.3],[585,108,0.15],[45,178,0.3],[205,198,0.15],
-  [455,188,0.3],[535,228,0.15],[85,248,0.3],[335,258,0.15],[495,243,0.3],
-  [600,40,0.2],[30,140,0.15],[580,160,0.2],[290,10,0.25],[420,280,0.2],
+  [20,15,0.12],[90,35,0.25],[160,10,0.15],[240,28,0.2],[350,12,0.15],
+  [450,32,0.25],[530,8,0.12],[600,22,0.2],[70,85,0.15],[180,72,0.25],
+  [380,78,0.12],[520,65,0.2],[610,95,0.15],[40,160,0.25],[220,180,0.12],
+  [480,170,0.2],[570,195,0.15],[100,230,0.25],[350,250,0.12],[510,235,0.2],
+  [30,310,0.15],[150,340,0.2],[300,360,0.12],[460,345,0.25],[590,320,0.15],
+  [550,380,0.12],[80,370,0.2],[420,390,0.15],[260,300,0.25],
 ];
 
+/** Earth position on its orbit at time t [0,1] */
+function earthPos(t: number): { x: number; y: number } {
+  const angle = t * Math.PI * 2;
+  return {
+    x: CX + EARTH_RX * Math.cos(angle),
+    y: CY + EARTH_RY * Math.sin(angle),
+  };
+}
+
 /**
- * Convert linear time [0,1] to animation time with pauses at eclipse points.
- * Eclipse crossings happen at raw t ≈ 0.25 and t ≈ 0.75.
- * At these points, the output t "stalls" for PAUSE_DURATION.
+ * Moon position on its tilted orbit around Earth.
+ * moonPhase [0,1] = Moon's position in its own orbit.
+ * nodeAngle = orientation of the nodal axis (radians).
+ * The tilt is applied perpendicular to the node axis.
  */
-function applyPause(rawT: number): number {
-  // Total pause time as fraction of cycle
-  const pauseFrac = (PAUSE_DURATION * 2) / CYCLE_MS; // two pauses
-  const singlePause = pauseFrac / 2;
+function moonPos(earthX: number, earthY: number, moonPhase: number, nodeAngle: number): { x: number; y: number; aboveEcliptic: boolean } {
+  const angle = moonPhase * Math.PI * 2;
+  // Moon position on ecliptic-plane ellipse
+  const mx = MOON_RX * Math.cos(angle);
+  const my = MOON_RY * Math.sin(angle);
+  // Tilt offset: maximum displacement perpendicular to the node axis
+  // Tilt is zero at the nodes (angle aligned with nodeAngle) and maximum 90° away
+  const tiltOffset = MOON_TILT_OFFSET * Math.sin(angle - nodeAngle);
+  return {
+    x: earthX + mx,
+    y: earthY + my - tiltOffset,
+    aboveEcliptic: tiltOffset > 0,
+  };
+}
 
-  // Pause windows centered at 0.25 and 0.75
-  const p1Start = 0.25 - singlePause / 2;
-  const p1End = 0.25 + singlePause / 2;
-  const p2Start = 0.75 - singlePause / 2;
-  const p2End = 0.75 + singlePause / 2;
-
-  if (rawT >= p1Start && rawT <= p1End) return 0.25;
-  if (rawT >= p2Start && rawT <= p2End) return 0.75;
-
-  // Compress the remaining motion into the non-pause time
-  if (rawT < p1Start) {
-    return rawT * (0.25 / p1Start);
-  } else if (rawT < p2Start) {
-    const segment = rawT - p1End;
-    const segmentLen = p2Start - p1End;
-    return 0.25 + segment / segmentLen * 0.5;
-  } else {
-    const segment = rawT - p2End;
-    const segmentLen = 1.0 - p2End;
-    return 0.75 + segment / segmentLen * 0.25;
+/** Moon orbit SVG path (tilted ellipse around Earth, respecting nodeAngle) */
+function moonOrbitPath(earthX: number, earthY: number, nodeAngle: number): string {
+  const pts: string[] = [];
+  for (let i = 0; i <= 72; i++) {
+    const angle = (i / 72) * Math.PI * 2;
+    const mx = MOON_RX * Math.cos(angle);
+    const my = MOON_RY * Math.sin(angle);
+    const tiltOffset = MOON_TILT_OFFSET * Math.sin(angle - nodeAngle);
+    pts.push(`${i === 0 ? 'M' : 'L'}${(earthX + mx).toFixed(1)},${(earthY + my - tiltOffset).toFixed(1)}`);
   }
+  return pts.join(' ') + 'Z';
 }
 
-/** Moon position on an elliptical orbit path. Crosses ecliptic at t=0.25 and t=0.75. */
-function moonPos(t: number, leftX: number, rightX: number): { x: number; y: number } {
-  const x = leftX + (rightX - leftX) * t;
-  // Sine wave: crosses zero (ecliptic) at t=0.25 (ascending) and t=0.75 (descending)
-  const y = CY - Math.sin((t - 0.25) * Math.PI * 2) * ORBIT_AMP;
-  return { x, y };
-}
-
-/** Generate SVG path data for the elliptical orbit */
-function orbitPath(leftX: number, rightX: number, direction: 'forward' | 'return'): string {
-  const steps = 60;
-  const points: string[] = [];
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps;
-    const x = leftX + (rightX - leftX) * t;
-    const sign = direction === 'forward' ? -1 : 1;
-    const y = CY + sign * Math.sin((t - 0.25) * Math.PI * 2) * ORBIT_AMP;
-    points.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`);
+/** Eclipse-plane-aligned orbit (what Moon's orbit would be WITHOUT tilt) */
+function moonOrbitEclipticPath(earthX: number, earthY: number): string {
+  const pts: string[] = [];
+  for (let i = 0; i <= 72; i++) {
+    const angle = (i / 72) * Math.PI * 2;
+    const x = earthX + MOON_RX * Math.cos(angle);
+    const y = earthY + MOON_RY * Math.sin(angle);
+    pts.push(`${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`);
   }
-  return points.join(' ');
+  return pts.join(' ') + 'Z';
 }
 
-function isNearEcliptic(t: number): boolean {
-  const distFromEcliptic = Math.abs(Math.sin((t - 0.25) * Math.PI * 2) * ORBIT_AMP);
-  return distFromEcliptic < 10;
+/**
+ * Node positions (where tilted orbit crosses ecliptic).
+ * The nodal axis precesses slowly (~18.6 year cycle).
+ * We rotate the node line based on a separate phase so it's NOT
+ * always aligned with the Sun-Earth direction.
+ * nodeAngle controls the orientation of the Rahu-Ketu axis.
+ */
+function nodePositions(earthX: number, earthY: number, nodeAngle: number): { rahu: { x: number; y: number }; ketu: { x: number; y: number } } {
+  return {
+    rahu: {
+      x: earthX + MOON_RX * Math.cos(nodeAngle),
+      y: earthY + MOON_RY * Math.sin(nodeAngle),
+    },
+    ketu: {
+      x: earthX - MOON_RX * Math.cos(nodeAngle),
+      y: earthY - MOON_RY * Math.sin(nodeAngle),
+    },
+  };
 }
 
-/* ─── Solar Eclipse SVG ─── */
-const SolarEclipseSVG = memo(function SolarEclipseSVG({ t, isHi }: { t: number; isHi: boolean }) {
-  const sunX = 75;
-  const earthX = 545;
-  const orbitLeft = 130;
-  const orbitRight = 510;
+/**
+ * Apply animation timing with pause at eclipse points.
+ * The nodeAngle is fixed at a specific orientation. Earth orbits the Sun.
+ * Moon orbits Earth. Eclipse happens when Moon is at a node AND the
+ * Sun-Earth-Moon geometry is right. We arrange the timing so one eclipse
+ * happens per cycle to illustrate the concept.
+ */
+function applyPause(rawT: number): { earthT: number; moonPhase: number; nodeAngle: number; paused: boolean } {
+  const earthT = rawT;
+  const nodeAngle = 0;
+  // Moon makes 3 orbits per Earth orbit — continuous, no pausing
+  const moonPhase = (rawT * 3) % 1;
+  // Detect when Moon is near a node for visual highlights (no pause, just glow)
+  const atNode = Math.abs(Math.sin(moonPhase * Math.PI * 2)) < 0.15;
+  return { earthT, moonPhase, nodeAngle, paused: atNode };
+}
 
-  // Node positions (where orbit crosses ecliptic)
-  const node1X = orbitLeft + (orbitRight - orbitLeft) * 0.25; // ascending
-  const node2X = orbitLeft + (orbitRight - orbitLeft) * 0.75; // descending
+/* ─── Solar Eclipse View ─── */
+const SolarView = memo(function SolarView({ earthT, moonPhase, nodeAngle, paused, isHi }: { earthT: number; moonPhase: number; nodeAngle: number; paused: boolean; isHi: boolean }) {
+  const earth = earthPos(earthT);
+  const moon = moonPos(earth.x, earth.y, moonPhase, nodeAngle);
+  const nodes = nodePositions(earth.x, earth.y, nodeAngle);
+  const atNode = Math.abs(Math.sin((moonPhase * Math.PI * 2) - nodeAngle) * MOON_TILT_OFFSET) < 4;
 
-  const moon = moonPos(t, orbitLeft, orbitRight);
-  const eclipse = isNearEcliptic(t);
-  const shadowOpacity = eclipse ? Math.max(0, 1 - Math.abs(Math.sin((t - 0.25) * Math.PI * 2) * ORBIT_AMP) / 12) : 0;
+  // Check if Moon is between Sun and Earth (New Moon position ≈ moonPhase near 0.75 facing Sun)
+  // Simplified: eclipse = at node
+  const isEclipse = paused && atNode;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 320 }}>
-      <rect width={W} height={H} fill="#060a1f" rx="16" />
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 500 }}>
+      <rect width={W} height={H} fill="#04071a" rx="16" />
 
       {/* Stars */}
-      {STARS.map(([sx, sy, op], i) => (
-        <circle key={i} cx={sx} cy={sy} r="0.8" fill="white" opacity={op} />
-      ))}
+      {STARS.map(([sx, sy, op], i) => <circle key={i} cx={sx} cy={sy} r="0.7" fill="white" opacity={op} />)}
 
-      {/* ════ ECLIPTIC PLANE ════ — prominent gold line across full width */}
-      <line x1="20" y1={CY} x2={W - 20} y2={CY} stroke="#d4a853" strokeWidth="2" opacity="0.6" />
-      {/* Ecliptic label — left side */}
-      <rect x="22" y={CY - 12} width={isHi ? 82 : 58} height="14" rx="3" fill="#0a0e27" opacity="0.8" />
-      <text x="26" y={CY - 2} fontSize="9" fill="#d4a853" fontWeight="bold" opacity="0.9">
+      {/* ════ EARTH'S ORBIT (ECLIPTIC PLANE) ════ */}
+      <ellipse cx={CX} cy={CY} rx={EARTH_RX} ry={EARTH_RY} fill="none" stroke="#d4a853" strokeWidth="1.5" opacity="0.4" />
+      {/* Ecliptic plane fill — subtle */}
+      <ellipse cx={CX} cy={CY} rx={EARTH_RX} ry={EARTH_RY} fill="#d4a853" opacity="0.02" />
+      {/* Label */}
+      <text x={CX + EARTH_RX - 30} y={CY - EARTH_RY - 8} fontSize="10" fill="#d4a853" fontWeight="bold" opacity="0.7">
         {isHi ? 'क्रान्तिवृत्त तल' : 'Ecliptic Plane'}
       </text>
-
-      {/* ════ MOON'S ORBITAL PATH ════ — smooth elliptical curve */}
-      <path d={orbitPath(orbitLeft, orbitRight, 'forward')} fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="8 4" opacity="0.6" />
-      {/* Tilt label */}
-      <text x={orbitRight + 5} y={CY - ORBIT_AMP - 5} fontSize="8" fill="#a78bfa" opacity="0.7">5.15°</text>
-      <text x={orbitRight + 5} y={CY - ORBIT_AMP + 5} fontSize="7" fill="#a78bfa" opacity="0.5">
-        {isHi ? 'कक्षा झुकाव' : 'orbit tilt'}
-      </text>
-
-      {/* ════ NODE MARKERS ════ */}
-      {/* Rahu — ascending node */}
-      <circle cx={node1X} cy={CY} r="12" fill="#d4a853" opacity="0.08" />
-      <circle cx={node1X} cy={CY} r="12" fill="none" stroke="#d4a853" strokeWidth="2" opacity="0.7" />
-      <text x={node1X} y={CY + 5} textAnchor="middle" fontSize="14" fill="#f0d48a" fontWeight="bold">☊</text>
-      <text x={node1X} y={CY - 18} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold" opacity="0.9">
-        {isHi ? 'राहु' : 'Rahu'}
-      </text>
-      <text x={node1X} y={CY + 26} textAnchor="middle" fontSize="7" fill="#d4a853" opacity="0.5">
-        {isHi ? 'आरोही पात' : 'Ascending Node'}
-      </text>
-
-      {/* Ketu — descending node */}
-      <circle cx={node2X} cy={CY} r="12" fill="#a78bfa" opacity="0.08" />
-      <circle cx={node2X} cy={CY} r="12" fill="none" stroke="#a78bfa" strokeWidth="2" opacity="0.7" />
-      <text x={node2X} y={CY + 5} textAnchor="middle" fontSize="14" fill="#c4b5fd" fontWeight="bold">☋</text>
-      <text x={node2X} y={CY - 18} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold" opacity="0.9">
-        {isHi ? 'केतु' : 'Ketu'}
-      </text>
-      <text x={node2X} y={CY + 26} textAnchor="middle" fontSize="7" fill="#a78bfa" opacity="0.5">
-        {isHi ? 'अवरोही पात' : 'Descending Node'}
+      <text x={CX + EARTH_RX - 30} y={CY - EARTH_RY + 4} fontSize="8" fill="#d4a853" opacity="0.4">
+        {isHi ? '(पृथ्वी की कक्षा)' : "(Earth's Orbit)"}
       </text>
 
       {/* ════ SUN ════ */}
-      {Array.from({ length: 12 }).map((_, i) => {
-        const angle = (i / 12) * Math.PI * 2;
-        return (
-          <line key={i} x1={sunX + Math.cos(angle) * 38} y1={CY + Math.sin(angle) * 38}
-            x2={sunX + Math.cos(angle) * 50} y2={CY + Math.sin(angle) * 50}
-            stroke="#f0d48a" strokeWidth="1.5" opacity="0.35" />
-        );
+      {Array.from({ length: 10 }).map((_, i) => {
+        const a = (i / 10) * Math.PI * 2;
+        return <line key={i} x1={CX + Math.cos(a) * 22} y1={CY + Math.sin(a) * 22}
+          x2={CX + Math.cos(a) * 30} y2={CY + Math.sin(a) * 30}
+          stroke="#f0d48a" strokeWidth="1.5" opacity="0.3" />;
       })}
-      <circle cx={sunX} cy={CY} r="35" fill="#d4a853" opacity="0.15" />
-      <circle cx={sunX} cy={CY} r="28" fill="#d4a853" />
-      <text x={sunX} y={CY + 48} textAnchor="middle" fontSize="10" fill="#f0d48a" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+      <circle cx={CX} cy={CY} r="20" fill="#d4a853" />
+      <circle cx={CX} cy={CY} r="28" fill="#d4a853" opacity="0.1" />
+      <text x={CX} y={CY + 38} textAnchor="middle" fontSize="10" fill="#f0d48a" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
 
-      {/* ════ EARTH ════ */}
-      <circle cx={earthX} cy={CY} r="18" fill="#1e3a5f" opacity="0.5" />
-      <circle cx={earthX} cy={CY} r="16" fill="#3b82f6" />
-      <circle cx={earthX - 3} cy={CY - 2} r="5" fill="#22c55e" opacity="0.4" />
-      <text x={earthX} y={CY + 32} textAnchor="middle" fontSize="10" fill="#60a5fa" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
+      {/* ════ MOON'S TILTED ORBIT (around Earth) ════ */}
+      {/* Ghost orbit: ecliptic-aligned (what it would be without tilt) */}
+      <path d={moonOrbitEclipticPath(earth.x, earth.y)} fill="none" stroke="#d4a853" strokeWidth="0.5" strokeDasharray="2 3" opacity="0.15" />
+      {/* Actual tilted orbit */}
+      <path d={moonOrbitPath(earth.x, earth.y, nodeAngle)} fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="6 3" opacity="0.6" />
+      {/* Tilt angle arc indicator */}
+      <text x={earth.x + MOON_RX + 8} y={earth.y - MOON_TILT_OFFSET / 2} fontSize="10" fill="#a78bfa" fontWeight="bold" opacity="0.8">
+        5.15°
+      </text>
+      <text x={earth.x + MOON_RX + 8} y={earth.y - MOON_TILT_OFFSET / 2 + 11} fontSize="7" fill="#a78bfa" opacity="0.5">
+        {isHi ? 'कक्षीय झुकाव' : 'orbital tilt'}
+      </text>
 
-      {/* ════ SHADOW CONE (Moon → Earth) ════ */}
-      {shadowOpacity > 0.05 && (
-        <>
-          <polygon points={`${moon.x},${moon.y - 8} ${moon.x},${moon.y + 8} ${earthX - 14},${CY + 12} ${earthX - 14},${CY - 12}`}
-            fill="#000030" opacity={shadowOpacity * 0.6} />
-          <polygon points={`${moon.x},${moon.y - 14} ${moon.x},${moon.y + 14} ${earthX - 12},${CY + 22} ${earthX - 12},${CY - 22}`}
-            fill="#000020" opacity={shadowOpacity * 0.25} />
-        </>
+      {/* ════ NODES (intersection of orbits) ════ */}
+      {/* Rahu — ascending node */}
+      <circle cx={nodes.rahu.x} cy={nodes.rahu.y} r="8" fill="#d4a853" opacity="0.1" />
+      <circle cx={nodes.rahu.x} cy={nodes.rahu.y} r="8" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.8" />
+      <text x={nodes.rahu.x} y={nodes.rahu.y + 4} textAnchor="middle" fontSize="12" fill="#f0d48a" fontWeight="bold">☊</text>
+      <text x={nodes.rahu.x + 14} y={nodes.rahu.y - 6} fontSize="9" fill="#f0d48a" fontWeight="bold">{isHi ? 'राहु' : 'Rahu'}</text>
+      <text x={nodes.rahu.x + 14} y={nodes.rahu.y + 5} fontSize="7" fill="#d4a853" opacity="0.5">{isHi ? 'आरोही पात' : 'Ascending'}</text>
+
+      {/* Ketu — descending node */}
+      <circle cx={nodes.ketu.x} cy={nodes.ketu.y} r="8" fill="#a78bfa" opacity="0.1" />
+      <circle cx={nodes.ketu.x} cy={nodes.ketu.y} r="8" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.8" />
+      <text x={nodes.ketu.x} y={nodes.ketu.y + 4} textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="bold">☋</text>
+      <text x={nodes.ketu.x - 14} y={nodes.ketu.y - 6} fontSize="9" fill="#c4b5fd" fontWeight="bold" textAnchor="end">{isHi ? 'केतु' : 'Ketu'}</text>
+      <text x={nodes.ketu.x - 14} y={nodes.ketu.y + 5} fontSize="7" fill="#a78bfa" opacity="0.5" textAnchor="end">{isHi ? 'अवरोही पात' : 'Descending'}</text>
+
+      {/* Sun → Moon shadow line when eclipse */}
+      {isEclipse && (
+        <line x1={CX} y1={CY} x2={moon.x} y2={moon.y} stroke="#22c55e" strokeWidth="1.5" opacity="0.5" strokeDasharray="4 2" />
       )}
 
-      {/* ════ MOON ════ */}
-      <circle cx={moon.x} cy={moon.y} r="11" fill="#94a3b8" />
-      <circle cx={moon.x + 3} cy={moon.y - 2} r="9" fill="#0a0e27" opacity="0.6" />
-      {/* Glow when at eclipse point */}
-      {eclipse && <circle cx={moon.x} cy={moon.y} r="18" fill="none" stroke="#22c55e" strokeWidth="2" opacity="0.7" />}
+      {/* ════ EARTH ════ */}
+      <circle cx={earth.x} cy={earth.y} r="10" fill="#1e3a5f" opacity="0.5" />
+      <circle cx={earth.x} cy={earth.y} r="8" fill="#3b82f6" />
+      <text x={earth.x} y={earth.y + 18} textAnchor="middle" fontSize="8" fill="#60a5fa" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
 
-      {/* ════ STATUS ════ */}
-      <rect x={W / 2 - 170} y={H - 38} width="340" height="24" rx="6" fill={eclipse ? '#052e16' : '#1a1040'} opacity="0.8" stroke={eclipse ? '#22c55e' : '#d4a853'} strokeWidth="0.5" strokeOpacity="0.3" />
-      <text x={W / 2} y={H - 22} textAnchor="middle" fontSize="11" fontWeight="bold" fill={eclipse ? '#4ade80' : '#8a8478'}>
-        {eclipse ? (isHi ? '⚫ ग्रहण! चन्द्र पात पर संरेखित' : '⚫ Eclipse! Moon aligned at the node') : (isHi ? 'चन्द्र क्रान्तिवृत्त से दूर — ग्रहण नहीं' : 'Moon away from ecliptic — no eclipse')}
+      {/* ════ MOON ════ */}
+      <circle cx={moon.x} cy={moon.y} r="5" fill="#94a3b8" />
+      <circle cx={moon.x + 1.5} cy={moon.y - 1} r="4" fill="#04071a" opacity="0.5" />
+      {isEclipse && <circle cx={moon.x} cy={moon.y} r="10" fill="none" stroke="#22c55e" strokeWidth="2" opacity="0.8" />}
+      <text x={moon.x} y={moon.y - 10} textAnchor="middle" fontSize="7" fill="#94a3b8" fontWeight="bold">{isHi ? 'चन्द्र' : 'Moon'}</text>
+
+      {/* ════ STATUS BAR ════ */}
+      <rect x={W / 2 - 185} y={H - 42} width="370" height="28" rx="8" fill={isEclipse ? '#052e16' : '#0f0a2a'} opacity="0.85" stroke={isEclipse ? '#22c55e' : '#d4a853'} strokeWidth="0.5" strokeOpacity="0.4" />
+      <text x={W / 2} y={H - 24} textAnchor="middle" fontSize="11" fontWeight="bold" fill={isEclipse ? '#4ade80' : '#8a8478'}>
+        {isEclipse
+          ? (isHi ? '⚫ सूर्य ग्रहण! चन्द्र पात पर — सूर्य और पृथ्वी के बीच' : '⚫ Solar Eclipse! Moon at node — between Sun and Earth')
+          : (isHi ? 'चन्द्र क्रान्तिवृत्त तल से ऊपर/नीचे — ग्रहण नहीं' : 'Moon above/below ecliptic plane — no eclipse')}
       </text>
     </svg>
   );
 });
 
-/* ─── Lunar Eclipse SVG ─── */
-const LunarEclipseSVG = memo(function LunarEclipseSVG({ t, isHi }: { t: number; isHi: boolean }) {
-  const sunX = 60;
-  const earthX = 250;
-  const orbitLeft = 300;
-  const orbitRight = 580;
+/* ─── Lunar Eclipse View ─── */
+const LunarView = memo(function LunarView({ earthT, moonPhase, nodeAngle, paused, isHi }: { earthT: number; moonPhase: number; nodeAngle: number; paused: boolean; isHi: boolean }) {
+  const earth = earthPos(earthT);
+  const moon = moonPos(earth.x, earth.y, moonPhase, nodeAngle);
+  const nodes = nodePositions(earth.x, earth.y, nodeAngle);
+  const atNode = Math.abs(Math.sin((moonPhase * Math.PI * 2) - nodeAngle) * MOON_TILT_OFFSET) < 4;
+  const isEclipse = paused && atNode;
 
-  const node1X = orbitLeft + (orbitRight - orbitLeft) * 0.25;
-  const node2X = orbitLeft + (orbitRight - orbitLeft) * 0.75;
+  // Blood Moon color when eclipsed
+  const moonFill = isEclipse ? '#c0392b' : '#94a3b8';
 
-  const moon = moonPos(t, orbitLeft, orbitRight);
-  const eclipse = isNearEcliptic(t);
-  const shadowFrac = eclipse ? Math.max(0, 1 - Math.abs(Math.sin((t - 0.25) * Math.PI * 2) * ORBIT_AMP) / 12) : 0;
-
-  // Blood Moon color
-  const r = Math.round(200 + (1 - shadowFrac) * 30);
-  const g = Math.round(50 + (1 - shadowFrac) * 180);
-  const b = Math.round(30 + (1 - shadowFrac) * 210);
-  const moonColor = `rgb(${r},${g},${b})`;
+  // Earth shadow cone toward Moon when eclipse
+  const shadowAngle = Math.atan2(moon.y - earth.y, moon.x - earth.x);
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 320 }}>
-      <rect width={W} height={H} fill="#060a1f" rx="16" />
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 500 }}>
+      <rect width={W} height={H} fill="#04071a" rx="16" />
+      {STARS.map(([sx, sy, op], i) => <circle key={i} cx={sx} cy={sy} r="0.7" fill="white" opacity={op} />)}
 
-      {STARS.map(([sx, sy, op], i) => (
-        <circle key={i} cx={sx} cy={sy} r="0.8" fill="white" opacity={op} />
-      ))}
-
-      {/* Ecliptic */}
-      <line x1="20" y1={CY} x2={W - 20} y2={CY} stroke="#d4a853" strokeWidth="2" opacity="0.6" />
-      <rect x="22" y={CY - 12} width={isHi ? 82 : 58} height="14" rx="3" fill="#060a1f" opacity="0.8" />
-      <text x="26" y={CY - 2} fontSize="9" fill="#d4a853" fontWeight="bold" opacity="0.9">
+      {/* Earth's orbit */}
+      <ellipse cx={CX} cy={CY} rx={EARTH_RX} ry={EARTH_RY} fill="none" stroke="#d4a853" strokeWidth="1.5" opacity="0.4" />
+      <ellipse cx={CX} cy={CY} rx={EARTH_RX} ry={EARTH_RY} fill="#d4a853" opacity="0.02" />
+      <text x={CX + EARTH_RX - 30} y={CY - EARTH_RY - 8} fontSize="10" fill="#d4a853" fontWeight="bold" opacity="0.7">
         {isHi ? 'क्रान्तिवृत्त तल' : 'Ecliptic Plane'}
       </text>
 
-      {/* Moon orbit */}
-      <path d={orbitPath(orbitLeft, orbitRight, 'forward')} fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="8 4" opacity="0.6" />
-      <text x={orbitRight + 5} y={CY - ORBIT_AMP - 5} fontSize="8" fill="#a78bfa" opacity="0.7">5.15°</text>
-
-      {/* Earth's shadow cones (umbra + penumbra) */}
-      <polygon points={`${earthX + 18},${CY - 20} ${earthX + 18},${CY + 20} ${W - 20},${CY + 8} ${W - 20},${CY - 8}`}
-        fill="#0a0010" opacity="0.7" />
-      <polygon points={`${earthX + 14},${CY - 36} ${earthX + 14},${CY + 36} ${W - 20},${CY + 30} ${W - 20},${CY - 30}`}
-        fill="#080014" opacity="0.3" />
-      {/* Shadow labels */}
-      <text x={earthX + 60} y={CY - 26} fontSize="7" fill="#a78bfa" opacity="0.4">{isHi ? 'उपच्छाया' : 'Penumbra'}</text>
-      <text x={earthX + 60} y={CY - 8} fontSize="7" fill="#6d28d9" opacity="0.5">{isHi ? 'प्रच्छाया' : 'Umbra'}</text>
-
-      {/* Node markers */}
-      <circle cx={node1X} cy={CY} r="12" fill="none" stroke="#d4a853" strokeWidth="2" opacity="0.7" />
-      <text x={node1X} y={CY + 5} textAnchor="middle" fontSize="14" fill="#f0d48a" fontWeight="bold">☊</text>
-      <text x={node1X} y={CY - 18} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold">{isHi ? 'राहु' : 'Rahu'}</text>
-
-      <circle cx={node2X} cy={CY} r="12" fill="none" stroke="#a78bfa" strokeWidth="2" opacity="0.7" />
-      <text x={node2X} y={CY + 5} textAnchor="middle" fontSize="14" fill="#c4b5fd" fontWeight="bold">☋</text>
-      <text x={node2X} y={CY - 18} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold">{isHi ? 'केतु' : 'Ketu'}</text>
-
       {/* Sun */}
       {Array.from({ length: 10 }).map((_, i) => {
-        const angle = (i / 10) * Math.PI * 2;
-        return (
-          <line key={i} x1={sunX + Math.cos(angle) * 32} y1={CY + Math.sin(angle) * 32}
-            x2={sunX + Math.cos(angle) * 42} y2={CY + Math.sin(angle) * 42}
-            stroke="#f0d48a" strokeWidth="1.5" opacity="0.3" />
-        );
+        const a = (i / 10) * Math.PI * 2;
+        return <line key={i} x1={CX + Math.cos(a) * 22} y1={CY + Math.sin(a) * 22}
+          x2={CX + Math.cos(a) * 30} y2={CY + Math.sin(a) * 30}
+          stroke="#f0d48a" strokeWidth="1.5" opacity="0.3" />;
       })}
-      <circle cx={sunX} cy={CY} r="28" fill="#d4a853" opacity="0.15" />
-      <circle cx={sunX} cy={CY} r="22" fill="#d4a853" />
-      <text x={sunX} y={CY + 40} textAnchor="middle" fontSize="10" fill="#f0d48a" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+      <circle cx={CX} cy={CY} r="20" fill="#d4a853" />
+      <text x={CX} y={CY + 38} textAnchor="middle" fontSize="10" fill="#f0d48a" fontWeight="bold">{isHi ? 'सूर्य' : 'Sun'}</text>
+
+      {/* Moon's tilted orbit */}
+      <path d={moonOrbitEclipticPath(earth.x, earth.y)} fill="none" stroke="#d4a853" strokeWidth="0.5" strokeDasharray="2 3" opacity="0.15" />
+      <path d={moonOrbitPath(earth.x, earth.y, nodeAngle)} fill="none" stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="6 3" opacity="0.6" />
+      <text x={earth.x + MOON_RX + 8} y={earth.y - MOON_TILT_OFFSET / 2} fontSize="10" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
+
+      {/* Nodes */}
+      <circle cx={nodes.rahu.x} cy={nodes.rahu.y} r="8" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.8" />
+      <text x={nodes.rahu.x} y={nodes.rahu.y + 4} textAnchor="middle" fontSize="12" fill="#f0d48a" fontWeight="bold">☊</text>
+      <text x={nodes.rahu.x + 14} y={nodes.rahu.y - 6} fontSize="9" fill="#f0d48a" fontWeight="bold">{isHi ? 'राहु' : 'Rahu'}</text>
+
+      <circle cx={nodes.ketu.x} cy={nodes.ketu.y} r="8" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.8" />
+      <text x={nodes.ketu.x} y={nodes.ketu.y + 4} textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="bold">☋</text>
+      <text x={nodes.ketu.x - 14} y={nodes.ketu.y - 6} fontSize="9" fill="#c4b5fd" fontWeight="bold" textAnchor="end">{isHi ? 'केतु' : 'Ketu'}</text>
+
+      {/* Earth shadow toward Moon when eclipse */}
+      {isEclipse && (
+        <>
+          <polygon
+            points={`${earth.x + Math.cos(shadowAngle - 0.3) * 10},${earth.y + Math.sin(shadowAngle - 0.3) * 10} ${earth.x + Math.cos(shadowAngle + 0.3) * 10},${earth.y + Math.sin(shadowAngle + 0.3) * 10} ${moon.x + Math.cos(shadowAngle + 0.15) * 6},${moon.y + Math.sin(shadowAngle + 0.15) * 6} ${moon.x + Math.cos(shadowAngle - 0.15) * 6},${moon.y + Math.sin(shadowAngle - 0.15) * 6}`}
+            fill="#1a0020" opacity="0.6"
+          />
+          <line x1={CX} y1={CY} x2={earth.x} y2={earth.y} stroke="#ef4444" strokeWidth="1" opacity="0.3" strokeDasharray="4 2" />
+        </>
+      )}
 
       {/* Earth */}
-      <circle cx={earthX} cy={CY} r="18" fill="#1e3a5f" opacity="0.5" />
-      <circle cx={earthX} cy={CY} r="16" fill="#3b82f6" />
-      <circle cx={earthX - 3} cy={CY - 2} r="5" fill="#22c55e" opacity="0.4" />
-      <text x={earthX} y={CY + 32} textAnchor="middle" fontSize="10" fill="#60a5fa" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
+      <circle cx={earth.x} cy={earth.y} r="10" fill="#1e3a5f" opacity="0.5" />
+      <circle cx={earth.x} cy={earth.y} r="8" fill="#3b82f6" />
+      <text x={earth.x} y={earth.y + 18} textAnchor="middle" fontSize="8" fill="#60a5fa" fontWeight="bold">{isHi ? 'पृथ्वी' : 'Earth'}</text>
 
       {/* Moon */}
-      <circle cx={moon.x} cy={moon.y} r="12" fill={moonColor} />
-      {!eclipse && <circle cx={moon.x - 3} cy={moon.y - 2} r="4" fill="white" opacity="0.15" />}
-      {eclipse && <circle cx={moon.x} cy={moon.y} r="18" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.7" />}
-      {eclipse && shadowFrac > 0.5 && (
-        <text x={moon.x} y={moon.y - 22} textAnchor="middle" fontSize="8" fill="#fca5a5" fontWeight="bold">
+      <circle cx={moon.x} cy={moon.y} r="5" fill={moonFill} />
+      {isEclipse && <circle cx={moon.x} cy={moon.y} r="10" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.8" />}
+      {isEclipse && (
+        <text x={moon.x} y={moon.y - 12} textAnchor="middle" fontSize="7" fill="#fca5a5" fontWeight="bold">
           {isHi ? 'ब्लड मून' : 'Blood Moon'}
         </text>
       )}
+      {!isEclipse && <text x={moon.x} y={moon.y - 10} textAnchor="middle" fontSize="7" fill="#94a3b8">{isHi ? 'चन्द्र' : 'Moon'}</text>}
 
       {/* Status */}
-      <rect x={W / 2 - 180} y={H - 38} width="360" height="24" rx="6" fill={eclipse ? '#2a0a0a' : '#1a1040'} opacity="0.8" stroke={eclipse ? '#ef4444' : '#d4a853'} strokeWidth="0.5" strokeOpacity="0.3" />
-      <text x={W / 2} y={H - 22} textAnchor="middle" fontSize="11" fontWeight="bold" fill={eclipse ? '#fca5a5' : '#8a8478'}>
-        {eclipse ? (isHi ? '🔴 चन्द्र छाया में — चन्द्र ग्रहण!' : '🔴 Moon enters shadow — Lunar Eclipse!') : (isHi ? 'चन्द्र क्रान्तिवृत्त से दूर — ग्रहण नहीं' : 'Moon away from ecliptic — no eclipse')}
+      <rect x={W / 2 - 190} y={H - 42} width="380" height="28" rx="8" fill={isEclipse ? '#2a0a0a' : '#0f0a2a'} opacity="0.85" stroke={isEclipse ? '#ef4444' : '#d4a853'} strokeWidth="0.5" strokeOpacity="0.4" />
+      <text x={W / 2} y={H - 24} textAnchor="middle" fontSize="11" fontWeight="bold" fill={isEclipse ? '#fca5a5' : '#8a8478'}>
+        {isEclipse
+          ? (isHi ? '🔴 चन्द्र ग्रहण! चन्द्र पात पर — पृथ्वी की छाया में' : '🔴 Lunar Eclipse! Moon at node — in Earth\'s shadow')
+          : (isHi ? 'चन्द्र क्रान्तिवृत्त तल से ऊपर/नीचे — ग्रहण नहीं' : 'Moon above/below ecliptic plane — no eclipse')}
       </text>
     </svg>
   );
 });
 
-/* ─── Main Component ─── */
+/* ─── Main ─── */
 export default function EclipseAnimation({ locale }: Props) {
   const [mode, setMode] = useState<'solar' | 'lunar'>('solar');
-  const [t, setT] = useState(0);
+  const [state, setState] = useState({ earthT: 0, moonPhase: 0, nodeAngle: 0.5, paused: false });
   const animRef = useRef<number | null>(null);
   const startRef = useRef<number | null>(null);
-
   const isHi = locale !== 'en';
 
   useEffect(() => {
     const tick = (ts: number) => {
       if (startRef.current === null) startRef.current = ts;
       const rawT = ((ts - startRef.current) % CYCLE_MS) / CYCLE_MS;
-      setT(applyPause(rawT));
+      setState(applyPause(rawT));
       animRef.current = requestAnimationFrame(tick);
     };
     animRef.current = requestAnimationFrame(tick);
@@ -329,45 +347,32 @@ export default function EclipseAnimation({ locale }: Props) {
 
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 
-  const tabBase = 'px-4 py-2.5 rounded-xl text-sm font-semibold border transition-all cursor-pointer';
+  const tabBase = 'px-5 py-2.5 rounded-xl text-sm font-semibold border transition-all cursor-pointer';
   const tabActive = 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5';
   const tabInactive = 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light';
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="my-8">
-      {/* Tabs */}
       <div className="flex justify-center gap-3 mb-5">
-        <button onClick={() => setMode('solar')} className={`${tabBase} ${mode === 'solar' ? tabActive : tabInactive}`}>
-          ☀ {l(L.solarTab)}
-        </button>
-        <button onClick={() => setMode('lunar')} className={`${tabBase} ${mode === 'lunar' ? tabActive : tabInactive}`}>
-          ☽ {l(L.lunarTab)}
-        </button>
+        <button onClick={() => setMode('solar')} className={`${tabBase} ${mode === 'solar' ? tabActive : tabInactive}`}>☀ {l(L.solarTab)}</button>
+        <button onClick={() => setMode('lunar')} className={`${tabBase} ${mode === 'lunar' ? tabActive : tabInactive}`}>☽ {l(L.lunarTab)}</button>
       </div>
 
-      {/* Animation */}
-      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-6">
-        {mode === 'solar' ? <SolarEclipseSVG t={t} isHi={isHi} /> : <LunarEclipseSVG t={t} isHi={isHi} />}
+      <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-5">
+        {mode === 'solar'
+          ? <SolarView earthT={state.earthT} moonPhase={state.moonPhase} nodeAngle={state.nodeAngle} paused={state.paused} isHi={isHi} />
+          : <LunarView earthT={state.earthT} moonPhase={state.moonPhase} nodeAngle={state.nodeAngle} paused={state.paused} isHi={isHi} />
+        }
 
-        {/* Legend */}
         <div className="flex flex-wrap gap-x-5 gap-y-1 justify-center mt-4 text-[10px] text-text-secondary/60">
-          <span className="flex items-center gap-1.5">
-            <span className="w-5 h-0.5 bg-gold-primary inline-block" /> {isHi ? 'क्रान्तिवृत्त तल' : 'Ecliptic Plane'}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-5 h-0.5 bg-purple-400 inline-block" style={{ backgroundImage: 'repeating-linear-gradient(90deg, #a78bfa 0, #a78bfa 4px, transparent 4px, transparent 8px)' }} /> {isHi ? 'चन्द्र कक्षा (5.15°)' : "Moon's Orbit (5.15°)"}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="text-gold-light text-xs">☊</span> {isHi ? 'राहु' : 'Rahu'}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="text-purple-300 text-xs">☋</span> {isHi ? 'केतु' : 'Ketu'}
-          </span>
+          <span className="flex items-center gap-1.5"><span className="w-4 h-[2px] bg-gold-primary inline-block rounded" /> {isHi ? 'क्रान्तिवृत्त (पृथ्वी कक्षा)' : "Ecliptic (Earth's orbit)"}</span>
+          <span className="flex items-center gap-1.5"><span className="w-4 h-[2px] bg-purple-400 inline-block rounded" style={{ backgroundImage: 'repeating-linear-gradient(90deg,#a78bfa 0,#a78bfa 3px,transparent 3px,transparent 6px)' }} /> {isHi ? 'चन्द्र कक्षा (5.15° झुकी)' : "Moon's orbit (5.15° tilted)"}</span>
+          <span className="flex items-center gap-1.5"><span className="text-gold-light text-xs">☊</span> {isHi ? 'राहु (आरोही पात)' : 'Rahu (Ascending)'}</span>
+          <span className="flex items-center gap-1.5"><span className="text-purple-300 text-xs">☋</span> {isHi ? 'केतु (अवरोही पात)' : 'Ketu (Descending)'}</span>
         </div>
       </div>
 
-      {/* Explanation */}
-      <p className="text-text-secondary text-sm mt-4 leading-relaxed text-center max-w-xl mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+      <p className="text-text-secondary text-sm mt-4 leading-relaxed text-center max-w-2xl mx-auto" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {mode === 'solar' ? l(L.solarExpl) : l(L.lunarExpl)}
       </p>
     </motion.div>

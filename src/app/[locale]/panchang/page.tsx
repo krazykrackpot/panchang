@@ -1896,73 +1896,95 @@ export default function PanchangPage() {
               <p className="text-text-secondary text-sm text-center mb-8">{t('choghadiyaDesc')}</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                {/* Day Choghadiya */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Sun className="w-5 h-5 text-gold-primary" />
-                    <h3 className="text-lg font-bold text-gold-light" style={headingFont}>{t('dayChoghadiya')}</h3>
-                  </div>
-                  <div className="space-y-2">
-                    {panchang.choghadiya.filter(s => s.period === 'day').map((slot, i) => (
-                      <motion.div
-                        key={`day-${i}`}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.04 }}
-                        className={`rounded-lg p-3 border flex items-center justify-between ${
-                          slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/20' :
-                          slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/20' :
-                          'bg-amber-500/5 border-amber-500/20'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <span className={`w-2 h-2 rounded-full ${
-                            slot.nature === 'auspicious' ? 'bg-emerald-400' :
-                            slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
-                          }`} />
-                          <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                            {slot.name[locale]}
-                          </span>
-                        </div>
-                        <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+                {/* Choghadiya conflict detection — inauspicious periods that override auspicious slots */}
+                {(() => {
+                  const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+                  const overlaps = (aS: string, aE: string, bS: string, bE: string) => {
+                    const a0 = toMin(aS), a1 = toMin(aE), b0 = toMin(bS), b1 = toMin(bE);
+                    return a0 < b1 && b0 < a1;
+                  };
+                  // Collect all inauspicious windows
+                  const badWindows: { start: string; end: string; label: string; labelHi: string }[] = [];
+                  if (panchang.varjyam) badWindows.push({ ...panchang.varjyam, label: 'Varjyam', labelHi: 'वर्ज्यम्' });
+                  if ((panchang as any).varjyamAll?.length > 1) {
+                    for (let vi = 1; vi < (panchang as any).varjyamAll.length; vi++) {
+                      badWindows.push({ ...(panchang as any).varjyamAll[vi], label: 'Varjyam', labelHi: 'वर्ज्यम्' });
+                    }
+                  }
+                  badWindows.push({ start: panchang.rahuKaal.start, end: panchang.rahuKaal.end, label: 'Rahu Kaal', labelHi: 'राहु काल' });
+                  badWindows.push({ start: panchang.yamaganda.start, end: panchang.yamaganda.end, label: 'Yamaganda', labelHi: 'यमगण्ड' });
 
-                {/* Night Choghadiya */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Moon className="w-5 h-5 text-indigo-400" />
-                    <h3 className="text-lg font-bold text-indigo-300/80" style={headingFont}>{t('nightChoghadiya')}</h3>
-                  </div>
-                  <div className="space-y-2">
-                    {panchang.choghadiya.filter(s => s.period === 'night').map((slot, i) => (
+                  const getConflicts = (slotStart: string, slotEnd: string) => {
+                    return badWindows.filter(w => overlaps(slotStart, slotEnd, w.start, w.end));
+                  };
+
+                  const renderSlot = (slot: any, i: number, prefix: string, animX: number) => {
+                    const conflicts = slot.nature === 'auspicious' ? getConflicts(slot.startTime, slot.endTime) : [];
+                    const hasConflict = conflicts.length > 0;
+                    return (
                       <motion.div
-                        key={`night-${i}`}
-                        initial={{ opacity: 0, x: 10 }}
+                        key={`${prefix}-${i}`}
+                        initial={{ opacity: 0, x: animX }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.04 }}
-                        className={`rounded-lg p-3 border flex items-center justify-between ${
+                        className={`rounded-lg p-3 border ${
+                          hasConflict ? 'bg-amber-500/8 border-amber-500/25' :
                           slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/20' :
                           slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/20' :
                           'bg-amber-500/5 border-amber-500/20'
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className={`w-2 h-2 rounded-full ${
-                            slot.nature === 'auspicious' ? 'bg-emerald-400' :
-                            slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
-                          }`} />
-                          <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                            {slot.name[locale]}
-                          </span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className={`w-2 h-2 rounded-full ${
+                              hasConflict ? 'bg-amber-400' :
+                              slot.nature === 'auspicious' ? 'bg-emerald-400' :
+                              slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
+                            }`} />
+                            <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
+                              {slot.name[locale]}
+                            </span>
+                          </div>
+                          <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
                         </div>
-                        <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
+                        {hasConflict && (
+                          <div className="mt-1.5 flex items-center gap-1.5 text-amber-400 text-[10px]">
+                            <span>⚠</span>
+                            <span>{locale === 'en'
+                              ? `Overlaps with ${conflicts.map(c => c.label).join(' & ')} — avoid new ventures`
+                              : `${conflicts.map(c => c.labelHi).join(' और ')} से ओवरलैप — नए कार्य टालें`}</span>
+                          </div>
+                        )}
                       </motion.div>
-                    ))}
-                  </div>
-                </div>
+                    );
+                  };
+
+                  return (
+                    <>
+                      {/* Day Choghadiya */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <Sun className="w-5 h-5 text-gold-primary" />
+                          <h3 className="text-lg font-bold text-gold-light" style={headingFont}>{t('dayChoghadiya')}</h3>
+                        </div>
+                        <div className="space-y-2">
+                          {panchang.choghadiya.filter(s => s.period === 'day').map((slot, i) => renderSlot(slot, i, 'day', -10))}
+                        </div>
+                      </div>
+
+                      {/* Night Choghadiya */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <Moon className="w-5 h-5 text-indigo-400" />
+                          <h3 className="text-lg font-bold text-indigo-300/80" style={headingFont}>{t('nightChoghadiya')}</h3>
+                        </div>
+                        <div className="space-y-2">
+                          {panchang.choghadiya.filter(s => s.period === 'night').map((slot, i) => renderSlot(slot, i, 'night', 10))}
+                        </div>
+                      </div>
+                    </>
+                  );
+                })()}
               </div>
             </div>
           )}

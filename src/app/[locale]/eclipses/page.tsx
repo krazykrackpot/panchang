@@ -343,20 +343,24 @@ export default function EclipsesPage() {
                           )}
                         </div>
 
-                        {/* Personalized analysis from user's kundali — shown first */}
-                        {eclipse.node && eclipse.eclipseLongitude != null && (
-                          <PersonalEclipseInsight
-                            eclipseDate={eclipse.date}
-                            eclipseType={eclipse.type}
-                            eclipseNode={eclipse.node}
-                            eclipseLongitude={eclipse.eclipseLongitude}
-                            locale={locale}
-                          />
-                        )}
+                        {local && isVisible && (
+                          <>
+                            {/* Personalized analysis from user's kundali — shown first, only for visible eclipses */}
+                            {eclipse.node && eclipse.eclipseLongitude != null && (
+                              <PersonalEclipseInsight
+                                eclipseDate={eclipse.date}
+                                eclipseType={eclipse.type}
+                                eclipseNode={eclipse.node}
+                                eclipseLongitude={eclipse.eclipseLongitude}
+                                locale={locale}
+                              />
+                            )}
 
-                        {/* Node implications from classical texts */}
-                        {eclipse.node && (
-                          <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
+                            {/* Node implications from classical texts — only for visible eclipses */}
+                            {eclipse.node && (
+                              <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
+                            )}
+                          </>
                         )}
 
                         {local && isVisible && (

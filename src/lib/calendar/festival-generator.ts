@@ -418,17 +418,31 @@ export function generateFestivalCalendarV2(
       const detail = FESTIVAL_DETAILS[def.slug];
 
       // Pradosh rule: festivals observed in the EVENING when the tithi begins.
-      // If the tithi at sunrise is already the next tithi (Amavasya at sunrise on Nov 9),
-      // but the tithi started the PREVIOUS evening, the festival is on the previous day.
-      // Classical rule for Diwali: observed on the evening when Amavasya begins, not
-      // the morning when it prevails at sunrise.
+      // Classical rule for Diwali and similar festivals: observed on the evening
+      // when the tithi is active, not the morning when it prevails at sunrise.
+      //
+      // Logic: the tithi table gives us `sunriseDate` (the day when the tithi
+      // prevails at sunrise). But the tithi may have STARTED the previous evening.
+      // If the tithi's startJd falls BEFORE sunset of the previous day, then the
+      // festival is observed on that previous evening.
+      //
+      // Example: Amavasya starts Nov 8 at 16:30 IST. Sunset Nov 8 is 17:28.
+      // Since 16:30 < 17:28, Amavasya is active at Pradosh Kaal (sunset) on Nov 8.
+      // Diwali = Nov 8 (not Nov 9 when Amavasya prevails at sunrise).
       let festivalDate = match.sunriseDate;
-      if (def.pradoshRule && match.sunriseDate) {
-        // Check if the tithi started before sunset of the previous day
+      if (def.pradoshRule && match.startJd) {
         const [fy, fm, fd] = match.sunriseDate.split('-').map(Number);
-        const prevDate = new Date(fy, fm - 1, fd - 1);
-        const prevStr = `${prevDate.getFullYear()}-${String(prevDate.getMonth()+1).padStart(2,'0')}-${String(prevDate.getDate()).padStart(2,'0')}`;
-        festivalDate = prevStr; // Pradosh rule: use previous day (evening observation)
+        // Compute sunset of the PREVIOUS day
+        const prevDayJd = dateToJD(fy, fm, fd - 1, 12 - (getUTCOffsetForDate(fy, fm, fd - 1, timezone)));
+        const prevSunsetUT = approximateSunset(prevDayJd, lat, lon);
+        const prevSunsetJd = dateToJD(fy, fm, fd - 1, prevSunsetUT);
+        // If the tithi started before sunset of the previous day,
+        // the festival is on the previous day (evening observation)
+        if (match.startJd <= prevSunsetJd) {
+          const prevDate = new Date(fy, fm - 1, fd - 1);
+          festivalDate = `${prevDate.getFullYear()}-${String(prevDate.getMonth()+1).padStart(2,'0')}-${String(prevDate.getDate()).padStart(2,'0')}`;
+        }
+        // Otherwise, the tithi started after sunset → festival stays on sunriseDate
       }
 
       const entry: FestivalEntry = {

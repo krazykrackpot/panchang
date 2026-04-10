@@ -339,9 +339,12 @@ function topocentricSeparation(jd: number, obsLat: number, obsLng: number): {
   const moonPos = positions.find(p => p.id === 1);
   if (!sunPos || !moonPos) return { separation: 999, sunRadius: 0.267, moonRadius: 0.259 };
 
-  // Moon distance from speed (proxy): faster = closer
-  const avgDist = 384400;
-  const moonDist = avgDist * (13.2 / Math.max(Math.abs(moonPos.speed), 10));
+  // Moon distance: use actual distance from Swiss Ephemeris (AU), convert to km
+  // 1 AU = 149,597,870.7 km. Fallback to speed-based estimate if distance not available.
+  const AU_KM = 149597870.7;
+  const moonDist = moonPos.distance > 0
+    ? moonPos.distance * AU_KM   // Actual distance from Swiss Ephemeris
+    : 384400 * (13.2 / Math.max(Math.abs(moonPos.speed), 10)); // Speed proxy fallback
 
   // Moon horizontal parallax
   const HP = Math.asin(6371 / moonDist) / DEG2RAD; // ~0.9° to ~1.03°
@@ -411,9 +414,11 @@ function topocentricSeparation(jd: number, obsLat: number, obsLng: number): {
     Math.cos(sunDec) * Math.cos(topoMoonDec) * Math.cos(sunRA - topoMoonRA);
   const separation = Math.acos(Math.max(-1, Math.min(1, cosSep))) / DEG2RAD;
 
-  // Apparent radii
-  const sunRadius = 0.267;
-  const moonRadius = Math.asin(1737.4 / moonDist) / DEG2RAD;
+  // Apparent radii from actual distances
+  // Sun physical radius = 696,340 km. Use actual distance if available.
+  const sunDist = sunPos.distance > 0 ? sunPos.distance * AU_KM : 149597870.7;
+  const sunRadius = Math.asin(696340 / sunDist) / DEG2RAD; // ~0.264°–0.271°
+  const moonRadius = Math.asin(1737.4 / moonDist) / DEG2RAD; // ~0.245°–0.283°
 
   return { separation, sunRadius, moonRadius };
 }

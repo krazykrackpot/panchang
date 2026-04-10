@@ -89,6 +89,7 @@ const PHASES = [
       { id: '13-1', title: { en: 'How Transits Work', hi: 'गोचर' } },
       { id: '13-2', title: { en: 'Sade Sati', hi: 'साढ़े साती' } },
       { id: '13-3', title: { en: 'Ashtakavarga Transit Scoring', hi: 'अष्टकवर्ग गोचर' } },
+      { id: '13-4', title: { en: 'Eclipses — Grahan & the Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष' } },
     ]},
   ]},
   { phase: 4, label: { en: 'Applied Jyotish', hi: 'प्रयुक्त ज्योतिष' }, color: 'border-pink-500/20', topics: [

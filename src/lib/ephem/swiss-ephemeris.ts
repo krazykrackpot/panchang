@@ -175,7 +175,7 @@ export function swissSiderealLongitude(jd: number, planetId: number): number {
  * Get all planetary positions at once (optimized: single ayanamsha calc)
  */
 export function swissAllPlanets(jd: number): {
-  planets: { id: number; tropical: number; sidereal: number; latitude: number; speed: number; isRetrograde: boolean }[];
+  planets: { id: number; tropical: number; sidereal: number; latitude: number; distance: number; speed: number; isRetrograde: boolean }[];
   ayanamsha: number;
 } | null {
   // Check memoization cache
@@ -187,7 +187,7 @@ export function swissAllPlanets(jd: number): {
   if (!se) return null;
 
   const ayan = swissAyanamsha(jd);
-  const planets: { id: number; tropical: number; sidereal: number; latitude: number; speed: number; isRetrograde: boolean }[] = [];
+  const planets: { id: number; tropical: number; sidereal: number; latitude: number; distance: number; speed: number; isRetrograde: boolean }[] = [];
 
   for (let id = 0; id <= 8; id++) {
     const pos = swissPlanetLongitude(jd, id);
@@ -197,6 +197,7 @@ export function swissAllPlanets(jd: number): {
       tropical: pos.longitude,
       sidereal,
       latitude: pos.latitude,
+      distance: pos.distance,
       speed: pos.speed,
       isRetrograde: id !== 7 && id !== 8 && pos.speed < 0,  // Rahu/Ketu always retrograde
     });

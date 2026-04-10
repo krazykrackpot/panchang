@@ -78,6 +78,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '13-1', phase: 3, topic: 'Transits',  title: { en: 'How Transits Work',                hi: 'गोचर' } },
   { id: '13-2', phase: 3, topic: 'Transits',  title: { en: 'Sade Sati',                        hi: 'साढ़े साती' } },
   { id: '13-3', phase: 3, topic: 'Transits',  title: { en: 'Ashtakavarga Transit Scoring',     hi: 'अष्टकवर्ग गोचर' } },
+  { id: '13-4', phase: 3, topic: 'Transits',  title: { en: 'Eclipses — Grahan & Rahu-Ketu Axis', hi: 'ग्रहण — राहु-केतु अक्ष' } },
 
   // ── Phase 4: Applied Jyotish ─────────────────────────────────────────────
   // Compatibility

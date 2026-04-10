@@ -383,17 +383,19 @@ const AMRIT_GHATI: number[] = [
 
 interface TimeWindow { start: string; end: string }
 
+interface UTWindow { startUT: number; endUT: number }
+
 function computeAmritVarjyamForNakshatra(
   nakshatraNum: number,
   nakshatraStartJD: number,
   nakshatraEndJD: number,
   jdMidnight: number,
   tzOffset: number,
-): { amrit?: TimeWindow; varjyam: TimeWindow[] } {
+): { amrit?: TimeWindow; amritUT?: UTWindow; varjyam: TimeWindow[]; varjyamUT: UTWindow[] } {
   const nakIdx = nakshatraNum - 1;
-  if (nakIdx < 0 || nakIdx >= 27) return { varjyam: [] };
+  if (nakIdx < 0 || nakIdx >= 27) return { varjyam: [], varjyamUT: [] };
   const nakshatraDurationHrs = (nakshatraEndJD - nakshatraStartJD) * 24;
-  if (nakshatraDurationHrs <= 0) return { varjyam: [] };
+  if (nakshatraDurationHrs <= 0) return { varjyam: [], varjyamUT: [] };
 
   const ghatiToHrs = nakshatraDurationHrs / 60;
   const durationHrs = 4 * ghatiToHrs;
@@ -401,13 +403,16 @@ function computeAmritVarjyamForNakshatra(
 
   // Primary Varjyam window
   const varjyamWindows: TimeWindow[] = [];
+  const varjyamUTWindows: UTWindow[] = [];
   const v1Start = ingressUT + VARJYAM_GHATI[nakIdx] * ghatiToHrs;
   varjyamWindows.push({ start: formatTime(v1Start, tzOffset), end: formatTime(v1Start + durationHrs, tzOffset) });
+  varjyamUTWindows.push({ startUT: v1Start, endUT: v1Start + durationHrs });
 
   // Secondary Varjyam window (dual Thyajyam — e.g. Mula has 20 AND 56 ghatis)
   if (VARJYAM_GHATI_2[nakIdx] >= 0) {
     const v2Start = ingressUT + VARJYAM_GHATI_2[nakIdx] * ghatiToHrs;
     varjyamWindows.push({ start: formatTime(v2Start, tzOffset), end: formatTime(v2Start + durationHrs, tzOffset) });
+    varjyamUTWindows.push({ startUT: v2Start, endUT: v2Start + durationHrs });
   }
 
   // Amrit Kalam
@@ -415,7 +420,9 @@ function computeAmritVarjyamForNakshatra(
 
   return {
     amrit: { start: formatTime(amritStartUT, tzOffset), end: formatTime(amritStartUT + durationHrs, tzOffset) },
+    amritUT: { startUT: amritStartUT, endUT: amritStartUT + durationHrs },
     varjyam: varjyamWindows,
+    varjyamUT: varjyamUTWindows,
   };
 }
 
@@ -430,17 +437,28 @@ function computeAllAmritVarjyam(
   const amritAll: TimeWindow[] = [];
   const varjyamAll: TimeWindow[] = [];
 
+  // Panchang day bounds in UT hours from midnight: sunrise to next sunrise (~24h later)
+  const sunriseUT = (jdSunrise - jdMidnight) * 24;
+  const nextSunriseUT = sunriseUT + 24; // approximate next sunrise
+
+  // Helper: check if a UT window overlaps the panchang day [sunriseUT, nextSunriseUT)
+  const overlapsDay = (w: UTWindow) => w.endUT > sunriseUT && w.startUT < nextSunriseUT;
+
   // Current nakshatra (may produce 1-2 Varjyam windows for dual-Thyajyam nakshatras)
   const w1 = computeAmritVarjyamForNakshatra(nakNum1, nak1StartJD, nak1EndJD, jdMidnight, tzOffset);
-  if (w1.amrit) amritAll.push(w1.amrit);
-  varjyamAll.push(...w1.varjyam);
+  if (w1.amrit && w1.amritUT && overlapsDay(w1.amritUT)) amritAll.push(w1.amrit);
+  for (let i = 0; i < w1.varjyam.length; i++) {
+    if (overlapsDay(w1.varjyamUT[i])) varjyamAll.push(w1.varjyam[i]);
+  }
 
   // Next nakshatra (if it starts during this panchang day, i.e. before next sunrise)
   if (nakNum2 && nak2EndJD) {
     const nak2StartJD = nak1EndJD;
     const w2 = computeAmritVarjyamForNakshatra(nakNum2, nak2StartJD, nak2EndJD, jdMidnight, tzOffset);
-    if (w2.amrit) amritAll.push(w2.amrit);
-    varjyamAll.push(...w2.varjyam);
+    if (w2.amrit && w2.amritUT && overlapsDay(w2.amritUT)) amritAll.push(w2.amrit);
+    for (let i = 0; i < w2.varjyam.length; i++) {
+      if (overlapsDay(w2.varjyamUT[i])) varjyamAll.push(w2.varjyam[i]);
+    }
   }
 
   return { amritKalam: amritAll, varjyam: varjyamAll };

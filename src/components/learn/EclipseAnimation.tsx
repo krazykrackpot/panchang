@@ -155,67 +155,74 @@ function OrbitalPlanesDiagram({ isHi }: { isHi: boolean }) {
    ═══════════════════════════════════════════════════════════════════════════════ */
 function SolarEclipseDiagram({ isHi }: { isHi: boolean }) {
   const W = 800, H = 400;
-  const Y = 190;
+  const Y = 180;
 
-  // Spread bodies evenly across full width — Sun far left, Earth far right
   const sunX = 100;
-  const moonX = 360;  // Moon between Sun and Earth
-  const nodeX = moonX;
+  const rahuX = 340;    // Rahu node — where eclipse happens
   const earthX = 640;
+  const ketuY_offset = 50; // Ketu shown on the tilted orbit, above/below ecliptic
+
+  // Ketu is on the opposite side of the tilted orbit from Rahu
+  // In this side view, if Rahu is on the ecliptic, Ketu is also on the ecliptic
+  // but on the other side of Earth's orbit (shown as a marker further along the tilted line)
+  const ketuX = rahuX; // same X (it's on the line), but we'll show it offset on the orbit
+  const orbitExtent = 160;
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 400 }}>
       <rect width={W} height={H} fill="#04071a" rx="16" />
       <Stars />
 
-      {/* ── Ecliptic plane line ── */}
+      {/* Ecliptic */}
       <line x1="30" y1={Y} x2={W - 30} y2={Y} stroke="#d4a853" strokeWidth="2" opacity="0.5" />
-      <Label x={W - 35} y={Y - 8} text={isHi ? 'क्रान्तिवृत्त' : 'Ecliptic'} color="#d4a853" size={9} align="end" />
+      <Label x={50} y={Y - 10} text={isHi ? 'क्रान्तिवृत्त तल' : 'Ecliptic Plane'} color="#d4a853" size={9} align="start" />
 
-      {/* ── Moon's tilted orbit (shown as angled line through node) ── */}
-      <line x1={nodeX - 120} y1={Y + 40} x2={nodeX + 120} y2={Y - 40} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.5" />
-      <text x={nodeX + 125} y={Y - 38} fontSize="10" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
+      {/* Moon's tilted orbit line — extends through both nodes */}
+      <line x1={rahuX - orbitExtent} y1={Y + ketuY_offset} x2={rahuX + orbitExtent} y2={Y - ketuY_offset} stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="7 4" opacity="0.5" />
+      <text x={rahuX + orbitExtent + 5} y={Y - ketuY_offset} fontSize="11" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
+      <text x={rahuX + orbitExtent + 5} y={Y - ketuY_offset + 12} fontSize="8" fill="#a78bfa" opacity="0.5">{isHi ? 'चन्द्र कक्षा' : "Moon's orbit"}</text>
 
-      {/* ── Alignment line Sun → Moon → Earth ── */}
-      <line x1={sunX} y1={Y} x2={earthX} y2={Y} stroke="#22c55e" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.35" />
+      {/* Alignment line */}
+      <line x1={sunX} y1={Y} x2={earthX} y2={Y} stroke="#22c55e" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
 
-      {/* ── Shadow cone: Moon → Earth ── */}
-      <polygon
-        points={`${moonX + 18},${Y - 12} ${moonX + 18},${Y + 12} ${earthX - 16},${Y + 20} ${earthX - 16},${Y - 20}`}
-        fill="#001008" opacity="0.5"
-      />
-      <polygon
-        points={`${moonX + 14},${Y - 20} ${moonX + 14},${Y + 20} ${earthX - 14},${Y + 34} ${earthX - 14},${Y - 34}`}
-        fill="#000a05" opacity="0.2"
-      />
-      <Label x={(moonX + earthX) / 2} y={Y - 30} text={isHi ? 'चन्द्र की छाया' : "Moon's Shadow"} color="#4ade80" size={9} />
+      {/* Shadow cone */}
+      <polygon points={`${rahuX + 18},${Y - 14} ${rahuX + 18},${Y + 14} ${earthX - 16},${Y + 22} ${earthX - 16},${Y - 22}`} fill="#001008" opacity="0.45" />
+      <polygon points={`${rahuX + 14},${Y - 22} ${rahuX + 14},${Y + 22} ${earthX - 14},${Y + 36} ${earthX - 14},${Y - 36}`} fill="#000a05" opacity="0.15" />
+      <Label x={(rahuX + earthX) / 2} y={Y - 34} text={isHi ? 'चन्द्र की छाया' : "Moon's Shadow"} color="#4ade80" size={9} />
 
-      {/* ── Sun ── */}
+      {/* Sun */}
       <SunIcon cx={sunX} cy={Y} r={35} />
-      <Label x={sunX} y={Y + 50} text={isHi ? 'सूर्य' : 'Sun'} color="#f0d48a" size={12} bold />
+      <Label x={sunX} y={Y + 52} text={isHi ? 'सूर्य' : 'Sun'} color="#f0d48a" size={12} bold />
 
-      {/* ── Moon (at the node) ── */}
-      <circle cx={moonX} cy={Y} r="16" fill="#64748b" />
-      <circle cx={moonX + 5} cy={Y - 3} r="14" fill="#04071a" opacity="0.6" />
-      <Label x={moonX} y={Y - 24} text={isHi ? 'चन्द्र (अमावस्या)' : 'Moon (New Moon)'} color="#94a3b8" size={10} bold />
+      {/* Moon at Rahu */}
+      <circle cx={rahuX} cy={Y} r="16" fill="#64748b" />
+      <circle cx={rahuX + 5} cy={Y - 3} r="14" fill="#04071a" opacity="0.6" />
+      <Label x={rahuX} y={Y - 28} text={isHi ? 'चन्द्र (अमावस्या)' : 'Moon (New Moon)'} color="#94a3b8" size={10} bold />
 
-      {/* ── Node marker ── */}
-      <circle cx={nodeX} cy={Y} r="22" fill="none" stroke="#22c55e" strokeWidth="2" opacity="0.6" />
-      <Label x={nodeX} y={Y + 34} text={isHi ? '☊ राहु/केतु पात पर' : '☊ At Rahu/Ketu Node'} color="#4ade80" size={9} bold />
+      {/* ☊ RAHU — where eclipse happens */}
+      <circle cx={rahuX} cy={Y} r="24" fill="none" stroke="#22c55e" strokeWidth="2.5" opacity="0.6" />
+      <text x={rahuX - 30} y={Y + 44} fontSize="14" fill="#f0d48a" fontWeight="bold">☊</text>
+      <text x={rahuX - 14} y={Y + 44} fontSize="11" fill="#f0d48a" fontWeight="bold">{isHi ? 'राहु' : 'Rahu'}</text>
+      <text x={rahuX - 30} y={Y + 56} fontSize="8" fill="#d4a853" opacity="0.6">{isHi ? 'आरोही पात — ग्रहण यहाँ!' : 'Ascending Node — Eclipse here!'}</text>
 
-      {/* ── Earth ── */}
+      {/* ☋ KETU — on the opposite side of the tilted orbit */}
+      <circle cx={rahuX - orbitExtent + 20} cy={Y + ketuY_offset - 6} r="10" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.6" />
+      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset - 2} textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="bold">☋</text>
+      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 12} textAnchor="middle" fontSize="9" fill="#c4b5fd" fontWeight="bold">{isHi ? 'केतु' : 'Ketu'}</text>
+      <text x={rahuX - orbitExtent + 20} y={Y + ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#a78bfa" opacity="0.5">{isHi ? 'अवरोही पात' : 'Descending Node'}</text>
+
+      {/* Earth */}
       <EarthIcon cx={earthX} cy={Y} r={18} />
       <Label x={earthX} y={Y + 30} text={isHi ? 'पृथ्वी' : 'Earth'} color="#60a5fa" size={12} bold />
-      {/* Shadow on Earth */}
       <circle cx={earthX} cy={Y} r="6" fill="#000" opacity="0.4" />
 
-      {/* ── Title ── */}
-      <rect x={W / 2 - 170} y={H - 50} width="340" height="36" rx="8" fill="#052e16" opacity="0.8" stroke="#22c55e" strokeWidth="0.5" strokeOpacity="0.4" />
-      <text x={W / 2} y={H - 35} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#4ade80">
-        {isHi ? '⚫ सूर्य ग्रहण — चन्द्र सूर्य और पृथ्वी के बीच (पात पर)' : '⚫ Solar Eclipse — Moon between Sun & Earth (at a node)'}
+      {/* Title */}
+      <rect x={W / 2 - 190} y={H - 52} width="380" height="40" rx="8" fill="#052e16" opacity="0.8" stroke="#22c55e" strokeWidth="0.5" strokeOpacity="0.4" />
+      <text x={W / 2} y={H - 36} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#4ade80">
+        {isHi ? '⚫ सूर्य ग्रहण — चन्द्र राहु पात पर, सूर्य और पृथ्वी के बीच' : '⚫ Solar Eclipse — Moon at Rahu node, between Sun & Earth'}
       </text>
-      <text x={W / 2} y={H - 21} textAnchor="middle" fontSize="9" fill="#6ee7b7" opacity="0.7">
-        {isHi ? 'अमावस्या + पात = सूर्य ग्रहण' : 'New Moon (Amavasya) + Node = Solar Eclipse'}
+      <text x={W / 2} y={H - 22} textAnchor="middle" fontSize="9" fill="#6ee7b7" opacity="0.7">
+        {isHi ? 'अमावस्या + राहु/केतु पात = सूर्य ग्रहण' : 'New Moon (Amavasya) at Rahu or Ketu = Solar Eclipse'}
       </text>
     </svg>
   );
@@ -226,66 +233,69 @@ function SolarEclipseDiagram({ isHi }: { isHi: boolean }) {
    ═══════════════════════════════════════════════════════════════════════════════ */
 function LunarEclipseDiagram({ isHi }: { isHi: boolean }) {
   const W = 800, H = 400;
-  const Y = 190;
+  const Y = 180;
 
-  // Spread bodies evenly — same layout as solar but Sun → Earth → Moon
   const sunX = 100;
   const earthX = 360;
-  const moonX = 640;
-  const nodeX = moonX;
+  const ketuX = 600;    // Ketu node — where eclipse happens
+  const orbitExtent = 160;
+  const ketuY_offset = 50;
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 400 }}>
       <rect width={W} height={H} fill="#04071a" rx="16" />
       <Stars />
 
-      {/* ── Ecliptic ── */}
+      {/* Ecliptic */}
       <line x1="30" y1={Y} x2={W - 30} y2={Y} stroke="#d4a853" strokeWidth="2" opacity="0.5" />
-      <Label x={W - 35} y={Y - 8} text={isHi ? 'क्रान्तिवृत्त' : 'Ecliptic'} color="#d4a853" size={9} align="end" />
+      <Label x={50} y={Y - 10} text={isHi ? 'क्रान्तिवृत्त तल' : 'Ecliptic Plane'} color="#d4a853" size={9} align="start" />
 
-      {/* ── Moon's tilted orbit ── */}
-      <line x1={nodeX - 120} y1={Y + 40} x2={nodeX + 120} y2={Y - 40} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="6 3" opacity="0.5" />
-      <text x={nodeX + 125} y={Y - 38} fontSize="10" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
+      {/* Moon's tilted orbit line — extends through both nodes */}
+      <line x1={ketuX - orbitExtent} y1={Y + ketuY_offset} x2={ketuX + orbitExtent} y2={Y - ketuY_offset} stroke="#a78bfa" strokeWidth="1.8" strokeDasharray="7 4" opacity="0.5" />
+      <text x={ketuX + orbitExtent + 5} y={Y - ketuY_offset} fontSize="11" fill="#a78bfa" fontWeight="bold" opacity="0.8">5.15°</text>
+      <text x={ketuX + orbitExtent + 5} y={Y - ketuY_offset + 12} fontSize="8" fill="#a78bfa" opacity="0.5">{isHi ? 'चन्द्र कक्षा' : "Moon's orbit"}</text>
 
-      {/* ── Earth's shadow cone ── */}
-      <polygon
-        points={`${earthX + 20},${Y - 18} ${earthX + 20},${Y + 18} ${moonX + 30},${Y + 8} ${moonX + 30},${Y - 8}`}
-        fill="#0a0010" opacity="0.6"
-      />
-      <Label x={(earthX + moonX) / 2} y={Y - 28} text={isHi ? 'प्रच्छाया (Umbra)' : 'Umbra'} color="#6d28d9" size={9} />
-      <polygon
-        points={`${earthX + 16},${Y - 34} ${earthX + 16},${Y + 34} ${moonX + 40},${Y + 26} ${moonX + 40},${Y - 26}`}
-        fill="#080014" opacity="0.25"
-      />
-      <Label x={(earthX + moonX) / 2} y={Y + 38} text={isHi ? 'उपच्छाया (Penumbra)' : 'Penumbra'} color="#7c3aed" size={8} />
+      {/* Earth's shadow cones */}
+      <polygon points={`${earthX + 20},${Y - 18} ${earthX + 20},${Y + 18} ${ketuX + 30},${Y + 8} ${ketuX + 30},${Y - 8}`} fill="#0a0010" opacity="0.6" />
+      <Label x={(earthX + ketuX) / 2} y={Y - 28} text={isHi ? 'प्रच्छाया (Umbra)' : 'Umbra'} color="#6d28d9" size={9} />
+      <polygon points={`${earthX + 16},${Y - 34} ${earthX + 16},${Y + 34} ${ketuX + 40},${Y + 26} ${ketuX + 40},${Y - 26}`} fill="#080014" opacity="0.25" />
+      <Label x={(earthX + ketuX) / 2} y={Y + 38} text={isHi ? 'उपच्छाया (Penumbra)' : 'Penumbra'} color="#7c3aed" size={8} />
 
-      {/* ── Alignment line ── */}
-      <line x1={sunX} y1={Y} x2={moonX} y2={Y} stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
+      {/* Alignment line */}
+      <line x1={sunX} y1={Y} x2={ketuX} y2={Y} stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
 
-      {/* ── Sun ── */}
+      {/* Sun */}
       <SunIcon cx={sunX} cy={Y} r={35} />
-      <Label x={sunX} y={Y + 50} text={isHi ? 'सूर्य' : 'Sun'} color="#f0d48a" size={12} bold />
+      <Label x={sunX} y={Y + 52} text={isHi ? 'सूर्य' : 'Sun'} color="#f0d48a" size={12} bold />
 
-      {/* ── Earth ── */}
+      {/* Earth */}
       <EarthIcon cx={earthX} cy={Y} r={18} />
       <Label x={earthX} y={Y + 30} text={isHi ? 'पृथ्वी' : 'Earth'} color="#60a5fa" size={12} bold />
 
-      {/* ── Moon (at node, in shadow) — Blood Moon ── */}
-      <circle cx={moonX} cy={Y} r="16" fill="#c0392b" />
-      <circle cx={moonX - 4} cy={Y - 3} r="5" fill="#e74c3c" opacity="0.3" />
-      <Label x={moonX} y={Y - 24} text={isHi ? 'चन्द्र (पूर्णिमा) — रक्त चन्द्र' : 'Moon (Full Moon) — Blood Moon'} color="#fca5a5" size={10} bold />
+      {/* Moon at Ketu — Blood Moon */}
+      <circle cx={ketuX} cy={Y} r="16" fill="#c0392b" />
+      <circle cx={ketuX - 4} cy={Y - 3} r="5" fill="#e74c3c" opacity="0.3" />
+      <Label x={ketuX} y={Y - 28} text={isHi ? 'चन्द्र (पूर्णिमा) — रक्त चन्द्र' : 'Moon (Full Moon) — Blood Moon'} color="#fca5a5" size={10} bold />
 
-      {/* ── Node marker ── */}
-      <circle cx={nodeX} cy={Y} r="22" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.6" />
-      <Label x={nodeX} y={Y + 34} text={isHi ? '☋ राहु/केतु पात पर' : '☋ At Rahu/Ketu Node'} color="#fca5a5" size={9} bold />
+      {/* ☋ KETU — where this eclipse happens */}
+      <circle cx={ketuX} cy={Y} r="24" fill="none" stroke="#ef4444" strokeWidth="2.5" opacity="0.6" />
+      <text x={ketuX + 30} y={Y + 44} fontSize="14" fill="#c4b5fd" fontWeight="bold">☋</text>
+      <text x={ketuX + 46} y={Y + 44} fontSize="11" fill="#c4b5fd" fontWeight="bold">{isHi ? 'केतु' : 'Ketu'}</text>
+      <text x={ketuX + 30} y={Y + 56} fontSize="8" fill="#a78bfa" opacity="0.6">{isHi ? 'अवरोही पात — ग्रहण यहाँ!' : 'Descending Node — Eclipse here!'}</text>
 
-      {/* ── Title ── */}
-      <rect x={W / 2 - 175} y={H - 50} width="350" height="36" rx="8" fill="#2a0a0a" opacity="0.8" stroke="#ef4444" strokeWidth="0.5" strokeOpacity="0.4" />
-      <text x={W / 2} y={H - 35} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#fca5a5">
-        {isHi ? '🔴 चन्द्र ग्रहण — पृथ्वी सूर्य और चन्द्र के बीच (पात पर)' : '🔴 Lunar Eclipse — Earth between Sun & Moon (at a node)'}
+      {/* ☊ RAHU — on the opposite side of the tilted orbit */}
+      <circle cx={ketuX + orbitExtent - 20} cy={Y - ketuY_offset + 6} r="10" fill="none" stroke="#f0d48a" strokeWidth="2" opacity="0.6" />
+      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 10} textAnchor="middle" fontSize="12" fill="#f0d48a" fontWeight="bold">☊</text>
+      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset - 6} textAnchor="middle" fontSize="9" fill="#f0d48a" fontWeight="bold">{isHi ? 'राहु' : 'Rahu'}</text>
+      <text x={ketuX + orbitExtent - 20} y={Y - ketuY_offset + 22} textAnchor="middle" fontSize="7" fill="#d4a853" opacity="0.5">{isHi ? 'आरोही पात' : 'Ascending Node'}</text>
+
+      {/* Title */}
+      <rect x={W / 2 - 190} y={H - 52} width="380" height="40" rx="8" fill="#2a0a0a" opacity="0.8" stroke="#ef4444" strokeWidth="0.5" strokeOpacity="0.4" />
+      <text x={W / 2} y={H - 36} textAnchor="middle" fontSize="11" fontWeight="bold" fill="#fca5a5">
+        {isHi ? '🔴 चन्द्र ग्रहण — चन्द्र केतु पात पर, पृथ्वी की छाया में' : '🔴 Lunar Eclipse — Moon at Ketu node, in Earth\'s shadow'}
       </text>
-      <text x={W / 2} y={H - 21} textAnchor="middle" fontSize="9" fill="#fca5a5" opacity="0.7">
-        {isHi ? 'पूर्णिमा + पात = चन्द्र ग्रहण (रक्त चन्द्र)' : 'Full Moon (Purnima) + Node = Lunar Eclipse (Blood Moon)'}
+      <text x={W / 2} y={H - 22} textAnchor="middle" fontSize="9" fill="#fca5a5" opacity="0.7">
+        {isHi ? 'पूर्णिमा + राहु/केतु पात = चन्द्र ग्रहण (रक्त चन्द्र)' : 'Full Moon (Purnima) at Rahu or Ketu = Lunar Eclipse (Blood Moon)'}
       </text>
     </svg>
   );

@@ -188,27 +188,54 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     if (aspects && [2, 4, 6, 7, 8].includes(p.planet.id)) {
       const pName = isHi ? PLANET_NAMES[p.planet.id]?.hi : PLANET_NAMES[p.planet.id]?.en;
 
-      // Specific implications based on planet + node combination
-      let implication = '';
+      // Detailed, plain-language implications based on planet + node + aspect
+      let headline = '';
+      let detail = '';
+
       if (p.planet.id === 6) { // Saturn
-        implication = eclipse.node === 'ketu'
-          ? (isHi ? 'अधिकतम कार्मिक दबाव — पुराने ढाँचे टूटेंगे' : 'maximum karmic pressure — old structures will break')
-          : (isHi ? 'दीर्घकालिक ढाँचागत परिवर्तन — धैर्य आवश्यक' : 'long-lasting structural change — patience required');
+        if (eclipse.node === 'ketu') {
+          headline = isHi ? 'शनि + केतु ग्रहण = अधिकतम कार्मिक दबाव' : 'Saturn + Ketu eclipse = maximum karmic pressure';
+          detail = isHi
+            ? 'आपके जन्म शनि की दृष्टि इस ग्रहण पर है। शनि अनुशासन, कठोर परिश्रम और कर्म-फल का ग्रह है। जब केतु (वैराग्य) के ग्रहण पर शनि दृष्टि डाले, तो जीवन के पुराने ढाँचे — कैरियर, सम्बन्ध, आदतें — टूट सकते हैं ताकि कुछ बेहतर बन सके। यह कठिन लगता है, पर यह शुद्धिकरण है। इस अवधि में बड़े निर्णय लेने से बचें — 6 माह बाद स्पष्टता आएगी।'
+            : 'Your birth Saturn is casting its aspect on this eclipse point. Saturn is the planet of discipline, hard work, and karmic consequences. When Saturn aspects a Ketu eclipse, life\'s old structures — career arrangements, relationships, habits — may break down so something better can be built. This feels hard, but it\'s purification. Avoid major life decisions during this period — clarity comes 6 months later.';
+        } else {
+          headline = isHi ? 'शनि + राहु ग्रहण = दीर्घकालिक ढाँचागत परिवर्तन' : 'Saturn + Rahu eclipse = long-term structural change';
+          detail = isHi
+            ? 'शनि की दृष्टि इस राहु ग्रहण पर धैर्य की परीक्षा है। आपके जीवन में कोई व्यवस्था जो अब काम नहीं करती — कैरियर, वित्त, रहने की जगह — धीरे-धीरे बदलेगी। यह अचानक नहीं टूटता (जैसे केतु ग्रहण), बल्कि 1-2 वर्षों में धीमा परिवर्तन आता है। अनुशासन और व्यावहारिकता आपके सबसे बड़े सहयोगी हैं।'
+            : 'Saturn\'s aspect on this Rahu eclipse is a test of patience. Some arrangement in your life that\'s no longer working — career, finances, living situation — will shift gradually. Unlike a Ketu eclipse (which breaks things suddenly), this is a slow 1-2 year restructuring. Discipline and practicality are your biggest allies.';
+        }
       } else if (p.planet.id === 4) { // Jupiter
-        implication = eclipse.node === 'ketu'
-          ? (isHi ? 'गुरु/शिक्षक से आध्यात्मिक सफलता' : 'spiritual breakthrough through teacher/guru')
-          : (isHi ? 'ज्ञान विस्तार पर भौतिक बाधा — विवेक आवश्यक' : 'wisdom expansion meets material obstacle — discernment needed');
+        if (eclipse.node === 'ketu') {
+          headline = isHi ? 'बृहस्पति + केतु ग्रहण = आध्यात्मिक सफलता' : 'Jupiter + Ketu eclipse = spiritual breakthrough';
+          detail = isHi
+            ? 'बृहस्पति ज्ञान, गुरु और विस्तार का ग्रह है। जब बृहस्पति की दृष्टि केतु (मोक्ष) के ग्रहण पर पड़े, तो यह सबसे शुभ आध्यात्मिक संयोग है। किसी शिक्षक, पुस्तक, या अनुभव से गहन ज्ञान प्राप्त हो सकता है। ध्यान, तीर्थ यात्रा, या शास्त्र अध्ययन इस समय अत्यन्त फलदायी होंगे।'
+            : 'Jupiter is the planet of wisdom, gurus, and expansion. When Jupiter aspects a Ketu (moksha) eclipse, it\'s one of the most auspicious spiritual combinations. You may receive profound wisdom from a teacher, book, or experience. Meditation, pilgrimage, or scripture study during this period will be extraordinarily fruitful.';
+        } else {
+          headline = isHi ? 'बृहस्पति + राहु ग्रहण = ज्ञान बनाम भ्रम' : 'Jupiter + Rahu eclipse = wisdom vs illusion';
+          detail = isHi
+            ? 'बृहस्पति ज्ञान चाहता है, राहु भ्रम फैलाता है। इस संयोग में बड़े-बड़े वादे और अवसर आ सकते हैं जो वास्तव में जितने दिखते हैं उतने अच्छे नहीं। विवेक से काम लें — हर चमकती चीज़ सोना नहीं। शिक्षा और धार्मिक मामलों में सावधानी बरतें।'
+            : 'Jupiter wants wisdom, Rahu creates illusion. This combination may bring grand-sounding opportunities and promises that aren\'t as good as they appear. Use discernment — not everything that glitters is gold. Be cautious in educational and religious matters.';
+        }
       } else if (p.planet.id === 2) { // Mars
-        implication = isHi ? 'अचानक कार्रवाई या टकराव — ऊर्जा को सचेत रूप से चलाएं' : 'sudden action or confrontation — channel energy consciously';
+        headline = isHi ? 'मंगल दृष्टि = अचानक ऊर्जा विस्फोट' : 'Mars aspect = sudden energy burst';
+        detail = isHi
+          ? 'मंगल साहस, ऊर्जा और कभी-कभी आक्रामकता का ग्रह है। जब मंगल की दृष्टि ग्रहण पर हो, तो अचानक कार्रवाई, टकराव, या निर्णय लेने का दबाव आ सकता है। ऊर्जा को सकारात्मक दिशा में लगाएं — व्यायाम, नए प्रोजेक्ट शुरू करना, या साहसिक कदम। क्रोध और आवेगपूर्ण निर्णयों से सावधान रहें।'
+          : 'Mars is the planet of courage, energy, and sometimes aggression. When Mars aspects an eclipse, expect sudden pressure to act, confrontations, or forced decisions. Channel this energy positively — exercise, launch new projects, take bold steps. Be careful of anger and impulsive decisions.';
       } else if (p.planet.id === 7) { // Rahu
-        implication = isHi ? 'जुनून और भ्रम तीव्र — बड़े निर्णय स्थगित करें' : 'obsession and illusion intensified — postpone major decisions';
+        headline = isHi ? 'राहु दृष्टि = इच्छाएं और जुनून तीव्र' : 'Rahu aspect = desires and obsessions intensify';
+        detail = isHi
+          ? 'आपके जन्म राहु की दृष्टि इस ग्रहण पर है। राहु अतृप्त इच्छा का ग्रह है — जो चीज़ आप सबसे ज़्यादा चाहते हैं, उसकी तीव्रता बढ़ेगी। यह समय बड़े वित्तीय निर्णय, नई साझेदारी, या जीवन-बदलने वाले कदमों के लिए अच्छा नहीं — भ्रम की सम्भावना अधिक है। 3-6 माह प्रतीक्षा करें।'
+          : 'Your birth Rahu is casting its aspect on this eclipse. Rahu is the planet of insatiable desire — whatever you want most will feel more intense. This is NOT a good time for major financial decisions, new partnerships, or life-changing moves — the risk of illusion is high. Wait 3-6 months for clarity.';
       } else if (p.planet.id === 8) { // Ketu
-        implication = isHi ? 'वैराग्य और आध्यात्मिक तीव्रता चरम पर' : 'detachment and spiritual intensity at peak';
+        headline = isHi ? 'केतु दृष्टि = वैराग्य और आन्तरिक शुद्धि' : 'Ketu aspect = detachment and inner purification';
+        detail = isHi
+          ? 'आपके जन्म केतु की दृष्टि इस ग्रहण पर है। केतु आध्यात्मिक वैराग्य और पूर्वजन्म कर्म का ग्रह है। इस अवधि में आप ऐसी चीज़ों से अचानक उदासीन हो सकते हैं जो पहले बहुत महत्वपूर्ण लगती थीं — कैरियर, सम्पत्ति, सम्बन्ध। यह भयावह लग सकता है, पर यह आत्मा का शुद्धिकरण है। ध्यान और आत्मचिन्तन के लिए उत्तम समय।'
+          : 'Your birth Ketu is casting its aspect on this eclipse. Ketu is the planet of spiritual detachment and past-life karma. During this period, you may suddenly become indifferent to things that previously felt very important — career ambitions, possessions, relationships. This can feel alarming, but it\'s the soul\'s purification process. Excellent time for meditation and self-reflection.';
       }
 
       transitAspects.push(isHi
-        ? `🔥 आपके जन्म ${pName} की ${aspectType} ग्रहण अंश पर — ${implication}`
-        : `🔥 Your natal ${pName} ${aspectType} aspects the eclipse degree — ${implication}`
+        ? `🔥 ${headline}\n${detail}`
+        : `🔥 ${headline}\n${detail}`
       );
     }
   }
@@ -372,11 +399,16 @@ export default function PersonalEclipseInsight({
         )}
 
         {/* Transit aspects — natal Saturn/Jupiter/Mars/Rahu/Ketu aspecting eclipse */}
-        {insight.transitAspects.map((t, i) => (
-          <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-red-500/5 border border-red-500/10">
-            <span className="text-red-300/90">{t}</span>
-          </div>
-        ))}
+        {insight.transitAspects.map((t, i) => {
+          const [headline, ...detailParts] = t.split('\n');
+          const detail = detailParts.join(' ');
+          return (
+            <div key={i} className="p-3 rounded-lg bg-red-500/5 border border-red-500/10 space-y-1.5">
+              <div className="text-red-300/90 font-semibold text-xs">{headline}</div>
+              {detail && <p className="text-text-secondary/70 text-xs leading-relaxed">{detail}</p>}
+            </div>
+          );
+        })}
 
         {/* Low impact note */}
         {insight.overallIntensity === 'low' && !insight.dashAlert && insight.natalContacts.length === 0 && insight.transitAspects.length === 0 && (

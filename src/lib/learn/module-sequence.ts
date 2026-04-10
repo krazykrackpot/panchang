@@ -53,6 +53,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '7-1', phase: 2, topic: 'Yoga, Karana & Vara',   title: { en: 'Panchang Yoga',               hi: 'पंचांग योग' } },
   { id: '7-2', phase: 2, topic: 'Yoga, Karana & Vara',   title: { en: 'Karana',                      hi: 'करण' } },
   { id: '7-3', phase: 2, topic: 'Yoga, Karana & Vara',   title: { en: 'Vara & Hora',                 hi: 'वार एवं होरा' } },
+  { id: '7-4', phase: 2, topic: 'Yoga, Karana & Vara',   title: { en: 'Why 7 Days? — Chaldean Order', hi: '7 दिन क्यों? — कैल्डियन क्रम' } },
   // Muhurta
   { id: '8-1', phase: 2, topic: 'Muhurta',               title: { en: '30 Muhurtas Per Day',         hi: '30 मुहूर्त' } },
 

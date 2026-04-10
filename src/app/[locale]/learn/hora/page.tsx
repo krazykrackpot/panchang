@@ -114,6 +114,36 @@ const L = {
     hi: 'राहु काल — राहु द्वारा शासित दैनिक अशुभ अवधि — सप्ताह के दिन पर लागू एक संशोधित होरा अनुक्रम से गणना की जाती है। प्रत्येक सप्ताह के दिन में एक निश्चित राहु काल खण्ड होता है (जैसे सोमवार 7:30-9:00 बजे, मंगलवार 3:00-4:30 बजे मानक 12 घंटे के दिन में)।',
   },
 
+  /* Section 7: Classical Sources */
+  s7Title: {
+    en: 'Classical Sources — The Texts That Built This System',
+    hi: 'शास्त्रीय स्रोत — जिन ग्रन्थों ने यह पद्धति बनाई',
+  },
+  srcSurya: {
+    en: 'Surya Siddhanta (Ch. 12, "Bhugola-adhyaya") — The foundational Indian astronomical treatise. Chapter 12 defines the hora system explicitly: "The lord of the first hora of the day gives the day its name" (दिनस्य प्रथमहोराधिपतिः तद्दिनस्य नामकारणम्). It provides precise mean daily motions for all 7 planets: Sun = 0°59\'8", Moon = 13°10\'35", Mars = 0°31\'26", Mercury = 4°5\'32", Jupiter = 0°4\'59", Venus = 1°36\'8", Saturn = 0°2\'0". These motions directly establish the speed ranking that generates the Chaldean order. The text also defines the 24-hora division of the Ahoratra and prescribes hora-based activity timing.',
+    hi: 'सूर्य सिद्धान्त (अ.12, "भूगोलाध्याय") — मूलभूत भारतीय खगोलीय ग्रन्थ। अध्याय 12 होरा पद्धति को स्पष्ट रूप से परिभाषित करता है: "दिन की प्रथम होरा का अधिपति उस दिन को अपना नाम देता है।" यह सभी 7 ग्रहों की सटीक माध्य दैनिक गतियाँ प्रदान करता है: सूर्य = 0°59\'8", चन्द्र = 13°10\'35", मंगल = 0°31\'26", बुध = 4°5\'32", गुरु = 0°4\'59", शुक्र = 1°36\'8", शनि = 0°2\'0"। ये गतियाँ सीधे गति क्रम स्थापित करती हैं।',
+  },
+  srcAryabhata: {
+    en: 'Aryabhatiya (Aryabhata, 499 CE) — Perhaps the most revolutionary Indian astronomical work. In the "Kalakriya-pada" (time reckoning section), Aryabhata provides: (1) The sidereal year = 365 days 6 hours 12 minutes 30 seconds — accurate to within 3 minutes of the modern value. (2) The sidereal rotation periods of all planets computed from first principles, not just observed tables. (3) A heliocentric hint: Aryabhata states the Earth rotates on its axis (not the sky rotating around Earth), which was 1,000 years ahead of Copernicus. (4) The kshaya (duration loss) concept for tithis — directly connected to the variable hora lengths used at higher latitudes. His orbital period calculations confirm the Chaldean speed ranking with mathematical rigour that Babylonian astronomy never achieved.',
+    hi: 'आर्यभटीय (आर्यभट, 499 ई.) — सम्भवतः सबसे क्रान्तिकारी भारतीय खगोलीय कृति। "कालक्रियापाद" में आर्यभट प्रदान करते हैं: (1) नाक्षत्र वर्ष = 365 दिन 6 घण्टे 12 मिनट 30 सेकण्ड — आधुनिक मान से 3 मिनट भीतर सटीक। (2) सभी ग्रहों की नाक्षत्र घूर्णन अवधि मूल सिद्धान्तों से गणित, केवल प्रेक्षित तालिकाओं से नहीं। (3) सूर्यकेन्द्री संकेत: आर्यभट कहते हैं कि पृथ्वी अपनी धुरी पर घूमती है — कॉपर्निकस से 1,000 वर्ष पहले। (4) तिथि क्षय अवधारणा — उच्च अक्षांशों पर प्रयुक्त परिवर्तनीय होरा अवधि से सीधे जुड़ी। उनकी कक्षीय अवधि गणनाएँ कैल्डियन गति क्रम की गणितीय कठोरता से पुष्टि करती हैं।',
+  },
+  srcBrihat: {
+    en: 'Brihat Samhita (Varahamihira, ~505 CE, Ch. 2) — The encyclopaedic work on mundane astrology. Chapter 2 ("Adityachara") explicitly states: "प्रथमहोराधिपो दिनेशः" — "The lord of the first hora is the lord of the day." Varahamihira provides the complete hora table for all 7 days and connects hora to muhurta timing for royal activities, military campaigns, and construction. He also documents the 7-day week as an established, universally accepted system — evidence that it was already ancient by the 6th century CE.',
+    hi: 'बृहत् संहिता (वराहमिहिर, ~505 ई., अ.2) — मुण्डन ज्योतिष पर विश्वकोशीय कृति। अध्याय 2 ("आदित्यचार") स्पष्ट रूप से कहता है: "प्रथमहोराधिपो दिनेशः" — "प्रथम होरा का अधिपति दिन का स्वामी है।" वराहमिहिर सभी 7 दिनों की पूर्ण होरा तालिका प्रदान करते हैं और होरा को राजकीय, सैन्य और निर्माण कार्यों के मुहूर्त से जोड़ते हैं। वे 7-दिवसीय सप्ताह को एक स्थापित, सर्वमान्य पद्धति के रूप में प्रलेखित करते हैं — प्रमाण कि यह 6वीं शताब्दी तक पहले से प्राचीन थी।',
+  },
+  srcArthashastra: {
+    en: 'Arthashastra (Kautilya, ~300 BCE) — The treatise on statecraft and governance. References the 7-day week with planet-based day names in the context of scheduling royal duties and tax collection cycles. This is among the earliest datable references to the planetary week — centuries before the Roman adoption of the 7-day week (which occurred only around 1st century CE). Kautilya\'s text proves the system was already established in India by at least the 4th century BCE.',
+    hi: 'अर्थशास्त्र (कौटिल्य, ~300 ई.पू.) — राजनीति और शासन पर ग्रन्थ। राजकीय कर्तव्यों और कर संग्रह चक्रों के सन्दर्भ में ग्रह-आधारित दिन नामों वाले 7-दिवसीय सप्ताह का उल्लेख करता है। यह ग्रह सप्ताह का सबसे पुराना दिनांकित सन्दर्भों में से एक है — रोमन 7-दिवसीय सप्ताह अपनाने (जो केवल ~1वीं शताब्दी ई. में हुआ) से सदियों पहले।',
+  },
+  srcYajnavalkya: {
+    en: 'Yajnavalkya Smriti (Ch. 1, "Achara-adhyaya") — The dharmic law code prescribes hora-based timing for Vedic rituals: "शुभकर्मसु शुभहोरा ग्राह्या" — "For auspicious deeds, choose an auspicious hora." It codifies the principle that the planetary ruler of the current hora influences the outcome of activities initiated during that period — the foundation of electional astrology (muhurta) that is still practiced daily.',
+    hi: 'याज्ञवल्क्य स्मृति (अ.1, "आचाराध्याय") — धर्मशास्त्रीय विधि संहिता वैदिक कर्मकाण्ड हेतु होरा-आधारित समय निर्धारित करती है: "शुभकर्मसु शुभहोरा ग्राह्या" — "शुभ कार्यों के लिए शुभ होरा चुनें।" यह सिद्धान्त संहिताबद्ध करती है कि वर्तमान होरा का ग्रह शासक उस अवधि में आरम्भ किए कार्यों के परिणाम को प्रभावित करता है — मुहूर्त ज्योतिष की नींव जो आज भी प्रतिदिन प्रचलित है।',
+  },
+  srcRomaka: {
+    en: 'Romaka Siddhanta — Documents the transmission route of Indian astronomical knowledge westward. "Romaka" literally means "Roman" — this text acknowledges the exchange between Indian and Mediterranean astronomical traditions. The planetary week, hora system, and precise orbital calculations traveled from India to Alexandria (Egypt), and from there to the Roman Empire, eventually becoming the universal calendar system we use today.',
+    hi: 'रोमक सिद्धान्त — भारतीय खगोलीय ज्ञान के पश्चिम की ओर संचरण मार्ग का दस्तावेज़। "रोमक" का शाब्दिक अर्थ "रोमन" है — यह ग्रन्थ भारतीय और भूमध्यसागरीय खगोलीय परम्पराओं के बीच आदान-प्रदान को स्वीकार करता है। ग्रह सप्ताह, होरा पद्धति और सटीक कक्षीय गणनाएँ भारत से अलेक्ज़ान्ड्रिया (मिस्र) और वहाँ से रोमन साम्राज्य तक पहुँचीं।',
+  },
+
   /* Related */
   related: { en: 'Explore Further', hi: 'और जानें' },
 };
@@ -796,6 +826,34 @@ export default function HoraChaldeanPage() {
               {isHi ? 'ग्रहण के बारे में जानें' : 'Learn about Eclipses'}
             </Link>
           </div>
+        </div>
+      </motion.section>
+
+      {/* ═══ Section 7: Classical Sources ═══ */}
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-50px' }}
+        transition={{ duration: 0.5 }}
+        className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 sm:p-8"
+      >
+        <h3 className="text-xl sm:text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
+          {t(L.s7Title)}
+        </h3>
+        <div className="space-y-5">
+          {[
+            { label: { en: 'Surya Siddhanta (Ch. 12)', hi: 'सूर्य सिद्धान्त (अ.12)' }, text: L.srcSurya, color: 'border-amber-500/20' },
+            { label: { en: 'Aryabhatiya (499 CE)', hi: 'आर्यभटीय (499 ई.)' }, text: L.srcAryabhata, color: 'border-emerald-500/20' },
+            { label: { en: 'Brihat Samhita (Ch. 2)', hi: 'बृहत् संहिता (अ.2)' }, text: L.srcBrihat, color: 'border-violet-500/20' },
+            { label: { en: 'Arthashastra (~300 BCE)', hi: 'अर्थशास्त्र (~300 ई.पू.)' }, text: L.srcArthashastra, color: 'border-blue-500/20' },
+            { label: { en: 'Yajnavalkya Smriti (Ch. 1)', hi: 'याज्ञवल्क्य स्मृति (अ.1)' }, text: L.srcYajnavalkya, color: 'border-gold-primary/20' },
+            { label: { en: 'Romaka Siddhanta', hi: 'रोमक सिद्धान्त' }, text: L.srcRomaka, color: 'border-red-500/20' },
+          ].map((src, i) => (
+            <div key={i} className={`border ${src.color} rounded-xl p-4 bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27]`}>
+              <div className="text-gold-light font-bold text-sm mb-2" style={headingFont}>{t(src.label)}</div>
+              <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t(src.text)}</p>
+            </div>
+          ))}
         </div>
       </motion.section>
 

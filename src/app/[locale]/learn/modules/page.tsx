@@ -58,6 +58,7 @@ const PHASES = [
       { id: '7-1', title: { en: 'Panchang Yoga — Sun-Moon Sum', hi: 'पंचांग योग' } },
       { id: '7-2', title: { en: 'Karana — Half-Tithi System', hi: 'करण' } },
       { id: '7-3', title: { en: 'Vara & the Hora System', hi: 'वार एवं होरा' } },
+      { id: '7-4', title: { en: 'Why 7 Days? — Chaldean Order & Indian Origins', hi: '7 दिन क्यों? — कैल्डियन क्रम और भारतीय उत्पत्ति' } },
     ]},
     { topic: 'Muhurta', modules: [
       { id: '8-1', title: { en: '30 Muhurtas Per Day', hi: '30 मुहूर्त' } },

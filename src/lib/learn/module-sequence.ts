@@ -141,9 +141,24 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '23-4', phase: 10, topic: 'Prediction',      title: { en: 'Sphutas & Sensitive Points', hi: 'स्फुट एवं संवेदनशील बिन्दु' } },
   { id: '23-5', phase: 10, topic: 'Prediction',      title: { en: 'Prashna Yogas',             hi: 'प्रश्न योग' } },
   { id: '24-1', phase: 10, topic: 'Prediction',      title: { en: 'Ganda Mula Nakshatras',    hi: 'गण्ड मूल नक्षत्र' } },
+
+  // ── Phase 11: India's Contributions to Science ────────────────────────────
+  // Mathematics
+  { id: '25-1', phase: 11, topic: 'Mathematics',     title: { en: 'Zero — The Most Dangerous Idea',          hi: 'शून्य — सबसे खतरनाक विचार' } },
+  { id: '25-2', phase: 11, topic: 'Mathematics',     title: { en: "Sine Is Sanskrit — Jya to Sine",          hi: 'Sine संस्कृत है — ज्या से Sine' } },
+  { id: '25-3', phase: 11, topic: 'Mathematics',     title: { en: 'π = 3.1416 — Aryabhata Nailed It',        hi: 'π = 3.1416 — आर्यभट की सटीक गणना' } },
+  { id: '25-4', phase: 11, topic: 'Mathematics',     title: { en: 'Negative Numbers — Less Than Nothing',     hi: 'ऋणात्मक संख्याएँ — शून्य से कम' } },
+  { id: '25-5', phase: 11, topic: 'Mathematics',     title: { en: 'Binary Code — 1,800 Years Early',          hi: 'द्विआधारी — 1,800 वर्ष पहले' } },
+  { id: '25-6', phase: 11, topic: 'Mathematics',     title: { en: 'Fibonacci Started With Music',             hi: 'फिबोनाची संगीत से शुरू हुआ' } },
+  { id: '25-7', phase: 11, topic: 'Mathematics',     title: { en: 'Calculus — Kerala, Not Cambridge',         hi: 'कैलकुलस — केरल, कैम्ब्रिज नहीं' } },
+  // Astronomy & Physics
+  { id: '26-1', phase: 11, topic: 'Astronomy & Physics', title: { en: 'Earth Rotates — 1,000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले' } },
+  { id: '26-2', phase: 11, topic: 'Astronomy & Physics', title: { en: 'Gravity — 500 Years Before Newton',      hi: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले' } },
+  { id: '26-3', phase: 11, topic: 'Astronomy & Physics', title: { en: 'Speed of Light — 14th Century Text',      hi: 'प्रकाश की गति — 14वीं शताब्दी' } },
+  { id: '26-4', phase: 11, topic: 'Astronomy & Physics', title: { en: '4.32 Billion Years — How Did They Know?', hi: '4.32 अरब वर्ष — कैसे पता था?' } },
 ];
 
-export const TOTAL_MODULES = MODULE_SEQUENCE.length; // 89
+export const TOTAL_MODULES = MODULE_SEQUENCE.length;
 
 // ── Phase metadata ────────────────────────────────────────────────────────────
 

@@ -113,6 +113,23 @@ const PHASES = [
       { id: '16-3', title: { en: "India's Contributions", hi: 'भारत का योगदान' } },
     ]},
   ]},
+  { phase: 6, label: { en: "India's Contributions to Science", hi: 'विज्ञान में भारत का योगदान' }, color: 'border-emerald-500/20', topics: [
+    { topic: 'Mathematics', modules: [
+      { id: '25-1', title: { en: 'Zero — The Most Dangerous Idea in History', hi: 'शून्य — इतिहास का सबसे खतरनाक विचार' } },
+      { id: '25-2', title: { en: "Did You Know 'Sine' Is Sanskrit?", hi: "क्या आप जानते हैं 'Sine' संस्कृत है?" } },
+      { id: '25-3', title: { en: 'π = 3.1416 — How Aryabhata Nailed It', hi: 'π = 3.1416 — आर्यभट ने कैसे सटीक गणना की' } },
+      { id: '25-4', title: { en: 'Negative Numbers — Less Than Nothing', hi: 'ऋणात्मक संख्याएँ — शून्य से कम' } },
+      { id: '25-5', title: { en: 'Binary Code — 1,800 Years Before Computers', hi: 'द्विआधारी — कम्प्यूटर से 1,800 वर्ष पहले' } },
+      { id: '25-6', title: { en: "Fibonacci Was Indian — It Started With Music", hi: 'फिबोनाची भारतीय था — यह संगीत से शुरू हुआ' } },
+      { id: '25-7', title: { en: 'Calculus — Invented in Kerala, Not Cambridge', hi: 'कैलकुलस — केरल में खोजा, कैम्ब्रिज में नहीं' } },
+    ]},
+    { topic: 'Astronomy & Physics', modules: [
+      { id: '26-1', title: { en: 'Earth Rotates — 1,000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले' } },
+      { id: '26-2', title: { en: 'Gravity — 500 Years Before Newton', hi: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले' } },
+      { id: '26-3', title: { en: 'Speed of Light — In a 14th Century Text', hi: 'प्रकाश की गति — 14वीं शताब्दी के ग्रन्थ में' } },
+      { id: '26-4', title: { en: '4.32 Billion Years — How Did They Know?', hi: '4.32 अरब वर्ष — उन्हें कैसे पता था?' } },
+    ]},
+  ]},
 ];
 
 export default function ModuleIndexPage() {

@@ -301,10 +301,24 @@ export default function EclipsesPage() {
                       className="overflow-hidden"
                     >
                       <div className="px-6 sm:px-8 pb-6 sm:pb-8 space-y-5 border-t border-gold-primary/10 pt-5">
-                        {/* Description */}
-                        <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-                          {eclipse.description[locale]}
-                        </p>
+                        {/* Description + Sutak applicability note */}
+                        <div className="text-text-secondary text-sm leading-relaxed space-y-2" style={bodyFont}>
+                          <p>{eclipse.description[locale]}</p>
+                          {local && !isVisible && (
+                            <p className="text-amber-400/80 text-xs font-medium">
+                              {isHi
+                                ? '⚠ यह ग्रहण आपके स्थान से दृश्य नहीं है। सूतक काल लागू नहीं होता। मन्त्र जाप और ध्यान करना शुभ रहता है।'
+                                : '⚠ This eclipse is not visible from your location. Sutak does not apply. However, chanting mantras and meditation during the eclipse period is still recommended.'}
+                            </p>
+                          )}
+                          {local && isVisible && local.sutakApplicable && (
+                            <p className="text-emerald-400/70 text-xs font-medium">
+                              {isHi
+                                ? '✓ यह ग्रहण आपके स्थान से दृश्य है। सूतक काल लागू होता है — नीचे समय देखें।'
+                                : '✓ This eclipse is visible from your location. Sutak period applies — see timings below.'}
+                            </p>
+                          )}
+                        </div>
 
                         {local && isVisible && (
                           <>
@@ -316,30 +330,57 @@ export default function EclipsesPage() {
                                   {isHi ? 'ग्रहण समय (स्थानीय)' : 'Eclipse Timings (Local)'}
                                 </h4>
                               </div>
+                              {/* Phase progress diagram */}
+                              <EclipsePhaseDiagram local={local} isSolar={isSolar} isHi={isHi} />
+
                               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                {local.eclipseStart && (
-                                  <TimeCell label={isHi ? 'ग्रहण आरम्भ' : 'Eclipse Start'} time={local.eclipseStart} accent={accentColor} />
+                                {isSolar ? (
+                                  <>
+                                    {/* Solar eclipse phases: C1 (partial start) → Max → C4 (partial end) */}
+                                    {local.eclipseStart && (
+                                      <TimeCell label={isHi ? 'आंशिक आरम्भ (C1)' : 'Partial Begins (C1)'} time={local.eclipseStart} accent={accentColor} subtitle={isHi ? 'चन्द्र सूर्य को स्पर्श करता है' : 'Moon first touches Sun'} />
+                                    )}
+                                    {local.maximum && (
+                                      <TimeCell label={isHi ? 'अधिकतम ग्रहण' : 'Maximum Eclipse'} time={local.maximum} accent="text-gold-light" highlight subtitle={isHi ? 'अधिकतम आच्छादन' : 'Peak coverage'} />
+                                    )}
+                                    <TimeCell
+                                      label={
+                                        local.endsAtSunset
+                                          ? (isHi ? 'सूर्यास्त पर समाप्त' : 'Ends at Sunset')
+                                          : (isHi ? 'आंशिक समाप्त (C4)' : 'Partial Ends (C4)')
+                                      }
+                                      time={local.eclipseEnd || '--:--'}
+                                      accent={accentColor}
+                                      subtitle={local.endsAtSunset ? (isHi ? 'ग्रहण सूर्यास्त तक जारी' : 'Eclipse still in progress at sunset') : (isHi ? 'चन्द्र सूर्य से अलग' : 'Moon fully separates from Sun')}
+                                    />
+                                  </>
+                                ) : (
+                                  <>
+                                    {/* Lunar eclipse phases: P1 (penumbral) → U1 (umbral) → Max → U2 → P4 */}
+                                    {local.eclipseStart && (
+                                      <TimeCell label={isHi ? 'उपच्छाया आरम्भ (P1)' : 'Penumbral Begins (P1)'} time={local.eclipseStart} accent="text-text-secondary/60" subtitle={isHi ? 'सूक्ष्म मलिनता आरम्भ' : 'Subtle dimming starts'} />
+                                    )}
+                                    {local.partialStart && (
+                                      <TimeCell label={isHi ? 'प्रच्छाया आरम्भ (U1)' : 'Umbral Begins (U1)'} time={local.partialStart} accent={accentColor} subtitle={isHi ? 'स्पष्ट छाया दिखती है' : 'Dark shadow visibly enters Moon'} />
+                                    )}
+                                    {local.maximum && (
+                                      <TimeCell label={isHi ? 'अधिकतम ग्रहण' : 'Maximum Eclipse'} time={local.maximum} accent="text-gold-light" highlight subtitle={isHi ? 'अधिकतम आच्छादन' : 'Peak shadow coverage'} />
+                                    )}
+                                    {local.partialEnd && (
+                                      <TimeCell label={isHi ? 'प्रच्छाया समाप्त (U2)' : 'Umbral Ends (U2)'} time={local.partialEnd} accent={accentColor} subtitle={isHi ? 'अन्धकार हटना आरम्भ' : 'Dark shadow starts to leave'} />
+                                    )}
+                                    <TimeCell
+                                      label={
+                                        local.endsAtMoonset
+                                          ? (isHi ? 'चन्द्रास्त पर समाप्त' : 'Ends at Moonset')
+                                          : (isHi ? 'उपच्छाया समाप्त (P4)' : 'Penumbral Ends (P4)')
+                                      }
+                                      time={local.eclipseEnd || '--:--'}
+                                      accent="text-text-secondary/60"
+                                      subtitle={local.endsAtMoonset ? (isHi ? 'ग्रहण चन्द्रास्त तक जारी' : 'Eclipse in progress at moonset') : (isHi ? 'चन्द्रमा पूर्ण प्रकाशित' : 'Moon fully bright again')}
+                                    />
+                                  </>
                                 )}
-                                {local.partialStart && local.partialStart !== local.eclipseStart && (
-                                  <TimeCell label={isHi ? 'आंशिक आरम्भ' : 'Partial Start'} time={local.partialStart} accent={accentColor} />
-                                )}
-                                {local.maximum && (
-                                  <TimeCell label={isHi ? 'अधिकतम ग्रहण' : 'Maximum Eclipse'} time={local.maximum} accent="text-gold-light" highlight />
-                                )}
-                                {local.partialEnd && (
-                                  <TimeCell label={isHi ? 'आंशिक समाप्त' : 'Partial End'} time={local.partialEnd} accent={accentColor} />
-                                )}
-                                <TimeCell
-                                  label={
-                                    local.endsAtSunset
-                                      ? (isHi ? 'सूर्यास्त पर समाप्त' : 'Ends at Sunset')
-                                      : local.endsAtMoonset
-                                      ? (isHi ? 'चन्द्रास्त पर समाप्त' : 'Ends at Moonset')
-                                      : (isHi ? 'ग्रहण समाप्त' : 'Eclipse End')
-                                  }
-                                  time={local.eclipseEnd || '--:--'}
-                                  accent={accentColor}
-                                />
                               </div>
 
                               {/* Duration + Magnitude row */}
@@ -496,6 +537,95 @@ export default function EclipsesPage() {
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
+
+/** Visual phase diagram showing eclipse progression */
+function EclipsePhaseDiagram({ local, isSolar, isHi }: { local: LocalEclipseResult; isSolar: boolean; isHi: boolean }) {
+  if (isSolar) {
+    // Solar: C1 → Max → C4 (or sunset)
+    const phases = [
+      { time: local.eclipseStart, label: 'C1', color: '#f59e0b' },
+      { time: local.maximum, label: isHi ? 'अधिकतम' : 'Max', color: '#f0d48a' },
+      { time: local.eclipseEnd, label: local.endsAtSunset ? '☀↓' : 'C4', color: '#f59e0b' },
+    ].filter(p => p.time);
+
+    return (
+      <div className="mb-4">
+        {/* Progress bar */}
+        <div className="relative h-3 rounded-full overflow-hidden bg-white/5">
+          {/* Partial phase — full bar */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-amber-500/40 to-amber-500/20 rounded-full" />
+          {/* Max point indicator */}
+          <div className="absolute top-0 bottom-0 w-1 bg-amber-400 rounded-full" style={{ left: '50%', transform: 'translateX(-50%)' }} />
+        </div>
+        {/* Labels */}
+        <div className="flex justify-between mt-1.5">
+          {phases.map((p, i) => (
+            <div key={i} className={`text-center ${i === 1 ? 'flex-1' : ''}`}>
+              <div className="text-[9px] font-bold" style={{ color: p.color }}>{p.label}</div>
+              <div className="text-[10px] text-text-secondary/50 font-mono">{p.time}</div>
+            </div>
+          ))}
+        </div>
+        {/* Phase label */}
+        <div className="text-center text-[9px] text-amber-400/40 mt-1">
+          {isHi ? '← आंशिक चरण →' : '← Partial Phase →'}
+        </div>
+      </div>
+    );
+  }
+
+  // Lunar: P1 → U1 → Max → U2 → P4
+  const hasUmbral = local.partialStart && local.partialEnd;
+  const phases = [
+    { time: local.eclipseStart, label: 'P1', desc: isHi ? 'उपच्छाया' : 'Penumbral' },
+    ...(hasUmbral ? [{ time: local.partialStart!, label: 'U1', desc: isHi ? 'प्रच्छाया' : 'Umbral' }] : []),
+    { time: local.maximum, label: isHi ? 'अधिकतम' : 'Max', desc: '' },
+    ...(hasUmbral ? [{ time: local.partialEnd!, label: 'U2', desc: '' }] : []),
+    { time: local.eclipseEnd, label: local.endsAtMoonset ? '☽↓' : 'P4', desc: '' },
+  ].filter(p => p.time);
+
+  return (
+    <div className="mb-4">
+      {/* Multi-phase bar */}
+      <div className="relative h-3 rounded-full overflow-hidden bg-white/5">
+        {hasUmbral ? (
+          <>
+            {/* Penumbral phase — lighter */}
+            <div className="absolute inset-0 bg-indigo-500/15 rounded-full" />
+            {/* Umbral phase — darker, centered */}
+            <div className="absolute top-0 bottom-0 bg-indigo-500/40 rounded-full" style={{ left: '25%', right: '25%' }} />
+            {/* Totality point if applicable */}
+            {local.maxMagnitude >= 1.0 && (
+              <div className="absolute top-0 bottom-0 bg-red-500/50 rounded-full" style={{ left: '40%', right: '40%' }} />
+            )}
+          </>
+        ) : (
+          /* Penumbral only */
+          <div className="absolute inset-0 bg-indigo-500/15 rounded-full" />
+        )}
+        {/* Max indicator */}
+        <div className="absolute top-0 bottom-0 w-1 bg-indigo-400 rounded-full" style={{ left: '50%', transform: 'translateX(-50%)' }} />
+      </div>
+      {/* Labels */}
+      <div className="flex justify-between mt-1.5">
+        {phases.map((p, i) => (
+          <div key={i} className="text-center">
+            <div className="text-[9px] font-bold text-indigo-300">{p.label}</div>
+            <div className="text-[10px] text-text-secondary/50 font-mono">{p.time}</div>
+          </div>
+        ))}
+      </div>
+      {/* Phase labels */}
+      {hasUmbral && (
+        <div className="flex justify-center gap-4 mt-1 text-[9px]">
+          <span className="text-indigo-400/30">{isHi ? 'उपच्छाया' : 'Penumbral'}</span>
+          <span className="text-indigo-400/60">{isHi ? 'प्रच्छाया (छाया)' : 'Umbral (Shadow)'}</span>
+          {local.maxMagnitude >= 1.0 && <span className="text-red-400/50">{isHi ? 'पूर्ण (रक्त चन्द्र)' : 'Total (Blood Moon)'}</span>}
+        </div>
+      )}
+    </div>
+  );
+}
 
 /** Explain magnitude in plain language */
 function getMagnitudeLabel(mag: number, isSolar: boolean, isHi: boolean): string {

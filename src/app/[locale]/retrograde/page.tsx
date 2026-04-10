@@ -8,6 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
+import { GRAHAS } from '@/lib/constants/grahas';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { Link } from '@/lib/i18n/navigation';
@@ -386,6 +387,119 @@ export default function RetrogradePage() {
           {locale === 'en' ? `Combustion (${combustEvents.length})` : `अस्त (${combustEvents.length})`}
         </button>
       </div>
+
+      {/* ── VISUAL TIMELINE ── */}
+      {!loading && (retroPeriods.length > 0 || combustEvents.length > 0) && (() => {
+        const allEvents = [
+          ...retroPeriods.map(p => ({ ...p, type: 'retro' as const })),
+          ...combustEvents.map(e => ({ ...e, type: 'combust' as const })),
+        ];
+        const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const yearStart = new Date(year, 0, 1).getTime();
+        const yearEnd = new Date(year, 11, 31).getTime();
+        const totalMs = yearEnd - yearStart;
+        const toPercent = (dateStr: string) => {
+          const t = new Date(dateStr + 'T00:00:00').getTime();
+          return Math.max(0, Math.min(100, ((t - yearStart) / totalMs) * 100));
+        };
+        const nowPct = toPercent(new Date().toISOString().slice(0, 10));
+
+        // Group by planet
+        const PLANET_ORDER = [6, 4, 2, 5, 3]; // Saturn, Jupiter, Mars, Venus, Mercury
+        const PLANET_LABELS: Record<number, string> = { 6: 'Saturn', 4: 'Jupiter', 2: 'Mars', 5: 'Venus', 3: 'Mercury' };
+        const PLANET_LABELS_HI: Record<number, string> = { 6: 'शनि', 4: 'बृहस्पति', 2: 'मंगल', 5: 'शुक्र', 3: 'बुध' };
+
+        return (
+          <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 mb-8">
+            <h3 className="text-gold-light text-sm font-bold mb-1">
+              {locale === 'en' ? `${year} Retrograde & Combustion Timeline` : `${year} वक्री और अस्त समयरेखा`}
+            </h3>
+            <p className="text-text-secondary/50 text-xs mb-4">
+              {locale === 'en' ? 'Red = retrograde, Orange = combust. Hover for dates.' : 'लाल = वक्री, नारंगी = अस्त।'}
+            </p>
+
+            {/* Month axis */}
+            <div className="relative h-5 mb-1 ml-16 sm:ml-20">
+              {MONTHS.map((m, i) => (
+                <span key={m} className="absolute text-[9px] text-gray-600 font-mono" style={{ left: `${(i / 12) * 100}%` }}>
+                  {m}
+                </span>
+              ))}
+            </div>
+
+            {/* Planet swim lanes */}
+            <div className="space-y-2">
+              {PLANET_ORDER.map(pid => {
+                const events = allEvents.filter(e => e.planetId === pid);
+                if (events.length === 0) return null;
+                const graha = GRAHAS[pid];
+                return (
+                  <div key={pid} className="flex items-center gap-0">
+                    <div className="w-16 sm:w-20 shrink-0 text-right pr-2">
+                      <span className="text-[10px] font-bold" style={{ color: graha?.color || '#888' }}>
+                        {locale === 'en' ? PLANET_LABELS[pid] : PLANET_LABELS_HI[pid]}
+                      </span>
+                    </div>
+                    <div className="flex-1 relative h-7 bg-bg-tertiary/15 rounded-md overflow-hidden">
+                      {/* Month grid lines */}
+                      {MONTHS.map((_, i) => (
+                        <div key={i} className="absolute top-0 bottom-0 border-l border-white/[0.04]" style={{ left: `${(i / 12) * 100}%` }} />
+                      ))}
+                      {/* Event bars */}
+                      {events.map((ev, idx) => {
+                        const left = toPercent(ev.startDate);
+                        const right = toPercent(ev.endDate);
+                        const width = Math.max(right - left, 1);
+                        const isRetro = ev.type === 'retro';
+                        const isNowActive = (() => {
+                          const now = new Date();
+                          return now >= new Date(ev.startDate + 'T00:00:00') && now <= new Date(ev.endDate + 'T23:59:59');
+                        })();
+                        return (
+                          <div
+                            key={idx}
+                            className={`absolute top-1 bottom-1 rounded-sm cursor-default group/bar transition-colors ${
+                              isRetro ? 'bg-red-500/70 hover:bg-red-500/90' : 'bg-orange-500/60 hover:bg-orange-500/80'
+                            } ${isNowActive ? 'ring-1 ring-white/30' : ''}`}
+                            style={{ left: `${left}%`, width: `${width}%` }}
+                            title={`${ev.planetName.en} ${isRetro ? 'Retrograde' : 'Combust'}: ${ev.startDate} to ${ev.endDate}`}
+                          >
+                            {width > 6 && (
+                              <span className="absolute inset-0 flex items-center justify-center text-[8px] font-bold text-white/80 truncate px-0.5">
+                                {isRetro ? 'R' : 'C'}
+                              </span>
+                            )}
+                            {/* Tooltip */}
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover/bar:block z-10 pointer-events-none">
+                              <div className="bg-bg-primary/95 border border-gold-primary/20 rounded-md px-2 py-1 shadow-lg whitespace-nowrap">
+                                <span className={`text-[9px] font-bold ${isRetro ? 'text-red-400' : 'text-orange-400'}`}>
+                                  {isRetro ? 'Retrograde' : 'Combust'}
+                                </span>
+                                <span className="text-[9px] text-gray-400 ml-1">{ev.startDate} → {ev.endDate}</span>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      {/* NOW marker */}
+                      {year === new Date().getFullYear() && (
+                        <div className="absolute top-0 bottom-0 w-px bg-gold-primary/80" style={{ left: `${nowPct}%` }} />
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Legend */}
+            <div className="flex items-center gap-4 mt-3 ml-16 sm:ml-20 text-[10px]">
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{locale === 'en' ? 'Retrograde' : 'वक्री'}</span></span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{locale === 'en' ? 'Combust' : 'अस्त'}</span></span>
+              {year === new Date().getFullYear() && <span className="flex items-center gap-1"><span className="w-px h-3 bg-gold-primary/80" /><span className="text-gold-primary/70">NOW</span></span>}
+            </div>
+          </div>
+        );
+      })()}
 
       <GoldDivider />
 

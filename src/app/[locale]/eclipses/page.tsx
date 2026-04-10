@@ -152,6 +152,7 @@ export default function EclipsesPage() {
             </ul>
             <p><strong>Do:</strong> Chant mantras, meditate, bathe after eclipse, donate food/clothes.</p>
             <p><strong>Avoid:</strong> Eating during Sutak, new ventures, pregnant women avoid sharp objects, don&apos;t look directly at solar eclipses.</p>
+            <p><strong>What does Magnitude mean?</strong> For solar eclipses, magnitude is the fraction of the Sun&apos;s diameter covered by the Moon (0.91 = 91% covered). For lunar eclipses, it&apos;s the fraction of the Moon inside Earth&apos;s umbral shadow (&gt;1.0 = fully inside = total &quot;Blood Moon&quot;, 0.5 = half covered). Higher magnitude = more dramatic and astrologically significant eclipse.</p>
             <p className="text-text-secondary/60 text-xs">Sutak applies only when the eclipse is visible from your location.</p>
           </div>
         ) : (
@@ -162,6 +163,7 @@ export default function EclipsesPage() {
               <li><strong className="text-indigo-300">चन्द्र ग्रहण</strong> — सूतक <strong>9 घंटे</strong> पहले।</li>
             </ul>
             <p><strong>करें:</strong> मन्त्र जाप, ध्यान, स्नान, दान। <strong>न करें:</strong> भोजन, नए कार्य।</p>
+            <p><strong>परिमाण (Magnitude) का अर्थ:</strong> सूर्य ग्रहण में — सूर्य का कितना भाग चन्द्रमा ने ढका (0.91 = 91%)। चन्द्र ग्रहण में — चन्द्रमा का कितना भाग पृथ्वी की छाया में (&gt;1.0 = पूर्ण &quot;रक्त चन्द्र&quot;)। अधिक परिमाण = अधिक प्रभावशाली ग्रहण।</p>
             <p className="text-text-secondary/60 text-xs">सूतक केवल तभी लागू जब ग्रहण दृश्य हो।</p>
           </div>
         )}
@@ -351,6 +353,7 @@ export default function EclipsesPage() {
                                 <div>
                                   <div className="text-[10px] text-text-secondary/50 uppercase tracking-wider">{isHi ? 'अधिकतम परिमाण' : 'Max Magnitude'}</div>
                                   <div className="text-sm text-gold-light font-mono font-bold">{local.maxMagnitude.toFixed(2)}</div>
+                                  <div className="text-[10px] text-text-secondary/40 mt-0.5">{getMagnitudeLabel(local.maxMagnitude, isSolar, isHi)}</div>
                                 </div>
                                 {local.magnitudeAtSunset !== null && local.magnitudeAtSunset !== undefined && (
                                   <div>
@@ -493,6 +496,27 @@ export default function EclipsesPage() {
 }
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
+
+/** Explain magnitude in plain language */
+function getMagnitudeLabel(mag: number, isSolar: boolean, isHi: boolean): string {
+  if (isSolar) {
+    // Solar: magnitude = fraction of Sun's diameter covered by Moon
+    // 0.0 = no eclipse, 1.0 = total, >1.0 = total with longer duration
+    if (mag >= 1.0) return isHi ? 'पूर्ण — सूर्य पूरी तरह ढका' : 'Total — Sun fully covered';
+    if (mag >= 0.9) return isHi ? `सूर्य का ${Math.round(mag * 100)}% ढका — लगभग पूर्ण` : `${Math.round(mag * 100)}% of Sun covered — nearly total`;
+    if (mag >= 0.7) return isHi ? `सूर्य का ${Math.round(mag * 100)}% ढका — स्पष्ट अंधकार` : `${Math.round(mag * 100)}% covered — noticeable dimming`;
+    if (mag >= 0.5) return isHi ? `सूर्य का ${Math.round(mag * 100)}% ढका — मध्यम` : `${Math.round(mag * 100)}% covered — moderate`;
+    if (mag >= 0.2) return isHi ? `सूर्य का ${Math.round(mag * 100)}% ढका — हल्का` : `${Math.round(mag * 100)}% covered — slight`;
+    return isHi ? `सूर्य का ${Math.round(mag * 100)}% ढका — मामूली` : `${Math.round(mag * 100)}% covered — barely perceptible`;
+  }
+  // Lunar: magnitude = fraction of Moon's diameter inside Earth's umbral shadow
+  // 0.0 = penumbral only, 1.0 = just total, >1.0 = deeply total
+  if (mag >= 1.5) return isHi ? 'गहन पूर्ण — चन्द्रमा गहरे लाल' : 'Deep total — Moon turns deep red';
+  if (mag >= 1.0) return isHi ? 'पूर्ण — चन्द्रमा लाल/ताम्र रंग' : 'Total — Moon turns red/copper (Blood Moon)';
+  if (mag >= 0.5) return isHi ? `${Math.round(mag * 100)}% छाया में — स्पष्ट अंधकार` : `${Math.round(mag * 100)}% in shadow — obvious darkening`;
+  if (mag > 0) return isHi ? `${Math.round(mag * 100)}% छाया में — हल्का` : `${Math.round(mag * 100)}% in shadow — slight`;
+  return isHi ? 'उपच्छाया — सूक्ष्म मलिनता' : 'Penumbral only — subtle dimming, hard to see';
+}
 
 function TimeCell({
   label,

@@ -20,10 +20,15 @@ interface TierConfig {
 
 export const TIER_CONFIG: Record<Tier, TierConfig> = {
   free: {
-    daily: { kundali_count: 2, ai_chat_count: 2, pdf_export_count: 2 },
+    daily: { kundali_count: -1, ai_chat_count: 2, pdf_export_count: -1 },
     monthly: { muhurta_scan_count: 2 },
-    total: { saved_charts: 4 },
-    features: new Set<Feature>(['kundali', 'ai_chat', 'pdf_export', 'muhurta_ai', 'varshaphal', 'kp_system', 'prashna']),
+    total: { saved_charts: -1 },
+    features: new Set<Feature>([
+      'kundali', 'ai_chat', 'pdf_export', 'muhurta_ai',
+      'matching_full', 'shadbala_full', 'yogas_full',
+      'varshaphal', 'kp_system', 'prashna',
+      'tippanni_full', 'varga_full', 'ad_free',
+    ]),
   },
   pro: {
     daily: { kundali_count: -1, ai_chat_count: 20, pdf_export_count: -1 },

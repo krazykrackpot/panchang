@@ -81,12 +81,11 @@ export default function PrashnaAshtamangalaPage() {
   const [numbers, setNumbers] = useState<[number, number, number]>([7, 21, 54]);
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
-  const [upgradeRequired, setUpgradeRequired] = useState(false);
 
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
-    setUpgradeRequired(false);
+
     const now = new Date();
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
@@ -96,7 +95,6 @@ export default function PrashnaAshtamangalaPage() {
         body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
       const result = await res.json();
-      if (result.error === 'upgrade_required') { setUpgradeRequired(true); return; }
       if (result.error) throw new Error(result.error);
       setData(result);
     } catch (e) { console.error(e); }
@@ -155,19 +153,6 @@ export default function PrashnaAshtamangalaPage() {
           </motion.button>
         </div>
       </div>
-
-      {upgradeRequired && (
-        <div className="mt-6 rounded-xl bg-amber-500/10 border border-amber-500/30 p-5 text-center">
-          <p className="text-amber-300 font-bold text-base mb-1" style={headingFont}>
-            {locale === 'en' ? 'Pro or Jyotishi plan required' : 'प्रो या ज्योतिषी योजना आवश्यक'}
-          </p>
-          <p className="text-text-secondary/70 text-sm" style={bodyFont}>
-            {locale === 'en'
-              ? 'Prashna Kundali is a paid feature. Upgrade your plan to access it.'
-              : 'प्रश्न कुण्डली एक सशुल्क सुविधा है। इसे एक्सेस करने के लिए अपनी योजना अपग्रेड करें।'}
-          </p>
-        </div>
-      )}
 
       <AnimatePresence>
         {data && (

@@ -1,13 +1,9 @@
 import { NextResponse } from 'next/server';
 import { generateVarshaphal } from '@/lib/varshaphal';
-import { withFeatureGate } from '@/lib/subscription/api-gate';
 import type { BirthData } from '@/types/kundali';
 
 export async function POST(request: Request) {
   try {
-    const gate = await withFeatureGate(request, 'varshaphal');
-    if (!gate.allowed) return gate.error;
-
     const body = await request.json();
     const { birthData, year } = body as { birthData: BirthData; year: number };
 

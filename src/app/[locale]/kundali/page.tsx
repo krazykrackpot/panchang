@@ -1862,9 +1862,7 @@ export default function KundaliPage() {
                   ? 'Your birth chart (D1) shows the big picture. Divisional charts zoom into specific life areas by mathematically dividing each sign: D9 (Navamsha)=marriage/dharma/soul\'s true nature (most important after D1), D10 (Dashamsha)=career/profession, D2 (Hora)=wealth, D3 (Drekkana)=siblings, D7 (Saptamsha)=children, D12 (Dwadashamsha)=parents. If a planet is strong in BOTH D1 and D9, its results are confirmed and powerful.'
                   : 'आपकी जन्म कुण्डली (D1) व्यापक चित्र दिखाती है। विभागीय चार्ट प्रत्येक राशि को गणितीय रूप से विभाजित करके विशिष्ट जीवन क्षेत्रों में ज़ूम करते हैं: D9 (नवांश)=विवाह/धर्म/आत्मा का सच्चा स्वरूप (D1 के बाद सर्वाधिक महत्वपूर्ण), D10 (दशमांश)=कैरियर/व्यवसाय, D2 (होरा)=धन, D3 (द्रेष्काण)=भाई-बहन, D7 (सप्तांश)=संतान, D12 (द्वादशांश)=माता-पिता। यदि कोई ग्रह D1 और D9 दोनों में बलवान है तो उसके फल निश्चित और शक्तिशाली होते हैं।'}
               </InfoBlock>
-              <PaywallGate feature="varga_full" blurContent={<VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />}>
-                <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
-              </PaywallGate>
+              <VargaAnalysisTab kundali={kundali} locale={locale as Locale} headingFont={headingFont} />
             </>
           )}
 
@@ -1932,46 +1930,42 @@ export default function KundaliPage() {
 
           {/* ===== SHADBALA TAB ===== */}
           {activeTab === 'shadbala' && kundali.fullShadbala && (
-            <PaywallGate feature="shadbala_full" blurContent={<ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
-              <div className="space-y-6">
-                <a href={`/${locale}/learn/shadbala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
-                  {locale === 'en' ? 'Learn about Shadbala \u2192' : 'षड्बल के बारे में जानें \u2192'}
-                </a>
-                <InfoBlock
-                  id="kundali-shadbala"
-                  title={locale === 'hi' ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
-                  defaultOpen={false}
-                >
-                  {locale === 'hi'
-                    ? 'आपकी कुण्डली के सभी ग्रह समान रूप से शक्तिशाली नहीं होते। षड्बल 6 स्रोतों से प्रत्येक ग्रह की शक्ति मापता है: स्थानीय (कौन सी राशि), दिशात्मक (कौन सा भाव), कालिक (जन्म का समय), गतिज (गति), नैसर्गिक (जन्मजात शक्ति), और दृग् (अन्य ग्रहों का प्रभाव)। 1.0 रूप से ऊपर अंक पाने वाला ग्रह पर्याप्त बलवान है। उससे नीचे वह अपने वादे पूरे करने में संघर्ष करता है। सबसे बलवान ग्रह अक्सर आपके प्रमुख व्यक्तित्व लक्षण को परिभाषित करता है।'
-                    : 'Not all planets in your chart are equally powerful. Shadbala measures each planet\'s strength from 6 sources: positional (which sign), directional (which house), temporal (time of birth), motional (speed), natural (inherent strength), and aspectual (other planets\' influence). A planet scoring above 1.0 Rupa is adequately strong. Below that, it struggles to deliver its promises. The strongest planet often defines your dominant personality trait.'}
-                </InfoBlock>
-                <ShadbalaInterpretation shadbala={kundali.fullShadbala} planets={kundali.planets} dashas={kundali.dashas || []} locale={locale} />
-                <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
-              </div>
-            </PaywallGate>
+            <div className="space-y-6">
+              <a href={`/${locale}/learn/shadbala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Shadbala \u2192' : 'षड्बल के बारे में जानें \u2192'}
+              </a>
+              <InfoBlock
+                id="kundali-shadbala"
+                title={locale === 'hi' ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
+                defaultOpen={false}
+              >
+                {locale === 'hi'
+                  ? 'आपकी कुण्डली के सभी ग्रह समान रूप से शक्तिशाली नहीं होते। षड्बल 6 स्रोतों से प्रत्येक ग्रह की शक्ति मापता है: स्थानीय (कौन सी राशि), दिशात्मक (कौन सा भाव), कालिक (जन्म का समय), गतिज (गति), नैसर्गिक (जन्मजात शक्ति), और दृग् (अन्य ग्रहों का प्रभाव)। 1.0 रूप से ऊपर अंक पाने वाला ग्रह पर्याप्त बलवान है। उससे नीचे वह अपने वादे पूरे करने में संघर्ष करता है। सबसे बलवान ग्रह अक्सर आपके प्रमुख व्यक्तित्व लक्षण को परिभाषित करता है।'
+                  : 'Not all planets in your chart are equally powerful. Shadbala measures each planet\'s strength from 6 sources: positional (which sign), directional (which house), temporal (time of birth), motional (speed), natural (inherent strength), and aspectual (other planets\' influence). A planet scoring above 1.0 Rupa is adequately strong. Below that, it struggles to deliver its promises. The strongest planet often defines your dominant personality trait.'}
+              </InfoBlock>
+              <ShadbalaInterpretation shadbala={kundali.fullShadbala} planets={kundali.planets} dashas={kundali.dashas || []} locale={locale} />
+              <ShadbalaTab shadbala={kundali.fullShadbala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+            </div>
           )}
 
           {/* ===== BHAVABALA TAB ===== */}
           {activeTab === 'bhavabala' && kundali.bhavabala && (
-            <PaywallGate feature="shadbala_full" blurContent={<BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />}>
-              <div className="space-y-6">
-                <a href={`/${locale}/learn/bhavabala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
-                  {locale === 'en' ? 'Learn about Bhavabala \u2192' : 'भावबल के बारे में जानें \u2192'}
-                </a>
-                <InfoBlock
-                  id="kundali-bhavabala"
-                  title={locale === 'hi' ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
-                  defaultOpen={false}
-                >
-                  {locale === 'hi'
-                    ? 'आपकी कुण्डली के 12 भावों में से प्रत्येक का एक शक्ति स्कोर होता है। बलवान भाव सहजता से अपने वादे पूरे करते हैं — एक बलवान 10वाँ भाव का अर्थ है कि करियर की सफलता स्वाभाविक रूप से आती है। कमज़ोर भाव उन क्षेत्रों को इंगित करते हैं जिनमें अधिक प्रयास की आवश्यकता है। यह स्कोर भावेश की शक्ति, उसमें स्थित ग्रहों और प्राप्त दृष्टियों का संयोजन है। आपका सबसे बलवान भाव अक्सर आपकी सबसे बड़ी जीवन संपदा बन जाता है।'
-                    : 'Each of the 12 houses in your chart has a strength score. Strong houses deliver their promises easily — a strong 10th house means career success comes naturally. Weak houses indicate areas requiring more effort. The score combines the lord\'s strength, occupant planets, and aspects received. Your strongest house often becomes your greatest life asset.'}
-                </InfoBlock>
-                <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
-                <BhavabalaInterpretation bhavabala={kundali.bhavabala} locale={locale} />
-              </div>
-            </PaywallGate>
+            <div className="space-y-6">
+              <a href={`/${locale}/learn/bhavabala`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1">
+                {locale === 'en' ? 'Learn about Bhavabala \u2192' : 'भावबल के बारे में जानें \u2192'}
+              </a>
+              <InfoBlock
+                id="kundali-bhavabala"
+                title={locale === 'hi' ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
+                defaultOpen={false}
+              >
+                {locale === 'hi'
+                  ? 'आपकी कुण्डली के 12 भावों में से प्रत्येक का एक शक्ति स्कोर होता है। बलवान भाव सहजता से अपने वादे पूरे करते हैं — एक बलवान 10वाँ भाव का अर्थ है कि करियर की सफलता स्वाभाविक रूप से आती है। कमज़ोर भाव उन क्षेत्रों को इंगित करते हैं जिनमें अधिक प्रयास की आवश्यकता है। यह स्कोर भावेश की शक्ति, उसमें स्थित ग्रहों और प्राप्त दृष्टियों का संयोजन है। आपका सबसे बलवान भाव अक्सर आपकी सबसे बड़ी जीवन संपदा बन जाता है।'
+                  : 'Each of the 12 houses in your chart has a strength score. Strong houses deliver their promises easily — a strong 10th house means career success comes naturally. Weak houses indicate areas requiring more effort. The score combines the lord\'s strength, occupant planets, and aspects received. Your strongest house often becomes your greatest life asset.'}
+              </InfoBlock>
+              <BhavabalaTab bhavabala={kundali.bhavabala} locale={locale} isDevanagari={isDevanagari} headingFont={headingFont} />
+              <BhavabalaInterpretation bhavabala={kundali.bhavabala} locale={locale} />
+            </div>
           )}
 
           {/* ===== AVASTHAS TAB ===== */}

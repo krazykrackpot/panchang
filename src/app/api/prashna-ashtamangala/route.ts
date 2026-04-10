@@ -1,14 +1,10 @@
 import { NextResponse } from 'next/server';
 import { generatePrashnaResult } from '@/lib/prashna/ashtamangala';
-import { withFeatureGate } from '@/lib/subscription/api-gate';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { QuestionCategory } from '@/types/prashna';
 
 export async function POST(request: Request) {
   try {
-    const gate = await withFeatureGate(request, 'prashna');
-    if (!gate.allowed) return gate.error;
-
     const body = await request.json();
     const {
       numbers,

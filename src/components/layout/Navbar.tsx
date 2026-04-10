@@ -204,11 +204,6 @@ export default function Navbar() {
             <SearchModal />
             <div className="w-px h-5 bg-gold-primary/15" />
             <LocaleSwitcher />
-            {hydrated && tier === 'free' && (
-              <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all whitespace-nowrap">
-                {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
-              </a>
-            )}
             {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-xs whitespace-nowrap">
                 {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
@@ -283,11 +278,6 @@ export default function Navbar() {
               })}
               <div className="pt-3 mt-2 border-t border-gold-primary/10 flex items-center gap-3">
                 <LocaleSwitcher />
-                {tier === 'free' && (
-                  <a href={`/${locale}/pricing`} className="px-3 py-1.5 text-xs font-bold bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/40 rounded-lg text-gold-light hover:bg-gold-primary/30 transition-all">
-                    {locale === 'en' ? 'Upgrade' : 'अपग्रेड'}
-                  </a>
-                )}
                 {isTrialing && trialDaysLeft > 0 && (
                   <span className="text-gold-dark text-xs">
                     {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}

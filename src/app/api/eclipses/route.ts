@@ -55,6 +55,7 @@ export async function GET(req: NextRequest) {
           sutakStart: null,
           sutakEnd: null,
           sutakVulnerableStart: null,
+          sutakTraditions: { nirnyaSindhu: null, dharmaSindhu: null, muhurtaChintamani: null },
           saros: tableEntry.saros,
           gamma: tableEntry.gamma,
           sunrise: null,

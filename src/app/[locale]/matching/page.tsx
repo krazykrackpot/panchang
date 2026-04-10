@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Calendar, Star } from 'lucide-react';
+import { Loader2, Calendar } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
@@ -76,58 +76,6 @@ export default function MatchingPage() {
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const lbl = L[locale] || L.en;
 
-  // Birth mode only — direct nakshatra picker removed (inaccurate for boundary nakshatras)
-  const mode = 'birth' as const;
-
-  // Nakshatra → primary rashi mapping (1-indexed, follows classical assignment)
-  // Each nakshatra maps to the rashi that contains its majority padas.
-  const NAKSHATRA_TO_RASHI = [
-    0,  // placeholder (1-based, index 0 unused)
-    1,  // 1  Ashwini → Aries
-    1,  // 2  Bharani → Aries
-    2,  // 3  Krittika → Taurus (1st pada Aries, rest Taurus)
-    2,  // 4  Rohini → Taurus
-    2,  // 5  Mrigashira → Taurus (1–2 pada Taurus, 3–4 Gemini; Taurus primary)
-    3,  // 6  Ardra → Gemini
-    3,  // 7  Punarvasu → Gemini (4th pada Cancer)
-    4,  // 8  Pushya → Cancer
-    4,  // 9  Ashlesha → Cancer
-    5,  // 10 Magha → Leo
-    5,  // 11 P.Phalguni → Leo
-    6,  // 12 U.Phalguni → Virgo (1st pada Leo)
-    6,  // 13 Hasta → Virgo
-    6,  // 14 Chitra → Virgo (1–2 pada Virgo, 3–4 Libra; Virgo primary)
-    7,  // 15 Swati → Libra
-    7,  // 16 Vishakha → Libra (4th pada Scorpio)
-    8,  // 17 Anuradha → Scorpio
-    8,  // 18 Jyeshtha → Scorpio
-    9,  // 19 Mula → Sagittarius
-    9,  // 20 P.Ashadha → Sagittarius
-    10, // 21 U.Ashadha → Capricorn (1st pada Sagittarius)
-    10, // 22 Shravana → Capricorn
-    10, // 23 Dhanishtha → Capricorn (1–2 pada Cap, 3–4 Aquarius; Cap primary)
-    11, // 24 Shatabhisha → Aquarius
-    11, // 25 P.Bhadrapada → Aquarius (4th pada Pisces)
-    12, // 26 U.Bhadrapada → Pisces
-    12, // 27 Revati → Pisces
-  ];
-
-  // Direct mode state
-  const [boyNakshatra, setBoyNakshatra] = useState(0);
-  const [boyRashi, setBoyRashi] = useState(0);
-  const [girlNakshatra, setGirlNakshatra] = useState(0);
-  const [girlRashi, setGirlRashi] = useState(0);
-
-  const handleBoyNakshatra = useCallback((n: number) => {
-    setBoyNakshatra(n);
-    if (n > 0) setBoyRashi(NAKSHATRA_TO_RASHI[n]);
-  }, []);
-
-  const handleGirlNakshatra = useCallback((n: number) => {
-    setGirlNakshatra(n);
-    if (n > 0) setGirlRashi(NAKSHATRA_TO_RASHI[n]);
-  }, []);
-
   // Birth mode state
   const emptyBirth: PersonBirth = { name: '', date: '', time: '06:00', placeName: '', placeLat: null, placeLng: null, placeTimezone: null };
   const [boyBirth, setBoyBirth] = useState<PersonBirth>(emptyBirth);
@@ -154,11 +102,17 @@ export default function MatchingPage() {
   const [matchError, setMatchError] = useState<string | null>(null);
   const matchResultRef = useRef<HTMLDivElement>(null);
 
+  // Validation hints: tell the user which person's details are incomplete
+  const boyReady = !!boyComputed;
+  const girlReady = !!girlComputed;
+  const boyMissing = !boyBirth.date || !boyBirth.time || boyBirth.placeLat === null;
+  const girlMissing = !girlBirth.date || !girlBirth.time || girlBirth.placeLat === null;
+
   const handleMatch = useCallback(async () => {
-    const bNak = mode === 'birth' ? boyComputed?.nakshatra : boyNakshatra;
-    const bRashi = mode === 'birth' ? boyComputed?.rashi : boyRashi;
-    const gNak = mode === 'birth' ? girlComputed?.nakshatra : girlNakshatra;
-    const gRashi = mode === 'birth' ? girlComputed?.rashi : girlRashi;
+    const bNak = boyComputed?.nakshatra;
+    const bRashi = boyComputed?.rashi;
+    const gNak = girlComputed?.nakshatra;
+    const gRashi = girlComputed?.rashi;
     if (!bNak || !bRashi || !gNak || !gRashi) return;
     setLoading(true);
     try {
@@ -177,7 +131,7 @@ export default function MatchingPage() {
       setResult(data);
     } catch { setMatchError(locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); }
     setLoading(false);
-  }, [mode, boyComputed, girlComputed, boyNakshatra, boyRashi, girlNakshatra, girlRashi]);
+  }, [boyComputed, girlComputed]);
 
   const verdictColors: Record<string, string> = {
     excellent: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
@@ -224,68 +178,50 @@ export default function MatchingPage() {
         >
           <h2 className="text-xl font-bold text-blue-400 mb-6 text-center" style={headingFont}>{t('groomDetails')}</h2>
 
-          {mode === 'birth' ? (
-            <div className="space-y-4">
-              <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.name}</label>
-                <input type="text" value={boyBirth.name} onChange={(e) => setBoyBirth({ ...boyBirth, name: e.target.value })}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" placeholder={locale === 'en' ? 'Groom name' : 'वर का नाम'} />
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
-                  <input type="date" value={boyBirth.date} onChange={(e) => setBoyBirth({ ...boyBirth, date: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
-                </div>
-                <div>
-                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
-                  <input type="time" value={boyBirth.time} onChange={(e) => setBoyBirth({ ...boyBirth, time: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
-                </div>
-              </div>
-              <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.placeOfBirth}</label>
-                <LocationSearch value={boyBirth.placeName} onSelect={(loc) => setBoyBirth({ ...boyBirth, placeName: loc.name, placeLat: loc.lat, placeLng: loc.lng, placeTimezone: loc.timezone })} />
-              </div>
-              {boyComputed && (
-                <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3 text-center">
-                  <div className="text-blue-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
-                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {NAKSHATRAS[boyComputed.nakshatra - 1]?.name[locale]}
-                  </span>
-                  <span className="text-text-secondary mx-2">/</span>
-                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {RASHIS[boyComputed.rashi - 1]?.name[locale]}
-                  </span>
-                </div>
-              )}
+          <div className="space-y-4">
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.name}</label>
+              <input type="text" value={boyBirth.name} onChange={(e) => setBoyBirth({ ...boyBirth, name: e.target.value })}
+                className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" placeholder={locale === 'en' ? 'Groom name' : 'वर का नाम'} />
             </div>
-          ) : (
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonNakshatra')}</label>
-                <select value={boyNakshatra} onChange={(e) => handleBoyNakshatra(Number(e.target.value))}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  <option value={0}>{t('selectNakshatra')}</option>
-                  {NAKSHATRAS.map((n) => (<option key={n.id} value={n.id}>{n.name[locale]}</option>))}
-                </select>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
+                <input type="date" value={boyBirth.date} onChange={(e) => setBoyBirth({ ...boyBirth, date: e.target.value })}
+                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 sm:px-4 py-3 text-text-primary text-sm sm:text-base focus:outline-none focus:border-gold-primary/50" />
               </div>
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
-                  {t('moonRashi')}
-                  {boyNakshatra > 0 && <span className="text-gold-primary/50 text-xs ml-2 normal-case font-normal">(auto)</span>}
-                </label>
-                <select value={boyRashi} onChange={(e) => setBoyRashi(Number(e.target.value))}
-                  disabled={boyNakshatra > 0}
-                  className={`w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 ${boyNakshatra > 0 ? 'opacity-60 cursor-not-allowed' : ''}`}
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  <option value={0}>{t('selectRashi')}</option>
-                  {RASHIS.map((r) => (<option key={r.id} value={r.id}>{r.name[locale]}</option>))}
-                </select>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
+                <input type="time" value={boyBirth.time} onChange={(e) => setBoyBirth({ ...boyBirth, time: e.target.value })}
+                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 sm:px-4 py-3 text-text-primary text-sm sm:text-base focus:outline-none focus:border-gold-primary/50" />
               </div>
             </div>
-          )}
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.placeOfBirth}</label>
+              <LocationSearch value={boyBirth.placeName} onSelect={(loc) => setBoyBirth({ ...boyBirth, placeName: loc.name, placeLat: loc.lat, placeLng: loc.lng, placeTimezone: loc.timezone })} />
+            </div>
+            {boyComputed ? (
+              <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3 text-center">
+                <div className="text-blue-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
+                <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {NAKSHATRAS[boyComputed.nakshatra - 1]?.name[locale]}
+                </span>
+                <span className="text-text-secondary mx-2">/</span>
+                <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {RASHIS[boyComputed.rashi - 1]?.name[locale]}
+                </span>
+              </div>
+            ) : boyMissing ? (
+              <div className="rounded-lg border border-blue-500/10 bg-blue-500/5 p-3 text-center">
+                <p className="text-text-secondary text-xs">{lbl.enterBirthDetails}</p>
+              </div>
+            ) : (
+              <div className="rounded-lg border border-blue-500/10 bg-blue-500/5 p-3 text-center">
+                <Loader2 className="w-4 h-4 animate-spin inline text-blue-400 mr-2" />
+                <span className="text-blue-300 text-xs">{lbl.calculating}</span>
+              </div>
+            )}
+          </div>
         </motion.div>
 
         {/* Bride */}
@@ -296,68 +232,50 @@ export default function MatchingPage() {
         >
           <h2 className="text-xl font-bold text-pink-400 mb-6 text-center" style={headingFont}>{t('brideDetails')}</h2>
 
-          {mode === 'birth' ? (
-            <div className="space-y-4">
-              <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.name}</label>
-                <input type="text" value={girlBirth.name} onChange={(e) => setGirlBirth({ ...girlBirth, name: e.target.value })}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" placeholder={locale === 'en' ? 'Bride name' : 'वधू का नाम'} />
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
-                  <input type="date" value={girlBirth.date} onChange={(e) => setGirlBirth({ ...girlBirth, date: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
-                </div>
-                <div>
-                  <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
-                  <input type="time" value={girlBirth.time} onChange={(e) => setGirlBirth({ ...girlBirth, time: e.target.value })}
-                    className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" />
-                </div>
-              </div>
-              <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.placeOfBirth}</label>
-                <LocationSearch value={girlBirth.placeName} onSelect={(loc) => setGirlBirth({ ...girlBirth, placeName: loc.name, placeLat: loc.lat, placeLng: loc.lng, placeTimezone: loc.timezone })} />
-              </div>
-              {girlComputed && (
-                <div className="rounded-lg border border-pink-500/20 bg-pink-500/5 p-3 text-center">
-                  <div className="text-pink-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
-                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {NAKSHATRAS[girlComputed.nakshatra - 1]?.name[locale]}
-                  </span>
-                  <span className="text-text-secondary mx-2">/</span>
-                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {RASHIS[girlComputed.rashi - 1]?.name[locale]}
-                  </span>
-                </div>
-              )}
+          <div className="space-y-4">
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.name}</label>
+              <input type="text" value={girlBirth.name} onChange={(e) => setGirlBirth({ ...girlBirth, name: e.target.value })}
+                className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50" placeholder={locale === 'en' ? 'Bride name' : 'वधू का नाम'} />
             </div>
-          ) : (
-            <div className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{t('moonNakshatra')}</label>
-                <select value={girlNakshatra} onChange={(e) => handleGirlNakshatra(Number(e.target.value))}
-                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50"
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  <option value={0}>{t('selectNakshatra')}</option>
-                  {NAKSHATRAS.map((n) => (<option key={n.id} value={n.id}>{n.name[locale]}</option>))}
-                </select>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.dateOfBirth}</label>
+                <input type="date" value={girlBirth.date} onChange={(e) => setGirlBirth({ ...girlBirth, date: e.target.value })}
+                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 sm:px-4 py-3 text-text-primary text-sm sm:text-base focus:outline-none focus:border-gold-primary/50" />
               </div>
               <div>
-                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
-                  {t('moonRashi')}
-                  {girlNakshatra > 0 && <span className="text-gold-primary/50 text-xs ml-2 normal-case font-normal">(auto)</span>}
-                </label>
-                <select value={girlRashi} onChange={(e) => setGirlRashi(Number(e.target.value))}
-                  disabled={girlNakshatra > 0}
-                  className={`w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 ${girlNakshatra > 0 ? 'opacity-60 cursor-not-allowed' : ''}`}
-                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  <option value={0}>{t('selectRashi')}</option>
-                  {RASHIS.map((r) => (<option key={r.id} value={r.id}>{r.name[locale]}</option>))}
-                </select>
+                <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.timeOfBirth}</label>
+                <input type="time" value={girlBirth.time} onChange={(e) => setGirlBirth({ ...girlBirth, time: e.target.value })}
+                  className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 sm:px-4 py-3 text-text-primary text-sm sm:text-base focus:outline-none focus:border-gold-primary/50" />
               </div>
             </div>
-          )}
+            <div>
+              <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">{lbl.placeOfBirth}</label>
+              <LocationSearch value={girlBirth.placeName} onSelect={(loc) => setGirlBirth({ ...girlBirth, placeName: loc.name, placeLat: loc.lat, placeLng: loc.lng, placeTimezone: loc.timezone })} />
+            </div>
+            {girlComputed ? (
+              <div className="rounded-lg border border-pink-500/20 bg-pink-500/5 p-3 text-center">
+                <div className="text-pink-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
+                <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {NAKSHATRAS[girlComputed.nakshatra - 1]?.name[locale]}
+                </span>
+                <span className="text-text-secondary mx-2">/</span>
+                <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                  {RASHIS[girlComputed.rashi - 1]?.name[locale]}
+                </span>
+              </div>
+            ) : girlMissing ? (
+              <div className="rounded-lg border border-pink-500/10 bg-pink-500/5 p-3 text-center">
+                <p className="text-text-secondary text-xs">{lbl.enterBirthDetails}</p>
+              </div>
+            ) : (
+              <div className="rounded-lg border border-pink-500/10 bg-pink-500/5 p-3 text-center">
+                <Loader2 className="w-4 h-4 animate-spin inline text-pink-400 mr-2" />
+                <span className="text-pink-300 text-xs">{lbl.calculating}</span>
+              </div>
+            )}
+          </div>
         </motion.div>
       </div>
 
@@ -365,12 +283,19 @@ export default function MatchingPage() {
       <div className="text-center mb-12">
         <button
           onClick={handleMatch}
-          disabled={loading || (mode === 'birth' ? (!boyComputed || !girlComputed) : (!boyNakshatra || !boyRashi || !girlNakshatra || !girlRashi))}
+          disabled={loading || !boyReady || !girlReady}
           className="px-10 py-4 bg-gradient-to-r from-gold-primary/30 to-gold-primary/20 border-2 border-gold-primary/40 rounded-xl text-gold-light font-bold text-lg hover:from-gold-primary/40 hover:to-gold-primary/30 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
           style={headingFont}
         >
           {loading ? <Loader2 className="w-6 h-6 animate-spin inline" /> : t('matchNow')}
         </button>
+        {!loading && (!boyReady || !girlReady) && (
+          <p className="text-text-secondary text-xs mt-3">
+            {locale === 'en'
+              ? `Enter complete birth details for ${!boyReady && !girlReady ? 'both groom and bride' : !boyReady ? 'the groom' : 'the bride'}`
+              : `${!boyReady && !girlReady ? 'वर और वधू दोनों' : !boyReady ? 'वर' : 'वधू'} का पूर्ण जन्म विवरण दर्ज करें`}
+          </p>
+        )}
       </div>
 
       {/* Error */}
@@ -394,7 +319,7 @@ export default function MatchingPage() {
             {/* Score Circle */}
             <div className="my-12 text-center">
               <div className="inline-block relative">
-                <svg className="w-48 h-48" viewBox="0 0 120 120">
+                <svg className="w-36 h-36 sm:w-48 sm:h-48" viewBox="0 0 120 120">
                   <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" strokeWidth="6" className="text-bg-tertiary" />
                   <circle
                     cx="60" cy="60" r="52"
@@ -488,8 +413,8 @@ export default function MatchingPage() {
             </div>
             {/* P2-03: Nakshatra Veda Pairs */}
             {(() => {
-              const bNak = mode === 'birth' ? boyComputed?.nakshatra : boyNakshatra;
-              const gNak = mode === 'birth' ? girlComputed?.nakshatra : girlNakshatra;
+              const bNak = boyComputed?.nakshatra;
+              const gNak = girlComputed?.nakshatra;
               if (!bNak || !gNak) return null;
               // 11 Veda pairs (each arrows the other — one dominates)
               const VEDA_PAIRS: [number, number][] = [

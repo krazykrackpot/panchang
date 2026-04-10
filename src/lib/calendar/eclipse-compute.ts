@@ -43,11 +43,16 @@ export interface LocalEclipseResult {
   durationMinutes: number;      // Total visible duration in minutes
   durationFormatted: string;    // "01h 18m 49s" format
 
-  // Sutak
+  // Sutak — computed per 3 classical traditions
   sutakApplicable: boolean;     // False if eclipse not visible from location
-  sutakStart: string | null;    // HH:MM local time
+  sutakStart: string | null;    // Recommended (most aggressive/earliest) HH:MM local
   sutakEnd: string | null;      // HH:MM local time
   sutakVulnerableStart: string | null; // For children, elderly, pregnant, sick
+  sutakTraditions: {
+    nirnyaSindhu: { start: string; label: string } | null;       // Fixed 12h solar / 9h lunar
+    dharmaSindhu: { start: string; label: string } | null;       // Variable prahar-based
+    muhurtaChintamani: { start: string; label: string } | null;  // From previous sunrise
+  };
 
   // Metadata
   saros: number;
@@ -170,10 +175,8 @@ function computeLunarLocal(eclipse: LunarEclipseData, lat: number, lng: number, 
 
   const durationMinutes = visible ? Math.max(0, (visibleEnd - visibleStart) * 60) : 0;
 
-  // Sutak: 9 hours before P1 for lunar eclipse
-  // Sutak for vulnerable: ~4.5 hours before P1
-  const sutakStartLocal = p1Local - 9;
-  const sutakVulnStartLocal = p1Local - 4.5;
+  // Sutak: compute per 3 traditions
+  const sutak = computeSutakTraditions(p1Local, p4Local, false, sunrise, sunset);
 
   // Visibility note
   let visibilityNote = '';
@@ -205,13 +208,101 @@ function computeLunarLocal(eclipse: LunarEclipseData, lat: number, lng: number, 
     durationMinutes,
     durationFormatted: formatDuration(durationMinutes),
     sutakApplicable: visible,
-    sutakStart: visible ? formatTime(sutakStartLocal) : null,
-    sutakEnd: visible ? formatTime(p4Local) : null,
-    sutakVulnerableStart: visible ? formatTime(sutakVulnStartLocal) : null,
+    sutakStart: visible ? formatTime(sutak.recommended) : null,
+    sutakEnd: visible ? formatTime(sutak.end) : null,
+    sutakVulnerableStart: visible ? formatTime(sutak.vulnerableStart) : null,
+    sutakTraditions: visible ? {
+      nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
+      dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
+      muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
+    } : { nirnyaSindhu: null, dharmaSindhu: null, muhurtaChintamani: null },
     saros: eclipse.saros,
     gamma: eclipse.gamma,
     sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
     sunset: sunTimes ? formatTime(sunTimes.sunset) : null,
+  };
+}
+
+// ─── Sutak Calculation (3 Classical Traditions) ──────────────────────────────
+
+interface SutakResult {
+  recommended: number;        // Earliest (most aggressive) start time in local hours
+  vulnerableStart: number;    // Start for children/elderly/sick
+  end: number;                // Sutak end time
+  traditions: {
+    nirnyaSindhu: { start: number; label: string };
+    dharmaSindhu: { start: number; label: string };
+    muhurtaChintamani: { start: number; label: string };
+  };
+}
+
+/**
+ * Compute Sutak times per 3 classical traditions.
+ * @param eclipseStartLocal - first contact in local fractional hours
+ * @param eclipseEndLocal - last contact in local fractional hours
+ * @param isSolar - true for solar, false for lunar
+ * @param sunriseLocal - local sunrise in fractional hours
+ * @param sunsetLocal - local sunset in fractional hours
+ */
+function computeSutakTraditions(
+  eclipseStartLocal: number,
+  eclipseEndLocal: number,
+  isSolar: boolean,
+  sunriseLocal: number,
+  sunsetLocal: number,
+): SutakResult {
+  // 1. Nirnaya Sindhu — fixed 12h (solar) or 9h (lunar) before sparsha
+  const nsHours = isSolar ? 12 : 9;
+  const nsStart = eclipseStartLocal - nsHours;
+  const nsLabel = isSolar ? '12 hours before sparsha' : '9 hours before sparsha';
+
+  // 2. Dharma Sindhu — 4 prahars (solar) or 3 prahars (lunar) before sparsha
+  //    A prahar (yama) = 1/8 of the ahoratra (sunrise-to-sunrise = ~24h)
+  //    But traditionally, day-prahars and night-prahars have different lengths:
+  //    Day prahar = (sunset - sunrise) / 4
+  //    Night prahar = (next sunrise - sunset) / 4
+  //    For Sutak, the tradition uses the full ahoratra prahar = ~3h but seasonal.
+  const dayLength = sunsetLocal - sunriseLocal; // hours of daylight
+  const nightLength = 24 - dayLength;
+  // Prahar for Sutak: use the ahoratra (24h) divided by 8
+  const praharLength = (dayLength + nightLength) / 8; // ~3h but varies slightly
+  // Actually, Dharmasindhu uses day-prahars if eclipse is during day:
+  const dayPrahar = dayLength / 4;
+  const nightPrahar = nightLength / 4;
+  // For solar eclipses (always during day): use day-prahars × 4
+  // For lunar eclipses (always during night): use night-prahars × 3
+  const dsPrahars = isSolar ? 4 : 3;
+  const dsPraharLen = isSolar ? dayPrahar : nightPrahar;
+  const dsStart = eclipseStartLocal - (dsPrahars * dsPraharLen);
+  const dsLabel = isSolar
+    ? `4 day-prahars (${Math.round(dsPraharLen * 60)}m each) before sparsha`
+    : `3 night-prahars (${Math.round(dsPraharLen * 60)}m each) before sparsha`;
+
+  // 3. Muhurta Chintamani — from previous sunrise
+  //    If eclipse is today after sunrise, Sutak starts at today's sunrise.
+  //    If eclipse is before sunrise (e.g., early morning lunar eclipse),
+  //    Sutak starts at previous day's sunrise (~yesterday's sunrise ≈ today's - 24h).
+  const mcStart = eclipseStartLocal >= sunriseLocal
+    ? sunriseLocal
+    : sunriseLocal - 24; // previous sunrise
+  const mcLabel = 'From sunrise of the eclipse day';
+
+  // Recommended = most aggressive (earliest start)
+  const recommended = Math.min(nsStart, dsStart, mcStart);
+
+  // Vulnerable persons: roughly half the general Sutak
+  // Nirnaya Sindhu says 6h solar / 4.5h lunar for vulnerable
+  const vulnerableStart = eclipseStartLocal - (isSolar ? 6 : 4.5);
+
+  return {
+    recommended,
+    vulnerableStart,
+    end: eclipseEndLocal,
+    traditions: {
+      nirnyaSindhu: { start: nsStart, label: nsLabel },
+      dharmaSindhu: { start: dsStart, label: dsLabel },
+      muhurtaChintamani: { start: mcStart, label: mcLabel },
+    },
   };
 }
 
@@ -301,9 +392,9 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
 
       const durationMinutes = Math.max(0, ((interp.endsAtSunset ? sunset : interp.c4Local) - interp.c1Local) * 60);
 
-      // Sutak: 12h before C1, vulnerable: 6h before
-      const sutakStart = interp.c1Local - 12;
-      const sutakVuln = interp.c1Local - 6;
+      // Sutak: compute per 3 traditions
+      const sunrise = sunTimes?.sunrise ?? 6;
+      const sutak = computeSutakTraditions(interp.c1Local, interp.endsAtSunset ? sunset : interp.c4Local, true, sunrise, sunset);
 
       // Magnitude at sunset
       let magAtSunset: number | null = null;
@@ -339,9 +430,14 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
         durationMinutes,
         durationFormatted: formatDuration(durationMinutes),
         sutakApplicable: true,
-        sutakStart: formatTime(sutakStart),
-        sutakEnd: formatTime(interp.endsAtSunset ? sunset : interp.c4Local),
-        sutakVulnerableStart: formatTime(sutakVuln),
+        sutakStart: formatTime(sutak.recommended),
+        sutakEnd: formatTime(sutak.end),
+        sutakVulnerableStart: formatTime(sutak.vulnerableStart),
+        sutakTraditions: {
+          nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
+          dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
+          muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
+        },
         saros: eclipse.saros,
         gamma: eclipse.gamma,
         sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
@@ -375,6 +471,7 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
       durationMinutes: 0, durationFormatted: '0m',
       sutakApplicable: false,
       sutakStart: null, sutakEnd: null, sutakVulnerableStart: null,
+      sutakTraditions: { nirnyaSindhu: null, dharmaSindhu: null, muhurtaChintamani: null },
       saros: eclipse.saros, gamma: eclipse.gamma,
       sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,
       sunset: sunTimes ? formatTime(sunTimes.sunset) : null,
@@ -468,10 +565,9 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
   // Duration
   const durationMinutes = Math.max(0, (effectiveEnd - c1Local) * 60);
 
-  // Sutak: 12 hours before first contact for solar eclipse
-  // Sutak for vulnerable: ~6 hours before first contact
-  const sutakStartLocal = c1Local - 12;
-  const sutakVulnStartLocal = c1Local - 6;
+  // Sutak: compute per 3 traditions
+  const fallbackSunrise = sunTimes?.sunrise ?? 6;
+  const sutak = computeSutakTraditions(c1Local, effectiveEnd, true, fallbackSunrise, sunset);
 
   // Visibility note
   let visibilityNote: string;
@@ -501,9 +597,14 @@ function computeSolarLocal(eclipse: SolarEclipseData, lat: number, lng: number, 
     durationMinutes,
     durationFormatted: formatDuration(durationMinutes),
     sutakApplicable: true,
-    sutakStart: formatTime(sutakStartLocal),
-    sutakEnd: endsAtSunset ? formatTime(sunset) : formatTime(c4Local),
-    sutakVulnerableStart: formatTime(sutakVulnStartLocal),
+    sutakStart: formatTime(sutak.recommended),
+    sutakEnd: formatTime(sutak.end),
+    sutakVulnerableStart: formatTime(sutak.vulnerableStart),
+    sutakTraditions: {
+      nirnyaSindhu: { start: formatTime(sutak.traditions.nirnyaSindhu.start), label: sutak.traditions.nirnyaSindhu.label },
+      dharmaSindhu: { start: formatTime(sutak.traditions.dharmaSindhu.start), label: sutak.traditions.dharmaSindhu.label },
+      muhurtaChintamani: { start: formatTime(sutak.traditions.muhurtaChintamani.start), label: sutak.traditions.muhurtaChintamani.label },
+    },
     saros: eclipse.saros,
     gamma: eclipse.gamma,
     sunrise: sunTimes ? formatTime(sunTimes.sunrise) : null,

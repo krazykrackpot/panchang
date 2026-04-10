@@ -344,21 +344,64 @@ export default function EclipsesPage() {
                                     {isHi ? 'सूतक काल' : 'Sutak Period'}
                                   </h4>
                                 </div>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+
+                                {/* Recommended (most conservative) */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-5">
                                   {local.sutakStart && (
-                                    <TimeCell label={isHi ? 'सूतक आरम्भ' : 'Sutak Begins'} time={local.sutakStart} accent="text-amber-400" />
+                                    <TimeCell label={isHi ? 'सूतक आरम्भ (अनुशंसित)' : 'Sutak Begins (Recommended)'} time={local.sutakStart} accent="text-amber-400" highlight />
                                   )}
                                   {local.sutakEnd && (
                                     <TimeCell label={isHi ? 'सूतक समाप्त' : 'Sutak Ends'} time={local.sutakEnd} accent="text-amber-400" />
                                   )}
                                   {local.sutakVulnerableStart && (
                                     <TimeCell
-                                      label={isHi ? 'बच्चे/वृद्ध/रोगी सूतक' : 'Kids/Old/Sick Sutak'}
+                                      label={isHi ? 'बच्चे/वृद्ध/रोगी' : 'Kids/Old/Sick'}
                                       time={local.sutakVulnerableStart}
                                       accent="text-amber-400/70"
-                                      subtitle={isHi ? 'आरम्भ' : 'Begins'}
+                                      subtitle={isHi ? 'सूतक आरम्भ' : 'Sutak Begins'}
                                     />
                                   )}
+                                </div>
+
+                                {/* 3 Classical Traditions */}
+                                <div className="border-t border-amber-500/10 pt-4">
+                                  <p className="text-[10px] text-text-secondary/40 uppercase tracking-wider font-bold mb-3">
+                                    {isHi ? 'शास्त्रीय ग्रन्थों के अनुसार सूतक' : 'Sutak per Classical Texts'}
+                                  </p>
+                                  <div className="space-y-2">
+                                    {local.sutakTraditions.muhurtaChintamani && (
+                                      <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
+                                        <div className="min-w-0">
+                                          <span className="text-xs text-amber-300 font-semibold">{isHi ? 'मुहूर्त चिन्तामणि' : 'Muhurta Chintamani'}</span>
+                                          <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.muhurtaChintamani.label}</span>
+                                        </div>
+                                        <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.muhurtaChintamani.start}</span>
+                                      </div>
+                                    )}
+                                    {local.sutakTraditions.dharmaSindhu && (
+                                      <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
+                                        <div className="min-w-0">
+                                          <span className="text-xs text-amber-300 font-semibold">{isHi ? 'धर्मसिन्धु' : 'Dharmasindhu'}</span>
+                                          <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.dharmaSindhu.label}</span>
+                                        </div>
+                                        <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.dharmaSindhu.start}</span>
+                                      </div>
+                                    )}
+                                    {local.sutakTraditions.nirnyaSindhu && (
+                                      <div className="flex items-center justify-between gap-3 px-3 py-2 rounded-lg bg-amber-500/5">
+                                        <div className="min-w-0">
+                                          <span className="text-xs text-amber-300 font-semibold">{isHi ? 'निर्णय सिन्धु' : 'Nirnaya Sindhu'}</span>
+                                          <span className="text-[10px] text-text-secondary/40 ml-2">{local.sutakTraditions.nirnyaSindhu.label}</span>
+                                        </div>
+                                        <span className="text-sm font-mono font-bold text-amber-400 shrink-0">{local.sutakTraditions.nirnyaSindhu.start}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                  <p className="text-[10px] text-text-secondary/30 mt-2 italic">
+                                    {isHi
+                                      ? 'अनुशंसित समय सबसे रूढ़िवादी (सबसे पहले) ग्रन्थ पर आधारित है।'
+                                      : 'Recommended time is based on the most conservative (earliest) tradition.'}
+                                  </p>
                                 </div>
                               </div>
                             )}

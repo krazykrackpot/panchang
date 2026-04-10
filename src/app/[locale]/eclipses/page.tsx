@@ -760,25 +760,76 @@ function NodeImplications({ node, eclipseType, isHi, bodyFont, headingFont }: {
     'rahu-solar': {
       title: { en: '☊ Rahu Solar Eclipse — Ambition Eclipses Authority', hi: '☊ राहु सूर्य ग्रहण — महत्वाकांक्षा अधिकार को ग्रसती है' },
       mundane: { en: 'Disruption to ruling powers, political deception, foreign influence on governance, technology-driven upheaval. Leaders face challenges from unconventional forces.', hi: 'शासन शक्ति में व्यवधान, राजनीतिक छल, शासन पर विदेशी प्रभाव, तकनीक-प्रेरित उथल-पुथल। नेताओं को अपरम्परागत शक्तियों से चुनौती।' },
-      personal: { en: 'Ego crises, identity confusion, father\'s health. But also breakthroughs in foreign lands, technology, and unconventional career paths. Those in Rahu or Sun dasha feel this most.', hi: 'अहंकार संकट, पहचान भ्रम, पिता का स्वास्थ्य। पर विदेश, तकनीक और अपरम्परागत कैरियर में सफलता भी। राहु या सूर्य दशा वाले सबसे अधिक अनुभव करते हैं।' },
+      personal: {
+        en: 'Ego crises, identity confusion, father\'s health issues. But also breakthroughs in foreign lands, technology, and unconventional career paths.\n\n' +
+          '• Strongest for: Those in Sun or Rahu Mahadasha/Antardasha. Also potent if eclipse falls in your 1st, 10th, or 9th house (self, career, fortune).\n\n' +
+          '• Natal contact: If within 3° of your natal Sun → authority/career disruption. Near natal Rahu → obsessive new direction. Near Ascendant → health + identity shift.\n\n' +
+          '• Transit amplifiers: Saturn aspecting the eclipse = long-lasting structural change. Mars aspecting = sudden confrontation with authority figures.\n\n' +
+          '• Effect window: Seeds planted at eclipse manifest over 6 months, typically triggered when a fast-moving planet (Mars, Sun) later transits the eclipse degree.',
+        hi: 'अहंकार संकट, पहचान भ्रम, पिता का स्वास्थ्य। पर विदेश, तकनीक और अपरम्परागत कैरियर में सफलता भी।\n\n' +
+          '• सर्वाधिक तीव्र: सूर्य या राहु महादशा/अन्तर्दशा में। 1, 10 या 9वें भाव में ग्रहण हो तो भी प्रबल।\n\n' +
+          '• जन्म सम्पर्क: जन्म सूर्य के 3° भीतर → अधिकार/कैरियर व्यवधान। जन्म राहु के निकट → जुनूनी नई दिशा।\n\n' +
+          '• गोचर प्रवर्धक: शनि की दृष्टि = दीर्घकालिक ढाँचागत परिवर्तन। मंगल की दृष्टि = अचानक टकराव।\n\n' +
+          '• प्रभाव अवधि: 6 माह तक प्रभाव, जब तीव्र गोचर ग्रह ग्रहण अंश को स्पर्श करे तब फलित।',
+      },
       remedy: { en: 'Surya Namaskar, Aditya Hridayam, donate wheat on Sunday. Rahu pacification: sesame oil + mustard donation on Saturday.', hi: 'सूर्य नमस्कार, आदित्य हृदयम, रविवार को गेहूँ दान। राहु शान्ति: शनिवार को तिल तेल + सरसों दान।' },
     },
     'ketu-solar': {
       title: { en: '☋ Ketu Solar Eclipse — Karma Strips Away Ego', hi: '☋ केतु सूर्य ग्रहण — कर्म अहंकार छीनता है' },
       mundane: { en: 'Fall of arrogant leaders, exposure of hidden truths, spiritual movements gaining strength. Established structures crumble to make way for renewal.', hi: 'अहंकारी नेताओं का पतन, छिपे सत्यों का उद्घाटन, आध्यात्मिक आन्दोलनों को बल। स्थापित ढाँचे नवीनीकरण के लिए ढहते हैं।' },
-      personal: { en: 'Sudden detachment from career or status, health scares redirecting life purpose, deep spiritual experiences, liberation from old patterns. The more transformative solar eclipse.', hi: 'कैरियर/प्रतिष्ठा से अचानक वैराग्य, स्वास्थ्य भय जो जीवन उद्देश्य बदले, गहन आध्यात्मिक अनुभव, पुराने प्रतिमानों से मुक्ति।' },
+      personal: {
+        en: 'Sudden detachment from career or status, health scares redirecting life purpose, deep spiritual experiences, liberation from old patterns. The more transformative of the two solar eclipse types.\n\nWhy some people feel it intensely while others barely notice:\n\n' +
+          '• Mahadasha/Antardasha — Those running Sun, Ketu, or the lord of the house where the eclipse falls experience the strongest effects. A Sun Mahadasha during a Ketu solar eclipse can trigger a complete identity transformation. Ketu Mahadasha amplifies the detachment and spiritual intensity further.\n\n' +
+          '• Natal chart contact — If the eclipse degree is within 3° of your natal Sun, Moon, Ascendant, or any planet, that planet\'s significations are activated powerfully. Eclipse conjunct natal Sun = career/authority crisis. Conjunct natal Moon = emotional upheaval. Conjunct natal Saturn = structural collapse that forces rebuilding.\n\n' +
+          '• House placement — The house where the eclipse falls (from your Ascendant) determines WHICH life area is affected: 1st = self/health, 7th = marriage/partnerships, 10th = career/reputation, 4th = home/mother, etc. Check which house the eclipse sign occupies in your birth chart.\n\n' +
+          '• Nakshatra lord — The nakshatra where the eclipse occurs connects it to a specific planetary energy. If that nakshatra lord is also your dasha lord, the effect is magnified enormously.\n\n' +
+          '• Transit interactions — If transiting Saturn, Jupiter, or Mars are also aspecting the eclipse degree, the intensity compounds. Saturn + Ketu eclipse = maximum karmic pressure. Jupiter + Ketu eclipse = spiritual breakthrough with teacher/guru.\n\n' +
+          '• Effect window — Eclipse effects are not instant. They unfold over 6 months (solar) to 3 months (lunar). The eclipse "seeds" an event that manifests when a transit planet later activates the eclipse degree.',
+        hi: 'कैरियर/प्रतिष्ठा से अचानक वैराग्य, स्वास्थ्य भय जो जीवन उद्देश्य बदले, गहन आध्यात्मिक अनुभव, पुराने प्रतिमानों से मुक्ति। दो सूर्य ग्रहण प्रकारों में अधिक परिवर्तनकारी।\n\n' +
+          'कुछ लोग क्यों तीव्रता से अनुभव करते हैं, कुछ नहीं:\n\n' +
+          '• महादशा/अन्तर्दशा — जो सूर्य, केतु या ग्रहण वाले भाव के स्वामी की दशा में हैं, वे सबसे तीव्र प्रभाव अनुभव करते हैं। केतु सूर्य ग्रहण में सूर्य महादशा = पूर्ण पहचान परिवर्तन। केतु महादशा वैराग्य और आध्यात्मिक तीव्रता और बढ़ाती है।\n\n' +
+          '• जन्म कुण्डली सम्पर्क — यदि ग्रहण अंश आपके जन्म सूर्य, चन्द्र, लग्न या किसी ग्रह के 3° के भीतर है, तो उस ग्रह के कारकत्व शक्तिशाली रूप से सक्रिय होते हैं। जन्म सूर्य पर ग्रहण = कैरियर संकट। जन्म चन्द्र पर = भावनात्मक उथल-पुथल। जन्म शनि पर = ढाँचागत पतन।\n\n' +
+          '• भाव स्थान — ग्रहण जिस भाव में पड़ता है (लग्न से) वह निर्धारित करता है कि कौन सा जीवन क्षेत्र प्रभावित होगा: 1 = स्व/स्वास्थ्य, 7 = विवाह, 10 = कैरियर, 4 = गृह/माता आदि।\n\n' +
+          '• नक्षत्र स्वामी — ग्रहण जिस नक्षत्र में होता है वह एक विशिष्ट ग्रह ऊर्जा से जुड़ता है। यदि वह नक्षत्र स्वामी आपका दशा स्वामी भी है, तो प्रभाव अत्यन्त बढ़ जाता है।\n\n' +
+          '• गोचर अन्तर्क्रिया — यदि गोचरी शनि, बृहस्पति या मंगल भी ग्रहण अंश को दृष्टि दे रहे हैं, तो तीव्रता और बढ़ती है। शनि + केतु ग्रहण = अधिकतम कार्मिक दबाव। बृहस्पति + केतु = गुरु/शिक्षक से आध्यात्मिक सफलता।\n\n' +
+          '• प्रभाव अवधि — ग्रहण प्रभाव तुरन्त नहीं होते। ये 6 माह (सूर्य) से 3 माह (चन्द्र) तक प्रकट होते हैं। ग्रहण एक घटना का "बीज" बोता है जो बाद में गोचर ग्रह उस अंश को सक्रिय करने पर फलित होती है।',
+      },
       remedy: { en: 'Maha Mrityunjaya mantra, Ketu pacification: donate blankets, flag to temple. Cat\'s eye gemstone (with astrologer guidance).', hi: 'महामृत्युंजय मन्त्र, केतु शान्ति: कम्बल दान, मन्दिर में ध्वज। लहसुनिया रत्न (ज्योतिषी मार्गदर्शन से)।' },
     },
     'rahu-lunar': {
       title: { en: '☊ Rahu Lunar Eclipse — Desires Cloud the Mind', hi: '☊ राहु चन्द्र ग्रहण — इच्छाएँ मन को ग्रसती हैं' },
       mundane: { en: 'Mass emotional manipulation, public panic, deceptive media narratives, collective anxiety about the future. Water-related calamities possible.', hi: 'सामूहिक भावनात्मक हेरफेर, जन उन्माद, भ्रामक मीडिया, भविष्य के बारे में सामूहिक चिन्ता। जल सम्बन्धी आपदाएँ सम्भव।' },
-      personal: { en: 'Emotional turbulence, mother\'s health issues, mental fog, irrational fears. But also sudden intuitive breakthroughs and psychic awakening. Moon/Rahu dasha intensifies this.', hi: 'भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक धुंध, अतार्किक भय। पर अचानक सहज ज्ञान और मानसिक जागृति भी। चन्द्र/राहु दशा इसे तीव्र करती है।' },
+      personal: {
+        en: 'Emotional turbulence, mother\'s health issues, mental fog, irrational fears. But also sudden intuitive breakthroughs and psychic awakening.\n\n' +
+          '• Strongest for: Moon or Rahu Mahadasha/Antardasha. Cancer Ascendant (Moon-ruled) feels this eclipse type most deeply.\n\n' +
+          '• Natal contact: Eclipse near natal Moon → emotional crisis but also deepened intuition. Near natal Venus → relationship confusion driven by desire. Near natal Mercury → communication breakdown, media deception.\n\n' +
+          '• House placement: In 4th house = home/mother upheaval. In 7th = relationship illusion exposed. In 12th = foreign connection or spiritual retreat.\n\n' +
+          '• Effect window: Lunar eclipse effects unfold faster — within 3 months. Emotional processing happens in waves, often during subsequent Full Moons.',
+        hi: 'भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक धुंध, अतार्किक भय। पर अचानक सहज ज्ञान और मानसिक जागृति भी।\n\n' +
+          '• सर्वाधिक तीव्र: चन्द्र या राहु महादशा में। कर्क लग्न (चन्द्र-शासित) सबसे गहराई से अनुभव करता है।\n\n' +
+          '• जन्म सम्पर्क: जन्म चन्द्र के निकट → भावनात्मक संकट पर गहन अन्तर्ज्ञान भी। जन्म शुक्र के निकट → इच्छा-प्रेरित सम्बन्ध भ्रम।\n\n' +
+          '• भाव स्थान: 4वें भाव में = गृह/माता उथल-पुथल। 7वें में = सम्बन्ध भ्रम उजागर। 12वें में = विदेश या आध्यात्मिक एकान्त।\n\n' +
+          '• प्रभाव अवधि: चन्द्र ग्रहण प्रभाव तेज़ — 3 माह में। बाद की पूर्णिमाओं में लहरों में भावनात्मक प्रसंस्करण।',
+      },
       remedy: { en: 'Chandra mantras, wear Pearl, donate milk and white items on Monday. Rahu pacification: coconut + camphor offering.', hi: 'चन्द्र मन्त्र, मोती धारण, सोमवार को दूध और श्वेत वस्तुएं दान। राहु शान्ति: नारियल + कपूर अर्पण।' },
     },
     'ketu-lunar': {
       title: { en: '☋ Ketu Lunar Eclipse — Ancestral Karma Surfaces (Blood Moon)', hi: '☋ केतु चन्द्र ग्रहण — पूर्वज कर्म सतह पर (रक्त चन्द्र)' },
       mundane: { en: 'Collective grief, revelations about the past, ancestral and cultural reckoning, spiritual purification movements. The Blood Moon symbolises the burning of past-life samskaras.', hi: 'सामूहिक शोक, अतीत के रहस्योद्घाटन, पूर्वज और सांस्कृतिक लेखा-जोखा, आध्यात्मिक शुद्धि आन्दोलन। रक्त चन्द्र पूर्वजन्म संस्कारों के दहन का प्रतीक।' },
-      personal: { en: 'Deep introspection, release of emotional baggage, past relationships resurface for closure, heightened psychic sensitivity. The most spiritually potent of all four eclipse types.', hi: 'गहन आत्मनिरीक्षण, भावनात्मक बोझ से मुक्ति, पिछले सम्बन्ध समापन हेतु पुनः प्रकट, मानसिक संवेदनशीलता बढ़ी। चारों ग्रहण प्रकारों में सर्वाधिक आध्यात्मिक।' },
+      personal: {
+        en: 'Deep introspection, release of emotional baggage, past relationships resurface for closure, heightened psychic sensitivity. The most spiritually potent of all four eclipse types.\n\n' +
+          '• Strongest for: Ketu or Moon Mahadasha/Antardasha. Those with natal Moon-Ketu conjunction or opposition are especially sensitive. Scorpio and Pisces Moon signs feel the spiritual dimension most acutely.\n\n' +
+          '• Natal contact: Eclipse near natal Ketu → past-life memories or déjà vu experiences. Near natal Moon → involuntary emotional purging, crying without reason, dreams about deceased relatives. Near natal 8th house lord → transformation through crisis.\n\n' +
+          '• Ancestral dimension: Ketu represents Pitri (ancestors). This eclipse often coincides with family deaths, inheritance matters, or sudden urge to perform Shraddha/Pitri Tarpan. Old family secrets may surface.\n\n' +
+          '• Spiritual acceleration: If you are on a meditation/sadhana path, this eclipse type can catalyse breakthroughs. Many spiritual teachers report their deepest experiences during Ketu lunar eclipses.\n\n' +
+          '• Effect window: 3 months, but the spiritual effects can last years. The "Blood Moon" energy is a portal — what you release during this eclipse stays released.',
+        hi: 'गहन आत्मनिरीक्षण, भावनात्मक बोझ से मुक्ति, पिछले सम्बन्ध समापन हेतु पुनः प्रकट, मानसिक संवेदनशीलता बढ़ी। चारों ग्रहण प्रकारों में सर्वाधिक आध्यात्मिक।\n\n' +
+          '• सर्वाधिक तीव्र: केतु या चन्द्र महादशा में। जन्म चन्द्र-केतु युति या प्रतिद्वन्द्विता वाले विशेष रूप से संवेदनशील। वृश्चिक और मीन चन्द्र राशि आध्यात्मिक आयाम सबसे तीव्रता से अनुभव करती है।\n\n' +
+          '• जन्म सम्पर्क: जन्म केतु के निकट → पूर्वजन्म स्मृतियाँ। जन्म चन्द्र के निकट → अनैच्छिक भावनात्मक शुद्धि, बिना कारण रोना, मृत सम्बन्धियों के स्वप्न।\n\n' +
+          '• पूर्वज आयाम: केतु पितृों का प्रतिनिधि है। यह ग्रहण प्रायः पारिवारिक मृत्यु, विरासत मामलों, या श्राद्ध/तर्पण की तीव्र इच्छा के साथ मेल खाता है।\n\n' +
+          '• आध्यात्मिक त्वरण: ध्यान/साधना मार्ग पर हैं तो यह ग्रहण सफलता उत्प्रेरित कर सकता है। अनेक आध्यात्मिक गुरु केतु चन्द्र ग्रहण में गहनतम अनुभव बताते हैं।\n\n' +
+          '• प्रभाव अवधि: 3 माह, पर आध्यात्मिक प्रभाव वर्षों तक। "रक्त चन्द्र" ऊर्जा एक द्वार है — इस ग्रहण में जो त्यागा वह त्यक्त रहता है।',
+      },
       remedy: { en: 'Pitri Tarpan (ancestral offerings), Ketu pacification, meditation, seven-grain donation. Maha Mrityunjaya for protection.', hi: 'पितृ तर्पण, केतु शान्ति, ध्यान, सप्तधान्य दान। सुरक्षा हेतु महामृत्युंजय।' },
     },
   };
@@ -802,7 +853,11 @@ function NodeImplications({ node, eclipseType, isHi, bodyFont, headingFont }: {
         </div>
         <div>
           <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'व्यक्तिगत प्रभाव' : 'Personal Effects'}</span>
-          <p className="text-text-secondary/80 mt-0.5">{isHi ? imp.personal.hi : imp.personal.en}</p>
+          <div className="text-text-secondary/80 mt-0.5 space-y-2">
+            {(isHi ? imp.personal.hi : imp.personal.en).split('\n\n').map((para, i) => (
+              <p key={i} className={para.startsWith('•') ? 'pl-2' : ''}>{para}</p>
+            ))}
+          </div>
         </div>
         <div>
           <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'अनुशंसित उपाय' : 'Recommended Remedies'}</span>

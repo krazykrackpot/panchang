@@ -57,11 +57,11 @@ export default function EclipseAnimation({ locale }: Props) {
    DIAGRAM 1: Two Orbital Planes + 5.15° Tilt + Rahu/Ketu Nodes
    ═══════════════════════════════════════════════════════════════════════════════ */
 function OrbitalPlanesDiagram({ isHi }: { isHi: boolean }) {
-  // Oblique view: Sun at center, Earth's orbit as large ellipse
-  const W = 800, H = 480, CX = 400, CY = 230;
-  const ERX = 300, ERY = 120; // Earth orbit radii
-  const MRX = 75, MRY = 32; // Moon orbit radii (ecliptic-aligned)
-  const TILT = 22; // visual tilt in px (exaggerated from 5.15° for visibility)
+  // Oblique view: Sun at center-left, Earth at right, Moon's orbit large and clear
+  const W = 800, H = 520, CX = 280, CY = 250;
+  const ERX = 220, ERY = 90; // Earth orbit radii (smaller to give room for Moon orbit)
+  const MRX = 140, MRY = 55; // Moon orbit radii — LARGE for clarity
+  const TILT = 35; // visual tilt in px (exaggerated for visibility)
 
   // Earth at right side of orbit
   const earthAngle = 0;
@@ -84,7 +84,7 @@ function OrbitalPlanesDiagram({ isHi }: { isHi: boolean }) {
   const moonBelow = { x: earthX, y: earthY + MRY + TILT }; // bottom of tilted orbit
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 480 }}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 520 }}>
       <rect width={W} height={H} fill="#04071a" rx="16" />
       <Stars />
 
@@ -154,17 +154,17 @@ function OrbitalPlanesDiagram({ isHi }: { isHi: boolean }) {
    DIAGRAM 2: Solar Eclipse — Sun, Moon, Earth aligned at a node
    ═══════════════════════════════════════════════════════════════════════════════ */
 function SolarEclipseDiagram({ isHi }: { isHi: boolean }) {
-  const W = 800, H = 360;
-  const Y = 170; // alignment line
+  const W = 800, H = 400;
+  const Y = 190;
 
-  // Left to right: Sun — Moon — Earth, all on the ecliptic line
-  const sunX = 120;
-  const moonX = 380;
-  const earthX = 620;
-  const nodeX = moonX; // Moon is AT the node
+  // Spread bodies evenly across full width — Sun far left, Earth far right
+  const sunX = 100;
+  const moonX = 360;  // Moon between Sun and Earth
+  const nodeX = moonX;
+  const earthX = 640;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 360 }}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 400 }}>
       <rect width={W} height={H} fill="#04071a" rx="16" />
       <Stars />
 
@@ -225,17 +225,17 @@ function SolarEclipseDiagram({ isHi }: { isHi: boolean }) {
    DIAGRAM 3: Lunar Eclipse — Sun, Earth, Moon aligned at a node
    ═══════════════════════════════════════════════════════════════════════════════ */
 function LunarEclipseDiagram({ isHi }: { isHi: boolean }) {
-  const W = 800, H = 360;
-  const Y = 170;
+  const W = 800, H = 400;
+  const Y = 190;
 
-  // Left to right: Sun — Earth — Moon
-  const sunX = 120;
-  const earthX = 380;
-  const moonX = 620;
+  // Spread bodies evenly — same layout as solar but Sun → Earth → Moon
+  const sunX = 100;
+  const earthX = 360;
+  const moonX = 640;
   const nodeX = moonX;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 360 }}>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 400 }}>
       <rect width={W} height={H} fill="#04071a" rx="16" />
       <Stars />
 

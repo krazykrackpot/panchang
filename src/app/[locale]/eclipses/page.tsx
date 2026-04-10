@@ -18,6 +18,8 @@ interface EclipseEvent {
   magnitude: string;
   magnitudeName: { en: string; hi: string; sa: string };
   description: { en: string; hi: string; sa: string };
+  node?: 'rahu' | 'ketu';
+  nodeName?: { en: string; hi: string; sa: string };
   local?: LocalEclipseResult;
 }
 
@@ -259,6 +261,16 @@ export default function EclipsesPage() {
                       <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold border ${badgeBg}`}>
                         {eclipse.magnitudeName[locale]}
                       </span>
+                      {/* Node badge */}
+                      {eclipse.node && (
+                        <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold border ${
+                          eclipse.node === 'rahu'
+                            ? 'bg-gold-primary/10 text-gold-light border-gold-primary/25'
+                            : 'bg-purple-500/10 text-purple-300 border-purple-500/25'
+                        }`}>
+                          {eclipse.node === 'rahu' ? '☊' : '☋'} {eclipse.nodeName?.[locale]}
+                        </span>
+                      )}
                       {/* Visibility badge */}
                       {local && (
                         isVisible ? (
@@ -328,6 +340,11 @@ export default function EclipsesPage() {
                             </p>
                           )}
                         </div>
+
+                        {/* Node implications from classical texts */}
+                        {eclipse.node && (
+                          <NodeImplications node={eclipse.node} eclipseType={eclipse.type} isHi={isHi} bodyFont={bodyFont} headingFont={headingFont} />
+                        )}
 
                         {local && isVisible && (
                           <>
@@ -730,6 +747,68 @@ function EclipsePhaseDiagram({ local, isSolar, isHi }: { local: LocalEclipseResu
           {local.maxMagnitude >= 1.0 && <span className="text-red-400/50">{isHi ? 'पूर्ण (रक्त चन्द्र)' : 'Total (Blood Moon)'}</span>}
         </div>
       )}
+    </div>
+  );
+}
+
+/** Classical implications based on which node the eclipse occurs at */
+function NodeImplications({ node, eclipseType, isHi, bodyFont, headingFont }: {
+  node: 'rahu' | 'ketu'; eclipseType: 'solar' | 'lunar'; isHi: boolean;
+  bodyFont: React.CSSProperties | undefined; headingFont: React.CSSProperties;
+}) {
+  const implications: Record<string, { title: { en: string; hi: string }; mundane: { en: string; hi: string }; personal: { en: string; hi: string }; remedy: { en: string; hi: string } }> = {
+    'rahu-solar': {
+      title: { en: '☊ Rahu Solar Eclipse — Ambition Eclipses Authority', hi: '☊ राहु सूर्य ग्रहण — महत्वाकांक्षा अधिकार को ग्रसती है' },
+      mundane: { en: 'Disruption to ruling powers, political deception, foreign influence on governance, technology-driven upheaval. Leaders face challenges from unconventional forces.', hi: 'शासन शक्ति में व्यवधान, राजनीतिक छल, शासन पर विदेशी प्रभाव, तकनीक-प्रेरित उथल-पुथल। नेताओं को अपरम्परागत शक्तियों से चुनौती।' },
+      personal: { en: 'Ego crises, identity confusion, father\'s health. But also breakthroughs in foreign lands, technology, and unconventional career paths. Those in Rahu or Sun dasha feel this most.', hi: 'अहंकार संकट, पहचान भ्रम, पिता का स्वास्थ्य। पर विदेश, तकनीक और अपरम्परागत कैरियर में सफलता भी। राहु या सूर्य दशा वाले सबसे अधिक अनुभव करते हैं।' },
+      remedy: { en: 'Surya Namaskar, Aditya Hridayam, donate wheat on Sunday. Rahu pacification: sesame oil + mustard donation on Saturday.', hi: 'सूर्य नमस्कार, आदित्य हृदयम, रविवार को गेहूँ दान। राहु शान्ति: शनिवार को तिल तेल + सरसों दान।' },
+    },
+    'ketu-solar': {
+      title: { en: '☋ Ketu Solar Eclipse — Karma Strips Away Ego', hi: '☋ केतु सूर्य ग्रहण — कर्म अहंकार छीनता है' },
+      mundane: { en: 'Fall of arrogant leaders, exposure of hidden truths, spiritual movements gaining strength. Established structures crumble to make way for renewal.', hi: 'अहंकारी नेताओं का पतन, छिपे सत्यों का उद्घाटन, आध्यात्मिक आन्दोलनों को बल। स्थापित ढाँचे नवीनीकरण के लिए ढहते हैं।' },
+      personal: { en: 'Sudden detachment from career or status, health scares redirecting life purpose, deep spiritual experiences, liberation from old patterns. The more transformative solar eclipse.', hi: 'कैरियर/प्रतिष्ठा से अचानक वैराग्य, स्वास्थ्य भय जो जीवन उद्देश्य बदले, गहन आध्यात्मिक अनुभव, पुराने प्रतिमानों से मुक्ति।' },
+      remedy: { en: 'Maha Mrityunjaya mantra, Ketu pacification: donate blankets, flag to temple. Cat\'s eye gemstone (with astrologer guidance).', hi: 'महामृत्युंजय मन्त्र, केतु शान्ति: कम्बल दान, मन्दिर में ध्वज। लहसुनिया रत्न (ज्योतिषी मार्गदर्शन से)।' },
+    },
+    'rahu-lunar': {
+      title: { en: '☊ Rahu Lunar Eclipse — Desires Cloud the Mind', hi: '☊ राहु चन्द्र ग्रहण — इच्छाएँ मन को ग्रसती हैं' },
+      mundane: { en: 'Mass emotional manipulation, public panic, deceptive media narratives, collective anxiety about the future. Water-related calamities possible.', hi: 'सामूहिक भावनात्मक हेरफेर, जन उन्माद, भ्रामक मीडिया, भविष्य के बारे में सामूहिक चिन्ता। जल सम्बन्धी आपदाएँ सम्भव।' },
+      personal: { en: 'Emotional turbulence, mother\'s health issues, mental fog, irrational fears. But also sudden intuitive breakthroughs and psychic awakening. Moon/Rahu dasha intensifies this.', hi: 'भावनात्मक उथल-पुथल, माता का स्वास्थ्य, मानसिक धुंध, अतार्किक भय। पर अचानक सहज ज्ञान और मानसिक जागृति भी। चन्द्र/राहु दशा इसे तीव्र करती है।' },
+      remedy: { en: 'Chandra mantras, wear Pearl, donate milk and white items on Monday. Rahu pacification: coconut + camphor offering.', hi: 'चन्द्र मन्त्र, मोती धारण, सोमवार को दूध और श्वेत वस्तुएं दान। राहु शान्ति: नारियल + कपूर अर्पण।' },
+    },
+    'ketu-lunar': {
+      title: { en: '☋ Ketu Lunar Eclipse — Ancestral Karma Surfaces (Blood Moon)', hi: '☋ केतु चन्द्र ग्रहण — पूर्वज कर्म सतह पर (रक्त चन्द्र)' },
+      mundane: { en: 'Collective grief, revelations about the past, ancestral and cultural reckoning, spiritual purification movements. The Blood Moon symbolises the burning of past-life samskaras.', hi: 'सामूहिक शोक, अतीत के रहस्योद्घाटन, पूर्वज और सांस्कृतिक लेखा-जोखा, आध्यात्मिक शुद्धि आन्दोलन। रक्त चन्द्र पूर्वजन्म संस्कारों के दहन का प्रतीक।' },
+      personal: { en: 'Deep introspection, release of emotional baggage, past relationships resurface for closure, heightened psychic sensitivity. The most spiritually potent of all four eclipse types.', hi: 'गहन आत्मनिरीक्षण, भावनात्मक बोझ से मुक्ति, पिछले सम्बन्ध समापन हेतु पुनः प्रकट, मानसिक संवेदनशीलता बढ़ी। चारों ग्रहण प्रकारों में सर्वाधिक आध्यात्मिक।' },
+      remedy: { en: 'Pitri Tarpan (ancestral offerings), Ketu pacification, meditation, seven-grain donation. Maha Mrityunjaya for protection.', hi: 'पितृ तर्पण, केतु शान्ति, ध्यान, सप्तधान्य दान। सुरक्षा हेतु महामृत्युंजय।' },
+    },
+  };
+
+  const key = `${node}-${eclipseType}` as keyof typeof implications;
+  const imp = implications[key];
+  if (!imp) return null;
+
+  const borderColor = node === 'rahu' ? 'border-gold-primary/15' : 'border-purple-500/15';
+  const accentText = node === 'rahu' ? 'text-gold-light' : 'text-purple-300';
+
+  return (
+    <div className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border ${borderColor} p-5`}>
+      <h4 className={`text-sm font-bold ${accentText} uppercase tracking-wider mb-3`} style={headingFont}>
+        {isHi ? imp.title.hi : imp.title.en}
+      </h4>
+      <div className="space-y-3 text-xs leading-relaxed" style={bodyFont}>
+        <div>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'मुण्डन (विश्व) प्रभाव' : 'Mundane (World) Effects'}</span>
+          <p className="text-text-secondary/80 mt-0.5">{isHi ? imp.mundane.hi : imp.mundane.en}</p>
+        </div>
+        <div>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'व्यक्तिगत प्रभाव' : 'Personal Effects'}</span>
+          <p className="text-text-secondary/80 mt-0.5">{isHi ? imp.personal.hi : imp.personal.en}</p>
+        </div>
+        <div>
+          <span className="text-gold-dark text-[10px] uppercase tracking-wider font-bold">{isHi ? 'अनुशंसित उपाय' : 'Recommended Remedies'}</span>
+          <p className="text-gold-primary/60 mt-0.5">{isHi ? imp.remedy.hi : imp.remedy.en}</p>
+        </div>
+      </div>
     </div>
   );
 }

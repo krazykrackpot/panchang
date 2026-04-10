@@ -29,7 +29,7 @@
  * and penumbral shadow radius (~1.28°) at Moon's distance.
  */
 
-import { getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg, dateToJD } from '@/lib/ephem/astronomical';
 import { buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from './tithi-table';
 import { getEclipsesForYear } from './eclipse-data';
 import type { Trilingual } from '@/types/panchang';
@@ -41,11 +41,18 @@ export interface EclipseEvent {
   magnitude: 'total' | 'partial' | 'annular' | 'penumbral';
   magnitudeName: Trilingual;
   description: Trilingual;
+  node: 'rahu' | 'ketu';     // Which node the eclipse occurs at
+  nodeName: Trilingual;       // Localized node name
 }
 
 const ECLIPSE_TYPE_NAMES = {
   solar: { en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' },
   lunar: { en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' },
+};
+
+const NODE_NAMES = {
+  rahu: { en: 'Rahu (☊ Ascending Node)', hi: 'राहु (☊ आरोही पात)', sa: 'राहुः (☊)' },
+  ketu: { en: 'Ketu (☋ Descending Node)', hi: 'केतु (☋ अवरोही पात)', sa: 'केतुः (☋)' },
 };
 
 const MAG_NAMES: Record<string, Trilingual> = {
@@ -99,13 +106,23 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
     if (moonLat < solarPartialLimit) {
       let magnitude: EclipseEvent['magnitude'];
       if (moonLat < solarCentralLimit) {
-        // Central eclipse — total vs annular depends on Moon's apparent size vs Sun's
-        // Faster Moon = closer = larger apparent size = total
-        // Average speed ~13.2°/day: above → likely total, below → likely annular
         magnitude = moonSpeed > 13.0 ? 'total' : 'annular';
       } else {
         magnitude = 'partial';
       }
+
+      // Determine which node: compare Sun/Moon longitude to Rahu/Ketu
+      const rahuPos = positions.find(p => p.id === 7);
+      const rahuLon = rahuPos?.longitude ?? 0;
+      const ketuLon = normalizeDeg(rahuLon + 180);
+      const sunL = sunLongitude(jd);
+      let distRahu = Math.abs(normalizeDeg(sunL - rahuLon));
+      if (distRahu > 180) distRahu = 360 - distRahu;
+      let distKetu = Math.abs(normalizeDeg(sunL - ketuLon));
+      if (distKetu > 180) distKetu = 360 - distKetu;
+      const node: 'rahu' | 'ketu' = distRahu < distKetu ? 'rahu' : 'ketu';
+      const nodeLabel = node === 'rahu' ? 'Rahu (☊)' : 'Ketu (☋)';
+      const nodeLabelHi = node === 'rahu' ? 'राहु (☊)' : 'केतु (☋)';
 
       const date = jdToUtcDate(jd);
       if (!date.startsWith(String(year))) continue;
@@ -116,10 +133,12 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         date,
         magnitude,
         magnitudeName: MAG_NAMES[magnitude],
+        node,
+        nodeName: NODE_NAMES[node],
         description: {
-          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis.`,
-          hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं।`,
-          sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते।`,
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse at ${nodeLabel} — Sun and Moon conjoin at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
+          hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण ${nodeLabelHi} पर — सूर्य और चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर युति करते हैं।`,
+          sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम् — सूर्यचन्द्रौ ${node === 'rahu' ? 'राहौ' : 'केतौ'} युज्येते।`,
         },
       });
     }
@@ -155,6 +174,19 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         magnitude = 'penumbral';
       }
 
+      // Determine which node: compare Moon longitude to Rahu/Ketu
+      const rahuPos = positions.find(p => p.id === 7);
+      const rahuLon = rahuPos?.longitude ?? 0;
+      const ketuLon = normalizeDeg(rahuLon + 180);
+      const moonLon = moonLongitude(jd);
+      let distRahu = Math.abs(normalizeDeg(moonLon - rahuLon));
+      if (distRahu > 180) distRahu = 360 - distRahu;
+      let distKetu = Math.abs(normalizeDeg(moonLon - ketuLon));
+      if (distKetu > 180) distKetu = 360 - distKetu;
+      const node: 'rahu' | 'ketu' = distRahu < distKetu ? 'rahu' : 'ketu';
+      const nodeLabel = node === 'rahu' ? 'Rahu (☊)' : 'Ketu (☋)';
+      const nodeLabelHi = node === 'rahu' ? 'राहु (☊)' : 'केतु (☋)';
+
       const date = jdToUtcDate(jd);
       if (!date.startsWith(String(year))) continue;
 
@@ -164,10 +196,12 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
         date,
         magnitude,
         magnitudeName: MAG_NAMES[magnitude],
+        node,
+        nodeName: NODE_NAMES[node],
         description: {
-          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis.`,
-          hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है।`,
-          sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति।`,
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse at ${nodeLabel} — Full Moon passes through Earth's shadow at the ${node === 'rahu' ? 'ascending' : 'descending'} node.`,
+          hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण ${nodeLabelHi} पर — पूर्णिमा का चन्द्रमा ${node === 'rahu' ? 'आरोही' : 'अवरोही'} पात पर पृथ्वी की छाया से गुजरता है।`,
+          sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः ${node === 'rahu' ? 'राहौ' : 'केतौ'} पृथिव्याः छायायां प्रविशति।`,
         },
       });
     }
@@ -208,20 +242,35 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
       });
       if (!found) {
         const mag = t.type === 'hybrid' ? 'total' : t.type;
+        // Compute node for table-only eclipses
+        const [ty, tm, td] = t.date.split('-').map(Number);
+        const tJd = dateToJD(ty, tm, td, 12);
+        const tPositions = getPlanetaryPositions(tJd);
+        const tRahuLon = tPositions.find(p => p.id === 7)?.longitude ?? 0;
+        const tKetuLon = normalizeDeg(tRahuLon + 180);
+        const tBodyLon = t.kind === 'solar' ? sunLongitude(tJd) : moonLongitude(tJd);
+        let tDistR = Math.abs(normalizeDeg(tBodyLon - tRahuLon));
+        if (tDistR > 180) tDistR = 360 - tDistR;
+        let tDistK = Math.abs(normalizeDeg(tBodyLon - tKetuLon));
+        if (tDistK > 180) tDistK = 360 - tDistK;
+        const tNode: 'rahu' | 'ketu' = tDistR < tDistK ? 'rahu' : 'ketu';
+
         validated.push({
           type: t.kind,
           typeName: ECLIPSE_TYPE_NAMES[t.kind],
           date: t.date,
           magnitude: mag as EclipseEvent['magnitude'],
           magnitudeName: MAG_NAMES[mag] || MAG_NAMES.partial,
+          node: tNode,
+          nodeName: NODE_NAMES[tNode],
           description: t.kind === 'solar' ? {
-            en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis.`,
-            hi: `${MAG_NAMES[mag]?.hi || mag} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं।`,
-            sa: `${MAG_NAMES[mag]?.sa || mag} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते।`,
+            en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Solar Eclipse at ${tNode === 'rahu' ? 'Rahu (☊)' : 'Ketu (☋)'}.`,
+            hi: `${MAG_NAMES[mag]?.hi || mag} सूर्य ग्रहण ${tNode === 'rahu' ? 'राहु (☊)' : 'केतु (☋)'} पर।`,
+            sa: `${MAG_NAMES[mag]?.sa || mag} सूर्यग्रहणम् ${tNode === 'rahu' ? 'राहौ' : 'केतौ'}।`,
           } : {
-            en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis.`,
-            hi: `${MAG_NAMES[mag]?.hi || mag} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है।`,
-            sa: `${MAG_NAMES[mag]?.sa || mag} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति।`,
+            en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Lunar Eclipse at ${tNode === 'rahu' ? 'Rahu (☊)' : 'Ketu (☋)'}.`,
+            hi: `${MAG_NAMES[mag]?.hi || mag} चन्द्र ग्रहण ${tNode === 'rahu' ? 'राहु (☊)' : 'केतु (☋)'} पर।`,
+            sa: `${MAG_NAMES[mag]?.sa || mag} चन्द्रग्रहणम् ${tNode === 'rahu' ? 'राहौ' : 'केतौ'}।`,
           },
         });
       }

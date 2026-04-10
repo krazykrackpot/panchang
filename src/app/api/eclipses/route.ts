@@ -70,23 +70,24 @@ export async function GET(req: NextRequest) {
   // Check if any eclipse is visible from user's location
   const hasVisible = eclipses.some(e => e.local?.visible === true && (e.local?.sutakApplicable || (e.local?.maxMagnitude ?? 0) > 0.3));
 
-  // If no significant visible eclipse this year, find the next one across all years
+  // If no significant visible eclipse this year, find the next one in FUTURE years
   let nextSignificant: { date: string; year: number; type: 'solar' | 'lunar'; subtype: string; magnitude: number; visibilityNote: string } | null = null;
 
   if (!hasVisible && lat !== null && lng !== null && tz) {
-    // Search forward from current year through all table data
-    const startDate = `${year}-01-01`;
+    // Search forward from NEXT year (current year's eclipses are already shown)
+    const cutoff = `${year + 1}-01-01`;
     for (const entry of ECLIPSE_TABLE) {
-      if (entry.date <= startDate) continue;
+      if (entry.date < cutoff) continue;
       // Skip penumbral lunar eclipses (not significant)
       if (entry.kind === 'lunar' && entry.type === 'penumbral') continue;
       const local = computeLocalEclipse(entry, lat, lng, tz);
       if (local.visible && local.maxMagnitude > 0.3) {
+        // Use LOCAL subtype and magnitude, not global table data
         nextSignificant = {
           date: entry.date,
           year: parseInt(entry.date.slice(0, 4)),
           type: entry.kind,
-          subtype: entry.type,
+          subtype: local.subtype,
           magnitude: local.maxMagnitude,
           visibilityNote: local.visibilityNote,
         };

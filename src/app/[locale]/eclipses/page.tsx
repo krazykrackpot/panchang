@@ -192,7 +192,7 @@ export default function EclipsesPage() {
           <p className="text-lg" style={bodyFont}>
             {isHi ? 'इस वर्ष कोई ग्रहण नहीं।' : 'No eclipses this year.'}
           </p>
-          <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y) => setYear(y)} />
+          <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y, date, type) => { setYear(y); setExpanded(`${date}-${type}`); }} />
         </div>
       ) : (
         <div className="space-y-6 my-10">
@@ -537,7 +537,7 @@ export default function EclipsesPage() {
           </div>
           {/* Show next significant if none visible this year */}
           {!eclipses.some(e => e.local?.visible && (e.local?.sutakApplicable || (e.local?.maxMagnitude ?? 0) > 0.3)) && (
-            <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y) => setYear(y)} />
+            <NextSignificantCard next={nextSignificant} isHi={isHi} headingFont={headingFont} bodyFont={bodyFont} onNavigate={(y, date, type) => { setYear(y); setExpanded(`${date}-${type}`); }} />
           )}
         </div>
       )}
@@ -559,7 +559,7 @@ function NextSignificantCard({
   isHi: boolean;
   headingFont: React.CSSProperties;
   bodyFont: React.CSSProperties | undefined;
-  onNavigate: (year: number) => void;
+  onNavigate: (year: number, date: string, type: string) => void;
 }) {
   if (!next) return null;
 
@@ -595,7 +595,7 @@ function NextSignificantCard({
         {isHi ? 'अगला महत्वपूर्ण दृश्य ग्रहण' : 'Next Significant Visible Eclipse'}
       </p>
       <button
-        onClick={() => onNavigate(next.year)}
+        onClick={() => onNavigate(next.year, next.date, next.type)}
         className={`w-full text-left bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-2xl border-2 ${borderAccent} p-6 hover:border-gold-primary/40 hover:scale-[1.01] transition-all group`}
       >
         <div className="flex items-center gap-4">

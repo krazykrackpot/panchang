@@ -60,7 +60,7 @@ export default function LearnPage() {
       title: { en: 'Hindu Cosmology & Foundations', hi: 'हिन्दू ब्रह्माण्ड विज्ञान एवं आधार', sa: 'हिन्दूब्रह्माण्डविज्ञानम् आधाराश्च' },
       subtitle: { en: 'The universe, time, planets, stars, and the mathematical framework', hi: 'ब्रह्माण्ड, समय, ग्रह, तारे और गणितीय ढाँचा', sa: 'ब्रह्माण्डं कालः ग्रहाः ताराः गणितीयढाञ्चश्च' },
       stats: { en: '26 modules · 13 references', hi: '26 मॉड्यूल · 13 संदर्भ', sa: '26 मॉड्यूलाः · 13 सन्दर्भाः' },
-      topics: { en: 'Cosmic time scales · Navagraha · 12 Rashis · 27 Nakshatras · Ayanamsha · Precession · Classical texts', hi: 'ब्रह्माण्डीय समय · नवग्रह · 12 राशि · 27 नक्षत्र · अयनांश · पुरस्सरण · शास्त्रीय ग्रन्थ', sa: 'ब्रह्माण्डीयकालः · नवग्रहाः · 12 राशयः · 27 नक्षत्राणि · अयनांशः' },
+      topics: { en: 'Cosmic time scales · Navagraha · 12 Rashis · 27 Nakshatras · Ayanamsha · Precession · Eclipses · Classical texts', hi: 'ब्रह्माण्डीय समय · नवग्रह · 12 राशि · 27 नक्षत्र · अयनांश · पुरस्सरण · ग्रहण · शास्त्रीय ग्रन्थ', sa: 'ब्रह्माण्डीयकालः · नवग्रहाः · 12 राशयः · 27 नक्षत्राणि · अयनांशः · ग्रहणम्' },
     },
     {
       href: '/learn/track/panchang',
@@ -108,6 +108,7 @@ export default function LearnPage() {
       { name: { en: 'Aspects', hi: 'दृष्टि', sa: 'दृष्टिः' }, href: '/learn/aspects' },
       { name: { en: 'Retrograde', hi: 'वक्री', sa: 'वक्री' }, href: '/learn/retrograde-effects' },
       { name: { en: 'Combustion', hi: 'अस्त', sa: 'अस्तम्' }, href: '/learn/combustion' },
+      { name: { en: 'Eclipses (Grahan)', hi: 'ग्रहण', sa: 'ग्रहणम्' }, href: '/learn/eclipses' },
       { name: { en: 'Remedies', hi: 'उपाय', sa: 'उपायाः' }, href: '/learn/remedies' },
       { name: { en: 'Classical Texts', hi: 'शास्त्रीय ग्रन्थ', sa: 'शास्त्रीयग्रन्थाः' }, href: '/learn/classical-texts' },
       { name: { en: 'Text Library', hi: 'ग्रंथागार', sa: 'ग्रंथागारम्' }, href: '/learn/library' },

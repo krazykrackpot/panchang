@@ -395,7 +395,7 @@ export function calculateRahuKaal(sunrise: number, sunset: number, weekday: numb
  * Swiss Ephemeris when available (sub-arcsecond), Meeus fallback (approximate).
  */
 export function getPlanetaryPositions(jd: number): {
-  id: number; longitude: number; speed: number; isRetrograde: boolean
+  id: number; longitude: number; latitude: number; speed: number; isRetrograde: boolean
 }[] {
   // Try Swiss Ephemeris first
   if (isSwissEphAvailable()) {
@@ -404,14 +404,15 @@ export function getPlanetaryPositions(jd: number): {
       return result.planets.map(p => ({
         id: p.id,
         longitude: p.tropical,
+        latitude: p.latitude,
         speed: p.speed,
         isRetrograde: p.isRetrograde,
       }));
     }
   }
 
-  // Meeus fallback
-  return _meeusPlanetaryPositions(jd);
+  // Meeus fallback (no latitude available — return 0)
+  return _meeusPlanetaryPositions(jd).map(p => ({ ...p, latitude: 0 }));
 }
 
 function _meeusPlanetaryPositions(jd: number): {

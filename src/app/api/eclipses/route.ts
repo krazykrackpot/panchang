@@ -28,45 +28,30 @@ export async function GET(req: NextRequest) {
   const lng = searchParams.get('lng') ? parseFloat(searchParams.get('lng')!) : null;
   const tz = searchParams.get('tz')?.trim() || null;
 
-  // Table data (2024-2035) from NASA — authoritative for dates, types, magnitudes
+  // Engine computes eclipses from first principles (tithi table + Moon latitude)
+  const baseEclipses = generateEclipseCalendar(year);
+
+  // Table (2024-2035) provides enrichment: contact times, city data for local computation
   const tableData = getEclipsesForYear(year);
 
-  let eclipses: EnrichedEclipse[];
-
-  if (tableData.length > 0) {
-    // Table year: NASA data is the single source of truth for dates and types.
-    // Build eclipse list directly from table entries.
-    eclipses = tableData.map(entry => {
-      const type = entry.kind;
-      const mag = entry.type === 'hybrid' ? 'total' : entry.type;
-
-      const base: EclipseEvent = {
-        type,
-        typeName: ECLIPSE_TYPE_NAMES[type],
-        date: entry.date,
-        magnitude: mag as EclipseEvent['magnitude'],
-        magnitudeName: MAG_NAMES[mag] || MAG_NAMES.partial,
-        description: type === 'solar' ? {
-          en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis.`,
-          hi: `${MAG_NAMES[mag]?.hi || mag} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं।`,
-          sa: `${MAG_NAMES[mag]?.sa || mag} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते।`,
-        } : {
-          en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis.`,
-          hi: `${MAG_NAMES[mag]?.hi || mag} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है।`,
-          sa: `${MAG_NAMES[mag]?.sa || mag} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति।`,
-        },
-      };
-
-      if (lat !== null && lng !== null && tz) {
-        const local = computeLocalEclipse(entry, lat, lng, tz);
-        return { ...base, local };
-      }
-      return base;
+  // Enrich engine results with table data for local circumstances
+  const eclipses: EnrichedEclipse[] = baseEclipses.map(eclipse => {
+    // Match engine eclipse to table entry (±1 day tolerance for date boundary)
+    const tableEntry = tableData.find(t => {
+      if (t.date === eclipse.date && t.kind === eclipse.type) return true;
+      const d1 = new Date(t.date + 'T00:00:00Z').getTime();
+      const d2 = new Date(eclipse.date + 'T00:00:00Z').getTime();
+      return Math.abs(d1 - d2) <= 86400000 && t.kind === eclipse.type;
     });
-  } else {
-    // Outside table range: use engine (tithi-based detection from first principles)
-    eclipses = generateEclipseCalendar(year);
-  }
+
+    if (tableEntry && lat !== null && lng !== null && tz) {
+      // Table has contact times/city data → compute local circumstances
+      const local = computeLocalEclipse(tableEntry, lat, lng, tz);
+      return { ...eclipse, local };
+    }
+
+    return eclipse;
+  });
 
   // Check if any eclipse is significantly visible from user's location
   const hasVisible = eclipses.some(e =>

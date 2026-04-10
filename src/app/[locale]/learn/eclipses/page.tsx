@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import EclipseAnimation from '@/components/learn/EclipseAnimation';
 
 /* ─── Inline bilingual labels ─── */
 const L = {
@@ -395,6 +396,9 @@ export default function LearnEclipsesPage() {
           <p>{l(L.astro1)}</p>
           <p>{l(L.astro2)}</p>
           <p>{l(L.astro3)}</p>
+
+          {/* Interactive animation — Solar & Lunar Eclipse */}
+          <EclipseAnimation locale={locale} />
 
           {/* Visual: Moon orbital inclination diagram */}
           <div className="flex justify-center my-4">

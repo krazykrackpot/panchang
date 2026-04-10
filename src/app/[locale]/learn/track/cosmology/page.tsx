@@ -68,6 +68,7 @@ const SECTIONS: Section[] = [
       { id: 'ref:aspects', title: { en: 'Planetary Aspects (Drishti) — Visual Guide', hi: 'ग्रह दृष्टि — दृश्य मार्गदर्शिका', sa: 'ग्रहदृष्टिः' }, href: '/learn/aspects' },
       { id: 'ref:combustion', title: { en: 'Combustion — When Planets Get Too Close to Sun', hi: 'अस्त — जब ग्रह सूर्य के निकट', sa: 'अस्तम्' }, href: '/learn/combustion' },
       { id: 'ref:retro', title: { en: 'Retrograde Effects — All 5 Planets', hi: 'वक्री प्रभाव — सभी 5 ग्रह', sa: 'वक्रीप्रभावाः' }, href: '/learn/retrograde-effects' },
+      { id: 'ref:eclipses', title: { en: 'Eclipses (Grahan) — Rahu-Ketu Axis & Calculation', hi: 'ग्रहण — राहु-केतु अक्ष एवं गणना', sa: 'ग्रहणम् — राहुकेत्वक्षः गणना च' }, href: '/learn/eclipses' },
       { id: 'ref:remedies', title: { en: 'Complete Remedial Reference — All 9 Planets', hi: 'सम्पूर्ण उपचार — सभी 9 ग्रह', sa: 'उपायाः' }, href: '/learn/remedies' },
     ],
     refs: [],

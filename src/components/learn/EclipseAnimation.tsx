@@ -57,6 +57,14 @@ const LUNAR = {
   orbitAmplitude: 45,
 };
 
+/* ─── Static star positions (hoisted to avoid recreation per render) ─── */
+const STARS: [number, number, number][] = [
+  [30,20,0.2],[100,45,0.35],[150,15,0.2],[220,35,0.35],[300,20,0.2],
+  [400,40,0.35],[480,15,0.2],[550,30,0.35],[60,100,0.2],[170,85,0.35],
+  [350,90,0.2],[500,75,0.35],[580,110,0.2],[40,180,0.35],[200,200,0.2],
+  [450,190,0.35],[530,230,0.2],[80,250,0.35],[330,260,0.2],[490,245,0.35],
+];
+
 /* ─── Helpers ─── */
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * t;
@@ -85,7 +93,7 @@ function distToEcliptic(t: number, amplitude: number): number {
 }
 
 /* ─── Solar Eclipse SVG ─── */
-function SolarEclipseSVG({
+const SolarEclipseSVG = memo(function SolarEclipseSVG({
   t,
   isHi,
 }: {
@@ -135,13 +143,9 @@ function SolarEclipseSVG({
       {/* Background */}
       <rect width={W} height={H} fill="#0a0e27" rx="12" />
 
-      {/* Star field (static dots) */}
-      {[
-        [30,20],[100,45],[150,15],[220,35],[300,20],[400,40],[480,15],[550,30],
-        [60,100],[170,85],[350,90],[500,75],[580,110],[40,180],[200,200],[450,190],
-        [530,230],[80,250],[330,260],[490,245],
-      ].map(([sx, sy], i) => (
-        <circle key={i} cx={sx} cy={sy} r="1" fill="white" opacity={0.2 + (i % 3) * 0.15} />
+      {/* Star field — uses hoisted static data */}
+      {STARS.map(([sx, sy, op], i) => (
+        <circle key={i} cx={sx} cy={sy} r="1" fill="white" opacity={op} />
       ))}
 
       {/* ── Ecliptic plane ── */}
@@ -278,10 +282,10 @@ function SolarEclipseSVG({
       )}
     </svg>
   );
-}
+});
 
 /* ─── Lunar Eclipse SVG ─── */
-function LunarEclipseSVG({
+const LunarEclipseSVG = memo(function LunarEclipseSVG({
   t,
   isHi,
 }: {
@@ -331,13 +335,9 @@ function LunarEclipseSVG({
       {/* Background */}
       <rect width={W} height={H} fill="#0a0e27" rx="12" />
 
-      {/* Stars */}
-      {[
-        [30,20],[100,45],[150,15],[220,35],[300,20],[400,40],[480,15],[550,30],
-        [60,100],[170,85],[350,90],[500,75],[580,110],[40,180],[200,200],[450,190],
-        [530,230],[80,250],[330,260],[490,245],
-      ].map(([sx, sy], i) => (
-        <circle key={i} cx={sx} cy={sy} r="1" fill="white" opacity={0.2 + (i % 3) * 0.15} />
+      {/* Star field — uses hoisted static data */}
+      {STARS.map(([sx, sy, op], i) => (
+        <circle key={i} cx={sx} cy={sy} r="1" fill="white" opacity={op} />
       ))}
 
       {/* ── Ecliptic ── */}
@@ -456,7 +456,9 @@ function LunarEclipseSVG({
       </text>
     </svg>
   );
-}
+});
+
+const DURATION_MS = 8000; // 8 seconds per animation cycle
 
 /* ─── Main Component ─── */
 export default function EclipseAnimation({ locale }: Props) {
@@ -464,7 +466,6 @@ export default function EclipseAnimation({ locale }: Props) {
   const [t, setT] = useState(0);
   const animFrameRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
-  const DURATION_MS = 8000; // 8 seconds per cycle
 
   const isHi = locale !== 'en';
 

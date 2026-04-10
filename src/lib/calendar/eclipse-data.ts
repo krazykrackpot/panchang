@@ -4,12 +4,13 @@
  * Source: NASA Five Millennium Canon of Solar Eclipses & Lunar Eclipses
  * https://eclipse.gsfc.nasa.gov/
  *
- * For LUNAR eclipses: UTC contact times are universal (same for all observers).
- * For SOLAR eclipses: we store greatest-eclipse parameters and use simplified
- * geometry to compute local circumstances for any observer location.
+ * For LUNAR eclipses: UTC contact times stored (universal, same for all observers).
+ * For SOLAR eclipses: greatest-eclipse parameters stored. Local contact times are
+ * computed from first principles via topocentric parallax (eclipse-compute.ts).
  *
- * Architecture note: This file is the data layer. Replace it with live computation
- * (Besselian elements from Swiss Ephemeris) to upgrade from table-based to computed.
+ * This table provides enrichment data (Saros numbers, contact times for lunar,
+ * shadow geometry). Eclipse DETECTION is done by the engine (eclipses.ts) using
+ * tithi table + Moon ecliptic latitude — not from this table.
  */
 
 export interface LunarEclipseData {
@@ -31,17 +32,6 @@ export interface LunarEclipseData {
   gamma: number;          // Distance of shadow axis from Earth center
 }
 
-/** Pre-computed local circumstances for a reference city */
-export interface CityEclipseData {
-  name: string;
-  lat: number;
-  lng: number;
-  c1: string;            // First contact UTC (HH:MM)
-  max: string;           // Maximum UTC (HH:MM)
-  c4: string;            // Last contact UTC (HH:MM) or "sunset" if ends at sunset
-  magnitude: number;     // Local magnitude
-}
-
 export interface SolarEclipseData {
   kind: 'solar';
   date: string;           // YYYY-MM-DD
@@ -61,8 +51,6 @@ export interface SolarEclipseData {
   // Shadow velocity for local time offset approximation
   shadowSpeedKmS: number; // Shadow speed in km/s at greatest eclipse
   saros: number;
-  // Pre-computed local circumstances for reference cities (for interpolation)
-  cities?: CityEclipseData[];
 }
 
 export type EclipseData = LunarEclipseData | SolarEclipseData;
@@ -90,18 +78,6 @@ export const ECLIPSE_TABLE: EclipseData[] = [
     magnitude: 1.0566, gamma: 0.3431,
     sunAlt: 70, pathWidth: 198, durationCenter: 268,
     penRadius: 3500, shadowSpeedKmS: 0.72, saros: 139,
-    cities: [
-      { name: 'Dallas', lat: 32.78, lng: -96.80, c1: '17:22', max: '18:40', c4: '20:02', magnitude: 1.05 },
-      { name: 'Indianapolis', lat: 39.77, lng: -86.16, c1: '17:50', max: '19:06', c4: '20:23', magnitude: 1.04 },
-      { name: 'Cleveland', lat: 41.50, lng: -81.69, c1: '17:59', max: '19:15', c4: '20:29', magnitude: 1.04 },
-      { name: 'New York', lat: 40.71, lng: -74.01, c1: '18:10', max: '19:25', c4: '20:36', magnitude: 0.90 },
-      { name: 'Montreal', lat: 45.50, lng: -73.57, c1: '18:14', max: '19:27', c4: '20:37', magnitude: 1.03 },
-      { name: 'Mexico City', lat: 19.43, lng: -99.13, c1: '17:04', max: '18:14', c4: '19:36', magnitude: 0.79 },
-      { name: 'Los Angeles', lat: 34.05, lng: -118.24, c1: '17:06', max: '18:12', c4: '19:32', magnitude: 0.55 },
-      { name: 'Seattle', lat: 47.61, lng: -122.33, c1: '17:37', max: '18:29', c4: '19:20', magnitude: 0.32 },
-      { name: 'London', lat: 51.51, lng: -0.13, c1: '19:00', max: '19:55', c4: '20:40', magnitude: 0.30 },
-      { name: 'Zurich', lat: 47.37, lng: 8.54, c1: '19:20', max: '19:50', c4: '20:15', magnitude: 0.12 },
-    ],
   },
   {
     kind: 'lunar', date: '2024-09-18', type: 'partial',
@@ -173,45 +149,6 @@ export const ECLIPSE_TABLE: EclipseData[] = [
     magnitude: 1.0386, gamma: 0.8974,
     sunAlt: 26, pathWidth: 294, durationCenter: 132,
     penRadius: 3400, shadowSpeedKmS: 0.85, saros: 126,
-    // Source: NASA Eclipse Predictions + timeanddate.com local circumstances
-    cities: [
-      { name: 'Zurich', lat: 47.37, lng: 8.54, c1: '17:24', max: '18:17', c4: 'sunset', magnitude: 0.91 },
-      { name: 'London', lat: 51.51, lng: -0.13, c1: '17:24', max: '18:12', c4: '18:53', magnitude: 0.87 },
-      { name: 'Paris', lat: 48.86, lng: 2.35, c1: '17:29', max: '18:19', c4: 'sunset', magnitude: 0.90 },
-      { name: 'Berlin', lat: 52.52, lng: 13.41, c1: '17:18', max: '18:13', c4: '19:02', magnitude: 0.93 },
-      { name: 'Madrid', lat: 40.42, lng: -3.70, c1: '17:42', max: '18:24', c4: 'sunset', magnitude: 0.73 },
-      { name: 'Rome', lat: 41.90, lng: 12.50, c1: '17:36', max: '18:22', c4: 'sunset', magnitude: 0.81 },
-      { name: 'Moscow', lat: 55.76, lng: 37.62, c1: '17:02', max: '18:03', c4: '18:59', magnitude: 0.96 },
-      { name: 'Helsinki', lat: 60.17, lng: 24.94, c1: '16:55', max: '17:58', c4: '18:58', magnitude: 0.99 },
-      { name: 'Stockholm', lat: 59.33, lng: 18.07, c1: '17:04', max: '18:03', c4: '18:58', magnitude: 0.97 },
-      { name: 'Warsaw', lat: 52.23, lng: 21.01, c1: '17:12', max: '18:09', c4: '19:00', magnitude: 0.94 },
-      { name: 'Istanbul', lat: 41.01, lng: 28.98, c1: '17:23', max: '18:11', c4: '18:53', magnitude: 0.82 },
-      { name: 'Delhi', lat: 28.61, lng: 77.21, c1: '17:54', max: '18:12', c4: '18:24', magnitude: 0.12 },
-      { name: 'Mumbai', lat: 19.08, lng: 72.88, c1: '18:01', max: '18:12', c4: '18:20', magnitude: 0.06 },
-      { name: 'Reykjavik', lat: 64.15, lng: -21.94, c1: '16:33', max: '17:45', c4: '18:51', magnitude: 0.99 },
-      { name: 'Cairo', lat: 30.04, lng: 31.24, c1: '17:42', max: '18:15', c4: '18:42', magnitude: 0.50 },
-      // North America (eclipse visible at sunset / very late)
-      { name: 'New York', lat: 40.71, lng: -74.01, c1: '17:48', max: '18:20', c4: 'sunset', magnitude: 0.76 },
-      { name: 'Toronto', lat: 43.65, lng: -79.38, c1: '17:42', max: '18:16', c4: 'sunset', magnitude: 0.80 },
-      { name: 'Chicago', lat: 41.88, lng: -87.63, c1: '17:38', max: '18:10', c4: 'sunset', magnitude: 0.73 },
-      { name: 'Seattle', lat: 47.61, lng: -122.33, c1: '17:20', max: '17:53', c4: '18:22', magnitude: 0.78 },
-      { name: 'Los Angeles', lat: 34.05, lng: -118.24, c1: '17:40', max: '18:04', c4: '18:24', magnitude: 0.52 },
-      { name: 'Denver', lat: 39.74, lng: -104.99, c1: '17:32', max: '18:04', c4: '18:32', magnitude: 0.68 },
-      // Africa
-      { name: 'Nairobi', lat: -1.29, lng: 36.82, c1: '17:54', max: '18:12', c4: '18:26', magnitude: 0.18 },
-      { name: 'Johannesburg', lat: -26.20, lng: 28.05, c1: '18:02', max: '18:10', c4: '18:15', magnitude: 0.04 },
-      // Asia (deep partial visible at sunset)
-      { name: 'Tokyo', lat: 35.68, lng: 139.69, c1: '17:58', max: '18:08', c4: '18:15', magnitude: 0.05 },
-      { name: 'Beijing', lat: 39.90, lng: 116.40, c1: '17:48', max: '18:06', c4: '18:20', magnitude: 0.10 },
-      { name: 'Kolkata', lat: 22.57, lng: 88.36, c1: '17:56', max: '18:12', c4: '18:22', magnitude: 0.10 },
-      { name: 'Karachi', lat: 24.86, lng: 67.01, c1: '17:48', max: '18:10', c4: '18:28', magnitude: 0.20 },
-      { name: 'Dubai', lat: 25.20, lng: 55.27, c1: '17:38', max: '18:08', c4: '18:34', magnitude: 0.35 },
-      // South America (not visible — too far south/west)
-      // Australia (not visible)
-      // Scandinavia (near totality path)
-      { name: 'Oslo', lat: 59.91, lng: 10.75, c1: '17:08', max: '18:04', c4: '18:55', magnitude: 0.96 },
-      { name: 'Copenhagen', lat: 55.68, lng: 12.57, c1: '17:12', max: '18:07', c4: '18:58', magnitude: 0.95 },
-    ],
   },
   {
     kind: 'lunar', date: '2026-08-28', type: 'partial',

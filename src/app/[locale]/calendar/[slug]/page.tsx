@@ -633,7 +633,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
           </div>
           <div className="space-y-3">
             {puja.stotras.map((stotra, i) => (
-              <div key={i} className="flex items-center justify-between rounded-lg bg-bg-tertiary/30 px-4 py-3">
+              <div key={i} className="flex items-center justify-between rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/8 px-4 py-3">
                 <div>
                   <p className="text-gold-light text-sm font-semibold" style={bodyFont}>{t(stotra.name)}</p>
                   {stotra.note && <p className="text-text-secondary/75 text-xs mt-0.5" style={bodyFont}>{t(stotra.note)}</p>}

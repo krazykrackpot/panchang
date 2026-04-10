@@ -164,7 +164,7 @@ export default function DevotionalPage() {
             const isToday = dayNum === today.weekday;
 
             return (
-              <div key={day} className={`rounded-xl p-4 text-center border ${isToday ? 'border-gold-primary/40 bg-gold-primary/10' : 'border-gold-primary/10 bg-bg-tertiary/20'}`}>
+              <div key={day} className={`rounded-xl p-4 text-center border ${isToday ? 'border-gold-primary/40 bg-gold-primary/10' : 'border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27]'}`}>
                 <GrahaIconById id={dayNum} size={28} />
                 <div className="text-gold-light text-sm font-bold mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {locale === 'en' ? dayNames[dayNum].en : dayNames[dayNum].hi}

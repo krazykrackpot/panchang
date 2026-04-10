@@ -834,7 +834,7 @@ export default function KaalNirnayaPage() {
                 </div>
               </div>
               <p className="text-text-secondary text-sm leading-relaxed mb-4">{limb.desc[locale]}</p>
-              <div className="rounded-lg p-3 bg-bg-tertiary/50 border border-gold-primary/10">
+              <div className="rounded-lg p-3 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12">
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
                   {locale === 'en' ? 'Formula' : 'सूत्र'}
                 </div>

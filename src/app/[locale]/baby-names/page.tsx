@@ -287,7 +287,7 @@ export default function BabyNamesPage() {
                       <div key={pi} className={`rounded-lg py-2 px-1 text-center ${
                         isThisPada
                           ? 'bg-gold-primary/20 border border-gold-primary/40'
-                          : 'bg-bg-secondary/30 border border-gold-primary/5'
+                          : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8'
                       }`}>
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {syl ? (locale === 'en' ? syl.en : syl.hi) : '—'}

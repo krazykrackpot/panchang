@@ -176,7 +176,7 @@ export default function TamilCalendarPage() {
           </h2>
           <div className="space-y-3">
             {FESTIVALS.map((f) => (
-              <div key={f.month} className="bg-bg-secondary/40 border border-gold-primary/8 rounded-xl p-4">
+              <div key={f.month} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4">
                 <div className="text-gold-light font-semibold text-sm mb-1.5">{f.month}</div>
                 <p className="text-text-secondary text-sm leading-relaxed">
                   {isHi ? f.hi : f.en}
@@ -236,20 +236,20 @@ export default function TamilCalendarPage() {
               <a
                 key={link.slug}
                 href={`/${locale}/puja/${link.slug}`}
-                className="block bg-bg-secondary/40 border border-gold-primary/10 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
+                className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
               >
                 {isHi ? link.hi : link.en}
               </a>
             ))}
             <a
               href={`/${locale}/calendar`}
-              className="block bg-bg-secondary/40 border border-gold-primary/10 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
+              className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {isHi ? 'त्योहार कैलेंडर 2026' : 'Festival Calendar 2026'}
             </a>
             <a
               href={`/${locale}/calendar/regional/bengali`}
-              className="block bg-bg-secondary/40 border border-gold-primary/10 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
+              className="block bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl px-4 py-3 text-gold-light hover:text-gold-primary hover:border-gold-primary/30 transition-colors text-sm font-medium"
             >
               {isHi ? 'बंगाली कैलेंडर (पंजिका)' : 'Bengali Calendar (Panjika)'}
             </a>

@@ -169,7 +169,7 @@ export default function TransitsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-8 rounded-2xl border border-gold-primary/20 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <Globe className="w-12 h-12 text-gold-primary mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -207,7 +207,7 @@ export default function TransitsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="p-8 rounded-2xl border border-gold-primary/20 bg-bg-secondary/50 backdrop-blur-sm"
+            className="p-8 rounded-2xl border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
           >
             <Globe className="w-12 h-12 text-gold-primary mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -274,7 +274,7 @@ export default function TransitsPage() {
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.15 }}
-          className="mb-8 rounded-2xl border border-gold-primary/15 bg-bg-secondary/50 backdrop-blur-sm overflow-hidden"
+          className="mb-8 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm overflow-hidden"
         >
           <div className="p-6 border-b border-gold-primary/10">
             <h2 className="text-xl font-bold text-text-primary flex items-center gap-2" style={{ fontFamily: 'var(--font-heading)' }}>

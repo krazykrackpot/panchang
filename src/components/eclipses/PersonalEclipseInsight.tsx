@@ -1,8 +1,10 @@
 'use client';
 
-import { useMemo } from 'react';
-import type { Locale, Trilingual } from '@/types/panchang';
+import { useMemo, useState, useEffect } from 'react';
+import type { Locale } from '@/types/panchang';
 import type { PlanetPosition, DashaEntry } from '@/types/kundali';
+import { useAuthStore } from '@/stores/auth-store';
+import { useChartsStore } from '@/stores/charts-store';
 
 interface EclipseInfo {
   date: string;
@@ -163,17 +165,59 @@ export default function PersonalEclipseInsight({
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  // Try to get kundali from sessionStorage
-  const kundali = useMemo<KundaliData | null>(() => {
-    if (typeof window === 'undefined') return null;
+  const { user } = useAuthStore();
+  const { charts, fetchCharts } = useChartsStore();
+  const [kundali, setKundali] = useState<KundaliData | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  // 1. Try sessionStorage first (fast, already computed from kundali page)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const cached = sessionStorage.getItem('kundali_last_result');
-      if (!cached) return null;
-      const { kundali: k } = JSON.parse(cached);
-      if (k?.planets && k?.ascendant && k?.dashas) return k as KundaliData;
+      if (cached) {
+        const { kundali: k } = JSON.parse(cached);
+        if (k?.planets && k?.ascendant && k?.dashas) {
+          setKundali(k as KundaliData);
+          return;
+        }
+      }
     } catch { /* ignore */ }
-    return null;
-  }, []);
+
+    // 2. If logged in, fetch saved charts to find primary
+    if (user?.id && charts.length === 0) {
+      fetchCharts();
+    }
+  }, [user?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // 3. If we have a primary chart but no kundali, compute it via API
+  useEffect(() => {
+    if (kundali || loading) return;
+    const primary = charts.find(c => c.is_primary) || charts[0];
+    if (!primary?.birth_data) return;
+
+    setLoading(true);
+    const bd = primary.birth_data;
+    fetch('/api/kundali', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: bd.date, time: bd.time,
+        lat: bd.lat, lng: bd.lng,
+        timezone: bd.timezone, ayanamsha: bd.ayanamsha || 'lahiri',
+      }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data?.planets && data?.ascendant && data?.dashas) {
+          setKundali(data as KundaliData);
+          // Cache for other eclipses in same session
+          try { sessionStorage.setItem('kundali_last_result', JSON.stringify({ kundali: data })); } catch {}
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [charts, kundali, loading]);
 
   const insight = useMemo(() => {
     if (!kundali) return null;
@@ -183,6 +227,14 @@ export default function PersonalEclipseInsight({
       locale,
     );
   }, [kundali, eclipseDate, eclipseType, eclipseNode, eclipseLongitude, locale]);
+
+  if (loading) {
+    return (
+      <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/10 p-4 text-center">
+        <span className="text-text-secondary/50 text-xs">{isHi ? '🔮 आपकी कुण्डली लोड हो रही है...' : '🔮 Loading your chart...'}</span>
+      </div>
+    );
+  }
 
   if (!kundali || !insight) return null;
 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Music } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 /* ═══════════════════════════════════════════════════════════════
@@ -13,145 +13,180 @@ import type { Locale } from '@/types/panchang';
    ═══════════════════════════════════════════════════════════════ */
 const L = {
   title: {
-    en: 'The "Fibonacci" Sequence Was Indian — 600 Years Before Fibonacci',
-    hi: '"फिबोनाची" अनुक्रम भारतीय था — फिबोनाची से 600 साल पहले',
+    en: "The 'Fibonacci' Sequence Was Indian — And It Started With Music",
+    hi: '"फिबोनाची" अनुक्रम भारतीय था — और यह संगीत से शुरू हुआ',
   },
   subtitle: {
-    en: '1, 1, 2, 3, 5, 8, 13, 21, 34... This sequence appears in flower petals, seashells, galaxies, and stock markets. Every textbook calls it the "Fibonacci sequence" after the Italian mathematician Leonardo of Pisa (1202 CE). But the sequence was discovered by Indian mathematicians at least 600 years earlier — and for a completely different reason: Sanskrit poetry.',
-    hi: '1, 1, 2, 3, 5, 8, 13, 21, 34... यह अनुक्रम फूलों की पंखुड़ियों, शंखों, आकाशगंगाओं और शेयर बाजारों में दिखता है। हर पाठ्यपुस्तक इसे इतालवी गणितज्ञ लियोनार्डो ऑफ पीसा (1202 ईस्वी) के नाम पर "फिबोनाची अनुक्रम" कहती है। लेकिन यह अनुक्रम भारतीय गणितज्ञों ने कम से कम 600 साल पहले खोजा था — और एक बिल्कुल अलग कारण से: संस्कृत काव्य।',
+    en: "1, 1, 2, 3, 5, 8, 13, 21... Every textbook calls this \"Fibonacci's sequence.\" But the earliest known description comes from Bharata Muni's Natyashastra (~200 BCE) — in the context of musical rhythm patterns. Later, Virahanka (~600 CE) and Hemachandra (1150 CE) formalized it for Sanskrit poetic meters — all centuries before Fibonacci (1202 CE).",
+    hi: '1, 1, 2, 3, 5, 8, 13, 21... हर पाठ्यपुस्तक इसे "फिबोनाची का अनुक्रम" कहती है। लेकिन सबसे पुराना ज्ञात विवरण भरत मुनि की नाट्यशास्त्र (~200 ईसा पूर्व) से आता है — संगीत लय पैटर्न के संदर्भ में। बाद में, विरहांका (~600 ईस्वी) और हेमचंद्र (1150 ईस्वी) ने इसे संस्कृत काव्य छंदों के लिए औपचारिक रूप दिया — फिबोनाची (1202 ईस्वी) से सदियों पहले।',
   },
 
-  s1Title: { en: 'The Prosody Problem — Counting Poetic Meters', hi: 'छंद-शास्त्र की समस्या — काव्य मात्राओं की गणना' },
+  s1Title: {
+    en: 'Bharata Muni & the Natyashastra (~200 BCE) — The World\'s Earliest Discovery',
+    hi: 'भरत मुनि और नाट्यशास्त्र (~200 ईसा पूर्व) — विश्व की सबसे पुरानी खोज',
+  },
   s1Body: {
-    en: 'In Sanskrit poetry, syllables are either laghu (short, 1 beat) or guru (long, 2 beats). Poets and scholars posed a precise combinatorial question: how many ways can you fill a line of N beats using short and long syllables? For 1 beat: 1 way (L). For 2 beats: 2 ways (LL, G). For 3 beats: 3 ways (LLL, LG, GL). For 4 beats: 5 ways (LLLL, LLG, LGL, GLL, GG). The answer IS the Fibonacci sequence — and each term equals the sum of the two before it.',
-    hi: 'संस्कृत कविता में, अक्षर या तो लघु (छोटे, 1 मात्रा) या गुरु (लंबे, 2 मात्रा) होते हैं। विद्वानों ने एक सटीक संयोजनी प्रश्न पूछा: N मात्राओं की एक पंक्ति को लघु और गुरु अक्षरों से भरने के कितने तरीके हैं? 1 मात्रा के लिए: 1 तरीका (ल)। 2 के लिए: 2 तरीके (लल, गु)। 3 के लिए: 3 तरीके। 4 के लिए: 5 तरीके। उत्तर ही फिबोनाची अनुक्रम है — और प्रत्येक पद पिछले दो का योग है।',
+    en: "The Natyashastra is the world's first and most comprehensive treatise on performing arts — theatre, dance, music, and poetics. Written by Bharata Muni around 200 BCE, it covers 6,000 verses across 36 chapters. In describing tala (rhythmic cycles), Bharata Muni enumerated all possible combinations of short (druta/laghu) and long (vilambit/guru) beats that can fill a rhythmic cycle of N matras (time units). The number of such combinations follows the exact Fibonacci pattern: for 1 matra = 1 way, 2 matras = 2 ways, 3 matras = 3 ways, 4 matras = 5 ways, 5 matras = 8 ways... This is the EARLIEST known occurrence of the sequence on Earth — and it arose from MUSIC, not mathematics. The same text contains the 22 shrutis (microtonal intervals) that form the mathematical foundation of Indian classical music — a system of musical mathematics that remains unparalleled.",
+    hi: 'नाट्यशास्त्र प्रदर्शन कलाओं पर विश्व का पहला और सबसे व्यापक ग्रंथ है — रंगमंच, नृत्य, संगीत और काव्यशास्त्र। भरत मुनि द्वारा लगभग 200 ईसा पूर्व लिखित, इसमें 36 अध्यायों में 6,000 श्लोक हैं। ताल (लयबद्ध चक्र) का वर्णन करते हुए, भरत मुनि ने N मात्राओं (समय इकाइयों) के लयबद्ध चक्र को भरने वाले लघु और गुरु बीट्स के सभी संभावित संयोजनों की गणना की। ऐसे संयोजनों की संख्या फिबोनाची पैटर्न का अनुसरण करती है। यह पृथ्वी पर अनुक्रम की सबसे पुरानी ज्ञात घटना है — और यह गणित से नहीं, संगीत से उत्पन्न हुई।',
   },
 
-  s2Title: { en: 'Virahanka (~600 CE) — The First Discovery', hi: 'विरहांक (~600 ईस्वी) — पहली खोज' },
+  s2Title: {
+    en: 'Pingala & Chandahshastra (~200 BCE) — From Music to Prosody',
+    hi: 'पिंगल और छन्दशास्त्र (~200 ईसा पूर्व) — संगीत से काव्यशास्त्र तक',
+  },
   s2Body: {
-    en: "Virahanka's Vrittajatisamuccaya explicitly derives the recurrence relation for counting syllabic patterns. He writes: combining the two preceding counts gives the next. This is the Fibonacci recurrence in full generality — 600 years before Fibonacci's Liber Abaci (1202 CE). Virahanka also recognized the sequence as a pure mathematical structure beyond the prosody context, making his discovery doubly significant.",
-    hi: 'विरहांक की वृत्तजातिसमुच्चय में अक्षर पैटर्न की गणना के लिए पुनरावृत्ति संबंध स्पष्ट रूप से व्युत्पन्न किया गया है। वे लिखते हैं: दो पूर्ववर्ती गणनाओं को मिलाने से अगली मिलती है। यह पूर्ण सामान्यता में फिबोनाची पुनरावृत्ति है — फिबोनाची की लिबर अबासी (1202 ईस्वी) से 600 साल पहले।',
-  },
-  s2Sanskrit: { en: 'द्वयोर्लघ्वोर्गुरुवद्वृत्तेन मिश्रौ च', hi: 'द्वयोर्लघ्वोर्गुरुवद्वृत्तेन मिश्रौ च' },
-  s2SanskritTrans: {
-    en: '"Combining the two preceding [counts] gives the next"',
-    hi: '"दो पूर्ववर्ती [गणनाओं] को मिलाने से अगली मिलती है"',
+    en: "Around the same period (~200 BCE), the scholar Pingala wrote the Chandahshastra — the foundational text of Sanskrit prosody (the science of poetic meter). He developed a binary encoding of syllables: laghu (light, short = 0) and guru (heavy, long = 1). Any sequence of L laghu and G guru syllables gives 2^(L+G) possible meters. In examining how many ways you can arrange syllables to produce a meter of N beats, the count again follows the Fibonacci sequence. Pingala also discovered the Meruprastara — Mount Meru's Triangle — which is what the West calls Pascal's Triangle, predating Pascal by 1,800 years. The diagonal sums of the Meruprastara are exactly the Fibonacci numbers.",
+    hi: 'लगभग उसी काल (~200 ईसा पूर्व) में, विद्वान पिंगल ने छन्दशास्त्र लिखा — संस्कृत छंद-विज्ञान का मूल ग्रंथ। उन्होंने अक्षरों का द्विआधारी एन्कोडिंग विकसित किया: लघु (छोटा = 0) और गुरु (लंबा = 1)। पिंगल ने मेरुप्रस्तार भी खोजा — मेरु पर्वत का त्रिभुज — जिसे पश्चिम पास्कल त्रिभुज कहता है, पास्कल से 1,800 साल पहले। मेरुप्रस्तार के विकर्ण योग ठीक फिबोनाची संख्याएँ हैं।',
   },
 
-  s3Title: { en: 'Hemachandra (1150 CE) — 52 Years Before Fibonacci', hi: 'हेमचंद्र (1150 ईस्वी) — फिबोनाची से 52 साल पहले' },
+  s3Title: {
+    en: 'Virahanka (~600 CE) — The First Explicit Recurrence Relation',
+    hi: 'विरहांका (~600 ईस्वी) — पहला स्पष्ट पुनरावृत्ति संबंध',
+  },
   s3Body: {
-    en: 'Jain scholar Acharya Hemachandra, in his Chandonushasana (1150 CE), states the rule with perfect clarity: the number of meter patterns for N beats equals patterns(N-1) + patterns(N-2). This is identical to the modern definition F(n) = F(n-1) + F(n-2). Hemachandra published this in 1150 CE. Fibonacci published in 1202 CE — just 52 years later. The sequence is sometimes called the "Virahanka-Hemachandra sequence" by historians who are aware of the Indian precedent.',
-    hi: 'जैन विद्वान आचार्य हेमचंद्र ने अपनी छंदानुशासन (1150 ईस्वी) में नियम को पूर्ण स्पष्टता से बताया: N मात्राओं के लिए मात्रा पैटर्न की संख्या = पैटर्न(N-1) + पैटर्न(N-2)। यह आधुनिक परिभाषा F(n) = F(n-1) + F(n-2) के समान है। हेमचंद्र ने 1150 ईस्वी में प्रकाशित किया, फिबोनाची ने 1202 में — केवल 52 साल बाद।',
+    en: "The Sanskrit scholar Virahanka (around 600 CE) wrote the Vrittajatisamuccaya — a text on poetic forms. He was the first to state the Fibonacci recurrence relation EXPLICITLY, in Sanskrit: the count for N matras equals the sum of the counts for (N−1) and (N−2) matras. This is F(n) = F(n−1) + F(n−2) — the defining recurrence relation. Pingala observed the pattern; Virahanka named the mechanism. His original Sanskrit reads: the next count in the sequence is obtained by adding the two preceding counts. He listed the first terms of the sequence and verified the rule holds throughout. This is 600 years before Fibonacci and contains everything modern mathematicians associate with Fibonacci's contribution.",
+    hi: 'संस्कृत विद्वान विरहांका (लगभग 600 ईस्वी) ने वृत्तजातिसमुच्चय लिखा — काव्य रूपों पर एक ग्रंथ। वे फिबोनाची पुनरावृत्ति संबंध को स्पष्ट रूप से कहने वाले पहले थे: N मात्राओं की गिनती (N−1) और (N−2) मात्राओं की गिनती के योग के बराबर है। यह F(n) = F(n−1) + F(n−2) है। पिंगल ने पैटर्न देखा; विरहांका ने तंत्र को नाम दिया। यह फिबोनाची से 600 साल पहले है।',
   },
 
-  s4Title: { en: 'Pingala (~200 BCE) — The Seed: Mount Meru', hi: 'पिंगल (~200 ईसा पूर्व) — बीज: मेरु प्रस्तार' },
+  s4Title: {
+    en: 'Hemachandra (1150 CE) — Independent Derivation, 52 Years Before Fibonacci',
+    hi: 'हेमचंद्र (1150 ईस्वी) — स्वतंत्र व्युत्पत्ति, फिबोनाची से 52 साल पहले',
+  },
   s4Body: {
-    en: "Even earlier: Pingala's Chandahshastra (~200 BCE) introduces the Meruprastara — the \"Mount Meru arrangement\" of syllabic combinations. This is Pascal's triangle, 1800 years before Pascal! The diagonals of Meruprastara sum precisely to the Fibonacci numbers: 1, 1, 2, 3, 5, 8, 13... Pingala did not explicitly state the Fibonacci recurrence, but the mathematical structure was fully present — waiting for Virahanka to draw the connecting line.",
-    hi: 'और भी पहले: पिंगल की छंदःशास्त्र (~200 ईसा पूर्व) में मेरु प्रस्तार की शुरुआत है — अक्षर संयोजनों की "माउंट मेरु व्यवस्था"। यह पास्कल के त्रिभुज है, पास्कल से 1800 साल पहले! मेरु प्रस्तार के विकर्णों का योग फिबोनाची संख्याएँ देता है: 1, 1, 2, 3, 5, 8, 13... पिंगल ने फिबोनाची पुनरावृत्ति स्पष्ट रूप से नहीं बताई, लेकिन गणितीय संरचना पूरी तरह मौजूद थी।',
+    en: "The Jain mathematician and polymath Hemachandra (1089–1172 CE) independently derived the same sequence in his Chandonushasana (a treatise on prosody), writing that the number of meters of length N equals the sum of meters of lengths (N−1) and (N−2). He gave the same explicit recurrence. He wrote this around 1150 CE — just 52 years before Fibonacci's Liber Abaci (1202 CE). Hemachandra was working in the same Indian tradition that had known this sequence for 1,300 years. Fibonacci encountered it in North Africa through Arabic sources. The sequence is known as the Hemachandra-Fibonacci sequence in some modern mathematical histories — a fairer attribution.",
+    hi: 'जैन गणितज्ञ और विद्वान हेमचंद्र (1089–1172 ईस्वी) ने स्वतंत्र रूप से अपने छन्दोनुशासन में उसी अनुक्रम को व्युत्पन्न किया। उन्होंने यह लगभग 1150 ईस्वी में लिखा — फिबोनाची की लिबर अबासी (1202 ईस्वी) से मात्र 52 साल पहले। कुछ आधुनिक गणितीय इतिहासों में इस अनुक्रम को हेमचंद्र-फिबोनाची अनुक्रम के रूप में जाना जाता है — एक अधिक उचित श्रेय।',
   },
 
-  s5Title: { en: 'How Fibonacci Got Credit', hi: 'फिबोनाची को श्रेय कैसे मिला' },
+  s5Title: {
+    en: 'How Fibonacci Got Credit — The Translation Chain',
+    hi: 'फिबोनाची को श्रेय कैसे मिला — अनुवाद श्रृंखला',
+  },
   s5Body: {
-    en: 'Leonardo of Pisa (nicknamed "Fibonacci") traveled to North Africa and studied with Arab mathematicians who had inherited Indian mathematical knowledge — translated in Baghdad during the 8th–9th centuries under the Abbasid Caliph Al-Mansur. Fibonacci introduced the sequence to Europe in Liber Abaci (1202 CE) — framed around rabbit breeding, not poetry. Western historians named it after him because they were simply unaware of the Indian precedent. The sequence should more accurately be called the Virahanka-Hemachandra sequence.',
-    hi: 'लियोनार्डो ऑफ पीसा (उपनाम "फिबोनाची") उत्तरी अफ्रीका गए और अरब गणितज्ञों से अध्ययन किया जिन्होंने भारतीय गणितीय ज्ञान विरासत में पाया था — 8वीं-9वीं शताब्दी में बगदाद में अनुवादित। फिबोनाची ने 1202 ईस्वी में लिबर अबासी में यूरोप को अनुक्रम से परिचित कराया — खरगोश प्रजनन के संदर्भ में। पश्चिमी इतिहासकारों ने उनके नाम पर इसका नाम रखा क्योंकि वे भारतीय पूर्ववृत्त से अनजान थे।',
+    en: "Leonardo of Pisa (Fibonacci) was not a plagiarist — he simply encountered Indian mathematics through the Arabic translation chain and introduced it to an audience that had never seen it. His father was a customs official in North Africa; Leonardo studied mathematics with Arab merchants who had access to translated Indian texts. His 1202 CE book Liber Abaci (Book of Calculation) presented the famous rabbit-breeding problem whose answer follows the Fibonacci sequence. He gets credit in the West because he was the first to publish it there, in a language Europeans read. But the sequence was already 1,400 years old by then — born in Indian music, refined in Indian poetry, and transmitted through Baghdad.",
+    hi: 'पीसा के लियोनार्डो (फिबोनाची) साहित्यिक चोर नहीं थे — उन्होंने बस अरबी अनुवाद श्रृंखला के माध्यम से भारतीय गणित का सामना किया। उनके पिता उत्तरी अफ्रीका में एक सीमा शुल्क अधिकारी थे; लियोनार्डो ने उन अरब व्यापारियों के साथ गणित का अध्ययन किया जिनके पास अनुवादित भारतीय ग्रंथों तक पहुँच थी। उनकी 1202 ईस्वी की पुस्तक लिबर अबासी ने प्रसिद्ध खरगोश-प्रजनन समस्या प्रस्तुत की। वे पश्चिम में श्रेय पाते हैं क्योंकि वे वहाँ इसे प्रकाशित करने वाले पहले थे।',
   },
 
-  s6Title: { en: 'The Sequence in Nature', hi: 'प्रकृति में यह अनुक्रम' },
+  s6Title: {
+    en: 'The Sequence in Nature — Why It Appears Everywhere',
+    hi: 'प्रकृति में अनुक्रम — यह हर जगह क्यों दिखता है',
+  },
   s6Body: {
-    en: "The Fibonacci sequence appears throughout nature with uncanny precision. Flower petals: lilies have 3, buttercups have 5, daisies have 13, 21, or 34. Sunflower seed spirals always form two sets — 34 clockwise and 55 counterclockwise (consecutive Fibonacci numbers). The nautilus shell grows in a golden spiral derived from Fibonacci ratios. Many galaxy arms follow Fibonacci spiral patterns. The reason: as n grows, the ratio F(n)/F(n-1) converges to the Golden Ratio φ = 1.618... — the most efficient packing ratio in nature. Indian prosodists had found this universal constant through counting poetry.",
-    hi: 'फिबोनाची अनुक्रम प्रकृति में अद्भुत सटीकता के साथ प्रकट होता है। फूलों की पंखुड़ियाँ: कमल में 3, बटरकप में 5, डेजी में 13, 21 या 34। सूरजमुखी के बीज सर्पिल हमेशा दो समूह बनाते हैं — 34 दक्षिणावर्त और 55 वामावर्त। नॉटिलस शंख सुनहरे सर्पिल में बढ़ता है। अनुक्रम का कारण: जैसे-जैसे n बढ़ता है, F(n)/F(n-1) का अनुपात स्वर्णिम अनुपात φ = 1.618 की ओर अभिसरित होता है — प्रकृति में सबसे कुशल पैकिंग अनुपात।',
+    en: "The reason the Fibonacci sequence appears throughout nature is deeply mathematical: it is the most efficient packing solution for organic growth. A sunflower arranges its seeds in 34 clockwise and 55 counterclockwise spirals — both Fibonacci numbers. Flower petals: 3 (lily), 5 (buttercup), 8 (delphinium), 13 (corn marigold), 21 (aster), 34 (plantain), 55 (daisy). The nautilus shell grows in a logarithmic spiral with ratio φ (phi = 1.618...) — the golden ratio, approached by successive Fibonacci fractions: 1/1, 2/1, 3/2, 5/3, 8/5, 13/8... converging to φ. The Fibonacci sequence is nature's algorithm for optimal growth — and India found it first, in the rhythms of music.",
+    hi: 'फिबोनाची अनुक्रम प्रकृति में इसलिए दिखता है क्योंकि यह जैविक विकास के लिए सबसे कुशल पैकिंग समाधान है। एक सूरजमुखी अपने बीजों को 34 दक्षिणावर्त और 55 वामावर्त सर्पिलों में व्यवस्थित करता है — दोनों फिबोनाची संख्याएँ। फूलों की पंखुड़ियाँ: 3 (लिली), 5 (बटरकप), 8, 13, 21, 34, 55... नॉटिलस शेल अनुपात φ (फाई = 1.618...) के साथ एक लघुगणकीय सर्पिल में बढ़ता है। फिबोनाची अनुक्रम प्रकृति का एल्गोरिदम है — और भारत ने इसे पहले खोजा, संगीत की लय में।',
   },
 
-  s7Title: { en: 'Connection to Vedic Astronomy', hi: 'वैदिक ज्योतिष से संबंध' },
+  s7Title: {
+    en: 'From Music to Mathematics — The Universal Pattern',
+    hi: 'संगीत से गणित तक — सार्वभौमिक पैटर्न',
+  },
   s7Body: {
-    en: "The meta-pattern here is profound: Indian mathematicians consistently discovered abstract mathematical truths while solving practical problems — poetry (Fibonacci), commerce (zero, decimal place value), astronomy (trigonometry, sine tables). The Fibonacci-like recurrences appear in Vedic astronomy as well: the Dasha period lengths in Vimshottari Dasha (7, 10, 18, 16, 19, 17, 20, 6, 7 years) don't follow Fibonacci directly, but the underlying principle — that complex patterns emerge from simple addition rules — is the same spirit. Pingala's Meruprastara also underpins the combinatorial structures in nakshatra analysis and the binary encoding of laghu-guru syllables that influenced Boolean logic.",
-    hi: 'यहाँ मेटा-पैटर्न गहरा है: भारतीय गणितज्ञों ने लगातार व्यावहारिक समस्याओं को हल करते हुए अमूर्त गणितीय सत्यों की खोज की — काव्य (फिबोनाची), वाणिज्य (शून्य), खगोल (त्रिकोणमिति)। पिंगल का मेरु प्रस्तार नक्षत्र विश्लेषण में संयोजनात्मक संरचनाओं और लघु-गुरु अक्षरों के द्विआधारी एन्कोडिंग को भी रेखांकित करता है जिसने बूलियन तर्क को प्रभावित किया।',
+    en: "The remarkable fact about the Fibonacci sequence is how the same mathematical pattern arises independently across radically different domains — and India discovered it in the most unexpected place: music. Bharata Muni found it in the rhythmic beats of tala. Pingala found it in the syllables of Sanskrit verse. Virahanka gave it its rule. Hemachandra calculated it further. Then nature expressed it in spirals and flowers. Modern finance sees it in Elliott wave theory. Computer science uses Fibonacci heaps and search algorithms. The sequence is not an artifact of how we count — it is a fundamental property of combinatorial growth, and it took a musical genius in ancient India to first notice it in the dance of rhythm.",
+    hi: 'फिबोनाची अनुक्रम के बारे में उल्लेखनीय तथ्य यह है कि एक ही गणितीय पैटर्न बिल्कुल अलग क्षेत्रों में स्वतंत्र रूप से उत्पन्न होता है — और भारत ने इसे सबसे अप्रत्याशित स्थान पर खोजा: संगीत। भरत मुनि ने इसे ताल की लयबद्ध धड़कनों में पाया। पिंगल ने इसे संस्कृत कविता के अक्षरों में पाया। यह अनुक्रम गणनात्मक विकास का एक मूलभूत गुण है, और प्राचीन भारत में एक संगीत प्रतिभाशाली व्यक्ति ने पहले इसे लय के नृत्य में देखा।',
   },
 
-  s8Title: { en: 'Classical Sources — The True Timeline', hi: 'शास्त्रीय स्रोत — वास्तविक समयरेखा' },
+  s8Title: { en: 'Classical Sources Timeline', hi: 'शास्त्रीय स्रोत समयरेखा' },
   s8Body: {
-    en: 'The historical record is unambiguous. Five independent sources document the sequence in India before Fibonacci — spanning 1,400 years of continuous mathematical tradition from prosody to pure number theory.',
-    hi: 'ऐतिहासिक रिकॉर्ड स्पष्ट है। पाँच स्वतंत्र स्रोत फिबोनाची से पहले भारत में अनुक्रम का दस्तावेजीकरण करते हैं — छंद-शास्त्र से शुद्ध संख्या सिद्धांत तक 1,400 वर्षों की निरंतर गणितीय परंपरा।',
+    en: "The full chain of Indian priority — from Bharata Muni's musical discovery to the final European encounter via Fibonacci:",
+    hi: 'भारतीय प्राथमिकता की पूरी श्रृंखला — भरत मुनि की संगीत खोज से फिबोनाची के माध्यम से अंतिम यूरोपीय मुठभेड़ तक:',
   },
 
   backToContributions: { en: 'Back to Contributions', hi: 'योगदान पर वापस' },
-  exploreMore: { en: 'Continue Exploring', hi: 'और जानें' },
+  nextPage: { en: 'Next: Binary Numbers', hi: 'अगला: बाइनरी संख्याएँ' },
 };
 
 /* ═══════════════════════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════════════════════ */
 
-const SEQUENCE_TABLE = [
-  { n: 1, beats: 'L', count: 1 },
-  { n: 2, beats: 'LL, G', count: 2 },
-  { n: 3, beats: 'LLL, LG, GL', count: 3 },
-  { n: 4, beats: 'LLLL, LLG, LGL, GLL, GG', count: 5 },
-  { n: 5, beats: 'LLLLL, LLLG, LLGL, LGLL, GGL, GLG, LGG, GLL... ', count: 8 },
-  { n: 6, beats: '...', count: 13 },
+const SEQUENCE_DEMO = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55];
+
+const TALA_COMBOS = [
+  { matras: 1, ways: 1, combos: ['S'] },
+  { matras: 2, ways: 2, combos: ['SS', 'L'] },
+  { matras: 3, ways: 3, combos: ['SSS', 'SL', 'LS'] },
+  { matras: 4, ways: 5, combos: ['SSSS', 'SSL', 'SLS', 'LSS', 'LL'] },
+  { matras: 5, ways: 8, combos: [] },
 ];
 
 const TIMELINE = [
   {
     year: '~200 BCE',
-    name: { en: 'Pingala', hi: 'पिंगल' },
-    work: { en: 'Chandahshastra', hi: 'छंदःशास्त्र' },
-    contribution: { en: 'Meruprastara (= Pascal\'s Triangle). Diagonals sum to Fibonacci numbers.', hi: 'मेरु प्रस्तार (= पास्कल का त्रिभुज)। विकर्णों का योग = फिबोनाची संख्याएँ।' },
-    place: { en: 'India', hi: 'भारत' },
-    color: 'border-gold-primary/60',
+    who: 'Bharata Muni',
+    text: 'Natyashastra',
+    event: { en: 'FIRST: Sequence emerges from tala (rhythmic cycle) analysis — musical discovery, 22 shrutis', hi: 'पहला: ताल विश्लेषण से अनुक्रम उभरता है — संगीत खोज, 22 श्रुतियाँ' },
+    color: 'border-gold-primary/70',
+    badge: { en: 'MUSIC', hi: 'संगीत' },
+    badgeColor: 'bg-gold-primary/20 text-gold-primary',
+  },
+  {
+    year: '~200 BCE',
+    who: 'Pingala',
+    text: 'Chandahshastra',
+    event: { en: "Sequence in Sanskrit prosody (laghu/guru syllables); discovers Meruprastara (Pascal's Triangle) — diagonals give Fibonacci numbers", hi: 'संस्कृत छंद-विज्ञान में अनुक्रम (लघु/गुरु अक्षर); मेरुप्रस्तार की खोज — विकर्ण फिबोनाची संख्याएँ देते हैं' },
+    color: 'border-amber-400/60',
+    badge: { en: 'POETRY', hi: 'कविता' },
+    badgeColor: 'bg-amber-500/20 text-amber-400',
   },
   {
     year: '~600 CE',
-    name: { en: 'Virahanka', hi: 'विरहांक' },
-    work: { en: 'Vrittajatisamuccaya', hi: 'वृत्तजातिसमुच्चय' },
-    contribution: { en: 'Explicit recurrence: F(n) = F(n-1) + F(n-2). 600 years before Fibonacci.', hi: 'स्पष्ट पुनरावृत्ति: F(n) = F(n-1) + F(n-2)। फिबोनाची से 600 साल पहले।' },
-    place: { en: 'India', hi: 'भारत' },
-    color: 'border-amber-400/60',
+    who: 'Virahanka',
+    text: 'Vrittajatisamuccaya',
+    event: { en: 'First EXPLICIT recurrence relation: F(n) = F(n−1) + F(n−2) — the defining rule, stated clearly for the first time', hi: 'पहला स्पष्ट पुनरावृत्ति संबंध: F(n) = F(n−1) + F(n−2) — पहली बार स्पष्ट रूप से कहा गया' },
+    color: 'border-emerald-400/60',
+    badge: { en: 'RECURRENCE', hi: 'पुनरावृत्ति' },
+    badgeColor: 'bg-emerald-500/20 text-emerald-400',
   },
   {
     year: '~1135 CE',
-    name: { en: 'Gopala', hi: 'गोपाल' },
-    work: { en: 'Commentary on Virahanka', hi: 'विरहांक पर टीका' },
-    contribution: { en: 'Independently restates the recurrence relation in full generality.', hi: 'पुनरावृत्ति संबंध को पूर्ण सामान्यता में स्वतंत्र रूप से पुनः बताया।' },
-    place: { en: 'India', hi: 'भारत' },
-    color: 'border-emerald-400/60',
+    who: 'Gopala',
+    text: 'Commentary on Chandahshastra',
+    event: { en: 'Further systematization of the sequence in prosody, extending to longer meters', hi: 'छंद-विज्ञान में अनुक्रम का आगे व्यवस्थितकरण' },
+    color: 'border-blue-400/50',
+    badge: { en: 'PROSODY', hi: 'छंद' },
+    badgeColor: 'bg-blue-500/20 text-blue-400',
   },
   {
     year: '1150 CE',
-    name: { en: 'Hemachandra', hi: 'हेमचंद्र' },
-    work: { en: 'Chandonushasana', hi: 'छंदानुशासन' },
-    contribution: { en: 'Independent derivation — identical to modern F(n) = F(n-1) + F(n-2). 52 years before Fibonacci.', hi: 'स्वतंत्र व्युत्पत्ति — आधुनिक F(n) = F(n-1) + F(n-2) के समान। फिबोनाची से 52 साल पहले।' },
-    place: { en: 'Gujarat, India', hi: 'गुजरात, भारत' },
+    who: 'Hemachandra',
+    text: 'Chandonushasana',
+    event: { en: 'Independent derivation — 52 years before Fibonacci. Full explicit statement of the recurrence. Sometimes called the Hemachandra-Fibonacci sequence.', hi: 'स्वतंत्र व्युत्पत्ति — फिबोनाची से 52 साल पहले। कभी-कभी हेमचंद्र-फिबोनाची अनुक्रम कहा जाता है।' },
     color: 'border-violet-400/60',
+    badge: { en: '52 YRS EARLIER', hi: '52 साल पहले' },
+    badgeColor: 'bg-violet-500/20 text-violet-400',
   },
   {
     year: '1202 CE',
-    name: { en: 'Fibonacci (Leonardo of Pisa)', hi: 'फिबोनाची (लियोनार्डो ऑफ पीसा)' },
-    work: { en: 'Liber Abaci', hi: 'लिबर अबासी' },
-    contribution: { en: 'Introduces sequence to Europe via rabbit breeding problem. Gets named after him.', hi: 'खरगोश प्रजनन समस्या के माध्यम से यूरोप को अनुक्रम से परिचित कराया। उनके नाम पर नाम पड़ा।' },
-    place: { en: 'Pisa, Italy', hi: 'पीसा, इटली' },
-    color: 'border-blue-400/60',
+    who: 'Leonardo Fibonacci',
+    text: 'Liber Abaci',
+    event: { en: "Introduces sequence to Europe via rabbit-breeding problem — 1,400 years after Bharata Muni. Gets naming credit in the West.", hi: 'खरगोश-प्रजनन समस्या के माध्यम से यूरोप में अनुक्रम पेश करता है — भरत मुनि के 1,400 साल बाद।' },
+    color: 'border-red-400/40',
+    badge: { en: 'EUROPE', hi: 'यूरोप' },
+    badgeColor: 'bg-red-500/20 text-red-400',
   },
 ];
 
 const NATURE_EXAMPLES = [
-  { subject: { en: 'Lily petals', hi: 'कमल की पंखुड़ियाँ' }, value: '3', color: 'bg-pink-500/20 border-pink-500/30' },
-  { subject: { en: 'Buttercup petals', hi: 'बटरकप पंखुड़ियाँ' }, value: '5', color: 'bg-yellow-500/20 border-yellow-500/30' },
-  { subject: { en: 'Chicory petals', hi: 'चिकोरी पंखुड़ियाँ' }, value: '21', color: 'bg-blue-500/20 border-blue-500/30' },
-  { subject: { en: 'Daisy petals', hi: 'डेजी पंखुड़ियाँ' }, value: '34', color: 'bg-purple-500/20 border-purple-500/30' },
-  { subject: { en: 'Sunflower CW spirals', hi: 'सूरजमुखी दक्षिणावर्त' }, value: '34', color: 'bg-amber-500/20 border-amber-500/30' },
-  { subject: { en: 'Sunflower CCW spirals', hi: 'सूरजमुखी वामावर्त' }, value: '55', color: 'bg-orange-500/20 border-orange-500/30' },
+  { item: { en: 'Sunflower spirals', hi: 'सूरजमुखी सर्पिल' }, detail: { en: '34 clockwise, 55 counterclockwise', hi: '34 दक्षिणावर्त, 55 वामावर्त' } },
+  { item: { en: 'Lily petals', hi: 'लिली की पंखुड़ियाँ' }, detail: { en: '3 petals', hi: '3 पंखुड़ियाँ' } },
+  { item: { en: 'Buttercup petals', hi: 'बटरकप की पंखुड़ियाँ' }, detail: { en: '5 petals', hi: '5 पंखुड़ियाँ' } },
+  { item: { en: 'Delphinium petals', hi: 'डेल्फीनियम पंखुड़ियाँ' }, detail: { en: '8 petals', hi: '8 पंखुड़ियाँ' } },
+  { item: { en: 'Nautilus shell', hi: 'नॉटिलस शेल' }, detail: { en: 'phi = 1.618... golden ratio spiral', hi: 'phi = 1.618... स्वर्णिम अनुपात सर्पिल' } },
+  { item: { en: 'Pine cone spirals', hi: 'पाइन शंकु सर्पिल' }, detail: { en: '8 and 13 spiral rows', hi: '8 और 13 सर्पिल पंक्तियाँ' } },
 ];
 
 const SANSKRIT_TERMS = [
-  { term: 'Laghu', transliteration: 'laghu', meaning: 'short syllable — 1 beat in Sanskrit prosody', devanagari: 'लघु' },
-  { term: 'Guru', transliteration: 'guru', meaning: 'long syllable — 2 beats in Sanskrit prosody', devanagari: 'गुरु' },
-  { term: 'Meruprastara', transliteration: 'meru-prastāra', meaning: "Mount Meru arrangement — Pingala's Pascal's triangle (~200 BCE)", devanagari: 'मेरु प्रस्तार' },
-  { term: 'Chandahshastra', transliteration: 'chandaḥ-śāstra', meaning: 'Science of Meters — Pingala\'s foundational text on prosody', devanagari: 'छंदःशास्त्र' },
+  { term: 'Tala', transliteration: 'tāla', meaning: 'rhythmic cycle — where Bharata Muni found the sequence', devanagari: 'ताल' },
+  { term: 'Matra', transliteration: 'mātrā', meaning: 'time unit / beat in tala — the counting unit', devanagari: 'मात्रा' },
+  { term: 'Laghu', transliteration: 'laghu', meaning: "light / short — short syllable or beat (= 0 in Pingala's binary)", devanagari: 'लघु' },
+  { term: 'Guru', transliteration: 'guru', meaning: "heavy / long — long syllable or beat (= 1 in Pingala's binary)", devanagari: 'गुरु' },
+  { term: 'Meruprastara', transliteration: 'Meru-prastāra', meaning: "Mount Meru's Triangle — Pascal's triangle, 1,800 years before Pascal", devanagari: 'मेरुप्रस्तार' },
+  { term: 'Natyashastra', transliteration: 'Nāṭya-śāstra', meaning: 'Treatise on Performing Arts by Bharata Muni (~200 BCE)', devanagari: 'नाट्यशास्त्र' },
+  { term: 'Chandahshastra', transliteration: 'Chandaḥ-śāstra', meaning: 'Treatise on Prosody by Pingala (~200 BCE)', devanagari: 'छन्दशास्त्र' },
+  { term: 'Shruti', transliteration: 'śruti', meaning: '22 microtonal intervals — the mathematical foundation of Indian music in Natyashastra', devanagari: 'श्रुति' },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   SVG: Meruprastara (Pascal's Triangle) with Fibonacci diagonals
+   MERUPRASTARA SVG
    ═══════════════════════════════════════════════════════════════ */
 function MeruprastaraSVG({ hi }: { hi: boolean }) {
   const rows = [
@@ -161,125 +196,71 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
     [1, 3, 3, 1],
     [1, 4, 6, 4, 1],
     [1, 5, 10, 10, 5, 1],
-    [1, 6, 15, 20, 15, 6, 1],
   ];
 
-  // Diagonal indices (0-based row, col) that sum to Fibonacci numbers
-  // Diagonal sums: row0col0=1, (row1col0)=1, (row1col1+row2col0)=2, (row2col1+row3col0)=3,...
-  const diagonalCells: Set<string> = new Set([
-    '0,0',     // 1
-    '1,0',     // 1
-    '2,0','1,1',  // 2
-    '3,0','2,1',  // 3
-    '4,0','3,1','2,2',  // 5
-    '5,0','4,1','3,2',  // 8
-    '6,0','5,1','4,2','3,3',  // 13
+  // Highlight the shallow diagonals that sum to Fibonacci numbers
+  const fibHighlight: Set<string> = new Set([
+    '0-0',
+    '1-0',
+    '0-1', '2-0',
+    '1-1', '0-2', '3-0',
+    '2-1', '1-2', '0-3', '4-0',
+    '3-1', '2-2', '1-3', '0-4', '5-0',
   ]);
 
-  const W = 320;
-  const H = 240;
-  const cellW = 38;
-  const cellH = 30;
+  const cellW = 44;
+  const cellH = 38;
+  const totalCols = 6;
+  const svgW = totalCols * cellW + 20;
+  const svgH = rows.length * cellH + 20;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="max-w-xs mx-auto">
-      <defs>
-        <filter id="glow-fib">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      {rows.map((row, ri) => {
-        const rowWidth = row.length * cellW;
-        const startX = (W - rowWidth) / 2;
-        const y = ri * cellH + 20;
-        return row.map((val, ci) => {
-          const x = startX + ci * cellW + cellW / 2;
-          const key = `${ri},${ci}`;
-          const isHighlighted = diagonalCells.has(key);
-          return (
-            <g key={key}>
-              <circle
-                cx={x}
-                cy={y}
-                r={14}
-                fill={isHighlighted ? 'rgba(212,168,83,0.25)' : 'rgba(255,255,255,0.03)'}
-                stroke={isHighlighted ? 'rgba(212,168,83,0.8)' : 'rgba(255,255,255,0.08)'}
-                strokeWidth={isHighlighted ? 1.5 : 1}
-                filter={isHighlighted ? 'url(#glow-fib)' : undefined}
-              />
-              <text
-                x={x}
-                y={y + 5}
-                textAnchor="middle"
-                fontSize={val > 9 ? 9 : 11}
-                fill={isHighlighted ? '#f0d48a' : 'rgba(230,226,216,0.5)'}
-                fontWeight={isHighlighted ? 'bold' : 'normal'}
-              >
-                {val}
-              </text>
-            </g>
-          );
-        });
-      })}
-
-      {/* Legend */}
-      <circle cx={10} cy={H - 16} r={6} fill="rgba(212,168,83,0.25)" stroke="rgba(212,168,83,0.8)" strokeWidth={1.5} />
-      <text x={22} y={H - 11} fontSize={9} fill="rgba(212,168,83,0.8)">
-        {hi ? 'विकर्ण योग = फिबोनाची' : 'Diagonal sums = Fibonacci'}
-      </text>
-    </svg>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   SVG: Fibonacci spiral approximation
-   ═══════════════════════════════════════════════════════════════ */
-function FibonacciSpiralSVG() {
-  // Boxes: 1,1,2,3,5,8 — approximate spiral from squares
-  const W = 280;
-  const H = 200;
-  // We'll draw the classic nested squares arrangement
-  const unit = 18;
-  // Positions (x,y,size) for squares 1,1,2,3,5,8,13 scaled by unit
-  const squares = [
-    { x: 8 * unit, y: 5 * unit, s: 1 * unit, color: 'rgba(212,168,83,0.6)' },
-    { x: 8 * unit, y: 4 * unit, s: 1 * unit, color: 'rgba(212,168,83,0.55)' },
-    { x: 6 * unit, y: 4 * unit, s: 2 * unit, color: 'rgba(212,168,83,0.45)' },
-    { x: 3 * unit, y: 4 * unit, s: 3 * unit, color: 'rgba(212,168,83,0.35)' },
-    { x: 3 * unit, y: -1 * unit, s: 5 * unit, color: 'rgba(212,168,83,0.25)' },
-    { x: -5 * unit, y: -1 * unit, s: 8 * unit, color: 'rgba(212,168,83,0.15)' },
-  ];
-  const labels = ['1', '1', '2', '3', '5', '8'];
-
-  return (
-    <svg viewBox={`-10 -10 ${W} ${H}`} width="100%" className="max-w-xs mx-auto">
-      {squares.map((sq, i) => (
-        <g key={i}>
-          <rect
-            x={sq.x} y={sq.y} width={sq.s} height={sq.s}
-            fill={sq.color}
-            stroke="rgba(212,168,83,0.5)"
-            strokeWidth={1}
-            rx={2}
-          />
-          <text
-            x={sq.x + sq.s / 2} y={sq.y + sq.s / 2 + 4}
-            textAnchor="middle"
-            fontSize={Math.max(8, sq.s * 0.35)}
-            fill="rgba(240,212,138,0.9)"
-            fontWeight="bold"
-          >
-            {labels[i]}
-          </text>
-        </g>
-      ))}
-      {/* Spiral arc approximation */}
-      <path
-        d={`M ${8 * unit + unit} ${5 * unit} Q ${9 * unit} ${3 * unit} ${8 * unit} ${4 * unit}`}
-        fill="none" stroke="rgba(240,212,138,0.7)" strokeWidth={1.5}
-      />
-    </svg>
+    <div className="overflow-x-auto">
+      <svg
+        width={svgW}
+        height={svgH}
+        viewBox={`0 0 ${svgW} ${svgH}`}
+        className="mx-auto"
+      >
+        {rows.map((row, r) => {
+          const offsetX = ((totalCols - row.length) * cellW) / 2 + 10;
+          return row.map((val, c) => {
+            const x = offsetX + c * cellW;
+            const y = r * cellH + 10;
+            const isHighlighted = fibHighlight.has(`${r}-${c}`);
+            return (
+              <g key={`${r}-${c}`}>
+                <rect
+                  x={x + 2}
+                  y={y + 2}
+                  width={cellW - 4}
+                  height={cellH - 4}
+                  rx={5}
+                  fill={isHighlighted ? 'rgba(212,168,83,0.18)' : 'rgba(255,255,255,0.03)'}
+                  stroke={isHighlighted ? 'rgba(212,168,83,0.5)' : 'rgba(255,255,255,0.08)'}
+                  strokeWidth={1}
+                />
+                <text
+                  x={x + cellW / 2}
+                  y={y + cellH / 2 + 4}
+                  textAnchor="middle"
+                  fontSize={isHighlighted ? 13 : 11}
+                  fontWeight={isHighlighted ? 'bold' : 'normal'}
+                  fill={isHighlighted ? '#f0d48a' : '#8a8478'}
+                >
+                  {val}
+                </text>
+              </g>
+            );
+          });
+        })}
+      </svg>
+      <div className="text-center mt-2 text-xs text-text-secondary/60">
+        {hi
+          ? 'मेरुप्रस्तार — सोने में हाइलाइट किए गए विकर्ण: 1, 1, 2, 3, 5, 8... (फिबोनाची)'
+          : 'Meruprastara — diagonals highlighted in gold: 1, 1, 2, 3, 5, 8... (Fibonacci)'}
+      </div>
+    </div>
   );
 }
 
@@ -289,27 +270,25 @@ function FibonacciSpiralSVG() {
 export default function FibonacciPage() {
   const locale = useLocale() as Locale;
   const hi = locale === 'hi';
-  const t = (obj: { en: string; hi: string }) => (hi ? obj.hi : obj.en);
-
-  const fibSeq = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89];
+  const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
   return (
     <div className="min-h-screen">
       {/* ── HERO ──────────────────────────────────────────────── */}
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(35)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full bg-gold-primary/10"
               style={{
-                width: `${(i % 5 + 1) * 2}px`,
-                height: `${(i % 5 + 1) * 2}px`,
-                left: `${(i * 23 + 5) % 100}%`,
-                top: `${(i * 31 + 9) % 100}%`,
+                width: `${(i % 4 + 1) * 2}px`,
+                height: `${(i % 4 + 1) * 2}px`,
+                left: `${(i * 19 + 3) % 100}%`,
+                top: `${(i * 29 + 7) % 100}%`,
               }}
-              animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.8, 1.4, 0.8] }}
-              transition={{ duration: 3 + (i % 5), repeat: Infinity, delay: i * 0.18 }}
+              animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.8, 1.3, 0.8] }}
+              transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.2 }}
             />
           ))}
         </div>
@@ -318,252 +297,264 @@ export default function FibonacciPage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-primary/30 to-amber-500/10 border border-gold-primary/30 flex items-center justify-center">
-                {/* Fibonacci spiral icon */}
-                <svg viewBox="0 0 40 40" width="40" height="40">
-                  <path d="M20 20 Q20 8 32 8 Q32 20 20 20 Q8 20 8 32 Q20 32 20 20" fill="none" stroke="#d4a853" strokeWidth="2" />
-                  <circle cx="20" cy="20" r="2" fill="#d4a853" />
-                </svg>
+                <Music className="w-10 h-10 text-gold-primary" />
               </div>
             </div>
             <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-gold-gradient mb-4 leading-tight"
-              style={{ fontFamily: hi ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-black text-gold-gradient mb-4"
+              style={{ fontFamily: 'var(--font-heading)' }}
             >
               {t(L.title)}
             </h1>
-            <p className="text-base sm:text-lg text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
               {t(L.subtitle)}
             </p>
           </motion.div>
 
-          {/* Animated sequence display */}
+          {/* sequence display */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
+            initial={{ opacity: 0, scale: 0.7 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
             className="mt-10"
           >
-            <div className="inline-flex flex-wrap justify-center gap-2 sm:gap-3 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-6 sm:px-10 py-6">
-              {fibSeq.map((n, i) => (
+            <div className="inline-flex flex-wrap justify-center gap-1 sm:gap-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-6 py-5">
+              {SEQUENCE_DEMO.map((n, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.08, type: 'spring' as const }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + i * 0.08 }}
                   className="flex flex-col items-center"
                 >
                   <span
-                    className="text-xl sm:text-2xl font-black bg-gradient-to-b from-gold-light to-gold-primary bg-clip-text text-transparent"
+                    className="text-2xl sm:text-3xl font-black text-gold-primary"
                     style={{ fontFamily: 'var(--font-heading)' }}
                   >
                     {n}
                   </span>
-                  {i < fibSeq.length - 1 && (
-                    <span className="text-gold-primary/40 text-xs mt-1">,</span>
-                  )}
                 </motion.div>
               ))}
-              <motion.span
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.6 }}
-                className="text-gold-primary/50 text-xl self-center ml-1"
+                transition={{ delay: 1.7 }}
+                className="flex items-center text-gold-primary/50 text-2xl font-bold pl-1"
               >
                 ...
-              </motion.span>
+              </motion.div>
             </div>
-            <p className="text-text-secondary/60 text-xs mt-3">
+            <div className="text-text-secondary/60 text-xs mt-3">
               {hi
-                ? 'विरहांक द्वारा ~600 ईस्वी में, हेमचंद्र द्वारा 1150 ईस्वी में — फिबोनाची से 600 और 52 साल पहले'
-                : 'By Virahanka ~600 CE, Hemachandra 1150 CE — 600 and 52 years before Fibonacci'}
-            </p>
+                ? 'भरत मुनि (~200 ईसा पूर्व) → पिंगल (~200 ईसा पूर्व) → विरहांका (~600 ईस्वी) → हेमचंद्र (1150 ईस्वी) → फिबोनाची (1202 ईस्वी)'
+                : 'Bharata Muni (~200 BCE) → Pingala (~200 BCE) → Virahanka (~600 CE) → Hemachandra (1150 CE) → Fibonacci (1202 CE)'}
+            </div>
           </motion.div>
         </div>
       </section>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20 space-y-2">
 
-        {/* ═══ SECTION 1: Prosody Problem ═══ */}
+        {/* ═══ SECTION 1 — BHARATA MUNI ═══ */}
         <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
+          <div className="mb-4 inline-flex items-center gap-2 bg-gold-primary/15 border border-gold-primary/30 rounded-full px-4 py-1.5 text-xs font-bold text-gold-light uppercase tracking-wider">
+            {hi ? 'सबसे पुरानी खोज — संगीत से' : 'Earliest Discovery — From Music'}
+          </div>
           <p>{t(L.s1Body)}</p>
 
-          <div className="mt-6 overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gold-primary/20">
-                  <th className="text-left py-3 px-3 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {hi ? 'मात्राएँ (N)' : 'Beats (N)'}
-                  </th>
-                  <th className="text-left py-3 px-3 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {hi ? 'पैटर्न' : 'Patterns'}
-                  </th>
-                  <th className="text-left py-3 px-3 text-gold-light font-semibold text-xs uppercase tracking-wider">
-                    {hi ? 'कुल = F(N)' : 'Count = F(N)'}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {SEQUENCE_TABLE.map((row, i) => (
-                  <motion.tr
-                    key={i}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.07 }}
-                    className="border-b border-white/[0.04]"
-                  >
-                    <td className="py-3 px-3">
-                      <span className="font-bold text-gold-primary">{row.n}</span>
-                    </td>
-                    <td className="py-3 px-3 text-text-secondary text-xs font-mono">
-                      {row.beats}
-                    </td>
-                    <td className="py-3 px-3">
-                      <span className="text-gold-light font-bold text-base">{row.count}</span>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+          {/* tala combinations demo */}
+          <div className="mt-6 space-y-3">
+            <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider">
+              {hi ? 'N मात्राओं को भरने के तरीके (S = लघु/छोटा, L = गुरु/लंबा)' : 'Ways to fill N matras (S = short/laghu, L = long/guru)'}
+            </h4>
+            {TALA_COMBOS.map((row, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -15 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="flex items-center gap-3 rounded-lg bg-white/[0.02] border border-white/[0.05] px-4 py-3"
+              >
+                <span className="text-gold-primary font-bold text-sm w-20 flex-shrink-0 font-mono">
+                  {row.matras} {hi ? 'मात्रा' : 'matra'}
+                </span>
+                <span className="text-gold-light font-bold text-xl w-8 flex-shrink-0">{row.ways}</span>
+                <span className="text-text-secondary/60 text-xs font-mono flex-1 hidden sm:block">
+                  {row.combos.length > 0 ? row.combos.join(', ') : `(${row.ways} combinations)`}
+                </span>
+                <span className="text-gold-primary/40 text-xs flex-shrink-0 font-mono">
+                  F({row.matras})
+                </span>
+              </motion.div>
+            ))}
+            <div className="text-text-secondary/60 text-xs italic pl-2">
+              {hi
+                ? 'यह फिबोनाची अनुक्रम है: 1, 2, 3, 5, 8... — भरत मुनि ने संगीत में खोजा।'
+                : 'This is the Fibonacci sequence: 1, 2, 3, 5, 8... — discovered by Bharata Muni in music.'}
+            </div>
           </div>
 
-          <div className="mt-4 bg-gold-primary/5 border border-gold-primary/20 rounded-lg px-4 py-3 text-sm text-text-primary">
-            <span className="text-gold-light font-semibold">
-              {hi ? 'नियम: ' : 'The rule: '}
-            </span>
-            {hi
-              ? 'F(N) = F(N−1) + F(N−2) — अगले की कुल संख्या = पिछले दो की संख्याओं का योग। यही फिबोनाची अनुक्रम है।'
-              : 'F(N) = F(N−1) + F(N−2) — the count for N beats = sum of the two preceding counts. This IS the Fibonacci sequence.'}
+          <div className="mt-5 bg-white/[0.02] border border-gold-primary/15 rounded-xl p-5">
+            <div className="text-gold-light font-semibold text-sm mb-2">
+              {hi ? 'नाट्यशास्त्र में 22 श्रुतियाँ' : '22 Shrutis in the Natyashastra'}
+            </div>
+            <div className="text-text-secondary text-sm">
+              {hi
+                ? 'नाट्यशास्त्र में 22 श्रुतियों (सूक्ष्म स्वरांतर अंतरालों) का भी वर्णन है जो भारतीय शास्त्रीय संगीत की गणितीय नींव बनाती हैं। ये अंतराल एक अद्वितीय ट्यूनिंग प्रणाली बनाते हैं जो आधुनिक पश्चिमी 12-टोन समान स्वभाव से पहले की है।'
+                : 'The Natyashastra also describes 22 shrutis (microtonal intervals) that form the mathematical foundation of Indian classical music. These intervals create a unique tuning system that predates the modern Western 12-tone equal temperament.'}
+            </div>
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 2: Virahanka ═══ */}
+        {/* ═══ SECTION 2 — PINGALA ═══ */}
         <LessonSection number={2} title={t(L.s2Title)}>
           <p>{t(L.s2Body)}</p>
+          <div className="mt-6">
+            <div className="text-gold-light font-semibold text-sm mb-4 uppercase tracking-wider">
+              {hi ? 'मेरुप्रस्तार — पास्कल से 1,800 साल पहले' : 'Meruprastara — 1,800 years before Pascal'}
+            </div>
+            <div className="bg-white/[0.02] border border-gold-primary/10 rounded-xl p-4">
+              <MeruprastaraSVG hi={hi} />
+            </div>
+            <div className="mt-4 text-sm text-text-secondary">
+              {hi
+                ? 'विकर्ण योग: 1, 1, 2, 3, 5, 8, 13... प्रत्येक विकर्ण को तिरछे जोड़ें और आपको फिबोनाची अनुक्रम मिलता है। पिंगल ने यह खोज ~200 ईसा पूर्व की।'
+                : 'Diagonal sums: 1, 1, 2, 3, 5, 8, 13... Sum each shallow diagonal and you get the Fibonacci sequence. Pingala discovered this ~200 BCE.'}
+            </div>
+          </div>
+        </LessonSection>
 
+        {/* ═══ SECTION 3 — VIRAHANKA ═══ */}
+        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
+          <p>{t(L.s3Body)}</p>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="my-6 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
+            className="my-5 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
           >
             <div
               className="text-xl sm:text-2xl text-gold-primary font-bold mb-2"
               style={{ fontFamily: 'var(--font-devanagari-heading)' }}
             >
-              {t(L.s2Sanskrit)}
+              द्वयोर्लघ्वोर्गुरुवद्वृत्तेन मिश्रौ च
             </div>
-            <div className="text-gold-light/70 text-sm italic">{t(L.s2SanskritTrans)}</div>
-            <div className="text-text-secondary/60 text-xs mt-1">— Virahanka, Vrittajatisamuccaya, ~600 CE</div>
+            <div className="text-gold-light/70 text-sm italic mb-3">
+              {hi
+                ? '"दो पूर्ववर्ती गणनाओं को मिलाने से अगली मिलती है"'
+                : '"Combining the two preceding [counts] gives the next"'}
+            </div>
+            <div className="font-mono text-gold-primary text-lg">F(n) = F(n−1) + F(n−2)</div>
+            <div className="text-text-secondary/60 text-xs mt-1">
+              {hi ? 'विरहांका, ~600 ईस्वी — फिबोनाची से 600 साल पहले' : 'Virahanka, ~600 CE — 600 years before Fibonacci'}
+            </div>
           </motion.div>
-
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <div className="flex-1 bg-white/[0.02] border border-gold-primary/20 rounded-xl p-4 text-center">
-              <div className="text-3xl font-black text-gold-primary mb-1" style={{ fontFamily: 'var(--font-heading)' }}>600</div>
-              <div className="text-gold-light text-sm font-semibold">{hi ? 'साल पहले' : 'years before'}</div>
-              <div className="text-text-secondary text-xs mt-1">{hi ? 'फिबोनाची (1202 ईस्वी) से' : "Fibonacci's 1202 CE"}</div>
-            </div>
-            <div className="flex-1 bg-white/[0.02] border border-amber-500/20 rounded-xl p-4 text-center">
-              <div className="text-3xl font-black text-amber-400 mb-1" style={{ fontFamily: 'var(--font-heading)' }}>~600</div>
-              <div className="text-amber-300/80 text-sm font-semibold">{hi ? 'ईस्वी' : 'CE'}</div>
-              <div className="text-text-secondary text-xs mt-1">{hi ? 'विरहांक की खोज' : "Virahanka's discovery"}</div>
-            </div>
-          </div>
         </LessonSection>
 
-        {/* ═══ SECTION 3: Hemachandra ═══ */}
-        <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
-          <p>{t(L.s3Body)}</p>
-
-          <div className="mt-6 bg-white/[0.02] border border-violet-500/20 rounded-xl p-5">
-            <div className="text-violet-300/80 text-xs uppercase tracking-wider font-semibold mb-3">
-              {hi ? 'हेमचंद्र का नियम (1150 ईस्वी) — आधुनिक परिभाषा के समान:' : "Hemachandra's rule (1150 CE) — identical to the modern definition:"}
-            </div>
-            <div className="font-mono text-gold-light text-lg text-center py-2">
-              F(n) = F(n−1) + F(n−2)
-            </div>
-            <div className="text-center mt-2">
-              <span className="text-xs bg-violet-500/20 text-violet-300 px-3 py-1 rounded-full">
-                {hi ? 'प्रकाशित: 1150 ईस्वी — फिबोनाची से 52 साल पहले' : 'Published: 1150 CE — 52 years before Fibonacci (1202 CE)'}
-              </span>
-            </div>
-          </div>
-        </LessonSection>
-
-        {/* ═══ SECTION 4: Pingala + Meruprastara SVG ═══ */}
+        {/* ═══ SECTION 4 — HEMACHANDRA ═══ */}
         <LessonSection number={4} title={t(L.s4Title)}>
           <p>{t(L.s4Body)}</p>
-
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-            <div>
-              <h4 className="text-gold-light font-semibold text-sm mb-3 text-center uppercase tracking-wider">
-                {hi ? 'मेरु प्रस्तार (पास्कल का त्रिभुज)' : 'Meruprastara (Pascal\'s Triangle)'}
-              </h4>
-              <MeruprastaraSVG hi={hi} />
-              <p className="text-text-secondary/70 text-xs text-center mt-2">
-                {hi ? 'सुनहरी कोशिकाएँ = विकर्ण जिनका योग फिबोनाची देता है' : 'Gold cells = diagonals that sum to Fibonacci numbers'}
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider">
-                {hi ? 'विकर्ण योग:' : 'Diagonal sums:'}
-              </h4>
-              {[1, 1, 2, 3, 5, 8, 13].map((val, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className="flex items-center gap-3"
-                >
-                  <span className="text-text-secondary/50 text-xs w-12">
-                    {hi ? `विकर्ण ${i + 1}` : `Diag. ${i + 1}`}
-                  </span>
-                  <div className="flex-1 bg-white/[0.02] rounded h-7 flex items-center px-3">
-                    <div
-                      className="h-4 rounded bg-gold-primary/30"
-                      style={{ width: `${(val / 13) * 100}%`, minWidth: '8px' }}
-                    />
-                  </div>
-                  <span className="text-gold-light font-bold w-8 text-right">{val}</span>
-                </motion.div>
-              ))}
-              <div className="text-text-secondary/60 text-xs pt-1">
-                {hi ? 'पिंगल (~200 ईसा पूर्व) — पास्कल से 1800 साल पहले' : 'Pingala (~200 BCE) — 1800 years before Pascal'}
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {[
+              { label: { en: 'Hemachandra wrote', hi: 'हेमचंद्र ने लिखा' }, val: '1150 CE', color: 'border-violet-400/30' },
+              { label: { en: 'Fibonacci published', hi: 'फिबोनाची ने प्रकाशित किया' }, val: '1202 CE', color: 'border-red-400/30' },
+              { label: { en: 'Gap', hi: 'अंतर' }, val: '52 years', color: 'border-gold-primary/30' },
+            ].map((item, i) => (
+              <div key={i} className={`rounded-xl bg-white/[0.02] border ${item.color} p-4 text-center`}>
+                <div className="text-gold-primary font-bold text-2xl">{item.val}</div>
+                <div className="text-text-secondary text-sm mt-1">{t(item.label)}</div>
               </div>
+            ))}
+          </div>
+        </LessonSection>
+
+        {/* ═══ SECTION 5 — HOW FIBONACCI GOT CREDIT ═══ */}
+        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
+          <p>{t(L.s5Body)}</p>
+          <div className="mt-5 bg-white/[0.02] border border-amber-500/20 rounded-xl p-5">
+            <div className="text-amber-400 font-semibold text-sm mb-2">
+              {hi ? 'अनुवाद श्रृंखला' : 'The translation chain'}
+            </div>
+            <div className="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+              {([
+                { en: 'India', hi: 'भारत' },
+                '→',
+                { en: 'Baghdad (Arabic translations)', hi: 'बगदाद (अरबी अनुवाद)' },
+                '→',
+                { en: 'North Africa (merchants)', hi: 'उत्तरी अफ्रीका (व्यापारी)' },
+                '→',
+                { en: 'Fibonacci in Pisa', hi: 'पीसा में फिबोनाची' },
+                '→',
+                { en: 'Europe (Liber Abaci, 1202 CE)', hi: 'यूरोप (लिबर अबासी, 1202 ईस्वी)' },
+              ] as Array<string | { en: string; hi: string }>).map((item, i) =>
+                typeof item === 'string' ? (
+                  <span key={i} className="text-gold-primary/50">{item}</span>
+                ) : (
+                  <span key={i} className="bg-white/[0.03] border border-white/[0.06] rounded px-2 py-0.5">{t(item)}</span>
+                )
+              )}
             </div>
           </div>
         </LessonSection>
 
-        {/* ═══ SECTION 5: How Fibonacci Got Credit ═══ */}
-        <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
-          <p>{t(L.s5Body)}</p>
+        {/* ═══ SECTION 6 — NATURE ═══ */}
+        <LessonSection number={6} title={t(L.s6Title)}>
+          <p>{t(L.s6Body)}</p>
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
+            {NATURE_EXAMPLES.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.07 }}
+                className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
+              >
+                <div className="text-gold-light font-semibold text-sm">{t(item.item)}</div>
+                <div className="text-text-secondary text-xs mt-1 font-mono">{t(item.detail)}</div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="mt-5 bg-gold-primary/5 border border-gold-primary/15 rounded-lg p-4 text-sm text-text-secondary">
+            <span className="text-gold-light font-semibold">{hi ? 'स्वर्णिम अनुपात: ' : 'Golden Ratio: '}</span>
+            {hi
+              ? 'phi = 1.6180339... — उत्तराधिकारी फिबोनाची भिन्नों 1/1, 2/1, 3/2, 5/3, 8/5, 13/8... का सीमा मान।'
+              : 'phi = 1.6180339... — the limit of successive Fibonacci fractions 1/1, 2/1, 3/2, 5/3, 8/5, 13/8...'}
+          </div>
+        </LessonSection>
 
-          <div className="mt-6 space-y-4">
+        {/* ═══ SECTION 7 — UNIVERSALITY ═══ */}
+        <LessonSection number={7} title={t(L.s7Title)} variant="highlight">
+          <p>{t(L.s7Body)}</p>
+          <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
-              {
-                step: { en: 'India (~200 BCE – 1150 CE)', hi: 'भारत (~200 ईसा पूर्व – 1150 ईस्वी)' },
-                desc: { en: 'Sequence discovered through Sanskrit prosody. Pingala → Virahanka → Gopala → Hemachandra.', hi: 'संस्कृत छंद-शास्त्र के माध्यम से अनुक्रम की खोज। पिंगल → विरहांक → गोपाल → हेमचंद्र।' },
-                color: 'border-gold-primary/40',
-              },
-              {
-                step: { en: 'Baghdad (8th–9th century)', hi: 'बगदाद (8वीं–9वीं शताब्दी)' },
-                desc: { en: 'Indian mathematical texts translated under Abbasid patronage. Arab scholars inherit the sequence.', hi: 'अब्बासी संरक्षण में भारतीय गणितीय ग्रंथों का अनुवाद। अरब विद्वान अनुक्रम विरासत में पाते हैं।' },
-                color: 'border-blue-400/40',
-              },
-              {
-                step: { en: 'North Africa (1175–1200 CE)', hi: 'उत्तरी अफ्रीका (1175–1200 ईस्वी)' },
-                desc: { en: "Fibonacci studies with Arab mathematicians in Béjaïa (Algeria). Learns Indian-Arabic numeral system.", hi: 'फिबोनाची बेजाया (अल्जीरिया) में अरब गणितज्ञों के साथ अध्ययन करते हैं।' },
-                color: 'border-amber-400/40',
-              },
-              {
-                step: { en: 'Pisa, Italy (1202 CE)', hi: 'पीसा, इटली (1202 ईस्वी)' },
-                desc: { en: 'Liber Abaci published. Rabbit breeding problem introduces the sequence to Europe. His name sticks.', hi: 'लिबर अबासी प्रकाशित। खरगोश प्रजनन समस्या यूरोप को अनुक्रम से परिचित कराती है।' },
-                color: 'border-red-400/40',
-              },
+              { domain: { en: 'Music', hi: 'संगीत' }, who: { en: 'Bharata Muni', hi: 'भरत मुनि' }, year: '~200 BCE' },
+              { domain: { en: 'Poetry', hi: 'कविता' }, who: { en: 'Pingala', hi: 'पिंगल' }, year: '~200 BCE' },
+              { domain: { en: 'Nature', hi: 'प्रकृति' }, who: { en: 'Spirals & Petals', hi: 'सर्पिल और पंखुड़ियाँ' }, year: 'Always' },
+              { domain: { en: 'Finance', hi: 'वित्त' }, who: { en: 'Elliott Waves', hi: 'इलियट वेव्स' }, year: '1938 CE' },
             ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
+              >
+                <div className="text-gold-light font-bold text-base mb-1">{t(item.domain)}</div>
+                <div className="text-text-secondary text-xs">{t(item.who)}</div>
+                <div className="text-text-secondary/50 text-xs mt-0.5 font-mono">{item.year}</div>
+              </motion.div>
+            ))}
+          </div>
+        </LessonSection>
+
+        {/* ═══ SECTION 8 — TIMELINE ═══ */}
+        <LessonSection number={8} title={t(L.s8Title)}>
+          <p className="mb-6">{t(L.s8Body)}</p>
+          <div className="space-y-3">
+            {TIMELINE.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
@@ -572,181 +563,28 @@ export default function FibonacciPage() {
                 transition={{ delay: i * 0.1 }}
                 className={`flex gap-4 rounded-lg bg-white/[0.02] border-l-4 ${item.color} px-4 py-4`}
               >
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gold-primary/20 border border-gold-primary/30 flex items-center justify-center text-gold-primary text-xs font-bold mt-0.5">
-                  {i + 1}
+                <div className="flex-shrink-0 min-w-[90px]">
+                  <div className="text-gold-primary font-bold text-sm font-mono">{item.year}</div>
+                  <div className="text-text-secondary/70 text-xs">{item.who}</div>
+                  <div className="text-text-secondary/50 text-xs italic">{item.text}</div>
                 </div>
-                <div>
-                  <div className="text-gold-light font-semibold text-sm">{t(item.step)}</div>
-                  <div className="text-text-secondary text-sm mt-1">{t(item.desc)}</div>
+                <div className="flex-1">
+                  <div className="text-text-secondary text-sm leading-relaxed">{t(item.event)}</div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-6 bg-amber-500/10 border border-amber-500/20 rounded-lg px-4 py-3 text-sm">
-            <span className="text-amber-400 font-semibold">
-              {hi ? 'सटीक नाम: ' : 'The accurate name: '}
-            </span>
-            <span className="text-text-primary">
-              {hi
-                ? '"विरहांक-हेमचंद्र अनुक्रम" — इतिहास की जानकारी रखने वाले इतिहासकार इसे इसी नाम से पुकारते हैं।'
-                : '"Virahanka-Hemachandra sequence" — the name used by historians who are aware of the Indian precedent.'}
-            </span>
-          </div>
-        </LessonSection>
-
-        {/* ═══ SECTION 6: Sequence in Nature ═══ */}
-        <LessonSection number={6} title={t(L.s6Title)}>
-          <p>{t(L.s6Body)}</p>
-
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {NATURE_EXAMPLES.map((ex, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className={`rounded-xl border p-4 text-center ${ex.color}`}
-              >
-                <div className="text-2xl font-black text-gold-light mb-1" style={{ fontFamily: 'var(--font-heading)' }}>
-                  {ex.value}
-                </div>
-                <div className="text-text-secondary text-xs leading-tight">{t(ex.subject)}</div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-            <div>
-              <h4 className="text-gold-light font-semibold text-sm mb-3 text-center uppercase tracking-wider">
-                {hi ? 'फिबोनाची वर्ग (सर्पिल का आधार)' : 'Fibonacci Squares (basis of the spiral)'}
-              </h4>
-              <FibonacciSpiralSVG />
-            </div>
-            <div className="bg-white/[0.02] border border-gold-primary/20 rounded-xl p-5">
-              <h4 className="text-gold-light font-semibold text-sm mb-3">
-                {hi ? 'स्वर्णिम अनुपात की ओर अभिसरण' : 'Convergence to the Golden Ratio'}
-              </h4>
-              {[[1, 1], [2, 1], [3, 2], [5, 3], [8, 5], [13, 8], [21, 13]].map(([a, b], i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className="flex items-center justify-between py-1 border-b border-white/[0.04] last:border-0"
-                >
-                  <span className="text-text-secondary text-xs font-mono">{a}/{b}</span>
-                  <span className="text-gold-primary text-sm font-mono">= {(a / b).toFixed(4)}</span>
-                </motion.div>
-              ))}
-              <div className="text-gold-light font-bold text-sm mt-2 text-right">
-                φ = 1.6180...
-              </div>
-              <div className="text-text-secondary/60 text-xs mt-1 text-right">
-                {hi ? 'स्वर्णिम अनुपात' : 'The Golden Ratio'}
-              </div>
-            </div>
-          </div>
-        </LessonSection>
-
-        {/* ═══ SECTION 7: Vedic Astronomy Connection ═══ */}
-        <LessonSection number={7} title={t(L.s7Title)} variant="highlight">
-          <p>{t(L.s7Body)}</p>
-
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              {
-                icon: '📜',
-                title: { en: 'Poetry → Fibonacci', hi: 'काव्य → फिबोनाची' },
-                desc: { en: 'Counting laghu-guru syllable patterns → Fibonacci sequence (Pingala, Virahanka, Hemachandra)', hi: 'लघु-गुरु अक्षर पैटर्न गणना → फिबोनाची अनुक्रम' },
-              },
-              {
-                icon: '🔢',
-                title: { en: 'Commerce → Zero', hi: 'वाणिज्य → शून्य' },
-                desc: { en: 'Tracking debts and credits → zero as a number (Brahmagupta, 628 CE)', hi: 'ऋण-साख ट्रैकिंग → संख्या के रूप में शून्य (ब्रह्मगुप्त, 628 ईस्वी)' },
-              },
-              {
-                icon: '🌙',
-                title: { en: 'Astronomy → Trigonometry', hi: 'खगोल → त्रिकोणमिति' },
-                desc: { en: 'Predicting planetary positions → sine tables (Aryabhata, Madhava infinite series)', hi: 'ग्रह स्थितियों की भविष्यवाणी → ज्या सारणी (आर्यभट, माधव अनंत श्रृंखला)' },
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="rounded-xl bg-white/[0.02] border border-white/[0.06] p-4"
-              >
-                <div className="text-2xl mb-2">{item.icon}</div>
-                <div className="text-gold-light font-semibold text-sm mb-1">{t(item.title)}</div>
-                <div className="text-text-secondary text-xs leading-relaxed">{t(item.desc)}</div>
-              </motion.div>
-            ))}
-          </div>
-        </LessonSection>
-
-        {/* ═══ SECTION 8: Timeline ═══ */}
-        <LessonSection number={8} title={t(L.s8Title)}>
-          <p>{t(L.s8Body)}</p>
-
-          <div className="mt-6 space-y-4">
-            {TIMELINE.map((entry, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`flex gap-4 rounded-lg bg-white/[0.02] border-l-4 ${entry.color} px-4 py-4`}
-              >
                 <div className="flex-shrink-0">
-                  <div className="text-gold-primary font-bold text-sm font-mono">{entry.year}</div>
-                  <div className="text-text-secondary/70 text-xs">{t(entry.place)}</div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-gold-light font-semibold text-sm">
-                    {t(entry.name)} —{' '}
-                    <span className="italic text-text-secondary/80 font-normal">{t(entry.work)}</span>
-                  </div>
-                  <div className="text-text-secondary text-sm mt-1">{t(entry.contribution)}</div>
-                </div>
-                {i < 4 && (
-                  <span className="flex-shrink-0 self-start mt-1">
-                    <span className="text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full">
-                      {hi ? 'भारत' : 'India'}
-                    </span>
+                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${item.badgeColor}`}>
+                    {t(item.badge)}
                   </span>
-                )}
-                {i === 4 && (
-                  <span className="flex-shrink-0 self-start mt-1">
-                    <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full">
-                      {hi ? 'यूरोप' : 'Europe'}
-                    </span>
-                  </span>
-                )}
+                </div>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-6 bg-gradient-to-r from-gold-primary/10 to-amber-500/5 border border-gold-primary/20 rounded-xl px-5 py-4"
-          >
-            <div className="text-gold-light font-bold text-sm mb-1">
-              {hi ? 'निष्कर्ष:' : 'The verdict:'}
-            </div>
-            <div className="text-text-primary text-sm leading-relaxed">
-              {hi
-                ? '1,400 साल की भारतीय गणितीय परंपरा — पिंगल से हेमचंद्र तक — ने वह खोजा जो यूरोप "फिबोनाची अनुक्रम" कहता है। सटीक नाम है: विरहांक-हेमचंद्र अनुक्रम।'
-                : "1,400 years of Indian mathematical tradition — from Pingala to Hemachandra — discovered what Europe calls the 'Fibonacci sequence.' The accurate name: the Virahanka-Hemachandra sequence."}
-            </div>
-          </motion.div>
+          <div className="mt-5 bg-red-500/5 border border-red-500/20 rounded-lg p-4 text-sm text-text-secondary">
+            <span className="text-red-400 font-semibold">{hi ? 'प्राथमिकता: ' : 'Priority: '}</span>
+            {hi
+              ? 'भरत मुनि से फिबोनाची तक: 1,400 वर्ष। भारत को श्रेय मिलना चाहिए। अनुक्रम को कुछ इतिहासकारों द्वारा सही ढंग से "हेमचंद्र-फिबोनाची अनुक्रम" कहा जाता है।'
+              : 'From Bharata Muni to Fibonacci: 1,400 years. India deserves the credit. The sequence is correctly called the "Hemachandra-Fibonacci sequence" by some historians.'}
+          </div>
         </LessonSection>
 
         {/* ═══ SANSKRIT TERMS ═══ */}
@@ -754,28 +592,6 @@ export default function FibonacciPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {SANSKRIT_TERMS.map((term, i) => (
               <SanskritTermCard key={i} {...term} />
-            ))}
-          </div>
-        </LessonSection>
-
-        {/* ═══ CROSS-REFERENCES ═══ */}
-        <LessonSection title={hi ? 'इन्हें भी देखें' : 'Continue Exploring'}>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {[
-              { href: '/learn/contributions/binary', label: { en: 'Binary & Pingala', hi: 'बाइनरी और पिंगल' }, desc: { en: 'Laghu-guru encoding predates Leibniz by 1,800 years', hi: 'लघु-गुरु एन्कोडिंग लीबनिज़ से 1,800 साल पहले' } },
-              { href: '/learn/contributions/zero', label: { en: 'Zero & Brahmagupta', hi: 'शून्य और ब्रह्मगुप्त' }, desc: { en: 'The most dangerous idea in mathematical history', hi: 'गणितीय इतिहास का सबसे खतरनाक विचार' } },
-              { href: '/learn/hora', label: { en: 'Vedic Hora System', hi: 'वैदिक होरा प्रणाली' }, desc: { en: 'Mathematical patterns in planetary hour cycles', hi: 'ग्रहीय घड़ी चक्रों में गणितीय पैटर्न' } },
-            ].map((link, i) => (
-              <Link
-                key={i}
-                href={link.href}
-                className="block rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-all p-4 group"
-              >
-                <div className="text-gold-light font-semibold text-sm group-hover:text-gold-primary transition-colors">
-                  {t(link.label)} <ArrowRight className="inline w-3 h-3 ml-1" />
-                </div>
-                <div className="text-text-secondary text-xs mt-1 leading-relaxed">{t(link.desc)}</div>
-              </Link>
             ))}
           </div>
         </LessonSection>
@@ -792,7 +608,7 @@ export default function FibonacciPage() {
             href="/learn/contributions/binary"
             className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-all text-sm font-medium"
           >
-            {hi ? 'अगला: बाइनरी और पिंगल' : 'Next: Binary & Pingala'} <ArrowRight className="w-4 h-4" />
+            {t(L.nextPage)} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

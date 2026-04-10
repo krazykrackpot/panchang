@@ -24,6 +24,7 @@ interface PersonalInsight {
   natalContacts: string[];        // Planets within 3° of eclipse
   houseAffected: { house: number; meaning: string };
   nakshatraLink: string | null;   // Nakshatra lord = dasha lord match
+  transitAspects: string[];       // Saturn/Jupiter/Mars aspecting eclipse degree
   overallIntensity: 'high' | 'moderate' | 'low';
 }
 
@@ -134,16 +135,95 @@ function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, loca
     }
   }
 
-  // 5. Overall intensity
-  const factors = (dashAlert ? 1 : 0) + natalContacts.length + (nakshatraLink ? 1 : 0);
+  // 5. Transit interactions — Saturn, Jupiter, Mars aspecting the eclipse degree
+  // Vedic aspects: all planets aspect 7th (180°). Special: Mars 4th+8th, Jupiter 5th+9th, Saturn 3rd+10th
+  const transitAspects: string[] = [];
+
+  // Check if natal slow-moving planets (Saturn, Jupiter, Mars, Rahu, Ketu)
+  // aspect the eclipse degree via Vedic drishti. These natal positions represent
+  // the person's karmic blueprint — when an eclipse activates an aspected degree,
+  // that planet's significations are triggered.
+  const eclSignForAspect = Math.floor(eclipse.eclipseLongitude / 30) + 1;
+
+  for (const p of kundali.planets) {
+    const pSign = Math.floor(p.longitude / 30) + 1;
+    const signDiff = ((eclSignForAspect - pSign + 12) % 12); // houses away
+
+    // Check Vedic aspects
+    let aspects = false;
+    let aspectType = '';
+
+    // All planets: 7th aspect (opposition)
+    if (signDiff === 6) { aspects = true; aspectType = '7th aspect (opposition)'; }
+
+    // Mars special: 4th and 8th
+    if (p.planet.id === 2 && (signDiff === 3 || signDiff === 7)) {
+      aspects = true;
+      aspectType = signDiff === 3 ? '4th aspect' : '8th aspect';
+    }
+
+    // Jupiter special: 5th and 9th
+    if (p.planet.id === 4 && (signDiff === 4 || signDiff === 8)) {
+      aspects = true;
+      aspectType = signDiff === 4 ? '5th aspect (trine)' : '9th aspect (trine)';
+    }
+
+    // Saturn special: 3rd and 10th
+    if (p.planet.id === 6 && (signDiff === 2 || signDiff === 9)) {
+      aspects = true;
+      aspectType = signDiff === 2 ? '3rd aspect' : '10th aspect';
+    }
+
+    // Also check conjunction (same sign)
+    if (signDiff === 0 && p.planet.id !== 0 && p.planet.id !== 1) {
+      // Already caught by natal contacts if within 3°, but sign-level conjunction is worth noting
+      const diff = Math.abs(p.longitude - eclipse.eclipseLongitude);
+      const minDiff = Math.min(diff, 360 - diff);
+      if (minDiff >= 3 && minDiff < 15) {
+        aspects = true;
+        aspectType = 'conjunction (same sign)';
+      }
+    }
+
+    if (aspects && [2, 4, 6, 7, 8].includes(p.planet.id)) {
+      const pName = isHi ? PLANET_NAMES[p.planet.id]?.hi : PLANET_NAMES[p.planet.id]?.en;
+
+      // Specific implications based on planet + node combination
+      let implication = '';
+      if (p.planet.id === 6) { // Saturn
+        implication = eclipse.node === 'ketu'
+          ? (isHi ? 'अधिकतम कार्मिक दबाव — पुराने ढाँचे टूटेंगे' : 'maximum karmic pressure — old structures will break')
+          : (isHi ? 'दीर्घकालिक ढाँचागत परिवर्तन — धैर्य आवश्यक' : 'long-lasting structural change — patience required');
+      } else if (p.planet.id === 4) { // Jupiter
+        implication = eclipse.node === 'ketu'
+          ? (isHi ? 'गुरु/शिक्षक से आध्यात्मिक सफलता' : 'spiritual breakthrough through teacher/guru')
+          : (isHi ? 'ज्ञान विस्तार पर भौतिक बाधा — विवेक आवश्यक' : 'wisdom expansion meets material obstacle — discernment needed');
+      } else if (p.planet.id === 2) { // Mars
+        implication = isHi ? 'अचानक कार्रवाई या टकराव — ऊर्जा को सचेत रूप से चलाएं' : 'sudden action or confrontation — channel energy consciously';
+      } else if (p.planet.id === 7) { // Rahu
+        implication = isHi ? 'जुनून और भ्रम तीव्र — बड़े निर्णय स्थगित करें' : 'obsession and illusion intensified — postpone major decisions';
+      } else if (p.planet.id === 8) { // Ketu
+        implication = isHi ? 'वैराग्य और आध्यात्मिक तीव्रता चरम पर' : 'detachment and spiritual intensity at peak';
+      }
+
+      transitAspects.push(isHi
+        ? `🔥 आपके जन्म ${pName} की ${aspectType} ग्रहण अंश पर — ${implication}`
+        : `🔥 Your natal ${pName} ${aspectType} aspects the eclipse degree — ${implication}`
+      );
+    }
+  }
+
+  // 6. Overall intensity — now includes transit aspects
+  const factors = (dashAlert ? 1 : 0) + natalContacts.length + (nakshatraLink ? 1 : 0) + transitAspects.length;
   const overallIntensity: PersonalInsight['overallIntensity'] =
-    factors >= 2 ? 'high' : factors >= 1 ? 'moderate' : 'low';
+    factors >= 3 ? 'high' : factors >= 1 ? 'moderate' : 'low';
 
   return {
     dashAlert,
     natalContacts,
     houseAffected: { house, meaning: isHi ? houseMeaning.hi : houseMeaning.en },
     nakshatraLink,
+    transitAspects,
     overallIntensity,
   };
 }
@@ -291,12 +371,19 @@ export default function PersonalEclipseInsight({
           </div>
         )}
 
+        {/* Transit aspects — natal Saturn/Jupiter/Mars/Rahu/Ketu aspecting eclipse */}
+        {insight.transitAspects.map((t, i) => (
+          <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-red-500/5 border border-red-500/10">
+            <span className="text-red-300/90">{t}</span>
+          </div>
+        ))}
+
         {/* Low impact note */}
-        {insight.overallIntensity === 'low' && !insight.dashAlert && insight.natalContacts.length === 0 && (
+        {insight.overallIntensity === 'low' && !insight.dashAlert && insight.natalContacts.length === 0 && insight.transitAspects.length === 0 && (
           <p className="text-emerald-400/60 text-xs">
             {isHi
-              ? '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव — कोई ग्रह 3° के भीतर नहीं, सम्बन्धित दशा नहीं।'
-              : '✓ Minimal direct impact on your chart — no planets within 3° of eclipse, no relevant dasha active.'}
+              ? '✓ इस ग्रहण का आपकी कुण्डली पर न्यूनतम प्रत्यक्ष प्रभाव — कोई ग्रह 3° के भीतर नहीं, कोई दृष्टि नहीं, सम्बन्धित दशा नहीं।'
+              : '✓ Minimal direct impact on your chart — no planets within 3°, no aspects to eclipse, no relevant dasha active.'}
           </p>
         )}
       </div>

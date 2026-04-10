@@ -1,9 +1,16 @@
 /**
  * Eclipse Calendar Engine
- * Detects solar and lunar eclipses by checking New/Full Moon proximity to nodes
+ *
+ * Detects solar and lunar eclipses using the tithi table:
+ * - Amavasya (tithi #30) = New Moon → solar eclipse candidate
+ * - Purnima (tithi #15) = Full Moon → lunar eclipse candidate
+ *
+ * Then checks proximity to the Rahu-Ketu axis (lunar nodes) to confirm.
+ * No separate lunation scanning needed — we already compute exact tithi times.
  */
 
-import { dateToJD, getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
+import { getPlanetaryPositions, sunLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
+import { buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from './tithi-table';
 import type { Trilingual } from '@/types/panchang';
 
 export interface EclipseEvent {
@@ -27,118 +34,94 @@ const MAG_NAMES: Record<string, Trilingual> = {
   penumbral: { en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छायाकम्' },
 };
 
-function jdToDateStr(jd: number): string {
-  const J = Math.floor(jd + 0.5);
-  let l = J + 68569;
-  const n = Math.floor(4 * l / 146097);
-  l = l - Math.floor((146097 * n + 3) / 4);
-  const i = Math.floor(4000 * (l + 1) / 1461001);
-  l = l - Math.floor(1461 * i / 4) + 31;
-  const j = Math.floor(80 * l / 2447);
-  const day = l - Math.floor(2447 * j / 80);
-  l = Math.floor(j / 11);
-  const month = j + 2 - 12 * l;
-  const year = 100 * (n - 49) + i + l;
-  return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-}
-
-/**
- * Find approximate New Moon and Full Moon dates in a year
- * New Moon: Sun-Moon elongation ≈ 0°
- * Full Moon: Sun-Moon elongation ≈ 180°
- */
-function findLunations(year: number): Array<{ jd: number; type: 'new' | 'full' }> {
-  const lunations: Array<{ jd: number; type: 'new' | 'full' }> = [];
-  const startJD = dateToJD(year, 1, 1, 0);
-  const endJD = dateToJD(year, 12, 31, 23);
-
-  let prevElong = 0;
-  for (let jd = startJD; jd <= endJD; jd += 0.5) {
-    const sunL = sunLongitude(jd);
-    const moonL = moonLongitude(jd);
-    let elong = normalizeDeg(moonL - sunL);
-
-    // Detect New Moon (elongation crosses 0/360)
-    if (prevElong > 300 && elong < 60) {
-      // Refine with binary search
-      let lo = jd - 0.5, hi = jd;
-      for (let iter = 0; iter < 20; iter++) {
-        const mid = (lo + hi) / 2;
-        const e = normalizeDeg(moonLongitude(mid) - sunLongitude(mid));
-        if (e > 180) lo = mid; else hi = mid;
-      }
-      lunations.push({ jd: (lo + hi) / 2, type: 'new' });
-    }
-
-    // Detect Full Moon (elongation crosses 180)
-    if (prevElong < 180 && elong >= 180 && prevElong > 90) {
-      let lo = jd - 0.5, hi = jd;
-      for (let iter = 0; iter < 20; iter++) {
-        const mid = (lo + hi) / 2;
-        const e = normalizeDeg(moonLongitude(mid) - sunLongitude(mid));
-        if (e < 180) lo = mid; else hi = mid;
-      }
-      lunations.push({ jd: (lo + hi) / 2, type: 'full' });
-    }
-
-    prevElong = elong;
-  }
-  return lunations;
-}
-
 export function generateEclipseCalendar(year: number): EclipseEvent[] {
   const eclipses: EclipseEvent[] = [];
-  const lunations = findLunations(year);
 
-  for (const lun of lunations) {
-    const positions = getPlanetaryPositions(lun.jd);
-    const rahuLong = positions[7].longitude; // Rahu (mean node)
+  // Build tithi table for the year — gives us every tithi with exact JD
+  // Use a reference location (0°, 0°) since we only need the JD timing, not local times
+  const table = buildYearlyTithiTable(year, 0, 0, 'UTC');
 
-    if (lun.type === 'new') {
-      // Solar eclipse: New Moon near node
-      const sunL = sunLongitude(lun.jd);
-      let distToNode = Math.abs(normalizeDeg(sunL - rahuLong));
-      if (distToNode > 180) distToNode = 360 - distToNode;
+  // Amavasya = tithi #30 = New Moon → solar eclipse candidates
+  // Purnima = tithi #15 = Full Moon → lunar eclipse candidates
+  const newMoons: TithiEntry[] = lookupAllTithiByNumber(table, 30);
+  const fullMoons: TithiEntry[] = lookupAllTithiByNumber(table, 15);
 
-      if (distToNode < 18) {
-        // Eclipse likely
-        const magnitude = distToNode < 9 ? (distToNode < 5 ? 'total' : 'annular') : 'partial';
-        eclipses.push({
-          type: 'solar',
-          typeName: ECLIPSE_TYPE_NAMES.solar,
-          date: jdToDateStr(lun.jd),
-          magnitude,
-          magnitudeName: MAG_NAMES[magnitude],
-          description: {
-            en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis. Grahan Kaal applies; avoid auspicious activities.`,
-            hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं। ग्रहण काल लागू; शुभ कार्यों से बचें।`,
-            sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते। ग्रहणकालः प्रवर्तते; शुभकार्याणि वर्जयेत्।`,
-          },
-        });
-      }
-    } else {
-      // Lunar eclipse: Full Moon near node
-      const moonL = moonLongitude(lun.jd);
-      let distToNode = Math.abs(normalizeDeg(moonL - rahuLong));
-      if (distToNode > 180) distToNode = 360 - distToNode;
+  // Check each New Moon for solar eclipse (Sun near Rahu OR Ketu)
+  for (const nm of newMoons) {
+    // Use the midpoint JD of the Amavasya tithi as the conjunction time
+    const jd = (nm.startJd + nm.endJd) / 2;
+    const positions = getPlanetaryPositions(jd);
+    const rahuLong = positions[7].longitude; // Rahu (mean ascending node)
+    const ketuLong = normalizeDeg(rahuLong + 180); // Ketu = Rahu + 180°
+    const sunL = sunLongitude(jd);
 
-      if (distToNode < 12) {
-        const magnitude = distToNode < 5 ? 'total' : distToNode < 9 ? 'partial' : 'penumbral';
-        eclipses.push({
-          type: 'lunar',
-          typeName: ECLIPSE_TYPE_NAMES.lunar,
-          date: jdToDateStr(lun.jd),
-          magnitude,
-          magnitudeName: MAG_NAMES[magnitude],
-          description: {
-            en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis. Sutak period observed.`,
-            hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है। सूतक काल पालनीय।`,
-            sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति। सूतककालः पालनीयः।`,
-          },
-        });
-      }
+    // Check distance from BOTH nodes — eclipse occurs near either
+    let distToRahu = Math.abs(normalizeDeg(sunL - rahuLong));
+    if (distToRahu > 180) distToRahu = 360 - distToRahu;
+    let distToKetu = Math.abs(normalizeDeg(sunL - ketuLong));
+    if (distToKetu > 180) distToKetu = 360 - distToKetu;
+    const distToNode = Math.min(distToRahu, distToKetu);
+
+    if (distToNode < 18) {
+      // Eclipse likely — determine magnitude from node distance
+      const magnitude: EclipseEvent['magnitude'] =
+        distToNode < 5 ? 'total' :
+        distToNode < 9 ? 'annular' : 'partial';
+
+      eclipses.push({
+        type: 'solar',
+        typeName: ECLIPSE_TYPE_NAMES.solar,
+        date: nm.sunriseDate, // Use the sunrise date of this Amavasya
+        magnitude,
+        magnitudeName: MAG_NAMES[magnitude],
+        description: {
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis.`,
+          hi: `${MAG_NAMES[magnitude].hi} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं।`,
+          sa: `${MAG_NAMES[magnitude].sa} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते।`,
+        },
+      });
     }
   }
+
+  // Check each Full Moon for lunar eclipse (Moon near Rahu OR Ketu)
+  for (const fm of fullMoons) {
+    const jd = (fm.startJd + fm.endJd) / 2;
+    const positions = getPlanetaryPositions(jd);
+    const rahuLong = positions[7].longitude;
+    const ketuLong = normalizeDeg(rahuLong + 180);
+
+    // Moon is opposite Sun at Full Moon
+    const moonL = normalizeDeg(sunLongitude(jd) + 180);
+
+    // Check distance from BOTH nodes
+    let distToRahu = Math.abs(normalizeDeg(moonL - rahuLong));
+    if (distToRahu > 180) distToRahu = 360 - distToRahu;
+    let distToKetu = Math.abs(normalizeDeg(moonL - ketuLong));
+    if (distToKetu > 180) distToKetu = 360 - distToKetu;
+    const distToNode = Math.min(distToRahu, distToKetu);
+
+    if (distToNode < 12) {
+      const magnitude: EclipseEvent['magnitude'] =
+        distToNode < 5 ? 'total' :
+        distToNode < 9 ? 'partial' : 'penumbral';
+
+      eclipses.push({
+        type: 'lunar',
+        typeName: ECLIPSE_TYPE_NAMES.lunar,
+        date: fm.sunriseDate,
+        magnitude,
+        magnitudeName: MAG_NAMES[magnitude],
+        description: {
+          en: `${magnitude.charAt(0).toUpperCase() + magnitude.slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis.`,
+          hi: `${MAG_NAMES[magnitude].hi} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है।`,
+          sa: `${MAG_NAMES[magnitude].sa} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति।`,
+        },
+      });
+    }
+  }
+
+  // Sort by date
+  eclipses.sort((a, b) => a.date.localeCompare(b.date));
 
   return eclipses;
 }

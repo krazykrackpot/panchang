@@ -9,7 +9,7 @@
  * No separate lunation scanning needed — we already compute exact tithi times.
  */
 
-import { getPlanetaryPositions, sunLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
+import { dateToJD, getPlanetaryPositions, sunLongitude, moonLongitude, normalizeDeg } from '@/lib/ephem/astronomical';
 import { buildYearlyTithiTable, lookupAllTithiByNumber, type TithiEntry } from './tithi-table';
 import type { Trilingual } from '@/types/panchang';
 
@@ -46,32 +46,57 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
   const newMoons: TithiEntry[] = lookupAllTithiByNumber(table, 30);
   const fullMoons: TithiEntry[] = lookupAllTithiByNumber(table, 15);
 
+  /** Convert JD to YYYY-MM-DD using UTC date */
+  function jdToUtcDate(jd: number): string {
+    const J = Math.floor(jd + 0.5);
+    let l = J + 68569;
+    const n = Math.floor(4 * l / 146097);
+    l = l - Math.floor((146097 * n + 3) / 4);
+    const i = Math.floor(4000 * (l + 1) / 1461001);
+    l = l - Math.floor(1461 * i / 4) + 31;
+    const j = Math.floor(80 * l / 2447);
+    const day = l - Math.floor(2447 * j / 80);
+    l = Math.floor(j / 11);
+    const month = j + 2 - 12 * l;
+    const yr = 100 * (n - 49) + i + l;
+    return `${yr}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  }
+
+  /** Minimum angular distance from either Rahu or Ketu */
+  function distFromNodes(longitude: number, rahuLong: number): number {
+    const ketuLong = normalizeDeg(rahuLong + 180);
+    let dR = Math.abs(normalizeDeg(longitude - rahuLong));
+    if (dR > 180) dR = 360 - dR;
+    let dK = Math.abs(normalizeDeg(longitude - ketuLong));
+    if (dK > 180) dK = 360 - dK;
+    return Math.min(dR, dK);
+  }
+
   // Check each New Moon for solar eclipse (Sun near Rahu OR Ketu)
   for (const nm of newMoons) {
-    // Use the midpoint JD of the Amavasya tithi as the conjunction time
     const jd = (nm.startJd + nm.endJd) / 2;
     const positions = getPlanetaryPositions(jd);
-    const rahuLong = positions[7].longitude; // Rahu (mean ascending node)
-    const ketuLong = normalizeDeg(rahuLong + 180); // Ketu = Rahu + 180°
+    const rahuLong = positions[7].longitude;
     const sunL = sunLongitude(jd);
-
-    // Check distance from BOTH nodes — eclipse occurs near either
-    let distToRahu = Math.abs(normalizeDeg(sunL - rahuLong));
-    if (distToRahu > 180) distToRahu = 360 - distToRahu;
-    let distToKetu = Math.abs(normalizeDeg(sunL - ketuLong));
-    if (distToKetu > 180) distToKetu = 360 - distToKetu;
-    const distToNode = Math.min(distToRahu, distToKetu);
+    const distToNode = distFromNodes(sunL, rahuLong);
 
     if (distToNode < 18) {
-      // Eclipse likely — determine magnitude from node distance
+      // Solar eclipse magnitude thresholds (calibrated against NASA data):
+      // < 4° = total or annular (central eclipse)
+      // 4-10° = partial (but can still be annular/total if gamma is small)
+      // 10-18° = partial (small magnitude)
       const magnitude: EclipseEvent['magnitude'] =
-        distToNode < 5 ? 'total' :
-        distToNode < 9 ? 'annular' : 'partial';
+        distToNode < 4 ? 'total' :
+        distToNode < 10 ? 'annular' : 'partial';
+
+      // Use JD-derived UTC date (not sunrise date which is location-dependent)
+      const date = jdToUtcDate(jd);
+      if (!date.startsWith(String(year))) continue;
 
       eclipses.push({
         type: 'solar',
         typeName: ECLIPSE_TYPE_NAMES.solar,
-        date: nm.sunriseDate, // Use the sunrise date of this Amavasya
+        date,
         magnitude,
         magnitudeName: MAG_NAMES[magnitude],
         description: {
@@ -88,27 +113,27 @@ export function generateEclipseCalendar(year: number): EclipseEvent[] {
     const jd = (fm.startJd + fm.endJd) / 2;
     const positions = getPlanetaryPositions(jd);
     const rahuLong = positions[7].longitude;
-    const ketuLong = normalizeDeg(rahuLong + 180);
 
-    // Moon is opposite Sun at Full Moon
-    const moonL = normalizeDeg(sunLongitude(jd) + 180);
+    // Use actual Moon longitude, not Sun+180 approximation
+    const moonL = moonLongitude(jd);
+    const distToNode = distFromNodes(moonL, rahuLong);
 
-    // Check distance from BOTH nodes
-    let distToRahu = Math.abs(normalizeDeg(moonL - rahuLong));
-    if (distToRahu > 180) distToRahu = 360 - distToRahu;
-    let distToKetu = Math.abs(normalizeDeg(moonL - ketuLong));
-    if (distToKetu > 180) distToKetu = 360 - distToKetu;
-    const distToNode = Math.min(distToRahu, distToKetu);
-
-    if (distToNode < 12) {
+    if (distToNode < 16) {
+      // Lunar eclipse thresholds (widened to catch all penumbrals):
+      // < 3° = total (Moon fully in umbra)
+      // 3-5.5° = partial (Moon partially in umbra)
+      // 5.5-16° = penumbral (Moon in penumbral shadow only)
       const magnitude: EclipseEvent['magnitude'] =
-        distToNode < 5 ? 'total' :
-        distToNode < 9 ? 'partial' : 'penumbral';
+        distToNode < 3 ? 'total' :
+        distToNode < 5.5 ? 'partial' : 'penumbral';
+
+      const date = jdToUtcDate(jd);
+      if (!date.startsWith(String(year))) continue;
 
       eclipses.push({
         type: 'lunar',
         typeName: ECLIPSE_TYPE_NAMES.lunar,
-        date: fm.sunriseDate,
+        date,
         magnitude,
         magnitudeName: MAG_NAMES[magnitude],
         description: {

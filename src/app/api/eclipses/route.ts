@@ -2,10 +2,24 @@ import { NextRequest, NextResponse } from 'next/server';
 import { generateEclipseCalendar, type EclipseEvent } from '@/lib/calendar/eclipses';
 import { getEclipsesForYear, ECLIPSE_TABLE } from '@/lib/calendar/eclipse-data';
 import { computeLocalEclipse, type LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
+import type { Trilingual } from '@/types/panchang';
 
 interface EnrichedEclipse extends EclipseEvent {
   local?: LocalEclipseResult;
 }
+
+const ECLIPSE_TYPE_NAMES: Record<string, Trilingual> = {
+  solar: { en: 'Solar Eclipse', hi: 'सूर्य ग्रहण', sa: 'सूर्यग्रहणम्' },
+  lunar: { en: 'Lunar Eclipse', hi: 'चन्द्र ग्रहण', sa: 'चन्द्रग्रहणम्' },
+};
+
+const MAG_NAMES: Record<string, Trilingual> = {
+  total: { en: 'Total', hi: 'पूर्ण', sa: 'पूर्णम्' },
+  partial: { en: 'Partial', hi: 'आंशिक', sa: 'आंशिकम्' },
+  annular: { en: 'Annular', hi: 'वलयाकार', sa: 'वलयाकारम्' },
+  penumbral: { en: 'Penumbral', hi: 'उपच्छाया', sa: 'उपच्छायाकम्' },
+  hybrid: { en: 'Hybrid', hi: 'संकर', sa: 'संकरम्' },
+};
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -14,23 +28,45 @@ export async function GET(req: NextRequest) {
   const lng = searchParams.get('lng') ? parseFloat(searchParams.get('lng')!) : null;
   const tz = searchParams.get('tz')?.trim() || null;
 
-  // Engine is the master — it computes eclipses from first principles for any year
-  const baseEclipses = generateEclipseCalendar(year);
-
-  // Table provides enrichment data (contact times, city data) for 2024-2035
+  // Table data (2024-2035) from NASA — authoritative for dates, types, magnitudes
   const tableData = getEclipsesForYear(year);
 
-  // Enrich each eclipse with local circumstances if location provided
-  const eclipses: EnrichedEclipse[] = baseEclipses.map(eclipse => {
-    const tableEntry = tableData.find(t => t.date === eclipse.date);
+  let eclipses: EnrichedEclipse[];
 
-    if (tableEntry && lat !== null && lng !== null && tz) {
-      const local = computeLocalEclipse(tableEntry, lat, lng, tz);
-      return { ...eclipse, local };
-    }
+  if (tableData.length > 0) {
+    // Table year: NASA data is the single source of truth for dates and types.
+    // Build eclipse list directly from table entries.
+    eclipses = tableData.map(entry => {
+      const type = entry.kind;
+      const mag = entry.type === 'hybrid' ? 'total' : entry.type;
 
-    return eclipse;
-  });
+      const base: EclipseEvent = {
+        type,
+        typeName: ECLIPSE_TYPE_NAMES[type],
+        date: entry.date,
+        magnitude: mag as EclipseEvent['magnitude'],
+        magnitudeName: MAG_NAMES[mag] || MAG_NAMES.partial,
+        description: type === 'solar' ? {
+          en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Solar Eclipse — Sun and Moon conjoin near the Rahu-Ketu axis.`,
+          hi: `${MAG_NAMES[mag]?.hi || mag} सूर्य ग्रहण — सूर्य और चन्द्रमा राहु-केतु अक्ष के निकट युति करते हैं।`,
+          sa: `${MAG_NAMES[mag]?.sa || mag} सूर्यग्रहणम् — सूर्यचन्द्रौ राहुकेत्वक्षसमीपे युज्येते।`,
+        } : {
+          en: `${(MAG_NAMES[mag]?.en || mag).charAt(0).toUpperCase() + (MAG_NAMES[mag]?.en || mag).slice(1)} Lunar Eclipse — Full Moon passes through Earth's shadow near the nodal axis.`,
+          hi: `${MAG_NAMES[mag]?.hi || mag} चन्द्र ग्रहण — पूर्णिमा का चन्द्रमा पृथ्वी की छाया से गुजरता है।`,
+          sa: `${MAG_NAMES[mag]?.sa || mag} चन्द्रग्रहणम् — पूर्णिमायां चन्द्रः पृथिव्याः छायायां प्रविशति।`,
+        },
+      };
+
+      if (lat !== null && lng !== null && tz) {
+        const local = computeLocalEclipse(entry, lat, lng, tz);
+        return { ...base, local };
+      }
+      return base;
+    });
+  } else {
+    // Outside table range: use engine (tithi-based detection from first principles)
+    eclipses = generateEclipseCalendar(year);
+  }
 
   // Check if any eclipse is significantly visible from user's location
   const hasVisible = eclipses.some(e =>

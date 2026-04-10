@@ -261,7 +261,7 @@ export default function ProfilePage() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-6">
               {/* Birth Details Summary */}
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
-                className="px-5 py-4 rounded-2xl border border-gold-primary/15 bg-bg-secondary/30 backdrop-blur-sm"
+                className="px-5 py-4 rounded-2xl border border-gold-primary/15 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] backdrop-blur-sm"
               >
                 <p className="text-xs uppercase tracking-widest text-text-secondary mb-1">{T.birthDetails}</p>
                 <p className="text-text-primary text-sm">
@@ -301,17 +301,17 @@ export default function ProfilePage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
                 className="grid grid-cols-3 gap-3"
               >
-                <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
+                <div className="text-center p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.ascendant_sign} size={40} /></div>
                   <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.lagna}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.lagnaRashiName?.[locale] || snapshot.lagnaRashiName?.en}</p>
                 </div>
-                <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
+                <div className="text-center p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.moon_sign} size={40} /></div>
                   <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.chandraRashi}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.moonRashiName?.[locale] || snapshot.moonRashiName?.en}</p>
                 </div>
-                <div className="text-center p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm">
+                <div className="text-center p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 backdrop-blur-sm">
                   <div className="flex justify-center mb-2"><RashiIconById id={snapshot.sun_sign} size={40} /></div>
                   <p className="text-xs uppercase tracking-widest text-text-secondary mb-0.5">{T.suryaRashi}</p>
                   <p className="text-base font-bold text-gold-light">{snapshot.sunRashiName?.[locale] || snapshot.sunRashiName?.en}</p>
@@ -323,7 +323,7 @@ export default function ProfilePage() {
                 className="grid grid-cols-2 gap-3"
               >
                 {/* Birth Nakshatra */}
-                <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
+                <div className="p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 flex items-center gap-3">
                   <NakshatraIconById id={snapshot.moon_nakshatra} size={36} />
                   <div>
                     <p className="text-xs uppercase tracking-widest text-text-secondary">{T.nakshatra}</p>
@@ -334,7 +334,7 @@ export default function ProfilePage() {
 
                 {/* Birth Tithi */}
                 {birthPanchang?.tithi ? (
-                  <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 flex items-center gap-3">
                     <Moon className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
                       <p className="text-xs uppercase tracking-widest text-text-secondary">{T.tithi}</p>
@@ -343,7 +343,7 @@ export default function ProfilePage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 flex items-center gap-3">
                     <Moon className="w-9 h-9 text-gold-primary/30 shrink-0" />
                     <div>
                       <p className="text-xs uppercase tracking-widest text-text-secondary">{T.tithi}</p>
@@ -354,7 +354,7 @@ export default function ProfilePage() {
 
                 {/* Birth Yoga */}
                 {birthPanchang?.yoga && (
-                  <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 flex items-center gap-3">
                     <Star className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
                       <p className="text-xs uppercase tracking-widest text-text-secondary">{T.yoga}</p>
@@ -366,7 +366,7 @@ export default function ProfilePage() {
 
                 {/* Birth Masa */}
                 {birthPanchang?.masa && (
-                  <div className="p-4 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 flex items-center gap-3">
+                  <div className="p-4 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 flex items-center gap-3">
                     <Sun className="w-9 h-9 text-gold-primary/60 shrink-0" />
                     <div>
                       <p className="text-xs uppercase tracking-widest text-text-secondary">{T.masa}</p>
@@ -379,7 +379,7 @@ export default function ProfilePage() {
               {/* Current Dasha */}
               {snapshot.currentDasha && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-                  className="p-5 rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm"
+                  className="p-5 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 backdrop-blur-sm"
                 >
                   <h3 className="text-xs uppercase tracking-widest text-text-secondary mb-4">{T.currentDasha}</h3>
                   <div className="flex items-center gap-6">
@@ -409,7 +409,7 @@ export default function ProfilePage() {
               {/* Birth Chart */}
               {snapshot.chart_data && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-                  className="rounded-2xl bg-bg-secondary/30 border border-gold-primary/12 backdrop-blur-sm overflow-hidden"
+                  className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 backdrop-blur-sm overflow-hidden"
                 >
                   <div className="px-5 pt-4">
                     <h3 className="text-xs uppercase tracking-widest text-text-secondary">{T.birthChart}</h3>
@@ -438,7 +438,7 @@ export default function ProfilePage() {
           ) : (
             /* No birth data state */
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              className="text-center py-16 px-6 rounded-2xl border border-dashed border-gold-primary/20 bg-bg-secondary/15"
+              className="text-center py-16 px-6 rounded-2xl border border-dashed border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27]"
             >
               <Sparkles className="w-12 h-12 text-gold-primary/30 mx-auto mb-4" />
               <p className="text-lg text-text-secondary mb-4">{T.noBirthData}</p>

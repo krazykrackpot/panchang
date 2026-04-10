@@ -168,7 +168,7 @@ export default function PrashnaPage() {
                 { num: '2', label: L.step2[locale], icon: <Clock className="w-5 h-5 text-gold-primary" /> },
                 { num: '3', label: L.step3[locale], icon: <Sparkles className="w-5 h-5 text-gold-primary" /> },
               ].map(s => (
-                <div key={s.num} className="rounded-xl bg-bg-tertiary/30 p-4 flex items-start gap-3">
+                <div key={s.num} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 flex items-start gap-3">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-primary/15 flex items-center justify-center text-gold-primary font-bold text-sm">
                     {s.num}
                   </div>

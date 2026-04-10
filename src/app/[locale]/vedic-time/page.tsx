@@ -422,11 +422,11 @@ export default function VedicTimePage() {
               {locale === 'en' ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
                 <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunriseVedic}</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
                 <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunsetVedic}</div>
               </div>
@@ -445,11 +445,11 @@ export default function VedicTimePage() {
               {locale === 'en' ? 'Hours : Minutes : Seconds' : 'घंटे : मिनट : सेकंड'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
                 <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunriseStr}</div>
               </div>
-              <div className="rounded-lg bg-bg-secondary/40 py-2 px-2">
+              <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
                 <div className="text-text-secondary/70 text-xs">{locale === 'en' ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunsetStr}</div>
               </div>

@@ -466,7 +466,7 @@ export default function NivasShoolPage() {
             { href: '#rahu-vaas', label: { en: 'Rahu Vaas', hi: 'राहु वास', sa: 'राहोः वासः' }, icon: <Compass className="w-4 h-4" />, color: 'text-red-400' },
           ].map((item) => (
             <a key={item.href} href={item.href}
-              className="flex items-center gap-2 px-4 py-3 rounded-xl bg-bg-secondary/50 border border-gold-primary/10 hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-all text-sm font-medium">
+              className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/10 hover:border-gold-primary/30 hover:bg-gold-primary/5 transition-all text-sm font-medium">
               <span className={item.color}>{item.icon}</span>
               <span className={item.color}>{t(item.label as Tri, locale)}</span>
             </a>
@@ -520,7 +520,7 @@ export default function NivasShoolPage() {
         </div>
 
         {/* Textual basis */}
-        <div className="mt-8 p-6 rounded-2xl bg-bg-secondary/40 border border-gold-primary/10">
+        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <div className="text-gold-primary font-semibold mb-2 text-sm">{t(L.textualBasis, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
@@ -567,7 +567,7 @@ export default function NivasShoolPage() {
           ))}
         </div>
 
-        <div className="mt-8 p-6 rounded-2xl bg-bg-secondary/40 border border-gold-primary/10">
+        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <div className="text-gold-primary font-semibold mb-2 text-sm">{t(L.practicalNote, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
@@ -604,7 +604,7 @@ export default function NivasShoolPage() {
           ))}
         </div>
 
-        <div className="mt-8 p-6 rounded-2xl bg-bg-secondary/40 border border-gold-primary/10">
+        <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <div className="text-gold-primary font-semibold mb-2 text-sm">{t(L.textualBasis, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
@@ -624,7 +624,7 @@ export default function NivasShoolPage() {
         />
 
         {/* Pada explanation */}
-        <div className="mb-8 p-5 rounded-2xl bg-bg-secondary/50 border border-gold-primary/10">
+        <div className="mb-8 p-5 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'
               ? 'प्रत्येक नक्षत्र 13°20′ चाप का होता है, जिसे 4 पादों में बाँटा गया है (प्रत्येक 3°20′)। नवांश कुंडली में प्रत्येक पाद एक अलग राशि को दर्शाता है। चंद्र वास के संदर्भ में, पाद 1 = देव, पाद 2 = नर, पाद 3 = पशव, पाद 4 = राक्षस। चंद्रमा प्रत्येक पाद में लगभग 3-4 घंटे रहता है।'
@@ -677,7 +677,7 @@ export default function NivasShoolPage() {
           ))}
         </div>
 
-        <div className="p-6 rounded-2xl bg-bg-secondary/40 border border-gold-primary/10">
+        <div className="p-6 rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12">
           <div className="text-gold-primary font-semibold mb-2 text-sm">{t(L.practicalNote, locale)}</div>
           <p className="text-text-secondary text-sm leading-relaxed">
             {locale === 'hi'

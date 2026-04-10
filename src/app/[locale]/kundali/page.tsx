@@ -357,6 +357,20 @@ export default function KundaliPage() {
   const retrogradeIds = useMemo(() => kundali ? new Set(kundali.planets.filter(p => p.isRetrograde).map(p => p.planet.id)) : new Set<number>(), [kundali]);
   const combustIds = useMemo(() => kundali ? new Set(kundali.planets.filter(p => p.isCombust).map(p => p.planet.id)) : new Set<number>(), [kundali]);
 
+  // Build transit ChartData for chart overlay
+  const transitChartData = useMemo(() => {
+    if (!kundali || !transitData || !showTransits) return undefined;
+    const ascSign = kundali.ascendant.sign;
+    const houses: number[][] = Array.from({ length: 12 }, () => []);
+    for (const tp of transitData.planets) {
+      // Only overlay slow planets (Jupiter, Saturn, Rahu, Ketu) — fast planets change too quickly
+      if (tp.id < 4 || tp.id === 5) continue; // skip Sun, Moon, Mars, Mercury, Venus
+      const houseIdx = ((tp.rashi - ascSign + 12) % 12);
+      houses[houseIdx].push(tp.id);
+    }
+    return { houses, ascendantDeg: kundali.ascendant.degree, ascendantSign: ascSign } as import('@/types/kundali').ChartData;
+  }, [kundali, transitData, showTransits]);
+
   // ── Sphuta transit windows ────────────────────────────────────────────────
   // Estimates when key planets will next cross each sensitive sphuta degree.
   // Uses average daily motions + birth positions; retrograde adds ~4-6 week variance.
@@ -876,14 +890,14 @@ export default function KundaliPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
                     {chartStyle === 'north' ? (
                       <>
-                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} />}
-                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
+                        {showD1Companion && <ChartNorth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} />}
+                        <ChartNorth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} />
                         {!showD1Companion && <ChartNorth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     ) : (
                       <>
-                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} />}
-                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} />
+                        {showD1Companion && <ChartSouth data={kundali.chart} title={t('birthChart')} size={500} selectedHouse={selectedHouse} onSelectHouse={handleSelectHouse} retrogradeIds={retrogradeIds} combustIds={combustIds} transitData={transitChartData} />}
+                        <ChartSouth data={chartData} title={chartTitle} size={500} selectedHouse={showD1Companion ? null : selectedHouse} onSelectHouse={showD1Companion ? undefined : handleSelectHouse} transitData={!showD1Companion ? transitChartData : undefined} />
                         {!showD1Companion && <ChartSouth data={kundali.navamshaChart} title={t('navamsha')} size={500} selectedHouse={null} />}
                       </>
                     )}

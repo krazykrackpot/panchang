@@ -190,7 +190,7 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
                 </>
               )}
 
-              {/* Planets — abbreviation + colored dot */}
+              {/* Natal Planets — abbreviation + colored dot */}
               {planetsInSign.map((planetId, pIdx) => {
                 const color = PLANET_COLORS[planetId] || '#e8e6e3';
                 const count = planetsInSign.length;
@@ -205,26 +205,44 @@ export default function ChartSouth({ data, title, size = 500, selectedHouse, onS
 
                 return (
                   <g key={planetId}>
-                    {/* Subtle glow */}
                     <circle cx={startX + 18} cy={startY - 2} r="12" fill={color} opacity="0.05" />
-                    {/* Colored dot */}
                     <circle cx={startX + 6} cy={startY - 2} r="2.5" fill={color} opacity="0.9" />
-                    {/* Planet abbreviation */}
                     <text
-                      x={startX + 18}
-                      y={startY}
-                      fill={color}
-                      fontSize="12"
-                      fontWeight="700"
-                      textAnchor="middle"
-                      dominantBaseline="middle"
+                      x={startX + 18} y={startY} fill={color}
+                      fontSize="12" fontWeight="700" textAnchor="middle" dominantBaseline="middle"
                       style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.5px' }}
-                    >
-                      {abbr}
-                    </text>
+                    >{abbr}</text>
                   </g>
                 );
               })}
+
+              {/* Transit Planets — outlined style */}
+              {transitData && (() => {
+                const tHouse = ((sign - transitData.ascendantSign + 12) % 12) + 1;
+                const tPlanets = transitData.houses[tHouse - 1] || [];
+                if (tPlanets.length === 0) return null;
+                const natalRows = Math.ceil(planetsInSign.length / Math.min(planetsInSign.length || 1, 2));
+                const tBaseY = py + 38 + (planetsInSign.length > 0 ? natalRows * 20 : 0);
+                return tPlanets.map((planetId, pIdx) => {
+                  const color = PLANET_COLORS[planetId] || '#e8e6e3';
+                  const cols = Math.min(tPlanets.length, 2);
+                  const colIdx = pIdx % cols;
+                  const rowIdx = Math.floor(pIdx / cols);
+                  const startX = px + 12 + colIdx * (cell / 2 - 4);
+                  const startY = tBaseY + rowIdx * 16;
+                  const abbr = PLANET_ABBR[planetId]?.[locale] || PLANET_ABBR[planetId]?.en || '';
+                  return (
+                    <g key={`t-${planetId}`} opacity="0.6">
+                      <circle cx={startX + 6} cy={startY - 2} r="2" fill="none" stroke={color} strokeWidth="1" />
+                      <text
+                        x={startX + 18} y={startY} fill={color}
+                        fontSize="10" fontWeight="600" textAnchor="middle" dominantBaseline="middle"
+                        style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : { fontFamily: 'Inter, system-ui, sans-serif', letterSpacing: '0.3px' }}
+                      >{abbr}</text>
+                    </g>
+                  );
+                });
+              })()}
             </g>
           );
         })}

@@ -2,7 +2,7 @@
  * Service Worker — Dekho Panchang PWA
  * Caching: Static=CacheFirst, Learn=StaleWhileRevalidate, API=NetworkFirst
  */
-var CV = 'dp-v1';
+var CV = 'dp-v2';
 var CS = CV + '-static', CP = CV + '-pages', CA = CV + '-api';
 
 self.addEventListener('install', function(e) {
@@ -32,21 +32,36 @@ self.addEventListener('fetch', function(e) {
 function cacheFirst(r, n) {
   return caches.match(r).then(function(c) {
     if (c) return c;
-    return fetch(r).then(function(res) { if (res.ok) caches.open(n).then(function(ca) { ca.put(r, res.clone()); }); return res; })
-      .catch(function() { return new Response('Offline', {status: 503}); });
+    return fetch(r).then(function(res) {
+      if (!res.ok) return res;
+      var clone = res.clone();
+      caches.open(n).then(function(ca) { ca.put(r, clone); });
+      return res;
+    }).catch(function() { return new Response('Offline', {status: 503}); });
   });
 }
 
 function swr(r, n) {
   return caches.open(n).then(function(ca) {
     return ca.match(r).then(function(c) {
-      var fp = fetch(r).then(function(res) { if (res.ok) ca.put(r, res.clone()); return res; }).catch(function() { return null; });
+      var fp = fetch(r).then(function(res) {
+        if (res.ok) {
+          var clone = res.clone();
+          ca.put(r, clone);
+        }
+        return res;
+      }).catch(function() { return null; });
       return c || fp.then(function(res) { return res || new Response('Offline — visit this page while online first', {status:503, headers:{'Content-Type':'text/plain'}}); });
     });
   });
 }
 
 function netFirst(r, n) {
-  return fetch(r).then(function(res) { if (res.ok) caches.open(n).then(function(ca) { ca.put(r, res.clone()); }); return res; })
-    .catch(function() { return caches.match(r).then(function(c) { return c || new Response('Offline', {status:503}); }); });
+  return fetch(r).then(function(res) {
+    if (res.ok) {
+      var clone = res.clone();
+      caches.open(n).then(function(ca) { ca.put(r, clone); });
+    }
+    return res;
+  }).catch(function() { return caches.match(r).then(function(c) { return c || new Response('Offline', {status:503}); }); });
 }

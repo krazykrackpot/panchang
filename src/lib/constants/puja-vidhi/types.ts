@@ -2,6 +2,7 @@ export interface Trilingual {
   en: string;
   hi: string;
   sa: string;
+  ta?: string;
 }
 
 export interface SamagriItem {

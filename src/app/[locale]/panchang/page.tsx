@@ -1128,8 +1128,45 @@ export default function PanchangPage() {
                   <div className="text-text-tertiary text-xs mb-3">
                     {locale === 'en' ? 'Day lord rules the entire day. Each hora (~1 hour) is ruled by a different planet in Chaldean sequence.' : 'दिन स्वामी सम्पूर्ण दिन का शासक। प्रत्येक होरा (~1 घंटा) कल्डियन क्रम में भिन्न ग्रह द्वारा शासित।'}
                   </div>
-                  {/* Hora timetable */}
-                  {panchang.mantriMandala.horas && (
+                  {/* Hora timetable with conflict detection */}
+                  {panchang.mantriMandala.horas && (() => {
+                    const toM = (t: string) => { const [hh, mm] = t.split(':').map(Number); return hh * 60 + mm; };
+                    const nm = now.getHours() * 60 + now.getMinutes();
+                    const ov = (aS: string, aE: string, bS: string, bE: string) => toM(aS) < toM(bE) && toM(bS) < toM(aE);
+                    // Benefic hora planets: Jupiter(4), Venus(5), Mercury(3), Moon(1)
+                    const beneficIds = new Set([1, 3, 4, 5]);
+                    const badW: { start: string; end: string; label: string; labelHi: string }[] = [];
+                    if (panchang.varjyam) badW.push({ ...panchang.varjyam, label: 'Varjyam', labelHi: 'वर्ज्यम्' });
+                    if ((panchang as any).varjyamAll?.length > 1) {
+                      for (let vi = 1; vi < (panchang as any).varjyamAll.length; vi++) badW.push({ ...(panchang as any).varjyamAll[vi], label: 'Varjyam', labelHi: 'वर्ज्यम्' });
+                    }
+                    badW.push({ start: panchang.rahuKaal.start, end: panchang.rahuKaal.end, label: 'Rahu Kaal', labelHi: 'राहु काल' });
+                    badW.push({ start: panchang.yamaganda.start, end: panchang.yamaganda.end, label: 'Yamaganda', labelHi: 'यमगण्ड' });
+
+                    const renderHora = (h: { planet: number; start: string; end: string }, i: number) => {
+                      const hNow = nm >= toM(h.start) && nm < toM(h.end);
+                      const isBenefic = beneficIds.has(h.planet);
+                      const conflicts = isBenefic ? badW.filter(w => ov(h.start, h.end, w.start, w.end)) : [];
+                      const hasConflict = conflicts.length > 0;
+                      return (
+                        <div key={i} className={`flex flex-col py-0.5 border-b border-gold-primary/5 ${hNow ? 'bg-gold-primary/10 rounded px-1 -mx-1 font-bold' : ''}`}>
+                          <div className="flex justify-between">
+                            <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
+                            <span className={`font-semibold ${hasConflict ? 'text-amber-400' : hNow ? 'text-gold-primary' : 'text-gold-light'}`}>
+                              {GRAHAS[h.planet]?.name[locale]}
+                              {hasConflict && ' ⚠'}
+                            </span>
+                          </div>
+                          {hasConflict && (
+                            <span className="text-amber-400/80 text-[9px] leading-tight">
+                              {locale === 'en' ? conflicts.map(c => c.label).join(', ') : conflicts.map(c => c.labelHi).join(', ')}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    };
+
+                    return (
                     <details className="group">
                       <summary className="text-gold-primary/70 text-xs cursor-pointer hover:text-gold-light transition-colors">
                         {locale === 'en' ? '▸ View all 24 Horas' : '▸ सभी 24 होरा देखें'}
@@ -1137,31 +1174,16 @@ export default function PanchangPage() {
                       <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
                         <div>
                           <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Day Horas' : 'दिन होरा'}</div>
-                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => {
-                            const hNow = (() => { const toM = (t: string) => { const [hh,mm] = t.split(':').map(Number); return hh*60+mm; }; const nm = now.getHours()*60+now.getMinutes(); return nm >= toM(h.start) && nm < toM(h.end); })();
-                            return (
-                              <div key={i} className={`flex justify-between py-0.5 border-b border-gold-primary/5 ${hNow ? 'bg-gold-primary/10 rounded px-1 -mx-1 font-bold' : ''}`}>
-                                <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
-                                <span className={`font-semibold ${hNow ? 'text-gold-primary' : 'text-gold-light'}`}>{GRAHAS[h.planet]?.name[locale]}</span>
-                              </div>
-                            );
-                          })}
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => renderHora(h, i))}
                         </div>
                         <div>
                           <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Night Horas' : 'रात्रि होरा'}</div>
-                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => {
-                            const hNow = (() => { const toM = (t: string) => { const [hh,mm] = t.split(':').map(Number); return hh*60+mm; }; const nm = now.getHours()*60+now.getMinutes(); return nm >= toM(h.start) && nm < toM(h.end); })();
-                            return (
-                              <div key={i} className={`flex justify-between py-0.5 border-b border-gold-primary/5 ${hNow ? 'bg-gold-primary/10 rounded px-1 -mx-1 font-bold' : ''}`}>
-                                <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
-                                <span className={`font-semibold ${hNow ? 'text-gold-primary' : 'text-gold-light'}`}>{GRAHAS[h.planet]?.name[locale]}</span>
-                              </div>
-                            );
-                          })}
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => renderHora(h, i))}
                         </div>
                       </div>
                     </details>
-                  )}
+                    );
+                  })()}
                 </motion.div>
               )}
             </div>

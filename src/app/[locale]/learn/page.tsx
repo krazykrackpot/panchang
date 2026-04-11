@@ -310,6 +310,51 @@ export default function LearnPage() {
         </Link>
       </motion.div>
 
+      {/* ── Web Stories Banner ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="mb-16"
+      >
+        <Link href="/stories" className="block group">
+          <div className="relative overflow-hidden rounded-2xl border border-purple-500/20 hover:border-purple-500/45 bg-gradient-to-r from-[#1a0a30]/80 via-[#150a25]/60 to-[#0a0e27] p-6 sm:p-8 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10">
+            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-purple-500/5 blur-3xl group-hover:bg-purple-500/10 transition-all duration-500" />
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center gap-5">
+              <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-purple-500/15 border border-purple-500/30 flex items-center justify-center">
+                <Sparkles className="w-7 h-7 text-purple-400" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-xs font-bold uppercase tracking-widest text-purple-400/70">
+                    {locale === 'en' ? 'Web Stories' : locale === 'hi' ? 'वेब स्टोरीज़' : 'जालस्टोरीज़'}
+                  </span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-medium">
+                    {locale === 'en' ? '5 stories' : '5 स्टोरीज़'}
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-purple-200 group-hover:text-purple-100 transition-colors mb-1" style={hf}>
+                  {locale === 'en' ? 'Indian Contributions — Swipeable Stories' : locale === 'hi' ? 'भारतीय योगदान — स्वाइप करें' : 'भारतीययोगदानम् — स्वाइप्'}
+                </h3>
+                <p className="text-purple-200/55 text-sm leading-relaxed" style={bf}>
+                  {locale === 'en'
+                    ? 'Sine · Zero · Calculus · Pythagoras · Speed of Light — 8-slide visual stories for mobile'
+                    : locale === 'hi'
+                    ? 'ज्या · शून्य · कलन · पाइथागोरस · प्रकाश गति — 8 स्लाइड दृश्य कहानियाँ'
+                    : 'ज्या · शून्यम् · कलनम् · पाइथागोरसः · प्रकाशगतिः'}
+                </p>
+              </div>
+              <div className="flex-shrink-0 flex items-center gap-2 text-purple-400/70 group-hover:text-purple-400 transition-colors">
+                <span className="text-sm font-semibold hidden sm:inline">
+                  {locale === 'en' ? 'Explore Stories' : locale === 'hi' ? 'स्टोरीज़ देखें' : 'स्टोरीज़ पश्यतु'}
+                </span>
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+
       {/* ── Reference Library (grouped by track) ── */}
       <div>
         <h2 className="text-2xl font-bold text-gold-gradient mb-2" style={hf}>{l.refTitle}</h2>

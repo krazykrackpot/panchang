@@ -341,6 +341,7 @@ const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string }; gradie
   { href: '/upagraha', label: { en: 'Upagraha', hi: 'उपग्रह' }, gradient: 'from-cyan-500/8 to-transparent', border: 'border-cyan-500/10 hover:border-cyan-500/25' },
   { href: '/varshaphal', label: { en: 'Varshaphal', hi: 'वर्षफल' }, gradient: 'from-yellow-500/8 to-transparent', border: 'border-yellow-500/10 hover:border-yellow-500/25' },
   { href: '/kp-system', label: { en: 'KP System', hi: 'केपी पद्धति' }, gradient: 'from-indigo-500/8 to-transparent', border: 'border-indigo-500/10 hover:border-indigo-500/25' },
+  { href: '/stories', label: { en: 'Web Stories', hi: 'वेब स्टोरीज़' }, gradient: 'from-purple-500/8 to-transparent', border: 'border-purple-500/10 hover:border-purple-500/25' },
 ];
 
 interface ProfileBannerData {

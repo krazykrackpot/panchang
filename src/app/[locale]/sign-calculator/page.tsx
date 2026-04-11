@@ -201,7 +201,7 @@ export default function SignCalculatorPage() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-indigo-500/30 bg-gradient-to-br from-indigo-500/5 to-transparent text-center"
+                className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 text-center"
               >
                 <div className="text-indigo-400 text-xs uppercase tracking-[0.3em] font-bold mb-4">
                   {locale === 'en' ? 'MOON SIGN (Chandra Rashi)' : 'चन्द्र राशि'}

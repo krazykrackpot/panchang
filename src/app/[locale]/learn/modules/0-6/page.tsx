@@ -189,7 +189,7 @@ function Page1() {
   const isHi = locale !== 'en';
   return (
     <div className="space-y-6">
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'यह बात आपको चौंका सकती है: आपके दादा-दादी जो भी हिन्दू कर्मकाण्ड करते हैं, उसके नीचे एक खगोलीय गणना चल रही है। जब आपकी माँ दिवाली पर सूर्यास्त में दीप जलाती हैं, वे कार्तिक अमावस्या पर सटीक सौर स्थिति चिह्नित कर रही हैं। जब पण्डित आपकी शादी की तारीख चुनता है, वह 7 खगोलीय मापदण्डों पर बहु-चर अनुकूलन समस्या हल कर रहा है। जब आप एकादशी का व्रत रखते हैं, आप एक विशिष्ट चन्द्र-सूर्य कोणीय सम्बन्ध पर प्रतिक्रिया दे रहे हैं। इनमें कुछ भी यादृच्छिक परम्परा नहीं है — यह व्यावहारिक खगोलशास्त्र है।'
@@ -249,7 +249,7 @@ function Page1() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -296,7 +296,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-cyan-400/20 bg-gradient-to-br from-cyan-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <p className="text-text-secondary text-sm leading-relaxed">
           {isHi
             ? 'सोचिए: आप पहले से बिना जाने ग्रह जागरूकता का अभ्यास करते हैं। आप "Monday blues" कहते हैं (Moon-day = भावनात्मक, चिन्तनशील)। आप "TGIF" कहते हैं क्योंकि Friday (Venus-day = शुक्रवार) हल्का, अधिक सामाजिक लगता है। "Saturday night" (Saturn-day = अनुशासन ढीला) में आप छुट्टी मनाते हैं। सप्ताह के दिनों के नाम बनाने वाली ग्रह होरा पद्धति ठीक वही होरा पद्धति है जो ज्योतिष में है। आप जीवन भर व्यावहारिक ज्योतिष करते रहे हैं — बस संस्कृत शब्द नहीं जानते थे।'
@@ -326,7 +326,7 @@ function Page2() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-amber-400/20 bg-gradient-to-br from-amber-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
           {isHi ? 'रोचक तथ्य' : 'Key Historical Fact'}
         </h4>
@@ -404,7 +404,7 @@ function Page3() {
         </p>
       </section>
 
-      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 border border-emerald-400/20 bg-gradient-to-br from-emerald-900/10 to-transparent">
+      <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
           {isHi ? 'आधार पूर्ण!' : 'Foundations Complete!'}
         </h4>

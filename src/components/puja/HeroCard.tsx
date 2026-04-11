@@ -16,7 +16,7 @@ const CATEGORY_LABELS: Record<PujaVidhi['category'], Record<Locale, string>> = {
 
 const CATEGORY_COLORS: Record<PujaVidhi['category'], string> = {
   festival:     'bg-amber-500/15 text-amber-400 border-amber-500/30',
-  vrat:         'bg-blue-500/15 text-blue-400 border-blue-500/30',
+  vrat:         'bg-purple-500/15 text-purple-300 border-purple-500/30',
   graha_shanti: 'bg-purple-500/15 text-purple-400 border-purple-500/30',
 };
 

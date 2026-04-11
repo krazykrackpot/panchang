@@ -197,14 +197,14 @@ export default function PlanetInHousePage() {
           Planet in House
           <span className="ml-3 text-xl text-[#d4a853]/50">ग्रह-भाव फल</span>
         </h1>
-        <p className="mb-10 max-w-2xl text-base text-gray-400">
+        <p className="mb-10 max-w-2xl text-base text-text-secondary">
           The foundation of chart interpretation. Select a planet and a house to see its effect.
           Each of the 108 combinations reveals how a graha colors the affairs of a bhava.
         </p>
 
         {/* Planet Selector */}
         <div className="mb-6">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">Select Planet</h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">Select Planet</h2>
           <div className="flex flex-wrap gap-2">
             {PLANETS.map(p => (
               <button
@@ -235,7 +235,7 @@ export default function PlanetInHousePage() {
 
         {/* House Selector */}
         <div className="mb-8">
-          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500">Select House</h2>
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-text-secondary/60">Select House</h2>
           <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
             {HOUSES.map(h => {
               const isSelected = selHouse === h.num;
@@ -261,7 +261,7 @@ export default function PlanetInHousePage() {
                       style={{ backgroundColor: clsColor }}
                     />
                   </div>
-                  <div className="text-xs text-gray-500">{h.sign}</div>
+                  <div className="text-xs text-text-secondary/60">{h.sign}</div>
                 </button>
               );
             })}
@@ -293,15 +293,15 @@ export default function PlanetInHousePage() {
                     <h3 className="text-lg font-bold text-white">
                       {planet.name} in House {house.num}
                     </h3>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-text-secondary/60">
                       {planet.sa} — {house.sign} ({house.sa})
                     </span>
                   </div>
-                  <span className="ml-auto rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-gray-400">
+                  <span className="ml-auto rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-text-secondary">
                     H{house.num}
                   </span>
                 </div>
-                <p className="text-base leading-relaxed text-gray-300">{interp}</p>
+                <p className="text-base leading-relaxed text-text-primary">{interp}</p>
               </div>
             </motion.div>
           ) : (
@@ -349,7 +349,7 @@ export default function PlanetInHousePage() {
                     ))}
                   </div>
                 </div>
-                <p className="text-xs leading-relaxed text-gray-400">{cls.desc}</p>
+                <p className="text-xs leading-relaxed text-text-secondary">{cls.desc}</p>
               </div>
             ))}
           </div>

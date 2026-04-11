@@ -224,7 +224,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 function InfoParagraph({ children }: { children: React.ReactNode }) {
-  return <p className="text-sm text-gray-300 leading-relaxed mb-4">{children}</p>;
+  return <p className="text-sm text-text-primary leading-relaxed mb-4">{children}</p>;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -646,12 +646,12 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                     {y.strength}
                   </span>
                 </div>
-                <p className="text-xs text-gray-300 leading-relaxed mb-1">
-                  <span className="text-gray-500">{isHi ? 'आपके लिए अर्थ: ' : 'What it means for you: '}</span>
+                <p className="text-xs text-text-primary leading-relaxed mb-1">
+                  <span className="text-text-secondary/60">{isHi ? 'आपके लिए अर्थ: ' : 'What it means for you: '}</span>
                   {isHi ? y.description.hi : y.description.en}
                 </p>
-                <p className="text-xs text-gray-400">
-                  <span className="text-gray-500">{isHi ? 'निर्माण नियम: ' : 'Formation: '}</span>
+                <p className="text-xs text-text-secondary">
+                  <span className="text-text-secondary/60">{isHi ? 'निर्माण नियम: ' : 'Formation: '}</span>
                   {isHi ? y.formationRule.hi : y.formationRule.en}
                 </p>
                 <p className="text-xs text-sky-400 mt-1">
@@ -682,8 +682,8 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                     {y.strength}
                   </span>
                 </div>
-                <p className="text-xs text-gray-300 leading-relaxed mb-1">
-                  <span className="text-gray-500">{isHi ? 'संकेत: ' : 'What this indicates: '}</span>
+                <p className="text-xs text-text-primary leading-relaxed mb-1">
+                  <span className="text-text-secondary/60">{isHi ? 'संकेत: ' : 'What this indicates: '}</span>
                   {isHi ? y.description.hi : y.description.en}
                 </p>
                 <p className="text-xs text-emerald-400/80 italic mb-1">
@@ -691,8 +691,8 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
                     ? 'यह कोई श्राप नहीं है — यह एक कार्मिक प्रारूप है जिस पर कार्य किया जा सकता है।'
                     : 'This is NOT a curse — it\'s a karmic pattern that can be worked with.'}
                 </p>
-                <p className="text-xs text-gray-400">
-                  <span className="text-gray-500">{isHi ? 'निर्माण: ' : 'Formation: '}</span>
+                <p className="text-xs text-text-secondary">
+                  <span className="text-text-secondary/60">{isHi ? 'निर्माण: ' : 'Formation: '}</span>
                   {isHi ? y.formationRule.hi : y.formationRule.en}
                 </p>
               </div>
@@ -708,16 +708,16 @@ export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps)
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'योग' : 'Yoga'}</th>
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'समस्या' : 'Issue'}</th>
-                <th className="text-left py-2 px-2 text-gray-400 font-medium">{isHi ? 'उपाय' : 'Remedy'}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'योग' : 'Yoga'}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'समस्या' : 'Issue'}</th>
+                <th className="text-left py-2 px-2 text-text-secondary font-medium">{isHi ? 'उपाय' : 'Remedy'}</th>
               </tr>
             </thead>
             <tbody>
               {COMMON_YOGA_REMEDIES.map(r => (
                 <tr key={r.yoga} className="border-b border-white/5">
                   <td className="py-2 px-2 text-[#d4a853] font-medium">{r.yoga}</td>
-                  <td className="py-2 px-2 text-gray-300">{isHi ? r.issueHi : r.issue}</td>
+                  <td className="py-2 px-2 text-text-primary">{isHi ? r.issueHi : r.issue}</td>
                   <td className="py-2 px-2 text-emerald-400/80">{isHi ? r.remedyHi : r.remedy}</td>
                 </tr>
               ))}
@@ -990,9 +990,9 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
 
           const baladiText = BALADI_PLANET[bState]?.[av.planetId] ?? `${bState} state — in an age-transition zone`;
           const jagraText = JAGRADADI_PLANET[jState]?.[av.planetId] ?? `${jState} state — moderate output level`;
-          const deepTag = DEEPTA_TAG[dState] ?? { label: dState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Neutral luminosity state' };
-          const lajTag = LAJJITA_TAG[lState] ?? { label: lState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Neutral emotional state' };
-          const shayTag = SHAYANA_TAG[sState] ?? { label: sState, color: 'bg-gray-500/20 text-gray-300', meaning: 'Activity state in its sign-cycle' };
+          const deepTag = DEEPTA_TAG[dState] ?? { label: dState, color: 'bg-gray-500/20 text-text-primary', meaning: 'Neutral luminosity state' };
+          const lajTag = LAJJITA_TAG[lState] ?? { label: lState, color: 'bg-gray-500/20 text-text-primary', meaning: 'Neutral emotional state' };
+          const shayTag = SHAYANA_TAG[sState] ?? { label: sState, color: 'bg-gray-500/20 text-text-primary', meaning: 'Activity state in its sign-cycle' };
 
           const avgStrength = (av.baladi.strength + av.deeptadi.luminosity) / 2;
           const isOpen = expanded === idx;
@@ -1013,7 +1013,7 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
               >
                 <div className="flex items-center gap-3 flex-wrap">
                   <span className="font-bold text-[#d4a853] text-sm min-w-[60px]">{planetName}</span>
-                  <span className="text-gray-500 text-xs hidden sm:inline">{PLANET_DOMAIN[av.planetId]?.en}</span>
+                  <span className="text-text-secondary/60 text-xs hidden sm:inline">{PLANET_DOMAIN[av.planetId]?.en}</span>
                 </div>
                 <div className="flex items-center gap-1.5 flex-shrink-0">
                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
@@ -1033,7 +1033,7 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
                     {av.baladi.name.en}
                   </span>
                   <span className={`text-xs px-1.5 py-0.5 rounded-full ${deepTag.color}`}>{deepTag.label}</span>
-                  <span className="text-gray-500 text-xs ml-1">{isOpen ? '▲' : '▼'}</span>
+                  <span className="text-text-secondary/60 text-xs ml-1">{isOpen ? '▲' : '▼'}</span>
                 </div>
               </button>
 
@@ -1057,9 +1057,9 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
                       }`}>
                         Baladi: {av.baladi.name.en}
                       </span>
-                      <span className="text-gray-500 text-xs">Age-strength: {Math.round(av.baladi.strength)}%</span>
+                      <span className="text-text-secondary/60 text-xs">Age-strength: {Math.round(av.baladi.strength)}%</span>
                     </div>
-                    <p className="text-xs text-gray-300 leading-relaxed">{baladiText}</p>
+                    <p className="text-xs text-text-primary leading-relaxed">{baladiText}</p>
                   </div>
 
                   {/* Jagradadi */}
@@ -1072,11 +1072,11 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
                       }`}>
                         Jagradadi: {av.jagradadi.name.en}
                       </span>
-                      <span className="text-gray-500 text-xs">
+                      <span className="text-text-secondary/60 text-xs">
                         ~{av.jagradadi.quality === 'full' ? '100' : av.jagradadi.quality === 'half' ? '50' : '25'}% output
                       </span>
                     </div>
-                    <p className="text-xs text-gray-300 leading-relaxed">{jagraText}</p>
+                    <p className="text-xs text-text-primary leading-relaxed">{jagraText}</p>
                   </div>
 
                   {/* Deeptadi + Lajjitadi + Shayanadi */}
@@ -1085,19 +1085,19 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
                       <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${deepTag.color}`}>
                         Deeptadi: {deepTag.label}
                       </div>
-                      <p className="text-xs text-gray-400 leading-relaxed">{deepTag.meaning}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">{deepTag.meaning}</p>
                     </div>
                     <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
                       <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${lajTag.color}`}>
                         Lajjitadi: {lajTag.label}
                       </div>
-                      <p className="text-xs text-gray-400 leading-relaxed">{lajTag.meaning}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">{lajTag.meaning}</p>
                     </div>
                     <div className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3">
                       <div className={`text-xs px-2 py-0.5 rounded-full font-medium inline-block mb-1.5 ${shayTag.color}`}>
                         Shayanadi: {shayTag.label}
                       </div>
-                      <p className="text-xs text-gray-400 leading-relaxed">{shayTag.meaning}</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">{shayTag.meaning}</p>
                     </div>
                   </div>
 
@@ -1124,14 +1124,14 @@ export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: 
           <span className="font-semibold text-[#d4a853] text-sm">
             {isHi ? 'अवस्थाएं कैसे बदलती हैं?' : 'How Do Avasthas Change?'}
           </span>
-          <span className="text-gray-500 text-xs">{showHowChange ? '▲ Close' : '▼ Expand'}</span>
+          <span className="text-text-secondary/60 text-xs">{showHowChange ? '▲ Close' : '▼ Expand'}</span>
         </button>
         {showHowChange && (
           <div className="px-4 pb-4 space-y-3 border-t border-white/[0.05]">
             {HOW_CHANGE_SECTIONS.map((s, i) => (
               <div key={i} className="rounded-lg bg-white/[0.03] border border-white/[0.06] p-3 mt-3">
                 <p className="text-xs font-semibold text-[#f0d48a] mb-2">{s.title}</p>
-                <p className="text-xs text-gray-300 leading-relaxed whitespace-pre-line">{s.body}</p>
+                <p className="text-xs text-text-primary leading-relaxed whitespace-pre-line">{s.body}</p>
               </div>
             ))}
           </div>
@@ -1215,7 +1215,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
       {/* Combined House Strength — horizontal bar chart ranked by strength */}
       <SectionCard border="border-sky-500/15">
         <SectionHeading>{isHi ? 'भाव बल रैंकिंग' : 'House Strength'}</SectionHeading>
-        <p className="text-xs text-gray-400 mb-4">
+        <p className="text-xs text-text-secondary mb-4">
           {isHi ? 'हरा = बलवान, पीला = मध्यम, लाल = कमजोर' : 'Green = strong, Amber = moderate, Red = weak'}
         </p>
         <div className="space-y-1.5">
@@ -1233,7 +1233,7 @@ export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpre
                 {/* House label */}
                 <span className={`w-8 text-right font-bold text-sm ${textColor}`}>H{bh.bhava}</span>
                 {/* Signification */}
-                <span className="w-20 sm:w-24 text-xs text-gray-400 truncate">{isHi ? sig?.hi : sig?.en}</span>
+                <span className="w-20 sm:w-24 text-xs text-text-secondary truncate">{isHi ? sig?.hi : sig?.en}</span>
                 {/* Bar */}
                 <div className="flex-1 h-5 bg-bg-tertiary/30 rounded-md overflow-hidden relative">
                   <div

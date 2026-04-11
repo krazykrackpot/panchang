@@ -126,7 +126,7 @@ export default function FestivalDetailModal({
 
   const categoryColorMap: Record<string, string> = {
     festival: 'from-amber-500/20 to-amber-600/5 border-amber-500/30',
-    ekadashi: 'from-blue-500/20 to-blue-600/5 border-blue-500/30',
+    ekadashi: 'from-purple-500/20 to-purple-600/5 border-purple-500/30',
     purnima: 'from-amber-400/20 to-amber-500/5 border-amber-400/30',
     amavasya: 'from-purple-500/20 to-purple-600/5 border-purple-500/30',
     chaturthi: 'from-orange-500/20 to-orange-600/5 border-orange-500/30',

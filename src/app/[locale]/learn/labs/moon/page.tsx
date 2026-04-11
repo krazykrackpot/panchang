@@ -40,7 +40,7 @@ function NavButtons({ onBack, onNext, backLabel = 'Back', nextLabel = 'Next Step
   return (
     <div className="flex items-center justify-between mt-8">
       {onBack
-        ? <button onClick={onBack} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-colors text-sm font-medium">
+        ? <button onClick={onBack} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-text-secondary hover:text-white hover:border-white/20 transition-colors text-sm font-medium">
             <ArrowLeft className="w-4 h-4" />{backLabel}
           </button>
         : <div />}
@@ -66,7 +66,7 @@ function StepShell({ stepNum, totalSteps, title, subtitle, children }: {
         </div>
       </div>
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">{title}</h2>
-      <p className="text-slate-400 text-base mb-8 leading-relaxed">{subtitle}</p>
+      <p className="text-text-secondary text-base mb-8 leading-relaxed">{subtitle}</p>
       {children}
     </motion.div>
   );
@@ -76,7 +76,7 @@ function WhyBox({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20">
       <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">Why do we need this?</div>
-      <div className="text-slate-300 text-sm leading-relaxed">{children}</div>
+      <div className="text-text-primary text-sm leading-relaxed">{children}</div>
     </div>
   );
 }
@@ -84,7 +84,7 @@ function WhyBox({ children }: { children: React.ReactNode }) {
 function CalcRow({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className={`flex items-center justify-between px-4 py-2.5 rounded-lg ${highlight ? 'bg-indigo-500/10 border border-indigo-500/25' : 'bg-white/[0.025] border border-white/5'}`}>
-      <span className={`text-sm ${highlight ? 'text-indigo-200 font-medium' : 'text-slate-400'}`}>{label}</span>
+      <span className={`text-sm ${highlight ? 'text-indigo-200 font-medium' : 'text-text-secondary'}`}>{label}</span>
       <span className={`font-mono text-sm font-semibold ${highlight ? 'text-indigo-300' : 'text-white'}`}>{value}</span>
     </div>
   );
@@ -96,7 +96,7 @@ function ResultBanner({ label, value, sub }: { label: string; value: string; sub
       <div className="text-xs text-indigo-500/70 uppercase tracking-widest mb-1">Result</div>
       <div className="text-3xl font-bold text-indigo-200 mb-1">{label}</div>
       <div className="font-mono text-indigo-400/80 text-sm">{value}</div>
-      {sub && <div className="text-slate-400 text-xs mt-2">{sub}</div>}
+      {sub && <div className="text-text-secondary text-xs mt-2">{sub}</div>}
     </div>
   );
 }
@@ -107,7 +107,7 @@ function MoonOrbitDiagram() {
   // Show elliptical orbit concept + perturbations
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">The Moon's Orbit — Why it's complicated</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">The Moon's Orbit — Why it's complicated</div>
       <svg viewBox="0 0 400 160" className="w-full">
         {/* Earth */}
         <circle cx="80" cy="80" r="12" fill="#3b82f6" />
@@ -155,7 +155,7 @@ function SineWaveDiagram({ top5 }: { top5: { contribution: number }[] }) {
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-2 font-semibold">Concept: Adding sine waves to model the orbit</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-2 font-semibold">Concept: Adding sine waves to model the orbit</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         <line x1="0" y1={cy} x2={W} y2={cy} stroke="#1f2937" strokeWidth="1" />
         {top5.map((t, i) => (
@@ -174,7 +174,7 @@ function SineWaveDiagram({ top5 }: { top5: { contribution: number }[] }) {
         <text x="4" y="12" fill="#94a3b8" fontSize="7">Individual terms (faint)</text>
         <text x="4" y="H" dy="-8" fill="#f59e0b" fontSize="7">→ Sum = actual orbit correction</text>
       </svg>
-      <p className="text-slate-500 text-xs text-center mt-1">Each sine term captures one gravitational influence on the Moon's path. Adding them all gives the true position.</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-1">Each sine term captures one gravitational influence on the Moon's path. Adding them all gives the true position.</p>
     </div>
   );
 }
@@ -188,8 +188,8 @@ function NakshatraPositionBar({ sidLong, nakNum }: { sidLong: number; nakNum: nu
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Moon's position within the Nakshatra</div>
-      <div className="mb-2 flex justify-between text-xs text-slate-500 font-mono">
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Moon's position within the Nakshatra</div>
+      <div className="mb-2 flex justify-between text-xs text-text-secondary/60 font-mono">
         <span>{nakStart.toFixed(1)}° (start)</span>
         <span className="text-indigo-300">{sidLong.toFixed(2)}° ← Moon here</span>
         <span>{(nakStart + nakSpan).toFixed(1)}° (end)</span>
@@ -211,7 +211,7 @@ function NakshatraPositionBar({ sidLong, nakNum }: { sidLong: number; nakNum: nu
           </div>
         ))}
       </div>
-      <p className="text-slate-500 text-xs text-center mt-2">Moon is in Pada {pada} — {pct.toFixed(1)}% through this Nakshatra</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-2">Moon is in Pada {pada} — {pct.toFixed(1)}% through this Nakshatra</p>
     </div>
   );
 }
@@ -320,7 +320,7 @@ export default function MoonLabPage() {
             Trace Your Moon
           </h1>
         </div>
-        <p className="text-slate-400 text-base">The Meeus algorithm — decoded step by step for a complete beginner</p>
+        <p className="text-text-secondary text-base">The Meeus algorithm — decoded step by step for a complete beginner</p>
       </div>
 
       {/* Progress */}
@@ -352,7 +352,7 @@ export default function MoonLabPage() {
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">🌙</div>
                 <h2 className="text-2xl font-bold text-white mb-2">Trace the Moon's Exact Position</h2>
-                <p className="text-slate-400 text-sm leading-relaxed max-w-md mx-auto">
+                <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
                   The Moon's position can't be calculated with a simple formula — the Sun and Earth's shape both pull it in complex ways. We'll use the Meeus algorithm, which adds up 60+ mathematical waves to model the orbit with sub-degree accuracy.
                 </p>
               </div>
@@ -360,7 +360,7 @@ export default function MoonLabPage() {
                 <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">What this lab shows</div>
                 <div className="space-y-1.5">
                   {['Why the Moon\'s orbit is irregular', 'Julian Centuries — a compact time unit', '5 fundamental orbital angles', '60 sine correction terms (Fourier analysis)', 'Final tropical → sidereal conversion', 'Rashi and Nakshatra identification'].map(item => (
-                    <div key={item} className="flex items-center gap-2 text-slate-300 text-xs">
+                    <div key={item} className="flex items-center gap-2 text-text-primary text-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />
                       {item}
                     </div>
@@ -375,13 +375,13 @@ export default function MoonLabPage() {
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-indigo-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Time <span className="text-slate-500 font-normal">(local)</span></label>
+                    <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Time <span className="text-text-secondary/60 font-normal">(local)</span></label>
                     <input type="time" value={time} onChange={e => setTime(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.06] border border-white/10 text-white focus:border-indigo-500/50 focus:outline-none transition-colors [color-scheme:dark]" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Location <span className="text-slate-500 font-normal">(for timezone)</span></label>
+                  <label className="block text-sm font-medium text-indigo-300/80 mb-1.5">Location <span className="text-text-secondary/60 font-normal">(for timezone)</span></label>
                   <LocationSearch value={locationName} onSelect={loc => { setLocation(loc); setLocationName(loc.name); }} placeholder="Search city..." className="w-full" />
                 </div>
               </div>
@@ -408,7 +408,7 @@ export default function MoonLabPage() {
 
               <div className="p-4 rounded-xl bg-amber-500/8 border border-amber-500/20">
                 <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">The Meeus Algorithm</div>
-                <p className="text-slate-300 text-sm leading-relaxed">
+                <p className="text-text-primary text-sm leading-relaxed">
                   Jean Meeus, a Belgian astronomer, published "Astronomical Algorithms" in 1991. He distilled centuries of orbital observations into a set of 60+ trigonometric terms that together predict the Moon's position to within 0.5° — accurate enough for Panchang calculations. This is what almost every Vedic astrology software uses today.
                 </p>
               </div>
@@ -426,11 +426,11 @@ export default function MoonLabPage() {
               </WhyBox>
 
               <div className="mb-5 p-4 rounded-xl bg-black/20 border border-white/8">
-                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">Formula</div>
+                <div className="text-xs text-text-secondary/60 font-semibold uppercase tracking-wider mb-3">Formula</div>
                 <div className="font-mono text-indigo-200 text-center text-base py-2">
                   T = (JD − 2,451,545.0) ÷ 36,525
                 </div>
-                <p className="text-slate-400 text-sm mt-3">
+                <p className="text-text-secondary text-sm mt-3">
                   <strong className="text-indigo-300">2,451,545.0</strong> — the JD of January 1.5, 2000 (the J2000 standard epoch)<br />
                   <strong className="text-indigo-300">36,525</strong> — days per Julian century (365.25 × 100). Dividing by this converts days to centuries.
                 </p>
@@ -464,15 +464,15 @@ export default function MoonLabPage() {
               </WhyBox>
 
               <div className="mb-5 p-4 rounded-xl bg-black/20 border border-white/8">
-                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">The 5 Angles (all in degrees, mod 360°)</div>
-                <div className="space-y-2 font-mono text-xs text-slate-300">
+                <div className="text-xs text-text-secondary/60 font-semibold uppercase tracking-wider mb-3">The 5 Angles (all in degrees, mod 360°)</div>
+                <div className="space-y-2 font-mono text-xs text-text-primary">
                   <div><span className="text-indigo-300">L'</span> = 218.316 + <span className="text-purple-300">481,267.881</span> × T — Moon's mean longitude</div>
                   <div><span className="text-indigo-300">D</span>  = 297.850 + <span className="text-purple-300">445,267.111</span> × T — Mean Moon-Sun elongation</div>
                   <div><span className="text-indigo-300">M</span>  = 357.529 + <span className="text-purple-300">35,999.050</span>  × T — Sun's mean anomaly</div>
                   <div><span className="text-indigo-300">M'</span> = 134.963 + <span className="text-purple-300">477,198.868</span> × T — Moon's mean anomaly</div>
                   <div><span className="text-indigo-300">F</span>  = 93.272  + <span className="text-purple-300">483,202.018</span> × T — Moon's argument of latitude</div>
                 </div>
-                <p className="text-slate-500 text-xs mt-3">The large multipliers (e.g. 481,267) are the orbital frequencies in degrees per century. The Moon completes ~1,336 full orbits per century.</p>
+                <p className="text-text-secondary/60 text-xs mt-3">The large multipliers (e.g. 481,267) are the orbital frequencies in degrees per century. The Moon completes ~1,336 full orbits per century.</p>
               </div>
 
               <div className="space-y-2">
@@ -501,31 +501,31 @@ export default function MoonLabPage() {
               <SineWaveDiagram top5={calc.top5} />
 
               <div className="mb-4">
-                <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-2">Top 5 terms by magnitude</div>
+                <div className="text-xs text-text-secondary/60 font-semibold uppercase tracking-wider mb-2">Top 5 terms by magnitude</div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs font-mono">
                     <thead>
                       <tr className="border-b border-white/5">
                         {['D×', 'M×', "M'×", 'F×', 'Coeff', 'Contribution'].map(h => (
-                          <th key={h} className="text-left px-2 py-1.5 text-slate-500">{h}</th>
+                          <th key={h} className="text-left px-2 py-1.5 text-text-secondary/60">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {calc.top5.map((t, i) => (
                         <tr key={i} className={`border-b border-white/[0.03] ${i === 0 ? 'bg-indigo-500/10' : ''}`}>
-                          <td className="px-2 py-1.5 text-slate-300">{t.dMult}</td>
-                          <td className="px-2 py-1.5 text-slate-300">{t.mMult}</td>
-                          <td className="px-2 py-1.5 text-slate-300">{t.mpMult}</td>
-                          <td className="px-2 py-1.5 text-slate-300">{t.fMult}</td>
-                          <td className="px-2 py-1.5 text-slate-400">{t.coeff.toFixed(0)}</td>
-                          <td className={`px-2 py-1.5 font-bold ${i === 0 ? 'text-indigo-300' : 'text-slate-300'}`}>{(t.contribution / 1e6).toFixed(4)}°</td>
+                          <td className="px-2 py-1.5 text-text-primary">{t.dMult}</td>
+                          <td className="px-2 py-1.5 text-text-primary">{t.mMult}</td>
+                          <td className="px-2 py-1.5 text-text-primary">{t.mpMult}</td>
+                          <td className="px-2 py-1.5 text-text-primary">{t.fMult}</td>
+                          <td className="px-2 py-1.5 text-text-secondary">{t.coeff.toFixed(0)}</td>
+                          <td className={`px-2 py-1.5 font-bold ${i === 0 ? 'text-indigo-300' : 'text-text-primary'}`}>{(t.contribution / 1e6).toFixed(4)}°</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                <p className="text-slate-500 text-xs mt-2">Total terms evaluated: {calc.termCount}. Contributions are in units of 10⁻⁶ degrees (millionths of a degree).</p>
+                <p className="text-text-secondary/60 text-xs mt-2">Total terms evaluated: {calc.termCount}. Contributions are in units of 10⁻⁶ degrees (millionths of a degree).</p>
               </div>
 
               <NavButtons onBack={back} onNext={next} />

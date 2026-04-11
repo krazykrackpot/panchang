@@ -27,7 +27,7 @@ function MagicNumber({ value, label }: { value: string; label: string }) {
   return (
     <span className="inline-flex flex-col items-center mx-1 relative group cursor-default">
       <span className="font-mono text-amber-300 font-bold underline decoration-dotted decoration-amber-400/50">{value}</span>
-      <span className="absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 w-52 bg-[#1a1040] border border-amber-500/30 rounded-lg px-3 py-2 text-xs text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none shadow-xl">
+      <span className="absolute bottom-full mb-1.5 left-1/2 -translate-x-1/2 w-52 bg-[#1a1040] border border-amber-500/30 rounded-lg px-3 py-2 text-xs text-text-primary leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity z-50 pointer-events-none shadow-xl">
         {label}
       </span>
     </span>
@@ -37,7 +37,7 @@ function MagicNumber({ value, label }: { value: string; label: string }) {
 function CalcRow({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
   return (
     <div className={`flex items-center justify-between px-4 py-2.5 rounded-lg ${highlight ? 'bg-amber-500/10 border border-amber-500/25' : 'bg-white/[0.025] border border-white/5'}`}>
-      <span className={`text-sm ${highlight ? 'text-amber-200 font-medium' : 'text-slate-400'}`}>{label}</span>
+      <span className={`text-sm ${highlight ? 'text-amber-200 font-medium' : 'text-text-secondary'}`}>{label}</span>
       <span className={`font-mono text-sm font-semibold ${highlight ? 'text-amber-300' : 'text-white'}`}>{value}</span>
     </div>
   );
@@ -49,7 +49,7 @@ function ResultBanner({ label, value, sub }: { label: string; value: string; sub
       <div className="text-xs text-amber-500/70 uppercase tracking-widest mb-1">Result</div>
       <div className="text-3xl font-bold text-amber-200 mb-1">{label}</div>
       <div className="font-mono text-amber-400/80 text-sm">{value}</div>
-      {sub && <div className="text-slate-400 text-xs mt-2">{sub}</div>}
+      {sub && <div className="text-text-secondary text-xs mt-2">{sub}</div>}
     </div>
   );
 }
@@ -60,7 +60,7 @@ function NavButtons({ onBack, onNext, backLabel = 'Back', nextLabel = 'Next Step
   return (
     <div className="flex items-center justify-between mt-8">
       {onBack
-        ? <button onClick={onBack} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-colors text-sm font-medium">
+        ? <button onClick={onBack} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 text-text-secondary hover:text-white hover:border-white/20 transition-colors text-sm font-medium">
             <ArrowLeft className="w-4 h-4" />{backLabel}
           </button>
         : <div />}
@@ -94,7 +94,7 @@ function StepShell({ stepNum, totalSteps, title, subtitle, children }: {
       </div>
 
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-2 leading-tight">{title}</h2>
-      <p className="text-slate-400 text-base mb-8 leading-relaxed">{subtitle}</p>
+      <p className="text-text-secondary text-base mb-8 leading-relaxed">{subtitle}</p>
 
       {children}
     </motion.div>
@@ -105,7 +105,7 @@ function WhyBox({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20">
       <div className="text-xs text-indigo-400 uppercase tracking-wider font-semibold mb-2">Why do we need this?</div>
-      <div className="text-slate-300 text-sm leading-relaxed">{children}</div>
+      <div className="text-text-primary text-sm leading-relaxed">{children}</div>
     </div>
   );
 }
@@ -129,7 +129,7 @@ function JulianDayDiagram({ jd }: { jd: number }) {
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Timeline: How JD counts time</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Timeline: How JD counts time</div>
       <svg viewBox="0 0 500 90" className="w-full" aria-label="Julian Day timeline">
         {/* Timeline baseline */}
         <line x1="30" y1="50" x2="470" y2="50" stroke="#4b5563" strokeWidth="2" />
@@ -156,7 +156,7 @@ function JulianDayDiagram({ jd }: { jd: number }) {
         {/* Arrow direction */}
         <text x="245" y="65" textAnchor="middle" fill="#374151" fontSize="10">→ counting forward forever, never resetting →</text>
       </svg>
-      <p className="text-slate-500 text-xs text-center mt-1">Every moment in history has exactly one JD value. No leap-year confusion, no timezone ambiguity.</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-1">Every moment in history has exactly one JD value. No leap-year confusion, no timezone ambiguity.</p>
     </div>
   );
 }
@@ -190,7 +190,7 @@ function TropicalSiderealDiagram({ tropical, sidereal, ayan }: { tropical: numbe
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Diagram: Tropical vs Sidereal</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Diagram: Tropical vs Sidereal</div>
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <svg viewBox="0 0 260 220" className="w-full sm:w-64 flex-shrink-0" aria-label="Zodiac circle showing tropical vs sidereal difference">
           {/* Zodiac wedges */}
@@ -231,14 +231,14 @@ function TropicalSiderealDiagram({ tropical, sidereal, ayan }: { tropical: numbe
           <text x={cx} y={cy+1} textAnchor="middle" dominantBaseline="middle" fill="#64748b" fontSize="7">🌍</text>
         </svg>
 
-        <div className="text-xs text-slate-400 space-y-2 leading-relaxed">
+        <div className="text-xs text-text-secondary space-y-2 leading-relaxed">
           <div className="flex items-start gap-2">
             <span className="w-3 h-3 rounded-full bg-amber-400 flex-shrink-0 mt-0.5" />
             <span><strong className="text-amber-300">Sidereal Sun</strong> — where the Sun actually appears against the background stars. Used by Vedic astrology.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="w-3 h-3 rounded-full bg-amber-400/25 flex-shrink-0 mt-0.5" />
-            <span><strong className="text-slate-400">Tropical Sun</strong> — measured from the Spring Equinox marker. Used by Western astrology.</span>
+            <span><strong className="text-text-secondary">Tropical Sun</strong> — measured from the Spring Equinox marker. Used by Western astrology.</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="w-3 h-1.5 rounded bg-amber-500/60 flex-shrink-0 mt-1" />
@@ -270,7 +270,7 @@ function TithiDiagram({ elongation, tithiNum }: { elongation: number; tithiNum: 
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Diagram: Moon–Sun Angle = Tithi</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Diagram: Moon–Sun Angle = Tithi</div>
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <svg viewBox="0 0 260 220" className="w-full sm:w-64 flex-shrink-0">
           {/* Orbit ring */}
@@ -321,12 +321,12 @@ function TithiDiagram({ elongation, tithiNum }: { elongation: number; tithiNum: 
           <text x={currentMoon.x + 14} y={currentMoon.y - 14} fill="#f59e0b" fontSize="8" fontWeight="bold">Tithi {tithiNum}</text>
         </svg>
 
-        <div className="text-xs text-slate-400 space-y-3 leading-relaxed">
+        <div className="text-xs text-text-secondary space-y-3 leading-relaxed">
           <p>Each orange wedge in the outer ring = one Tithi (12°). The highlighted wedge is today's Tithi {tithiNum}.</p>
           <div className="space-y-1.5">
-            <div className="flex items-center gap-2"><span className="text-[10px] text-slate-500">Elongation 0°</span><span>→ New Moon (Amavasya)</span></div>
-            <div className="flex items-center gap-2"><span className="text-[10px] text-slate-500">Elongation 90°</span><span>→ First Quarter</span></div>
-            <div className="flex items-center gap-2"><span className="text-[10px] text-slate-500">Elongation 180°</span><span>→ Full Moon (Purnima)</span></div>
+            <div className="flex items-center gap-2"><span className="text-[10px] text-text-secondary/60">Elongation 0°</span><span>→ New Moon (Amavasya)</span></div>
+            <div className="flex items-center gap-2"><span className="text-[10px] text-text-secondary/60">Elongation 90°</span><span>→ First Quarter</span></div>
+            <div className="flex items-center gap-2"><span className="text-[10px] text-text-secondary/60">Elongation 180°</span><span>→ Full Moon (Purnima)</span></div>
           </div>
           <p className="text-amber-400">Current elongation: {elongation.toFixed(1)}°</p>
         </div>
@@ -355,7 +355,7 @@ function NakshatraDiagram({ moonSid, nakNum }: { moonSid: number; nakNum: number
 
   return (
     <div className="mb-6 p-4 rounded-xl bg-black/20 border border-white/8">
-      <div className="text-xs text-slate-500 uppercase tracking-wider mb-3 font-semibold">Diagram: 27 Nakshatras — Moon's position today</div>
+      <div className="text-xs text-text-secondary/60 uppercase tracking-wider mb-3 font-semibold">Diagram: 27 Nakshatras — Moon's position today</div>
       <svg viewBox="0 0 220 220" className="w-full max-w-[220px] mx-auto">
         {nakNames.map((name, i) => {
           const isActive = i === nakNum - 1;
@@ -387,7 +387,7 @@ function NakshatraDiagram({ moonSid, nakNum }: { moonSid: number; nakNum: number
         <text x={cx} y={cy - 5} textAnchor="middle" fill="#94a3b8" fontSize="9" fontWeight="bold">27</text>
         <text x={cx} y={cx + 7} textAnchor="middle" fill="#64748b" fontSize="7">Nakshatras</text>
       </svg>
-      <p className="text-slate-500 text-xs text-center mt-2">The highlighted wedge is today's Nakshatra. The Moon is shown at its current position.</p>
+      <p className="text-text-secondary/60 text-xs text-center mt-2">The highlighted wedge is today's Nakshatra. The Moon is shown at its current position.</p>
     </div>
   );
 }
@@ -489,7 +489,7 @@ export default function PanchangLabPage() {
             Compute Your Panchang
           </h1>
         </div>
-        <p className="text-slate-400 text-base">A guided walkthrough — no prior knowledge needed</p>
+        <p className="text-text-secondary text-base">A guided walkthrough — no prior knowledge needed</p>
       </div>
 
       {/* Progress Steps */}
@@ -527,7 +527,7 @@ export default function PanchangLabPage() {
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">🌅</div>
                 <h2 className="text-2xl font-bold text-white mb-2">Let's Build Your Panchang from Scratch</h2>
-                <p className="text-slate-400 text-sm leading-relaxed max-w-md mx-auto">
+                <p className="text-text-secondary text-sm leading-relaxed max-w-md mx-auto">
                   A Panchang is a Vedic almanac — it tells you the exact state of the Sun and Moon for any day and place on Earth.
                   We're going to calculate it step by step, and explain every single number along the way.
                 </p>
@@ -537,7 +537,7 @@ export default function PanchangLabPage() {
                 <div className="text-xs text-amber-400 uppercase tracking-wider font-semibold mb-2">What we'll calculate together</div>
                 <div className="grid grid-cols-2 gap-2">
                   {['Julian Day Number', 'Sun\'s Position', 'Moon\'s Position', 'Tithi (Lunar Day)', 'Nakshatra (Star)', 'Yoga', 'Karana', 'Vara (Weekday)'].map(item => (
-                    <div key={item} className="flex items-center gap-2 text-slate-300 text-xs">
+                    <div key={item} className="flex items-center gap-2 text-text-primary text-xs">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
                       {item}
                     </div>
@@ -556,14 +556,14 @@ export default function PanchangLabPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Location <span className="text-slate-500 font-normal">(needed for timezone)</span></label>
+                  <label className="block text-sm font-medium text-amber-300/80 mb-1.5">Location <span className="text-text-secondary/60 font-normal">(needed for timezone)</span></label>
                   <LocationSearch
                     value={locationName}
                     onSelect={loc => { setLocation(loc); setLocationName(loc.name); }}
                     placeholder="Search city..."
                     className="w-full"
                   />
-                  {!location && <p className="text-slate-500 text-xs mt-1.5">If left blank, we'll use your device's local time.</p>}
+                  {!location && <p className="text-text-secondary/60 text-xs mt-1.5">If left blank, we'll use your device's local time.</p>}
                 </div>
               </div>
 
@@ -591,10 +591,10 @@ export default function PanchangLabPage() {
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-4 text-base">
                   JD = 365.25 × (Y + 4716) + 30.6001 × (M + 1) + D + h/24 + B − 1524.5
                 </div>
-                <div className="space-y-3 text-slate-300">
+                <div className="space-y-3 text-text-primary">
                   <p><strong className="text-amber-300">365.25</strong> — The average length of a year (365 days + 1 leap day every 4 years = 365.25). Multiplying by year gives total days elapsed.</p>
                   <p><strong className="text-amber-300">Y + 4716</strong> — We add 4716 to shift our zero-point back to 4713 BC, the start of the Julian Period (chosen because it's before all known historical records).</p>
-                  <p><strong className="text-amber-300">30.6001</strong> — An approximation of days-per-month. The trick here: January and February are treated as months 13 and 14 of the <em>previous</em> year (to avoid negative numbers near year boundaries). <span className="text-slate-500">Why 30.6001 and not 30.6? Floating-point precision — the tiny .0001 prevents rounding errors when you take floor(30.6001 × 13) = 397 vs floor(30.6 × 13) = 397.8 which would round wrong.</span></p>
+                  <p><strong className="text-amber-300">30.6001</strong> — An approximation of days-per-month. The trick here: January and February are treated as months 13 and 14 of the <em>previous</em> year (to avoid negative numbers near year boundaries). <span className="text-text-secondary/60">Why 30.6001 and not 30.6? Floating-point precision — the tiny .0001 prevents rounding errors when you take floor(30.6001 × 13) = 397 vs floor(30.6 × 13) = 397.8 which would round wrong.</span></p>
                   <p><strong className="text-amber-300">B correction</strong> — Gregorian calendar reform (1582) dropped 10 days. B = 2 − A + floor(A/4) accounts for century years that are NOT leap years (1700, 1800, 1900 — but 2000 is).</p>
                   <p><strong className="text-amber-300">h/24</strong> — The fractional part of the day. JD counts from noon, not midnight, so noon = 0.0, 6pm = 0.25, midnight = 0.5, 6am = 0.75.</p>
                   <p><strong className="text-amber-300">−1524.5</strong> — Final offset to align the formula with the actual Julian Day epoch (January 1st, 4713 BC at noon).</p>
@@ -636,7 +636,7 @@ export default function PanchangLabPage() {
 
               <div className="mb-5 p-4 rounded-xl bg-orange-500/8 border border-orange-500/20">
                 <div className="text-xs text-orange-400 uppercase tracking-wider font-semibold mb-2">Tropical vs Sidereal — The Key Difference</div>
-                <p className="text-slate-300 text-sm leading-relaxed">
+                <p className="text-text-primary text-sm leading-relaxed">
                   Western astrology measures the Sun against the <strong className="text-white">Spring Equinox point</strong> (called Tropical). But the Earth wobbles very slightly on its axis — a cycle called <strong className="text-white">precession</strong> that takes ~26,000 years to complete. Over 2,000 years this wobble has shifted the actual star positions by about 24°. Vedic astrology accounts for this shift using the <strong className="text-amber-300">Ayanamsha</strong> — a correction value that increases by ~50 arc-seconds every year. The Lahiri Ayanamsha (used officially in India) is currently about <strong className="text-amber-300">{calc.ayan.toFixed(2)}°</strong>.
                 </p>
               </div>
@@ -645,7 +645,7 @@ export default function PanchangLabPage() {
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Sidereal = Tropical − Ayanamsha
                 </div>
-                <p className="text-slate-300 text-sm">Think of it like this: Tropical says "the Sun is 45° from the Spring Equinox marker". Sidereal says "but the stars have drifted 24° since we set that marker, so against the actual stars, the Sun is really at 21°." Vedic astrology always uses the star-based (sidereal) position.</p>
+                <p className="text-text-primary text-sm">Think of it like this: Tropical says "the Sun is 45° from the Spring Equinox marker". Sidereal says "but the stars have drifted 24° since we set that marker, so against the actual stars, the Sun is really at 21°." Vedic astrology always uses the star-based (sidereal) position.</p>
               </FormulaBox>
 
               <div className="space-y-2">
@@ -681,7 +681,7 @@ export default function PanchangLabPage() {
                 <div className="font-mono text-amber-200/90 text-center py-2 mb-3 text-base">
                   Sidereal Moon = Tropical Moon − Ayanamsha
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   Same concept as the Sun — we compute the tropical position using Meeus's lunar theory (which uses many more correction terms than the Sun, because the Moon is pulled by both the Sun and Earth's equatorial bulge), then subtract the same Lahiri Ayanamsha to get the sidereal position.
                 </p>
               </FormulaBox>
@@ -723,7 +723,7 @@ export default function PanchangLabPage() {
                   <br />
                   Tithi = floor(Elongation ÷ 12) + 1
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why divide by 12?</strong> Because each Tithi spans exactly 12° of elongation. 360° ÷ 30 Tithis = 12° per Tithi. The floor (round down) gives which Tithi we're currently inside, and +1 converts from 0-indexed to 1-indexed (so Tithi 1 starts at 0°, not Tithi 0).
                 </p>
               </FormulaBox>
@@ -765,7 +765,7 @@ export default function PanchangLabPage() {
                   <br />
                   Pada = floor((Moon° mod 13.333°) ÷ 3.333°) + 1
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why 13.333°?</strong> Because 360° ÷ 27 Nakshatras = 13.333° per Nakshatra. So we divide the Moon's position by 13.333 to find which "slot" it's in.
                   <br /><br />
                   <strong className="text-amber-300">What's a Pada?</strong> Each Nakshatra is further divided into 4 equal quarters called Padas (3.333° each). So there are 27 × 4 = 108 Padas total — a sacred number in Vedic culture. Your Pada determines your birth syllable (the first syllable of your Vedic name).
@@ -808,7 +808,7 @@ export default function PanchangLabPage() {
                   <br />
                   Yoga = floor(Sum ÷ 13.333°) + 1
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why the same 13.333°?</strong> Because Yoga uses the same 27-fold division as Nakshatra — dividing the circle into 27 equal parts of 13.333° each. The only difference is the input: instead of just the Moon, we add Sun + Moon together and divide that sum. The "mod 360" wraps the sum back into a 0–360° range if it exceeds 360°.
                 </p>
               </FormulaBox>
@@ -849,7 +849,7 @@ export default function PanchangLabPage() {
                   <br />
                   Map to 11 Karanas (7 movable + 4 fixed)
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why divide by 6?</strong> Each Karana spans exactly 6° of elongation (half of a Tithi's 12°). So 360° ÷ 6° = 60 Karana slots per lunar month. The 4 fixed Karanas occupy slots 0, 57, 58, and 59. The remaining 56 slots cycle through the 7 movable Karanas 8 times (7 × 8 = 56).
                 </p>
               </FormulaBox>
@@ -888,7 +888,7 @@ export default function PanchangLabPage() {
                   <br />
                   0 = Sunday, 1 = Monday, … 6 = Saturday
                 </div>
-                <p className="text-slate-300 text-sm">
+                <p className="text-text-primary text-sm">
                   <strong className="text-amber-300">Why +1.5?</strong> Julian Days start at noon (JD 0 was noon, January 1st, 4713 BC — which happened to be a Monday). Adding 1.5 shifts the reference so that when we take floor(), we're counting from midnight rather than noon. The +1 part shifts the alignment so that JD 0 mod 7 = 0 = Sunday correctly.
                   <br /><br />
                   <strong className="text-amber-300">Why mod 7?</strong> The week repeats every 7 days. Modulo 7 finds the remainder — any number mod 7 gives 0–6, which maps directly to the 7 weekdays.
@@ -919,7 +919,7 @@ export default function PanchangLabPage() {
               <div className="text-center mb-8">
                 <div className="text-4xl mb-3">🎉</div>
                 <h2 className="text-2xl font-bold text-white mb-2">Your Panchang is Complete!</h2>
-                <p className="text-slate-400 text-sm">
+                <p className="text-text-secondary text-sm">
                   {`${calc.y}-${String(calc.m).padStart(2,'0')}-${String(calc.d).padStart(2,'0')}`}
                   {location ? ` · ${location.name}` : ''}
                 </p>
@@ -938,16 +938,16 @@ export default function PanchangLabPage() {
                   <div key={item.label} className="flex items-center gap-4 px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/8">
                     <span className="text-xl">{item.icon}</span>
                     <div className="flex-1">
-                      <div className="text-xs text-slate-500 mb-0.5">{item.label}</div>
+                      <div className="text-xs text-text-secondary/60 mb-0.5">{item.label}</div>
                       <div className="text-white font-semibold">{item.value}</div>
                     </div>
-                    <div className="text-xs text-slate-500 text-right">{item.sub}</div>
+                    <div className="text-xs text-text-secondary/60 text-right">{item.sub}</div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-6 p-4 rounded-xl bg-indigo-500/8 border border-indigo-500/20 text-center">
-                <p className="text-slate-300 text-sm leading-relaxed">
+                <p className="text-text-primary text-sm leading-relaxed">
                   You just computed a full Panchang from scratch — the same way it's been calculated for over 1,500 years, now running in milliseconds on modern hardware. Every number you saw was derived from just two inputs: a date and a location.
                 </p>
               </div>

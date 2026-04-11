@@ -197,11 +197,11 @@ export default function EkadashiParanaCard({
       {(ekadashiStart || dwadashiEndTime) && (
         <div className="mb-5 grid grid-cols-3 gap-3 text-center">
           {ekadashiStart && (
-            <div className="rounded-lg border border-blue-500/15 bg-blue-500/[0.04] p-3">
-              <div className="text-xs uppercase tracking-wider text-blue-400/60 mb-1">
+            <div className="rounded-lg border border-purple-500/15 bg-purple-500/[0.04] p-3">
+              <div className="text-xs uppercase tracking-wider text-purple-400/60 mb-1">
                 {locale === 'en' ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
               </div>
-              <div className="font-mono text-base font-bold text-blue-300">{ekadashiStart}</div>
+              <div className="font-mono text-base font-bold text-purple-300">{ekadashiStart}</div>
               {ekadashiStartDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
             </div>
           )}
@@ -243,7 +243,7 @@ export default function EkadashiParanaCard({
           {/* Hari Vasara segment (sunrise → HV end) — blue */}
           {!hvSameAsSunrise && (
             <div
-              className="absolute top-0 bottom-0 bg-blue-500/30 border-r border-blue-400/40"
+              className="absolute top-0 bottom-0 bg-purple-500/30 border-r border-purple-400/40"
               style={{ left: `${pct(sunriseMin)}%`, width: `${pct(hvEndMin) - pct(sunriseMin)}%` }}
             />
           )}
@@ -292,8 +292,8 @@ export default function EkadashiParanaCard({
           {/* HV End (only if different from sunrise) */}
           {!hvSameAsSunrise && (
             <div className="absolute flex flex-col items-center" style={{ left: `${pct(hvEndMin)}%`, transform: 'translateX(-50%)' }}>
-              <div className="w-px h-2 bg-blue-400/50" />
-              <span className="text-blue-300/60 whitespace-nowrap">{paranaHariVasaraEnd}</span>
+              <div className="w-px h-2 bg-purple-400/50" />
+              <span className="text-purple-300/60 whitespace-nowrap">{paranaHariVasaraEnd}</span>
             </div>
           )}
 
@@ -314,7 +314,7 @@ export default function EkadashiParanaCard({
         <div className="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs text-text-secondary/70">
           {!hvSameAsSunrise && (
             <span className="flex items-center gap-1">
-              <span className="w-2.5 h-2.5 rounded-sm bg-blue-500/40 border border-blue-400/30" />
+              <span className="w-2.5 h-2.5 rounded-sm bg-purple-500/40 border border-purple-400/30" />
               {ll.hariVasara}
             </span>
           )}

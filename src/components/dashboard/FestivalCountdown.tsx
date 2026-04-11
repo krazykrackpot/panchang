@@ -117,7 +117,7 @@ function getCategoryColor(category: string, type: string): { bg: string; text: s
   if (category === 'chaturthi') return { bg: 'bg-orange-500/15', text: 'text-orange-300', border: 'border-orange-500/25' };
   if (category === 'pradosham') return { bg: 'bg-indigo-500/15', text: 'text-indigo-300', border: 'border-indigo-500/25' };
   if (category === 'sankranti') return { bg: 'bg-amber-500/15', text: 'text-amber-300', border: 'border-amber-500/25' };
-  if (type === 'vrat') return { bg: 'bg-teal-500/15', text: 'text-teal-300', border: 'border-teal-500/25' };
+  if (type === 'vrat') return { bg: 'bg-purple-500/15', text: 'text-purple-300', border: 'border-purple-500/25' };
   return { bg: 'bg-gold-primary/15', text: 'text-gold-light', border: 'border-gold-primary/25' };
 }
 

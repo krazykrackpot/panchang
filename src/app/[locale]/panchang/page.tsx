@@ -1038,7 +1038,7 @@ export default function PanchangPage() {
               {/* Nishita Kaal */}
               {panchang.nishitaKaal && (
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.26 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-blue-500/30 bg-gradient-to-br from-blue-500/5 to-transparent">
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="text-blue-400 text-xs uppercase tracking-wider font-bold mb-2">{t('nishitaKaal')}</div>
                   <div className="font-mono text-xl font-bold text-blue-300">{panchang.nishitaKaal.start} — {panchang.nishitaKaal.end}</div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">{t('nishitaKaalDesc')}</div>
@@ -1833,7 +1833,7 @@ export default function PanchangPage() {
 
                 {/* Julian Day */}
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
-                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-500/5 to-transparent">
+                  className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6">
                   <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
                     {locale === 'en' ? 'Julian Day Number' : 'जूलियन दिन संख्या'}
                   </div>

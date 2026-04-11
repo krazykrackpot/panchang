@@ -46,10 +46,10 @@ const LABELS = {
 const CARD_GRADIENTS = [
   'from-amber-500/8 via-orange-500/5 to-transparent',
   'from-rose-500/8 via-pink-500/5 to-transparent',
-  'from-indigo-500/8 via-blue-500/5 to-transparent',
+  'from-[#2d1b69]/30 via-[#1a1040]/20 to-transparent',
   'from-emerald-500/8 via-teal-500/5 to-transparent',
   'from-purple-500/8 via-violet-500/5 to-transparent',
-  'from-cyan-500/8 via-sky-500/5 to-transparent',
+  'from-[#2d1b69]/25 via-purple-900/15 to-transparent',
 ];
 
 const fadeInUp = {

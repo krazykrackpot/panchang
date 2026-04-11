@@ -42,7 +42,7 @@ function NavButtons({ onBack, onNext, backLabel = 'Back', nextLabel = 'Next Step
         : <div />}
       {onNext && (
         <button onClick={onNext} disabled={disableNext}
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold transition-all duration-200 shadow-lg">
+          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#2d1b69] to-purple-900 hover:from-[#3d2b79] hover:to-purple-800 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold transition-all duration-200 shadow-lg">
           {nextLabel}<ArrowRight className="w-4 h-4" />
         </button>
       )}
@@ -217,7 +217,7 @@ export default function ShadbalaLabPage() {
           <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/25 flex items-center justify-center">
             <Gauge className="w-5 h-5 text-emerald-400" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-200 via-green-100 to-emerald-200 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-[#f0d48a] via-[#d4a853] to-[#f0d48a] bg-clip-text text-transparent">
             Shadbala Breakdown
           </h1>
         </div>
@@ -276,7 +276,7 @@ export default function ShadbalaLabPage() {
                 </div>
               </div>
               <button onClick={() => { setComputed(true); setStep(1); }} disabled={!location}
-                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold transition-all flex items-center justify-center gap-2">
+                className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#2d1b69] to-purple-900 hover:from-[#3d2b79] hover:to-purple-800 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold transition-all flex items-center justify-center gap-2">
                 Calculate Shadbala <ArrowRight className="w-5 h-5" />
               </button>
             </motion.div>

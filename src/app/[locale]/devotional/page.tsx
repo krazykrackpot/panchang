@@ -47,7 +47,8 @@ const UNIVERSAL_MANTRAS = [
 
 export default function DevotionalPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const today = useMemo(() => {
@@ -71,7 +72,7 @@ export default function DevotionalPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Daily Devotional Guide' : 'दैनिक भक्ति मार्गदर्शिका'}</span>
+          <span className="text-gold-gradient">{isTamil ? 'தினசரி பக்தி வழிகாட்டி' : locale === 'en' ? 'Daily Devotional Guide' : 'दैनिक भक्ति मार्गदर्शिका'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           {locale === 'en'

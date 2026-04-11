@@ -593,7 +593,8 @@ const UPCOMING_ECLIPSES: {
 export default function GrahanPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -618,11 +619,13 @@ export default function GrahanPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {locale === 'en' || String(locale) === 'ta' ? 'Grahan' : locale === 'hi' ? 'ग्रहण' : 'ग्रहणम्'}
+              {isTamil ? 'கிரகணம்' : locale === 'en' ? 'Grahan' : locale === 'hi' ? 'ग्रहण' : 'ग्रहणम्'}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en'
+            {isTamil
+              ? 'சூரிய & சந்திர கிரகணங்கள் -- அண்ட நிழல் நாடகம்'
+              : locale === 'en'
               ? 'Solar & Lunar Eclipses -- The Cosmic Shadow Play'
               : locale === 'hi'
               ? 'सूर्य एवं चन्द्र ग्रहण -- ब्रह्माण्डीय छाया नाटक'

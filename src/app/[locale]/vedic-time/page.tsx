@@ -234,7 +234,8 @@ function computeVedicTime(
 
 export default function VedicTimePage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
@@ -332,10 +333,12 @@ export default function VedicTimePage() {
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Vedic Time' : 'वैदिक समय'}</span>
+          <span className="text-gold-gradient">{isTamil ? 'வேத காலம்' : locale === 'en' ? 'Vedic Time' : 'वैदिक समय'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
-          {locale === 'en'
+          {isTamil
+            ? 'பழங்கால இந்திய நேர முறை — கடி, பலம், விபலம்'
+            : locale === 'en'
             ? 'The ancient Indian time system — Ghati, Pala, Vipala'
             : 'प्राचीन भारतीय समय पद्धति — घटी, पल, विपल'}
         </p>

@@ -333,7 +333,8 @@ function getCurrentRegionalInfo(cal: RegionalCalendar): { currentMonth: number; 
 // =================================================================
 export default function RegionalCalendarsPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const calendarsWithCurrent = useMemo(() => {
@@ -353,7 +354,7 @@ export default function RegionalCalendarsPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {locale === 'en' || String(locale) === 'ta' ? 'Regional Calendars' : locale === 'hi' ? 'क्षेत्रीय पंचांग' : 'प्रादेशिकपञ्चाङ्गानि'}
+            {isTamil ? 'பிராந்திய நாட்காட்டிகள்' : locale === 'en' ? 'Regional Calendars' : locale === 'hi' ? 'क्षेत्रीय पंचांग' : 'प्रादेशिकपञ्चाङ्गानि'}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-3xl mx-auto">

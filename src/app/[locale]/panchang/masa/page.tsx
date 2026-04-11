@@ -232,7 +232,8 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
 export default function MasaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -257,7 +258,9 @@ export default function MasaPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {locale === 'en'
+              {isTamil
+                ? 'மாசம் & பருவம்'
+                : locale === 'en'
                 ? 'Masa & Ritu'
                 : locale === 'hi'
                 ? 'मास एवं ऋतु'
@@ -268,7 +271,9 @@ export default function MasaPage() {
             className="text-text-secondary text-lg"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {locale === 'en'
+            {isTamil
+              ? '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய நாட்காட்டி'
+              : locale === 'en'
               ? '12 Months and 6 Seasons — The Lunisolar Calendar'
               : locale === 'hi'
               ? '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग'

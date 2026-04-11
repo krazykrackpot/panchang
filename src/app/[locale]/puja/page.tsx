@@ -41,7 +41,18 @@ const LABELS = {
     grahaShantiCta: 'व्यक्तिगतानुशंसनार्थं स्वकुण्डलीं रचयतु',
     viewVidhi: 'विधिं पश्यतु',
   },
-};
+  ta: {
+    title: 'பூஜை விதி',
+    subtitle: 'இந்து பண்டிகைகள் மற்றும் விரதங்களுக்கான படிப்படியான வழிகாட்டி — மந்திரங்கள், சாமக்ரி பட்டியல் மற்றும் நடைமுறைகள்.',
+    festivals: 'பண்டிகைகள்',
+    vrats: 'விரதங்கள்',
+    grahaShanti: 'கிரக சாந்தி',
+    grahaShantiSubtitle: 'கிரக பரிகாரங்கள்',
+    grahaShantiDesc: 'உங்கள் ஜாதகத்தில் பாதிக்கப்பட்ட அல்லது பலவீனமான கிரகங்களை சாந்தப்படுத்தும் பரிகார பூஜைகள்.',
+    grahaShantiCta: 'தனிப்பட்ட பரிந்துரைகளுக்கு உங்கள் குண்டலியை உருவாக்கவும்',
+    viewVidhi: 'விதியைக் காண்க',
+  },
+} as Record<string, Record<string, string>>;
 
 const CARD_GRADIENTS = [
   'from-amber-500/8 via-orange-500/5 to-transparent',
@@ -72,7 +83,8 @@ function PujaCard({
   index: number;
   viewLabel: string;
 }) {
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const gradient = CARD_GRADIENTS[index % CARD_GRADIENTS.length];
 
   return (
@@ -121,11 +133,12 @@ function PujaCard({
 
 export default function PujaIndexPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
-  const l = LABELS[locale];
+  const l = (LABELS as Record<string, Record<string, string>>)[locale] || LABELS.en;
 
   const allPujas = Object.values(PUJA_VIDHIS);
   const festivals = allPujas.filter((p) => p.category === 'festival');

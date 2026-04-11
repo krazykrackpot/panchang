@@ -21,31 +21,31 @@ import { useLocationStore } from '@/stores/location-store';
    ═══════════════════════════════════════════ */
 
 const LABELS = {
-  back: { en: 'Back to Calendar', hi: 'कैलेंडर पर वापस', sa: 'पञ्चाङ्गं प्रति' },
-  about: { en: 'About', hi: 'परिचय', sa: 'परिचयः' },
-  deity: { en: 'Deity', hi: 'देवता', sa: 'देवता' },
-  mythology: { en: 'Story & Origin', hi: 'कथा एवं उत्पत्ति', sa: 'कथा उत्पत्तिश्च' },
-  observance: { en: 'How to Observe', hi: 'पालन विधि', sa: 'पालनविधिः' },
-  significance: { en: 'Significance', hi: 'महत्व', sa: 'महत्त्वम्' },
-  fasting: { en: 'Fasting Rules', hi: 'व्रत नियम', sa: 'व्रतनियमाः' },
-  pujaVidhi: { en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजाविधिः' },
-  muhurta: { en: 'Auspicious Timing (Muhurta)', hi: 'शुभ मुहूर्त', sa: 'शुभमुहूर्तम्' },
-  samagri: { en: 'Materials (Samagri)', hi: 'सामग्री', sa: 'सामग्री' },
-  sankalpa: { en: 'Sankalpa (Sacred Resolve)', hi: 'संकल्प', sa: 'सङ्कल्पः' },
-  procedure: { en: 'Puja Steps', hi: 'पूजा विधि', sa: 'पूजाविधिः' },
-  mantras: { en: 'Mantras', hi: 'मन्त्र', sa: 'मन्त्राः' },
-  stotras: { en: 'Stotras', hi: 'स्तोत्र', sa: 'स्तोत्राणि' },
-  aarti: { en: 'Aarti', hi: 'आरती', sa: 'आरतिः' },
-  naivedya: { en: 'Offering (Naivedya)', hi: 'नैवेद्य', sa: 'नैवेद्यम्' },
-  precautions: { en: 'Precautions', hi: 'सावधानियाँ', sa: 'सावधान्यानि' },
-  phala: { en: 'Benefits (Phala)', hi: 'फल', sa: 'फलम्' },
-  visarjan: { en: 'Visarjan (Conclusion)', hi: 'विसर्जन', sa: 'विसर्जनम्' },
-  ekadashiStory: { en: 'Legend', hi: 'कथा', sa: 'कथा' },
-  ekadashiBenefit: { en: 'Benefit', hi: 'फल', sa: 'फलम्' },
-  notFound: { en: 'Festival details coming soon', hi: 'त्योहार विवरण शीघ्र आ रहा है', sa: 'उत्सवविवरणं शीघ्रम् आगच्छति' },
-  notFoundSub: { en: 'We are working on adding detailed information for this festival.', hi: 'हम इस त्योहार की विस्तृत जानकारी जोड़ने पर कार्य कर रहे हैं।', sa: 'अस्य उत्सवस्य विस्तृतं विवरणं योजयितुं वयं कार्यं कुर्मः।' },
-  itemsSelected: { en: 'items collected', hi: 'सामग्री एकत्र', sa: 'सामग्री सङ्गृहीता' },
-  japaCount: { en: 'Japa Count', hi: 'जप संख्या', sa: 'जपसङ्ख्या' },
+  back: { en: 'Back to Calendar', hi: 'कैलेंडर पर वापस', sa: 'पञ्चाङ्गं प्रति', ta: 'நாட்காட்டிக்குத் திரும்பு' },
+  about: { en: 'About', hi: 'परिचय', sa: 'परिचयः', ta: 'பற்றி' },
+  deity: { en: 'Deity', hi: 'देवता', sa: 'देवता', ta: 'தெய்வம்' },
+  mythology: { en: 'Story & Origin', hi: 'कथा एवं उत्पत्ति', sa: 'कथा उत्पत्तिश्च', ta: 'கதை & தோற்றம்' },
+  observance: { en: 'How to Observe', hi: 'पालन विधि', sa: 'पालनविधिः', ta: 'எப்படி அனுசரிப்பது' },
+  significance: { en: 'Significance', hi: 'महत्व', sa: 'महत्त्वम्', ta: 'முக்கியத்துவம்' },
+  fasting: { en: 'Fasting Rules', hi: 'व्रत नियम', sa: 'व्रतनियमाः', ta: 'விரத விதிகள்' },
+  pujaVidhi: { en: 'Puja Vidhi', hi: 'पूजा विधि', sa: 'पूजाविधिः', ta: 'பூஜை விதி' },
+  muhurta: { en: 'Auspicious Timing (Muhurta)', hi: 'शुभ मुहूर्त', sa: 'शुभमुहूर्तम्', ta: 'நல்ல நேரம் (முகூர்த்தம்)' },
+  samagri: { en: 'Materials (Samagri)', hi: 'सामग्री', sa: 'सामग्री', ta: 'சாமக்ரி (பொருட்கள்)' },
+  sankalpa: { en: 'Sankalpa (Sacred Resolve)', hi: 'संकल्प', sa: 'सङ्कल्पः', ta: 'சங்கல்பம்' },
+  procedure: { en: 'Puja Steps', hi: 'पूजा विधि', sa: 'पूजाविधिः', ta: 'பூஜை படிகள்' },
+  mantras: { en: 'Mantras', hi: 'मन्त्र', sa: 'मन्त्राः', ta: 'மந்திரங்கள்' },
+  stotras: { en: 'Stotras', hi: 'स्तोत्र', sa: 'स्तोत्राणि', ta: 'ஸ்தோத்திரங்கள்' },
+  aarti: { en: 'Aarti', hi: 'आरती', sa: 'आरतिः', ta: 'ஆரத்தி' },
+  naivedya: { en: 'Offering (Naivedya)', hi: 'नैवेद्य', sa: 'नैवेद्यम्', ta: 'நைவேத்யம்' },
+  precautions: { en: 'Precautions', hi: 'सावधानियाँ', sa: 'सावधान्यानि', ta: 'எச்சரிக்கைகள்' },
+  phala: { en: 'Benefits (Phala)', hi: 'फल', sa: 'फलम्', ta: 'பலன்கள்' },
+  visarjan: { en: 'Visarjan (Conclusion)', hi: 'विसर्जन', sa: 'विसर्जनम्', ta: 'விசர்ஜனம்' },
+  ekadashiStory: { en: 'Legend', hi: 'कथा', sa: 'कथा', ta: 'புராணக்கதை' },
+  ekadashiBenefit: { en: 'Benefit', hi: 'फल', sa: 'फलम्', ta: 'பலன்' },
+  notFound: { en: 'Festival details coming soon', hi: 'त्योहार विवरण शीघ्र आ रहा है', sa: 'उत्सवविवरणं शीघ्रम् आगच्छति', ta: 'பண்டிகை விவரங்கள் விரைவில் வரும்' },
+  notFoundSub: { en: 'We are working on adding detailed information for this festival.', hi: 'हम इस त्योहार की विस्तृत जानकारी जोड़ने पर कार्य कर रहे हैं।', sa: 'अस्य उत्सवस्य विस्तृतं विवरणं योजयितुं वयं कार्यं कुर्मः।', ta: 'இந்த பண்டிகையின் விரிவான தகவல்களை சேர்க்க நாங்கள் பணியாற்றுகிறோம்.' },
+  itemsSelected: { en: 'items collected', hi: 'सामग्री एकत्र', sa: 'सामग्री सङ्गृहीता', ta: 'பொருட்கள் சேகரிக்கப்பட்டன' },
+  japaCount: { en: 'Japa Count', hi: 'जप संख्या', sa: 'जपसङ्ख्या', ta: 'ஜப எண்ணிக்கை' },
 };
 
 const l = (tri: Trilingual, locale: Locale) => tri[locale] || tri.en;
@@ -90,7 +90,8 @@ export default function FestivalDetailPage() {
   const slug = params.slug as string;
   const dateParam = searchParams.get('date'); // e.g., "2026-04-13" for specific ekadashi
 
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont: React.CSSProperties = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont: React.CSSProperties = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

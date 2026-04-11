@@ -544,7 +544,8 @@ function AnimatedSunriseSunsetDiagram({
 export default function MuhurtaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedMuhurta, setSelectedMuhurta] = useState<number | null>(null);
@@ -580,10 +581,10 @@ export default function MuhurtaPage() {
         <MuhurtaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Muhurta' : locale === 'hi' ? 'मुहूर्त' : 'मुहूर्तः'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'முகூர்த்தம்' : locale === 'en' ? 'Muhurta' : locale === 'hi' ? 'मुहूर्त' : 'मुहूर्तः'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'The 30 Time Divisions of the Day -- Ancient Temporal Framework' : locale === 'hi' ? 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र' : 'दिनस्य त्रिंशत् कालविभागाः -- प्राचीनकालचक्रम्'}
+            {isTamil ? 'நாளின் 30 நேரப் பிரிவுகள் -- பழங்கால நேர அமைப்பு' : locale === 'en' ? 'The 30 Time Divisions of the Day -- Ancient Temporal Framework' : locale === 'hi' ? 'दिन के 30 काल विभाग -- प्राचीन समय-चक्र' : 'दिनस्य त्रिंशत् कालविभागाः -- प्राचीनकालचक्रम्'}
           </p>
         </div>
       </motion.div>

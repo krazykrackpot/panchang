@@ -557,7 +557,8 @@ function RashiDetailPanel({
 export default function RashiPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -584,11 +585,13 @@ export default function RashiPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {locale === 'en' || String(locale) === 'ta' ? 'Rashi' : locale === 'hi' ? 'राशि' : 'राशिः'}
+              {isTamil ? 'ராசி' : locale === 'en' ? 'Rashi' : locale === 'hi' ? 'राशि' : 'राशिः'}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en'
+            {isTamil
+              ? '12 ராசிகள் \u2014 கிரகண வட்டத்தின் நட்சத்திரப் பிரிவுகள்'
+              : locale === 'en'
               ? 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic'
               : locale === 'hi'
               ? '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग'

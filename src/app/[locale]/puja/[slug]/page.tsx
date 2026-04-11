@@ -122,7 +122,40 @@ const LABELS = {
     iast: 'IAST',
     both: 'उभयम्',
   },
-};
+  ta: {
+    samagri: 'சாமக்ரி',
+    samagriSa: 'Materials',
+    ready: 'தயார்',
+    sankalpa: 'சங்கல்பம்',
+    sankalpaSa: 'Resolution',
+    vidhi: 'பூஜை விதி',
+    vidhiSa: 'Procedure',
+    mantras: 'மந்திரங்கள்',
+    mantrasSa: 'Mantras',
+    stotras: 'ஸ்தோத்திரங்கள்',
+    stotrasSa: 'Hymns',
+    aarti: 'ஆரத்தி',
+    aartiSa: 'Aarti',
+    naivedya: 'நைவேத்யம்',
+    naivedyaSa: 'Food Offering',
+    precautions: 'எச்சரிக்கைகள்',
+    precautionsSa: 'Do\'s & Don\'ts',
+    phala: 'பலன்',
+    phalaSa: 'Benefits',
+    visarjan: 'விசர்ஜனம்',
+    visarjanSa: 'Closing Ritual',
+    muhurta: 'நேரம்',
+    festival: 'பண்டிகை',
+    vrat: 'விரதம்',
+    verses: 'சுலோகங்கள்',
+    comingSoon: 'பூஜை விதி விரைவில் வரும்',
+    comingSoonDesc: 'இந்த பூஜை விதி தயாரிக்கப்படுகிறது. பின்னர் பார்க்கவும்.',
+    backToPuja: 'பூஜை விதிக்குத் திரும்பு',
+    devanagari: 'Devanagari',
+    iast: 'IAST',
+    both: 'Both',
+  },
+} as Record<string, Record<string, string>>;
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -189,8 +222,9 @@ export default function PujaVidhiPage() {
   const locale = useLocale() as Locale;
   const params = useParams();
   const slug = params.slug as string;
-  const l = LABELS[locale];
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const l = (LABELS as Record<string, Record<string, string>>)[locale] || LABELS.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

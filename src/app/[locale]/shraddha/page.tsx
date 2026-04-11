@@ -74,7 +74,8 @@ function findTithiDateInYear(tithiNum: number, paksha: 'shukla' | 'krishna', yea
 
 export default function ShraddhaPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [tithiIndex, setTithiIndex] = useState(-1);
@@ -93,7 +94,7 @@ export default function ShraddhaPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Shraddha Calculator' : 'श्राद्ध गणक'}</span>
+          <span className="text-gold-gradient">{isTamil ? 'சிராத்தம் கணிப்பான்' : locale === 'en' ? 'Shraddha Calculator' : 'श्राद्ध गणक'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           {locale === 'en'

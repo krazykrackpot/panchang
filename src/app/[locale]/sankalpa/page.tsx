@@ -162,7 +162,48 @@ const LABELS = {
     kartaa: 'कर्ता',
     purposeLabel: 'प्रयोजनम्',
   },
-};
+  ta: {
+    title: 'சங்கல்ப ஜெனரேட்டர்',
+    subtitle: 'பூஜை & விரதத்திற்கான புனித சங்கல்பம்',
+    desc: 'உங்கள் பூஜை, விரதம் அல்லது புனித நோக்கத்திற்கான துல்லியமான பஞ்சாங்க கூறுகளுடன் தனிப்பட்ட சங்கல்ப அறிவிப்பை உருவாக்கவும்.',
+    fullName: 'முழு பெயர்',
+    fullNamePlaceholder: 'உங்கள் பெயரை உள்ளிடவும்',
+    gotra: 'கோத்ரம்',
+    gotraPlaceholder: 'கோத்ரம் தேர்ந்தெடுக்கவும்',
+    place: 'இடம்',
+    date: 'தேதி',
+    purpose: 'நோக்கம்',
+    forPuja: 'பூஜைக்காக',
+    forVrat: 'விரதத்திற்காக',
+    custom: 'தனிப்பயன்',
+    selectPuja: 'பூஜையைத் தேர்ந்தெடுக்கவும்',
+    vratName: 'விரதம் பெயர்',
+    vratPlaceholder: 'எ.கா. ஏகாதசி விரதம்',
+    customPurpose: 'நோக்கம்',
+    customPlaceholder: 'எ.கா. என் குடும்பத்தின் நலனுக்காக',
+    generate: 'சங்கல்பம் உருவாக்கவும்',
+    generating: 'பஞ்சாங்கம் கணக்கிடப்படுகிறது...',
+    result: 'உங்கள் சங்கல்பம்',
+    iast: 'IAST எழுத்துப்பெயர்ப்பு',
+    meaning: 'ஆங்கில பொருள்',
+    components: 'பஞ்சாங்க கூறுகள்',
+    copied: 'நகலெடுக்கப்பட்டது!',
+    copy: 'சங்கல்பம் நகலெடுக்கவும்',
+    print: 'அச்சிடு',
+    vikramSamvat: 'விக்ரம சம்வத்',
+    samvatsara: 'சம்வத்சரம்',
+    ayana: 'அயனம்',
+    ritu: 'ருது',
+    masa: 'மாசம்',
+    paksha: 'பக்ஷம்',
+    tithi: 'திதி',
+    vara: 'வாரம்',
+    nakshatra: 'நட்சத்திரம்',
+    desha: 'தேசம்',
+    kartaa: 'கர்த்தா',
+    purposeLabel: 'நோக்கம்',
+  },
+} as Record<string, Record<string, string>>;
 
 const GOTRAS = [
   // Saptarishi (7 primary)
@@ -235,8 +276,9 @@ const COMPONENT_KEYS: { key: string; componentKey: keyof SankalpaResult['compone
 
 export default function SankalpaPage() {
   const locale = useLocale() as Locale;
-  const t = LABELS[locale] || LABELS.en;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const t = (LABELS as Record<string, Record<string, string>>)[locale] || LABELS.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

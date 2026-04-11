@@ -152,6 +152,7 @@ export const MODULE_SEQUENCE: ModuleRef[] = [
   { id: '25-6', phase: 11, topic: 'Mathematics',     title: { en: 'Fibonacci Started With Music',             hi: 'फिबोनाची संगीत से शुरू हुआ' } },
   { id: '25-7', phase: 11, topic: 'Mathematics',     title: { en: 'Calculus — Kerala, Not Cambridge',         hi: 'कैलकुलस — केरल, कैम्ब्रिज नहीं' } },
   { id: '25-8', phase: 11, topic: 'Mathematics',     title: { en: "Pythagorean Theorem — 300 Years Before Pythagoras", hi: "पाइथागोरस प्रमेय — पाइथागोरस से 300 वर्ष पहले" } },
+  { id: '25-9', phase: 11, topic: 'Mathematics',     title: { en: 'Kerala School — When India Invented Calculus', hi: 'केरल स्कूल — जब भारत ने कलनशास्त्र खोजा' } },
   // Astronomy & Physics
   { id: '26-1', phase: 11, topic: 'Astronomy & Physics', title: { en: 'Earth Rotates — 1,000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले' } },
   { id: '26-2', phase: 11, topic: 'Astronomy & Physics', title: { en: 'Gravity — 500 Years Before Newton',      hi: 'गुरुत्वाकर्षण — न्यूटन से 500 वर्ष पहले' } },
@@ -181,6 +182,7 @@ export const PHASE_INFO: PhaseInfo[] = [
   { phase: 8, title: { en: 'Varshaphal',            hi: 'वर्षफल' },             count: MODULE_SEQUENCE.filter(m => m.phase === 8).length },
   { phase: 9, title: { en: 'Astronomy Engine',      hi: 'खगोलीय गणना' },       count: MODULE_SEQUENCE.filter(m => m.phase === 9).length },
   { phase: 10, title: { en: 'Advanced Prediction',  hi: 'उन्नत भविष्यवाणी' },  count: MODULE_SEQUENCE.filter(m => m.phase === 10).length },
+  { phase: 11, title: { en: "India's Contributions", hi: 'भारत का योगदान' },    count: MODULE_SEQUENCE.filter(m => m.phase === 11).length },
 ];
 
 // ── Internal index map for O(1) lookups ───────────────────────────────────────

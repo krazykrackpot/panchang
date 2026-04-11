@@ -46,6 +46,7 @@ import { hasRashiDrishti, getMutualRashiDrishti } from '@/lib/jaimini/rashi-dris
 const TransitRadar = lazy(() => import('@/components/kundali/TransitRadar'));
 const ChartChatTab = lazy(() => import('@/components/kundali/ChartChatTab'));
 const LifeTimeline = lazy(() => import('@/components/kundali/LifeTimeline'));
+const PatrikaTab = lazy(() => import('@/components/kundali/PatrikaTab'));
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {

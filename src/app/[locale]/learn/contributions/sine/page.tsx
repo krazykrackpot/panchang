@@ -139,8 +139,60 @@ export default function SinePage() {
               <p className="text-text-secondary text-xs mt-1">{isHi ? '"ज्या" = धनुष की प्रत्यंचा | "अर्ध" = आधा' : '"Jya" = bowstring of bow | "Ardha" = half'}</p>
             </div>
           </div>
-          {/* Bow SVG diagram */}
-          <div className="flex justify-center">
+          {/* TWO diagrams side by side: Greek chord vs Indian half-chord */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Greek approach: full chord */}
+            <div className="text-center">
+              <div className="text-red-400 text-xs font-bold mb-2 uppercase tracking-wider">{isHi ? 'यूनानी विधि — पूर्ण जीवा' : 'Greek Method — Full Chord'}</div>
+              <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#f87171" strokeWidth="1.5" opacity="0.3" />
+                <circle cx="100" cy="100" r="2.5" fill="#f87171" opacity="0.5" />
+                {/* Full chord */}
+                <line x1="36" y1="60" x2="180" y2="60" stroke="#f87171" strokeWidth="2.5" />
+                {/* Radii to endpoints */}
+                <line x1="100" y1="100" x2="36" y2="60" stroke="#f87171" strokeWidth="1" opacity="0.4" />
+                <line x1="100" y1="100" x2="180" y2="60" stroke="#f87171" strokeWidth="1" opacity="0.4" />
+                {/* Arc */}
+                <path d="M 36 60 A 80 80 0 0 1 180 60" fill="none" stroke="#f87171" strokeWidth="2" opacity="0.6" />
+                <text x="100" y="50" textAnchor="middle" fill="#f87171" fontSize="9" fontWeight="bold">crd(2θ)</text>
+                <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{isHi ? 'टॉलेमी का जीवा → पूरी जीवा' : "Ptolemy's chord → full chord"}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#8a8478" fontSize="7">{isHi ? 'अजीब, दो कोणों की आवश्यकता' : 'Awkward — needs double angle'}</text>
+              </svg>
+            </div>
+
+            {/* Indian approach: half-chord = Jya = sine */}
+            <div className="text-center">
+              <div className="text-emerald-400 text-xs font-bold mb-2 uppercase tracking-wider">{isHi ? 'भारतीय विधि — अर्धज्या (= Sine!)' : 'Indian Method — Ardha-jya (= Sine!)'}</div>
+              <svg viewBox="0 0 200 200" className="w-full max-w-[180px] mx-auto">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="#34d399" strokeWidth="1.5" opacity="0.3" />
+                <circle cx="100" cy="100" r="2.5" fill="#34d399" opacity="0.5" />
+                {/* Half chord = sine */}
+                <line x1="100" y1="40" x2="170" y2="40" stroke="#34d399" strokeWidth="3" />
+                {/* Perpendicular to center */}
+                <line x1="100" y1="100" x2="100" y2="40" stroke="#f0d48a" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.6" />
+                {/* Radius to point */}
+                <line x1="100" y1="100" x2="170" y2="40" stroke="#f0d48a" strokeWidth="1" opacity="0.5" />
+                {/* Arc from top */}
+                <path d="M 100 20 A 80 80 0 0 1 170 40" fill="none" stroke="#34d399" strokeWidth="2" opacity="0.6" />
+                {/* Angle */}
+                <path d="M 100 80 A 20 20 0 0 1 112 76" fill="none" stroke="#fbbf24" strokeWidth="1.5" />
+                <text x="116" y="82" fill="#fbbf24" fontSize="10">θ</text>
+                <text x="140" y="35" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold">sin(θ)</text>
+                <text x="88" y="72" textAnchor="end" fill="#f0d48a" fontSize="7" opacity="0.7">cos(θ)</text>
+                <text x="100" y="180" textAnchor="middle" fill="#8a8478" fontSize="7">{isHi ? 'आर्यभट की ज्या → SINE का जन्म' : "Aryabhata's Jya → SINE is born"}</text>
+                <text x="100" y="192" textAnchor="middle" fill="#34d399" fontSize="7">{isHi ? 'सुंदर, प्रत्यक्ष, एक कोण पर्याप्त' : 'Elegant — one angle, directly useful'}</text>
+              </svg>
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/15 text-xs text-text-secondary leading-relaxed" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {isHi
+              ? '💡 यूनानियों ने पूर्ण जीवा (chord) के साथ काम किया — जिसमें दो बिन्दुओं की आवश्यकता थी। भारतीयों ने विचार को सरल किया: आधी जीवा लें (अर्धज्या) — यह सीधे एक कोण से सम्बन्धित है। यह छोटा सा नवाचार ही sine फ़ंक्शन है, और इसने सम्पूर्ण त्रिकोणमिति को सम्भव बनाया।'
+              : '💡 Greeks worked with full chords — needing two points on the circle. Indians simplified the idea: take HALF the chord (Ardha-jya) — it directly relates to a single angle. This small innovation IS the sine function, and it made all of trigonometry possible.'}
+          </div>
+
+          {/* Original detailed bowstring diagram */}
+          <div className="flex justify-center mt-4">
             <svg viewBox="0 0 260 220" className="w-full max-w-[250px]">
               <defs>
                 <linearGradient id="sineGold" x1="0%" y1="0%" x2="100%" y2="100%">

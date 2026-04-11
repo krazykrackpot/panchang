@@ -1137,21 +1137,27 @@ export default function PanchangPage() {
                       <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
                         <div>
                           <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Day Horas' : 'दिन होरा'}</div>
-                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => (
-                            <div key={i} className="flex justify-between py-0.5 border-b border-gold-primary/5">
-                              <span className="text-text-secondary">{h.start}–{h.end}</span>
-                              <span className="text-gold-light font-semibold">{GRAHAS[h.planet]?.name[locale]}</span>
-                            </div>
-                          ))}
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => {
+                            const hNow = (() => { const toM = (t: string) => { const [hh,mm] = t.split(':').map(Number); return hh*60+mm; }; const nm = now.getHours()*60+now.getMinutes(); return nm >= toM(h.start) && nm < toM(h.end); })();
+                            return (
+                              <div key={i} className={`flex justify-between py-0.5 border-b border-gold-primary/5 ${hNow ? 'bg-gold-primary/10 rounded px-1 -mx-1 font-bold' : ''}`}>
+                                <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
+                                <span className={`font-semibold ${hNow ? 'text-gold-primary' : 'text-gold-light'}`}>{GRAHAS[h.planet]?.name[locale]}</span>
+                              </div>
+                            );
+                          })}
                         </div>
                         <div>
                           <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Night Horas' : 'रात्रि होरा'}</div>
-                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => (
-                            <div key={i} className="flex justify-between py-0.5 border-b border-gold-primary/5">
-                              <span className="text-text-secondary">{h.start}–{h.end}</span>
-                              <span className="text-gold-light font-semibold">{GRAHAS[h.planet]?.name[locale]}</span>
-                            </div>
-                          ))}
+                          {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => {
+                            const hNow = (() => { const toM = (t: string) => { const [hh,mm] = t.split(':').map(Number); return hh*60+mm; }; const nm = now.getHours()*60+now.getMinutes(); return nm >= toM(h.start) && nm < toM(h.end); })();
+                            return (
+                              <div key={i} className={`flex justify-between py-0.5 border-b border-gold-primary/5 ${hNow ? 'bg-gold-primary/10 rounded px-1 -mx-1 font-bold' : ''}`}>
+                                <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
+                                <span className={`font-semibold ${hNow ? 'text-gold-primary' : 'text-gold-light'}`}>{GRAHAS[h.planet]?.name[locale]}</span>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     </details>
@@ -1896,9 +1902,11 @@ export default function PanchangPage() {
               <p className="text-text-secondary text-sm text-center mb-8">{t('choghadiyaDesc')}</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                {/* Choghadiya conflict detection — inauspicious periods that override auspicious slots */}
+                {/* Choghadiya conflict detection + "NOW" indicator */}
                 {(() => {
                   const toMin = (t: string) => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+                  const nowMin = now.getHours() * 60 + now.getMinutes();
+                  const isNow = (s: string, e: string) => { const s0 = toMin(s), e0 = toMin(e); return nowMin >= s0 && nowMin < e0; };
                   const overlaps = (aS: string, aE: string, bS: string, bE: string) => {
                     const a0 = toMin(aS), a1 = toMin(aE), b0 = toMin(bS), b1 = toMin(bE);
                     return a0 < b1 && b0 < a1;
@@ -1921,6 +1929,7 @@ export default function PanchangPage() {
                   const renderSlot = (slot: any, i: number, prefix: string, animX: number) => {
                     const conflicts = slot.nature === 'auspicious' ? getConflicts(slot.startTime, slot.endTime) : [];
                     const hasConflict = conflicts.length > 0;
+                    const active = isNow(slot.startTime, slot.endTime);
                     return (
                       <motion.div
                         key={`${prefix}-${i}`}
@@ -1928,6 +1937,8 @@ export default function PanchangPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.04 }}
                         className={`rounded-lg p-3 border ${
+                          active ? 'ring-1 ring-gold-primary/50 shadow-[0_0_12px_rgba(212,168,83,0.15)]' : ''
+                        } ${
                           hasConflict ? 'bg-amber-500/8 border-amber-500/25' :
                           slot.nature === 'auspicious' ? 'bg-emerald-500/5 border-emerald-500/20' :
                           slot.nature === 'inauspicious' ? 'bg-red-500/5 border-red-500/20' :
@@ -1937,6 +1948,8 @@ export default function PanchangPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
                             <span className={`w-2 h-2 rounded-full ${
+                              active ? 'animate-pulse' : ''
+                            } ${
                               hasConflict ? 'bg-amber-400' :
                               slot.nature === 'auspicious' ? 'bg-emerald-400' :
                               slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
@@ -1944,6 +1957,11 @@ export default function PanchangPage() {
                             <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                               {slot.name[locale]}
                             </span>
+                            {active && (
+                              <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-light">
+                                {locale === 'en' ? 'NOW' : 'अभी'}
+                              </span>
+                            )}
                           </div>
                           <span className="font-mono text-xs text-text-secondary">{slot.startTime} — {slot.endTime}</span>
                         </div>

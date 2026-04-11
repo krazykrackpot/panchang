@@ -122,6 +122,7 @@ const PHASES = [
       { id: '25-5', title: { en: 'Binary Code — 1,800 Years Before Computers', hi: 'द्विआधारी — कम्प्यूटर से 1,800 वर्ष पहले' } },
       { id: '25-6', title: { en: "Fibonacci Was Indian — It Started With Music", hi: 'फिबोनाची भारतीय था — यह संगीत से शुरू हुआ' } },
       { id: '25-7', title: { en: 'Calculus — Invented in Kerala, Not Cambridge', hi: 'कैलकुलस — केरल में खोजा, कैम्ब्रिज में नहीं' } },
+      { id: '25-8', title: { en: "The 'Pythagorean' Theorem — 300 Years Before Pythagoras", hi: "'पाइथागोरस प्रमेय' — पाइथागोरस से 300 वर्ष पहले" } },
     ]},
     { topic: 'Astronomy & Physics', modules: [
       { id: '26-1', title: { en: 'Earth Rotates — 1,000 Years Before Europe', hi: 'पृथ्वी घूमती है — यूरोप से 1,000 वर्ष पहले' } },

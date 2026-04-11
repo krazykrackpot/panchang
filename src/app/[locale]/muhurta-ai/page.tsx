@@ -13,27 +13,27 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
 
-const ACTIVITY_LIST: { id: ExtendedActivityId; label: { en: string; hi: string; sa: string } }[] = [
-  { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः' } },
-  { id: 'griha_pravesh', label: { en: 'Griha Pravesh', hi: 'गृह प्रवेश', sa: 'गृहप्रवेशः' } },
-  { id: 'mundan', label: { en: 'Mundan', hi: 'मुण्डन', sa: 'मुण्डनम्' } },
-  { id: 'vehicle', label: { en: 'Vehicle', hi: 'वाहन', sa: 'वाहनम्' } },
-  { id: 'travel', label: { en: 'Travel', hi: 'यात्रा', sa: 'यात्रा' } },
-  { id: 'property', label: { en: 'Property', hi: 'संपत्ति', sa: 'सम्पत्तिः' } },
-  { id: 'business', label: { en: 'Business', hi: 'व्यापार', sa: 'व्यापारः' } },
-  { id: 'education', label: { en: 'Education', hi: 'शिक्षा', sa: 'शिक्षा' } },
-  { id: 'namakarana', label: { en: 'Naming', hi: 'नामकरण', sa: 'नामकरणम्' } },
-  { id: 'upanayana', label: { en: 'Thread', hi: 'उपनयन', sa: 'उपनयनम्' } },
-  { id: 'engagement', label: { en: 'Engagement', hi: 'सगाई', sa: 'वाग्दानम्' } },
-  { id: 'gold_purchase', label: { en: 'Gold', hi: 'स्वर्ण', sa: 'स्वर्णम्' } },
-  { id: 'medical_treatment', label: { en: 'Medical', hi: 'चिकित्सा', sa: 'चिकित्सा' } },
-  { id: 'court_case', label: { en: 'Court Case', hi: 'न्यायालय', sa: 'न्यायालयः' } },
-  { id: 'exam', label: { en: 'Exam', hi: 'परीक्षा', sa: 'परीक्षा' } },
-  { id: 'spiritual_practice', label: { en: 'Spiritual', hi: 'साधना', sa: 'साधना' } },
-  { id: 'agriculture', label: { en: 'Agriculture', hi: 'कृषि', sa: 'कृषिः' } },
-  { id: 'financial_signing', label: { en: 'Finance', hi: 'वित्त', sa: 'वित्तम्' } },
-  { id: 'surgery', label: { en: 'Surgery', hi: 'शल्य', sa: 'शल्यम्' } },
-  { id: 'relocation', label: { en: 'Relocation', hi: 'स्थानांतर', sa: 'स्थानान्तरणम्' } },
+const ACTIVITY_LIST: { id: ExtendedActivityId; label: Record<string, string> }[] = [
+  { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः', ta: 'திருமணம்' } },
+  { id: 'griha_pravesh', label: { en: 'Griha Pravesh', hi: 'गृह प्रवेश', sa: 'गृहप्रवेशः', ta: 'கிருஹப் பிரவேசம்' } },
+  { id: 'mundan', label: { en: 'Mundan', hi: 'मुण्डन', sa: 'मुण्डनम्', ta: 'சவரம்' } },
+  { id: 'vehicle', label: { en: 'Vehicle', hi: 'वाहन', sa: 'वाहनम्', ta: 'வாகனம்' } },
+  { id: 'travel', label: { en: 'Travel', hi: 'यात्रा', sa: 'यात्रा', ta: 'பயணம்' } },
+  { id: 'property', label: { en: 'Property', hi: 'संपत्ति', sa: 'सम्पत्तिः', ta: 'சொத்து' } },
+  { id: 'business', label: { en: 'Business', hi: 'व्यापार', sa: 'व्यापारः', ta: 'வணிகம்' } },
+  { id: 'education', label: { en: 'Education', hi: 'शिक्षा', sa: 'शिक्षा', ta: 'கல்வி' } },
+  { id: 'namakarana', label: { en: 'Naming', hi: 'नामकरण', sa: 'नामकरणम्', ta: 'நாமகரணம்' } },
+  { id: 'upanayana', label: { en: 'Thread', hi: 'उपनयन', sa: 'उपनयनम्', ta: 'உபநயனம்' } },
+  { id: 'engagement', label: { en: 'Engagement', hi: 'सगाई', sa: 'वाग्दानम्', ta: 'நிச்சயதார்த்தம்' } },
+  { id: 'gold_purchase', label: { en: 'Gold', hi: 'स्वर्ण', sa: 'स्वर्णम्', ta: 'தங்கம்' } },
+  { id: 'medical_treatment', label: { en: 'Medical', hi: 'चिकित्सा', sa: 'चिकित्सा', ta: 'மருத்துவம்' } },
+  { id: 'court_case', label: { en: 'Court Case', hi: 'न्यायालय', sa: 'न्यायालयः', ta: 'நீதிமன்றம்' } },
+  { id: 'exam', label: { en: 'Exam', hi: 'परीक्षा', sa: 'परीक्षा', ta: 'தேர்வு' } },
+  { id: 'spiritual_practice', label: { en: 'Spiritual', hi: 'साधना', sa: 'साधना', ta: 'ஆன்மீகம்' } },
+  { id: 'agriculture', label: { en: 'Agriculture', hi: 'कृषि', sa: 'कृषिः', ta: 'வேளாண்மை' } },
+  { id: 'financial_signing', label: { en: 'Finance', hi: 'वित्त', sa: 'वित्तम्', ta: 'நிதி' } },
+  { id: 'surgery', label: { en: 'Surgery', hi: 'शल्य', sa: 'शल्यम्', ta: 'அறுவை' } },
+  { id: 'relocation', label: { en: 'Relocation', hi: 'स्थानांतर', sa: 'स्थानान्तरणम्', ta: 'இடமாற்றம்' } },
 ];
 
 const L = {
@@ -73,6 +73,18 @@ const L = {
     keyFactors: 'मुख्यकारणानि', results: 'सर्वसिफारिशाः', date: 'तिथिः', time: 'समयः',
     noResults: 'अस्मिन् अवधौ शुभसमयः न प्राप्तः।',
   },
+  ta: {
+    title: 'முகூர்த்த AI', subtitle: 'சிறந்த முகூர்த்தம் கண்டறி',
+    desc: 'Multi-factor scoring engine that ranks time windows 0-100 for any activity. Combines Panchang, transits, hora, and choghadiya.',
+    step1: 'செயல்பாட்டைத் தேர்ந்தெடுக்கவும்', step2: 'தேதி வரம்பு & இடம்',
+    startDate: 'தொடக்க தேதி', endDate: 'முடிவு தேதி',
+    location: 'இடம்', detecting: 'இடம் கண்டறிகிறது...', changeLocation: 'மாற்று',
+    find: 'சிறந்த முகூர்த்தம் கண்டறி', finding: 'நேர சாளரங்களை ஸ்கேன் செய்கிறது...',
+    hero: 'சிறந்த பரிந்துரை', score: 'மதிப்பெண்', breakdown: 'மதிப்பெண் பகுப்பாய்வு',
+    panchang: 'பஞ்சாங்கம்', transit: 'கோசாரம்', timing: 'நேரம்', personal: 'தனிப்பட்ட',
+    keyFactors: 'முக்கிய காரணிகள்', results: 'அனைத்து பரிந்துரைகள்', date: 'தேதி', time: 'நேரம்',
+    noResults: 'இந்த வரம்பில் சுப நேரம் கிடைக்கவில்லை. தேதி வரம்பை நீட்டிக்கவும்.',
+  },
 };
 
 function ScoreGauge({ score, label, max = 25 }: { score: number; label: string; max?: number }) {
@@ -94,8 +106,9 @@ function ScoreGauge({ score, label, max = 25 }: { score: number; label: string; 
 
 export default function MuhurtaAIPage() {
   const locale = useLocale() as Locale;
-  const t = L[locale] || L.en;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const t = (L as Record<string, typeof L.en>)[locale] || L.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -210,7 +223,7 @@ export default function MuhurtaAIPage() {
             <motion.button key={a.id} onClick={() => setActivity(a.id)}
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               className={`p-3 rounded-xl border text-center transition-all ${activity === a.id ? 'border-gold-primary/50 bg-gold-primary/15' : 'border-gold-primary/10 bg-bg-primary/40 hover:border-gold-primary/25'}`}>
-              <p className="text-xs text-gold-light font-medium" style={bodyFont}>{a.label[locale]}</p>
+              <p className="text-xs text-gold-light font-medium" style={bodyFont}>{a.label[locale] || a.label.en}</p>
             </motion.button>
           ))}
         </div>

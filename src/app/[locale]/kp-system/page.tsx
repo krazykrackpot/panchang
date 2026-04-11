@@ -353,12 +353,30 @@ const T = {
     oracle: 'शासकग्रहओरेकल', oracleDesc: 'अस्य क्षणस्य पञ्च शासकग्रहाः।',
     referenceData: 'संदर्भडेटा',
   },
+  ta: {
+    title: 'கே.பி. முறை', subtitle: 'கிருஷ்ணமூர்த்தி பத்ததி — உப அதிபதி பகுப்பாய்வு',
+    desc: 'Placidus house system with the 249 sub-lord table. Each degree has a Sign Lord, Star Lord, and Sub Lord for precise event prediction.',
+    generate: 'கே.பி. குண்டலி உருவாக்கு', generating: 'உப அதிபதிகளை கணக்கிடுகிறது...',
+    name: 'பெயர்', date: 'பிறந்த தேதி', time: 'பிறந்த நேரம்', place: 'இடம்', lat: 'அட்சரேகை', lng: 'தீர்க்கரேகை', tz: 'நேர வலயம்',
+    cuspalTable: 'கஸ்ப உப அதிபதி அட்டவணை', planetTable: 'கிரக உப அதிபதி அட்டவணை',
+    cuspalAnalysis: 'பாவம் வாரியான குறிப்பீட்டு பகுப்பாய்வு',
+    significators: 'குறிப்பீட்டாளர் அட்டவணை', rulingPlanets: 'ஆளும் கிரகங்கள்',
+    cusp: 'கஸ்ப', sign: 'ராசி அதிபதி', star: 'நட்சத்திர அதிபதி', sub: 'உப அதிபதி', subsub: 'உப-உப அதிபதி', degree: 'பாகை',
+    planet: 'கிரகம்', house: 'பாவம்', h: 'பாவம்', l1: 'L1', l2: 'L2', l3: 'L3', l4: 'L4', combined: 'ஒருங்கிணைந்த',
+    asc: 'லக்னம்', moon: 'சந்திரன்', day: 'நாள்',
+    signifies: 'குறிப்பிடுகிறது', materialises: 'நிறைவேறும்', denied: 'மறுக்கப்பட்டது',
+    lifeMandate: 'வாழ்க்கை ஆணை', lifeMandateDesc: 'உங்கள் வாழ்வின் ஆறு துறைகளில் கே.பி. தீர்ப்பு.',
+    sublord: 'உப அதிபதி', signifiedHouses: 'குறிப்பிடும் பாவங்கள்',
+    oracle: 'ஆளும் கிரக ஆரூடம்', oracleDesc: 'இந்த தருணத்தை ஆளும் ஐந்து கிரகங்கள்.',
+    referenceData: 'குறிப்பு தரவு',
+  },
 };
 
 export default function KPSystemPage() {
   const locale = useLocale() as Locale;
-  const t = T[locale] || T.en;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const t = (T as Record<string, typeof T.en>)[locale] || T.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

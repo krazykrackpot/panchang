@@ -12,19 +12,19 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
 
-const CATEGORIES: { id: QuestionCategory; label: { en: string; hi: string; sa: string }; house: number }[] = [
-  { id: 'health', label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्' }, house: 1 },
-  { id: 'wealth', label: { en: 'Wealth', hi: 'धन', sa: 'धनम्' }, house: 2 },
-  { id: 'siblings', label: { en: 'Siblings', hi: 'भाई-बहन', sa: 'भ्रातरः' }, house: 3 },
-  { id: 'property', label: { en: 'Property', hi: 'संपत्ति', sa: 'सम्पत्तिः' }, house: 4 },
-  { id: 'children', label: { en: 'Children', hi: 'संतान', sa: 'सन्तानम्' }, house: 5 },
-  { id: 'enemies', label: { en: 'Enemies', hi: 'शत्रु', sa: 'शत्रवः' }, house: 6 },
-  { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः' }, house: 7 },
-  { id: 'longevity', label: { en: 'Longevity', hi: 'आयु', sa: 'आयुः' }, house: 8 },
-  { id: 'fortune', label: { en: 'Fortune', hi: 'भाग्य', sa: 'भाग्यम्' }, house: 9 },
-  { id: 'career', label: { en: 'Career', hi: 'करियर', sa: 'व्यवसायः' }, house: 10 },
-  { id: 'gains', label: { en: 'Gains', hi: 'लाभ', sa: 'लाभः' }, house: 11 },
-  { id: 'loss', label: { en: 'Loss/Abroad', hi: 'हानि/विदेश', sa: 'व्ययः' }, house: 12 },
+const CATEGORIES: { id: QuestionCategory; label: Record<string, string>; house: number }[] = [
+  { id: 'health', label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्', ta: 'உடல்நலம்' }, house: 1 },
+  { id: 'wealth', label: { en: 'Wealth', hi: 'धन', sa: 'धनम्', ta: 'செல்வம்' }, house: 2 },
+  { id: 'siblings', label: { en: 'Siblings', hi: 'भाई-बहन', sa: 'भ्रातरः', ta: 'உடன்பிறப்பு' }, house: 3 },
+  { id: 'property', label: { en: 'Property', hi: 'संपत्ति', sa: 'सम्पत्तिः', ta: 'சொத்து' }, house: 4 },
+  { id: 'children', label: { en: 'Children', hi: 'संतान', sa: 'सन्तानम्', ta: 'குழந்தைகள்' }, house: 5 },
+  { id: 'enemies', label: { en: 'Enemies', hi: 'शत्रु', sa: 'शत्रवः', ta: 'எதிரிகள்' }, house: 6 },
+  { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः', ta: 'திருமணம்' }, house: 7 },
+  { id: 'longevity', label: { en: 'Longevity', hi: 'आयु', sa: 'आयुः', ta: 'ஆயுள்' }, house: 8 },
+  { id: 'fortune', label: { en: 'Fortune', hi: 'भाग्य', sa: 'भाग्यम्', ta: 'பாக்கியம்' }, house: 9 },
+  { id: 'career', label: { en: 'Career', hi: 'करियर', sa: 'व्यवसायः', ta: 'தொழில்' }, house: 10 },
+  { id: 'gains', label: { en: 'Gains', hi: 'लाभ', sa: 'लाभः', ta: 'லாபம்' }, house: 11 },
+  { id: 'loss', label: { en: 'Loss/Abroad', hi: 'हानि/विदेश', sa: 'व्ययः', ta: 'இழப்பு/வெளிநாடு' }, house: 12 },
 ];
 
 const T = {
@@ -60,16 +60,29 @@ const T = {
     cast: 'अष्टमङ्गलप्रश्नं कुर्यात्', casting: 'पवित्रकुण्डलीरचना...',
     objects: 'अष्टमङ्गलवस्तूनि', chart: 'प्रश्नकुण्डली', yogas: 'प्रश्नयोगाः',
     interpretation: 'व्याख्या', verdict: 'निर्णयः', timing: 'समयः', remedies: 'उपायाः',
-    favorable: 'अनुकूलः', unfavorable: 'प्रतिकूलः', mixed: 'मिश्रः',
+    favorable: 'अनुकூलः', unfavorable: 'प्रतिकूलः', mixed: 'मिश्रः',
     arudaHouse: 'आरूढभावः', ruler: 'स्वामी', element: 'तत्त्वम्',
     primary: 'प्राथमिकम्', supporting: 'सहायकम्', timingObj: 'समयः',
+  },
+  ta: {
+    title: 'அஷ்டமங்கல பிரச்னை', subtitle: 'கேரள ஹோராரி ஜோதிடம்',
+    desc: 'Pick 3 numbers (1-108) to invoke the 8 auspicious objects. Combined with the Prashna chart cast at this moment.',
+    step1: 'உங்கள் கேள்வி வகையைத் தேர்ந்தெடுக்கவும்', step2: 'மூன்று எண்களைத் தேர்ந்தெடுக்கவும்',
+    num1: 'முதன்மை (நோக்கம்)', num2: 'துணை (வலிமை)', num3: 'நேரம் (எப்போது)',
+    cast: 'அஷ்டமங்கல பிரச்னை செய்', casting: 'புனிதக் குண்டலி உருவாக்குகிறது...',
+    objects: 'அஷ்டமங்கல பொருட்கள்', chart: 'பிரச்னை குண்டலி', yogas: 'பிரச்னை யோகங்கள்',
+    interpretation: 'விளக்கம்', verdict: 'தீர்ப்பு', timing: 'நேரம்', remedies: 'பரிகாரங்கள்',
+    favorable: 'சாதகமான', unfavorable: 'பாதகமான', mixed: 'கலப்பு',
+    arudaHouse: 'ஆரூட பாவம்', ruler: 'அதிபதி', element: 'தத்துவம்',
+    primary: 'முதன்மை', supporting: 'துணை', timingObj: 'நேரம்',
   },
 };
 
 export default function PrashnaAshtamangalaPage() {
   const locale = useLocale() as Locale;
-  const t = T[locale] || T.en;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const t = (T as Record<string, typeof T.en>)[locale] || T.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -122,7 +135,7 @@ export default function PrashnaAshtamangalaPage() {
               whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
               className={`p-4 rounded-xl border text-center transition-all ${category === cat.id ? 'border-gold-primary/50 bg-gold-primary/15 shadow-lg shadow-gold-primary/10' : 'border-gold-primary/10 bg-bg-primary/40 hover:border-gold-primary/25'}`}>
               <span className="text-2xl font-bold text-gold-light">{cat.house}</span>
-              <p className="text-xs mt-1 text-text-secondary" style={bodyFont}>{cat.label[locale]}</p>
+              <p className="text-xs mt-1 text-text-secondary" style={bodyFont}>{cat.label[locale] || cat.label.en}</p>
             </motion.button>
           ))}
         </div>

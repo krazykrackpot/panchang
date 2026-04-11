@@ -81,7 +81,8 @@ interface LocationData { lat: number; lng: number; name: string; tz: number; tim
 export default function CalendarPage() {
   const t = useTranslations('calendar');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [year, setYear] = useState(new Date().getFullYear());
@@ -620,7 +621,7 @@ export default function CalendarPage() {
                         {(() => {
                           const [y, m, d] = f.paranaDate.split('-').map(Number);
                           const date = new Date(y, m - 1, d);
-                          const months = locale === 'en'
+                          const months = locale === 'en' || String(locale) === 'ta'
                             ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
                             : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
                           return `${d} ${months[m - 1]}`;

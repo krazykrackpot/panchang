@@ -21,6 +21,8 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import EclipseAlert from '@/components/dashboard/EclipseAlert';
 import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
+import PushPermission from '@/components/notifications/PushPermission';
+import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
@@ -248,6 +250,8 @@ export default function DashboardPage() {
   const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
   const [dashaTimeline, setDashaTimeline] = useState<DashaEntry[]>([]);
+  const [birthLat, setBirthLat] = useState<number | null>(null);
+  const [birthLng, setBirthLng] = useState<number | null>(null);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -266,6 +270,8 @@ export default function DashboardPage() {
 
       const { profile, snapshot } = await res.json();
       setDisplayName(profile?.display_name || user.user_metadata?.name || '');
+      if (profile?.birth_lat != null) setBirthLat(profile.birth_lat);
+      if (profile?.birth_lng != null) setBirthLng(profile.birth_lng);
 
       if (!snapshot || !snapshot.moon_sign) {
         setHasBirthData(false);
@@ -491,6 +497,9 @@ export default function DashboardPage() {
           )}
         </motion.div>
 
+        {/* Push Notification Permission */}
+        <PushPermission locale={locale} />
+
         {/* Morning Briefing — today's cosmic weather at a glance */}
         {panchangData && (
           <MorningBriefing
@@ -499,6 +508,13 @@ export default function DashboardPage() {
             locale={locale}
           />
         )}
+
+        {/* Personalized Daily Horoscope */}
+        <PersonalizedHoroscope
+          locale={locale}
+          lat={birthLat ?? undefined}
+          lng={birthLng ?? undefined}
+        />
 
         {/* Your Week Ahead — 7-day Moon transit forecast */}
         <WeekAhead

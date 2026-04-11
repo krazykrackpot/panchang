@@ -59,12 +59,26 @@ const LABELS = {
     planet: 'ग्रहः', start: 'आरम्भः', end: 'अन्तः', days: 'दिनानि', type: 'प्रकारः', favorable: 'अनुकूलः',
     north: 'उत्तरभारतीयम्', south: 'दक्षिणभारतीयम्', age: 'आयुः',
   },
+  ta: {
+    title: 'வர்ஷபலன்',
+    subtitle: 'தாஜிக சூரிய வருடாந்திர மீள்வரவு',
+    desc: 'Cast your annual chart for the exact moment the Sun returns to its natal position. Includes Muntha, Varsheshvara, Sahams, Tajika Yogas, and Mudda Dasha.',
+    generate: 'வர்ஷபலன் உருவாக்கு',
+    generating: 'சூரிய மீள்வரவு கணக்கிடுகிறது...',
+    name: 'பெயர்', date: 'பிறந்த தேதி', time: 'பிறந்த நேரம்', place: 'இடம்', lat: 'அட்சரேகை', lng: 'தீர்க்கரேகை', tz: 'நேர வலயம்', year: 'வருடம்',
+    solarReturn: 'சூரிய மீள்வரவு தருணம்', muntha: 'முந்தா', varsheshvara: 'வர்ஷேஷ்வரர்',
+    sahams: 'தாஜிக சஹாம்கள்', tajikaYogas: 'தாஜிக யோகங்கள்', muddaDasha: 'முத்தா தசா',
+    yearSummary: 'வருட சுருக்கம்', chart: 'வருடாந்திர குண்டலி', sign: 'ராசி', house: 'பாவம்', degree: 'பாகை',
+    planet: 'கிரகம்', start: 'தொடக்கம்', end: 'முடிவு', days: 'நாட்கள்', type: 'வகை', favorable: 'சாதகமான',
+    north: 'வட இந்திய', south: 'தென் இந்திய', age: 'வயது',
+  },
 };
 
 export default function VarshaphalPage() {
   const locale = useLocale() as Locale;
-  const t = LABELS[locale] || LABELS.en;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const t = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

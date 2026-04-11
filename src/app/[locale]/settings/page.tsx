@@ -136,12 +136,47 @@ const LABELS = {
     notSignedIn: 'सेटिंग्स प्राप्तुं प्रवेशः आवश्यकः।',
     signIn: 'प्रवेशः',
   },
+  ta: {
+    title: 'சுயவிவரம் & அமைப்புகள்',
+    backHome: 'முகப்புக்குத் திரும்பு',
+    accountInfo: 'கணக்கு தகவல்',
+    email: 'மின்னஞ்சல்',
+    signInMethod: 'உள்நுழைவு முறை',
+    memberSince: 'உறுப்பினர் ஆனது',
+    personalDetails: 'தனிப்பட்ட விவரங்கள்',
+    fullName: 'முழுப் பெயர்',
+    dateOfBirth: 'பிறந்த தேதி',
+    timeOfBirth: 'பிறந்த நேரம்',
+    unknownTime: 'எனக்கு பிறந்த நேரம் தெரியாது',
+    placeOfBirth: 'பிறந்த இடம்',
+    preferences: 'விருப்பத்தேர்வுகள்',
+    ayanamsha: 'அயனாம்சம்',
+    chartStyle: 'குண்டலி பாணி',
+    northIndian: 'வட இந்திய',
+    southIndian: 'தென் இந்திய',
+    language: 'மொழி',
+    notifications: 'அறிவிப்பு விருப்பத்தேர்வுகள்',
+    notifDesc: 'செயலி மற்றும் மின்னஞ்சல் மூலம் எந்த எச்சரிக்கைகளைப் பெற விரும்புகிறீர்கள் என்பதைத் தேர்ந்தெடுக்கவும்.',
+    dangerZone: 'ஆபத்து மண்டலம்',
+    signOut: 'வெளியேறு',
+    deleteAccount: 'கணக்கை நீக்கு',
+    deleteConfirmTitle: 'கணக்கை நீக்கவா?',
+    deleteConfirmMsg: 'உறுதியாக இருக்கிறீர்களா? இது உங்கள் அனைத்து தரவையும் நிரந்தரமாக நீக்கும். இந்தச் செயலை மாற்ற இயலாது.',
+    deleteConfirmBtn: 'ஆம், அனைத்தையும் நீக்கு',
+    cancel: 'ரத்துசெய்',
+    saveChanges: 'மாற்றங்களைச் சேமி',
+    saving: 'சேமிக்கிறது...',
+    saved: 'மாற்றங்கள் வெற்றிகரமாகச் சேமிக்கப்பட்டன',
+    notSignedIn: 'அமைப்புகளை அணுக உள்நுழைய வேண்டும்.',
+    signIn: 'உள்நுழை',
+  },
 };
 
 const LANGUAGE_OPTIONS = [
   { value: 'en', label: 'English' },
   { value: 'hi', label: 'हिन्दी' },
   { value: 'sa', label: 'संस्कृतम्' },
+  { value: 'ta', label: 'தமிழ்' },
 ];
 
 const AYANAMSHA_OPTIONS = [
@@ -153,7 +188,7 @@ const AYANAMSHA_OPTIONS = [
 export default function SettingsPage() {
   const locale = useLocale() as Locale;
   const router = useRouter();
-  const L = LABELS[locale] || LABELS.en;
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
   const { user, initialized, signOut } = useAuthStore();
 
   const [loading, setLoading] = useState(true);
@@ -514,7 +549,7 @@ export default function SettingsPage() {
                   birth_lng: loc.lng,
                   birth_timezone: loc.timezone,
                 })}
-                placeholder={locale === 'hi' ? 'शहर खोजें...' : 'Search city or place...'}
+                placeholder={locale === 'hi' || locale === 'sa' ? 'शहर खोजें...' : 'Search city or place...'}
               />
               {profile.birth_place && profile.birth_lat != null && (
                 <p className="text-xs text-text-secondary/75 mt-1.5 flex items-center gap-1">

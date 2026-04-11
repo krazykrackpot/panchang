@@ -524,10 +524,10 @@ export default function TimelinePage() {
         <p className="text-base sm:text-lg leading-relaxed" style={{ color: '#8a8478' }}>
           {t(L.subtitle)}
         </p>
-      </motion.div>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={t(L.title)} locale={locale as Locale} />
         </div>
+      </motion.div>
 
       {/* ══════════════════════════════════════════
           DESKTOP TIMELINE (lg+)

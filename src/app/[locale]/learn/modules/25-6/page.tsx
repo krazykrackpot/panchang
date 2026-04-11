@@ -375,7 +375,7 @@ export default function Module25_6Page() {
     <ModuleContainer
       meta={META}
       questions={QUESTIONS}
-      pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]}
+      pages={[Page1(), Page2(), Page3()]}
     />
   );
 }

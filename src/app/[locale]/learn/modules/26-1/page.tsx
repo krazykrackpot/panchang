@@ -353,11 +353,5 @@ function Page3() {
 /*  EXPORT                                                              */
 /* ------------------------------------------------------------------ */
 export default function Module26_1Page() {
-  return (
-    <ModuleContainer
-      meta={META}
-      questions={QUESTIONS}
-      pages={[Page1(), Page2(), Page3()]}
-    />
-  );
+  return <ModuleContainer meta={META} pages={[<Page1 key="p1" />, <Page2 key="p2" />, <Page3 key="p3" />]} questions={QUESTIONS} />;
 }

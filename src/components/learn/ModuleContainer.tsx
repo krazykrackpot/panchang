@@ -3,11 +3,14 @@
 import { useState, useEffect, createContext, useContext, type ReactNode } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen, HelpCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, XCircle, BookOpen, HelpCircle, Users } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import { Link } from '@/lib/i18n/navigation';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { getNextModuleId, getModuleRef, isLastInPhase } from '@/lib/learn/module-sequence';
+import { checkBadges } from '@/lib/learn/badges';
+import ShareButton from '@/components/ui/ShareButton';
+import BadgeUnlockToast from '@/components/learn/BadgeUnlockToast';
 
 // ─── Bilingual text helper for module content ──────────────────────────────
 // Modules can import `useT` and call `t(en, hi)` to get the locale-appropriate string
@@ -121,10 +124,13 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     setQuizComplete(false);
   };
 
+  const [showChallenge, setShowChallenge] = useState(false);
+  const [newBadges, setNewBadges] = useState<import('@/lib/learn/badges').Badge[]>([]);
+
   const passThreshold = Math.ceil(quizQuestions.length * 0.7);
   const passed = score >= passThreshold;
 
-  const { markPageRead, markQuizPassed, getPhaseProgress, hydrateFromStorage, hydrated } = useLearningProgressStore();
+  const { markPageRead, markQuizPassed, getPhaseProgress, hydrateFromStorage, hydrated, progress, streak } = useLearningProgressStore();
 
   // Hydrate store on mount
   useEffect(() => { hydrateFromStorage(); }, [hydrateFromStorage]);
@@ -136,10 +142,20 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
     }
   }, [currentPage, meta.id, hydrated, markPageRead]);
 
-  // Track quiz pass
+  // Track quiz pass + check for new badges
   useEffect(() => {
     if (quizComplete && passed && hydrated) {
       markQuizPassed(meta.id, score);
+      // Check badges after a short delay to let the store update
+      setTimeout(() => {
+        const { newlyEarned } = checkBadges(
+          useLearningProgressStore.getState().progress,
+          useLearningProgressStore.getState().streak,
+        );
+        if (newlyEarned.length > 0) {
+          setNewBadges(newlyEarned);
+        }
+      }, 100);
     }
   }, [quizComplete, passed, score, meta.id, hydrated, markQuizPassed]);
 
@@ -340,6 +356,42 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
                         {isHi ? 'सम्पूर्ण पाठ्यक्रम पूर्ण!' : 'Entire Curriculum Complete!'}
                       </div>
                     )}
+
+                    {/* Challenge a Friend */}
+                    <button
+                      onClick={() => setShowChallenge(c => !c)}
+                      className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-indigo-500/15 border border-indigo-500/25 text-indigo-300 text-sm font-medium hover:bg-indigo-500/25 hover:border-indigo-500/40 transition-colors"
+                    >
+                      <Users className="w-4 h-4" />
+                      {isHi ? 'मित्र को चुनौती दें' : 'Challenge a Friend'}
+                    </button>
+
+                    <AnimatePresence>
+                      {showChallenge && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="overflow-hidden w-full max-w-sm"
+                        >
+                          <div className="pt-2">
+                            <ShareButton
+                              title={isHi ? meta.title.hi : meta.title.en}
+                              text={
+                                isHi
+                                  ? `\u092E\u0948\u0902\u0928\u0947 '${meta.title.hi}' \u092E\u0947\u0902 ${score}/${quizQuestions.length} \u0938\u094D\u0915\u094B\u0930 \u0915\u093F\u092F\u093E \u2014 \u0915\u094D\u092F\u093E \u0906\u092A \u092E\u0941\u091D\u0938\u0947 \u092C\u0947\u0939\u0924\u0930 \u0915\u0930 \u0938\u0915\u0924\u0947 \u0939\u0948\u0902? \u{1F9E0}`
+                                  : `I scored ${score}/${quizQuestions.length} on '${meta.title.en}' \u2014 Can you beat me? \u{1F9E0}`
+                              }
+                              url={`https://dekhopanchang.com/learn/modules/${meta.id}`}
+                              locale={locale}
+                              variant="inline"
+                              className="justify-center"
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
                     <div className="flex gap-3">
                       <button onClick={() => { setShowQuiz(false); setCurrentPage(0); }}
                         className="px-4 py-2 rounded-xl border border-gold-primary/15 text-text-secondary text-xs hover:text-text-primary transition-colors">
@@ -406,6 +458,8 @@ export default function ModuleContainer({ meta, pages, questions }: ModuleContai
       )}
 
 
+      {/* Badge unlock toast */}
+      <BadgeUnlockToast badges={newBadges} locale={locale} />
     </div>
     </ModuleLocaleContext.Provider>
   );

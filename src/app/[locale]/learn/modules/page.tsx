@@ -8,6 +8,7 @@ import type { Locale } from '@/types/panchang';
 import { useEffect } from 'react';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import ProgressIndicator from '@/components/learn/ProgressIndicator';
+import LevelBadge from '@/components/learn/LevelBadge';
 
 const PHASES = [
   { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार' }, color: 'border-gold-primary/20', topics: [
@@ -173,9 +174,12 @@ export default function ModuleIndexPage() {
           <div className="h-2 bg-white/5 rounded-full overflow-hidden mb-2">
             <div className="h-full bg-gradient-to-r from-gold-primary to-gold-light rounded-full" style={{ width: `${overall.percent}%` }} />
           </div>
-          <p className="text-text-secondary/60 text-xs">
-            {isHi ? `${overall.percent}% पूर्ण` : `${overall.percent}% complete`}
-          </p>
+          <div className="flex items-center justify-between">
+            <p className="text-text-secondary/60 text-xs">
+              {isHi ? `${overall.percent}% पूर्ण` : `${overall.percent}% complete`}
+            </p>
+            <LevelBadge masteredCount={overall.mastered} locale={locale} variant="compact" />
+          </div>
         </div>
       )}
 

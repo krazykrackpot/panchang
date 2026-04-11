@@ -20,6 +20,8 @@ import type { PersonalFestival } from '@/lib/personalization/festival-relevance'
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import EclipseAlert from '@/components/dashboard/EclipseAlert';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
+import { checkBadges } from '@/lib/learn/badges';
+import LevelBadge from '@/components/learn/LevelBadge';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
@@ -226,8 +228,8 @@ export default function DashboardPage() {
   const L = LABELS[locale] || LABELS.en;
   const { user, initialized } = useAuthStore();
 
-  // Learning streak
-  const { streak, isActiveToday, hydrateFromStorage: hydrateLearn, hydrated: learnHydrated } = useLearningProgressStore();
+  // Learning streak & badges
+  const { streak, isActiveToday, hydrateFromStorage: hydrateLearn, hydrated: learnHydrated, progress: learnProgress, getOverallProgress: getLearnOverall } = useLearningProgressStore();
 
   useEffect(() => { hydrateLearn(); }, [hydrateLearn]);
 
@@ -476,48 +478,82 @@ export default function DashboardPage() {
         </motion.div>
 
         {/* Learning Streak Card */}
-        {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (
-          <motion.div
-            {...fadeUp}
-            transition={{ delay: 0.12 }}
-            className="mb-6 p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.06] via-transparent to-amber-500/[0.06] backdrop-blur-sm"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-0.5">
-                  {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
-                    <Flame key={i} className={`w-5 h-5 ${streak.streakDays > 0 ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/30'}`} />
-                  ))}
-                </div>
-                <div>
-                  <span className="text-xl font-bold text-amber-400">
-                    {streak.streakDays}
-                  </span>
-                  <span className="text-sm text-text-secondary ml-1.5">{L.dayStreak}</span>
-                  {streak.longestStreak > streak.streakDays && (
-                    <span className="text-xs text-text-secondary/60 ml-3">
-                      {L.longestStreak}: {streak.longestStreak} {L.days}
+        {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (() => {
+          const learnOverall = getLearnOverall();
+          const { earned: earnedBadges } = checkBadges(learnProgress, streak);
+          return (
+            <motion.div
+              {...fadeUp}
+              transition={{ delay: 0.12 }}
+              className="mb-6 p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.06] via-transparent to-amber-500/[0.06] backdrop-blur-sm"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-0.5">
+                    {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
+                      <Flame key={i} className={`w-5 h-5 ${streak.streakDays > 0 ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/30'}`} />
+                    ))}
+                  </div>
+                  <div>
+                    <span className="text-xl font-bold text-amber-400">
+                      {streak.streakDays}
                     </span>
+                    <span className="text-sm text-text-secondary ml-1.5">{L.dayStreak}</span>
+                    {streak.longestStreak > streak.streakDays && (
+                      <span className="text-xs text-text-secondary/60 ml-3">
+                        {L.longestStreak}: {streak.longestStreak} {L.days}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  {isActiveToday() ? (
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">
+                      {L.todayActive}
+                    </span>
+                  ) : (
+                    <Link
+                      href="/learn"
+                      className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 transition-colors"
+                    >
+                      {L.todayVisitLearn}
+                    </Link>
                   )}
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                {isActiveToday() ? (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">
-                    {L.todayActive}
-                  </span>
-                ) : (
-                  <Link
-                    href="/learn"
-                    className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 transition-colors"
-                  >
-                    {L.todayVisitLearn}
-                  </Link>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        )}
+
+              {/* Level badge */}
+              {learnOverall.mastered > 0 && (
+                <div className="mt-4 pt-3 border-t border-amber-500/10">
+                  <LevelBadge masteredCount={learnOverall.mastered} locale={locale} variant="full" />
+                </div>
+              )}
+
+              {/* Recently earned badges */}
+              {earnedBadges.length > 0 && (
+                <div className="mt-3 pt-3 border-t border-amber-500/10">
+                  <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
+                    {locale === 'en' ? 'Badges Earned' : locale === 'hi' ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {earnedBadges.map(badge => (
+                      <div
+                        key={badge.id}
+                        className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
+                        title={locale !== 'en' ? badge.description.hi : badge.description.en}
+                      >
+                        <span className="text-sm">{badge.icon}</span>
+                        <span className="text-[11px] text-text-primary font-medium">
+                          {locale !== 'en' ? badge.label.hi : badge.label.en}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          );
+        })()}
 
         {/* Day Quality Card */}
         <motion.div

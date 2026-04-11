@@ -9,6 +9,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { PHASE_INFO, getPhaseModules, getModuleRef } from '@/lib/learn/module-sequence';
 import ProgressIndicator from './ProgressIndicator';
+import LevelBadge from './LevelBadge';
 import type { Locale } from '@/types/panchang';
 
 // ── Labels ────────────────────────────────────────────────────────────────────
@@ -298,6 +299,10 @@ export default function LearnSidebar() {
         </div>
         <div className="mt-2">
           <PhaseProgressBar percent={overall.percent} />
+        </div>
+        {/* Level badge */}
+        <div className="mt-3">
+          <LevelBadge masteredCount={overall.mastered} locale={locale} variant="compact" />
         </div>
       </div>
 

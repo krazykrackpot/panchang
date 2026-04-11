@@ -19,13 +19,15 @@ import type { GocharResult } from '@/lib/personalization/gochar';
 import type { PersonalFestival } from '@/lib/personalization/festival-relevance';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import EclipseAlert from '@/components/dashboard/EclipseAlert';
+import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
+import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
-import type { Locale } from '@/types/panchang';
+import type { Locale, PanchangData } from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData } from '@/types/kundali';
 
@@ -241,6 +243,7 @@ export default function DashboardPage() {
   const [recommendedFestivals, setRecommendedFestivals] = useState<PersonalFestival[]>([]);
   const [displayName, setDisplayName] = useState('');
   const [hasBirthData, setHasBirthData] = useState(false);
+  const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -278,11 +281,12 @@ export default function DashboardPage() {
       const lat = profile?.birth_lat || 28.6139;
       const lng = profile?.birth_lng || 77.209;
       const panchangRes = await fetch(`/api/panchang?lat=${lat}&lng=${lng}`);
-      const panchangData = panchangRes.ok ? await panchangRes.json() : null;
+      const fetchedPanchang = panchangRes.ok ? await panchangRes.json() : null;
+      if (fetchedPanchang) setPanchangData(fetchedPanchang as PanchangData);
 
       // Extract today's nakshatra and moon sign from panchang
-      const todayNakshatra = panchangData?.nakshatra?.id || 1;
-      const todayMoonSign = panchangData?.moonSign?.rashi || panchangData?.moonSign || 1;
+      const todayNakshatra = fetchedPanchang?.nakshatra?.id || 1;
+      const todayMoonSign = fetchedPanchang?.moonSign?.rashi || fetchedPanchang?.moonSign || 1;
 
       // Build UserSnapshot
       const userSnapshot: UserSnapshot = {
@@ -476,6 +480,15 @@ export default function DashboardPage() {
             </p>
           )}
         </motion.div>
+
+        {/* Morning Briefing — today's cosmic weather at a glance */}
+        {panchangData && (
+          <MorningBriefing
+            panchangData={panchangData}
+            personalizedDay={pd}
+            locale={locale}
+          />
+        )}
 
         {/* Learning Streak Card */}
         {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (() => {
@@ -740,6 +753,9 @@ export default function DashboardPage() {
 
         {/* Upcoming Eclipse Alert */}
         <EclipseAlert />
+
+        {/* Upcoming Festival Countdown */}
+        <FestivalCountdown />
 
         {/* Enhanced Transit Alerts */}
         {(enhancedAlerts.length > 0 || pd.transitAlerts.length > 0) && (

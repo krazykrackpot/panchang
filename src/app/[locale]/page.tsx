@@ -11,6 +11,10 @@ import { getSupabase } from '@/lib/supabase/client';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import dynamic from 'next/dynamic';
 
+const EclipseAlert = dynamic(() => import('@/components/dashboard/EclipseAlert'), {
+  ssr: false,
+});
+
 const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'), {
   ssr: false,
 });
@@ -566,6 +570,9 @@ export default function HomePage() {
           <TodayPanchangWidget />
           <div className="mt-6">
             <TransitForecastWidget locale={locale} />
+          </div>
+          <div className="mt-6">
+            <EclipseAlert />
           </div>
         </motion.div>
       </section>

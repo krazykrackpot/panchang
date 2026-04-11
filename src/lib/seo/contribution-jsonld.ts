@@ -38,6 +38,7 @@ export function generateContributionJsonLd({
     author: PUBLISHER,
     publisher: PUBLISHER,
     datePublished,
+    dateModified: '2026-04-11',
     image: `${BASE_URL}/learn/contributions/${slug}/opengraph-image`,
     url: `${BASE_URL}/en/learn/contributions/${slug}`,
     mainEntityOfPage: {

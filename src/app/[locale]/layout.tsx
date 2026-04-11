@@ -66,6 +66,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       images: [`${BASE_URL}/${locale}/twitter-image`],
     },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large' as const,
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
     icons: {
       icon: '/favicon.svg',
       apple: '/apple-touch-icon.png',
@@ -109,6 +116,7 @@ export default async function LocaleLayout({
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
       </head>
       <body className="min-h-screen bg-bg-primary text-text-primary antialiased" suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>

@@ -98,6 +98,8 @@ const routes = [
   '/upagraha',
   '/devotional',
   '/varshaphal',
+  '/annual-forecast',
+  '/kundali/compare',
   '/kp-system',
   '/muhurta-ai',
   '/horoscope',

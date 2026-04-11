@@ -94,6 +94,8 @@ export default function Navbar() {
       children: [
         { href: '/kundali', label: t('kundali') },
         { href: '/matching', label: t('matching') },
+        { href: '/kundali/compare', label: locale === 'en' || String(locale) === 'ta' ? 'Chart Comparison' : 'कुण्डली तुलना' },
+        { href: '/annual-forecast', label: locale === 'en' || String(locale) === 'ta' ? 'Annual Forecast' : 'वार्षिक भविष्यफल' },
         { href: '/varshaphal', label: t('varshaphal') },
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/sade-sati', label: t('sadeSati') },

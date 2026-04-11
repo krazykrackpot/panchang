@@ -1,86 +1,52 @@
-'use client';
-
-import { useEffect, useRef } from 'react';
+const STARS = Array.from({ length: 80 }, (_, i) => {
+  // Deterministic pseudo-random via LCG seeded by index — no Math.random(), no hydration mismatch
+  const s1 = ((i * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const s2 = (((i + 80) * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const s3 = (((i + 160) * 1664525 + 1013904223) >>> 0) / 4294967296;
+  const s4 = (((i + 240) * 1664525 + 1013904223) >>> 0) / 4294967296;
+  return {
+    left: `${(s1 * 100).toFixed(3)}%`,
+    top: `${(s2 * 100).toFixed(3)}%`,
+    size: s3 > 0.75 ? 2 : 1,
+    duration: `${(s4 * 3 + 3).toFixed(2)}s`,
+    delay: `${((s1 + s3) * 0.5 * 5).toFixed(2)}s`,
+    color: s3 > 0.6 ? 'rgba(240,212,138,VAR)' : 'rgba(255,255,255,VAR)',
+    baseOpacity: (s2 * 0.3 + 0.15).toFixed(2),
+  };
+});
 
 export default function StarField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationId: number;
-    const stars: { x: number; y: number; size: number; opacity: number; twinkleSpeed: number; phase: number }[] = [];
-    const MAX_STARS = 150;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    const createStars = () => {
-      stars.length = 0;
-      const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), MAX_STARS);
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.5 + 0.5,
-          opacity: Math.random() * 0.5 + 0.3,
-          twinkleSpeed: Math.random() * 0.02 + 0.01,
-          phase: Math.random() * Math.PI * 2,
-        });
-      }
-    };
-
-    const draw = (time: number) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const star of stars) {
-        const twinkle = Math.sin(time * star.twinkleSpeed + star.phase) * 0.3 + 0.7;
-        const alpha = star.opacity * twinkle;
-
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(240, 212, 138, ${alpha})`;
-        ctx.fill();
-
-        if (star.size > 1.2) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(212, 168, 83, ${alpha * 0.1})`;
-          ctx.fill();
-        }
-      }
-
-      animationId = requestAnimationFrame(draw);
-    };
-
-    const handleResize = () => {
-      resize();
-      createStars();
-    };
-
-    resize();
-    createStars();
-    animationId = requestAnimationFrame(draw);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: 'transparent' }}
-    />
+    <div
+      aria-hidden="true"
+      style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden' }}
+    >
+      <style>{`
+        @keyframes twinkle {
+          0%, 100% { opacity: var(--star-lo); }
+          50%       { opacity: var(--star-hi); }
+        }
+      `}</style>
+      {STARS.map((star, i) => (
+        <div
+          key={i}
+          style={{
+            position: 'absolute',
+            left: star.left,
+            top: star.top,
+            width: star.size,
+            height: star.size,
+            borderRadius: '50%',
+            backgroundColor: star.color
+              .replace('VAR', star.baseOpacity),
+            willChange: 'opacity',
+            // CSS custom props drive the keyframe opacity range
+            ['--star-lo' as string]: star.baseOpacity,
+            ['--star-hi' as string]: Math.min(parseFloat(star.baseOpacity) * 3.5, 0.85).toFixed(2),
+            animation: `twinkle ${star.duration} ${star.delay} infinite ease-in-out`,
+          }}
+        />
+      ))}
+    </div>
   );
 }

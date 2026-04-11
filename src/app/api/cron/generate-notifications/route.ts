@@ -4,6 +4,7 @@ import { generateNotifications } from '@/lib/personalization/notification-engine
 import type { UserSnapshot } from '@/lib/personalization/types';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import { generateFestivalCalendarV2 } from '@/lib/calendar/festival-generator';
+import { sendPushToUser } from '@/lib/push/send-push';
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/generate-notifications
@@ -119,6 +120,19 @@ export async function GET(req: NextRequest) {
       if (!insertError) {
         totalGenerated += toInsert.length;
         totalUsers++;
+
+        // Send push notification for the most important item
+        const pushItem = toInsert[0];
+        try {
+          await sendPushToUser(row.user_id, {
+            title: pushItem.title,
+            body: pushItem.body,
+            url: '/en/dashboard',
+            tag: pushItem.type,
+          });
+        } catch {
+          // Push delivery is best-effort — don't fail the cron
+        }
       }
     }
   }

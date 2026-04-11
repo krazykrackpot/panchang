@@ -65,3 +65,49 @@ function netFirst(r, n) {
     return res;
   }).catch(function() { return caches.match(r).then(function(c) { return c || new Response('Offline', {status:503}); }); });
 }
+
+// ─── Push Notifications ─────────────────────────────────────────────────────
+
+self.addEventListener('push', function(event) {
+  if (!event.data) return;
+
+  try {
+    var payload = event.data.json();
+    var title = payload.title || 'Dekho Panchang';
+    var options = {
+      body: payload.body || '',
+      icon: payload.icon || '/favicon.svg',
+      badge: payload.badge || '/apple-touch-icon.png',
+      tag: payload.tag || 'dp-notification',
+      data: { url: payload.url || '/' },
+      vibrate: [100, 50, 100],
+      actions: [
+        { action: 'open', title: 'Open' },
+        { action: 'dismiss', title: 'Dismiss' },
+      ],
+    };
+
+    event.waitUntil(self.registration.showNotification(title, options));
+  } catch (e) {
+    console.error('[SW] Push parse error:', e);
+  }
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+
+  if (event.action === 'dismiss') return;
+
+  var url = event.notification.data?.url || '/';
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(clientList) {
+      for (var i = 0; i < clientList.length; i++) {
+        var client = clientList[i];
+        if (client.url.includes(url) && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      return clients.openWindow(url);
+    })
+  );
+});

@@ -24,8 +24,8 @@ const L = {
     hi: "शुल्ब सूत्र वेदों के परिशिष्ट हैं, विशेष रूप से अग्निकुण्ड निर्माण के लिए आवश्यक ज्यामिति से सम्बन्धित। 'शुल्ब' का शाब्दिक अर्थ है रस्सी या डोरी — ये रस्सी-और-खूँटी ज्यामिति की पुस्तिकाएँ थीं, जो पवित्र वेदी स्थान को गणितीय परिशुद्धता के साथ मापने के लिए उपयोग की जाती थीं। आवश्यकता कठोर थी: वेदियाँ विशेष आकारों (बाज, कछुआ, चक्र) की होनी चाहिए थीं, क्योंकि वैदिक अनुष्ठान गणितीय परिशुद्धता की माँग करता था।",
   },
   s1Texts: {
-    en: 'Four principal Sulba Sutras survive: Baudhayana (~800 BCE), Apastamba (~600 BCE), Katyayana (~300 BCE), and Manava (~750 BCE). Of these, Baudhayana is the oldest — and the one that contains the explicit general theorem.',
-    hi: 'चार प्रमुख शुल्ब सूत्र उपलब्ध हैं: बौधायन (~800 ईपू), आपस्तम्ब (~600 ईपू), कात्यायन (~300 ईपू), और मानव (~750 ईपू)। इनमें बौधायन सबसे पुराना है — और इसी में स्पष्ट सामान्य प्रमेय मिलती है।',
+    en: 'Four principal Sulba Sutras survive: Baudhayana (~800 BCE), Apastamba (~600 BCE), Katyayana (~300 BCE), and Manava (~750 BCE). Of these, Baudhayana is the oldest — and the one that contains the explicit general theorem. Beyond the Pythagorean theorem, the Sulba Sutras also contain area-preserving transformations (converting a rectangle to a square of equal area, and vice versa), methods for circling the square (approximating a circle with the same area as a given square), and constructing altars of complex shapes while preserving exact areas — problems that anticipate integral geometry by two millennia.',
+    hi: 'चार प्रमुख शुल्ब सूत्र उपलब्ध हैं: बौधायन (~800 ईपू), आपस्तम्ब (~600 ईपू), कात्यायन (~300 ईपू), और मानव (~750 ईपू)। इनमें बौधायन सबसे पुराना है — और इसी में स्पष्ट सामान्य प्रमेय मिलती है। पाइथागोरस प्रमेय के अतिरिक्त, शुल्ब सूत्रों में क्षेत्रफल-संरक्षक रूपांतरण भी हैं (आयत को समान क्षेत्रफल के वर्ग में बदलना), वर्ग को वृत्त में बदलने की विधियाँ (समान क्षेत्रफल वाले वृत्त का सन्निकटन), और सटीक क्षेत्रफल बनाए रखते हुए जटिल आकार की वेदियों का निर्माण — ये समस्याएँ समाकलन ज्यामिति से दो सहस्राब्दी पहले की हैं।',
   },
 
   s2Title: { en: "Baudhayana's Statement — The Exact Quote", hi: 'बौधायन का कथन — मूल उद्धरण' },
@@ -222,7 +222,7 @@ export default function PythagorasPage() {
               <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{isHi ? 'बौधायन की व्याख्या' : "Baudhayana's meaning"}</p>
               <p className="text-text-secondary text-xs leading-relaxed">
                 {isHi
-                  ? '"आयत का विकर्ण" वह area उत्पन्न करता है जो "लम्बाई और चौड़ाई अलग-अलग" उत्पन्न करती हैं। अर्थात: c² = a² + b²। सभी आयतों के लिए सामान्य नियम।'
+                  ? '"आयत का विकर्ण" वह दोनों क्षेत्रफल उत्पन्न करता है जो "लम्बाई और चौड़ाई अलग-अलग" उत्पन्न करती हैं। अर्थात: c² = a² + b²। सभी आयतों के लिए सामान्य नियम।'
                   : '"The diagonal of a rectangle produces" the area that "its length and breadth produce separately." In modern notation: c² = a² + b². A general rule for ALL rectangles.'}
               </p>
             </div>

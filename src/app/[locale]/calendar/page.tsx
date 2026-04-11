@@ -7,6 +7,8 @@ import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Search, Loader2, Downlo
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
+import PersonalRelevanceBadge, { computeRelevance, type PersonalRelevanceData, type RelevanceMatch } from '@/components/calendar/PersonalRelevanceBadge';
+import { useBirthDataStore } from '@/stores/birth-data-store';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { ShareRow } from '@/components/ui/ShareButton';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
@@ -93,6 +95,10 @@ export default function CalendarPage() {
   const calUser = useAuthStore(s => s.user);
   const [recommendedSlugs, setRecommendedSlugs] = useState<Set<string>>(new Set());
 
+  // Personal relevance data from birth-data-store + snapshot
+  const birthDataStore = useBirthDataStore();
+  const [personalRelevance, setPersonalRelevance] = useState<PersonalRelevanceData | null>(null);
+
   useEffect(() => {
     if (!calUser || festivals.length === 0) return;
     const supabase = getSupabase();
@@ -116,8 +122,42 @@ export default function CalendarPage() {
           }
         });
         setRecommendedSlugs(slugs);
+
+        // Build personal relevance data for badges
+        let currentDashaPlanet: string | undefined;
+        const timeline = data.dasha_timeline as Array<{ planet: string; startDate: string; endDate: string; subPeriods?: Array<{ planet: string; startDate: string; endDate: string }> }> | undefined;
+        if (timeline) {
+          const now = Date.now();
+          for (const maha of timeline) {
+            const mStart = new Date(maha.startDate).getTime();
+            const mEnd = new Date(maha.endDate).getTime();
+            if (now >= mStart && now <= mEnd) {
+              currentDashaPlanet = maha.planet;
+              break;
+            }
+          }
+        }
+        setPersonalRelevance({
+          birthNakshatra: data.moon_nakshatra || birthDataStore.birthNakshatra,
+          birthRashi: data.moon_sign || birthDataStore.birthRashi,
+          currentDashaPlanet,
+        });
       });
-  }, [calUser, festivals]);
+  }, [calUser, festivals, birthDataStore.birthNakshatra, birthDataStore.birthRashi]);
+
+  // For non-logged-in users, use birth-data-store
+  useEffect(() => {
+    birthDataStore.loadFromStorage();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!calUser && birthDataStore.isSet && !personalRelevance) {
+      setPersonalRelevance({
+        birthNakshatra: birthDataStore.birthNakshatra,
+        birthRashi: birthDataStore.birthRashi,
+      });
+    }
+  }, [calUser, birthDataStore.isSet, birthDataStore.birthNakshatra, birthDataStore.birthRashi, personalRelevance]);
 
   // Location — null until resolved (no hardcoded default)
   const [location, setLocation] = useState<LocationData | null>(null);
@@ -557,6 +597,11 @@ export default function CalendarPage() {
                         {f.masa.purnimanta} {f.paksha || ''}
                       </span>
                     )}
+                    {/* Personal relevance badge */}
+                    {personalRelevance && (() => {
+                      const matches = computeRelevance(f.slug, f.category, undefined, personalRelevance);
+                      return matches.length > 0 ? <PersonalRelevanceBadge matches={matches} locale={locale} /> : null;
+                    })()}
                   </div>
                   <div className="text-text-secondary text-xs mt-1 line-clamp-1"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>

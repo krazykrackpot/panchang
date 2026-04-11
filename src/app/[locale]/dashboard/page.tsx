@@ -22,6 +22,7 @@ import EclipseAlert from '@/components/dashboard/EclipseAlert';
 import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import WeekAhead from '@/components/dashboard/WeekAhead';
+import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -30,7 +31,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import type { Locale, PanchangData } from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
-import type { ChartData } from '@/types/kundali';
+import type { ChartData, DashaEntry } from '@/types/kundali';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -246,6 +247,7 @@ export default function DashboardPage() {
   const [hasBirthData, setHasBirthData] = useState(false);
   const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
+  const [dashaTimeline, setDashaTimeline] = useState<DashaEntry[]>([]);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -310,6 +312,11 @@ export default function DashboardPage() {
       // Set chart data
       if (fullSnap?.chart_data) {
         setChartData(fullSnap.chart_data as ChartData);
+      }
+
+      // Set dasha timeline for transition alerts
+      if (fullSnap?.dasha_timeline) {
+        setDashaTimeline(fullSnap.dasha_timeline as DashaEntry[]);
       }
 
       // Compute Gochar (transit overlay)
@@ -759,6 +766,14 @@ export default function DashboardPage() {
               </table>
             </div>
           </motion.div>
+        )}
+
+        {/* Dasha Transition Alert — upcoming maha/antar dasha changes */}
+        {dashaTimeline.length > 0 && (
+          <DashaTransitionAlert
+            dashaTimeline={dashaTimeline}
+            locale={locale}
+          />
         )}
 
         {/* Upcoming Eclipse Alert */}

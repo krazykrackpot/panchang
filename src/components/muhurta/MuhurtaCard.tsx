@@ -44,7 +44,7 @@ export default function MuhurtaCard({ muhurta, locale }: MuhurtaCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-gold-light font-semibold">{m.name[locale]}</span>
-            {locale !== 'en' && <span className="text-text-secondary/70 text-xs">({m.name.en})</span>}
+            {(locale !== 'en' && String(locale) !== 'ta') && <span className="text-text-secondary/70 text-xs">({m.name.en})</span>}
             {isAbhijit && <span className="text-xs px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-primary font-bold">ABHIJIT</span>}
             {isBrahma && <span className="text-xs px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-bold">{locale === 'en' || String(locale) === 'ta' ? 'BRAHMA' : 'ब्राह्म'}</span>}
           </div>

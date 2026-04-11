@@ -22,7 +22,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
   const [rateLimited, setRateLimited] = useState(false);
   const [rateLimitMsg, setRateLimitMsg] = useState('');
   const readingRef = useRef<HTMLDivElement>(null);
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
   // Check subscription — only Pro/Jyotishi can use AI readings

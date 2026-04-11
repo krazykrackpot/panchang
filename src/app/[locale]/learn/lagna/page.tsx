@@ -155,7 +155,7 @@ const L = {
 
 export default function LagnaPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = { fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
   const t = (obj: { en: string; hi: string; sa?: string }) => obj[locale as 'en' | 'hi'] || obj.en;

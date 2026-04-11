@@ -507,7 +507,7 @@ function SarosTimeline({ isHi }: { isHi: boolean }) {
 // ── Page ────────────────────────────────────────────────────────
 export default function PlanetaryCyclesPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const l = (L as Record<string, typeof L.en>)[locale] || L.en;

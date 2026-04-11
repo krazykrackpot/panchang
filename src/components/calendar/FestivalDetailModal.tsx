@@ -113,7 +113,7 @@ export default function FestivalDetailModal({
   };
   const resolvedPujaSlug = festivalSlug ? (PUJA_VIDHIS[festivalSlug] ? festivalSlug : PUJA_SLUG_MAP[festivalSlug] || festivalSlug) : undefined;
   const hasPujaVidhi = resolvedPujaSlug ? !!PUJA_VIDHIS[resolvedPujaSlug] : false;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {};
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

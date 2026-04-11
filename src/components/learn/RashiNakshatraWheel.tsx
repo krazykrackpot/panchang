@@ -24,7 +24,7 @@ interface Props { locale: Locale }
 export default function RashiNakshatraWheel({ locale }: Props) {
   const [hoveredNak, setHoveredNak] = useState<number | null>(null);
   const [hoveredRashi, setHoveredRashi] = useState<number | null>(null);
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
 
   const cx = 300, cy = 300;
   const outerR = 270, midR = 210, innerR = 140, centerR = 80;

@@ -217,7 +217,7 @@ function AnimatedKaranaWheel({
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.8 + i * 0.06 }}
-            style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+            style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
             {k.name[locale]}
           </motion.text>

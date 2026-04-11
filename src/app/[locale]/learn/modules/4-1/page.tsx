@@ -182,7 +182,7 @@ const QUESTIONS: ModuleQuestion[] = [
    ═══════════════════════════════════════════════════════════════ */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       {/* Opening Hook */}
@@ -256,7 +256,7 @@ function Page1() {
    ═══════════════════════════════════════════════════════════════ */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       {/* Zero Ayanamsha Date */}
@@ -438,7 +438,7 @@ function Page2() {
    ═══════════════════════════════════════════════════════════════ */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       {/* Why Lahiri Won */}

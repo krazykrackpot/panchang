@@ -57,7 +57,7 @@ const QUALITY_BADGE = {
 
 export default function MuhuratPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const now = new Date();

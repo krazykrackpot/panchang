@@ -128,7 +128,7 @@ export default function EkadashiParanaCard({
   locale,
 }: EkadashiParanaCardProps) {
   const ll = LABELS[locale] || LABELS.en;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

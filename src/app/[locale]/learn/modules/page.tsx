@@ -136,7 +136,7 @@ const PHASES = [
 
 export default function ModuleIndexPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   let moduleCount = 0;

@@ -150,7 +150,7 @@ export default function TodayPanchangWidget() {
         <LocationBar />
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-8 md:p-12 text-center">
           <MapPin className="w-12 h-12 text-gold-primary/40 mx-auto mb-4" />
-          <p className="text-text-secondary text-lg mb-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+          <p className="text-text-secondary text-lg mb-2" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {locale === 'en' || String(locale) === 'ta' ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
           </p>
           <p className="text-text-secondary/75 text-sm mb-6">
@@ -202,11 +202,11 @@ export default function TodayPanchangWidget() {
           >
             <div className="flex justify-center mb-4"><el.Icon size={64} /></div>
             <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{el.label}</div>
-            <div className="text-gold-light text-xl sm:text-2xl font-bold" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
+            <div className="text-gold-light text-xl sm:text-2xl font-bold" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
               {el.value}
             </div>
             {el.sub && (
-              <div className="text-text-secondary text-sm mt-2" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
+              <div className="text-text-secondary text-sm mt-2" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
             )}
             {el.timing && (
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">

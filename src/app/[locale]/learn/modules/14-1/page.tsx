@@ -187,7 +187,7 @@ const QUESTIONS: ModuleQuestion[] = [
 /* ─── Page 1: What is Kundali Milan ─── */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>
@@ -232,7 +232,7 @@ function Page1() {
 /* ─── Page 2: Beyond Guna Milan — Chart Override Factors ─── */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>
@@ -284,7 +284,7 @@ function Page2() {
 /* ─── Page 3: The Matching Process Step by Step ─── */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>

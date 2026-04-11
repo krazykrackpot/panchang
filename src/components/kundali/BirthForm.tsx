@@ -20,7 +20,7 @@ interface BirthFormProps {
 export default function BirthForm({ onSubmit, loading, initialData }: BirthFormProps) {
   const t = useTranslations('kundali');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [formData, setFormData] = useState({

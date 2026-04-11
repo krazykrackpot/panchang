@@ -259,7 +259,7 @@ const fade = (delay: number) => ({ initial: { opacity: 0, y: 20 } as const, anim
 
 export default function KeralaSchoolPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 

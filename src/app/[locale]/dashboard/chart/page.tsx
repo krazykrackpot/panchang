@@ -15,8 +15,8 @@ import type { Locale } from '@/types/panchang';
 
 export default function ChartPage() {
   const locale = useLocale() as Locale;
-  const hf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');

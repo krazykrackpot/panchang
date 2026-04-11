@@ -265,7 +265,7 @@ const L = {
 
 export default function KundaliTrackPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const l = L[locale] || L.en;

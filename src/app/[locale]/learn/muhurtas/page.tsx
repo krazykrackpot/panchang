@@ -51,7 +51,7 @@ const L = {
 export default function LearnMuhurtasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
 
   const [expandedDay, setExpandedDay] = useState<number | null>(null);
   const [expandedNight, setExpandedNight] = useState<number | null>(null);

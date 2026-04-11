@@ -297,7 +297,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
 /* ── Main Page ────────────────────────────────────────────────── */
 export default function AspectsPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);

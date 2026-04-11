@@ -83,7 +83,7 @@ interface SphutasTabProps {
 }
 
 export default function SphutasTab({ kundali, locale, isDevanagari, headingFont, sphuataTransitData }: SphutasTabProps) {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const yogiPlanetName = GRAHAS[kundali.sphutas!.yogiPoint.yogiPlanet]?.name[locale as Locale] || '';
   const avayogiPlanetName = GRAHAS[kundali.sphutas!.avayogiPoint.avayogiPlanet]?.name[locale as Locale] || '';
   const RASHI_FULL = ['','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
@@ -405,7 +405,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         const jupNatal = kundali.planets.find(p => p.planet.id === 4);
         if (!jupNatal) return null;
         const jupNatalHouse = jupNatal.house;
-        const isHiBCP = locale !== 'en';
+        const isHiBCP = locale !== 'en' && String(locale) !== 'ta';
         const currentAge = kundali.birthData.date
           ? Math.floor((new Date().getTime() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 3600 * 1000))
           : null;

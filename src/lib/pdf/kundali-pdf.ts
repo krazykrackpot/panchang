@@ -12,7 +12,7 @@ function t(obj: { en: string; hi?: string; sa?: string } | undefined, locale: Lo
 
 export function generateKundaliPrintHtml(kundali: KundaliData, locale: Locale): string {
   const name = kundali.birthData.name || 'Native';
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const devaClass = isDevanagari ? ' class="devanagari"' : '';
 
   // Birth details

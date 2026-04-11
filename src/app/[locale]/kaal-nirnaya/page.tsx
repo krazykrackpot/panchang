@@ -199,7 +199,7 @@ interface KaalData {
 
 export default function KaalNirnayaPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   // Helper for bilingual objects (en/hi) — falls back to hi for sa, then en

@@ -32,8 +32,8 @@ const REC_STYLES: Record<string, { bg: string; text: string; label: { en: string
 export default function MuhurtaPage() {
   const locale = useLocale() as Locale;
   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
-  const hf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
   const [muhurtas, setMuhurtas] = useState<PersonalMuhurta[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,7 +78,7 @@ export default function MuhurtaPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त'}</span></h1>
         <p className="text-text-secondary text-sm" style={bf}>
-          {locale === 'en'
+          {locale === 'en' || String(locale) === 'ta'
             ? `Based on your birth nakshatra (${birthNak}) and today's nakshatra (${todayNak})`
             : `आपके जन्म नक्षत्र (${birthNak}) और आज के नक्षत्र (${todayNak}) के आधार पर`}
         </p>
@@ -115,7 +115,7 @@ export default function MuhurtaPage() {
 
       <div className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-xs text-text-secondary" style={bf}>
         <p className="text-gold-dark font-bold uppercase tracking-wider mb-2">{locale === 'en' || String(locale) === 'ta' ? 'How this works' : 'यह कैसे काम करता है'}</p>
-        <p>{locale === 'en'
+        <p>{locale === 'en' || String(locale) === 'ta'
           ? 'Tara Bala compares your birth nakshatra with today\'s nakshatra (9-cycle). Chandra Bala checks today\'s Moon position relative to your birth Moon sign. Both favorable = Excellent. Both unfavorable = Avoid.'
           : 'तारा बल आपके जन्म नक्षत्र की तुलना आज के नक्षत्र से करता है (9 चक्र)। चन्द्र बल आज के चन्द्रमा की स्थिति की जाँच करता है। दोनों अनुकूल = उत्कृष्ट। दोनों प्रतिकूल = बचें।'}</p>
       </div>

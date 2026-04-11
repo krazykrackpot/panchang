@@ -44,7 +44,7 @@ const PLANET_PLACEMENTS: Record<number, { names: Record<string, string>; color: 
 
 export default function ExampleKundaliChart({ size = 420 }: { size?: number }) {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
 
   return (
     <motion.div

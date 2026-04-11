@@ -69,7 +69,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
   const moonMap  = buildHouseMap(moonSign);
   const sunMap   = buildHouseMap(sunSign);
 
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const signAbbr = (signId: number) => isHi ? SIGN_ABBR_HI[signId - 1] : SIGN_ABBR_EN[signId - 1];
 
   // SVG dimensions

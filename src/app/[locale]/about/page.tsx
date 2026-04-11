@@ -8,7 +8,7 @@ import type { Locale } from '@/types/panchang';
 export default function AboutPage() {
   const t = useTranslations('about');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const sections = [
@@ -66,9 +66,9 @@ export default function AboutPage() {
       <div className="space-y-12">
         {sections.map((section, i) => (
           <motion.section key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-            <h2 className="text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>{section.title[locale]}</h2>
+            <h2 className="text-2xl font-bold text-gold-gradient mb-4" style={headingFont}>{(section.title as Record<string, string>)[locale] || section.title.en}</h2>
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
-              <p className="text-text-secondary leading-relaxed text-lg">{section.content[locale]}</p>
+              <p className="text-text-secondary leading-relaxed text-lg">{(section.content as Record<string, string>)[locale] || section.content.en}</p>
             </div>
             {i < sections.length - 1 && <GoldDivider className="mt-8" />}
           </motion.section>

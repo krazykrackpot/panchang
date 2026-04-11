@@ -33,7 +33,7 @@ const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल'
 export default function TransitsPage() {
   const t = useTranslations('transits');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 

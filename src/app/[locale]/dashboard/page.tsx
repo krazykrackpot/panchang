@@ -586,11 +586,11 @@ export default function DashboardPage() {
                       <div
                         key={badge.id}
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
-                        title={locale !== 'en' ? badge.description.hi : badge.description.en}
+                        title={(locale === 'hi' || locale === 'sa') ? badge.description.hi : badge.description.en}
                       >
                         <span className="text-sm">{badge.icon}</span>
                         <span className="text-[11px] text-text-primary font-medium">
-                          {locale !== 'en' ? badge.label.hi : badge.label.en}
+                          {(locale === 'hi' || locale === 'sa') ? badge.label.hi : badge.label.en}
                         </span>
                       </div>
                     ))}

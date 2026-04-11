@@ -19,7 +19,7 @@ const LEVEL_ICONS: Record<string, string> = {
 };
 
 export default function LevelBadge({ masteredCount, locale, variant = 'compact' }: LevelBadgeProps) {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const level = getLevel(masteredCount);
   const icon = LEVEL_ICONS[level.level] || '\u{1F331}';
 

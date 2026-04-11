@@ -99,7 +99,7 @@ export default function PanchangPage() {
   const tNav = useTranslations('nav');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   // Tamil translation helper: returns Tamil string when locale is 'ta', else falls through to en/hi
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 

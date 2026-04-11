@@ -99,7 +99,7 @@ export default function HouseVisual({ highlight, label, size = 'sm', color = 'go
  * Inline house badge — shows house number with signification
  */
 export function HouseBadge({ house, locale = 'en', color = 'gold' }: { house: number; locale?: string; color?: 'gold' | 'emerald' | 'red' | 'amber' }) {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const sig = HOUSE_SIGNIFICATIONS[house];
   const colors = COLOR_MAP[color];
   return (

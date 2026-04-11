@@ -68,7 +68,7 @@ const CONTACT_EFFECTS: Record<number, { en: string; hi: string }> = {
 };
 
 function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, locale: Locale): PersonalInsight {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const now = new Date();
 
   // 1. Which house does the eclipse fall in?
@@ -268,7 +268,7 @@ export default function PersonalEclipseInsight({
   eclipseLongitude: number;
   locale: Locale;
 }) {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 

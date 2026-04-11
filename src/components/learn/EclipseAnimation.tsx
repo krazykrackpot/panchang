@@ -15,7 +15,7 @@ interface Props { locale: Locale }
  */
 export default function EclipseAnimation({ locale }: Props) {
   const [tab, setTab] = useState<'planes' | 'solar' | 'lunar'>('planes');
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
 
   const tabBase = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition-all cursor-pointer';
   const tabActive = 'bg-gradient-to-br from-[#2d1b69]/60 via-[#1a1040]/70 to-[#0a0e27] text-gold-light border-gold-primary/35 shadow-lg shadow-gold-primary/5';

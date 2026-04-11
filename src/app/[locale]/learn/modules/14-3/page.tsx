@@ -186,7 +186,7 @@ const QUESTIONS: ModuleQuestion[] = [
 /* ─── Page 1: Marriage Timing Indicators ─── */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>
@@ -220,7 +220,7 @@ function Page1() {
 /* ─── Page 2: Delay Indicators ─── */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>
@@ -258,7 +258,7 @@ function Page2() {
 /* ─── Page 3: Post-Marriage Predictions ─── */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   return (
     <div className="space-y-6">
       <section>

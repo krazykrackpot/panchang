@@ -20,8 +20,8 @@ interface SavedChart {
 export default function SavedChartsPage() {
   const locale = useLocale() as Locale;
   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
-  const hf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
 
   const [charts, setCharts] = useState<SavedChart[]>([]);

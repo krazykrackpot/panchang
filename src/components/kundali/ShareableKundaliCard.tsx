@@ -88,7 +88,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const shareText = `${kundali.birthData.name ? kundali.birthData.name + "'s " : ''}Vedic Chart: ${ascName} Ascendant, ${moonSignEn} Moon, ${nakEn} Nakshatra${dashaEn ? `, ${dashaEn} Mahadasha` : ''}. Generate yours`;
   const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali` : 'https://dekhopanchang.com/kundali';
 
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 

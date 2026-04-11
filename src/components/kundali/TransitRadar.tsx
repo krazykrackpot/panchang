@@ -11,7 +11,7 @@ interface TransitRadarProps {
 }
 
 export default function TransitRadar({ ascendantSign, savTable, locale }: TransitRadarProps) {
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const transits = useMemo(() => computePersonalTransits(ascendantSign, savTable), [ascendantSign, savTable]);
   const upcoming = useMemo(() => computeUpcomingTransitions(), []);
 

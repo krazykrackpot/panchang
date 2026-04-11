@@ -384,7 +384,7 @@ export default function LearnKundaliPage() {
                   <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{p.name[locale]}</td>
                   <td className="py-2 text-gold-light/70 font-mono text-xs">{p.sidereal}</td>
                   <td className="py-2 text-text-secondary text-xs">{p.rashi[locale]}</td>
-                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
+                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
                 </tr>
               ))}
             </tbody>

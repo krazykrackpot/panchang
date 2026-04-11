@@ -160,7 +160,7 @@ function AnimatedTithiWheel({ locale, onSelect }: { locale: Locale; onSelect: (i
               textAnchor="middle"
               dominantBaseline="middle"
               transform={`rotate(${i * 12}, ${textX}, ${textY})`}
-              style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+              style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
             >
               {tithi?.name[locale]?.substring(0, 6) || ''}
             </text>

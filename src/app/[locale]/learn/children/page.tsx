@@ -95,7 +95,7 @@ function FifthHouseChart() {
 /* ── Main Page ───────────────────────────────────────────────────── */
 export default function ChildrenPredictionPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const t = (obj: { en: string; hi: string; sa?: string }) => isHi ? (locale === 'sa' && obj.sa ? obj.sa : obj.hi) : obj.en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedSign, setExpandedSign] = useState<number | null>(null);

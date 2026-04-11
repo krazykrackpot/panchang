@@ -169,7 +169,7 @@ function AspectList({ aspects, locale }: { aspects: SynastryAspect[]; locale: st
 
 export default function ComparePage() {
   const locale = useLocale();
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

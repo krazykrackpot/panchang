@@ -14,7 +14,7 @@ import type { Locale } from '@/types/panchang';
 export default function LearnSidebarMobile() {
   const [open, setOpen] = useState(false);
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
 
   const { user } = useAuthStore();
   const {

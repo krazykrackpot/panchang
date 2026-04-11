@@ -28,7 +28,7 @@ function decodeChartParams(params: URLSearchParams): { name: string; date: strin
 export default function SharedKundaliPage() {
   const locale = useLocale() as Locale;
   const searchParams = useSearchParams();
-  const isDevanagari = locale !== 'en';
+  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = { fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);

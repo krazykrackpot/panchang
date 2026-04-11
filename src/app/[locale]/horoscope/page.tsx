@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 export default function HoroscopePage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en';
+  const isHi = locale !== 'en' && String(locale) !== 'ta';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [horoscopes, setHoroscopes] = useState<Record<number, string>>({});

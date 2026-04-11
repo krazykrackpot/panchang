@@ -41,6 +41,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation } from '@/components/kundali/InterpretationHelpers';
 import JaiminiTab from '@/components/kundali/JaiminiTab';
 import SphutasTab from '@/components/kundali/SphutasTab';
+import ShareableKundaliCard from '@/components/kundali/ShareableKundaliCard';
 
 // Lazy-loaded components for non-critical tabs
 const TransitRadar = lazy(() => import('@/components/kundali/TransitRadar'));
@@ -661,12 +662,7 @@ export default function KundaliPage() {
                 label={locale === 'en' ? 'Print' : 'प्रिंट'}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               />
-              <ShareButton
-                title={`Kundali — ${kundali.birthData.name}`}
-                text={`Vedic birth chart for ${kundali.birthData.name} generated on Dekho Panchang`}
-                locale={locale}
-                url={typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali/shared?n=${encodeURIComponent(kundali.birthData.name)}&d=${kundali.birthData.date}&t=${kundali.birthData.time}&la=${kundali.birthData.lat}&lo=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}&tz=${encodeURIComponent(kundali.birthData.timezone || '')}` : undefined}
-              />
+              <ShareableKundaliCard kundali={kundali} locale={locale as Locale} />
             </div>
           </div>
 

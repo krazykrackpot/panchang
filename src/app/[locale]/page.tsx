@@ -394,7 +394,8 @@ function useProfileBanner() {
 export default function HomePage() {
   const t = useTranslations('home');
   const locale = useLocale();
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = (locale === 'hi' || locale === 'sa') && !isTamil;
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const profileBanner = useProfileBanner();

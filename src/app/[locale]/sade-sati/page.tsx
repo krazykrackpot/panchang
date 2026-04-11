@@ -25,37 +25,38 @@ import InfoBlock from '@/components/ui/InfoBlock';
 // Trilingual labels
 // ---------------------------------------------------------------------------
 
-const L = (en: string, hi: string, sa?: string) => ({ en, hi, sa: sa ?? hi });
+const L = (en: string, hi: string, sa?: string, ta?: string) => ({ en, hi, sa: sa ?? hi, ...(ta ? { ta } : {}) });
 
 const LABELS = {
-  title: L('Sade Sati', 'साढ़े साती', 'साढेसाती'),
+  title: L('Sade Sati', 'साढ़े साती', 'साढेसाती', 'ஏழரை சனி'),
   subtitle: L(
     "Saturn's 7.5-year transit over your Moon sign — the most transformative period in Vedic astrology",
     'शनि का आपकी चन्द्र राशि पर 7.5 वर्ष का गोचर — वैदिक ज्योतिष का सर्वाधिक परिवर्तनकारी काल',
     'शनेः चन्द्रराशौ सार्धसप्तवर्षीयं गोचरम् — वैदिकज्योतिषस्य परमपरिवर्तनकालः',
+    'உங்கள் சந்திர ராசியின் மீது சனியின் 7.5 வருட கோசாரம் — வேத ஜோதிடத்தின் மிக முக்கிய காலம்',
   ),
-  saturnIn: L('Saturn is currently in', 'शनि वर्तमान में', 'शनिः सम्प्रति'),
-  quickTab: L('Quick Check', 'त्वरित जाँच', 'शीघ्रपरीक्षा'),
-  fullTab: L('Full Analysis', 'विस्तृत विश्लेषण', 'सम्पूर्णविश्लेषणम्'),
-  selectMoon: L('Select Your Moon Sign', 'अपनी चन्द्र राशि चुनें', 'स्वचन्द्रराशिं चिनुत'),
-  date: L('Date of Birth', 'जन्म तिथि', 'जन्मतिथिः'),
-  time: L('Time of Birth', 'जन्म समय', 'जन्मसमयः'),
-  place: L('Birth Place', 'जन्म स्थान', 'जन्मस्थानम्'),
+  saturnIn: L('Saturn is currently in', 'शनि वर्तमान में', 'शनिः सम्प्रति', 'சனி தற்போது'),
+  quickTab: L('Quick Check', 'त्वरित जाँच', 'शीघ्रपरीक्षा', 'விரைவு சோதனை'),
+  fullTab: L('Full Analysis', 'विस्तृत विश्लेषण', 'सम्पूर्णविश्लेषणम्', 'முழு பகுப்பாய்வு'),
+  selectMoon: L('Select Your Moon Sign', 'अपनी चन्द्र राशि चुनें', 'स्वचन्द्रराशिं चिनुत', 'உங்கள் சந்திர ராசியைத் தேர்ந்தெடுக்கவும்'),
+  date: L('Date of Birth', 'जन्म तिथि', 'जन्मतिथिः', 'பிறந்த தேதி'),
+  time: L('Time of Birth', 'जन्म समय', 'जन्मसमयः', 'பிறந்த நேரம்'),
+  place: L('Birth Place', 'जन्म स्थान', 'जन्मस्थानम्', 'பிறந்த இடம்'),
   lat: L('Latitude', 'अक्षांश', 'अक्षांशः'),
   lng: L('Longitude', 'देशान्तर', 'देशान्तरः'),
   tz: L('Timezone (hrs)', 'समयक्षेत्र (घंटे)', 'समयक्षेत्रम्'),
-  analyze: L('Analyze', 'विश्लेषण करें', 'विश्लेषयतु'),
-  loading: L('Generating kundali...', 'कुण्डली बना रहे हैं...', 'कुण्डलीं रचयति...'),
-  active: L('SADE SATI ACTIVE', 'साढ़े साती सक्रिय', 'साढेसाती सक्रिया'),
-  notActive: L('NOT IN SADE SATI', 'साढ़े साती नहीं', 'साढेसाती नास्ति'),
-  nextCycle: L('Next cycle begins around', 'अगला चक्र लगभग', 'अग्रिमचक्रं प्रायः'),
-  intensity: L('Intensity', 'तीव्रता', 'तीव्रता'),
-  timeline: L('Timeline', 'समयरेखा', 'समयरेखा'),
-  remedies: L('Remedies', 'उपाय', 'उपायाः'),
+  analyze: L('Analyze', 'विश्लेषण करें', 'विश्लेषयतु', 'பகுப்பாய்வு'),
+  loading: L('Generating kundali...', 'कुण्डली बना रहे हैं...', 'कुण्डलीं रचयति...', 'ஜாதகம் உருவாக்கப்படுகிறது...'),
+  active: L('SADE SATI ACTIVE', 'साढ़े साती सक्रिय', 'साढेसाती सक्रिया', 'ஏழரை சனி செயலில்'),
+  notActive: L('NOT IN SADE SATI', 'साढ़े साती नहीं', 'साढेसाती नास्ति', 'ஏழரை சனி இல்லை'),
+  nextCycle: L('Next cycle begins around', 'अगला चक्र लगभग', 'अग्रिमचक्रं प्रायः', 'அடுத்த சுழற்சி தொடங்கும் காலம்'),
+  intensity: L('Intensity', 'तीव्रता', 'तीव्रता', 'தீவிரம்'),
+  timeline: L('Timeline', 'समयरेखा', 'समयरेखा', 'காலவரிசை'),
+  remedies: L('Remedies', 'उपाय', 'उपायाः', 'பரிகாரங்கள்'),
   phase: {
-    rising: L('Rising Phase (12th from Moon)', 'आरम्भ चरण (चन्द्र से 12वाँ)', 'उत्थानचरणः'),
-    peak: L('Peak Phase (Over Moon Sign)', 'चरम चरण (चन्द्र राशि पर)', 'चरमचरणः'),
-    setting: L('Setting Phase (2nd from Moon)', 'अवसान चरण (चन्द्र से 2रा)', 'अवसानचरणः'),
+    rising: L('Rising Phase (12th from Moon)', 'आरम्भ चरण (चन्द्र से 12वाँ)', 'उत्थानचरणः', 'உதய கட்டம் (சந்திரனிலிருந்து 12வது)'),
+    peak: L('Peak Phase (Over Moon Sign)', 'चरम चरण (चन्द्र राशि पर)', 'चरमचरणः', 'உச்ச கட்டம் (சந்திர ராசி மீது)'),
+    setting: L('Setting Phase (2nd from Moon)', 'अवसान चरण (चन्द्र से 2रा)', 'अवसानचरणः', 'இறங்கு கட்டம் (சந்திரனிலிருந்து 2வது)'),
   },
   sections: {
     summary: L('Summary', 'सारांश', 'सारांशः'),
@@ -78,8 +79,9 @@ const LABELS = {
   intense: L('Intense', 'तीव्र', 'तीव्रम्'),
 };
 
-type Tri = { en: string; hi: string; sa?: string };
+type Tri = { en: string; hi: string; sa?: string; ta?: string };
 const t = (label: Tri, locale: Locale): string => {
+  if (String(locale) === 'ta') return (label as Record<string, string>).ta ?? label.en;
   const k = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   return (label as Record<string, string>)[k] ?? label.en;
 };
@@ -126,7 +128,8 @@ function intensityLabel(score: number, locale: Locale): string {
 
 export default function SadeSatiPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
@@ -244,7 +247,7 @@ export default function SadeSatiPage() {
         )}
       </motion.div>
 
-      <InfoBlock id="sade-sati-intro" title={locale === 'en' || String(locale) === 'ta' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
+      <InfoBlock id="sade-sati-intro" title={isTamil ? 'ஏழரை சனி என்றால் என்ன? ஏன் 7.5 வருடங்கள்?' : locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
         {locale === 'en' || String(locale) === 'ta' ? (
           <div className="space-y-3">
             <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
@@ -342,7 +345,7 @@ export default function SadeSatiPage() {
                 setBirthLng(loc.lng);
                 setBirthTimezone(loc.timezone);
               }}
-              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+              placeholder={isTamil ? 'பிறந்த நகரத்தைத் தேடுங்கள்...' : locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
             />
           </div>
           <button
@@ -372,7 +375,7 @@ export default function SadeSatiPage() {
               return (
                 <div className="my-6 rounded-2xl border-2 border-red-700/50 bg-gradient-to-br from-red-900/20 via-red-950/10 to-transparent p-5 text-center">
                   <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
-                    {locale === 'en' || String(locale) === 'ta' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
+                    {isTamil ? '⚠ அஷ்டம சனி செயலில்' : locale === 'en' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
                   </div>
                   <div className="text-red-300 text-xl font-bold mb-2" style={headingFont}>
                     {locale === 'en'
@@ -569,7 +572,7 @@ export default function SadeSatiPage() {
                     {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1">
                         <div className="text-xs text-text-tertiary uppercase tracking-wider mb-1.5">
-                          {locale === 'en' || String(locale) === 'ta' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
+                          {isTamil ? 'நட்சத்திர கோசாரம்' : locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
                         </div>
                         {analysis.nakshatraTimeline.map((nt, k) => {
                           const nak = NAKSHATRAS[nt.nakshatra - 1];
@@ -593,12 +596,12 @@ export default function SadeSatiPage() {
                               <span className="font-mono text-xs opacity-70">{yearLabel}</span>
                               {nt.isBirthNakshatra && (
                                 <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
-                                  {locale === 'en' || String(locale) === 'ta' ? 'Birth' : 'जन्म'}
+                                  {isTamil ? 'ஜன்மம்' : locale === 'en' ? 'Birth' : 'जन्म'}
                                 </span>
                               )}
                               {nt.isCurrent && !nt.isBirthNakshatra && (
                                 <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
-                                  {locale === 'en' || String(locale) === 'ta' ? 'Now' : 'अभी'}
+                                  {isTamil ? 'இப்போது' : locale === 'en' ? 'Now' : 'अभी'}
                                 </span>
                               )}
                             </div>

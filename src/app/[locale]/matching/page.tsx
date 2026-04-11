@@ -7,13 +7,16 @@ import { Loader2, Calendar } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
 import PrintButton from '@/components/ui/PrintButton';
 import LocationSearch from '@/components/ui/LocationSearch';
+import ChartNorth from '@/components/kundali/ChartNorth';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
+import type { KundaliData } from '@/types/kundali';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
+import { GRAHAS } from '@/lib/constants/grahas';
 
 const L = {
   en: {
@@ -98,6 +101,9 @@ export default function MatchingPage() {
   const [result, setResult] = useState<MatchResult | null>(null);
   const [matchError, setMatchError] = useState<string | null>(null);
   const matchResultRef = useRef<HTMLDivElement>(null);
+  const [boyKundali, setBoyKundali] = useState<KundaliData | null>(null);
+  const [girlKundali, setGirlKundali] = useState<KundaliData | null>(null);
+  const [showCharts, setShowCharts] = useState(false);
 
   // Validation hints: tell the user which person's details are incomplete
   const boyReady = !!boyComputed;
@@ -126,9 +132,26 @@ export default function MatchingPage() {
       if (data.error) { setMatchError(data.error); setResult(null); setLoading(false); return; }
       setMatchError(null);
       setResult(data);
+
+      // Generate kundalis for both partners in parallel (non-blocking)
+      const genKundali = async (birth: PersonBirth) => {
+        try {
+          const r = await fetch('/api/kundali', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date: birth.date, time: birth.time, lat: birth.placeLat, lng: birth.placeLng, timezone: birth.placeTimezone, name: birth.name }),
+          });
+          if (r.ok) return (await r.json()) as KundaliData;
+        } catch { /* non-critical */ }
+        return null;
+      };
+      Promise.all([genKundali(boyBirth), genKundali(girlBirth)]).then(([bk, gk]) => {
+        setBoyKundali(bk);
+        setGirlKundali(gk);
+      });
     } catch { setMatchError(locale === 'en' ? 'Connection error. Please check your internet.' : 'कनेक्शन त्रुटि। कृपया इंटरनेट जाँचें।'); setResult(null); }
     setLoading(false);
-  }, [boyComputed, girlComputed]);
+  }, [boyComputed, girlComputed, boyBirth, girlBirth]);
 
   const verdictColors: Record<string, string> = {
     excellent: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
@@ -460,6 +483,78 @@ export default function MatchingPage() {
                 </motion.div>
               );
             })()}
+
+            {/* ── Side-by-side Birth Charts ── */}
+            {(boyKundali || girlKundali) && (
+              <div className="mt-8">
+                <GoldDivider />
+                <button
+                  onClick={() => setShowCharts(!showCharts)}
+                  className="w-full flex items-center justify-center gap-2 py-3 text-gold-light font-bold text-sm hover:text-gold-primary transition-colors"
+                  style={headingFont}
+                >
+                  {locale === 'en' ? 'Compare Birth Charts' : 'जन्म कुण्डली तुलना'}
+                  <motion.span animate={{ rotate: showCharts ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" /></svg>
+                  </motion.span>
+                </button>
+                <AnimatePresence>
+                  {showCharts && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                        {boyKundali && (
+                          <div className="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4">
+                            <h3 className="text-blue-400 font-bold text-center mb-3" style={headingFont}>
+                              {boyBirth.name || (locale === 'en' ? 'Groom' : 'वर')}
+                            </h3>
+                            <ChartNorth data={boyKundali.chart} title="" size={400} />
+                            <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+                              {boyKundali.planets.slice(0, 9).map(p => (
+                                <div key={p.planet.id} className="rounded-lg bg-bg-tertiary/30 p-1.5">
+                                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                    {GRAHAS[p.planet.id]?.name[locale]?.slice(0, 6)}
+                                  </span>
+                                  <span className="text-text-secondary ml-1">
+                                    {RASHIS[p.sign - 1]?.name[locale]?.slice(0, 4)}
+                                  </span>
+                                  {p.isRetrograde && <span className="text-red-400 ml-0.5 text-[9px]">R</span>}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {girlKundali && (
+                          <div className="rounded-2xl border border-pink-500/20 bg-pink-500/5 p-4">
+                            <h3 className="text-pink-400 font-bold text-center mb-3" style={headingFont}>
+                              {girlBirth.name || (locale === 'en' ? 'Bride' : 'वधू')}
+                            </h3>
+                            <ChartNorth data={girlKundali.chart} title="" size={400} />
+                            <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
+                              {girlKundali.planets.slice(0, 9).map(p => (
+                                <div key={p.planet.id} className="rounded-lg bg-bg-tertiary/30 p-1.5">
+                                  <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                                    {GRAHAS[p.planet.id]?.name[locale]?.slice(0, 6)}
+                                  </span>
+                                  <span className="text-text-secondary ml-1">
+                                    {RASHIS[p.sign - 1]?.name[locale]?.slice(0, 4)}
+                                  </span>
+                                  {p.isRetrograde && <span className="text-red-400 ml-0.5 text-[9px]">R</span>}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
 
             {/* Print / PDF button */}
             <div className="text-center mt-8">

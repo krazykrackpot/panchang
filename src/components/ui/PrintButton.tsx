@@ -53,6 +53,10 @@ export default function PrintButton({ contentRef, contentHtml, title = 'Dekho Pa
     @media print {
       body { padding: 20px; }
       @page { margin: 15mm; size: A4; }
+      .section { break-inside: avoid; }
+      table { break-inside: avoid; }
+      h2 { break-after: avoid; }
+      tr { break-inside: avoid; }
     }
   </style>
 </head>

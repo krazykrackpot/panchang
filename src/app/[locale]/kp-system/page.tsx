@@ -423,7 +423,7 @@ export default function KPSystemPage() {
       {/* KP Intro */}
       <InfoBlock
         id="kp-intro"
-        title={locale === 'en' ? 'What is the KP System?' : locale === 'hi' ? 'केपी पद्धति क्या है?' : 'केपी पद्धतिः किम्?'}
+        title={locale === 'en' || String(locale) === 'ta' ? 'What is the KP System?' : locale === 'hi' ? 'केपी पद्धति क्या है?' : 'केपी पद्धतिः किम्?'}
         defaultOpen={false}
       >
         {locale === 'hi' ? (
@@ -444,7 +444,7 @@ export default function KPSystemPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
         </div>
         <div className="text-center mt-6">
@@ -489,7 +489,7 @@ export default function KPSystemPage() {
                           <p className="text-text-secondary text-xs mt-0.5">{area.axis[locale]}</p>
                         </div>
                         <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${r.favorable ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300'}`}>
-                          {r.favorable ? (locale === 'en' ? 'PROMISED' : locale === 'hi' ? 'फलदायी' : 'फलितम्') : (locale === 'en' ? 'WITHHELD' : locale === 'hi' ? 'अभाव' : 'अभावः')}
+                          {r.favorable ? (locale === 'en' || String(locale) === 'ta' ? 'PROMISED' : locale === 'hi' ? 'फलदायी' : 'फलितम्') : (locale === 'en' || String(locale) === 'ta' ? 'WITHHELD' : locale === 'hi' ? 'अभाव' : 'अभावः')}
                         </span>
                       </div>
 
@@ -518,11 +518,11 @@ export default function KPSystemPage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
                 {[
-                  { label: locale === 'en' ? 'Asc Sign Lord' : locale === 'hi' ? 'लग्न राशि स्वामी' : 'लग्नराशिस्वामी', planet: data.rulingPlanets.ascSignLord },
-                  { label: locale === 'en' ? 'Asc Star Lord' : locale === 'hi' ? 'लग्न नक्षत्र स्वामी' : 'लग्ननक्षत्रस्वामी', planet: data.rulingPlanets.ascStarLord },
-                  { label: locale === 'en' ? 'Moon Sign Lord' : locale === 'hi' ? 'चन्द्र राशि स्वामी' : 'चन्द्रराशिस्वामी', planet: data.rulingPlanets.moonSignLord },
-                  { label: locale === 'en' ? 'Moon Star Lord' : locale === 'hi' ? 'चन्द्र नक्षत्र स्वामी' : 'चन्द्रनक्षत्रस्वामी', planet: data.rulingPlanets.moonStarLord },
-                  { label: locale === 'en' ? 'Day Lord' : locale === 'hi' ? 'वार स्वामी' : 'वारस्वामी', planet: data.rulingPlanets.dayLord },
+                  { label: locale === 'en' || String(locale) === 'ta' ? 'Asc Sign Lord' : locale === 'hi' ? 'लग्न राशि स्वामी' : 'लग्नराशिस्वामी', planet: data.rulingPlanets.ascSignLord },
+                  { label: locale === 'en' || String(locale) === 'ta' ? 'Asc Star Lord' : locale === 'hi' ? 'लग्न नक्षत्र स्वामी' : 'लग्ननक्षत्रस्वामी', planet: data.rulingPlanets.ascStarLord },
+                  { label: locale === 'en' || String(locale) === 'ta' ? 'Moon Sign Lord' : locale === 'hi' ? 'चन्द्र राशि स्वामी' : 'चन्द्रराशिस्वामी', planet: data.rulingPlanets.moonSignLord },
+                  { label: locale === 'en' || String(locale) === 'ta' ? 'Moon Star Lord' : locale === 'hi' ? 'चन्द्र नक्षत्र स्वामी' : 'चन्द्रनक्षत्रस्वामी', planet: data.rulingPlanets.moonStarLord },
+                  { label: locale === 'en' || String(locale) === 'ta' ? 'Day Lord' : locale === 'hi' ? 'वार स्वामी' : 'वारस्वामी', planet: data.rulingPlanets.dayLord },
                 ].map((rp, i) => {
                   const oracle = RULING_PLANET_ORACLE[rp.planet.id];
                   return (
@@ -576,7 +576,7 @@ export default function KPSystemPage() {
                 return (
                   <div className="rounded-xl bg-gold-primary/5 border border-gold-primary/15 p-4">
                     <p className="text-text-secondary text-xs uppercase tracking-wider mb-2 font-semibold">
-                      {locale === 'en' ? 'Combined Oracle' : locale === 'hi' ? 'संयुक्त ओरेकल' : 'संयुक्तओरेकल'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Combined Oracle' : locale === 'hi' ? 'संयुक्त ओरेकल' : 'संयुक्तओरेकल'}
                     </p>
                     <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{summary}</p>
                     {locale === 'en' && (
@@ -606,7 +606,7 @@ export default function KPSystemPage() {
             <div className="bg-gradient-to-br from-[#1a1040]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-amber-500/20 rounded-xl p-6">
               <h2 className="text-amber-400 text-sm uppercase tracking-wider mb-1 font-bold">{t.cuspalAnalysis}</h2>
               <p className="text-text-secondary text-xs mb-4">
-                {locale === 'en' ? 'The sub-lord of each cusp determines whether that house\'s matters will materialise in this lifetime.' : locale === 'hi' ? 'प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।' : 'प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।'}
+                {locale === 'en' || String(locale) === 'ta' ? 'The sub-lord of each cusp determines whether that house\'s matters will materialise in this lifetime.' : locale === 'hi' ? 'प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।' : 'प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।'}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {data.cuspalAnalysis.map(ca => (
@@ -636,7 +636,7 @@ export default function KPSystemPage() {
                 className="w-full flex items-center justify-between px-5 py-3 rounded-xl border border-gold-primary/15 bg-gold-primary/5 hover:bg-gold-primary/10 transition-colors"
               >
                 <span className="text-gold-primary text-sm font-semibold uppercase tracking-wider">{t.referenceData}</span>
-                <span className="text-text-secondary text-xs">{showRefData ? (locale === 'en' ? 'Hide' : 'छुपाएं') : (locale === 'en' ? 'Show tables' : 'तालिकाएं देखें')}</span>
+                <span className="text-text-secondary text-xs">{showRefData ? (locale === 'en' || String(locale) === 'ta' ? 'Hide' : 'छुपाएं') : (locale === 'en' || String(locale) === 'ta' ? 'Show tables' : 'तालिकाएं देखें')}</span>
               </button>
 
               <AnimatePresence>

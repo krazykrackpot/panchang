@@ -151,10 +151,10 @@ export default function ComparePage() {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-gold-primary/15">
-                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
-                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{t(L.chart1, locale)} — {locale === 'en' ? 'Sign' : 'राशि'}</th>
-                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{t(L.chart2, locale)} — {locale === 'en' ? 'Sign' : 'राशि'}</th>
-                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{locale === 'en' ? 'Same Sign?' : 'एक राशि?'}</th>
+                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Planet' : 'ग्रह'}</th>
+                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{t(L.chart1, locale)} — {locale === 'en' || String(locale) === 'ta' ? 'Sign' : 'राशि'}</th>
+                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{t(L.chart2, locale)} — {locale === 'en' || String(locale) === 'ta' ? 'Sign' : 'राशि'}</th>
+                      <th className="text-left py-3 px-4 text-gold-primary font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Same Sign?' : 'एक राशि?'}</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gold-primary/5">
@@ -200,7 +200,7 @@ export default function ComparePage() {
                   })}
                 </div>
               ) : (
-                <div className="text-center text-text-tertiary text-sm py-8">{locale === 'en' ? 'No significant aspects found' : 'कोई महत्वपूर्ण पक्ष नहीं मिला'}</div>
+                <div className="text-center text-text-tertiary text-sm py-8">{locale === 'en' || String(locale) === 'ta' ? 'No significant aspects found' : 'कोई महत्वपूर्ण पक्ष नहीं मिला'}</div>
               )}
             </div>
 
@@ -208,7 +208,7 @@ export default function ComparePage() {
             <div className="text-center">
               <button onClick={() => { setChartA(null); setChartB(null); setStep(1); }}
                 className="px-6 py-2 rounded-xl border border-gold-primary/20 text-gold-primary text-sm hover:bg-gold-primary/10 transition-colors">
-                {locale === 'en' ? 'Compare Different Charts' : 'अलग कुण्डलियों की तुलना करें'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Compare Different Charts' : 'अलग कुण्डलियों की तुलना करें'}
               </button>
             </div>
           </motion.div>

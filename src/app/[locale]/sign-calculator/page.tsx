@@ -112,7 +112,7 @@ export default function SignCalculatorPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{locale === 'en' ? 'Sun & Moon Sign Calculator' : 'सूर्य एवं चन्द्र राशि गणक'}</span>
+          <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Sun & Moon Sign Calculator' : 'सूर्य एवं चन्द्र राशि गणक'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>
           {locale === 'en'
@@ -126,7 +126,7 @@ export default function SignCalculatorPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2" style={bodyFont}>
-              {locale === 'en' ? 'Date of Birth' : 'जन्म तिथि'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Date of Birth' : 'जन्म तिथि'}
             </label>
             <input type="date" value={dateStr} onChange={e => setDateStr(e.target.value)}
               className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50"
@@ -134,7 +134,7 @@ export default function SignCalculatorPage() {
           </div>
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2" style={bodyFont}>
-              {locale === 'en' ? 'Time of Birth' : 'जन्म समय'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Time of Birth' : 'जन्म समय'}
             </label>
             <input type="time" value={timeStr} onChange={e => setTimeStr(e.target.value)}
               className="w-full px-4 py-3 rounded-xl bg-bg-tertiary/50 border border-gold-primary/20 text-gold-light font-mono focus:outline-none focus:border-gold-primary/50"
@@ -143,7 +143,7 @@ export default function SignCalculatorPage() {
         </div>
         <div className="mt-6">
           <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2" style={bodyFont}>
-            {locale === 'en' ? 'Birth Place' : 'जन्म स्थान'}
+            {locale === 'en' || String(locale) === 'ta' ? 'Birth Place' : 'जन्म स्थान'}
           </label>
           <LocationSearch
             value={placeName}
@@ -153,7 +153,7 @@ export default function SignCalculatorPage() {
               setPlaceLng(loc.lng);
               setPlaceTimezone(loc.timezone);
             }}
-            placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+            placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />
         </div>
         <p className="text-text-secondary/70 text-xs text-center mt-4" style={bodyFont}>
@@ -182,7 +182,7 @@ export default function SignCalculatorPage() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-amber-500/30 bg-gradient-to-br from-amber-500/5 to-transparent text-center"
               >
                 <div className="text-amber-400 text-xs uppercase tracking-[0.3em] font-bold mb-4">
-                  {locale === 'en' ? 'SUN SIGN (Surya Rashi)' : 'सूर्य राशि'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'SUN SIGN (Surya Rashi)' : 'सूर्य राशि'}
                 </div>
                 <RashiIconById id={result.sunSign} size={80} />
                 <h3 className="text-amber-300 text-3xl font-bold mt-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
@@ -191,7 +191,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.sunDegree} ({result.sunLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.sunSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {locale === 'en' ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
+                    {locale === 'en' || String(locale) === 'ta' ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
                   </p>
                 )}
               </motion.div>
@@ -204,7 +204,7 @@ export default function SignCalculatorPage() {
                 className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 text-center"
               >
                 <div className="text-indigo-400 text-xs uppercase tracking-[0.3em] font-bold mb-4">
-                  {locale === 'en' ? 'MOON SIGN (Chandra Rashi)' : 'चन्द्र राशि'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'MOON SIGN (Chandra Rashi)' : 'चन्द्र राशि'}
                 </div>
                 <RashiIconById id={result.moonSign} size={80} />
                 <h3 className="text-indigo-300 text-3xl font-bold mt-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
@@ -213,7 +213,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.moonDegree} ({result.moonLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.moonSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {locale === 'en' ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
+                    {locale === 'en' || String(locale) === 'ta' ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
                   </p>
                 )}
               </motion.div>
@@ -222,17 +222,17 @@ export default function SignCalculatorPage() {
             {/* What do Sun & Moon signs mean? */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/10 p-5 my-6">
               <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
-                {locale === 'en' ? 'What do Sun & Moon signs reveal?' : 'सूर्य और चन्द्र राशि क्या बताती हैं?'}
+                {locale === 'en' || String(locale) === 'ta' ? 'What do Sun & Moon signs reveal?' : 'सूर्य और चन्द्र राशि क्या बताती हैं?'}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-text-secondary leading-relaxed" style={bodyFont}>
                 <div>
-                  <span className="text-amber-400 font-bold">{locale === 'en' ? 'Sun Sign' : 'सूर्य राशि'}</span>
+                  <span className="text-amber-400 font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Sun Sign' : 'सूर्य राशि'}</span>
                   {locale === 'en'
                     ? ' — Your core identity, ego, and life purpose. It shows how you express your will and where you shine most brightly. In Vedic astrology, this is often one sign behind your Western sign.'
                     : ' — आपकी मूल पहचान, अहंकार और जीवन उद्देश्य। यह दर्शाती है कि आप अपनी इच्छाशक्ति कैसे व्यक्त करते हैं।'}
                 </div>
                 <div>
-                  <span className="text-indigo-400 font-bold">{locale === 'en' ? 'Moon Sign' : 'चन्द्र राशि'}</span>
+                  <span className="text-indigo-400 font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Moon Sign' : 'चन्द्र राशि'}</span>
                   {locale === 'en'
                     ? ' — Your emotional nature, instincts, and subconscious mind. This is the MOST important sign in Vedic astrology — more than Sun sign. It determines your Nakshatra, Dasha system, and how transits affect you.'
                     : ' — आपका भावनात्मक स्वभाव, सहज वृत्ति और अवचेतन मन। वैदिक ज्योतिष में यह सबसे महत्वपूर्ण राशि है — सूर्य राशि से भी अधिक। यह आपका नक्षत्र, दशा और गोचर प्रभाव निर्धारित करती है।'}
@@ -251,13 +251,13 @@ export default function SignCalculatorPage() {
                 <NakshatraIconById id={result.moonNakNum} size={48} />
                 <div>
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1" style={bodyFont}>
-                    {locale === 'en' ? 'Birth Nakshatra (Janma Nakshatra)' : 'जन्म नक्षत्र'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Birth Nakshatra (Janma Nakshatra)' : 'जन्म नक्षत्र'}
                   </div>
                   <div className="text-gold-light text-2xl font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
                     {result.moonNakshatra.name[locale]}
                   </div>
                   <div className="text-text-secondary text-sm" style={bodyFont}>
-                    {locale === 'en' ? 'Pada' : 'पद'} {result.moonPada}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Pada' : 'पद'} {result.moonPada}
                   </div>
                 </div>
               </div>

@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : locale === 'ta' ? 'ta_IN' : 'en_US',
+      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : String(locale) === 'ta' ? 'ta_IN' : 'en_US',
       type: 'website',
       images: [
         {

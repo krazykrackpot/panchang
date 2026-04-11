@@ -146,7 +146,7 @@ export default function VarshaphalPage() {
       {/* Varshaphal Intro */}
       <InfoBlock
         id="varshaphal-intro"
-        title={locale === 'en' ? 'What is Varshaphal (Annual Horoscope)?' : locale === 'hi' ? 'वर्षफल क्या है?' : 'वर्षफलम् किम्?'}
+        title={locale === 'en' || String(locale) === 'ta' ? 'What is Varshaphal (Annual Horoscope)?' : locale === 'hi' ? 'वर्षफल क्या है?' : 'वर्षफलम् किम्?'}
         defaultOpen={false}
       >
         {locale === 'hi' ? (
@@ -168,7 +168,7 @@ export default function VarshaphalPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider">{t.year}</span>
@@ -192,7 +192,7 @@ export default function VarshaphalPage() {
             {/* Solar Return Moment + Age */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 text-center">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-2 font-bold">{t.solarReturn}</h2>
-              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN')}</p>
+              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN')}</p>
               <p className="text-text-secondary mt-2">{t.age}: <span className="text-gold-light font-bold">{data.age}</span></p>
             </div>
 
@@ -261,13 +261,13 @@ export default function VarshaphalPage() {
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-gold-light font-bold text-sm" style={bodyFont}>{y.name[locale]}</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                        {y.favorable ? (locale === 'en' ? 'Favorable' : 'अनुकूल') : (locale === 'en' ? 'Unfavorable' : 'प्रतिकूल')}
+                        {y.favorable ? (locale === 'en' || String(locale) === 'ta' ? 'Favorable' : 'अनुकूल') : (locale === 'en' || String(locale) === 'ta' ? 'Unfavorable' : 'प्रतिकूल')}
                       </span>
                     </div>
                     <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
                   </div>
                 ))}
-                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{locale === 'en' ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
+                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{locale === 'en' || String(locale) === 'ta' ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
               </div>
             </div>
 

@@ -74,7 +74,7 @@ export default function AuthCallbackPage() {
           <>
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent mx-auto mb-6" />
             <p className="text-text-secondary text-lg">
-              {locale === 'en' ? 'Completing sign in...' : 'साइन इन पूर्ण हो रहा है...'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Completing sign in...' : 'साइन इन पूर्ण हो रहा है...'}
             </p>
           </>
         )}
@@ -87,7 +87,7 @@ export default function AuthCallbackPage() {
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-gold-light mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {locale === 'en' ? 'Welcome' : 'स्वागतम्'}{userName ? `, ${userName}` : ''}!
+              {locale === 'en' || String(locale) === 'ta' ? 'Welcome' : 'स्वागतम्'}{userName ? `, ${userName}` : ''}!
             </h2>
             <p className="text-text-secondary">
               {locale === 'en'
@@ -113,10 +113,10 @@ export default function AuthCallbackPage() {
               </svg>
             </div>
             <h2 className="text-xl font-bold text-text-primary mb-2">
-              {locale === 'en' ? 'Something went wrong' : 'कुछ गलत हो गया'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Something went wrong' : 'कुछ गलत हो गया'}
             </h2>
             <p className="text-text-secondary text-sm">
-              {locale === 'en' ? 'Redirecting to home page...' : 'मुख्य पृष्ठ पर ले जा रहे हैं...'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Redirecting to home page...' : 'मुख्य पृष्ठ पर ले जा रहे हैं...'}
             </p>
           </>
         )}

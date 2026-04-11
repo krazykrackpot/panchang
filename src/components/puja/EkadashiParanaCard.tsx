@@ -199,7 +199,7 @@ export default function EkadashiParanaCard({
           {ekadashiStart && (
             <div className="rounded-lg border border-purple-500/15 bg-purple-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-purple-400/60 mb-1">
-                {locale === 'en' ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
               </div>
               <div className="font-mono text-base font-bold text-purple-300">{ekadashiStart}</div>
               {ekadashiStartDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
@@ -208,7 +208,7 @@ export default function EkadashiParanaCard({
           {ekadashiEnd && (
             <div className="rounded-lg border border-amber-500/15 bg-amber-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-amber-400/60 mb-1">
-                {locale === 'en' ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-amber-300">{ekadashiEnd}</div>
               {ekadashiEndDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(ekadashiEndDate)}</div>}
@@ -217,11 +217,11 @@ export default function EkadashiParanaCard({
           {dwadashiEndTime && (
             <div className="rounded-lg border border-rose-500/15 bg-rose-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-rose-400/60 mb-1">
-                {locale === 'en' ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-rose-300">{dwadashiEndTime}</div>
               {dwadashiEndDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(dwadashiEndDate)}</div>}
-              <div className="text-xs text-rose-400/50 mt-1">{locale === 'en' ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
+              <div className="text-xs text-rose-400/50 mt-1">{locale === 'en' || String(locale) === 'ta' ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
             </div>
           )}
         </div>

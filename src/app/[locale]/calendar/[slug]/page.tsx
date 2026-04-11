@@ -359,14 +359,14 @@ export default function FestivalDetailPage() {
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
                   style={headingFont}
                 >
-                  {locale === 'en' ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
                 </button>
                 <button
                   onClick={() => { setQuickMode(true); setPujaMode(true); }}
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
                   style={headingFont}
                 >
-                  {locale === 'en' ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
                 </button>
               </div>
 
@@ -377,7 +377,7 @@ export default function FestivalDetailPage() {
           {/* ═══ Section 3: Ekadashi-specific ═══ */}
           {ekadashiDetail && (
             <motion.div {...fadeInUp} className="space-y-5">
-              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? (locale === 'en' ? 'Ekadashi Details' : 'एकादशी विवरण') : ''} headingFont={headingFont} />
+              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? (locale === 'en' || String(locale) === 'ta' ? 'Ekadashi Details' : 'एकादशी विवरण') : ''} headingFont={headingFont} />
 
               <ContentCard
                 icon={<BookOpen className="w-5 h-5" />}

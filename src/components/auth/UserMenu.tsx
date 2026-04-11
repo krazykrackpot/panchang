@@ -97,7 +97,7 @@ export default function UserMenu() {
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
             {profileIncomplete && (
               <a href={`/${locale}/settings`} className="block mt-1.5 px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/15 text-amber-400 text-xs leading-tight hover:bg-amber-500/15 transition-colors">
-                {locale === 'en' ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
               </a>
             )}
           </div>

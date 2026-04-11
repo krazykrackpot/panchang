@@ -60,7 +60,7 @@ const MONTH_SHORT_HI = ['जन.','फर.','मार्च','अप्रै.'
 function formatTransitionTime(time: string, date: string | undefined, _selectedDate: string, locale: string): string {
   if (!date) return time;
   const [, m, d] = date.split('-').map(Number);
-  const monthNames = locale === 'en' ? MONTH_SHORT : MONTH_SHORT_HI;
+  const monthNames = locale === 'en' || String(locale) === 'ta' ? MONTH_SHORT : MONTH_SHORT_HI;
   return `${time}, ${d} ${monthNames[m - 1]}`;
 }
 
@@ -270,9 +270,9 @@ export default function PanchangPage() {
   };
 
   const getNatureLabel = (nature: string) => {
-    if (nature === 'auspicious') return locale === 'en' ? 'Auspicious' : 'शुभ';
-    if (nature === 'inauspicious') return locale === 'en' ? 'Inauspicious' : 'अशुभ';
-    return locale === 'en' ? 'Neutral' : 'सम';
+    if (nature === 'auspicious') return locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ';
+    if (nature === 'inauspicious') return locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ';
+    return locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम';
   };
 
   // Update current muhurta index on client only
@@ -363,12 +363,12 @@ export default function PanchangPage() {
             <MapPin className="w-3.5 h-3.5 text-gold-primary shrink-0" />
             <span className="text-text-primary text-sm font-medium max-w-[180px] truncate">
               {detectingLocation ? (
-                <span className="flex items-center gap-1 text-text-secondary text-xs"><Loader2 className="w-3 h-3 animate-spin" />{locale === 'en' ? 'Detecting...' : 'खोज...'}</span>
+                <span className="flex items-center gap-1 text-text-secondary text-xs"><Loader2 className="w-3 h-3 animate-spin" />{locale === 'en' || String(locale) === 'ta' ? 'Detecting...' : 'खोज...'}</span>
               ) : location.name}
             </span>
             <button onClick={() => setShowLocationSearch(!showLocationSearch)}
               className="text-gold-primary hover:text-gold-light text-xs border border-gold-primary/15 px-2 py-0.5 rounded hover:bg-gold-primary/10 transition-all whitespace-nowrap">
-              {locale === 'en' ? 'Change' : 'बदलें'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Change' : 'बदलें'}
             </button>
           </div>
         </div>
@@ -379,7 +379,7 @@ export default function PanchangPage() {
             <div className="rounded-lg border border-gold-primary/12 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] p-2 flex gap-2 w-full max-w-sm">
               <input type="text" value={locationInput} onChange={(e) => setLocationInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={locale === 'en' ? 'Search city...' : 'शहर खोजें...'}
+                placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search city...' : 'शहर खोजें...'}
                 className="flex-1 bg-transparent border border-gold-primary/15 rounded-md px-3 py-2 sm:py-1.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/40" />
               <button onClick={handleLocationSearch} disabled={searchingLocation}
                 className="px-3 py-2 sm:py-1.5 bg-gold-primary/15 border border-gold-primary/20 rounded-md text-gold-light hover:bg-gold-primary/25 transition-all disabled:opacity-50">
@@ -414,7 +414,7 @@ export default function PanchangPage() {
               <PrintButton
                 contentRef={panchangContentRef}
                 title={`Panchang — ${panchang.date}`}
-                label={locale === 'en' ? 'Print' : 'प्रिंट'}
+                label={locale === 'en' || String(locale) === 'ta' ? 'Print' : 'प्रिंट'}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
               />
               <ShareButton
@@ -429,16 +429,16 @@ export default function PanchangPage() {
                   if (granted) {
                     const alerts = generatePanchangAlerts(panchang, locale);
                     scheduleAlerts(alerts);
-                    alert(locale === 'en' ? `${alerts.length} alert(s) scheduled for today` : `आज के लिए ${alerts.length} अलर्ट निर्धारित`);
+                    alert(locale === 'en' || String(locale) === 'ta' ? `${alerts.length} alert(s) scheduled for today` : `आज के लिए ${alerts.length} अलर्ट निर्धारित`);
                   } else {
-                    alert(locale === 'en' ? 'Please allow notifications in browser settings' : 'कृपया ब्राउज़र सेटिंग्स में सूचनाएं अनुमति दें');
+                    alert(locale === 'en' || String(locale) === 'ta' ? 'Please allow notifications in browser settings' : 'कृपया ब्राउज़र सेटिंग्स में सूचनाएं अनुमति दें');
                   }
                 }}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-gold-primary/15 text-text-secondary hover:text-gold-light hover:border-gold-primary/30 transition-all"
                 aria-label="Set alerts"
               >
                 <Bell className="w-3 h-3" />
-                {locale === 'en' ? 'Alerts' : 'अलर्ट'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Alerts' : 'अलर्ट'}
               </button>
             </div>
           </div>
@@ -495,10 +495,10 @@ export default function PanchangPage() {
                               : 'bg-purple-500/20 text-purple-400'
                           }`}>
                             {isMajor
-                              ? (locale === 'en' ? 'Festival' : 'पर्व')
+                              ? (locale === 'en' || String(locale) === 'ta' ? 'Festival' : 'पर्व')
                               : isEkadashi
-                              ? (locale === 'en' ? 'Ekadashi' : 'एकादशी')
-                              : (locale === 'en' ? 'Vrat' : 'व्रत')}
+                              ? (locale === 'en' || String(locale) === 'ta' ? 'Ekadashi' : 'एकादशी')
+                              : (locale === 'en' || String(locale) === 'ta' ? 'Vrat' : 'व्रत')}
                           </span>
                         </div>
                         {fest.description[locale] && (
@@ -522,7 +522,7 @@ export default function PanchangPage() {
                             <div className="flex items-center gap-1.5">
                               <Sun className="w-3.5 h-3.5 text-gold-primary" />
                               <span className="text-xs text-text-secondary">
-                                {locale === 'en' ? 'Parana:' : 'पारण:'}
+                                {locale === 'en' || String(locale) === 'ta' ? 'Parana:' : 'पारण:'}
                               </span>
                               <span className={`font-mono text-xs font-bold ${isEkadashi ? 'text-emerald-300' : 'text-purple-300'}`}>
                                 {fest.paranaStart} — {fest.paranaEnd}
@@ -597,8 +597,8 @@ export default function PanchangPage() {
             const karanaPassed = tp(panchang.karanaTransition);
             const activeKarana = karanaPassed && panchang.karanaTransition ? KARANAS[panchang.karanaTransition.nextNumber - 1] : panchang.karana;
 
-            const upto = locale === 'en' ? 'upto' : 'तक';
-            const onwards = locale === 'en' ? 'onwards' : 'से आगे';
+            const upto = locale === 'en' || String(locale) === 'ta' ? 'upto' : 'तक';
+            const onwards = locale === 'en' || String(locale) === 'ta' ? 'onwards' : 'से आगे';
 
             return (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 mb-14">
@@ -648,9 +648,9 @@ export default function PanchangPage() {
                   {/* Tithi contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {panchang.tithi.paksha === 'shukla'
-                      ? (locale === 'en' ? 'Waxing Moon' : 'शुक्ल पक्ष')
-                      : (locale === 'en' ? 'Waning Moon' : 'कृष्ण पक्ष')
-                    }{' — '}{locale === 'en' ? 'Deity:' : 'देवता:'}{' '}{panchang.tithi.deity[locale]}
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Waxing Moon' : 'शुक्ल पक्ष')
+                      : (locale === 'en' || String(locale) === 'ta' ? 'Waning Moon' : 'कृष्ण पक्ष')
+                    }{' — '}{locale === 'en' || String(locale) === 'ta' ? 'Deity:' : 'देवता:'}{' '}{panchang.tithi.deity[locale]}
                   </div>
                 </motion.div>
 
@@ -671,7 +671,7 @@ export default function PanchangPage() {
                     </div>
                     <div className="text-text-secondary text-xs mt-0.5">
                       {panchang.nakshatra.deity[locale]}
-                      {panchang.nakshatra.pada ? ` · ${locale === 'en' ? 'Pada' : 'पाद'} ${panchang.nakshatra.pada}` : ''}
+                      {panchang.nakshatra.pada ? ` · ${locale === 'en' || String(locale) === 'ta' ? 'Pada' : 'पाद'} ${panchang.nakshatra.pada}` : ''}
                     </div>
                     {nakTr && (
                       <div className="mt-2 pt-2 border-t border-gold-primary/10">
@@ -698,7 +698,7 @@ export default function PanchangPage() {
                   )}
                   {/* Nakshatra contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {locale === 'en' ? 'Nature:' : 'स्वभाव:'}{' '}{panchang.nakshatra.nature[locale]}{' — '}{locale === 'en' ? 'Ruler:' : 'स्वामी:'}{' '}{panchang.nakshatra.rulerName[locale]}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Nature:' : 'स्वभाव:'}{' '}{panchang.nakshatra.nature[locale]}{' — '}{locale === 'en' || String(locale) === 'ta' ? 'Ruler:' : 'स्वामी:'}{' '}{panchang.nakshatra.rulerName[locale]}
                   </div>
                 </motion.div>
 
@@ -728,10 +728,10 @@ export default function PanchangPage() {
                   {/* Yoga contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {activeYoga.nature === 'auspicious'
-                      ? (locale === 'en' ? 'Favorable — good for new beginnings' : 'शुभ — नए कार्यों के लिए अच्छा')
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Favorable — good for new beginnings' : 'शुभ — नए कार्यों के लिए अच्छा')
                       : activeYoga.nature === 'inauspicious'
-                        ? (locale === 'en' ? 'Unfavorable — avoid important tasks' : 'अशुभ — महत्वपूर्ण कार्य टालें')
-                        : (locale === 'en' ? 'Neutral — proceed with care' : 'सामान्य — सोच-समझकर करें')
+                        ? (locale === 'en' || String(locale) === 'ta' ? 'Unfavorable — avoid important tasks' : 'अशुभ — महत्वपूर्ण कार्य टालें')
+                        : (locale === 'en' || String(locale) === 'ta' ? 'Neutral — proceed with care' : 'सामान्य — सोच-समझकर करें')
                     }
                   </div>
                 </motion.div>
@@ -748,7 +748,7 @@ export default function PanchangPage() {
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('karana')}</div>
                   <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{activeKarana.name[locale]}</div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {activeKarana.type === 'chara' ? (locale === 'en' ? 'Movable' : 'चर') : activeKarana.type === 'sthira' ? (locale === 'en' ? 'Fixed' : 'स्थिर') : (locale === 'en' ? 'Special' : 'विशेष')}
+                    {activeKarana.type === 'chara' ? (locale === 'en' || String(locale) === 'ta' ? 'Movable' : 'चर') : activeKarana.type === 'sthira' ? (locale === 'en' || String(locale) === 'ta' ? 'Fixed' : 'स्थिर') : (locale === 'en' || String(locale) === 'ta' ? 'Special' : 'विशेष')}
                   </div>
                   {panchang.karanaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
@@ -764,10 +764,10 @@ export default function PanchangPage() {
                   {/* Karana contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
                     {activeKarana.type === 'chara'
-                      ? (locale === 'en' ? 'Movable — good for travel & new work' : 'चर — यात्रा व नए कार्य के लिए')
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Movable — good for travel & new work' : 'चर — यात्रा व नए कार्य के लिए')
                       : activeKarana.type === 'sthira'
-                        ? (locale === 'en' ? 'Fixed — good for stable, lasting work' : 'स्थिर — स्थायी कार्यों के लिए')
-                        : (locale === 'en' ? 'Special karana — exercise caution' : 'विशेष करण — सावधानी बरतें')
+                        ? (locale === 'en' || String(locale) === 'ta' ? 'Fixed — good for stable, lasting work' : 'स्थिर — स्थायी कार्यों के लिए')
+                        : (locale === 'en' || String(locale) === 'ta' ? 'Special karana — exercise caution' : 'विशेष करण — सावधानी बरतें')
                     }
                   </div>
                 </motion.div>
@@ -786,14 +786,14 @@ export default function PanchangPage() {
                   <div className="text-text-secondary text-xs mt-2">{panchang.vara.ruler[locale]}</div>
                   {/* Vara contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {locale === 'en' ? 'Ruled by' : 'स्वामी:'}{' '}{panchang.vara.ruler[locale]}{' — '}{
-                      panchang.vara.day === 0 ? (locale === 'en' ? 'good for spirituality' : 'आध्यात्मिक कार्यों के लिए')
-                      : panchang.vara.day === 1 ? (locale === 'en' ? 'good for new starts' : 'नई शुरुआत के लिए')
-                      : panchang.vara.day === 2 ? (locale === 'en' ? 'good for courage & action' : 'साहस व कार्य के लिए')
-                      : panchang.vara.day === 3 ? (locale === 'en' ? 'good for learning & trade' : 'विद्या व व्यापार के लिए')
-                      : panchang.vara.day === 4 ? (locale === 'en' ? 'good for expansion & wealth' : 'विस्तार व धन के लिए')
-                      : panchang.vara.day === 5 ? (locale === 'en' ? 'good for beauty & relationships' : 'सौंदर्य व संबंधों के लिए')
-                      : (locale === 'en' ? 'good for discipline & focus' : 'अनुशासन व एकाग्रता के लिए')
+                    {locale === 'en' || String(locale) === 'ta' ? 'Ruled by' : 'स्वामी:'}{' '}{panchang.vara.ruler[locale]}{' — '}{
+                      panchang.vara.day === 0 ? (locale === 'en' || String(locale) === 'ta' ? 'good for spirituality' : 'आध्यात्मिक कार्यों के लिए')
+                      : panchang.vara.day === 1 ? (locale === 'en' || String(locale) === 'ta' ? 'good for new starts' : 'नई शुरुआत के लिए')
+                      : panchang.vara.day === 2 ? (locale === 'en' || String(locale) === 'ta' ? 'good for courage & action' : 'साहस व कार्य के लिए')
+                      : panchang.vara.day === 3 ? (locale === 'en' || String(locale) === 'ta' ? 'good for learning & trade' : 'विद्या व व्यापार के लिए')
+                      : panchang.vara.day === 4 ? (locale === 'en' || String(locale) === 'ta' ? 'good for expansion & wealth' : 'विस्तार व धन के लिए')
+                      : panchang.vara.day === 5 ? (locale === 'en' || String(locale) === 'ta' ? 'good for beauty & relationships' : 'सौंदर्य व संबंधों के लिए')
+                      : (locale === 'en' || String(locale) === 'ta' ? 'good for discipline & focus' : 'अनुशासन व एकाग्रता के लिए')
                     }
                   </div>
                 </motion.div>
@@ -825,13 +825,13 @@ export default function PanchangPage() {
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
                 className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/15 p-5 text-center mb-10">
                 <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">
-                  {locale === 'en' ? 'Current Hora — Best Activity Now' : 'वर्तमान होरा — अभी सर्वोत्तम कार्य'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Current Hora — Best Activity Now' : 'वर्तमान होरा — अभी सर्वोत्तम कार्य'}
                 </div>
                 <div className="text-amber-300 font-bold text-xl font-mono">
                   {currentHora.startTime} – {currentHora.endTime}
                 </div>
                 <div className="text-text-secondary text-sm mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {locale === 'en' ? activity.en : activity.hi}
+                  {locale === 'en' || String(locale) === 'ta' ? activity.en : activity.hi}
                 </div>
               </motion.div>
             );
@@ -871,7 +871,7 @@ export default function PanchangPage() {
           <div className="my-14">
             <SectionHeading
               icon={<MuhurtaIcon size={56} />}
-              title={locale === 'en' ? 'Auspicious Timings' : 'शुभ मुहूर्त'}
+              title={locale === 'en' || String(locale) === 'ta' ? 'Auspicious Timings' : 'शुभ मुहूर्त'}
               subtitle={locale === 'en'
                 ? 'Sacred windows of time blessed by planetary harmony — begin new ventures, ceremonies, and important work during these periods.'
                 : 'ग्रहों की अनुकूल स्थिति में शुभ काल — इन अवधियों में नए कार्य, समारोह और महत्वपूर्ण कार्य प्रारम्भ करें।'}
@@ -899,12 +899,12 @@ export default function PanchangPage() {
                 <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/40 bg-amber-500/10">
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
                   <span className="text-amber-300 text-sm font-bold uppercase tracking-wider">
-                    {locale === 'en' ? 'Ravi Yoga' : 'रवि योग'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Ravi Yoga' : 'रवि योग'}
                   </span>
                   <span className="text-amber-400/70 text-xs font-mono">
                     {panchang.raviYogaWindow.start} — {panchang.raviYogaWindow.end}{panchang.raviYogaWindow.endDate ? `, ${panchang.raviYogaWindow.endDate.split('-').slice(1).join('/')}` : ''}
                   </span>
-                  <span className="text-amber-400/70 text-xs">{locale === 'en' ? '· Highly Auspicious' : '· अत्यंत शुभ'}</span>
+                  <span className="text-amber-400/70 text-xs">{locale === 'en' || String(locale) === 'ta' ? '· Highly Auspicious' : '· अत्यंत शुभ'}</span>
                 </div>
               </motion.div>
             )}
@@ -916,12 +916,12 @@ export default function PanchangPage() {
                   <div className="flex items-center justify-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-emerald-400 text-xs uppercase tracking-[0.3em] font-bold">
-                      {locale === 'en' ? 'Amrit Siddhi Yoga' : 'अमृत सिद्धि योग'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Amrit Siddhi Yoga' : 'अमृत सिद्धि योग'}
                     </span>
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
                   <div className="text-emerald-300 text-base font-bold">
-                    {locale === 'en' ? 'Supremely Auspicious Day' : 'अत्यंत शुभ दिन'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Supremely Auspicious Day' : 'अत्यंत शुभ दिन'}
                   </div>
                   <div className="text-text-secondary text-xs mt-1">
                     {locale === 'en'
@@ -938,10 +938,10 @@ export default function PanchangPage() {
                 <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-rose-500/40 bg-rose-500/10">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
                   <span className="text-rose-400 text-sm font-bold uppercase tracking-wider">
-                    {locale === 'en' ? 'Dagdha Tithi' : 'दग्ध तिथि'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Dagdha Tithi' : 'दग्ध तिथि'}
                   </span>
                   <span className="text-rose-400/70 text-xs">
-                    {locale === 'en' ? '· Avoid new beginnings' : '· नए कार्य वर्जित'}
+                    {locale === 'en' || String(locale) === 'ta' ? '· Avoid new beginnings' : '· नए कार्य वर्जित'}
                   </span>
                 </div>
               </motion.div>
@@ -963,11 +963,11 @@ export default function PanchangPage() {
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border-2 border-gold-primary/40 bg-gradient-to-br from-gold-primary/10 to-transparent">
                 <div className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-2">
-                  {locale === 'en' ? 'Abhijit Muhurta' : 'अभिजित् मुहूर्त'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Abhijit Muhurta' : 'अभिजित् मुहूर्त'}
                 </div>
                 <div className="font-mono text-xl font-bold text-amber-300">{panchang.abhijitMuhurta.start} — {panchang.abhijitMuhurta.end}</div>
                 <div className="text-text-secondary text-xs mt-2 leading-relaxed">
-                  {locale === 'en' ? 'Most auspicious — victory assured' : 'सर्वश्रेष्ठ — विजय निश्चित'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Most auspicious — victory assured' : 'सर्वश्रेष्ठ — विजय निश्चित'}
                 </div>
               </motion.div>
 
@@ -976,11 +976,11 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.11 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-400/30 bg-gradient-to-br from-amber-500/5 to-transparent">
                   <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
-                    {locale === 'en' ? 'Vijaya Muhurta' : 'विजय मुहूर्त'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Vijaya Muhurta' : 'विजय मुहूर्त'}
                   </div>
                   <div className="font-mono text-xl font-bold text-amber-300">{panchang.vijayaMuhurta.start} — {panchang.vijayaMuhurta.end}</div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">
-                    {locale === 'en' ? '10th muhurta — victory assured' : '१०वाँ मुहूर्त — विजय निश्चित'}
+                    {locale === 'en' || String(locale) === 'ta' ? '10th muhurta — victory assured' : '१०वाँ मुहूर्त — विजय निश्चित'}
                   </div>
                 </motion.div>
               )}
@@ -1012,11 +1012,11 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.20 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-orange-400/30 bg-gradient-to-br from-orange-500/5 to-transparent">
                   <div className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">
-                    {locale === 'en' ? 'Morning Sandhya' : 'प्रातः संध्या'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Morning Sandhya' : 'प्रातः संध्या'}
                   </div>
                   <div className="font-mono text-xl font-bold text-orange-300">{panchang.sandhyaKaal.morning.start} — {panchang.sandhyaKaal.morning.end}</div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">
-                    {locale === 'en' ? 'Pratah Sandhya — morning prayers' : 'प्रातः संध्या — प्रातःकालीन पूजा'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Pratah Sandhya — morning prayers' : 'प्रातः संध्या — प्रातःकालीन पूजा'}
                   </div>
                 </motion.div>
               )}
@@ -1026,11 +1026,11 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.23 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-purple-400/30 bg-gradient-to-br from-purple-500/5 to-transparent">
                   <div className="text-purple-400 text-xs uppercase tracking-wider font-bold mb-2">
-                    {locale === 'en' ? 'Evening Sandhya' : 'सायं संध्या'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Evening Sandhya' : 'सायं संध्या'}
                   </div>
                   <div className="font-mono text-xl font-bold text-purple-300">{panchang.sandhyaKaal.evening.start} — {panchang.sandhyaKaal.evening.end}</div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">
-                    {locale === 'en' ? 'Sayahna Sandhya — evening prayers' : 'सायंकाल संध्या — सन्ध्याकालीन पूजा'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Sayahna Sandhya — evening prayers' : 'सायंकाल संध्या — सन्ध्याकालीन पूजा'}
                   </div>
                 </motion.div>
               )}
@@ -1054,7 +1054,7 @@ export default function PanchangPage() {
                       : 'border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent'
                   }`}>
                   <div className={`text-xs uppercase tracking-wider font-bold mb-2 ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-400' : 'text-orange-400'}`}>
-                    {locale === 'en' ? 'Anandadi Yoga' : 'आनन्दादि योग'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Anandadi Yoga' : 'आनन्दादि योग'}
                   </div>
                   <div className={`font-bold text-lg ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-orange-300'}`}
                     style={headingFont}>
@@ -1062,8 +1062,8 @@ export default function PanchangPage() {
                   </div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                     {panchang.anandadiYoga.nature === 'auspicious'
-                      ? (locale === 'en' ? 'Auspicious yoga — favourable energy' : 'शुभ योग — अनुकूल ऊर्जा')
-                      : (locale === 'en' ? 'Mixed energy — act with caution' : 'मिश्रित ऊर्जा — सावधानी से कार्य करें')}
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious yoga — favourable energy' : 'शुभ योग — अनुकूल ऊर्जा')
+                      : (locale === 'en' || String(locale) === 'ta' ? 'Mixed energy — act with caution' : 'मिश्रित ऊर्जा — सावधानी से कार्य करें')}
                   </div>
                 </motion.div>
               )}
@@ -1073,15 +1073,15 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.35 }}
                   className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border ${panchang.tamilYoga.nature === 'auspicious' ? 'border-emerald-500/20' : 'border-red-500/20'}`}>
                   <div className={`text-xs uppercase tracking-wider font-bold mb-2 ${panchang.tamilYoga.nature === 'auspicious' ? 'text-emerald-400' : 'text-red-400'}`}>
-                    {locale === 'en' ? 'Tamil Yoga' : 'तमिल योग'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Tamil Yoga' : 'तमिल योग'}
                   </div>
                   <div className={`font-bold text-lg ${panchang.tamilYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-red-300'}`} style={headingFont}>
                     {panchang.tamilYoga.name[locale]}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
                     {panchang.tamilYoga.nature === 'auspicious'
-                      ? (locale === 'en' ? 'Auspicious — good for important activities' : 'शुभ — महत्वपूर्ण कार्यों के लिए उत्तम')
-                      : (locale === 'en' ? 'Inauspicious — avoid new ventures' : 'अशुभ — नए कार्यों से बचें')}
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious — good for important activities' : 'शुभ — महत्वपूर्ण कार्यों के लिए उत्तम')
+                      : (locale === 'en' || String(locale) === 'ta' ? 'Inauspicious — avoid new ventures' : 'अशुभ — नए कार्यों से बचें')}
                   </div>
                 </motion.div>
               )}
@@ -1091,7 +1091,7 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 border border-orange-500/20">
                   <div className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">
-                    {locale === 'en' ? 'Homahuti Direction' : 'होमाहुति दिशा'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Homahuti Direction' : 'होमाहुति दिशा'}
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-10 h-10 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
@@ -1099,11 +1099,11 @@ export default function PanchangPage() {
                     </div>
                     <div>
                       <div className="text-gold-light font-bold text-lg" style={headingFont}>{panchang.homahuti.direction[locale]}</div>
-                      <div className="text-text-secondary text-xs">{locale === 'en' ? 'Face this direction for Homa' : 'होम के लिए इस दिशा में मुख करें'}</div>
+                      <div className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Face this direction for Homa' : 'होम के लिए इस दिशा में मुख करें'}</div>
                     </div>
                   </div>
                   <div className="text-text-tertiary text-xs mt-2">
-                    {locale === 'en' ? `Presiding deity: ${panchang.homahuti.deity.en}` : `अधिष्ठाता: ${panchang.homahuti.deity.hi}`}
+                    {locale === 'en' || String(locale) === 'ta' ? `Presiding deity: ${panchang.homahuti.deity.en}` : `अधिष्ठाता: ${panchang.homahuti.deity.hi}`}
                   </div>
                 </motion.div>
               )}
@@ -1113,20 +1113,20 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.45 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
-                    {locale === 'en' ? 'Mantri Mandala & Hora' : 'मंत्री मण्डल एवं होरा'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Mantri Mandala & Hora' : 'मंत्री मण्डल एवं होरा'}
                   </div>
                   <div className="space-y-2 mb-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Day Lord (King)' : 'दिन स्वामी (राजा)'}</span>
+                      <span className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Day Lord (King)' : 'दिन स्वामी (राजा)'}</span>
                       <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.king.planet]?.name[locale]}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-text-secondary text-xs">{locale === 'en' ? 'Midday Hora Lord (Minister)' : 'मध्याह्न होरा स्वामी (मंत्री)'}</span>
+                      <span className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Midday Hora Lord (Minister)' : 'मध्याह्न होरा स्वामी (मंत्री)'}</span>
                       <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.minister.planet]?.name[locale]}</span>
                     </div>
                   </div>
                   <div className="text-text-tertiary text-xs mb-3">
-                    {locale === 'en' ? 'Day lord rules the entire day. Each hora (~1 hour) is ruled by a different planet in Chaldean sequence.' : 'दिन स्वामी सम्पूर्ण दिन का शासक। प्रत्येक होरा (~1 घंटा) कल्डियन क्रम में भिन्न ग्रह द्वारा शासित।'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Day lord rules the entire day. Each hora (~1 hour) is ruled by a different planet in Chaldean sequence.' : 'दिन स्वामी सम्पूर्ण दिन का शासक। प्रत्येक होरा (~1 घंटा) कल्डियन क्रम में भिन्न ग्रह द्वारा शासित।'}
                   </div>
                   {/* Hora timetable with conflict detection */}
                   {panchang.mantriMandala.horas && (() => {
@@ -1159,7 +1159,7 @@ export default function PanchangPage() {
                           </div>
                           {hasConflict && (
                             <span className="text-amber-400/80 text-[9px] leading-tight">
-                              {locale === 'en' ? conflicts.map(c => c.label).join(', ') : conflicts.map(c => c.labelHi).join(', ')}
+                              {locale === 'en' || String(locale) === 'ta' ? conflicts.map(c => c.label).join(', ') : conflicts.map(c => c.labelHi).join(', ')}
                             </span>
                           )}
                         </div>
@@ -1169,15 +1169,15 @@ export default function PanchangPage() {
                     return (
                     <details className="group">
                       <summary className="text-gold-primary/70 text-xs cursor-pointer hover:text-gold-light transition-colors">
-                        {locale === 'en' ? '▸ View all 24 Horas' : '▸ सभी 24 होरा देखें'}
+                        {locale === 'en' || String(locale) === 'ta' ? '▸ View all 24 Horas' : '▸ सभी 24 होरा देखें'}
                       </summary>
                       <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs">
                         <div>
-                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Day Horas' : 'दिन होरा'}</div>
+                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' || String(locale) === 'ta' ? 'Day Horas' : 'दिन होरा'}</div>
                           {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => renderHora(h, i))}
                         </div>
                         <div>
-                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' ? 'Night Horas' : 'रात्रि होरा'}</div>
+                          <div className="text-gold-dark font-bold text-[10px] uppercase tracking-wider mb-1">{locale === 'en' || String(locale) === 'ta' ? 'Night Horas' : 'रात्रि होरा'}</div>
                           {panchang.mantriMandala.horas.filter((h: { isDay: boolean }) => !h.isDay).map((h: { planet: number; start: string; end: string }, i: number) => renderHora(h, i))}
                         </div>
                       </div>
@@ -1209,7 +1209,7 @@ export default function PanchangPage() {
                   <circle cx="32" cy="50" r="3" fill="#ef4444" />
                 </svg>
               }
-              title={locale === 'en' ? 'Inauspicious Timings' : 'अशुभ काल'}
+              title={locale === 'en' || String(locale) === 'ta' ? 'Inauspicious Timings' : 'अशुभ काल'}
               subtitle={locale === 'en'
                 ? 'Avoid initiating new activities, journeys, or important decisions during these planetary affliction periods.'
                 : 'इन ग्रह पीड़ा काल में नए कार्य, यात्रा या महत्वपूर्ण निर्णय लेने से बचें।'}
@@ -1222,7 +1222,7 @@ export default function PanchangPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-red-500/30 bg-gradient-to-br from-red-500/5 to-transparent">
                 <div className="text-red-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('rahuKaal')}</div>
                 <div className="font-mono text-2xl font-bold text-red-300">{panchang.rahuKaal.start} — {panchang.rahuKaal.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Rahu\'s period — avoid new work' : 'राहु काल — नए कार्य टालें'}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' || String(locale) === 'ta' ? 'Rahu\'s period — avoid new work' : 'राहु काल — नए कार्य टालें'}</div>
               </motion.div>
 
               {/* Yamaganda */}
@@ -1230,7 +1230,7 @@ export default function PanchangPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-orange-500/30 bg-gradient-to-br from-orange-500/5 to-transparent">
                 <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('yamaganda')}</div>
                 <div className="font-mono text-2xl font-bold text-orange-300">{panchang.yamaganda.start} — {panchang.yamaganda.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Yama\'s period — inauspicious' : 'यम का काल — अशुभ'}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' || String(locale) === 'ta' ? 'Yama\'s period — inauspicious' : 'यम का काल — अशुभ'}</div>
               </motion.div>
 
               {/* Gulika Kaal */}
@@ -1238,7 +1238,7 @@ export default function PanchangPage() {
                 className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 text-center border border-yellow-500/30 bg-gradient-to-br from-yellow-500/5 to-transparent">
                 <div className="text-yellow-400 text-xs uppercase tracking-widest mb-2 font-bold">{t('gulikaKaal')}</div>
                 <div className="font-mono text-2xl font-bold text-yellow-300">{panchang.gulikaKaal.start} — {panchang.gulikaKaal.end}</div>
-                <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Gulika\'s period — avoid travel' : 'गुलिक काल — यात्रा टालें'}</div>
+                <div className="text-text-secondary text-xs mt-2">{locale === 'en' || String(locale) === 'ta' ? 'Gulika\'s period — avoid travel' : 'गुलिक काल — यात्रा टालें'}</div>
               </motion.div>
 
               {/* Dur Muhurtam — two classical traditions */}
@@ -1246,10 +1246,10 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.14 }}
                   className="rounded-xl border border-red-600/30 bg-gradient-to-br from-red-600/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
-                    {locale === 'en' ? 'Dur Muhurtam' : 'दुर्मुहूर्त'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Dur Muhurtam' : 'दुर्मुहूर्त'}
                   </div>
                   <div className="text-text-secondary/50 text-[10px] mb-2">
-                    {locale === 'en' ? 'Kaala Prakashika tradition' : 'काल प्रकाशिका परम्परा'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Kaala Prakashika tradition' : 'काल प्रकाशिका परम्परा'}
                   </div>
                   {panchang.durMuhurtam.map((w, i) => (
                     <div key={i} className="font-mono text-lg font-bold text-red-400 leading-tight">{w.start} — {w.end}</div>
@@ -1257,7 +1257,7 @@ export default function PanchangPage() {
                   {panchang.durMuhurtamAlt && panchang.durMuhurtamAlt.length > 0 && (
                     <details className="mt-3 text-left">
                       <summary className="text-text-tertiary/50 text-[10px] cursor-pointer hover:text-text-secondary transition-colors text-center">
-                        {locale === 'en' ? '▸ Nirṇaya Sindhu tradition (alternate)' : '▸ निर्णय सिन्धु परम्परा (वैकल्पिक)'}
+                        {locale === 'en' || String(locale) === 'ta' ? '▸ Nirṇaya Sindhu tradition (alternate)' : '▸ निर्णय सिन्धु परम्परा (वैकल्पिक)'}
                       </summary>
                       <div className="mt-2 text-center">
                         {panchang.durMuhurtamAlt.map((w: { start: string; end: string }, i: number) => (
@@ -1266,7 +1266,7 @@ export default function PanchangPage() {
                       </div>
                     </details>
                   )}
-                  <div className="text-text-secondary text-xs mt-2">{locale === 'en' ? 'Inauspicious — avoid all new work' : 'अशुभ — सभी नए कार्य टालें'}</div>
+                  <div className="text-text-secondary text-xs mt-2">{locale === 'en' || String(locale) === 'ta' ? 'Inauspicious — avoid all new work' : 'अशुभ — सभी नए कार्य टालें'}</div>
                 </motion.div>
               )}
 
@@ -1275,11 +1275,11 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.15 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-700/30 p-3 sm:p-4 md:p-6 text-center bg-gradient-to-br from-red-700/5 to-transparent">
                   <div className="text-red-500 text-xs uppercase tracking-widest mb-2 font-bold">
-                    {locale === 'en' ? 'Visha Ghatika' : 'विष घटी'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Visha Ghatika' : 'विष घटी'}
                   </div>
                   <div className="font-mono text-lg font-bold text-red-400">{panchang.vishaGhatika.start} — {panchang.vishaGhatika.end}</div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? '25th Ghatika — poison period, avoid all new activities' : '25वीं घटी — विष काल, सभी नए कार्य वर्जित'}
+                    {locale === 'en' || String(locale) === 'ta' ? '25th Ghatika — poison period, avoid all new activities' : '25वीं घटी — विष काल, सभी नए कार्य वर्जित'}
                   </div>
                 </motion.div>
               )}
@@ -1301,7 +1301,7 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.18 }}
                   className="rounded-xl border border-orange-500/30 bg-gradient-to-br from-orange-500/8 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-orange-400 text-xs uppercase tracking-widest mb-2 font-bold">
-                    {locale === 'en' ? 'Bhadra (Vishti)' : 'भद्रा (विष्टि)'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Bhadra (Vishti)' : 'भद्रा (विष्टि)'}
                   </div>
                   {((panchang as any).bhadraAll || [panchang.bhadra]).map((b: { start: string; end: string; endDate?: string }, i: number) => (
                     <div key={i} className="font-mono text-xl font-bold text-orange-300">
@@ -1309,7 +1309,7 @@ export default function PanchangPage() {
                     </div>
                   ))}
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Inauspicious karana — avoid important activities' : 'अशुभ करण — महत्वपूर्ण कार्यों से बचें'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Inauspicious karana — avoid important activities' : 'अशुभ करण — महत्वपूर्ण कार्यों से बचें'}
                   </div>
                 </motion.div>
               )}
@@ -1321,7 +1321,7 @@ export default function PanchangPage() {
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                     <div className="text-red-400 text-xs uppercase tracking-widest font-bold">
-                      {locale === 'en' ? 'Ganda Moola' : 'गण्डमूल'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Ganda Moola' : 'गण्डमूल'}
                     </div>
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
                   </div>
@@ -1336,7 +1336,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Inauspicious nakshatra junction — exercise caution' : 'अशुभ नक्षत्र संधि — सावधानी बरतें'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Inauspicious nakshatra junction — exercise caution' : 'अशुभ नक्षत्र संधि — सावधानी बरतें'}
                   </div>
                 </motion.div>
               )}
@@ -1346,13 +1346,13 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.21 }}
                   className="rounded-xl border border-amber-500/25 bg-gradient-to-br from-amber-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-amber-400 text-xs uppercase tracking-widest mb-2 font-bold">
-                    {locale === 'en' ? 'Aadal Yoga' : 'आदल योग'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Aadal Yoga' : 'आदल योग'}
                   </div>
                   <div className="font-mono text-xl font-bold text-amber-300">
                     {panchang.aadalYoga.start} — {panchang.aadalYoga.end}{panchang.aadalYoga.endDate ? `, ${panchang.aadalYoga.endDate.split('-').slice(1).join('/')}` : ''}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Post-Ganda Moola junction — inauspicious transition' : 'गण्डमूल उपरांत संधिकाल — अशुभ संक्रमण'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Post-Ganda Moola junction — inauspicious transition' : 'गण्डमूल उपरांत संधिकाल — अशुभ संक्रमण'}
                   </div>
                 </motion.div>
               )}
@@ -1362,13 +1362,13 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.22 }}
                   className="rounded-xl border border-rose-500/25 bg-gradient-to-br from-rose-500/5 to-transparent p-3 sm:p-4 md:p-6 text-center">
                   <div className="text-rose-400 text-xs uppercase tracking-widest mb-2 font-bold">
-                    {locale === 'en' ? 'Vidaal Yoga' : 'विदाल योग'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Vidaal Yoga' : 'विदाल योग'}
                   </div>
                   <div className="font-mono text-xl font-bold text-rose-300">
                     {panchang.vidaalYoga.start} — {panchang.vidaalYoga.end}{panchang.vidaalYoga.endDate ? `, ${panchang.vidaalYoga.endDate.split('-').slice(1).join('/')}` : ''}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Malefic Moon-nakshatra yoga — avoid new ventures' : 'अशुभ चन्द्र-नक्षत्र योग — नए कार्य टालें'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Malefic Moon-nakshatra yoga — avoid new ventures' : 'अशुभ चन्द्र-नक्षत्र योग — नए कार्य टालें'}
                   </div>
                 </motion.div>
               )}
@@ -1380,7 +1380,7 @@ export default function PanchangPage() {
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
                     <div className="text-purple-400 text-xs uppercase tracking-widest font-bold">
-                      {locale === 'en' ? 'Panchaka' : 'पंचक'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Panchaka' : 'पंचक'}
                     </div>
                     <span className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse" />
                   </div>
@@ -1390,7 +1390,7 @@ export default function PanchangPage() {
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Five-fold affliction — avoid fire, construction, travel' : 'पंचगुना पीड़ा — अग्नि, निर्माण, यात्रा टालें'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Five-fold affliction — avoid fire, construction, travel' : 'पंचगुना पीड़ा — अग्नि, निर्माण, यात्रा टालें'}
                   </div>
                 </motion.div>
               )}
@@ -1405,7 +1405,7 @@ export default function PanchangPage() {
           <div className="my-14">
             <SectionHeading
               icon={<Compass className="w-14 h-14 text-indigo-400" />}
-              title={locale === 'en' ? 'Nivas & Shool' : 'निवास एवं शूल'}
+              title={locale === 'en' || String(locale) === 'ta' ? 'Nivas & Shool' : 'निवास एवं शूल'}
               subtitle={locale === 'en'
                 ? 'Where cosmic forces reside today — directional afflictions, divine abodes, and their remedies.'
                 : 'आज ब्रह्मांडीय शक्तियाँ कहाँ निवास करती हैं — दिशा शूल, दिव्य निवास और उनके उपाय।'}
@@ -1414,7 +1414,7 @@ export default function PanchangPage() {
 
             <div className="text-center mb-6">
               <Link href="/nivas-shool" className="inline-flex items-center gap-1.5 text-sm text-indigo-400 hover:text-indigo-300 transition-colors">
-                {locale === 'en' ? 'Learn about all Nivas & Shool concepts' : 'सभी निवास एवं शूल अवधारणाओं के बारे में जानें'} →
+                {locale === 'en' || String(locale) === 'ta' ? 'Learn about all Nivas & Shool concepts' : 'सभी निवास एवं शूल अवधारणाओं के बारे में जानें'} →
               </Link>
             </div>
 
@@ -1482,7 +1482,7 @@ export default function PanchangPage() {
                     className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
                     <div className="flex items-start justify-between mb-3">
                       <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold">
-                        {locale === 'en' ? 'Shiva Vaas' : 'शिव वास'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Shiva Vaas' : 'शिव वास'}
                       </div>
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
                     </div>
@@ -1534,7 +1534,7 @@ export default function PanchangPage() {
                     className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
                     <div className="flex items-start justify-between mb-3">
                       <div className="text-red-400 text-xs uppercase tracking-widest font-bold">
-                        {locale === 'en' ? 'Agni Vaas' : 'अग्नि वास'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Agni Vaas' : 'अग्नि वास'}
                       </div>
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
                     </div>
@@ -1588,7 +1588,7 @@ export default function PanchangPage() {
                     className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border ${d.border} bg-gradient-to-br ${d.bg} to-transparent`}>
                     <div className="flex items-start justify-between mb-3">
                       <div className="text-blue-400 text-xs uppercase tracking-widest font-bold">
-                        {locale === 'en' ? 'Chandra Vaas' : 'चन्द्र वास'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Chandra Vaas' : 'चन्द्र वास'}
                       </div>
                       <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${d.nColor} bg-black/20 border ${d.border}`}>{locale === 'hi' ? natureLabelHi : natureLabel}</span>
                     </div>
@@ -1616,7 +1616,7 @@ export default function PanchangPage() {
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border border-purple-500/25 bg-gradient-to-br from-purple-500/5 to-transparent">
                   <div className="flex items-start justify-between mb-3">
                     <div className="text-purple-400 text-xs uppercase tracking-widest font-bold">
-                      {locale === 'en' ? 'Rahu Vaas' : 'राहु वास'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Rahu Vaas' : 'राहु वास'}
                     </div>
                     <span className="text-xs font-medium px-2 py-0.5 rounded-full text-red-400 bg-black/20 border border-red-500/25">{locale === 'hi' ? 'अशुभ दिशा' : 'Avoid'}</span>
                   </div>
@@ -1655,7 +1655,7 @@ export default function PanchangPage() {
           <div className="my-14">
             <SectionHeading
               icon={<Calendar className="w-14 h-14 text-gold-primary" />}
-              title={locale === 'en' ? 'Calendars & Epoch' : 'पंचांग एवं युग'}
+              title={locale === 'en' || String(locale) === 'ta' ? 'Calendars & Epoch' : 'पंचांग एवं युग'}
               subtitle={locale === 'en'
                 ? 'The Hindu calendar system — lunar months, seasons, cosmic cycles, and our position in deep time.'
                 : 'हिन्दू पञ्चाङ्ग प्रणाली — चंद्र मास, ऋतु, ब्रह्मांडीय चक्र और काल में हमारी स्थिति।'}
@@ -1665,22 +1665,22 @@ export default function PanchangPage() {
             <div className="mb-4">
               <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
                 <MasaIcon size={28} />
-                <span>{locale === 'en' ? 'Hindu Calendar' : 'हिन्दू पञ्चाङ्ग'}</span>
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Hindu Calendar' : 'हिन्दू पञ्चाङ्ग'}</span>
               </h3>
               <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 overflow-hidden">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 divide-x divide-y divide-gold-primary/10">
                   {([
-                    { label: locale === 'en' ? 'Vikram Samvat' : 'विक्रम संवत्', value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
-                    { label: locale === 'en' ? 'Shaka Samvat' : 'शक संवत्', value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Vikram Samvat' : 'विक्रम संवत्', value: panchang.vikramSamvat?.toString() || '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Shaka Samvat' : 'शक संवत्', value: panchang.shakaSamvat?.toString() || '—', iconKey: null },
                     { label: t('samvatsara'), value: panchang.samvatsara[locale], iconKey: 'samvatsara' as const },
-                    { label: locale === 'en' ? `Masa (${masaSystem === 'purnimant' ? 'Purnimant' : 'Amant'})` : `मास (${masaSystem === 'purnimant' ? 'पूर्णिमान्त' : 'अमान्त'})`, value: masaSystem === 'purnimant' ? (panchang.purnimantMasa || panchang.masa)[locale] : (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
-                    { label: locale === 'en' ? 'Paksha' : 'पक्ष', value: panchang.tithi.paksha === 'shukla' ? (locale === 'en' ? 'Shukla Paksha' : 'शुक्ल पक्ष') : (locale === 'en' ? 'Krishna Paksha' : 'कृष्ण पक्ष'), iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? `Masa (${masaSystem === 'purnimant' ? 'Purnimant' : 'Amant'})` : `मास (${masaSystem === 'purnimant' ? 'पूर्णिमान्त' : 'अमान्त'})`, value: masaSystem === 'purnimant' ? (panchang.purnimantMasa || panchang.masa)[locale] : (panchang.amantMasa || panchang.masa)[locale], iconKey: 'masa' as const },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Paksha' : 'पक्ष', value: panchang.tithi.paksha === 'shukla' ? (locale === 'en' || String(locale) === 'ta' ? 'Shukla Paksha' : 'शुक्ल पक्ष') : (locale === 'en' || String(locale) === 'ta' ? 'Krishna Paksha' : 'कृष्ण पक्ष'), iconKey: null },
                     { label: t('ritu'), value: panchang.ritu[locale], iconKey: 'ritu' as const },
                     { label: t('ayana'), value: panchang.ayana[locale], iconKey: 'ayana' as const },
-                    { label: locale === 'en' ? 'Ayanamsha (Lahiri)' : 'अयनांश (लाहिरी)', value: panchang.ayanamsha ? `${panchang.ayanamsha.toFixed(4)}°` : '—', iconKey: null },
-                    { label: locale === 'en' ? 'Day Duration' : 'दिनमान', value: panchang.dinamana || '—', iconKey: null },
-                    { label: locale === 'en' ? 'Night Duration' : 'रात्रिमान', value: panchang.ratrimana || '—', iconKey: null },
-                    { label: locale === 'en' ? 'Madhyahna' : 'मध्याह्न', value: panchang.madhyahna || '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Ayanamsha (Lahiri)' : 'अयनांश (लाहिरी)', value: panchang.ayanamsha ? `${panchang.ayanamsha.toFixed(4)}°` : '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Day Duration' : 'दिनमान', value: panchang.dinamana || '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Night Duration' : 'रात्रिमान', value: panchang.ratrimana || '—', iconKey: null },
+                    { label: locale === 'en' || String(locale) === 'ta' ? 'Madhyahna' : 'मध्याह्न', value: panchang.madhyahna || '—', iconKey: null },
                   ] as { label: string; value: string; iconKey: 'masa' | 'samvatsara' | 'ritu' | 'ayana' | null }[]).map((item, i) => {
                     const IconMap = { masa: MasaIcon, samvatsara: SamvatsaraIcon, ritu: RituIcon, ayana: AyanaIcon };
                     const IconComp = item.iconKey ? IconMap[item.iconKey] : null;
@@ -1701,7 +1701,7 @@ export default function PanchangPage() {
             {(() => {
               const displayYear = new Date().getFullYear();
               const hinduMonths = computeHinduMonthsMemo;
-              const currentMasa = (panchang.purnimantMasa || panchang.masa)?.[locale === 'en' ? 'en' : 'hi'] || '';
+              const currentMasa = (panchang.purnimantMasa || panchang.masa)?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'] || '';
               const todayStr = panchang.date;
 
               return (
@@ -1709,7 +1709,7 @@ export default function PanchangPage() {
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="text-gold-light font-bold text-sm flex items-center gap-2" style={headingFont}>
                       <MasaIcon size={22} />
-                      {locale === 'en' ? `Hindu Months ${displayYear}` : `हिन्दू मास ${displayYear}`}
+                      {locale === 'en' || String(locale) === 'ta' ? `Hindu Months ${displayYear}` : `हिन्दू मास ${displayYear}`}
                     </h4>
                     {/* Amant / Purnimant toggle */}
                     <div className="inline-flex rounded-lg border border-gold-primary/15 overflow-hidden text-xs">
@@ -1717,13 +1717,13 @@ export default function PanchangPage() {
                         onClick={() => { setMasaSystem('amant'); try { localStorage.setItem('panchang_masa_system', 'amant'); } catch {} }}
                         className={`px-3 py-2 sm:py-1.5 font-medium transition-all ${masaSystem === 'amant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
                       >
-                        {locale === 'en' ? 'Amant' : 'अमान्त'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Amant' : 'अमान्त'}
                       </button>
                       <button
                         onClick={() => { setMasaSystem('purnimant'); try { localStorage.setItem('panchang_masa_system', 'purnimant'); } catch {} }}
                         className={`px-3 py-2 sm:py-1.5 font-medium transition-all border-l border-gold-primary/15 ${masaSystem === 'purnimant' ? 'bg-gold-primary/20 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
                       >
-                        {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Purnimant' : 'पूर्णिमान्त'}
                       </button>
                     </div>
                   </div>
@@ -1741,11 +1741,11 @@ export default function PanchangPage() {
                       <thead>
                         <tr className="border-b border-gold-primary/15">
                           <th className="text-left py-2 px-2 text-gold-dark">#</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Hindu Month' : 'हिन्दू मास'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Sanskrit' : 'संस्कृत'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Start' : 'आरम्भ'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'End' : 'समाप्ति'}</th>
-                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' ? 'Ritu' : 'ऋतु'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Hindu Month' : 'हिन्दू मास'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Sanskrit' : 'संस्कृत'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Start' : 'आरम्भ'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'End' : 'समाप्ति'}</th>
+                          <th className="text-left py-2 px-2 text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Ritu' : 'ऋतु'}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gold-primary/5">
@@ -1768,14 +1768,14 @@ export default function PanchangPage() {
                             <tr key={`${m.n}-${m.startDate}`} className={`hover:bg-gold-primary/3 ${isHighlighted ? 'bg-gold-primary/8' : ''} ${m.isAdhika ? 'italic' : ''}`}>
                               <td className="py-1.5 px-2 text-text-tertiary">{m.n}</td>
                               <td className="py-1.5 px-2 font-medium" style={headingFont}>
-                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{locale === 'en' ? m.en : m.hi}</span>
-                                {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
-                                {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'en' ? 'Intercalary' : 'अधिक'}</span>}
+                                <span className={`${m.isAdhika ? 'text-violet-400' : 'text-gold-light'}`}>{locale === 'en' || String(locale) === 'ta' ? m.en : m.hi}</span>
+                                {isHighlighted && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-gold-primary/20 text-gold-primary not-italic">{locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}</span>}
+                                {m.isAdhika && <span className="ml-1.5 text-xs px-1 py-0.5 rounded bg-violet-500/20 text-violet-300 not-italic">{locale === 'en' || String(locale) === 'ta' ? 'Intercalary' : 'अधिक'}</span>}
                               </td>
                               <td className="py-1.5 px-2 text-text-tertiary" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{m.sa}</td>
                               <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveStart, locale)}</td>
                               <td className="py-1.5 px-2 text-text-secondary font-mono">{formatMonthDate(effectiveEnd, locale)}</td>
-                              <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' ? m.ritu.en : m.ritu.hi}</td>
+                              <td className="py-1.5 px-2 text-text-secondary">{locale === 'en' || String(locale) === 'ta' ? m.ritu.en : m.ritu.hi}</td>
                             </tr>
                           );
                         })}
@@ -1799,7 +1799,7 @@ export default function PanchangPage() {
             <div className="mt-8">
               <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
                 <Star className="w-6 h-6 text-gold-primary" />
-                <span>{locale === 'en' ? 'Epoch & Cosmic Time' : 'युगीय काल'}</span>
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Epoch & Cosmic Time' : 'युगीय काल'}</span>
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -1807,13 +1807,13 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
                   <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">
-                    {locale === 'en' ? 'Kali Ahargana' : 'कलि अहर्गण'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Kali Ahargana' : 'कलि अहर्गण'}
                   </div>
                   <div className="text-gold-light font-bold text-3xl font-mono mt-1">
                     {panchang.kaliAhargana?.toLocaleString() || '—'}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Days elapsed since Kali Yuga began (Feb 18, 3102 BCE)' : 'कलियुग आरम्भ (18 फरवरी 3102 ईसापूर्व) से बीते दिन'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Days elapsed since Kali Yuga began (Feb 18, 3102 BCE)' : 'कलियुग आरम्भ (18 फरवरी 3102 ईसापूर्व) से बीते दिन'}
                   </div>
                 </motion.div>
 
@@ -1821,13 +1821,13 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6 border border-amber-500/20 bg-gradient-to-br from-amber-500/5 to-transparent">
                   <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
-                    {locale === 'en' ? 'Kaliyuga Year' : 'कलियुग वर्ष'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Kaliyuga Year' : 'कलियुग वर्ष'}
                   </div>
                   <div className="text-amber-300 font-bold text-3xl font-mono mt-1">
                     {panchang.kaliyugaYear?.toLocaleString() || '—'}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Current year in the Kali Yuga cycle (432,000 years total)' : 'कलियुग चक्र में वर्तमान वर्ष (कुल 4,32,000 वर्ष)'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Current year in the Kali Yuga cycle (432,000 years total)' : 'कलियुग चक्र में वर्तमान वर्ष (कुल 4,32,000 वर्ष)'}
                   </div>
                 </motion.div>
 
@@ -1835,13 +1835,13 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-3 sm:p-4 md:p-6">
                   <div className="text-indigo-400 text-xs uppercase tracking-widest font-bold mb-1">
-                    {locale === 'en' ? 'Julian Day Number' : 'जूलियन दिन संख्या'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Julian Day Number' : 'जूलियन दिन संख्या'}
                   </div>
                   <div className="text-indigo-300 font-bold text-3xl font-mono mt-1">
                     {panchang.julianDay?.toLocaleString() || '—'}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
-                    {locale === 'en' ? 'Astronomical day count from Jan 1, 4713 BCE noon' : 'खगोलशास्त्रीय दिन गणना — 4713 ईसापूर्व 1 जनवरी मध्याह्न से'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Astronomical day count from Jan 1, 4713 BCE noon' : 'खगोलशास्त्रीय दिन गणना — 4713 ईसापूर्व 1 जनवरी मध्याह्न से'}
                   </div>
                 </motion.div>
               </div>
@@ -1852,7 +1852,7 @@ export default function PanchangPage() {
                 <div className="flex flex-col md:flex-row gap-3 sm:gap-4 md:gap-6">
                   <div className="flex-1">
                     <div className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-                      {locale === 'en' ? 'Current Yuga: Kali Yuga' : 'वर्तमान युग: कलि युग'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Current Yuga: Kali Yuga' : 'वर्तमान युग: कलि युग'}
                     </div>
                     <div className="text-text-secondary text-sm leading-relaxed">
                       {locale === 'en'
@@ -1863,16 +1863,16 @@ export default function PanchangPage() {
                   <div className="flex-1">
                     {/* Yuga progress bar */}
                     <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
-                      {locale === 'en' ? 'Kali Yuga Progress' : 'कलियुग प्रगति'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Kali Yuga Progress' : 'कलियुग प्रगति'}
                     </div>
                     <div className="h-3 bg-bg-tertiary rounded-full overflow-hidden border border-gold-primary/10 mb-2">
                       <div className="h-full bg-gradient-to-r from-gold-primary/60 to-amber-400/60 rounded-full"
                         style={{ width: `${(5126 / 432000) * 100}%` }} />
                     </div>
                     <div className="flex justify-between text-xs text-text-secondary font-mono">
-                      <span>{locale === 'en' ? '3102 BCE' : '3102 ईसापूर्व'}</span>
+                      <span>{locale === 'en' || String(locale) === 'ta' ? '3102 BCE' : '3102 ईसापूर्व'}</span>
                       <span className="text-gold-primary">~1.2%</span>
-                      <span>{locale === 'en' ? '+426,874 yrs' : '+4,26,874 वर्ष'}</span>
+                      <span>{locale === 'en' || String(locale) === 'ta' ? '+426,874 yrs' : '+4,26,874 वर्ष'}</span>
                     </div>
                   </div>
                 </div>
@@ -1880,14 +1880,14 @@ export default function PanchangPage() {
                 {/* Yuga timeline row */}
                 <div className="mt-5 pt-5 border-t border-gold-primary/10">
                   <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
-                    {locale === 'en' ? 'Mahayuga Timeline (4,320,000 years)' : 'महायुग समयरेखा (43,20,000 वर्ष)'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Mahayuga Timeline (4,320,000 years)' : 'महायुग समयरेखा (43,20,000 वर्ष)'}
                   </div>
                   <div className="flex gap-1 flex-wrap">
                     {[
-                      { name: locale === 'en' ? 'Satya Yuga' : 'सत्य युग', years: '1,728,000y', pct: 40, color: 'bg-emerald-500/40 border-emerald-500/30 text-emerald-300' },
-                      { name: locale === 'en' ? 'Treta Yuga' : 'त्रेता युग', years: '1,296,000y', pct: 30, color: 'bg-gold-primary/30 border-gold-primary/40 text-gold-light' },
-                      { name: locale === 'en' ? 'Dvapara Yuga' : 'द्वापर युग', years: '864,000y', pct: 20, color: 'bg-blue-500/30 border-blue-500/30 text-blue-300' },
-                      { name: locale === 'en' ? 'Kali Yuga' : 'कलि युग', years: '432,000y', pct: 10, color: 'bg-red-500/30 border-red-500/40 text-red-300 ring-1 ring-red-400/50' },
+                      { name: locale === 'en' || String(locale) === 'ta' ? 'Satya Yuga' : 'सत्य युग', years: '1,728,000y', pct: 40, color: 'bg-emerald-500/40 border-emerald-500/30 text-emerald-300' },
+                      { name: locale === 'en' || String(locale) === 'ta' ? 'Treta Yuga' : 'त्रेता युग', years: '1,296,000y', pct: 30, color: 'bg-gold-primary/30 border-gold-primary/40 text-gold-light' },
+                      { name: locale === 'en' || String(locale) === 'ta' ? 'Dvapara Yuga' : 'द्वापर युग', years: '864,000y', pct: 20, color: 'bg-blue-500/30 border-blue-500/30 text-blue-300' },
+                      { name: locale === 'en' || String(locale) === 'ta' ? 'Kali Yuga' : 'कलि युग', years: '432,000y', pct: 10, color: 'bg-red-500/30 border-red-500/40 text-red-300 ring-1 ring-red-400/50' },
                     ].map((y) => (
                       <div key={y.name} className={`rounded-lg px-3 py-2 border text-center flex-1 min-w-0 sm:min-w-[120px] ${y.color}`}>
                         <div className="font-bold text-xs" style={headingFont}>{y.name}</div>
@@ -1897,7 +1897,7 @@ export default function PanchangPage() {
                     ))}
                   </div>
                   <div className="text-text-secondary/70 text-xs mt-2 text-center font-mono">
-                    {locale === 'en' ? 'Kalpa = 1,000 Mahayugas = 4.32 billion years (one Day of Brahma)' : 'कल्प = 1,000 महायुग = 4.32 अरब वर्ष (ब्रह्मा का एक दिन)'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Kalpa = 1,000 Mahayugas = 4.32 billion years (one Day of Brahma)' : 'कल्प = 1,000 महायुग = 4.32 अरब वर्ष (ब्रह्मा का एक दिन)'}
                   </div>
                 </div>
               </motion.div>
@@ -1981,7 +1981,7 @@ export default function PanchangPage() {
                             </span>
                             {active && (
                               <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-light">
-                                {locale === 'en' ? 'NOW' : 'अभी'}
+                                {locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}
                               </span>
                             )}
                           </div>
@@ -2088,7 +2088,7 @@ export default function PanchangPage() {
           </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-3 text-center" style={headingFont}>
-              {locale === 'en' ? "Today's Muhurtas" : 'आज के मुहूर्त'}
+              {locale === 'en' || String(locale) === 'ta' ? "Today's Muhurtas" : 'आज के मुहूर्त'}
             </h2>
             <p className="text-text-secondary text-sm text-center mb-8 max-w-2xl mx-auto">
               {locale === 'en'
@@ -2101,7 +2101,7 @@ export default function PanchangPage() {
               <div className="flex items-center gap-3 mb-4">
                 <Sun className="w-6 h-6 text-gold-primary" />
                 <h3 className="text-xl font-bold text-gold-light" style={headingFont}>
-                  {locale === 'en' ? 'Daytime Muhurtas' : 'दिवा मुहूर्त'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Daytime Muhurtas' : 'दिवा मुहूर्त'}
                 </h3>
                 <span className="text-text-secondary text-xs">({panchang.sunrise} — {panchang.sunset})</span>
               </div>
@@ -2130,7 +2130,7 @@ export default function PanchangPage() {
                               {m.name[locale]}
                             </span>
                             {isAbhijit && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
-                            {isCurrent && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold animate-pulse">{locale === 'en' ? 'NOW' : 'अभी'}</span>}
+                            {isCurrent && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold animate-pulse">{locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}</span>}
                             {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
                           </div>
                         </div>
@@ -2145,7 +2145,7 @@ export default function PanchangPage() {
                         <div className="ml-11">
                           <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{info.significance[locale]}</p>
                           <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                            <span className="font-semibold">{locale === 'en' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
+                            <span className="font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
                           </p>
                         </div>
                       )}
@@ -2163,9 +2163,9 @@ export default function PanchangPage() {
               >
                 <Moon className="w-6 h-6 text-indigo-400" />
                 <h3 className="text-xl font-bold text-indigo-300/80" style={headingFont}>
-                  {locale === 'en' ? 'Nighttime Muhurtas' : 'रात्रि मुहूर्त'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Nighttime Muhurtas' : 'रात्रि मुहूर्त'}
                 </h3>
-                <span className="text-text-secondary text-xs">({panchang.sunset} — {locale === 'en' ? 'next sunrise' : 'अगला सूर्योदय'})</span>
+                <span className="text-text-secondary text-xs">({panchang.sunset} — {locale === 'en' || String(locale) === 'ta' ? 'next sunrise' : 'अगला सूर्योदय'})</span>
                 {showAllMuhurtas ? <ChevronUp className="w-4 h-4 text-text-secondary" /> : <ChevronDown className="w-4 h-4 text-text-secondary" />}
               </button>
               <AnimatePresence>
@@ -2194,7 +2194,7 @@ export default function PanchangPage() {
                               <span className={`text-2xl font-bold w-8 ${getNatureColor(m.nature)}`}>{m.number}</span>
                               <div>
                                 <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
-                                {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' ? 'BRAHMA MUHURTA' : 'ब्राह्म मुहूर्त'}</span>}
+                                {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' || String(locale) === 'ta' ? 'BRAHMA MUHURTA' : 'ब्राह्म मुहूर्त'}</span>}
                                 {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
                               </div>
                             </div>
@@ -2209,7 +2209,7 @@ export default function PanchangPage() {
                             <div className="ml-11">
                               <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{info.significance[locale]}</p>
                               <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                <span className="font-semibold">{locale === 'en' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
+                                <span className="font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
                               </p>
                             </div>
                           )}
@@ -2239,7 +2239,7 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-500/15">
                   <div className="flex justify-center mb-2"><RashiIconById id={panchang.sunSign?.rashi || sunPlanet?.rashi || 1} size={48} /></div>
-                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Sun Sign' : 'सूर्य राशि'}</div>
+                  <div className="text-amber-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Sun Sign' : 'सूर्य राशि'}</div>
                   <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{sunRashiData?.name[locale]}</div>
                   <div className="text-text-secondary text-xs mt-1">{sunNakData?.name[locale]}</div>
                 </motion.div>
@@ -2248,11 +2248,11 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-indigo-500/15">
                   <div className="flex justify-center mb-2"><RashiIconById id={panchang.moonSign?.rashi || moonPlanet?.rashi || 1} size={48} /></div>
-                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Moon Sign' : 'चन्द्र राशि'}</div>
+                  <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Moon Sign' : 'चन्द्र राशि'}</div>
                   <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{moonRashiData?.name[locale]}</div>
                   <div className="text-text-secondary text-xs mt-1">
                     {moonNakData?.name[locale]}
-                    {panchang.moonSign?.pada ? ` · ${locale === 'en' ? 'Pada' : 'पाद'} ${panchang.moonSign.pada}` : ''}
+                    {panchang.moonSign?.pada ? ` · ${locale === 'en' || String(locale) === 'ta' ? 'Pada' : 'पाद'} ${panchang.moonSign.pada}` : ''}
                   </div>
                 </motion.div>
 
@@ -2260,18 +2260,18 @@ export default function PanchangPage() {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="flex justify-center mb-2"><Sun className="w-10 h-10 text-gold-primary" /></div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Day Duration' : 'दिनमान'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Day Duration' : 'दिनमान'}</div>
                   <div className="text-gold-light font-bold text-lg font-mono mt-1">{panchang.dinamana || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{locale === 'en' ? 'Night' : 'रात्रिमान'}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
+                  <div className="text-text-secondary text-xs mt-1.5 uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Night' : 'रात्रिमान'}: <span className="font-mono text-text-primary">{panchang.ratrimana || '—'}</span></div>
                 </motion.div>
 
                 {/* Madhyahna */}
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center">
                   <div className="flex justify-center mb-2"><Clock className="w-10 h-10 text-gold-primary" /></div>
-                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' ? 'Madhyahna' : 'मध्याह्न'}</div>
+                  <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Madhyahna' : 'मध्याह्न'}</div>
                   <div className="text-gold-light font-bold text-2xl font-mono mt-1">{panchang.madhyahna || '—'}</div>
-                  <div className="text-text-secondary text-xs mt-1">{locale === 'en' ? 'Local Midday' : 'स्थानीय दोपहर'}</div>
+                  <div className="text-text-secondary text-xs mt-1">{locale === 'en' || String(locale) === 'ta' ? 'Local Midday' : 'स्थानीय दोपहर'}</div>
                 </motion.div>
               </div>
             );
@@ -2282,7 +2282,7 @@ export default function PanchangPage() {
             <div className="my-10">
               <h3 className="text-lg font-bold text-gold-light mb-4 flex items-center gap-2" style={headingFont}>
                 <Star className="w-5 h-5 text-gold-primary" />
-                <span>{locale === 'en' ? 'Udaya Lagna — Rising Signs' : 'उदय लग्न — उदित राशियाँ'}</span>
+                <span>{locale === 'en' || String(locale) === 'ta' ? 'Udaya Lagna — Rising Signs' : 'उदय लग्न — उदित राशियाँ'}</span>
               </h3>
               <p className="text-text-secondary text-xs mb-4 max-w-2xl">
                 {locale === 'en'
@@ -2320,7 +2320,7 @@ export default function PanchangPage() {
           </InfoBlock>
           <div className="my-14">
             <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
-              {locale === 'en' ? 'Chandrabalam & Tarabalam' : 'चन्द्रबल एवं ताराबल'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Chandrabalam & Tarabalam' : 'चन्द्रबल एवं ताराबल'}
             </h2>
             <p className="text-text-secondary text-sm text-center mb-8">
               {birthAutoDetected
@@ -2336,14 +2336,14 @@ export default function PanchangPage() {
                 <div className="flex items-center justify-center gap-2 mb-4 p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/15">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
                   <span className="text-emerald-400 text-xs font-medium">
-                    {locale === 'en' ? 'Birth data loaded from your Kundali' : 'कुण्डली से जन्म डेटा लोड हुआ'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Birth data loaded from your Kundali' : 'कुण्डली से जन्म डेटा लोड हुआ'}
                   </span>
                 </div>
               )}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
-                    {locale === 'en' ? 'Birth Nakshatra' : 'जन्म नक्षत्र'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Birth Nakshatra' : 'जन्म नक्षत्र'}
                   </label>
                   <select
                     value={birthNakshatra}
@@ -2354,7 +2354,7 @@ export default function PanchangPage() {
                     className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                   >
-                    <option value={0}>{locale === 'en' ? 'Select...' : 'चुनें...'}</option>
+                    <option value={0}>{locale === 'en' || String(locale) === 'ta' ? 'Select...' : 'चुनें...'}</option>
                     {NAKSHATRAS.map((n) => (
                       <option key={n.id} value={n.id}>{n.name[locale]}</option>
                     ))}
@@ -2362,7 +2362,7 @@ export default function PanchangPage() {
                 </div>
                 <div>
                   <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-2">
-                    {locale === 'en' ? 'Birth Rashi (Moon)' : 'जन्म राशि (चन्द्र)'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Birth Rashi (Moon)' : 'जन्म राशि (चन्द्र)'}
                   </label>
                   <select
                     value={birthRashi}
@@ -2373,7 +2373,7 @@ export default function PanchangPage() {
                     className="w-full bg-bg-tertiary border border-gold-primary/20 rounded-lg px-3 py-2.5 text-text-primary text-sm focus:outline-none focus:border-gold-primary/50"
                     style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
                   >
-                    <option value={0}>{locale === 'en' ? 'Select...' : 'चुनें...'}</option>
+                    <option value={0}>{locale === 'en' || String(locale) === 'ta' ? 'Select...' : 'चुनें...'}</option>
                     {RASHIS.map((r) => (
                       <option key={r.id} value={r.id}>{r.name[locale]}</option>
                     ))}
@@ -2396,17 +2396,17 @@ export default function PanchangPage() {
                       <div className={`text-xs uppercase tracking-wider font-bold mb-1 ${
                         balamResult.chandrabalam.favorable ? 'text-emerald-400' : 'text-red-400'
                       }`}>
-                        {locale === 'en' ? 'Chandrabalam' : 'चन्द्रबल'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Chandrabalam' : 'चन्द्रबल'}
                       </div>
                       <div className={`text-2xl font-bold ${
                         balamResult.chandrabalam.favorable ? 'text-emerald-300' : 'text-red-300'
                       }`}>
                         {balamResult.chandrabalam.favorable
-                          ? (locale === 'en' ? 'Strong' : 'बलवान्')
-                          : (locale === 'en' ? 'Weak' : 'दुर्बल')}
+                          ? (locale === 'en' || String(locale) === 'ta' ? 'Strong' : 'बलवान्')
+                          : (locale === 'en' || String(locale) === 'ta' ? 'Weak' : 'दुर्बल')}
                       </div>
                       <div className="text-text-secondary text-xs mt-2">
-                        {locale === 'en' ? `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house` : `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`}
+                        {locale === 'en' || String(locale) === 'ta' ? `Moon in ${balamResult.chandrabalam.house}${['st','nd','rd'][balamResult.chandrabalam.house-1] || 'th'} house` : `चन्द्र ${balamResult.chandrabalam.house}वें भाव में`}
                       </div>
                     </div>
                     <div className={`rounded-xl p-4 border text-center ${
@@ -2417,7 +2417,7 @@ export default function PanchangPage() {
                       <div className={`text-xs uppercase tracking-wider font-bold mb-1 ${
                         balamResult.tarabalam.favorable ? 'text-emerald-400' : 'text-red-400'
                       }`}>
-                        {locale === 'en' ? 'Tarabalam' : 'ताराबल'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Tarabalam' : 'ताराबल'}
                       </div>
                       <div className={`text-2xl font-bold ${
                         balamResult.tarabalam.favorable ? 'text-emerald-300' : 'text-red-300'
@@ -2425,7 +2425,7 @@ export default function PanchangPage() {
                         {balamResult.tarabalam.taraName[locale]}
                       </div>
                       <div className="text-text-secondary text-xs mt-2">
-                        {locale === 'en' ? `Tara #${balamResult.tarabalam.tara}` : `तारा #${balamResult.tarabalam.tara}`}
+                        {locale === 'en' || String(locale) === 'ta' ? `Tara #${balamResult.tarabalam.tara}` : `तारा #${balamResult.tarabalam.tara}`}
                       </div>
                     </div>
                   </motion.div>
@@ -2464,7 +2464,7 @@ export default function PanchangPage() {
             return (
               <div className="my-14">
                 <h2 className="text-3xl font-bold text-gold-gradient mb-2 text-center" style={headingFont}>
-                  {locale === 'en' ? 'Pancha Pakshi Shastra' : 'पञ्च पक्षी शास्त्र'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Pancha Pakshi Shastra' : 'पञ्च पक्षी शास्त्र'}
                 </h2>
                 <p className="text-text-secondary/75 text-sm text-center mb-6 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {locale === 'en'
@@ -2475,15 +2475,15 @@ export default function PanchangPage() {
                 {/* Current period — hero */}
                 <div className={`rounded-2xl border p-6 text-center mb-6 ${AUSPICIOUS_COLOR[pp.currentPeriod.auspicious]}`}>
                   <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold mb-4 ${AUSPICIOUS_BADGE[pp.currentPeriod.auspicious]}`}>
-                    {pp.currentPeriod.activityName[locale === 'en' ? 'en' : 'hi']}
+                    {pp.currentPeriod.activityName[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}
                     {pp.currentPeriod.auspicious === 'excellent' && ' ✦'}
                     {pp.currentPeriod.auspicious === 'avoid' && ' ✗'}
                   </div>
                   <div className="text-gold-light font-bold text-xl mb-1" style={headingFont}>
-                    {pp.birthBirdName[locale === 'en' ? 'en' : 'hi']} — {pp.currentPeriod.periodStart}–{pp.currentPeriod.periodEnd}
+                    {pp.birthBirdName[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']} — {pp.currentPeriod.periodStart}–{pp.currentPeriod.periodEnd}
                   </div>
                   <p className="text-text-secondary/80 text-sm max-w-xl mx-auto leading-relaxed mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                    {pp.currentPeriod.interpretation[locale === 'en' ? 'en' : 'hi']}
+                    {pp.currentPeriod.interpretation[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}
                   </p>
                 </div>
 
@@ -2496,7 +2496,7 @@ export default function PanchangPage() {
                         period.auspicious === 'good'      ? 'text-gold-primary' :
                         period.auspicious === 'avoid'     ? 'text-red-400' : 'text-text-secondary/70'
                       }`}>
-                        {period.activityName[locale === 'en' ? 'en' : 'hi']}
+                        {period.activityName[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}
                       </div>
                       <div className="text-[9px] text-text-secondary/70 font-mono">{period.periodStart}</div>
                       <div className="text-[9px] text-text-secondary/65 font-mono">—{period.periodEnd}</div>
@@ -2577,7 +2577,7 @@ export default function PanchangPage() {
           className="mt-6 mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4"
         >
           <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-            {locale === 'en' ? 'Your Day' : locale === 'hi' ? 'आपका दिन' : 'भवतः दिवसः'}
+            {locale === 'en' || String(locale) === 'ta' ? 'Your Day' : locale === 'hi' ? 'आपका दिन' : 'भवतः दिवसः'}
           </div>
           <div className="flex items-center gap-4">
             <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold ${
@@ -2587,19 +2587,19 @@ export default function PanchangPage() {
               personalDay.dayQuality === 'caution' ? 'bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/30' :
               'bg-red-500/20 text-red-400 ring-1 ring-red-500/30'
             }`}>
-              {personalDay.dayQuality === 'excellent' ? (locale === 'en' ? 'A+' : '++') :
-               personalDay.dayQuality === 'good' ? (locale === 'en' ? 'A' : '+') :
-               personalDay.dayQuality === 'neutral' ? (locale === 'en' ? 'B' : '~') :
-               personalDay.dayQuality === 'caution' ? (locale === 'en' ? 'C' : '!') :
-               (locale === 'en' ? 'D' : '!!')}
+              {personalDay.dayQuality === 'excellent' ? (locale === 'en' || String(locale) === 'ta' ? 'A+' : '++') :
+               personalDay.dayQuality === 'good' ? (locale === 'en' || String(locale) === 'ta' ? 'A' : '+') :
+               personalDay.dayQuality === 'neutral' ? (locale === 'en' || String(locale) === 'ta' ? 'B' : '~') :
+               personalDay.dayQuality === 'caution' ? (locale === 'en' || String(locale) === 'ta' ? 'C' : '!') :
+               (locale === 'en' || String(locale) === 'ta' ? 'D' : '!!')}
             </span>
             <div className="flex-1 min-w-0">
               <p className="text-gold-light text-sm font-bold">
-                {locale === 'en' ? 'Tara' : 'तारा'}: {personalDay.taraBala.taraName[locale] || personalDay.taraBala.taraName.en}
+                {locale === 'en' || String(locale) === 'ta' ? 'Tara' : 'तारा'}: {personalDay.taraBala.taraName[locale] || personalDay.taraBala.taraName.en}
                 <span className={`ml-2 text-xs ${personalDay.taraBala.isFavorable ? 'text-emerald-400' : 'text-red-400'}`}>
                   {personalDay.taraBala.isFavorable
-                    ? (locale === 'en' ? 'Favorable' : 'शुभ')
-                    : (locale === 'en' ? 'Caution' : 'सावधान')}
+                    ? (locale === 'en' || String(locale) === 'ta' ? 'Favorable' : 'शुभ')
+                    : (locale === 'en' || String(locale) === 'ta' ? 'Caution' : 'सावधान')}
                 </span>
               </p>
               <p className="text-text-secondary text-xs truncate">{personalDay.taraBala.description[locale] || personalDay.taraBala.description.en}</p>
@@ -2613,7 +2613,7 @@ export default function PanchangPage() {
       {/* ═══ DEEP DIVE LINKS — BIG ICONS ═══ */}
       <div className="my-14">
         <h2 className="text-3xl font-bold text-gold-gradient mb-10 text-center" style={headingFont}>
-          {locale === 'en' ? 'Explore the Elements' : locale === 'hi' ? 'तत्वों का अन्वेषण करें' : 'तत्त्वानाम् अन्वेषणम्'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Explore the Elements' : locale === 'hi' ? 'तत्वों का अन्वेषण करें' : 'तत्त्वानाम् अन्वेषणम्'}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-4">
           {deepDiveLinks.map((link, i) => (

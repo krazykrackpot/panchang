@@ -244,8 +244,8 @@ export default function SadeSatiPage() {
         )}
       </motion.div>
 
-      <InfoBlock id="sade-sati-intro" title={locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
-        {locale === 'en' ? (
+      <InfoBlock id="sade-sati-intro" title={locale === 'en' || String(locale) === 'ta' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
+        {locale === 'en' || String(locale) === 'ta' ? (
           <div className="space-y-3">
             <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
             <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn — the planet of discipline, karma, and hard lessons — passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment — it&apos;s a period of deep maturation.</p>
@@ -342,7 +342,7 @@ export default function SadeSatiPage() {
                 setBirthLng(loc.lng);
                 setBirthTimezone(loc.timezone);
               }}
-              placeholder={locale === 'en' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
             />
           </div>
           <button
@@ -372,7 +372,7 @@ export default function SadeSatiPage() {
               return (
                 <div className="my-6 rounded-2xl border-2 border-red-700/50 bg-gradient-to-br from-red-900/20 via-red-950/10 to-transparent p-5 text-center">
                   <div className="text-red-400 text-xs uppercase tracking-[0.3em] font-bold mb-2">
-                    {locale === 'en' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
+                    {locale === 'en' || String(locale) === 'ta' ? '⚠ Ashtama Shani Active' : '⚠ अष्टम शनि सक्रिय'}
                   </div>
                   <div className="text-red-300 text-xl font-bold mb-2" style={headingFont}>
                     {locale === 'en'
@@ -569,7 +569,7 @@ export default function SadeSatiPage() {
                     {cycle.isActive && analysis.nakshatraTimeline.length > 0 && (
                       <div className="mt-3 pt-3 border-t border-gold-primary/10 space-y-1">
                         <div className="text-xs text-text-tertiary uppercase tracking-wider mb-1.5">
-                          {locale === 'en' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
+                          {locale === 'en' || String(locale) === 'ta' ? 'Nakshatra Transits' : 'नक्षत्र गोचर'}
                         </div>
                         {analysis.nakshatraTimeline.map((nt, k) => {
                           const nak = NAKSHATRAS[nt.nakshatra - 1];
@@ -593,12 +593,12 @@ export default function SadeSatiPage() {
                               <span className="font-mono text-xs opacity-70">{yearLabel}</span>
                               {nt.isBirthNakshatra && (
                                 <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/25 text-amber-300">
-                                  {locale === 'en' ? 'Birth' : 'जन्म'}
+                                  {locale === 'en' || String(locale) === 'ta' ? 'Birth' : 'जन्म'}
                                 </span>
                               )}
                               {nt.isCurrent && !nt.isBirthNakshatra && (
                                 <span className="text-xs uppercase tracking-wider px-1.5 py-0.5 rounded bg-gold-primary/15 border border-gold-primary/25 text-gold-light">
-                                  {locale === 'en' ? 'Now' : 'अभी'}
+                                  {locale === 'en' || String(locale) === 'ta' ? 'Now' : 'अभी'}
                                 </span>
                               )}
                             </div>

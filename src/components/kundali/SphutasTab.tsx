@@ -591,7 +591,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
                       </div>
                       {profile && (
                         <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {profile[locale === 'en' ? 'en' : 'hi']}
+                          {profile[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}
                         </p>
                       )}
                     </div>

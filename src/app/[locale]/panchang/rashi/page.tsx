@@ -241,13 +241,13 @@ function AnimatedZodiacWheel({
 
       {/* Center text */}
       <text x={CX} y={CY - 14} fill="#f0d48a" fontSize="12" textAnchor="middle" fontFamily="var(--font-heading)">
-        {locale === 'en' ? 'RASHI CHAKRA' : locale === 'hi' ? 'राशि चक्र' : 'राशिचक्रम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'RASHI CHAKRA' : locale === 'hi' ? 'राशि चक्र' : 'राशिचक्रम्'}
       </text>
       <text x={CX} y={CY + 4} fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 12 = 30°
       </text>
       <text x={CX} y={CY + 18} fill="rgba(212,168,83,0.3)" fontSize="7" textAnchor="middle">
-        {locale === 'en' ? 'Click a sign' : locale === 'hi' ? 'राशि चुनें' : 'राशिं चिनुत'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Click a sign' : locale === 'hi' ? 'राशि चुनें' : 'राशिं चिनुत'}
       </text>
     </motion.svg>
   );
@@ -293,7 +293,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
       transition={{ duration: 0.7 }}
     >
       <h3 className="text-lg font-semibold text-gold-light mb-2">
-        {locale === 'en' ? 'Sidereal vs Tropical Ecliptic' : locale === 'hi' ? 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' : 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Sidereal vs Tropical Ecliptic' : locale === 'hi' ? 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' : 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्'}
       </h3>
       <p className="text-text-secondary text-sm mb-4">
         {locale === 'en'
@@ -353,7 +353,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
 
         {/* "Sidereal 0°" label */}
         <text x={2} y={14} fill="#f0d48a" fontSize="8" textAnchor="start">
-          {locale === 'en' ? 'Sidereal 0°' : 'नाक्षत्रिक 0°'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Sidereal 0°' : 'नाक्षत्रिक 0°'}
         </text>
         <text x={BAR_WIDTH - 2} y={14} fill="rgba(240,212,138,0.4)" fontSize="8" textAnchor="end">
           360°
@@ -401,7 +401,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
                 textAnchor="middle"
                 fontWeight="bold"
               >
-                {locale === 'en' ? `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)` : `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`}
+                {locale === 'en' || String(locale) === 'ta' ? `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)` : `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`}
               </text>
             </motion.g>
           );
@@ -499,28 +499,28 @@ function RashiDetailPanel({
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6 relative z-10">
         {[
           {
-            label: locale === 'en' ? 'Degrees' : locale === 'hi' ? 'अंश' : 'अंशाः',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Degrees' : locale === 'hi' ? 'अंश' : 'अंशाः',
             value: `${rashi.startDeg}° \u2013 ${rashi.endDeg}°`,
           },
           {
-            label: locale === 'en' ? 'Element' : locale === 'hi' ? 'तत्व' : 'तत्त्वम्',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Element' : locale === 'hi' ? 'तत्व' : 'तत्त्वम्',
             value: rashi.element[locale],
             color: elemColor,
           },
           {
-            label: locale === 'en' ? 'Ruler' : locale === 'hi' ? 'स्वामी' : 'स्वामी',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Ruler' : locale === 'hi' ? 'स्वामी' : 'स्वामी',
             value: rashi.rulerName[locale],
           },
           {
-            label: locale === 'en' ? 'Quality' : locale === 'hi' ? 'गुण' : 'गुणः',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Quality' : locale === 'hi' ? 'गुण' : 'गुणः',
             value: rashi.quality[locale],
           },
           {
-            label: locale === 'en' ? 'Rashi Number' : locale === 'hi' ? 'राशि क्रमांक' : 'राशिक्रमाङ्कः',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Rashi Number' : locale === 'hi' ? 'राशि क्रमांक' : 'राशिक्रमाङ्कः',
             value: `#${rashi.id}`,
           },
           {
-            label: locale === 'en' ? 'Symbol' : locale === 'hi' ? 'चिह्न' : 'चिह्नम्',
+            label: locale === 'en' || String(locale) === 'ta' ? 'Symbol' : locale === 'hi' ? 'चिह्न' : 'चिह्नम्',
             value: rashi.symbol,
           },
         ].map((item, idx) => (
@@ -584,7 +584,7 @@ export default function RashiPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {locale === 'en' ? 'Rashi' : locale === 'hi' ? 'राशि' : 'राशिः'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Rashi' : locale === 'hi' ? 'राशि' : 'राशिः'}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -621,7 +621,7 @@ export default function RashiPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Formula:' : 'सूत्र:'} Rashi = floor(Sidereal_longitude / 30°) + 1
+                {locale === 'en' || String(locale) === 'ta' ? 'Formula:' : 'सूत्र:'} Rashi = floor(Sidereal_longitude / 30°) + 1
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'

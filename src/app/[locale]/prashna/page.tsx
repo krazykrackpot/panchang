@@ -108,7 +108,7 @@ export default function PrashnaPage() {
     if (locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     const now = new Date();
-    setCastTime(now.toLocaleString(locale === 'en' ? 'en-IN' : 'hi-IN'));
+    setCastTime(now.toLocaleString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN'));
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
@@ -116,7 +116,7 @@ export default function PrashnaPage() {
       const res = await authedFetch('/api/kundali', {
         method: 'POST',
         body: JSON.stringify({
-          name: locale === 'en' ? 'Prashna Chart' : 'प्रश्न कुण्डली',
+          name: locale === 'en' || String(locale) === 'ta' ? 'Prashna Chart' : 'प्रश्न कुण्डली',
           date: now.toISOString().split('T')[0],
           time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
           place: locationStore.name || 'Current Location',
@@ -302,7 +302,7 @@ export default function PrashnaPage() {
                   <div className="flex items-center justify-center gap-2 mb-2 text-xs text-text-secondary">
                     <RashiIconById id={kundali.ascendant.sign} size={20} />
                     <span style={bf}>
-                      {locale === 'en' ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
+                      {locale === 'en' || String(locale) === 'ta' ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
                     </span>
                   </div>
                   {chartStyle === 'north' ? (
@@ -340,11 +340,11 @@ export default function PrashnaPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gold-primary/10 bg-bg-tertiary/30">
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' ? 'Planet' : 'ग्रह'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' ? 'Sign' : 'राशि'}</th>
-                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' ? 'House' : 'भाव'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' ? 'Status' : 'स्थिति'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' ? 'Role' : 'भूमिका'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Planet' : 'ग्रह'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Sign' : 'राशि'}</th>
+                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' || String(locale) === 'ta' ? 'House' : 'भाव'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Status' : 'स्थिति'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Role' : 'भूमिका'}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -478,7 +478,7 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
           <div className="text-3xl font-bold font-mono">
             {analysis.verdict.score > 0 ? '+' : ''}{analysis.verdict.score}
           </div>
-          <div className="text-xs text-text-secondary uppercase">{locale === 'en' ? 'Score' : 'अंक'}</div>
+          <div className="text-xs text-text-secondary uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Score' : 'अंक'}</div>
         </div>
       </div>
       <p className="text-sm leading-relaxed opacity-90" style={bf}>

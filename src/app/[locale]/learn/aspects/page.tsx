@@ -281,7 +281,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
       {!selectedPlanet && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
           className="text-xs" fill="#8b8fa3">
-          {locale === 'en' ? 'Select a planet' : locale === 'hi' ? 'ग्रह चुनें' : 'ग्रहं चिनुत'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Select a planet' : locale === 'hi' ? 'ग्रह चुनें' : 'ग्रहं चिनुत'}
         </text>
       )}
       {selectedPlanet && (
@@ -359,7 +359,7 @@ export default function AspectsPage() {
             <p className="text-xs text-text-secondary" style={bodyFont}>
               <span style={{ color: selected.color }} className="font-bold">{selected.name[locale]}</span>
               {' '}{L.placedIn[locale]}
-              {' \u2192 '}{locale === 'en' ? 'Aspects houses' : locale === 'hi' ? 'दृष्टि भाव' : 'दृष्टिभावाः'}{': '}
+              {' \u2192 '}{locale === 'en' || String(locale) === 'ta' ? 'Aspects houses' : locale === 'hi' ? 'दृष्टि भाव' : 'दृष्टिभावाः'}{': '}
               <span style={{ color: selected.color }} className="font-bold">
                 {selected.aspects.join(', ')}
               </span>

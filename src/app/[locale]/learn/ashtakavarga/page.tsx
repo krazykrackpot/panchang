@@ -212,7 +212,7 @@ export default function LearnAshtakavargaPage() {
               <div key={sm.range} className="flex gap-3 items-start">
                 <div className={`w-12 flex-shrink-0 text-right text-xs font-mono ${sm.color}`}>{sm.range}</div>
                 <div className="text-text-secondary text-xs leading-relaxed flex-1" style={bodyFont}>
-                  {locale === 'en' ? sm.en : locale === 'hi' ? sm.hi : sm.sa}
+                  {locale === 'en' || String(locale) === 'ta' ? sm.en : locale === 'hi' ? sm.hi : sm.sa}
                 </div>
               </div>
             ))}

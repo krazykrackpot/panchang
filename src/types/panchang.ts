@@ -11,6 +11,8 @@ export interface Trilingual {
  * and falls back to English for Trilingual data via the `lk` pattern:
  *   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
  */
+/** Data locale — used to index into Trilingual objects (en/hi/sa only).
+ * Tamil routing uses 'ta' at the i18n layer but falls back to 'en' for data. */
 export type Locale = 'en' | 'hi' | 'sa';
 
 export interface Tithi {

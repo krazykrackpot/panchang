@@ -494,7 +494,7 @@ export default function SankalpaPage() {
                 setPlaceLng(loc.lng);
                 setPlaceTimezone(loc.timezone);
               }}
-              placeholder={locale === 'en' ? 'Search city or place...' : 'स्थान खोजें...'}
+              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search city or place...' : 'स्थान खोजें...'}
             />
           </label>
 
@@ -512,7 +512,7 @@ export default function SankalpaPage() {
           {/* Masa System Toggle */}
           <div>
             <span className={labelCls} style={bodyFont}>
-              {locale === 'en' ? 'Calendar System' : locale === 'hi' ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Calendar System' : locale === 'hi' ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
             </span>
             <div className="flex gap-2 mt-2">
               <button
@@ -523,9 +523,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {locale === 'en' ? 'Purnimant' : 'पूर्णिमान्त'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Purnimant' : 'पूर्णिमान्त'}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {locale === 'en' ? 'North India' : 'उत्तर भारत'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'North India' : 'उत्तर भारत'}
                 </span>
               </button>
               <button
@@ -536,9 +536,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {locale === 'en' ? 'Amant' : 'अमान्त'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Amant' : 'अमान्त'}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {locale === 'en' ? 'South India' : 'दक्षिण भारत'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'South India' : 'दक्षिण भारत'}
                 </span>
               </button>
             </div>

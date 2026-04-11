@@ -209,7 +209,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1, y: CY - 10 }}
         transition={{ duration: 0.8, delay: 1.4 }}
       >
-        {locale === 'en' ? 'LUNISOLAR' : locale === 'hi' ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'LUNISOLAR' : locale === 'hi' ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 8}
@@ -220,7 +220,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {locale === 'en' ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
+        {locale === 'en' || String(locale) === 'ta' ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
       </motion.text>
     </motion.svg>
   );
@@ -295,8 +295,8 @@ export default function MasaPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
-                {locale === 'en' ? 'days' : 'दिन'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
+                {locale === 'en' || String(locale) === 'ta' ? 'days' : 'दिन'}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -374,7 +374,7 @@ export default function MasaPage() {
 
         {/* 6 Seasons */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {locale === 'en' ? '6 Seasons (Ritu)' : locale === 'hi' ? '6 ऋतुएँ' : 'षड् ऋतवः'}
+          {locale === 'en' || String(locale) === 'ta' ? '6 Seasons (Ritu)' : locale === 'hi' ? '6 ऋतुएँ' : 'षड् ऋतवः'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {RITU_NAMES.map((ritu, i) => (

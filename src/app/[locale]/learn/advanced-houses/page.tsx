@@ -200,7 +200,7 @@ export default function AdvancedHousesPage() {
             </div>
             {/* Full Badhakesh Table */}
             <Glass className="p-4 overflow-x-auto">
-              <h3 className="text-sm font-bold text-gold-light mb-3">{locale === 'en' ? 'Badhakesh for All 12 Lagnas' : locale === 'hi' ? 'सभी 12 लग्नों के बाधकेश' : 'सर्वेषां 12 लग्नानां बाधकेशः'}</h3>
+              <h3 className="text-sm font-bold text-gold-light mb-3">{locale === 'en' || String(locale) === 'ta' ? 'Badhakesh for All 12 Lagnas' : locale === 'hi' ? 'सभी 12 लग्नों के बाधकेश' : 'सर्वेषां 12 लग्नानां बाधकेशः'}</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {BADHAKESH_TABLE.map((row, i) => (
                   <div key={i} className="flex items-center gap-2 p-2 rounded-lg bg-white/3 border border-white/5">
@@ -225,8 +225,8 @@ export default function AdvancedHousesPage() {
                 <thead>
                   <tr className="border-b border-gold-primary/20">
                     <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.lagna[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' ? '2nd Lord (Maraka)' : locale === 'hi' ? '2रे भाव स्वामी' : 'द्वितीयभावस्वामी'}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' ? '7th Lord (Maraka)' : locale === 'hi' ? '7वें भाव स्वामी' : 'सप्तमभावस्वामी'}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' || String(locale) === 'ta' ? '2nd Lord (Maraka)' : locale === 'hi' ? '2रे भाव स्वामी' : 'द्वितीयभावस्वामी'}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' || String(locale) === 'ta' ? '7th Lord (Maraka)' : locale === 'hi' ? '7वें भाव स्वामी' : 'सप्तमभावस्वामी'}</th>
                   </tr>
                 </thead>
                 <tbody>

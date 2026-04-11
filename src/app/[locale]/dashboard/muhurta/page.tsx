@@ -62,7 +62,7 @@ export default function MuhurtaPage() {
   if (!user) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-20 text-center">
-        <p className="text-text-secondary">{locale === 'en' ? 'Sign in to see personal muhurta' : 'व्यक्तिगत मुहूर्त देखने के लिए साइन इन करें'}</p>
+        <p className="text-text-secondary">{locale === 'en' || String(locale) === 'ta' ? 'Sign in to see personal muhurta' : 'व्यक्तिगत मुहूर्त देखने के लिए साइन इन करें'}</p>
       </div>
     );
   }
@@ -73,10 +73,10 @@ export default function MuhurtaPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{locale === 'en' ? 'Dashboard' : 'डैशबोर्ड'}</a>
+      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{locale === 'en' || String(locale) === 'ta' ? 'Dashboard' : 'डैशबोर्ड'}</a>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{locale === 'en' ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त'}</span></h1>
+        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त'}</span></h1>
         <p className="text-text-secondary text-sm" style={bf}>
           {locale === 'en'
             ? `Based on your birth nakshatra (${birthNak}) and today's nakshatra (${todayNak})`
@@ -99,11 +99,11 @@ export default function MuhurtaPage() {
               </div>
               <div className="flex items-center gap-4 mb-2 text-xs">
                 <span className="flex items-center gap-1">
-                  {locale === 'en' ? 'Tara' : 'तारा'}: {m.taraBala.favorable ? <Check className="w-3 h-3 text-emerald-400" /> : <X className="w-3 h-3 text-red-400" />}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Tara' : 'तारा'}: {m.taraBala.favorable ? <Check className="w-3 h-3 text-emerald-400" /> : <X className="w-3 h-3 text-red-400" />}
                   <span className="text-text-secondary">{m.taraBala.taraName}</span>
                 </span>
                 <span className="flex items-center gap-1">
-                  {locale === 'en' ? 'Chandra' : 'चन्द्र'}: {m.chandraBala.favorable ? <Check className="w-3 h-3 text-emerald-400" /> : <X className="w-3 h-3 text-red-400" />}
+                  {locale === 'en' || String(locale) === 'ta' ? 'Chandra' : 'चन्द्र'}: {m.chandraBala.favorable ? <Check className="w-3 h-3 text-emerald-400" /> : <X className="w-3 h-3 text-red-400" />}
                   <span className="text-text-secondary">H{m.chandraBala.houseFromMoon}</span>
                 </span>
               </div>
@@ -114,7 +114,7 @@ export default function MuhurtaPage() {
       </div>
 
       <div className="mt-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-xs text-text-secondary" style={bf}>
-        <p className="text-gold-dark font-bold uppercase tracking-wider mb-2">{locale === 'en' ? 'How this works' : 'यह कैसे काम करता है'}</p>
+        <p className="text-gold-dark font-bold uppercase tracking-wider mb-2">{locale === 'en' || String(locale) === 'ta' ? 'How this works' : 'यह कैसे काम करता है'}</p>
         <p>{locale === 'en'
           ? 'Tara Bala compares your birth nakshatra with today\'s nakshatra (9-cycle). Chandra Bala checks today\'s Moon position relative to your birth Moon sign. Both favorable = Excellent. Both unfavorable = Avoid.'
           : 'तारा बल आपके जन्म नक्षत्र की तुलना आज के नक्षत्र से करता है (9 चक्र)। चन्द्र बल आज के चन्द्रमा की स्थिति की जाँच करता है। दोनों अनुकूल = उत्कृष्ट। दोनों प्रतिकूल = बचें।'}</p>

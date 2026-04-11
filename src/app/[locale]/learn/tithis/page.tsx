@@ -353,7 +353,7 @@ export default function LearnTithisPage() {
                     {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
-                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
+                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}</div>
                   </motion.div>
                 );
               })}
@@ -384,7 +384,7 @@ export default function LearnTithisPage() {
                     {locale !== 'en' && <div className="text-text-secondary/75 text-xs">{ti.name.en}</div>}
                     <div className="text-text-secondary/70 text-xs mt-1">{ti.deity[locale]}</div>
                     <div className={`text-xs mt-1 font-medium ${catColor}`}>{cat}</div>
-                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[(ti.number - 15) - 1]?.[locale === 'en' ? 'en' : 'hi']}</div>
+                    <div className="text-text-tertiary text-xs">{TITHI_PLANETS[(ti.number - 15) - 1]?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}</div>
                   </motion.div>
                 );
               })}
@@ -429,7 +429,7 @@ export default function LearnTithisPage() {
                     <td className="py-2 px-3 text-gold-primary font-bold">{ti.number}</td>
                     <td className="py-2 px-3 text-gold-light font-medium">{ti.name[locale]}{locale !== 'en' && <span className="text-text-tertiary text-xs ml-1">({ti.name.en})</span>}</td>
                     <td className="py-2 px-3 text-text-secondary">{ti.deity[locale]}</td>
-                    <td className="py-2 px-3 text-text-secondary">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' ? 'en' : 'hi']}</td>
+                    <td className="py-2 px-3 text-text-secondary">{TITHI_PLANETS[ti.number - 1]?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}</td>
                     <td className={`py-2 px-3 font-medium ${catColor}`}>{cat}</td>
                     <td className="py-2 px-3 text-text-tertiary font-mono text-xs">{startDeg}\u00b0\u2013{endDeg}\u00b0</td>
                   </tr>

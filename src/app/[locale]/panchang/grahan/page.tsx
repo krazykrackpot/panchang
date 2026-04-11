@@ -237,7 +237,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0}
       >
-        {locale === 'en' ? 'SOLAR ECLIPSE' : locale === 'hi' ? 'सूर्य ग्रहण' : 'सूर्यग्रहणम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'SOLAR ECLIPSE' : locale === 'hi' ? 'सूर्य ग्रहण' : 'सूर्यग्रहणम्'}
       </motion.text>
 
       {/* Sun (solar side) */}
@@ -260,7 +260,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={0.2}
       />
       <motion.text x="40" y="120" fill="#fbbf24" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.25}>
-        {locale === 'en' ? 'Sun' : 'सूर्य'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Sun' : 'सूर्य'}
       </motion.text>
 
       {/* Moon slides in between Sun and Earth */}
@@ -285,7 +285,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0.7}
       >
-        {locale === 'en' ? 'Moon' : 'चन्द्र'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Moon' : 'चन्द्र'}
       </motion.text>
 
       {/* Shadow cone lines (solar) */}
@@ -316,7 +316,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
       <motion.circle cx="240" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.3} />
       <motion.circle cx="240" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.35} />
       <motion.text x="240" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.4}>
-        {locale === 'en' ? 'Earth' : 'पृथ्वी'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Earth' : 'पृथ्वी'}
       </motion.text>
 
       {/* ── Lunar Eclipse ── */}
@@ -330,21 +330,21 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={0.1}
       >
-        {locale === 'en' ? 'LUNAR ECLIPSE' : locale === 'hi' ? 'चन्द्र ग्रहण' : 'चन्द्रग्रहणम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'LUNAR ECLIPSE' : locale === 'hi' ? 'चन्द्र ग्रहण' : 'चन्द्रग्रहणम्'}
       </motion.text>
 
       {/* Sun (lunar side) */}
       <motion.circle cx="340" cy="80" r="28" fill="#fbbf24" opacity="0.3" variants={fadeUp} custom={0.2} />
       <motion.circle cx="340" cy="80" r="22" fill="#fbbf24" opacity="0.5" variants={fadeUp} custom={0.25} />
       <motion.text x="340" y="120" fill="#fbbf24" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.3}>
-        {locale === 'en' ? 'Sun' : 'सूर्य'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Sun' : 'सूर्य'}
       </motion.text>
 
       {/* Earth (lunar side) */}
       <motion.circle cx="440" cy="80" r="16" fill="#2563eb" opacity="0.3" variants={fadeUp} custom={0.35} />
       <motion.circle cx="440" cy="80" r="12" fill="#2563eb" opacity="0.5" variants={fadeUp} custom={0.4} />
       <motion.text x="440" y="110" fill="#60a5fa" fontSize="9" textAnchor="middle" variants={fadeUp} custom={0.45}>
-        {locale === 'en' ? 'Earth' : 'पृथ्वी'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Earth' : 'पृथ्वी'}
       </motion.text>
 
       {/* Shadow cone grows (lunar) */}
@@ -390,7 +390,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         transition={{ duration: 0.8, delay: 1.0 }}
       />
       <motion.text x="540" y="105" fill="#f87171" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.1}>
-        {locale === 'en' ? 'Moon' : 'चन्द्र'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Moon' : 'चन्द्र'}
       </motion.text>
 
       {/* ── Rahu-Ketu Axis (animated dashed line drawing) ── */}
@@ -433,7 +433,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={1.5}
       />
       <motion.text x="100" y="220" fill="#f87171" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.55}>
-        {locale === 'en' ? 'Rahu' : 'राहु'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Rahu' : 'राहु'}
       </motion.text>
 
       {/* Ketu node */}
@@ -448,7 +448,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         custom={1.5}
       />
       <motion.text x="500" y="220" fill="#60a5fa" fontSize="8" textAnchor="middle" variants={fadeUp} custom={1.55}>
-        {locale === 'en' ? 'Ketu' : 'केतु'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Ketu' : 'केतु'}
       </motion.text>
 
       {/* ── Ecliptic path (animated drawing) ── */}
@@ -469,7 +469,7 @@ function EclipseGeometrySVG({ locale }: { locale: Locale }) {
         variants={fadeUp}
         custom={1.9}
       >
-        {locale === 'en' ? 'Ecliptic Plane' : locale === 'hi' ? 'क्रान्तिवृत्त तल' : 'क्रान्तिवृत्ततलम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Ecliptic Plane' : locale === 'hi' ? 'क्रान्तिवृत्त तल' : 'क्रान्तिवृत्ततलम्'}
       </motion.text>
 
       {/* ── Lunar orbit path (animated drawing, dashed) ── */}
@@ -618,7 +618,7 @@ export default function GrahanPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {locale === 'en' ? 'Grahan' : locale === 'hi' ? 'ग्रहण' : 'ग्रहणम्'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Grahan' : locale === 'hi' ? 'ग्रहण' : 'ग्रहणम्'}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -655,7 +655,7 @@ export default function GrahanPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Condition:' : 'शर्त:'} |Moon_lat_node_distance| &lt; 18.5\u00B0 (Solar) or
+                {locale === 'en' || String(locale) === 'ta' ? 'Condition:' : 'शर्त:'} |Moon_lat_node_distance| &lt; 18.5\u00B0 (Solar) or
                 &lt; 12.5\u00B0 (Lunar)
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
@@ -671,7 +671,7 @@ export default function GrahanPage() {
       {/* ── Eclipse Geometry Visualization (animated) ── */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'Eclipse Geometry' : locale === 'hi' ? 'ग्रहण ज्यामिति' : 'ग्रहणज्यामितिः'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Eclipse Geometry' : locale === 'hi' ? 'ग्रहण ज्यामिति' : 'ग्रहणज्यामितिः'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipseGeometrySVG locale={locale} />

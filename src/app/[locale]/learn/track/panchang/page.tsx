@@ -207,7 +207,7 @@ export default function PanchangTrackPage() {
                       <div className="flex items-center gap-3">
                         {isRef ? (
                           <span className="text-xs font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
-                            {locale === 'en' ? 'Ref' : 'सन्दर्भ'}
+                            {locale === 'en' || String(locale) === 'ta' ? 'Ref' : 'सन्दर्भ'}
                           </span>
                         ) : (
                           <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-gold-light">

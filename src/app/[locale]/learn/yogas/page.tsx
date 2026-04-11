@@ -224,9 +224,9 @@ export default function LearnYogasPage() {
               <div className="text-right">
                 <div className="text-text-secondary text-xs">{y.meaning[locale]}</div>
                 <div className={`text-xs ${natureColor(y.nature)}`}>
-                  {y.nature === 'auspicious' ? (locale === 'en' ? 'Auspicious' : 'शुभ') :
-                   y.nature === 'inauspicious' ? (locale === 'en' ? 'Inauspicious' : 'अशुभ') :
-                   (locale === 'en' ? 'Neutral' : 'सम')}
+                  {y.nature === 'auspicious' ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ') :
+                   y.nature === 'inauspicious' ? (locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ') :
+                   (locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम')}
                 </div>
               </div>
             </motion.div>

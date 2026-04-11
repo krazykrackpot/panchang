@@ -21,22 +21,22 @@ export default function Footer() {
           {/* Center — links */}
           <div className="flex items-center gap-4 text-xs text-text-secondary/70">
             <Link href="/panchang" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'Panchang' : 'पंचांग'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Panchang' : 'पंचांग'}
             </Link>
             <Link href="/kundali" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'Kundali' : 'कुण्डली'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Kundali' : 'कुण्डली'}
             </Link>
             <Link href="/calendar" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'Calendar' : 'पंचांग'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Calendar' : 'पंचांग'}
             </Link>
             <Link href="/learn" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'Learn' : 'सीखें'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Learn' : 'सीखें'}
             </Link>
             <Link href="/about" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'About' : 'परिचय'}
+              {locale === 'en' || String(locale) === 'ta' ? 'About' : 'परिचय'}
             </Link>
             <Link href="/pricing" className="hover:text-gold-light transition-colors">
-              {locale === 'en' ? 'Pricing' : 'मूल्य'}
+              {locale === 'en' || String(locale) === 'ta' ? 'Pricing' : 'मूल्य'}
             </Link>
           </div>
 

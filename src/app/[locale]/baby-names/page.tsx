@@ -87,7 +87,7 @@ export default function BabyNamesPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{locale === 'en' ? 'Baby Name Suggester' : 'शिशु नाम सुझावक'}</span>
+          <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Baby Name Suggester' : 'शिशु नाम सुझावक'}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           {locale === 'en'
@@ -99,7 +99,7 @@ export default function BabyNamesPage() {
       {/* Birth details — compact row */}
       <div className="mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
-          {locale === 'en' ? 'Enter Birth Details (auto-detects Nakshatra)' : 'जन्म विवरण दर्ज करें (नक्षत्र स्वतः पहचानेगा)'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Enter Birth Details (auto-detects Nakshatra)' : 'जन्म विवरण दर्ज करें (नक्षत्र स्वतः पहचानेगा)'}
         </label>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <input type="date" value={birthDate} onChange={e => setBirthDate(e.target.value)}
@@ -110,7 +110,7 @@ export default function BabyNamesPage() {
             <LocationSearch
               value={birthPlaceName}
               onSelect={(loc) => { setBirthPlaceName(loc.name); setBirthLat(loc.lat); setBirthLng(loc.lng); setBirthTz(loc.timezone); }}
-              placeholder={locale === 'en' ? 'Birth city...' : 'जन्म शहर...'}
+              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Birth city...' : 'जन्म शहर...'}
             />
           </div>
         </div>
@@ -126,8 +126,8 @@ export default function BabyNamesPage() {
       {/* Nakshatra selector */}
       <div className="mb-6">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
-          {locale === 'en' ? 'Select Birth Nakshatra' : 'जन्म नक्षत्र चुनें'}
-          {detectedNak > 0 && <span className="text-text-secondary/65 font-normal ml-2">({locale === 'en' ? 'or change below' : 'या नीचे बदलें'})</span>}
+          {locale === 'en' || String(locale) === 'ta' ? 'Select Birth Nakshatra' : 'जन्म नक्षत्र चुनें'}
+          {detectedNak > 0 && <span className="text-text-secondary/65 font-normal ml-2">({locale === 'en' || String(locale) === 'ta' ? 'or change below' : 'या नीचे बदलें'})</span>}
         </label>
         <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-9 gap-2">
           {NAKSHATRAS.map(n => {
@@ -149,7 +149,7 @@ export default function BabyNamesPage() {
                   {n.name[locale]}
                 </div>
                 {isSelected && detectedPada > 0 && (
-                  <div className="text-gold-primary/60 text-xs mt-1">{locale === 'en' ? `Pada ${detectedPada}` : `पाद ${detectedPada}`}</div>
+                  <div className="text-gold-primary/60 text-xs mt-1">{locale === 'en' || String(locale) === 'ta' ? `Pada ${detectedPada}` : `पाद ${detectedPada}`}</div>
                 )}
               </button>
             );
@@ -163,7 +163,7 @@ export default function BabyNamesPage() {
             {/* Explanation: What are Padas? */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/35 to-[#0a0e27] border border-gold-primary/12 p-5 mb-6">
               <h3 className="text-gold-light text-sm font-bold mb-2" style={headingFont}>
-                {locale === 'en' ? 'What are Padas?' : 'पाद क्या हैं?'}
+                {locale === 'en' || String(locale) === 'ta' ? 'What are Padas?' : 'पाद क्या हैं?'}
               </h3>
               <p className="text-text-secondary text-sm leading-relaxed">
                 {locale === 'en'
@@ -175,13 +175,13 @@ export default function BabyNamesPage() {
             {/* Pada selector */}
             <div className="mb-8">
               <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">
-                {locale === 'en' ? 'Select Pada (Quarter)' : 'पाद चुनें (चतुर्थांश)'}
-                {detectedPada > 0 && <span className="text-gold-primary font-normal ml-2">— {locale === 'en' ? `Pada ${detectedPada} detected from birth time` : `जन्म समय से पाद ${detectedPada} पहचाना`}</span>}
+                {locale === 'en' || String(locale) === 'ta' ? 'Select Pada (Quarter)' : 'पाद चुनें (चतुर्थांश)'}
+                {detectedPada > 0 && <span className="text-gold-primary font-normal ml-2">— {locale === 'en' || String(locale) === 'ta' ? `Pada ${detectedPada} detected from birth time` : `जन्म समय से पाद ${detectedPada} पहचाना`}</span>}
               </label>
               <div className="flex justify-center gap-3">
                 <button onClick={() => setSelectedPada(0)}
                   className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${selectedPada === 0 ? 'bg-gradient-to-br from-gold-primary/20 to-gold-primary/10 text-gold-light border border-gold-primary/40' : 'bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27] text-text-secondary border border-gold-primary/8 hover:border-gold-primary/20'}`}>
-                  {locale === 'en' ? 'All Padas' : 'सभी पाद'}
+                  {locale === 'en' || String(locale) === 'ta' ? 'All Padas' : 'सभी पाद'}
                 </button>
                 {[1, 2, 3, 4].map(p => (
                   <button key={p} onClick={() => setSelectedPada(p)}
@@ -192,7 +192,7 @@ export default function BabyNamesPage() {
                         ? 'bg-gradient-to-br from-[#2d1b69]/30 to-[#0a0e27] text-gold-primary border-2 border-gold-primary/30 border-dashed'
                         : 'bg-gradient-to-br from-[#2d1b69]/20 to-[#0a0e27] text-text-secondary border border-gold-primary/8 hover:border-gold-primary/20'
                     }`}>
-                    {locale === 'en' ? `Pada ${p}` : `पाद ${p}`}
+                    {locale === 'en' || String(locale) === 'ta' ? `Pada ${p}` : `पाद ${p}`}
                   </button>
                 ))}
               </div>
@@ -203,7 +203,7 @@ export default function BabyNamesPage() {
             {/* Syllables — the main result */}
             <div className="my-8">
               <h3 className="text-gold-light text-xl font-bold mb-2 text-center" style={headingFont}>
-                {locale === 'en' ? 'Name Starting Syllables' : 'नाम के प्रारम्भिक अक्षर'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Name Starting Syllables' : 'नाम के प्रारम्भिक अक्षर'}
               </h3>
               <p className="text-text-secondary/75 text-sm text-center mb-6">
                 {locale === 'en'
@@ -219,13 +219,13 @@ export default function BabyNamesPage() {
                     className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-2xl p-6 border-2 border-gold-primary/25 min-w-[110px] text-center shadow-lg shadow-gold-primary/10"
                   >
                     <div className="text-5xl font-bold text-gold-light mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                      {locale === 'en' ? syl.en : syl.hi}
+                      {locale === 'en' || String(locale) === 'ta' ? syl.en : syl.hi}
                     </div>
                     <div className="text-text-secondary text-sm">
-                      {locale === 'en' ? syl.hi : syl.en}
+                      {locale === 'en' || String(locale) === 'ta' ? syl.hi : syl.en}
                     </div>
                     <div className="text-text-secondary/55 text-xs mt-1">
-                      {locale === 'en' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
+                      {locale === 'en' || String(locale) === 'ta' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
                     </div>
                   </motion.div>
                 ))}
@@ -244,7 +244,7 @@ export default function BabyNamesPage() {
       <GoldDivider />
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-2 text-center" style={headingFont}>
-          {locale === 'en' ? 'Complete Syllable Reference' : 'सम्पूर्ण अक्षर सन्दर्भ'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Complete Syllable Reference' : 'सम्पूर्ण अक्षर सन्दर्भ'}
         </h3>
         <p className="text-text-secondary/70 text-sm text-center mb-6">
           {locale === 'en'
@@ -290,7 +290,7 @@ export default function BabyNamesPage() {
                           : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8'
                       }`}>
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {syl ? (locale === 'en' ? syl.en : syl.hi) : '—'}
+                          {syl ? (locale === 'en' || String(locale) === 'ta' ? syl.en : syl.hi) : '—'}
                         </div>
                         <div className="text-xs text-text-secondary/55 mt-0.5">P{pi + 1}</div>
                       </div>

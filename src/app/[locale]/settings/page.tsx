@@ -258,7 +258,7 @@ export default function SettingsPage() {
   }
 
   const memberSince = user.created_at
-    ? new Date(user.created_at).toLocaleDateString(locale === 'en' ? 'en-IN' : 'hi-IN', {
+    ? new Date(user.created_at).toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN', {
         year: 'numeric', month: 'long', day: 'numeric',
       })
     : '—';
@@ -615,7 +615,7 @@ export default function SettingsPage() {
             {NOTIF_TYPES.map((nt) => (
               <label key={nt.key} className="flex items-center justify-between cursor-pointer group">
                 <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                  {locale === 'en' ? nt.en : nt.hi}
+                  {locale === 'en' || String(locale) === 'ta' ? nt.en : nt.hi}
                 </span>
                 <button
                   role="switch"

@@ -98,12 +98,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     setError('');
 
     if (!fullName.trim()) {
-      setError(locale === 'en' ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
+      setError(locale === 'en' || String(locale) === 'ta' ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
       return;
     }
     // DOB and POB are optional — user can skip
     if (birthDate && !birthLocation) {
-      setError(locale === 'en' ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
+      setError(locale === 'en' || String(locale) === 'ta' ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
       return;
     }
 
@@ -293,7 +293,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
             type="button"
             onClick={async () => {
               if (!fullName.trim()) {
-                setError(locale === 'en' ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
+                setError(locale === 'en' || String(locale) === 'ta' ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
                 return;
               }
               setSaving(true);

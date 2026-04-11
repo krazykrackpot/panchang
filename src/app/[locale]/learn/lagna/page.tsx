@@ -166,7 +166,7 @@ export default function LagnaPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-4xl sm:text-5xl font-bold text-gold-gradient mb-4" style={headingFont}>{t(L.title)}</h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto" style={bodyFont}>{t(L.subtitle)}</p>
-        <SanskritTermCard term="लग्नम्" transliteration="Lagnam" meaning={locale === 'en' ? '"That which is attached" — the sign clinging to the eastern horizon at birth' : '"जो जुड़ा हुआ है" — जन्म पर पूर्वी क्षितिज से जुड़ी राशि'} />
+        <SanskritTermCard term="लग्नम्" transliteration="Lagnam" meaning={locale === 'en' || String(locale) === 'ta' ? '"That which is attached" — the sign clinging to the eastern horizon at birth' : '"जो जुड़ा हुआ है" — जन्म पर पूर्वी क्षितिज से जुड़ी राशि'} />
       </motion.div>
 
       {/* What is Lagna */}
@@ -200,11 +200,11 @@ export default function LagnaPage() {
         <p className="text-text-secondary leading-relaxed mb-4" style={bodyFont}>{t(L.changeContent)}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-4 bg-orange-500/5 rounded-lg border border-orange-500/10">
-            <p className="text-orange-400 text-sm font-semibold mb-1">{locale === 'en' ? 'Long Ascension' : 'दीर्घ उदय'}</p>
+            <p className="text-orange-400 text-sm font-semibold mb-1">{locale === 'en' || String(locale) === 'ta' ? 'Long Ascension' : 'दीर्घ उदय'}</p>
             <p className="text-text-secondary text-sm" style={bodyFont}>{t(L.longAsc)}</p>
           </div>
           <div className="p-4 bg-blue-500/5 rounded-lg border border-blue-500/10">
-            <p className="text-blue-400 text-sm font-semibold mb-1">{locale === 'en' ? 'Short Ascension' : 'लघु उदय'}</p>
+            <p className="text-blue-400 text-sm font-semibold mb-1">{locale === 'en' || String(locale) === 'ta' ? 'Short Ascension' : 'लघु उदय'}</p>
             <p className="text-text-secondary text-sm" style={bodyFont}>{t(L.shortAsc)}</p>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function LagnaPage() {
               className="p-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-gold-light font-semibold" style={headingFont}>{t(lagna.sign)}</span>
-                <span className="text-text-tertiary text-xs">{locale === 'en' ? 'Lord' : 'स्वामी'}: {t(lagna.lord)}</span>
+                <span className="text-text-tertiary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Lord' : 'स्वामी'}: {t(lagna.lord)}</span>
               </div>
               <p className="text-text-secondary text-sm" style={bodyFont}>{t(lagna.traits)}</p>
             </motion.div>
@@ -276,7 +276,7 @@ export default function LagnaPage() {
         <div className="p-3 bg-gold-primary/5 rounded-lg border border-gold-primary/20">
           <p className="text-gold-primary/80 text-sm" style={bodyFont}>
             {t(L.muhurtaOurTool)}{' '}
-            <Link href="/panchang" className="text-gold-light underline hover:text-gold-primary">{locale === 'en' ? 'View Today\'s Lagna Windows →' : 'आज की लग्न खिड़कियाँ देखें →'}</Link>
+            <Link href="/panchang" className="text-gold-light underline hover:text-gold-primary">{locale === 'en' || String(locale) === 'ta' ? 'View Today\'s Lagna Windows →' : 'आज की लग्न खिड़कियाँ देखें →'}</Link>
           </p>
         </div>
       </LessonSection>
@@ -288,9 +288,9 @@ export default function LagnaPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="text-gold-primary border-b border-gold-primary/10">
-                <th className="text-left py-2 px-3">{locale === 'en' ? 'Reference' : 'सन्दर्भ'}</th>
-                <th className="text-left py-2 px-3">{locale === 'en' ? 'Governs' : 'शासन'}</th>
-                <th className="text-right py-2 px-3">{locale === 'en' ? 'Changes' : 'परिवर्तन'}</th>
+                <th className="text-left py-2 px-3">{locale === 'en' || String(locale) === 'ta' ? 'Reference' : 'सन्दर्भ'}</th>
+                <th className="text-left py-2 px-3">{locale === 'en' || String(locale) === 'ta' ? 'Governs' : 'शासन'}</th>
+                <th className="text-right py-2 px-3">{locale === 'en' || String(locale) === 'ta' ? 'Changes' : 'परिवर्तन'}</th>
               </tr>
             </thead>
             <tbody>
@@ -326,14 +326,14 @@ export default function LagnaPage() {
       {/* Cross-references */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 text-center space-y-3">
-        <h3 className="text-gold-gradient text-lg font-bold" style={headingFont}>{locale === 'en' ? 'Continue Learning' : 'आगे सीखें'}</h3>
+        <h3 className="text-gold-gradient text-lg font-bold" style={headingFont}>{locale === 'en' || String(locale) === 'ta' ? 'Continue Learning' : 'आगे सीखें'}</h3>
         <div className="flex flex-wrap gap-3 justify-center">
           {[
-            { href: '/learn/bhavas', label: locale === 'en' ? 'Bhavas (Houses)' : 'भाव' },
-            { href: '/learn/grahas', label: locale === 'en' ? 'Grahas (Planets)' : 'ग्रह' },
-            { href: '/learn/kundali', label: locale === 'en' ? 'How a Kundali is Made' : 'कुण्डली कैसे बनती है' },
-            { href: '/learn/rashis', label: locale === 'en' ? 'Rashis (Signs)' : 'राशियाँ' },
-            { href: '/learn/vargas', label: locale === 'en' ? 'Divisional Charts' : 'विभागीय कुण्डलियाँ' },
+            { href: '/learn/bhavas', label: locale === 'en' || String(locale) === 'ta' ? 'Bhavas (Houses)' : 'भाव' },
+            { href: '/learn/grahas', label: locale === 'en' || String(locale) === 'ta' ? 'Grahas (Planets)' : 'ग्रह' },
+            { href: '/learn/kundali', label: locale === 'en' || String(locale) === 'ta' ? 'How a Kundali is Made' : 'कुण्डली कैसे बनती है' },
+            { href: '/learn/rashis', label: locale === 'en' || String(locale) === 'ta' ? 'Rashis (Signs)' : 'राशियाँ' },
+            { href: '/learn/vargas', label: locale === 'en' || String(locale) === 'ta' ? 'Divisional Charts' : 'विभागीय कुण्डलियाँ' },
           ].map(link => (
             <Link key={link.href} href={link.href}
               className="px-4 py-2 rounded-lg border border-gold-primary/20 text-gold-primary text-sm hover:bg-gold-primary/10 transition-colors">

@@ -150,10 +150,10 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
       {/* Center */}
       <circle cx="250" cy="250" r="85" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x="250" y="232" fill="#f0d48a" fontSize="14" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {locale === 'en' ? 'YOGA' : 'योग'}
+        {locale === 'en' || String(locale) === 'ta' ? 'YOGA' : 'योग'}
       </text>
       <text x="250" y="250" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
-        {locale === 'en' ? 'Sun + Moon Sum' : 'सूर्य + चन्द्र योग'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Sun + Moon Sum' : 'सूर्य + चन्द्र योग'}
       </text>
       <text x="250" y="268" fill="rgba(212,168,83,0.35)" fontSize="8" textAnchor="middle">
         27 x 13°20&apos;
@@ -161,11 +161,11 @@ function AnimatedYogaWheel({ locale, onSelect }: { locale: Locale; onSelect: (id
 
       {/* Legend */}
       <circle cx="60" cy="460" r="5" fill="#4ade80" opacity="0.6" />
-      <text x="75" y="463" fill="#4ade80" fontSize="8">{locale === 'en' ? 'Auspicious' : 'शुभ'}</text>
+      <text x="75" y="463" fill="#4ade80" fontSize="8">{locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ'}</text>
       <circle cx="160" cy="460" r="5" fill="#fbbf24" opacity="0.6" />
-      <text x="175" y="463" fill="#fbbf24" fontSize="8">{locale === 'en' ? 'Neutral' : 'सम'}</text>
+      <text x="175" y="463" fill="#fbbf24" fontSize="8">{locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम'}</text>
       <circle cx="250" cy="460" r="5" fill="#f87171" opacity="0.6" />
-      <text x="265" y="463" fill="#f87171" fontSize="8">{locale === 'en' ? 'Inauspicious' : 'अशुभ'}</text>
+      <text x="265" y="463" fill="#f87171" fontSize="8">{locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ'}</text>
     </motion.svg>
   );
 }
@@ -218,7 +218,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
           );
         })}
         <text x="120" y="150" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {locale === 'en' ? 'Sun' : 'सूर्य'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Sun' : 'सूर्य'}
         </text>
         <text x="120" y="165" fill="#f39c12" fontSize="8" textAnchor="middle" opacity="0.6">
           75°
@@ -229,7 +229,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5, type: 'spring' }}>
         <circle cx="340" cy="100" r="16" fill="url(#moonGradY)" />
         <text x="340" y="140" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {locale === 'en' ? 'Moon' : 'चन्द्र'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Moon' : 'चन्द्र'}
         </text>
         <text x="340" y="155" fill="#d4a853" fontSize="8" textAnchor="middle" opacity="0.6">
           120°
@@ -248,7 +248,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
       >
-        {locale === 'en' ? 'SUM = 195°' : 'योग = 195°'}
+        {locale === 'en' || String(locale) === 'ta' ? 'SUM = 195°' : 'योग = 195°'}
       </motion.text>
 
       {/* Result */}
@@ -262,7 +262,7 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
           195° / 13.33° = 14.6
         </text>
         <text x="500" y="110" fill="#4ade80" fontSize="12" textAnchor="middle" fontWeight="bold">
-          {locale === 'en' ? 'Yoga #15' : 'योग #15'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Yoga #15' : 'योग #15'}
         </text>
         <text x="500" y="125" fill="#4ade80" fontSize="9" textAnchor="middle" opacity="0.7">
           {YOGAS[14]?.name[locale] || 'Vajra'}
@@ -302,10 +302,10 @@ export default function YogaPage() {
         <YogaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' ? 'Yoga' : locale === 'hi' ? 'योग' : 'योगः'}</span>
+            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Yoga' : locale === 'hi' ? 'योग' : 'योगः'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' ? 'The 27 Soli-Lunar Combinations — Union of Sun and Moon' : locale === 'hi' ? '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' : 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः'}
+            {locale === 'en' || String(locale) === 'ta' ? 'The 27 Soli-Lunar Combinations — Union of Sun and Moon' : locale === 'hi' ? '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' : 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः'}
           </p>
         </div>
       </motion.div>
@@ -332,7 +332,7 @@ export default function YogaPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Formula:' : 'सूत्र:'} Yoga = floor((Sun_sidereal + Moon_sidereal) / 13.333) + 1
+                {locale === 'en' || String(locale) === 'ta' ? 'Formula:' : 'सूत्र:'} Yoga = floor((Sun_sidereal + Moon_sidereal) / 13.333) + 1
               </p>
             </motion.div>
           </div>
@@ -342,7 +342,7 @@ export default function YogaPage() {
       {/* Interactive Yoga Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'Interactive Yoga Wheel' : locale === 'hi' ? 'इंटरैक्टिव योग चक्र' : 'संवादात्मकं योगचक्रम्'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Interactive Yoga Wheel' : locale === 'hi' ? 'इंटरैक्टिव योग चक्र' : 'संवादात्मकं योगचक्रम्'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedYogaWheel locale={locale} onSelect={setSelectedYoga} />
@@ -367,23 +367,23 @@ export default function YogaPage() {
                     : 'bg-amber-500/20 text-amber-400'
                   }`}>
                     {YOGAS[selectedYoga].nature === 'auspicious'
-                      ? (locale === 'en' ? 'Auspicious' : 'शुभ')
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ')
                       : YOGAS[selectedYoga].nature === 'inauspicious'
-                      ? (locale === 'en' ? 'Inauspicious' : 'अशुभ')
-                      : (locale === 'en' ? 'Neutral' : 'सम')}
+                      ? (locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ')
+                      : (locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम')}
                   </span>
                 </div>
                 <div className="text-text-secondary text-sm">
-                  <p><span className="text-gold-dark">{locale === 'en' ? 'Yoga Number:' : 'योग संख्या:'}</span> {selectedYoga + 1} / 27</p>
-                  <p className="mt-1"><span className="text-gold-dark">{locale === 'en' ? 'Meaning:' : 'अर्थ:'}</span> {YOGAS[selectedYoga].meaning[locale]}</p>
-                  <p className="mt-1"><span className="text-gold-dark">{locale === 'en' ? 'Angular Span:' : 'कोणीय विस्तार:'}</span> {(selectedYoga * 13.333).toFixed(1)}° — {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
+                  <p><span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Yoga Number:' : 'योग संख्या:'}</span> {selectedYoga + 1} / 27</p>
+                  <p className="mt-1"><span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Meaning:' : 'अर्थ:'}</span> {YOGAS[selectedYoga].meaning[locale]}</p>
+                  <p className="mt-1"><span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Angular Span:' : 'कोणीय विस्तार:'}</span> {(selectedYoga * 13.333).toFixed(1)}° — {((selectedYoga + 1) * 13.333).toFixed(1)}°</p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {locale === 'en' ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
+            {locale === 'en' || String(locale) === 'ta' ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
           </p>
         </div>
       </section>
@@ -415,10 +415,10 @@ export default function YogaPage() {
               </div>
               <div className={`text-xs mt-1 ${natureColor(yoga.nature)}`}>
                 {yoga.nature === 'auspicious'
-                  ? (locale === 'en' ? 'Auspicious' : 'शुभ')
+                  ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ')
                   : yoga.nature === 'inauspicious'
-                  ? (locale === 'en' ? 'Inauspicious' : 'अशुभ')
-                  : (locale === 'en' ? 'Neutral' : 'सम')}
+                  ? (locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ')
+                  : (locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम')}
               </div>
             </motion.div>
           ))}

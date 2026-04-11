@@ -204,7 +204,7 @@ export default function SadeSatiLearnPage() {
         {/* Visual timeline */}
         <div className="mt-6 p-4 rounded-xl bg-bg-primary/40 border border-gold-primary/10">
           <p className="text-gold-light text-xs font-semibold text-center mb-4">
-            {locale === 'en' ? 'Sade Sati Transit Path' : 'साढ़े साती गोचर मार्ग'}
+            {locale === 'en' || String(locale) === 'ta' ? 'Sade Sati Transit Path' : 'साढ़े साती गोचर मार्ग'}
           </p>
           <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
             {[
@@ -227,7 +227,7 @@ export default function SadeSatiLearnPage() {
             ))}
           </div>
           <p className="text-center text-gold-primary/60 text-xs font-mono mt-3">
-            {locale === 'en' ? 'Total: 2.5 + 2.5 + 2.5 = 7.5 years' : 'कुल: 2.5 + 2.5 + 2.5 = 7.5 वर्ष'}
+            {locale === 'en' || String(locale) === 'ta' ? 'Total: 2.5 + 2.5 + 2.5 = 7.5 years' : 'कुल: 2.5 + 2.5 + 2.5 = 7.5 वर्ष'}
           </p>
         </div>
       </LessonSection>
@@ -261,7 +261,7 @@ export default function SadeSatiLearnPage() {
               <p className="text-text-secondary text-sm mb-3 leading-relaxed">{phase.themes[locale]}</p>
               <div className="p-3 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                 <p className="text-gold-light/80 text-sm">
-                  <span className="font-semibold">{locale === 'en' ? 'Advice: ' : 'सलाह: '}</span>
+                  <span className="font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Advice: ' : 'सलाह: '}</span>
                   {phase.advice[locale]}
                 </p>
               </div>
@@ -278,9 +278,9 @@ export default function SadeSatiLearnPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' ? 'Factor' : 'कारक'}</th>
-                <th className="text-left py-3 px-3 text-emerald-400 font-semibold">{locale === 'en' ? 'Mild Sade Sati' : 'हल्की साढ़े साती'}</th>
-                <th className="text-left py-3 px-3 text-red-400 font-semibold">{locale === 'en' ? 'Severe Sade Sati' : 'कठिन साढ़े साती'}</th>
+                <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Factor' : 'कारक'}</th>
+                <th className="text-left py-3 px-3 text-emerald-400 font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Mild Sade Sati' : 'हल्की साढ़े साती'}</th>
+                <th className="text-left py-3 px-3 text-red-400 font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Severe Sade Sati' : 'कठिन साढ़े साती'}</th>
               </tr>
             </thead>
             <tbody>
@@ -411,7 +411,7 @@ export default function SadeSatiLearnPage() {
           href="/sade-sati"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {locale === 'en' ? 'Check Your Sade Sati Status' : 'अपनी साढ़े साती स्थिति जाँचें'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Check Your Sade Sati Status' : 'अपनी साढ़े साती स्थिति जाँचें'}
         </Link>
       </div>
     </div>

@@ -456,7 +456,7 @@ export default function HomePage() {
         <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={stagger}>
           <motion.div variants={fadeInUp} className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
-              <span className="text-gold-gradient">{locale === 'en' ? 'Three Pillars of Vedic Wisdom' : locale === 'hi' ? 'वैदिक ज्ञान के तीन स्तम्भ' : 'वैदिकज्ञानस्य त्रयः स्तम्भाः'}</span>
+              <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Three Pillars of Vedic Wisdom' : locale === 'hi' ? 'वैदिक ज्ञान के तीन स्तम्भ' : 'वैदिकज्ञानस्य त्रयः स्तम्भाः'}</span>
             </h2>
           </motion.div>
 
@@ -470,22 +470,22 @@ export default function HomePage() {
                   <div className="mb-1">
                     <div className="border-t-2 border-gold-primary/60 inline-block">
                       <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                        {locale === 'en' ? 'Panchang' : 'पञ्चाङ्ग'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Panchang' : 'पञ्चाङ्ग'}
                       </h3>
                     </div>
                   </div>
                   <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en' ? 'Know Your Day' : locale === 'hi' ? 'अपना दिन जानें' : 'स्वदिनं जानातु'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Know Your Day' : locale === 'hi' ? 'अपना दिन जानें' : 'स्वदिनं जानातु'}
                   </p>
                   <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en'
+                    {locale === 'en' || String(locale) === 'ta'
                       ? <>Precise <span className="text-amber-300 not-italic font-bold">tithi, nakshatra, yoga</span> and <span className="text-amber-300 not-italic font-bold">karana</span> timings for your location. Festival calendar with <span className="text-amber-300 not-italic font-bold">step-by-step puja vidhis</span>, mantras in Devanagari, and <span className="text-amber-300 not-italic font-bold">Ekadashi parana</span> computed with Hari Vasara rules. Find the <span className="text-amber-300 not-italic font-bold">perfect muhurat</span> for any of 20 life activities.</>
                       : <>आपके स्थान के लिए सटीक <span className="text-amber-300 font-bold">तिथि, नक्षत्र, योग</span> और <span className="text-amber-300 font-bold">करण</span> समय। <span className="text-amber-300 font-bold">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-amber-300 font-bold">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-amber-300 font-bold">शुभ मुहूर्त</span> खोजें।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
                     <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                      {locale === 'en' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
+                      {locale === 'en' || String(locale) === 'ta' ? "View Today's Panchang →" : 'आज का पंचांग देखें →'}
                     </span>
                   </div>
                 </div>
@@ -500,22 +500,22 @@ export default function HomePage() {
                   <div className="mb-1">
                     <div className="border-t-2 border-gold-primary/60 inline-block">
                       <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                        {locale === 'en' ? 'Kundali' : 'कुण्डली'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Kundali' : 'कुण्डली'}
                       </h3>
                     </div>
                   </div>
                   <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en' ? 'Know Yourself' : locale === 'hi' ? 'स्वयं को जानें' : 'आत्मानं जानातु'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Know Yourself' : locale === 'hi' ? 'स्वयं को जानें' : 'आत्मानं जानातु'}
                   </p>
                   <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en'
+                    {locale === 'en' || String(locale) === 'ta'
                       ? <>Your complete birth chart with <span className="text-amber-300 not-italic font-bold">150+ yogas</span>, shadbala strength, and <span className="text-amber-300 not-italic font-bold">period-by-period dasha forecasts</span> across Mahadasha, Antardasha, and Pratyantardasha. <span className="text-amber-300 not-italic font-bold">36-Guna compatibility</span> matching, annual predictions via Varshaphal, and advanced systems — <span className="text-amber-300 not-italic font-bold">KP, Jaimini, Prashna</span>.</>
                       : <>आपकी पूर्ण जन्म कुण्डली — <span className="text-amber-300 font-bold">150+ योग</span>, षड्बल और <span className="text-amber-300 font-bold">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-amber-300 font-bold">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-amber-300 font-bold">केपी, जैमिनी, प्रश्न</span>।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
                     <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                      {locale === 'en' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Generate Your Chart →' : 'अपनी कुण्डली बनाएं →'}
                     </span>
                   </div>
                 </div>
@@ -530,22 +530,22 @@ export default function HomePage() {
                   <div className="mb-1">
                     <div className="border-t-2 border-gold-primary/60 inline-block">
                       <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                        {locale === 'en' ? 'Jyotish' : 'ज्योतिष'}
+                        {locale === 'en' || String(locale) === 'ta' ? 'Jyotish' : 'ज्योतिष'}
                       </h3>
                     </div>
                   </div>
                   <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en' ? 'Master the Science' : locale === 'hi' ? 'विज्ञान में निपुणता' : 'विज्ञानं वशीकुर्यात्'}
+                    {locale === 'en' || String(locale) === 'ta' ? 'Master the Science' : locale === 'hi' ? 'विज्ञान में निपुणता' : 'विज्ञानं वशीकुर्यात्'}
                   </p>
                   <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {locale === 'en'
+                    {locale === 'en' || String(locale) === 'ta'
                       ? <><span className="text-amber-300 not-italic font-bold">89 structured modules</span> taking you from the foundations — Grahas, Rashis, Nakshatras — through <span className="text-amber-300 not-italic font-bold">Dashas, Yogas, Shadbala</span>, to advanced systems like <span className="text-amber-300 not-italic font-bold">KP, Jaimini, and Tajika</span>. Interactive diagrams, classical Sanskrit references, and the computational astronomy behind every calculation.</>
                       : <><span className="text-amber-300 font-bold">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-amber-300 font-bold">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-amber-300 font-bold">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
                     }
                   </p>
                   <div className="mt-6 pt-4 border-t border-gold-primary/10">
                     <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                      {locale === 'en' ? 'Start Learning →' : 'सीखना शुरू करें →'}
+                      {locale === 'en' || String(locale) === 'ta' ? 'Start Learning →' : 'सीखना शुरू करें →'}
                     </span>
                   </div>
                 </div>
@@ -596,22 +596,22 @@ export default function HomePage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <span className="text-gold-light font-semibold text-sm truncate" style={bf}>
-                        {profileBanner.display_name || (locale === 'en' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
+                        {profileBanner.display_name || (locale === 'en' || String(locale) === 'ta' ? 'Your Vedic Profile' : 'आपकी वैदिक कुंडली')}
                       </span>
                       {profileBanner.spiActive && (
                         <span className="text-xs px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium shrink-0">
-                          {locale === 'en' ? 'Sade Sati' : 'साढ़े साती'}
+                          {locale === 'en' || String(locale) === 'ta' ? 'Sade Sati' : 'साढ़े साती'}
                         </span>
                       )}
                     </div>
                     <div className="flex items-center gap-3 mt-0.5 text-xs text-text-secondary/70" style={bf}>
-                      <span>{locale === 'en' ? 'Moon' : 'चन्द्र'}: <span className="text-gold-primary/80">{profileBanner.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.moonRashiName?.en}</span></span>
+                      <span>{locale === 'en' || String(locale) === 'ta' ? 'Moon' : 'चन्द्र'}: <span className="text-gold-primary/80">{profileBanner.moonRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.moonRashiName?.en}</span></span>
                       <span className="text-gold-primary/20">|</span>
-                      <span>{locale === 'en' ? 'Lagna' : 'लग्न'}: <span className="text-gold-primary/80">{profileBanner.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.lagnaRashiName?.en}</span></span>
+                      <span>{locale === 'en' || String(locale) === 'ta' ? 'Lagna' : 'लग्न'}: <span className="text-gold-primary/80">{profileBanner.lagnaRashiName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.lagnaRashiName?.en}</span></span>
                       {profileBanner.currentDasha && (
                         <>
                           <span className="text-gold-primary/20">|</span>
-                          <span>{locale === 'en' ? 'Dasha' : 'दशा'}: <span className="text-gold-primary/80">{profileBanner.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.currentDasha.maha.planetName?.en}</span></span>
+                          <span>{locale === 'en' || String(locale) === 'ta' ? 'Dasha' : 'दशा'}: <span className="text-gold-primary/80">{profileBanner.currentDasha.maha.planetName?.[locale as 'en' | 'hi' | 'sa'] || profileBanner.currentDasha.maha.planetName?.en}</span></span>
                         </>
                       )}
                     </div>

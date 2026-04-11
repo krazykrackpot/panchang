@@ -84,7 +84,7 @@ export default function Navbar() {
   // Auto-detect location on mount
   useEffect(() => { locationStore.detect(); }, []);
 
-  const ritualsLabel = locale === 'en' ? 'Rituals' : locale === 'hi' ? 'अनुष्ठान' : 'अनुष्ठानानि';
+  const ritualsLabel = locale === 'en' ? 'Rituals' : String(locale) === 'ta' ? 'சடங்குகள்' : locale === 'hi' ? 'अनुष्ठान' : 'अनुष्ठानानि';
 
   const navItems: NavItem[] = [
     { href: '/', label: t('home') },
@@ -102,8 +102,8 @@ export default function Navbar() {
     {
       label: ritualsLabel,
       children: [
-        { href: '/puja', label: locale === 'en' ? 'Puja Vidhi' : 'पूजा विधि' },
-        { href: '/sankalpa', label: locale === 'en' ? 'Sankalpa' : 'सङ्कल्प' },
+        { href: '/puja', label: locale === 'en' || String(locale) === 'ta' ? 'Puja Vidhi' : 'पूजा विधि' },
+        { href: '/sankalpa', label: locale === 'en' || String(locale) === 'ta' ? 'Sankalpa' : 'सङ्कल्प' },
         { href: '/devotional', label: t('devotional') },
         { href: '/shraddha', label: t('shraddha') },
         { href: '/muhurta-ai', label: t('muhurtaAi') },
@@ -206,7 +206,7 @@ export default function Navbar() {
             <LocaleSwitcher />
             {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-xs whitespace-nowrap">
-                {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                {locale === 'en' || String(locale) === 'ta' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>
             )}
             <UserMenu />
@@ -280,7 +280,7 @@ export default function Navbar() {
                 <LocaleSwitcher />
                 {isTrialing && trialDaysLeft > 0 && (
                   <span className="text-gold-dark text-xs">
-                    {locale === 'en' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                    {locale === 'en' || String(locale) === 'ta' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
                   </span>
                 )}
                 <UserMenu />

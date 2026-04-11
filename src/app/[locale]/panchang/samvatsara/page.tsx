@@ -199,7 +199,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1, y: CY - 15 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {locale === 'en' ? '60' : '६०'}
+        {locale === 'en' || String(locale) === 'ta' ? '60' : '६०'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 5}
@@ -211,7 +211,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.8 }}
       >
-        {locale === 'en' ? 'Samvatsaras' : 'संवत्सराः'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Samvatsaras' : 'संवत्सराः'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 20}
@@ -222,7 +222,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 2.0 }}
       >
-        {locale === 'en' ? 'Jupiter-Saturn Cycle' : 'बृहस्पति-शनि चक्र'}
+        {locale === 'en' || String(locale) === 'ta' ? 'Jupiter-Saturn Cycle' : 'बृहस्पति-शनि चक्र'}
       </motion.text>
     </motion.svg>
   );
@@ -308,8 +308,8 @@ export default function SamvatsaraPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Cycle:' : 'चक्र:'} Jupiter_orbit (~12 yr) x 5 = 60{' '}
-                {locale === 'en' ? 'years' : 'वर्षाणि'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Cycle:' : 'चक्र:'} Jupiter_orbit (~12 yr) x 5 = 60{' '}
+                {locale === 'en' || String(locale) === 'ta' ? 'years' : 'वर्षाणि'}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'

@@ -27,7 +27,7 @@ export default function NakshatraDetailPage() {
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
         <p className="text-text-secondary text-lg">Nakshatra not found.</p>
         <Link href="/panchang/nakshatra" className="text-gold-primary hover:text-gold-light mt-4 inline-block">
-          &larr; {locale === 'en' ? 'Back to Nakshatras' : 'नक्षत्रों पर वापस'}
+          &larr; {locale === 'en' || String(locale) === 'ta' ? 'Back to Nakshatras' : 'नक्षत्रों पर वापस'}
         </Link>
       </div>
     );
@@ -39,19 +39,19 @@ export default function NakshatraDetailPage() {
   const nextNak = NAKSHATRAS[nextId - 1];
 
   const sections = [
-    { title: locale === 'en' ? 'Meaning & Etymology' : 'अर्थ और व्युत्पत्ति', content: detail.meaning[locale], color: 'gold-primary' },
-    { title: locale === 'en' ? 'Mythology & Legend' : 'पौराणिक कथा', content: detail.mythology[locale], color: 'gold-light' },
-    { title: locale === 'en' ? 'Significance' : 'महत्व', content: detail.significance[locale], color: 'emerald-400' },
-    { title: locale === 'en' ? 'Personality & Characteristics' : 'व्यक्तित्व और विशेषताएं', content: detail.characteristics[locale], color: 'gold-primary' },
-    { title: locale === 'en' ? 'Favorable Activities' : 'अनुकूल गतिविधियां', content: detail.compatibleActivities[locale], color: 'emerald-400' },
-    { title: locale === 'en' ? 'Remedies & Worship' : 'उपाय और पूजा', content: detail.remedies[locale], color: 'indigo-400' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Meaning & Etymology' : 'अर्थ और व्युत्पत्ति', content: detail.meaning[locale], color: 'gold-primary' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Mythology & Legend' : 'पौराणिक कथा', content: detail.mythology[locale], color: 'gold-light' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Significance' : 'महत्व', content: detail.significance[locale], color: 'emerald-400' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Personality & Characteristics' : 'व्यक्तित्व और विशेषताएं', content: detail.characteristics[locale], color: 'gold-primary' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Favorable Activities' : 'अनुकूल गतिविधियां', content: detail.compatibleActivities[locale], color: 'emerald-400' },
+    { title: locale === 'en' || String(locale) === 'ta' ? 'Remedies & Worship' : 'उपाय और पूजा', content: detail.remedies[locale], color: 'indigo-400' },
   ];
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Navigation */}
       <Link href="/panchang/nakshatra" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8 transition-colors">
-        <ArrowLeft className="w-4 h-4" /> {locale === 'en' ? 'All Nakshatras' : 'सभी नक्षत्र'}
+        <ArrowLeft className="w-4 h-4" /> {locale === 'en' || String(locale) === 'ta' ? 'All Nakshatras' : 'सभी नक्षत्र'}
       </Link>
 
       {/* Hero Section */}
@@ -91,14 +91,14 @@ export default function NakshatraDetailPage() {
       {/* Quick Info Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
         {[
-          { label: locale === 'en' ? 'Deity' : 'देवता', value: nak.deity[locale] },
-          { label: locale === 'en' ? 'Ruler' : 'स्वामी', value: nak.rulerName[locale] },
-          { label: locale === 'en' ? 'Nature' : 'स्वभाव', value: nak.nature[locale] },
-          { label: locale === 'en' ? 'Gana' : 'गण', value: detail.gana[locale] },
-          { label: locale === 'en' ? 'Guna' : 'गुण', value: detail.guna[locale] },
-          { label: locale === 'en' ? 'Tattva' : 'तत्व', value: detail.tattva[locale] },
-          { label: locale === 'en' ? 'Animal' : 'पशु', value: detail.associatedAnimal[locale] },
-          { label: locale === 'en' ? 'Degrees' : 'अंश', value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Deity' : 'देवता', value: nak.deity[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Ruler' : 'स्वामी', value: nak.rulerName[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Nature' : 'स्वभाव', value: nak.nature[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Gana' : 'गण', value: detail.gana[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Guna' : 'गुण', value: detail.guna[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Tattva' : 'तत्व', value: detail.tattva[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Animal' : 'पशु', value: detail.associatedAnimal[locale] },
+          { label: locale === 'en' || String(locale) === 'ta' ? 'Degrees' : 'अंश', value: `${nak.startDeg.toFixed(1)}° — ${nak.endDeg.toFixed(1)}°` },
         ].map((item, i) => (
           <motion.div
             key={item.label}
@@ -127,7 +127,7 @@ export default function NakshatraDetailPage() {
             </div>
             <div>
               <h4 className="text-amber-300 font-semibold text-sm mb-1" style={headingFont}>
-                {locale === 'en' ? 'Ganda Mula Nakshatra' : 'गण्ड मूल नक्षत्र'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Ganda Mula Nakshatra' : 'गण्ड मूल नक्षत्र'}
               </h4>
               <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
                 {locale === 'en'
@@ -138,7 +138,7 @@ export default function NakshatraDetailPage() {
                 href="/learn/modules/24-1"
                 className="inline-block mt-2 text-xs text-amber-400 hover:text-amber-300 transition-colors underline underline-offset-2"
               >
-                {locale === 'en' ? 'Learn about Ganda Mula Nakshatras & Remedies →' : 'गण्ड मूल नक्षत्र और उपाय जानें →'}
+                {locale === 'en' || String(locale) === 'ta' ? 'Learn about Ganda Mula Nakshatras & Remedies →' : 'गण्ड मूल नक्षत्र और उपाय जानें →'}
               </Link>
             </div>
           </div>
@@ -174,7 +174,7 @@ export default function NakshatraDetailPage() {
       {/* Pada Information */}
       <section className="my-10">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'Four Padas (Quarters)' : 'चार पाद'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Four Padas (Quarters)' : 'चार पाद'}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map(pada => {
@@ -195,13 +195,13 @@ export default function NakshatraDetailPage() {
               >
                 <div className="text-gold-primary text-3xl font-bold mb-2">{pada}</div>
                 <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-                  {locale === 'en' ? `Pada ${pada}` : `पाद ${pada}`}
+                  {locale === 'en' || String(locale) === 'ta' ? `Pada ${pada}` : `पाद ${pada}`}
                 </div>
                 <div className="text-text-secondary text-xs font-mono mb-1">
                   {start.toFixed(2)}° — {end.toFixed(2)}°
                 </div>
                 <div className="text-gold-light text-sm font-semibold" style={bodyFont}>
-                  {locale === 'en' ? `Navamsha: ${rashiNames[navamshaRashi - 1]}` : `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`}
+                  {locale === 'en' || String(locale) === 'ta' ? `Navamsha: ${rashiNames[navamshaRashi - 1]}` : `नवांश: ${rashiNamesHi[navamshaRashi - 1]}`}
                 </div>
               </motion.div>
             );
@@ -219,7 +219,7 @@ export default function NakshatraDetailPage() {
         >
           <ArrowLeft className="w-5 h-5 text-gold-primary group-hover:-translate-x-1 transition-transform" />
           <div>
-            <div className="text-gold-dark text-xs">{locale === 'en' ? 'Previous' : 'पिछला'}</div>
+            <div className="text-gold-dark text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Previous' : 'पिछला'}</div>
             <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{prevNak.name[locale]}</div>
           </div>
         </Link>
@@ -228,7 +228,7 @@ export default function NakshatraDetailPage() {
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 flex items-center gap-3 hover:border-gold-primary/40 transition-all group"
         >
           <div className="text-right">
-            <div className="text-gold-dark text-xs">{locale === 'en' ? 'Next' : 'अगला'}</div>
+            <div className="text-gold-dark text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Next' : 'अगला'}</div>
             <div className="text-gold-light font-semibold text-sm" style={bodyFont}>{nextNak.name[locale]}</div>
           </div>
           <ArrowRight className="w-5 h-5 text-gold-primary group-hover:translate-x-1 transition-transform" />

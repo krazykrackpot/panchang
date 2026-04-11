@@ -104,10 +104,10 @@ function PujaCard({
               }`}
             >
               {category === 'festival'
-                ? locale === 'en' ? 'Festival' : locale === 'hi' ? 'त्योहार' : 'उत्सवः'
+                ? locale === 'en' || String(locale) === 'ta' ? 'Festival' : locale === 'hi' ? 'त्योहार' : 'उत्सवः'
                 : category === 'graha_shanti'
-                  ? locale === 'en' ? 'Graha Shanti' : locale === 'hi' ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
-                  : locale === 'en' ? 'Vrat' : locale === 'hi' ? 'व्रत' : 'व्रतम्'}
+                  ? locale === 'en' || String(locale) === 'ta' ? 'Graha Shanti' : locale === 'hi' ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
+                  : locale === 'en' || String(locale) === 'ta' ? 'Vrat' : locale === 'hi' ? 'व्रत' : 'व्रतम्'}
             </span>
             <span className="text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
               {viewLabel} &rarr;

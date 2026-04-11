@@ -27,10 +27,10 @@ export default function NakshatraPage() {
         <NakshatraIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' ? 'Nakshatra' : locale === 'hi' ? 'नक्षत्र' : 'नक्षत्रम्'}</span>
+            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Nakshatra' : locale === 'hi' ? 'नक्षत्र' : 'नक्षत्रम्'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' ? 'The 27 Lunar Mansions — Stars that Map the Ecliptic' : locale === 'hi' ? '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' : 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्'}
+            {locale === 'en' || String(locale) === 'ta' ? 'The 27 Lunar Mansions — Stars that Map the Ecliptic' : locale === 'hi' ? '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' : 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्'}
           </p>
         </div>
       </motion.div>
@@ -40,7 +40,7 @@ export default function NakshatraPage() {
       {/* What are Nakshatras */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'What are Nakshatras?' : locale === 'hi' ? 'नक्षत्र क्या हैं?' : 'नक्षत्राणि किम्?'}
+          {locale === 'en' || String(locale) === 'ta' ? 'What are Nakshatras?' : locale === 'hi' ? 'नक्षत्र क्या हैं?' : 'नक्षत्राणि किम्?'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
@@ -65,7 +65,7 @@ export default function NakshatraPage() {
       {/* How Names Arise */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'How Nakshatras Get Their Names' : locale === 'hi' ? 'नक्षत्रों के नाम कैसे पड़े' : 'नक्षत्राणां नामानि कथम्'}
+          {locale === 'en' || String(locale) === 'ta' ? 'How Nakshatras Get Their Names' : locale === 'hi' ? 'नक्षत्रों के नाम कैसे पड़े' : 'नक्षत्राणां नामानि कथम्'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="text-text-secondary space-y-4">
@@ -94,7 +94,7 @@ export default function NakshatraPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' ? 'Formula:' : 'सूत्र:'} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
+                {locale === 'en' || String(locale) === 'ta' ? 'Formula:' : 'सूत्र:'} Nakshatra = floor(Moon_sidereal_longitude / 13.333) + 1
               </p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function NakshatraPage() {
       {/* Ecliptic Belt Visualization */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {locale === 'en' ? 'Ecliptic Belt — 27 Nakshatras' : locale === 'hi' ? 'क्रान्तिवृत्त — 27 नक्षत्र' : 'क्रान्तिवृत्तम् — सप्तविंशतिनक्षत्राणि'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Ecliptic Belt — 27 Nakshatras' : locale === 'hi' ? 'क्रान्तिवृत्त — 27 नक्षत्र' : 'क्रान्तिवृत्तम् — सप्तविंशतिनक्षत्राणि'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex justify-center">
           <EclipticBelt locale={locale} isDevanagari={isDevanagari} />
@@ -117,7 +117,7 @@ export default function NakshatraPage() {
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-3" style={headingFont}>{t('completeListing')}</h2>
         <p className="text-text-secondary mb-8">
-          {locale === 'en' ? 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.' : 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।'}
+          {locale === 'en' || String(locale) === 'ta' ? 'Click any Nakshatra to explore its mythology, significance, and detailed characteristics.' : 'किसी भी नक्षत्र पर क्लिक करें उसकी पौराणिक कथा, महत्व और विस्तृत विशेषताओं का अन्वेषण करने के लिए।'}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -233,7 +233,7 @@ function EclipticBelt({ locale, isDevanagari }: { locale: Locale; isDevanagari: 
 
       <circle cx="250" cy="250" r="70" fill="#0a0e27" stroke="rgba(212,168,83,0.1)" strokeWidth="0.5" />
       <text x="250" y="240" fill="#f0d48a" fontSize="14" textAnchor="middle" fontFamily="var(--font-heading)">
-        {locale === 'en' ? 'ECLIPTIC' : locale === 'hi' ? 'क्रान्तिवृत्त' : 'क्रान्तिवृत्तम्'}
+        {locale === 'en' || String(locale) === 'ta' ? 'ECLIPTIC' : locale === 'hi' ? 'क्रान्तिवृत्त' : 'क्रान्तिवृत्तम्'}
       </text>
       <text x="250" y="260" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 27 = 13°20&apos;

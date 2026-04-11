@@ -78,7 +78,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const sunP = kundali.planets.find(p => p.planet.id === 0);
   const mahadasha = getCurrentMahadasha(kundali, locale);
   const topYogas = getTopYogas(kundali, locale);
-  const name = kundali.birthData.name || (locale === 'en' ? 'Chart' : 'कुण्डली');
+  const name = kundali.birthData.name || (locale === 'en' || String(locale) === 'ta' ? 'Chart' : 'कुण्डली');
 
   // Build share text
   const ascName = kundali.ascendant.signName.en;

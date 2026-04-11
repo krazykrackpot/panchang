@@ -32,7 +32,7 @@ const LABELS = {
 
 function t(key: keyof typeof LABELS, locale: Locale): string {
   const entry = LABELS[key];
-  return locale === 'en' ? entry.en : entry.hi;
+  return locale === 'en' || String(locale) === 'ta' ? entry.en : entry.hi;
 }
 
 // ── Streak fire icons ─────────────────────────────────────────────────────────

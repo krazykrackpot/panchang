@@ -30,6 +30,7 @@ const NOTIF_TYPES = [
   { key: 'festival_reminder', en: 'Festival Reminders', hi: 'पर्व स्मरण' },
   { key: 'sade_sati',       en: 'Sade Sati Alerts', hi: 'साढ़े साती सूचना' },
   { key: 'weekly_digest',   en: 'Weekly Email Digest', hi: 'साप्ताहिक सारांश ईमेल' },
+  { key: 'daily_panchang', en: 'Daily Panchang Email (Sunrise)', hi: 'दैनिक पंचांग ईमेल (सूर्योदय)' },
 ] as const;
 
 const LABELS = {
@@ -164,6 +165,7 @@ export default function SettingsPage() {
     festival_reminder: true,
     sade_sati: true,
     weekly_digest: true,
+    daily_panchang: false,
   });
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -300,6 +302,7 @@ export default function SettingsPage() {
         ayanamsha: profile.ayanamsha,
         chart_style: profile.chart_style,
         notification_prefs: notifPrefs,
+        daily_panchang_email: !!notifPrefs.daily_panchang,
         updated_at: new Date().toISOString(),
       };
 

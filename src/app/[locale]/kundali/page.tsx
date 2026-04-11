@@ -177,7 +177,7 @@ function HouseDetailPanel({
         <div className="rounded-lg bg-gold-primary/5 border border-gold-primary/15 p-3">
           <p className="text-gold-dark text-xs uppercase tracking-wider mb-1.5">{locale === 'en' || String(locale) === 'ta' ? 'What this means for you' : 'आपके लिए इसका अर्थ'}</p>
           <p className="text-text-secondary text-xs leading-relaxed">
-            {locale === 'en'
+            {locale === 'en' || String(locale) === 'ta'
               ? planetsInHouse.length === 0
                 ? `House ${houseNum} has no planets — its results depend primarily on the condition of its lord (${house?.lordName.en}). Trace ${house?.lordName.en}'s sign and house to understand how this life area performs for you.`
                 : planetsInHouse.length === 1
@@ -284,8 +284,10 @@ export default function KundaliPage() {
   const t = useTranslations('kundali');
   const tTip = useTranslations('tippanni');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
@@ -824,7 +826,7 @@ export default function KundaliPage() {
                 title={locale === 'en' || String(locale) === 'ta' ? 'What is a Birth Chart (Kundali)?' : 'जन्म कुण्डली क्या है?'}
                 defaultOpen={true}
               >
-                {locale === 'en'
+                {locale === 'en' || isTamil
                   ? 'A birth chart is a map of the sky at the exact moment you were born. It shows where all 9 planets were positioned across 12 zodiac signs and 12 houses (life areas). This map reveals your personality, career path, relationships, health patterns, and life timing — think of it as your cosmic DNA. The diamond shape is the traditional North Indian format. Each triangle is one \'house.\' Planet abbreviations: Su=Sun, Mo=Moon, Ma=Mars, Me=Mercury, Ju=Jupiter, Ve=Venus, Sa=Saturn, Ra=Rahu, Ke=Ketu.'
                   : 'जन्म कुण्डली आपके जन्म के सटीक क्षण में आकाश का नक्शा है। यह दर्शाती है कि 9 ग्रह 12 राशियों और 12 भावों (जीवन क्षेत्रों) में कहाँ थे। यह आपके व्यक्तित्व, कैरियर, सम्बन्ध, स्वास्थ्य और जीवन समय को प्रकट करती है। हीरे का आकार पारम्परिक उत्तर भारतीय प्रारूप है। प्रत्येक त्रिभुज एक \'भाव\' है।'}
               </InfoBlock>
@@ -1149,7 +1151,7 @@ export default function KundaliPage() {
                 title={locale === 'en' || String(locale) === 'ta' ? 'What do Planet Positions mean?' : 'ग्रह स्थितियों का क्या अर्थ है?'}
                 defaultOpen={false}
               >
-                {locale === 'en'
+                {locale === 'en' || isTamil
                   ? 'Each planet represents a force in your life: Sun=ego/authority/father, Moon=mind/emotions/mother, Mars=energy/courage/property, Mercury=communication/business/intellect, Jupiter=wisdom/children/wealth, Venus=love/marriage/luxury, Saturn=discipline/karma/hard work, Rahu=ambition/foreign/technology, Ketu=spirituality/detachment/liberation. The SIGN a planet is in colors its expression. The HOUSE it occupies determines which life area it affects. Retrograde (R) planets work inwardly — their effects are felt more internally.'
                   : 'प्रत्येक ग्रह आपके जीवन में एक शक्ति का प्रतिनिधित्व करता है: सूर्य=अहंकार/अधिकार/पिता, चंद्र=मन/भावनाएं/माता, मंगल=ऊर्जा/साहस/संपत्ति, बुध=संचार/व्यापार/बुद्धि, गुरु=ज्ञान/संतान/धन, शुक्र=प्रेम/विवाह/विलास, शनि=अनुशासन/कर्म/परिश्रम, राहु=महत्वाकांक्षा/विदेश/तकनीक, केतु=आध्यात्म/वैराग्य/मोक्ष। ग्रह जिस राशि में हो वह उसकी अभिव्यक्ति रंगती है। जिस भाव में हो वह जीवन क्षेत्र प्रभावित होता है। वक्री (R) ग्रह अंतर्मुखी होकर कार्य करते हैं।'}
               </InfoBlock>
@@ -1333,12 +1335,12 @@ export default function KundaliPage() {
                       {locale === 'en' || String(locale) === 'ta' ? 'Functional Nature per Lagna (Laghu Parashari)' : 'लग्न अनुसार क्रियात्मक स्वभाव'}
                     </div>
                     <p className="text-text-secondary/65 text-[11px] mb-1">
-                      {locale === 'en'
+                      {locale === 'en' || isTamil
                         ? `For ${kundali.ascendant.signName.en} lagna — based on which houses each planet rules`
                         : `${kundali.ascendant.signName.hi} लग्न के लिए — प्रत्येक ग्रह किस भाव का स्वामी है`}
                     </p>
                     <p className="text-text-secondary/55 text-[10px] mb-4 italic">
-                      {locale === 'en'
+                      {locale === 'en' || isTamil
                         ? 'Lords = houses this planet rules · In = house where it is placed in your birth chart (these are different things)'
                         : 'भावेश = ग्रह किस भाव का स्वामी है · स्थान = ग्रह किस भाव में है (ये दो अलग बातें हैं)'}
                     </p>
@@ -1721,7 +1723,7 @@ export default function KundaliPage() {
                             {(isEndingSoon || isStartingSoon) && (
                               <div className="mt-2 ml-7 px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/20">
                                 <p className="text-amber-400 text-xs leading-relaxed">
-                                  {locale === 'en'
+                                  {locale === 'en' || isTamil
                                     ? isEndingSoon
                                       ? `Dasha Sandhi — this Mahadasha ends in ${Math.ceil((end.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. The junction zone brings instability; avoid irreversible decisions until the new dasha establishes.`
                                       : `Dasha Sandhi — this Mahadasha begins in ${Math.ceil((start.getTime() - Date.now()) / (30 * 24 * 3600 * 1000))} months. Prepare for a significant shift in life themes.`
@@ -1762,7 +1764,7 @@ export default function KundaliPage() {
                                   </p>
                                   {planetData && houseKw && (
                                     <p className={`text-xs leading-relaxed ${isCurrent ? 'text-gold-light/70' : 'text-text-secondary/50'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                      {locale === 'en'
+                                      {locale === 'en' || isTamil
                                         ? <>{planetEn} is in your <strong>house {planetData.house}</strong> ({houseKw.en}) in {planetData.signName.en}.{dignity ? ` ${planetEn} is ${dignity}.` : ''} This dasha activates these life areas most strongly.</>
                                         : <>{dasha.planetName.hi} आपके <strong>भाव {planetData.house}</strong> ({houseKw.hi}) में {planetData.signName.hi} राशि में है।{dignity ? ` ${dasha.planetName.hi} ${dignity}।` : ''} यह दशा इन जीवन क्षेत्रों को सबसे अधिक सक्रिय करती है।</>
                                       }
@@ -1855,7 +1857,7 @@ export default function KundaliPage() {
                 title={locale === 'en' || String(locale) === 'ta' ? 'What are Divisional Charts (Varga)?' : 'विभागीय चार्ट (वर्ग) क्या हैं?'}
                 defaultOpen={false}
               >
-                {locale === 'en'
+                {locale === 'en' || isTamil
                   ? 'Your birth chart (D1) shows the big picture. Divisional charts zoom into specific life areas by mathematically dividing each sign: D9 (Navamsha)=marriage/dharma/soul\'s true nature (most important after D1), D10 (Dashamsha)=career/profession, D2 (Hora)=wealth, D3 (Drekkana)=siblings, D7 (Saptamsha)=children, D12 (Dwadashamsha)=parents. If a planet is strong in BOTH D1 and D9, its results are confirmed and powerful.'
                   : 'आपकी जन्म कुण्डली (D1) व्यापक चित्र दिखाती है। विभागीय चार्ट प्रत्येक राशि को गणितीय रूप से विभाजित करके विशिष्ट जीवन क्षेत्रों में ज़ूम करते हैं: D9 (नवांश)=विवाह/धर्म/आत्मा का सच्चा स्वरूप (D1 के बाद सर्वाधिक महत्वपूर्ण), D10 (दशमांश)=कैरियर/व्यवसाय, D2 (होरा)=धन, D3 (द्रेष्काण)=भाई-बहन, D7 (सप्तांश)=संतान, D12 (द्वादशांश)=माता-पिता। यदि कोई ग्रह D1 और D9 दोनों में बलवान है तो उसके फल निश्चित और शक्तिशाली होते हैं।'}
               </InfoBlock>
@@ -2161,7 +2163,7 @@ export default function KundaliPage() {
                     <div className="text-sm text-text-secondary leading-relaxed space-y-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                       {supported.length > 0 && (
                         <p>
-                          {locale === 'en'
+                          {locale === 'en' || isTamil
                             ? <>Your chart shows <span className="text-emerald-400 font-semibold">strong planetary support</span> for {supportedAreas.join(', ')}. Planets positioned around these houses actively push energy toward them — efforts in these areas get natural cosmic momentum. These are your strengths; lean into them.</>
                             : <>आपकी कुण्डली में <span className="text-emerald-400 font-semibold">मजबूत ग्रह समर्थन</span> है — {supportedAreas.join(', ')} के लिए। इन भावों के आसपास स्थित ग्रह सक्रिय रूप से ऊर्जा देते हैं। ये आपकी शक्तियाँ हैं; इन पर ध्यान दें।</>
                           }
@@ -2169,7 +2171,7 @@ export default function KundaliPage() {
                       )}
                       {obstructed.length > 0 && (
                         <p>
-                          {locale === 'en'
+                          {locale === 'en' || isTamil
                             ? <>However, <span className="text-red-400 font-semibold">{obstructedAreas.join(', ')}</span> face planetary resistance — counter-forces outweigh the support. This does not mean failure; it means these areas require <span className="text-gold-light">conscious effort, patience, and the specific remedies</span> listed below for each house.</>
                             : <>लेकिन <span className="text-red-400 font-semibold">{obstructedAreas.join(', ')}</span> को ग्रह प्रतिरोध का सामना है। इसका अर्थ विफलता नहीं; बल्कि इन क्षेत्रों में <span className="text-gold-light">सचेत प्रयास, धैर्य और नीचे दिए गए विशिष्ट उपायों</span> की आवश्यकता है।</>
                           }
@@ -2177,14 +2179,14 @@ export default function KundaliPage() {
                       )}
                       {obstructed.length === 0 && (
                         <p>
-                          {locale === 'en'
+                          {locale === 'en' || isTamil
                             ? <><span className="text-emerald-400 font-semibold">No houses face net obstruction</span> — a rare and fortunate pattern. All life areas either receive active support or are neutrally balanced.</>
                             : <><span className="text-emerald-400 font-semibold">किसी भी भाव को शुद्ध अवरोध नहीं</span> — दुर्लभ और भाग्यशाली स्थिति। सभी जीवन क्षेत्र सक्रिय समर्थन या तटस्थता में हैं।</>
                           }
                         </p>
                       )}
                       <p className="text-text-tertiary text-xs">
-                        {locale === 'en'
+                        {locale === 'en' || isTamil
                           ? 'Scroll down for house-by-house details with supporting/countering planets and specific remedies.'
                           : 'समर्थक/प्रतिकारक ग्रहों और विशिष्ट उपायों के साथ भाव-वार विवरण नीचे देखें।'}
                       </p>

@@ -24,9 +24,10 @@ export async function GET(request: Request) {
     }
 
     // Get all users who opted in for daily panchang email
+    // Join user_profiles (prefs + location) with auth.users (email)
     const { data: subscribers, error: fetchError } = await supabase
-      .from('user_preferences')
-      .select('user_id, email, locale, lat, lng, timezone, location_name')
+      .from('user_profiles')
+      .select('id, preferred_locale, panchang_location_lat, panchang_location_lng, panchang_location_timezone, panchang_location_name, birth_lat, birth_lng, birth_timezone, birth_place')
       .eq('daily_panchang_email', true);
 
     if (fetchError || !subscribers?.length) {
@@ -36,30 +37,46 @@ export async function GET(request: Request) {
       });
     }
 
+    // Fetch emails from auth.users
+    const userIds = subscribers.map(s => s.id);
+    const { data: authUsers } = await supabase.auth.admin.listUsers();
+    const emailMap = new Map<string, string>();
+    if (authUsers?.users) {
+      for (const u of authUsers.users) {
+        if (u.email) emailMap.set(u.id, u.email);
+      }
+    }
+
     let sent = 0;
     let errors = 0;
 
     for (const sub of subscribers) {
       try {
-        if (!sub.email || !sub.lat || !sub.lng) continue;
+        const email = emailMap.get(sub.id);
+        // Use panchang location if set, otherwise fall back to birth location
+        const lat = sub.panchang_location_lat || sub.birth_lat;
+        const lng = sub.panchang_location_lng || sub.birth_lng;
+        const tz = sub.panchang_location_timezone || sub.birth_timezone;
+        const locName = sub.panchang_location_name || sub.birth_place;
+        if (!email || !lat || !lng) continue;
 
         const now = new Date();
-        const tzOffset = sub.timezone
-          ? getTimezoneOffset(sub.timezone, now)
+        const tzOffset = tz
+          ? getTimezoneOffset(tz, now)
           : 5.5; // fallback IST
 
         const panchang = computePanchang({
           year: now.getFullYear(),
           month: now.getMonth() + 1,
           day: now.getDate(),
-          lat: sub.lat,
-          lng: sub.lng,
+          lat: Number(lat),
+          lng: Number(lng),
           tzOffset,
-          timezone: sub.timezone || undefined,
-          locationName: sub.location_name || undefined,
+          timezone: tz || undefined,
+          locationName: locName || undefined,
         });
 
-        const locale = (sub.locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
+        const locale = (sub.preferred_locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
         const L = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
 
         const emailData = {
@@ -77,12 +94,12 @@ export async function GET(request: Request) {
           amritKalam: panchang.amritKalam ? `${panchang.amritKalam.start}–${panchang.amritKalam.end}` : undefined,
           varjyam: panchang.varjyam ? `${panchang.varjyam.start}–${panchang.varjyam.end}` : undefined,
           locale,
-          locationName: sub.location_name || `${sub.lat.toFixed(1)}°N, ${sub.lng.toFixed(1)}°E`,
+          locationName: locName || `${Number(lat).toFixed(1)}°N, ${Number(lng).toFixed(1)}°E`,
           unsubscribeUrl: `https://dekhopanchang.com/${locale}/settings?unsubscribe=daily`,
         };
 
         const { subject, html } = generateDailyPanchangEmail(emailData);
-        const result = await sendEmail({ to: sub.email, subject, html });
+        const result = await sendEmail({ to: email, subject, html });
         if (result.success) sent++;
         else errors++;
       } catch {

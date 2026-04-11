@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
+import { ShareRow } from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
 
 const STATS = { modules: 104, references: 45, labs: 5, tracks: 11 };
@@ -187,6 +188,17 @@ export default function LearnPage() {
             ))}
           </div>
           <span className="text-text-secondary/75 text-sm">{l.freeForever}</span>
+          <div className="flex justify-center mt-5">
+            <ShareRow
+              pageTitle={l.heroTitle}
+              shareText={locale === 'en'
+                ? 'Learn Vedic Astrology — 104 free modules from basics to advanced — Dekho Panchang'
+                : locale === 'hi'
+                  ? 'वैदिक ज्योतिष सीखें — 104 निःशुल्क मॉड्यूल — Dekho Panchang'
+                  : 'वैदिकज्योतिषं पठतु — 104 निःशुल्कमॉड्यूलाः — Dekho Panchang'}
+              locale={locale}
+            />
+          </div>
         </div>
       </motion.div>
 

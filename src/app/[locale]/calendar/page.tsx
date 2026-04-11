@@ -8,6 +8,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { scoreFestivalRelevance } from '@/lib/personalization/festival-relevance';
 import GoldDivider from '@/components/ui/GoldDivider';
+import { ShareRow } from '@/components/ui/ShareButton';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 
 const PUJA_SLUG_MAP: Record<string, string> = {
@@ -305,6 +306,15 @@ export default function CalendarPage() {
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+        <div className="flex justify-center mt-4">
+          <ShareRow
+            pageTitle={locale === 'en' ? 'Hindu Festival Calendar' : 'हिन्दू त्योहार पंचांग'}
+            shareText={locale === 'en'
+              ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details — Dekho Panchang'
+              : 'हिन्दू त्योहार पंचांग — एकादशी, पूर्णिमा और व्रत विवरण सहित — Dekho Panchang'}
+            locale={locale}
+          />
+        </div>
       </motion.div>
 
       {/* Year selector */}

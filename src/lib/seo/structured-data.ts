@@ -127,6 +127,23 @@ export function generateOrganizationLD(): object {
  * Generate WebSite JSON-LD with SearchAction.
  * Enables Google sitelinks search box and reinforces the site as a distinct web property.
  */
+/**
+ * Generate WebApplication JSON-LD for individual tool pages.
+ */
+export function generateToolLD(name: string, description: string, url: string): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name,
+    description,
+    url,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Web',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    provider: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
+  };
+}
+
 export function generateWebSiteLD(): object {
   return {
     '@context': 'https://schema.org',

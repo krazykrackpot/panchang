@@ -664,6 +664,7 @@ export default function KundaliPage() {
               <ShareButton
                 title={`Kundali — ${kundali.birthData.name}`}
                 text={`Vedic birth chart for ${kundali.birthData.name} generated on Dekho Panchang`}
+                locale={locale}
                 url={typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali/shared?n=${encodeURIComponent(kundali.birthData.name)}&d=${kundali.birthData.date}&t=${kundali.birthData.time}&la=${kundali.birthData.lat}&lo=${kundali.birthData.lng}&p=${encodeURIComponent(kundali.birthData.place || '')}&tz=${encodeURIComponent(kundali.birthData.timezone || '')}` : undefined}
               />
             </div>

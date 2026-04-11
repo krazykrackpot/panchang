@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { ShareRow } from '@/components/ui/ShareButton';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -157,6 +158,9 @@ export default function CalculusPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
+        <div className="flex justify-center mt-4">
+          <ShareRow pageTitle={l(L.title)} locale={locale} />
+        </div>
       </motion.div>
 
       {/* ── Section 1: Who Was Madhava ───────────────────────────── */}

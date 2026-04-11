@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.dekhopanchang.com/sitemap.xml
+Sitemap: https://dekhopanchang.com/sitemap.xml
 
 # Disallow API routes
 Disallow: /api/
@@ -13,6 +13,8 @@ Disallow: /_next/
 Disallow: /*/auth/
 Disallow: /*/settings/
 Disallow: /*/profile/
+Disallow: /*/dashboard/
+Disallow: /*/embed/
 
 # Disallow AI training bots
 User-agent: GPTBot

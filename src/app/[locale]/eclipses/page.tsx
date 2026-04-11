@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, ChevronDown, MapPin, Clock, Shield, Eye, Eye
 import GoldDivider from '@/components/ui/GoldDivider';
 import InfoBlock from '@/components/ui/InfoBlock';
 import LocationSearch from '@/components/ui/LocationSearch';
+import { ShareRow } from '@/components/ui/ShareButton';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
@@ -135,6 +136,15 @@ export default function EclipsesPage() {
         <a href={`/${locale}/learn/eclipses`} className="text-gold-primary/60 text-xs hover:text-gold-light transition-colors inline-flex items-center gap-1 mt-2">
           {isHi ? 'ग्रहण के बारे में विस्तार से जानें →' : 'Learn how eclipses work →'}
         </a>
+        <div className="flex justify-center mt-4">
+          <ShareRow
+            pageTitle={isHi ? 'ग्रहण पञ्चाङ्ग' : 'Eclipse Calendar'}
+            shareText={isHi
+              ? 'ग्रहण पंचांग — स्थानीय समय, सूतक काल और दृश्यता सहित — Dekho Panchang'
+              : 'Eclipse Calendar with local timings, Sutak & visibility — Dekho Panchang'}
+            locale={locale}
+          />
+        </div>
       </motion.div>
 
       {/* Year selector */}

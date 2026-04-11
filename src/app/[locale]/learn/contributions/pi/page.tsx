@@ -7,6 +7,7 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Sigma } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { ShareRow } from '@/components/ui/ShareButton';
 
 /* ═══════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -140,6 +141,9 @@ export default function PiPage() {
             <p className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
               {t(L.subtitle)}
             </p>
+            <div className="flex justify-center mt-4">
+              <ShareRow pageTitle={t(L.title)} locale={locale} />
+            </div>
           </motion.div>
 
           <motion.div

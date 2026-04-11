@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { ShareRow } from '@/components/ui/ShareButton';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -524,6 +525,9 @@ export default function TimelinePage() {
           {t(L.subtitle)}
         </p>
       </motion.div>
+        <div className="flex justify-center mt-4">
+          <ShareRow pageTitle={t(L.title)} locale={locale as Locale} />
+        </div>
 
       {/* ══════════════════════════════════════════
           DESKTOP TIMELINE (lg+)

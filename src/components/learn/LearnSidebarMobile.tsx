@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, Flame } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { useAuthStore } from '@/stores/auth-store';
@@ -25,6 +25,7 @@ export default function LearnSidebarMobile() {
     getPhaseProgress,
     getNextModule,
     getModuleStatus,
+    streak,
   } = useLearningProgressStore();
 
   // Hydrate from localStorage on mount
@@ -50,8 +51,8 @@ export default function LearnSidebarMobile() {
   const currentPhaseInfo = PHASE_INFO.find((p) => p.phase === currentPhase) ?? PHASE_INFO[0];
   const phaseLabel = isHi ? currentPhaseInfo.title.hi : currentPhaseInfo.title.en;
 
-  // Pill label: "42% · P1"
-  const pillLabel = `${overall.percent}% · P${currentPhase}`;
+  // Pill label: "42% · 🔥7" (with streak) or "42% · P1" (no streak)
+  const streakPart = streak.streakDays > 0 ? streak.streakDays : null;
 
   return (
     <>
@@ -62,7 +63,16 @@ export default function LearnSidebarMobile() {
         aria-label="Open learning progress"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-gold-primary shrink-0" />
-        {pillLabel}
+        {overall.percent}%
+        {streakPart !== null ? (
+          <span className="flex items-center gap-0.5">
+            <span className="text-text-secondary/50">·</span>
+            <Flame size={12} className="text-amber-400 fill-amber-400/60" />
+            <span className="text-amber-400">{streakPart}</span>
+          </span>
+        ) : (
+          <span className="text-text-secondary/50"> · P{currentPhase}</span>
+        )}
       </button>
 
       {/* Bottom Sheet */}
@@ -114,6 +124,36 @@ export default function LearnSidebarMobile() {
               </div>
 
               <div className="px-4 py-4 space-y-5">
+                {/* Streak card */}
+                {(streak.streakDays > 0 || overall.mastered > 0) && (
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-amber-600/5 border border-amber-500/20">
+                    <div className="flex items-center gap-2 mb-1">
+                      {streak.streakDays > 0 ? (
+                        <>
+                          {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
+                            <Flame key={i} size={16} className="text-amber-400 fill-amber-400/60" />
+                          ))}
+                          <span className="text-base font-bold text-amber-400">
+                            {streak.streakDays} {isHi ? 'दिन की लय' : 'Day Streak'}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <Flame size={16} className="text-text-secondary/40" />
+                          <span className="text-base font-medium text-text-secondary/60">
+                            {isHi ? 'लय शुरू करें' : 'Start a streak'}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    {streak.longestStreak > 0 && (
+                      <p className="text-xs text-text-secondary">
+                        {isHi ? 'सर्वोच्च' : 'Longest'}: {streak.longestStreak} {isHi ? 'दिन' : 'days'}
+                      </p>
+                    )}
+                  </div>
+                )}
+
                 {/* Continue card */}
                 {nextModuleRef && (
                   <Link

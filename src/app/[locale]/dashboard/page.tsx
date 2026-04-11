@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard, Star, Moon, TrendingUp, AlertTriangle,
-  ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield, Clock,
+  ArrowRight, Loader2, Calendar, Settings, Eye, Compass, Globe, Shield, Clock, Flame,
 } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/stores/auth-store';
@@ -19,6 +19,7 @@ import type { GocharResult } from '@/lib/personalization/gochar';
 import type { PersonalFestival } from '@/lib/personalization/festival-relevance';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import EclipseAlert from '@/components/dashboard/EclipseAlert';
+import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import ChartNorth from '@/components/kundali/ChartNorth';
@@ -76,6 +77,14 @@ const LABELS = {
     relevance: 'Relevance',
     positive: 'Positive',
     mixed: 'Mixed',
+    streakTitle: 'Learning Streak',
+    dayStreak: 'Day Streak',
+    longestStreak: 'Longest',
+    days: 'days',
+    todayActive: 'Today: Active',
+    todayVisitLearn: 'Visit Learn to keep your streak!',
+    goToLearn: 'Go to Learn',
+    startStreak: 'Start a learning streak today!',
   },
   hi: {
     title: 'मेरा डैशबोर्ड',
@@ -123,6 +132,14 @@ const LABELS = {
     relevance: 'प्रासंगिकता',
     positive: 'शुभ',
     mixed: 'मिश्र',
+    streakTitle: 'शिक्षा लय',
+    dayStreak: 'दिन की लय',
+    longestStreak: 'सर्वोच्च',
+    days: 'दिन',
+    todayActive: 'आज: सक्रिय',
+    todayVisitLearn: 'अपनी लय बनाए रखने के लिए शिक्षा पर जाएँ!',
+    goToLearn: 'शिक्षा पर जाएँ',
+    startStreak: 'आज शिक्षा लय शुरू करें!',
   },
   sa: {
     title: 'मम पटलम्',
@@ -170,6 +187,14 @@ const LABELS = {
     relevance: 'प्रासंगिकता',
     positive: 'शुभम्',
     mixed: 'मिश्रम्',
+    streakTitle: 'शिक्षालयः',
+    dayStreak: 'दिनलयः',
+    longestStreak: 'सर्वोच्चम्',
+    days: 'दिनानि',
+    todayActive: 'अद्य: सक्रियम्',
+    todayVisitLearn: 'स्वलयं रक्षितुं शिक्षां गच्छतु!',
+    goToLearn: 'शिक्षां गच्छतु',
+    startStreak: 'अद्य शिक्षालयं आरभतु!',
   },
 };
 
@@ -200,6 +225,11 @@ export default function DashboardPage() {
   const router = useRouter();
   const L = LABELS[locale] || LABELS.en;
   const { user, initialized } = useAuthStore();
+
+  // Learning streak
+  const { streak, isActiveToday, hydrateFromStorage: hydrateLearn, hydrated: learnHydrated } = useLearningProgressStore();
+
+  useEffect(() => { hydrateLearn(); }, [hydrateLearn]);
 
   const [loading, setLoading] = useState(true);
   const [personalizedDay, setPersonalizedDay] = useState<PersonalizedDay | null>(null);
@@ -444,6 +474,50 @@ export default function DashboardPage() {
             </p>
           )}
         </motion.div>
+
+        {/* Learning Streak Card */}
+        {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.12 }}
+            className="mb-6 p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.06] via-transparent to-amber-500/[0.06] backdrop-blur-sm"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-0.5">
+                  {Array.from({ length: Math.min(3, streak.streakDays >= 14 ? 3 : streak.streakDays >= 7 ? 2 : 1) }, (_, i) => (
+                    <Flame key={i} className={`w-5 h-5 ${streak.streakDays > 0 ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/30'}`} />
+                  ))}
+                </div>
+                <div>
+                  <span className="text-xl font-bold text-amber-400">
+                    {streak.streakDays}
+                  </span>
+                  <span className="text-sm text-text-secondary ml-1.5">{L.dayStreak}</span>
+                  {streak.longestStreak > streak.streakDays && (
+                    <span className="text-xs text-text-secondary/60 ml-3">
+                      {L.longestStreak}: {streak.longestStreak} {L.days}
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                {isActiveToday() ? (
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-400">
+                    {L.todayActive}
+                  </span>
+                ) : (
+                  <Link
+                    href="/learn"
+                    className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 transition-colors"
+                  >
+                    {L.todayVisitLearn}
+                  </Link>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Day Quality Card */}
         <motion.div

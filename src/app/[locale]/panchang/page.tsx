@@ -419,8 +419,8 @@ export default function PanchangPage() {
               />
               <ShareButton
                 title={`Panchang — ${panchang.date}`}
-                text={`Today's Vedic Panchang from Dekho Panchang`}
-                className="!px-2.5 !py-1 !text-xs !rounded-md"
+                text={`Today's Panchang: ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''} — Check yours at Dekho Panchang`}
+                locale={locale}
               />
               <button
                 onClick={async () => {

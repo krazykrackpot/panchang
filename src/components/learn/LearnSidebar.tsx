@@ -13,6 +13,8 @@ import type { Locale } from '@/types/panchang';
 
 // ── Labels ────────────────────────────────────────────────────────────────────
 
+import { Flame } from 'lucide-react';
+
 const LABELS = {
   yourJourney:    { en: 'Your Journey',           hi: 'आपकी यात्रा' },
   modulesOf:      { en: 'modules mastered',        hi: 'मॉड्यूल पूर्ण' },
@@ -21,11 +23,28 @@ const LABELS = {
   allMasteredSub: { en: "You've completed the full curriculum.",  hi: 'आपने पूरा पाठ्यक्रम पूर्ण किया।' },
   signInToSave:   { en: 'Sign in to save progress across devices', hi: 'उपकरणों के पार प्रगति सहेजें' },
   nextUp:         { en: 'Next up',                 hi: 'अगला' },
+  dayStreak:      { en: 'Day Streak',              hi: 'दिन की लय' },
+  longest:        { en: 'Longest',                 hi: 'सर्वोच्च' },
+  dontBreak:      { en: "Don't break your streak!",hi: 'अपनी लय मत तोड़ो!' },
+  freezeUsed:     { en: 'Freeze used this week',   hi: 'इस सप्ताह फ़्रीज़ उपयोग किया' },
 };
 
 function t(key: keyof typeof LABELS, locale: Locale): string {
   const entry = LABELS[key];
   return locale === 'en' ? entry.en : entry.hi;
+}
+
+// ── Streak fire icons ─────────────────────────────────────────────────────────
+
+function StreakFlames({ days }: { days: number }) {
+  const count = days >= 14 ? 3 : days >= 7 ? 2 : 1;
+  return (
+    <span className="inline-flex gap-0">
+      {Array.from({ length: count }, (_, i) => (
+        <Flame key={i} size={14} className="text-amber-400 fill-amber-400/60" />
+      ))}
+    </span>
+  );
 }
 
 // ── Phase progress bar ────────────────────────────────────────────────────────
@@ -130,6 +149,8 @@ export default function LearnSidebar() {
     getNextModule,
     getModuleStatus,
     progress,
+    streak,
+    isActiveToday,
   } = useLearningProgressStore();
 
   const { user } = useAuthStore();
@@ -196,6 +217,19 @@ export default function LearnSidebar() {
       >
         {/* Overall % circle */}
         <OverallCircle percent={overall.percent} />
+
+        {/* Streak mini display */}
+        {streak.streakDays > 0 && (
+          <div
+            className="flex flex-col items-center gap-0.5"
+            title={`${streak.streakDays} day streak`}
+          >
+            <Flame size={16} className={isActiveToday() ? 'text-amber-400 fill-amber-400/60' : 'text-text-secondary/40'} />
+            <span className={`text-[10px] font-bold leading-none ${isActiveToday() ? 'text-amber-400' : 'text-text-secondary/40'}`}>
+              {streak.streakDays}
+            </span>
+          </div>
+        )}
 
         <div className="w-8 h-px bg-gold-primary/8" />
 
@@ -266,6 +300,44 @@ export default function LearnSidebar() {
           <PhaseProgressBar percent={overall.percent} />
         </div>
       </div>
+
+      {/* ── Streak section ── */}
+      {(streak.streakDays > 0 || Object.keys(progress).length > 0) && (
+        <div className="px-4 pt-3 pb-2 border-b border-gold-primary/10">
+          <div className="flex items-center gap-2">
+            {streak.streakDays > 0 ? (
+              <>
+                <StreakFlames days={streak.streakDays} />
+                <span className="text-sm font-bold text-amber-400">
+                  {streak.streakDays} {t('dayStreak', locale)}
+                </span>
+              </>
+            ) : (
+              <>
+                <Flame size={14} className="text-text-secondary/40" />
+                <span className="text-sm font-medium text-text-secondary/60">
+                  0 {t('dayStreak', locale)}
+                </span>
+              </>
+            )}
+          </div>
+          {streak.longestStreak > 0 && (
+            <p className="text-[10px] text-text-secondary mt-0.5 ml-0.5">
+              {t('longest', locale)}: {streak.longestStreak}
+              {!streak.streakFreezeAvailable && (
+                <span className="ml-2 text-blue-400/60">
+                  · {t('freezeUsed', locale)}
+                </span>
+              )}
+            </p>
+          )}
+          {!isActiveToday() && streak.streakDays > 0 && (
+            <p className="text-[10px] text-amber-400/60 mt-1 italic">
+              {t('dontBreak', locale)}
+            </p>
+          )}
+        </div>
+      )}
 
       {/* ── Continue card or completion card ── */}
       {allMastered ? (

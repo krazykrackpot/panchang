@@ -16,8 +16,17 @@ export interface ModuleProgress {
   lastAccessedAt: string;
 }
 
+export interface StreakData {
+  streakDays: number;
+  lastActiveDate: string;       // YYYY-MM-DD
+  longestStreak: number;
+  streakFreezeAvailable: boolean;
+  lastFreezeUsed: string | null; // YYYY-MM-DD or null
+}
+
 interface LearningProgressStore {
   progress: Record<string, ModuleProgress>;
+  streak: StreakData;
   sidebarExpanded: boolean;
   hydrated: boolean;
 
@@ -25,18 +34,31 @@ interface LearningProgressStore {
   syncWithSupabase: (userId: string) => Promise<void>;
   markPageRead: (moduleId: string, pageIndex: number) => void;
   markQuizPassed: (moduleId: string, score: number) => void;
+  checkAndUpdateStreak: () => void;
   toggleSidebar: () => void;
 
   getModuleStatus: (moduleId: string) => 'not_started' | 'in_progress' | 'mastered';
   getNextModule: () => string | null;
   getPhaseProgress: (phase: number) => { mastered: number; total: number; percent: number };
   getOverallProgress: () => { mastered: number; total: number; percent: number };
+  isActiveToday: () => boolean;
 }
 
 // ── localStorage keys ─────────────────────────────────────────────────────────
 
 const PROGRESS_KEY = 'dekho-panchang-learn-progress';
 const SIDEBAR_KEY = 'dekho-panchang-sidebar-state';
+const STREAK_KEY = 'dekho-panchang-learn-streak';
+
+// ── Default streak ────────────────────────────────────────────────────────────
+
+const DEFAULT_STREAK: StreakData = {
+  streakDays: 0,
+  lastActiveDate: '',
+  longestStreak: 0,
+  streakFreezeAvailable: true,
+  lastFreezeUsed: null,
+};
 
 // ── Merge helpers ─────────────────────────────────────────────────────────────
 
@@ -118,6 +140,43 @@ function writeSidebarToStorage(expanded: boolean): void {
   }
 }
 
+function readStreakFromStorage(): StreakData {
+  if (typeof window === 'undefined') return { ...DEFAULT_STREAK };
+  try {
+    const raw = window.localStorage.getItem(STREAK_KEY);
+    return raw ? { ...DEFAULT_STREAK, ...(JSON.parse(raw) as Partial<StreakData>) } : { ...DEFAULT_STREAK };
+  } catch {
+    return { ...DEFAULT_STREAK };
+  }
+}
+
+function writeStreakToStorage(streak: StreakData): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(STREAK_KEY, JSON.stringify(streak));
+  } catch {
+    // Storage quota exceeded — silently ignore
+  }
+}
+
+/** Get today's date string in YYYY-MM-DD (local time) */
+function getTodayStr(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Get date N days ago in YYYY-MM-DD (local time) */
+function getDaysAgoStr(n: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Check if today is Monday (for weekly freeze reset) */
+function isTodayMonday(): boolean {
+  return new Date().getDay() === 1;
+}
+
 // ── Real-time Supabase upsert (fire-and-forget for logged-in users) ───────────
 
 function upsertToSupabase(entry: ModuleProgress): void {
@@ -146,6 +205,7 @@ function upsertToSupabase(entry: ModuleProgress): void {
 
 export const useLearningProgressStore = create<LearningProgressStore>((set, get) => ({
   progress: {},
+  streak: { ...DEFAULT_STREAK },
   sidebarExpanded: true,
   hydrated: false,
 
@@ -154,7 +214,18 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
   hydrateFromStorage: () => {
     const progress = readProgressFromStorage();
     const sidebarExpanded = readSidebarFromStorage();
-    set({ progress, sidebarExpanded, hydrated: true });
+    let streak = readStreakFromStorage();
+
+    // Reset freeze availability every Monday
+    if (isTodayMonday() && !streak.streakFreezeAvailable) {
+      // Only reset if the last freeze wasn't used today
+      if (streak.lastFreezeUsed !== getTodayStr()) {
+        streak = { ...streak, streakFreezeAvailable: true };
+        writeStreakToStorage(streak);
+      }
+    }
+
+    set({ progress, streak, sidebarExpanded, hydrated: true });
   },
 
   // ── Supabase sync ────────────────────────────────────────────────────────────
@@ -246,6 +317,7 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     set({ progress: next });
     writeProgressToStorage(next);
     upsertToSupabase(updated);
+    get().checkAndUpdateStreak();
   },
 
   markQuizPassed: (moduleId: string, score: number) => {
@@ -270,6 +342,60 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     set({ progress: next });
     writeProgressToStorage(next);
     upsertToSupabase(updated);
+    get().checkAndUpdateStreak();
+  },
+
+  checkAndUpdateStreak: () => {
+    const current = get().streak;
+    const today = getTodayStr();
+    const yesterday = getDaysAgoStr(1);
+    const twoDaysAgo = getDaysAgoStr(2);
+
+    // Already active today — no change needed
+    if (current.lastActiveDate === today) return;
+
+    let newStreak: StreakData;
+
+    if (current.lastActiveDate === yesterday) {
+      // Consecutive day — increment streak
+      const newDays = current.streakDays + 1;
+      newStreak = {
+        ...current,
+        streakDays: newDays,
+        lastActiveDate: today,
+        longestStreak: Math.max(current.longestStreak, newDays),
+      };
+    } else if (current.lastActiveDate === twoDaysAgo && current.streakFreezeAvailable) {
+      // Missed one day but freeze is available — use freeze, keep streak
+      const newDays = current.streakDays + 1;
+      newStreak = {
+        ...current,
+        streakDays: newDays,
+        lastActiveDate: today,
+        longestStreak: Math.max(current.longestStreak, newDays),
+        streakFreezeAvailable: false,
+        lastFreezeUsed: yesterday,
+      };
+    } else if (current.lastActiveDate === '') {
+      // First ever activity
+      newStreak = {
+        ...current,
+        streakDays: 1,
+        lastActiveDate: today,
+        longestStreak: Math.max(current.longestStreak, 1),
+      };
+    } else {
+      // Streak broken — reset to 1
+      newStreak = {
+        ...current,
+        streakDays: 1,
+        lastActiveDate: today,
+        longestStreak: Math.max(current.longestStreak, 1),
+      };
+    }
+
+    set({ streak: newStreak });
+    writeStreakToStorage(newStreak);
   },
 
   // ── Sidebar ──────────────────────────────────────────────────────────────────
@@ -313,5 +439,9 @@ export const useLearningProgressStore = create<LearningProgressStore>((set, get)
     const mastered = MODULE_SEQUENCE.filter((m) => progress[m.id]?.status === 'mastered').length;
     const percent = total > 0 ? Math.round((mastered / total) * 100) : 0;
     return { mastered, total, percent };
+  },
+
+  isActiveToday: () => {
+    return get().streak.lastActiveDate === getTodayStr();
   },
 }));

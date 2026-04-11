@@ -21,6 +21,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import EclipseAlert from '@/components/dashboard/EclipseAlert';
 import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
+import WeekAhead from '@/components/dashboard/WeekAhead';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { checkBadges } from '@/lib/learn/badges';
 import LevelBadge from '@/components/learn/LevelBadge';
@@ -243,6 +244,7 @@ export default function DashboardPage() {
   const [recommendedFestivals, setRecommendedFestivals] = useState<PersonalFestival[]>([]);
   const [displayName, setDisplayName] = useState('');
   const [hasBirthData, setHasBirthData] = useState(false);
+  const [ascendantSign, setAscendantSign] = useState<number>(0);
   const [panchangData, setPanchangData] = useState<PanchangData | null>(null);
 
   const loadDashboard = useCallback(async () => {
@@ -269,6 +271,7 @@ export default function DashboardPage() {
         return;
       }
       setHasBirthData(true);
+      setAscendantSign(snapshot.ascendant_sign || 0);
 
       // Fetch full snapshot (with JSONB fields) for dasha + chart
       const { data: fullSnap } = await supabase
@@ -489,6 +492,13 @@ export default function DashboardPage() {
             locale={locale}
           />
         )}
+
+        {/* Your Week Ahead — 7-day Moon transit forecast */}
+        <WeekAhead
+          ascendantSign={ascendantSign}
+          locale={locale}
+          hasBirthData={hasBirthData}
+        />
 
         {/* Learning Streak Card */}
         {learnHydrated && (streak.streakDays > 0 || streak.longestStreak > 0) && (() => {

@@ -1686,10 +1686,10 @@ export default function PanchangPage() {
                     const IconComp = item.iconKey ? IconMap[item.iconKey] : null;
                     return (
                       <motion.div key={item.label} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 + i * 0.04 }}
-                        className="p-5 text-center">
-                        {IconComp && <div className="flex justify-center mb-2"><IconComp size={32} /></div>}
-                        <div className="text-gold-dark text-xs uppercase tracking-wider font-bold">{item.label}</div>
-                        <div className="text-gold-light font-bold text-base mt-1" style={headingFont}>{item.value}</div>
+                        className="p-4 sm:p-5 text-center flex flex-col items-center justify-center">
+                        {IconComp && <div className="mb-1.5"><IconComp size={28} /></div>}
+                        <div className="text-gold-dark text-[10px] sm:text-xs uppercase tracking-wider font-bold">{item.label}</div>
+                        <div className="text-gold-light font-bold text-sm sm:text-base mt-0.5" style={headingFont}>{item.value}</div>
                       </motion.div>
                     );
                   })}

@@ -14,7 +14,8 @@ import { ArrowLeft } from 'lucide-react';
 export default function NakshatraPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (
@@ -27,10 +28,10 @@ export default function NakshatraPage() {
         <NakshatraIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Nakshatra' : locale === 'hi' ? 'नक्षत्र' : 'नक्षत्रम्'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'நட்சத்திரம்' : locale === 'en' ? 'Nakshatra' : locale === 'hi' ? 'नक्षत्र' : 'नक्षत्रम्'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'The 27 Lunar Mansions — Stars that Map the Ecliptic' : locale === 'hi' ? '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' : 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्'}
+            {isTamil ? '27 சந்திர மாளிகைகள் — கிரகண வட்டத்தை வரையறுக்கும் நட்சத்திரங்கள்' : locale === 'en' ? 'The 27 Lunar Mansions — Stars that Map the Ecliptic' : locale === 'hi' ? '27 चन्द्र गृह — क्रान्तिवृत्त के तारामण्डल' : 'सप्तविंशतिः चन्द्रभवनानि — क्रान्तिवृत्तस्य ताराचित्रम्'}
           </p>
         </div>
       </motion.div>

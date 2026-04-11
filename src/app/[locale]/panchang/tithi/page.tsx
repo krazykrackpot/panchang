@@ -280,7 +280,8 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
 export default function TithiPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedTithi, setSelectedTithi] = useState<number | null>(null);
@@ -299,10 +300,10 @@ export default function TithiPage() {
         <TithiIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Tithi' : locale === 'hi' ? 'तिथि' : 'तिथिः'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'திதி' : locale === 'en' ? 'Tithi' : locale === 'hi' ? 'तिथि' : 'तिथिः'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'The Lunar Day — Foundation of the Panchang' : locale === 'hi' ? 'चान्द्र दिवस — पञ्चाङ्ग का आधार' : 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः'}
+            {isTamil ? 'சந்திர நாள் — பஞ்சாங்கத்தின் அடிப்படை' : locale === 'en' ? 'The Lunar Day — Foundation of the Panchang' : locale === 'hi' ? 'चान्द्र दिवस — पञ्चाङ्ग का आधार' : 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः'}
           </p>
         </div>
       </motion.div>

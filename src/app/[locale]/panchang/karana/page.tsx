@@ -424,7 +424,8 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
 export default function KaranaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedKarana, setSelectedKarana] = useState<number | null>(null);
@@ -446,10 +447,10 @@ export default function KaranaPage() {
         <KaranaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Karana' : locale === 'hi' ? 'करण' : 'करणम्'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'கரணம்' : locale === 'en' ? 'Karana' : locale === 'hi' ? 'करण' : 'करणम्'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'The Half-Tithi — 11 Building Blocks of Lunar Time' : locale === 'hi' ? 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' : 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः'}
+            {isTamil ? 'அரை-திதி — சந்திர நேரத்தின் 11 கட்டுமானத் தொகுதிகள்' : locale === 'en' ? 'The Half-Tithi — 11 Building Blocks of Lunar Time' : locale === 'hi' ? 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' : 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः'}
           </p>
         </div>
       </motion.div>

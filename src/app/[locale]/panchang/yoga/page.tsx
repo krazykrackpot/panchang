@@ -275,7 +275,8 @@ function SunMoonSumDiagram({ locale }: { locale: Locale }) {
 export default function YogaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en';
+  const isTamil = String(locale) === 'ta';
+  const isDevanagari = locale !== 'en' && !isTamil;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedYoga, setSelectedYoga] = useState<number | null>(null);
@@ -302,10 +303,10 @@ export default function YogaPage() {
         <YogaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Yoga' : locale === 'hi' ? 'योग' : 'योगः'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'யோகம்' : locale === 'en' ? 'Yoga' : locale === 'hi' ? 'योग' : 'योगः'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'The 27 Soli-Lunar Combinations — Union of Sun and Moon' : locale === 'hi' ? '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' : 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः'}
+            {isTamil ? '27 சூரிய-சந்திர கூட்டணிகள் — சூரியனும் சந்திரனும் இணைவு' : locale === 'en' ? 'The 27 Soli-Lunar Combinations — Union of Sun and Moon' : locale === 'hi' ? '27 सूर्य-चन्द्र संयोग — सूर्य और चन्द्र का मिलन' : 'सप्तविंशतिः सूर्यचन्द्रयोगाः — रवीन्दुसंयोगः'}
           </p>
         </div>
       </motion.div>

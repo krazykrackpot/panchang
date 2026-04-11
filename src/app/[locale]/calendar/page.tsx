@@ -539,7 +539,7 @@ export default function CalendarPage() {
               className="text-xs px-2.5 py-1 rounded-full border border-gold-primary/15 text-gold-dark hover:text-gold-light hover:border-gold-primary/30 transition-all flex items-center gap-1"
             >
               <Download className="w-3 h-3" />
-              {e.label[locale === 'sa' ? 'hi' : locale]}
+              {e.label[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}
             </a>
           ))}
         </div>

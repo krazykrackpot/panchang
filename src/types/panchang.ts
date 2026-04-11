@@ -2,8 +2,15 @@ export interface Trilingual {
   en: string;
   hi: string;
   sa: string;
+  ta?: string;  // Tamil — optional for incremental rollout
 }
 
+/**
+ * Locale type for Trilingual data access (en/hi/sa).
+ * Tamil ('ta') is handled at the routing/i18n layer (see @/lib/i18n/config)
+ * and falls back to English for Trilingual data via the `lk` pattern:
+ *   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+ */
 export type Locale = 'en' | 'hi' | 'sa';
 
 export interface Tithi {

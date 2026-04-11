@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
+      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : locale === 'ta' ? 'ta_IN' : 'en_US',
       type: 'website',
       images: [
         {
@@ -113,7 +113,7 @@ export default async function LocaleLayout({
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari:ital@0;1&family=Noto+Sans+Devanagari:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />

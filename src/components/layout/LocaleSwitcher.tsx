@@ -2,7 +2,11 @@
 
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from '@/lib/i18n/navigation';
-import { locales, localeLabels, type Locale } from '@/lib/i18n/config';
+import { localeLabels, type Locale } from '@/lib/i18n/config';
+import { getBodyFont } from '@/lib/utils/locale-fonts';
+
+/** Locales shown in the switcher (hide Sanskrit for now, show Tamil) */
+const visibleLocales: Locale[] = ['en', 'hi', 'ta'];
 
 export default function LocaleSwitcher() {
   const currentLocale = useLocale() as Locale;
@@ -15,7 +19,7 @@ export default function LocaleSwitcher() {
 
   return (
     <div className="flex items-center gap-1 bg-bg-secondary/50 rounded-lg p-1">
-      {locales.filter(l => l !== 'sa').map((locale) => (
+      {visibleLocales.map((locale) => (
         <button
           key={locale}
           onClick={() => switchLocale(locale)}
@@ -24,7 +28,7 @@ export default function LocaleSwitcher() {
               ? 'bg-gold-primary/20 text-gold-light font-semibold'
               : 'text-text-secondary hover:text-text-primary hover:bg-bg-tertiary/50'
           }`}
-          style={locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+          style={getBodyFont(locale)}
         >
           {localeLabels[locale]}
         </button>

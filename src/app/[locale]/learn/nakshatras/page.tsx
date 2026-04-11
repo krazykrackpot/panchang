@@ -168,7 +168,7 @@ const YOGATARAS: { id: number; star: string; starHi: string; designation: string
 export default function LearnNakshatrasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const lo = locale === 'sa' ? 'hi' : locale; // fallback sa -> hi for inline labels
+  const lo = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
 
   return (
     <div>

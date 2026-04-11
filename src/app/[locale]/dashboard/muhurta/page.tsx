@@ -31,7 +31,7 @@ const REC_STYLES: Record<string, { bg: string; text: string; label: { en: string
 
 export default function MuhurtaPage() {
   const locale = useLocale() as Locale;
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   const hf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = locale !== 'en' ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);

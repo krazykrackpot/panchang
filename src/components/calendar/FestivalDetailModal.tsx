@@ -495,7 +495,7 @@ export default function FestivalDetailModal({
 
 function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale: Locale; bodyFont: React.CSSProperties }) {
   const [copied, setCopied] = useState(false);
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   const copy = () => {
     navigator.clipboard.writeText(mantra.devanagari).then(() => {
       setCopied(true);
@@ -517,7 +517,7 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
 }
 
 function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   const t = (tri: { en: string; hi: string; sa: string }) => tri[locale] || tri.en;
 
   return (

@@ -171,7 +171,7 @@ const CROSS_REFS = [
 /* ── Page component ───────────────────────────────────────────────── */
 export default function SadeSatiLearnPage() {
   const locale = useLocale() as Locale;
-  const loc = locale === 'sa' ? 'hi' : locale;
+  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 space-y-2">

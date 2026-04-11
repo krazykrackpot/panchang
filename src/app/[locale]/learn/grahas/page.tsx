@@ -267,7 +267,7 @@ const CROSS_REFS = [
 export default function LearnGrahasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const loc = locale === 'sa' ? 'hi' : locale; // fallback sa→hi for inline labels that only have en/hi
+  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa→hi for inline labels that only have en/hi
 
   return (
     <div>

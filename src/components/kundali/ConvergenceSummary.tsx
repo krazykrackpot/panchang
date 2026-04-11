@@ -90,7 +90,7 @@ const FLAG_COLORS: Record<FlagIcon, string> = {
 
 function pickText(obj: { en: string; hi: string } | undefined, locale: Locale): string {
   if (!obj) return '';
-  const key = locale === 'sa' ? 'hi' : locale;
+  const key = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   return obj[key as 'en' | 'hi'] || obj.en;
 }
 

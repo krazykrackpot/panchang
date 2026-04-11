@@ -454,7 +454,7 @@ export default function MatchingPage() {
               const NAK_NAMES_HI = ['','अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पू.फाल्गुनी','उ.फाल्गुनी','हस्त','चित्रा','स्वाती','विशाखा','अनुराधा','ज्येष्ठा','मूल','पू.आषाढ़','उ.आषाढ़','श्रवण','धनिष्ठा','शतभिषा','पू.भाद्र','उ.भाद्र','रेवती'];
               const vedaPair = VEDA_PAIRS.find(([a, b]) => (a === bNak && b === gNak) || (a === gNak && b === bNak));
               if (!vedaPair) return null;
-              const lk = locale === 'sa' ? 'hi' : locale;
+              const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
               const sn = (n: number) => lk === 'en' ? NAK_NAMES_EN[n] : NAK_NAMES_HI[n];
               // In Veda pair: the lower-numbered nakshatra tends to dominate (traditional view)
               const dominant = Math.min(bNak, gNak) === bNak ? 'boy' : 'girl';

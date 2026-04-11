@@ -478,7 +478,7 @@ function ContentCard({
 
 function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale: Locale; bodyFont: React.CSSProperties }) {
   const [copied, setCopied] = useState(false);
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
 
   const copy = () => {
     navigator.clipboard.writeText(mantra.devanagari).then(() => {
@@ -594,7 +594,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
                   <p className="text-text-secondary/80 text-sm leading-relaxed" style={bodyFont}>{t(step.description)}</p>
                   {linkedMantra && (
                     <div className="mt-3 pl-3 border-l-2 border-gold-primary/20">
-                      <p className="text-gold-primary/60 text-xs uppercase tracking-wider font-bold mb-1">{linkedMantra.name[locale === 'sa' ? 'hi' : locale as 'en' | 'hi']}</p>
+                      <p className="text-gold-primary/60 text-xs uppercase tracking-wider font-bold mb-1">{linkedMantra.name[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</p>
                       <p className="text-amber-300 text-base font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{linkedMantra.devanagari}</p>
                     </div>
                   )}

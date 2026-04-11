@@ -730,7 +730,7 @@ function renderSadeSati(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   y = goldHeading(doc, 'Sade Sati Analysis', y);
 
   const ss = kundali.sadeSati!;
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
 
   // Status
   if (ss.isActive) {
@@ -959,7 +959,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
 
   y = goldHeading(doc, 'Chart Synthesis — Convergence Insights', y);
 
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   const exec = convergence.executive;
 
   // Overall tone

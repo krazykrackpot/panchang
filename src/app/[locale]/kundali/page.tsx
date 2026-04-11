@@ -674,7 +674,7 @@ export default function KundaliPage() {
             if (!moonNakId || !GANDA_MULA_DATA[moonNakId]) return null;
             const gm = GANDA_MULA_DATA[moonNakId];
             const nakName = moonP?.nakshatra?.name?.[locale] || moonP?.nakshatra?.name?.en;
-            const lk = locale === 'sa' ? 'hi' : locale;
+            const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
             return (
               <div className="rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-6">
                 <div className="flex items-start gap-4">
@@ -1009,7 +1009,7 @@ export default function KundaliPage() {
 
               {/* JYOTISH-16: Transit Activation of Natal Promise */}
               {(() => {
-                const lk = locale === 'sa' ? 'hi' : locale;
+                const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
                 // Current Mahadasha lord
                 const currentMaha = kundali.dashas.find(d => {
                   const now = new Date();
@@ -3982,7 +3982,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         const lifeAreaColor = (arrow: string) => arrow === '\u2191' ? 'text-emerald-400' : arrow === '\u2193' ? 'text-rose-400' : 'text-amber-400';
         const fmtYear = (d: string) => d.slice(0, 4);
         const fmtDate = (d: string) => { const p = d.split('-'); return `${p[2]}/${p[1]}/${p[0].slice(2)}`; };
-        const loc = locale === 'sa' ? 'hi' : locale;
+        const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
 
         return (
           <section className="space-y-6">
@@ -4840,7 +4840,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
         return (
           <div key={cat}>
             <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-3 font-bold" style={bodyFont}>
-              {catLabel[locale === 'sa' ? 'hi' : locale]}
+              {catLabel[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {catYogas.map(y => (
@@ -4977,7 +4977,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
                 return (
                   <th key={s.planetId} className="text-center py-3 px-2 min-w-[70px]">
                     <GrahaIconById id={s.planetId} size={20} />
-                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[locale === 'sa' ? 'hi' : locale]}</p>
+                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</p>
                   </th>
                 );
               })}
@@ -4992,7 +4992,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={row.key} className={isSummary ? 'bg-gold-primary/5' : 'hover:bg-gold-primary/3'}>
                   <td className={`py-2 px-2 text-xs ${isSummary ? 'text-gold-light font-bold' : 'text-text-secondary'}`} style={bodyFont}>
-                    {row[locale === 'sa' ? 'hi' : locale]}
+                    {row[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}
                   </td>
                   {shadbala.map(s => (
                     <td key={s.planetId} className={`py-2 px-2 text-center font-mono text-xs ${isSummary ? 'font-bold ' : ''}${getColor(s, row.key)}`}>
@@ -5064,7 +5064,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={b.bhava} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
                   <td className="py-2.5 px-2 text-gold-light font-bold">{b.bhava}</td>
-                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</td>
+                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</td>
                   <td className="py-2.5 px-2">
                     {b.lordId <= 6 && <GrahaIconById id={b.lordId} size={16} />}
                     <span className="text-text-primary text-xs ml-1">{b.lordName}</span>
@@ -5098,7 +5098,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
             return (
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
-                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[locale === 'sa' ? 'hi' : locale]}</div>
+                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</div>
                 <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>
@@ -5171,7 +5171,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
   headingFont: React.CSSProperties;
 }) {
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   const [expandedSection, setExpandedSection] = useState<string>('summary');
 
   const interp = sadeSati.interpretation;

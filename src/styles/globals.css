@@ -25,6 +25,8 @@
   --font-body: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
   --font-devanagari-heading: 'Tiro Devanagari', 'Cormorant Garamond', serif;
   --font-devanagari-body: 'Noto Sans Devanagari', 'Inter', sans-serif;
+  --font-tamil-heading: 'Noto Sans Tamil', 'Cormorant Garamond', serif;
+  --font-tamil-body: 'Noto Sans Tamil', 'Inter', sans-serif;
 }
 
 /* Star field animation */
@@ -68,6 +70,15 @@ html[lang="sa"] body {
 html[lang="hi"] h1, html[lang="hi"] h2, html[lang="hi"] h3,
 html[lang="sa"] h1, html[lang="sa"] h2, html[lang="sa"] h3 {
   font-family: var(--font-devanagari-heading);
+}
+
+/* Tamil locale styles */
+html[lang="ta"] body {
+  font-family: var(--font-tamil-body);
+}
+
+html[lang="ta"] h1, html[lang="ta"] h2, html[lang="ta"] h3 {
+  font-family: var(--font-tamil-heading);
 }
 
 /* Dark date/time picker icons — browser-native calendar & clock */

@@ -342,7 +342,7 @@ const CROSS_REFS = [
 
 export default function LearnRashisPage() {
   const locale = useLocale() as Locale;
-  const loc = locale === 'sa' ? 'hi' : locale; // fallback sa -> hi for longer content
+  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for longer content
 
   return (
     <div>

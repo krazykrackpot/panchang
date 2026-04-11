@@ -80,7 +80,7 @@ const LABELS = {
 
 type Tri = { en: string; hi: string; sa?: string };
 const t = (label: Tri, locale: Locale): string => {
-  const k = locale === 'sa' ? 'hi' : locale;
+  const k = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   return (label as Record<string, string>)[k] ?? label.en;
 };
 
@@ -129,7 +129,7 @@ export default function SadeSatiPage() {
   const isDevanagari = locale !== 'en';
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const lk = locale === 'sa' ? 'hi' : locale;
+  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
 
   const [tab, setTab] = useState<'quick' | 'full'>('quick');
   const [moonRashi, setMoonRashi] = useState(0);

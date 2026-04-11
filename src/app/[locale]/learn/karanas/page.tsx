@@ -267,7 +267,7 @@ const natureLabel = (nature: string, locale: string) => {
 export default function LearnKaranasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const loc = locale === 'sa' ? 'hi' : locale; // fallback sa -> hi for inline labels
+  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
 
   const chara = KARANAS.filter(k => k.type === 'chara');
   const sthira = KARANAS.filter(k => k.type === 'sthira');

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSupabase } from '@/lib/supabase/server';
 import { computePersonalTransits } from '@/lib/transit/personal-transits';
+import { sendPushToUser } from '@/lib/push/send-push';
 
 // ---------------------------------------------------------------------------
 // GET /api/cron/transit-alerts
@@ -66,10 +67,12 @@ export async function GET(req: NextRequest) {
 
     const body = `${topTransit.planetName.en} is transiting your ${topTransit.quality === 'strong' ? 'strong' : 'weak'} zone (${topTransit.signName.en}, ${topTransit.savBindu} bindus). ${topTransit.quality === 'strong' ? 'Favorable period — take action!' : 'Navigate carefully.'}`;
 
+    const alertTitle = `Transit Alert: ${topTransit.planetName.en} in ${topTransit.signName.en}`;
+
     await supabase.from('user_notifications').insert({
       user_id: snap.user_id,
       type: 'transit_alert',
-      title: `Transit Alert: ${topTransit.planetName.en} in ${topTransit.signName.en}`,
+      title: alertTitle,
       body,
       metadata: {
         planetId: topTransit.planetId,
@@ -79,6 +82,18 @@ export async function GET(req: NextRequest) {
       },
       read: false,
     });
+
+    // Send web push notification (non-blocking — don't fail the cron if push fails)
+    try {
+      await sendPushToUser(snap.user_id, {
+        title: alertTitle,
+        body,
+        url: '/en/kundali',
+        tag: 'transit-alert',
+      });
+    } catch (pushErr) {
+      console.error(`[TransitAlerts] Push failed for user ${snap.user_id}:`, pushErr);
+    }
 
     notified++;
   }

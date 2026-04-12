@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { User, MapPin, Calendar, Clock, Save, Trash2, LogOut, Loader2, Bell } from 'lucide-react';
 import LocationSearch from '@/components/ui/LocationSearch';
+import PushPermission from '@/components/notifications/PushPermission';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
@@ -295,7 +296,7 @@ export default function SettingsPage() {
   }
 
   const memberSince = user.created_at
-    ? new Date(user.created_at).toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN', {
+    ? new Date(user.created_at).toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', {
         year: 'numeric', month: 'long', day: 'numeric',
       })
     : '—';
@@ -650,10 +651,11 @@ export default function SettingsPage() {
             <p className="text-xs text-text-secondary/75 mt-1">{L.notifDesc}</p>
           </div>
           <div className="px-6 py-5 space-y-3">
+            <PushPermission locale={locale} />
             {NOTIF_TYPES.map((nt) => (
               <label key={nt.key} className="flex items-center justify-between cursor-pointer group">
                 <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                  {locale === 'en' || String(locale) === 'ta' ? nt.en : nt.hi}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? nt.en : nt.hi}
                 </span>
                 <button
                   role="switch"

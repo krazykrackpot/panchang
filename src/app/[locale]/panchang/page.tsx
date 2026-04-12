@@ -102,6 +102,12 @@ export default function PanchangPage() {
   const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   // Tamil translation helper: returns Tamil string when locale is 'ta', else falls through to en/hi
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
+  // Safe trilingual accessor — falls back to 'en' when locale key missing (e.g. 'ta' on {en,hi,sa})
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tl = (obj: any): string => {
+    if (!obj) return '';
+    return obj[locale] || obj.en || '';
+  };
 
   const [panchang, setPanchang] = useState<PanchangData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -488,7 +494,7 @@ export default function PanchangPage() {
                           <h3 className={`text-xl font-bold ${
                             isMajor ? 'text-gold-light' : isEkadashi ? 'text-emerald-300' : 'text-purple-300'
                           }`} style={headingFont}>
-                            {fest.name[locale]}
+                            {tl(fest.name)}
                           </h3>
                           <span className={`text-xs uppercase tracking-widest font-bold px-2.5 py-0.5 rounded-full ${
                             isMajor
@@ -504,9 +510,9 @@ export default function PanchangPage() {
                               : (isTamil ? 'விரதம்' : locale === 'en' ? 'Vrat' : 'व्रत')}
                           </span>
                         </div>
-                        {fest.description[locale] && (
+                        {tl(fest.description) && (
                           <p className="text-text-secondary text-sm mt-1.5 leading-relaxed line-clamp-2">
-                            {fest.description[locale]}
+                            {tl(fest.description)}
                           </p>
                         )}
                         <div className="flex flex-wrap items-center gap-4 mt-3">
@@ -618,7 +624,7 @@ export default function PanchangPage() {
                   {/* First tithi (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${tithiPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
                     <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
-                      {panchang.tithi.name[locale]}
+                      {tl(panchang.tithi.name)}
                     </div>
                     <div className="text-text-secondary text-xs mt-0.5">
                       {panchang.tithi.paksha === 'shukla' ? t('shukla') : t('krishna')}
@@ -638,7 +644,7 @@ export default function PanchangPage() {
                   {nextTithiData && tithiTr && (
                     <div className={`rounded-lg p-2.5 border ${tithiPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
                       <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
-                        {nextTithiData.name[locale]}
+                        {tl(nextTithiData.name)}
                       </div>
                       <div className="text-text-secondary text-xs mt-0.5">
                         {nextTithiData.paksha === 'shukla' ? t('shukla') : t('krishna')}
@@ -670,10 +676,10 @@ export default function PanchangPage() {
                   {/* First nakshatra (at sunrise) */}
                   <div className={`rounded-lg p-2.5 mb-2 border ${nakPassed ? 'border-gold-primary/10 opacity-60' : 'border-gold-primary/30 bg-gold-primary/5'}`}>
                     <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
-                      {panchang.nakshatra.name[locale]}
+                      {tl(panchang.nakshatra.name)}
                     </div>
                     <div className="text-text-secondary text-xs mt-0.5">
-                      {panchang.nakshatra.deity[locale]}
+                      {tl(panchang.nakshatra.deity)}
                       {panchang.nakshatra.pada ? ` · ${isTamil ? 'பாதம்' : locale === 'en' ? 'Pada' : 'पाद'} ${panchang.nakshatra.pada}` : ''}
                     </div>
                     {nakTr && (
@@ -689,10 +695,10 @@ export default function PanchangPage() {
                   {nextNakData && nakTr && (
                     <div className={`rounded-lg p-2.5 border ${nakPassed ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/10 opacity-60'}`}>
                       <div className="text-gold-light text-lg font-bold leading-tight" style={headingFont}>
-                        {nextNakData.name[locale]}
+                        {tl(nextNakData.name)}
                       </div>
                       <div className="text-text-secondary text-xs mt-0.5">
-                        {nextNakData.deity[locale]}
+                        {tl(nextNakData.deity)}
                       </div>
                       <div className="font-mono text-sm text-amber-300 font-bold mt-1.5">
                         {fmt(nakTr.endTime, nakTr.endDate)} {onwards}
@@ -715,8 +721,8 @@ export default function PanchangPage() {
                 >
                   <div className="flex justify-center mb-3"><YogaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('yoga')}</div>
-                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{activeYoga.name[locale]}</div>
-                  <div className="text-text-secondary text-xs mt-2">{activeYoga.meaning[locale]}</div>
+                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(activeYoga.name)}</div>
+                  <div className="text-text-secondary text-xs mt-2">{tl(activeYoga.meaning)}</div>
                   {panchang.yogaTransition && (
                     <div className="mt-3 pt-2 border-t border-gold-primary/10">
                       <div className="font-mono text-sm text-amber-300 font-bold">{fmt(panchang.yogaTransition.startTime, panchang.yogaTransition.startDate)} — {fmt(panchang.yogaTransition.endTime, panchang.yogaTransition.endDate)}</div>
@@ -749,7 +755,7 @@ export default function PanchangPage() {
                 >
                   <div className="flex justify-center mb-3"><KaranaIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('karana')}</div>
-                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{activeKarana.name[locale]}</div>
+                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(activeKarana.name)}</div>
                   <div className="text-text-secondary text-xs mt-2">
                     {activeKarana.type === 'chara' ? (isTamil ? 'சர' : locale === 'en' ? 'Movable' : 'चर') : activeKarana.type === 'sthira' ? (isTamil ? 'ஸ்திர' : locale === 'en' ? 'Fixed' : 'स्थिर') : (isTamil ? 'விசேஷ' : locale === 'en' ? 'Special' : 'विशेष')}
                   </div>
@@ -785,11 +791,11 @@ export default function PanchangPage() {
                 >
                   <div className="flex justify-center mb-3"><VaraIcon size={56} /></div>
                   <div className="text-gold-dark text-xs uppercase tracking-widest mb-3 font-semibold">{t('vara')}</div>
-                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{panchang.vara.name[locale]}</div>
-                  <div className="text-text-secondary text-xs mt-2">{panchang.vara.ruler[locale]}</div>
+                  <div className="text-gold-light text-2xl font-bold leading-tight" style={headingFont}>{tl(panchang.vara.name)}</div>
+                  <div className="text-text-secondary text-xs mt-2">{tl(panchang.vara.ruler)}</div>
                   {/* Vara contextual tip */}
                   <div className="text-text-secondary/70 text-xs mt-1.5 leading-snug">
-                    {isTamil ? 'அதிபதி' : locale === 'en' ? 'Ruled by' : 'स्वामी:'}{' '}{panchang.vara.ruler[locale]}{' — '}{
+                    {isTamil ? 'அதிபதி' : locale === 'en' ? 'Ruled by' : 'स्वामी:'}{' '}{tl(panchang.vara.ruler)}{' — '}{
                       panchang.vara.day === 0 ? (isTamil ? 'ஆன்மீகத்திற்கு நல்லது' : locale === 'en' ? 'good for spirituality' : 'आध्यात्मिक कार्यों के लिए')
                       : panchang.vara.day === 1 ? (isTamil ? 'புதிய தொடக்கங்களுக்கு நல்லது' : locale === 'en' ? 'good for new starts' : 'नई शुरुआत के लिए')
                       : panchang.vara.day === 2 ? (isTamil ? 'தைரியம் & செயலுக்கு நல்லது' : locale === 'en' ? 'good for courage & action' : 'साहस व कार्य के लिए')
@@ -1063,7 +1069,7 @@ export default function PanchangPage() {
                   </div>
                   <div className={`font-bold text-lg ${panchang.anandadiYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-orange-300'}`}
                     style={headingFont}>
-                    {panchang.anandadiYoga.name[locale]}
+                    {tl(panchang.anandadiYoga.name)}
                   </div>
                   <div className="text-text-secondary text-xs mt-2 leading-relaxed">
                     {panchang.anandadiYoga.nature === 'auspicious'
@@ -1081,7 +1087,7 @@ export default function PanchangPage() {
                     {isTamil ? 'தமிழ் யோகம்' : locale === 'en' ? 'Tamil Yoga' : 'तमिल योग'}
                   </div>
                   <div className={`font-bold text-lg ${panchang.tamilYoga.nature === 'auspicious' ? 'text-emerald-300' : 'text-red-300'}`} style={headingFont}>
-                    {panchang.tamilYoga.name[locale]}
+                    {tl(panchang.tamilYoga.name)}
                   </div>
                   <div className="text-text-secondary text-xs mt-2">
                     {panchang.tamilYoga.nature === 'auspicious'
@@ -1103,7 +1109,7 @@ export default function PanchangPage() {
                       <Compass className="w-5 h-5 text-orange-400" />
                     </div>
                     <div>
-                      <div className="text-gold-light font-bold text-lg" style={headingFont}>{panchang.homahuti.direction[locale]}</div>
+                      <div className="text-gold-light font-bold text-lg" style={headingFont}>{tl(panchang.homahuti.direction)}</div>
                       <div className="text-text-secondary text-xs">{isTamil ? 'ஹோமத்திற்கு இத்திசையில் முகம் செய்யவும்' : locale === 'en' ? 'Face this direction for Homa' : 'होम के लिए इस दिशा में मुख करें'}</div>
                     </div>
                   </div>
@@ -1123,11 +1129,11 @@ export default function PanchangPage() {
                   <div className="space-y-2 mb-3">
                     <div className="flex items-center justify-between">
                       <span className="text-text-secondary text-xs">{isTamil ? 'நாள் அதிபதி (அரசர்)' : locale === 'en' ? 'Day Lord (King)' : 'दिन स्वामी (राजा)'}</span>
-                      <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.king.planet]?.name[locale]}</span>
+                      <span className="text-gold-light font-bold text-sm">{(GRAHAS[panchang.mantriMandala.king.planet]?.name[locale] || GRAHAS[panchang.mantriMandala.king.planet]?.name.en || '')}</span>
                     </div>
                     <div className="flex items-center justify-between">
                       <span className="text-text-secondary text-xs">{isTamil ? 'மத்தியான ஹோரை அதிபதி (மந்திரி)' : locale === 'en' ? 'Midday Hora Lord (Minister)' : 'मध्याह्न होरा स्वामी (मंत्री)'}</span>
-                      <span className="text-gold-light font-bold text-sm">{GRAHAS[panchang.mantriMandala.minister.planet]?.name[locale]}</span>
+                      <span className="text-gold-light font-bold text-sm">{(GRAHAS[panchang.mantriMandala.minister.planet]?.name[locale] || GRAHAS[panchang.mantriMandala.minister.planet]?.name.en || '')}</span>
                     </div>
                   </div>
                   <div className="text-text-tertiary text-xs mb-3">
@@ -1158,7 +1164,7 @@ export default function PanchangPage() {
                           <div className="flex justify-between">
                             <span className={hNow ? 'text-gold-light' : 'text-text-secondary'}>{h.start}–{h.end}{hNow ? ' ◂' : ''}</span>
                             <span className={`font-semibold ${hasConflict ? 'text-amber-400' : hNow ? 'text-gold-primary' : 'text-gold-light'}`}>
-                              {GRAHAS[h.planet]?.name[locale]}
+                              {(GRAHAS[h.planet]?.name[locale] || GRAHAS[h.planet]?.name.en || '')}
                               {hasConflict && ' ⚠'}
                             </span>
                           </div>
@@ -1334,7 +1340,7 @@ export default function PanchangPage() {
                   </div>
                   {panchang.gandaMoola.nakshatra && (
                     <div className="text-red-300 font-bold text-base" style={headingFont}>
-                      {(panchang.gandaMoola as any).nakshatra[locale]}
+                      {((panchang.gandaMoola as any).nakshatra?.[locale] || (panchang.gandaMoola as any).nakshatra?.en || '')}
                     </div>
                   )}
                   {(panchang.gandaMoola as any).start && (
@@ -1393,7 +1399,7 @@ export default function PanchangPage() {
                   </div>
                   {panchang.panchaka.type && (
                     <div className="text-purple-300 font-bold text-base" style={headingFont}>
-                      {panchang.panchaka.type[locale]}
+                      {tl(panchang.panchaka.type)}
                     </div>
                   )}
                   <div className="text-text-secondary text-xs mt-2">
@@ -1436,17 +1442,17 @@ export default function PanchangPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-12 h-12 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center flex-shrink-0">
                       <span className="text-orange-400 text-xl font-bold">
-                        {panchang.dishaShool.direction[locale].charAt(0)}
+                        {(tl(panchang.dishaShool.direction) || panchang.dishaShool.direction.en || '').charAt(0)}
                       </span>
                     </div>
                     <div>
-                      <div className="text-text-primary font-bold text-lg" style={headingFont}>{panchang.dishaShool.direction[locale]}</div>
+                      <div className="text-text-primary font-bold text-lg" style={headingFont}>{tl(panchang.dishaShool.direction) || panchang.dishaShool.direction.en}</div>
                       <div className="text-text-secondary text-xs">{t('dishaShoolDesc')}</div>
                     </div>
                   </div>
                   <div className="pt-3 border-t border-orange-500/10">
                     <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{t('remedy')}</div>
-                    <div className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{panchang.dishaShool.remedy[locale]}</div>
+                    <div className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(panchang.dishaShool.remedy)}</div>
                   </div>
                 </motion.div>
               )}
@@ -1606,7 +1612,7 @@ export default function PanchangPage() {
                       {direction && (
                         <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/20 border border-blue-500/20">
                           <Compass className="w-3 h-3 text-blue-400" />
-                          <span className="text-blue-300 text-xs font-bold">{direction[locale]}</span>
+                          <span className="text-blue-300 text-xs font-bold">{(direction[locale] || direction.en || '')}</span>
                         </div>
                       )}
                     </div>
@@ -1634,7 +1640,7 @@ export default function PanchangPage() {
                       <Compass className="w-6 h-6 text-purple-400" />
                     </div>
                     <div>
-                      <div className="text-gold-light font-bold text-xl" style={headingFont}>{panchang.rahuVaas.direction[locale]}</div>
+                      <div className="text-gold-light font-bold text-xl" style={headingFont}>{tl(panchang.rahuVaas.direction)}</div>
                       <div className="text-text-tertiary text-xs">{locale === 'hi' ? 'राहु मुख दिशा' : "Rahu's facing direction"}</div>
                     </div>
                   </div>
@@ -1988,7 +1994,7 @@ export default function PanchangPage() {
                               slot.nature === 'inauspicious' ? 'bg-red-400' : 'bg-amber-400'
                             }`} />
                             <span className="text-gold-light font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {slot.name[locale]}
+                              {(slot.name[locale] || slot.name.en || '')}
                             </span>
                             {active && (
                               <span className="text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-gold-primary/20 text-gold-light">
@@ -2076,7 +2082,7 @@ export default function PanchangPage() {
                       <GrahaIconById id={slot.planetId} size={24} />
                     </div>
                     <div className="text-gold-light text-xs font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {slot.planet[locale]}
+                      {(slot.planet[locale] || slot.planet.en || '')}
                     </div>
                     <div className="font-mono text-xs text-text-secondary mt-1">{slot.startTime}—{slot.endTime}</div>
                   </motion.div>
@@ -2138,11 +2144,11 @@ export default function PanchangPage() {
                           <span className={`text-2xl font-bold w-8 ${getNatureColor(m.nature)}`}>{m.number}</span>
                           <div>
                             <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                              {m.name[locale]}
+                              {(m.name[locale] || m.name.en || '')}
                             </span>
                             {isAbhijit && <span className="ml-2 px-2 py-0.5 bg-gold-primary/30 text-gold-light text-xs rounded-full font-bold uppercase">Abhijit</span>}
                             {isCurrent && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 text-emerald-400 text-xs rounded-full font-bold animate-pulse">{isTamil ? 'இப்போது' : locale === 'en' ? 'NOW' : 'अभी'}</span>}
-                            {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
+                            {info && <span className="ml-2 text-text-secondary/70 text-xs">{(info.deity[locale] || info.deity.en || '')}</span>}
                           </div>
                         </div>
                         <div className="flex items-center gap-3 flex-shrink-0">
@@ -2154,7 +2160,7 @@ export default function PanchangPage() {
                       </div>
                       {info && (
                         <div className="ml-11">
-                          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{info.significance[locale]}</p>
+                          <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(info.significance[locale] || info.significance.en || '')}</p>
                           <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                             <span className="font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
                           </p>
@@ -2204,9 +2210,9 @@ export default function PanchangPage() {
                             <div className="flex items-center gap-3">
                               <span className={`text-2xl font-bold w-8 ${getNatureColor(m.nature)}`}>{m.number}</span>
                               <div>
-                                <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
+                                <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{(m.name[locale] || m.name.en || '')}</span>
                                 {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{locale === 'en' || String(locale) === 'ta' ? 'BRAHMA MUHURTA' : 'ब्राह्म मुहूर्त'}</span>}
-                                {info && <span className="ml-2 text-text-secondary/70 text-xs">{info.deity[locale]}</span>}
+                                {info && <span className="ml-2 text-text-secondary/70 text-xs">{(info.deity[locale] || info.deity.en || '')}</span>}
                               </div>
                             </div>
                             <div className="flex items-center gap-3 flex-shrink-0">
@@ -2218,7 +2224,7 @@ export default function PanchangPage() {
                           </div>
                           {info && (
                             <div className="ml-11">
-                              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{info.significance[locale]}</p>
+                              <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{(info.significance[locale] || info.significance.en || '')}</p>
                               <p className="text-gold-primary/60 text-xs mt-1.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                                 <span className="font-semibold">{locale === 'en' || String(locale) === 'ta' ? 'Best for:' : 'सर्वोत्तम:'}</span> {info.bestFor[locale]}
                               </p>
@@ -2251,8 +2257,8 @@ export default function PanchangPage() {
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-amber-500/15">
                   <div className="flex justify-center mb-2"><RashiIconById id={panchang.sunSign?.rashi || sunPlanet?.rashi || 1} size={48} /></div>
                   <div className="text-amber-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Sun Sign' : 'सूर्य राशि'}</div>
-                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{sunRashiData?.name[locale]}</div>
-                  <div className="text-text-secondary text-xs mt-1">{sunNakData?.name[locale]}</div>
+                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(sunRashiData?.name[locale] || sunRashiData?.name?.en || '')}</div>
+                  <div className="text-text-secondary text-xs mt-1">{(sunNakData?.name[locale] || sunNakData?.name?.en || '')}</div>
                 </motion.div>
 
                 {/* Moon Sign */}
@@ -2260,9 +2266,9 @@ export default function PanchangPage() {
                   className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5 text-center border border-indigo-500/15">
                   <div className="flex justify-center mb-2"><RashiIconById id={panchang.moonSign?.rashi || moonPlanet?.rashi || 1} size={48} /></div>
                   <div className="text-indigo-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Moon Sign' : 'चन्द्र राशि'}</div>
-                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{moonRashiData?.name[locale]}</div>
+                  <div className="text-gold-light font-bold text-lg mt-1" style={headingFont}>{(moonRashiData?.name[locale] || moonRashiData?.name?.en || '')}</div>
                   <div className="text-text-secondary text-xs mt-1">
-                    {moonNakData?.name[locale]}
+                    {(moonNakData?.name[locale] || moonNakData?.name?.en || '')}
                     {panchang.moonSign?.pada ? ` · ${isTamil ? 'பாதம்' : locale === 'en' ? 'Pada' : 'पाद'} ${panchang.moonSign.pada}` : ''}
                   </div>
                 </motion.div>
@@ -2308,7 +2314,7 @@ export default function PanchangPage() {
                       <div className="flex justify-center mb-1.5">
                         <RashiIconById id={lagna.rashi} size={28} />
                       </div>
-                      <div className="text-gold-light text-sm font-bold" style={headingFont}>{lagna.name[locale]}</div>
+                      <div className="text-gold-light text-sm font-bold" style={headingFont}>{(lagna.name[locale] || lagna.name.en || '')}</div>
                       <div className="text-text-secondary text-xs font-mono mt-1">{lagna.start} – {lagna.end}</div>
                     </motion.div>
                   ))}
@@ -2367,7 +2373,7 @@ export default function PanchangPage() {
                   >
                     <option value={0}>{locale === 'en' || String(locale) === 'ta' ? 'Select...' : 'चुनें...'}</option>
                     {NAKSHATRAS.map((n) => (
-                      <option key={n.id} value={n.id}>{n.name[locale]}</option>
+                      <option key={n.id} value={n.id}>{(n.name[locale] || n.name.en || '')}</option>
                     ))}
                   </select>
                 </div>

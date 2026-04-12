@@ -392,7 +392,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="text-center mb-14 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">
-              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்', te: 'వేద జ్ఞానం యొక్క మూడు స్తంభాలు', bn: 'বৈদিক জ্ঞানের তিনটি স্তম্ভ', kn: 'ವೈದಿಕ ಜ್ಞಾನದ ಮೂರು ಸ್ತಂಭಗಳು', gu: 'વૈદિક જ્ઞાનના ત્રણ સ્તંભ' }, locale)}
+              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்', te: 'వేద జ్ఞానం యొక్క మూడు స్తంభాలు', bn: 'বৈদিক জ্ঞানের তিনটি স্তম্ভ', kn: 'ವೈದಿಕ ಜ್ಞಾನದ ಮೂರು ಸ್ತಂಭಗಳು', gu: 'વૈદિક જ્ઞાનના ત્રણ સ્તંભ', mr: 'वैदिक ज्ञानाचे तीन स्तम्भ', mai: 'वैदिक ज्ञानक तीन स्तम्भ' }, locale)}
             </span>
           </h2>
         </div>
@@ -406,12 +406,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்', te: 'పంచాంగం', bn: 'পঞ্চাঙ্গ', kn: 'ಪಂಚಾಂಗ', gu: 'પંચાંગ' }, locale)}
+                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்', te: 'పంచాంగం', bn: 'পঞ্চাঙ্গ', kn: 'ಪಂಚಾಂಗ', gu: 'પંચાંગ', mr: 'पंचांग', mai: 'पंचांग' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்', te: 'మీ రోజును తెలుసుకోండి', bn: 'আপনার দিন জানুন', kn: 'ನಿಮ್ಮ ದಿನವನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારો દિવસ જાણો' }, locale)}
+                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்', te: 'మీ రోజును తెలుసుకోండి', bn: 'আপনার দিন জানুন', kn: 'ನಿಮ್ಮ ದಿನವನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારો દિવસ જાણો', mr: 'तुमचा दिवस जाणा', mai: 'अपन दिन जानू' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -431,7 +431,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →', te: 'నేటి పంచాంగం చూడండి →', bn: 'আজকের পঞ্চাঙ্গ দেখুন →', kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ನೋಡಿ →', gu: 'આજનું પંચાંગ જુઓ →' }, locale)}
+                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →', te: 'నేటి పంచాంగం చూడండి →', bn: 'আজকের পঞ্চাঙ্গ দেখুন →', kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ನೋಡಿ →', gu: 'આજનું પંચાંગ જુઓ →', mr: 'आजचे पंचांग पहा →', mai: 'आइक पंचांग देखू →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -446,12 +446,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ', gu: 'કુંડળી' }, locale)}
+                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ', gu: 'કુંડળી', mr: 'कुंडली', mai: 'कुंडली' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்', te: 'మిమ్మల్ని తెలుసుకోండి', bn: 'নিজেকে জানুন', kn: 'ನಿಮ್ಮನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારી જાતને જાણો' }, locale)}
+                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்', te: 'మిమ్మల్ని తెలుసుకోండి', bn: 'নিজেকে জানুন', kn: 'ನಿಮ್ಮನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારી જાતને જાણો', mr: 'स्वतःला जाणा', mai: 'अपना केँ चिन्हू' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -471,7 +471,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →', te: 'మీ జాతకం రూపొందించండి →', bn: 'আপনার জাতক তৈরি করুন →', kn: 'ನಿಮ್ಮ ಜಾತಕ ರಚಿಸಿ →', gu: 'તમારી કુંડળી બનાવો →' }, locale)}
+                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →', te: 'మీ జాతకం రూపొందించండి →', bn: 'আপনার জাতক তৈরি করুন →', kn: 'ನಿಮ್ಮ ಜಾತಕ ರಚಿಸಿ →', gu: 'તમારી કુંડળી બનાવો →', mr: 'तुमची कुंडली बनवा →', mai: 'अपन कुंडली बनाबू →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -486,12 +486,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்', te: 'జ్యోతిషం', bn: 'জ্যোতিষ', kn: 'ಜ್ಯೋತಿಷ', gu: 'જ્યોતિષ' }, locale)}
+                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்', te: 'జ్యోతిషం', bn: 'জ্যোতিষ', kn: 'ಜ್ಯೋತಿಷ', gu: 'જ્યોતિષ', mr: 'ज्योतिष', mai: 'ज्योतिष' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி', te: 'శాస్త్రంలో నైపుణ్యం', bn: 'বিজ্ঞানে দক্ষতা', kn: 'ವಿಜ್ಞಾನದಲ್ಲಿ ಪ್ರಾವೀಣ್ಯತೆ', gu: 'વિજ્ઞાનમાં નિપુણતા' }, locale)}
+                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி', te: 'శాస్త్రంలో నైపుణ్యం', bn: 'বিজ্ঞানে দক্ষতা', kn: 'ವಿಜ್ಞಾನದಲ್ಲಿ ಪ್ರಾವೀಣ್ಯತೆ', gu: 'વિજ્ઞાનમાં નિપુણતા', mr: 'शास्त्रात प्रभुत्व', mai: 'विज्ञान मे निपुणता' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -511,7 +511,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →', te: 'నేర్చుకోవడం ప్రారంభించండి →', bn: 'শেখা শুরু করুন →', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ →', gu: 'શીખવાનું શરૂ કરો →' }, locale)}
+                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →', te: 'నేర్చుకోవడం ప్రారంభించండి →', bn: 'শেখা শুরু করুন →', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ →', gu: 'શીખવાનું શરૂ કરો →', mr: 'शिकायला सुरुवात करा →', mai: 'सीखब शुरू करू →' }, locale)}
                   </span>
                 </div>
               </div>

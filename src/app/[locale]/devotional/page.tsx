@@ -9,6 +9,7 @@ import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import type { Locale, Trilingual } from '@/types/panchang';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber } from '@/lib/ephem/astronomical';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
+import { tl } from '@/lib/utils/trilingual';
 
 interface Recommendation {
   title: Trilingual;
@@ -85,7 +86,7 @@ export default function DevotionalPage() {
       <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-8 mb-8 text-center">
         <GrahaIconById id={dayPlanetId} size={64} />
         <h2 className="text-gold-light text-3xl font-bold mt-4" style={headingFont}>
-          {varaDeity.deity[locale]}
+          {tl(varaDeity.deity, locale)}
         </h2>
         <div className="text-amber-300 text-xl font-bold mt-3 py-3 px-6 bg-gold-primary/10 rounded-xl inline-block" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>
           {varaDeity.mantra}
@@ -102,7 +103,7 @@ export default function DevotionalPage() {
             {locale === 'en' || String(locale) === 'ta' ? 'Tithi Significance' : 'तिथि महत्त्व'}
           </div>
           <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {tithiSuggestion[locale]}
+            {tl(tithiSuggestion, locale)}
           </p>
         </div>
       )}
@@ -116,7 +117,7 @@ export default function DevotionalPage() {
               {locale === 'en' || String(locale) === 'ta' ? 'Today\'s Nakshatra' : 'आज का नक्षत्र'}
             </div>
             <div className="text-gold-light text-sm font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-              {NAKSHATRAS[today.nakshatra - 1]?.name[locale] ?? `Nakshatra ${today.nakshatra}`}
+              {tl(NAKSHATRAS[today.nakshatra - 1]?.name, locale) ?? `Nakshatra ${today.nakshatra}`}
             </div>
           </div>
         </div>
@@ -138,7 +139,7 @@ export default function DevotionalPage() {
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6"
             >
               <h4 className="text-gold-light text-lg font-bold mb-3" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                {m.name[locale]}
+                {tl(m.name, locale)}
               </h4>
               <div className="text-gold-primary text-lg leading-relaxed p-4 bg-gold-primary/5 rounded-lg border border-gold-primary/10" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
                 {m.text}
@@ -171,7 +172,7 @@ export default function DevotionalPage() {
                   {locale === 'en' || String(locale) === 'ta' ? dayNames[dayNum].en : dayNames[dayNum].hi}
                 </div>
                 <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {info.deity[locale]}
+                  {tl(info.deity, locale)}
                 </div>
                 {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{locale === 'en' || String(locale) === 'ta' ? 'TODAY' : 'आज'}</div>}
               </div>

@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 export default function HoroscopePage() {
   const locale = useLocale() as Locale;
@@ -56,7 +57,7 @@ export default function HoroscopePage() {
                       selectedSign === r.id ? 'border-gold-primary/40 bg-gold-primary/10' : 'hover:border-gold-primary/25'
                     }`}>
                     <div className="flex justify-center mb-2"><RashiIconById id={r.id} size={36} /></div>
-                    <div className="text-gold-light text-xs font-bold" style={headingFont}>{r.name[locale]}</div>
+                    <div className="text-gold-light text-xs font-bold" style={headingFont}>{tl(r.name, locale)}</div>
                   </motion.button>
                 ))}
               </div>
@@ -71,7 +72,7 @@ export default function HoroscopePage() {
                       <RashiIconById id={selectedSign} size={48} />
                       <div>
                         <h2 className="text-gold-light text-2xl font-bold" style={headingFont}>
-                          {RASHIS[selectedSign - 1]?.name[locale]}
+                          {tl(RASHIS[selectedSign - 1]?.name, locale)}
                         </h2>
                         <p className="text-text-secondary text-xs">{date}</p>
                       </div>

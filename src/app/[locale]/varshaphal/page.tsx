@@ -18,6 +18,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale } from '@/types/panchang';
 import type { VarshaphalData } from '@/types/varshaphal';
 import type { ChartStyle } from '@/types/kundali';
+import { tl } from '@/lib/utils/trilingual';
 
 const LABELS = {
   en: {
@@ -227,8 +228,8 @@ export default function VarshaphalPage() {
               <div className="flex items-center gap-4">
                 <RashiIconById id={data.muntha.sign} size={40} />
                 <div>
-                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{data.muntha.signName[locale]} — {t.house} {data.muntha.house}</p>
-                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{data.muntha.interpretation[locale]}</p>
+                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{tl(data.muntha.signName, locale)} — {t.house} {data.muntha.house}</p>
+                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{tl(data.muntha.interpretation, locale)}</p>
                 </div>
               </div>
             </div>
@@ -239,8 +240,8 @@ export default function VarshaphalPage() {
               <div className="flex items-center gap-4">
                 <GrahaIconById id={data.varsheshvara.planetId} size={40} />
                 <div>
-                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{data.varsheshvara.planetName[locale]}</p>
-                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{data.varsheshvara.description[locale]}</p>
+                  <p className="text-gold-light font-bold text-lg" style={bodyFont}>{tl(data.varsheshvara.planetName, locale)}</p>
+                  <p className="text-text-secondary text-sm mt-1" style={bodyFont}>{tl(data.varsheshvara.description, locale)}</p>
                 </div>
               </div>
             </div>
@@ -257,9 +258,9 @@ export default function VarshaphalPage() {
                 </tr></thead>
                 <tbody>{data.sahams.map((s, i) => (
                   <tr key={i} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{s.name[locale]}</td>
+                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(s.name, locale)}</td>
                     <td className="py-2 px-2 text-text-secondary font-mono">{s.degree.toFixed(2)}°</td>
-                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{s.signName[locale]}</td>
+                    <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{tl(s.signName, locale)}</td>
                     <td className="py-2 px-2 text-text-secondary">{s.house}</td>
                   </tr>
                 ))}</tbody>
@@ -273,12 +274,12 @@ export default function VarshaphalPage() {
                 {data.tajikaYogas.map((y, i) => (
                   <div key={i} className={`p-4 rounded-lg border ${y.favorable ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-gold-light font-bold text-sm" style={bodyFont}>{y.name[locale]}</span>
+                      <span className="text-gold-light font-bold text-sm" style={bodyFont}>{tl(y.name, locale)}</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
                         {y.favorable ? (locale === 'en' || String(locale) === 'ta' ? 'Favorable' : 'अनुकूल') : (locale === 'en' || String(locale) === 'ta' ? 'Unfavorable' : 'प्रतिकूल')}
                       </span>
                     </div>
-                    <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
+                    <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
                   </div>
                 ))}
                 {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{locale === 'en' || String(locale) === 'ta' ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
@@ -292,7 +293,7 @@ export default function VarshaphalPage() {
                 {data.muddaDasha.map((d, i) => (
                   <div key={i} className="flex-1 rounded-lg p-2 bg-gold-primary/10 border border-gold-primary/15 text-center min-w-[80px]">
                     <GrahaIconById id={['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet) === -1 ? 0 : [8,5,0,1,2,7,4,6,3][['Ketu','Venus','Sun','Moon','Mars','Rahu','Jupiter','Saturn','Mercury'].indexOf(d.planet)]} size={24} />
-                    <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{d.planetName[locale]}</p>
+                    <p className="text-gold-light text-xs font-bold mt-1" style={bodyFont}>{tl(d.planetName, locale)}</p>
                     <p className="text-text-secondary text-xs">{d.durationDays}d</p>
                   </div>
                 ))}
@@ -306,7 +307,7 @@ export default function VarshaphalPage() {
                 </tr></thead>
                 <tbody>{data.muddaDasha.map((d, i) => (
                   <tr key={i} className="border-b border-gold-primary/5">
-                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{d.planetName[locale]}</td>
+                    <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(d.planetName, locale)}</td>
                     <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.startDate}</td>
                     <td className="py-2 px-2 text-text-secondary font-mono text-xs">{d.endDate}</td>
                     <td className="py-2 px-2 text-text-secondary">{d.durationDays}</td>
@@ -318,7 +319,7 @@ export default function VarshaphalPage() {
             {/* Year Summary */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 border border-gold-primary/20 bg-gradient-to-br from-gold-primary/5 to-transparent">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-3 font-bold">{t.yearSummary}</h2>
-              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.yearSummary[locale]}</p>
+              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{tl(data.yearSummary, locale)}</p>
             </div>
           </motion.div>
         )}

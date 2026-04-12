@@ -11,6 +11,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { Link } from '@/lib/i18n/navigation';
 import { Shield, Zap } from 'lucide-react';
 import type { Locale, Trilingual } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 // ─── Upagraha nature & sign-based interpretation data ────────────────────────
 
@@ -569,13 +570,13 @@ export default function UpagrahaPage() {
                       {/* Name + badges */}
                       <div className="flex items-center gap-2 flex-wrap mb-1">
                         <span className="text-gold-light text-xl font-bold" style={headingFont}>
-                          {u.info.name[locale]}
+                          {tl(u.info.name, locale)}
                         </span>
                         <span className={`px-2 py-0.5 text-xs font-bold uppercase rounded-full border ${natureBg(u.info.nature)}`}>
                           {natureLabel(u.info.nature)}
                         </span>
                         <span className="text-text-secondary/70 text-xs">
-                          {locale === 'en' || String(locale) === 'ta' ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{u.info.ruler[locale]}</span>
+                          {locale === 'en' || String(locale) === 'ta' ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{tl(u.info.ruler, locale)}</span>
                         </span>
                       </div>
 
@@ -583,7 +584,7 @@ export default function UpagrahaPage() {
                       <div className="flex items-center gap-3 mb-3 flex-wrap">
                         <span className="text-gold-primary font-bold text-lg font-mono">{u.degree}</span>
                         <span className="text-text-secondary text-sm" style={bodyFont}>
-                          {locale === 'en' || String(locale) === 'ta' ? 'in' : 'में'} <span className="text-gold-light font-semibold">{u.signName[locale]}</span>
+                          {locale === 'en' || String(locale) === 'ta' ? 'in' : 'में'} <span className="text-gold-light font-semibold">{tl(u.signName, locale)}</span>
                         </span>
                         <span className="text-text-secondary/65 text-xs font-mono">({u.longitude.toFixed(2)}°)</span>
                       </div>
@@ -676,7 +677,7 @@ export default function UpagrahaPage() {
                               <div className="min-w-0">
                                 <div className="flex items-center gap-1.5">
                                   <span className={`font-bold text-xs ${isCurrent ? 'text-gold-light' : 'text-text-primary'}`}>
-                                    {RASHIS[signId - 1].name[locale]}
+                                    {tl(RASHIS[signId - 1].name, locale)}
                                   </span>
                                   {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}</span>}
                                 </div>

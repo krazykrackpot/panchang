@@ -12,6 +12,7 @@ import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
 import PersonalEclipseInsight from '@/components/eclipses/PersonalEclipseInsight';
+import { tl } from '@/lib/utils/trilingual';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
@@ -268,10 +269,10 @@ export default function EclipsesPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 flex-wrap mb-1">
                       <h3 className={`text-xl sm:text-2xl font-bold ${accentColor}`} style={headingFont}>
-                        {eclipse.typeName[locale]}
+                        {tl(eclipse.typeName, locale)}
                       </h3>
                       <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold border ${badgeBg}`}>
-                        {eclipse.magnitudeName[locale]}
+                        {tl(eclipse.magnitudeName, locale)}
                       </span>
                       {/* Node badge */}
                       {eclipse.node && (
@@ -336,7 +337,7 @@ export default function EclipsesPage() {
                       <div className="px-6 sm:px-8 pb-6 sm:pb-8 space-y-5 border-t border-gold-primary/10 pt-5">
                         {/* Description + Sutak applicability note */}
                         <div className="text-text-secondary text-sm leading-relaxed space-y-2" style={bodyFont}>
-                          <p>{eclipse.description[locale]}</p>
+                          <p>{tl(eclipse.description, locale)}</p>
                           {local && !isVisible && (
                             <p className="text-amber-400/80 text-xs font-medium">
                               {isHi

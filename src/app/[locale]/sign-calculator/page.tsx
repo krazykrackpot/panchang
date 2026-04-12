@@ -15,6 +15,7 @@ import { getSupabase } from '@/lib/supabase/client';
 import { formatDegrees } from '@/lib/ephem/astronomical';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 const SIGN_MEANING: Record<number, { en: string; hi: string }> = {
   1:  { en: 'Bold, pioneering, competitive. Natural leaders who act on instinct.', hi: 'साहसी, अग्रणी, प्रतिस्पर्धी। सहज ज्ञान से कार्य करने वाले नेता।' },
@@ -213,7 +214,7 @@ export default function SignCalculatorPage() {
                 </div>
                 <RashiIconById id={result.sunSign} size={80} />
                 <h3 className="text-amber-300 text-3xl font-bold mt-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                  {result.sunSignName[locale]}
+                  {tl(result.sunSignName, locale)}
                 </h3>
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.sunDegree} ({result.sunLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.sunSign] && (
@@ -235,7 +236,7 @@ export default function SignCalculatorPage() {
                 </div>
                 <RashiIconById id={result.moonSign} size={80} />
                 <h3 className="text-indigo-300 text-3xl font-bold mt-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                  {result.moonSignName[locale]}
+                  {tl(result.moonSignName, locale)}
                 </h3>
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.moonDegree} ({result.moonLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.moonSign] && (
@@ -281,7 +282,7 @@ export default function SignCalculatorPage() {
                     {isTamil ? 'ஜன்ம நட்சத்திரம்' : locale === 'en' ? 'Birth Nakshatra (Janma Nakshatra)' : 'जन्म नक्षत्र'}
                   </div>
                   <div className="text-gold-light text-2xl font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                    {result.moonNakshatra.name[locale]}
+                    {tl(result.moonNakshatra.name, locale)}
                   </div>
                   <div className="text-text-secondary text-sm" style={bodyFont}>
                     {isTamil ? 'பாதம்' : locale === 'en' ? 'Pada' : 'पद'} {result.moonPada}

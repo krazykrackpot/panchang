@@ -11,6 +11,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import type { Locale, Trilingual } from '@/types/panchang';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import { sunLongitude, toSidereal, dateToJD, jdToDate, normalizeDeg } from '@/lib/ephem/astronomical';
+import { tl } from '@/lib/utils/trilingual';
 
 interface TransitEvent {
   planetId: number;
@@ -257,10 +258,10 @@ export default function TransitsPage() {
             {currentTransits.map(ct => (
               <div key={ct.planetId} className="flex flex-col items-center p-3 bg-bg-primary/30 rounded-xl border border-gold-primary/10">
                 <GrahaIconById id={ct.planetId} size={32} />
-                <span className="text-gold-light text-xs font-semibold mt-1.5" style={headingFont}>{ct.planetName[locale]}</span>
+                <span className="text-gold-light text-xs font-semibold mt-1.5" style={headingFont}>{tl(ct.planetName, locale)}</span>
                 <div className="flex items-center gap-1 mt-1">
                   <RashiIconById id={ct.sign} size={14} />
-                  <span className="text-text-secondary text-xs" style={bodyFont}>{ct.signName[locale]}</span>
+                  <span className="text-text-secondary text-xs" style={bodyFont}>{tl(ct.signName, locale)}</span>
                 </div>
               </div>
             ))}
@@ -434,7 +435,7 @@ export default function TransitsPage() {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
                             <span className="text-gold-light font-bold" style={headingFont}>
-                              {e.planetName[locale]}
+                              {tl(e.planetName, locale)}
                             </span>
                             <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${sigBadge[e.significance]}`}>
                               {(locale === 'en' || String(locale) === 'ta' ? sigLabel[e.significance].en : sigLabel[e.significance].hi)}
@@ -442,10 +443,10 @@ export default function TransitsPage() {
                           </div>
                           <div className="flex items-center gap-1.5 mt-1 text-sm">
                             <RashiIconById id={e.fromSign} size={14} />
-                            <span className="text-text-tertiary" style={bodyFont}>{e.fromSignName[locale]}</span>
+                            <span className="text-text-tertiary" style={bodyFont}>{tl(e.fromSignName, locale)}</span>
                             <span className="text-gold-dark mx-0.5">→</span>
                             <RashiIconById id={e.toSign} size={14} />
-                            <span className="text-text-primary font-medium" style={bodyFont}>{e.toSignName[locale]}</span>
+                            <span className="text-text-primary font-medium" style={bodyFont}>{tl(e.toSignName, locale)}</span>
                           </div>
                         </div>
                       </div>

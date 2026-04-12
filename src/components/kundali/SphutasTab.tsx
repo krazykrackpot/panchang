@@ -6,6 +6,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 // Copied from kundali page — module-level constants used by sphutas rendering
 const PLANET_COLORS_SPHUTA: Record<number, string> = {
@@ -585,8 +586,8 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
                     <div key={p.planet.id} className="rounded-lg bg-sky-500/8 border border-sky-400/20 p-3">
                       <div className="flex items-center gap-2 mb-1.5">
                         <GrahaIconById id={p.planet.id} size={20} />
-                        <span className="text-sky-200 font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
-                        <span className="text-text-secondary/70 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
+                        <span className="text-sky-200 font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{tl(p.planet.name, locale)}</span>
+                        <span className="text-text-secondary/70 text-xs font-mono">{tl(p.signName, locale)} {(p.longitude % 30).toFixed(1)}°</span>
                         <span className="ml-auto text-sky-400 text-[10px] font-bold px-1.5 py-0.5 bg-sky-500/10 rounded border border-sky-400/20">PKN</span>
                       </div>
                       {profile && (
@@ -613,8 +614,8 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
               <div className="flex flex-wrap gap-2">
                 {pkbPlanets.map(p => (
                   <div key={p.planet.id} className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/10 border border-emerald-400/20 rounded-lg">
-                    <span className="text-emerald-200 font-bold text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{p.planet.name[locale]}</span>
-                    <span className="text-text-secondary/70 text-xs font-mono">{p.signName[locale]} {(p.longitude % 30).toFixed(1)}°</span>
+                    <span className="text-emerald-200 font-bold text-xs" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{tl(p.planet.name, locale)}</span>
+                    <span className="text-text-secondary/70 text-xs font-mono">{tl(p.signName, locale)} {(p.longitude % 30).toFixed(1)}°</span>
                     <span className="text-emerald-400 text-[10px]">(PB={PUSHKAR_BHAGA_DEGREES[p.sign]}°)</span>
                     <span className="text-emerald-400 text-[10px] font-bold">PKB</span>
                   </div>

@@ -17,6 +17,7 @@ import type { KundaliData } from '@/types/kundali';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { tl } from '@/lib/utils/trilingual';
 
 const L = {
   en: {
@@ -235,11 +236,11 @@ export default function MatchingPage() {
               <div className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-3 text-center">
                 <div className="text-blue-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
                 <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {NAKSHATRAS[boyComputed.nakshatra - 1]?.name[locale]}
+                  {tl(NAKSHATRAS[boyComputed.nakshatra - 1]?.name, locale)}
                 </span>
                 <span className="text-text-secondary mx-2">/</span>
                 <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {RASHIS[boyComputed.rashi - 1]?.name[locale]}
+                  {tl(RASHIS[boyComputed.rashi - 1]?.name, locale)}
                 </span>
               </div>
             ) : boyMissing ? (
@@ -289,11 +290,11 @@ export default function MatchingPage() {
               <div className="rounded-lg border border-pink-500/20 bg-pink-500/5 p-3 text-center">
                 <div className="text-pink-300 text-xs uppercase tracking-wider font-bold mb-1">{lbl.calculated}</div>
                 <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {NAKSHATRAS[girlComputed.nakshatra - 1]?.name[locale]}
+                  {tl(NAKSHATRAS[girlComputed.nakshatra - 1]?.name, locale)}
                 </span>
                 <span className="text-text-secondary mx-2">/</span>
                 <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {RASHIS[girlComputed.rashi - 1]?.name[locale]}
+                  {tl(RASHIS[girlComputed.rashi - 1]?.name, locale)}
                 </span>
               </div>
             ) : girlMissing ? (
@@ -377,7 +378,7 @@ export default function MatchingPage() {
                 </svg>
               </div>
               <div className={`inline-block mt-4 px-6 py-2 rounded-xl border text-lg font-bold ${verdictColors[result.verdict]}`} style={headingFont}>
-                {result.verdictText[locale]}
+                {tl(result.verdictText, locale)}
               </div>
               <div className="text-text-secondary text-sm mt-3">{result.percentage}% {t('compatibility')}</div>
             </div>
@@ -424,9 +425,9 @@ export default function MatchingPage() {
                   <div className="flex items-center justify-between mb-3">
                     <div>
                       <span className="text-gold-light font-bold text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                        {kuta.name[locale]}
+                        {tl(kuta.name, locale)}
                       </span>
-                      <span className="text-text-secondary text-xs ml-3">{kuta.description[locale]}</span>
+                      <span className="text-text-secondary text-xs ml-3">{tl(kuta.description, locale)}</span>
                     </div>
                     <span className="font-mono text-lg font-bold text-gold-primary">
                       {kuta.scored} <span className="text-text-secondary text-sm">/ {kuta.maxPoints}</span>
@@ -530,10 +531,10 @@ export default function MatchingPage() {
                               {boyKundali.planets.slice(0, 9).map(p => (
                                 <div key={p.planet.id} className="rounded-lg bg-bg-tertiary/30 p-1.5">
                                   <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                    {GRAHAS[p.planet.id]?.name[locale]?.slice(0, 6)}
+                                    {tl(GRAHAS[p.planet.id]?.name, locale)?.slice(0, 6)}
                                   </span>
                                   <span className="text-text-secondary ml-1">
-                                    {RASHIS[p.sign - 1]?.name[locale]?.slice(0, 4)}
+                                    {tl(RASHIS[p.sign - 1]?.name, locale)?.slice(0, 4)}
                                   </span>
                                   {p.isRetrograde && <span className="text-red-400 ml-0.5 text-[9px]">R</span>}
                                 </div>
@@ -551,10 +552,10 @@ export default function MatchingPage() {
                               {girlKundali.planets.slice(0, 9).map(p => (
                                 <div key={p.planet.id} className="rounded-lg bg-bg-tertiary/30 p-1.5">
                                   <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                                    {GRAHAS[p.planet.id]?.name[locale]?.slice(0, 6)}
+                                    {tl(GRAHAS[p.planet.id]?.name, locale)?.slice(0, 6)}
                                   </span>
                                   <span className="text-text-secondary ml-1">
-                                    {RASHIS[p.sign - 1]?.name[locale]?.slice(0, 4)}
+                                    {tl(RASHIS[p.sign - 1]?.name, locale)?.slice(0, 4)}
                                   </span>
                                   {p.isRetrograde && <span className="text-red-400 ml-0.5 text-[9px]">R</span>}
                                 </div>

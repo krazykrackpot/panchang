@@ -12,6 +12,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
+import { tl } from '@/lib/utils/trilingual';
 
 const ACTIVITY_LIST: { id: ExtendedActivityId; label: Record<string, string> }[] = [
   { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः', ta: 'திருமணம்' } },
@@ -347,7 +348,7 @@ export default function MuhurtaAIPage() {
                   {top.keyFactors.length > 0 && (
                     <div className="mt-4 flex flex-wrap justify-center gap-2">
                       {top.keyFactors.map((f, i) => (
-                        <span key={i} className="text-xs px-3 py-1 rounded-full bg-gold-primary/10 text-gold-light border border-gold-primary/15" style={bodyFont}>{f[locale]}</span>
+                        <span key={i} className="text-xs px-3 py-1 rounded-full bg-gold-primary/10 text-gold-light border border-gold-primary/15" style={bodyFont}>{tl(f, locale)}</span>
                       ))}
                     </div>
                   )}
@@ -392,7 +393,7 @@ export default function MuhurtaAIPage() {
                         </td>}
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.transitScore}</td>
                         <td className="py-2 px-2 text-text-secondary">{w.breakdown.timingScore}</td>
-                        <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{w.keyFactors.map(f => f[locale]).join(', ')}</td>
+                        <td className="py-2 px-2 text-text-secondary text-xs" style={bodyFont}>{w.keyFactors.map(f => tl(f, locale)).join(', ')}</td>
                       </tr>
                     ))}</tbody>
                   </table>
@@ -406,7 +407,7 @@ export default function MuhurtaAIPage() {
 
             {/* Summary */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
-              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{data.summary[locale]}</p>
+              <p className="text-text-secondary leading-relaxed" style={bodyFont}>{tl(data.summary, locale)}</p>
             </div>
           </motion.div>
         )}

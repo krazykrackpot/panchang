@@ -13,6 +13,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 export default function BabyNamesPage() {
   const locale = useLocale() as Locale;
@@ -172,7 +173,7 @@ export default function BabyNamesPage() {
                   <NakshatraIconById id={n.id} size={isSelected ? 48 : 24} />
                 </div>
                 <div className={`mt-1 font-medium ${isSelected ? 'text-gold-light text-sm' : 'text-text-secondary text-xs'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {n.name[locale]}
+                  {tl(n.name, locale)}
                 </div>
                 {isSelected && detectedPada > 0 && (
                   <div className="text-gold-primary/60 text-xs mt-1">{isTamil ? `பாதம் ${detectedPada}` : locale === 'en' ? `Pada ${detectedPada}` : `पाद ${detectedPada}`}</div>
@@ -299,7 +300,7 @@ export default function BabyNamesPage() {
                   <NakshatraIconById id={n.id} size={isHighlighted ? 28 : 22} />
                   <div>
                     <span className={`font-bold ${isHighlighted ? 'text-gold-light text-base' : 'text-text-primary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {n.name[locale]}
+                      {tl(n.name, locale)}
                     </span>
                     <span className="text-text-secondary/55 text-xs ml-2">#{n.id}</span>
                   </div>

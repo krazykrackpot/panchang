@@ -11,6 +11,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { useAuthStore } from '@/stores/auth-store';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 /* ── Types ──────────────────────────────────────────────────── */
 
@@ -625,7 +626,7 @@ export default function SankalpaPage() {
                   <option value="" className="bg-[#0a0e27]">{t.selectPuja}</option>
                   {PUJA_OPTIONS.map(p => (
                     <option key={p.slug} value={p.slug} className="bg-[#0a0e27]">
-                      {p.label[locale]} ({p.label.en})
+                      {tl(p.label, locale)} ({p.label.en})
                     </option>
                   ))}
                 </select>

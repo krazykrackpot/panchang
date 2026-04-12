@@ -10,6 +10,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
 import type { TippanniContent } from '@/lib/kundali/tippanni-types';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 const PLANET_COLORS: Record<number, string> = {
   0: '#e67e22', 1: '#ecf0f1', 2: '#e74c3c', 3: '#2ecc71',
@@ -174,7 +175,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
             return (
               <div className="max-w-2xl mx-auto">
                 <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs">
-                  <span><span className="text-text-secondary/70">{locale === 'en' || String(locale) === 'ta' ? 'Lagna' : 'लग्न'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{lagnaR?.name[locale]} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
+                  <span><span className="text-text-secondary/70">{locale === 'en' || String(locale) === 'ta' ? 'Lagna' : 'लग्न'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(lagnaR?.name, locale)} ({kundali.ascendant.degree.toFixed(1)}°)</span></span>
                   <span className="text-gold-primary/15">|</span>
                   <span><span className="text-text-secondary/70">{locale === 'en' || String(locale) === 'ta' ? 'Chandra' : 'चन्द्र'}:</span> <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{moonR?.name[locale] || '—'}</span></span>
                   <span className="text-gold-primary/15">|</span>
@@ -249,15 +250,15 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                 {kundali.planets.map((p) => (
                   <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/[0.03]">
                     <td className="py-2 px-3 font-medium" style={{ color: PLANET_COLORS[p.planet.id] || '#d4a853' }}>
-                      <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.planet.name[locale]}</span>
+                      <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{tl(p.planet.name, locale)}</span>
                     </td>
                     <td className="py-2 px-3 text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {p.signName[locale]}
+                      {tl(p.signName, locale)}
                     </td>
                     <td className="py-2 px-3 text-text-secondary text-center font-mono">{p.house}</td>
                     <td className="py-2 px-3 text-text-secondary text-right font-mono">{p.degree}</td>
                     <td className="py-2 px-3 text-text-secondary" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {p.nakshatra.name[locale]}
+                      {tl(p.nakshatra.name, locale)}
                     </td>
                     <td className="py-2 px-3 text-text-secondary text-center font-mono">{p.pada}</td>
                     <td className="py-2 px-3 text-center">
@@ -288,7 +289,7 @@ export default function PatrikaTab({ kundali, locale, isDevanagari, headingFont,
                   <div className="flex items-center gap-3">
                     <span className={`w-2 h-2 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/40'}`} />
                     <span className="text-gold-light font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {d.planetName[locale]}
+                      {tl(d.planetName, locale)}
                     </span>
                     {isCurrent && <span className="text-xs text-gold-primary font-bold uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Current' : 'वर्तमान'}</span>}
                   </div>

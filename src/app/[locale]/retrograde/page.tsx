@@ -13,6 +13,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 interface RetroPeriod {
   planetId: number;
@@ -328,14 +329,14 @@ export default function RetrogradePage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 {activeRetros.map(r => (
                   <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
-                    <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{r.planetName[locale]}</div>
+                    <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{tl(r.planetName, locale)}</div>
                     <div className="text-red-400 text-xs font-bold uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Retrograde' : 'वक्री'}</div>
                     {hasBirthData && <div className="text-text-secondary/70 text-xs mt-1">{locale === 'en' || String(locale) === 'ta' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
                   </div>
                 ))}
                 {activeCombusts.map(c => (
                   <div key={`c-${c.planetId}`} className="rounded-lg p-3 border border-orange-500/20 bg-orange-500/5 text-center">
-                    <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{c.planetName[locale]}</div>
+                    <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{tl(c.planetName, locale)}</div>
                     <div className="text-orange-400 text-xs font-bold uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Combust' : 'अस्त'}</div>
                   </div>
                 ))}
@@ -534,7 +535,7 @@ export default function RetrogradePage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap mb-1">
                         <span className="text-lg font-bold" style={{ color: p.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
-                          {p.planetName[locale]}
+                          {tl(p.planetName, locale)}
                         </span>
                         <span className="text-red-400 text-xs font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
                           {locale === 'en' || String(locale) === 'ta' ? 'RETROGRADE' : 'वक्री'}
@@ -556,10 +557,10 @@ export default function RetrogradePage() {
                       </div>
                       <div className="flex items-center gap-2 text-xs mb-3">
                         <RashiIconById id={p.startSign} size={16} />
-                        <span className="text-text-secondary" style={bodyFont}>{p.startSignName[locale]}</span>
+                        <span className="text-text-secondary" style={bodyFont}>{tl(p.startSignName, locale)}</span>
                         <span className="text-gold-dark">→</span>
                         <RashiIconById id={p.endSign} size={16} />
-                        <span className="text-text-primary font-semibold" style={bodyFont}>{p.endSignName[locale]}</span>
+                        <span className="text-text-primary font-semibold" style={bodyFont}>{tl(p.endSignName, locale)}</span>
                       </div>
 
                       {/* General meaning */}
@@ -643,7 +644,7 @@ export default function RetrogradePage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 flex-wrap mb-1">
                       <span className="font-bold text-lg" style={{ color: e.planetColor, ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}) }}>
-                        {e.planetName[locale]}
+                        {tl(e.planetName, locale)}
                       </span>
                       <span className="text-orange-400 text-xs font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
                         {locale === 'en' || String(locale) === 'ta' ? 'COMBUST' : 'अस्त'}
@@ -664,7 +665,7 @@ export default function RetrogradePage() {
                         <>
                           <span className="text-gold-primary/20">|</span>
                           <RashiIconById id={sunSign} size={14} />
-                          <span className="text-text-secondary text-xs" style={bodyFont}>{sunSignName[locale]}</span>
+                          <span className="text-text-secondary text-xs" style={bodyFont}>{tl(sunSignName, locale)}</span>
                         </>
                       )}
                     </div>

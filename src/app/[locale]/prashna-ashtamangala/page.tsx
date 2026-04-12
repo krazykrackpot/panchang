@@ -11,6 +11,7 @@ import { useLocationStore } from '@/stores/location-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
+import { tl } from '@/lib/utils/trilingual';
 
 const CATEGORIES: { id: QuestionCategory; label: Record<string, string>; house: number }[] = [
   { id: 'health', label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्', ta: 'உடல்நலம்' }, house: 1 },
@@ -181,10 +182,10 @@ export default function PrashnaAshtamangalaPage() {
                     className="text-center p-5 rounded-xl bg-gradient-to-b from-gold-primary/10 to-transparent border border-gold-primary/20">
                     <p className="text-text-secondary text-xs mb-2 uppercase tracking-wider">{objLabels[i]}</p>
                     <AshtamangalaIconById id={obj.id} size={56} />
-                    <p className="text-gold-light font-bold mt-3" style={bodyFont}>{obj.name[locale]}</p>
-                    <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{obj.symbolism[locale]}</p>
+                    <p className="text-gold-light font-bold mt-3" style={bodyFont}>{tl(obj.name, locale)}</p>
+                    <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{tl(obj.symbolism, locale)}</p>
                     <div className="mt-2 flex justify-center gap-2">
-                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.ruler}: {obj.planetName[locale]}</span>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.ruler}: {tl(obj.planetName, locale)}</span>
                       <span className="text-xs px-2 py-0.5 rounded-full bg-gold-primary/10 text-gold-dark">{t.arudaHouse}: {data.arudaHouses[i]}</span>
                     </div>
                   </motion.div>
@@ -205,12 +206,12 @@ export default function PrashnaAshtamangalaPage() {
                   {data.yogas.map((y, i) => (
                     <div key={i} className={`p-4 rounded-lg border ${y.favorable ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
                       <div className="flex items-center justify-between">
-                        <span className="text-gold-light font-bold text-sm" style={bodyFont}>{y.name[locale]}</span>
+                        <span className="text-gold-light font-bold text-sm" style={bodyFont}>{tl(y.name, locale)}</span>
                         <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
                           {y.favorable ? t.favorable : t.unfavorable}
                         </span>
                       </div>
-                      <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{y.description[locale]}</p>
+                      <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{tl(y.description, locale)}</p>
                     </div>
                   ))}
                 </div>
@@ -228,17 +229,17 @@ export default function PrashnaAshtamangalaPage() {
                 </p>
               </div>
 
-              <p className="text-text-secondary leading-relaxed mb-4" style={bodyFont}>{data.interpretation.summary[locale]}</p>
+              <p className="text-text-secondary leading-relaxed mb-4" style={bodyFont}>{tl(data.interpretation.summary, locale)}</p>
 
               <div className="grid sm:grid-cols-2 gap-4 mt-4">
                 <div className="p-4 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
                   <p className="text-gold-primary text-xs uppercase tracking-wider mb-1 font-bold">{t.timing}</p>
-                  <p className="text-text-secondary text-sm" style={bodyFont}>{data.interpretation.timing[locale]}</p>
+                  <p className="text-text-secondary text-sm" style={bodyFont}>{tl(data.interpretation.timing, locale)}</p>
                 </div>
                 <div className="p-4 rounded-lg bg-bg-primary/40 border border-gold-primary/10">
                   <p className="text-gold-primary text-xs uppercase tracking-wider mb-1 font-bold">{t.remedies}</p>
                   <ul className="text-text-secondary text-sm space-y-1" style={bodyFont}>
-                    {data.interpretation.remedies.map((r, i) => <li key={i}>{r[locale]}</li>)}
+                    {data.interpretation.remedies.map((r, i) => <li key={i}>{tl(r, locale)}</li>)}
                   </ul>
                 </div>
               </div>

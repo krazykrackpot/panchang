@@ -9,6 +9,7 @@ import { JaiminiInterpretation } from '@/components/kundali/InterpretationHelper
 import InfoBlock from '@/components/ui/InfoBlock';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 // ─── Module-level constant data ─────────────────────────────────────────────
 
@@ -220,16 +221,16 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
             <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-4 border ${i === 0 ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-gold-primary/15'}`}>
               <div className="flex items-start gap-4">
                 <div className="shrink-0 w-14 text-center pt-1">
-                  <div className="text-gold-light font-bold text-lg" style={headingFont}>{ck.planetName[locale]}</div>
+                  <div className="text-gold-light font-bold text-lg" style={headingFont}>{tl(ck.planetName, locale)}</div>
                   <div className="text-gold-primary/65 font-mono text-xs">{ck.karaka} &middot; {ck.degree.toFixed(1)}°</div>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                     <span className="text-gold-primary font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {info?.full?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'] || ck.karakaName[locale]}
+                      {info?.full?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'] || tl(ck.karakaName, locale)}
                     </span>
                     <span className="text-text-secondary/85 text-xs">
-                      ({info?.meaning?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'] || ck.karakaName[locale]})
+                      ({info?.meaning?.[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'] || tl(ck.karakaName, locale)})
                     </span>
                   </div>
                   {info?.governs && (
@@ -256,7 +257,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-6">
           <div className="text-center mb-3">
             <RashiIconById id={jaimini.karakamsha.sign} size={48} />
-            <div className="text-gold-light font-bold text-2xl mt-2" style={headingFont}>{jaimini.karakamsha.signName[locale]}</div>
+            <div className="text-gold-light font-bold text-2xl mt-2" style={headingFont}>{tl(jaimini.karakamsha.signName, locale)}</div>
           </div>
           {KARAKAMSHA_MEANING[jaimini.karakamsha.sign] && (
             <p className="text-text-secondary text-sm text-center leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -290,8 +291,8 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                   </div>
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-gold-light font-semibold text-sm" style={headingFont}>{ap.signName[locale]}</span>
-                      <span className="text-text-secondary/80 text-xs">{ap.label[locale]}</span>
+                      <span className="text-gold-light font-semibold text-sm" style={headingFont}>{tl(ap.signName, locale)}</span>
+                      <span className="text-text-secondary/80 text-xs">{tl(ap.label, locale)}</span>
                     </div>
                     {meaning && (
                       <p className="text-text-secondary/85 text-xs leading-relaxed font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -357,7 +358,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
               <div key={i} className={`rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-4 flex items-center justify-between ${isCurrent ? 'border border-gold-primary/40 bg-gold-primary/5' : ''} ${isPast ? 'opacity-40' : ''}`}>
                 <div className="flex items-center gap-3">
                   <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
-                  <span className="text-gold-light font-bold" style={headingFont}>{cd.signName[locale]}</span>
+                  <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
                   <span className="text-text-tertiary text-xs">{cd.years} {locale === 'en' || String(locale) === 'ta' ? 'years' : 'वर्ष'}</span>
                 </div>
                 <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
@@ -713,7 +714,7 @@ function BrahmaRudraMaheshwara({ kundali, locale, isDevanagari, headingFont }: J
               </div>
               {planet && (
                 <div className="text-text-secondary/85 text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {planet.planet.name[locale]} · H{planet.house} · {planet.signName[locale]}
+                  {tl(planet.planet.name, locale)} · H{planet.house} · {tl(planet.signName, locale)}
                 </div>
               )}
             </div>

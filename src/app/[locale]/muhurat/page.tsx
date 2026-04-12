@@ -8,6 +8,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale, Trilingual } from '@/types/panchang';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
+import { tl } from '@/lib/utils/trilingual';
 
 interface MuhuratDate {
   date: string;
@@ -122,7 +123,7 @@ export default function MuhuratPage() {
             }`}
             style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
-            {a.label[locale]}
+            {tl(a.label, locale)}
           </button>
         ))}
       </div>
@@ -186,10 +187,10 @@ export default function MuhuratPage() {
                       </div>
                       <div className="text-text-secondary text-sm flex flex-wrap gap-x-4 gap-y-0.5">
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Nak:' : 'नक्ष:'}</span> {nak?.name[locale]}
+                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Nak:' : 'नक्ष:'}</span> {tl(nak?.name, locale)}
                         </span>
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Moon:' : 'चन्द्र:'}</span> {rashi?.name[locale]}
+                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Moon:' : 'चन्द्र:'}</span> {tl(rashi?.name, locale)}
                         </span>
                         <span>
                           <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Tithi:' : 'तिथि:'}</span> {d.tithi}

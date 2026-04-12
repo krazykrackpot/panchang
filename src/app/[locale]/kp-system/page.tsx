@@ -13,6 +13,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 import type { KPChartData } from '@/types/kp';
+import { tl } from '@/lib/utils/trilingual';
 
 // ---------------------------------------------------------------------------
 // Life area readings: per-planet × per-area (strong / weak)
@@ -410,7 +411,7 @@ export default function KPSystemPage() {
 
   const planetName = (id: number) => {
     const g = GRAHAS[id];
-    return g ? g.name[locale] : `P${id}`;
+    return g ? tl(g.name, locale) : `P${id}`;
   };
 
   // Compute a life area reading from cuspal analysis + per-planet table
@@ -420,12 +421,12 @@ export default function KPSystemPage() {
     const analysis = data.cuspalAnalysis.find(ca => ca.house === keyCusp);
     if (!cusp || !analysis) return null;
     const subLordId = cusp.subLordInfo.subLord.id;
-    const subLordName = cusp.subLordInfo.subLord.name[locale];
+    const subLordName = tl(cusp.subLordInfo.subLord.name, locale);
     const areaReadings = LIFE_READINGS[areaKey];
     const planetReadings = areaReadings?.[subLordId];
     const reading = planetReadings
       ? (analysis.favorable ? planetReadings.strong : planetReadings.weak)
-      : analysis.interpretation[locale];
+      : tl(analysis.interpretation, locale);
     return { favorable: analysis.favorable, subLordName, subLordId, reading, signifiedHouses: analysis.signifiedHouses };
   };
 
@@ -503,8 +504,8 @@ export default function KPSystemPage() {
                       {/* Header */}
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <h3 className={`font-bold text-base ${area.hue}`} style={headingFont}>{area.title[locale]}</h3>
-                          <p className="text-text-secondary text-xs mt-0.5">{area.axis[locale]}</p>
+                          <h3 className={`font-bold text-base ${area.hue}`} style={headingFont}>{tl(area.title, locale)}</h3>
+                          <p className="text-text-secondary text-xs mt-0.5">{tl(area.axis, locale)}</p>
                         </div>
                         <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${r.favorable ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300'}`}>
                           {r.favorable ? (locale === 'en' || String(locale) === 'ta' ? 'PROMISED' : locale === 'hi' ? 'फलदायी' : 'फलितम्') : (locale === 'en' || String(locale) === 'ta' ? 'WITHHELD' : locale === 'hi' ? 'अभाव' : 'अभावः')}
@@ -546,7 +547,7 @@ export default function KPSystemPage() {
                   return (
                     <div key={i} className="rounded-xl p-3 bg-gold-primary/5 border border-gold-primary/15 text-center">
                       <GrahaIconById id={rp.planet.id} size={30} />
-                      <p className="text-gold-light font-bold text-sm mt-2" style={bodyFont}>{rp.planet.name[locale]}</p>
+                      <p className="text-gold-light font-bold text-sm mt-2" style={bodyFont}>{tl(rp.planet.name, locale)}</p>
                       <p className="text-text-secondary text-xs mt-0.5">{rp.label}</p>
                       {oracle && (
                         <p className="text-text-secondary/70 text-xs mt-1.5 leading-relaxed">{oracle.role}</p>
@@ -636,12 +637,12 @@ export default function KPSystemPage() {
                       </span>
                     </div>
                     <div className="text-xs text-text-secondary mb-1" style={bodyFont}>
-                      <span className="text-text-primary">{ca.subLordName[locale]}</span> → <span className="text-amber-400/80">{ca.subSubLordName[locale]}</span>
+                      <span className="text-text-primary">{tl(ca.subLordName, locale)}</span> → <span className="text-amber-400/80">{tl(ca.subSubLordName, locale)}</span>
                     </div>
                     <div className="text-xs text-text-secondary">
                       {t.signifies}: <span className="text-gold-primary">{ca.signifiedHouses.length > 0 ? ca.signifiedHouses.join(', ') : '—'}</span>
                     </div>
-                    <p className="text-xs text-text-secondary mt-1.5 leading-relaxed">{ca.interpretation[locale]}</p>
+                    <p className="text-xs text-text-secondary mt-1.5 leading-relaxed">{tl(ca.interpretation, locale)}</p>
                   </div>
                 ))}
               </div>
@@ -681,10 +682,10 @@ export default function KPSystemPage() {
                           <tr key={c.house} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
                             <td className="py-2 px-2 text-gold-light font-bold">{c.house}</td>
                             <td className="py-2 px-2 text-text-secondary font-mono text-xs">{c.degree.toFixed(2)}°</td>
-                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.signLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{c.subLordInfo.starLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{c.subLordInfo.subLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{c.subLordInfo.subSubLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{tl(c.subLordInfo.signLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{tl(c.subLordInfo.starLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(c.subLordInfo.subLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{tl(c.subLordInfo.subSubLord.name, locale)}</td>
                           </tr>
                         ))}</tbody>
                       </table>
@@ -705,13 +706,13 @@ export default function KPSystemPage() {
                         </tr></thead>
                         <tbody>{data.planets.map(p => (
                           <tr key={p.planet.id} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
-                            <td className="py-2 px-2"><div className="flex items-center gap-2"><GrahaIconById id={p.planet.id} size={20} /><span className="text-gold-light font-medium" style={bodyFont}>{p.planet.name[locale]}</span></div></td>
+                            <td className="py-2 px-2"><div className="flex items-center gap-2"><GrahaIconById id={p.planet.id} size={20} /><span className="text-gold-light font-medium" style={bodyFont}>{tl(p.planet.name, locale)}</span></div></td>
                             <td className="py-2 px-2 text-text-secondary font-mono text-xs">{p.longitude.toFixed(2)}°</td>
                             <td className="py-2 px-2 text-text-secondary">{p.house}</td>
-                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.signLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{p.subLordInfo.starLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{p.subLordInfo.subLord.name[locale]}</td>
-                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{p.subLordInfo.subSubLord.name[locale]}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{tl(p.subLordInfo.signLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-text-secondary" style={bodyFont}>{tl(p.subLordInfo.starLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-gold-light font-medium" style={bodyFont}>{tl(p.subLordInfo.subLord.name, locale)}</td>
+                            <td className="py-2 px-2 text-amber-400/80 text-xs" style={bodyFont}>{tl(p.subLordInfo.subSubLord.name, locale)}</td>
                           </tr>
                         ))}</tbody>
                       </table>

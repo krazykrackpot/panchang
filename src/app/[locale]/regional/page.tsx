@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { dateToJD, sunLongitude, toSidereal, getRashiNumber, moonLongitude, calculateTithi } from '@/lib/ephem/astronomical';
 import type { Locale, Trilingual } from '@/types/panchang';
+import { tl } from '@/lib/utils/trilingual';
 
 // =================================================================
 // Regional Calendar Data
@@ -394,7 +395,7 @@ export default function RegionalCalendarsPage() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <h2 className="text-gold-light text-2xl sm:text-3xl font-bold" style={headingFont}>
-                        {cal.name[locale]}
+                        {tl(cal.name, locale)}
                       </h2>
                       <span className={`px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${colors.badge}`}>
                         {cal.type}
@@ -410,7 +411,7 @@ export default function RegionalCalendarsPage() {
                   </div>
                 </div>
                 <p className="text-text-secondary text-sm mt-4 leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {cal.description[locale]}
+                  {tl(cal.description, locale)}
                 </p>
               </div>
 
@@ -467,7 +468,7 @@ export default function RegionalCalendarsPage() {
                     <div key={k} className="rounded-lg p-4 bg-bg-primary/40 border border-gold-primary/10">
                       <div className="text-gold-light text-sm font-bold mb-1">{fest.name}</div>
                       <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {fest.description[locale]}
+                        {tl(fest.description, locale)}
                       </p>
                     </div>
                   ))}

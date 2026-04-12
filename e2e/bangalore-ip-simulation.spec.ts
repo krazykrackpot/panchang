@@ -198,7 +198,7 @@ test.describe('Bangalore IP simulation — panchang fix verification', () => {
     await bangaloreAPIResponse;
 
     // Give React time to render after API response
-    await page.waitForTimeout(500);
+    await page.waitForLoadState('networkidle');
 
     const body = await page.locator('body').textContent() || '';
 
@@ -231,7 +231,7 @@ test.describe('Bangalore IP simulation — panchang fix verification', () => {
 
     await page.goto('/en/panchang', { waitUntil: 'domcontentloaded', timeout: 30000 });
     await bangaloreAPIResponse;
-    await page.waitForTimeout(500);
+    await page.waitForLoadState('networkidle');
 
     const body = await page.locator('body').textContent() || '';
 

@@ -385,7 +385,7 @@ test.describe('UI: Panchang page location change', () => {
 
   test('page loads and shows panchang data', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const body = await page.locator('body').textContent() || '';
 
@@ -397,7 +397,7 @@ test.describe('UI: Panchang page location change', () => {
 
   test('location search input appears after clicking Change button', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // The search input is hidden behind a "Change" toggle button
     const changeBtn = page.locator('button', { hasText: 'Change' });
@@ -415,7 +415,7 @@ test.describe('UI: Panchang page location change', () => {
 
   test('searching a city updates the panchang data', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Open the location search
     const changeBtn = page.locator('button', { hasText: 'Change' });
@@ -430,7 +430,7 @@ test.describe('UI: Panchang page location change', () => {
     await searchInput.press('Enter');
 
     // Wait for Nominatim geocode + panchang API call to complete
-    await page.waitForTimeout(6000);
+    await page.waitForLoadState('networkidle');
 
     const bodyAfter = await page.locator('body').textContent() || '';
 
@@ -441,7 +441,7 @@ test.describe('UI: Panchang page location change', () => {
 
   test('Hindi locale renders Devanagari script', async ({ page }) => {
     await page.goto('/hi/panchang', { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const body = await page.locator('body').textContent() || '';
     // Hindi page must contain Devanagari script (U+0900–U+097F)

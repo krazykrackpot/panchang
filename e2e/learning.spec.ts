@@ -11,7 +11,7 @@ test.describe('Learn Page — Index & Navigation', () => {
 
   test('learn index page loads with tracks', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const heading = page.locator('h1, h2').first();
     await expect(heading).toBeVisible({ timeout: 10000 });
@@ -23,7 +23,7 @@ test.describe('Learn Page — Index & Navigation', () => {
 
   test('learn page shows module/reference counts', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Stats section shows module counts
@@ -33,7 +33,7 @@ test.describe('Learn Page — Index & Navigation', () => {
 
   test('track page loads with module listing', async ({ page }) => {
     await page.goto('/en/learn/track/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const heading = page.locator('h1, h2').first();
     await expect(heading).toBeVisible({ timeout: 10000 });
@@ -50,7 +50,7 @@ test.describe('Learn — Sidebar & Progress', () => {
   test('sidebar renders on module page', async ({ page }) => {
     // Navigate to a specific module
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Sidebar should be visible on desktop (or mobile hamburger)
     const bodyText = await page.locator('body').textContent();
@@ -64,7 +64,7 @@ test.describe('Learn — Sidebar & Progress', () => {
 
   test('module page has content sections', async ({ page }) => {
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Should have headings and substantial content
     const headings = page.locator('h1, h2, h3');
@@ -77,7 +77,7 @@ test.describe('Learn — Sidebar & Progress', () => {
 
   test('module navigation — Next Module button exists', async ({ page }) => {
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Module container should show next/prev or quiz buttons
@@ -90,7 +90,7 @@ test.describe('Learn — Quiz Flow', () => {
 
   test('quiz section is accessible from module page', async ({ page }) => {
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Look for quiz-related button or section
     const bodyText = await page.locator('body').textContent();
@@ -100,13 +100,13 @@ test.describe('Learn — Quiz Flow', () => {
 
   test('clicking quiz button shows quiz questions', async ({ page }) => {
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Find and click the quiz button
     const quizBtn = page.locator('button:has-text("Quiz"), button:has-text("quiz"), button:has-text("Take Quiz"), button:has-text("Test")').first();
     if (await quizBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
       await quizBtn.click();
-      await page.waitForTimeout(1500);
+      await page.waitForLoadState('networkidle');
 
       // Quiz questions should appear — look for answer options or question text
       const bodyText = await page.locator('body').textContent();
@@ -120,7 +120,7 @@ test.describe('Learn — Progress Indicators', () => {
 
   test('track page shows progress indicators per phase', async ({ page }) => {
     await page.goto('/en/learn/track/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Track pages show phase structure with module counts
@@ -129,7 +129,7 @@ test.describe('Learn — Progress Indicators', () => {
 
   test('learn index page has share button', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasShare = /Share|WhatsApp|शेयर/i.test(bodyText || '');
@@ -142,7 +142,7 @@ test.describe('Learn — Streak & Level Display', () => {
   test('dashboard shows learning streak section when signed in', async ({ page }) => {
     // Dashboard requires auth, so we test that the page loads and shows the streak section label
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Dashboard should mention learning streak or prompt sign-in
@@ -152,7 +152,7 @@ test.describe('Learn — Streak & Level Display', () => {
 
   test('level badge component renders on dashboard', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Dashboard should load without errors

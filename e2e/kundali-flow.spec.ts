@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Kundali Generation Flow', () => {
   test('kundali page loads with form', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     const hasContent = /birth|chart|kundali|date|time/i.test(bodyText || '');
     expect(hasContent).toBe(true);
@@ -11,7 +11,7 @@ test.describe('Kundali Generation Flow', () => {
 
   test('form has date, time, and place fields', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Check for date input
     const dateInput = page.locator('input[type="date"]');
@@ -31,7 +31,7 @@ test.describe('Kundali Generation Flow', () => {
 
   test('enter birth details and generate chart', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Fill date
     const dateInput = page.locator('input[type="date"]').first();
@@ -57,12 +57,10 @@ test.describe('Kundali Generation Flow', () => {
     ).first();
     if (await locationInput.isVisible({ timeout: 2000 }).catch(() => false)) {
       await locationInput.fill('Delhi');
-      await page.waitForTimeout(1500);
-      // Try to click first suggestion
+      // Wait for autocomplete suggestions to appear
       const suggestion = page.locator('[role="option"], [role="listbox"] >> text=Delhi, li:has-text("Delhi")').first();
-      if (await suggestion.isVisible({ timeout: 3000 }).catch(() => false)) {
+      if (await suggestion.isVisible({ timeout: 5000 }).catch(() => false)) {
         await suggestion.click();
-        await page.waitForTimeout(500);
       }
     }
 
@@ -72,18 +70,15 @@ test.describe('Kundali Generation Flow', () => {
     ).first();
     if (await submitBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
       await submitBtn.click();
-      await page.waitForTimeout(5000);
 
       // After generation, check for chart-related content
-      const bodyText = await page.locator('body').textContent();
-      const hasChartData = /ascendant|lagna|planet|house|sun|moon|mars|jupiter|chart/i.test(bodyText || '');
-      expect(hasChartData).toBe(true);
+      await expect(page.locator('text=/ascendant|lagna|planet|house|sun|moon|mars|jupiter|chart/i').first()).toBeVisible({ timeout: 15000 });
     }
   });
 
   test('tabs are visible after chart generation', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Fill minimal required data
     const dateInput = page.locator('input[type="date"]').first();
@@ -97,9 +92,8 @@ test.describe('Kundali Generation Flow', () => {
     ).first();
     if (await locationInput.isVisible({ timeout: 2000 }).catch(() => false)) {
       await locationInput.fill('Delhi');
-      await page.waitForTimeout(1500);
       const suggestion = page.locator('[role="option"], [role="listbox"] >> text=Delhi, li:has-text("Delhi")').first();
-      if (await suggestion.isVisible({ timeout: 3000 }).catch(() => false)) {
+      if (await suggestion.isVisible({ timeout: 5000 }).catch(() => false)) {
         await suggestion.click();
       }
     }
@@ -109,12 +103,9 @@ test.describe('Kundali Generation Flow', () => {
     ).first();
     if (await submitBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
       await submitBtn.click();
-      await page.waitForTimeout(5000);
 
       // Look for tab-like elements (Chart, Planets, Dasha, Yogas, etc.)
-      const bodyText = await page.locator('body').textContent();
-      const hasTabs = /chart|planet|dasha|yoga|shadbala/i.test(bodyText || '');
-      expect(hasTabs).toBe(true);
+      await expect(page.locator('text=/chart|planet|dasha|yoga|shadbala/i').first()).toBeVisible({ timeout: 15000 });
     }
   });
 
@@ -122,7 +113,7 @@ test.describe('Kundali Generation Flow', () => {
     // This test verifies the kundali page loads correctly with all form elements
     // Full generation requires location API which may not be available in CI
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Verify form elements exist
     await expect(page.locator('input[type="date"]').first()).toBeVisible({ timeout: 10000 });

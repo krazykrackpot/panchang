@@ -16,7 +16,7 @@ test.describe('Dashboard — Unauthenticated State', () => {
 
   test('dashboard page loads without errors', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Page should load and show either dashboard content or sign-in prompt
     const bodyText = await page.locator('body').textContent();
@@ -25,7 +25,7 @@ test.describe('Dashboard — Unauthenticated State', () => {
 
   test('shows sign-in prompt when not authenticated', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Dashboard should prompt sign-in or show dashboard title
@@ -35,7 +35,7 @@ test.describe('Dashboard — Unauthenticated State', () => {
 
   test('dashboard has correct title/heading', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Should contain "Dashboard" or "My Dashboard" or Hindi equivalent
@@ -48,7 +48,7 @@ test.describe('Dashboard — Component Structure', () => {
 
   test('page references Morning Briefing component', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // If authenticated, Morning Briefing shows tithi/nakshatra/yoga
@@ -60,7 +60,7 @@ test.describe('Dashboard — Component Structure', () => {
 
   test('page references week ahead or quick links', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Either shows week-ahead data or auth prompt
@@ -71,7 +71,7 @@ test.describe('Dashboard — Component Structure', () => {
 
   test('page mentions dasha, transit, or learning features', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // The dashboard imports components for:
     // EclipseAlert, FestivalCountdown, MorningBriefing, WeekAhead,
@@ -86,7 +86,7 @@ test.describe('Dashboard — Hindi Locale', () => {
 
   test('dashboard loads in Hindi', async ({ page }) => {
     await page.goto('/hi/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Should contain Devanagari script
@@ -107,7 +107,7 @@ test.describe('Dashboard — Navigation Links', () => {
 
   test('dashboard imports expected component types', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Verify page loaded successfully by checking for the dashboard's key labels
     const bodyText = await page.locator('body').textContent();
@@ -123,7 +123,7 @@ test.describe('Dashboard — Festival & Eclipse Sections', () => {
 
   test('festival countdown section label exists in page source', async ({ page }) => {
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Even without auth, the page component references festival/eclipse labels
     // The page body should load without crashing
@@ -140,7 +140,7 @@ test.describe('Dashboard — Festival & Eclipse Sections', () => {
     page.on('pageerror', err => errors.push(err.message));
 
     await page.goto('/en/dashboard', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Filter out non-critical errors
     const critical = errors.filter(e =>

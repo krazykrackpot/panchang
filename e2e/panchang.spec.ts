@@ -7,7 +7,7 @@ test.describe('Panchang Page', () => {
     await expect(page).toHaveTitle(/Panchang/i, { timeout: 15000 });
 
     // The page renders panchang data cards — check for body content loaded
-    await page.waitForSelector('body', { timeout: 10000 });
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Panchang page must contain date-related or calendar-related content
     expect(bodyText!.length).toBeGreaterThan(100);
@@ -15,7 +15,7 @@ test.describe('Panchang Page', () => {
 
   test('shows Rahu Kalam or muhurta info', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Page should contain Rahu Kalam, muhurta, or sunrise info
     const hasRelevantContent = /rahu|muhur|sunrise|sunset|kalam/i.test(bodyText || '');
@@ -32,7 +32,7 @@ test.describe('Navigation', () => {
 
   test('can navigate to kundali page', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Kundali page should contain birth-chart-related text
     const hasContent = /birth|chart|kundali|कुण्डली|date|time/i.test(bodyText || '');
@@ -41,7 +41,7 @@ test.describe('Navigation', () => {
 
   test('can navigate to learn page', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Learn page has educational content
     const hasContent = /jyotish|graha|rashi|nakshatra|learn|foundation/i.test(bodyText || '');
@@ -50,7 +50,7 @@ test.describe('Navigation', () => {
 
   test('can switch to Hindi', async ({ page }) => {
     await page.goto('/hi', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Hindi page should contain Devanagari script
     expect(bodyText).toMatch(/[\u0900-\u097F]/);

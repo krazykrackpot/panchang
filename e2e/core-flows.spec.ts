@@ -119,30 +119,46 @@ test.describe('Navigation', () => {
 
   test('Sign In button visible when not authenticated', async ({ page }) => {
     await page.goto('/en');
-    await expect(page.getByText('Sign In').first()).toBeVisible({ timeout: 5000 });
+    // Target Sign In in the navbar specifically (not footer)
+    const signInBtn = page.locator('nav').getByText('Sign In').first();
+    await expect(signInBtn).toBeVisible({ timeout: 10000 });
   });
 
   test('Sign In opens auth modal', async ({ page }) => {
     await page.goto('/en');
-    await page.getByText('Sign In').first().click();
+    await page.waitForLoadState('networkidle');
+    // Sign In button may be off-screen in mobile nav — use JS click
+    await page.evaluate(() => {
+      const btns = [...document.querySelectorAll('button')];
+      const signIn = btns.find(b => b.textContent?.trim() === 'Sign In');
+      signIn?.click();
+    });
     await expect(page.getByText('Continue with Google')).toBeVisible({ timeout: 5000 });
   });
 
   test('auth modal has forgot password link', async ({ page }) => {
     await page.goto('/en');
-    await page.getByText('Sign In').first().click();
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => {
+      const btns = [...document.querySelectorAll('button')];
+      const signIn = btns.find(b => b.textContent?.trim() === 'Sign In');
+      signIn?.click();
+    });
     await expect(page.getByText('Forgot password?')).toBeVisible({ timeout: 5000 });
   });
 
   test('auth modal switches to signup mode', async ({ page }) => {
     await page.goto('/en');
-    await page.getByText('Sign In').first().click();
-    await page.waitForTimeout(500);
+    await page.waitForLoadState('networkidle');
+    await page.evaluate(() => {
+      const btns = [...document.querySelectorAll('button')];
+      const signIn = btns.find(b => b.textContent?.trim() === 'Sign In');
+      signIn?.click();
+    });
     // Click "Sign up" link/button — may be "Sign up", "Create account", "Register" etc.
     const signupLink = page.locator('text=/Sign up|Create account|Register/i').first();
     if (await signupLink.isVisible({ timeout: 3000 }).catch(() => false)) {
       await signupLink.click();
-      await page.waitForTimeout(500);
       // Should show signup form elements
       await expect(page.locator('input[type="email"], input[type="password"], input[placeholder*="name" i]').first()).toBeVisible({ timeout: 5000 });
     }

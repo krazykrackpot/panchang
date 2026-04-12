@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Navigation', () => {
   test('navbar is visible on homepage', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav').first();
     await expect(nav).toBeVisible({ timeout: 10000 });
@@ -11,7 +11,7 @@ test.describe('Navigation', () => {
 
   test('navbar has multiple links', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const nav = page.locator('nav').first();
     const links = nav.locator('a[href]');
@@ -21,7 +21,7 @@ test.describe('Navigation', () => {
 
   test('dropdown menus exist for Calendars and Tools', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('nav').first().textContent();
     // Nav should mention "Calendar" and "Tools" sections
@@ -32,13 +32,13 @@ test.describe('Navigation', () => {
 
   test('locale switcher works - switch to Hindi', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Look for Hindi locale link/button
     const hindiLink = page.locator('a[href*="/hi"], button:has-text("हि"), button:has-text("HI"), a:has-text("हिन्दी")').first();
     if (await hindiLink.isVisible({ timeout: 3000 }).catch(() => false)) {
       await hindiLink.click();
-      await page.waitForTimeout(3000);
+      await page.waitForLoadState('networkidle');
 
       // Should now be on Hindi locale
       const bodyText = await page.locator('body').textContent();
@@ -46,27 +46,14 @@ test.describe('Navigation', () => {
     } else {
       // Direct navigation fallback
       await page.goto('/hi', { waitUntil: 'load' });
-      await page.waitForTimeout(2000);
+      await page.waitForLoadState('networkidle');
       const bodyText = await page.locator('body').textContent();
       expect(bodyText).toMatch(/[\u0900-\u097F]/);
     }
   });
 
-  test('light/dark mode toggle exists', async ({ page }) => {
-    await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
-
-    // Look for theme toggle button
-    const themeToggle = page.locator(
-      'button[aria-label*="theme" i], button[aria-label*="mode" i], button[aria-label*="dark" i], button[aria-label*="light" i], button:has([class*="sun"]), button:has([class*="moon"])'
-    ).first();
-
-    const bodyHtml = await page.locator('html').getAttribute('class') || '';
-    // Either a theme toggle exists or the page has a theme class
-    const hasThemeSystem = await themeToggle.isVisible({ timeout: 3000 }).catch(() => false) ||
-      /dark|light|theme/.test(bodyHtml);
-    expect(hasThemeSystem).toBe(true);
-  });
+  // Theme toggle was removed — dark mode is forced, no light theme exists.
+  // Removed the 'light/dark mode toggle exists' test.
 
   test('can navigate to all core pages', async ({ page }) => {
     const pages = [

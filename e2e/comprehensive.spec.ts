@@ -25,7 +25,7 @@ function collectConsoleErrors(page: Page): string[] {
 async function expectNoJSErrors(page: Page, url: string) {
   const errors = collectConsoleErrors(page);
   await page.goto(url, { waitUntil: 'load', timeout: 30000 });
-  await page.waitForTimeout(1000);
+  await page.waitForLoadState('networkidle');
   const criticalErrors = errors.filter(e =>
     !e.includes('hydration') &&
     !e.includes('favicon') &&
@@ -143,7 +143,7 @@ test.describe('Page Load — Learn Pages', () => {
 test.describe('Navigation', () => {
   test('navbar has working links', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Check that navbar is visible
     const nav = page.locator('nav').first();
@@ -157,7 +157,7 @@ test.describe('Navigation', () => {
 
   test('footer has working links', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     const footer = page.locator('footer').first();
     if (await footer.isVisible()) {
       const links = footer.locator('a[href]');
@@ -168,7 +168,7 @@ test.describe('Navigation', () => {
 
   test('home page CTA buttons are clickable', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Find all links on the page (React uses <a> for navigation)
     const links = page.locator('a[href]');
@@ -196,7 +196,7 @@ test.describe('Dead Button Detection', () => {
   for (const pagePath of PAGES_TO_CHECK) {
     test(`no dead buttons on ${pagePath}`, async ({ page }) => {
       await page.goto(pagePath, { waitUntil: 'load', timeout: 30000 });
-      await page.waitForTimeout(2000);
+      await page.waitForLoadState('networkidle');
 
       // Find all buttons that are not disabled
       const buttons = page.locator('button:not([disabled])');
@@ -246,7 +246,7 @@ test.describe('Dead Button Detection', () => {
 test.describe('Internationalization (i18n)', () => {
   test('English locale loads correctly', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
     // Layout sets <html lang={locale}>
     const html = await page.locator('html').getAttribute('lang');
     expect(html).toBe('en');
@@ -254,7 +254,7 @@ test.describe('Internationalization (i18n)', () => {
 
   test('Hindi locale loads correctly', async ({ page }) => {
     await page.goto('/hi', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     // Should have Hindi content — the Gayatri Mantra is always present on home page
     const bodyText = await page.locator('body').textContent();
     expect(bodyText).toMatch(/[\u0900-\u097F]/); // Devanagari range
@@ -262,14 +262,14 @@ test.describe('Internationalization (i18n)', () => {
 
   test('Sanskrit locale loads correctly', async ({ page }) => {
     await page.goto('/sa', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     expect(bodyText).toMatch(/[\u0900-\u097F]/); // Sanskrit also uses Devanagari
   });
 
   test('locale switcher is present and functional', async ({ page }) => {
     await page.goto('/en', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Look for any locale-related link or button (EN/HI/SA switcher)
     const bodyText = await page.locator('body').textContent();
@@ -279,7 +279,7 @@ test.describe('Internationalization (i18n)', () => {
 
   test('panchang page shows content in Hindi', async ({ page }) => {
     await page.goto('/hi/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Should contain Devanagari text for tithi/nakshatra
     expect(bodyText).toMatch(/[\u0900-\u097F]/);
@@ -294,7 +294,7 @@ test.describe('Kundali Form', () => {
   test('form has required fields', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
     // Wait for client-side hydration — BirthForm is a client component
-    await page.waitForTimeout(5000);
+    await page.waitForLoadState('networkidle');
 
     // BirthForm renders date/time inputs after hydration
     // Check for any interactive elements (inputs, selects, buttons)
@@ -311,13 +311,13 @@ test.describe('Kundali Form', () => {
 
   test('form validates required fields before submission', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Try to submit empty form
     const submitBtn = page.locator('button[type="submit"], button:has-text("Generate"), button:has-text("Calculate")').first();
     if (await submitBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
       await submitBtn.click();
-      await page.waitForTimeout(1000);
+      await page.waitForLoadState('networkidle');
 
       // Should still be on kundali page (not navigated away)
       expect(page.url()).toContain('/kundali');
@@ -328,7 +328,7 @@ test.describe('Kundali Form', () => {
 test.describe('Matching Form', () => {
   test('matching page has two profile sections', async ({ page }) => {
     await page.goto('/en/matching', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Should have interactive elements (selects, inputs, or buttons for matching)
     const selects = page.locator('select');
@@ -344,7 +344,7 @@ test.describe('Matching Form', () => {
 test.describe('Sign Calculator', () => {
   test('sign calculator page loads and has inputs', async ({ page }) => {
     await page.goto('/en/sign-calculator', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Sign calculator has date, time, and location inputs
     const allInputs = page.locator('input');

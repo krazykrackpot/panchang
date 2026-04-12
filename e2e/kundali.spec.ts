@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Kundali Page', () => {
   test('shows birth data form', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Kundali page should have date or time inputs (from BirthForm component)
     const inputs = page.locator('input');
@@ -13,7 +13,7 @@ test.describe('Kundali Page', () => {
 
   test('generates a chart with valid input', async ({ page }) => {
     await page.goto('/en/kundali', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     // Look for date input
     const dateInput = page.locator('input[type="date"]').first();
@@ -32,10 +32,7 @@ test.describe('Kundali Page', () => {
     if (await submitBtn.isVisible({ timeout: 3000 }).catch(() => false)) {
       await submitBtn.click();
       // Wait for chart to appear — look for planet/house data
-      await page.waitForTimeout(5000);
-      const bodyText = await page.locator('body').textContent();
-      const hasChartData = /ascendant|lagna|planet|house|sun|moon|mars|jupiter/i.test(bodyText || '');
-      expect(hasChartData).toBe(true);
+      await expect(page.locator('text=/ascendant|lagna|planet|house|sun|moon|mars|jupiter/i').first()).toBeVisible({ timeout: 15000 });
     }
   });
 });
@@ -43,7 +40,7 @@ test.describe('Kundali Page', () => {
 test.describe('Calendar Page', () => {
   test('loads festival calendar', async ({ page }) => {
     await page.goto('/en/calendar', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Calendar page should show festivals, vrats, or month names
     const hasContent = /festival|vrat|ekadashi|purnima|amavasya|calendar/i.test(bodyText || '');
@@ -54,7 +51,7 @@ test.describe('Calendar Page', () => {
 test.describe('Regional Calendar', () => {
   test('shows regional calendars', async ({ page }) => {
     await page.goto('/en/regional', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Regional page has info about Tamil, Telugu, Bengali, etc. calendar systems
     const hasContent = /tamil|telugu|bengali|kannada|gujarati|marathi/i.test(bodyText || '');

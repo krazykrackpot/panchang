@@ -8,7 +8,7 @@ test.describe('Calendar Page', () => {
 
   test('festivals are listed', async ({ page }) => {
     await page.goto('/en/calendar', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
     const bodyText = await page.locator('body').textContent();
     // Calendar page should contain festival, vrat, or month-related text
     const hasContent = /festival|vrat|ekadashi|purnima|amavasya|diwali|holi|navratri/i.test(bodyText || '');
@@ -17,7 +17,7 @@ test.describe('Calendar Page', () => {
 
   test('filter buttons are present', async ({ page }) => {
     await page.goto('/en/calendar', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Look for filter/category buttons
     const buttons = page.locator('button');
@@ -33,7 +33,7 @@ test.describe('Calendar Page', () => {
 
   test('calendar shows month navigation', async ({ page }) => {
     await page.goto('/en/calendar', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Should contain month names or year

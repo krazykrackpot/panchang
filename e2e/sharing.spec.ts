@@ -12,7 +12,7 @@ test.describe('Share Button — Panchang Page', () => {
 
   test('share button renders on panchang page', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasShare = /Share|WhatsApp|शेयर/i.test(bodyText || '');
@@ -21,7 +21,7 @@ test.describe('Share Button — Panchang Page', () => {
 
   test('panchang share row shows WhatsApp, X, and Copy options', async ({ page }) => {
     await page.goto('/en/panchang', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // ShareRow renders inline with WhatsApp, X, and Copy Link buttons
@@ -45,7 +45,7 @@ test.describe('Share Button — Contribution Pages', () => {
 
     for (const url of pages) {
       await page.goto(url, { waitUntil: 'load' });
-      await page.waitForTimeout(2000);
+      await page.waitForLoadState('networkidle');
 
       const bodyText = await page.locator('body').textContent();
       const hasShare = /Share|WhatsApp|शेयर|Copy/i.test(bodyText || '');
@@ -58,7 +58,7 @@ test.describe('Share Button — Eclipse Page', () => {
 
   test('share button renders on eclipses page', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasShare = /Share|WhatsApp|शेयर/i.test(bodyText || '');
@@ -73,13 +73,13 @@ test.describe('Share Button — Interaction', () => {
     await page.context().grantPermissions(['clipboard-read', 'clipboard-write']);
 
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Find and click the Copy Link button
     const copyBtn = page.locator('button:has-text("Copy Link"), button:has-text("Copy"), a:has-text("Copy Link")').first();
     if (await copyBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
       await copyBtn.click();
-      await page.waitForTimeout(1000);
+      await page.waitForLoadState('networkidle');
 
       // Should show "Copied!" feedback
       const bodyText = await page.locator('body').textContent();
@@ -97,7 +97,7 @@ test.describe('Share Button — Interaction', () => {
 
   test('WhatsApp link has correct href format', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // WhatsApp share links use wa.me or api.whatsapp.com
     const waLink = page.locator('a[href*="wa.me"], a[href*="whatsapp.com"], a[href*="api.whatsapp"]').first();
@@ -109,7 +109,7 @@ test.describe('Share Button — Interaction', () => {
 
   test('X/Twitter link has correct href format', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // X share links use twitter.com/intent/tweet or x.com
     const xLink = page.locator('a[href*="twitter.com/intent"], a[href*="x.com"]').first();
@@ -124,7 +124,7 @@ test.describe('Share Button — Learn Page', () => {
 
   test('share button on learn index page', async ({ page }) => {
     await page.goto('/en/learn', { waitUntil: 'load' });
-    await page.waitForTimeout(2000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasShare = /Share|WhatsApp|शेयर|Copy/i.test(bodyText || '');
@@ -137,7 +137,7 @@ test.describe('Share — Challenge a Friend (Quiz Completion)', () => {
   test('Challenge a Friend button exists in module container markup', async ({ page }) => {
     // Navigate to a module that has quiz functionality
     await page.goto('/en/learn/modules/6-1', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // The "Challenge a Friend" button appears after quiz pass
     // Without completing the quiz, verify the module page loads and has quiz access

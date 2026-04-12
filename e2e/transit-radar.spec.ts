@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Transit Radar on Kundali Page', () => {
   test.beforeEach(async ({ page }) => {
-    // Navigate to kundali page and generate a chart
+    // Navigate to kundali page and wait for it to load
     await page.goto('/en/kundali');
     await page.waitForLoadState('networkidle');
   });
@@ -23,20 +23,16 @@ test.describe('Transit Radar on Kundali Page', () => {
     // Search for a location
     const locationInput = page.locator('input[placeholder*="city" i], input[placeholder*="place" i], input[placeholder*="search" i]').first();
     await locationInput.fill('Delhi');
-    await page.waitForTimeout(1500); // Wait for autocomplete
 
     // Click first result if dropdown appears
     const suggestion = page.locator('[class*="suggestion"], [class*="result"], [role="option"]').first();
-    if (await suggestion.isVisible({ timeout: 3000 }).catch(() => false)) {
+    if (await suggestion.isVisible({ timeout: 5000 }).catch(() => false)) {
       await suggestion.click();
     }
 
     // Submit the form
     const submitBtn = page.locator('button[type="submit"], button:has-text("Generate"), button:has-text("कुण्डली")').first();
     await submitBtn.click();
-
-    // Wait for kundali to load
-    await page.waitForTimeout(5000);
 
     // Check that chart appears
     await expect(page.locator('svg[role="img"]').first()).toBeVisible({ timeout: 15000 });

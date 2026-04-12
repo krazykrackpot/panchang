@@ -12,7 +12,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('page loads and shows eclipses for 2026', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Title area should render
     const heading = page.locator('h1');
@@ -26,7 +26,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('year selector shows 2026 by default', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     expect(bodyText).toContain('2026');
@@ -34,7 +34,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('eclipse cards are present (expect 4 for 2026)', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Each eclipse card has a clickable header button inside a motion div
     // Look for eclipse type names or date lines
@@ -46,7 +46,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('location name is displayed', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Location pin icon and name/detecting text should be visible
     const locationArea = page.locator('text=/Detecting location|Change|बदलें/i').first();
@@ -55,12 +55,12 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('Change button opens location search', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const changeBtn = page.locator('button:has-text("Change")');
     if (await changeBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
       await changeBtn.click();
-      await page.waitForTimeout(500);
+      await page.waitForLoadState('networkidle');
 
       // Location search input should appear
       const searchInput = page.locator('input[placeholder*="Search"], input[placeholder*="city"], input[placeholder*="खोजें"]').first();
@@ -70,13 +70,13 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('expanding an eclipse card shows contact times section', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Click the first eclipse card header
     const firstCard = page.locator('button:has(svg[viewBox="0 0 64 64"])').first();
     if (await firstCard.isVisible({ timeout: 5000 }).catch(() => false)) {
       await firstCard.click();
-      await page.waitForTimeout(1500);
+      await page.waitForLoadState('networkidle');
 
       // Expanded section should show eclipse timings or "not visible" message
       const bodyText = await page.locator('body').textContent();
@@ -88,7 +88,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('Sutak section shows 3 classical traditions when visible', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Expand all eclipse cards to find one with Sutak traditions
     const cards = page.locator('button:has(svg[viewBox="0 0 64 64"])');
@@ -97,7 +97,7 @@ test.describe('Eclipse Calendar Page', () => {
     let foundTraditions = false;
     for (let i = 0; i < count; i++) {
       await cards.nth(i).click();
-      await page.waitForTimeout(1500);
+      await page.waitForLoadState('networkidle');
 
       const bodyText = await page.locator('body').textContent();
       if (/Muhurta Chintamani|मुहूर्त चिन्तामणि/.test(bodyText || '')) {
@@ -111,7 +111,7 @@ test.describe('Eclipse Calendar Page', () => {
 
       // Collapse before trying next
       await cards.nth(i).click();
-      await page.waitForTimeout(500);
+      await page.waitForLoadState('networkidle');
     }
 
     // If no eclipse is visible from auto-detected location, traditions won't show
@@ -124,7 +124,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('node badge (Rahu/Ketu) is visible on eclipse cards', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     // Eclipse cards should show Rahu or Ketu node badges
@@ -134,13 +134,13 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('phase diagram renders inside expanded card', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Expand first card
     const firstCard = page.locator('button:has(svg[viewBox="0 0 64 64"])').first();
     if (await firstCard.isVisible({ timeout: 5000 }).catch(() => false)) {
       await firstCard.click();
-      await page.waitForTimeout(1500);
+      await page.waitForLoadState('networkidle');
 
       // EclipsePhaseDiagram renders as SVG or div with progress-like bars
       // Check for the contact times section which contains the phase diagram
@@ -153,7 +153,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('"Not Visible" eclipses show appropriate message', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(4000);
+    await page.waitForLoadState('networkidle');
 
     // Expand all cards and check for not-visible messaging
     const cards = page.locator('button:has(svg[viewBox="0 0 64 64"])');
@@ -162,7 +162,7 @@ test.describe('Eclipse Calendar Page', () => {
     let foundNotVisible = false;
     for (let i = 0; i < count; i++) {
       await cards.nth(i).click();
-      await page.waitForTimeout(1500);
+      await page.waitForLoadState('networkidle');
 
       const bodyText = await page.locator('body').textContent();
       if (/Not Visible|अदृश्य|not visible from your location|Sutak does not apply/.test(bodyText || '')) {
@@ -171,7 +171,7 @@ test.describe('Eclipse Calendar Page', () => {
       }
 
       await cards.nth(i).click();
-      await page.waitForTimeout(500);
+      await page.waitForLoadState('networkidle');
     }
 
     // Not all eclipses are visible from every location; at least the page renders properly
@@ -181,13 +181,13 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('year navigation works', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     // Click right arrow to go to 2027
     const nextYearBtn = page.locator('button').filter({ has: page.locator('svg.lucide-chevron-right') }).first();
     if (await nextYearBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
       await nextYearBtn.click();
-      await page.waitForTimeout(3000);
+      await page.waitForLoadState('networkidle');
 
       const bodyText = await page.locator('body').textContent();
       expect(bodyText).toContain('2027');
@@ -196,7 +196,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('share button is present', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasShare = /Share|WhatsApp|शेयर/i.test(bodyText || '');
@@ -205,7 +205,7 @@ test.describe('Eclipse Calendar Page', () => {
 
   test('InfoBlock for Sutak explanation exists', async ({ page }) => {
     await page.goto('/en/eclipses', { waitUntil: 'load' });
-    await page.waitForTimeout(3000);
+    await page.waitForLoadState('networkidle');
 
     const bodyText = await page.locator('body').textContent();
     const hasSutakInfo = /Grahan Kaal.*Sutak|ग्रहण काल.*सूतक|What is Grahan/i.test(bodyText || '');

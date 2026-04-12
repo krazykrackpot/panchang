@@ -3,7 +3,7 @@
  * Produces Article + FAQPage schemas for SEO.
  */
 
-const BASE_URL = 'https://www.dekhopanchang.com';
+const BASE_URL = 'https://dekhopanchang.com';
 const PUBLISHER = {
   '@type': 'Organization' as const,
   name: 'Dekho Panchang',

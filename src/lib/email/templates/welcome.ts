@@ -78,7 +78,7 @@ export function welcomeEmail({ name, moonSign, nakshatra, ascendant }: {
 
     <!-- CTA -->
     <div style="text-align:center;margin:32px 0;">
-      <a href="https://www.dekhopanchang.com/en/dashboard" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#8a6d2b,#d4a853);color:#0a0e27;font-size:16px;font-weight:bold;text-decoration:none;border-radius:12px;">
+      <a href="https://dekhopanchang.com/en/dashboard" style="display:inline-block;padding:14px 36px;background:linear-gradient(135deg,#8a6d2b,#d4a853);color:#0a0e27;font-size:16px;font-weight:bold;text-decoration:none;border-radius:12px;">
         Go to My Dashboard
       </a>
     </div>
@@ -87,9 +87,9 @@ export function welcomeEmail({ name, moonSign, nakshatra, ascendant }: {
     <div style="text-align:center;padding-top:24px;border-top:1px solid rgba(212,168,83,0.1);">
       <p style="color:#9b97a0;font-size:12px;margin:0;">Dekho Panchang — Vedic Astrology Companion</p>
       <p style="color:#9b97a0;font-size:11px;margin:8px 0 0;">
-        <a href="https://www.dekhopanchang.com/en/settings" style="color:#d4a853;text-decoration:none;">Manage email preferences</a>
+        <a href="https://dekhopanchang.com/en/settings" style="color:#d4a853;text-decoration:none;">Manage email preferences</a>
         &nbsp;|&nbsp;
-        <a href="https://www.dekhopanchang.com" style="color:#d4a853;text-decoration:none;">Visit website</a>
+        <a href="https://dekhopanchang.com" style="color:#d4a853;text-decoration:none;">Visit website</a>
       </p>
     </div>
   </div>

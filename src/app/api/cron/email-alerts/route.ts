@@ -72,7 +72,7 @@ export async function GET(req: Request) {
                 body: nextAntar
                   ? `Your ${currentAntar.planet} Antardasha ends on ${currentAntar.endDate}. ${nextAntar.planet} Antardasha begins next, bringing changes in ${nextAntar.planet}'s significations.`
                   : `Your ${currentAntar.planet} Antardasha ends on ${currentAntar.endDate}. A new phase in your ${currentMaha.planet} Mahadasha begins.`,
-                ctaUrl: 'https://www.dekhopanchang.com/en/dashboard/dashas',
+                ctaUrl: 'https://dekhopanchang.com/en/dashboard/dashas',
                 ctaText: 'View Dasha Timeline',
               });
 
@@ -114,7 +114,7 @@ export async function GET(req: Request) {
               type: 'sade_sati',
               title: 'Sade Sati Has Begun',
               body: `Saturn has begun its 7.5-year transit over your Moon sign. This is a period of transformation and growth through discipline. Visit your dashboard for personalized remedies and guidance.`,
-              ctaUrl: 'https://www.dekhopanchang.com/en/dashboard/remedies',
+              ctaUrl: 'https://dekhopanchang.com/en/dashboard/remedies',
               ctaText: 'View Remedies',
             });
 

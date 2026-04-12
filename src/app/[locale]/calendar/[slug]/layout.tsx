@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://www.dekhopanchang.com/${locale}/calendar/${slug}`,
+      url: `https://dekhopanchang.com/${locale}/calendar/${slug}`,
       siteName: 'Dekho Panchang',
       locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
       type: 'article',
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `https://www.dekhopanchang.com/en/calendar/${slug}`,
+      canonical: `https://dekhopanchang.com/en/calendar/${slug}`,
       languages: {
         en: `/en/calendar/${slug}`,
         hi: `/hi/calendar/${slug}`,
@@ -60,7 +60,7 @@ export default async function CalendarSlugLayout({
 
   if (!festival) return <>{children}</>;
 
-  const BASE_URL = 'https://www.dekhopanchang.com';
+  const BASE_URL = 'https://dekhopanchang.com';
   const nameEn = festival.name.en;
   const description = `${nameEn}: ${festival.significance.en}`.slice(0, 160);
 

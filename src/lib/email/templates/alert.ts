@@ -51,9 +51,9 @@ export function alertEmail({ name, type, title, body, ctaUrl, ctaText }: {
     <!-- Footer -->
     <div style="text-align:center;padding-top:20px;border-top:1px solid rgba(212,168,83,0.1);">
       <p style="color:#9b97a0;font-size:11px;margin:0;">
-        <a href="https://www.dekhopanchang.com/en/settings" style="color:#d4a853;text-decoration:none;">Manage email preferences</a>
+        <a href="https://dekhopanchang.com/en/settings" style="color:#d4a853;text-decoration:none;">Manage email preferences</a>
         &nbsp;|&nbsp;
-        <a href="https://www.dekhopanchang.com" style="color:#d4a853;text-decoration:none;">Dekho Panchang</a>
+        <a href="https://dekhopanchang.com" style="color:#d4a853;text-decoration:none;">Dekho Panchang</a>
       </p>
     </div>
   </div>

@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: `https://www.dekhopanchang.com/${locale}/puja/${slug}`,
+      url: `https://dekhopanchang.com/${locale}/puja/${slug}`,
       siteName: 'Dekho Panchang',
       locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : 'en_US',
       type: 'article',
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
     },
     alternates: {
-      canonical: `https://www.dekhopanchang.com/en/puja/${slug}`,
+      canonical: `https://dekhopanchang.com/en/puja/${slug}`,
       languages: {
         en: `/en/puja/${slug}`,
         hi: `/hi/puja/${slug}`,
@@ -60,7 +60,7 @@ export default async function PujaSlugLayout({
 
   if (!puja) return <>{children}</>;
 
-  const BASE_URL = 'https://www.dekhopanchang.com';
+  const BASE_URL = 'https://dekhopanchang.com';
   const deityEn = puja.deity.en;
   const description = `Complete ${deityEn} puja vidhi with step-by-step procedure, mantras in Devanagari & IAST, samagri list, and auspicious timing. ${puja.muhurtaDescription.en}`.slice(0, 160);
 

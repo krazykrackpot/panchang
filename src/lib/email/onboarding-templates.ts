@@ -4,7 +4,7 @@
  * Dark theme matching the app: #0a0e27 background, #e6e2d8 text, #d4a853 gold accent.
  */
 
-const BASE_URL = 'https://www.dekhopanchang.com';
+const BASE_URL = 'https://dekhopanchang.com';
 
 type Day = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 type Locale = 'en' | 'hi';

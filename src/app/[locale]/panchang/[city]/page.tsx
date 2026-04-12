@@ -7,6 +7,7 @@ import { getCityBySlug, getAllCitySlugs, getPopularCities } from '@/lib/constant
 import { computePanchang, type PanchangInput } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale, TransitionInfo } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -35,7 +36,7 @@ export async function generateMetadata({
   const city = getCityBySlug(citySlug);
   if (!city) return {};
 
-  const isHi = locale === 'hi' || locale === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const cityName = isHi ? city.name.hi : city.name.en;
   const today = new Date();
   const dateStr = today.toLocaleDateString(isHi ? 'hi-IN' : 'en-IN', {
@@ -77,11 +78,12 @@ export async function generateMetadata({
 // ──────────────────────────────────────────────────────────────
 
 function formatTransitionEnd(t: TransitionInfo | undefined, locale: string): string {
-  if (!t) return locale === 'hi' ? 'समाप्त' : 'Ended';
+  const isHi = isDevanagariLocale(locale);
+  if (!t) return isHi ? 'समाप्त' : 'Ended';
   const time = t.endTime;
   if (t.endDate) {
     const [, m, d] = t.endDate.split('-').map(Number);
-    const months = locale === 'hi'
+    const months = isHi
       ? ['जन.', 'फर.', 'मार्च', 'अप्रै.', 'मई', 'जून', 'जुला.', 'अग.', 'सित.', 'अक्टू.', 'नव.', 'दिस.']
       : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${time}, ${d} ${months[m - 1]}`;
@@ -103,7 +105,7 @@ export default async function CityPanchangPage({
   if (!city) notFound();
 
   const loc = (locale || 'en') as Locale;
-  const isHi = loc === 'hi' || loc === 'sa';
+  const isHi = isDevanagariLocale(loc);
   const cityName = isHi ? city.name.hi : city.name.en;
 
   // Compute today's panchang for this city

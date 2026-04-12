@@ -15,6 +15,7 @@ import SamagriList from '@/components/puja/SamagriList';
 import PujaMode from '@/components/puja/PujaMode';
 import EkadashiParanaCard from '@/components/puja/EkadashiParanaCard';
 import { useLocationStore } from '@/stores/location-store';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════
    LABELS
@@ -91,7 +92,7 @@ export default function FestivalDetailPage() {
   const dateParam = searchParams.get('date'); // e.g., "2026-04-13" for specific ekadashi
 
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont: React.CSSProperties = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont: React.CSSProperties = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -360,14 +361,14 @@ export default function FestivalDetailPage() {
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
                   style={headingFont}
                 >
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+                  {!isDevanagariLocale(locale) ? 'Start Full Puja' : isDevanagari ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
                 </button>
                 <button
                   onClick={() => { setQuickMode(true); setPujaMode(true); }}
                   className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
                   style={headingFont}
                 >
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+                  {!isDevanagariLocale(locale) ? 'Quick Mode (~15 min)' : isDevanagari ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
                 </button>
               </div>
 
@@ -378,7 +379,7 @@ export default function FestivalDetailPage() {
           {/* ═══ Section 3: Ekadashi-specific ═══ */}
           {ekadashiDetail && (
             <motion.div {...fadeInUp} className="space-y-5">
-              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Ekadashi Details' : 'एकादशी विवरण') : ''} headingFont={headingFont} />
+              <SectionHeading icon={<Star className="w-5 h-5" />} title={category === 'ekadashi' ? (!isDevanagariLocale(locale) ? 'Ekadashi Details' : 'एकादशी विवरण') : ''} headingFont={headingFont} />
 
               <ContentCard
                 icon={<BookOpen className="w-5 h-5" />}
@@ -479,7 +480,7 @@ function ContentCard({
 
 function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale: Locale; bodyFont: React.CSSProperties }) {
   const [copied, setCopied] = useState(false);
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
 
   const copy = () => {
     navigator.clipboard.writeText(mantra.devanagari).then(() => {
@@ -595,7 +596,7 @@ function FullPujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidh
                   <p className="text-text-secondary/80 text-sm leading-relaxed" style={bodyFont}>{t(step.description)}</p>
                   {linkedMantra && (
                     <div className="mt-3 pl-3 border-l-2 border-gold-primary/20">
-                      <p className="text-gold-primary/60 text-xs uppercase tracking-wider font-bold mb-1">{linkedMantra.name[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</p>
+                      <p className="text-gold-primary/60 text-xs uppercase tracking-wider font-bold mb-1">{linkedMantra.name[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</p>
                       <p className="text-amber-300 text-base font-bold" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{linkedMantra.devanagari}</p>
                     </div>
                   )}

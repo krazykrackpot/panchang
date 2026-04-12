@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Zap, Compass, Clock, RotateCcw, Sun, Eye, Shield, TrendingUp, AlertTriangle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -150,7 +151,7 @@ const DIG_BALA_TABLE = [
 
 export default function LearnShadbalaPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const t = (obj: Record<string, string>) => obj[locale] || obj.en;
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedBala, setExpandedBala] = useState<number | null>(0);

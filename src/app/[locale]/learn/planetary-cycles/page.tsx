@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Orbit, Clock, Target, Star, Eye, Telescope, Calculator } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ── Labels ──────────────────────────────────────────────────────
 const L = {
@@ -507,7 +508,7 @@ function SarosTimeline({ isHi }: { isHi: boolean }) {
 // ── Page ────────────────────────────────────────────────────────
 export default function PlanetaryCyclesPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const l = (L as Record<string, typeof L.en>)[locale] || L.en;

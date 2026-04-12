@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   en: {
@@ -268,7 +269,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const l = locale === 'hi' ? LABELS.hi : LABELS.en;
+  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
   return {
     title: l.title,
     description: l.subtitle,
@@ -288,7 +289,7 @@ export default async function TermsOfServicePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const l = locale === 'hi' ? LABELS.hi : LABELS.en;
+  const l = isDevanagariLocale(locale) ? LABELS.hi : LABELS.en;
 
   return (
     <main className="min-h-screen py-16 px-4">
@@ -299,7 +300,7 @@ export default async function TermsOfServicePage({
         </div>
         <h1
           className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-300 via-gold-light to-purple-300 bg-clip-text text-transparent"
-          style={{ fontFamily: locale === 'hi' ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
+          style={{ fontFamily: isDevanagariLocale(locale) ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
         >
           {l.title}
         </h1>
@@ -316,7 +317,7 @@ export default async function TermsOfServicePage({
           >
             <h2
               className="text-xl sm:text-2xl font-semibold text-gold-light mb-4"
-              style={{ fontFamily: locale === 'hi' ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
+              style={{ fontFamily: isDevanagariLocale(locale) ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' }}
             >
               {section.heading}
             </h2>

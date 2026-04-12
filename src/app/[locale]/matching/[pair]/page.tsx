@@ -10,6 +10,7 @@ import { getRashiBySlug } from '@/lib/constants/rashi-slugs';
 import { getPairContent } from '@/lib/constants/rashi-compatibility';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ──────────────────────────────────────────────────────────────
 // Labels
@@ -99,7 +100,7 @@ function scoreBarBg(score: number): string {
 }
 
 function scoreVerdict(score: number, locale: string): string {
-  if (locale === 'hi') {
+  if (isDevanagariLocale(locale)) {
     if (score >= 25) return 'उत्कृष्ट';
     if (score >= 18) return 'अच्छा';
     if (score >= 13) return 'औसत';
@@ -131,7 +132,7 @@ const SECTIONS = [
 export default function PairDetailPage() {
   const locale = useLocale();
   const { pair } = useParams<{ pair: string }>();
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

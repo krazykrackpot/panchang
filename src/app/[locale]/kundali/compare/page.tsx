@@ -21,6 +21,7 @@ import {
 import type { SynastryAspect } from '@/lib/comparison/synastry-engine';
 import type { KundaliData, BirthData, ChartStyle, ChartData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Labels ──────────────────────────────────────────────────────────────── */
 
@@ -169,7 +170,7 @@ function AspectList({ aspects, locale }: { aspects: SynastryAspect[]; locale: st
 
 export default function ComparePage() {
   const locale = useLocale();
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

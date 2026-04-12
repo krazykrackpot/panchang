@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getSupabase } from '@/lib/supabase/client';
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export default function AuthCallbackPage() {
   const locale = useLocale();
@@ -74,7 +75,7 @@ export default function AuthCallbackPage() {
           <>
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-gold-primary border-t-transparent mx-auto mb-6" />
             <p className="text-text-secondary text-lg">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Completing sign in...' : 'साइन इन पूर्ण हो रहा है...'}
+              {!isDevanagariLocale(locale) ? 'Completing sign in...' : 'साइन इन पूर्ण हो रहा है...'}
             </p>
           </>
         )}
@@ -87,7 +88,7 @@ export default function AuthCallbackPage() {
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-gold-light mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Welcome' : 'स्वागतम्'}{userName ? `, ${userName}` : ''}!
+              {!isDevanagariLocale(locale) ? 'Welcome' : 'स्वागतम्'}{userName ? `, ${userName}` : ''}!
             </h2>
             <p className="text-text-secondary">
               {locale === 'en'
@@ -113,10 +114,10 @@ export default function AuthCallbackPage() {
               </svg>
             </div>
             <h2 className="text-xl font-bold text-text-primary mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Something went wrong' : 'कुछ गलत हो गया'}
+              {!isDevanagariLocale(locale) ? 'Something went wrong' : 'कुछ गलत हो गया'}
             </h2>
             <p className="text-text-secondary text-sm">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Redirecting to home page...' : 'मुख्य पृष्ठ पर ले जा रहे हैं...'}
+              {!isDevanagariLocale(locale) ? 'Redirecting to home page...' : 'मुख्य पृष्ठ पर ले जा रहे हैं...'}
             </p>
           </>
         )}

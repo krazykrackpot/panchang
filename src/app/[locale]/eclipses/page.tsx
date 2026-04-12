@@ -14,6 +14,7 @@ import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
 import PersonalEclipseInsight from '@/components/eclipses/PersonalEclipseInsight';
 import { tl } from '@/lib/utils/trilingual';
 import AdUnit from '@/components/ads/AdUnit';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
@@ -30,7 +31,7 @@ interface EclipseEvent {
 
 export default function EclipsesPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
@@ -81,7 +82,7 @@ export default function EclipsesPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const toggleExpand = (key: string) => setExpanded(prev => prev === key ? null : key);

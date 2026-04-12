@@ -2,6 +2,7 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_4_1', phase: 1, topic: 'Ayanamsha', moduleNumber: '4.1',
@@ -182,7 +183,7 @@ const QUESTIONS: ModuleQuestion[] = [
    ═══════════════════════════════════════════════════════════════ */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* Opening Hook */}
@@ -256,7 +257,7 @@ function Page1() {
    ═══════════════════════════════════════════════════════════════ */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* Zero Ayanamsha Date */}
@@ -438,7 +439,7 @@ function Page2() {
    ═══════════════════════════════════════════════════════════════ */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* Why Lahiri Won */}

@@ -4,6 +4,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Circle, Cpu, Globe } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -103,7 +104,7 @@ const SANSKRIT_TERMS = [
    ═══════════════════════════════════════════════════════════════ */
 export default async function ZeroPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
-  const hi = locale === 'hi';
+  const hi = isDevanagariLocale(locale);
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
   return (

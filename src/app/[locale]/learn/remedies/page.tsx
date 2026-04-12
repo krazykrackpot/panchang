@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Gem, Music, Heart, Flame, AlertTriangle, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual Labels ──────────────────────────────────────────── */
 const L = {
@@ -247,7 +248,7 @@ const RELATED_LINKS = [
 
 /* ── Remedy Detail Card ───────────────────────────────────────── */
 function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -310,6 +311,7 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
 
 /* ── Flowchart SVG ────────────────────────────────────────────── */
 function FlowchartDiagram({ locale }: { locale: Locale }) {
+  const isHi = isDevanagariLocale(locale);
   const bodyFont = locale !== 'en' ? 'var(--font-devanagari-body)' : 'inherit';
   return (
     <svg viewBox="0 0 500 320" className="w-full max-w-[500px] mx-auto">
@@ -343,10 +345,10 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}
       </text>
       <text x="100" y="158" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemstone, mantra for power,' : locale === 'hi' ? 'रत्न, शक्ति मंत्र,' : 'रत्नम्, शक्तिमन्त्रः,'}
+        {!isDevanagariLocale(locale) ? 'Gemstone, mantra for power,' : locale === 'sa' ? 'रत्नम्, शक्तिमन्त्रः,' : 'रत्न, शक्ति मंत्र,'}
       </text>
       <text x="100" y="170" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'favorable colors, worship deity' : locale === 'hi' ? 'अनुकूल रंग, देवता पूजा' : 'अनुकूलवर्णाः, देवतापूजा'}
+        {!isDevanagariLocale(locale) ? 'favorable colors, worship deity' : locale === 'sa' ? 'अनुकूलवर्णाः, देवतापूजा' : 'अनुकूल रंग, देवता पूजा'}
       </text>
 
       {/* Question 2 box (right) */}
@@ -372,19 +374,19 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}
       </text>
       <text x="297" y="268" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Donation, fasting, mantra for peace' : locale === 'hi' ? 'दान, उपवास, शान्ति मंत्र' : 'दानम्, उपवासः, शान्तिमन्त्रः'}
+        {!isDevanagariLocale(locale) ? 'Donation, fasting, mantra for peace' : locale === 'sa' ? 'दानम्, उपवासः, शान्तिमन्त्रः' : 'दान, उपवास, शान्ति मंत्र'}
       </text>
       <text x="297" y="280" textAnchor="middle" fill="#ef4444" fontSize="8" fontWeight="bold" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'DO NOT wear gemstone!' : locale === 'hi' ? 'रत्न न पहनें!' : 'रत्नं न धारयेत्!'}
+        {!isDevanagariLocale(locale) ? 'DO NOT wear gemstone!' : locale === 'sa' ? 'रत्नं न धारयेत्!' : 'रत्न न पहनें!'}
       </text>
 
       {/* Neutral: Check context box */}
       <rect x="400" y="230" width="90" height="50" rx="10" fill="#facc1510" stroke="#facc1540" strokeWidth="1" />
       <text x="445" y="252" textAnchor="middle" fill="#facc15" fontSize="9" fontWeight="bold" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Context' : locale === 'hi' ? 'सन्दर्भ' : 'सन्दर्भः'}
+        {!isDevanagariLocale(locale) ? 'Context' : locale === 'sa' ? 'सन्दर्भः' : 'सन्दर्भ'}
       </text>
       <text x="445" y="266" textAnchor="middle" fill="#8b8fa3" fontSize="7" fontFamily={bodyFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Analyze chart' : locale === 'hi' ? 'कुण्डली विश्लेषण' : 'कुण्डलीविश्लेषणम्'}
+        {!isDevanagariLocale(locale) ? 'Analyze chart' : locale === 'sa' ? 'कुण्डलीविश्लेषणम्' : 'कुण्डली विश्लेषण'}
       </text>
     </svg>
   );
@@ -393,7 +395,7 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
 /* ── Main Page ────────────────────────────────────────────────── */
 export default function RemediesPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [selected, setSelected] = useState<string>('sun');
@@ -457,12 +459,12 @@ export default function RemediesPage() {
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             <span className="text-emerald-400 font-medium">{((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}</span>
-            <span className="text-text-secondary">= {(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemstone + Mantra' : locale === 'hi' ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
+            <span className="text-text-secondary">= {!isDevanagariLocale(locale) ? 'Gemstone + Mantra' : isHi ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
             <span className="text-red-400 font-medium">{((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}</span>
-            <span className="text-text-secondary">= {(locale !== 'hi' && String(locale) !== 'sa') ? 'Charity + Fasting' : locale === 'hi' ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
+            <span className="text-text-secondary">= {!isDevanagariLocale(locale) ? 'Charity + Fasting' : isHi ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
           </span>
         </div>
       </motion.div>

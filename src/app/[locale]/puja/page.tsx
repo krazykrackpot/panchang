@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   en: {
@@ -150,7 +151,7 @@ function PujaCard({
   viewLabel: string;
 }) {
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const gradient = CARD_GRADIENTS[index % CARD_GRADIENTS.length];
 
   return (
@@ -182,10 +183,10 @@ function PujaCard({
               }`}
             >
               {category === 'festival'
-                ? (locale !== 'hi' && String(locale) !== 'sa') ? 'Festival' : locale === 'hi' ? 'त्योहार' : 'उत्सवः'
+                ? !isDevanagariLocale(locale) ? 'Festival' : isDevanagari ? 'त्योहार' : 'उत्सवः'
                 : category === 'graha_shanti'
-                  ? (locale !== 'hi' && String(locale) !== 'sa') ? 'Graha Shanti' : locale === 'hi' ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
-                  : (locale !== 'hi' && String(locale) !== 'sa') ? 'Vrat' : locale === 'hi' ? 'व्रत' : 'व्रतम्'}
+                  ? !isDevanagariLocale(locale) ? 'Graha Shanti' : isDevanagari ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
+                  : !isDevanagariLocale(locale) ? 'Vrat' : isDevanagari ? 'व्रत' : 'व्रतम्'}
             </span>
             <span className="text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
               {viewLabel} &rarr;
@@ -200,7 +201,7 @@ function PujaCard({
 export default function PujaIndexPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

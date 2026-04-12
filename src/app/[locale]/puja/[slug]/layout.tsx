@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export function generateStaticParams() {
   return Object.keys(PUJA_VIDHIS).map(slug => ({ slug }));

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
   const title = isHi
     ? 'शास्त्रीय ज्योतिष ग्रन्थालय — निःशुल्क ग्रन्थ | देखो पंचांग'
     : 'Classical Jyotish Library — Free Texts & Downloads | Dekho Panchang';

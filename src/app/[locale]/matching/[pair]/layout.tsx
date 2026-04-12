@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getAllPairSlugs, getRashiBySlug, canonicalPairSlug } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -27,10 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const name1 = tl(r1.name, locale);
   const name2 = tl(r2.name, locale);
   return {
-    title: locale === 'hi'
+    title: isDevanagariLocale(locale)
       ? `${name1} और ${name2} संगतता — वैदिक ज्योतिष`
       : `${name1} and ${name2} Compatibility — Vedic Astrology`,
-    description: locale === 'hi'
+    description: isDevanagariLocale(locale)
       ? `${name1} और ${name2} राशि वैदिक संगतता विश्लेषण। अष्ट कूट स्कोर, स्वभाव, प्रेम, करियर साझेदारी।`
       : `${name1} and ${name2} Vedic compatibility analysis with Ashta Kuta score, temperament, romance, career partnership.`,
     alternates: { canonical: `${BASE_URL}/${locale}/matching/${canonical}` },

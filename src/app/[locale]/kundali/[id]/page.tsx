@@ -10,6 +10,7 @@ import type { Locale } from '@/types/panchang';
 import type { KundaliData } from '@/types/kundali';
 import { detectAfflictedPlanets, type AfflictedPlanet } from '@/lib/puja/affliction-detector';
 import ChartNorth from '@/components/kundali/ChartNorth';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 function decodeChartParams(params: URLSearchParams): { name: string; date: string; time: string; lat: number; lng: number; place: string; timezone: string } | null {
   const name = params.get('n');
@@ -28,7 +29,7 @@ function decodeChartParams(params: URLSearchParams): { name: string; date: strin
 export default function SharedKundaliPage() {
   const locale = useLocale() as Locale;
   const searchParams = useSearchParams();
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = { fontFamily: isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)' };
 
   const [kundali, setKundali] = useState<KundaliData | null>(null);
@@ -86,7 +87,7 @@ export default function SharedKundaliPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-24 text-center">
         <div className="animate-spin w-12 h-12 border-2 border-gold-primary border-t-transparent rounded-full mx-auto mb-4" />
-        <p className="text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Loading shared chart...' : 'साझा कुण्डली लोड हो रही है...'}</p>
+        <p className="text-text-secondary">{!isDevanagariLocale(locale) ? 'Loading shared chart...' : 'साझा कुण्डली लोड हो रही है...'}</p>
       </div>
     );
   }
@@ -95,15 +96,15 @@ export default function SharedKundaliPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-12">
         <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light mb-8">
-          <ArrowLeft className="w-4 h-4" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
+          <ArrowLeft className="w-4 h-4" /> {!isDevanagariLocale(locale) ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
         </Link>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-12 text-center">
           <h1 className="text-3xl text-red-400 font-bold mb-4" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Invalid Chart Link' : 'अमान्य कुण्डली लिंक'}
+            {!isDevanagariLocale(locale) ? 'Invalid Chart Link' : 'अमान्य कुण्डली लिंक'}
           </h1>
           <p className="text-text-secondary">{error}</p>
           <Link href="/kundali" className="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-semibold rounded-lg">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Create Your Own Chart' : 'अपनी कुण्डली बनाएं'}
+            {!isDevanagariLocale(locale) ? 'Create Your Own Chart' : 'अपनी कुण्डली बनाएं'}
           </Link>
         </div>
       </div>
@@ -114,17 +115,17 @@ export default function SharedKundaliPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex items-center justify-between mb-8">
         <Link href="/kundali" className="inline-flex items-center gap-2 text-gold-primary hover:text-gold-light">
-          <ArrowLeft className="w-4 h-4" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
+          <ArrowLeft className="w-4 h-4" /> {!isDevanagariLocale(locale) ? 'Generate New Chart' : 'नई कुण्डली बनाएं'}
         </Link>
         <div className="flex items-center gap-2">
           <button onClick={handleCopy} className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg text-sm text-gold-primary hover:text-gold-light">
             {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            {copied ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Copied!' : 'कॉपी!') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Copy Link' : 'लिंक कॉपी')}
+            {copied ? (!isDevanagariLocale(locale) ? 'Copied!' : 'कॉपी!') : (!isDevanagariLocale(locale) ? 'Copy Link' : 'लिंक कॉपी')}
           </button>
           {typeof navigator !== 'undefined' && 'share' in navigator && (
             <button onClick={() => navigator.share({ title: `${chartData.name} - Kundali`, url: shareUrl })}
               className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg text-sm text-gold-primary hover:text-gold-light">
-              <Share2 className="w-4 h-4" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Share' : 'साझा'}
+              <Share2 className="w-4 h-4" /> {!isDevanagariLocale(locale) ? 'Share' : 'साझा'}
             </button>
           )}
         </div>
@@ -141,19 +142,19 @@ export default function SharedKundaliPage() {
         {kundali && (
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
-              <p className="text-text-tertiary text-xs mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Ascendant' : 'लग्न'}</p>
+              <p className="text-text-tertiary text-xs mb-1">{!isDevanagariLocale(locale) ? 'Ascendant' : 'लग्न'}</p>
               <p className="text-gold-light font-semibold">{kundali.ascendant.signName[locale]}</p>
             </div>
             <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
-              <p className="text-text-tertiary text-xs mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon Sign' : 'चंद्र राशि'}</p>
+              <p className="text-text-tertiary text-xs mb-1">{!isDevanagariLocale(locale) ? 'Moon Sign' : 'चंद्र राशि'}</p>
               <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 1)?.signName[locale] || '-'}</p>
             </div>
             <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
-              <p className="text-text-tertiary text-xs mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun Sign' : 'सूर्य राशि'}</p>
+              <p className="text-text-tertiary text-xs mb-1">{!isDevanagariLocale(locale) ? 'Sun Sign' : 'सूर्य राशि'}</p>
               <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 0)?.signName[locale] || '-'}</p>
             </div>
             <div className="p-3 bg-bg-primary/30 rounded-lg text-center">
-              <p className="text-text-tertiary text-xs mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra' : 'नक्षत्र'}</p>
+              <p className="text-text-tertiary text-xs mb-1">{!isDevanagariLocale(locale) ? 'Nakshatra' : 'नक्षत्र'}</p>
               <p className="text-gold-light font-semibold">{kundali.planets.find(p => p.planet.id === 1)?.nakshatra?.name?.[locale] || '-'}</p>
             </div>
           </div>
@@ -164,7 +165,7 @@ export default function SharedKundaliPage() {
       {kundali?.chart && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8 flex flex-col items-center">
           <h2 className="text-xl text-gold-gradient font-bold mb-6 self-start" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Birth Chart (D1 — Rashi)' : locale === 'hi' ? 'जन्म कुण्डली (D1 — राशि)' : 'जन्मकुण्डली (D1 — राशिः)'}
+            {!isDevanagariLocale(locale) ? 'Birth Chart (D1 — Rashi)' : isDevanagari ? 'जन्म कुण्डली (D1 — राशि)' : 'जन्मकुण्डली (D1 — राशिः)'}
           </h2>
           <div className="w-full max-w-md mx-auto">
             <ChartNorth data={kundali.chart} title={chartData?.name || ''} size={400} />
@@ -176,17 +177,17 @@ export default function SharedKundaliPage() {
       {kundali && (
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8">
           <h2 className="text-xl text-gold-gradient font-bold mb-6" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Planetary Positions' : 'ग्रह स्थिति'}
+            {!isDevanagariLocale(locale) ? 'Planetary Positions' : 'ग्रह स्थिति'}
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-gold-primary border-b border-gold-primary/10">
-                  <th className="text-left py-2 px-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
-                  <th className="text-left py-2 px-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sign' : 'राशि'}</th>
-                  <th className="text-right py-2 px-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Degree' : 'अंश'}</th>
-                  <th className="text-center py-2 px-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'House' : 'भाव'}</th>
-                  <th className="text-center py-2 px-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra' : 'नक्षत्र'}</th>
+                  <th className="text-left py-2 px-3">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                  <th className="text-left py-2 px-3">{!isDevanagariLocale(locale) ? 'Sign' : 'राशि'}</th>
+                  <th className="text-right py-2 px-3">{!isDevanagariLocale(locale) ? 'Degree' : 'अंश'}</th>
+                  <th className="text-center py-2 px-3">{!isDevanagariLocale(locale) ? 'House' : 'भाव'}</th>
+                  <th className="text-center py-2 px-3">{!isDevanagariLocale(locale) ? 'Nakshatra' : 'नक्षत्र'}</th>
                 </tr>
               </thead>
               <tbody>
@@ -221,7 +222,7 @@ export default function SharedKundaliPage() {
         return (
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 mb-8">
             <h2 className="text-xl text-gold-gradient font-bold mb-2" style={headingFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Recommended Graha Shanti Pujas' : 'अनुशंसित ग्रह शान्ति पूजा'}
+              {!isDevanagariLocale(locale) ? 'Recommended Graha Shanti Pujas' : 'अनुशंसित ग्रह शान्ति पूजा'}
             </h2>
             <p className="text-text-secondary text-sm mb-6">
               {locale === 'en'
@@ -231,9 +232,9 @@ export default function SharedKundaliPage() {
             <div className="space-y-3">
               {afflicted.map((ap) => {
                 const cfg = {
-                  severe: { border: 'border-rose-500/20', bg: 'bg-rose-500/8', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-400', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Severe' : 'गम्भीर' },
-                  moderate: { border: 'border-amber-500/20', bg: 'bg-amber-500/8', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-400', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Moderate' : 'मध्यम' },
-                  mild: { border: 'border-blue-500/20', bg: 'bg-blue-500/8', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mild' : 'साधारण' },
+                  severe: { border: 'border-rose-500/20', bg: 'bg-rose-500/8', text: 'text-rose-400', badge: 'bg-rose-500/20 text-rose-400', label: !isDevanagariLocale(locale) ? 'Severe' : 'गम्भीर' },
+                  moderate: { border: 'border-amber-500/20', bg: 'bg-amber-500/8', text: 'text-amber-400', badge: 'bg-amber-500/20 text-amber-400', label: !isDevanagariLocale(locale) ? 'Moderate' : 'मध्यम' },
+                  mild: { border: 'border-blue-500/20', bg: 'bg-blue-500/8', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: !isDevanagariLocale(locale) ? 'Mild' : 'साधारण' },
                 }[ap.severity];
                 const planetName = kundali.planets.find(p => p.planet.id === ap.planetId)?.planet.name[locale] || ap.planetName;
                 return (
@@ -247,7 +248,7 @@ export default function SharedKundaliPage() {
                       href={`/puja/${ap.remedySlug}` as '/puja/graha-shanti-surya'}
                       className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-primary hover:text-gold-light transition-colors"
                     >
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'View Puja Details' : 'पूजा विवरण देखें'}
+                      {!isDevanagariLocale(locale) ? 'View Puja Details' : 'पूजा विवरण देखें'}
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -263,10 +264,10 @@ export default function SharedKundaliPage() {
       {/* CTA */}
       <div className="text-center mt-8">
         <p className="text-text-secondary mb-4">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Want a full analysis with Dashas, Yogas, and more?' : 'पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?'}
+          {!isDevanagariLocale(locale) ? 'Want a full analysis with Dashas, Yogas, and more?' : 'पूर्ण दशा, योग और अधिक विश्लेषण चाहते हैं?'}
         </p>
         <Link href="/kundali" className="inline-block px-8 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-semibold rounded-lg hover:from-gold-primary hover:to-gold-light transition-all">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate Full Chart' : 'पूर्ण कुण्डली बनाएं'}
+          {!isDevanagariLocale(locale) ? 'Generate Full Chart' : 'पूर्ण कुण्डली बनाएं'}
         </Link>
       </div>
     </div>

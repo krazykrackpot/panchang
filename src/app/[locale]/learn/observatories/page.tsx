@@ -7,6 +7,7 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Ruler, Eye, Mountain, MapPin, Star } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
    LABELS
@@ -146,7 +147,7 @@ const OBSERVATORIES = [
    ═══════════════════════════════════════════════════════════════ */
 export default function ObservatoriesPage() {
   const locale = useLocale() as Locale;
-  const hi = locale === 'hi' || locale === 'sa';
+  const hi = isDevanagariLocale(locale);
   const t = (obj: { en: string; hi: string }) => (hi ? obj.hi : obj.en);
 
   return (

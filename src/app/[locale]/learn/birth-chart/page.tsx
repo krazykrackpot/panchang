@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -321,7 +322,7 @@ export default function BirthChartPage() {
     }
     return '';
   };
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (

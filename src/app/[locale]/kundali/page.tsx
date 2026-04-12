@@ -37,6 +37,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Dynamic imports — only loaded after chart generation or on specific tab activation
 const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
@@ -295,7 +296,7 @@ export default function KundaliPage() {
   const tTip = useTranslations('tippanni');
   const locale = useLocale() as Locale;
   const isTamil = (locale as string) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 
@@ -620,7 +621,7 @@ export default function KundaliPage() {
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
-                {locale === 'en' || isTamil ? 'Edit Details' : locale === 'hi' ? 'विवरण सम्पादित करें' : 'विवरणं सम्पादयतु'}
+                {locale === 'en' || isTamil ? 'Edit Details' : isDevanagari ? 'विवरण सम्पादित करें' : 'विवरणं सम्पादयतु'}
               </button>
               {user && (
                 <button
@@ -692,7 +693,7 @@ export default function KundaliPage() {
             if (!moonNakId || !GANDA_MULA_DATA[moonNakId]) return null;
             const gm = GANDA_MULA_DATA[moonNakId];
             const nakName = moonP?.nakshatra?.name?.[locale] || moonP?.nakshatra?.name?.en;
-            const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+            const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
             return (
               <div className="rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-500/10 via-red-500/5 to-amber-500/10 p-5 mb-6">
                 <div className="flex items-start gap-4">
@@ -786,9 +787,9 @@ export default function KundaliPage() {
               <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0 mb-4">
               <div className="flex sm:flex-wrap sm:justify-center gap-1.5 min-w-max sm:min-w-0">
                 {([
-                  { key: 'D1', label: locale === 'en' || isTamil ? 'D1 Rashi' : locale === 'hi' ? 'D1 राशि' : 'D1 राशिः' },
+                  { key: 'D1', label: locale === 'en' || isTamil ? 'D1 Rashi' : isDevanagari ? 'D1 राशि' : 'D1 राशिः' },
                   { key: 'bhav_chalit', label: locale === 'en' || isTamil ? 'Bhav Chalit' : 'भाव चलित' },
-                  { key: 'D9', label: locale === 'en' || isTamil ? 'D9 Navamsha' : locale === 'hi' ? 'D9 नवांश' : 'D9 नवांशः' },
+                  { key: 'D9', label: locale === 'en' || isTamil ? 'D9 Navamsha' : isDevanagari ? 'D9 नवांश' : 'D9 नवांशः' },
                   ...(kundali.divisionalCharts ? Object.entries(kundali.divisionalCharts).map(([key, dc]) => ({
                     key,
                     label: dc.label[locale as Locale] || dc.label.en || key,
@@ -809,7 +810,7 @@ export default function KundaliPage() {
                 <div className="text-center mb-4 p-2 rounded-lg bg-gold-primary/5 border border-gold-primary/10">
                   <span className="text-gold-light text-xs font-bold">{kundali.divisionalCharts[activeChart].label[locale as Locale]}</span>
                   <span className="text-text-secondary text-xs"> — </span>
-                  <span className="text-text-secondary text-xs">{(kundali.divisionalCharts[activeChart] as DivisionalChart & { meaning?: { en: string; hi: string } }).meaning?.[locale === 'hi' ? 'hi' : 'en'] || ''}</span>
+                  <span className="text-text-secondary text-xs">{(kundali.divisionalCharts[activeChart] as DivisionalChart & { meaning?: { en: string; hi: string } }).meaning?.[isDevanagari ? 'hi' : 'en'] || ''}</span>
                 </div>
               )}
               {activeChart === 'D9' && (
@@ -927,7 +928,7 @@ export default function KundaliPage() {
                   v.chart === activeChart || (activeChart === 'bhav_chalit' && v.chart === 'BC')
                 );
                 if (!chartInsight) return null;
-                const isHi = locale === 'hi';
+                const isHi = isDevanagariLocale(locale);
                 const sC: Record<string, string> = { strong: 'border-emerald-500/20', moderate: 'border-amber-500/20', weak: 'border-red-500/20' };
                 const sL: Record<string, string> = { strong: isHi ? 'बलवान' : 'Strong', moderate: isHi ? 'मध्यम' : 'Moderate', weak: isHi ? 'दुर्बल' : 'Weak' };
                 const sClr: Record<string, string> = { strong: 'text-emerald-400', moderate: 'text-amber-400', weak: 'text-red-400' };
@@ -1027,7 +1028,7 @@ export default function KundaliPage() {
 
               {/* JYOTISH-16: Transit Activation of Natal Promise */}
               {(() => {
-                const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+                const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
                 // Current Mahadasha lord
                 const currentMaha = kundali.dashas.find(d => {
                   const now = new Date();
@@ -1889,10 +1890,10 @@ export default function KundaliPage() {
               </a>
               <InfoBlock
                 id="kundali-graha"
-                title={locale === 'hi' ? 'ग्रह विश्लेषण क्या है?' : 'What is Graha Analysis?'}
+                title={isDevanagari ? 'ग्रह विश्लेषण क्या है?' : 'What is Graha Analysis?'}
                 defaultOpen={false}
               >
-                {locale === 'hi'
+                {isDevanagari
                   ? 'विस्तृत ग्रह डेटा जिसमें सटीक निर्देशांक, गति, क्रांति और प्रत्येक ग्रह जिस नक्षत्र पाद (चतुर्थांश) में है वह शामिल हैं। उपग्रह (गुलिका और मंदी जैसे छाया उप-ग्रह) और सूक्ष्मता जोड़ते हैं। गति बताती है कि ग्रह कितना सक्रिय है — धीमे ग्रह (वक्री के निकट) विलंबित लेकिन गहरे परिणाम देते हैं। अक्षांश दर्शाता है कि ग्रह क्रांतिवृत्त से कितना दूर है — अत्यधिक अक्षांश ग्रह के प्रभाव को कमज़ोर करता है।'
                   : 'Extended planetary data including exact coordinates, speed, declination, and the nakshatra pada (quarter) each planet occupies. Upagrahas (shadow sub-planets like Gulika and Mandi) add nuance. Speed tells you how active a planet is — slow planets (near retrograde) give delayed but deep results. Latitude shows how far a planet is from the ecliptic — extreme latitudes weaken a planet\'s influence.'}
               </InfoBlock>
@@ -1951,10 +1952,10 @@ export default function KundaliPage() {
               </a>
               <InfoBlock
                 id="kundali-shadbala"
-                title={locale === 'hi' ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
+                title={isDevanagari ? 'षड्बल क्या है?' : 'What is Shadbala (Six-fold Strength)?'}
                 defaultOpen={false}
               >
-                {locale === 'hi'
+                {isDevanagari
                   ? 'आपकी कुण्डली के सभी ग्रह समान रूप से शक्तिशाली नहीं होते। षड्बल 6 स्रोतों से प्रत्येक ग्रह की शक्ति मापता है: स्थानीय (कौन सी राशि), दिशात्मक (कौन सा भाव), कालिक (जन्म का समय), गतिज (गति), नैसर्गिक (जन्मजात शक्ति), और दृग् (अन्य ग्रहों का प्रभाव)। 1.0 रूप से ऊपर अंक पाने वाला ग्रह पर्याप्त बलवान है। उससे नीचे वह अपने वादे पूरे करने में संघर्ष करता है। सबसे बलवान ग्रह अक्सर आपके प्रमुख व्यक्तित्व लक्षण को परिभाषित करता है।'
                   : 'Not all planets in your chart are equally powerful. Shadbala measures each planet\'s strength from 6 sources: positional (which sign), directional (which house), temporal (time of birth), motional (speed), natural (inherent strength), and aspectual (other planets\' influence). A planet scoring above 1.0 Rupa is adequately strong. Below that, it struggles to deliver its promises. The strongest planet often defines your dominant personality trait.'}
               </InfoBlock>
@@ -1971,10 +1972,10 @@ export default function KundaliPage() {
               </a>
               <InfoBlock
                 id="kundali-bhavabala"
-                title={locale === 'hi' ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
+                title={isDevanagari ? 'भावबल क्या है?' : 'What is Bhavabala (House Strength)?'}
                 defaultOpen={false}
               >
-                {locale === 'hi'
+                {isDevanagari
                   ? 'आपकी कुण्डली के 12 भावों में से प्रत्येक का एक शक्ति स्कोर होता है। बलवान भाव सहजता से अपने वादे पूरे करते हैं — एक बलवान 10वाँ भाव का अर्थ है कि करियर की सफलता स्वाभाविक रूप से आती है। कमज़ोर भाव उन क्षेत्रों को इंगित करते हैं जिनमें अधिक प्रयास की आवश्यकता है। यह स्कोर भावेश की शक्ति, उसमें स्थित ग्रहों और प्राप्त दृष्टियों का संयोजन है। आपका सबसे बलवान भाव अक्सर आपकी सबसे बड़ी जीवन संपदा बन जाता है।'
                   : 'Each of the 12 houses in your chart has a strength score. Strong houses deliver their promises easily — a strong 10th house means career success comes naturally. Weak houses indicate areas requiring more effort. The score combines the lord\'s strength, occupant planets, and aspects received. Your strongest house often becomes your greatest life asset.'}
               </InfoBlock>
@@ -2986,7 +2987,7 @@ function ClassicalReferencesBlock({ refs, locale, isDevanagari }: {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
           </svg>
           <span className="text-amber-400 text-xs uppercase tracking-wider font-semibold">
-            {locale === 'en' || isTamil ? 'Classical References' : locale === 'hi' ? 'शास्त्रीय सन्दर्भ' : 'शास्त्रीयसन्दर्भाः'}
+            {locale === 'en' || isTamil ? 'Classical References' : isDevanagari ? 'शास्त्रीय सन्दर्भ' : 'शास्त्रीयसन्दर्भाः'}
           </span>
         </div>
         <span className={`text-xs px-1.5 py-0.5 rounded-full border ${confidenceColors[refs.confidence]}`}>
@@ -3050,7 +3051,7 @@ function VargaAnalysisTab({ kundali, locale, headingFont }: {
   kundali: KundaliData; locale: Locale; headingFont: React.CSSProperties;
 }) {
   const synthesis = useMemo(() => generateVargaTippanni(kundali, locale), [kundali, locale]);
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
   const [selectedVarga, setSelectedVarga] = useState<string | null>(null);
   const sC: Record<string, string> = { strong: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20', moderate: 'text-amber-400 bg-amber-500/10 border-amber-500/20', weak: 'text-red-400 bg-red-500/10 border-red-500/20' };
   const sL: Record<string, { en: string; hi: string }> = { strong: { en: 'Strong', hi: 'बलवान' }, moderate: { en: 'Moderate', hi: 'मध्यम' }, weak: { en: 'Weak', hi: 'दुर्बल' } };
@@ -3751,7 +3752,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       {/* ===== PLANET PLACEMENT ANALYSIS ===== */}
       <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-          {locale === 'en' || isTamil ? 'Planet Placement Analysis' : locale === 'hi' ? 'ग्रह स्थिति विश्लेषण' : 'ग्रहस्थितिविश्लेषणम्'}
+          {locale === 'en' || isTamil ? 'Planet Placement Analysis' : isDevanagari ? 'ग्रह स्थिति विश्लेषण' : 'ग्रहस्थितिविश्लेषणम्'}
         </h3>
         <div className="space-y-3">
           {tip.planetInsights.map((pi) => (
@@ -3953,7 +3954,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       {/* ===== LIFE AREA PROGNOSIS ===== */}
       <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
         <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-          {locale === 'en' || isTamil ? 'Life Area Prognosis' : locale === 'hi' ? 'जीवन क्षेत्र पूर्वानुमान' : 'जीवनक्षेत्रपूर्वानुमानम्'}
+          {locale === 'en' || isTamil ? 'Life Area Prognosis' : isDevanagari ? 'जीवन क्षेत्र पूर्वानुमान' : 'जीवनक्षेत्रपूर्वानुमानम्'}
         </h3>
         <div className="space-y-4">
           {(['career', 'wealth', 'marriage', 'health', 'education'] as const).map((key) => {
@@ -4004,14 +4005,14 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
         const lifeAreaColor = (arrow: string) => arrow === '\u2191' ? 'text-emerald-400' : arrow === '\u2193' ? 'text-rose-400' : 'text-amber-400';
         const fmtYear = (d: string) => d.slice(0, 4);
         const fmtDate = (d: string) => { const p = d.split('-'); return `${p[2]}/${p[1]}/${p[0].slice(2)}`; };
-        const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+        const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
 
         return (
           <section className="space-y-6">
             {/* ── Section 1: Lifetime Timeline ── */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-                {locale === 'en' || isTamil ? 'Dasha Period Analysis' : locale === 'hi' ? 'दशा काल विश्लेषण' : 'दशाकालविश्लेषणम्'}
+                {locale === 'en' || isTamil ? 'Dasha Period Analysis' : isDevanagari ? 'दशा काल विश्लेषण' : 'दशाकालविश्लेषणम्'}
               </h3>
               <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-thin scrollbar-thumb-gold-primary/30">
                 {ds.lifetimeSummary.map((md, i) => {
@@ -4119,7 +4120,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
             {/* ── Section 3: Antardasha Stack ── */}
             <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
               <h3 className="text-lg text-gold-light font-semibold mb-5" style={headingFont}>
-                {locale === 'en' || isTamil ? 'Antardasha Periods' : locale === 'hi' ? 'अन्तर्दशा काल' : 'अन्तर्दशाकालाः'}
+                {locale === 'en' || isTamil ? 'Antardasha Periods' : isDevanagari ? 'अन्तर्दशा काल' : 'अन्तर्दशाकालाः'}
               </h3>
               <div className="space-y-3 max-h-[800px] overflow-y-auto scrollbar-thin scrollbar-thumb-gold-primary/20 pr-1">
                 {cm.antardashas.map((ad, ai) => {
@@ -4463,7 +4464,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       {tip.strengthOverview.length > 0 && (
         <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-6" style={headingFont}>
-            {locale === 'en' || isTamil ? 'Planetary Strength (Shadbala)' : locale === 'hi' ? 'ग्रह बल (षड्बल)' : 'ग्रहबलम् (षड्बलम्)'}
+            {locale === 'en' || isTamil ? 'Planetary Strength (Shadbala)' : isDevanagari ? 'ग्रह बल (षड्बल)' : 'ग्रहबलम् (षड्बलम्)'}
           </h3>
           <p className="text-text-secondary/60 text-xs mb-4">
             {locale === 'en' || isTamil
@@ -4555,7 +4556,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
       {afflictedPlanets.length > 0 && (
         <section className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
           <h3 className="text-xl text-gold-light font-semibold mb-2" style={headingFont}>
-            {locale === 'en' || isTamil ? 'Recommended Graha Shanti Pujas' : locale === 'hi' ? 'अनुशंसित ग्रह शान्ति पूजा' : 'अनुशंसित ग्रहशान्तिपूजाः'}
+            {locale === 'en' || isTamil ? 'Recommended Graha Shanti Pujas' : isDevanagari ? 'अनुशंसित ग्रह शान्ति पूजा' : 'अनुशंसित ग्रहशान्तिपूजाः'}
           </h3>
           <p className="text-text-secondary text-sm mb-6">
             {locale === 'en' || isTamil
@@ -4833,10 +4834,10 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
 
       <InfoBlock
         id="kundali-yogas"
-        title={locale === 'hi' ? 'योग क्या हैं?' : 'What are Yogas?'}
+        title={isDevanagari ? 'योग क्या हैं?' : 'What are Yogas?'}
         defaultOpen={false}
       >
-        {locale === 'hi'
+        {isDevanagari
           ? 'वैदिक ज्योतिष में "योग" एक विशिष्ट ग्रह संयोजन है जो एक निश्चित परिणाम उत्पन्न करता है — जैसे एक ब्रह्मांडीय नुस्खा। राजयोग शक्ति और अधिकार लाते हैं, धनयोग धन लाते हैं, महापुरुष योग असाधारण व्यक्तित्व बनाते हैं (केवल 5 होते हैं), और अशुभ योग चुनौतियाँ लाते हैं जो चरित्र निर्माण करती हैं। "उपस्थित" का अर्थ है कि यह संयोजन आपकी कुण्डली में विद्यमान है। "शक्ति" दिखाती है कि यह कितनी प्रभावशाली ढंग से काम करता है। हरा = शुभ, लाल = चुनौतीपूर्ण किंतु प्रायः परिवर्तनकारी।'
           : 'In Vedic astrology, a \'Yoga\' is a specific planetary combination that produces a defined result — like a cosmic recipe. Raja Yogas bring power and authority, Dhana Yogas bring wealth, Mahapurusha Yogas create exceptional personalities (only 5 exist), and Inauspicious Yogas bring challenges that build character. \'Present\' means the combination exists in your chart. \'Strength\' shows how powerfully it operates. Green = auspicious, Red = challenging but often transformative.'}
       </InfoBlock>
@@ -4864,7 +4865,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
         return (
           <div key={cat}>
             <h4 className="text-gold-primary text-xs uppercase tracking-wider mb-3 font-bold" style={bodyFont}>
-              {catLabel[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}
+              {catLabel[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {catYogas.map(y => (
@@ -5002,7 +5003,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
                 return (
                   <th key={s.planetId} className="text-center py-3 px-2 min-w-[70px]">
                     <GrahaIconById id={s.planetId} size={20} />
-                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</p>
+                    <p className="text-gold-light text-xs font-medium mt-1" style={bodyFont}>{label[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</p>
                   </th>
                 );
               })}
@@ -5017,7 +5018,7 @@ function ShadbalaTab({ shadbala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={row.key} className={isSummary ? 'bg-gold-primary/5' : 'hover:bg-gold-primary/3'}>
                   <td className={`py-2 px-2 text-xs ${isSummary ? 'text-gold-light font-bold' : 'text-text-secondary'}`} style={bodyFont}>
-                    {row[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}
+                    {row[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}
                   </td>
                   {shadbala.map(s => (
                     <td key={s.planetId} className={`py-2 px-2 text-center font-mono text-xs ${isSummary ? 'font-bold ' : ''}${getColor(s, row.key)}`}>
@@ -5090,7 +5091,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
               return (
                 <tr key={b.bhava} className="border-b border-gold-primary/5 hover:bg-gold-primary/5">
                   <td className="py-2.5 px-2 text-gold-light font-bold">{b.bhava}</td>
-                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</td>
+                  <td className="py-2.5 px-2 text-text-secondary text-xs" style={bodyFont}>{houseName[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</td>
                   <td className="py-2.5 px-2">
                     {b.lordId <= 6 && <GrahaIconById id={b.lordId} size={16} />}
                     <span className="text-text-primary text-xs ml-1">{b.lordName}</span>
@@ -5124,7 +5125,7 @@ function BhavabalaTab({ bhavabala, locale, isDevanagari, headingFont }: {
             return (
               <div key={b.bhava} className="flex items-center gap-3">
                 <div className="w-6 text-right text-xs text-gold-light font-bold">{b.bhava}</div>
-                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[(locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const]}</div>
+                <div className="w-16 sm:w-24 text-right text-xs text-text-secondary truncate" style={bodyFont}>{houseName[isDevanagariLocale(locale) ? 'hi' as const : 'en' as const]}</div>
                 <div className="flex-1 bg-gold-primary/10 rounded-full h-4 overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
                 </div>
@@ -5198,7 +5199,7 @@ function SadeSatiTab({ sadeSati, locale, isDevanagari, headingFont }: {
 }) {
   const isTamil = String(locale) === 'ta';
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
   const [expandedSection, setExpandedSection] = useState<string>('summary');
 
   const interp = sadeSati.interpretation;

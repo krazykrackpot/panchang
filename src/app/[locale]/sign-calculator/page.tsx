@@ -16,6 +16,7 @@ import { formatDegrees } from '@/lib/ephem/astronomical';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const SIGN_MEANING: Record<number, { en: string; hi: string }> = {
   1:  { en: 'Bold, pioneering, competitive. Natural leaders who act on instinct.', hi: 'साहसी, अग्रणी, प्रतिस्पर्धी। सहज ज्ञान से कार्य करने वाले नेता।' },
@@ -35,7 +36,7 @@ const SIGN_MEANING: Record<number, { en: string; hi: string }> = {
 export default function SignCalculatorPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -219,7 +220,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.sunDegree} ({result.sunLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.sunSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
+                    {!isDevanagariLocale(locale) ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
                   </p>
                 )}
               </motion.div>
@@ -241,7 +242,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.moonDegree} ({result.moonLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.moonSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
+                    {!isDevanagariLocale(locale) ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
                   </p>
                 )}
               </motion.div>

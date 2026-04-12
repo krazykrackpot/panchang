@@ -8,6 +8,7 @@ import { MUHURTA_DATA } from '@/lib/constants/muhurtas';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ChevronDown } from 'lucide-react';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   abhijitTitle: { en: 'Abhijit Muhurta — The Universally Auspicious Midday', hi: 'अभिजित् मुहूर्त — सार्वभौमिक शुभ मध्याह्न', sa: 'अभिजिन्मुहूर्तः — सार्वभौमशुभमध्याह्नः', ta: 'அபிஜித் முகூர்த்தம் — உலகளாவிய சுப மதியம்' },
@@ -51,7 +52,7 @@ const L = {
 export default function LearnMuhurtasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
 
   const [expandedDay, setExpandedDay] = useState<number | null>(null);
   const [expandedNight, setExpandedNight] = useState<number | null>(null);
@@ -94,13 +95,13 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/30">
           <p className="text-gold-light font-mono text-sm mb-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Abhijit Window Calculation:' : 'अभिजित् गणना:'}
+            {!isDevanagariLocale(locale) ? 'Abhijit Window Calculation:' : 'अभिजित् गणना:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">Local Noon = (Sunrise + Sunset) / 2</p>
           <p className="text-gold-light/80 font-mono text-xs">Abhijit Start = Noon - (1 Muhurta Duration / 2)</p>
           <p className="text-gold-light/80 font-mono text-xs">Abhijit End = Noon + (1 Muhurta Duration / 2)</p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Typically ~11:36 AM to 12:24 PM at equinox (varies by latitude/season)' : 'विषुव पर सामान्यतः ~11:36 से 12:24 (अक्षांश/ऋतु से भिन्न)'}
+            {!isDevanagariLocale(locale) ? 'Typically ~11:36 AM to 12:24 PM at equinox (varies by latitude/season)' : 'विषुव पर सामान्यतः ~11:36 से 12:24 (अक्षांश/ऋतु से भिन्न)'}
           </p>
         </div>
       </LessonSection>
@@ -112,7 +113,7 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-indigo-400/20">
           <p className="text-indigo-300 font-mono text-sm mb-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Brahma Muhurta Timing:' : 'ब्रह्म मुहूर्त समय:'}
+            {!isDevanagariLocale(locale) ? 'Brahma Muhurta Timing:' : 'ब्रह्म मुहूर्त समय:'}
           </p>
           <p className="text-indigo-200/80 font-mono text-xs">
             {locale === 'en'
@@ -139,23 +140,23 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-red-500/15">
           <p className="text-red-300 text-xs uppercase tracking-widest font-bold mb-3">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Weekday Segment Positions (1-8 of daytime)' : 'सप्ताह के दिन खण्ड स्थिति (दिवा 1-8)'}
+            {!isDevanagariLocale(locale) ? 'Weekday Segment Positions (1-8 of daytime)' : 'सप्ताह के दिन खण्ड स्थिति (दिवा 1-8)'}
           </p>
           <table className="w-full text-xs">
             <thead><tr className="border-b border-red-500/15">
-              <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Day' : 'दिन'}</th>
-              <th className="text-left py-2 px-2 text-red-300">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Rahu Kaal' : 'राहु काल'}</th>
-              <th className="text-left py-2 px-2 text-amber-300">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Yamaganda' : 'यमगण्ड'}</th>
-              <th className="text-left py-2 px-2 text-purple-300">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Gulika' : 'गुलिक'}</th>
+              <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Day' : 'दिन'}</th>
+              <th className="text-left py-2 px-2 text-red-300">{!isDevanagariLocale(locale) ? 'Rahu Kaal' : 'राहु काल'}</th>
+              <th className="text-left py-2 px-2 text-amber-300">{!isDevanagariLocale(locale) ? 'Yamaganda' : 'यमगण्ड'}</th>
+              <th className="text-left py-2 px-2 text-purple-300">{!isDevanagariLocale(locale) ? 'Gulika' : 'गुलिक'}</th>
             </tr></thead>
             <tbody className="divide-y divide-gold-primary/5 text-text-secondary">
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunday' : 'रवि'}</td><td className="py-1.5 px-2">8th</td><td className="py-1.5 px-2">5th</td><td className="py-1.5 px-2">7th</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Monday' : 'सोम'}</td><td className="py-1.5 px-2">2nd</td><td className="py-1.5 px-2">4th</td><td className="py-1.5 px-2">6th</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tuesday' : 'मंगल'}</td><td className="py-1.5 px-2">7th</td><td className="py-1.5 px-2">3rd</td><td className="py-1.5 px-2">5th</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Wednesday' : 'बुध'}</td><td className="py-1.5 px-2">5th</td><td className="py-1.5 px-2">2nd</td><td className="py-1.5 px-2">4th</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Thursday' : 'गुरु'}</td><td className="py-1.5 px-2">6th</td><td className="py-1.5 px-2">1st</td><td className="py-1.5 px-2">3rd</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Friday' : 'शुक्र'}</td><td className="py-1.5 px-2">4th</td><td className="py-1.5 px-2">7th</td><td className="py-1.5 px-2">2nd</td></tr>
-              <tr><td className="py-1.5 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturday' : 'शनि'}</td><td className="py-1.5 px-2">3rd</td><td className="py-1.5 px-2">6th</td><td className="py-1.5 px-2">1st</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Sunday' : 'रवि'}</td><td className="py-1.5 px-2">8th</td><td className="py-1.5 px-2">5th</td><td className="py-1.5 px-2">7th</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Monday' : 'सोम'}</td><td className="py-1.5 px-2">2nd</td><td className="py-1.5 px-2">4th</td><td className="py-1.5 px-2">6th</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Tuesday' : 'मंगल'}</td><td className="py-1.5 px-2">7th</td><td className="py-1.5 px-2">3rd</td><td className="py-1.5 px-2">5th</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Wednesday' : 'बुध'}</td><td className="py-1.5 px-2">5th</td><td className="py-1.5 px-2">2nd</td><td className="py-1.5 px-2">4th</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Thursday' : 'गुरु'}</td><td className="py-1.5 px-2">6th</td><td className="py-1.5 px-2">1st</td><td className="py-1.5 px-2">3rd</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Friday' : 'शुक्र'}</td><td className="py-1.5 px-2">4th</td><td className="py-1.5 px-2">7th</td><td className="py-1.5 px-2">2nd</td></tr>
+              <tr><td className="py-1.5 px-2">{!isDevanagariLocale(locale) ? 'Saturday' : 'शनि'}</td><td className="py-1.5 px-2">3rd</td><td className="py-1.5 px-2">6th</td><td className="py-1.5 px-2">1st</td></tr>
             </tbody>
           </table>
         </div>
@@ -168,13 +169,13 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
-            { name: 'Amrit', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter' : 'गुरु', nature: 'best', color: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5' },
-            { name: 'Shubh', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Venus' : 'शुक्र', nature: 'good', color: 'text-emerald-300 border-emerald-500/15 bg-emerald-500/3' },
-            { name: 'Labh', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mercury' : 'बुध', nature: 'good', color: 'text-green-300 border-green-500/15 bg-green-500/3' },
-            { name: 'Char', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Moon' : 'चन्द्र', nature: 'travel', color: 'text-amber-300 border-amber-500/15 bg-amber-500/3' },
-            { name: 'Udveg', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Sun' : 'सूर्य', nature: 'avoid', color: 'text-red-300 border-red-500/15 bg-red-500/3' },
-            { name: 'Kaal', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn' : 'शनि', nature: 'avoid', color: 'text-red-400 border-red-500/20 bg-red-500/5' },
-            { name: 'Rog', planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mars' : 'मंगल', nature: 'avoid', color: 'text-red-300 border-red-500/15 bg-red-500/3' },
+            { name: 'Amrit', planet: !isDevanagariLocale(locale) ? 'Jupiter' : 'गुरु', nature: 'best', color: 'text-emerald-400 border-emerald-500/20 bg-emerald-500/5' },
+            { name: 'Shubh', planet: !isDevanagariLocale(locale) ? 'Venus' : 'शुक्र', nature: 'good', color: 'text-emerald-300 border-emerald-500/15 bg-emerald-500/3' },
+            { name: 'Labh', planet: !isDevanagariLocale(locale) ? 'Mercury' : 'बुध', nature: 'good', color: 'text-green-300 border-green-500/15 bg-green-500/3' },
+            { name: 'Char', planet: !isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र', nature: 'travel', color: 'text-amber-300 border-amber-500/15 bg-amber-500/3' },
+            { name: 'Udveg', planet: !isDevanagariLocale(locale) ? 'Sun' : 'सूर्य', nature: 'avoid', color: 'text-red-300 border-red-500/15 bg-red-500/3' },
+            { name: 'Kaal', planet: !isDevanagariLocale(locale) ? 'Saturn' : 'शनि', nature: 'avoid', color: 'text-red-400 border-red-500/20 bg-red-500/5' },
+            { name: 'Rog', planet: !isDevanagariLocale(locale) ? 'Mars' : 'मंगल', nature: 'avoid', color: 'text-red-300 border-red-500/15 bg-red-500/3' },
           ].map((ch) => (
             <div key={ch.name} className={`rounded-lg border p-3 ${ch.color}`}>
               <p className="font-bold text-sm">{ch.name}</p>
@@ -192,7 +193,7 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chaldean Order (descending orbital period):' : 'कल्डियन क्रम (अवरोही कक्षा अवधि):'}
+            {!isDevanagariLocale(locale) ? 'Chaldean Order (descending orbital period):' : 'कल्डियन क्रम (अवरोही कक्षा अवधि):'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
@@ -200,7 +201,7 @@ export default function LearnMuhurtasPage() {
               : 'शनि → गुरु → मंगल → सूर्य → शुक्र → बुध → चन्द्र → (पुनः)'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-3">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Why does Sunday follow Saturday?' : 'शनिवार के बाद रविवार क्यों?'}
+            {!isDevanagariLocale(locale) ? 'Why does Sunday follow Saturday?' : 'शनिवार के बाद रविवार क्यों?'}
           </p>
           <p className="text-gold-light/50 font-mono text-xs">
             {locale === 'en'
@@ -217,7 +218,7 @@ export default function LearnMuhurtasPage() {
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-emerald-400/20">
           <p className="text-emerald-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Quick Muhurta Checklist:' : 'त्वरित मुहूर्त जाँचसूची:'}
+            {!isDevanagariLocale(locale) ? 'Quick Muhurta Checklist:' : 'त्वरित मुहूर्त जाँचसूची:'}
           </p>
           <div className="space-y-1">
             {(locale === 'en'
@@ -251,7 +252,7 @@ export default function LearnMuhurtasPage() {
       {/* 30 Muhurtas List */}
       <LessonSection title={t('completeList')}>
         <h4 className="text-lg text-gold-light mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Daytime Muhurtas (1-15)' : locale === 'hi' ? 'दिवा मुहूर्त (1-15)' : 'दिवामुहूर्ताः (1-15)'}
+          {!isDevanagariLocale(locale) ? 'Daytime Muhurtas (1-15)' : isDevanagari ? 'दिवा मुहूर्त (1-15)' : 'दिवामुहूर्ताः (1-15)'}
         </h4>
         <div className="space-y-3 mb-10">
           {daytime.map((m, i) => {
@@ -280,7 +281,7 @@ export default function LearnMuhurtasPage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
-                        {m.nature === 'auspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious' : 'शुभ') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Inauspicious' : 'अशुभ')}
+                        {m.nature === 'auspicious' ? (!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ') : (!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ')}
                       </span>
                       <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
@@ -300,7 +301,7 @@ export default function LearnMuhurtasPage() {
                     >
                       <div className="px-4 pb-4 ml-11 border-t border-gold-primary/10 pt-3">
                         <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Best Activities' : 'सर्वोत्तम कार्य'}
+                          {!isDevanagariLocale(locale) ? 'Best Activities' : 'सर्वोत्तम कार्य'}
                         </h4>
                         <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {m.bestFor[locale]}
@@ -315,7 +316,7 @@ export default function LearnMuhurtasPage() {
         </div>
 
         <h4 className="text-lg text-indigo-300/80 mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Nighttime Muhurtas (16-30)' : locale === 'hi' ? 'रात्रि मुहूर्त (16-30)' : 'रात्रिमुहूर्ताः (16-30)'}
+          {!isDevanagariLocale(locale) ? 'Nighttime Muhurtas (16-30)' : isDevanagari ? 'रात्रि मुहूर्त (16-30)' : 'रात्रिमुहूर्ताः (16-30)'}
         </h4>
         <div className="space-y-3">
           {nighttime.map((m, i) => {
@@ -339,13 +340,13 @@ export default function LearnMuhurtasPage() {
                       <span className="text-indigo-300/80 font-bold text-xl w-8">{m.number}</span>
                       <div>
                         <span className="text-gold-light font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>{m.name[locale]}</span>
-                        {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'BRAHMA' : 'ब्राह्म'}</span>}
+                        {isBrahma && <span className="ml-2 px-2 py-0.5 bg-indigo-500/20 text-indigo-300 text-xs rounded-full font-bold">{!isDevanagariLocale(locale) ? 'BRAHMA' : 'ब्राह्म'}</span>}
                         <span className="ml-2 text-text-secondary/70 text-xs">{m.deity[locale]}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className={`text-xs px-2 py-0.5 rounded-full border ${natureColor(m.nature)}`}>
-                        {m.nature === 'auspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious' : 'शुभ') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Inauspicious' : 'अशुभ')}
+                        {m.nature === 'auspicious' ? (!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ') : (!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ')}
                       </span>
                       <ChevronDown className={`w-4 h-4 text-text-secondary/70 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                     </div>
@@ -365,7 +366,7 @@ export default function LearnMuhurtasPage() {
                     >
                       <div className="px-4 pb-4 ml-11 border-t border-gold-primary/10 pt-3">
                         <h4 className="text-xs font-semibold text-gold-primary/70 uppercase tracking-wider mb-1">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Best Activities' : 'सर्वोत्तम कार्य'}
+                          {!isDevanagariLocale(locale) ? 'Best Activities' : 'सर्वोत्तम कार्य'}
                         </h4>
                         <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                           {m.bestFor[locale]}
@@ -383,17 +384,17 @@ export default function LearnMuhurtasPage() {
       {/* Links */}
       <div className="mt-8 space-y-3">
         <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Explore Further' : 'और जानें'}
+          {!isDevanagariLocale(locale) ? 'Explore Further' : 'और जानें'}
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Muhurta AI — Find Auspicious Times' : 'मुहूर्त AI — शुभ समय खोजें', href: '/muhurta-ai', color: 'border-emerald-500/20 hover:border-emerald-500/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Daily Panchang' : 'दैनिक पंचांग', href: '/panchang', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Muhurta Wheel & Conflict Analysis' : 'मुहूर्त चक्र और विरोध विश्लेषण', href: '/panchang/muhurta', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Module 17-1: Muhurta Foundations' : 'मॉड्यूल 17-1: मुहूर्त आधार', href: '/learn/modules/17-1', color: 'border-blue-500/20 hover:border-blue-500/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Module 17-2: Activity-Specific Rules' : 'मॉड्यूल 17-2: कार्य-विशिष्ट नियम', href: '/learn/modules/17-2', color: 'border-blue-500/20 hover:border-blue-500/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Module 17-3: Chandra & Tara Balam' : 'मॉड्यूल 17-3: चन्द्र और तारा बलम', href: '/learn/modules/17-3', color: 'border-blue-500/20 hover:border-blue-500/40' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Module 17-4: Panchaka & Lagna Shuddhi' : 'मॉड्यूल 17-4: पंचक और लग्न शुद्धि', href: '/learn/modules/17-4', color: 'border-blue-500/20 hover:border-blue-500/40' },
+            { label: !isDevanagariLocale(locale) ? 'Muhurta AI — Find Auspicious Times' : 'मुहूर्त AI — शुभ समय खोजें', href: '/muhurta-ai', color: 'border-emerald-500/20 hover:border-emerald-500/40' },
+            { label: !isDevanagariLocale(locale) ? 'Daily Panchang' : 'दैनिक पंचांग', href: '/panchang', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
+            { label: !isDevanagariLocale(locale) ? 'Muhurta Wheel & Conflict Analysis' : 'मुहूर्त चक्र और विरोध विश्लेषण', href: '/panchang/muhurta', color: 'border-gold-primary/20 hover:border-gold-primary/40' },
+            { label: !isDevanagariLocale(locale) ? 'Module 17-1: Muhurta Foundations' : 'मॉड्यूल 17-1: मुहूर्त आधार', href: '/learn/modules/17-1', color: 'border-blue-500/20 hover:border-blue-500/40' },
+            { label: !isDevanagariLocale(locale) ? 'Module 17-2: Activity-Specific Rules' : 'मॉड्यूल 17-2: कार्य-विशिष्ट नियम', href: '/learn/modules/17-2', color: 'border-blue-500/20 hover:border-blue-500/40' },
+            { label: !isDevanagariLocale(locale) ? 'Module 17-3: Chandra & Tara Balam' : 'मॉड्यूल 17-3: चन्द्र और तारा बलम', href: '/learn/modules/17-3', color: 'border-blue-500/20 hover:border-blue-500/40' },
+            { label: !isDevanagariLocale(locale) ? 'Module 17-4: Panchaka & Lagna Shuddhi' : 'मॉड्यूल 17-4: पंचक और लग्न शुद्धि', href: '/learn/modules/17-4', color: 'border-blue-500/20 hover:border-blue-500/40' },
           ].map((link) => (
             <Link
               key={link.href}

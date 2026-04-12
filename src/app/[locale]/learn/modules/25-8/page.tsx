@@ -1,6 +1,7 @@
 'use client';
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_25_8', phase: 5, topic: 'Indian Mathematics', moduleNumber: '25.8',
@@ -204,7 +205,7 @@ const QUESTIONS: ModuleQuestion[] = [
 /* ------------------------------------------------------------------ */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>
@@ -272,7 +273,7 @@ function Page1() {
 /* ------------------------------------------------------------------ */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>
@@ -338,7 +339,7 @@ function Page2() {
 /* ------------------------------------------------------------------ */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>

@@ -3,6 +3,7 @@
 import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const VARAS = [
   { day: 0, en: 'Sunday', hi: 'रविवार', sa: 'रविवासरः', planet: { en: 'Sun (Surya)', hi: 'सूर्य' }, color: 'text-amber-400', border: 'border-amber-500/20', bg: 'bg-amber-500/5',
@@ -65,7 +66,7 @@ const VARAS = [
 
 export default function VaraPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   // Which day is today?

@@ -1,12 +1,13 @@
 import { generateDailyArticle } from '@/lib/horoscope/daily-article';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
   return {
     title: isHi ? 'दैनिक पंचांग लेख — देखो पंचांग' : 'Daily Panchang Articles — Dekho Panchang',
     description: isHi
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function DailyIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
 
   // Generate articles for last 7 days + today
   const today = new Date();

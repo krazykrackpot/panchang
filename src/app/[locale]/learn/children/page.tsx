@@ -7,6 +7,7 @@ import { Baby, Calculator, ChevronDown, Clock, Heart, Sparkles, Star, Target, Us
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
@@ -95,7 +96,7 @@ function FifthHouseChart() {
 /* ── Main Page ───────────────────────────────────────────────────── */
 export default function ChildrenPredictionPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const t = (obj: { en: string; hi: string; sa?: string }) => isHi ? (locale === 'sa' && obj.sa ? obj.sa : obj.hi) : obj.en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedSign, setExpandedSign] = useState<number | null>(null);

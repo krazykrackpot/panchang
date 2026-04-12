@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import EclipseAnimation from '@/components/learn/EclipseAnimation';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Inline bilingual labels ─── */
 const L = {
@@ -407,7 +408,7 @@ const CROSS_REFS = [
 
 export default function LearnEclipsesPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

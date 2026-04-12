@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Trilingual Labels ─── */
 const L = {
@@ -457,7 +458,7 @@ export default function LearnVargasPage() {
       <LessonSection title={((L.overviewTitle as Record<string, string>)[locale] ?? L.overviewTitle.en)}>
         <p>{((L.overviewText as Record<string, string>)[locale] ?? L.overviewText.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'The Core Idea:' : 'मूल विचार:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'The Core Idea:' : 'मूल विचार:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
               ? 'Planet at 15°40\' Aries (D1) → In D9: 15°40\' ÷ 3°20\' = 5th navamsha → from Aries (fire sign) = 5th sign = Leo'
@@ -475,7 +476,7 @@ export default function LearnVargasPage() {
       <LessonSection number={1} title={((L.howTitle as Record<string, string>)[locale] ?? L.howTitle.en)}>
         <p>{((L.howText as Record<string, string>)[locale] ?? L.howText.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'General Formula:' : 'सामान्य सूत्र:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'General Formula:' : 'सामान्य सूत्र:'}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">sub_division = floor(degree_in_sign / (30 / N))</p>
             <p className="text-gold-light/80 font-mono text-xs">varga_sign = mapping_rule(sign, sub_division)</p>
@@ -489,7 +490,7 @@ export default function LearnVargasPage() {
       </LessonSection>
 
       {/* ─── THE 16 SHODASVARGA CHARTS ─── */}
-      <LessonSection number={2} title={(locale !== 'hi' && String(locale) !== 'sa') ? 'The 16 Shodasvarga Charts' : locale === 'hi' ? '16 षोडशवर्ग कुण्डलियाँ' : '16 षोडशवर्गकुण्डल्यः'}>
+      <LessonSection number={2} title={!isDevanagariLocale(locale) ? 'The 16 Shodasvarga Charts' : isDevanagariLocale(locale) ? '16 षोडशवर्ग कुण्डलियाँ' : '16 षोडशवर्गकुण्डल्यः'}>
         <p className="mb-4">
           {locale === 'en'
             ? 'Each chart zooms into a specific area of life. Charts are grouped into three tiers based on their interpretive weight in the Vimshopak scoring system:'
@@ -549,13 +550,13 @@ export default function LearnVargasPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Division Rule' : 'विभाजन नियम'}
+                          {!isDevanagariLocale(locale) ? 'Division Rule' : 'विभाजन नियम'}
                         </div>
                         <p className="text-gold-light/70 font-mono text-xs">{v.rule[locale]}</p>
                       </div>
                       <div className="p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
                         <div className="text-gold-primary/60 text-xs uppercase tracking-wider mb-1">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Key Houses to Analyze' : 'विश्लेषण हेतु प्रमुख भाव'}
+                          {!isDevanagariLocale(locale) ? 'Key Houses to Analyze' : 'विश्लेषण हेतु प्रमुख भाव'}
                         </div>
                         <p className="text-gold-light/70 text-xs">{v.keyHouses[locale]}</p>
                       </div>
@@ -577,35 +578,35 @@ export default function LearnVargasPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Element' : 'तत्व'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Signs' : 'राशियाँ'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Navamsha Starts From' : 'नवांश प्रारम्भ'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{(locale !== 'hi' && String(locale) !== 'sa') ? '9 Navamsha Signs' : '9 नवांश राशियाँ'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Element' : 'तत्व'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Signs' : 'राशियाँ'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Navamsha Starts From' : 'नवांश प्रारम्भ'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{!isDevanagariLocale(locale) ? '9 Navamsha Signs' : '9 नवांश राशियाँ'}</th>
               </tr>
             </thead>
             <tbody className="text-xs">
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-red-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Fire' : 'अग्नि'}</td>
-                <td className="py-2 text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Aries, Leo, Sagittarius' : 'मेष, सिंह, धनु'}</td>
-                <td className="py-2 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Aries (1)' : 'मेष (1)'}</td>
+                <td className="py-2 text-red-400 font-semibold">{!isDevanagariLocale(locale) ? 'Fire' : 'अग्नि'}</td>
+                <td className="py-2 text-text-secondary">{!isDevanagariLocale(locale) ? 'Aries, Leo, Sagittarius' : 'मेष, सिंह, धनु'}</td>
+                <td className="py-2 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Aries (1)' : 'मेष (1)'}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">1→2→3→4→5→6→7→8→9</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-emerald-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Earth' : 'पृथ्वी'}</td>
-                <td className="py-2 text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Taurus, Virgo, Capricorn' : 'वृषभ, कन्या, मकर'}</td>
-                <td className="py-2 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Capricorn (10)' : 'मकर (10)'}</td>
+                <td className="py-2 text-emerald-400 font-semibold">{!isDevanagariLocale(locale) ? 'Earth' : 'पृथ्वी'}</td>
+                <td className="py-2 text-text-secondary">{!isDevanagariLocale(locale) ? 'Taurus, Virgo, Capricorn' : 'वृषभ, कन्या, मकर'}</td>
+                <td className="py-2 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Capricorn (10)' : 'मकर (10)'}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">10→11→12→1→2→3→4→5→6</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-sky-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Air' : 'वायु'}</td>
-                <td className="py-2 text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemini, Libra, Aquarius' : 'मिथुन, तुला, कुम्भ'}</td>
-                <td className="py-2 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Libra (7)' : 'तुला (7)'}</td>
+                <td className="py-2 text-sky-400 font-semibold">{!isDevanagariLocale(locale) ? 'Air' : 'वायु'}</td>
+                <td className="py-2 text-text-secondary">{!isDevanagariLocale(locale) ? 'Gemini, Libra, Aquarius' : 'मिथुन, तुला, कुम्भ'}</td>
+                <td className="py-2 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Libra (7)' : 'तुला (7)'}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">7→8→9→10→11→12→1→2→3</td>
               </tr>
               <tr className="border-b border-gold-primary/5">
-                <td className="py-2 text-blue-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Water' : 'जल'}</td>
-                <td className="py-2 text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Cancer, Scorpio, Pisces' : 'कर्क, वृश्चिक, मीन'}</td>
-                <td className="py-2 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Cancer (4)' : 'कर्क (4)'}</td>
+                <td className="py-2 text-blue-400 font-semibold">{!isDevanagariLocale(locale) ? 'Water' : 'जल'}</td>
+                <td className="py-2 text-text-secondary">{!isDevanagariLocale(locale) ? 'Cancer, Scorpio, Pisces' : 'कर्क, वृश्चिक, मीन'}</td>
+                <td className="py-2 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Cancer (4)' : 'कर्क (4)'}</td>
                 <td className="py-2 text-text-secondary/75 hidden sm:table-cell font-mono">4→5→6→7→8→9→10→11→12</td>
               </tr>
             </tbody>
@@ -614,12 +615,12 @@ export default function LearnVargasPage() {
 
         {/* Worked example */}
         <div className="mt-5 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):' : 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'Worked Example (15 Aug 1995, 10:30 AM, Delhi):' : 'उदाहरण (15 अगस्त 1995, 10:30 AM, दिल्ली):'}</p>
           <div className="space-y-1">
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°' : 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Cancer is a Water sign → Navamsha starts from Cancer (4)' : 'कर्क जल राशि है → नवांश कर्क (4) से शुरू'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha' : 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश'}</p>
-            <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">{(locale !== 'hi' && String(locale) !== 'sa') ? '9th from Cancer = Pisces → Sun is in Pisces in D9' : 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Sun at 118.5° sidereal = Cancer (sign 4) at 28.5°' : 'सूर्य 118.5° नाक्षत्रिक = कर्क (राशि 4) पर 28.5°'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Cancer is a Water sign → Navamsha starts from Cancer (4)' : 'कर्क जल राशि है → नवांश कर्क (4) से शुरू'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Navamsha division: 28.5° ÷ 3.333° = 8.55 → 9th navamsha' : 'नवांश विभाजन: 28.5° ÷ 3.333° = 8.55 → 9वाँ नवांश'}</p>
+            <p className="text-gold-light/80 font-mono text-xs font-bold text-gold-light">{!isDevanagariLocale(locale) ? '9th from Cancer = Pisces → Sun is in Pisces in D9' : 'कर्क से 9वीं = मीन → D9 में सूर्य मीन में'}</p>
             <p className="text-text-secondary/70 text-xs mt-2 italic">
               {locale === 'en'
                 ? 'In D1, Sun is in Cancer (friendly sign). In D9, Sun is in Pisces (friendly sign). Both dignified = Sun\'s promises are confirmed.'
@@ -637,7 +638,7 @@ export default function LearnVargasPage() {
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20">
             <div className="text-amber-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Vargottama' : 'वर्गोत्तम'}
+              {!isDevanagariLocale(locale) ? 'Vargottama' : 'वर्गोत्तम'}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -647,7 +648,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20">
             <div className="text-emerald-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Pushkara Navamsha' : 'पुष्कर नवांश'}
+              {!isDevanagariLocale(locale) ? 'Pushkara Navamsha' : 'पुष्कर नवांश'}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -657,7 +658,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-purple-500/5 border border-purple-500/20">
             <div className="text-purple-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Navamsha Drishti' : 'नवांश दृष्टि'}
+              {!isDevanagariLocale(locale) ? 'Navamsha Drishti' : 'नवांश दृष्टि'}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -667,7 +668,7 @@ export default function LearnVargasPage() {
           </div>
           <div className="p-4 rounded-lg bg-rose-500/5 border border-rose-500/20">
             <div className="text-rose-400 font-bold text-sm mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? '64th Navamsha' : '64वाँ नवांश'}
+              {!isDevanagariLocale(locale) ? '64th Navamsha' : '64वाँ नवांश'}
             </div>
             <p className="text-text-secondary text-xs">
               {locale === 'en'
@@ -687,9 +688,9 @@ export default function LearnVargasPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Chart' : 'चार्ट'}</th>
-                <th className="text-center py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Weight' : 'भार'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Proportion' : 'अनुपात'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Chart' : 'चार्ट'}</th>
+                <th className="text-center py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Weight' : 'भार'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Proportion' : 'अनुपात'}</th>
               </tr>
             </thead>
             <tbody>
@@ -715,23 +716,23 @@ export default function LearnVargasPage() {
         </div>
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Strength Levels:' : 'शक्ति स्तर:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Strength Levels:' : 'शक्ति स्तर:'}</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="text-center p-2 rounded bg-emerald-500/10 border border-emerald-500/20">
               <div className="text-emerald-400 font-bold">15-20</div>
-              <div className="text-text-secondary/75">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Very Strong' : 'बहुत शक्तिशाली'}</div>
+              <div className="text-text-secondary/75">{!isDevanagariLocale(locale) ? 'Very Strong' : 'बहुत शक्तिशाली'}</div>
             </div>
             <div className="text-center p-2 rounded bg-amber-500/10 border border-amber-500/20">
               <div className="text-amber-400 font-bold">10-15</div>
-              <div className="text-text-secondary/75">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Strong' : 'शक्तिशाली'}</div>
+              <div className="text-text-secondary/75">{!isDevanagariLocale(locale) ? 'Strong' : 'शक्तिशाली'}</div>
             </div>
             <div className="text-center p-2 rounded bg-orange-500/10 border border-orange-500/20">
               <div className="text-orange-400 font-bold">5-10</div>
-              <div className="text-text-secondary/75">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moderate' : 'मध्यम'}</div>
+              <div className="text-text-secondary/75">{!isDevanagariLocale(locale) ? 'Moderate' : 'मध्यम'}</div>
             </div>
             <div className="text-center p-2 rounded bg-red-500/10 border border-red-500/20">
               <div className="text-red-400 font-bold">0-5</div>
-              <div className="text-text-secondary/75">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Weak' : 'दुर्बल'}</div>
+              <div className="text-text-secondary/75">{!isDevanagariLocale(locale) ? 'Weak' : 'दुर्बल'}</div>
             </div>
           </div>
         </div>
@@ -745,14 +746,14 @@ export default function LearnVargasPage() {
           {/* Essential tier */}
           <div className="p-4 rounded-lg border border-amber-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-amber-400 font-bold text-sm mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tier 1 — Always Consult' : 'स्तर 1 — सदा परामर्श करें'}
+              {!isDevanagariLocale(locale) ? 'Tier 1 — Always Consult' : 'स्तर 1 — सदा परामर्श करें'}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {[
-                { key: 'D1', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Rashi (Master)' : 'राशि (मास्टर)' },
-                { key: 'D9', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Navamsha (Dharma)' : 'नवांश (धर्म)' },
-                { key: 'D10', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Dasamsha (Career)' : 'दशांश (करियर)' },
-                { key: 'D60', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Shashtiamsha (Karma)' : 'षष्ट्यंश (कर्म)' },
+                { key: 'D1', name: !isDevanagariLocale(locale) ? 'Rashi (Master)' : 'राशि (मास्टर)' },
+                { key: 'D9', name: !isDevanagariLocale(locale) ? 'Navamsha (Dharma)' : 'नवांश (धर्म)' },
+                { key: 'D10', name: !isDevanagariLocale(locale) ? 'Dasamsha (Career)' : 'दशांश (करियर)' },
+                { key: 'D60', name: !isDevanagariLocale(locale) ? 'Shashtiamsha (Karma)' : 'षष्ट्यंश (कर्म)' },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-amber-500/10">
                   <div className="text-amber-400 font-bold">{c.key}</div>
@@ -765,13 +766,13 @@ export default function LearnVargasPage() {
           {/* Important tier */}
           <div className="p-4 rounded-lg border border-emerald-500/20 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27]">
             <div className="text-emerald-400 font-bold text-sm mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tier 2 — Consult for Specific Questions' : 'स्तर 2 — विशिष्ट प्रश्नों के लिए'}
+              {!isDevanagariLocale(locale) ? 'Tier 2 — Consult for Specific Questions' : 'स्तर 2 — विशिष्ट प्रश्नों के लिए'}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {[
-                { key: 'D7', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Saptamsha (Children)' : 'सप्तमांश (संतान)' },
-                { key: 'D16', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Shodasamsha (Comforts)' : 'षोडशांश (सुख)' },
-                { key: 'D30', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Trimshamsha (Evils)' : 'त्रिंशांश (दुःख)' },
+                { key: 'D7', name: !isDevanagariLocale(locale) ? 'Saptamsha (Children)' : 'सप्तमांश (संतान)' },
+                { key: 'D16', name: !isDevanagariLocale(locale) ? 'Shodasamsha (Comforts)' : 'षोडशांश (सुख)' },
+                { key: 'D30', name: !isDevanagariLocale(locale) ? 'Trimshamsha (Evils)' : 'त्रिंशांश (दुःख)' },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-emerald-500/10">
                   <div className="text-emerald-400 font-bold">{c.key}</div>
@@ -784,19 +785,19 @@ export default function LearnVargasPage() {
           {/* Supporting tier */}
           <div className="p-4 rounded-lg border border-blue-500/20 bg-blue-500/5">
             <div className="text-blue-400 font-bold text-sm mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tier 3 — Fine-Tuning & Specialization' : 'स्तर 3 — सूक्ष्म समायोजन'}
+              {!isDevanagariLocale(locale) ? 'Tier 3 — Fine-Tuning & Specialization' : 'स्तर 3 — सूक्ष्म समायोजन'}
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-xs">
               {[
-                { key: 'D2', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Hora' : 'होरा' },
-                { key: 'D3', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Drekkana' : 'द्रेष्काण' },
-                { key: 'D4', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Chaturthamsha' : 'चतुर्थांश' },
-                { key: 'D12', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Dwadasamsha' : 'द्वादशांश' },
-                { key: 'D20', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Vimshamsha' : 'विंशांश' },
-                { key: 'D24', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Siddhamsha' : 'सिद्धांश' },
-                { key: 'D27', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Bhamsha' : 'भांश' },
-                { key: 'D40', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Khavedamsha' : 'खवेदांश' },
-                { key: 'D45', name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Akshavedamsha' : 'अक्षवेदांश' },
+                { key: 'D2', name: !isDevanagariLocale(locale) ? 'Hora' : 'होरा' },
+                { key: 'D3', name: !isDevanagariLocale(locale) ? 'Drekkana' : 'द्रेष्काण' },
+                { key: 'D4', name: !isDevanagariLocale(locale) ? 'Chaturthamsha' : 'चतुर्थांश' },
+                { key: 'D12', name: !isDevanagariLocale(locale) ? 'Dwadasamsha' : 'द्वादशांश' },
+                { key: 'D20', name: !isDevanagariLocale(locale) ? 'Vimshamsha' : 'विंशांश' },
+                { key: 'D24', name: !isDevanagariLocale(locale) ? 'Siddhamsha' : 'सिद्धांश' },
+                { key: 'D27', name: !isDevanagariLocale(locale) ? 'Bhamsha' : 'भांश' },
+                { key: 'D40', name: !isDevanagariLocale(locale) ? 'Khavedamsha' : 'खवेदांश' },
+                { key: 'D45', name: !isDevanagariLocale(locale) ? 'Akshavedamsha' : 'अक्षवेदांश' },
               ].map((c) => (
                 <div key={c.key} className="text-center p-2 rounded bg-blue-500/10">
                   <div className="text-blue-400 font-bold">{c.key}</div>
@@ -861,7 +862,7 @@ export default function LearnVargasPage() {
         {/* D9 Interpretation Example */}
         <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-amber-500/20">
           <h4 className="text-amber-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Example 1: Reading D9 for Marriage' : 'उदाहरण 1: D9 से विवाह पढ़ना'}
+            {!isDevanagariLocale(locale) ? 'Example 1: Reading D9 for Marriage' : 'उदाहरण 1: D9 से विवाह पढ़ना'}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
@@ -884,7 +885,7 @@ export default function LearnVargasPage() {
         {/* D10 Interpretation Example */}
         <div className="mb-5 p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-emerald-500/20">
           <h4 className="text-emerald-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Example 2: Reading D10 for Career' : 'उदाहरण 2: D10 से करियर पढ़ना'}
+            {!isDevanagariLocale(locale) ? 'Example 2: Reading D10 for Career' : 'उदाहरण 2: D10 से करियर पढ़ना'}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'
@@ -902,7 +903,7 @@ export default function LearnVargasPage() {
         {/* D7 Interpretation Example */}
         <div className="p-5 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 border border-purple-500/20">
           <h4 className="text-purple-400 font-bold text-lg mb-3" style={{ fontFamily: 'var(--font-heading)' }}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Example 3: Reading D7 for Children' : 'उदाहरण 3: D7 से संतान पढ़ना'}
+            {!isDevanagariLocale(locale) ? 'Example 3: Reading D7 for Children' : 'उदाहरण 3: D7 से संतान पढ़ना'}
           </h4>
           <div className="space-y-2 text-sm text-text-secondary">
             <p>{locale === 'en'

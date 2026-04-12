@@ -12,6 +12,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Types ──────────────────────────────────────────────────── */
 
@@ -396,7 +397,7 @@ export default function SankalpaPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (LABELS as Record<string, Record<string, string>>)[locale] || LABELS.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -654,7 +655,7 @@ export default function SankalpaPage() {
                 setPlaceLng(loc.lng);
                 setPlaceTimezone(loc.timezone);
               }}
-              placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search city or place...' : 'स्थान खोजें...'}
+              placeholder={!isDevanagariLocale(locale) ? 'Search city or place...' : 'स्थान खोजें...'}
             />
           </label>
 
@@ -672,7 +673,7 @@ export default function SankalpaPage() {
           {/* Masa System Toggle */}
           <div>
             <span className={labelCls} style={bodyFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Calendar System' : locale === 'hi' ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
+              {!isDevanagariLocale(locale) ? 'Calendar System' : isDevanagari ? 'पंचांग पद्धति' : 'पञ्चाङ्गपद्धतिः'}
             </span>
             <div className="flex gap-2 mt-2">
               <button
@@ -683,9 +684,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Purnimant' : 'पूर्णिमान्त'}
+                {!isDevanagariLocale(locale) ? 'Purnimant' : 'पूर्णिमान्त'}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'North India' : 'उत्तर भारत'}
+                  {!isDevanagariLocale(locale) ? 'North India' : 'उत्तर भारत'}
                 </span>
               </button>
               <button
@@ -696,9 +697,9 @@ export default function SankalpaPage() {
                     : 'border-gold-primary/10 text-text-secondary hover:border-gold-primary/25'
                 }`}
               >
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Amant' : 'अमान्त'}
+                {!isDevanagariLocale(locale) ? 'Amant' : 'अमान्त'}
                 <span className="block text-xs text-text-secondary/75 mt-0.5">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'South India' : 'दक्षिण भारत'}
+                  {!isDevanagariLocale(locale) ? 'South India' : 'दक्षिण भारत'}
                 </span>
               </button>
             </div>

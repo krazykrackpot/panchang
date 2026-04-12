@@ -7,6 +7,7 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Inline labels ────────────────────────────────────────────────── */
 const L = {
@@ -267,7 +268,7 @@ const CROSS_REFS = [
 export default function LearnGrahasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa→hi for inline labels that only have en/hi
+  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa→hi for inline labels that only have en/hi
 
   return (
     <div>
@@ -294,15 +295,15 @@ export default function LearnGrahasPage() {
       </div>
 
       {/* ── Section 1: Overview ───────────────────────────────────── */}
-      <LessonSection number={1} title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What are the Navagraha?' : locale === 'hi' ? 'नवग्रह क्या हैं?' : 'नवग्रहाः के?'}>
+      <LessonSection number={1} title={!isDevanagariLocale(locale) ? 'What are the Navagraha?' : isDevanagariLocale(locale) ? 'नवग्रह क्या हैं?' : 'नवग्रहाः के?'}>
         <p>{((L.overviewContent as Record<string, string>)[locale] ?? L.overviewContent.en)}</p>
         <p className="mt-3">{((L.overviewContent2 as Record<string, string>)[locale] ?? L.overviewContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Graha ≠ Planet. Graha = "That which seizes" (√grah = to grasp)' : 'ग्रह ≠ ग्रह। ग्रह = "जो पकड़ता है" (√ग्रह् = ग्रहण करना)'}
+            {!isDevanagariLocale(locale) ? 'Graha ≠ Planet. Graha = "That which seizes" (√grah = to grasp)' : 'ग्रह ≠ ग्रह। ग्रह = "जो पकड़ता है" (√ग्रह् = ग्रहण करना)'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? '7 physical bodies + 2 mathematical shadow points = 9 Grahas' : '7 भौतिक पिण्ड + 2 गणितीय छाया बिन्दु = 9 ग्रह'}
+            {!isDevanagariLocale(locale) ? '7 physical bodies + 2 mathematical shadow points = 9 Grahas' : '7 भौतिक पिण्ड + 2 गणितीय छाया बिन्दु = 9 ग्रह'}
           </p>
         </div>
       </LessonSection>
@@ -312,23 +313,23 @@ export default function LearnGrahasPage() {
         <p>{((L.beneficMaleficContent as Record<string, string>)[locale] ?? L.beneficMaleficContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5">
-            <h4 className="text-emerald-400 font-bold mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Natural Benefics (Shubha)' : 'नैसर्गिक शुभ ग्रह'}</h4>
+            <h4 className="text-emerald-400 font-bold mb-2">{!isDevanagariLocale(locale) ? 'Natural Benefics (Shubha)' : 'नैसर्गिक शुभ ग्रह'}</h4>
             <div className="space-y-1 text-text-secondary text-sm">
-              <p>♃ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter — Greatest benefic (Guru)' : 'बृहस्पति — सर्वोत्तम शुभ (गुरु)'}</p>
-              <p>♀ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Venus — Benefic of beauty and love' : 'शुक्र — सौन्दर्य और प्रेम का शुभ ग्रह'}</p>
-              <p>☽ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon — Benefic when waxing (Shukla Paksha)' : 'चन्द्र — शुक्ल पक्ष में शुभ'}</p>
-              <p>☿ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mercury — Benefic when unafflicted' : 'बुध — अपीड़ित होने पर शुभ'}</p>
+              <p>♃ {!isDevanagariLocale(locale) ? 'Jupiter — Greatest benefic (Guru)' : 'बृहस्पति — सर्वोत्तम शुभ (गुरु)'}</p>
+              <p>♀ {!isDevanagariLocale(locale) ? 'Venus — Benefic of beauty and love' : 'शुक्र — सौन्दर्य और प्रेम का शुभ ग्रह'}</p>
+              <p>☽ {!isDevanagariLocale(locale) ? 'Moon — Benefic when waxing (Shukla Paksha)' : 'चन्द्र — शुक्ल पक्ष में शुभ'}</p>
+              <p>☿ {!isDevanagariLocale(locale) ? 'Mercury — Benefic when unafflicted' : 'बुध — अपीड़ित होने पर शुभ'}</p>
             </div>
           </div>
           <div className="p-4 rounded-lg border border-red-400/20 bg-red-400/5">
-            <h4 className="text-red-400 font-bold mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Natural Malefics (Papa)' : 'नैसर्गिक पाप ग्रह'}</h4>
+            <h4 className="text-red-400 font-bold mb-2">{!isDevanagariLocale(locale) ? 'Natural Malefics (Papa)' : 'नैसर्गिक पाप ग्रह'}</h4>
             <div className="space-y-1 text-text-secondary text-sm">
-              <p>☉ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun — Separative, burning influence' : 'सूर्य — पृथक करने वाला, दाहक प्रभाव'}</p>
-              <p>♂ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mars — Aggressive, conflict-prone' : 'मंगल — आक्रामक, संघर्षशील'}</p>
-              <p>♄ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn — Restrictive, delays, karma' : 'शनि — प्रतिबन्धक, विलम्ब, कर्म'}</p>
-              <p>☊ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Rahu — Obsessive, illusory, amplifying' : 'राहु — आसक्तिकर, मायावी, प्रवर्धक'}</p>
-              <p>☋ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ketu — Detaching, karmic, spiritual' : 'केतु — विरक्तिकर, कार्मिक, आध्यात्मिक'}</p>
-              <p>☽ {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon — Malefic when waning (Krishna Paksha)' : 'चन्द्र — कृष्ण पक्ष में पाप'}</p>
+              <p>☉ {!isDevanagariLocale(locale) ? 'Sun — Separative, burning influence' : 'सूर्य — पृथक करने वाला, दाहक प्रभाव'}</p>
+              <p>♂ {!isDevanagariLocale(locale) ? 'Mars — Aggressive, conflict-prone' : 'मंगल — आक्रामक, संघर्षशील'}</p>
+              <p>♄ {!isDevanagariLocale(locale) ? 'Saturn — Restrictive, delays, karma' : 'शनि — प्रतिबन्धक, विलम्ब, कर्म'}</p>
+              <p>☊ {!isDevanagariLocale(locale) ? 'Rahu — Obsessive, illusory, amplifying' : 'राहु — आसक्तिकर, मायावी, प्रवर्धक'}</p>
+              <p>☋ {!isDevanagariLocale(locale) ? 'Ketu — Detaching, karmic, spiritual' : 'केतु — विरक्तिकर, कार्मिक, आध्यात्मिक'}</p>
+              <p>☽ {!isDevanagariLocale(locale) ? 'Moon — Malefic when waning (Krishna Paksha)' : 'चन्द्र — कृष्ण पक्ष में पाप'}</p>
             </div>
           </div>
         </div>
@@ -344,10 +345,10 @@ export default function LearnGrahasPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 px-3 text-gold-primary font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
-                <th className="text-left py-2 px-3 text-emerald-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Friends (Mitra)' : 'मित्र'}</th>
-                <th className="text-left py-2 px-3 text-amber-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Neutral (Sama)' : 'सम'}</th>
-                <th className="text-left py-2 px-3 text-red-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Enemies (Shatru)' : 'शत्रु'}</th>
+                <th className="text-left py-2 px-3 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-left py-2 px-3 text-emerald-400 font-semibold">{!isDevanagariLocale(locale) ? 'Friends (Mitra)' : 'मित्र'}</th>
+                <th className="text-left py-2 px-3 text-amber-400 font-semibold">{!isDevanagariLocale(locale) ? 'Neutral (Sama)' : 'सम'}</th>
+                <th className="text-left py-2 px-3 text-red-400 font-semibold">{!isDevanagariLocale(locale) ? 'Enemies (Shatru)' : 'शत्रु'}</th>
               </tr>
             </thead>
             <tbody>
@@ -364,7 +365,7 @@ export default function LearnGrahasPage() {
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchada Maitri (5-fold) = Natural + Temporal combined:' : 'पंचधा मैत्री = नैसर्गिक + तात्कालिक संयुक्त:'}
+            {!isDevanagariLocale(locale) ? 'Panchada Maitri (5-fold) = Natural + Temporal combined:' : 'पंचधा मैत्री = नैसर्गिक + तात्कालिक संयुक्त:'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
             {locale === 'en'
@@ -381,11 +382,11 @@ export default function LearnGrahasPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 px-3 text-gold-primary font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
-                <th className="text-left py-2 px-3 text-emerald-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Exaltation (Uccha)' : 'उच्च'}</th>
-                <th className="text-left py-2 px-3 text-amber-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moolatrikona' : 'मूलत्रिकोण'}</th>
-                <th className="text-left py-2 px-3 text-blue-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Own Sign (Swakshetra)' : 'स्वक्षेत्र'}</th>
-                <th className="text-left py-2 px-3 text-red-400 font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Debilitation (Neecha)' : 'नीच'}</th>
+                <th className="text-left py-2 px-3 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-left py-2 px-3 text-emerald-400 font-semibold">{!isDevanagariLocale(locale) ? 'Exaltation (Uccha)' : 'उच्च'}</th>
+                <th className="text-left py-2 px-3 text-amber-400 font-semibold">{!isDevanagariLocale(locale) ? 'Moolatrikona' : 'मूलत्रिकोण'}</th>
+                <th className="text-left py-2 px-3 text-blue-400 font-semibold">{!isDevanagariLocale(locale) ? 'Own Sign (Swakshetra)' : 'स्वक्षेत्र'}</th>
+                <th className="text-left py-2 px-3 text-red-400 font-semibold">{!isDevanagariLocale(locale) ? 'Debilitation (Neecha)' : 'नीच'}</th>
               </tr>
             </thead>
             <tbody>
@@ -403,10 +404,10 @@ export default function LearnGrahasPage() {
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Strength hierarchy: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated' : 'बल क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्र > सम > शत्रु > नीच'}
+            {!isDevanagariLocale(locale) ? 'Strength hierarchy: Exalted > Moolatrikona > Own Sign > Friendly > Neutral > Enemy > Debilitated' : 'बल क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्र > सम > शत्रु > नीच'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Note: Rahu & Ketu dignities are debated; listed signs are from Parashari tradition' : 'नोट: राहु और केतु की गरिमा विवादित है; सूचीबद्ध राशियाँ पाराशरी परम्परा से हैं'}
+            {!isDevanagariLocale(locale) ? 'Note: Rahu & Ketu dignities are debated; listed signs are from Parashari tradition' : 'नोट: राहु और केतु की गरिमा विवादित है; सूचीबद्ध राशियाँ पाराशरी परम्परा से हैं'}
           </p>
         </div>
       </LessonSection>
@@ -418,8 +419,8 @@ export default function LearnGrahasPage() {
           {COMBUSTION_TABLE.map((row) => (
             <div key={row.planet} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
               <span className="text-gold-light font-medium text-sm w-36 flex-shrink-0">{row.planet}</span>
-              <span className="text-red-400 font-mono text-sm w-28 flex-shrink-0">{(locale !== 'hi' && String(locale) !== 'sa') ? 'within' : ''} {row.degrees} {(locale !== 'hi' && String(locale) !== 'sa') ? 'of Sun' : 'सूर्य से'}</span>
-              <span className="text-text-secondary/75 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? row.note : ''}</span>
+              <span className="text-red-400 font-mono text-sm w-28 flex-shrink-0">{!isDevanagariLocale(locale) ? 'within' : ''} {row.degrees} {!isDevanagariLocale(locale) ? 'of Sun' : 'सूर्य से'}</span>
+              <span className="text-text-secondary/75 text-xs">{!isDevanagariLocale(locale) ? row.note : ''}</span>
             </div>
           ))}
         </div>
@@ -437,16 +438,16 @@ export default function LearnGrahasPage() {
         <p>{((L.retrogradeContent as Record<string, string>)[locale] ?? L.retrogradeContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/50 text-center">
-            <div className="text-gold-primary font-bold text-lg mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Can Be Retrograde' : 'वक्री हो सकते हैं'}</div>
+            <div className="text-gold-primary font-bold text-lg mb-1">{!isDevanagariLocale(locale) ? 'Can Be Retrograde' : 'वक्री हो सकते हैं'}</div>
             <p className="text-text-secondary text-sm">Mars, Mercury, Jupiter, Venus, Saturn</p>
           </div>
           <div className="p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/50 text-center">
-            <div className="text-gold-primary font-bold text-lg mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Never Retrograde' : 'कभी वक्री नहीं'}</div>
+            <div className="text-gold-primary font-bold text-lg mb-1">{!isDevanagariLocale(locale) ? 'Never Retrograde' : 'कभी वक्री नहीं'}</div>
             <p className="text-text-secondary text-sm">Sun, Moon</p>
           </div>
           <div className="p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/50 text-center">
-            <div className="text-gold-primary font-bold text-lg mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Always Retrograde' : 'सदा वक्री'}</div>
-            <p className="text-text-secondary text-sm">Rahu, Ketu ({(locale !== 'hi' && String(locale) !== 'sa') ? 'mean motion' : 'मध्यम गति'})</p>
+            <div className="text-gold-primary font-bold text-lg mb-1">{!isDevanagariLocale(locale) ? 'Always Retrograde' : 'सदा वक्री'}</div>
+            <p className="text-text-secondary text-sm">Rahu, Ketu ({!isDevanagariLocale(locale) ? 'mean motion' : 'मध्यम गति'})</p>
           </div>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
@@ -459,7 +460,7 @@ export default function LearnGrahasPage() {
         <p>{((L.aspectsContent as Record<string, string>)[locale] ?? L.aspectsContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Universal Rule: All planets aspect the 7th house from themselves (full 100% Drishti)' : 'सार्वभौमिक नियम: सभी ग्रह अपने 7वें भाव पर पूर्ण दृष्टि (100%) डालते हैं'}
+            {!isDevanagariLocale(locale) ? 'Universal Rule: All planets aspect the 7th house from themselves (full 100% Drishti)' : 'सार्वभौमिक नियम: सभी ग्रह अपने 7वें भाव पर पूर्ण दृष्टि (100%) डालते हैं'}
           </p>
         </div>
         <div className="space-y-4">
@@ -473,7 +474,7 @@ export default function LearnGrahasPage() {
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-semibold">{item.planet}</span>
-                <span className="text-gold-primary/70 text-xs font-mono px-2 py-0.5 rounded bg-gold-primary/10">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Aspects:' : 'दृष्टि:'} {item.aspects}</span>
+                <span className="text-gold-primary/70 text-xs font-mono px-2 py-0.5 rounded bg-gold-primary/10">{!isDevanagariLocale(locale) ? 'Aspects:' : 'दृष्टि:'} {item.aspects}</span>
               </div>
               <p className="text-text-secondary text-sm">{item.desc[loc]}</p>
             </motion.div>
@@ -488,7 +489,7 @@ export default function LearnGrahasPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 px-3 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-left py-2 px-3 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
                 <th className="text-center py-2 px-3 text-gold-light font-semibold">3rd</th>
                 <th className="text-center py-2 px-3 text-gold-light font-semibold">4th</th>
                 <th className="text-center py-2 px-3 text-gold-light font-semibold">5th</th>
@@ -595,10 +596,10 @@ export default function LearnGrahasPage() {
                 <p className="text-text-secondary text-sm mb-2">{details.signifies[locale]}</p>
                 <p className="text-text-secondary/75 text-xs italic mb-2">{details.dignity[locale]}</p>
                 <div className="grid grid-cols-2 gap-2 text-xs text-text-secondary/70">
-                  <div><span className="text-gold-primary/60">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Own Sign:' : 'स्वराशि:'}</span> {details.ownSigns[loc]}</div>
-                  <div><span className="text-gold-primary/60">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moolatrikona:' : 'मूलत्रिकोण:'}</span> {details.moolatrikona[loc]}</div>
-                  <div><span className="text-gold-primary/60">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Combustion:' : 'अस्त:'}</span> {details.combustionDeg}</div>
-                  <div><span className="text-gold-primary/60">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Dasha:' : 'दशा:'}</span> {details.dashaYears} {(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्ष'}</div>
+                  <div><span className="text-gold-primary/60">{!isDevanagariLocale(locale) ? 'Own Sign:' : 'स्वराशि:'}</span> {details.ownSigns[loc]}</div>
+                  <div><span className="text-gold-primary/60">{!isDevanagariLocale(locale) ? 'Moolatrikona:' : 'मूलत्रिकोण:'}</span> {details.moolatrikona[loc]}</div>
+                  <div><span className="text-gold-primary/60">{!isDevanagariLocale(locale) ? 'Combustion:' : 'अस्त:'}</span> {details.combustionDeg}</div>
+                  <div><span className="text-gold-primary/60">{!isDevanagariLocale(locale) ? 'Dasha:' : 'दशा:'}</span> {details.dashaYears} {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}</div>
                 </div>
               </motion.div>
             );
@@ -628,13 +629,13 @@ export default function LearnGrahasPage() {
             >
               <span className="text-xs font-semibold" style={{ color: d.color }}>{d.name}</span>
               <span className="text-gold-primary text-lg font-bold">{d.years}</span>
-              <span className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्ष'}</span>
+              <span className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}</span>
             </div>
           ))}
         </div>
         <div className="mt-3 text-center">
           <p className="text-gold-light/60 font-mono text-xs">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Total: 7+20+6+10+7+18+16+19+17 = 120 years' : 'कुल: 7+20+6+10+7+18+16+19+17 = 120 वर्ष'}
+            {!isDevanagariLocale(locale) ? 'Total: 7+20+6+10+7+18+16+19+17 = 120 years' : 'कुल: 7+20+6+10+7+18+16+19+17 = 120 वर्ष'}
           </p>
         </div>
       </LessonSection>

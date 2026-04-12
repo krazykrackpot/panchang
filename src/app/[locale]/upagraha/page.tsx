@@ -12,6 +12,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { Shield, Zap } from 'lucide-react';
 import type { Locale, Trilingual } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Upagraha nature & sign-based interpretation data ────────────────────────
 
@@ -304,11 +305,11 @@ function computeUpagrahas(jd: number): UpagrahaResult[] {
 
 export default function UpagrahaPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  const t2 = (obj: { en: string; hi: string }): string => (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
+  const t2 = (obj: { en: string; hi: string }): string => !isDevanagariLocale(locale) ? obj.en : obj.hi;
 
   const [dateStr, setDateStr] = useState(new Date().toISOString().split('T')[0]);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -325,7 +326,7 @@ export default function UpagrahaPage() {
 
   const natureColor = (n: string) => n === 'malefic' ? 'text-red-400' : n === 'benefic' ? 'text-emerald-400' : 'text-amber-400';
   const natureBg = (n: string) => n === 'malefic' ? 'bg-red-500/15 border-red-500/25 text-red-300' : n === 'benefic' ? 'bg-emerald-500/15 border-emerald-500/25 text-emerald-300' : 'bg-amber-500/15 border-amber-500/25 text-amber-300';
-  const natureLabel = (n: string) => n === 'malefic' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Malefic' : 'पापी') : n === 'benefic' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Benefic' : 'शुभ') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Mixed' : 'मिश्र');
+  const natureLabel = (n: string) => n === 'malefic' ? (!isDevanagariLocale(locale) ? 'Malefic' : 'पापी') : n === 'benefic' ? (!isDevanagariLocale(locale) ? 'Benefic' : 'शुभ') : (!isDevanagariLocale(locale) ? 'Mixed' : 'मिश्र');
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -333,7 +334,7 @@ export default function UpagrahaPage() {
       {/* Hero */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
-          <span className="text-gold-gradient">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Upagraha' : 'उपग्रह'}</span>
+          <span className="text-gold-gradient">{!isDevanagariLocale(locale) ? 'Upagraha' : 'उपग्रह'}</span>
         </h1>
         <p className="text-2xl text-gold-dark mb-4" style={headingFont}>
           {locale !== 'en' && 'Upagraha'}
@@ -348,7 +349,7 @@ export default function UpagrahaPage() {
       {/* Context box */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 mb-10">
         <h3 className="text-gold-light font-bold text-sm mb-3" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Why Upagrahas Matter' : 'उपग्रह क्यों महत्वपूर्ण हैं'}
+          {!isDevanagariLocale(locale) ? 'Why Upagrahas Matter' : 'उपग्रह क्यों महत्वपूर्ण हैं'}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4" style={bodyFont}>
           {locale === 'en'
@@ -357,9 +358,9 @@ export default function UpagrahaPage() {
         </p>
         <div className="grid grid-cols-3 gap-3">
           {[
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Malefic' : 'पापी', names: 'Dhuma, Vyatipata', color: 'border-red-500/20 bg-red-500/5', dot: 'bg-red-400' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Benefic' : 'शुभ', names: 'Parivesha, Chapa', color: 'border-emerald-500/20 bg-emerald-500/5', dot: 'bg-emerald-400' },
-            { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mixed' : 'मिश्र', names: 'Upaketu', color: 'border-amber-500/20 bg-amber-500/5', dot: 'bg-amber-400' },
+            { label: !isDevanagariLocale(locale) ? 'Malefic' : 'पापी', names: 'Dhuma, Vyatipata', color: 'border-red-500/20 bg-red-500/5', dot: 'bg-red-400' },
+            { label: !isDevanagariLocale(locale) ? 'Benefic' : 'शुभ', names: 'Parivesha, Chapa', color: 'border-emerald-500/20 bg-emerald-500/5', dot: 'bg-emerald-400' },
+            { label: !isDevanagariLocale(locale) ? 'Mixed' : 'मिश्र', names: 'Upaketu', color: 'border-amber-500/20 bg-amber-500/5', dot: 'bg-amber-400' },
           ].map(c => (
             <div key={c.label} className={`rounded-lg p-3 border ${c.color} text-center`}>
               <div className="flex items-center justify-center gap-1.5 mb-1">
@@ -475,16 +476,16 @@ export default function UpagrahaPage() {
               </div>
               <div>
                 <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Your Upagraha Snapshot' : 'आपका उपग्रह सारांश'}
+                  {!isDevanagariLocale(locale) ? 'Your Upagraha Snapshot' : 'आपका उपग्रह सारांश'}
                 </h3>
                 <div className="flex items-center gap-2 text-xs text-text-secondary">
                   <Shield className="w-3 h-3 text-emerald-400" />
-                  <span>{(locale !== 'hi' && String(locale) !== 'sa') ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
+                  <span>{!isDevanagariLocale(locale) ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
                   <span className="text-gold-primary/20">|</span>
                   <span className={`font-bold ${toneColor === 'emerald' ? 'text-emerald-400' : toneColor === 'red' ? 'text-red-400' : 'text-amber-400'}`}>
-                    {tone === 'positive' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Favorable Day' : 'अनुकूल दिन') :
-                     tone === 'challenging' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Caution Needed' : 'सावधानी आवश्यक') :
-                     ((locale !== 'hi' && String(locale) !== 'sa') ? 'Mixed Influences' : 'मिश्रित प्रभाव')}
+                    {tone === 'positive' ? (!isDevanagariLocale(locale) ? 'Favorable Day' : 'अनुकूल दिन') :
+                     tone === 'challenging' ? (!isDevanagariLocale(locale) ? 'Caution Needed' : 'सावधानी आवश्यक') :
+                     (!isDevanagariLocale(locale) ? 'Mixed Influences' : 'मिश्रित प्रभाव')}
                   </span>
                 </div>
               </div>
@@ -510,7 +511,7 @@ export default function UpagrahaPage() {
                       ? ([3, 6, 11].includes(h.house) ? 'text-amber-300' : 'text-red-300')
                       : h.nature === 'benefic' ? 'text-emerald-300' : 'text-amber-300'
                   }`}>
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? h.name.en.split(' ')[0] : h.name.hi}
+                    {!isDevanagariLocale(locale) ? h.name.en.split(' ')[0] : h.name.hi}
                   </div>
                   <div className="text-gold-light text-lg font-bold font-mono">{h.house}</div>
                   <div className="text-text-secondary/70 text-xs">
@@ -531,7 +532,7 @@ export default function UpagrahaPage() {
               : 'आज के उपग्रह आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत सारांश दे���ने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate Kundali' : 'कुंडली बनाएँ'}
+              {!isDevanagariLocale(locale) ? 'Generate Kundali' : 'कुंडली बनाएँ'}
             </Link>
           </p>
         </div>
@@ -576,7 +577,7 @@ export default function UpagrahaPage() {
                           {natureLabel(u.info.nature)}
                         </span>
                         <span className="text-text-secondary/70 text-xs">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{tl(u.info.ruler, locale)}</span>
+                          {!isDevanagariLocale(locale) ? 'Ruler:' : 'स्वामी:'} <span className={natureColor(u.info.nature)}>{tl(u.info.ruler, locale)}</span>
                         </span>
                       </div>
 
@@ -584,7 +585,7 @@ export default function UpagrahaPage() {
                       <div className="flex items-center gap-3 mb-3 flex-wrap">
                         <span className="text-gold-primary font-bold text-lg font-mono">{u.degree}</span>
                         <span className="text-text-secondary text-sm" style={bodyFont}>
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'in' : 'में'} <span className="text-gold-light font-semibold">{tl(u.signName, locale)}</span>
+                          {!isDevanagariLocale(locale) ? 'in' : 'में'} <span className="text-gold-light font-semibold">{tl(u.signName, locale)}</span>
                         </span>
                         <span className="text-text-secondary/65 text-xs font-mono">({u.longitude.toFixed(2)}°)</span>
                       </div>
@@ -592,7 +593,7 @@ export default function UpagrahaPage() {
                       {/* Sign-specific interpretation — always visible */}
                       <div className="rounded-xl p-4 bg-bg-primary/50 border border-gold-primary/10 mb-3">
                         <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1.5">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? `${u.info.name.en} in ${u.signName.en} — What it means for you` : `${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है`}
+                          {!isDevanagariLocale(locale) ? `${u.info.name.en} in ${u.signName.en} — What it means for you` : `${u.info.name.hi} ${u.signName.hi} में — आपके लिए क्या अर्थ है`}
                         </div>
                         <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
                           {t2(signEffect)}
@@ -605,7 +606,7 @@ export default function UpagrahaPage() {
                           <div className="flex items-center gap-2 mb-2">
                             <Zap className="w-3.5 h-3.5 text-emerald-400" />
                             <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">
-                              {(locale !== 'hi' && String(locale) !== 'sa') ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                              {!isDevanagariLocale(locale) ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                             </span>
                           </div>
                           <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
@@ -628,8 +629,8 @@ export default function UpagrahaPage() {
                   className="w-full px-6 py-3 text-center text-xs font-bold uppercase tracking-wider border-t border-gold-primary/10 text-gold-dark hover:text-gold-light hover:bg-gold-primary/5 transition-all"
                 >
                   {isExpanded
-                    ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Show less' : 'कम दिखाएँ')
-                    : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Show detailed analysis' : 'विस्तृत विश्लेषण दिखाएँ')}
+                    ? (!isDevanagariLocale(locale) ? 'Show less' : 'कम दिखाएँ')
+                    : (!isDevanagariLocale(locale) ? 'Show detailed analysis' : 'विस्तृत विश्लेषण दिखाएँ')}
                 </button>
 
                 {/* Expanded detail */}
@@ -643,7 +644,7 @@ export default function UpagrahaPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="rounded-xl p-4 bg-emerald-500/5 border border-emerald-500/15">
                         <div className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-2">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'When Well-Placed' : 'शुभ स्थिति में'}
+                          {!isDevanagariLocale(locale) ? 'When Well-Placed' : 'शुभ स्थिति में'}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                           {t2(u.info.whenStrong)}
@@ -651,7 +652,7 @@ export default function UpagrahaPage() {
                       </div>
                       <div className="rounded-xl p-4 bg-red-500/5 border border-red-500/15">
                         <div className="text-red-400 text-xs uppercase tracking-wider font-bold mb-2">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'When Afflicted' : 'पीड़ित स्थिति में'}
+                          {!isDevanagariLocale(locale) ? 'When Afflicted' : 'पीड़ित स्थिति में'}
                         </div>
                         <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                           {t2(u.info.whenAfflicted)}
@@ -662,7 +663,7 @@ export default function UpagrahaPage() {
                     {/* All 12 sign effects */}
                     <div>
                       <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-3">
-                        {(locale !== 'hi' && String(locale) !== 'sa') ? `${u.info.name.en} through the 12 Signs` : `12 राशियों में ${u.info.name.hi}`}
+                        {!isDevanagariLocale(locale) ? `${u.info.name.en} through the 12 Signs` : `12 राशियों में ${u.info.name.hi}`}
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {Array.from({ length: 12 }, (_, idx) => {
@@ -679,7 +680,7 @@ export default function UpagrahaPage() {
                                   <span className={`font-bold text-xs ${isCurrent ? 'text-gold-light' : 'text-text-primary'}`}>
                                     {tl(RASHIS[signId - 1].name, locale)}
                                   </span>
-                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'NOW' : 'अभी'}</span>}
+                                  {isCurrent && <span className="px-1 py-0 text-xs bg-gold-primary/20 text-gold-primary rounded font-bold uppercase">{!isDevanagariLocale(locale) ? 'NOW' : 'अभी'}</span>}
                                 </div>
                                 <p className="text-text-secondary/75 text-xs leading-snug mt-0.5" style={bodyFont}>{t2(effect)}</p>
                               </div>
@@ -699,7 +700,7 @@ export default function UpagrahaPage() {
       {/* Formula explanation */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-light text-lg font-bold mb-2" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Derivation Formulae' : 'व्युत्पत्ति सूत्र'}
+          {!isDevanagariLocale(locale) ? 'Derivation Formulae' : 'व्युत्पत्ति सूत्र'}
         </h3>
         <p className="text-text-secondary text-xs mb-4 leading-relaxed" style={bodyFont}>
           {locale === 'en'
@@ -708,11 +709,11 @@ export default function UpagrahaPage() {
         </p>
         <div className="space-y-2 text-sm font-mono">
           {[
-            { formula: 'Dhuma = Sun + 133°20\'', desc: (locale !== 'hi' && String(locale) !== 'sa') ? 'Sun\'s smoke — always ahead of the Sun' : 'सूर्य का धूम — सदैव सूर्य से आगे' },
-            { formula: 'Vyatipata = 360° − Dhuma', desc: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mirror of Dhuma — the fall point' : 'धूम का दर्पण — पतन बिंदु' },
-            { formula: 'Parivesha = Vyatipata + 180°', desc: (locale !== 'hi' && String(locale) !== 'sa') ? 'Opposite of the fall — the halo' : 'पतन का विपरीत — प्रभामंडल' },
-            { formula: 'Chapa = 360° − Parivesha', desc: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mirror of halo — Indra\'s rainbow' : 'प्रभामंडल का दर्पण — इन्द्रधनुष' },
-            { formula: 'Upaketu = Chapa + 16°40\'', desc: (locale !== 'hi' && String(locale) !== 'sa') ? 'Chapa\'s karmic tail — the sub-Ketu' : 'चाप की कार्मिक पूँछ — उपकेतु' },
+            { formula: 'Dhuma = Sun + 133°20\'', desc: !isDevanagariLocale(locale) ? 'Sun\'s smoke — always ahead of the Sun' : 'सूर्य का धूम — सदैव सूर्य से आगे' },
+            { formula: 'Vyatipata = 360° − Dhuma', desc: !isDevanagariLocale(locale) ? 'Mirror of Dhuma — the fall point' : 'धूम का दर्पण — पतन बिंदु' },
+            { formula: 'Parivesha = Vyatipata + 180°', desc: !isDevanagariLocale(locale) ? 'Opposite of the fall — the halo' : 'पतन का विपरीत — प्रभामंडल' },
+            { formula: 'Chapa = 360° − Parivesha', desc: !isDevanagariLocale(locale) ? 'Mirror of halo — Indra\'s rainbow' : 'प्रभामंडल का दर्पण — इन्द्रधनुष' },
+            { formula: 'Upaketu = Chapa + 16°40\'', desc: !isDevanagariLocale(locale) ? 'Chapa\'s karmic tail — the sub-Ketu' : 'चाप की कार्मिक पूँछ — उपकेतु' },
           ].map(f => (
             <div key={f.formula} className="flex items-start gap-3 rounded-lg p-3 bg-bg-primary/30 border border-gold-primary/5">
               <span className="text-gold-light font-bold text-xs flex-shrink-0 w-56">{f.formula}</span>

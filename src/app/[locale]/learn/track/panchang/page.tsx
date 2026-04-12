@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Calendar } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 type Tri = { en: string; hi: string; sa: string; ta?: string };
 interface Section {
@@ -126,7 +127,7 @@ const L = {
 
 export default function PanchangTrackPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const l = L[locale] || L.en;
@@ -207,7 +208,7 @@ export default function PanchangTrackPage() {
                       <div className="flex items-center gap-3">
                         {isRef ? (
                           <span className="text-xs font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
-                            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ref' : 'सन्दर्भ'}
+                            {!isDevanagariLocale(locale) ? 'Ref' : 'सन्दर्भ'}
                           </span>
                         ) : (
                           <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-gold-light">

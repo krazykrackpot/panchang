@@ -12,6 +12,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { tl } from '@/lib/utils/trilingual';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Labels ────────────────────────────────────────────────
 const LABELS: Record<string, Record<string, string>> = {
@@ -123,7 +124,7 @@ export default function CompatibilityHeatmapPage() {
   const locale = useLocale() as Locale;
   const L = LABELS[locale] || LABELS.en;
   const shortNames = SHORT_NAMES[locale] || SHORT_NAMES.en;
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

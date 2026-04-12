@@ -10,6 +10,7 @@ import type { Rashi, Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { RashiIcon } from '@/components/icons/PanchangIcons';
 import { RashiIconById } from '@/components/icons/RashiIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Element helpers ────────────────────────────────────────────── */
 
@@ -55,6 +56,7 @@ function AnimatedZodiacWheel({
   selectedRashi: Rashi | null;
   onSelect: (r: Rashi) => void;
 }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const CX = 250;
@@ -241,13 +243,13 @@ function AnimatedZodiacWheel({
 
       {/* Center text */}
       <text x={CX} y={CY - 14} fill="#f0d48a" fontSize="12" textAnchor="middle" fontFamily="var(--font-heading)">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'RASHI CHAKRA' : locale === 'hi' ? 'राशि चक्र' : 'राशिचक्रम्'}
+        {isDevanagari ? 'राशि चक्र' : 'RASHI CHAKRA'}
       </text>
       <text x={CX} y={CY + 4} fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
         360° / 12 = 30°
       </text>
       <text x={CX} y={CY + 18} fill="rgba(212,168,83,0.3)" fontSize="7" textAnchor="middle">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Click a sign' : locale === 'hi' ? 'राशि चुनें' : 'राशिं चिनुत'}
+        {isDevanagari ? 'राशि चुनें' : 'Click a sign'}
       </text>
     </motion.svg>
   );
@@ -256,6 +258,7 @@ function AnimatedZodiacWheel({
 /* ─── Element Legend ──────────────────────────────────────────────── */
 
 function ElementLegend({ locale }: { locale: Locale }) {
+  const isDevanagari = isDevanagariLocale(locale);
   return (
     <motion.div
       className="flex flex-wrap justify-center gap-4 mt-6"
@@ -279,6 +282,7 @@ function ElementLegend({ locale }: { locale: Locale }) {
 /* ─── Ecliptic Diagram ───────────────────────────────────────────── */
 
 function EclipticDiagram({ locale }: { locale: Locale }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const AYANAMSHA = 24.17; // approximate current value in degrees
   const BAR_WIDTH = 720; // viewBox width for the bar
   const BAR_HEIGHT = 50;
@@ -293,12 +297,12 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
       transition={{ duration: 0.7 }}
     >
       <h3 className="text-lg font-semibold text-gold-light mb-2">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sidereal vs Tropical Ecliptic' : locale === 'hi' ? 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' : 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्'}
+        {!isDevanagariLocale(locale) ? 'Sidereal vs Tropical Ecliptic' : isDevanagari ? 'नाक्षत्रिक बनाम उष्णकटिबन्धीय क्रान्तिवृत्त' : 'नाक्षत्रिकं उष्णकटिबन्धीयं च क्रान्तिवृत्तम्'}
       </h3>
       <p className="text-text-secondary text-sm mb-4">
         {locale === 'en'
           ? `The Ayanamsha correction (~${AYANAMSHA.toFixed(1)}°) shifts the sidereal zodiac relative to the tropical one. Below, the colored bar is the sidereal zodiac; the pointer shows where 0° Aries (tropical) falls in the sidereal frame.`
-          : locale === 'hi'
+          : isDevanagari
           ? `अयनांश सुधार (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिक राशिचक्र को उष्णकटिबन्धीय के सापेक्ष स्थानान्तरित करता है।`
           : `अयनांशशोधनं (~${AYANAMSHA.toFixed(1)}°) नाक्षत्रिकराशिचक्रम् उष्णकटिबन्धीयस्य सापेक्षं स्थानान्तरयति।`}
       </p>
@@ -353,7 +357,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
 
         {/* "Sidereal 0°" label */}
         <text x={2} y={14} fill="#f0d48a" fontSize="8" textAnchor="start">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sidereal 0°' : 'नाक्षत्रिक 0°'}
+          {!isDevanagariLocale(locale) ? 'Sidereal 0°' : 'नाक्षत्रिक 0°'}
         </text>
         <text x={BAR_WIDTH - 2} y={14} fill="rgba(240,212,138,0.4)" fontSize="8" textAnchor="end">
           360°
@@ -401,7 +405,7 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
                 textAnchor="middle"
                 fontWeight="bold"
               >
-                {(locale !== 'hi' && String(locale) !== 'sa') ? `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)` : `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`}
+                {!isDevanagariLocale(locale) ? `Tropical 0° (Ayanamsha ~${AYANAMSHA.toFixed(1)}°)` : `उष्णकटिबन्धीय 0° (अयनांश ~${AYANAMSHA.toFixed(1)}°)`}
               </text>
             </motion.g>
           );
@@ -444,7 +448,7 @@ export default function RashiPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -469,7 +473,7 @@ export default function RashiPage() {
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
             <span className="text-gold-gradient">
-              {isTamil ? 'ராசி' : locale === 'en' ? 'Rashi' : locale === 'hi' ? 'राशि' : 'राशिः'}
+              {isTamil ? 'ராசி' : locale === 'en' ? 'Rashi' : isDevanagari ? 'राशि' : 'राशिः'}
             </span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
@@ -477,7 +481,7 @@ export default function RashiPage() {
               ? '12 ராசிகள் \u2014 கிரகண வட்டத்தின் நட்சத்திரப் பிரிவுகள்'
               : locale === 'en'
               ? 'The 12 Zodiac Signs \u2014 Sidereal Divisions of the Ecliptic'
-              : locale === 'hi'
+              : isDevanagari
               ? '12 राशियाँ \u2014 क्रान्तिवृत्त के नाक्षत्रिक विभाग'
               : 'द्वादश राशयः \u2014 क्रान्तिवृत्तस्य नाक्षत्रिकविभागाः'}
           </p>
@@ -502,13 +506,13 @@ export default function RashiPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The 12 Rashis divide the 360° sidereal zodiac into equal segments of 30° each. Unlike the Western tropical zodiac (anchored to the vernal equinox), the Vedic sidereal zodiac is anchored to fixed stars and accounts for the precession of equinoxes via the Ayanamsha correction (~24° currently). Each Rashi is ruled by a planet, belongs to one of four elements (Fire, Earth, Air, Water), and has a quality (Cardinal/Chara, Fixed/Sthira, Mutable/Dvisvabhava). The Sun transits each Rashi in about one month, and the Moon in about 2.25 days.`
-                : locale === 'hi'
+                : isDevanagari
                 ? `12 राशियाँ 360° नाक्षत्रिक राशिचक्र को 30° के बराबर खण्डों में विभाजित करती हैं। पश्चिमी उष्णकटिबन्धीय राशिचक्र (जो वसन्त विषुव पर आधारित है) के विपरीत, वैदिक नाक्षत्रिक राशिचक्र स्थिर तारों पर आधारित है और अयनांश सुधार (~24° वर्तमान) द्वारा विषुव अयन का हिसाब रखता है। प्रत्येक राशि एक ग्रह द्वारा शासित है, चार तत्वों (अग्नि, पृथ्वी, वायु, जल) में से एक से सम्बन्धित है, और एक गुण (चर, स्थिर, द्विस्वभाव) रखती है।`
                 : `द्वादश राशयः 360° नाक्षत्रिकराशिचक्रं 30° समखण्डेषु विभजन्ति। पाश्चात्योष्णकटिबन्धीयराशिचक्रात् भिन्नं वैदिकं नाक्षत्रिकराशिचक्रं स्थिरताराणाम् आधारेण स्थितम्, अयनांशशोधनेन च विषुवायनं गणयति।`}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Formula:' : 'सूत्र:'} Rashi = floor(Sidereal_longitude / 30°) + 1
+                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Rashi = floor(Sidereal_longitude / 30°) + 1
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -525,7 +529,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Sidereal Zodiac Wheel'
-            : locale === 'hi'
+            : isDevanagari
             ? 'नाक्षत्रिक राशि चक्र'
             : 'नाक्षत्रिकराशिचक्रम्'}
         </h2>
@@ -544,7 +548,7 @@ export default function RashiPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Ayanamsha & the Ecliptic'
-            : locale === 'hi'
+            : isDevanagari
             ? 'अयनांश एवं क्रान्तिवृत्त'
             : 'अयनांशः क्रान्तिवृत्तं च'}
         </h2>

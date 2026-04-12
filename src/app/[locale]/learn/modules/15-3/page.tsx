@@ -2,6 +2,7 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_15_3', phase: 4, topic: 'Prashna & Advanced', moduleNumber: '15.3',
@@ -186,7 +187,7 @@ const QUESTIONS: ModuleQuestion[] = [
 
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>
@@ -223,7 +224,7 @@ function Page1() {
 
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>
@@ -276,7 +277,7 @@ function Page2() {
 
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       <section>

@@ -11,6 +11,7 @@ import { buildYearlyTithiTable, type TithiEntry } from '@/lib/calendar/tithi-tab
 import { tl } from '@/lib/utils/trilingual';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Category Configuration ──────────────────────────────────────
 const CATEGORY_CONFIG: Record<string, { tithiNumbers: number[]; pakshaFilter?: 'shukla' | 'krishna' }> = {
@@ -148,7 +149,7 @@ function getDayOfWeek(dateStr: string): number {
 
 function formatDateDisplay(dateStr: string, locale: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
-  const months = locale === 'hi' || locale === 'sa' ? MONTH_NAMES_HI : MONTH_NAMES;
+  const months = isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES;
   return `${d} ${months[m - 1]}`;
 }
 
@@ -158,7 +159,7 @@ export default function DateCategoryPage() {
   const params = useParams();
   const category = (params?.category as string) || 'ekadashi';
   const config = CATEGORY_CONFIG[category];
-  const isDevanagari = locale === 'hi' || String(locale) === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -309,7 +310,7 @@ export default function DateCategoryPage() {
                     : 'bg-bg-secondary/50 text-text-secondary/50 cursor-default border border-transparent'
                 }`}
               >
-                {(locale === 'hi' || locale === 'sa' ? MONTH_NAMES_HI : MONTH_NAMES)[idx].slice(0, 3)}
+                {(isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[idx].slice(0, 3)}
                 {count > 0 && <span className="ml-1 text-gold-primary/70">({count})</span>}
               </a>
             );
@@ -321,7 +322,7 @@ export default function DateCategoryPage() {
         {/* Monthly Sections */}
         {Array.from({ length: 12 }, (_, i) => i + 1).map(month => {
           const monthEntries = monthlyGroups[month] || [];
-          const monthName = (locale === 'hi' || locale === 'sa' ? MONTH_NAMES_HI : MONTH_NAMES)[month - 1];
+          const monthName = (isDevanagariLocale(locale) ? MONTH_NAMES_HI : MONTH_NAMES)[month - 1];
 
           return (
             <motion.section
@@ -362,7 +363,7 @@ export default function DateCategoryPage() {
                     <tbody>
                       {monthEntries.map((entry, idx) => {
                         const dow = getDayOfWeek(entry.sunriseDate);
-                        const dayName = locale === 'hi' || locale === 'sa' ? DAY_NAMES_SHORT_HI[dow] : DAY_NAMES_SHORT[dow];
+                        const dayName = isDevanagariLocale(locale) ? DAY_NAMES_SHORT_HI[dow] : DAY_NAMES_SHORT[dow];
                         const isUpcoming = entry.sunriseDate >= today && entry.sunriseDate === nextEntry?.sunriseDate;
                         return (
                           <motion.tr

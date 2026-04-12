@@ -6,6 +6,7 @@ import { Flame, Sun, Shield, BookOpen } from 'lucide-react';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
@@ -113,12 +114,12 @@ function CombustionDiagram({ locale }: { locale: Locale }) {
       {/* Central Sun */}
       <circle cx={cx} cy={cy} r="28" fill="url(#comb-sun)" filter="url(#comb-glow)" />
       <text x={cx} y={cy + 1} fill="#1a1a2e" fontSize="13" fontWeight="bold" textAnchor="middle" dominantBaseline="middle">
-        {locale === 'hi' ? 'सूर्य' : locale === 'sa' ? 'सूर्यः' : 'SUN'}
+        {isDevanagariLocale(locale) ? 'सूर्य' : 'SUN'}
       </text>
 
       {/* Legend */}
       <text x={cx} y="385" fill="#a0a0b8" fontSize="10" textAnchor="middle">
-        {locale === 'hi' ? 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी' : locale === 'sa' ? 'दूरी अंशेषु (° देशान्तरम्) — R = वक्रिदूरी' : 'Distance in degrees (° longitude) — R = retrograde distance'}
+        {isDevanagariLocale(locale) ? 'दूरी अंशों में (° देशान्तर) — R = वक्री दूरी' : 'Distance in degrees (° longitude) — R = retrograde distance'}
       </text>
     </svg>
   );
@@ -146,7 +147,7 @@ export default function CombustionPage() {
         <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-300 text-sm mb-4">
             <Flame className="w-4 h-4" />
-            {locale === 'hi' ? 'ग्रह अवस्था' : locale === 'sa' ? 'ग्रहावस्था' : 'Planetary Condition'}
+            {isDevanagariLocale(locale) ? 'ग्रह अवस्था' : 'Planetary Condition'}
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
             {((L.title as Record<string, string>)[locale] ?? L.title.en)}

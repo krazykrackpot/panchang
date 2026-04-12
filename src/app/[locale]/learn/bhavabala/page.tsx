@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Home, Triangle, Layers, Eye, Shield, Gem, Compass } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -109,7 +110,7 @@ const L = {
 
 export default function LearnBhavabalaPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const t = (obj: Record<string, string | undefined>) => obj[locale] || obj.en || '';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedComponent, setExpandedComponent] = useState<number | null>(0);

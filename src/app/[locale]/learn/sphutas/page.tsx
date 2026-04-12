@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Crosshair, Star, HeartPulse, Baby, Compass, Sparkles, AlertTriangle, TrendingUp } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
@@ -118,7 +119,7 @@ const L = {
 
 export default function LearnSphutasPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const t = (obj: Record<string, string>) => obj[locale] || obj.en;
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedConst, setExpandedConst] = useState<number | null>(null);

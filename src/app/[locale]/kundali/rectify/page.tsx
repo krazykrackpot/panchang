@@ -10,6 +10,7 @@ import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /**
  * Birth Time Rectification — Tattva-based method
@@ -38,7 +39,7 @@ interface EventEntry {
 
 export default function RectifyPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [birthYear, setBirthYear] = useState(1990);

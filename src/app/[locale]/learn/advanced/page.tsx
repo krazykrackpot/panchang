@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Advanced Jyotish — Predictive Systems', hi: 'उन्नत ज्योतिष — भविष्यवाणी प्रणालियाँ', sa: 'उन्नतज्योतिषम् — भविष्यवाणीपद्धतयः' , ta: 'மேம்பட்ட ஜோதிடம் — கணிப்பு முறைகள்' },
@@ -141,19 +142,19 @@ export default function LearnAdvancedPage() {
         <p>{((L.varshaphalContent as Record<string, string>)[locale] ?? L.varshaphalContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'How our Varshaphal engine works:' : 'हमारा वर्षफल इंजन कैसे काम करता है:'}
+            {!isDevanagariLocale(locale) ? 'How our Varshaphal engine works:' : 'हमारा वर्षफल इंजन कैसे काम करता है:'}
           </p>
-          <p className="text-gold-light/80 font-mono text-xs">1. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Find exact JD when Sun returns to birth longitude (binary search)' : 'सटीक JD ज्ञात करें जब सूर्य जन्म देशान्तर पर लौटे (बाइनरी खोज)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">2. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Compute full chart for that moment (all 9 planets + houses)' : 'उस क्षण की पूर्ण कुण्डली गणना करें (सभी 9 ग्रह + भाव)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">3. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Muntha = (Birth Lagna sign + age) mod 12' : 'मुन्था = (जन्म लग्न राशि + आयु) mod 12'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">4. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Calculate 16 Sahams (sensitive points for life areas)' : '16 सहम गणना करें (जीवन क्षेत्रों के संवेदनशील बिन्दु)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">5. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate Mudda Dasha (year-compressed planetary periods)' : 'मुद्दा दशा उत्पन्न करें (वर्ष-संकुचित ग्रह अवधियाँ)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">6. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Analyze Tajika Yogas (Ithasala, Easarapha, Nakta, etc.)' : 'ताजिक योगों का विश्लेषण (इत्थशाल, ईसराफ, नक्त, आदि)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">1. {!isDevanagariLocale(locale) ? 'Find exact JD when Sun returns to birth longitude (binary search)' : 'सटीक JD ज्ञात करें जब सूर्य जन्म देशान्तर पर लौटे (बाइनरी खोज)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">2. {!isDevanagariLocale(locale) ? 'Compute full chart for that moment (all 9 planets + houses)' : 'उस क्षण की पूर्ण कुण्डली गणना करें (सभी 9 ग्रह + भाव)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">3. {!isDevanagariLocale(locale) ? 'Muntha = (Birth Lagna sign + age) mod 12' : 'मुन्था = (जन्म लग्न राशि + आयु) mod 12'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">4. {!isDevanagariLocale(locale) ? 'Calculate 16 Sahams (sensitive points for life areas)' : '16 सहम गणना करें (जीवन क्षेत्रों के संवेदनशील बिन्दु)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">5. {!isDevanagariLocale(locale) ? 'Generate Mudda Dasha (year-compressed planetary periods)' : 'मुद्दा दशा उत्पन्न करें (वर्ष-संकुचित ग्रह अवधियाँ)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">6. {!isDevanagariLocale(locale) ? 'Analyze Tajika Yogas (Ithasala, Easarapha, Nakta, etc.)' : 'ताजिक योगों का विश्लेषण (इत्थशाल, ईसराफ, नक्त, आदि)'}</p>
         </div>
         <p className="mt-3 text-text-secondary text-sm">{((L.varshaphalCalc as Record<string, string>)[locale] ?? L.varshaphalCalc.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-amber-400/15">
           <p className="text-amber-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tajika Yogas — Unique to Varshaphal:' : 'ताजिक योग — वर्षफल के लिए विशिष्ट:'}
+            {!isDevanagariLocale(locale) ? 'Tajika Yogas — Unique to Varshaphal:' : 'ताजिक योग — वर्षफल के लिए विशिष्ट:'}
           </p>
           <p className="text-amber-200/80 text-xs leading-relaxed">{((L.tajikaYogas as Record<string, string>)[locale] ?? L.tajikaYogas.en)}</p>
         </div>
@@ -164,10 +165,10 @@ export default function LearnAdvancedPage() {
         <p>{((L.kpContent as Record<string, string>)[locale] ?? L.kpContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'KP Sub-Lord Division Example:' : 'KP उप-स्वामी विभाजन उदाहरण:'}
+            {!isDevanagariLocale(locale) ? 'KP Sub-Lord Division Example:' : 'KP उप-स्वामी विभाजन उदाहरण:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ashwini Nakshatra (0°00\' — 13°20\' Aries):' : 'अश्विनी नक्षत्र (0°00\' — 13°20\' मेष):'}
+            {!isDevanagariLocale(locale) ? 'Ashwini Nakshatra (0°00\' — 13°20\' Aries):' : 'अश्विनी नक्षत्र (0°00\' — 13°20\' मेष):'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Star Lord: Ketu (7 years)</p>
           <p className="text-gold-light/60 font-mono text-xs">Sub-divisions (proportional to Dasha years):</p>
@@ -181,7 +182,7 @@ export default function LearnAdvancedPage() {
         <p className="mt-3 text-text-secondary text-sm">{((L.kpCalc as Record<string, string>)[locale] ?? L.kpCalc.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-blue-400/15">
           <p className="text-blue-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'The Significator Table — Heart of KP:' : 'कारक तालिका — KP का हृदय:'}
+            {!isDevanagariLocale(locale) ? 'The Significator Table — Heart of KP:' : 'कारक तालिका — KP का हृदय:'}
           </p>
           <p className="text-blue-200/80 text-xs leading-relaxed">{((L.kpSignificator as Record<string, string>)[locale] ?? L.kpSignificator.en)}</p>
         </div>
@@ -192,20 +193,20 @@ export default function LearnAdvancedPage() {
         <p>{((L.prashnaContent as Record<string, string>)[locale] ?? L.prashnaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-purple-400/20">
           <p className="text-purple-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ashtamangala Prashna — Kerala Tradition:' : 'अष्टमंगल प्रश्न — केरल परम्परा:'}
+            {!isDevanagariLocale(locale) ? 'Ashtamangala Prashna — Kerala Tradition:' : 'अष्टमंगल प्रश्न — केरल परम्परा:'}
           </p>
           <p className="text-purple-200/80 font-mono text-xs">{((L.ashtamangalaContent as Record<string, string>)[locale] ?? L.ashtamangalaContent.en)}</p>
         </div>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mirror' : 'दर्पण', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Self-reflection, clarity' : 'आत्मचिन्तन, स्पष्टता' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Vessel' : 'कलश', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Abundance, containment' : 'प्रचुरता, धारण' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Gold Fish' : 'स्वर्णमीन', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Prosperity, fertility' : 'समृद्धि, उर्वरता' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Lamp' : 'दीप', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Wisdom, dispelling darkness' : 'ज्ञान, अन्धकार निवारण' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Throne' : 'सिंहासन', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Authority, power' : 'अधिकार, शक्ति' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Bull' : 'वृषभ', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Strength, dharma' : 'बल, धर्म' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Flag' : 'ध्वज', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Victory, announcement' : 'विजय, घोषणा' },
-            { item: (locale !== 'hi' && String(locale) !== 'sa') ? 'Fan' : 'व्यजन', meaning: (locale !== 'hi' && String(locale) !== 'sa') ? 'Royal service, comfort' : 'राजसेवा, सुविधा' },
+            { item: !isDevanagariLocale(locale) ? 'Mirror' : 'दर्पण', meaning: !isDevanagariLocale(locale) ? 'Self-reflection, clarity' : 'आत्मचिन्तन, स्पष्टता' },
+            { item: !isDevanagariLocale(locale) ? 'Vessel' : 'कलश', meaning: !isDevanagariLocale(locale) ? 'Abundance, containment' : 'प्रचुरता, धारण' },
+            { item: !isDevanagariLocale(locale) ? 'Gold Fish' : 'स्वर्णमीन', meaning: !isDevanagariLocale(locale) ? 'Prosperity, fertility' : 'समृद्धि, उर्वरता' },
+            { item: !isDevanagariLocale(locale) ? 'Lamp' : 'दीप', meaning: !isDevanagariLocale(locale) ? 'Wisdom, dispelling darkness' : 'ज्ञान, अन्धकार निवारण' },
+            { item: !isDevanagariLocale(locale) ? 'Throne' : 'सिंहासन', meaning: !isDevanagariLocale(locale) ? 'Authority, power' : 'अधिकार, शक्ति' },
+            { item: !isDevanagariLocale(locale) ? 'Bull' : 'वृषभ', meaning: !isDevanagariLocale(locale) ? 'Strength, dharma' : 'बल, धर्म' },
+            { item: !isDevanagariLocale(locale) ? 'Flag' : 'ध्वज', meaning: !isDevanagariLocale(locale) ? 'Victory, announcement' : 'विजय, घोषणा' },
+            { item: !isDevanagariLocale(locale) ? 'Fan' : 'व्यजन', meaning: !isDevanagariLocale(locale) ? 'Royal service, comfort' : 'राजसेवा, सुविधा' },
           ].map((a) => (
             <div key={a.item} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-3 border border-purple-400/10">
               <p className="text-purple-300 font-bold text-sm">{a.item}</p>
@@ -221,7 +222,7 @@ export default function LearnAdvancedPage() {
         <p className="mt-3 text-text-secondary text-sm">{((L.muhurtaFactors as Record<string, string>)[locale] ?? L.muhurtaFactors.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-emerald-400/20">
           <p className="text-emerald-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Multi-Factor Scoring Example (Marriage):' : 'बहु-कारक अंकन उदाहरण (विवाह):'}
+            {!isDevanagariLocale(locale) ? 'Multi-Factor Scoring Example (Marriage):' : 'बहु-कारक अंकन उदाहरण (विवाह):'}
           </p>
           <p className="text-emerald-200/80 font-mono text-xs">
             {locale === 'en'
@@ -251,23 +252,23 @@ export default function LearnAdvancedPage() {
         <p>{((L.shadbalaContent as Record<string, string>)[locale] ?? L.shadbalaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'The Six Components:' : 'छह घटक:'}
+            {!isDevanagariLocale(locale) ? 'The Six Components:' : 'छह घटक:'}
           </p>
           <p className="text-gold-light/80 text-xs leading-relaxed">{((L.shadbalaComponents as Record<string, string>)[locale] ?? L.shadbalaComponents.en)}</p>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-amber-400/15">
           <p className="text-amber-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Minimum Shadbala Thresholds (in Rupas):' : 'न्यूनतम षड्बल सीमा (रूपों में):'}
+            {!isDevanagariLocale(locale) ? 'Minimum Shadbala Thresholds (in Rupas):' : 'न्यूनतम षड्बल सीमा (रूपों में):'}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             {[
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Sun' : 'सूर्य', threshold: '6.5' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Moon' : 'चन्द्र', threshold: '6.0' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mars' : 'मंगल', threshold: '5.0' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Mercury' : 'बुध', threshold: '7.0' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter' : 'गुरु', threshold: '6.5' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Venus' : 'शुक्र', threshold: '5.5' },
-              { planet: (locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn' : 'शनि', threshold: '5.0' },
+              { planet: !isDevanagariLocale(locale) ? 'Sun' : 'सूर्य', threshold: '6.5' },
+              { planet: !isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र', threshold: '6.0' },
+              { planet: !isDevanagariLocale(locale) ? 'Mars' : 'मंगल', threshold: '5.0' },
+              { planet: !isDevanagariLocale(locale) ? 'Mercury' : 'बुध', threshold: '7.0' },
+              { planet: !isDevanagariLocale(locale) ? 'Jupiter' : 'गुरु', threshold: '6.5' },
+              { planet: !isDevanagariLocale(locale) ? 'Venus' : 'शुक्र', threshold: '5.5' },
+              { planet: !isDevanagariLocale(locale) ? 'Saturn' : 'शनि', threshold: '5.0' },
             ].map((p) => (
               <div key={p.planet} className="flex justify-between text-text-secondary">
                 <span>{p.planet}</span>
@@ -289,12 +290,12 @@ export default function LearnAdvancedPage() {
         <p className="mt-3 text-text-secondary text-sm">{((L.ashtakavargaUse as Record<string, string>)[locale] ?? L.ashtakavargaUse.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-cyan-400/15">
           <p className="text-cyan-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sarvashtakavarga Score Interpretation:' : 'सर्वाष्टकवर्ग अंक व्याख्या:'}
+            {!isDevanagariLocale(locale) ? 'Sarvashtakavarga Score Interpretation:' : 'सर्वाष्टकवर्ग अंक व्याख्या:'}
           </p>
           <div className="space-y-1 text-xs">
-            <p className="text-emerald-300 font-mono">30-56 {(locale !== 'hi' && String(locale) !== 'sa') ? 'Bindus: Strong sign — favorable transits, strong house' : 'बिन्दु: प्रबल राशि — अनुकूल गोचर'}</p>
-            <p className="text-amber-300 font-mono">25-29 {(locale !== 'hi' && String(locale) !== 'sa') ? 'Bindus: Average — mixed results during transits' : 'बिन्दु: सामान्य — मिश्रित परिणाम'}</p>
-            <p className="text-red-300 font-mono">0-24  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Bindus: Weak sign — challenging transits, weak house' : 'बिन्दु: दुर्बल राशि — कठिन गोचर'}</p>
+            <p className="text-emerald-300 font-mono">30-56 {!isDevanagariLocale(locale) ? 'Bindus: Strong sign — favorable transits, strong house' : 'बिन्दु: प्रबल राशि — अनुकूल गोचर'}</p>
+            <p className="text-amber-300 font-mono">25-29 {!isDevanagariLocale(locale) ? 'Bindus: Average — mixed results during transits' : 'बिन्दु: सामान्य — मिश्रित परिणाम'}</p>
+            <p className="text-red-300 font-mono">0-24  {!isDevanagariLocale(locale) ? 'Bindus: Weak sign — challenging transits, weak house' : 'बिन्दु: दुर्बल राशि — कठिन गोचर'}</p>
           </div>
         </div>
       </LessonSection>
@@ -305,7 +306,7 @@ export default function LearnAdvancedPage() {
 
         <div className="mt-4 mb-6">
           <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Related Learn Modules' : 'सम्बन्धित शिक्षा मॉड्यूल'}
+            {!isDevanagariLocale(locale) ? 'Related Learn Modules' : 'सम्बन्धित शिक्षा मॉड्यूल'}
           </h4>
           <div className="flex flex-wrap gap-2">
             {MODULE_LINKS.map((ml) => (

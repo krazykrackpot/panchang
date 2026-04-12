@@ -1,6 +1,7 @@
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -255,7 +256,7 @@ const sectionCard = 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0
 
 export default async function KeralaSchoolPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 

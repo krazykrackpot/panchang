@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Tippanni — Your Chart Interpretation Guide', hi: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका' , ta: 'டிப்பணி — ஜாதக விளக்க வழிகாட்டி' },
@@ -237,7 +238,7 @@ const L = {
 
 export default function TippanniPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (

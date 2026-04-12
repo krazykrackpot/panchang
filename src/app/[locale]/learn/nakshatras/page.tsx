@@ -11,6 +11,7 @@ import type { Locale } from '@/types/panchang';
 import RashiNakshatraWheel from '@/components/learn/RashiNakshatraWheel';
 import NakshatraDashaSpiral from '@/components/learn/NakshatraDashaSpiral';
 import { NAKSHATRA_ICONS } from '@/components/icons/NakshatraIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /** Format decimal degrees as D°M' (e.g. 13.333 → "13°20'") */
 function fmtDeg(d: number): string {
@@ -168,7 +169,7 @@ const YOGATARAS: { id: number; star: string; starHi: string; designation: string
 export default function LearnNakshatrasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const lo = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
+  const lo = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
 
   return (
     <div>

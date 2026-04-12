@@ -1,6 +1,7 @@
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi)
@@ -126,7 +127,7 @@ const TIMELINE = [
 
 export default async function SpeedOfLightPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 

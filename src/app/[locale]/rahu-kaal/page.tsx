@@ -12,6 +12,7 @@ import { CITIES, type CityData } from '@/lib/constants/cities';
 import { getDefaultCityForLocale } from '@/lib/constants/rashi-slugs';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── City selector list ────────────────────────────────────────
 const CITY_SLUGS = ['delhi', 'mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'varanasi'] as const;
@@ -96,7 +97,7 @@ function timeToMinutes(t: string): number {
 
 export default function RahuKaalPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale === 'hi' || String(locale) === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -126,7 +127,7 @@ export default function RahuKaalPage() {
   // Date formatting
   const dateStr = useMemo(() => {
     const d = new Date(year, month - 1, day);
-    const loc = locale === 'sa' ? 'hi-IN' : locale === 'hi' ? 'hi-IN' : 'en-IN';
+    const loc = isDevanagariLocale(locale) ? 'hi-IN' : 'en-IN';
     return d.toLocaleDateString(loc, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   }, [year, month, day, locale]);
 
@@ -211,7 +212,7 @@ export default function RahuKaalPage() {
           <p className="text-text-secondary text-lg">{dateStr}</p>
           <p className="text-text-secondary flex items-center gap-1.5 mt-1">
             <MapPin size={14} className="text-gold-primary" />
-            {selectedCity.name[locale === 'sa' ? 'hi' : locale === 'hi' ? 'hi' : 'en'] || selectedCity.name.en}
+            {selectedCity.name[isDevanagariLocale(locale) ? 'hi' : 'en'] || selectedCity.name.en}
           </p>
         </motion.div>
 
@@ -232,7 +233,7 @@ export default function RahuKaalPage() {
                   : 'bg-bg-secondary border border-white/10 text-text-secondary hover:border-gold-primary/40 hover:text-text-primary'
               }`}
             >
-              {city.name[locale === 'sa' ? 'hi' : locale === 'hi' ? 'hi' : 'en'] || city.name.en}
+              {city.name[isDevanagariLocale(locale) ? 'hi' : 'en'] || city.name.en}
             </button>
           ))}
         </motion.div>

@@ -4,11 +4,12 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import GoldDivider from '@/components/ui/GoldDivider';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export default function AboutPage() {
   const t = useTranslations('about');
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const sections = [

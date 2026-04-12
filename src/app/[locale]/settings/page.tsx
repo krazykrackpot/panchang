@@ -10,6 +10,7 @@ import PushPermission from '@/components/notifications/PushPermission';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ProfileData {
   display_name: string;
@@ -500,7 +501,7 @@ export default function SettingsPage() {
   }
 
   const memberSince = user.created_at
-    ? new Date(user.created_at).toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', {
+    ? new Date(user.created_at).toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', {
         year: 'numeric', month: 'long', day: 'numeric',
       })
     : '—';
@@ -754,7 +755,7 @@ export default function SettingsPage() {
                   birth_lng: loc.lng,
                   birth_timezone: loc.timezone,
                 })}
-                placeholder={locale === 'hi' || locale === 'sa' ? 'शहर खोजें...' : 'Search city or place...'}
+                placeholder={isDevanagariLocale(locale) ? 'शहर खोजें...' : 'Search city or place...'}
               />
               {profile.birth_place && profile.birth_lat != null && (
                 <p className="text-xs text-text-secondary/75 mt-1.5 flex items-center gap-1">
@@ -859,7 +860,7 @@ export default function SettingsPage() {
             {NOTIF_TYPES.map((nt) => (
               <label key={nt.key} className="flex items-center justify-between cursor-pointer group">
                 <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? nt.en : nt.hi}
+                  {!isDevanagariLocale(locale) ? nt.en : nt.hi}
                 </span>
                 <button
                   role="switch"

@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Gochar — Transits & Predictions', hi: 'गोचर — ग्रह गति और भविष्यवाणी', sa: 'गोचरः — ग्रहगतिः भविष्यवाणी च' , ta: 'கோசாரம் — கோசாரங்கள் & கணிப்புகள்' },
@@ -122,7 +123,7 @@ const TRANSIT_HOUSES = [
 
 export default function LearnGocharPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -156,7 +157,7 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{((L.moonContent2 as Record<string, string>)[locale] ?? L.moonContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Transit house = Current planet sign - Birth Moon sign + 1' : 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1'}
+            {!isDevanagariLocale(locale) ? 'Transit house = Current planet sign - Birth Moon sign + 1' : 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
             {locale === 'en'
@@ -199,21 +200,21 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{((L.saturnContent2 as Record<string, string>)[locale] ?? L.saturnContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-blue-400/20">
           <p className="text-blue-300 font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Three Phases of Sade Sati:' : 'साढ़े साती के तीन चरण:'}
+            {!isDevanagariLocale(locale) ? 'Three Phases of Sade Sati:' : 'साढ़े साती के तीन चरण:'}
           </p>
           <div className="space-y-1">
             <p className="text-blue-200/80 font-mono text-xs">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction' : 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह'}
+              {!isDevanagariLocale(locale) ? '1st Phase (12th from Moon): Rising phase — mental stress, financial pressure, doubt about direction' : 'प्रथम चरण (चन्द्र से 12वाँ): उदय चरण — मानसिक तनाव, आर्थिक दबाव, दिशा पर संदेह'}
             </p>
             <p className="text-blue-200/80 font-mono text-xs">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval' : 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल'}
+              {!isDevanagariLocale(locale) ? '2nd Phase (1st from Moon): Peak intensity — identity transformation, health challenges, career upheaval' : 'द्वितीय चरण (चन्द्र से 1ला): चरम तीव्रता — पहचान परिवर्तन, स्वास्थ्य चुनौती, करियर उथल-पुथल'}
             </p>
             <p className="text-blue-200/80 font-mono text-xs">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments' : 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन'}
+              {!isDevanagariLocale(locale) ? '3rd Phase (2nd from Moon): Setting phase — financial restructuring, speech issues, family adjustments' : 'तृतीय चरण (चन्द्र से 2रा): अस्त चरण — आर्थिक पुनर्गठन, वाणी सम्बन्धी, पारिवारिक समायोजन'}
             </p>
           </div>
           <p className="text-blue-200/50 font-mono text-xs mt-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life' : 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है'}
+            {!isDevanagariLocale(locale) ? 'Saturn orbit: 29.46 years → everyone faces Sade Sati 2-3 times in life' : 'शनि कक्षा: 29.46 वर्ष → हर व्यक्ति जीवन में 2-3 बार साढ़े साती का सामना करता है'}
           </p>
         </div>
       </LessonSection>
@@ -224,7 +225,7 @@ export default function LearnGocharPage() {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious Jupiter transit houses' : 'शुभ गुरु गोचर भाव'}
+              {!isDevanagariLocale(locale) ? 'Auspicious Jupiter transit houses' : 'शुभ गुरु गोचर भाव'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'
@@ -234,7 +235,7 @@ export default function LearnGocharPage() {
           </div>
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-red-500/15">
             <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Challenging Jupiter transit houses' : 'कठिन गुरु गोचर भाव'}
+              {!isDevanagariLocale(locale) ? 'Challenging Jupiter transit houses' : 'कठिन गुरु गोचर भाव'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'
@@ -251,16 +252,16 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{((L.doubleTransitContent2 as Record<string, string>)[locale] ?? L.doubleTransitContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Double Transit Examples:' : 'दोहरा गोचर उदाहरण:'}
+            {!isDevanagariLocale(locale) ? 'Double Transit Examples:' : 'दोहरा गोचर उदाहरण:'}
           </p>
           <div className="space-y-1.5 text-gold-light/80 font-mono text-xs">
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Marriage: Jupiter + Saturn both aspect 7th house from Moon' : 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Job change: Jupiter + Saturn both aspect 10th house from Moon' : 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Child birth: Jupiter + Saturn both aspect 5th house from Moon' : 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon' : 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Marriage: Jupiter + Saturn both aspect 7th house from Moon' : 'विवाह: गुरु + शनि दोनों चन्द्र से 7वें भाव को दृष्टि करें'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Job change: Jupiter + Saturn both aspect 10th house from Moon' : 'नौकरी परिवर्तन: गुरु + शनि दोनों 10वें भाव को दृष्टि करें'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Child birth: Jupiter + Saturn both aspect 5th house from Moon' : 'संतान जन्म: गुरु + शनि दोनों 5वें भाव को दृष्टि करें'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Property purchase: Jupiter + Saturn both aspect 4th house from Moon' : 'सम्पत्ति खरीद: गुरु + शनि दोनों 4वें भाव को दृष्टि करें'}</p>
           </div>
           <p className="text-gold-light/50 font-mono text-xs mt-2 italic">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.' : 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।'}
+            {!isDevanagariLocale(locale) ? 'Note: The event must also be supported by the running Dasha — double transit provides the timing window, Dasha provides the promise.' : 'नोट: घटना को चल रही दशा का समर्थन भी होना चाहिए — दोहरा गोचर समय विंडो देता है, दशा वादा देती है।'}
           </p>
         </div>
       </LessonSection>
@@ -277,24 +278,24 @@ export default function LearnGocharPage() {
         <p className="mt-3" style={bodyFont}>{((L.ashtakavargaContent2 as Record<string, string>)[locale] ?? L.ashtakavargaContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ashtakavarga Scoring:' : 'अष्टकवर्ग अंकन:'}
+            {!isDevanagariLocale(locale) ? 'Ashtakavarga Scoring:' : 'अष्टकवर्ग अंकन:'}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
             <div className="p-2 rounded bg-red-400/10 border border-red-400/15">
               <span className="text-red-400 font-mono font-bold">0-2</span>
-              <span className="text-text-secondary ml-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Very weak' : 'अत्यन्त दुर्बल'}</span>
+              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Very weak' : 'अत्यन्त दुर्बल'}</span>
             </div>
             <div className="p-2 rounded bg-amber-400/10 border border-amber-400/15">
               <span className="text-amber-400 font-mono font-bold">3</span>
-              <span className="text-text-secondary ml-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Below average' : 'औसत से नीचे'}</span>
+              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Below average' : 'औसत से नीचे'}</span>
             </div>
             <div className="p-2 rounded bg-blue-400/10 border border-blue-400/15">
               <span className="text-blue-400 font-mono font-bold">4-5</span>
-              <span className="text-text-secondary ml-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Good' : 'शुभ'}</span>
+              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Good' : 'शुभ'}</span>
             </div>
             <div className="p-2 rounded bg-emerald-400/10 border border-emerald-400/15">
               <span className="text-emerald-400 font-mono font-bold">6-8</span>
-              <span className="text-text-secondary ml-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Excellent' : 'उत्कृष्ट'}</span>
+              <span className="text-text-secondary ml-2">{!isDevanagariLocale(locale) ? 'Excellent' : 'उत्कृष्ट'}</span>
             </div>
           </div>
         </div>
@@ -306,9 +307,9 @@ export default function LearnGocharPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark w-12">{(locale !== 'hi' && String(locale) !== 'sa') ? 'House' : 'भाव'}</th>
-                <th className="text-left py-2 px-2 text-blue-400">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn Transit Effect' : 'शनि गोचर प्रभाव'}</th>
-                <th className="text-left py-2 px-2 text-amber-400">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter Transit Effect' : 'गुरु गोचर प्रभाव'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark w-12">{!isDevanagariLocale(locale) ? 'House' : 'भाव'}</th>
+                <th className="text-left py-2 px-2 text-blue-400">{!isDevanagariLocale(locale) ? 'Saturn Transit Effect' : 'शनि गोचर प्रभाव'}</th>
+                <th className="text-left py-2 px-2 text-amber-400">{!isDevanagariLocale(locale) ? 'Jupiter Transit Effect' : 'गुरु गोचर प्रभाव'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -329,7 +330,7 @@ export default function LearnGocharPage() {
         <p style={bodyFont}>{((L.balamContent as Record<string, string>)[locale] ?? L.balamContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chandra Balam (Moon Strength):' : 'चन्द्र बलम (चन्द्र शक्ति):'}
+            {!isDevanagariLocale(locale) ? 'Chandra Balam (Moon Strength):' : 'चन्द्र बलम (चन्द्र शक्ति):'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
@@ -342,7 +343,7 @@ export default function LearnGocharPage() {
               : 'अशुभ: 1, 2, 4, 5, 8, 9, 12'}
           </p>
           <p className="text-gold-light font-mono text-sm mb-2 mt-3">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tara Balam (Star Strength):' : 'तारा बलम (तारा शक्ति):'}
+            {!isDevanagariLocale(locale) ? 'Tara Balam (Star Strength):' : 'तारा बलम (तारा शक्ति):'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
@@ -380,7 +381,7 @@ export default function LearnGocharPage() {
               </span>
               {'tool' in mod && (
                 <span className="text-text-tertiary text-xs block mt-0.5">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tool' : 'उपकरण'} →
+                  {!isDevanagariLocale(locale) ? 'Tool' : 'उपकरण'} →
                 </span>
               )}
             </Link>

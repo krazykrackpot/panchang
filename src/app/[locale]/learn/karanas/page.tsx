@@ -8,6 +8,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ChevronDown } from 'lucide-react';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Inline bilingual labels (en/hi) ─── */
 const L = {
@@ -259,15 +260,15 @@ const natureColor = (nature: string) => {
 };
 
 const natureLabel = (nature: string, locale: string) => {
-  if (nature === 'auspicious') return (locale !== 'hi' && String(locale) !== 'sa') ? 'Shubha' : 'शुभ';
-  if (nature === 'neutral') return (locale !== 'hi' && String(locale) !== 'sa') ? 'Mishra' : 'मिश्र';
-  return (locale !== 'hi' && String(locale) !== 'sa') ? 'Ashubha' : 'अशुभ';
+  if (nature === 'auspicious') return !isDevanagariLocale(locale) ? 'Shubha' : 'शुभ';
+  if (nature === 'neutral') return !isDevanagariLocale(locale) ? 'Mishra' : 'मिश्र';
+  return !isDevanagariLocale(locale) ? 'Ashubha' : 'अशुभ';
 };
 
 export default function LearnKaranasPage() {
   const t = useTranslations('learn');
   const locale = useLocale() as Locale;
-  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
+  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for inline labels
 
   const chara = KARANAS.filter(k => k.type === 'chara');
   const sthira = KARANAS.filter(k => k.type === 'sthira');

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Bilingual labels ─────────────────────────────────────────────── */
 const L = {
@@ -364,7 +365,7 @@ const HORA_PRACTICE = [
 /* ── Main Page ────────────────────────────────────────────────────── */
 export default function HoraChaldeanPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale === 'hi' || locale === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const isDevanagari = isHi;
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }

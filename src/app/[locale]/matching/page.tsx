@@ -19,6 +19,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { RASHIS } from '@/lib/constants/rashis';
 import { GRAHAS } from '@/lib/constants/grahas';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   en: {
@@ -85,7 +86,7 @@ export default function MatchingPage() {
   const t = useTranslations('matching');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const lbl = (L as Record<string, typeof L.en>)[String(locale)] || L.en;
 
@@ -192,7 +193,7 @@ export default function MatchingPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
         <Link href="/matching/compatibility" className="inline-block mt-4 text-gold-primary hover:text-gold-light text-sm transition-colors">
-          {isTamil ? 'ராசி பொருத்த அட்டவணை பார்க்க →' : locale === 'hi' ? 'राशि संगतता चार्ट देखें →' : locale === 'sa' ? 'राशिसंगततासारिणी पश्यतु →' : 'View Rashi Compatibility Chart →'}
+          {isTamil ? 'ராசி பொருத்த அட்டவணை பார்க்க →' : isDevanagari ? 'राशि संगतता चार्ट देखें →' : 'View Rashi Compatibility Chart →'}
         </Link>
       </motion.div>
 
@@ -405,7 +406,7 @@ export default function MatchingPage() {
               title={isTamil ? 'அஷ்ட கூடம் (8-மடங்கு பொருத்தம்) என்றால் என்ன?' : locale === 'en' ? 'What is Ashta Kuta (8-Fold Compatibility)?' : 'अष्ट कूट (8-गुण मिलान) क्या है?'}
               defaultOpen={true}
             >
-              {locale === 'hi' ? (
+              {isDevanagari ? (
                 <p>अष्ट कूट पद्धति 8 आयामों पर संगतता को अंकित करती है (अधिकतम 36 अंक): वर्ण (1 अंक) — आध्यात्मिक अनुकूलता, वश्य (2 अंक) — परस्पर आकर्षण, तारा (3 अंक) — नक्षत्र सामंजस्य, योनि (4 अंक) — शारीरिक अनुकूलता, ग्रह मैत्री (5 अंक) — मानसिक तालमेल, गण (6 अंक) — स्वभाव मिलान (देव/मनुष्य/राक्षस), भकूट (7 अंक) — समग्र समृद्धि, नाड़ी (8 अंक) — स्वास्थ्य व आनुवंशिक अनुकूलता (एक ही नाड़ी = गंभीर दोष)। 28+ = उत्तम, 18-27 = अच्छा, 18 से कम = चुनौतीपूर्ण। ये दिशानिर्देश हैं, फैसले नहीं — कम अंकों वाले कई सफल विवाह हुए हैं।</p>
               ) : (
                 <p>The Ashta Kuta system scores compatibility on 8 dimensions (max 36 points): Varna (1pt) — spiritual compatibility, Vashya (2pts) — mutual attraction, Tara (3pts) — birth star harmony, Yoni (4pts) — physical compatibility, Graha Maitri (5pts) — mental wavelength, Gana (6pts) — temperament match (gentle/mixed/intense), Bhakoot (7pts) — overall prosperity, Nadi (8pts) — health and genetic compatibility (same Nadi = serious concern). 28+ = Excellent, 18–27 = Good, below 18 = Challenging. These are guidelines, not verdicts — many happy marriages have low scores.</p>
@@ -472,7 +473,7 @@ export default function MatchingPage() {
               const NAK_NAMES_HI = ['','अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पू.फाल्गुनी','उ.फाल्गुनी','हस्त','चित्रा','स्वाती','विशाखा','अनुराधा','ज्येष्ठा','मूल','पू.आषाढ़','उ.आषाढ़','श्रवण','धनिष्ठा','शतभिषा','पू.भाद्र','उ.भाद्र','रेवती'];
               const vedaPair = VEDA_PAIRS.find(([a, b]) => (a === bNak && b === gNak) || (a === gNak && b === bNak));
               if (!vedaPair) return null;
-              const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+              const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
               const sn = (n: number) => lk === 'en' ? NAK_NAMES_EN[n] : NAK_NAMES_HI[n];
               // In Veda pair: the lower-numbered nakshatra tends to dominate (traditional view)
               const dominant = Math.min(bNak, gNak) === bNak ? 'boy' : 'girl';

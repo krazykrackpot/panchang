@@ -15,6 +15,7 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import type { Locale } from '@/types/panchang';
 import type { MuhurtaAIResult, ExtendedActivityId } from '@/types/muhurta-ai';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const ACTIVITY_LIST: { id: ExtendedActivityId; label: Record<string, string> }[] = [
   { id: 'marriage', label: { en: 'Marriage', hi: 'विवाह', sa: 'विवाहः', ta: 'திருமணம்' } },
@@ -111,7 +112,7 @@ export default function MuhurtaAIPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (L as Record<string, typeof L.en>)[locale] || L.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -212,10 +213,10 @@ export default function MuhurtaAIPage() {
       {/* Muhurta Intro */}
       <InfoBlock
         id="muhurta-ai-intro"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is Muhurta?' : locale === 'hi' ? 'मुहूर्त क्या है?' : 'मुहूर्तम् किम्?'}
+        title={!isDevanagariLocale(locale) ? 'What is Muhurta?' : isDevanagari ? 'मुहूर्त क्या है?' : 'मुहूर्तम् किम्?'}
         defaultOpen={false}
       >
-        {locale === 'hi' ? (
+        {isDevanagari ? (
           <p>मुहूर्त सही समय चुनने का वैदिक विज्ञान है। जैसे सही मौसम में बोए गए बीज बेहतर उगते हैं, वैसे ही शुभ समय पर शुरू किए गए कार्य अधिक सफल होते हैं। हमारा AI प्रत्येक समय खंड को 0-100 के पैमाने पर अंकित करता है: तिथि गुण, नक्षत्र प्रकृति, योग शुभता, ग्रह होरा, चौघड़िया और वर्तमान गोचर।</p>
         ) : (
           <p>Muhurta is the Vedic science of choosing the right time. Just as seeds planted in the right season grow better, actions started at auspicious times succeed more easily. Our AI scores each time window (0–100) by combining: tithi quality, nakshatra nature, yoga auspiciousness, planetary hora, choghadiya, and current transits.</p>
@@ -262,7 +263,7 @@ export default function MuhurtaAIPage() {
                   setLocation({ lat: loc.lat, lng: loc.lng, name: loc.name, tz: tzOffset, timezone: ianaTimezone });
                   setShowLocationSearch(false);
                 }}
-                placeholder={locale === 'hi' ? 'शहर खोजें...' : locale === 'sa' ? 'नगरं खोजयतु...' : 'Search city...'}
+                placeholder={isDevanagariLocale(locale) ? 'शहर खोजें...' : 'Search city...'}
                 className="mt-1"
               />
             ) : (
@@ -333,7 +334,7 @@ export default function MuhurtaAIPage() {
                   <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {top.panchangaShuddhi !== undefined && (
                       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20">
-                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
+                        <span className="text-text-secondary text-xs">{!isDevanagariLocale(locale) ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
                         <span className={`font-bold text-sm ${top.panchangaShuddhi >= 4 ? 'text-emerald-400' : top.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>
                           {top.panchangaShuddhi}/5
                         </span>
@@ -341,7 +342,7 @@ export default function MuhurtaAIPage() {
                     )}
                     {top.taraBala && (
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.taraBala.auspicious ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-red-500/10 border-red-500/20'}`}>
-                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tara Bala' : 'तारा बल'}</span>
+                        <span className="text-text-secondary text-xs">{!isDevanagariLocale(locale) ? 'Tara Bala' : 'तारा बल'}</span>
                         <span className={`font-bold text-sm ${top.taraBala.auspicious ? 'text-emerald-400' : 'text-red-400'}`}>
                           {top.taraBala.name} {top.taraBala.auspicious ? '✓' : '✗'}
                         </span>
@@ -349,16 +350,16 @@ export default function MuhurtaAIPage() {
                     )}
                     {top.chandraBala !== undefined && (
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.chandraBala ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-amber-500/8 border-amber-500/20'}`}>
-                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Chandra Bala' : 'चन्द्र बल'}</span>
+                        <span className="text-text-secondary text-xs">{!isDevanagariLocale(locale) ? 'Chandra Bala' : 'चन्द्र बल'}</span>
                         <span className={`font-bold text-sm ${top.chandraBala ? 'text-emerald-400' : 'text-amber-400'}`}>
-                          {top.chandraBala ? ((locale !== 'hi' && String(locale) !== 'sa') ? '✓ Present' : '✓ उपस्थित') : ((locale !== 'hi' && String(locale) !== 'sa') ? '✗ Absent' : '✗ अनुपस्थित')}
+                          {top.chandraBala ? (!isDevanagariLocale(locale) ? '✓ Present' : '✓ उपस्थित') : (!isDevanagariLocale(locale) ? '✗ Absent' : '✗ अनुपस्थित')}
                         </span>
                       </div>
                     )}
                     {!hasBirthData && (
                       <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gold-primary/10 bg-bg-secondary/30">
                         <span className="text-text-secondary/70 text-xs">
-                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
+                          {!isDevanagariLocale(locale) ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
                         </span>
                       </div>
                     )}
@@ -384,9 +385,9 @@ export default function MuhurtaAIPage() {
                       <th className="text-left py-2 px-2">{t.time}</th>
                       <th className="text-left py-2 px-2">{t.score}</th>
                       <th className="text-left py-2 px-2">{t.panchang}</th>
-                      <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Shuddhi' : 'शुद्धि'}</th>
-                      {hasBirthData && <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tara' : 'तारा'}</th>}
-                      {hasBirthData && <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Chandra' : 'चन्द्र'}</th>}
+                      <th className="text-left py-2 px-2">{!isDevanagariLocale(locale) ? 'Shuddhi' : 'शुद्धि'}</th>
+                      {hasBirthData && <th className="text-left py-2 px-2">{!isDevanagariLocale(locale) ? 'Tara' : 'तारा'}</th>}
+                      {hasBirthData && <th className="text-left py-2 px-2">{!isDevanagariLocale(locale) ? 'Chandra' : 'चन्द्र'}</th>}
                       <th className="text-left py-2 px-2">{t.transit}</th>
                       <th className="text-left py-2 px-2">{t.timing}</th>
                       <th className="text-left py-2 px-2">{t.keyFactors}</th>

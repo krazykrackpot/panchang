@@ -8,6 +8,7 @@ import { MASA_NAMES, RITU_NAMES } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { MasaIcon } from '@/components/icons/PanchangIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const MASA_DETAILS: { gregApprox: string; nakshatraLink: string }[] = [
   { gregApprox: 'Mar-Apr', nakshatraLink: 'Chitra' },
@@ -30,6 +31,7 @@ const rituColors = ['#4ade80', '#f97316', '#3b82f6', '#eab308', '#a78bfa', '#60a
 /*  AnimatedAnnualWheel                                               */
 /* ------------------------------------------------------------------ */
 function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const CX = 250;
   const CY = 250;
 
@@ -209,7 +211,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1, y: CY - 10 }}
         transition={{ duration: 0.8, delay: 1.4 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'LUNISOLAR' : locale === 'hi' ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
+        {!isDevanagariLocale(locale) ? 'LUNISOLAR' : isDevanagari ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 8}
@@ -220,7 +222,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
+        {!isDevanagariLocale(locale) ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
       </motion.text>
     </motion.svg>
   );
@@ -233,7 +235,7 @@ export default function MasaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -262,7 +264,7 @@ export default function MasaPage() {
                 ? 'மாசம் & பருவம்'
                 : locale === 'en'
                 ? 'Masa & Ritu'
-                : locale === 'hi'
+                : isDevanagari
                 ? 'मास एवं ऋतु'
                 : 'मासः ऋतुश्च'}
             </span>
@@ -275,7 +277,7 @@ export default function MasaPage() {
               ? '12 மாதங்கள் மற்றும் 6 பருவங்கள் — சந்திர-சூரிய நாட்காட்டி'
               : locale === 'en'
               ? '12 Months and 6 Seasons — The Lunisolar Calendar'
-              : locale === 'hi'
+              : isDevanagari
               ? '12 मास और 6 ऋतुएँ — चान्द्र-सौर पञ्चाङ्ग'
               : 'द्वादश मासाः षड् ऋतवश्च — चान्द्रसौरपञ्चाङ्गम्'}
           </p>
@@ -294,14 +296,14 @@ export default function MasaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The Hindu calendar is lunisolar. Months (Masa) are primarily lunar — each month spans one New Moon to the next (Amanta system) or one Full Moon to the next (Purnimanta system). The month name is derived from the Nakshatra in which the Full Moon falls. Seasons (Ritu) follow the solar cycle: 6 Ritus of 2 months each track the Sun's progression through the zodiac. A solar year has ~365.25 days, while 12 lunar months total only ~354 days. The ~11-day gap is resolved by intercalation — an extra "Adhika Masa" (leap month) is inserted roughly every 2.7 years when two New Moons fall within the same solar month.`
-                : locale === 'hi'
+                : isDevanagari
                 ? `हिन्दू पञ्चाङ्ग चान्द्र-सौर है। मास मुख्यतः चान्द्र हैं — प्रत्येक मास एक अमावस्या से अगली तक (अमान्त) या एक पूर्णिमा से अगली तक (पूर्णिमान्त) होता है। मास का नाम उस नक्षत्र से आता है जिसमें पूर्णिमा पड़ती है। ऋतुएँ सौर चक्र का अनुसरण करती हैं: 2-2 मास की 6 ऋतुएँ। सौर वर्ष ~365.25 दिन और 12 चान्द्र मास ~354 दिन होते हैं। ~11 दिन का अन्तर अधिक मास (लौंद मास) से पूरा किया जाता है, जो लगभग हर 2.7 वर्ष में जुड़ता है।`
                 : `हिन्दूपञ्चाङ्गं चान्द्रसौरम्। मासाः मुख्यतः चान्द्राः — प्रत्येकं मासः एकामावस्यातः अपरामावस्यापर्यन्तम् (अमान्तपद्धतिः) भवति। मासनाम तस्मात् नक्षत्रात् आगच्छति यस्मिन् पूर्णिमा पतति। ऋतवः सौरचक्रम् अनुसरन्ति — द्वौ-द्वौ मासयोः 6 ऋतवः।`}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'days' : 'दिन'}
+                {!isDevanagariLocale(locale) ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
+                {!isDevanagariLocale(locale) ? 'days' : 'दिन'}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -318,7 +320,7 @@ export default function MasaPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'Annual Cycle — Months & Seasons'
-            : locale === 'hi'
+            : isDevanagari
             ? 'वार्षिक चक्र — मास और ऋतु'
             : 'वार्षिकचक्रम् — मासाः ऋतवश्च'}
         </h2>
@@ -338,7 +340,7 @@ export default function MasaPage() {
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
           {locale === 'en'
             ? '12 Lunar Months (Masa)'
-            : locale === 'hi'
+            : isDevanagari
             ? '12 चान्द्र मास'
             : 'द्वादश चान्द्रमासाः'}
         </h3>
@@ -379,7 +381,7 @@ export default function MasaPage() {
 
         {/* 6 Seasons */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? '6 Seasons (Ritu)' : locale === 'hi' ? '6 ऋतुएँ' : 'षड् ऋतवः'}
+          {!isDevanagariLocale(locale) ? '6 Seasons (Ritu)' : isDevanagari ? '6 ऋतुएँ' : 'षड् ऋतवः'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {RITU_NAMES.map((ritu, i) => (

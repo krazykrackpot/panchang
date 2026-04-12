@@ -21,6 +21,7 @@ import type { Locale } from '@/types/panchang';
 import type { VarshaphalData } from '@/types/varshaphal';
 import type { ChartStyle } from '@/types/kundali';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   en: {
@@ -150,7 +151,7 @@ export default function VarshaphalPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -236,10 +237,10 @@ export default function VarshaphalPage() {
       {/* Varshaphal Intro */}
       <InfoBlock
         id="varshaphal-intro"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is Varshaphal (Annual Horoscope)?' : locale === 'hi' ? 'वर्षफल क्या है?' : 'वर्षफलम् किम्?'}
+        title={!isDevanagariLocale(locale) ? 'What is Varshaphal (Annual Horoscope)?' : isDevanagari ? 'वर्षफल क्या है?' : 'वर्षफलम् किम्?'}
         defaultOpen={false}
       >
-        {locale === 'hi' ? (
+        {isDevanagari ? (
           <p>वर्षफल का अर्थ है &apos;वर्ष का फल&apos; — ताजिक पद्धति पर आधारित आपका वार्षिक कुण्डली फल। प्रत्येक वर्ष जब सूर्य अपनी जन्म-स्थिति पर लौटता है, उस ठीक क्षण की कुण्डली बनती है जो आने वाले 12 महीनों के विषय, चुनौतियां और अवसर दर्शाती है। मुख्य घटक: मुन्था (गतिशील भाग्य बिंदु), सहम (जीवन क्षेत्र के संवेदनशील बिंदु), और मुद्दा दशा (वार्षिक ग्रह अवधि)।</p>
         ) : (
           <p>Varshaphal means &apos;fruit of the year&apos; — your annual horoscope based on the Tajika system. A new chart is cast for the exact moment the Sun returns to its birth position each year, revealing themes, challenges, and opportunities for the coming 12 months. Key components: Muntha (progressed luck point), Sahams (sensitive life-area points), and Mudda Dasha (annual planetary periods).</p>
@@ -258,7 +259,7 @@ export default function VarshaphalPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={!isDevanagariLocale(locale) ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider">{t.year}</span>
@@ -296,7 +297,7 @@ export default function VarshaphalPage() {
             {/* Solar Return Moment + Age */}
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-3 sm:p-4 md:p-6 text-center">
               <h2 className="text-gold-primary text-sm uppercase tracking-wider mb-2 font-bold">{t.solarReturn}</h2>
-              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN')}</p>
+              <p className="text-gold-light text-2xl font-bold" style={headingFont}>{new Date(data.solarReturnMoment).toLocaleString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN')}</p>
               <p className="text-text-secondary mt-2">{t.age}: <span className="text-gold-light font-bold">{data.age}</span></p>
             </div>
 
@@ -365,13 +366,13 @@ export default function VarshaphalPage() {
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-gold-light font-bold text-sm" style={bodyFont}>{tl(y.name, locale)}</span>
                       <span className={`text-xs px-2 py-0.5 rounded-full ${y.favorable ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                        {y.favorable ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Favorable' : 'अनुकूल') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Unfavorable' : 'प्रतिकूल')}
+                        {y.favorable ? (!isDevanagariLocale(locale) ? 'Favorable' : 'अनुकूल') : (!isDevanagariLocale(locale) ? 'Unfavorable' : 'प्रतिकूल')}
                       </span>
                     </div>
                     <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
                   </div>
                 ))}
-                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
+                {data.tajikaYogas.length === 0 && <p className="text-text-secondary text-sm">{!isDevanagariLocale(locale) ? 'No significant Tajika yogas found.' : 'कोई महत्वपूर्ण ताजिक योग नहीं मिला।'}</p>}
               </div>
             </div>
 

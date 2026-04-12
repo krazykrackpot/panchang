@@ -35,6 +35,7 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import type { Locale, PanchangData } from '@/types/panchang';
 import type { PersonalizedDay, UserSnapshot, TransitAlert } from '@/lib/personalization/types';
 import type { ChartData, DashaEntry } from '@/types/kundali';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -980,18 +981,18 @@ export default function DashboardPage() {
               {earnedBadges.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-amber-500/10">
                   <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Badges Earned' : locale === 'hi' ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
+                    {!isDevanagariLocale(locale) ? 'Badges Earned' : isDevanagariLocale(locale) ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {earnedBadges.map(badge => (
                       <div
                         key={badge.id}
                         className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gold-primary/8 border border-gold-primary/15"
-                        title={(locale === 'hi' || locale === 'sa') ? badge.description.hi : badge.description.en}
+                        title={isDevanagariLocale(locale) ? badge.description.hi : badge.description.en}
                       >
                         <span className="text-sm">{badge.icon}</span>
                         <span className="text-[11px] text-text-primary font-medium">
-                          {(locale === 'hi' || locale === 'sa') ? badge.label.hi : badge.label.en}
+                          {isDevanagariLocale(locale) ? badge.label.hi : badge.label.en}
                         </span>
                       </div>
                     ))}
@@ -1000,7 +1001,7 @@ export default function DashboardPage() {
                     href="/learn#badges"
                     className="inline-block mt-2 text-[11px] text-gold-primary hover:text-gold-light transition-colors font-medium"
                   >
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'View All Badges \u2192' : locale === 'hi' ? 'सभी बैज देखें \u2192' : 'सर्वान् बैजान् पश्यतु \u2192'}
+                    {!isDevanagariLocale(locale) ? 'View All Badges \u2192' : isDevanagariLocale(locale) ? 'सभी बैज देखें \u2192' : 'सर्वान् बैजान् पश्यतु \u2192'}
                   </Link>
                 </div>
               )}
@@ -1310,12 +1311,12 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { href: '/dashboard/chart' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
-              { href: '/dashboard/dashas' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
-              { href: '/dashboard/muhurta' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
+              { href: '/dashboard/chart' as const, label: !isDevanagariLocale(locale) ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
+              { href: '/dashboard/dashas' as const, label: !isDevanagariLocale(locale) ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
+              { href: '/dashboard/muhurta' as const, label: !isDevanagariLocale(locale) ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
-              { href: '/dashboard/saved-charts' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
+              { href: '/dashboard/saved-charts' as const, label: !isDevanagariLocale(locale) ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

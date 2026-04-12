@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import ProgressIndicator from '@/components/learn/ProgressIndicator';
 import LevelBadge from '@/components/learn/LevelBadge';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PHASES = [
   { phase: 0, label: { en: 'Pre-Foundation', hi: 'पूर्व-आधार' }, color: 'border-gold-primary/20', topics: [
@@ -136,7 +137,7 @@ const PHASES = [
 
 export default function ModuleIndexPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   let moduleCount = 0;

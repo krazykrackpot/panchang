@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { getStoryBySlug, getAllStorySlugs } from '@/lib/stories/story-data';
 import StoryViewer from '@/components/stories/StoryViewer';
 import { locales } from '@/lib/i18n/config';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const story = getStoryBySlug(slug);
   if (!story) return {};
 
-  const isHi = locale === 'hi' || locale === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const title = isHi ? story.title.hi : story.title.en;
   const description = isHi ? story.description.hi : story.description.en;
 
@@ -49,7 +50,7 @@ export default async function StoryPage({ params }: { params: Promise<{ locale: 
   const story = getStoryBySlug(slug);
   if (!story) notFound();
 
-  const isHi = locale === 'hi' || locale === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const title = isHi ? story.title.hi : story.title.en;
   const description = isHi ? story.description.hi : story.description.en;
   const url = `${BASE_URL}/${locale}/stories/${slug}`;

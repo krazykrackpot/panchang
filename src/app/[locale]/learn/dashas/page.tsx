@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Dashas — Planetary Periods', hi: 'दशा — ग्रह अवधियाँ', sa: 'दशाः — ग्रहकालखण्डाः' , ta: 'தசைகள் — கிரக காலங்கள்' },
@@ -201,7 +202,7 @@ const EVENT_TIMING = [
 
 export default function LearnDashasPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -245,7 +246,7 @@ export default function LearnDashasPage() {
               className="flex items-center gap-3"
             >
               <div className="w-20 text-right text-sm font-semibold" style={{ color: d.color }}>
-                {(locale !== 'hi' && String(locale) !== 'sa') ? d.planet : d.planetHi}
+                {!isDevanagariLocale(locale) ? d.planet : d.planetHi}
               </div>
               <div
                 className="h-8 rounded-md flex items-center px-3 text-xs font-mono text-white/80"
@@ -256,7 +257,7 @@ export default function LearnDashasPage() {
                   border: `1px solid ${d.color}55`,
                 }}
               >
-                {d.years} {(locale !== 'hi' && String(locale) !== 'sa') ? 'yrs' : 'वर्ष'}
+                {d.years} {!isDevanagariLocale(locale) ? 'yrs' : 'वर्ष'}
               </div>
               <div className="text-text-secondary/75 text-xs hidden sm:block">
                 {isHi ? d.nakshatrasHi : d.nakshatras}
@@ -264,7 +265,7 @@ export default function LearnDashasPage() {
             </motion.div>
           ))}
           <div className="mt-2 text-center text-text-secondary/70 text-xs font-mono">
-            Total: 7+20+6+10+7+18+16+19+17 = 120 {(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्ष'}
+            Total: 7+20+6+10+7+18+16+19+17 = 120 {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}
           </div>
         </div>
       </LessonSection>
@@ -277,11 +278,11 @@ export default function LearnDashasPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Years' : 'वर्ष'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Ruling Nakshatras (1-9)' : 'शासित नक्षत्र (1-9)'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? '(10-18)' : '(10-18)'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? '(19-27)' : '(19-27)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Years' : 'वर्ष'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Ruling Nakshatras (1-9)' : 'शासित नक्षत्र (1-9)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? '(10-18)' : '(10-18)'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? '(19-27)' : '(19-27)'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -290,7 +291,7 @@ export default function LearnDashasPage() {
                 return (
                   <tr key={d.planet} className="hover:bg-gold-primary/3">
                     <td className="py-2 px-2 font-medium" style={{ color: d.color }}>
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? d.planet : d.planetHi}
+                      {!isDevanagariLocale(locale) ? d.planet : d.planetHi}
                     </td>
                     <td className="py-2 px-2 text-text-secondary font-mono">{d.years}</td>
                     <td className="py-2 px-2 text-text-secondary">{naks[0]}</td>
@@ -309,19 +310,19 @@ export default function LearnDashasPage() {
         <p style={bodyFont}>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
+            {!isDevanagariLocale(locale) ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
           </p>
-          <p className="text-gold-light/80 font-mono text-xs">1. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Find Moon\'s Nakshatra at birth (e.g., Pushya)' : 'जन्म के समय चन्द्र का नक्षत्र ज्ञात करें (जैसे, पुष्य)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">2. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra lord = Dasha lord at birth (Pushya lord = Saturn)' : 'नक्षत्र स्वामी = जन्म पर दशा स्वामी (पुष्य स्वामी = शनि)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">3. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon\'s progress through Nakshatra = elapsed portion of Dasha' : 'नक्षत्र में चन्द्र की प्रगति = दशा का बीता हुआ भाग'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">1. {!isDevanagariLocale(locale) ? 'Find Moon\'s Nakshatra at birth (e.g., Pushya)' : 'जन्म के समय चन्द्र का नक्षत्र ज्ञात करें (जैसे, पुष्य)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">2. {!isDevanagariLocale(locale) ? 'Nakshatra lord = Dasha lord at birth (Pushya lord = Saturn)' : 'नक्षत्र स्वामी = जन्म पर दशा स्वामी (पुष्य स्वामी = शनि)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">3. {!isDevanagariLocale(locale) ? 'Moon\'s progress through Nakshatra = elapsed portion of Dasha' : 'नक्षत्र में चन्द्र की प्रगति = दशा का बीता हुआ भाग'}</p>
           <p className="text-gold-light/80 font-mono text-xs mt-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Example: Moon at 10° in Pushya (3°20\' to 16°40\')' : 'उदाहरण: पुष्य में चन्द्र 10° पर (3°20\' से 16°40\')'}
+            {!isDevanagariLocale(locale) ? 'Example: Moon at 10° in Pushya (3°20\' to 16°40\')' : 'उदाहरण: पुष्य में चन्द्र 10° पर (3°20\' से 16°40\')'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Progress = (10° - 3.333°) / 13.333° = 50%' : 'प्रगति = (10° - 3.333°) / 13.333° = 50%'}
+            {!isDevanagariLocale(locale) ? 'Progress = (10° - 3.333°) / 13.333° = 50%' : 'प्रगति = (10° - 3.333°) / 13.333° = 50%'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Remaining Saturn Dasha = 19 × (1 - 0.50) = 9.5 years' : 'शेष शनि दशा = 19 × (1 - 0.50) = 9.5 वर्ष'}
+            {!isDevanagariLocale(locale) ? 'Remaining Saturn Dasha = 19 × (1 - 0.50) = 9.5 years' : 'शेष शनि दशा = 19 × (1 - 0.50) = 9.5 वर्ष'}
           </p>
         </div>
       </LessonSection>
@@ -332,21 +333,21 @@ export default function LearnDashasPage() {
         <div className="mt-4 space-y-3">
           <div className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
             <p className="text-gold-light font-mono text-sm mb-3">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Given: Moon at 14°30\' Aries (Mesha)' : 'दिया गया: मेष में चन्द्र 14°30\' पर'}
+              {!isDevanagariLocale(locale) ? 'Given: Moon at 14°30\' Aries (Mesha)' : 'दिया गया: मेष में चन्द्र 14°30\' पर'}
             </p>
             <div className="space-y-1.5 text-gold-light/80 font-mono text-xs">
-              <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Step 1: Identify Nakshatra' : 'चरण 1: नक्षत्र पहचानें'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? '14°30\' Aries falls in Bharani (13°20\' - 26°40\' Aries)' : '14°30\' मेष भरणी में आता है (13°20\' - 26°40\' मेष)'}</p>
-              <p className="mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Step 2: Nakshatra lord' : 'चरण 2: नक्षत्र स्वामी'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Bharani lord = Venus → Birth Dasha = Venus Maha Dasha' : 'भरणी स्वामी = शुक्र → जन्म दशा = शुक्र महादशा'}</p>
-              <p className="mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Step 3: Calculate progress through Nakshatra' : 'चरण 3: नक्षत्र में प्रगति गणना'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon position within Bharani = 14°30\' - 13°20\' = 1°10\' = 1.167°' : 'भरणी में चन्द्र स्थिति = 14°30\' - 13°20\' = 1°10\' = 1.167°'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra span = 13°20\' = 13.333°' : 'नक्षत्र विस्तार = 13°20\' = 13.333°'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Progress = 1.167 / 13.333 = 8.75% elapsed' : 'प्रगति = 1.167 / 13.333 = 8.75% बीता'}</p>
-              <p className="mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Step 4: Calculate remaining Dasha' : 'चरण 4: शेष दशा गणना'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Venus total = 20 years' : 'शुक्र कुल = 20 वर्ष'}</p>
-              <p className="pl-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Remaining = 20 × (1 - 0.0875) = 18.25 years = 18 years 3 months' : 'शेष = 20 × (1 - 0.0875) = 18.25 वर्ष = 18 वर्ष 3 माह'}</p>
-              <p className="mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Step 5: Sequence after Venus' : 'चरण 5: शुक्र के बाद का क्रम'}</p>
+              <p>{!isDevanagariLocale(locale) ? 'Step 1: Identify Nakshatra' : 'चरण 1: नक्षत्र पहचानें'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? '14°30\' Aries falls in Bharani (13°20\' - 26°40\' Aries)' : '14°30\' मेष भरणी में आता है (13°20\' - 26°40\' मेष)'}</p>
+              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 2: Nakshatra lord' : 'चरण 2: नक्षत्र स्वामी'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Bharani lord = Venus → Birth Dasha = Venus Maha Dasha' : 'भरणी स्वामी = शुक्र → जन्म दशा = शुक्र महादशा'}</p>
+              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 3: Calculate progress through Nakshatra' : 'चरण 3: नक्षत्र में प्रगति गणना'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Moon position within Bharani = 14°30\' - 13°20\' = 1°10\' = 1.167°' : 'भरणी में चन्द्र स्थिति = 14°30\' - 13°20\' = 1°10\' = 1.167°'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Nakshatra span = 13°20\' = 13.333°' : 'नक्षत्र विस्तार = 13°20\' = 13.333°'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Progress = 1.167 / 13.333 = 8.75% elapsed' : 'प्रगति = 1.167 / 13.333 = 8.75% बीता'}</p>
+              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 4: Calculate remaining Dasha' : 'चरण 4: शेष दशा गणना'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Venus total = 20 years' : 'शुक्र कुल = 20 वर्ष'}</p>
+              <p className="pl-4">{!isDevanagariLocale(locale) ? 'Remaining = 20 × (1 - 0.0875) = 18.25 years = 18 years 3 months' : 'शेष = 20 × (1 - 0.0875) = 18.25 वर्ष = 18 वर्ष 3 माह'}</p>
+              <p className="mt-2">{!isDevanagariLocale(locale) ? 'Step 5: Sequence after Venus' : 'चरण 5: शुक्र के बाद का क्रम'}</p>
               <p className="pl-4 text-gold-light/60">{locale === 'en'
                 ? 'Venus (18y 3m remaining) → Sun (6y) → Moon (10y) → Mars (7y) → Rahu (18y) → Jupiter (16y) → Saturn (19y) → Mercury (17y) → Ketu (7y)'
                 : 'शुक्र (18 वर्ष 3 माह शेष) → सूर्य (6) → चन्द्र (10) → मंगल (7) → राहु (18) → गुरु (16) → शनि (19) → बुध (17) → केतु (7)'}</p>
@@ -361,7 +362,7 @@ export default function LearnDashasPage() {
         <p className="mt-3" style={bodyFont}>{((L.subContent2 as Record<string, string>)[locale] ?? L.subContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Antardasha Duration Formula:' : 'अन्तर्दशा अवधि सूत्र:'}
+            {!isDevanagariLocale(locale) ? 'Antardasha Duration Formula:' : 'अन्तर्दशा अवधि सूत्र:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
             Antardasha of B in Maha Dasha of A = (Years_A x Years_B) / 120
@@ -413,11 +414,11 @@ export default function LearnDashasPage() {
             >
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-gold-light font-bold text-sm" style={headingFont}>{sys.name[locale]}</span>
-                <span className="text-text-tertiary text-xs font-mono">{sys.cycle} / {sys.planets} {(locale !== 'hi' && String(locale) !== 'sa') ? 'planets' : 'ग्रह'}</span>
+                <span className="text-text-tertiary text-xs font-mono">{sys.cycle} / {sys.planets} {!isDevanagariLocale(locale) ? 'planets' : 'ग्रह'}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{sys.desc[locale]}</p>
               <div className="mt-2 text-xs text-emerald-400/80 font-mono">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Best used when: ' : 'सर्वोत्तम उपयोग: '}{sys.when[locale]}
+                {!isDevanagariLocale(locale) ? 'Best used when: ' : 'सर्वोत्तम उपयोग: '}{sys.when[locale]}
               </div>
             </motion.div>
           ))}
@@ -479,13 +480,13 @@ export default function LearnDashasPage() {
         <p className="mt-3" style={bodyFont}>{((L.findYourContent2 as Record<string, string>)[locale] ?? L.findYourContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'How to find it:' : 'कैसे खोजें:'}
+            {!isDevanagariLocale(locale) ? 'How to find it:' : 'कैसे खोजें:'}
           </p>
           <div className="space-y-1 text-gold-light/80 font-mono text-xs">
-            <p>1. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Go to /kundali and enter your birth details' : '/kundali पर जाएँ और जन्म विवरण दर्ज करें'}</p>
-            <p>2. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Click on the "Dashas" tab in the results' : 'परिणामों में "दशा" टैब पर क्लिक करें'}</p>
-            <p>3. {(locale !== 'hi' && String(locale) !== 'sa') ? 'The highlighted row is your current Maha Dasha' : 'हाइलाइट पंक्ति आपकी वर्तमान महादशा है'}</p>
-            <p>4. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Expand it to see Antardashas — the highlighted sub-row is your current Antardasha' : 'इसे विस्तार करें अन्तर्दशाएँ देखने के लिए — हाइलाइट उप-पंक्ति आपकी वर्तमान अन्तर्दशा है'}</p>
+            <p>1. {!isDevanagariLocale(locale) ? 'Go to /kundali and enter your birth details' : '/kundali पर जाएँ और जन्म विवरण दर्ज करें'}</p>
+            <p>2. {!isDevanagariLocale(locale) ? 'Click on the "Dashas" tab in the results' : 'परिणामों में "दशा" टैब पर क्लिक करें'}</p>
+            <p>3. {!isDevanagariLocale(locale) ? 'The highlighted row is your current Maha Dasha' : 'हाइलाइट पंक्ति आपकी वर्तमान महादशा है'}</p>
+            <p>4. {!isDevanagariLocale(locale) ? 'Expand it to see Antardashas — the highlighted sub-row is your current Antardasha' : 'इसे विस्तार करें अन्तर्दशाएँ देखने के लिए — हाइलाइट उप-पंक्ति आपकी वर्तमान अन्तर्दशा है'}</p>
           </div>
         </div>
       </LessonSection>
@@ -496,20 +497,20 @@ export default function LearnDashasPage() {
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
+            {!isDevanagariLocale(locale) ? 'Venus Maha Dasha (20 years) — All 9 Antardashas' : 'शुक्र महादशा (20 वर्ष) — सभी 9 अन्तर्दशाएँ'}
           </p>
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Antardasha' : 'अन्तर्दशा'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Calculation' : 'गणना'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Antardasha' : 'अन्तर्दशा'}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{!isDevanagariLocale(locale) ? 'Calculation' : 'गणना'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
               {VENUS_ANTARDASHA_EXAMPLE.map((ad) => (
                 <tr key={ad.planet} className="hover:bg-gold-primary/3">
                   <td className="py-2 px-2 font-medium text-text-secondary">
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? `Venus-${ad.planet}` : `शुक्र-${ad.planetHi}`}
+                    {!isDevanagariLocale(locale) ? `Venus-${ad.planet}` : `शुक्र-${ad.planetHi}`}
                   </td>
                   <td className="py-2 px-2 text-text-secondary font-mono">
                     {isHi ? ad.durationHi : ad.duration}
@@ -519,7 +520,7 @@ export default function LearnDashasPage() {
             </tbody>
           </table>
           <p className="mt-2 text-text-tertiary text-xs font-mono">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
+            {!isDevanagariLocale(locale) ? 'Total: 3y4m + 1y + 1y8m + 1y2m + 3y + 2y8m + 3y2m + 2y10m + 1y2m = 20 years' : 'कुल: 3वर्ष4माह + 1वर्ष + 1वर्ष8माह + 1वर्ष2माह + 3वर्ष + 2वर्ष8माह + 3वर्ष2माह + 2वर्ष10माह + 1वर्ष2माह = 20 वर्ष'}
           </p>
         </div>
       </LessonSection>
@@ -542,7 +543,7 @@ export default function LearnDashasPage() {
                 <span className="font-bold text-sm" style={{ color: md.color, ...headingFont }}>
                   {isHi ? md.planetHi : md.planet}
                 </span>
-                <span className="text-text-tertiary text-xs font-mono">{md.years} {(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्ष'}</span>
+                <span className="text-text-tertiary text-xs font-mono">{md.years} {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}</span>
               </div>
               <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
                 {isHi ? md.themes.hi : md.themes.en}
@@ -569,7 +570,7 @@ export default function LearnDashasPage() {
                 {isHi ? item.from.hi : item.from.en}
               </div>
               <div className="text-text-tertiary text-xs font-mono mb-1">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
+                {!isDevanagariLocale(locale) ? `Friction: ${item.friction.en}` : `घर्षण: ${item.friction.hi}`}
               </div>
               <div className="text-text-secondary text-xs" style={bodyFont}>{isHi ? item.desc.hi : item.desc.en}</div>
             </div>

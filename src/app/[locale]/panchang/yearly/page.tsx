@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const MONTHS = [
   { en: 'January', hi: 'जनवरी' }, { en: 'February', hi: 'फरवरी' },
@@ -28,7 +29,7 @@ interface DayData {
 
 export default function YearlyPanchangPage() {
   const locale = useLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const [year, setYear] = useState(new Date().getFullYear());
   const [monthData, setMonthData] = useState<Record<string, DayData>>({});
   const [loading, setLoading] = useState(false);

@@ -8,6 +8,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import type { Locale } from '@/types/panchang';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { dateToJD, calculateTithi, moonLongitude, toSidereal, getNakshatraNumber, getRashiNumber } from '@/lib/ephem/astronomical';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const TITHI_NAMES: { en: string; hi: string }[] = [
   { en: 'Pratipada (1)', hi: 'प्रतिपदा (1)' },
@@ -75,7 +76,7 @@ function findTithiDateInYear(tithiNum: number, paksha: 'shukla' | 'krishna', yea
 export default function ShraddhaPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [tithiIndex, setTithiIndex] = useState(-1);
@@ -106,10 +107,10 @@ export default function ShraddhaPage() {
       {/* Shraddha Intro */}
       <InfoBlock
         id="shraddha-intro"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is Shraddha?' : 'श्राद्ध क्या है?'}
+        title={!isDevanagariLocale(locale) ? 'What is Shraddha?' : 'श्राद्ध क्या है?'}
         defaultOpen={true}
       >
-        {locale === 'hi' ? (
+        {isDevanagari ? (
           <p>श्राद्ध वार्षिक अनुष्ठान है जिसमें मृत पूर्वजों को उनकी पुण्यतिथि पर — ग्रेगोरियन नहीं, हिन्दू चन्द्र तिथि के अनुसार — भोजन और प्रार्थना अर्पित की जाती है। यह सबसे महत्वपूर्ण कर्तव्यों में से एक है — माना जाता है कि इससे दिवंगत आत्मा को शांति मिलती है और परिवार को आशीर्वाद प्राप्त होता है। प्रतिवर्ष तिथि बदलती है क्योंकि यह मृत्यु की चन्द्र तिथि पर आधारित है।</p>
         ) : (
           <p>Shraddha is the annual ritual of offering food and prayers to deceased ancestors on the anniversary of their passing — by Hindu lunar calendar, not Gregorian date. It&apos;s one of the most important duties — believed to bring peace to the departed soul and blessings to the family. The date changes every year because it follows the lunar tithi of death.</p>
@@ -121,21 +122,21 @@ export default function ShraddhaPage() {
         <div className="space-y-6">
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Paksha (Lunar Phase)' : 'पक्ष'}
+              {!isDevanagariLocale(locale) ? 'Paksha (Lunar Phase)' : 'पक्ष'}
             </label>
             <div className="flex gap-3">
               {PAKSHA_OPTIONS.map(p => (
                 <button key={p.value} onClick={() => setPaksha(p.value as 'shukla' | 'krishna')}
                   className={`flex-1 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                     paksha === p.value ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'bg-bg-tertiary/30 text-text-secondary border border-gold-primary/10'
-                  }`}>{(locale !== 'hi' && String(locale) !== 'sa') ? p.en : p.hi}</button>
+                  }`}>{!isDevanagariLocale(locale) ? p.en : p.hi}</button>
               ))}
             </div>
           </div>
 
           <div>
             <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Death Tithi' : 'मृत्यु तिथि'}
+              {!isDevanagariLocale(locale) ? 'Death Tithi' : 'मृत्यु तिथि'}
             </label>
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
               {TITHI_NAMES.map((t, i) => (
@@ -143,7 +144,7 @@ export default function ShraddhaPage() {
                   className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                     tithiIndex === i ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'bg-bg-tertiary/30 text-text-secondary border border-gold-primary/10 hover:border-gold-primary/25'
                   }`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? t.en : t.hi}
+                  {!isDevanagariLocale(locale) ? t.en : t.hi}
                 </button>
               ))}
             </div>
@@ -159,20 +160,20 @@ export default function ShraddhaPage() {
               {result.date && (
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 border-2 border-gold-primary/30 bg-gradient-to-br from-gold-primary/5 to-transparent text-center">
                   <div className="text-gold-dark text-xs uppercase tracking-[0.3em] font-bold mb-2">
-                    {currentYear} {(locale !== 'hi' && String(locale) !== 'sa') ? 'Shraddha Date' : 'श्राद्ध तिथि'}
+                    {currentYear} {!isDevanagariLocale(locale) ? 'Shraddha Date' : 'श्राद्ध तिथि'}
                   </div>
                   <div className="text-gold-light text-3xl font-bold" style={headingFont}>
-                    {new Date(result.date + 'T00:00:00').toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.date + 'T00:00:00').toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}
               {result.nextDate && (
                 <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 text-center">
                   <div className="text-text-secondary text-xs uppercase tracking-wider mb-1">
-                    {currentYear + 1} {(locale !== 'hi' && String(locale) !== 'sa') ? 'Shraddha Date' : 'श्राद्ध तिथि'}
+                    {currentYear + 1} {!isDevanagariLocale(locale) ? 'Shraddha Date' : 'श्राद्ध तिथि'}
                   </div>
                   <div className="text-gold-light text-xl font-bold" style={headingFont}>
-                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    {new Date(result.nextDate + 'T00:00:00').toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                 </div>
               )}

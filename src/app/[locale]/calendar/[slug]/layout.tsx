@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export function generateStaticParams() {
   return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));

@@ -12,6 +12,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { NakshatraIconById } from '@/components/icons/NakshatraIcons';
 import type { Locale } from '@/types/panchang';
 import type { ChartData } from '@/types/kundali';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface Trilingual { en: string; hi: string; sa: string }
 
@@ -238,7 +239,7 @@ export default function ProfilePage() {
 
   const formatDate = (d: string) => {
     if (!d) return '';
-    return new Date(d + 'T00:00:00').toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+    return new Date(d + 'T00:00:00').toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'long', day: 'numeric' });
   };
 
   const hasData = snapshot && profileInfo?.date_of_birth;
@@ -387,7 +388,7 @@ export default function ProfilePage() {
                       <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.mahaDasha}</p>
                       <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.maha.planetName?.[locale] || snapshot.currentDasha.maha.planet}</p>
                       <p className="text-xs text-text-secondary mt-0.5">
-                        {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
+                        {T.dashaEnds} {new Date(snapshot.currentDasha.maha.endDate).toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
                       </p>
                     </div>
                     {snapshot.currentDasha.antar && (
@@ -397,7 +398,7 @@ export default function ProfilePage() {
                           <p className="text-xs uppercase tracking-wider text-text-secondary/75">{T.antarDasha}</p>
                           <p className="text-2xl font-bold text-gold-light">{snapshot.currentDasha.antar.planetName?.[locale] || snapshot.currentDasha.antar.planet}</p>
                           <p className="text-xs text-text-secondary mt-0.5">
-                            {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
+                            {T.dashaEnds} {new Date(snapshot.currentDasha.antar.endDate).toLocaleDateString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN', { year: 'numeric', month: 'short' })}
                           </p>
                         </div>
                       </>

@@ -7,6 +7,7 @@ import type { Metadata } from 'next';
 import { tl } from '@/lib/utils/trilingual';
 import Link from 'next/link';
 import { getCityBySlug } from '@/lib/constants/cities';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
@@ -62,8 +63,8 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
   if (!parsed) notFound();
 
   const article = generateDailyArticle(parsed);
-  const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
-  const isHi = loc === 'hi';
+  const isHi = isDevanagariLocale(locale);
+  const loc = (isHi ? 'hi' : 'en') as 'en' | 'hi';
   const body = article.body[loc];
   const title = article.title[loc];
   const hLabels = HOROSCOPE_LABELS[locale] || HOROSCOPE_LABELS.en;

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface WidgetData {
   date: string;
@@ -19,7 +20,7 @@ interface WidgetData {
 
 export default function PanchangWidget() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const [data, setData] = useState<WidgetData | null>(null);
   const [error, setError] = useState(false);
 

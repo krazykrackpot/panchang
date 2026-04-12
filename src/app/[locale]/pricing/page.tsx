@@ -9,6 +9,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import type { Locale } from '@/types/panchang';
 import { trackSubscriptionStarted, trackCheckoutStarted, trackCheckoutCompleted } from '@/lib/analytics';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PLANS = [
   {
@@ -143,13 +144,13 @@ function t(obj: { en: string; hi: string; ta?: string; te?: string; bn?: string;
   if (String(locale) === 'bn' && obj.bn) return obj.bn;
   if (String(locale) === 'kn' && obj.kn) return obj.kn;
   if (String(locale) === 'ta' && obj.ta) return obj.ta;
-  return (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
+  return !isDevanagariLocale(locale) ? obj.en : obj.hi;
 }
 
 export default function PricingPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -179,7 +180,7 @@ export default function PricingPage() {
   const handleCheckout = async (tier: 'pro' | 'jyotishi') => {
     const user = useAuthStore.getState().user;
     if (!user) {
-      alert((locale !== 'hi' && String(locale) !== 'sa') ? 'Please sign in first' : 'पहले साइन इन करें');
+      alert(!isDevanagariLocale(locale) ? 'Please sign in first' : 'पहले साइन इन करें');
       return;
     }
     try {
@@ -188,7 +189,7 @@ export default function PricingPage() {
       const session = await supabase?.auth.getSession();
       const token = session?.data.session?.access_token;
       if (!token) {
-        alert((locale !== 'hi' && String(locale) !== 'sa') ? 'Please sign in first' : 'पहले साइन इन करें');
+        alert(!isDevanagariLocale(locale) ? 'Please sign in first' : 'पहले साइन इन करें');
         return;
       }
 
@@ -213,7 +214,7 @@ export default function PricingPage() {
 
   const formatPrice = (amount: number) => {
     if (amount === 0) {
-      return (locale !== 'hi' && String(locale) !== 'sa') ? 'Free' : 'नि:शुल्क';
+      return !isDevanagariLocale(locale) ? 'Free' : 'नि:शुल्क';
     }
     return currency === 'INR' ? `₹${amount}` : `$${amount}`;
   };

@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Understanding Planetary Transits (Gochar)', hi: 'ग्रह गोचर को समझें' , ta: 'கிரக கோசாரங்களை புரிந்துகொள்ளுதல்' },
@@ -105,7 +106,7 @@ const L = {
 
 export default function TransitsPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   return (

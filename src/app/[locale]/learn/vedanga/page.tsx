@@ -7,6 +7,7 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, BookOpen, Star, Sparkles, Globe, Route } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
    LABELS
@@ -152,7 +153,7 @@ const PRIORITY_TABLE = [
    ═══════════════════════════════════════════════════════════════ */
 export default function VedangaPage() {
   const locale = useLocale() as Locale;
-  const hi = locale === 'hi' || locale === 'sa';
+  const hi = isDevanagariLocale(locale);
   const t = (obj: { en: string; hi: string }) => (hi ? obj.hi : obj.en);
 
   return (

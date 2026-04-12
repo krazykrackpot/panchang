@@ -1,5 +1,6 @@
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   title: {
@@ -145,7 +146,7 @@ const RELATED_LINKS = [
 
 export default function BengaliCalendarPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const L = (key: keyof typeof LABELS) => LABELS[key][locale] || LABELS[key].en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 

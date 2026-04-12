@@ -8,6 +8,7 @@ import { ZodiacBeltDiagram } from '@/components/learn/InteractiveDiagram';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ---------- inline bilingual labels ---------- */
 const L = {
@@ -342,7 +343,7 @@ const CROSS_REFS = [
 
 export default function LearnRashisPage() {
   const locale = useLocale() as Locale;
-  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const; // fallback sa -> hi for longer content
+  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const; // fallback sa -> hi for longer content
 
   return (
     <div>

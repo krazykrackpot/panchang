@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'How We Calculate — The Math Behind Jyotish', hi: 'हम कैसे गणना करते हैं — ज्योतिष के पीछे का गणित', sa: 'वयं कथं गणयामः — ज्योतिषस्य गणितम्' , ta: 'எப்படி கணக்கிடுகிறோம் — ஜோதிடக் கணிதம்' },
@@ -87,13 +88,13 @@ export default function LearnCalculationsPage() {
         <p>{((L.jdContent as Record<string, string>)[locale] ?? L.jdContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Julian Day Conversion (Meeus formula):' : 'जूलियन दिन रूपान्तरण:'}
+            {!isDevanagariLocale(locale) ? 'Julian Day Conversion (Meeus formula):' : 'जूलियन दिन रूपान्तरण:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">A = floor(Y / 100)</p>
           <p className="text-gold-light/80 font-mono text-xs">B = 2 - A + floor(A / 4)</p>
           <p className="text-gold-light/80 font-mono text-xs">JD = floor(365.25 × (Y + 4716)) + floor(30.6001 × (M + 1)) + D + H/24 + B - 1524.5</p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0' : 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ'}
+            {!isDevanagariLocale(locale) ? 'Then: T = (JD - 2451545.0) / 36525.0  → centuries from J2000.0' : 'फिर: T = (JD - 2451545.0) / 36525.0  → J2000.0 से शताब्दियाँ'}
           </p>
         </div>
       </LessonSection>
@@ -102,7 +103,7 @@ export default function LearnCalculationsPage() {
         <p>{((L.sunContent as Record<string, string>)[locale] ?? L.sunContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Our Sun algorithm (Meeus Ch. 25):' : 'हमारा सूर्य एल्गोरिथ्म:'}
+            {!isDevanagariLocale(locale) ? 'Our Sun algorithm (Meeus Ch. 25):' : 'हमारा सूर्य एल्गोरिथ्म:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">L0 = 280.46646 + 36000.76983 × T    <span className="text-gold-light/40">// mean longitude</span></p>
           <p className="text-gold-light/80 font-mono text-xs">M  = 357.52911 + 35999.05029 × T    <span className="text-gold-light/40">// mean anomaly</span></p>
@@ -116,7 +117,7 @@ export default function LearnCalculationsPage() {
         <p>{((L.moonContent as Record<string, string>)[locale] ?? L.moonContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon longitude — 60-term algorithm:' : 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:'}
+            {!isDevanagariLocale(locale) ? 'Moon longitude — 60-term algorithm:' : 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">L&apos; = 218.316 + 481267.881 × T  <span className="text-gold-light/40">// Moon mean longitude</span></p>
           <p className="text-gold-light/80 font-mono text-xs">D  = 297.850 + 445267.111 × T  <span className="text-gold-light/40">// mean elongation</span></p>
@@ -142,11 +143,11 @@ export default function LearnCalculationsPage() {
         <p>{((L.ayanamshaContent as Record<string, string>)[locale] ?? L.ayanamshaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Lahiri Ayanamsha polynomial:' : 'लहिरी अयनांश बहुपद:'}
+            {!isDevanagariLocale(locale) ? 'Lahiri Ayanamsha polynomial:' : 'लहिरी अयनांश बहुपद:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">Ayanamsha = 23.85306° + 1.39722° × T + 0.00018° × T²</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'where T = centuries from J2000.0' : 'जहाँ T = J2000.0 से शताब्दियाँ'}
+            {!isDevanagariLocale(locale) ? 'where T = centuries from J2000.0' : 'जहाँ T = J2000.0 से शताब्दियाँ'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs mt-2">Sidereal_longitude = Tropical_longitude - Ayanamsha</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
@@ -179,7 +180,7 @@ export default function LearnCalculationsPage() {
                 <span className="text-gold-primary font-semibold text-sm w-20">{calc.name}</span>
                 <span className="text-gold-light/80 font-mono text-xs flex-1">{calc.formula}</span>
               </div>
-              <p className="text-text-secondary/75 text-xs mt-1 ml-20">{(locale !== 'hi' && String(locale) !== 'sa') ? calc.note : calc.note}</p>
+              <p className="text-text-secondary/75 text-xs mt-1 ml-20">{!isDevanagariLocale(locale) ? calc.note : calc.note}</p>
             </motion.div>
           ))}
         </div>
@@ -189,7 +190,7 @@ export default function LearnCalculationsPage() {
         <p>{((L.transitionContent as Record<string, string>)[locale] ?? L.transitionContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Binary Search Algorithm:' : 'बाइनरी खोज एल्गोरिथ्म:'}
+            {!isDevanagariLocale(locale) ? 'Binary Search Algorithm:' : 'बाइनरी खोज एल्गोरिथ्म:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">jd_low = sunrise_JD</p>
           <p className="text-gold-light/80 font-mono text-xs">jd_high = sunrise_JD + 1.5  <span className="text-gold-light/40">// 36 hours window</span></p>
@@ -200,7 +201,7 @@ export default function LearnCalculationsPage() {
           <p className="text-gold-light/80 font-mono text-xs">  else:</p>
           <p className="text-gold-light/80 font-mono text-xs">    jd_high = mid  <span className="text-gold-light/40">// transition is before mid</span></p>
           <p className="text-gold-light/60 font-mono text-xs mt-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Converges in ~20 iterations → ~40 function evaluations per element' : '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन'}
+            {!isDevanagariLocale(locale) ? 'Converges in ~20 iterations → ~40 function evaluations per element' : '~20 पुनरावृत्तियों में अभिसरित → प्रति तत्व ~40 फ़ंक्शन मूल्यांकन'}
           </p>
         </div>
       </LessonSection>
@@ -209,7 +210,7 @@ export default function LearnCalculationsPage() {
         <p>{((L.sunriseContent as Record<string, string>)[locale] ?? L.sunriseContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunrise calculation:' : 'सूर्योदय गणना:'}
+            {!isDevanagariLocale(locale) ? 'Sunrise calculation:' : 'सूर्योदय गणना:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">decl = asin(sin(23.44°) × sin(Sun_long))</p>
           <p className="text-gold-light/80 font-mono text-xs">cos(H) = (sin(-0.833°) - sin(lat) × sin(decl)) / (cos(lat) × cos(decl))</p>
@@ -227,9 +228,9 @@ export default function LearnCalculationsPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Calculation' : 'गणना'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Accuracy' : 'सटीकता'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Practical Impact' : 'व्यावहारिक प्रभाव'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Calculation' : 'गणना'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Accuracy' : 'सटीकता'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold">{!isDevanagariLocale(locale) ? 'Practical Impact' : 'व्यावहारिक प्रभाव'}</th>
               </tr>
             </thead>
             <tbody>

@@ -20,6 +20,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import InfoBlock from '@/components/ui/InfoBlock';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Trilingual labels
@@ -92,7 +93,7 @@ const t = (label: Tri, locale: Locale): string => {
   if (loc === 'bn' && (label as Record<string, string>).bn) return (label as Record<string, string>).bn;
   if (loc === 'kn' && (label as Record<string, string>).kn) return (label as Record<string, string>).kn;
   if (loc === 'ta') return (label as Record<string, string>).ta ?? label.en;
-  const k = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const k = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
   return (label as Record<string, string>)[k] ?? label.en;
 };
 
@@ -139,10 +140,10 @@ function intensityLabel(score: number, locale: Locale): string {
 export default function SadeSatiPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
 
   const [tab, setTab] = useState<'quick' | 'full'>('quick');
   const [moonRashi, setMoonRashi] = useState(0);
@@ -258,7 +259,7 @@ export default function SadeSatiPage() {
       </motion.div>
 
       <InfoBlock id="sade-sati-intro" title={isTamil ? 'ஏழரை சனி என்றால் என்ன? ஏன் 7.5 வருடங்கள்?' : locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? (
+        {!isDevanagariLocale(locale) ? (
           <div className="space-y-3">
             <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
             <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn — the planet of discipline, karma, and hard lessons — passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment — it&apos;s a period of deep maturation.</p>

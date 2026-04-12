@@ -14,6 +14,7 @@ import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { Locale } from '@/types/panchang';
 import type { AshtamangalaPrashnaData, QuestionCategory } from '@/types/prashna';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const CATEGORIES: { id: QuestionCategory; label: Record<string, string>; house: number }[] = [
   { id: 'health', label: { en: 'Health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्यम्', ta: 'உடல்நலம்' }, house: 1 },
@@ -85,7 +86,7 @@ export default function PrashnaAshtamangalaPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (T as Record<string, typeof T.en>)[locale] || T.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Ashtakavarga — The 8-Fold Transit Scoring System', hi: 'अष्टकवर्ग — आठ-गुणा गोचर अंक प्रणाली', sa: 'अष्टकवर्गः — अष्टगुणगोचराङ्कपद्धतिः' , ta: 'அஷ்டகவர்க்கம் — 8 மடங்கு கோசார மதிப்பீடு' },
@@ -106,7 +107,7 @@ const SCORE_MEANINGS = [
 
 export default function LearnAshtakavargaPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -212,7 +213,7 @@ export default function LearnAshtakavargaPage() {
               <div key={sm.range} className="flex gap-3 items-start">
                 <div className={`w-12 flex-shrink-0 text-right text-xs font-mono ${sm.color}`}>{sm.range}</div>
                 <div className="text-text-secondary text-xs leading-relaxed flex-1" style={bodyFont}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? sm.en : locale === 'hi' ? sm.hi : sm.sa}
+                  {!isDevanagariLocale(locale) ? sm.en : isHi ? sm.hi : sm.sa}
                 </div>
               </div>
             ))}

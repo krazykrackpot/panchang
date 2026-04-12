@@ -1,5 +1,6 @@
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   title: {
@@ -146,7 +147,7 @@ const RELATED_LINKS = [
 export default function TamilCalendarPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const L = (key: keyof typeof LABELS) => {
     const entry = LABELS[key] as Record<string, string>;
     if (isTamil && entry.ta) return entry.ta;

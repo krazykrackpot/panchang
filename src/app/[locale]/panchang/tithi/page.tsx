@@ -9,6 +9,7 @@ import { TITHIS } from '@/lib/constants/tithis';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { TithiIcon } from '@/components/icons/PanchangIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 function MoonPhase({ phase }: { phase: number }) {
   // phase: 0 = new moon, 0.5 = full moon, 1 = new moon again
@@ -160,7 +161,7 @@ function AnimatedTithiWheel({ locale, onSelect }: { locale: Locale; onSelect: (i
               textAnchor="middle"
               dominantBaseline="middle"
               transform={`rotate(${i * 12}, ${textX}, ${textY})`}
-              style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+              style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
             >
               {tithi?.name[locale]?.substring(0, 6) || ''}
             </text>
@@ -180,18 +181,18 @@ function AnimatedTithiWheel({ locale, onSelect }: { locale: Locale; onSelect: (i
       {/* Center labels */}
       <circle cx="250" cy="250" r="80" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x="250" y="235" fill="#f0d48a" fontSize="14" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'TITHI' : 'तिथि'}
+        {!isDevanagariLocale(locale) ? 'TITHI' : 'तिथि'}
       </text>
       <text x="250" y="255" fill="rgba(212,168,83,0.5)" fontSize="9" textAnchor="middle">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '30 Lunar Days' : '३० चान्द्र दिवस'}
+        {!isDevanagariLocale(locale) ? '30 Lunar Days' : '३० चान्द्र दिवस'}
       </text>
 
       {/* Shukla/Krishna labels */}
       <text x="250" y="50" fill="#f0d48a" fontSize="10" textAnchor="middle" fontWeight="600">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'SHUKLA PAKSHA' : 'शुक्ल पक्ष'}
+        {!isDevanagariLocale(locale) ? 'SHUKLA PAKSHA' : 'शुक्ल पक्ष'}
       </text>
       <text x="250" y="462" fill="#8a6d2b" fontSize="10" textAnchor="middle" fontWeight="600">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'KRISHNA PAKSHA' : 'कृष्ण पक्ष'}
+        {!isDevanagariLocale(locale) ? 'KRISHNA PAKSHA' : 'कृष्ण पक्ष'}
       </text>
     </motion.svg>
   );
@@ -235,7 +236,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
         <circle cx="100" cy="100" r="30" fill="url(#sunGrad)" />
         <circle cx="100" cy="100" r="35" fill="none" stroke="#f39c12" strokeWidth="0.5" opacity="0.3" />
         <text x="100" y="155" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun' : 'सूर्य'}
+          {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
         </text>
       </motion.g>
 
@@ -243,7 +244,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5, type: 'spring' }}>
         <circle cx="300" cy="100" r="18" fill="url(#earthGrad)" />
         <text x="300" y="145" fill="#3498db" fontSize="11" textAnchor="middle" fontWeight="600">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Earth' : 'पृथ्वी'}
+          {!isDevanagariLocale(locale) ? 'Earth' : 'पृथ्वी'}
         </text>
       </motion.g>
 
@@ -255,7 +256,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
       >
         <circle cx="420" cy="100" r="12" fill="url(#moonGradDiag)" />
         <text x="420" y="135" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon' : 'चन्द्र'}
+          {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
         </text>
       </motion.g>
 
@@ -271,7 +272,7 @@ function SunMoonDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        12° = 1 {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tithi' : 'तिथि'}
+        12° = 1 {!isDevanagariLocale(locale) ? 'Tithi' : 'तिथि'}
       </motion.text>
     </motion.svg>
   );
@@ -281,7 +282,7 @@ export default function TithiPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedTithi, setSelectedTithi] = useState<number | null>(null);
@@ -300,10 +301,10 @@ export default function TithiPage() {
         <TithiIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-2" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'திதி' : locale === 'en' ? 'Tithi' : locale === 'hi' ? 'तिथि' : 'तिथिः'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'திதி' : locale === 'en' ? 'Tithi' : isDevanagari ? 'तिथि' : 'तिथिः'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? 'சந்திர நாள் — பஞ்சாங்கத்தின் அடிப்படை' : locale === 'en' ? 'The Lunar Day — Foundation of the Panchang' : locale === 'hi' ? 'चान्द्र दिवस — पञ्चाङ्ग का आधार' : 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः'}
+            {isTamil ? 'சந்திர நாள் — பஞ்சாங்கத்தின் அடிப்படை' : locale === 'en' ? 'The Lunar Day — Foundation of the Panchang' : isDevanagari ? 'चान्द्र दिवस — पञ्चाङ्ग का आधार' : 'चान्द्रदिवसः — पञ्चाङ्गस्य आधारः'}
           </p>
         </div>
       </motion.div>
@@ -319,7 +320,7 @@ export default function TithiPage() {
             <p className="text-lg">
               {locale === 'en'
                 ? `A Tithi is defined as the time it takes for the Moon to gain 12° of longitude over the Sun. Since the Moon moves approximately 13.2° per day and the Sun about 1° per day, the relative angular gain is about 12° per day — hence roughly one Tithi per day. However, because the Moon's orbital speed varies (perigee vs. apogee), a Tithi can last between 19 to 26 hours.`
-                : locale === 'hi'
+                : isDevanagari
                 ? `तिथि वह समय है जिसमें चन्द्रमा सूर्य से 12° अंश आगे बढ़ता है। चन्द्रमा प्रतिदिन लगभग 13.2° और सूर्य लगभग 1° चलता है, अतः सापेक्ष कोणीय अन्तर प्रतिदिन लगभग 12° होता है — इसलिए लगभग एक तिथि प्रतिदिन। चन्द्रमा की कक्षीय गति में विभिन्नता (उपभू बनाम अपभू) के कारण तिथि 19 से 26 घंटे तक रह सकती है।`
                 : `तिथिः तत्समयः यत्र चन्द्रमा सूर्यात् 12° अंशान् अग्रे गच्छति। चन्द्रमा प्रतिदिनं प्रायः 13.2° सूर्यश्च प्रायः 1° चलति, अतः सापेक्षकोणीयान्तरं प्रतिदिनं प्रायः 12° भवति — अतः प्रतिदिनं प्रायः एका तिथिः।`}
             </p>
@@ -330,7 +331,7 @@ export default function TithiPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Formula:' : 'सूत्र:'} Tithi = ⌊(Moon_longitude - Sun_longitude) / 12°⌋ + 1
+                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Tithi = ⌊(Moon_longitude - Sun_longitude) / 12°⌋ + 1
               </p>
             </motion.div>
           </div>
@@ -340,7 +341,7 @@ export default function TithiPage() {
       {/* Interactive Lunar Phase Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Interactive Lunar Phase Wheel' : locale === 'hi' ? 'इंटरैक्टिव चन्द्र कला चक्र' : 'संवादात्मकं चन्द्रकलाचक्रम्'}
+          {!isDevanagariLocale(locale) ? 'Interactive Lunar Phase Wheel' : isDevanagari ? 'इंटरैक्टिव चन्द्र कला चक्र' : 'संवादात्मकं चन्द्रकलाचक्रम्'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           {mounted ? <AnimatedTithiWheel locale={locale} onSelect={setSelectedTithi} /> : (
@@ -365,21 +366,21 @@ export default function TithiPage() {
                   </h3>
                   <span className={`text-xs px-2 py-1 rounded-full ${TITHIS[selectedTithi].paksha === 'shukla' ? 'bg-gold-primary/20 text-gold-light' : 'bg-gold-dark/20 text-gold-dark'}`}>
                     {TITHIS[selectedTithi].paksha === 'shukla'
-                      ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Shukla Paksha' : 'शुक्ल पक्ष')
-                      : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Krishna Paksha' : 'कृष्ण पक्ष')}
+                      ? (!isDevanagariLocale(locale) ? 'Shukla Paksha' : 'शुक्ल पक्ष')
+                      : (!isDevanagariLocale(locale) ? 'Krishna Paksha' : 'कृष्ण पक्ष')}
                   </span>
                 </div>
                 <div className="text-text-secondary text-sm">
-                  <p><span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Deity:' : 'देवता:'}</span> {TITHIS[selectedTithi].deity[locale]}</p>
-                  <p className="mt-1"><span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tithi Number:' : 'तिथि संख्या:'}</span> {selectedTithi + 1} / 30</p>
-                  <p className="mt-1"><span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Angular Span:' : 'कोणीय विस्तार:'}</span> {selectedTithi * 12}° — {(selectedTithi + 1) * 12}°</p>
+                  <p><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Deity:' : 'देवता:'}</span> {TITHIS[selectedTithi].deity[locale]}</p>
+                  <p className="mt-1"><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Tithi Number:' : 'तिथि संख्या:'}</span> {selectedTithi + 1} / 30</p>
+                  <p className="mt-1"><span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Angular Span:' : 'कोणीय विस्तार:'}</span> {selectedTithi * 12}° — {(selectedTithi + 1) * 12}°</p>
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
+            {!isDevanagariLocale(locale) ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
           </p>
         </div>
       </section>
@@ -389,7 +390,7 @@ export default function TithiPage() {
       {/* Moon Phase Progression */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon Phase Progression' : locale === 'hi' ? 'चन्द्र कला क्रम' : 'चन्द्रकलाक्रमः'}
+          {!isDevanagariLocale(locale) ? 'Moon Phase Progression' : isDevanagari ? 'चन्द्र कला क्रम' : 'चन्द्रकलाक्रमः'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <div className="flex flex-wrap justify-center gap-3">
@@ -411,9 +412,9 @@ export default function TithiPage() {
             })}
           </div>
           <div className="flex justify-between mt-4 text-xs text-text-secondary">
-            <span>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Amavasya (New Moon)' : 'अमावस्या'}</span>
-            <span>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Purnima (Full Moon)' : 'पूर्णिमा'}</span>
-            <span>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Amavasya (New Moon)' : 'अमावस्या'}</span>
+            <span>{!isDevanagariLocale(locale) ? 'Amavasya (New Moon)' : 'अमावस्या'}</span>
+            <span>{!isDevanagariLocale(locale) ? 'Purnima (Full Moon)' : 'पूर्णिमा'}</span>
+            <span>{!isDevanagariLocale(locale) ? 'Amavasya (New Moon)' : 'अमावस्या'}</span>
           </div>
         </div>
       </section>
@@ -426,7 +427,7 @@ export default function TithiPage() {
 
         {/* Shukla Paksha */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Shukla Paksha (Waxing Moon)' : locale === 'hi' ? 'शुक्ल पक्ष (बढ़ता चाँद)' : 'शुक्लपक्षः'}
+          {!isDevanagariLocale(locale) ? 'Shukla Paksha (Waxing Moon)' : isDevanagari ? 'शुक्ल पक्ष (बढ़ता चाँद)' : 'शुक्लपक्षः'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
           {shukla.map((tithi, i) => (
@@ -453,7 +454,7 @@ export default function TithiPage() {
 
         {/* Krishna Paksha */}
         <h3 className="text-xl text-gold-dark mb-4" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Krishna Paksha (Waning Moon)' : locale === 'hi' ? 'कृष्ण पक्ष (घटता चाँद)' : 'कृष्णपक्षः'}
+          {!isDevanagariLocale(locale) ? 'Krishna Paksha (Waning Moon)' : isDevanagari ? 'कृष्ण पक्ष (घटता चाँद)' : 'कृष्णपक्षः'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           {krishna.map((tithi, i) => (
@@ -483,7 +484,7 @@ export default function TithiPage() {
       <GoldDivider />
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Special Tithis' : locale === 'hi' ? 'विशेष तिथियाँ' : 'विशेषतिथयः'}
+          {!isDevanagariLocale(locale) ? 'Special Tithis' : isDevanagari ? 'विशेष तिथियाँ' : 'विशेषतिथयः'}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[

@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { computeHinduMonths, formatMonthDate } from '@/lib/calendar/hindu-months';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const MONTHS_DETAIL = [
   { n: 1, en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', deity: { en: 'Vishnu (as Vasudeva)', hi: 'विष्णु (वासुदेव)' }, nakshatra: { en: 'Chitra', hi: 'चित्रा' }, festivals: { en: 'Ugadi, Gudi Padwa, Nav Samvatsar, Chaitra Navratri, Ram Navami, Hanuman Jayanti', hi: 'उगादि, गुड़ी पड़वा, नव संवत्सर, चैत्र नवरात्रि, राम नवमी, हनुमान जयंती' }, significance: { en: 'First month of the Hindu year. Chaitra Shukla Pratipada marks the New Year (Vikram Samvat). Named after Chitra nakshatra — the Full Moon falls near Chitra (Spica). Spring harvest season. Considered the most sacred month for new beginnings.', hi: 'हिन्दू वर्ष का प्रथम मास। चैत्र शुक्ल प्रतिपदा नव वर्ष (विक्रम संवत्)। चित्रा नक्षत्र से नामकरण — पूर्णिमा चित्रा के पास। वसंत ऋतु फसल। नई शुरुआत के लिए सबसे पवित्र मास।' } },
@@ -23,7 +24,7 @@ const MONTHS_DETAIL = [
 
 export default function MasaPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const currentYear = new Date().getFullYear();

@@ -6,6 +6,7 @@ import { Eye, Crown, Users, Compass, ArrowRight, Star, BookOpen, Orbit } from 'l
 import LessonSection from '@/components/learn/LessonSection';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Inline trilingual labels ─────────────────────────────────────── */
 const L = {
@@ -137,7 +138,7 @@ const CROSS_REFS = [
 /* ── Page component ───────────────────────────────────────────────── */
 export default function JaiminiPage() {
   const locale = useLocale() as Locale;
-  const loc = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const loc = isDevanagariLocale(locale) ? 'hi' as const : 'en' as const;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 space-y-2">
@@ -206,7 +207,7 @@ export default function JaiminiPage() {
                     </span>
                     {ck.importance === 'critical' && (
                       <span className="text-amber-400 text-xs font-bold uppercase px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">
-                        {(locale !== 'hi' && String(locale) !== 'sa') ? 'MOST IMPORTANT' : 'सर्वाधिक महत्वपूर्ण'}
+                        {!isDevanagariLocale(locale) ? 'MOST IMPORTANT' : 'सर्वाधिक महत्वपूर्ण'}
                       </span>
                     )}
                   </div>
@@ -226,7 +227,7 @@ export default function JaiminiPage() {
         <div className="mt-4 p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-indigo-500/15">
           <div className="flex items-center gap-2 mb-2">
             <Compass className="w-5 h-5 text-indigo-400" />
-            <h4 className="text-indigo-300 font-semibold text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Quick Karakamsha Guide' : 'त्वरित कारकांश मार्गदर्शिका'}</h4>
+            <h4 className="text-indigo-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Quick Karakamsha Guide' : 'त्वरित कारकांश मार्गदर्शिका'}</h4>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-text-secondary">
             {[
@@ -262,7 +263,7 @@ export default function JaiminiPage() {
               <p className="text-text-secondary/75 text-xs mb-2 font-mono">{rd.signs[locale]}</p>
               <p className="text-text-secondary text-sm mb-2">{rd.aspects[locale]}</p>
               <div className="p-2 rounded bg-bg-primary/40 text-text-secondary/70 text-xs">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Example: ' : 'उदाहरण: '}{rd.example[locale]}
+                {!isDevanagariLocale(locale) ? 'Example: ' : 'उदाहरण: '}{rd.example[locale]}
               </div>
             </motion.div>
           ))}
@@ -278,7 +279,7 @@ export default function JaiminiPage() {
           <div className="p-4 rounded-lg bg-cyan-500/5 border border-cyan-500/15">
             <div className="flex items-center gap-2 mb-2">
               <Crown className="w-5 h-5 text-cyan-400" />
-              <h4 className="text-cyan-300 font-semibold text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Lagna (Reality)' : 'लग्न (वास्तविकता)'}</h4>
+              <h4 className="text-cyan-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Lagna (Reality)' : 'लग्न (वास्तविकता)'}</h4>
             </div>
             <p className="text-cyan-200/60 text-sm">
               {locale === 'en'
@@ -289,7 +290,7 @@ export default function JaiminiPage() {
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="flex items-center gap-2 mb-2">
               <Users className="w-5 h-5 text-amber-400" />
-              <h4 className="text-amber-300 font-semibold text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Arudha Lagna (Perception)' : 'अरूढ़ लग्न (धारणा)'}</h4>
+              <h4 className="text-amber-300 font-semibold text-sm">{!isDevanagariLocale(locale) ? 'Arudha Lagna (Perception)' : 'अरूढ़ लग्न (धारणा)'}</h4>
             </div>
             <p className="text-amber-200/60 text-sm">
               {locale === 'en'
@@ -312,9 +313,9 @@ export default function JaiminiPage() {
           <table className="w-full text-sm border-collapse">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Feature' : 'विशेषता'}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Parashari' : 'पाराशरी'}</th>
-                <th className="text-left py-3 px-4 text-gold-light font-semibold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Jaimini' : 'जैमिनी'}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Feature' : 'विशेषता'}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Parashari' : 'पाराशरी'}</th>
+                <th className="text-left py-3 px-4 text-gold-light font-semibold">{!isDevanagariLocale(locale) ? 'Jaimini' : 'जैमिनी'}</th>
               </tr>
             </thead>
             <tbody>
@@ -397,7 +398,7 @@ export default function JaiminiPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Find Your Atmakaraka' : 'अपना आत्मकारक खोजें'}
+          {!isDevanagariLocale(locale) ? 'Find Your Atmakaraka' : 'अपना आत्मकारक खोजें'}
         </Link>
       </div>
     </div>

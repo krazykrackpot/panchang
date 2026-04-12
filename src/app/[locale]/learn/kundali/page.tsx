@@ -8,6 +8,7 @@ import HouseHighlightChart from '@/components/learn/HouseHighlightChart';
 import ExampleKundaliChart from '@/components/learn/ExampleKundaliChart';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ─── Trilingual Labels ─── */
 const L = {
@@ -240,16 +241,16 @@ export default function LearnKundaliPage() {
         <div className="mt-4 p-5 rounded-xl bg-gold-primary/5 border border-gold-primary/20">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Date' : 'तिथि'}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{!isDevanagariLocale(locale) ? 'Date' : 'तिथि'}</div>
               <div className="text-gold-light font-bold text-lg">15 Aug 1995</div>
             </div>
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Time' : 'समय'}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{!isDevanagariLocale(locale) ? 'Time' : 'समय'}</div>
               <div className="text-gold-light font-bold text-lg">10:30 AM IST</div>
             </div>
             <div>
-              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Place' : 'स्थान'}</div>
-              <div className="text-gold-light font-bold text-lg">{(locale !== 'hi' && String(locale) !== 'sa') ? 'New Delhi' : 'नई दिल्ली'}</div>
+              <div className="text-gold-primary text-xs uppercase tracking-widest mb-1">{!isDevanagariLocale(locale) ? 'Place' : 'स्थान'}</div>
+              <div className="text-gold-light font-bold text-lg">{!isDevanagariLocale(locale) ? 'New Delhi' : 'नई दिल्ली'}</div>
             </div>
           </div>
           <div className="text-center mt-3 text-text-secondary/70 font-mono text-xs">
@@ -284,7 +285,7 @@ export default function LearnKundaliPage() {
       <LessonSection number={2} title={((L.s2Title as Record<string, string>)[locale] ?? L.s2Title.en)}>
         <p>{((L.s2Text as Record<string, string>)[locale] ?? L.s2Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">IST = UTC + 5:30</p>
             <p className="text-gold-light/80 font-mono text-xs">10:30 AM IST = 05:00 AM UT</p>
@@ -299,7 +300,7 @@ export default function LearnKundaliPage() {
       <LessonSection number={3} title={((L.s3Title as Record<string, string>)[locale] ?? L.s3Title.en)}>
         <p>{((L.s3Text as Record<string, string>)[locale] ?? L.s3Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">GST (Greenwich Sidereal Time) at 0h UT = 21h 33m</p>
             <p className="text-gold-light/80 font-mono text-xs">Correction for 05:00 UT = +5h 01m  <span className="text-gold-light/40">// sidereal day is 3m 56s shorter</span></p>
@@ -327,7 +328,7 @@ export default function LearnKundaliPage() {
       >
         <p>{((L.s4Text as Record<string, string>)[locale] ?? L.s4Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">Lagna° = atan2(sin(LST), cos(LST)·cos(ε) - tan(φ)·sin(ε))</p>
             <p className="text-gold-light/80 font-mono text-xs">where ε = 23.44° (obliquity), φ = 28.61° (Delhi latitude)</p>
@@ -360,7 +361,7 @@ export default function LearnKundaliPage() {
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/calculations" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'See full mathematical derivation' : 'पूर्ण गणितीय व्युत्पत्ति देखें'} →
+            {!isDevanagariLocale(locale) ? 'See full mathematical derivation' : 'पूर्ण गणितीय व्युत्पत्ति देखें'} →
           </Link>
         </div>
       </LessonSection>
@@ -372,10 +373,10 @@ export default function LearnKundaliPage() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Graha' : 'ग्रह'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sidereal°' : 'नाक्ष°'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Rashi' : 'राशि'}</th>
-                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra' : 'नक्षत्र'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Graha' : 'ग्रह'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Sidereal°' : 'नाक्ष°'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs">{!isDevanagariLocale(locale) ? 'Rashi' : 'राशि'}</th>
+                <th className="text-left py-2 text-gold-primary font-semibold text-xs hidden sm:table-cell">{!isDevanagariLocale(locale) ? 'Nakshatra' : 'नक्षत्र'}</th>
               </tr>
             </thead>
             <tbody>
@@ -384,7 +385,7 @@ export default function LearnKundaliPage() {
                   <td className="py-2 text-xs font-semibold" style={{ color: p.color }}>{p.name[locale]}</td>
                   <td className="py-2 text-gold-light/70 font-mono text-xs">{p.sidereal}</td>
                   <td className="py-2 text-text-secondary text-xs">{p.rashi[locale]}</td>
-                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
+                  <td className="py-2 text-text-secondary/75 text-xs hidden sm:table-cell" style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{p.nak[locale]}</td>
                 </tr>
               ))}
             </tbody>
@@ -392,7 +393,7 @@ export default function LearnKundaliPage() {
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/grahas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Learn about all 9 Grahas' : 'सभी 9 ग्रहों के बारे में जानें'} →
+            {!isDevanagariLocale(locale) ? 'Learn about all 9 Grahas' : 'सभी 9 ग्रहों के बारे में जानें'} →
           </Link>
         </div>
       </LessonSection>
@@ -401,7 +402,7 @@ export default function LearnKundaliPage() {
       <LessonSection number={7} title={((L.s7Title as Record<string, string>)[locale] ?? L.s7Title.en)}>
         <p>{((L.s7Text as Record<string, string>)[locale] ?? L.s7Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Formula:' : 'सूत्र:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">House = (Planet_Rashi_Number - Lagna_Rashi_Number + 12) % 12 + 1</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
             {locale === 'en'
@@ -429,7 +430,7 @@ export default function LearnKundaliPage() {
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/bhavas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Deep dive into all 12 houses' : 'सभी 12 भावों का विस्तृत अध्ययन'} →
+            {!isDevanagariLocale(locale) ? 'Deep dive into all 12 houses' : 'सभी 12 भावों का विस्तृत अध्ययन'} →
           </Link>
         </div>
       </LessonSection>
@@ -443,13 +444,13 @@ export default function LearnKundaliPage() {
       >
         <p>{((L.s8Text as Record<string, string>)[locale] ?? L.s8Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Reading the chart:' : 'कुण्डली पढ़ना:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Reading the chart:' : 'कुण्डली पढ़ना:'}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? '- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu' : '- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? '- Houses run counter-clockwise from the top' : '- भाव शीर्ष से वामावर्त चलते हैं'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? '- Rashi names label each house; planets shown at center' : '- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? '- Sun in 10th (career) = strong public presence' : '- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? '- Moon in 3rd (communication) = expressive mind' : '- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन'}</p>
+            <p>{!isDevanagariLocale(locale) ? '- Top diamond (House 1) = Lagna → Tula (Libra) with Rahu' : '- शीर्ष हीरा (भाव 1) = लग्न → तुला, राहु सहित'}</p>
+            <p>{!isDevanagariLocale(locale) ? '- Houses run counter-clockwise from the top' : '- भाव शीर्ष से वामावर्त चलते हैं'}</p>
+            <p>{!isDevanagariLocale(locale) ? '- Rashi names label each house; planets shown at center' : '- राशि नाम प्रत्येक भाव में; ग्रह केन्द्र में दिखाए गए'}</p>
+            <p>{!isDevanagariLocale(locale) ? '- Sun in 10th (career) = strong public presence' : '- सूर्य 10वें भाव (कर्म) में = शक्तिशाली सार्वजनिक उपस्थिति'}</p>
+            <p>{!isDevanagariLocale(locale) ? '- Moon in 3rd (communication) = expressive mind' : '- चन्द्र 3रे भाव (संवाद) में = अभिव्यक्तिशील मन'}</p>
           </div>
         </div>
       </LessonSection>
@@ -470,7 +471,7 @@ export default function LearnKundaliPage() {
           ))}
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Dignity Hierarchy:' : 'गरिमा क्रम:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'Dignity Hierarchy:' : 'गरिमा क्रम:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">
             {locale === 'en'
               ? 'Exalted (Uccha) > Own Sign (Swa) > Friendly (Mitra) > Neutral > Enemy (Shatru) > Debilitated (Neecha)'
@@ -496,11 +497,11 @@ export default function LearnKundaliPage() {
           ))}
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter in 2nd aspects 8th → protects longevity house' : 'गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech' : 'शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun in 10th aspects 4th → career impacts home life' : 'सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Jupiter in 2nd aspects 8th → protects longevity house' : 'गुरु 2रे भाव में → 8वें भाव पर दृष्टि → आयु भाव की रक्षा'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Saturn in 5th aspects 7th, 11th, 2nd → discipline in marriage, gains, speech' : 'शनि 5वें भाव में → 7, 11, 2 पर दृष्टि → विवाह, लाभ, वाणी में अनुशासन'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Sun in 10th aspects 4th → career impacts home life' : 'सूर्य 10वें में → 4वें पर दृष्टि → कर्म गृह जीवन प्रभावित करता है'}</p>
           </div>
         </div>
       </LessonSection>
@@ -509,20 +510,20 @@ export default function LearnKundaliPage() {
       <LessonSection number={11} title={((L.s11Title as Record<string, string>)[locale] ?? L.s11Title.en)}>
         <p>{((L.s11Text as Record<string, string>)[locale] ?? L.s11Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-3">{!isDevanagariLocale(locale) ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
           <div className="space-y-1">
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon at 253.0° sidereal → Purva Ashadha Nakshatra' : 'चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'P. Ashadha lord = Venus → born in Venus Maha Dasha' : 'पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Venus Maha Dasha = 20 years total' : 'शुक्र महादशा = कुल 20 वर्ष'}</p>
-            <p className="text-gold-light/80 font-mono text-xs mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon progress through P. Ashadha:' : 'पूर्वाषाढ़ा में चन्द्र की प्रगति:'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'P. Ashadha span: 253°20\' to 266°40\' (13°20\')' : 'पूर्वाषाढ़ा: 253°20\' से 266°40\' (13°20\')'}</p>
-            <p className="text-gold-light/80 font-mono text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon at 253.0° → near the start → ~19.6 years of Venus remain' : 'चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष'}</p>
-            <p className="text-gold-light/60 font-mono text-xs mt-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...' : 'शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Moon at 253.0° sidereal → Purva Ashadha Nakshatra' : 'चन्द्र 253.0° नाक्षत्रिक → पूर्वाषाढ़ा नक्षत्र'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'P. Ashadha lord = Venus → born in Venus Maha Dasha' : 'पूर्वाषाढ़ा स्वामी = शुक्र → शुक्र महादशा में जन्म'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Venus Maha Dasha = 20 years total' : 'शुक्र महादशा = कुल 20 वर्ष'}</p>
+            <p className="text-gold-light/80 font-mono text-xs mt-2">{!isDevanagariLocale(locale) ? 'Moon progress through P. Ashadha:' : 'पूर्वाषाढ़ा में चन्द्र की प्रगति:'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'P. Ashadha span: 253°20\' to 266°40\' (13°20\')' : 'पूर्वाषाढ़ा: 253°20\' से 266°40\' (13°20\')'}</p>
+            <p className="text-gold-light/80 font-mono text-xs">{!isDevanagariLocale(locale) ? 'Moon at 253.0° → near the start → ~19.6 years of Venus remain' : 'चन्द्र 253.0° → प्रारम्भ के निकट → शुक्र के ~19.6 वर्ष शेष'}</p>
+            <p className="text-gold-light/60 font-mono text-xs mt-2">{!isDevanagariLocale(locale) ? 'After Venus: Sun (6y) → Moon (10y) → Mars (7y) → ...' : 'शुक्र के बाद: सूर्य (6 वर्ष) → चन्द्र (10 वर्ष) → मंगल (7 वर्ष) → ...'}</p>
           </div>
         </div>
         <div className="mt-3 text-right">
           <Link href="/learn/dashas" className="text-gold-primary hover:text-gold-light text-xs transition-colors">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Complete Dasha system explained' : 'सम्पूर्ण दशा प्रणाली की व्याख्या'} →
+            {!isDevanagariLocale(locale) ? 'Complete Dasha system explained' : 'सम्पूर्ण दशा प्रणाली की व्याख्या'} →
           </Link>
         </div>
       </LessonSection>
@@ -532,28 +533,28 @@ export default function LearnKundaliPage() {
         <p>{((L.s12Text as Record<string, string>)[locale] ?? L.s12Text.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-lg p-4 border border-emerald-400/20 bg-emerald-400/5">
-            <h4 className="text-emerald-400 font-bold text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Yogas (Auspicious Combos)' : 'योग (शुभ संयोग)'}</h4>
+            <h4 className="text-emerald-400 font-bold text-sm mb-2">{!isDevanagariLocale(locale) ? 'Yogas (Auspicious Combos)' : 'योग (शुभ संयोग)'}</h4>
             <ul className="space-y-1 text-text-secondary text-xs">
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Budhaditya Yoga — Mercury + Sun in same house (11th)' : 'बुधादित्य योग — बुध + सूर्य (यहाँ 10-11 में)'}</li>
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Gajakesari Yoga — Jupiter in Kendra from Moon' : 'गजकेसरी योग — चन्द्र से केन्द्र में गुरु'}</li>
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Dhana Yoga — lord of 2nd in good placement' : 'धन योग — 2 भाव का स्वामी शुभ स्थान में'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Budhaditya Yoga — Mercury + Sun in same house (11th)' : 'बुधादित्य योग — बुध + सूर्य (यहाँ 10-11 में)'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Gajakesari Yoga — Jupiter in Kendra from Moon' : 'गजकेसरी योग — चन्द्र से केन्द्र में गुरु'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Dhana Yoga — lord of 2nd in good placement' : 'धन योग — 2 भाव का स्वामी शुभ स्थान में'}</li>
             </ul>
           </div>
           <div className="rounded-lg p-4 border border-red-400/20 bg-red-400/5">
-            <h4 className="text-red-400 font-bold text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Doshas (Afflictions)' : 'दोष (कठिनाइयाँ)'}</h4>
+            <h4 className="text-red-400 font-bold text-sm mb-2">{!isDevanagariLocale(locale) ? 'Doshas (Afflictions)' : 'दोष (कठिनाइयाँ)'}</h4>
             <ul className="space-y-1 text-text-secondary text-xs">
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna' : 'मंगल दोष — लग्न से 1, 2, 4, 7, 8, 12 में मंगल'}</li>
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Kaal Sarpa — all planets between Rahu-Ketu axis' : 'काल सर्प — राहु-केतु अक्ष के बीच सभी ग्रह'}</li>
-              <li>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Pitru Dosha — Sun afflicted by malefics' : 'पितृ दोष — सूर्य पाप ग्रहों से पीड़ित'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Mangal Dosha — Mars in 1, 2, 4, 7, 8, or 12 from Lagna' : 'मंगल दोष — लग्न से 1, 2, 4, 7, 8, 12 में मंगल'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Kaal Sarpa — all planets between Rahu-Ketu axis' : 'काल सर्प — राहु-केतु अक्ष के बीच सभी ग्रह'}</li>
+              <li>{!isDevanagariLocale(locale) ? 'Pitru Dosha — Sun afflicted by malefics' : 'पितृ दोष — सूर्य पाप ग्रहों से पीड़ित'}</li>
             </ul>
           </div>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light font-mono text-sm mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
+          <p className="text-gold-light font-mono text-sm mb-2">{!isDevanagariLocale(locale) ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Mars in 12th from Lagna → Mangal Dosha is present' : 'लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)' : 'बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)'}</p>
-            <p>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Saturn in own sign Aquarius → strong 5th house (intelligence)' : 'शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Mars in 12th from Lagna → Mangal Dosha is present' : 'लग्न से 12वें भाव में मंगल → मंगल दोष उपस्थित'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Mercury + Venus in Leo (11th) → Dhana Yoga (gains house)' : 'बुध + शुक्र सिंह (11वाँ) में → धन योग (लाभ भाव)'}</p>
+            <p>{!isDevanagariLocale(locale) ? 'Saturn in own sign Aquarius → strong 5th house (intelligence)' : 'शनि स्वराशि कुम्भ में → शक्तिशाली 5वाँ भाव (बुद्धि)'}</p>
           </div>
         </div>
       </LessonSection>
@@ -579,7 +580,7 @@ export default function LearnKundaliPage() {
           ].map((step, i, arr) => (
             <span key={step.en} className="flex items-center gap-2">
               <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-gold-primary/10 border border-gold-primary/20 text-gold-light">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? step.en : step.hi}
+                {!isDevanagariLocale(locale) ? step.en : step.hi}
               </span>
               {i < arr.length - 1 && <span className="text-gold-primary/40 text-xs">→</span>}
             </span>

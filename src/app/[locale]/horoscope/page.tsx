@@ -10,6 +10,7 @@ import { Link } from '@/lib/i18n/navigation';
 import ShareButton from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -227,7 +228,7 @@ function barColor(score: number): string {
 
 export default function HoroscopePage() {
   const locale = useLocale() as Locale;
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const lk = (isDevanagariLocale(locale)) ? 'hi' as const : 'en' as const;
   const isHi = lk === 'hi';
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;

@@ -8,6 +8,7 @@ import { YOGAS } from '@/lib/constants/yogas';
 import { Link } from '@/lib/i18n/navigation';
 import { ChevronDown, Crown, Coins, Star, AlertTriangle, Sparkles, Shield } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Kundali Yoga data (Raja, Dhana, Mahapurusha, etc.) ─────────────────────
 interface KYogaDef { id: string; name: { en: string; hi: string }; category: string; planets: string; condition: { en: string; hi: string }; effect: { en: string; hi: string }; classical: string; strength: 'rare' | 'common' | 'moderate'; auspicious: boolean; }
@@ -41,7 +42,7 @@ const KY_DATA: KYogaDef[] = [
 ];
 
 function KundaliYogasSection({ locale }: { locale: Locale }) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedCategory, setExpandedCategory] = useState<string | null>('mahapurusha');
   const [expandedYoga, setExpandedYoga] = useState<string | null>(null);
@@ -224,9 +225,9 @@ export default function LearnYogasPage() {
               <div className="text-right">
                 <div className="text-text-secondary text-xs">{y.meaning[locale]}</div>
                 <div className={`text-xs ${natureColor(y.nature)}`}>
-                  {y.nature === 'auspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious' : 'शुभ') :
-                   y.nature === 'inauspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Inauspicious' : 'अशुभ') :
-                   ((locale !== 'hi' && String(locale) !== 'sa') ? 'Neutral' : 'सम')}
+                  {y.nature === 'auspicious' ? (!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ') :
+                   y.nature === 'inauspicious' ? (!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ') :
+                   (!isDevanagariLocale(locale) ? 'Neutral' : 'सम')}
                 </div>
               </div>
             </motion.div>

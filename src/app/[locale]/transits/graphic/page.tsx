@@ -9,6 +9,7 @@ import { RASHIS } from '@/lib/constants/rashis';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const PLANET_COLORS: Record<number, string> = {
   0: '#e67e22', 1: '#ecf0f1', 2: '#e74c3c', 3: '#2ecc71',
@@ -19,7 +20,7 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 export default function GraphicTransitPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
   const [loading, setLoading] = useState(false);

@@ -21,7 +21,7 @@ function L(texts: { en: string; hi: string; sa?: string; ta?: string; te?: strin
   if (locale === 'ta' && texts.ta) return texts.ta;
   if (locale === 'sa' && texts.sa) return texts.sa;
   // Devanagari locales (hi/sa/mr/mai) fall back to Hindi text
-  if (locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai') return texts.hi;
+  if (isDevanagariLocale(locale) || locale === 'mr' || locale === 'mai') return texts.hi;
   return texts.en;
 }
 

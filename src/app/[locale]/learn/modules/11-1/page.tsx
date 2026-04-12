@@ -2,6 +2,7 @@
 
 import ModuleContainer, { type ModuleMeta, type ModuleQuestion, useModuleLocale } from '@/components/learn/ModuleContainer';
 import ExampleChart from '@/components/learn/ExampleChart';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const META: ModuleMeta = {
   id: 'mod_11_1', phase: 3, topic: 'Dashas', moduleNumber: '11.1',
@@ -194,7 +195,7 @@ const QUESTIONS: ModuleQuestion[] = [
 /* ───────────────────────── Page 1 ───────────────────────── */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* Opening Hook */}
@@ -373,7 +374,7 @@ function Page1() {
 /* ───────────────────────── Page 2 ───────────────────────── */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* Step 1 */}
@@ -521,7 +522,7 @@ function Page2() {
 /* ───────────────────────── Page 3 ───────────────────────── */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   return (
     <div className="space-y-6">
       {/* The Fundamental Rule */}

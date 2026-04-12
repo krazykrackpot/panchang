@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronDown, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Text Data ──────────────────────────────────────────────────────────────
 
@@ -160,7 +161,7 @@ const STATUS_CONFIG = {
 
 export default function ClassicalTextsPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedText, setExpandedText] = useState<string | null>('aryabhatiya');
 

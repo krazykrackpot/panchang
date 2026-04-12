@@ -7,6 +7,7 @@ import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import { ArrowRight, Clock, Infinity as InfinityIcon, Sparkles } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ═══════════════════════════════════════════════════════════════
    LABELS — bilingual (en / hi) via ternaries on locale
@@ -123,7 +124,7 @@ const CURRENT_POSITION = [
    ═══════════════════════════════════════════════════════════════ */
 export default function CosmologyPage() {
   const locale = useLocale() as Locale;
-  const hi = locale === 'hi';
+  const hi = isDevanagariLocale(locale);
 
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 

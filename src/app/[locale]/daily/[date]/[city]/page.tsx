@@ -6,6 +6,7 @@ import { getCityBySlug } from '@/lib/constants/cities';
 import { tl } from '@/lib/utils/trilingual';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
   en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
@@ -44,8 +45,8 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
   };
 
   const article = generateDailyArticle(parsed, cityConfig);
-  const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
-  const isHi = loc === 'hi';
+  const isHi = isDevanagariLocale(locale);
+  const loc = (isHi ? 'hi' : 'en') as 'en' | 'hi';
   const body = article.body[loc];
   const title = article.title[loc];
   const cityName = isHi ? cityData.name.hi : cityData.name.en;

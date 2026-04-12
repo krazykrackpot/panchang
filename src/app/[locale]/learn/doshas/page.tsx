@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ChevronDown, Gem, Music, Heart, Flame, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Doshas & Remedies', hi: 'दोष एवं उपाय', sa: 'दोषाः उपायाः च' , ta: 'தோஷங்கள் & பரிகாரங்கள்' },
@@ -111,7 +112,7 @@ const REMEDY_TYPES = [
 
 export default function DoshasPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [expanded, setExpanded] = useState<string | null>('mangal');
@@ -159,9 +160,9 @@ export default function DoshasPage() {
 
       {/* Severity legend */}
       <div className="flex gap-4 text-xs">
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Severe' : locale === 'hi' ? 'गंभीर' : 'गम्भीरम्'}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moderate' : locale === 'hi' ? 'मध्यम' : 'मध्यमम्'}</span>
-        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mild' : locale === 'hi' ? 'हल्का' : 'लघु'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" /> {!isDevanagariLocale(locale) ? 'Severe' : isHi ? 'गंभीर' : 'गम्भीरम्'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500" /> {!isDevanagariLocale(locale) ? 'Moderate' : isHi ? 'मध्यम' : 'मध्यमम्'}</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500" /> {!isDevanagariLocale(locale) ? 'Mild' : isHi ? 'हल्का' : 'लघु'}</span>
       </div>
 
       {/* Dosha cards */}
@@ -188,23 +189,23 @@ export default function DoshasPage() {
                     <div className="p-5 space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Formation' : locale === 'hi' ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
+                          <div className="text-red-400 text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Formation' : isHi ? 'निर्माण शर्त' : 'निर्माणशर्तः'}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.condition[locale]}</div>
                         </div>
                         <div>
-                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Effects' : locale === 'hi' ? 'प्रभाव' : 'प्रभावः'}</div>
+                          <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Effects' : isHi ? 'प्रभाव' : 'प्रभावः'}</div>
                           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.effect[locale]}</div>
                         </div>
                       </div>
                       <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
                         <div className="flex items-center gap-2 mb-1">
                           <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Cancellation Conditions' : locale === 'hi' ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
+                          <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold">{!isDevanagariLocale(locale) ? 'Cancellation Conditions' : isHi ? 'रद्दीकरण शर्तें' : 'शमनशर्ताः'}</div>
                         </div>
                         <div className="text-emerald-300 text-xs leading-relaxed" style={bodyFont}>{dosha.cancellation[locale]}</div>
                       </div>
                       <div className="p-3 rounded-xl bg-gold-primary/5 border border-gold-primary/15">
-                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Remedies' : locale === 'hi' ? 'उपाय' : 'उपायाः'}</div>
+                        <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-1">{!isDevanagariLocale(locale) ? 'Remedies' : isHi ? 'उपाय' : 'उपायाः'}</div>
                         <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{dosha.remedy[locale]}</div>
                       </div>
                       <div className="text-text-tertiary text-xs">{dosha.classical}</div>
@@ -228,18 +229,18 @@ export default function DoshasPage() {
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
             <div className="text-amber-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
+              {!isDevanagariLocale(locale) ? 'Detection' : isHi ? 'पहचान' : 'पहचानम्'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
+              {!isDevanagariLocale(locale) ? 'Jupiter and Rahu in the same sign (within 15 degrees orb is strongest). Check in both Rashi and Navamsa charts.' : 'गुरु और राहु एक ही राशि में (15 अंश के भीतर सबसे प्रबल)। राशि और नवमांश दोनों में जाँचें।'}
             </div>
           </div>
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
+              {!isDevanagariLocale(locale) ? 'Silver lining' : isHi ? 'सकारात्मक पक्ष' : 'सकारात्मकपक्षः'}
             </div>
             <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.' : 'असाधारण अपरम्परागत ज्ञान, विदेशी/अग्रणी क्षेत्रों में सफलता, स्थापित मानदंडों को रचनात्मक रूप से चुनौती देने की क्षमता दे सकता है।'}
+              {!isDevanagariLocale(locale) ? 'Can give extraordinary unconventional wisdom, success in foreign/cutting-edge fields, ability to challenge established norms productively.' : 'असाधारण अपरम्परागत ज्ञान, विदेशी/अग्रणी क्षेत्रों में सफलता, स्थापित मानदंडों को रचनात्मक रूप से चुनौती देने की क्षमता दे सकता है।'}
             </div>
           </div>
         </div>
@@ -255,7 +256,7 @@ export default function DoshasPage() {
         </p>
         <div className="mt-4 p-3 rounded-xl bg-blue-400/5 border border-blue-400/15">
           <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Important nuance' : isHi ? 'महत्वपूर्ण सूक्ष्मता' : 'महत्त्वपूर्णसूक्ष्मता'}
+            {!isDevanagariLocale(locale) ? 'Important nuance' : isHi ? 'महत्वपूर्ण सूक्ष्मता' : 'महत्त्वपूर्णसूक्ष्मता'}
           </div>
           <div className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
             {locale === 'en'
@@ -294,12 +295,12 @@ export default function DoshasPage() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : isHi ? 'ग्रह' : 'ग्रहः'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemstone' : isHi ? 'रत्न' : 'रत्नम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Day' : isHi ? 'दिन' : 'दिनम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Color' : isHi ? 'रंग' : 'वर्णः'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Charity' : isHi ? 'दान' : 'दानम्'}</th>
-                <th className="text-left py-2 px-3 text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Beej Mantra' : isHi ? 'बीज मंत्र' : 'बीजमन्त्रः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Planet' : isHi ? 'ग्रह' : 'ग्रहः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Gemstone' : isHi ? 'रत्न' : 'रत्नम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Day' : isHi ? 'दिन' : 'दिनम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Color' : isHi ? 'रंग' : 'वर्णः'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Charity' : isHi ? 'दान' : 'दानम्'}</th>
+                <th className="text-left py-2 px-3 text-gold-dark">{!isDevanagariLocale(locale) ? 'Beej Mantra' : isHi ? 'बीज मंत्र' : 'बीजमन्त्रः'}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -334,7 +335,7 @@ export default function DoshasPage() {
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <h4 className="text-amber-300 font-bold text-sm mb-2" style={headingFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'A Note on Dosha Assessment' : isHi ? 'दोष मूल्यांकन पर टिप्पणी' : 'दोषमूल्याङ्कने टिप्पणी'}
+              {!isDevanagariLocale(locale) ? 'A Note on Dosha Assessment' : isHi ? 'दोष मूल्यांकन पर टिप्पणी' : 'दोषमूल्याङ्कने टिप्पणी'}
             </h4>
             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>
               {locale === 'en'

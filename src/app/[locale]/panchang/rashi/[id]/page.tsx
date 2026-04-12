@@ -13,6 +13,7 @@ import { RashiIconById } from '@/components/icons/RashiIcons';
 import { generateBreadcrumbLD } from '@/lib/seo/structured-data';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import {
   ArrowLeft, ArrowRight, Star, Briefcase, Heart, Activity,
   Gem, Hash, Palette, ChevronDown, ChevronUp, Sun, Sparkles,
@@ -114,7 +115,7 @@ function ScoreBar({ score, max = 10 }: { score: number; max?: number }) {
 
 function FAQItem({ question, answer, locale, index }: { question: Record<string, string>; answer: Record<string, string>; locale: string; index: number }) {
   const [open, setOpen] = useState(false);
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   return (
     <motion.div
       className="border border-gold-primary/10 rounded-lg overflow-hidden"
@@ -164,7 +165,7 @@ function FAQItem({ question, answer, locale, index }: { question: Record<string,
 export default function RashiDetailPage() {
   const params = useParams();
   const locale = useLocale() as Locale;
-  const isDevanagari = locale === 'hi' || String(locale) === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

@@ -6,6 +6,7 @@ import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const L = {
   title: { en: 'Planetary Positions — Graha Sthiti', hi: 'ग्रह स्थिति — ग्रहों की स्थिति', sa: 'ग्रहस्थितिः — ग्रहाणां स्थानम्' , ta: 'கிரக நிலைகள் — கிரக ஸ்திதி' },
@@ -182,7 +183,7 @@ const TABLE_COLUMNS = [
 
 export default function LearnPlanetsPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

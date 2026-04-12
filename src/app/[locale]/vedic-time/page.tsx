@@ -16,6 +16,7 @@ import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import { YOGAS } from '@/lib/constants/yogas';
 import { VARA_DATA } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Constants ──────────────────────────────────────────────────
 
@@ -235,7 +236,7 @@ function computeVedicTime(
 export default function VedicTimePage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
@@ -373,10 +374,10 @@ export default function VedicTimePage() {
       {/* Why Vedic Time? */}
       <InfoBlock
         id="vedic-time-intro"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'Why does Vedic time exist? How is it used?' : 'वैदिक समय क्यों है? इसका उपयोग कैसे होता है?'}
+        title={!isDevanagariLocale(locale) ? 'Why does Vedic time exist? How is it used?' : 'वैदिक समय क्यों है? इसका उपयोग कैसे होता है?'}
         defaultOpen={false}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? (
+        {!isDevanagariLocale(locale) ? (
           <div className="space-y-3">
             <p>Unlike the fixed 24-hour clock, <strong>Vedic time is sunrise-based</strong> — the day begins at sunrise, not midnight. This means each time unit (Ghati, Pala) is tied to the Sun&apos;s actual position, making it astronomically meaningful rather than arbitrary.</p>
             <p><strong>Why this matters:</strong></p>
@@ -409,13 +410,13 @@ export default function VedicTimePage() {
             onClick={() => setClockMode('60')}
             className={`px-5 py-2.5 font-medium transition-all ${clockMode === '60' ? 'bg-gold-primary/15 text-gold-light border-r border-gold-primary/20' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5 border-r border-gold-primary/20'}`}
           >
-            {(locale !== 'hi' && String(locale) !== 'sa') ? '60-Ghati (Ishtakala)' : '60-घटी (इष्टकाल)'}
+            {!isDevanagariLocale(locale) ? '60-Ghati (Ishtakala)' : '60-घटी (इष्टकाल)'}
           </button>
           <button
             onClick={() => setClockMode('30')}
             className={`px-5 py-2.5 font-medium transition-all ${clockMode === '30' ? 'bg-gold-primary/15 text-gold-light' : 'text-text-secondary hover:text-gold-light hover:bg-gold-primary/5'}`}
           >
-            {(locale !== 'hi' && String(locale) !== 'sa') ? '30-Ghati (Muhurta)' : '30-घटी (मुहूर्त)'}
+            {!isDevanagariLocale(locale) ? '30-Ghati (Muhurta)' : '30-घटी (मुहूर्त)'}
           </button>
         </div>
       </div>
@@ -437,7 +438,7 @@ export default function VedicTimePage() {
           {/* Vedic Clock */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
             <div className="text-gold-dark text-xs uppercase tracking-[0.3em] mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Vedic Time' : 'वैदिक समय'}
+              {!isDevanagariLocale(locale) ? 'Vedic Time' : 'वैदिक समय'}
             </div>
             <div className="text-gold-light text-4xl font-bold" style={headingFont}>
               {String(vedic.ghati).padStart(2, '0')}
@@ -447,15 +448,15 @@ export default function VedicTimePage() {
               {String(vedic.vipala).padStart(2, '0')}
             </div>
             <div className="text-text-secondary/70 text-xs mt-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
+              {!isDevanagariLocale(locale) ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
-                <div className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunriseVedic}</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
-                <div className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-gold-light font-mono font-semibold">{vedic.sunsetVedic}</div>
               </div>
             </div>
@@ -464,21 +465,21 @@ export default function VedicTimePage() {
           {/* Gregorian Clock */}
           <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 text-center">
             <div className="text-text-secondary/70 text-xs uppercase tracking-[0.3em] mb-2">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
+              {!isDevanagariLocale(locale) ? 'Gregorian Time' : 'ग्रेगोरियन समय'}
             </div>
             <div className="text-gold-light text-4xl font-bold font-mono tracking-wider">
               {time.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}
             </div>
             <div className="text-text-secondary/70 text-xs mt-1">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Hours : Minutes : Seconds' : 'घंटे : मिनट : सेकंड'}
+              {!isDevanagariLocale(locale) ? 'Hours : Minutes : Seconds' : 'घंटे : मिनट : सेकंड'}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
-                <div className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunrise' : 'सूर्योदय'}</div>
+                <div className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunriseStr}</div>
               </div>
               <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 py-2 px-2">
-                <div className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunset' : 'सूर्यास्त'}</div>
+                <div className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? 'Sunset' : 'सूर्यास्त'}</div>
                 <div className="text-text-primary font-mono font-semibold">{vedic.sunsetStr}</div>
               </div>
             </div>
@@ -486,7 +487,7 @@ export default function VedicTimePage() {
         </div>
       ) : (
         <div className="text-center py-8 text-text-secondary/70 text-sm">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Detecting your location for accurate sunrise/sunset...' : 'सटीक सूर्योदय/सूर्यास्त के लिए स्थान खोज रहे हैं...'}
+          {!isDevanagariLocale(locale) ? 'Detecting your location for accurate sunrise/sunset...' : 'सटीक सूर्योदय/सूर्यास्त के लिए स्थान खोज रहे हैं...'}
         </div>
       )}
 
@@ -496,19 +497,19 @@ export default function VedicTimePage() {
           <div className="text-gold-light text-sm font-semibold">
             {panchangCtx.masa?.[locale] || panchangCtx.masa?.en},{' '}
             {panchangCtx.tithi?.paksha === 'krishna'
-              ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Krishna' : 'कृष्ण')
-              : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Shukla' : 'शुक्ल')}{' '}
+              ? (!isDevanagariLocale(locale) ? 'Krishna' : 'कृष्ण')
+              : (!isDevanagariLocale(locale) ? 'Shukla' : 'शुक्ल')}{' '}
             {panchangCtx.tithi?.name?.[locale] || panchangCtx.tithi?.name?.en},{' '}
-            {panchangCtx.vikramSamvat} {(locale !== 'hi' && String(locale) !== 'sa') ? 'Vikram' : 'विक्रम'} / {panchangCtx.shakaSamvat} {(locale !== 'hi' && String(locale) !== 'sa') ? 'Shaka' : 'शक'}
+            {panchangCtx.vikramSamvat} {!isDevanagariLocale(locale) ? 'Vikram' : 'विक्रम'} / {panchangCtx.shakaSamvat} {!isDevanagariLocale(locale) ? 'Shaka' : 'शक'}
           </div>
           <div className="text-text-secondary/75 text-xs mt-1">
             {panchangCtx.vara?.name?.[locale] || panchangCtx.vara?.name?.en}
             {' — '}
             {panchangCtx.samvatsara?.[locale] || panchangCtx.samvatsara?.en}{' '}
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Samvatsara' : 'संवत्सर'}
+            {!isDevanagariLocale(locale) ? 'Samvatsara' : 'संवत्सर'}
           </div>
           <div className="text-text-secondary/65 text-xs mt-0.5">
-            {panchangCtx.gregorianDate.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-GB' : 'hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+            {panchangCtx.gregorianDate.toLocaleDateString(!isDevanagariLocale(locale) ? 'en-GB' : 'hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
         </div>
       )}
@@ -522,7 +523,7 @@ export default function VedicTimePage() {
             <div className="text-center mb-6">
               <div className="text-gold-dark text-xs uppercase tracking-[0.3em] mb-3">
                 {clockMode === '60'
-                  ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Ishtakala (60-Ghati Clock)' : 'इष्टकाल (60-घटी घड़ी)')
+                  ? (!isDevanagariLocale(locale) ? 'Ishtakala (60-Ghati Clock)' : 'इष्टकाल (60-घटी घड़ी)')
                   : (locale === 'en'
                     ? `${vedic.isDaytime ? 'Dinamana' : 'Ratrimana'} (30-Ghati Clock)`
                     : `${vedic.isDaytime ? 'दिनमान' : 'रात्रिमान'} (30-घटी घड़ी)`)}
@@ -535,19 +536,19 @@ export default function VedicTimePage() {
                 {String(vedic.vipala).padStart(2, '0')}
               </div>
               <div className="text-text-secondary text-sm mt-2" style={bodyFont}>
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
+                {!isDevanagariLocale(locale) ? 'Ghati : Pala : Vipala' : 'घटी : पल : विपल'}
               </div>
 
               {/* Kala name — 30-ghati clock only */}
               {clockMode === '30' && vedic.kalaName && (
                 <div className="mt-3 inline-block px-4 py-1.5 rounded-lg bg-gold-primary/10 border border-gold-primary/15">
                   <span className="text-gold-light text-sm font-semibold" style={bodyFont}>
-                    {locale === 'sa' ? vedic.kalaName.sa : locale === 'hi' ? vedic.kalaName.hi : vedic.kalaName.en}
+                    {locale === 'sa' ? vedic.kalaName.sa : isDevanagariLocale(locale) ? vedic.kalaName.hi : vedic.kalaName.en}
                   </span>
                   <span className="text-text-secondary/70 text-xs ml-2">
                     ({vedic.isDaytime
-                      ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Dinamana' : 'दिनमान')
-                      : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Ratrimana' : 'रात्रिमान')})
+                      ? (!isDevanagariLocale(locale) ? 'Dinamana' : 'दिनमान')
+                      : (!isDevanagariLocale(locale) ? 'Ratrimana' : 'रात्रिमान')})
                   </span>
                 </div>
               )}
@@ -583,9 +584,9 @@ export default function VedicTimePage() {
                       </svg>
                     </div>
                     <div className="text-gold-light text-sm font-bold mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {unit.label[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                      {unit.label[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                     </div>
-                    <div className="text-text-secondary/70 text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? unit.desc.en : unit.desc.hi}</div>
+                    <div className="text-text-secondary/70 text-xs">{!isDevanagariLocale(locale) ? unit.desc.en : unit.desc.hi}</div>
                   </motion.div>
                 );
               })}
@@ -595,24 +596,24 @@ export default function VedicTimePage() {
           {/* Prahar & Muhurta */}
           <div className="grid grid-cols-2 gap-4 mt-6">
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-center">
-              <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Prahar' : 'प्रहर'}</div>
+              <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{!isDevanagariLocale(locale) ? 'Prahar' : 'प्रहर'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.prahar}<span className="text-text-secondary text-sm">/8</span></div>
               {vedic.praharName && (
                 <div className="text-gold-primary text-sm font-semibold mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? vedic.praharName.en : vedic.praharName.hi}
+                  {!isDevanagariLocale(locale) ? vedic.praharName.en : vedic.praharName.hi}
                 </div>
               )}
               <div className="text-text-secondary/70 text-xs mt-0.5">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? `${vedic.praharDurationMin} min each` : `${vedic.praharDurationMin} मिनट प्रत्येक`}
+                {!isDevanagariLocale(locale) ? `${vedic.praharDurationMin} min each` : `${vedic.praharDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 text-center">
-              <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Muhurta' : 'मुहूर्त'}</div>
+              <div className="text-gold-dark text-xs uppercase tracking-wider mb-2">{!isDevanagariLocale(locale) ? 'Muhurta' : 'मुहूर्त'}</div>
               <div className="text-gold-light text-3xl font-bold">{vedic.muhurta}<span className="text-text-secondary text-sm">/30</span></div>
               {vedic.muhurtaName && (
                 <div className="mt-1 flex items-center justify-center gap-1.5">
                   <span className="text-gold-primary text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? vedic.muhurtaName.en : vedic.muhurtaName.hi}
+                    {!isDevanagariLocale(locale) ? vedic.muhurtaName.en : vedic.muhurtaName.hi}
                   </span>
                   <span className={`inline-block w-2 h-2 rounded-full ${
                     vedic.muhurtaName.nature === 'good' ? 'bg-emerald-400' :
@@ -621,7 +622,7 @@ export default function VedicTimePage() {
                 </div>
               )}
               <div className="text-text-secondary/70 text-xs mt-0.5">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? `${vedic.muhurtaDurationMin} min each` : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
+                {!isDevanagariLocale(locale) ? `${vedic.muhurtaDurationMin} min each` : `${vedic.muhurtaDurationMin} मिनट प्रत्येक`}
               </div>
             </div>
           </div>
@@ -631,8 +632,8 @@ export default function VedicTimePage() {
             <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mt-4">
               <div className="text-gold-dark text-xs uppercase tracking-wider mb-3 text-center">
                 {vedic.isDaytime
-                  ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Dinamana — 5 Kalas (6 Ghati each)' : 'दिनमान — 5 काल (6-6 घटी)')
-                  : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Ratrimana — 5 Kalas (6 Ghati each)' : 'रात्रिमान — 5 काल (6-6 घटी)')}
+                  ? (!isDevanagariLocale(locale) ? 'Dinamana — 5 Kalas (6 Ghati each)' : 'दिनमान — 5 काल (6-6 घटी)')
+                  : (!isDevanagariLocale(locale) ? 'Ratrimana — 5 Kalas (6 Ghati each)' : 'रात्रिमान — 5 काल (6-6 घटी)')}
               </div>
               <div className="grid grid-cols-5 gap-2">
                 {(vedic.isDaytime ? DINAMANA_KALAS : RATRIMANA_KALAS).map((kala, i) => {
@@ -644,7 +645,7 @@ export default function VedicTimePage() {
                         : 'bg-bg-secondary/30 border border-gold-primary/5 text-text-secondary/70'
                     }`}>
                       <div className="font-semibold" style={bodyFont}>
-                        {locale === 'sa' ? kala.sa : locale === 'hi' ? kala.hi : kala.en}
+                        {locale === 'sa' ? kala.sa : isDevanagariLocale(locale) ? kala.hi : kala.en}
                       </div>
                       <div className="text-xs mt-0.5 opacity-60">{i * 6}–{(i + 1) * 6}G</div>
                     </div>
@@ -659,7 +660,7 @@ export default function VedicTimePage() {
       {/* Conversion reference */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 mt-8">
         <h3 className="text-gold-light text-lg font-bold mb-4 text-center" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Vedic Time Units' : 'वैदिक समय इकाइयाँ'}
+          {!isDevanagariLocale(locale) ? 'Vedic Time Units' : 'वैदिक समय इकाइयाँ'}
         </h3>
         <div className="space-y-2 text-sm text-text-secondary" style={bodyFont}>
           {[
@@ -675,7 +676,7 @@ export default function VedicTimePage() {
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-2">
               <span className="text-gold-primary/40 mt-0.5">&#9672;</span>
-              <span>{(locale !== 'hi' && String(locale) !== 'sa') ? item.en : item.hi}</span>
+              <span>{!isDevanagariLocale(locale) ? item.en : item.hi}</span>
             </div>
           ))}
         </div>

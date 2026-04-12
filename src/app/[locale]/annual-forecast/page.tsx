@@ -18,6 +18,7 @@ import { authedFetch } from '@/lib/api/authed-fetch';
 import type { KundaliData, BirthData, ChartStyle } from '@/types/kundali';
 import type { VarshaphalData } from '@/types/varshaphal';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Labels ────────────────────────────────────────────────────────
 const LABELS: Record<string, {
@@ -368,7 +369,7 @@ const SECTION_ANIM = {
 export default function AnnualForecastPage() {
   const locale = useLocale() as Locale;
   const t = LABELS[locale] || LABELS.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -953,6 +954,7 @@ function TransitSummarySection({ forecast, locale, t, headingFont, bodyFont }: {
 function DashaNarrativeSection({ forecast, locale, t, headingFont, bodyFont }: {
   forecast: AnnualForecast; locale: Locale; t: typeof LABELS.en; headingFont: React.CSSProperties; bodyFont: React.CSSProperties;
 }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const { dashaNarrative } = forecast;
 
   return (
@@ -971,7 +973,7 @@ function DashaNarrativeSection({ forecast, locale, t, headingFont, bodyFont }: {
             <p className="text-amber-300 font-bold text-sm" style={headingFont}>{t.mahaChanging}</p>
           </div>
           <p className="text-text-secondary text-sm" style={bodyFont}>
-            {locale === 'hi' ? t.mahaChangingDescHi : t.mahaChangingDesc}
+            {isDevanagari ? t.mahaChangingDescHi : t.mahaChangingDesc}
           </p>
         </motion.div>
       )}
@@ -1049,6 +1051,7 @@ function DashaPeriodCard({ entry, label, locale, t, bodyFont, headingFont }: {
 function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
   forecast: AnnualForecast; locale: Locale; t: typeof LABELS.en; headingFont: React.CSSProperties; bodyFont: React.CSSProperties;
 }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const quarters: Record<number, KeyDate[]> = { 1: [], 2: [], 3: [], 4: [] };
   for (const d of forecast.keyDates) {
     if (quarters[d.quarter]) quarters[d.quarter].push(d);
@@ -1062,7 +1065,7 @@ function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
 
       {forecast.keyDates.length === 0 ? (
         <p className="text-text-secondary text-sm text-center py-4" style={bodyFont}>
-          {locale === 'hi' ? 'इस वर्ष कोई प्रमुख तिथि नहीं मिली।' : 'No significant key dates found for this year.'}
+          {isDevanagari ? 'इस वर्ष कोई प्रमुख तिथि नहीं मिली।' : 'No significant key dates found for this year.'}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1100,6 +1103,7 @@ function KeyDatesSection({ forecast, locale, t, headingFont, bodyFont }: {
 function RemediesSection({ forecast, locale, t, headingFont, bodyFont }: {
   forecast: AnnualForecast; locale: Locale; t: typeof LABELS.en; headingFont: React.CSSProperties; bodyFont: React.CSSProperties;
 }) {
+  const isDevanagari = isDevanagariLocale(locale);
   const typeLabels: Record<string, Record<string, string>> = {
     gemstone: { en: 'Gemstone', hi: 'रत्न' },
     mantra: { en: 'Mantra', hi: 'मंत्र' },
@@ -1118,7 +1122,7 @@ function RemediesSection({ forecast, locale, t, headingFont, bodyFont }: {
 
       {forecast.remedies.length === 0 ? (
         <p className="text-text-secondary text-sm text-center py-4" style={bodyFont}>
-          {locale === 'hi' ? 'कोई विशेष उपाय आवश्यक नहीं।' : 'No specific remedies indicated.'}
+          {isDevanagari ? 'कोई विशेष उपाय आवश्यक नहीं।' : 'No specific remedies indicated.'}
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

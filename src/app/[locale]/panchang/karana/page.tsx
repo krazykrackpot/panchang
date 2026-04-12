@@ -9,6 +9,7 @@ import { KARANAS } from '@/lib/constants/karanas';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { KaranaIcon } from '@/components/icons/PanchangIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ------------------------------------------------------------------ */
 /*  60-slot Karana sequence: Shakuni at pos 1, Chara cycle 2-58,      */
@@ -217,7 +218,7 @@ function AnimatedKaranaWheel({
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ delay: 0.8 + i * 0.06 }}
-            style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+            style={(isDevanagariLocale(locale)) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
           >
             {k.name[locale]}
           </motion.text>
@@ -237,36 +238,36 @@ function AnimatedKaranaWheel({
       {/* Center disc */}
       <circle cx={CX} cy={CY} r="75" fill="#0a0e27" stroke="rgba(212,168,83,0.15)" strokeWidth="0.5" />
       <text x={CX} y={CY - 20} fill="#f0d48a" fontSize="13" textAnchor="middle" fontWeight="bold" fontFamily="var(--font-heading)">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'KARANA' : locale === 'hi' ? 'करण' : 'करणम्'}
+        {!isDevanagariLocale(locale) ? 'KARANA' : locale === 'sa' ? 'करणम्' : 'करण'}
       </text>
       <text x={CX} y={CY - 3} fill="rgba(212,168,83,0.5)" fontSize="8" textAnchor="middle">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '60 Half-Tithis' : '60 अर्ध-तिथि'}
+        {!isDevanagariLocale(locale) ? '60 Half-Tithis' : '60 अर्ध-तिथि'}
       </text>
       <text x={CX} y={CY + 14} fill="#4ade80" fontSize="10" textAnchor="middle" fontFamily="var(--font-heading)">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '7 CHARA' : '7 चर'}
+        {!isDevanagariLocale(locale) ? '7 CHARA' : '7 चर'}
       </text>
       <text x={CX} y={CY + 28} fill="rgba(74,222,128,0.45)" fontSize="7" textAnchor="middle">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'cycle 8 times' : '8 बार चक्र'}
+        {!isDevanagariLocale(locale) ? 'cycle 8 times' : '8 बार चक्र'}
       </text>
       <text x={CX} y={CY + 44} fill="#f87171" fontSize="10" textAnchor="middle" fontFamily="var(--font-heading)">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '4 STHIRA' : '4 स्थिर'}
+        {!isDevanagariLocale(locale) ? '4 STHIRA' : '4 स्थिर'}
       </text>
       <text x={CX} y={CY + 57} fill="rgba(248,113,113,0.45)" fontSize="7" textAnchor="middle">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'appear once' : 'एक बार'}
+        {!isDevanagariLocale(locale) ? 'appear once' : 'एक बार'}
       </text>
 
       {/* Legend at bottom */}
       <circle cx={55} cy={468} r="5" fill="#4ade80" opacity="0.6" />
       <text x={70} y={471} fill="#4ade80" fontSize="8" fontWeight="500">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chara (Movable)' : 'चर (गतिशील)'}
+        {!isDevanagariLocale(locale) ? 'Chara (Movable)' : 'चर (गतिशील)'}
       </text>
       <circle cx={195} cy={468} r="5" fill="#ef4444" opacity="0.6" />
       <text x={210} y={471} fill="#ef4444" fontSize="8" fontWeight="500">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Vishti / Bhadra' : 'विष्टि / भद्रा'}
+        {!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा'}
       </text>
       <circle cx={345} cy={468} r="5" fill="#f87171" opacity="0.6" />
       <text x={360} y={471} fill="#f87171" fontSize="8" fontWeight="500">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sthira (Fixed)' : 'स्थिर (अचल)'}
+        {!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : 'स्थिर (अचल)'}
       </text>
     </motion.svg>
   );
@@ -276,6 +277,7 @@ function AnimatedKaranaWheel({
 /*  AngularSeparationDiagram — 6 degree increments                     */
 /* ------------------------------------------------------------------ */
 function AngularSeparationDiagram({ locale }: { locale: Locale }) {
+  const isDevanagari = isDevanagariLocale(locale);
   return (
     <motion.svg
       viewBox="0 0 620 240"
@@ -327,7 +329,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
           );
         })}
         <text x="100" y="160" fill="#f39c12" fontSize="11" textAnchor="middle" fontWeight="600">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sun' : 'सूर्य'}
+          {!isDevanagariLocale(locale) ? 'Sun' : 'सूर्य'}
         </text>
         <text x="100" y="175" fill="#f39c12" fontSize="8" textAnchor="middle" opacity="0.6">0°</text>
       </motion.g>
@@ -357,10 +359,10 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
       <motion.g initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.7, type: 'spring' }}>
         <circle cx="400" cy="110" r="18" fill="url(#moonGradK)" />
         <text x="400" y="150" fill="#d4a853" fontSize="11" textAnchor="middle" fontWeight="600">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon' : 'चन्द्र'}
+          {!isDevanagariLocale(locale) ? 'Moon' : 'चन्द्र'}
         </text>
         <text x="400" y="165" fill="#d4a853" fontSize="8" textAnchor="middle" opacity="0.6">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? '+6° ahead' : '+6° आगे'}
+          {!isDevanagariLocale(locale) ? '+6° ahead' : '+6° आगे'}
         </text>
       </motion.g>
 
@@ -376,7 +378,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.3 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '6° = 1 Karana = Half Tithi' : '6° = 1 करण = अर्ध तिथि'}
+        {!isDevanagariLocale(locale) ? '6° = 1 Karana = Half Tithi' : '6° = 1 करण = अर्ध तिथि'}
       </motion.text>
 
       {/* Tithi bracket */}
@@ -391,7 +393,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '12° = 1 Tithi = 2 Karanas' : '12° = 1 तिथि = 2 करण'}
+        {!isDevanagariLocale(locale) ? '12° = 1 Tithi = 2 Karanas' : '12° = 1 तिथि = 2 करण'}
       </motion.text>
 
       {/* Result box */}
@@ -402,7 +404,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
       >
         <rect x="460" y="72" width="145" height="76" rx="8" fill="rgba(74,222,128,0.08)" stroke="rgba(74,222,128,0.3)" strokeWidth="1" />
         <text x="532" y="95" fill="#4ade80" fontSize="8" textAnchor="middle" opacity="0.8">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Formula' : 'सूत्र'}
+          {!isDevanagariLocale(locale) ? 'Formula' : 'सूत्र'}
         </text>
         <text x="532" y="112" fill="#4ade80" fontSize="9" textAnchor="middle" fontWeight="bold" fontFamily="monospace">
           K = floor(D/6°)
@@ -411,7 +413,7 @@ function AngularSeparationDiagram({ locale }: { locale: Locale }) {
           D = Moon - Sun
         </text>
         <text x="532" y="142" fill="rgba(74,222,128,0.5)" fontSize="7" textAnchor="middle">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? '60 Karanas / month' : '60 करण / मास'}
+          {!isDevanagariLocale(locale) ? '60 Karanas / month' : '60 करण / मास'}
         </text>
       </motion.g>
     </motion.svg>
@@ -425,7 +427,7 @@ export default function KaranaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedKarana, setSelectedKarana] = useState<number | null>(null);
@@ -447,10 +449,10 @@ export default function KaranaPage() {
         <KaranaIcon size={72} />
         <div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4" style={headingFont}>
-            <span className="text-gold-gradient">{isTamil ? 'கரணம்' : locale === 'en' ? 'Karana' : locale === 'hi' ? 'करण' : 'करणम्'}</span>
+            <span className="text-gold-gradient">{isTamil ? 'கரணம்' : locale === 'en' ? 'Karana' : isDevanagari ? 'करण' : 'करणम्'}</span>
           </h1>
           <p className="text-text-secondary text-lg" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isTamil ? 'அரை-திதி — சந்திர நேரத்தின் 11 கட்டுமானத் தொகுதிகள்' : locale === 'en' ? 'The Half-Tithi — 11 Building Blocks of Lunar Time' : locale === 'hi' ? 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' : 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः'}
+            {isTamil ? 'அரை-திதி — சந்திர நேரத்தின் 11 கட்டுமானத் தொகுதிகள்' : locale === 'en' ? 'The Half-Tithi — 11 Building Blocks of Lunar Time' : isDevanagari ? 'अर्ध-तिथि — चान्द्र काल के 11 खण्ड' : 'अर्धतिथिः — चान्द्रकालस्य एकादश खण्डाः'}
           </p>
         </div>
       </motion.div>
@@ -466,7 +468,7 @@ export default function KaranaPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `A Karana is half a Tithi, i.e., the time for the Moon to gain 6° over the Sun. There are 60 Karanas in a full lunar month (30 Tithis x 2). However, only 11 distinct Karanas exist: 7 "Chara" (movable) Karanas that cycle repeatedly through positions 2-58, and 4 "Sthira" (fixed) Karanas that appear only once each — Shakuni at position 1 (first half of Shukla Pratipada), and Chatushpada, Nagava, and Kimstughna occupying the last three positions (58-60). The Chara Karanas (Bava through Vishti) repeat 8 times across the month.`
-                : locale === 'hi'
+                : isDevanagari
                 ? `करण तिथि का आधा भाग है, अर्थात् चन्द्रमा द्वारा सूर्य से 6° आगे बढ़ने का समय। एक पूर्ण चान्द्र मास में 60 करण होते हैं (30 तिथि x 2)। केवल 11 विशिष्ट करण हैं: 7 "चर" (गतिशील) करण जो स्थान 2-58 में चक्रित होते हैं, और 4 "स्थिर" करण जो केवल एक बार आते हैं — शकुनि स्थान 1 पर (शुक्ल प्रतिपदा का पूर्वार्ध), तथा चतुष्पद, नागव और किंस्तुघ्न अन्तिम तीन स्थानों (58-60) पर।`
                 : `करणं तिथेः अर्धभागः, अर्थात् चन्द्रमसा सूर्यात् 6° अग्रे गमनस्य कालः। एकस्मिन् पूर्णचान्द्रमासे 60 करणानि भवन्ति। केवलम् 11 विशिष्टकरणानि सन्ति — 7 चरकरणानि यानि 2-58 स्थानेषु चक्रयन्ते, 4 स्थिरकरणानि च।`}
             </p>
@@ -477,10 +479,10 @@ export default function KaranaPage() {
               viewport={{ once: true }}
             >
               <p className="text-gold-light font-mono text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Formula:' : 'सूत्र:'} Karana_index = floor((Moon_long - Sun_long) / 6°)
+                {!isDevanagariLocale(locale) ? 'Formula:' : 'सूत्र:'} Karana_index = floor((Moon_long - Sun_long) / 6°)
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)' : '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)'}
+                {!isDevanagariLocale(locale) ? '60 Karanas = 7 Chara (cycle 8x) + 4 Sthira (once each)' : '60 करण = 7 चर (8 बार) + 4 स्थिर (एक बार)'}
               </p>
             </motion.div>
           </div>
@@ -490,7 +492,7 @@ export default function KaranaPage() {
       {/* Interactive Karana Wheel */}
       <section className="my-12">
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Interactive Karana Wheel — 60 Half-Tithis' : locale === 'hi' ? 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ' : 'संवादात्मकं करणचक्रम् — षष्टिः अर्धतिथयः'}
+          {!isDevanagariLocale(locale) ? 'Interactive Karana Wheel — 60 Half-Tithis' : isDevanagari ? 'इंटरैक्टिव करण चक्र — 60 अर्ध-तिथियाँ' : 'संवादात्मकं करणचक्रम् — षष्टिः अर्धतिथयः'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8">
           <AnimatedKaranaWheel
@@ -524,29 +526,29 @@ export default function KaranaPage() {
                     </h3>
                     <span className={`text-xs px-2 py-1 rounded-full ${badgeClasses}`}>
                       {isSthira
-                        ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Sthira (Fixed)' : 'स्थिर')
+                        ? (!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : 'स्थिर')
                         : karana.name.en === 'Vishti'
-                        ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
-                        : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Chara (Movable)' : 'चर')}
+                        ? (!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
+                        : (!isDevanagariLocale(locale) ? 'Chara (Movable)' : 'चर')}
                     </span>
                   </div>
                   <div className="text-text-secondary text-sm space-y-1">
                     <p>
-                      <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Position:' : 'स्थान:'}</span>{' '}
+                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Position:' : 'स्थान:'}</span>{' '}
                       {selectedKarana + 1} / 60
                     </p>
                     <p>
-                      <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Angular Span:' : 'कोणीय विस्तार:'}</span>{' '}
+                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Angular Span:' : 'कोणीय विस्तार:'}</span>{' '}
                       {(selectedKarana * 6)}° — {((selectedKarana + 1) * 6)}°
                     </p>
                     <p>
-                      <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Within Tithi:' : 'तिथि में:'}</span>{' '}
+                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Within Tithi:' : 'तिथि में:'}</span>{' '}
                       {locale === 'en'
                         ? `Tithi ${Math.floor(selectedKarana / 2) + 1}, ${selectedKarana % 2 === 0 ? '1st' : '2nd'} half`
                         : `तिथि ${Math.floor(selectedKarana / 2) + 1}, ${selectedKarana % 2 === 0 ? 'पूर्वार्ध' : 'उत्तरार्ध'}`}
                     </p>
                     <p>
-                      <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Karana #:' : 'करण #:'}</span>{' '}
+                      <span className="text-gold-dark">{!isDevanagariLocale(locale) ? 'Karana #:' : 'करण #:'}</span>{' '}
                       {karana.number} ({karana.name.en})
                     </p>
                     {karana.name.en === 'Vishti' && (
@@ -570,7 +572,7 @@ export default function KaranaPage() {
           </AnimatePresence>
 
           <p className="text-text-secondary text-xs text-center mt-4">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
+            {!isDevanagariLocale(locale) ? 'Click on any sector to see details' : 'विवरण देखने के लिए किसी भी खंड पर क्लिक करें'}
           </p>
         </div>
       </section>
@@ -583,7 +585,7 @@ export default function KaranaPage() {
 
         {/* Chara Karanas */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chara Karanas (Movable — cycle 8 times)' : locale === 'hi' ? 'चर करण (गतिशील — 8 बार चक्र)' : 'चरकरणानि (चलानि — अष्टवारं चक्रम्)'}
+          {!isDevanagariLocale(locale) ? 'Chara Karanas (Movable — cycle 8 times)' : isDevanagari ? 'चर करण (गतिशील — 8 बार चक्र)' : 'चरकरणानि (चलानि — अष्टवारं चक्रम्)'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
           {chara.map((karana, i) => (
@@ -610,8 +612,8 @@ export default function KaranaPage() {
               </div>
               <div className={`text-xs mt-1 ${karana.name.en === 'Vishti' ? 'text-red-400' : 'text-emerald-400'}`}>
                 {karana.name.en === 'Vishti'
-                  ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
-                  : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Chara (Movable)' : locale === 'hi' ? 'चर (गतिशील)' : 'चरम्')}
+                  ? (!isDevanagariLocale(locale) ? 'Vishti / Bhadra' : 'विष्टि / भद्रा')
+                  : (!isDevanagariLocale(locale) ? 'Chara (Movable)' : isDevanagari ? 'चर (गतिशील)' : 'चरम्')}
               </div>
             </motion.div>
           ))}
@@ -619,7 +621,7 @@ export default function KaranaPage() {
 
         {/* Sthira Karanas */}
         <h3 className="text-xl text-red-400/80 mb-4" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sthira Karanas (Fixed — appear once each)' : locale === 'hi' ? 'स्थिर करण (अचल — प्रत्येक एक बार)' : 'स्थिरकरणानि (अचलानि — एकवारम्)'}
+          {!isDevanagariLocale(locale) ? 'Sthira Karanas (Fixed — appear once each)' : isDevanagari ? 'स्थिर करण (अचल — प्रत्येक एक बार)' : 'स्थिरकरणानि (अचलानि — एकवारम्)'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {sthira.map((karana, i) => {
@@ -641,10 +643,10 @@ export default function KaranaPage() {
                   {karana.name[locale]}
                 </div>
                 <div className="text-red-400 text-xs mt-1">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sthira (Fixed)' : locale === 'hi' ? 'स्थिर (अचल)' : 'स्थिरम्'}
+                  {!isDevanagariLocale(locale) ? 'Sthira (Fixed)' : isDevanagari ? 'स्थिर (अचल)' : 'स्थिरम्'}
                 </div>
                 <div className="text-red-400/50 text-xs mt-0.5">
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? `Position ${slotPositions[i] + 1}` : `स्थान ${slotPositions[i] + 1}`}
+                  {!isDevanagariLocale(locale) ? `Position ${slotPositions[i] + 1}` : `स्थान ${slotPositions[i] + 1}`}
                 </div>
               </motion.div>
             );

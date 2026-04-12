@@ -7,6 +7,7 @@ import { WEB_STORIES } from '@/lib/stories/story-data';
 import { ChevronRight, Sparkles } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const STORY_COLORS = [
   'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
@@ -51,10 +52,10 @@ const L = {
 
 export default function StoriesIndexPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
-  const l = L[locale === 'hi' || locale === 'sa' ? 'hi' : 'en'];
+  const l = L[isDevanagariLocale(locale) ? 'hi' : 'en'];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -94,7 +95,7 @@ export default function StoriesIndexPage() {
       {/* Story grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {WEB_STORIES.map((story, i) => {
-          const t = (v: { en: string; hi: string }) => (locale === 'hi' || locale === 'sa') ? v.hi : v.en;
+          const t = (v: { en: string; hi: string }) => isDevanagariLocale(locale) ? v.hi : v.en;
           return (
             <motion.div
               key={story.slug}
@@ -146,7 +147,7 @@ export default function StoriesIndexPage() {
           className="text-gold-primary/70 hover:text-gold-primary text-sm transition-colors"
           style={bf}
         >
-          {locale === 'hi' || locale === 'sa' ? 'सभी भारतीय योगदान देखें' : 'View all Indian Contributions'} &rarr;
+          {isDevanagariLocale(locale) ? 'सभी भारतीय योगदान देखें' : 'View all Indian Contributions'} &rarr;
         </Link>
       </div>
     </div>

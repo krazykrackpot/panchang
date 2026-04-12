@@ -19,6 +19,7 @@ import { analyzePrashna, PRASHNA_CATEGORIES } from '@/lib/prashna/horary-analysi
 import type { PrashnaCategory, PrashnaAnalysis, PrashnaInsight } from '@/lib/prashna/horary-analysis';
 import type { Locale } from '@/types/panchang';
 import type { KundaliData, ChartStyle } from '@/types/kundali';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ── Trilingual labels ──
 const L = {
@@ -89,7 +90,7 @@ const CATEGORY_ICONS: Record<PrashnaCategory, string> = {
 
 export default function PrashnaPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -109,7 +110,7 @@ export default function PrashnaPage() {
     if (locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
     const now = new Date();
-    setCastTime(now.toLocaleString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN'));
+    setCastTime(now.toLocaleString(!isDevanagariLocale(locale) ? 'en-IN' : 'hi-IN'));
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
     const tz = getUTCOffsetForDate(now.getFullYear(), now.getMonth() + 1, now.getDate(), ianaTimezone);
 
@@ -117,7 +118,7 @@ export default function PrashnaPage() {
       const res = await authedFetch('/api/kundali', {
         method: 'POST',
         body: JSON.stringify({
-          name: (locale !== 'hi' && String(locale) !== 'sa') ? 'Prashna Chart' : 'प्रश्न कुण्डली',
+          name: !isDevanagariLocale(locale) ? 'Prashna Chart' : 'प्रश्न कुण्डली',
           date: now.toISOString().split('T')[0],
           time: `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
           place: locationStore.name || 'Current Location',
@@ -303,7 +304,7 @@ export default function PrashnaPage() {
                   <div className="flex items-center justify-center gap-2 mb-2 text-xs text-text-secondary">
                     <RashiIconById id={kundali.ascendant.sign} size={20} />
                     <span style={bf}>
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
+                      {!isDevanagariLocale(locale) ? 'Ascendant' : 'लग्न'}: {kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(1)}&deg;)
                     </span>
                   </div>
                   {chartStyle === 'north' ? (
@@ -341,11 +342,11 @@ export default function PrashnaPage() {
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b border-gold-primary/10 bg-bg-tertiary/30">
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sign' : 'राशि'}</th>
-                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'House' : 'भाव'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Status' : 'स्थिति'}</th>
-                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Role' : 'भूमिका'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{!isDevanagariLocale(locale) ? 'Planet' : 'ग्रह'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{!isDevanagariLocale(locale) ? 'Sign' : 'राशि'}</th>
+                        <th className="text-center px-4 py-3 text-text-secondary font-bold text-xs uppercase">{!isDevanagariLocale(locale) ? 'House' : 'भाव'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{!isDevanagariLocale(locale) ? 'Status' : 'स्थिति'}</th>
+                        <th className="text-left px-4 py-3 text-text-secondary font-bold text-xs uppercase">{!isDevanagariLocale(locale) ? 'Role' : 'भूमिका'}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -479,7 +480,7 @@ function VerdictBanner({ analysis, locale, hf, bf }: {
           <div className="text-3xl font-bold font-mono">
             {analysis.verdict.score > 0 ? '+' : ''}{analysis.verdict.score}
           </div>
-          <div className="text-xs text-text-secondary uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Score' : 'अंक'}</div>
+          <div className="text-xs text-text-secondary uppercase">{!isDevanagariLocale(locale) ? 'Score' : 'अंक'}</div>
         </div>
       </div>
       <p className="text-sm leading-relaxed opacity-90" style={bf}>

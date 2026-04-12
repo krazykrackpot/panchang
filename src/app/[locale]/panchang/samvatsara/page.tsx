@@ -9,6 +9,7 @@ import { SAMVATSARA_NAMES } from '@/lib/ephem/astronomical';
 import type { Locale } from '@/types/panchang';
 import { ArrowLeft } from 'lucide-react';
 import { SamvatsaraIcon } from '@/components/icons/PanchangIcons';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const yugaColors = ['#4ade80', '#fbbf24', '#f97316', '#60a5fa', '#a78bfa'];
 
@@ -199,7 +200,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1, y: CY - 15 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? '60' : '६०'}
+        {!isDevanagariLocale(locale) ? '60' : '६०'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 5}
@@ -211,7 +212,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.8 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Samvatsaras' : 'संवत्सराः'}
+        {!isDevanagariLocale(locale) ? 'Samvatsaras' : 'संवत्सराः'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 20}
@@ -222,7 +223,7 @@ function AnimatedSamvatsaraWheel({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 2.0 }}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter-Saturn Cycle' : 'बृहस्पति-शनि चक्र'}
+        {!isDevanagariLocale(locale) ? 'Jupiter-Saturn Cycle' : 'बृहस्पति-शनि चक्र'}
       </motion.text>
     </motion.svg>
   );
@@ -234,7 +235,7 @@ function AnimatedSamvatsaraWheel({
 export default function SamvatsaraPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -272,7 +273,7 @@ export default function SamvatsaraPage() {
             <span className="text-gold-gradient">
               {locale === 'en'
                 ? 'Samvatsara'
-                : locale === 'hi'
+                : isDevanagari
                 ? 'संवत्सर'
                 : 'संवत्सरः'}
             </span>
@@ -283,7 +284,7 @@ export default function SamvatsaraPage() {
           >
             {locale === 'en'
               ? 'The 60-Year Jovian Cycle — Brihaspati Samvatsara Chakra'
-              : locale === 'hi'
+              : isDevanagari
               ? '60-वर्षीय बृहस्पति चक्र — संवत्सर चक्र'
               : 'षष्टिवार्षिकबृहस्पतिचक्रम् — संवत्सरचक्रम्'}
           </p>
@@ -302,14 +303,14 @@ export default function SamvatsaraPage() {
             <p className="text-lg leading-relaxed">
               {locale === 'en'
                 ? `The 60-year Samvatsara cycle (Brihaspati Samvatsara Chakra) is based on the orbital period of Jupiter (~11.86 years) combined with Saturn's (~29.46 years). Jupiter takes approximately 12 years to orbit the Sun, traversing one Rashi per year. The combination of Jupiter's 12-year cycle with the 5 revolutions it takes for both Jupiter and Saturn to return to approximately the same zodiacal positions yields a 60-year super-cycle (12 x 5 = 60). Each year in this cycle has a unique name, beginning with Prabhava. The current cycle is tracked from Vikari Samvatsara (2019-20), and the system has been in continuous use for millennia.`
-                : locale === 'hi'
+                : isDevanagari
                 ? `60-वर्षीय संवत्सर चक्र (बृहस्पति संवत्सर चक्र) बृहस्पति (~11.86 वर्ष) और शनि (~29.46 वर्ष) की कक्षीय अवधियों पर आधारित है। बृहस्पति सूर्य की परिक्रमा में लगभग 12 वर्ष लेता है, प्रति वर्ष एक राशि पार करता है। बृहस्पति के 12-वर्षीय चक्र और 5 परिक्रमाओं के संयोजन से 60-वर्षीय महाचक्र (12 x 5 = 60) बनता है। इस चक्र में प्रत्येक वर्ष का एक अद्वितीय नाम है, प्रभव से आरम्भ होकर।`
                 : `षष्टिवार्षिकसंवत्सरचक्रं (बृहस्पतिसंवत्सरचक्रम्) बृहस्पतेः (~11.86 वर्षाणि) शनेश्च (~29.46 वर्षाणि) कक्षीयकालयोः आधारेण स्थितम्। बृहस्पतिः सूर्यपरिक्रमायां प्रायः 12 वर्षाणि गृह्णाति, प्रतिवर्षम् एकां राशिं पारयति। बृहस्पतेः 12-वार्षिकचक्रस्य 5 परिक्रमाणां संयोजनेन 60-वार्षिकमहाचक्रं (12 x 5 = 60) जायते।`}
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Cycle:' : 'चक्र:'} Jupiter_orbit (~12 yr) x 5 = 60{' '}
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्षाणि'}
+                {!isDevanagariLocale(locale) ? 'Cycle:' : 'चक्र:'} Jupiter_orbit (~12 yr) x 5 = 60{' '}
+                {!isDevanagariLocale(locale) ? 'years' : 'वर्षाणि'}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -326,14 +327,14 @@ export default function SamvatsaraPage() {
         <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={headingFont}>
           {locale === 'en'
             ? 'The 60-Year Wheel'
-            : locale === 'hi'
+            : isDevanagari
             ? '60-वर्षीय चक्र'
             : 'षष्टिवार्षिकचक्रम्'}
         </h2>
         <p className="text-text-secondary text-sm mb-4">
           {locale === 'en'
             ? 'Click on any year marker in the wheel to see its name.'
-            : locale === 'hi'
+            : isDevanagari
             ? 'नाम देखने के लिए चक्र में किसी भी वर्ष पर क्लिक करें।'
             : 'नाम द्रष्टुं चक्रे कस्मिन् अपि वर्षे क्लिक्यताम्।'}
         </p>

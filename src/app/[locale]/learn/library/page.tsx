@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { ExternalLink, BookOpen } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -386,7 +387,7 @@ const CATEGORY_COLOR: Record<Category, string> = {
 
 export default function LibraryPage() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont   = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

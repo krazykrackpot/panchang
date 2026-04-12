@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getPageMetadata } from '@/lib/seo/metadata';
 import LearnLayoutShell from '@/components/learn/LearnLayoutShell';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 

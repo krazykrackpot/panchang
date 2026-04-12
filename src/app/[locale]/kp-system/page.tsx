@@ -16,6 +16,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import type { Locale } from '@/types/panchang';
 import type { KPChartData } from '@/types/kp';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Life area readings: per-planet × per-area (strong / weak)
@@ -379,7 +380,7 @@ export default function KPSystemPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (T as Record<string, typeof T.en>)[locale] || T.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -448,10 +449,10 @@ export default function KPSystemPage() {
       {/* KP Intro */}
       <InfoBlock
         id="kp-intro"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is the KP System?' : locale === 'hi' ? 'केपी पद्धति क्या है?' : 'केपी पद्धतिः किम्?'}
+        title={!isDevanagariLocale(locale) ? 'What is the KP System?' : isDevanagari ? 'केपी पद्धति क्या है?' : 'केपी पद्धतिः किम्?'}
         defaultOpen={false}
       >
-        {locale === 'hi' ? (
+        {isDevanagari ? (
           <p>कृष्णमूर्ति पद्धति (KP) वैदिक ज्योतिष का एक आधुनिक परिष्करण है। यह प्रत्येक नक्षत्र को &apos;उप-स्वामी&apos; नामक 9 उपखंडों में विभाजित करता है, जिससे बहुत सटीक भविष्यवाणी संभव होती है। जहां पारंपरिक ज्योतिष कहता है &apos;करियर के लिए शुभ&apos;, वहीं KP बता सकता है &apos;15-22 मार्च के बीच पदोन्नति संभव।&apos; यह वैदिक सिद्धांतों के साथ प्लेसिडस भाव पद्धति का उपयोग करता है।</p>
         ) : (
           <p>Krishnamurti Paddhati (KP) is a modern refinement of Vedic astrology. It divides each nakshatra into 9 sub-divisions called &apos;sub-lords&apos;, giving much more precise predictions. While traditional astrology tells you &apos;good for career&apos;, KP can pinpoint &apos;promotion likely between March 15–22.&apos; It uses the Placidus house system with Vedic principles.</p>
@@ -469,7 +470,7 @@ export default function KPSystemPage() {
           ))}
           <label className="block">
             <span className="text-text-secondary text-xs uppercase tracking-wider" style={bodyFont}>{t.place}</span>
-            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
+            <LocationSearch value={placeName} onSelect={(loc) => { setPlaceName(loc.name); setPlaceLat(loc.lat); setPlaceLng(loc.lng); setPlaceTimezone(loc.timezone); }} placeholder={!isDevanagariLocale(locale) ? 'Search birth place...' : 'जन्म स्थान खोजें...'} />
           </label>
         </div>
         <div className="text-center mt-6">
@@ -528,7 +529,7 @@ export default function KPSystemPage() {
                           <p className="text-text-secondary text-xs mt-0.5">{tl(area.axis, locale)}</p>
                         </div>
                         <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-full ${r.favorable ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300'}`}>
-                          {r.favorable ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'PROMISED' : locale === 'hi' ? 'फलदायी' : 'फलितम्') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'WITHHELD' : locale === 'hi' ? 'अभाव' : 'अभावः')}
+                          {r.favorable ? (!isDevanagariLocale(locale) ? 'PROMISED' : isDevanagari ? 'फलदायी' : 'फलितम्') : (!isDevanagariLocale(locale) ? 'WITHHELD' : isDevanagari ? 'अभाव' : 'अभावः')}
                         </span>
                       </div>
 
@@ -557,11 +558,11 @@ export default function KPSystemPage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
                 {[
-                  { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Asc Sign Lord' : locale === 'hi' ? 'लग्न राशि स्वामी' : 'लग्नराशिस्वामी', planet: data.rulingPlanets.ascSignLord },
-                  { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Asc Star Lord' : locale === 'hi' ? 'लग्न नक्षत्र स्वामी' : 'लग्ननक्षत्रस्वामी', planet: data.rulingPlanets.ascStarLord },
-                  { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Moon Sign Lord' : locale === 'hi' ? 'चन्द्र राशि स्वामी' : 'चन्द्रराशिस्वामी', planet: data.rulingPlanets.moonSignLord },
-                  { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Moon Star Lord' : locale === 'hi' ? 'चन्द्र नक्षत्र स्वामी' : 'चन्द्रनक्षत्रस्वामी', planet: data.rulingPlanets.moonStarLord },
-                  { label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Day Lord' : locale === 'hi' ? 'वार स्वामी' : 'वारस्वामी', planet: data.rulingPlanets.dayLord },
+                  { label: !isDevanagariLocale(locale) ? 'Asc Sign Lord' : isDevanagari ? 'लग्न राशि स्वामी' : 'लग्नराशिस्वामी', planet: data.rulingPlanets.ascSignLord },
+                  { label: !isDevanagariLocale(locale) ? 'Asc Star Lord' : isDevanagari ? 'लग्न नक्षत्र स्वामी' : 'लग्ननक्षत्रस्वामी', planet: data.rulingPlanets.ascStarLord },
+                  { label: !isDevanagariLocale(locale) ? 'Moon Sign Lord' : isDevanagari ? 'चन्द्र राशि स्वामी' : 'चन्द्रराशिस्वामी', planet: data.rulingPlanets.moonSignLord },
+                  { label: !isDevanagariLocale(locale) ? 'Moon Star Lord' : isDevanagari ? 'चन्द्र नक्षत्र स्वामी' : 'चन्द्रनक्षत्रस्वामी', planet: data.rulingPlanets.moonStarLord },
+                  { label: !isDevanagariLocale(locale) ? 'Day Lord' : isDevanagari ? 'वार स्वामी' : 'वारस्वामी', planet: data.rulingPlanets.dayLord },
                 ].map((rp, i) => {
                   const oracle = RULING_PLANET_ORACLE[rp.planet.id];
                   return (
@@ -607,7 +608,7 @@ export default function KPSystemPage() {
                     summary = 'A balanced mix of ruling planets governs this moment — neither overwhelmingly auspicious nor challenging. Your intentions and the care with which you act will determine the outcome more than cosmic timing will.';
                   }
                 } else {
-                  summary = locale === 'hi'
+                  summary = isDevanagari
                     ? `आपके शासक ग्रहों का संयोजन ${beneficCount >= 3 ? 'अत्यंत शुभ' : maleficCount >= 3 ? 'कर्म की दृष्टि से सतर्क रहने वाला' : 'संतुलित'} है।`
                     : `शासकग्रहसंयोगः ${beneficCount >= 3 ? 'अत्यन्तशुभः' : 'सन्तुलितः'} अस्ति।`;
                 }
@@ -615,7 +616,7 @@ export default function KPSystemPage() {
                 return (
                   <div className="rounded-xl bg-gold-primary/5 border border-gold-primary/15 p-4">
                     <p className="text-text-secondary text-xs uppercase tracking-wider mb-2 font-semibold">
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'Combined Oracle' : locale === 'hi' ? 'संयुक्त ओरेकल' : 'संयुक्तओरेकल'}
+                      {!isDevanagariLocale(locale) ? 'Combined Oracle' : isDevanagari ? 'संयुक्त ओरेकल' : 'संयुक्तओरेकल'}
                     </p>
                     <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>{summary}</p>
                     {locale === 'en' && (
@@ -645,7 +646,7 @@ export default function KPSystemPage() {
             <div className="bg-gradient-to-br from-[#1a1040]/60 via-[#0a0e27]/80 to-[#0a0e27] border border-amber-500/20 rounded-xl p-6">
               <h2 className="text-amber-400 text-sm uppercase tracking-wider mb-1 font-bold">{t.cuspalAnalysis}</h2>
               <p className="text-text-secondary text-xs mb-4">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'The sub-lord of each cusp determines whether that house\'s matters will materialise in this lifetime.' : locale === 'hi' ? 'प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।' : 'प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।'}
+                {!isDevanagariLocale(locale) ? 'The sub-lord of each cusp determines whether that house\'s matters will materialise in this lifetime.' : isDevanagari ? 'प्रत्येक कस्प के उप-स्वामी से उस भाव के फल का निर्धारण होता है।' : 'प्रत्येककस्पस्योपस्वामी तद्भावफलं निर्धारयति।'}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {data.cuspalAnalysis.map(ca => (
@@ -675,7 +676,7 @@ export default function KPSystemPage() {
                 className="w-full flex items-center justify-between px-5 py-3 rounded-xl border border-gold-primary/15 bg-gold-primary/5 hover:bg-gold-primary/10 transition-colors"
               >
                 <span className="text-gold-primary text-sm font-semibold uppercase tracking-wider">{t.referenceData}</span>
-                <span className="text-text-secondary text-xs">{showRefData ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Hide' : 'छुपाएं') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Show tables' : 'तालिकाएं देखें')}</span>
+                <span className="text-text-secondary text-xs">{showRefData ? (!isDevanagariLocale(locale) ? 'Hide' : 'छुपाएं') : (!isDevanagariLocale(locale) ? 'Show tables' : 'तालिकाएं देखें')}</span>
               </button>
 
               <AnimatePresence>

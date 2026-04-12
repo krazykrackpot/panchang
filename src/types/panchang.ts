@@ -57,6 +57,7 @@ export interface Karana {
 
 export interface Rashi {
   id: number;
+  slug: string;
   name: Trilingual;
   symbol: string;
   element: Trilingual;

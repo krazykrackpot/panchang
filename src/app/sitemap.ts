@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { getAllCitySlugs } from '@/lib/constants/cities';
+import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -283,6 +284,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     addEntries(entries, `/panchang/${slug}`, {
       changeFrequency: 'daily',
       priority: 0.8,
+    });
+  }
+
+  // Matching compatibility heatmap
+  addEntries(entries, '/matching/compatibility', {
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  });
+
+  // Rashi pair compatibility detail pages (/matching/{pair})
+  for (const pairSlug of getAllPairSlugs()) {
+    addEntries(entries, `/matching/${pairSlug}`, {
+      changeFrequency: 'monthly',
+      priority: 0.5,
     });
   }
 

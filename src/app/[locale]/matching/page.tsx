@@ -11,6 +11,7 @@ import ChartNorth from '@/components/kundali/ChartNorth';
 import { NakshatraIcon } from '@/components/icons/PanchangIcons';
 import { computeBirthSignsAction } from '@/app/actions/birth-signs';
 import InfoBlock from '@/components/ui/InfoBlock';
+import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import type { MatchResult } from '@/lib/matching/ashta-kuta';
 import type { KundaliData } from '@/types/kundali';
@@ -190,6 +191,9 @@ export default function MatchingPage() {
           <span className="text-gold-gradient">{t('title')}</span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
+        <Link href="/matching/compatibility" className="inline-block mt-4 text-gold-primary hover:text-gold-light text-sm transition-colors">
+          {isTamil ? 'ராசி பொருத்த அட்டவணை பார்க்க →' : locale === 'hi' ? 'राशि संगतता चार्ट देखें →' : locale === 'sa' ? 'राशिसंगततासारिणी पश्यतु →' : 'View Rashi Compatibility Chart →'}
+        </Link>
       </motion.div>
 
       {/* Birth details mode only — enter exact birth data for accurate matching */}

@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : String(locale) === 'ta' ? 'ta_IN' : String(locale) === 'te' ? 'te_IN' : String(locale) === 'bn' ? 'bn_IN' : String(locale) === 'kn' ? 'kn_IN' : 'en_US',
+      locale: ({ hi: 'hi_IN', sa: 'sa_IN', ta: 'ta_IN', te: 'te_IN', bn: 'bn_IN', kn: 'kn_IN', mr: 'mr_IN', gu: 'gu_IN', mai: 'mai_IN' } as Record<string, string>)[locale] || 'en_US',
       type: 'website',
       images: [
         {
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       images: [`${BASE_URL}/${locale}/twitter-image`],
     },
     robots: {
-      index: locale === 'en' || locale === 'hi',
+      index: true,
       follow: true,
       'max-image-preview': 'large' as const,
       'max-snippet': -1,

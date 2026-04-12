@@ -4,12 +4,18 @@
  */
 
 import type { Metadata } from 'next';
+import { locales } from '@/lib/i18n/config';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
+const OG_LOCALE_MAP: Record<string, string> = {
+  hi: 'hi_IN', sa: 'sa_IN', ta: 'ta_IN', te: 'te_IN',
+  bn: 'bn_IN', kn: 'kn_IN', mr: 'mr_IN', gu: 'gu_IN', mai: 'mai_IN',
+};
+
 interface PageMeta {
-  title: { en: string; hi: string; sa: string };
-  description: { en: string; hi: string; sa: string };
+  title: { en: string; hi: string; sa: string; [key: string]: string | undefined };
+  description: { en: string; hi: string; sa: string; [key: string]: string | undefined };
   keywords?: string[];
 }
 
@@ -814,10 +820,16 @@ export function getPageMetadata(route: string, locale: string): Metadata {
   const meta = PAGE_META[route];
   if (!meta) return {};
 
-  const loc = locale as 'en' | 'hi' | 'sa';
-  const title = meta.title[loc] || meta.title.en;
-  const description = meta.description[loc] || meta.description.en;
+  const title = meta.title[locale] || meta.title.en;
+  const description = meta.description[locale] || meta.description.en;
   const url = `${BASE_URL}/${locale}${route}`;
+
+  // Build hreflang alternates for ALL locales
+  const alternateLanguages: Record<string, string> = {};
+  for (const l of locales) {
+    alternateLanguages[l] = `${BASE_URL}/${l}${route}`;
+  }
+  alternateLanguages['x-default'] = `${BASE_URL}/en${route}`;
 
   return {
     title,
@@ -825,18 +837,14 @@ export function getPageMetadata(route: string, locale: string): Metadata {
     keywords: meta.keywords,
     alternates: {
       canonical: url,
-      languages: {
-        en: `${BASE_URL}/en${route}`,
-        hi: `${BASE_URL}/hi${route}`,
-        sa: `${BASE_URL}/sa${route}`,
-      },
+      languages: alternateLanguages,
     },
     openGraph: {
       title,
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: loc === 'hi' ? 'hi_IN' : loc === 'sa' ? 'sa_IN' : 'en_US',
+      locale: OG_LOCALE_MAP[locale] || 'en_US',
       type: 'website',
     },
     twitter: {

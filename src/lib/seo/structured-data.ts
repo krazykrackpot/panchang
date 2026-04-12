@@ -2,6 +2,8 @@
  * Structured data (JSON-LD) helpers for SEO.
  */
 
+import { locales } from '@/lib/i18n/config';
+
 const BASE_URL = 'https://dekhopanchang.com';
 
 const DISPLAY_NAMES: Record<string, string> = {
@@ -55,7 +57,7 @@ export function generateBreadcrumbLD(pathname: string, locale: string): object {
   const segments = pathname.split('/').filter(Boolean);
 
   // Remove locale prefix if present
-  if (['en', 'hi', 'sa'].includes(segments[0])) {
+  if ((locales as readonly string[]).includes(segments[0])) {
     segments.shift();
   }
 
@@ -160,7 +162,7 @@ export function generateWebSiteLD(): object {
     name: 'Dekho Panchang',
     alternateName: ['DekhoPanchang', 'dekhopanchang'],
     url: BASE_URL,
-    inLanguage: ['en', 'hi', 'sa'],
+    inLanguage: [...locales],
     publisher: { '@type': 'Organization', name: 'Dekho Panchang' },
     potentialAction: {
       '@type': 'SearchAction',

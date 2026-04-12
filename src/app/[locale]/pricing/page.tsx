@@ -105,25 +105,34 @@ const LABELS = {
     en: 'Unlock the Full Power of Vedic Astrology',
     hi: 'वैदिक ज्योतिष की पूर्ण शक्ति अनलॉक करें',
     ta: 'வேத ஜோதிடத்தின் முழு சக்தியைத் திறக்கவும்',
+    te: 'వేద జ్యోతిషం యొక్క పూర్తి శక్తిని అన్‌లాక్ చేయండి',
+    bn: 'বৈদিক জ্যোতিষের পূর্ণ শক্তি আনলক করুন',
+    kn: 'ವೈದಿಕ ಜ್ಯೋತಿಷದ ಪೂರ್ಣ ಶಕ್ತಿಯನ್ನು ಅನ್‌ಲಾಕ್ ಮಾಡಿ',
   },
   subtitle: {
     en: 'Choose the plan that fits your practice',
     hi: 'अपनी साधना के अनुरूप योजना चुनें',
     ta: 'உங்கள் பயிற்சிக்கு ஏற்ற திட்டத்தைத் தேர்ந்தெடுக்கவும்',
+    te: 'మీ అభ్యాసానికి తగిన ప్లాన్ ఎంచుకోండి',
+    bn: 'আপনার সাধনার উপযুক্ত পরিকল্পনা বেছে নিন',
+    kn: 'ನಿಮ್ಮ ಅಭ್ಯಾಸಕ್ಕೆ ಹೊಂದುವ ಯೋಜನೆಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ',
   },
-  monthly: { en: 'Monthly', hi: 'मासिक', ta: 'மாதாந்திர' },
-  annual: { en: 'Annual', hi: 'वार्षिक', ta: 'ஆண்டு' },
-  savePercent: { en: 'Save ~33%', hi: '~33% बचाएं', ta: '~33% சேமிக்கவும்' },
-  perMonth: { en: '/mo', hi: '/माह', ta: '/மாதம்' },
-  perYear: { en: '/yr', hi: '/वर्ष', ta: '/ஆண்டு' },
-  currentPlan: { en: 'Current Plan', hi: 'वर्तमान योजना', ta: 'தற்போதைய திட்டம்' },
-  getStarted: { en: 'Get Started', hi: 'शुरू करें', ta: 'தொடங்கு' },
-  startTrial: { en: 'Start Free Trial', hi: 'नि:शुल्क परीक्षण शुरू करें', ta: 'இலவச சோதனையைத் தொடங்கு' },
-  mostPopular: { en: 'Most Popular', hi: 'सबसे लोकप्रिय', ta: 'மிகவும் பிரபலமான' },
-  faq: { en: 'Frequently Asked Questions', hi: 'अक्सर पूछे जाने वाले प्रश्न', ta: 'அடிக்கடி கேட்கப்படும் கேள்விகள்' },
+  monthly: { en: 'Monthly', hi: 'मासिक', ta: 'மாதாந்திர', te: 'నెలవారీ', bn: 'মাসিক', kn: 'ಮಾಸಿಕ' },
+  annual: { en: 'Annual', hi: 'वार्षिक', ta: 'ஆண்டு', te: 'వార్షిక', bn: 'বার্ষিক', kn: 'ವಾರ್ಷಿಕ' },
+  savePercent: { en: 'Save ~33%', hi: '~33% बचाएं', ta: '~33% சேமிக்கவும்', te: '~33% ఆదా', bn: '~৩৩% সাশ্রয়', kn: '~33% ಉಳಿತಾಯ' },
+  perMonth: { en: '/mo', hi: '/माह', ta: '/மாதம்', te: '/నెల', bn: '/মাস', kn: '/ತಿಂಗಳು' },
+  perYear: { en: '/yr', hi: '/वर्ष', ta: '/ஆண்டு', te: '/సంవత్సరం', bn: '/বছর', kn: '/ವರ್ಷ' },
+  currentPlan: { en: 'Current Plan', hi: 'वर्तमान योजना', ta: 'தற்போதைய திட்டம்', te: 'ప్రస్తుత ప్లాన్', bn: 'বর্তমান পরিকল্পনা', kn: 'ಪ್ರಸ್ತುತ ಯೋಜನೆ' },
+  getStarted: { en: 'Get Started', hi: 'शुरू करें', ta: 'தொடங்கு', te: 'ప్రారంభించండి', bn: 'শুরু করুন', kn: 'ಪ್ರಾರಂಭಿಸಿ' },
+  startTrial: { en: 'Start Free Trial', hi: 'नि:शुल्क परीक्षण शुरू करें', ta: 'இலவச சோதனையைத் தொடங்கு', te: 'ఉచిత ట్రయల్ ప్రారంభించండి', bn: 'বিনামূল্যে ট্রায়াল শুরু করুন', kn: 'ಉಚಿತ ಟ್ರಯಲ್ ಪ್ರಾರಂಭಿಸಿ' },
+  mostPopular: { en: 'Most Popular', hi: 'सबसे लोकप्रिय', ta: 'மிகவும் பிரபலமான', te: 'అత్యంత జనాదరణ', bn: 'সবচেয়ে জনপ্রিয়', kn: 'ಅತ್ಯಂತ ಜನಪ್ರಿಯ' },
+  faq: { en: 'Frequently Asked Questions', hi: 'अक्सर पूछे जाने वाले प्रश्न', ta: 'அடிக்கடி கேட்கப்படும் கேள்விகள்', te: 'తరచుగా అడిగే ప్రశ్నలు', bn: 'প্রায়শই জিজ্ঞাসিত প্রশ্ন', kn: 'ಪದೇ ಪದೇ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು' },
 };
 
-function t(obj: { en: string; hi: string; ta?: string }, locale: string): string {
+function t(obj: { en: string; hi: string; ta?: string; te?: string; bn?: string; kn?: string }, locale: string): string {
+  if (String(locale) === 'te' && obj.te) return obj.te;
+  if (String(locale) === 'bn' && obj.bn) return obj.bn;
+  if (String(locale) === 'kn' && obj.kn) return obj.kn;
   if (String(locale) === 'ta' && obj.ta) return obj.ta;
   return (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
 }

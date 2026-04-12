@@ -25,34 +25,37 @@ import InfoBlock from '@/components/ui/InfoBlock';
 // Trilingual labels
 // ---------------------------------------------------------------------------
 
-const L = (en: string, hi: string, sa?: string, ta?: string) => ({ en, hi, sa: sa ?? hi, ...(ta ? { ta } : {}) });
+const L = (en: string, hi: string, sa?: string, ta?: string, te?: string, bn?: string, kn?: string) => ({ en, hi, sa: sa ?? hi, ...(ta ? { ta } : {}), ...(te ? { te } : {}), ...(bn ? { bn } : {}), ...(kn ? { kn } : {}) });
 
 const LABELS = {
-  title: L('Sade Sati', 'साढ़े साती', 'साढेसाती', 'ஏழரை சனி'),
+  title: L('Sade Sati', 'साढ़े साती', 'साढेसाती', 'ஏழரை சனி', 'సాడే సాతి', 'সাড়ে সাতি', 'ಸಾಡೆ ಸಾತಿ'),
   subtitle: L(
     "Saturn's 7.5-year transit over your Moon sign — the most transformative period in Vedic astrology",
     'शनि का आपकी चन्द्र राशि पर 7.5 वर्ष का गोचर — वैदिक ज्योतिष का सर्वाधिक परिवर्तनकारी काल',
     'शनेः चन्द्रराशौ सार्धसप्तवर्षीयं गोचरम् — वैदिकज्योतिषस्य परमपरिवर्तनकालः',
     'உங்கள் சந்திர ராசியின் மீது சனியின் 7.5 வருட கோசாரம் — வேத ஜோதிடத்தின் மிக முக்கிய காலம்',
+    'మీ చంద్ర రాశిపై శని 7.5 సంవత్సరాల గోచారం — వేద జ్యోతిషంలో అత్యంత పరివర్తనాత్మక కాలం',
+    'আপনার চন্দ্র রাশির উপর শনির ৭.৫ বছরের গোচর — বৈদিক জ্যোতিষের সবচেয়ে রূপান্তরকারী কাল',
+    'ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯ ಮೇಲೆ ಶನಿಯ 7.5 ವರ್ಷಗಳ ಗೋಚಾರ — ವೈದಿಕ ಜ್ಯೋತಿಷದಲ್ಲಿ ಅತ್ಯಂತ ಪರಿವರ್ತನಾತ್ಮಕ ಅವಧಿ',
   ),
-  saturnIn: L('Saturn is currently in', 'शनि वर्तमान में', 'शनिः सम्प्रति', 'சனி தற்போது'),
-  quickTab: L('Quick Check', 'त्वरित जाँच', 'शीघ्रपरीक्षा', 'விரைவு சோதனை'),
-  fullTab: L('Full Analysis', 'विस्तृत विश्लेषण', 'सम्पूर्णविश्लेषणम्', 'முழு பகுப்பாய்வு'),
-  selectMoon: L('Select Your Moon Sign', 'अपनी चन्द्र राशि चुनें', 'स्वचन्द्रराशिं चिनुत', 'உங்கள் சந்திர ராசியைத் தேர்ந்தெடுக்கவும்'),
-  date: L('Date of Birth', 'जन्म तिथि', 'जन्मतिथिः', 'பிறந்த தேதி'),
-  time: L('Time of Birth', 'जन्म समय', 'जन्मसमयः', 'பிறந்த நேரம்'),
-  place: L('Birth Place', 'जन्म स्थान', 'जन्मस्थानम्', 'பிறந்த இடம்'),
+  saturnIn: L('Saturn is currently in', 'शनि वर्तमान में', 'शनिः सम्प्रति', 'சனி தற்போது', 'శని ప్రస్తుతం', 'শনি বর্তমানে', 'ಶನಿ ಪ್ರಸ್ತುತ'),
+  quickTab: L('Quick Check', 'त्वरित जाँच', 'शीघ्रपरीक्षा', 'விரைவு சோதனை', 'త్వరిత తనిఖీ', 'দ্রুত পরীক্ষা', 'ತ್ವರಿತ ಪರಿಶೀಲನೆ'),
+  fullTab: L('Full Analysis', 'विस्तृत विश्लेषण', 'सम्पूर्णविश्लेषणम्', 'முழு பகுப்பாய்வு', 'పూర్తి విశ్లేషణ', 'সম্পূর্ণ বিশ্লেষণ', 'ಪೂರ್ಣ ವಿಶ್ಲೇಷಣೆ'),
+  selectMoon: L('Select Your Moon Sign', 'अपनी चन्द्र राशि चुनें', 'स्वचन्द्रराशिं चिनुत', 'உங்கள் சந்திர ராசியைத் தேர்ந்தெடுக்கவும்', 'మీ చంద్ర రాశిని ఎంచుకోండి', 'আপনার চন্দ্র রাশি নির্বাচন করুন', 'ನಿಮ್ಮ ಚಂದ್ರ ರಾಶಿಯನ್ನು ಆಯ್ಕೆ ಮಾಡಿ'),
+  date: L('Date of Birth', 'जन्म तिथि', 'जन्मतिथिः', 'பிறந்த தேதி', 'పుట్టిన తేదీ', 'জন্ম তারিখ', 'ಹುಟ್ಟಿದ ದಿನಾಂಕ'),
+  time: L('Time of Birth', 'जन्म समय', 'जन्मसमयः', 'பிறந்த நேரம்', 'పుట్టిన సమయం', 'জন্ম সময়', 'ಹುಟ್ಟಿದ ಸಮಯ'),
+  place: L('Birth Place', 'जन्म स्थान', 'जन्मस्थानम्', 'பிறந்த இடம்', 'పుట్టిన ప్రదేశం', 'জন্মস্থান', 'ಹುಟ್ಟಿದ ಸ್ಥಳ'),
   lat: L('Latitude', 'अक्षांश', 'अक्षांशः'),
   lng: L('Longitude', 'देशान्तर', 'देशान्तरः'),
   tz: L('Timezone (hrs)', 'समयक्षेत्र (घंटे)', 'समयक्षेत्रम्'),
-  analyze: L('Analyze', 'विश्लेषण करें', 'विश्लेषयतु', 'பகுப்பாய்வு'),
-  loading: L('Generating kundali...', 'कुण्डली बना रहे हैं...', 'कुण्डलीं रचयति...', 'ஜாதகம் உருவாக்கப்படுகிறது...'),
-  active: L('SADE SATI ACTIVE', 'साढ़े साती सक्रिय', 'साढेसाती सक्रिया', 'ஏழரை சனி செயலில்'),
-  notActive: L('NOT IN SADE SATI', 'साढ़े साती नहीं', 'साढेसाती नास्ति', 'ஏழரை சனி இல்லை'),
-  nextCycle: L('Next cycle begins around', 'अगला चक्र लगभग', 'अग्रिमचक्रं प्रायः', 'அடுத்த சுழற்சி தொடங்கும் காலம்'),
-  intensity: L('Intensity', 'तीव्रता', 'तीव्रता', 'தீவிரம்'),
-  timeline: L('Timeline', 'समयरेखा', 'समयरेखा', 'காலவரிசை'),
-  remedies: L('Remedies', 'उपाय', 'उपायाः', 'பரிகாரங்கள்'),
+  analyze: L('Analyze', 'विश्लेषण करें', 'विश्लेषयतु', 'பகுப்பாய்வு', 'విశ్లేషించు', 'বিশ্লেষণ করুন', 'ವಿಶ್ಲೇಷಿಸಿ'),
+  loading: L('Generating kundali...', 'कुण्डली बना रहे हैं...', 'कुण्डलीं रचयति...', 'ஜாதகம் உருவாக்கப்படுகிறது...', 'జాతకం రూపొందించబడుతోంది...', 'জাতক তৈরি হচ্ছে...', 'ಜಾತಕ ರಚಿಸಲಾಗುತ್ತಿದೆ...'),
+  active: L('SADE SATI ACTIVE', 'साढ़े साती सक्रिय', 'साढेसाती सक्रिया', 'ஏழரை சனி செயலில்', 'సాడే సాతి యాక్టివ్', 'সাড়ে সাতি সক্রিয়', 'ಸಾಡೆ ಸಾತಿ ಸಕ್ರಿಯ'),
+  notActive: L('NOT IN SADE SATI', 'साढ़े साती नहीं', 'साढेसाती नास्ति', 'ஏழரை சனி இல்லை', 'సాడే సాతి లేదు', 'সাড়ে সাতি নেই', 'ಸಾಡೆ ಸಾತಿ ಇಲ್ಲ'),
+  nextCycle: L('Next cycle begins around', 'अगला चक्र लगभग', 'अग्रिमचक्रं प्रायः', 'அடுத்த சுழற்சி தொடங்கும் காலம்', 'తదుపరి చక్రం సుమారుగా', 'পরবর্তী চক্র শুরু হবে প্রায়', 'ಮುಂದಿನ ಚಕ್ರ ಸುಮಾರು'),
+  intensity: L('Intensity', 'तीव्रता', 'तीव्रता', 'தீவிரம்', 'తీవ్రత', 'তীব্রতা', 'ತೀವ್ರತೆ'),
+  timeline: L('Timeline', 'समयरेखा', 'समयरेखा', 'காலவரிசை', 'కాలరేఖ', 'সময়রেখা', 'ಕಾಲಾನುಕ್ರಮ'),
+  remedies: L('Remedies', 'उपाय', 'उपायाः', 'பரிகாரங்கள்', 'పరిహారాలు', 'প্রতিকার', 'ಪರಿಹಾರಗಳು'),
   phase: {
     rising: L('Rising Phase (12th from Moon)', 'आरम्भ चरण (चन्द्र से 12वाँ)', 'उत्थानचरणः', 'உதய கட்டம் (சந்திரனிலிருந்து 12வது)'),
     peak: L('Peak Phase (Over Moon Sign)', 'चरम चरण (चन्द्र राशि पर)', 'चरमचरणः', 'உச்ச கட்டம் (சந்திர ராசி மீது)'),
@@ -79,9 +82,13 @@ const LABELS = {
   intense: L('Intense', 'तीव्र', 'तीव्रम्'),
 };
 
-type Tri = { en: string; hi: string; sa?: string; ta?: string };
+type Tri = { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string };
 const t = (label: Tri, locale: Locale): string => {
-  if (String(locale) === 'ta') return (label as Record<string, string>).ta ?? label.en;
+  const loc = String(locale);
+  if (loc === 'te' && (label as Record<string, string>).te) return (label as Record<string, string>).te;
+  if (loc === 'bn' && (label as Record<string, string>).bn) return (label as Record<string, string>).bn;
+  if (loc === 'kn' && (label as Record<string, string>).kn) return (label as Record<string, string>).kn;
+  if (loc === 'ta') return (label as Record<string, string>).ta ?? label.en;
   const k = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
   return (label as Record<string, string>)[k] ?? label.en;
 };

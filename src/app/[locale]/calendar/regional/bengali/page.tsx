@@ -7,6 +7,9 @@ const LABELS = {
     hi: 'बंगाली कैलेंडर (पंजिका)',
     sa: 'बङ्गालपञ्जिका',
     ta: 'வங்காள நாள்காட்டி (பஞ்சிகா)',
+    te: 'బెంగాలీ క్యాలెండర్ (పంజికా)',
+    bn: 'বাংলা পঞ্জিকা',
+    kn: 'ಬಂಗಾಲಿ ಕ್ಯಾಲೆಂಡರ್ (ಪಂಜಿಕಾ)',
   },
   intro: {
     en: 'The Bengali calendar, known as the "Bangla Panjika" or "Bangabda," is the traditional calendar of the Bengali-speaking people of West Bengal, Bangladesh, Tripura, and the global Bengali diaspora. Revised in 1966 by a committee led by Dr. Meghnad Saha (the astrophysicist who formulated the Saha ionization equation), the modern Bengali calendar is a reformed solar calendar that maintains close alignment with the Gregorian system while preserving its ancient roots. The Panjika serves as the authoritative reference for all religious observances, festivals, and auspicious timings in Bengali Hindu culture. Over 250 million people follow the Bengali calendar today.',
@@ -19,6 +22,9 @@ const LABELS = {
     hi: '12 बंगाली मास',
     sa: '१२ बङ्गालमासाः',
     ta: '12 வங்காள மாதங்கள்',
+    te: '12 బెంగాలీ నెలలు',
+    bn: '১২টি বাংলা মাস',
+    kn: '12 ಬಂಗಾಲಿ ತಿಂಗಳುಗಳು',
   },
   monthsIntro: {
     en: 'After the Saha calendar reform, the first five months (Boishakh to Bhadro) have 31 days each, and the remaining seven months (Ashwin to Choitro) have 30 days each, totalling 365 days (366 in leap years, when Choitro gets an extra day). This reform eliminated the variable-length months of the older sidereal system, making date calculations predictable while preserving the traditional month names that derive from the same Nakshatras as the pan-Indian Hindu calendar.',

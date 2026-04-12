@@ -1,5 +1,3 @@
-'use client';
-
 export default function GoldDivider({ className = '' }: { className?: string }) {
   return (
     <div className={`flex items-center justify-center py-4 ${className}`}>

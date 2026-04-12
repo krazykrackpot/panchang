@@ -1,4 +1,4 @@
-const STARS = Array.from({ length: 80 }, (_, i) => {
+const STARS = Array.from({ length: 30 }, (_, i) => {
   // Deterministic pseudo-random via LCG seeded by index — no Math.random(), no hydration mismatch
   const s1 = ((i * 1664525 + 1013904223) >>> 0) / 4294967296;
   const s2 = (((i + 80) * 1664525 + 1013904223) >>> 0) / 4294967296;

@@ -104,24 +104,27 @@ const LABELS = {
   heading: {
     en: 'Unlock the Full Power of Vedic Astrology',
     hi: 'वैदिक ज्योतिष की पूर्ण शक्ति अनलॉक करें',
+    ta: 'வேத ஜோதிடத்தின் முழு சக்தியைத் திறக்கவும்',
   },
   subtitle: {
     en: 'Choose the plan that fits your practice',
     hi: 'अपनी साधना के अनुरूप योजना चुनें',
+    ta: 'உங்கள் பயிற்சிக்கு ஏற்ற திட்டத்தைத் தேர்ந்தெடுக்கவும்',
   },
-  monthly: { en: 'Monthly', hi: 'मासिक' },
-  annual: { en: 'Annual', hi: 'वार्षिक' },
-  savePercent: { en: 'Save ~33%', hi: '~33% बचाएं' },
-  perMonth: { en: '/mo', hi: '/माह' },
-  perYear: { en: '/yr', hi: '/वर्ष' },
-  currentPlan: { en: 'Current Plan', hi: 'वर्तमान योजना' },
-  getStarted: { en: 'Get Started', hi: 'शुरू करें' },
-  startTrial: { en: 'Start Free Trial', hi: 'नि:शुल्क परीक्षण शुरू करें' },
-  mostPopular: { en: 'Most Popular', hi: 'सबसे लोकप्रिय' },
-  faq: { en: 'Frequently Asked Questions', hi: 'अक्सर पूछे जाने वाले प्रश्न' },
+  monthly: { en: 'Monthly', hi: 'मासिक', ta: 'மாதாந்திர' },
+  annual: { en: 'Annual', hi: 'वार्षिक', ta: 'ஆண்டு' },
+  savePercent: { en: 'Save ~33%', hi: '~33% बचाएं', ta: '~33% சேமிக்கவும்' },
+  perMonth: { en: '/mo', hi: '/माह', ta: '/மாதம்' },
+  perYear: { en: '/yr', hi: '/वर्ष', ta: '/ஆண்டு' },
+  currentPlan: { en: 'Current Plan', hi: 'वर्तमान योजना', ta: 'தற்போதைய திட்டம்' },
+  getStarted: { en: 'Get Started', hi: 'शुरू करें', ta: 'தொடங்கு' },
+  startTrial: { en: 'Start Free Trial', hi: 'नि:शुल्क परीक्षण शुरू करें', ta: 'இலவச சோதனையைத் தொடங்கு' },
+  mostPopular: { en: 'Most Popular', hi: 'सबसे लोकप्रिय', ta: 'மிகவும் பிரபலமான' },
+  faq: { en: 'Frequently Asked Questions', hi: 'अक्सर पूछे जाने वाले प्रश्न', ta: 'அடிக்கடி கேட்கப்படும் கேள்விகள்' },
 };
 
-function t(obj: { en: string; hi: string }, locale: string): string {
+function t(obj: { en: string; hi: string; ta?: string }, locale: string): string {
+  if (String(locale) === 'ta' && obj.ta) return obj.ta;
   return (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
 }
 

@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   images: {
     domains: [],
   },

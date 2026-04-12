@@ -1,6 +1,13 @@
+// All supported locales (routing + generation)
 export const locales = ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';
+
+// Locales visible in the language picker — hide unvalidated ones in production
+const isDev = process.env.NODE_ENV === 'development';
+export const visibleLocales: Locale[] = isDev
+  ? ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn']
+  : ['en', 'hi', 'sa', 'ta'];
 
 export const localeNames: Record<Locale, string> = {
   en: 'English',

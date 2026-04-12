@@ -90,6 +90,7 @@ const routes = [
   '/regional',
   '/calendar/regional/tamil',
   '/calendar/regional/bengali',
+  '/calendar/regional/mithila',
   // Tools
   '/sign-calculator',
   '/sade-sati',

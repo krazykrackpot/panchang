@@ -23,6 +23,7 @@ import FestivalCountdown from '@/components/dashboard/FestivalCountdown';
 import MorningBriefing from '@/components/dashboard/MorningBriefing';
 import PushPermission from '@/components/notifications/PushPermission';
 import PersonalizedHoroscope from '@/components/dashboard/PersonalizedHoroscope';
+import DailyHoroscopeWidget from '@/components/dashboard/DailyHoroscopeWidget';
 import WeekAhead from '@/components/dashboard/WeekAhead';
 import DashaTransitionAlert from '@/components/dashboard/DashaTransitionAlert';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
@@ -519,6 +520,17 @@ export default function DashboardPage() {
           lat={birthLat ?? undefined}
           lng={birthLng ?? undefined}
         />
+
+        {/* Daily Horoscope Widget — transit-based, no LLM */}
+        {userMoonSign > 0 && (
+          <motion.div {...fadeUp} transition={{ delay: 0.15 }} className="mb-6">
+            <DailyHoroscopeWidget
+              moonSign={userMoonSign}
+              nakshatra={userMoonNakshatra || undefined}
+              locale={locale}
+            />
+          </motion.div>
+        )}
 
         {/* Your Week Ahead — 7-day Moon transit forecast */}
         <WeekAhead

@@ -252,6 +252,8 @@ export default function DashboardPage() {
   const [dashaTimeline, setDashaTimeline] = useState<DashaEntry[]>([]);
   const [birthLat, setBirthLat] = useState<number | null>(null);
   const [birthLng, setBirthLng] = useState<number | null>(null);
+  const [userMoonSign, setUserMoonSign] = useState<number>(0);
+  const [userMoonNakshatra, setUserMoonNakshatra] = useState<number>(0);
 
   const loadDashboard = useCallback(async () => {
     const supabase = getSupabase();
@@ -280,6 +282,8 @@ export default function DashboardPage() {
       }
       setHasBirthData(true);
       setAscendantSign(snapshot.ascendant_sign || 0);
+      setUserMoonSign(snapshot.moon_sign || 0);
+      setUserMoonNakshatra(snapshot.moon_nakshatra || 0);
 
       // Fetch full snapshot (with JSONB fields) for dasha + chart
       const { data: fullSnap } = await supabase

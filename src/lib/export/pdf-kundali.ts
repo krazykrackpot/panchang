@@ -84,9 +84,18 @@ function subHeading(doc: jsPDF, text: string, y: number): number {
   return y + 6;
 }
 
+function truncateToWidth(doc: jsPDF, text: string, maxWidth: number): string {
+  if (doc.getTextWidth(text) <= maxWidth - 2) return text;
+  let truncated = text;
+  while (truncated.length > 0 && doc.getTextWidth(truncated + '…') > maxWidth - 2) {
+    truncated = truncated.slice(0, -1);
+  }
+  return truncated + '…';
+}
+
 function drawTableHeader(doc: jsPDF, headers: string[], colWidths: number[], y: number): number {
   doc.setFillColor(17, 22, 56);
-  doc.rect(MARGIN, y - 4, CONTENT_W, 7, 'F');
+  doc.rect(MARGIN, y - 4, CONTENT_W, 8, 'F');
   doc.setFontSize(7.5);
   doc.setTextColor(212, 168, 83);
   let x = MARGIN;
@@ -94,22 +103,22 @@ function drawTableHeader(doc: jsPDF, headers: string[], colWidths: number[], y: 
     doc.text(h, x + 1, y);
     x += colWidths[i];
   });
-  return y + 7;
+  return y + 8;
 }
 
 function drawTableRow(doc: jsPDF, cells: string[], colWidths: number[], y: number, isEven: boolean): number {
   if (isEven) {
     doc.setFillColor(14, 18, 45);
-    doc.rect(MARGIN, y - 4, CONTENT_W, 6.5, 'F');
+    doc.rect(MARGIN, y - 4, CONTENT_W, 7, 'F');
   }
   doc.setFontSize(7);
   doc.setTextColor(232, 230, 227);
   let x = MARGIN;
   cells.forEach((cell, i) => {
-    doc.text(cell.substring(0, Math.floor(colWidths[i] / 1.8)), x + 1, y);
+    doc.text(truncateToWidth(doc, cell, colWidths[i]), x + 1, y);
     x += colWidths[i];
   });
-  return y + 6.5;
+  return y + 7;
 }
 
 function wrapText(doc: jsPDF, text: string, maxWidth: number, fontSize: number): string[] {
@@ -137,7 +146,7 @@ function drawWrappedText(doc: jsPDF, text: string, y: number, maxWidth: number, 
   for (const line of lines) {
     y = ensureSpace(doc, y, 5);
     doc.text(line, MARGIN + 2, y);
-    y += 4.5;
+    y += 5;
   }
   return y;
 }
@@ -191,7 +200,7 @@ function renderPage1(doc: jsPDF, kundali: KundaliData, locale: Locale): number {
   y = goldHeading(doc, 'Planetary Positions', y);
 
   const headers = ['Planet', 'R', 'C', 'Sign', 'Degree', 'Nakshatra/Pada', 'House', 'Speed', 'Lat'];
-  const colWidths = [22, 8, 8, 22, 22, 36, 14, 24, 26];
+  const colWidths = [22, 8, 8, 22, 20, 42, 14, 22, 24];
   y = drawTableHeader(doc, headers, colWidths, y);
 
   kundali.planets.forEach((p, idx) => {
@@ -225,7 +234,7 @@ function renderPage2(doc: jsPDF, kundali: KundaliData, locale: Locale) {
   if (kundali.grahaDetails && kundali.grahaDetails.length > 0) {
     y = goldHeading(doc, 'Graha Details (Extended)', y);
     const headers = ['Planet', 'R/C', 'Longitude', 'Nakshatra/Swami', 'Raw Long', 'Lat', 'RA', 'Dec', 'Speed'];
-    const colWidths = [22, 10, 22, 36, 20, 18, 18, 18, 18];
+    const colWidths = [22, 10, 20, 40, 18, 18, 18, 18, 18];
     y = drawTableHeader(doc, headers, colWidths, y);
 
     kundali.grahaDetails.forEach((g, idx) => {
@@ -410,7 +419,7 @@ function renderPage5(doc: jsPDF, kundali: KundaliData, locale: Locale) {
 
   if (kundali.fullShadbala && kundali.fullShadbala.length > 0) {
     const sHeaders = ['Planet', 'Sthana', 'Dig', 'Kala', 'Chesta', 'Naisargika', 'Drik', 'Total', 'Rupas', 'Ratio'];
-    const sColWidths = [22, 17, 17, 17, 17, 22, 17, 17, 17, 19];
+    const sColWidths = [24, 16, 16, 16, 16, 20, 16, 18, 18, 22];
     y = drawTableHeader(doc, sHeaders, sColWidths, y);
 
     kundali.fullShadbala.forEach((sb, idx) => {
@@ -533,14 +542,14 @@ function renderDashaSection(
 
     if (idx % 2 === 0) {
       doc.setFillColor(14, 18, 45);
-      doc.rect(MARGIN, y - 4, CONTENT_W, 6.5, 'F');
+      doc.rect(MARGIN, y - 4, CONTENT_W, 7, 'F');
     }
     doc.setFontSize(8);
     doc.setTextColor(240, 212, 138);
     doc.text(name, MARGIN + 2, y);
     doc.setTextColor(155, 151, 160);
     doc.text(`${md.startDate} — ${md.endDate}`, 80, y);
-    y += 6.5;
+    y += 7;
 
     // Antardasha sub-periods
     if (showAntar && md.subPeriods && Array.isArray(md.subPeriods)) {
@@ -886,7 +895,7 @@ function renderTransitRadar(doc: jsPDF, kundali: KundaliData, locale: Locale) {
     const isEven = idx % 2 === 0;
     if (isEven) {
       doc.setFillColor(14, 18, 45);
-      doc.rect(MARGIN, y - 4, CONTENT_W, 6.5, 'F');
+      doc.rect(MARGIN, y - 4, CONTENT_W, 7, 'F');
     }
     doc.setFontSize(7);
     doc.setTextColor(232, 230, 227);
@@ -902,13 +911,13 @@ function renderTransitRadar(doc: jsPDF, kundali: KundaliData, locale: Locale) {
           doc.setTextColor(212, 168, 83); // gold for neutral
         }
       }
-      doc.text(cell.substring(0, Math.floor(tColWidths[ci] / 1.8)), x + 1, y);
+      doc.text(truncateToWidth(doc, cell, tColWidths[ci]), x + 1, y);
       if (ci === 4) {
         doc.setTextColor(232, 230, 227); // reset
       }
       x += tColWidths[ci];
     });
-    y += 6.5;
+    y += 7;
   });
 
   // Interpretations
@@ -993,7 +1002,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
     y = subHeading(doc, 'Urgent Flags', y);
 
     exec.urgentFlags.forEach(flag => {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 16);
       const severityLabel = flag.severity === 3 ? 'HIGH' : flag.severity === 2 ? 'MEDIUM' : 'LOW';
       doc.setFontSize(7.5);
       // Color by severity
@@ -1017,7 +1026,7 @@ function renderConvergenceInsights(doc: jsPDF, convergence: ConvergenceResult, l
     y = subHeading(doc, 'Meta-Interactions', y);
 
     exec.metaInsights.forEach(mi => {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 16);
       const severityLabel = mi.severity === 3 ? 'HIGH' : mi.severity === 2 ? 'MEDIUM' : 'LOW';
       doc.setFontSize(7.5);
       if (mi.severity === 3) {
@@ -1054,7 +1063,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
 
     const pers = tippanni.personality;
     if (pers.lagna) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text(pers.lagna.title, MARGIN + 2, y);
@@ -1063,7 +1072,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
       y += 2;
     }
     if (pers.moonSign) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text(pers.moonSign.title, MARGIN + 2, y);
@@ -1072,7 +1081,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
       y += 2;
     }
     if (pers.sunSign) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text(pers.sunSign.title, MARGIN + 2, y);
@@ -1081,7 +1090,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
       y += 2;
     }
     if (pers.summary) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       y = drawWrappedText(doc, pers.summary, y, CONTENT_W - 4, 7, TEXT_SECONDARY);
       y += 4;
     }
@@ -1216,7 +1225,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
     const rem = tippanni.remedies;
 
     if (rem.gemstones && rem.gemstones.length > 0) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text('Gemstones:', MARGIN + 2, y);
@@ -1230,7 +1239,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
     }
 
     if (rem.mantras && rem.mantras.length > 0) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text('Mantras:', MARGIN + 2, y);
@@ -1244,7 +1253,7 @@ function renderTippanni(doc: jsPDF, tippanni: TippanniContent, locale: Locale) {
     }
 
     if (rem.practices && rem.practices.length > 0) {
-      y = ensureSpace(doc, y, 10);
+      y = ensureSpace(doc, y, 20);
       doc.setFontSize(8);
       doc.setTextColor(240, 212, 138);
       doc.text('Practices:', MARGIN + 2, y);

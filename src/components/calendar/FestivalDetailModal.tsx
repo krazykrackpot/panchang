@@ -7,6 +7,7 @@ import type { Locale, Trilingual } from '@/types/panchang';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
+import { tl } from '@/lib/utils/trilingual';
 
 interface FestivalDetailModalProps {
   isOpen: boolean;
@@ -166,7 +167,7 @@ export default function FestivalDetailModal({
                 <button
                   onClick={onClose}
                   className="absolute top-4 right-4 p-2 rounded-lg bg-[#1a1040]/40 hover:bg-bg-tertiary transition-colors"
-                  aria-label={L.close[locale]}
+                  aria-label={tl(L.close, locale)}
                 >
                   <X className="w-5 h-5 text-text-secondary" />
                 </button>
@@ -178,7 +179,7 @@ export default function FestivalDetailModal({
                   </div>
                   <div className="flex-1 min-w-0 pr-8">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient leading-tight" style={headingFont}>
-                      {festivalName[locale]}
+                      {tl(festivalName, locale)}
                     </h2>
                     <p className="text-text-secondary text-sm mt-1">
                       {dayStr} {monthStr} {yearStr}
@@ -201,15 +202,15 @@ export default function FestivalDetailModal({
                       <>
                         <Section
                           icon={<BookOpen className="w-4 h-4" />}
-                          title={L.story[locale]}
-                          content={ekadashiDetail.story[locale]}
+                          title={tl(L.story, locale)}
+                          content={tl(ekadashiDetail.story, locale)}
                           headingFont={headingFont}
                           bodyFont={bodyFont}
                         />
                         <Section
                           icon={<Star className="w-4 h-4" />}
-                          title={L.benefit[locale]}
-                          content={ekadashiDetail.benefit[locale]}
+                          title={tl(L.benefit, locale)}
+                          content={tl(ekadashiDetail.benefit, locale)}
                           headingFont={headingFont}
                           bodyFont={bodyFont}
                           highlight
@@ -222,38 +223,38 @@ export default function FestivalDetailModal({
                       <>
                         <Section
                           icon={<BookOpen className="w-4 h-4" />}
-                          title={L.mythology[locale]}
-                          content={detail.mythology[locale]}
+                          title={tl(L.mythology, locale)}
+                          content={tl(detail.mythology, locale)}
                           headingFont={headingFont}
                           bodyFont={bodyFont}
                         />
                         <Section
                           icon={<Flame className="w-4 h-4" />}
-                          title={L.observance[locale]}
-                          content={detail.observance[locale]}
+                          title={tl(L.observance, locale)}
+                          content={tl(detail.observance, locale)}
                           headingFont={headingFont}
                           bodyFont={bodyFont}
                         />
                         <Section
                           icon={<Star className="w-4 h-4" />}
-                          title={L.significance[locale]}
-                          content={detail.significance[locale]}
+                          title={tl(L.significance, locale)}
+                          content={tl(detail.significance, locale)}
                           headingFont={headingFont}
                           bodyFont={bodyFont}
                         />
 
                         {detail.deity && (
                           <div className="flex items-center gap-2 text-sm">
-                            <span className="text-gold-primary font-bold" style={headingFont}>{L.deity[locale]}:</span>
-                            <span className="text-text-primary" style={bodyFont}>{detail.deity[locale]}</span>
+                            <span className="text-gold-primary font-bold" style={headingFont}>{tl(L.deity, locale)}:</span>
+                            <span className="text-text-primary" style={bodyFont}>{tl(detail.deity, locale)}</span>
                           </div>
                         )}
 
                         {detail.isFast && detail.fastNote && (
                           <Section
                             icon={<Clock className="w-4 h-4" />}
-                            title={L.fasting[locale]}
-                            content={detail.fastNote[locale]}
+                            title={tl(L.fasting, locale)}
+                            content={tl(detail.fastNote, locale)}
                             headingFont={headingFont}
                             bodyFont={bodyFont}
                             highlight
@@ -268,7 +269,7 @@ export default function FestivalDetailModal({
                         <div className="flex items-center gap-2 mb-3">
                           <Clock className="w-4 h-4 text-emerald-400" />
                           <h3 className="text-sm font-bold text-emerald-300 uppercase tracking-wider" style={headingFont}>
-                            {LP.parana[locale]}
+                            {tl(LP.parana, locale)}
                           </h3>
                           {paranaDate && paranaDate !== festivalDate && (
                             <span className="ml-auto text-xs text-text-secondary font-mono">
@@ -283,7 +284,7 @@ export default function FestivalDetailModal({
                         {/* Recommended window — prominent */}
                         <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-center mb-3">
                           <div className="text-xs text-emerald-400/70 uppercase tracking-wider mb-1" style={headingFont}>
-                            {LP.paranaWindow[locale]}
+                            {tl(LP.paranaWindow, locale)}
                           </div>
                           <div className="text-2xl font-bold text-emerald-300 font-mono tracking-tight">
                             {paranaStart} — {paranaEnd}
@@ -400,13 +401,13 @@ export default function FestivalDetailModal({
                               ? <Sun className="w-4 h-4 text-amber-400" />
                               : <Moon className="w-4 h-4 text-blue-300" />}
                             <h3 className="text-sm font-bold text-red-300 uppercase tracking-wider" style={headingFont}>
-                              {LP.eclipseInfo[locale]}
+                              {tl(LP.eclipseInfo, locale)}
                             </h3>
                           </div>
                           <div className="grid grid-cols-2 gap-3 mb-3">
                             <div className="rounded-lg bg-[#1a1040]/40 p-3 text-center">
                               <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
-                                {LP.magnitude[locale]}
+                                {tl(LP.magnitude, locale)}
                               </div>
                               <div className="text-lg font-bold text-red-300 capitalize">
                                 {eclipseMagnitude}
@@ -414,7 +415,7 @@ export default function FestivalDetailModal({
                             </div>
                             <div className="rounded-lg bg-[#1a1040]/40 p-3 text-center">
                               <div className="text-xs text-text-secondary uppercase tracking-wider mb-1">
-                                {LP.maxTime[locale]}
+                                {tl(LP.maxTime, locale)}
                               </div>
                               <div className="text-lg font-bold text-amber-300 font-mono">
                                 {eclipseMaxTime}
@@ -425,13 +426,13 @@ export default function FestivalDetailModal({
                           {/* Phase timeline */}
                           <div className="mb-3">
                             <div className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-2" style={headingFont}>
-                              {LP.phases[locale]}
+                              {tl(LP.phases, locale)}
                             </div>
                             <div className="space-y-1.5">
                               {eclipsePhases!.map((phase, idx) => (
                                 <div key={idx} className="flex items-center justify-between text-sm">
                                   <span className="text-text-primary/80" style={bodyFont}>
-                                    {phase.name[locale]}
+                                    {tl(phase.name, locale)}
                                   </span>
                                   <span className="text-gold-light font-mono text-xs font-bold">
                                     {phase.time}
@@ -447,7 +448,7 @@ export default function FestivalDetailModal({
                           <div className="flex items-center gap-2 mb-2">
                             <AlertTriangle className={`w-4 h-4 ${sutakApplicable ? 'text-amber-400' : 'text-text-secondary'}`} />
                             <h3 className={`text-sm font-bold uppercase tracking-wider ${sutakApplicable ? 'text-amber-300' : 'text-text-secondary'}`} style={headingFont}>
-                              {LP.sutak[locale]}
+                              {tl(LP.sutak, locale)}
                             </h3>
                           </div>
                           {sutakApplicable ? (
@@ -460,12 +461,12 @@ export default function FestivalDetailModal({
                                 </div>
                               </div>
                               <p className="text-text-primary/70 text-xs leading-relaxed" style={bodyFont}>
-                                {LP.sutakNote[locale]}
+                                {tl(LP.sutakNote, locale)}
                               </p>
                             </>
                           ) : (
                             <p className="text-text-secondary text-xs" style={bodyFont}>
-                              {LP.noSutak[locale]}
+                              {tl(LP.noSutak, locale)}
                             </p>
                           )}
                         </div>

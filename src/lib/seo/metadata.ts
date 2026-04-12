@@ -783,6 +783,13 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['chaturthi 2026', 'sankashti chaturthi', 'vinayaka chaturthi', 'ganesh chaturthi dates'],
   },
 
+  // ─── Matching ─────────────────────────────────────────────
+  '/matching/compatibility': {
+    title: { en: 'Vedic Rashi Compatibility Chart — All 12 Signs', hi: 'वैदिक राशि संगतता चार्ट — सभी 12 राशियाँ', sa: 'वैदिकराशिसंगततासारिणी' },
+    description: { en: 'Interactive 12×12 Vedic compatibility heatmap. Check rashi-to-rashi compatibility scores based on Ashta Kuta matching.', hi: '12×12 वैदिक संगतता हीटमैप। अष्ट कूट मिलान पर आधारित राशि संगतता स्कोर।', sa: '12×12 संगततासारिणी।' },
+    keywords: ['rashi compatibility chart', 'vedic zodiac compatibility', 'ashta kuta chart'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

@@ -6,6 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { BookOpen, ChevronRight, Clock, Star, CheckCircle, Sparkles, Calendar, Diamond, Library } from 'lucide-react';
 import { ShareRow } from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
+import AdUnit from '@/components/ads/AdUnit';
 
 const STATS = { modules: 104, references: 45, labs: 5, tracks: 11 };
 
@@ -213,6 +214,8 @@ export default function LearnPage() {
           </div>
         </div>
       </motion.div>
+
+      <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* ── 3 Mega Track Cards ── */}
       <h2 className="text-2xl font-bold text-gold-gradient mb-6" style={hf}>{l.chooseTrack}</h2>

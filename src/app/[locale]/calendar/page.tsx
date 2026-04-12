@@ -25,6 +25,7 @@ function hasPujaVidhi(slug?: string): boolean {
   return !!(PUJA_VIDHIS[slug] || PUJA_VIDHIS[PUJA_SLUG_MAP[slug] || '']);
 }
 import { MasaIcon } from '@/components/icons/PanchangIcons';
+import AdUnit from '@/components/ads/AdUnit';
 import FestivalDetailModal from '@/components/calendar/FestivalDetailModal';
 import { FESTIVAL_DETAILS, CATEGORY_DETAILS, EKADASHI_NAMES, getHinduMonth } from '@/lib/constants/festival-details';
 import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-details';
@@ -547,6 +548,8 @@ export default function CalendarPage() {
       )}
 
       <GoldDivider />
+
+      <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* Festival & Vrat lists — separated */}
       {loading ? (

@@ -28,9 +28,11 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { CITIES } from '@/lib/constants/cities';
 import { computePersonalizedDay } from '@/lib/personalization/personal-panchang';
 import { getRashiNumber } from '@/lib/ephem/astronomical';
 import type { PersonalizedDay, UserSnapshot } from '@/lib/personalization/types';
+import AdUnit from '@/components/ads/AdUnit';
 
 // ──────────────────────────────────────────────────────────────
 // Check if a transition endTime has already passed
@@ -356,6 +358,8 @@ export default function PanchangPage() {
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
       </motion.div>
+
+      <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* Date & Location — compact single row */}
       <div className="mb-8">
@@ -2628,6 +2632,8 @@ export default function PanchangPage() {
 
       </div>{/* end panchangContentRef */}
 
+      <AdUnit placement="rectangle" className="max-w-xl mx-auto" />
+
       {/* ═══ DEEP DIVE LINKS — BIG ICONS ═══ */}
       <div className="my-14">
         <h2 className="text-3xl font-bold text-gold-gradient mb-10 text-center" style={headingFont}>
@@ -2652,6 +2658,32 @@ export default function PanchangPage() {
                 </div>
               </Link>
             </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ═══ PANCHANG BY CITY ═══ */}
+      <div className="my-14">
+        <h2 className="text-3xl font-bold text-gold-gradient mb-3 text-center" style={headingFont}>
+          {locale === 'en' || String(locale) === 'ta' ? 'Panchang by City' : 'शहर के अनुसार पंचांग'}
+        </h2>
+        <p className="text-text-secondary text-sm text-center mb-8 max-w-xl mx-auto">
+          {locale === 'en' || String(locale) === 'ta'
+            ? 'City-specific panchang with accurate local sunrise, sunset, and muhurta timings.'
+            : 'सटीक स्थानीय सूर्योदय, सूर्यास्त और मुहूर्त समय के साथ शहर-विशिष्ट पंचांग।'}
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2.5">
+          {CITIES.map(city => (
+            <Link
+              key={city.slug}
+              href={`/panchang/${city.slug}`}
+              className="rounded-xl border border-gold-primary/8 bg-gradient-to-br from-[#2d1b69]/15 via-[#1a1040]/20 to-[#0a0e27] px-3 py-2.5 text-center hover:border-gold-primary/35 hover:bg-gold-primary/5 transition-all group block"
+            >
+              <div className="text-gold-light text-xs font-medium group-hover:text-gold-primary transition-colors" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                {isDevanagari ? city.name.hi : city.name.en}
+              </div>
+              <div className="text-text-secondary/40 text-[10px]">{city.state}</div>
+            </Link>
           ))}
         </div>
       </div>

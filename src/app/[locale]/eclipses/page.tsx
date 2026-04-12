@@ -13,6 +13,7 @@ import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
 import PersonalEclipseInsight from '@/components/eclipses/PersonalEclipseInsight';
 import { tl } from '@/lib/utils/trilingual';
+import AdUnit from '@/components/ads/AdUnit';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
@@ -193,6 +194,8 @@ export default function EclipsesPage() {
       </InfoBlock>
 
       <GoldDivider />
+
+      <AdUnit placement="rectangle" className="max-w-xl mx-auto" />
 
       {/* Eclipse list */}
       {loading ? (

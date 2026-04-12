@@ -3,6 +3,9 @@ export interface Trilingual {
   hi: string;
   sa: string;
   ta?: string;  // Tamil — optional for incremental rollout
+  te?: string;  // Telugu — optional for incremental rollout
+  bn?: string;  // Bengali — optional for incremental rollout
+  kn?: string;  // Kannada — optional for incremental rollout
 }
 
 /**

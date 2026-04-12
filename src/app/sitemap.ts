@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { getAllCitySlugs } from '@/lib/constants/cities';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -251,6 +252,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'daily',
     priority: 0.8,
   });
+
+  // City panchang pages (/panchang/{city-slug})
+  for (const slug of getAllCitySlugs()) {
+    addEntries(entries, `/panchang/${slug}`, {
+      changeFrequency: 'daily',
+      priority: 0.8,
+    });
+  }
 
   return entries;
 }

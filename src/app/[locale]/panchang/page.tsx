@@ -1442,7 +1442,7 @@ export default function PanchangPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-12 h-12 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center flex-shrink-0">
                       <span className="text-orange-400 text-xl font-bold">
-                        {(tl(panchang.dishaShool.direction) || panchang.dishaShool.direction.en || '').charAt(0)}
+                        {(tl(panchang.dishaShool.direction) || panchang.dishaShool.direction?.en || 'N').charAt(0)}
                       </span>
                     </div>
                     <div>

@@ -37,6 +37,9 @@ const LABELS = {
     hi: 'दुर्गा पूजा — बंगाल की आत्मा',
     sa: 'दुर्गापूजा — बङ्गालस्य आत्मा',
     ta: 'துர்கா பூஜை — வங்காளத்தின் ஆன்மா',
+    te: 'దుర్గా పూజ — బెంగాల్ ఆత్మ',
+    bn: 'দুর্গা পূজা — বাংলার আত্মা',
+    kn: 'ದುರ್ಗಾ ಪೂಜೆ — ಬಂಗಾಲದ ಆತ್ಮ',
   },
   durgaPujaText: {
     en: 'Durga Puja is not merely a festival in Bengal — it is the defining cultural event of the year, a 10-day celebration that transforms cities, towns, and villages into open-air art galleries and communal gathering spaces. The observances begin with Mahalaya (the Amavasya of Ashwin), when Bengalis wake before dawn to listen to Birendra Krishna Bhadra\'s legendary All India Radio recitation of "Mahishasura Mardini" — a tradition since 1931 that remains unchanged. Mahalaya marks the end of Pitru Paksha and the invocation of Goddess Durga to descend to Earth. The main puja spans Shashti through Dashami: Shashti (day 6) features the "Bodhon" or awakening of the deity; Saptami (day 7) begins with "Nabapatrika" (nine plants representing nine forms of Durga) being bathed in the Ganges; Ashtami (day 8) is the most sacred day with "Kumari Puja" (worshipping a young girl as the living Goddess) and "Sandhi Puja" at the junction of Ashtami and Navami (the precise 48-minute window when Durga slew the demons Chanda and Munda); Navami (day 9) continues with elaborate rituals; and Dashami (day 10) concludes with "Sindoor Khela" (married women apply vermillion to the Goddess and each other) and the emotional "Bisarjan" (immersion of the idol in water), accompanied by the cry "Asche bochor abar hobe!" (It will happen again next year!). Thousands of themed pandals (temporary structures) across Kolkata compete for artistic excellence, some replicating famous buildings, others showcasing social commentary through innovative installations.',
@@ -49,6 +52,9 @@ const LABELS = {
     hi: 'बंगाली पंजिका कैसे भिन्न है',
     sa: 'बङ्गालपञ्जिका कथं भिन्ना',
     ta: 'வங்காள பஞ்சிகா எவ்வாறு வேறுபடுகிறது',
+    te: 'బెంగాలీ పంజికా ఎలా భిన్నంగా ఉంది',
+    bn: 'বাংলা পঞ্জিকা কীভাবে ভিন্ন',
+    kn: 'ಬಂಗಾಲಿ ಪಂಜಿಕಾ ಹೇಗೆ ಭಿನ್ನವಾಗಿದೆ',
   },
   panjikaText: {
     en: 'The Bengali Panjika is distinguished from other Indian calendar systems in several important ways. First, the Bengali calendar year (Bangabda) begins on Poila Boishakh (1st Boishakh), which falls on April 14th or 15th — the same as the Tamil and Malayalam New Year, reflecting their shared solar basis. This contrasts with the North Indian New Year (Chaitra Shukla Pratipada) which falls on a different date each year because it follows the lunar cycle. Second, the Saha reform of 1966 made the Bengali calendar the most scientifically rationalized Hindu calendar: fixed month lengths, synchronized leap years with the Gregorian calendar, and elimination of accumulated errors from the sidereal system. Third, the Panjika traditionally published by houses like Gupta Press (est. 1875) and the Bishudha Siddhanta Panjika is far more than a calendar — it contains daily Tithi, Nakshatra, Yoga, Karana, planetary positions, muhurtas for every day, eclipse data, marriage dates, agricultural advice, and even weather predictions based on traditional almanac science. Many Bengali families consider the annual Panjika purchase an essential household tradition. Fourth, the Bengali system maintains a unique tradition of "Lagna calculation" for Durga Puja — the exact starting time of Puja is calculated astronomically based on the rising point of the Zodiac, and different Panjikas may prescribe slightly different timings based on their computational methods.',
@@ -61,12 +67,18 @@ const LABELS = {
     hi: 'मास अनुसार प्रमुख बंगाली त्योहार',
     sa: 'मासानुसारं प्रमुखबङ्गालपर्वाणि',
     ta: 'மாதம் வாரியாக முக்கிய வங்காள திருவிழாக்கள்',
+    te: 'నెల వారీ ప్రధాన బెంగాలీ పండుగలు',
+    bn: 'মাস অনুসারে প্রধান বাংলা উৎসব',
+    kn: 'ತಿಂಗಳ ಪ್ರಕಾರ ಪ್ರಮುಖ ಬಂಗಾಲಿ ಹಬ್ಬಗಳು',
   },
   poilaTitle: {
     en: 'Poila Boishakh — Bengali New Year',
     hi: 'पहला बैशाख — बंगाली नव वर्ष',
     sa: 'प्रथमबैशाखः — बङ्गालनववर्षम्',
     ta: 'பொய்லா பைசாக் — வங்காள புத்தாண்டு',
+    te: 'పోయిలా బోయిషాఖ్ — బెంగాలీ నూతన సంవత్సరం',
+    bn: 'পয়লা বৈশাখ — বাংলা নববর্ষ',
+    kn: 'ಪೊಯ್ಲಾ ಬೊಯ್ಷಾಖ್ — ಬಂಗಾಲಿ ಹೊಸ ವರ್ಷ',
   },
   poilaText: {
     en: 'Poila Boishakh (1st Boishakh, April 14-15) is the Bengali New Year and one of the most joyous celebrations in Bengali culture. In West Bengal, the day begins with "Mangal Shobhajatra" (processions) and "Prabhat Pheri" (morning rounds with devotional songs). Shopkeepers perform "Halkhata" — the ceremonial opening of new account books, inviting customers for sweets and refreshments to begin the business year on an auspicious note. Homes are cleaned and decorated with alpona (floor art), and families wear new clothes. The traditional meal includes "Ilish Maach" (Hilsa fish) and "Panta Bhat" (fermented rice). In Shantiniketan, Rabindranath Tagore\'s university, Poila Boishakh is celebrated with special cultural programs. In Bangladesh, the celebration is even grander — Dhaka University\'s Charukala (Fine Arts) faculty organizes the famous "Mangal Shobhajatra" procession featuring colorful floats and masks, recognized by UNESCO as an Intangible Cultural Heritage of Humanity since 2016.',
@@ -79,6 +91,9 @@ const LABELS = {
     hi: 'सम्बन्धित पूजा विधि और त्योहार',
     sa: 'सम्बद्धपूजाविधयः पर्वाणि च',
     ta: 'தொடர்புடைய பூஜை வழிகாட்டிகள் & திருவிழாக்கள்',
+    te: 'సంబంధిత పూజా మార్గదర్శులు & పండుగలు',
+    bn: 'সম্পর্কিত পূজা গাইড ও উৎসব',
+    kn: 'ಸಂಬಂಧಿತ ಪೂಜಾ ಮಾರ್ಗದರ್ಶಿಗಳು & ಹಬ್ಬಗಳು',
   },
 };
 

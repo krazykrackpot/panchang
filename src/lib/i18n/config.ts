@@ -7,7 +7,7 @@ export const defaultLocale: Locale = 'en';
 const isDev = process.env.NODE_ENV === 'development';
 export const visibleLocales: Locale[] = isDev
   ? ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai']
-  : ['en', 'hi', 'sa', 'ta'];
+  : ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn', 'mr', 'gu', 'mai'];
 
 export const localeNames: Record<Locale, string> = {
   en: 'English',

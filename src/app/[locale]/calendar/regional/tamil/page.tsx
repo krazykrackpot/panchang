@@ -7,6 +7,9 @@ const LABELS = {
     hi: 'तमिल कैलेंडर (पंचांगम्)',
     sa: 'तमिलपञ्चाङ्गम्',
     ta: 'தமிழ் நாட்காட்டி (பஞ்சாங்கம்)',
+    te: 'తమిళ క్యాలెండర్ (పంచాంగం)',
+    bn: 'তামিল ক্যালেন্ডার (পঞ্চাঙ্গম্)',
+    kn: 'ತಮಿಳು ಕ್ಯಾಲೆಂಡರ್ (ಪಂಚಾಂಗಂ)',
   },
   intro: {
     en: 'The Tamil calendar, known as the Tamil Panchangam, is one of the oldest continuously used calendar systems in the world. Unlike the North Indian lunisolar calendar, the Tamil calendar is primarily solar-based — months are determined by the Sun\'s transit through the twelve Rashis (zodiac signs). This solar foundation gives the Tamil calendar a fixed relationship with the Gregorian calendar, making Tamil month dates remarkably consistent from year to year. The Tamil Panchangam is used by over 80 million Tamil-speaking people across Tamil Nadu, Sri Lanka, Malaysia, Singapore, and the global Tamil diaspora.',
@@ -19,6 +22,9 @@ const LABELS = {
     hi: '12 तमिल मास',
     sa: '१२ तमिलमासाः',
     ta: '12 தமிழ் மாதங்கள்',
+    te: '12 తమిళ నెలలు',
+    bn: '১২টি তামিল মাস',
+    kn: '12 ತಮಿಳು ತಿಂಗಳುಗಳು',
   },
   monthsIntro: {
     en: 'Each Tamil month begins when the Sun enters a new Rashi. Because the Sun\'s speed varies slightly through the year (faster near perihelion in January, slower near aphelion in July), Tamil months range from 29 to 32 days. The following table shows each month, its zodiac basis, approximate Gregorian dates, and number of days.',
@@ -31,6 +37,9 @@ const LABELS = {
     hi: 'मास अनुसार प्रमुख तमिल त्योहार',
     sa: 'मासानुसारं प्रमुखतमिलपर्वाणि',
     ta: 'மாதவாரியாக முக்கிய தமிழ் திருவிழாக்கள்',
+    te: 'నెల వారీ ప్రధాన తమిళ పండుగలు',
+    bn: 'মাস অনুসারে প্রধান তামিল উৎসব',
+    kn: 'ತಿಂಗಳ ಪ್ರಕಾರ ಪ್ರಮುಖ ತಮಿಳು ಹಬ್ಬಗಳು',
   },
   puthandu: {
     en: 'Puthandu — Tamil New Year',
@@ -85,6 +94,9 @@ const LABELS = {
     hi: 'सम्बन्धित पूजा विधि और त्योहार',
     sa: 'सम्बद्धपूजाविधयः पर्वाणि च',
     ta: 'தொடர்புடைய பூஜை வழிகாட்டிகள் & திருவிழாக்கள்',
+    te: 'సంబంధిత పూజా మార్గదర్శులు & పండుగలు',
+    bn: 'সম্পর্কিত পূজা গাইড ও উৎসব',
+    kn: 'ಸಂಬಂಧಿತ ಪೂಜಾ ಮಾರ್ಗದರ್ಶಿಗಳು & ಹಬ್ಬಗಳು',
   },
 };
 

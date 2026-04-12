@@ -4325,7 +4325,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                                               <div className="flex items-center gap-2">
                                                 <GrahaIconById id={NAME_TO_ID[pd.planet] ?? 0} size={20} />
                                                 <span className="text-gold-light text-sm font-semibold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                                                  {pd.planetName[locale]}
+                                                  {tl(pd.planetName, locale)}
                                                 </span>
                                                 <span className="text-text-secondary/70 text-xs">{fmtDate(pd.startDate)} — {fmtDate(pd.endDate)} ({pd.durationDays}d)</span>
                                               </div>
@@ -4558,7 +4558,7 @@ function TippanniTab({ kundali, locale, isDevanagari, headingFont, tTip }: {
                 mild: { border: 'border-blue-500/20', bg: 'bg-blue-500/8', text: 'text-blue-400', badge: 'bg-blue-500/20 text-blue-400', label: locale === 'en' || isTamil ? 'Mild' : 'साधारण' },
               }[ap.severity];
               const planetData = kundali.planets.find(p => p.planet.id === ap.planetId);
-              const planetName = planetData?.planet.name[locale] || ap.planetName;
+              const planetName = tl(planetData?.planet.name, locale) || ap.planetName;
               return (
                 <div key={ap.planetId} className={`p-4 rounded-xl border ${severityConfig.border} ${severityConfig.bg}`}>
                   <div className="flex items-center justify-between mb-2">
@@ -4634,7 +4634,7 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
                 <td className="py-2.5 px-2">
                   <div className="flex items-center gap-2">
                     <GrahaIconById id={g.planetId} size={20} />
-                    <span className="text-gold-light font-medium" style={bodyFont}>{g.planetName[locale]}</span>
+                    <span className="text-gold-light font-medium" style={bodyFont}>{tl(g.planetName, locale)}</span>
                   </div>
                 </td>
                 <td className="text-center py-2.5 px-1">
@@ -4644,13 +4644,13 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
                   {g.isCombust && <span className="text-orange-400 font-bold text-xs">C</span>}
                 </td>
                 <td className="py-2.5 px-2">
-                  <span className="text-text-primary">{g.signName[locale]}</span>
+                  <span className="text-text-primary">{tl(g.signName, locale)}</span>
                   <span className="text-text-secondary ml-1">{g.signDegree}</span>
                 </td>
                 <td className="py-2.5 px-2">
-                  <span className="text-text-primary" style={bodyFont}>{g.nakshatraName[locale]}</span>
+                  <span className="text-text-primary" style={bodyFont}>{tl(g.nakshatraName, locale)}</span>
                   <span className="text-gold-dark ml-1 text-xs">P{g.nakshatraPada}</span>
-                  <span className="text-text-secondary/75 ml-1 text-xs">/ {g.nakshatraLord[locale]}</span>
+                  <span className="text-text-secondary/75 ml-1 text-xs">/ {tl(g.nakshatraLord, locale)}</span>
                 </td>
                 <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.longitude.toFixed(2)}°</td>
                 <td className="py-2.5 px-2 text-right text-text-secondary font-mono text-xs">{g.latitude.toFixed(4)}°</td>
@@ -4694,9 +4694,9 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
                     <div className="relative z-10">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <GrahaIconById id={g.planetId} size={22} />
-                        <span className={`font-bold text-sm ${pal.label}`} style={bodyFont}>{g.planetName[locale]}</span>
+                        <span className={`font-bold text-sm ${pal.label}`} style={bodyFont}>{tl(g.planetName, locale)}</span>
                         <span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${pal.badge}`} style={bodyFont}>
-                          {g.signName[locale]}
+                          {tl(g.signName, locale)}
                         </span>
                         <span className="text-text-secondary/70 text-xs" style={bodyFont}>
                           {locale === 'en' || isTamil ? `House ${insight.house}` : `भाव ${insight.house}`}
@@ -4737,10 +4737,10 @@ function GrahaTab({ grahaDetails, upagrahas, locale, isDevanagari, headingFont, 
             <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {upagrahas.map((u, i) => (
                 <div key={i} className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 text-center">
-                  <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{u.name[locale]}</p>
+                  <p className="text-gold-light font-bold text-sm mb-1" style={bodyFont}>{tl(u.name, locale)}</p>
                   <RashiIconById id={u.sign} size={28} />
-                  <p className="text-text-primary text-sm mt-1" style={bodyFont}>{u.signName[locale]} {u.degree}</p>
-                  <p className="text-text-secondary/75 text-xs mt-0.5" style={bodyFont}>{u.nakshatra[locale]}</p>
+                  <p className="text-text-primary text-sm mt-1" style={bodyFont}>{tl(u.signName, locale)} {u.degree}</p>
+                  <p className="text-text-secondary/75 text-xs mt-0.5" style={bodyFont}>{tl(u.nakshatra, locale)}</p>
                   <p className="text-text-secondary/70 text-xs mt-1 leading-relaxed">{UPAGRAHA_NOTES[u.name.en]?.[locale === 'en' || isTamil ? 'en' : 'hi'] || ''}</p>
                 </div>
               ))}
@@ -4866,7 +4866,7 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-gold-light font-medium text-sm" style={bodyFont}>{y.name[locale]}</span>
+                      <span className="text-gold-light font-medium text-sm" style={bodyFont}>{tl(y.name, locale)}</span>
                       {y.present && (
                         <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${
                           y.strength === 'Strong' ? 'bg-green-500/20 text-green-400' :
@@ -4890,9 +4890,9 @@ function YogasTab({ yogas, locale, isDevanagari, headingFont }: {
                   </div>
                   {expandedYoga === y.id && (
                     <div className="mt-2 pt-2 border-t border-gold-primary/10 space-y-1">
-                      <p className="text-text-secondary text-xs" style={bodyFont}>{y.description[locale]}</p>
+                      <p className="text-text-secondary text-xs" style={bodyFont}>{tl(y.description, locale)}</p>
                       <p className="text-gold-dark text-xs italic" style={bodyFont}>
-                        {locale === 'en' || isTamil ? 'Rule' : 'नियम'}: {y.formationRule[locale]}
+                        {locale === 'en' || isTamil ? 'Rule' : 'नियम'}: {tl(y.formationRule, locale)}
                       </p>
                     </div>
                   )}

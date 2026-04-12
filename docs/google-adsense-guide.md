@@ -1,8 +1,51 @@
 # Google AdSense Integration Guide
 
-**Last updated:** 2026-04-04
-**Status:** Infrastructure built, ad placements not yet wired to pages
+**Last updated:** 2026-04-12
+**Status:** Rejected once (low value content), SEO fixes applied, reapply after Apr 17
 **Publisher ID:** `pub-4787764488539456`
+
+---
+
+## AdSense Approval Timeline
+
+| Date | Event |
+|------|-------|
+| 2026-04-04 | Initial AdSense application submitted |
+| 2026-04-11 | Rejected: "Low value content" |
+| 2026-04-12 | Root cause analysis + fixes applied (see below) |
+| 2026-04-12 | Domain property added to Search Console, sitemap resubmitted |
+| 2026-04-17+ | Target reapply date (after Google recrawls) |
+
+### Rejection Root Causes (diagnosed 2026-04-12)
+
+1. **242 of 245 pages were `'use client'`** — Googlebot saw empty shells on initial HTML. Home page used `ssr: false` on key widgets.
+2. **No Privacy Policy or Terms of Service pages** — hard AdSense requirement.
+3. **Duplicate content across 4 locales** — Sanskrit (sa) and Tamil (ta) pages served identical English body text, creating 1220 URLs with massive duplication.
+4. **www vs non-www inconsistency** — both served the site with no redirect. Canonical URLs in sitemap used non-www but Search Console property was www.
+5. **Tool pages had zero static content** — forms only, nothing for crawlers to index.
+
+### Fixes Applied (2026-04-12)
+
+| Fix | Impact |
+|-----|--------|
+| Added `/privacy` and `/terms` pages (server components) | AdSense hard requirement met |
+| Added `noindex` for sa/ta locales | Eliminated duplicate content |
+| Reduced sitemap from 1220 → 610 URLs (en/hi only) | Focused crawl budget |
+| Set up www → non-www 308 redirect (Vercel) | Single canonical domain |
+| Replaced all hardcoded `www.dekhopanchang.com` → `dekhopanchang.com` | Consistent canonicals |
+| Removed `ssr: false` from home page dynamic imports | Content visible in initial HTML |
+| Converted 14 contribution pages to server components | Full SSR for content-heavy pages |
+| Added static educational text to sign-calculator, baby-names, vedic-time | Crawler-visible content on tool pages |
+| Added Domain property in Google Search Console | Covers www + non-www |
+| Requested indexing for 10 key pages | Accelerated recrawl |
+
+### Reapply Checklist
+
+Before reapplying, verify in Search Console:
+- [ ] At least 10-15 pages show as "Indexed" in Coverage report
+- [ ] Sitemap shows "Success" status (not "Couldn't fetch")
+- [ ] No new "Duplicate canonical" issues
+- [ ] Privacy + Terms pages are indexed
 
 ---
 

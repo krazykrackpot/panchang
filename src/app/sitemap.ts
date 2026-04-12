@@ -106,6 +106,8 @@ const routes = [
   '/horoscope',
   '/kaal-nirnaya',
   '/nivas-shool',
+  '/rahu-kaal',
+  '/choghadiya',
   // Learn modules (structured curriculum)
   '/learn/track/cosmology',
   '/learn/track/panchang',
@@ -252,6 +254,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'daily',
     priority: 0.8,
   });
+
+  // Rashi detail pages (/panchang/rashi/{slug})
+  const rashiSlugs = ['mesh', 'vrishabh', 'mithun', 'kark', 'simha', 'kanya', 'tula', 'vrishchik', 'dhanu', 'makar', 'kumbh', 'meen'];
+  for (const slug of rashiSlugs) {
+    addEntries(entries, `/panchang/rashi/${slug}`, {
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+  }
 
   // City panchang pages (/panchang/{city-slug})
   for (const slug of getAllCitySlugs()) {

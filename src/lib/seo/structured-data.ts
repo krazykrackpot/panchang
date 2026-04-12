@@ -36,6 +36,8 @@ const DISPLAY_NAMES: Record<string, string> = {
   horoscope: 'Horoscope',
   compare: 'Compare',
   rectify: 'Rectify',
+  'rahu-kaal': 'Rahu Kaal',
+  choghadiya: 'Choghadiya',
 };
 
 /**

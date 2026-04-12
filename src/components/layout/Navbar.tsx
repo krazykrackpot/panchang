@@ -133,6 +133,8 @@ export default function Navbar() {
         { href: '/upagraha', label: t('upagraha') },
         { href: '/kaal-nirnaya', label: t('kaalNirnaya') },
         { href: '/nivas-shool', label: t('nivasShool') },
+        { href: '/rahu-kaal', label: locale === 'hi' ? 'राहु काल' : locale === 'sa' ? 'राहुकालः' : 'Rahu Kaal' },
+        { href: '/choghadiya', label: locale === 'hi' ? 'चौघड़िया' : locale === 'sa' ? 'चौघड़िया' : 'Choghadiya' },
       ],
     },
     {

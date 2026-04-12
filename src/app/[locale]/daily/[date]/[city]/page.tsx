@@ -1,7 +1,17 @@
 import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
+import { generateDailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { RASHIS } from '@/lib/constants/rashis';
+import { RashiIconById } from '@/components/icons/RashiIcons';
 import { getCityBySlug } from '@/lib/constants/cities';
+import { tl } from '@/lib/utils/trilingual';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+
+const HOROSCOPE_LABELS: Record<string, Record<string, string>> = {
+  en: { heading: "Today's Horoscope by Rashi", score: 'Score', lucky: 'Lucky', readMore: 'Read more' },
+  hi: { heading: 'आज का राशिफल', score: 'स्कोर', lucky: 'भाग्यशाली', readMore: 'और पढ़ें' },
+  sa: { heading: 'अद्य राशिफलम्', score: 'अङ्कः', lucky: 'भाग्यम्', readMore: 'अधिकं पठतु' },
+};
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -39,6 +49,8 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
   const body = article.body[loc];
   const title = article.title[loc];
   const cityName = isHi ? cityData.name.hi : cityData.name.en;
+  const hLabels = HOROSCOPE_LABELS[locale] || HOROSCOPE_LABELS.en;
+  const horoscopes = RASHIS.map(r => generateDailyHoroscope({ moonSign: r.id, date }));
 
   const articleLD = {
     '@context': 'https://schema.org',
@@ -105,6 +117,55 @@ export default async function CityDailyPanchangArticle({ params }: { params: Pro
           <Link href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors">
             {isHi ? 'अपने स्थान का पंचांग देखें' : 'View Panchang for Your Location'}
           </Link>
+        </div>
+
+        {/* Per-Rashi Horoscope Section */}
+        <div className="mt-12">
+          <h2 className="text-gold-light font-bold text-xl mb-6 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
+            {hLabels.heading}
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 not-prose">
+            {RASHIS.map((rashi, idx) => {
+              const h = horoscopes[idx];
+              const rashiName = tl(rashi.name, loc);
+              const insightText = loc === 'hi' ? h.insight.hi : h.insight.en;
+              const luckyColorText = loc === 'hi' ? h.luckyColor.hi : h.luckyColor.en;
+              const score = h.overallScore;
+              const scoreBarColor =
+                score > 8 ? 'bg-emerald-500' :
+                score >= 7 ? 'bg-gold-primary' :
+                score >= 4 ? 'bg-amber-500' :
+                'bg-red-500';
+              return (
+                <div key={rashi.id} className="bg-bg-secondary rounded-xl border border-gold-primary/10 p-3 flex flex-col gap-2 hover:border-gold-primary/25 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <RashiIconById id={rashi.id} size={28} />
+                    <span className="text-gold-light font-bold text-sm leading-tight" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                      {rashiName}
+                    </span>
+                  </div>
+                  <p className="text-text-secondary text-xs leading-snug line-clamp-2" style={isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                    {insightText}
+                  </p>
+                  <div className="flex items-center gap-1.5">
+                    <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <div className={`h-full rounded-full ${scoreBarColor}`} style={{ width: `${score * 10}%` }} />
+                    </div>
+                    <span className="text-text-secondary/70 text-xs tabular-nums">{score}/10</span>
+                  </div>
+                  <div className="text-text-secondary/60 text-xs">
+                    {hLabels.lucky}: <span className="text-gold-primary/80">{luckyColorText} · {h.luckyNumber}</span>
+                  </div>
+                  <Link
+                    href={`/${locale}/panchang/rashi/${rashi.slug}`}
+                    className="text-gold-primary text-xs hover:text-gold-light transition-colors mt-auto"
+                  >
+                    {hLabels.readMore} →
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Other city links */}

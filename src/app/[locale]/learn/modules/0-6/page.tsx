@@ -186,7 +186,7 @@ const QUESTIONS: ModuleQuestion[] = [
 
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5">
@@ -265,7 +265,7 @@ function Page1() {
 
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section>
@@ -342,7 +342,7 @@ function Page2() {
 
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section>

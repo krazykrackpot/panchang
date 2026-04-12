@@ -49,7 +49,7 @@ const UNIVERSAL_MANTRAS = [
 export default function DevotionalPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const today = useMemo(() => {
@@ -92,7 +92,7 @@ export default function DevotionalPage() {
           {varaDeity.mantra}
         </div>
         <p className="text-text-secondary text-sm mt-3">
-          {locale === 'en' || String(locale) === 'ta' ? 'Today\'s presiding deity and primary mantra' : 'आज के अधिष्ठाता देवता और प्रमुख मन्त्र'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Today\'s presiding deity and primary mantra' : 'आज के अधिष्ठाता देवता और प्रमुख मन्त्र'}
         </p>
       </div>
 
@@ -100,7 +100,7 @@ export default function DevotionalPage() {
       {tithiSuggestion && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 mb-6">
           <div className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">
-            {locale === 'en' || String(locale) === 'ta' ? 'Tithi Significance' : 'तिथि महत्त्व'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Tithi Significance' : 'तिथि महत्त्व'}
           </div>
           <p className="text-text-secondary text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
             {tl(tithiSuggestion, locale)}
@@ -114,7 +114,7 @@ export default function DevotionalPage() {
           <NakshatraIconById id={today.nakshatra} size={36} />
           <div>
             <div className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">
-              {locale === 'en' || String(locale) === 'ta' ? 'Today\'s Nakshatra' : 'आज का नक्षत्र'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Today\'s Nakshatra' : 'आज का नक्षत्र'}
             </div>
             <div className="text-gold-light text-sm font-bold" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
               {tl(NAKSHATRAS[today.nakshatra - 1]?.name, locale) ?? `Nakshatra ${today.nakshatra}`}
@@ -128,7 +128,7 @@ export default function DevotionalPage() {
       {/* Universal mantras */}
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-6 text-center" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? 'Universal Mantras' : 'सार्वभौमिक मन्त्र'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Universal Mantras' : 'सार्वभौमिक मन्त्र'}
         </h3>
         <div className="space-y-4">
           {UNIVERSAL_MANTRAS.map((m, i) => (
@@ -152,7 +152,7 @@ export default function DevotionalPage() {
       {/* Weekly guide */}
       <div className="my-10">
         <h3 className="text-gold-gradient text-2xl font-bold mb-6 text-center" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? 'Weekly Worship Guide' : 'साप्ताहिक पूजा मार्गदर्शिका'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Weekly Worship Guide' : 'साप्ताहिक पूजा मार्गदर्शिका'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {Object.entries(VARA_DEITIES).map(([day, info]) => {
@@ -169,12 +169,12 @@ export default function DevotionalPage() {
               <div key={day} className={`rounded-xl p-4 text-center border ${isToday ? 'border-gold-primary/40 bg-gold-primary/10' : 'border-gold-primary/10 bg-gradient-to-br from-[#2d1b69]/25 via-[#1a1040]/30 to-[#0a0e27]'}`}>
                 <GrahaIconById id={dayNum} size={28} />
                 <div className="text-gold-light text-sm font-bold mt-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                  {locale === 'en' || String(locale) === 'ta' ? dayNames[dayNum].en : dayNames[dayNum].hi}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? dayNames[dayNum].en : dayNames[dayNum].hi}
                 </div>
                 <div className="text-text-secondary text-xs mt-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
                   {tl(info.deity, locale)}
                 </div>
-                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{locale === 'en' || String(locale) === 'ta' ? 'TODAY' : 'आज'}</div>}
+                {isToday && <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">{(locale !== 'hi' && String(locale) !== 'sa') ? 'TODAY' : 'आज'}</div>}
               </div>
             );
           })}

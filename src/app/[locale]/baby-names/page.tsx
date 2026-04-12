@@ -18,7 +18,7 @@ import { tl } from '@/lib/utils/trilingual';
 export default function BabyNamesPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [selectedNak, setSelectedNak] = useState(0);
@@ -246,10 +246,10 @@ export default function BabyNamesPage() {
                     className="bg-gradient-to-br from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27] rounded-2xl p-6 border-2 border-gold-primary/25 min-w-[110px] text-center shadow-lg shadow-gold-primary/10"
                   >
                     <div className="text-5xl font-bold text-gold-light mb-2" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : headingFont}>
-                      {locale === 'en' || String(locale) === 'ta' ? syl.en : syl.hi}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? syl.en : syl.hi}
                     </div>
                     <div className="text-text-secondary text-sm">
-                      {locale === 'en' || String(locale) === 'ta' ? syl.hi : syl.en}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? syl.hi : syl.en}
                     </div>
                     <div className="text-text-secondary/55 text-xs mt-1">
                       {isTamil ? `பாதம் ${selectedPada || (i + 1)}` : locale === 'en' ? `Pada ${selectedPada || (i + 1)}` : `पाद ${selectedPada || (i + 1)}`}
@@ -317,7 +317,7 @@ export default function BabyNamesPage() {
                           : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] border border-gold-primary/8'
                       }`}>
                         <div className={`font-bold ${isThisPada ? 'text-gold-light text-lg' : 'text-text-secondary text-sm'}`} style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {syl ? (locale === 'en' || String(locale) === 'ta' ? syl.en : syl.hi) : '—'}
+                          {syl ? ((locale !== 'hi' && String(locale) !== 'sa') ? syl.en : syl.hi) : '—'}
                         </div>
                         <div className="text-xs text-text-secondary/55 mt-0.5">P{pi + 1}</div>
                       </div>

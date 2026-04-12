@@ -45,7 +45,7 @@ interface SamagriListProps {
 /* ── Component ─────────────────────────────────────────────── */
 
 export default function SamagriList({ items, slug, locale }: SamagriListProps) {
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const bodyFont = isDevanagari ? 'var(--font-devanagari-body)' : undefined;
 
   /* ── localStorage persistence ────────────────────────────── */

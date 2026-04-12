@@ -20,7 +20,7 @@ interface BirthFormProps {
 export default function BirthForm({ onSubmit, loading, initialData }: BirthFormProps) {
   const t = useTranslations('kundali');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [formData, setFormData] = useState({
@@ -129,7 +129,7 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
-            placeholder={locale === 'en' || String(locale) === 'ta' ? 'Enter your name' : 'अपना नाम दर्ज करें'}
+            placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Enter your name' : 'अपना नाम दर्ज करें'}
           />
         </div>
 
@@ -172,10 +172,10 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
               });
               setPlaceTimezone(loc.timezone || null);
             }}
-            placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search birth city...' : 'जन्म शहर खोजें...'}
+            placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search birth city...' : 'जन्म शहर खोजें...'}
           />
           {locationError && (
-            <p className="text-red-400 text-xs mt-1">{locale === 'en' || String(locale) === 'ta' ? 'Please select a birth location' : 'कृपया जन्म स्थान चुनें'}</p>
+            <p className="text-red-400 text-xs mt-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Please select a birth location' : 'कृपया जन्म स्थान चुनें'}</p>
           )}
         </div>
 
@@ -187,23 +187,23 @@ export default function BirthForm({ onSubmit, loading, initialData }: BirthFormP
             onChange={(e) => setFormData({ ...formData, ayanamsha: e.target.value })}
             className="w-full bg-bg-tertiary/50 border border-gold-primary/20 rounded-lg px-4 py-3 text-text-primary focus:outline-none focus:border-gold-primary/50 transition-colors"
           >
-            <optgroup label={locale === 'en' || String(locale) === 'ta' ? 'Standard' : 'मानक'}>
-              <option value="lahiri">{locale === 'en' || String(locale) === 'ta' ? 'Lahiri (Chitrapaksha) — Indian Standard' : 'लाहिरी (चित्रपक्ष) — भारतीय मानक'}</option>
-              <option value="true_chitra">{locale === 'en' || String(locale) === 'ta' ? 'True Chitrapaksha — Tracks Spica live' : 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति'}</option>
-              <option value="kp">{locale === 'en' || String(locale) === 'ta' ? 'KP (Krishnamurti)' : 'केपी (कृष्णमूर्ति)'}</option>
+            <optgroup label={(locale !== 'hi' && String(locale) !== 'sa') ? 'Standard' : 'मानक'}>
+              <option value="lahiri">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Lahiri (Chitrapaksha) — Indian Standard' : 'लाहिरी (चित्रपक्ष) — भारतीय मानक'}</option>
+              <option value="true_chitra">{(locale !== 'hi' && String(locale) !== 'sa') ? 'True Chitrapaksha — Tracks Spica live' : 'यथार्थ चित्रपक्ष — चित्रा तारे की वास्तविक स्थिति'}</option>
+              <option value="kp">{(locale !== 'hi' && String(locale) !== 'sa') ? 'KP (Krishnamurti)' : 'केपी (कृष्णमूर्ति)'}</option>
             </optgroup>
-            <optgroup label={locale === 'en' || String(locale) === 'ta' ? 'Classical' : 'शास्त्रीय'}>
-              <option value="raman">{locale === 'en' || String(locale) === 'ta' ? 'BV Raman' : 'बीवी रमण'}</option>
-              <option value="yukteshwar">{locale === 'en' || String(locale) === 'ta' ? 'Sri Yukteshwar' : 'श्री युक्तेश्वर'}</option>
-              <option value="jn_bhasin">{locale === 'en' || String(locale) === 'ta' ? 'JN Bhasin' : 'जेएन भसीन'}</option>
+            <optgroup label={(locale !== 'hi' && String(locale) !== 'sa') ? 'Classical' : 'शास्त्रीय'}>
+              <option value="raman">{(locale !== 'hi' && String(locale) !== 'sa') ? 'BV Raman' : 'बीवी रमण'}</option>
+              <option value="yukteshwar">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sri Yukteshwar' : 'श्री युक्तेश्वर'}</option>
+              <option value="jn_bhasin">{(locale !== 'hi' && String(locale) !== 'sa') ? 'JN Bhasin' : 'जेएन भसीन'}</option>
             </optgroup>
-            <optgroup label={locale === 'en' || String(locale) === 'ta' ? 'Star-Anchored' : 'तारा-आधारित'}>
-              <option value="true_revati">{locale === 'en' || String(locale) === 'ta' ? 'True Revati — Revati star at 0° Aries' : 'यथार्थ रेवती — रेवती तारा 0° मेष पर'}</option>
-              <option value="true_pushya">{locale === 'en' || String(locale) === 'ta' ? 'True Pushya — Pushya star anchored' : 'यथार्थ पुष्य — पुष्य तारा आधारित'}</option>
-              <option value="galactic_center">{locale === 'en' || String(locale) === 'ta' ? 'Galactic Center at 0° Sagittarius' : 'गैलेक्टिक केन्द्र 0° धनु पर'}</option>
+            <optgroup label={(locale !== 'hi' && String(locale) !== 'sa') ? 'Star-Anchored' : 'तारा-आधारित'}>
+              <option value="true_revati">{(locale !== 'hi' && String(locale) !== 'sa') ? 'True Revati — Revati star at 0° Aries' : 'यथार्थ रेवती — रेवती तारा 0° मेष पर'}</option>
+              <option value="true_pushya">{(locale !== 'hi' && String(locale) !== 'sa') ? 'True Pushya — Pushya star anchored' : 'यथार्थ पुष्य — पुष्य तारा आधारित'}</option>
+              <option value="galactic_center">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Galactic Center at 0° Sagittarius' : 'गैलेक्टिक केन्द्र 0° धनु पर'}</option>
             </optgroup>
-            <optgroup label={locale === 'en' || String(locale) === 'ta' ? 'Western Sidereal' : 'पश्चिमी सायन'}>
-              <option value="fagan_bradley">{locale === 'en' || String(locale) === 'ta' ? 'Fagan-Bradley' : 'फगन-ब्रैडले'}</option>
+            <optgroup label={(locale !== 'hi' && String(locale) !== 'sa') ? 'Western Sidereal' : 'पश्चिमी सायन'}>
+              <option value="fagan_bradley">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Fagan-Bradley' : 'फगन-ब्रैडले'}</option>
             </optgroup>
           </select>
         </div>

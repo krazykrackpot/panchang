@@ -16,7 +16,7 @@ export default function TransitForecastWidget({ locale }: Props) {
   const [transits, setTransits] = useState<PersonalTransit[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasChart, setHasChart] = useState(false);
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
 
   useEffect(() => {
     if (!user) return;

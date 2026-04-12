@@ -209,7 +209,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1, y: CY - 10 }}
         transition={{ duration: 0.8, delay: 1.4 }}
       >
-        {locale === 'en' || String(locale) === 'ta' ? 'LUNISOLAR' : locale === 'hi' ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'LUNISOLAR' : locale === 'hi' ? 'चान्द्र-सौर' : 'चान्द्रसौरम्'}
       </motion.text>
       <motion.text
         x={CX} y={CY + 8}
@@ -220,7 +220,7 @@ function AnimatedAnnualWheel({ locale }: { locale: Locale }) {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.6 }}
       >
-        {locale === 'en' || String(locale) === 'ta' ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? '12 Months x 6 Seasons' : '12 मास x 6 ऋतु'}
       </motion.text>
     </motion.svg>
   );
@@ -233,7 +233,7 @@ export default function MasaPage() {
   const t = useTranslations('deepDive');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -300,8 +300,8 @@ export default function MasaPage() {
             </p>
             <div className="mt-6 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
               <p className="text-gold-light font-mono text-sm">
-                {locale === 'en' || String(locale) === 'ta' ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
-                {locale === 'en' || String(locale) === 'ta' ? 'days' : 'दिन'}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Lunar year:' : 'चान्द्र वर्ष:'} 12 x 29.53 = ~354.36{' '}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'days' : 'दिन'}
               </p>
               <p className="text-gold-light/70 font-mono text-xs mt-1">
                 {locale === 'en'
@@ -379,7 +379,7 @@ export default function MasaPage() {
 
         {/* 6 Seasons */}
         <h3 className="text-xl text-gold-light mb-4" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? '6 Seasons (Ritu)' : locale === 'hi' ? '6 ऋतुएँ' : 'षड् ऋतवः'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? '6 Seasons (Ritu)' : locale === 'hi' ? '6 ऋतुएँ' : 'षड् ऋतवः'}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {RITU_NAMES.map((ritu, i) => (

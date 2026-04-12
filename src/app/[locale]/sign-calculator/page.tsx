@@ -35,7 +35,7 @@ const SIGN_MEANING: Record<number, { en: string; hi: string }> = {
 export default function SignCalculatorPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -219,7 +219,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.sunDegree} ({result.sunLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.sunSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {locale === 'en' || String(locale) === 'ta' ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_MEANING[result.sunSign].en : SIGN_MEANING[result.sunSign].hi}
                   </p>
                 )}
               </motion.div>
@@ -241,7 +241,7 @@ export default function SignCalculatorPage() {
                 <div className="text-text-secondary text-sm mt-2 font-mono">{result.moonDegree} ({result.moonLong.toFixed(2)}°)</div>
                 {SIGN_MEANING[result.moonSign] && (
                   <p className="text-text-secondary/80 text-xs mt-3 leading-relaxed" style={bodyFont}>
-                    {locale === 'en' || String(locale) === 'ta' ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_MEANING[result.moonSign].en : SIGN_MEANING[result.moonSign].hi}
                   </p>
                 )}
               </motion.div>

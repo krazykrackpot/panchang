@@ -111,7 +111,7 @@ export default function MuhurtaAIPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (L as Record<string, typeof L.en>)[locale] || L.en;
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -212,7 +212,7 @@ export default function MuhurtaAIPage() {
       {/* Muhurta Intro */}
       <InfoBlock
         id="muhurta-ai-intro"
-        title={locale === 'en' || String(locale) === 'ta' ? 'What is Muhurta?' : locale === 'hi' ? 'मुहूर्त क्या है?' : 'मुहूर्तम् किम्?'}
+        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is Muhurta?' : locale === 'hi' ? 'मुहूर्त क्या है?' : 'मुहूर्तम् किम्?'}
         defaultOpen={false}
       >
         {locale === 'hi' ? (
@@ -333,7 +333,7 @@ export default function MuhurtaAIPage() {
                   <div className="mt-4 flex flex-wrap justify-center gap-2">
                     {top.panchangaShuddhi !== undefined && (
                       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-primary/10 border border-gold-primary/20">
-                        <span className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
+                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchanga Shuddhi' : 'पञ्चाङ्ग शुद्धि'}</span>
                         <span className={`font-bold text-sm ${top.panchangaShuddhi >= 4 ? 'text-emerald-400' : top.panchangaShuddhi >= 3 ? 'text-gold-light' : 'text-amber-400'}`}>
                           {top.panchangaShuddhi}/5
                         </span>
@@ -341,7 +341,7 @@ export default function MuhurtaAIPage() {
                     )}
                     {top.taraBala && (
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.taraBala.auspicious ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-red-500/10 border-red-500/20'}`}>
-                        <span className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Tara Bala' : 'तारा बल'}</span>
+                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tara Bala' : 'तारा बल'}</span>
                         <span className={`font-bold text-sm ${top.taraBala.auspicious ? 'text-emerald-400' : 'text-red-400'}`}>
                           {top.taraBala.name} {top.taraBala.auspicious ? '✓' : '✗'}
                         </span>
@@ -349,16 +349,16 @@ export default function MuhurtaAIPage() {
                     )}
                     {top.chandraBala !== undefined && (
                       <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border ${top.chandraBala ? 'bg-emerald-500/10 border-emerald-500/25' : 'bg-amber-500/8 border-amber-500/20'}`}>
-                        <span className="text-text-secondary text-xs">{locale === 'en' || String(locale) === 'ta' ? 'Chandra Bala' : 'चन्द्र बल'}</span>
+                        <span className="text-text-secondary text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Chandra Bala' : 'चन्द्र बल'}</span>
                         <span className={`font-bold text-sm ${top.chandraBala ? 'text-emerald-400' : 'text-amber-400'}`}>
-                          {top.chandraBala ? (locale === 'en' || String(locale) === 'ta' ? '✓ Present' : '✓ उपस्थित') : (locale === 'en' || String(locale) === 'ta' ? '✗ Absent' : '✗ अनुपस्थित')}
+                          {top.chandraBala ? ((locale !== 'hi' && String(locale) !== 'sa') ? '✓ Present' : '✓ उपस्थित') : ((locale !== 'hi' && String(locale) !== 'sa') ? '✗ Absent' : '✗ अनुपस्थित')}
                         </span>
                       </div>
                     )}
                     {!hasBirthData && (
                       <div className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gold-primary/10 bg-bg-secondary/30">
                         <span className="text-text-secondary/70 text-xs">
-                          {locale === 'en' || String(locale) === 'ta' ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
+                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Save birth chart for Tara & Chandra Bala' : 'तारा/चन्द्र बल के लिए जन्म कुण्डली सहेजें'}
                         </span>
                       </div>
                     )}
@@ -384,9 +384,9 @@ export default function MuhurtaAIPage() {
                       <th className="text-left py-2 px-2">{t.time}</th>
                       <th className="text-left py-2 px-2">{t.score}</th>
                       <th className="text-left py-2 px-2">{t.panchang}</th>
-                      <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Shuddhi' : 'शुद्धि'}</th>
-                      {hasBirthData && <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Tara' : 'तारा'}</th>}
-                      {hasBirthData && <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Chandra' : 'चन्द्र'}</th>}
+                      <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Shuddhi' : 'शुद्धि'}</th>
+                      {hasBirthData && <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tara' : 'तारा'}</th>}
+                      {hasBirthData && <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Chandra' : 'चन्द्र'}</th>}
                       <th className="text-left py-2 px-2">{t.transit}</th>
                       <th className="text-left py-2 px-2">{t.timing}</th>
                       <th className="text-left py-2 px-2">{t.keyFactors}</th>

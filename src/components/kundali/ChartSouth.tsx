@@ -53,7 +53,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
 
 export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartSouthProps) {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const cell = 110;
   const pad = 20;
 

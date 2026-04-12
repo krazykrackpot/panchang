@@ -10,6 +10,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { PHASE_INFO, getPhaseModules, getModuleRef } from '@/lib/learn/module-sequence';
 import ProgressIndicator from './ProgressIndicator';
 import LevelBadge from './LevelBadge';
+import StreakCalendar from './StreakCalendar';
 import type { Locale } from '@/types/panchang';
 
 // ── Labels ────────────────────────────────────────────────────────────────────
@@ -32,7 +33,7 @@ const LABELS = {
 
 function t(key: keyof typeof LABELS, locale: Locale): string {
   const entry = LABELS[key];
-  return locale === 'en' || String(locale) === 'ta' ? entry.en : entry.hi;
+  return (locale !== 'hi' && String(locale) !== 'sa') ? entry.en : entry.hi;
 }
 
 // ── Streak fire icons ─────────────────────────────────────────────────────────
@@ -137,7 +138,7 @@ function OverallCircle({ percent }: { percent: number }) {
 
 export default function LearnSidebar() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
 
   const {
     sidebarExpanded,
@@ -341,6 +342,10 @@ export default function LearnSidebar() {
               {t('dontBreak', locale)}
             </p>
           )}
+          {/* Streak calendar */}
+          <div className="mt-3">
+            <StreakCalendar />
+          </div>
         </div>
       )}
 

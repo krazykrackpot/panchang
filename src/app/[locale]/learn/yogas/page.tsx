@@ -41,7 +41,7 @@ const KY_DATA: KYogaDef[] = [
 ];
 
 function KundaliYogasSection({ locale }: { locale: Locale }) {
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedCategory, setExpandedCategory] = useState<string | null>('mahapurusha');
   const [expandedYoga, setExpandedYoga] = useState<string | null>(null);
@@ -224,9 +224,9 @@ export default function LearnYogasPage() {
               <div className="text-right">
                 <div className="text-text-secondary text-xs">{y.meaning[locale]}</div>
                 <div className={`text-xs ${natureColor(y.nature)}`}>
-                  {y.nature === 'auspicious' ? (locale === 'en' || String(locale) === 'ta' ? 'Auspicious' : 'शुभ') :
-                   y.nature === 'inauspicious' ? (locale === 'en' || String(locale) === 'ta' ? 'Inauspicious' : 'अशुभ') :
-                   (locale === 'en' || String(locale) === 'ta' ? 'Neutral' : 'सम')}
+                  {y.nature === 'auspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious' : 'शुभ') :
+                   y.nature === 'inauspicious' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Inauspicious' : 'अशुभ') :
+                   ((locale !== 'hi' && String(locale) !== 'sa') ? 'Neutral' : 'सम')}
                 </div>
               </div>
             </motion.div>

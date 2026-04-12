@@ -34,7 +34,7 @@ const PLANET_NAMES_HI = ['सूर्य', 'चन्द्र', 'मंगल'
 export default function TransitsPage() {
   const t = useTranslations('transits');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
@@ -207,10 +207,10 @@ export default function TransitsPage() {
       {/* What are Transits? */}
       <InfoBlock
         id="transits-intro"
-        title={locale === 'en' || String(locale) === 'ta' ? 'What are Transits and why do they matter?' : 'गोचर क्या हैं और वे क्यों मायने रखते हैं?'}
+        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What are Transits and why do they matter?' : 'गोचर क्या हैं और वे क्यों मायने रखते हैं?'}
         defaultOpen={false}
       >
-        {locale === 'en' || String(locale) === 'ta' ? (
+        {(locale !== 'hi' && String(locale) !== 'sa') ? (
           <div className="space-y-3">
             <p>A <strong>transit</strong> (Gochara) is the <em>current</em> movement of a planet through the zodiac. While your birth chart is fixed, transiting planets keep moving and activate different areas of your life as they pass through different signs.</p>
             <p><strong>How transits affect you:</strong></p>
@@ -252,7 +252,7 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-3 sm:p-4 md:p-6 mb-8">
           <h2 className="text-lg text-gold-gradient font-bold mb-4 text-center" style={headingFont}>
-            {locale === 'en' || String(locale) === 'ta' ? 'Current Planetary Positions' : 'वर्तमान ग्रह स्थिति'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Current Planetary Positions' : 'वर्तमान ग्रह स्थिति'}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
             {currentTransits.map(ct => (
@@ -272,7 +272,7 @@ export default function TransitsPage() {
               <span className="text-amber-400 text-lg mt-0.5">⚠</span>
               <div>
                 <div className="text-amber-400 font-bold text-sm mb-1" style={headingFont}>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Jupiter Vedha Active' : 'गुरु वेध सक्रिय'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jupiter Vedha Active' : 'गुरु वेध सक्रिय'}
                 </div>
                 <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                   {locale === 'en'
@@ -288,7 +288,7 @@ export default function TransitsPage() {
               <span className="text-red-400 text-lg mt-0.5">⚠</span>
               <div>
                 <div className="text-red-400 font-bold text-sm mb-1" style={headingFont}>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Ashtama Shani Active (for you)' : 'अष्टम शनि सक्रिय (आपके लिए)'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ashtama Shani Active (for you)' : 'अष्टम शनि सक्रिय (आपके लिए)'}
                 </div>
                 <p className="text-text-secondary/80 text-xs leading-relaxed" style={bodyFont}>
                   {locale === 'en'
@@ -306,15 +306,15 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           className="flex items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-6 text-sm">
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.total}</span> {locale === 'en' || String(locale) === 'ta' ? 'transits' : 'गोचर'}
+            <span className="text-gold-light font-bold">{stats.total}</span> {(locale !== 'hi' && String(locale) !== 'sa') ? 'transits' : 'गोचर'}
           </span>
           <span className="text-text-tertiary">|</span>
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.major}</span> {locale === 'en' || String(locale) === 'ta' ? 'major' : 'प्रमुख'}
+            <span className="text-gold-light font-bold">{stats.major}</span> {(locale !== 'hi' && String(locale) !== 'sa') ? 'major' : 'प्रमुख'}
           </span>
           <span className="text-text-tertiary">|</span>
           <span className="text-text-secondary">
-            <span className="text-gold-light font-bold">{stats.planets}</span> {locale === 'en' || String(locale) === 'ta' ? 'planets' : 'ग्रह'}
+            <span className="text-gold-light font-bold">{stats.planets}</span> {(locale !== 'hi' && String(locale) !== 'sa') ? 'planets' : 'ग्रह'}
           </span>
         </motion.div>
       )}
@@ -328,7 +328,7 @@ export default function TransitsPage() {
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
                 sigFilter === f ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
               }`}>
-              {f === 'all' ? (locale === 'en' || String(locale) === 'ta' ? 'All' : 'सभी') : f === 'major' ? (locale === 'en' || String(locale) === 'ta' ? 'Major' : 'प्रमुख') : (locale === 'en' || String(locale) === 'ta' ? 'Major + Moderate' : 'प्रमुख + मध्यम')}
+              {f === 'all' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'All' : 'सभी') : f === 'major' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Major' : 'प्रमुख') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Major + Moderate' : 'प्रमुख + मध्यम')}
             </button>
           ))}
         </div>
@@ -337,8 +337,8 @@ export default function TransitsPage() {
         <button onClick={() => setShowFilters(!showFilters)}
           className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all border ${showFilters || planetFilter !== null ? 'bg-gold-primary/20 text-gold-light border-gold-primary/40' : 'text-text-secondary border-gold-primary/10 hover:bg-gold-primary/10'}`}>
           <Filter className="w-3.5 h-3.5" />
-          {locale === 'en' || String(locale) === 'ta' ? 'Planet' : 'ग्रह'}
-          {planetFilter !== null && `: ${(locale === 'en' || String(locale) === 'ta' ? PLANET_NAMES_EN : PLANET_NAMES_HI)[planetFilter]}`}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}
+          {planetFilter !== null && `: ${((locale !== 'hi' && String(locale) !== 'sa') ? PLANET_NAMES_EN : PLANET_NAMES_HI)[planetFilter]}`}
         </button>
       </div>
 
@@ -349,7 +349,7 @@ export default function TransitsPage() {
             className="flex flex-wrap justify-center gap-2 mb-8 overflow-hidden">
             <button onClick={() => setPlanetFilter(null)}
               className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs transition-all ${planetFilter === null ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
-              {locale === 'en' || String(locale) === 'ta' ? 'All Planets' : 'सभी ग्रह'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'All Planets' : 'सभी ग्रह'}
             </button>
             {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(pid => {
               const hasEvents = events.some(e => e.planetId === pid);
@@ -358,7 +358,7 @@ export default function TransitsPage() {
                 <button key={pid} onClick={() => setPlanetFilter(planetFilter === pid ? null : pid)}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-full text-xs transition-all ${planetFilter === pid ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/30' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/5'}`}>
                   <GrahaIconById id={pid} size={14} />
-                  {(locale === 'en' || String(locale) === 'ta' ? PLANET_NAMES_EN : PLANET_NAMES_HI)[pid]}
+                  {((locale !== 'hi' && String(locale) !== 'sa') ? PLANET_NAMES_EN : PLANET_NAMES_HI)[pid]}
                 </button>
               );
             })}
@@ -375,14 +375,14 @@ export default function TransitsPage() {
         </div>
       ) : filteredEvents.length === 0 ? (
         <div className="text-center py-16 text-text-secondary" style={bodyFont}>
-          {locale === 'en' || String(locale) === 'ta' ? 'No transit events match your filters.' : 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'No transit events match your filters.' : 'आपके फ़िल्टर से कोई गोचर घटना मेल नहीं खाती।'}
         </div>
       ) : (
         <div className="mt-8 space-y-10">
           {Array.from({ length: 12 }, (_, monthIdx) => {
             const monthEvents = eventsByMonth[monthIdx];
             if (!monthEvents || monthEvents.length === 0) return null;
-            const monthName = (locale === 'en' || String(locale) === 'ta' ? MONTH_NAMES_EN : MONTH_NAMES_HI)[monthIdx];
+            const monthName = ((locale !== 'hi' && String(locale) !== 'sa') ? MONTH_NAMES_EN : MONTH_NAMES_HI)[monthIdx];
             const isCurrentMonth = year === new Date().getFullYear() && monthIdx === new Date().getMonth();
 
             return (
@@ -396,10 +396,10 @@ export default function TransitsPage() {
                   <h3 className={`text-xl font-bold ${isCurrentMonth ? 'text-gold-gradient' : 'text-text-primary'}`} style={headingFont}>
                     {monthName}
                   </h3>
-                  <span className="text-text-tertiary text-xs">{monthEvents.length} {locale === 'en' || String(locale) === 'ta' ? 'events' : 'घटनाएँ'}</span>
+                  <span className="text-text-tertiary text-xs">{monthEvents.length} {(locale !== 'hi' && String(locale) !== 'sa') ? 'events' : 'घटनाएँ'}</span>
                   {isCurrentMonth && (
                     <span className="px-2 py-0.5 bg-gold-primary/20 text-gold-light text-xs rounded-full font-bold">
-                      {locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'NOW' : 'अभी'}
                     </span>
                   )}
                   <div className="flex-1 h-px bg-gradient-to-r from-gold-primary/20 to-transparent" />
@@ -410,7 +410,7 @@ export default function TransitsPage() {
                   {monthEvents.map((e, i) => {
                     const dateObj = new Date(e.date + 'T00:00:00');
                     const dayNum = dateObj.getDate();
-                    const dayName = dateObj.toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-US' : 'hi-IN', { weekday: 'short' });
+                    const dayName = dateObj.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-US' : 'hi-IN', { weekday: 'short' });
                     const isPast = new Date(e.date) < new Date(new Date().toISOString().split('T')[0]);
 
                     return (
@@ -438,7 +438,7 @@ export default function TransitsPage() {
                               {tl(e.planetName, locale)}
                             </span>
                             <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${sigBadge[e.significance]}`}>
-                              {(locale === 'en' || String(locale) === 'ta' ? sigLabel[e.significance].en : sigLabel[e.significance].hi)}
+                              {((locale !== 'hi' && String(locale) !== 'sa') ? sigLabel[e.significance].en : sigLabel[e.significance].hi)}
                             </span>
                           </div>
                           <div className="flex items-center gap-1.5 mt-1 text-sm">
@@ -464,7 +464,7 @@ export default function TransitsPage() {
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/20 rounded-2xl p-6 mt-10">
           <h2 className="text-gold-gradient text-xl font-bold mb-1 text-center" style={headingFont}>
-            {locale === 'en' || String(locale) === 'ta' ? `Mesha Sankranti ${year}` : `मेष संक्रान्ति ${year}`}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? `Mesha Sankranti ${year}` : `मेष संक्रान्ति ${year}`}
           </h2>
           <p className="text-text-secondary/70 text-xs text-center mb-5" style={bodyFont}>
             {locale === 'en'
@@ -473,24 +473,24 @@ export default function TransitsPage() {
           </p>
           <div className="rounded-xl bg-gold-primary/8 border border-gold-primary/20 p-4 text-center mb-5">
             <div className="text-gold-light font-bold text-2xl font-mono" style={headingFont}>
-              {meshaSankranti.date.toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-GB' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+              {meshaSankranti.date.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-GB' : 'hi-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
             </div>
             <div className="text-gold-primary/70 text-sm mt-1">
-              {meshaSankranti.date.toLocaleTimeString(locale === 'en' || String(locale) === 'ta' ? 'en-GB' : 'hi-IN', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
+              {meshaSankranti.date.toLocaleTimeString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-GB' : 'hi-IN', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
             </div>
             <div className="text-text-secondary/70 text-xs mt-2" style={bodyFont}>
-              {locale === 'en' || String(locale) === 'ta' ? 'Exact moment of Sun\'s ingress into sidereal Aries (Lahiri Ayanamsha)' : 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Exact moment of Sun\'s ingress into sidereal Aries (Lahiri Ayanamsha)' : 'सूर्य का सायन मेष में प्रवेश काल (लाहिरी अयनांश)'}
             </div>
           </div>
           <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-3 text-center">
-            {locale === 'en' || String(locale) === 'ta' ? 'House Themes for the Solar Year' : 'वार्षिक सौर-काल के भाव विषय'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'House Themes for the Solar Year' : 'वार्षिक सौर-काल के भाव विषय'}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
             {meshaSankranti.houseThemes.map((theme, i) => (
               <div key={i} className="rounded-lg bg-bg-primary/30 border border-gold-primary/8 p-3">
                 <div className="text-gold-primary/60 text-xs font-mono font-bold mb-0.5">{i + 1}</div>
                 <div className="text-text-secondary/70 text-xs leading-relaxed" style={bodyFont}>
-                  {locale === 'en' || String(locale) === 'ta' ? theme.en : theme.hi}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? theme.en : theme.hi}
                 </div>
               </div>
             ))}

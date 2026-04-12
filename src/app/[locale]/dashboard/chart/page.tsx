@@ -15,8 +15,8 @@ import type { Locale } from '@/types/panchang';
 
 export default function ChartPage() {
   const locale = useLocale() as Locale;
-  const hf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bf = (locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  const hf = ((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
+  const bf = ((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const user = useAuthStore(s => s.user);
   const [kundali, setKundali] = useState<KundaliData | null>(null);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
@@ -38,7 +38,7 @@ export default function ChartPage() {
   }, [user]);
 
   if (!user) {
-    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{locale === 'en' || String(locale) === 'ta' ? 'Sign in to view your chart' : 'चार्ट देखने के लिए साइन इन करें'}</p></div>;
+    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sign in to view your chart' : 'चार्ट देखने के लिए साइन इन करें'}</p></div>;
   }
 
   if (loading) {
@@ -46,17 +46,17 @@ export default function ChartPage() {
   }
 
   if (!kundali) {
-    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{locale === 'en' || String(locale) === 'ta' ? 'Complete your profile to see your birth chart' : 'जन्म कुण्डली देखने के लिए प्रोफ़ाइल पूरा करें'}</p><a href={`/${locale}/settings`} className="text-gold-primary text-sm mt-2 inline-block">{locale === 'en' || String(locale) === 'ta' ? 'Go to Settings' : 'सेटिंग्स पर जाएँ'}</a></div>;
+    return <div className="max-w-2xl mx-auto px-4 py-20 text-center"><p className="text-text-secondary">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Complete your profile to see your birth chart' : 'जन्म कुण्डली देखने के लिए प्रोफ़ाइल पूरा करें'}</p><a href={`/${locale}/settings`} className="text-gold-primary text-sm mt-2 inline-block">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Go to Settings' : 'सेटिंग्स पर जाएँ'}</a></div>;
   }
 
   const ChartComponent = chartStyle === 'north' ? ChartNorth : ChartSouth;
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{locale === 'en' || String(locale) === 'ta' ? 'Dashboard' : 'डैशबोर्ड'}</a>
+      <a href={`/${locale}/dashboard`} className="text-gold-primary text-sm hover:text-gold-light mb-6 inline-flex items-center gap-1"><ArrowLeft className="w-4 h-4" />{(locale !== 'hi' && String(locale) !== 'sa') ? 'Dashboard' : 'डैशबोर्ड'}</a>
 
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{locale === 'en' || String(locale) === 'ta' ? 'Your Birth Chart' : 'आपकी जन्म कुण्डली'}</span></h1>
+        <h1 className="text-4xl font-bold mb-3" style={hf}><span className="text-gold-gradient">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Your Birth Chart' : 'आपकी जन्म कुण्डली'}</span></h1>
         <p className="text-text-secondary text-sm">{kundali.birthData.date} | {kundali.birthData.time} | {kundali.birthData.place}</p>
       </motion.div>
 
@@ -73,11 +73,11 @@ export default function ChartPage() {
       {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
-          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' || String(locale) === 'ta' ? 'Rashi (D1)' : 'राशि (D1)'}</h3>
+          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Rashi (D1)' : 'राशि (D1)'}</h3>
           <ChartComponent data={kundali.chart} title="" />
         </motion.div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6">
-          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' || String(locale) === 'ta' ? 'Navamsha (D9)' : 'नवांश (D9)'}</h3>
+          <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Navamsha (D9)' : 'नवांश (D9)'}</h3>
           <ChartComponent data={kundali.navamshaChart} title="" />
         </motion.div>
       </div>
@@ -86,22 +86,22 @@ export default function ChartPage() {
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 mb-6 flex items-center gap-4">
         <RashiIconById id={kundali.ascendant.sign} size={40} />
         <div>
-          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Ascendant (Lagna)' : 'लग्न'}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Ascendant (Lagna)' : 'लग्न'}</p>
           <p className="text-gold-light text-lg font-bold" style={hf}>{kundali.ascendant.signName[locale]} ({kundali.ascendant.degree.toFixed(2)}°)</p>
         </div>
       </div>
 
       {/* Planet table */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-5 overflow-x-auto">
-        <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{locale === 'en' || String(locale) === 'ta' ? 'Planet Positions' : 'ग्रह स्थिति'}</h3>
+        <h3 className="text-gold-primary text-xs uppercase tracking-wider font-bold mb-4">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet Positions' : 'ग्रह स्थिति'}</h3>
         <table className="w-full text-sm">
           <thead>
             <tr className="text-text-secondary border-b border-gold-primary/10 text-xs">
-              <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Planet' : 'ग्रह'}</th>
-              <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Sign' : 'राशि'}</th>
-              <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Degree' : 'अंश'}</th>
-              <th className="text-left py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'Nakshatra' : 'नक्षत्र'}</th>
-              <th className="text-center py-2 px-2">{locale === 'en' || String(locale) === 'ta' ? 'House' : 'भाव'}</th>
+              <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Planet' : 'ग्रह'}</th>
+              <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Sign' : 'राशि'}</th>
+              <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Degree' : 'अंश'}</th>
+              <th className="text-left py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nakshatra' : 'नक्षत्र'}</th>
+              <th className="text-center py-2 px-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'House' : 'भाव'}</th>
               <th className="text-center py-2 px-2">R/C</th>
             </tr>
           </thead>
@@ -125,7 +125,7 @@ export default function ChartPage() {
 
       <div className="text-center mt-8">
         <a href={`/${locale}/kundali`} className="text-gold-primary hover:text-gold-light text-sm">
-          {locale === 'en' || String(locale) === 'ta' ? 'Generate detailed analysis with all tabs →' : 'सभी टैब के साथ विस्तृत विश्लेषण →'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate detailed analysis with all tabs →' : 'सभी टैब के साथ विस्तृत विश्लेषण →'}
         </a>
       </div>
     </div>

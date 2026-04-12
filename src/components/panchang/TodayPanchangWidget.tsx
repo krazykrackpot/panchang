@@ -92,7 +92,7 @@ export default function TodayPanchangWidget() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Search city or place...' : 'शहर या स्थान खोजें...'}
+              placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search city or place...' : 'शहर या स्थान खोजें...'}
               className="flex-1 bg-transparent text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none"
               autoFocus
             />
@@ -118,7 +118,7 @@ export default function TodayPanchangWidget() {
           {locationStore.detecting ? (
             <span className="flex items-center gap-2 text-text-secondary text-sm">
               <Loader2 className="w-4 h-4 animate-spin text-gold-primary" />
-              {locale === 'en' || String(locale) === 'ta' ? 'Detecting your location...' : 'आपका स्थान खोज रहे हैं...'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Detecting your location...' : 'आपका स्थान खोज रहे हैं...'}
             </span>
           ) : locationStore.confirmed ? (
             <>
@@ -126,7 +126,7 @@ export default function TodayPanchangWidget() {
               <span className="text-gold-light text-sm font-medium">{locationStore.name}</span>
               <button onClick={() => setShowSearch(true)}
                 className="text-gold-primary/70 text-xs hover:text-gold-light ml-2 underline underline-offset-2">
-                {locale === 'en' || String(locale) === 'ta' ? 'Change' : 'बदलें'}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Change' : 'बदलें'}
               </button>
             </>
           ) : (
@@ -134,7 +134,7 @@ export default function TodayPanchangWidget() {
               className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gold-primary/20 hover:border-gold-primary/40 transition-colors">
               <MapPin className="w-4 h-4 text-gold-primary" />
               <span className="text-gold-light text-sm">
-                {locale === 'en' || String(locale) === 'ta' ? 'Set your location to see Panchang' : 'पंचांग देखने के लिए स्थान चुनें'}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Set your location to see Panchang' : 'पंचांग देखने के लिए स्थान चुनें'}
               </span>
             </button>
           )}
@@ -150,15 +150,15 @@ export default function TodayPanchangWidget() {
         <LocationBar />
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 sm:p-8 md:p-12 text-center">
           <MapPin className="w-12 h-12 text-gold-primary/40 mx-auto mb-4" />
-          <p className="text-text-secondary text-lg mb-2" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {locale === 'en' || String(locale) === 'ta' ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
+          <p className="text-text-secondary text-lg mb-2" style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Location required for accurate Panchang' : 'सटीक पंचांग के लिए स्थान आवश्यक'}
           </p>
           <p className="text-text-secondary/75 text-sm mb-6">
-            {locale === 'en' || String(locale) === 'ta' ? 'Panchang calculations depend on sunrise/sunset at your location' : 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchang calculations depend on sunrise/sunset at your location' : 'पंचांग गणना आपके स्थान के सूर्योदय/सूर्यास्त पर निर्भर है'}
           </p>
           <button onClick={() => setShowSearch(true)}
             className="px-6 py-3 bg-gradient-to-r from-gold-primary/20 to-gold-primary/10 border border-gold-primary/30 rounded-xl text-gold-light font-bold hover:bg-gold-primary/30 transition-all">
-            {locale === 'en' || String(locale) === 'ta' ? 'Search Location' : 'स्थान खोजें'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Search Location' : 'स्थान खोजें'}
           </button>
         </div>
       </div>
@@ -202,22 +202,22 @@ export default function TodayPanchangWidget() {
           >
             <div className="flex justify-center mb-4"><el.Icon size={64} /></div>
             <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{el.label}</div>
-            <div className="text-gold-light text-xl sm:text-2xl font-bold" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
+            <div className="text-gold-light text-xl sm:text-2xl font-bold" style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' }}>
               {el.value}
             </div>
             {el.sub && (
-              <div className="text-text-secondary text-sm mt-2" style={(locale !== 'en' && String(locale) !== 'ta') ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
+              <div className="text-text-secondary text-sm mt-2" style={((locale === 'hi' || String(locale) === 'sa')) ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>{el.sub}</div>
             )}
             {el.timing && (
               <div className="mt-3 pt-3 border-t border-gold-primary/10 w-full">
                 <div className="flex items-center justify-center gap-3">
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{locale === 'en' || String(locale) === 'ta' ? 'Starts' : 'आरम्भ'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Starts' : 'आरम्भ'}</div>
                     <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
                   </div>
                   <span className="text-text-secondary/50 text-lg">→</span>
                   <div className="text-center">
-                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{locale === 'en' || String(locale) === 'ta' ? 'Ends' : 'समाप्ति'}</div>
+                    <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Ends' : 'समाप्ति'}</div>
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
                   </div>
                 </div>

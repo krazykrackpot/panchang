@@ -123,7 +123,7 @@ const QUESTIONS: ModuleQuestion[] = [
 
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section>
@@ -184,7 +184,7 @@ function Page1() {
 
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section>
@@ -253,7 +253,7 @@ function Page2() {
 
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       <section>

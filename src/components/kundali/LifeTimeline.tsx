@@ -61,7 +61,7 @@ interface Props {
 }
 
 export default function LifeTimeline({ kundali, locale, isDevanagari, headingFont }: Props) {
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const scrollRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
 

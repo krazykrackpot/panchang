@@ -69,7 +69,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
   const moonMap  = buildHouseMap(moonSign);
   const sunMap   = buildHouseMap(sunSign);
 
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const signAbbr = (signId: number) => isHi ? SIGN_ABBR_HI[signId - 1] : SIGN_ABBR_EN[signId - 1];
 
   // SVG dimensions
@@ -172,7 +172,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* Header */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-2" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? 'Sudarshana Chakra' : 'सुदर्शन चक्र'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sudarshana Chakra' : 'सुदर्शन चक्र'}
         </h3>
         <p className="text-text-secondary/75 text-sm max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
           {locale === 'en'
@@ -187,7 +187,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           <div key={i} className="flex items-center gap-2">
             <span className="w-4 h-4 rounded-full border-2" style={{ borderColor: rp.color, backgroundColor: rp.color + '22' }} />
             <span className="text-text-secondary/70">{rp.label}: {RASHIS[rp.sign - 1]?.name[locale]}</span>
-            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? (locale === 'en' || String(locale) === 'ta' ? 'outer' : 'बाह्य') : i === 1 ? (locale === 'en' || String(locale) === 'ta' ? 'middle' : 'मध्य') : (locale === 'en' || String(locale) === 'ta' ? 'inner' : 'आन्तरिक')}</span>
+            <span className="text-text-secondary/65 text-[10px]">{i === 0 ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'outer' : 'बाह्य') : i === 1 ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'middle' : 'मध्य') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'inner' : 'आन्तरिक')}</span>
           </div>
         ))}
       </div>
@@ -210,21 +210,21 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
           {/* Center label */}
           <circle cx={cx} cy={cy} r={r[2]} fill="rgba(10,14,39,0.98)" stroke="rgba(212,168,83,0.3)" strokeWidth="1" />
           <text x={cx} y={cy - 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.8)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'Sudarshana' : 'सुदर्शन'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sudarshana' : 'सुदर्शन'}
           </text>
           <text x={cx} y={cy + 8} textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="rgba(212,168,83,0.5)" style={{ fontFamily: 'var(--font-heading)' }}>
-            {locale === 'en' || String(locale) === 'ta' ? 'Chakra' : 'चक्र'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chakra' : 'चक्र'}
           </text>
 
           {/* Ring separator labels */}
           <text x={cx + R[0] - 18} y={cy - 5} fontSize="8" fill="rgba(212,168,83,0.5)" textAnchor="middle">
-            {locale === 'en' || String(locale) === 'ta' ? 'Lg' : 'ल'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Lg' : 'ल'}
           </text>
           <text x={cx + R[1] - 15} y={cy - 5} fontSize="7" fill="rgba(236,240,241,0.4)" textAnchor="middle">
-            {locale === 'en' || String(locale) === 'ta' ? 'Mo' : 'च'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mo' : 'च'}
           </text>
           <text x={cx + R[2] - 10} y={cy - 5} fontSize="7" fill="rgba(230,126,34,0.5)" textAnchor="middle">
-            {locale === 'en' || String(locale) === 'ta' ? 'Su' : 'सू'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Su' : 'सू'}
           </text>
         </svg>
       </div>
@@ -232,7 +232,7 @@ export default function SudarshanaCakra({ kundali, locale, isDevanagari, heading
       {/* House concordance table */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4">
         <div className="text-gold-primary/70 text-xs uppercase tracking-wider font-bold mb-3">
-          {locale === 'en' || String(locale) === 'ta' ? 'Triple Concordance — Planets in all 3 rings (Strongest indicators)' : 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Triple Concordance — Planets in all 3 rings (Strongest indicators)' : 'त्रिवलय सामञ्जस्य — तीनों वलयों में ग्रह (सबसे बलवान संकेत)'}
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {kundali.planets.map(p => {

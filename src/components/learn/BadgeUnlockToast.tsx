@@ -13,7 +13,7 @@ interface BadgeUnlockToastProps {
 export default function BadgeUnlockToast({ badges, locale }: BadgeUnlockToastProps) {
   const [queue, setQueue] = useState<Badge[]>([]);
   const [current, setCurrent] = useState<Badge | null>(null);
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
 
   // Populate queue when badges change
   useEffect(() => {

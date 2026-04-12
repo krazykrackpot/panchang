@@ -146,7 +146,7 @@ interface DashaTransitionAlertProps {
 // ---------------------------------------------------------------------------
 export default function DashaTransitionAlert({ dashaTimeline, locale, kundaliId }: DashaTransitionAlertProps) {
   const L = LABELS[locale] || LABELS.en;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 

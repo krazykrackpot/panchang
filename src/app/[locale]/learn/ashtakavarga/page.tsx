@@ -106,7 +106,7 @@ const SCORE_MEANINGS = [
 
 export default function LearnAshtakavargaPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -212,7 +212,7 @@ export default function LearnAshtakavargaPage() {
               <div key={sm.range} className="flex gap-3 items-start">
                 <div className={`w-12 flex-shrink-0 text-right text-xs font-mono ${sm.color}`}>{sm.range}</div>
                 <div className="text-text-secondary text-xs leading-relaxed flex-1" style={bodyFont}>
-                  {locale === 'en' || String(locale) === 'ta' ? sm.en : locale === 'hi' ? sm.hi : sm.sa}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? sm.en : locale === 'hi' ? sm.hi : sm.sa}
                 </div>
               </div>
             ))}

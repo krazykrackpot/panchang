@@ -137,7 +137,7 @@ const QUESTIONS: ModuleQuestion[] = [
 
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* 1. Conceptual Introduction */}
@@ -176,7 +176,7 @@ function Page1() {
 
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* 3. Detailed Explanation */}
@@ -243,7 +243,7 @@ function Page2() {
 
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* The Zodiac Belt */}

@@ -8,7 +8,7 @@ import type { Locale } from '@/types/panchang';
 export default function AboutPage() {
   const t = useTranslations('about');
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const sections = [

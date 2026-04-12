@@ -21,28 +21,28 @@ export default function Footer() {
           {/* Center — links */}
           <div className="flex items-center gap-4 text-xs text-text-secondary/70">
             <Link href="/panchang" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Panchang' : 'पंचांग'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchang' : 'पंचांग'}
             </Link>
             <Link href="/kundali" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Kundali' : 'कुण्डली'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Kundali' : 'कुण्डली'}
             </Link>
             <Link href="/calendar" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Calendar' : 'पंचांग'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Calendar' : 'पंचांग'}
             </Link>
             <Link href="/learn" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Learn' : 'सीखें'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Learn' : 'सीखें'}
             </Link>
             <Link href="/about" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'About' : 'परिचय'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'About' : 'परिचय'}
             </Link>
             <Link href="/pricing" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Pricing' : 'मूल्य'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Pricing' : 'मूल्य'}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Privacy' : 'गोपनीयता'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Privacy' : 'गोपनीयता'}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors">
-              {locale === 'en' || String(locale) === 'ta' ? 'Terms' : 'शर्तें'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Terms' : 'शर्तें'}
             </Link>
           </div>
 

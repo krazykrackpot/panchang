@@ -19,7 +19,7 @@ interface WidgetData {
 
 export default function PanchangWidget() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const [data, setData] = useState<WidgetData | null>(null);
   const [error, setError] = useState(false);
 

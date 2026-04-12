@@ -595,7 +595,7 @@ export default function DashboardPage() {
               {earnedBadges.length > 0 && (
                 <div className="mt-3 pt-3 border-t border-amber-500/10">
                   <p className="text-[10px] text-text-secondary uppercase tracking-widest font-bold mb-2">
-                    {locale === 'en' || String(locale) === 'ta' ? 'Badges Earned' : locale === 'hi' ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Badges Earned' : locale === 'hi' ? 'अर्जित बैज' : 'अर्जिताः बैजाः'}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {earnedBadges.map(badge => (
@@ -611,6 +611,12 @@ export default function DashboardPage() {
                       </div>
                     ))}
                   </div>
+                  <Link
+                    href="/learn#badges"
+                    className="inline-block mt-2 text-[11px] text-gold-primary hover:text-gold-light transition-colors font-medium"
+                  >
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'View All Badges \u2192' : locale === 'hi' ? 'सभी बैज देखें \u2192' : 'सर्वान् बैजान् पश्यतु \u2192'}
+                  </Link>
                 </div>
               )}
             </motion.div>
@@ -919,12 +925,12 @@ export default function DashboardPage() {
           <h3 className="text-lg font-semibold text-text-primary mb-4">{L.quickLinks}</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { href: '/dashboard/chart' as const, label: locale === 'en' || String(locale) === 'ta' ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
-              { href: '/dashboard/dashas' as const, label: locale === 'en' || String(locale) === 'ta' ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
-              { href: '/dashboard/muhurta' as const, label: locale === 'en' || String(locale) === 'ta' ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
+              { href: '/dashboard/chart' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Birth Chart' : 'जन्म कुण्डली', icon: Eye },
+              { href: '/dashboard/dashas' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Dasha Timeline' : 'दशा समयरेखा', icon: TrendingUp },
+              { href: '/dashboard/muhurta' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Personal Muhurta' : 'व्यक्तिगत मुहूर्त', icon: Clock },
               { href: '/dashboard/transits' as const, label: L.transitAnalysis, icon: Globe },
               { href: '/dashboard/remedies' as const, label: L.yourRemedies, icon: Shield },
-              { href: '/dashboard/saved-charts' as const, label: locale === 'en' || String(locale) === 'ta' ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
+              { href: '/dashboard/saved-charts' as const, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Saved Charts' : 'सहेजे गए चार्ट', icon: Star },
               { href: '/sade-sati' as const, label: L.sadeSati, icon: TrendingUp },
               { href: '/settings' as const, label: L.settings, icon: Settings },
             ].map((link) => (

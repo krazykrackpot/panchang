@@ -85,7 +85,7 @@ export default function PrashnaAshtamangalaPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
   const t = (T as Record<string, typeof T.en>)[locale] || T.en;
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

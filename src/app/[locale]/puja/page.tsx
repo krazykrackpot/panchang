@@ -84,7 +84,7 @@ function PujaCard({
   viewLabel: string;
 }) {
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const gradient = CARD_GRADIENTS[index % CARD_GRADIENTS.length];
 
   return (
@@ -116,10 +116,10 @@ function PujaCard({
               }`}
             >
               {category === 'festival'
-                ? locale === 'en' || String(locale) === 'ta' ? 'Festival' : locale === 'hi' ? 'त्योहार' : 'उत्सवः'
+                ? (locale !== 'hi' && String(locale) !== 'sa') ? 'Festival' : locale === 'hi' ? 'त्योहार' : 'उत्सवः'
                 : category === 'graha_shanti'
-                  ? locale === 'en' || String(locale) === 'ta' ? 'Graha Shanti' : locale === 'hi' ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
-                  : locale === 'en' || String(locale) === 'ta' ? 'Vrat' : locale === 'hi' ? 'व्रत' : 'व्रतम्'}
+                  ? (locale !== 'hi' && String(locale) !== 'sa') ? 'Graha Shanti' : locale === 'hi' ? 'ग्रह शान्ति' : 'ग्रहशान्तिः'
+                  : (locale !== 'hi' && String(locale) !== 'sa') ? 'Vrat' : locale === 'hi' ? 'व्रत' : 'व्रतम्'}
             </span>
             <span className="text-gold-primary/60 text-xs group-hover:text-gold-primary transition-colors">
               {viewLabel} &rarr;
@@ -134,7 +134,7 @@ function PujaCard({
 export default function PujaIndexPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };

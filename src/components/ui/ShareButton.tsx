@@ -251,7 +251,7 @@ export function ShareRow({ pageTitle, shareText, url, locale, className = '' }: 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <span className="text-text-secondary/50 text-xs hidden sm:inline">
-        {locale === 'en' || String(locale) === 'ta' ? 'Share:' : locale === 'hi' ? 'शेयर:' : 'प्रसारः:'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Share:' : locale === 'hi' ? 'शेयर:' : 'प्रसारः:'}
       </span>
       <ShareButton
         title={pageTitle}

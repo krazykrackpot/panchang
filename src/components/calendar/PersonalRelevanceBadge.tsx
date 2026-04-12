@@ -122,7 +122,7 @@ interface PersonalRelevanceBadgeProps {
 export default function PersonalRelevanceBadge({ matches, locale }: PersonalRelevanceBadgeProps) {
   if (matches.length === 0) return null;
 
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
   // Show the first (most important) match as a badge

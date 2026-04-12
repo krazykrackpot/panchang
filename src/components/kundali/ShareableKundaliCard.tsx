@@ -78,7 +78,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const sunP = kundali.planets.find(p => p.planet.id === 0);
   const mahadasha = getCurrentMahadasha(kundali, locale);
   const topYogas = getTopYogas(kundali, locale);
-  const name = kundali.birthData.name || (locale === 'en' || String(locale) === 'ta' ? 'Chart' : 'कुण्डली');
+  const name = kundali.birthData.name || ((locale !== 'hi' && String(locale) !== 'sa') ? 'Chart' : 'कुण्डली');
 
   // Build share text
   const ascName = kundali.ascendant.signName.en;
@@ -88,7 +88,7 @@ export default function ShareableKundaliCard({ kundali, locale }: Props) {
   const shareText = `${kundali.birthData.name ? kundali.birthData.name + "'s " : ''}Vedic Chart: ${ascName} Ascendant, ${moonSignEn} Moon, ${nakEn} Nakshatra${dashaEn ? `, ${dashaEn} Mahadasha` : ''}. Generate yours`;
   const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/${locale}/kundali` : 'https://dekhopanchang.com/kundali';
 
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 

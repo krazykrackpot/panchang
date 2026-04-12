@@ -22,7 +22,7 @@ interface Props { locale: Locale }
 export default function NakshatraDashaSpiral({ locale }: Props) {
   const [hoveredNak, setHoveredNak] = useState<number | null>(null);
   const [hoveredPlanet, setHoveredPlanet] = useState<number | null>(null);
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
 
   // Build the 27 nakshatra-planet assignments
   const assignments = NAKSHATRAS.map((n, i) => ({

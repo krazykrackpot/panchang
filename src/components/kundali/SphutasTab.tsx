@@ -84,7 +84,7 @@ interface SphutasTabProps {
 }
 
 export default function SphutasTab({ kundali, locale, isDevanagari, headingFont, sphuataTransitData }: SphutasTabProps) {
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const yogiPlanetName = GRAHAS[kundali.sphutas!.yogiPoint.yogiPlanet]?.name[locale as Locale] || '';
   const avayogiPlanetName = GRAHAS[kundali.sphutas!.avayogiPoint.avayogiPlanet]?.name[locale as Locale] || '';
   const RASHI_FULL = ['','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
@@ -406,7 +406,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
         const jupNatal = kundali.planets.find(p => p.planet.id === 4);
         if (!jupNatal) return null;
         const jupNatalHouse = jupNatal.house;
-        const isHiBCP = locale !== 'en' && String(locale) !== 'ta';
+        const isHiBCP = (locale === 'hi' || String(locale) === 'sa');
         const currentAge = kundali.birthData.date
           ? Math.floor((new Date().getTime() - new Date(kundali.birthData.date).getTime()) / (365.25 * 24 * 3600 * 1000))
           : null;
@@ -592,7 +592,7 @@ export default function SphutasTab({ kundali, locale, isDevanagari, headingFont,
                       </div>
                       {profile && (
                         <p className="text-text-secondary/70 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          {profile[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi']}
+                          {profile[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
                         </p>
                       )}
                     </div>

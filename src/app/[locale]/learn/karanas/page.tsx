@@ -259,9 +259,9 @@ const natureColor = (nature: string) => {
 };
 
 const natureLabel = (nature: string, locale: string) => {
-  if (nature === 'auspicious') return locale === 'en' || String(locale) === 'ta' ? 'Shubha' : 'शुभ';
-  if (nature === 'neutral') return locale === 'en' || String(locale) === 'ta' ? 'Mishra' : 'मिश्र';
-  return locale === 'en' || String(locale) === 'ta' ? 'Ashubha' : 'अशुभ';
+  if (nature === 'auspicious') return (locale !== 'hi' && String(locale) !== 'sa') ? 'Shubha' : 'शुभ';
+  if (nature === 'neutral') return (locale !== 'hi' && String(locale) !== 'sa') ? 'Mishra' : 'मिश्र';
+  return (locale !== 'hi' && String(locale) !== 'sa') ? 'Ashubha' : 'अशुभ';
 };
 
 export default function LearnKaranasPage() {

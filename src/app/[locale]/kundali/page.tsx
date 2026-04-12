@@ -295,7 +295,7 @@ export default function KundaliPage() {
   const tTip = useTranslations('tippanni');
   const locale = useLocale() as Locale;
   const isTamil = (locale as string) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const L3 = (en: string, hi: string, ta?: string) => isTamil ? (ta || en) : locale === 'en' ? en : hi;
 

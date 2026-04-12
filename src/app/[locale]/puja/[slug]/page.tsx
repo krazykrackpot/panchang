@@ -224,7 +224,7 @@ export default function PujaVidhiPage() {
   const slug = params.slug as string;
   const isTamil = String(locale) === 'ta';
   const l = (LABELS as Record<string, Record<string, string>>)[locale] || LABELS.en;
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -454,14 +454,14 @@ export default function PujaVidhiPage() {
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-primary/80 to-gold-primary text-[#0a0e27] font-bold text-sm hover:from-gold-primary hover:to-gold-light transition-all shadow-lg shadow-gold-primary/20"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {locale === 'en' || String(locale) === 'ta' ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Start Full Puja' : locale === 'hi' ? 'पूर्ण पूजा आरम्भ करें' : 'पूर्णपूजाम् आरभतु'}
           </button>
           <button
             onClick={() => { setQuickMode(true); setPujaMode(true); }}
             className="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gold-primary/25 text-gold-primary font-bold text-sm hover:bg-gold-primary/10 transition-all"
             style={{ fontFamily: 'var(--font-heading)' }}
           >
-            {locale === 'en' || String(locale) === 'ta' ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Quick Mode (~15 min)' : locale === 'hi' ? 'संक्षिप्त (~15 मिनट)' : 'संक्षिप्तम् (~15 निमेषाः)'}
           </button>
         </motion.div>
 
@@ -472,14 +472,14 @@ export default function PujaVidhiPage() {
               href={`/${locale}/calendar/${puja.festivalSlug}`}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-gold-primary/15 text-gold-primary/80 text-sm hover:text-gold-light hover:bg-gold-primary/5 transition-colors"
             >
-              {locale === 'en' || String(locale) === 'ta' ? 'View dates in Calendar' : locale === 'hi' ? 'कैलेंडर में तिथियाँ देखें' : 'पञ्चाङ्गे तिथीः पश्यतु'} &rarr;
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'View dates in Calendar' : locale === 'hi' ? 'कैलेंडर में तिथियाँ देखें' : 'पञ्चाङ्गे तिथीः पश्यतु'} &rarr;
             </Link>
           )}
           <Link
-            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[locale === 'en' || String(locale) === 'ta' ? 'en' : 'hi'])}`}
+            href={`/${locale}/sankalpa?puja=${encodeURIComponent(puja.deity[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi'])}`}
             className="inline-flex items-center gap-2 px-5 py-2 rounded-lg border border-amber-500/20 bg-amber-500/5 text-amber-400 text-sm hover:bg-amber-500/10 transition-colors"
           >
-            {locale === 'en' || String(locale) === 'ta' ? 'Generate Sankalpa' : locale === 'hi' ? 'सङ्कल्प बनाएं' : 'सङ्कल्पं रचयतु'} &rarr;
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate Sankalpa' : locale === 'hi' ? 'सङ्कल्प बनाएं' : 'सङ्कल्पं रचयतु'} &rarr;
           </Link>
         </motion.div>
 
@@ -511,7 +511,7 @@ export default function PujaVidhiPage() {
             />
           ) : (
             <p className="text-text-secondary/70 text-sm">
-              {locale === 'en' || String(locale) === 'ta' ? 'Detecting your location...' : locale === 'hi' ? 'आपका स्थान खोज रहे हैं...' : 'भवतः स्थानं अन्विष्यते...'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Detecting your location...' : locale === 'hi' ? 'आपका स्थान खोज रहे हैं...' : 'भवतः स्थानं अन्विष्यते...'}
             </p>
           )}
         </SectionAccordion>

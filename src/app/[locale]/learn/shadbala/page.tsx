@@ -150,7 +150,7 @@ const DIG_BALA_TABLE = [
 
 export default function LearnShadbalaPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const t = (obj: Record<string, string>) => obj[locale] || obj.en;
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedBala, setExpandedBala] = useState<number | null>(0);

@@ -5,7 +5,7 @@ import { useRouter, usePathname } from '@/lib/i18n/navigation';
 import { localeLabels, type Locale } from '@/lib/i18n/config';
 import { getBodyFont } from '@/lib/utils/locale-fonts';
 
-const visibleLocales: Locale[] = ['en', 'hi', 'ta'];
+const visibleLocales: Locale[] = ['en', 'hi', 'ta', 'te', 'bn', 'kn'];
 
 export default function LocaleSwitcher() {
   const currentLocale = useLocale() as Locale;

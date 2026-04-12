@@ -130,7 +130,7 @@ const RELATED_LINKS = [
 export default function TamilCalendarPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isHi = locale !== 'en' && !isTamil;
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const L = (key: keyof typeof LABELS) => {
     const entry = LABELS[key] as Record<string, string>;
     if (isTamil && entry.ta) return entry.ta;

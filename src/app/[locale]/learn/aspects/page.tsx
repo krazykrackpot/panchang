@@ -281,7 +281,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
       {!selectedPlanet && (
         <text x={cx} y={cy} textAnchor="middle" dominantBaseline="central"
           className="text-xs" fill="#8b8fa3">
-          {locale === 'en' || String(locale) === 'ta' ? 'Select a planet' : locale === 'hi' ? 'ग्रह चुनें' : 'ग्रहं चिनुत'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Select a planet' : locale === 'hi' ? 'ग्रह चुनें' : 'ग्रहं चिनुत'}
         </text>
       )}
       {selectedPlanet && (
@@ -297,7 +297,7 @@ function AspectWheel({ selectedPlanet, locale }: { selectedPlanet: typeof PLANET
 /* ── Main Page ────────────────────────────────────────────────── */
 export default function AspectsPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [selected, setSelected] = useState<typeof PLANETS[0] | null>(PLANETS[0]);
@@ -359,7 +359,7 @@ export default function AspectsPage() {
             <p className="text-xs text-text-secondary" style={bodyFont}>
               <span style={{ color: selected.color }} className="font-bold">{selected.name[locale]}</span>
               {' '}{((L.placedIn as Record<string, string>)[locale] ?? L.placedIn.en)}
-              {' \u2192 '}{locale === 'en' || String(locale) === 'ta' ? 'Aspects houses' : locale === 'hi' ? 'दृष्टि भाव' : 'दृष्टिभावाः'}{': '}
+              {' \u2192 '}{(locale !== 'hi' && String(locale) !== 'sa') ? 'Aspects houses' : locale === 'hi' ? 'दृष्टि भाव' : 'दृष्टिभावाः'}{': '}
               <span style={{ color: selected.color }} className="font-bold">
                 {selected.aspects.join(', ')}
               </span>

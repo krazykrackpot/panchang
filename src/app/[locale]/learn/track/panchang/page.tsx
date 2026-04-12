@@ -126,7 +126,7 @@ const L = {
 
 export default function PanchangTrackPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const l = L[locale] || L.en;
@@ -207,7 +207,7 @@ export default function PanchangTrackPage() {
                       <div className="flex items-center gap-3">
                         {isRef ? (
                           <span className="text-xs font-bold px-2 py-0.5 rounded bg-violet-500/20 text-violet-300 uppercase tracking-wider">
-                            {locale === 'en' || String(locale) === 'ta' ? 'Ref' : 'सन्दर्भ'}
+                            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ref' : 'सन्दर्भ'}
                           </span>
                         ) : (
                           <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-500/20 text-gold-light">

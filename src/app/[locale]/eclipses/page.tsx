@@ -30,7 +30,7 @@ interface EclipseEvent {
 
 export default function EclipsesPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
@@ -81,7 +81,7 @@ export default function EclipsesPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   const toggleExpand = (key: string) => setExpanded(prev => prev === key ? null : key);

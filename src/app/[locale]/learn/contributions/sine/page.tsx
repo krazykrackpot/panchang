@@ -108,7 +108,7 @@ const FUNCTIONS = [
 
 export default async function SinePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params as { locale: Locale };
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
 

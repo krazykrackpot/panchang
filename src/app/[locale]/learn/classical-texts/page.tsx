@@ -160,7 +160,7 @@ const STATUS_CONFIG = {
 
 export default function ClassicalTextsPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedText, setExpandedText] = useState<string | null>('aryabhatiya');
 

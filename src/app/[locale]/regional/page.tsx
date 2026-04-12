@@ -335,7 +335,7 @@ function getCurrentRegionalInfo(cal: RegionalCalendar): { currentMonth: number; 
 export default function RegionalCalendarsPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const calendarsWithCurrent = useMemo(() => {
@@ -369,11 +369,11 @@ export default function RegionalCalendarsPage() {
       <div className="flex justify-center gap-6 mb-10">
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-amber-500/60" />
-          <span className="text-text-secondary text-sm">{locale === 'en' || String(locale) === 'ta' ? 'Solar Calendar' : 'सौर पंचांग'}</span>
+          <span className="text-text-secondary text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Solar Calendar' : 'सौर पंचांग'}</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="w-3 h-3 rounded-full bg-indigo-500/60" />
-          <span className="text-text-secondary text-sm">{locale === 'en' || String(locale) === 'ta' ? 'Lunisolar Calendar' : 'चान्द्र-सौर पंचांग'}</span>
+          <span className="text-text-secondary text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Lunisolar Calendar' : 'चान्द्र-सौर पंचांग'}</span>
         </div>
       </div>
 
@@ -405,7 +405,7 @@ export default function RegionalCalendarsPage() {
                   </div>
                   <div className="text-right">
                     <div className="text-gold-dark text-xs uppercase tracking-wider mb-1">
-                      {locale === 'en' || String(locale) === 'ta' ? 'Current Month' : 'वर्तमान मास'}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'Current Month' : 'वर्तमान मास'}
                     </div>
                     <div className="text-gold-light text-lg font-bold">{cal.current.monthName}</div>
                   </div>
@@ -418,7 +418,7 @@ export default function RegionalCalendarsPage() {
               {/* New Year */}
               <div className="px-6 sm:px-8 py-4 border-t border-b border-gold-primary/10 bg-gold-primary/5">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-gold-primary font-bold">{locale === 'en' || String(locale) === 'ta' ? 'New Year:' : 'नववर्ष:'}</span>
+                  <span className="text-gold-primary font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'New Year:' : 'नववर्ष:'}</span>
                   <span className="text-gold-light font-bold">{cal.newYear.name}</span>
                   <span className="text-text-secondary/70">—</span>
                   <span className="text-text-secondary text-xs">{cal.newYear.approxDate}</span>
@@ -428,7 +428,7 @@ export default function RegionalCalendarsPage() {
               {/* Month Grid */}
               <div className="p-6 sm:p-8">
                 <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4">
-                  {locale === 'en' || String(locale) === 'ta' ? 'Months' : 'मास'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Months' : 'मास'}
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
                   {cal.months.map((month, j) => {
@@ -448,7 +448,7 @@ export default function RegionalCalendarsPage() {
                         <div className="text-text-secondary/65 text-xs mt-0.5">{month.approxGregorian}</div>
                         {isCurrent && (
                           <div className="text-gold-primary text-xs font-bold mt-1 animate-pulse">
-                            {locale === 'en' || String(locale) === 'ta' ? 'NOW' : 'अभी'}
+                            {(locale !== 'hi' && String(locale) !== 'sa') ? 'NOW' : 'अभी'}
                           </div>
                         )}
                       </div>
@@ -461,7 +461,7 @@ export default function RegionalCalendarsPage() {
               <div className="px-6 sm:px-8 pb-6 sm:pb-8">
                 <GoldDivider />
                 <h3 className="text-gold-dark text-xs uppercase tracking-[0.2em] font-bold mb-4 mt-4">
-                  {locale === 'en' || String(locale) === 'ta' ? 'Key Festivals' : 'प्रमुख उत्सव'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Key Festivals' : 'प्रमुख उत्सव'}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {cal.festivals.map((fest, k) => (
@@ -482,17 +482,17 @@ export default function RegionalCalendarsPage() {
       {/* Comparison Table */}
       <div className="mt-12">
         <h2 className="text-gold-gradient text-2xl font-bold text-center mb-6" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? 'Calendar Comparison' : 'पंचांग तुलना'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Calendar Comparison' : 'पंचांग तुलना'}
         </h2>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gold-primary/20">
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Tradition' : 'परम्परा'}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Type' : 'प्रकार'}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Era' : 'युग'}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Year Starts' : 'वर्षारम्भ'}</th>
-                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'First Month' : 'प्रथम मास'}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tradition' : 'परम्परा'}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Type' : 'प्रकार'}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Era' : 'युग'}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Year Starts' : 'वर्षारम्भ'}</th>
+                <th className="text-left px-4 py-3 text-gold-dark text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'First Month' : 'प्रथम मास'}</th>
               </tr>
             </thead>
             <tbody>

@@ -134,7 +134,7 @@ export default function CompatibilityPage() {
           <button key={id} onClick={() => setActive(id)} className={`flex items-center gap-2 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${active === id ? 'border-2 text-gold-light scale-105' : 'border border-white/10 text-text-secondary hover:text-text-primary'}`} style={active === id ? { borderColor: color, backgroundColor: `${color}18` } : {}}>
             <Icon size={14} style={{ color }} />
             <span className="hidden md:inline">{L[titleKey][locale]}</span>
-            <span className="md:hidden">{(id === 'beyond' ? (locale === 'en' || String(locale) === 'ta' ? 'Kuta+' : 'कूट+') : id === 'approach' ? (locale === 'en' || String(locale) === 'ta' ? 'Steps' : 'चरण') : L[titleKey][locale].split(' ')[0])}</span>
+            <span className="md:hidden">{(id === 'beyond' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Kuta+' : 'कूट+') : id === 'approach' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Steps' : 'चरण') : L[titleKey][locale].split(' ')[0])}</span>
           </button>
         ))}
       </div>
@@ -159,7 +159,7 @@ export default function CompatibilityPage() {
                   </div>
                 ))}
               </div>
-              <KeyInsight>{locale === 'en' || String(locale) === 'ta' ? 'Kuta Milan is the screening test. The 6 factors below are the deep dive.' : locale === 'hi' ? 'कूट मिलान छानबीन है। नीचे के 6 कारक गहन विश्लेषण हैं।' : 'कूटमिलानं परीक्षणम्। अधस्तनाः 6 कारकाः गहनविश्लेषणम्।'}</KeyInsight>
+              <KeyInsight>{(locale !== 'hi' && String(locale) !== 'sa') ? 'Kuta Milan is the screening test. The 6 factors below are the deep dive.' : locale === 'hi' ? 'कूट मिलान छानबीन है। नीचे के 6 कारक गहन विश्लेषण हैं।' : 'कूटमिलानं परीक्षणम्। अधस्तनाः 6 कारकाः गहनविश्लेषणम्।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -172,7 +172,7 @@ export default function CompatibilityPage() {
               {HOUSE7_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#f472b6">{pt[locale]}</Bullet>
               ))}
-              <KeyInsight color="#f472b6">{locale === 'en' || String(locale) === 'ta' ? 'The 7th house is the mirror of partnership. When both charts\' 7th houses are harmonious, the couple "speaks the same language" in love.' : locale === 'hi' ? '7वाँ भाव साझेदारी का दर्पण है। जब दोनों कुण्डलियों के 7वें भाव सामंजस्यपूर्ण हों, दम्पति प्रेम में "एक ही भाषा बोलते हैं"।' : 'सप्तमभावः साझेदार्याः दर्पणः। उभयोः कुण्डल्योः सप्तमभावयोः सामञ्जस्ये दम्पती प्रेम्णि "एकां भाषां वदतः"।'}</KeyInsight>
+              <KeyInsight color="#f472b6">{(locale !== 'hi' && String(locale) !== 'sa') ? 'The 7th house is the mirror of partnership. When both charts\' 7th houses are harmonious, the couple "speaks the same language" in love.' : locale === 'hi' ? '7वाँ भाव साझेदारी का दर्पण है। जब दोनों कुण्डलियों के 7वें भाव सामंजस्यपूर्ण हों, दम्पति प्रेम में "एक ही भाषा बोलते हैं"।' : 'सप्तमभावः साझेदार्याः दर्पणः। उभयोः कुण्डल्योः सप्तमभावयोः सामञ्जस्ये दम्पती प्रेम्णि "एकां भाषां वदतः"।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -185,7 +185,7 @@ export default function CompatibilityPage() {
               {VENUS_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#e8e6e3">{pt[locale]}</Bullet>
               ))}
-              <KeyInsight color="#e8e6e3">{locale === 'en' || String(locale) === 'ta' ? 'Venus condition trumps Kuta score. A couple with 30/36 Kuta but both Venus afflicted will struggle more than a couple with 20/36 but strong Venus in both charts.' : locale === 'hi' ? 'शुक्र की स्थिति कूट अंक से ऊपर है। 30/36 कूट किन्तु दोनों शुक्र पीड़ित --- 20/36 किन्तु दोनों शुक्र बलवान से अधिक कठिन।' : 'शुक्रस्थितिः कूटाङ्कात् उपरि। 30/36 कूटम् किन्तु उभौ शुक्रौ पीडितौ --- 20/36 किन्तु उभौ शुक्रौ बलवन्तौ इत्यस्मात् कठिनतरम्।'}</KeyInsight>
+              <KeyInsight color="#e8e6e3">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Venus condition trumps Kuta score. A couple with 30/36 Kuta but both Venus afflicted will struggle more than a couple with 20/36 but strong Venus in both charts.' : locale === 'hi' ? 'शुक्र की स्थिति कूट अंक से ऊपर है। 30/36 कूट किन्तु दोनों शुक्र पीड़ित --- 20/36 किन्तु दोनों शुक्र बलवान से अधिक कठिन।' : 'शुक्रस्थितिः कूटाङ्कात् उपरि। 30/36 कूटम् किन्तु उभौ शुक्रौ पीडितौ --- 20/36 किन्तु उभौ शुक्रौ बलवन्तौ इत्यस्मात् कठिनतरम्।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -198,7 +198,7 @@ export default function CompatibilityPage() {
               {NAVAMSHA_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#a78bfa">{pt[locale]}</Bullet>
               ))}
-              <KeyInsight color="#a78bfa">{locale === 'en' || String(locale) === 'ta' ? 'D9 is like an X-ray of your marriage karma. D1 (Rashi chart) shows the outer life; D9 shows what happens behind closed doors.' : locale === 'hi' ? 'D9 आपके विवाह कर्म का एक्स-रे है। D1 (राशि कुण्डली) बाहरी जीवन दिखाती है; D9 बन्द दरवाज़ों के पीछे क्या होता है।' : 'D9 भवतः विवाहकर्मणः एक्स-रे इव। D1 बाह्यजीवनं दर्शयति; D9 पिहितद्वारस्य पश्चात् किं भवतीति दर्शयति।'}</KeyInsight>
+              <KeyInsight color="#a78bfa">{(locale !== 'hi' && String(locale) !== 'sa') ? 'D9 is like an X-ray of your marriage karma. D1 (Rashi chart) shows the outer life; D9 shows what happens behind closed doors.' : locale === 'hi' ? 'D9 आपके विवाह कर्म का एक्स-रे है। D1 (राशि कुण्डली) बाहरी जीवन दिखाती है; D9 बन्द दरवाज़ों के पीछे क्या होता है।' : 'D9 भवतः विवाहकर्मणः एक्स-रे इव। D1 बाह्यजीवनं दर्शयति; D9 पिहितद्वारस्य पश्चात् किं भवतीति दर्शयति।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -219,7 +219,7 @@ export default function CompatibilityPage() {
                   </div>
                 ))}
               </div>
-              <KeyInsight color="#34d399">{locale === 'en' || String(locale) === 'ta' ? 'Best approach: complementary dashas where one partner builds and the other supports. Identical challenging dashas compound stress.' : locale === 'hi' ? 'सर्वोत्तम दृष्टिकोण: पूरक दशाएँ जहाँ एक साथी निर्माण करे और दूसरा सहारा दे।' : 'उत्तमः दृष्टिकोणः: पूरकदशाः यत्र एकः साथी निर्माणं करोति अपरः सहायतां ददाति।'}</KeyInsight>
+              <KeyInsight color="#34d399">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Best approach: complementary dashas where one partner builds and the other supports. Identical challenging dashas compound stress.' : locale === 'hi' ? 'सर्वोत्तम दृष्टिकोण: पूरक दशाएँ जहाँ एक साथी निर्माण करे और दूसरा सहारा दे।' : 'उत्तमः दृष्टिकोणः: पूरकदशाः यत्र एकः साथी निर्माणं करोति अपरः सहायतां ददाति।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -230,7 +230,7 @@ export default function CompatibilityPage() {
             <Glass className="p-6 space-y-4">
               <h2 className="text-xl font-bold text-red-400">{((L.s6Title as Record<string, string>)[locale] ?? L.s6Title.en)}</h2>
               <p className="text-text-secondary text-sm">
-                {locale === 'en' || String(locale) === 'ta' ? `Mars in houses ${MANGAL_HOUSES.join(', ')} from Lagna OR Moon OR Venus creates Mangal Dosha. Check from ALL THREE reference points --- most apps only check Lagna.` : locale === 'hi' ? `लग्न या चन्द्र या शुक्र से भाव ${MANGAL_HOUSES.join(', ')} में मंगल से मंगल दोष बनता है। तीनों सन्दर्भ बिन्दुओं से जाँचें --- अधिकांश ऐप केवल लग्न जाँचते हैं।` : `लग्नात् चन्द्रात् शुक्रात् वा भावेषु ${MANGAL_HOUSES.join(', ')} मङ्गलः मङ्गलदोषं रचयति। त्रिभ्यः सन्दर्भबिन्दुभ्यः परीक्षतु।`}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? `Mars in houses ${MANGAL_HOUSES.join(', ')} from Lagna OR Moon OR Venus creates Mangal Dosha. Check from ALL THREE reference points --- most apps only check Lagna.` : locale === 'hi' ? `लग्न या चन्द्र या शुक्र से भाव ${MANGAL_HOUSES.join(', ')} में मंगल से मंगल दोष बनता है। तीनों सन्दर्भ बिन्दुओं से जाँचें --- अधिकांश ऐप केवल लग्न जाँचते हैं।` : `लग्नात् चन्द्रात् शुक्रात् वा भावेषु ${MANGAL_HOUSES.join(', ')} मङ्गलः मङ्गलदोषं रचयति। त्रिभ्यः सन्दर्भबिन्दुभ्यः परीक्षतु।`}
               </p>
               {/* Houses visual */}
               <div className="flex flex-wrap gap-2 justify-center">
@@ -239,15 +239,15 @@ export default function CompatibilityPage() {
                 ))}
               </div>
               <div className="mt-2 text-center text-xs text-text-secondary">
-                {locale === 'en' || String(locale) === 'ta' ? 'Red = Mangal Dosha houses' : locale === 'hi' ? 'लाल = मंगल दोष भाव' : 'रक्तम् = मङ्गलदोषभावाः'}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Red = Mangal Dosha houses' : locale === 'hi' ? 'लाल = मंगल दोष भाव' : 'रक्तम् = मङ्गलदोषभावाः'}
               </div>
             </Glass>
             <Glass className="p-6 space-y-3">
-              <h3 className="text-sm font-bold text-emerald-400">{locale === 'en' || String(locale) === 'ta' ? '6 Cancellation Conditions' : locale === 'hi' ? '6 निरसन शर्तें' : '6 निरसनशर्ताः'}</h3>
+              <h3 className="text-sm font-bold text-emerald-400">{(locale !== 'hi' && String(locale) !== 'sa') ? '6 Cancellation Conditions' : locale === 'hi' ? '6 निरसन शर्तें' : '6 निरसनशर्ताः'}</h3>
               {MANGAL_CANCELLATIONS.map((c, i) => (
                 <Bullet key={i} color="#34d399">{c[locale]}</Bullet>
               ))}
-              <KeyInsight color="#f87171">{locale === 'en' || String(locale) === 'ta' ? 'Double Mangal Dosha (from 2+ reference points) is stronger and requires more cancellation. Single Dosha with one cancellation = manageable. The "mutual cancellation" principle is the most common real-world fix.' : locale === 'hi' ? 'दोहरा मंगल दोष (2+ सन्दर्भ बिन्दुओं से) अधिक प्रबल है और अधिक निरसन चाहिए। एक दोष एक निरसन के साथ = प्रबन्धनीय।' : 'द्विगुणमङ्गलदोषः (2+ सन्दर्भबिन्दुभ्यः) प्रबलतरः, अधिकनिरसनम् अपेक्षते।'}</KeyInsight>
+              <KeyInsight color="#f87171">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Double Mangal Dosha (from 2+ reference points) is stronger and requires more cancellation. Single Dosha with one cancellation = manageable. The "mutual cancellation" principle is the most common real-world fix.' : locale === 'hi' ? 'दोहरा मंगल दोष (2+ सन्दर्भ बिन्दुओं से) अधिक प्रबल है और अधिक निरसन चाहिए। एक दोष एक निरसन के साथ = प्रबन्धनीय।' : 'द्विगुणमङ्गलदोषः (2+ सन्दर्भबिन्दुभ्यः) प्रबलतरः, अधिकनिरसनम् अपेक्षते।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}
@@ -263,12 +263,12 @@ export default function CompatibilityPage() {
                     <span className="shrink-0 w-8 h-8 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-sm">{s.step}</span>
                     <div className="flex-1">
                       <p className="text-text-secondary text-sm">{s.text[locale]}</p>
-                      {s.minScore && <span className="text-amber-400 text-xs font-bold mt-1 inline-block">{locale === 'en' || String(locale) === 'ta' ? `Min: ${s.minScore}` : locale === 'hi' ? `न्यूनतम: ${s.minScore}` : `न्यूनतमम्: ${s.minScore}`}</span>}
+                      {s.minScore && <span className="text-amber-400 text-xs font-bold mt-1 inline-block">{(locale !== 'hi' && String(locale) !== 'sa') ? `Min: ${s.minScore}` : locale === 'hi' ? `न्यूनतम: ${s.minScore}` : `न्यूनतमम्: ${s.minScore}`}</span>}
                     </div>
                   </div>
                 ))}
               </div>
-              <KeyInsight color="#fbbf24">{locale === 'en' || String(locale) === 'ta' ? 'No chart is perfect. If 5 out of 6 factors align, proceed with confidence. The remaining factor becomes the area for conscious growth together.' : locale === 'hi' ? 'कोई कुण्डली पूर्ण नहीं है। यदि 6 में से 5 कारक अनुकूल हों, विश्वास से आगे बढ़ें। शेष कारक सचेत विकास का क्षेत्र बनता है।' : 'न कापि कुण्डली पूर्णा। यदि 6 कारकेषु 5 अनुकूलाः, विश्वासेन अग्रे गच्छतु।'}</KeyInsight>
+              <KeyInsight color="#fbbf24">{(locale !== 'hi' && String(locale) !== 'sa') ? 'No chart is perfect. If 5 out of 6 factors align, proceed with confidence. The remaining factor becomes the area for conscious growth together.' : locale === 'hi' ? 'कोई कुण्डली पूर्ण नहीं है। यदि 6 में से 5 कारक अनुकूल हों, विश्वास से आगे बढ़ें। शेष कारक सचेत विकास का क्षेत्र बनता है।' : 'न कापि कुण्डली पूर्णा। यदि 6 कारकेषु 5 अनुकूलाः, विश्वासेन अग्रे गच्छतु।'}</KeyInsight>
             </Glass>
           </motion.div>
         )}

@@ -115,7 +115,7 @@ function CareerHouseWheel() {
 /* ── Main Page ───────────────────────────────────────────────────── */
 export default function CareerPredictionGuide() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const t = (obj: { en: string; hi: string; sa?: string }) => isHi ? (locale === 'sa' && obj.sa ? obj.sa : obj.hi) : obj.en;
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedPlanet, setExpandedPlanet] = useState<number | null>(null);

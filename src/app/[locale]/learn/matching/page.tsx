@@ -192,16 +192,16 @@ export default function LearnMatchingPage() {
         <p className="mt-3 text-text-secondary text-sm">{((L.whatContentDeep as Record<string, string>)[locale] ?? L.whatContentDeep.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
-            {locale === 'en' || String(locale) === 'ta' ? 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas' : 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas' : 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">
-            {locale === 'en' || String(locale) === 'ta' ? 'Minimum for marriage: 18/36 (50%)' : 'विवाह के लिए न्यूनतम: 18/36 (50%)'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Minimum for marriage: 18/36 (50%)' : 'विवाह के लिए न्यूनतम: 18/36 (50%)'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs">
-            {locale === 'en' || String(locale) === 'ta' ? 'Both charts compared using Moon\'s Nakshatra position' : 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Both charts compared using Moon\'s Nakshatra position' : 'दोनों कुण्डलियों की चन्द्र नक्षत्र स्थिति से तुलना'}
           </p>
           <p className="text-gold-light/60 font-mono text-xs">
-            {locale === 'en' || String(locale) === 'ta' ? 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...' : 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Higher weight → higher importance: Nadi (8) > Bhakoot (7) > Gana (6) > ...' : 'अधिक भार → अधिक महत्व: नाड़ी (8) > भकूट (7) > गण (6) > ...'}
           </p>
         </div>
       </LessonSection>
@@ -225,7 +225,7 @@ export default function LearnMatchingPage() {
                 <div className="flex items-center gap-2 flex-1">
                   <span className="text-gold-light font-semibold text-lg">{k.name[locale]}</span>
                   {locale === 'en' && <span className="text-gold-primary/50 text-sm" style={{ fontFamily: 'var(--font-devanagari-body)' }}>{k.name.sa}</span>}
-                  <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {locale === 'en' || String(locale) === 'ta' ? 'pts' : 'अंक'}</span>
+                  <span className="ml-auto text-gold-primary font-mono text-sm font-bold">{k.points} {(locale !== 'hi' && String(locale) !== 'sa') ? 'pts' : 'अंक'}</span>
                 </div>
               </div>
               <div className="ml-12 space-y-2">
@@ -246,15 +246,15 @@ export default function LearnMatchingPage() {
         <p>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {locale === 'en' || String(locale) === 'ta' ? 'Algorithm Steps:' : 'एल्गोरिथ्म चरण:'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Algorithm Steps:' : 'एल्गोरिथ्म चरण:'}
           </p>
-          <p className="text-gold-light/80 font-mono text-xs">1. {locale === 'en' || String(locale) === 'ta' ? 'Input: Birth Moon Nakshatra and Rashi of both partners' : 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">2. {locale === 'en' || String(locale) === 'ta' ? 'For each Kuta, apply specific comparison rules' : 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">3. {locale === 'en' || String(locale) === 'ta' ? 'Sum all points → total Guna score out of 36' : 'सभी अंकों का योग → 36 में से कुल गुण अंक'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">4. {locale === 'en' || String(locale) === 'ta' ? 'Check for Doshas (Nadi, Bhakoot, Mangal)' : 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">5. {locale === 'en' || String(locale) === 'ta' ? 'Apply cancellation rules if applicable' : 'यदि लागू हो तो निरसन नियम लागू करें'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">6. {locale === 'en' || String(locale) === 'ta' ? 'Assess Mangal Dosha separately from Lagna, Moon, and Venus' : 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन'}</p>
-          <p className="text-gold-light/80 font-mono text-xs">7. {locale === 'en' || String(locale) === 'ta' ? 'Generate detailed compatibility report with Kuta-wise breakdown' : 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">1. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Input: Birth Moon Nakshatra and Rashi of both partners' : 'इनपुट: दोनों साथियों का जन्म चन्द्र नक्षत्र और राशि'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">2. {(locale !== 'hi' && String(locale) !== 'sa') ? 'For each Kuta, apply specific comparison rules' : 'प्रत्येक कूट के लिए, विशिष्ट तुलना नियम लागू करें'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">3. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sum all points → total Guna score out of 36' : 'सभी अंकों का योग → 36 में से कुल गुण अंक'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">4. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Check for Doshas (Nadi, Bhakoot, Mangal)' : 'दोषों की जाँच (नाड़ी, भकूट, मांगलिक)'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">5. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Apply cancellation rules if applicable' : 'यदि लागू हो तो निरसन नियम लागू करें'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">6. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Assess Mangal Dosha separately from Lagna, Moon, and Venus' : 'मांगलिक दोष का लग्न, चन्द्र और शुक्र से अलग मूल्यांकन'}</p>
+          <p className="text-gold-light/80 font-mono text-xs">7. {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate detailed compatibility report with Kuta-wise breakdown' : 'कूट-अनुसार विस्तृत अनुकूलता रिपोर्ट तैयार करें'}</p>
         </div>
       </LessonSection>
 
@@ -321,13 +321,13 @@ export default function LearnMatchingPage() {
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-red-400 font-mono font-bold text-lg">{bp.pair}</span>
                 <span className="text-red-400/60 text-xs font-mono">
-                  {locale === 'en' || String(locale) === 'ta' ? 'position pair' : 'स्थिति जोड़ा'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'position pair' : 'स्थिति जोड़ा'}
                 </span>
               </div>
               <p className="text-text-secondary text-sm mb-2">{bp.effect[locale]}</p>
               <div className="p-2 rounded bg-emerald-400/5 border border-emerald-400/10">
                 <p className="text-emerald-400/80 text-xs">
-                  {locale === 'en' || String(locale) === 'ta' ? 'Cancellation: ' : 'निरसन: '}{bp.cancel[locale]}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Cancellation: ' : 'निरसन: '}{bp.cancel[locale]}
                 </p>
               </div>
             </motion.div>
@@ -340,20 +340,20 @@ export default function LearnMatchingPage() {
         <p className="text-text-secondary">{((L.mangalContent as Record<string, string>)[locale] ?? L.mangalContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm mb-2">
-            {locale === 'en' || String(locale) === 'ta' ? 'Mars in houses 1, 4, 7, 8, 12 from:' : 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mars in houses 1, 4, 7, 8, 12 from:' : 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {locale === 'en' || String(locale) === 'ta' ? '• Lagna (Ascendant) — checked in all traditions' : '• लग्न — सभी परम्पराओं में जाँचा जाता है'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? '• Lagna (Ascendant) — checked in all traditions' : '• लग्न — सभी परम्पराओं में जाँचा जाता है'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {locale === 'en' || String(locale) === 'ta' ? '• Moon — checked in most North Indian traditions' : '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? '• Moon — checked in most North Indian traditions' : '• चन्द्र — अधिकांश उत्तर भारतीय परम्पराओं में'}
           </p>
           <p className="text-gold-light/80 font-mono text-xs">
-            {locale === 'en' || String(locale) === 'ta' ? '• Venus — checked in South Indian traditions (Kalathra Dosha)' : '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? '• Venus — checked in South Indian traditions (Kalathra Dosha)' : '• शुक्र — दक्षिण भारतीय परम्पराओं में (कलत्र दोष)'}
           </p>
         </div>
         <h4 className="text-gold-light font-semibold text-sm mb-3">
-          {locale === 'en' || String(locale) === 'ta' ? 'Mangal Dosha Cancellation Conditions:' : 'मांगलिक दोष निरसन शर्तें:'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mangal Dosha Cancellation Conditions:' : 'मांगलिक दोष निरसन शर्तें:'}
         </h4>
         <div className="space-y-2">
           {MANGAL_CANCEL.map((rule, i) => (

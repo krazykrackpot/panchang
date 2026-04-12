@@ -27,6 +27,12 @@
   --font-devanagari-body: var(--font-devanagari), var(--font-inter), sans-serif;
   --font-tamil-heading: var(--font-tamil), var(--font-cormorant), serif;
   --font-tamil-body: var(--font-tamil), var(--font-inter), sans-serif;
+  --font-telugu-heading: var(--font-telugu), var(--font-cormorant), serif;
+  --font-telugu-body: var(--font-telugu), var(--font-inter), sans-serif;
+  --font-bengali-heading: var(--font-bengali), var(--font-cormorant), serif;
+  --font-bengali-body: var(--font-bengali), var(--font-inter), sans-serif;
+  --font-kannada-heading: var(--font-kannada), var(--font-cormorant), serif;
+  --font-kannada-body: var(--font-kannada), var(--font-inter), sans-serif;
 }
 
 /* Star field animation */
@@ -79,6 +85,33 @@ html[lang="ta"] body {
 
 html[lang="ta"] h1, html[lang="ta"] h2, html[lang="ta"] h3 {
   font-family: var(--font-tamil-heading);
+}
+
+/* Telugu locale styles */
+html[lang="te"] body {
+  font-family: var(--font-telugu-body);
+}
+
+html[lang="te"] h1, html[lang="te"] h2, html[lang="te"] h3 {
+  font-family: var(--font-telugu-heading);
+}
+
+/* Bengali locale styles */
+html[lang="bn"] body {
+  font-family: var(--font-bengali-body);
+}
+
+html[lang="bn"] h1, html[lang="bn"] h2, html[lang="bn"] h3 {
+  font-family: var(--font-bengali-heading);
+}
+
+/* Kannada locale styles */
+html[lang="kn"] body {
+  font-family: var(--font-kannada-body);
+}
+
+html[lang="kn"] h1, html[lang="kn"] h2, html[lang="kn"] h3 {
+  font-family: var(--font-kannada-heading);
 }
 
 /* Dark date/time picker icons — browser-native calendar & clock */

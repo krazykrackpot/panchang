@@ -12,7 +12,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { generateSoftwareApplicationLD, generateOrganizationLD, generateWebSiteLD } from '@/lib/seo/structured-data';
-import { inter, cormorant, notoDevanagari, notoTamil } from '@/lib/fonts';
+import { inter, cormorant, notoDevanagari, notoTamil, notoTelugu, notoBengali, notoKannada } from '@/lib/fonts';
 import '@/styles/globals.css';
 
 import InstallPrompt from '@/components/pwa/InstallPrompt';
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       url,
       siteName: 'Dekho Panchang',
-      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : String(locale) === 'ta' ? 'ta_IN' : 'en_US',
+      locale: locale === 'hi' ? 'hi_IN' : locale === 'sa' ? 'sa_IN' : String(locale) === 'ta' ? 'ta_IN' : String(locale) === 'te' ? 'te_IN' : String(locale) === 'bn' ? 'bn_IN' : String(locale) === 'kn' ? 'kn_IN' : 'en_US',
       type: 'website',
       images: [
         {
@@ -115,7 +115,7 @@ export default async function LocaleLayout({
       <head>
         <link rel="alternate" type="application/rss+xml" title="Dekho Panchang" href="/api/feed" />
       </head>
-      <body className={`${inter.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${cormorant.variable} ${notoDevanagari.variable} ${notoTamil.variable} ${notoTelugu.variable} ${notoBengali.variable} ${notoKannada.variable} min-h-screen bg-bg-primary text-text-primary antialiased`} suppressHydrationWarning>
         <Script id="theme-init" strategy="beforeInteractive">{`try{localStorage.removeItem('theme');document.documentElement.classList.remove('light');document.documentElement.classList.add('dark')}catch(e){}`}</Script>
         <script
           type="application/ld+json"

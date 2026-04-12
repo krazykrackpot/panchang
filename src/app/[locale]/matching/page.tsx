@@ -84,7 +84,7 @@ export default function MatchingPage() {
   const t = useTranslations('matching');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const lbl = (L as Record<string, typeof L.en>)[String(locale)] || L.en;
 

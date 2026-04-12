@@ -83,7 +83,7 @@ export default function CalendarPage() {
   const t = useTranslations('calendar');
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const [year, setYear] = useState(new Date().getFullYear());
@@ -350,7 +350,7 @@ export default function CalendarPage() {
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">{t('subtitle')}</p>
         <div className="flex justify-center mt-4">
           <ShareRow
-            pageTitle={locale === 'en' || String(locale) === 'ta' ? 'Hindu Festival Calendar' : 'हिन्दू त्योहार पंचांग'}
+            pageTitle={(locale !== 'hi' && String(locale) !== 'sa') ? 'Hindu Festival Calendar' : 'हिन्दू त्योहार पंचांग'}
             shareText={locale === 'en'
               ? 'Hindu Festival Calendar with Ekadashi, Purnima & Vrat details — Dekho Panchang'
               : 'हिन्दू त्योहार पंचांग — एकादशी, पूर्णिमा और व्रत विवरण सहित — Dekho Panchang'}
@@ -374,13 +374,13 @@ export default function CalendarPage() {
       {detectingLocation ? (
         <div className="flex flex-col items-center gap-3 mb-8 py-8">
           <Loader2 className="w-8 h-8 text-gold-primary animate-spin" />
-          <p className="text-text-secondary text-sm">{locale === 'en' || String(locale) === 'ta' ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
+          <p className="text-text-secondary text-sm">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Detecting your location…' : 'आपका स्थान पहचान रहे हैं…'}</p>
         </div>
       ) : !location ? (
         <div className="flex flex-col items-center gap-4 mb-8 py-8 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border-2 border-gold-primary/30 rounded-2xl max-w-lg mx-auto px-3 sm:px-4 md:px-6">
           <MapPin className="w-10 h-10 text-gold-primary" />
           <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-            {locale === 'en' || String(locale) === 'ta' ? 'Location Required' : 'स्थान आवश्यक है'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Location Required' : 'स्थान आवश्यक है'}
           </h3>
           <p className="text-text-secondary text-sm text-center">
             {locale === 'en'
@@ -393,7 +393,7 @@ export default function CalendarPage() {
               value={locationInput}
               onChange={e => setLocationInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-              placeholder={locale === 'en' || String(locale) === 'ta' ? 'Enter your city…' : 'अपना शहर दर्ज करें…'}
+              placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Enter your city…' : 'अपना शहर दर्ज करें…'}
               className="flex-1 px-4 py-3 rounded-lg bg-bg-tertiary border border-gold-primary/30 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/60"
               autoFocus
             />
@@ -424,7 +424,7 @@ export default function CalendarPage() {
                 value={locationInput}
                 onChange={e => setLocationInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleLocationSearch()}
-                placeholder={locale === 'en' || String(locale) === 'ta' ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
+                placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Enter city or location…' : 'शहर या स्थान दर्ज करें…'}
                 className="flex-1 px-3 py-2 rounded-lg bg-bg-tertiary border border-gold-primary/20 text-text-primary text-sm placeholder:text-text-secondary/70 focus:outline-none focus:border-gold-primary/50"
               />
               <button
@@ -449,7 +449,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {locale === 'en' || String(locale) === 'ta' ? 'Western Months' : 'अंग्रेज़ी महीने'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Western Months' : 'अंग्रेज़ी महीने'}
         </button>
         <button
           onClick={() => { setViewMode('lunar'); setSelectedMonth(null); }}
@@ -459,7 +459,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {locale === 'en' || String(locale) === 'ta' ? 'Hindu Lunar Months' : 'हिन्दू चान्द्र मास'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Hindu Lunar Months' : 'हिन्दू चान्द्र मास'}
         </button>
       </div>
 
@@ -473,7 +473,7 @@ export default function CalendarPage() {
               : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
           }`}
         >
-          {locale === 'en' || String(locale) === 'ta' ? 'All' : 'सभी'}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? 'All' : 'सभी'}
         </button>
         {viewMode === 'western' ? (
           MONTH_NAMES.map((name, i) => (
@@ -486,7 +486,7 @@ export default function CalendarPage() {
                   : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
-              {locale === 'en' || String(locale) === 'ta' ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? name.slice(0, 3) : MONTH_NAMES_HI[i].slice(0, 4)}
             </button>
           ))
         ) : (
@@ -500,7 +500,7 @@ export default function CalendarPage() {
                   : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
               }`}
             >
-              {locale === 'en' || String(locale) === 'ta' ? hm.en : hm.hi}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? hm.en : hm.hi}
             </button>
           ))
         )}
@@ -518,7 +518,7 @@ export default function CalendarPage() {
                 : 'bg-gradient-to-br from-[#2d1b69]/20 via-[#1a1040]/25 to-[#0a0e27] text-text-secondary border-gold-primary/10 hover:border-gold-primary/25 hover:text-gold-light'
             }`}
           >
-            {locale === 'en' || String(locale) === 'ta' ? f.label : f.labelHi}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? f.label : f.labelHi}
           </button>
         ))}
       </div>
@@ -526,7 +526,7 @@ export default function CalendarPage() {
       {/* Calendar Export */}
       {location && (
         <div className="flex flex-wrap gap-2 justify-center mt-4 pt-4 border-t border-gold-primary/10">
-          <span className="text-text-secondary text-xs mr-2 self-center">{locale === 'en' || String(locale) === 'ta' ? 'Subscribe:' : 'सदस्यता:'}</span>
+          <span className="text-text-secondary text-xs mr-2 self-center">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Subscribe:' : 'सदस्यता:'}</span>
           {([
             { cat: 'all', label: { en: 'All Events', hi: 'सभी' } },
             { cat: 'major', label: { en: 'Festivals', hi: 'त्योहार' } },
@@ -565,7 +565,7 @@ export default function CalendarPage() {
         const renderCard = (f: FestivalEntry, i: number) => {
             const dateObj = new Date(f.date + 'T00:00:00');
             const dayStr = dateObj.getDate();
-            const monthStr = locale === 'en' || String(locale) === 'ta' ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
+            const monthStr = (locale !== 'hi' && String(locale) !== 'sa') ? MONTH_NAMES[dateObj.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[dateObj.getMonth()]?.slice(0, 4);
 
             const detailSlug = f.slug || f.category;
             const dateParam = f.slug?.includes('ekadashi') || f.category === 'ekadashi' ? `?date=${f.date}` : '';
@@ -615,7 +615,7 @@ export default function CalendarPage() {
                   {f.paranaStart && f.paranaDate && (
                     <div className="flex items-center gap-2 mt-1.5">
                       <span className="text-xs font-bold text-amber-400">
-                        {locale === 'en' || String(locale) === 'ta' ? 'Parana' : 'पारण'}:
+                        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Parana' : 'पारण'}:
                       </span>
                       <span className="font-mono text-xs font-bold text-gold-light">
                         {f.paranaStart} — {f.paranaEnd}
@@ -624,7 +624,7 @@ export default function CalendarPage() {
                         {(() => {
                           const [y, m, d] = f.paranaDate.split('-').map(Number);
                           const date = new Date(y, m - 1, d);
-                          const months = locale === 'en' || String(locale) === 'ta'
+                          const months = (locale !== 'hi' && String(locale) !== 'sa')
                             ? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
                             : ['जन.','फर.','मार्च','अप्रै.','मई','जून','जुला.','अग.','सित.','अक्टू.','नव.','दिस.'];
                           return `${d} ${months[m - 1]}`;
@@ -639,21 +639,21 @@ export default function CalendarPage() {
                 {f.slug && recommendedSlugs.has(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-bold shrink-0">
                     <Sparkles className="w-3 h-3" />
-                    {locale === 'en' || String(locale) === 'ta' ? 'For You' : 'आपके लिए'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'For You' : 'आपके लिए'}
                   </span>
                 )}
 
                 {/* Puja Vidhi indicator */}
                 {hasPujaVidhi(f.slug) && (
                   <span className="hidden sm:inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 font-bold shrink-0">
-                    {locale === 'en' || String(locale) === 'ta' ? 'Puja Vidhi' : 'पूजा विधि'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Puja Vidhi' : 'पूजा विधि'}
                   </span>
                 )}
 
                 {/* Parana time indicator */}
                 {f.paranaStart && (
                   <div className="text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Parana' : 'पारण'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Parana' : 'पारण'}</div>
                     <div className="text-emerald-400 text-xs font-mono">{f.paranaStart} – {f.paranaEnd}</div>
                     {f.paranaDate && <div className="text-text-secondary/65 text-xs">{f.paranaDate}</div>}
                   </div>
@@ -662,7 +662,7 @@ export default function CalendarPage() {
                 {/* Tithi */}
                 {f.tithi && !f.paranaStart && (
                   <div className="hidden sm:block text-right flex-shrink-0">
-                    <div className="text-text-secondary text-xs uppercase tracking-wider">{locale === 'en' || String(locale) === 'ta' ? 'Tithi' : 'तिथि'}</div>
+                    <div className="text-text-secondary text-xs uppercase tracking-wider">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tithi' : 'तिथि'}</div>
                     <div className="text-gold-dark text-xs font-mono">{f.tithi}</div>
                   </div>
                 )}
@@ -677,7 +677,7 @@ export default function CalendarPage() {
           <div className="my-10 space-y-10">
             {filteredFestivals.length === 0 ? (
               <div className="text-center py-12 text-text-secondary">
-                {locale === 'en' || String(locale) === 'ta' ? 'No festivals found for this filter.' : 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।'}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? 'No festivals found for this filter.' : 'इस फ़िल्टर के लिए कोई त्योहार नहीं मिला।'}
               </div>
             ) : (
               <>
@@ -685,7 +685,7 @@ export default function CalendarPage() {
                 {showFestivals && festivalItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {locale === 'en' || String(locale) === 'ta' ? `Festivals (${festivalItems.length})` : `त्योहार (${festivalItems.length})`}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? `Festivals (${festivalItems.length})` : `त्योहार (${festivalItems.length})`}
                     </h3>
                     <div className="space-y-3">
                       {festivalItems.map((f, i) => renderCard(f, i))}
@@ -697,7 +697,7 @@ export default function CalendarPage() {
                 {showVrats && vratItems.length > 0 && (
                   <div>
                     <h3 className="text-xl font-bold text-gold-gradient mb-4" style={headingFont}>
-                      {locale === 'en' || String(locale) === 'ta' ? `Vrats & Observances (${vratItems.length})` : `व्रत एवं अनुष्ठान (${vratItems.length})`}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? `Vrats & Observances (${vratItems.length})` : `व्रत एवं अनुष्ठान (${vratItems.length})`}
                     </h3>
                     <div className="space-y-3">
                       {vratItems.map((f, i) => renderCard(f, i))}
@@ -706,7 +706,7 @@ export default function CalendarPage() {
                 )}
 
                 <div className="text-center text-text-secondary text-sm mt-6">
-                  {filteredFestivals.length} {locale === 'en' || String(locale) === 'ta' ? 'entries' : 'प्रविष्टियाँ'}
+                  {filteredFestivals.length} {(locale !== 'hi' && String(locale) !== 'sa') ? 'entries' : 'प्रविष्टियाँ'}
                 </div>
               </>
             )}

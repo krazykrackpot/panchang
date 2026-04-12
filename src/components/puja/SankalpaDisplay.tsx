@@ -88,7 +88,7 @@ export default function SankalpaDisplay({
   timezoneOffset,
 }: SankalpaDisplayProps) {
   const l = LABELS[locale];
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const bodyFont = isDevanagari ? 'var(--font-devanagari-body)' : undefined;
 
   const canCompute = date != null && lat != null && lng != null && timezoneOffset != null;

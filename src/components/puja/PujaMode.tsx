@@ -224,7 +224,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             {/* Step title */}
             <h2
               className="text-center text-2xl font-black text-gold-primary sm:text-4xl break-words"
-              style={{ fontFamily: (locale !== 'en' && String(locale) !== 'ta') ? 'var(--font-devanagari-heading)' : undefined }}
+              style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-heading)' : undefined }}
             >
               {currentStep.title[locale]}
             </h2>
@@ -232,7 +232,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             {/* Step description */}
             <p
               className="text-center text-base leading-relaxed text-text-secondary/70"
-              style={{ fontFamily: (locale !== 'en' && String(locale) !== 'ta') ? 'var(--font-devanagari-body)' : undefined }}
+              style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-body)' : undefined }}
             >
               {currentStep.description[locale]}
             </p>
@@ -280,7 +280,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                 </p>
                 <p
                   className="mt-2 text-center text-sm text-text-secondary/75"
-                  style={{ fontFamily: (locale !== 'en' && String(locale) !== 'ta') ? 'var(--font-devanagari-body)' : undefined }}
+                  style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-body)' : undefined }}
                 >
                   {linkedMantra.meaning[locale]}
                 </p>

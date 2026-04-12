@@ -194,7 +194,7 @@ const QUESTIONS: ModuleQuestion[] = [
 /* ───────────────────────── Page 1 ───────────────────────── */
 function Page1() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* Opening Hook */}
@@ -373,7 +373,7 @@ function Page1() {
 /* ───────────────────────── Page 2 ───────────────────────── */
 function Page2() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* Step 1 */}
@@ -521,7 +521,7 @@ function Page2() {
 /* ───────────────────────── Page 3 ───────────────────────── */
 function Page3() {
   const locale = useModuleLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   return (
     <div className="space-y-6">
       {/* The Fundamental Rule */}

@@ -18,7 +18,7 @@ const ModuleLocaleContext = createContext<Locale>('en');
 export function useModuleLocale(): Locale { return useContext(ModuleLocaleContext); }
 export function T({ en, hi }: { en: string; hi: string }) {
   const locale = useContext(ModuleLocaleContext);
-  return <>{locale === 'en' || String(locale) === 'ta' ? en : hi}</>;
+  return <>{(locale !== 'hi' && String(locale) !== 'sa') ? en : hi}</>;
 }
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ interface ModuleContainerProps {
 
 export default function ModuleContainer({ meta, pages, questions }: ModuleContainerProps) {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const totalContentPages = pages.length;

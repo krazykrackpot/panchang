@@ -386,7 +386,7 @@ const CATEGORY_COLOR: Record<Category, string> = {
 
 export default function LibraryPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont   = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

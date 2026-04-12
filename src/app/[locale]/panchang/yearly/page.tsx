@@ -28,7 +28,7 @@ interface DayData {
 
 export default function YearlyPanchangPage() {
   const locale = useLocale();
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const [year, setYear] = useState(new Date().getFullYear());
   const [monthData, setMonthData] = useState<Record<string, DayData>>({});
   const [loading, setLoading] = useState(false);

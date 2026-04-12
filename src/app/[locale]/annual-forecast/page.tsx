@@ -171,7 +171,7 @@ const SECTION_ANIM = {
 export default function AnnualForecastPage() {
   const locale = useLocale() as Locale;
   const t = LABELS[locale] || LABELS.en;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 

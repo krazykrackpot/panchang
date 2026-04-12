@@ -63,7 +63,7 @@ export default function HeroCard({
   locationName,
   timezone,
 }: HeroCardProps) {
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)';
 
   return (

@@ -58,7 +58,7 @@ const QUALITY_BADGE = {
 
 export default function MuhuratPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const now = new Date();
@@ -92,7 +92,7 @@ export default function MuhuratPage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN', { day: 'numeric', weekday: 'short' });
+    return d.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { day: 'numeric', weekday: 'short' });
   };
 
   return (
@@ -100,7 +100,7 @@ export default function MuhuratPage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {locale === 'en' || String(locale) === 'ta' ? 'Muhurat Finder' : 'मुहूर्त खोजक'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Muhurat Finder' : 'मुहूर्त खोजक'}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto">
@@ -134,7 +134,7 @@ export default function MuhuratPage() {
           <ChevronLeft className="w-5 h-5 text-gold-primary" />
         </button>
         <span className="text-2xl font-bold text-gold-gradient min-w-[200px] text-center" style={headingFont}>
-          {locale === 'en' || String(locale) === 'ta' ? MONTH_NAMES_EN[month] : MONTH_NAMES_HI[month]} {year}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? MONTH_NAMES_EN[month] : MONTH_NAMES_HI[month]} {year}
         </span>
         <button onClick={nextMonth} className="p-2 rounded-lg border border-gold-primary/20 hover:bg-gold-primary/10 transition-all">
           <ChevronRight className="w-5 h-5 text-gold-primary" />
@@ -150,7 +150,7 @@ export default function MuhuratPage() {
       ) : dates.length === 0 ? (
         <div className="text-center py-16 text-text-secondary">
           <p className="text-lg" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-            {locale === 'en' || String(locale) === 'ta' ? 'No auspicious dates found for this month.' : 'इस माह कोई शुभ तिथि नहीं मिली।'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'No auspicious dates found for this month.' : 'इस माह कोई शुभ तिथि नहीं मिली।'}
           </p>
         </div>
       ) : (
@@ -187,13 +187,13 @@ export default function MuhuratPage() {
                       </div>
                       <div className="text-text-secondary text-sm flex flex-wrap gap-x-4 gap-y-0.5">
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Nak:' : 'नक्ष:'}</span> {tl(nak?.name, locale)}
+                          <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Nak:' : 'नक्ष:'}</span> {tl(nak?.name, locale)}
                         </span>
                         <span style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Moon:' : 'चन्द्र:'}</span> {tl(rashi?.name, locale)}
+                          <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Moon:' : 'चन्द्र:'}</span> {tl(rashi?.name, locale)}
                         </span>
                         <span>
-                          <span className="text-gold-dark">{locale === 'en' || String(locale) === 'ta' ? 'Tithi:' : 'तिथि:'}</span> {d.tithi}
+                          <span className="text-gold-dark">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Tithi:' : 'तिथि:'}</span> {d.tithi}
                         </span>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function MuhuratPage() {
           </AnimatePresence>
 
           <div className="text-center text-text-secondary text-sm mt-6">
-            {dates.length} {locale === 'en' || String(locale) === 'ta' ? 'auspicious dates found' : 'शुभ तिथियाँ मिलीं'}
+            {dates.length} {(locale !== 'hi' && String(locale) !== 'sa') ? 'auspicious dates found' : 'शुभ तिथियाँ मिलीं'}
           </div>
 
           {/* Legend */}

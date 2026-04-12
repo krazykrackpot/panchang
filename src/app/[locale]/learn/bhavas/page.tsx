@@ -214,7 +214,7 @@ export default function LearnBhavasPage() {
 
                     <p className="text-text-secondary text-sm mb-2">{h.significations[locale]}</p>
                     <p className="text-text-secondary/75 text-xs">
-                      {locale === 'en' || String(locale) === 'ta' ? 'Body part:' : locale === 'hi' ? 'शरीर का अंग:' : 'शरीरावयवः:'}{' '}
+                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'Body part:' : locale === 'hi' ? 'शरीर का अंग:' : 'शरीरावयवः:'}{' '}
                       <span className="text-gold-light/70">{h.bodyPart[locale]}</span>
                     </p>
                   </div>

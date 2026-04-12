@@ -12,7 +12,7 @@ const STATS = { modules: 104, references: 45, labs: 5, tracks: 11 };
 
 export default function LearnPage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   /** Safe trilingual access — falls back to en for ta and unknown locales */
@@ -177,7 +177,7 @@ export default function LearnPage() {
           <div className="flex items-center gap-2 mb-4">
             <BookOpen className="w-5 h-5 text-gold-primary" />
             <span className="text-gold-primary text-xs uppercase tracking-widest font-bold">
-              {locale === 'en' || String(locale) === 'ta' ? 'The Complete Jyotish Course' : locale === 'hi' ? 'सम्पूर्ण ज्योतिष पाठ्यक्रम' : 'सम्पूर्णज्योतिषपाठ्यक्रमम्'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'The Complete Jyotish Course' : locale === 'hi' ? 'सम्पूर्ण ज्योतिष पाठ्यक्रम' : 'सम्पूर्णज्योतिषपाठ्यक्रमम्'}
             </span>
           </div>
 
@@ -188,10 +188,10 @@ export default function LearnPage() {
 
           <div className="flex flex-wrap gap-6 mb-6">
             {[
-              { val: STATS.modules, label: locale === 'en' || String(locale) === 'ta' ? 'Modules' : 'मॉड्यूल', icon: BookOpen },
-              { val: STATS.references, label: locale === 'en' || String(locale) === 'ta' ? 'References' : 'संदर्भ', icon: Star },
-              { val: STATS.labs, label: locale === 'en' || String(locale) === 'ta' ? 'Labs' : 'प्रयोगशाला', icon: CheckCircle },
-              { val: STATS.tracks, label: locale === 'en' || String(locale) === 'ta' ? 'Tracks' : 'ट्रैक', icon: Clock },
+              { val: STATS.modules, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Modules' : 'मॉड्यूल', icon: BookOpen },
+              { val: STATS.references, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'References' : 'संदर्भ', icon: Star },
+              { val: STATS.labs, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Labs' : 'प्रयोगशाला', icon: CheckCircle },
+              { val: STATS.tracks, label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Tracks' : 'ट्रैक', icon: Clock },
             ].map(s => (
               <div key={s.label} className="flex items-center gap-2">
                 <s.icon className="w-4 h-4 text-gold-dark" />
@@ -250,7 +250,7 @@ export default function LearnPage() {
                   </div>
 
                   <div className="flex items-center gap-2 mt-4 text-gold-primary/70 group-hover:text-gold-primary transition-colors">
-                    <span className="text-sm font-medium">{locale === 'en' || String(locale) === 'ta' ? 'Explore Track' : 'ट्रैक देखें'}</span>
+                    <span className="text-sm font-medium">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Explore Track' : 'ट्रैक देखें'}</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -299,12 +299,12 @@ export default function LearnPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-bold uppercase tracking-widest text-amber-500/70">
-                    {locale === 'en' || String(locale) === 'ta' ? 'Free Resource' : locale === 'hi' ? 'निःशुल्क संसाधन' : 'निःशुल्कसाधनम्'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Free Resource' : locale === 'hi' ? 'निःशुल्क संसाधन' : 'निःशुल्कसाधनम्'}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/20 font-medium">28 texts</span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-amber-200 group-hover:text-amber-100 transition-colors mb-1" style={hf}>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Classical Jyotish Text Library' : locale === 'hi' ? 'शास्त्रीय ज्योतिष ग्रंथागार' : 'शास्त्रीयज्योतिषग्रंथागारम्'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Classical Jyotish Text Library' : locale === 'hi' ? 'शास्त्रीय ज्योतिष ग्रंथागार' : 'शास्त्रीयज्योतिषग्रंथागारम्'}
                 </h3>
                 <p className="text-amber-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
@@ -316,7 +316,7 @@ export default function LearnPage() {
               </div>
               <div className="flex-shrink-0 flex items-center gap-2 text-amber-400/70 group-hover:text-amber-400 transition-colors">
                 <span className="text-sm font-semibold hidden sm:inline">
-                  {locale === 'en' || String(locale) === 'ta' ? 'Browse Library' : locale === 'hi' ? 'ग्रंथागार देखें' : 'ग्रंथागारं पश्यतु'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Browse Library' : locale === 'hi' ? 'ग्रंथागार देखें' : 'ग्रंथागारं पश्यतु'}
                 </span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -342,14 +342,14 @@ export default function LearnPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-bold uppercase tracking-widest text-purple-400/70">
-                    {locale === 'en' || String(locale) === 'ta' ? 'Web Stories' : locale === 'hi' ? 'वेब स्टोरीज़' : 'जालस्टोरीज़'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Web Stories' : locale === 'hi' ? 'वेब स्टोरीज़' : 'जालस्टोरीज़'}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 font-medium">
-                    {locale === 'en' || String(locale) === 'ta' ? '5 stories' : '5 स्टोरीज़'}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? '5 stories' : '5 स्टोरीज़'}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-purple-200 group-hover:text-purple-100 transition-colors mb-1" style={hf}>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Indian Contributions — Swipeable Stories' : locale === 'hi' ? 'भारतीय योगदान — स्वाइप करें' : 'भारतीययोगदानम् — स्वाइप्'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Indian Contributions — Swipeable Stories' : locale === 'hi' ? 'भारतीय योगदान — स्वाइप करें' : 'भारतीययोगदानम् — स्वाइप्'}
                 </h3>
                 <p className="text-purple-200/55 text-sm leading-relaxed" style={bf}>
                   {locale === 'en'
@@ -361,7 +361,7 @@ export default function LearnPage() {
               </div>
               <div className="flex-shrink-0 flex items-center gap-2 text-purple-400/70 group-hover:text-purple-400 transition-colors">
                 <span className="text-sm font-semibold hidden sm:inline">
-                  {locale === 'en' || String(locale) === 'ta' ? 'Explore Stories' : locale === 'hi' ? 'स्टोरीज़ देखें' : 'स्टोरीज़ पश्यतु'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Explore Stories' : locale === 'hi' ? 'स्टोरीज़ देखें' : 'स्टोरीज़ पश्यतु'}
                 </span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>

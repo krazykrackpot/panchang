@@ -465,7 +465,7 @@ const SYSTEM_COLORS = ['text-amber-400', 'text-emerald-400', 'text-orange-400', 
 
 export default function LearnAvasthasPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const t = (obj: Record<string, string>) => obj[locale] || obj.en;
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const [expandedSystem, setExpandedSystem] = useState<number | null>(0);

@@ -167,11 +167,11 @@ function getHouseFromMoon(moonSign: number, transitSign: number): number {
 
 export default function RetrogradePage() {
   const locale = useLocale() as Locale;
-  const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
 
-  const t2 = (obj: { en: string; hi: string }): string => locale === 'en' || String(locale) === 'ta' ? obj.en : obj.hi;
+  const t2 = (obj: { en: string; hi: string }): string => (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
 
   const [year, setYear] = useState(new Date().getFullYear());
   const [retroPeriods, setRetroPeriods] = useState<RetroPeriod[]>([]);
@@ -197,7 +197,7 @@ export default function RetrogradePage() {
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr + 'T00:00:00');
-    return d.toLocaleDateString(locale === 'en' || String(locale) === 'ta' ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'short' });
+    return d.toLocaleDateString((locale !== 'hi' && String(locale) !== 'sa') ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'short' });
   };
 
   // Check if a period is currently active
@@ -211,7 +211,7 @@ export default function RetrogradePage() {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl sm:text-6xl font-bold mb-4" style={headingFont}>
           <span className="text-gold-gradient">
-            {locale === 'en' || String(locale) === 'ta' ? 'Retrograde & Combustion' : 'वक्री एवं अस्त'}
+            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Retrograde & Combustion' : 'वक्री एवं अस्त'}
           </span>
         </h1>
         <p className="text-text-secondary text-lg max-w-2xl mx-auto leading-relaxed" style={bodyFont}>
@@ -305,23 +305,23 @@ export default function RetrogradePage() {
               </div>
               <div>
                 <h3 className="text-gold-light font-bold text-lg" style={headingFont}>
-                  {locale === 'en' || String(locale) === 'ta' ? 'Current Cosmic Weather' : 'वर्तमान ब्रह्मांडीय मौसम'}
+                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Current Cosmic Weather' : 'वर्तमान ब्रह्मांडीय मौसम'}
                 </h3>
                 <div className="flex items-center gap-2 text-xs text-text-secondary">
                   <Shield className="w-3 h-3 text-emerald-400" />
-                  <span>{locale === 'en' || String(locale) === 'ta' ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
+                  <span>{(locale !== 'hi' && String(locale) !== 'sa') ? `Moon in ${moonName?.en}` : `चन्द्र ${moonName?.hi} में`}</span>
                   <span className="text-gold-primary/20">|</span>
                   <span className={`font-bold ${toneColor === 'emerald' ? 'text-emerald-400' : toneColor === 'red' ? 'text-red-400' : 'text-amber-400'}`}>
                     {totalActive === 0
-                      ? (locale === 'en' || String(locale) === 'ta' ? 'All Clear' : 'सब स्पष्ट')
-                      : `${totalActive} ${locale === 'en' || String(locale) === 'ta' ? 'Active' : 'सक्रिय'}`}
+                      ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'All Clear' : 'सब स्पष्ट')
+                      : `${totalActive} ${(locale !== 'hi' && String(locale) !== 'sa') ? 'Active' : 'सक्रिय'}`}
                   </span>
                 </div>
               </div>
             </div>
 
             <p className="text-text-primary text-sm leading-relaxed mb-4" style={bodyFont}>
-              {locale === 'en' || String(locale) === 'ta' ? parts_en.join(' ') : parts_hi.join(' ')}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? parts_en.join(' ') : parts_hi.join(' ')}
             </p>
 
             {/* Active events grid */}
@@ -330,14 +330,14 @@ export default function RetrogradePage() {
                 {activeRetros.map(r => (
                   <div key={`r-${r.planetId}`} className="rounded-lg p-3 border border-red-500/20 bg-red-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: r.planetColor }}>{tl(r.planetName, locale)}</div>
-                    <div className="text-red-400 text-xs font-bold uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Retrograde' : 'वक्री'}</div>
-                    {hasBirthData && <div className="text-text-secondary/70 text-xs mt-1">{locale === 'en' || String(locale) === 'ta' ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
+                    <div className="text-red-400 text-xs font-bold uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Retrograde' : 'वक्री'}</div>
+                    {hasBirthData && <div className="text-text-secondary/70 text-xs mt-1">{(locale !== 'hi' && String(locale) !== 'sa') ? `${getHouseFromMoon(birthRashi, r.startSign)}${['st','nd','rd'][getHouseFromMoon(birthRashi, r.startSign)-1]||'th'} house` : `${getHouseFromMoon(birthRashi, r.startSign)}वाँ भाव`}</div>}
                   </div>
                 ))}
                 {activeCombusts.map(c => (
                   <div key={`c-${c.planetId}`} className="rounded-lg p-3 border border-orange-500/20 bg-orange-500/5 text-center">
                     <div className="text-xs font-bold mb-1" style={{ color: c.planetColor }}>{tl(c.planetName, locale)}</div>
-                    <div className="text-orange-400 text-xs font-bold uppercase">{locale === 'en' || String(locale) === 'ta' ? 'Combust' : 'अस्त'}</div>
+                    <div className="text-orange-400 text-xs font-bold uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Combust' : 'अस्त'}</div>
                   </div>
                 ))}
               </div>
@@ -352,7 +352,7 @@ export default function RetrogradePage() {
               : 'वक्री और अस्त आपके विशिष्ट भावों को कैसे प्रभावित करते हैं, इसका व्यक्तिगत विश्लेषण देखने के लिए कुंडली बनाएँ।'}
             {' '}
             <Link href="/kundali" className="text-gold-primary hover:text-gold-light font-bold underline">
-              {locale === 'en' || String(locale) === 'ta' ? 'Generate Kundali' : 'कुंडली बनाएँ'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Generate Kundali' : 'कुंडली बनाएँ'}
             </Link>
           </p>
         </div>
@@ -377,7 +377,7 @@ export default function RetrogradePage() {
             tab === 'retrograde' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
-          {locale === 'en' || String(locale) === 'ta' ? `Retrograde (${retroPeriods.length})` : `वक्री (${retroPeriods.length})`}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? `Retrograde (${retroPeriods.length})` : `वक्री (${retroPeriods.length})`}
         </button>
         <button
           onClick={() => setTab('combustion')}
@@ -385,7 +385,7 @@ export default function RetrogradePage() {
             tab === 'combustion' ? 'bg-gold-primary/20 text-gold-light border border-gold-primary/40' : 'text-text-secondary border border-gold-primary/10 hover:bg-gold-primary/10'
           }`}
         >
-          {locale === 'en' || String(locale) === 'ta' ? `Combustion (${combustEvents.length})` : `अस्त (${combustEvents.length})`}
+          {(locale !== 'hi' && String(locale) !== 'sa') ? `Combustion (${combustEvents.length})` : `अस्त (${combustEvents.length})`}
         </button>
       </div>
 
@@ -413,10 +413,10 @@ export default function RetrogradePage() {
         return (
           <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 mb-8">
             <h3 className="text-gold-light text-sm font-bold mb-1">
-              {locale === 'en' || String(locale) === 'ta' ? `${year} Retrograde & Combustion Timeline` : `${year} वक्री और अस्त समयरेखा`}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? `${year} Retrograde & Combustion Timeline` : `${year} वक्री और अस्त समयरेखा`}
             </h3>
             <p className="text-text-secondary/50 text-xs mb-4">
-              {locale === 'en' || String(locale) === 'ta' ? 'Red = retrograde, Orange = combust. Hover for dates.' : 'लाल = वक्री, नारंगी = अस्त।'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Red = retrograde, Orange = combust. Hover for dates.' : 'लाल = वक्री, नारंगी = अस्त।'}
             </p>
 
             {/* Month axis */}
@@ -438,7 +438,7 @@ export default function RetrogradePage() {
                   <div key={pid} className="flex items-center gap-0">
                     <div className="w-16 sm:w-20 shrink-0 text-right pr-2">
                       <span className="text-[10px] font-bold" style={{ color: graha?.color || '#888' }}>
-                        {locale === 'en' || String(locale) === 'ta' ? PLANET_LABELS[pid] : PLANET_LABELS_HI[pid]}
+                        {(locale !== 'hi' && String(locale) !== 'sa') ? PLANET_LABELS[pid] : PLANET_LABELS_HI[pid]}
                       </span>
                     </div>
                     <div className="flex-1 relative h-7 bg-bg-tertiary/15 rounded-md overflow-hidden">
@@ -494,8 +494,8 @@ export default function RetrogradePage() {
 
             {/* Legend */}
             <div className="flex items-center gap-4 mt-3 ml-16 sm:ml-20 text-[10px]">
-              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{locale === 'en' || String(locale) === 'ta' ? 'Retrograde' : 'वक्री'}</span></span>
-              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{locale === 'en' || String(locale) === 'ta' ? 'Combust' : 'अस्त'}</span></span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-red-500/70" /><span className="text-gray-500">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Retrograde' : 'वक्री'}</span></span>
+              <span className="flex items-center gap-1"><span className="w-3 h-2 rounded-sm bg-orange-500/60" /><span className="text-gray-500">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Combust' : 'अस्त'}</span></span>
               {year === new Date().getFullYear() && <span className="flex items-center gap-1"><span className="w-px h-3 bg-gold-primary/80" /><span className="text-gold-primary/70">NOW</span></span>}
             </div>
           </div>
@@ -512,7 +512,7 @@ export default function RetrogradePage() {
         <div className="space-y-5 my-10">
           {retroPeriods.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
-              {locale === 'en' || String(locale) === 'ta' ? 'No retrograde periods found.' : 'कोई वक्री अवधि नहीं मिली।'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'No retrograde periods found.' : 'कोई वक्री अवधि नहीं मिली।'}
             </div>
           ) : retroPeriods.map((p, i) => {
             const active = isActive(p.startDate, p.endDate);
@@ -538,12 +538,12 @@ export default function RetrogradePage() {
                           {tl(p.planetName, locale)}
                         </span>
                         <span className="text-red-400 text-xs font-bold px-2 py-0.5 bg-red-500/15 border border-red-500/25 rounded-full">
-                          {locale === 'en' || String(locale) === 'ta' ? 'RETROGRADE' : 'वक्री'}
+                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'RETROGRADE' : 'वक्री'}
                         </span>
                         {active && (
                           <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                            {locale === 'en' || String(locale) === 'ta' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
+                            {(locale !== 'hi' && String(locale) !== 'sa') ? 'ACTIVE NOW' : 'अभी सक्रिय'}
                           </span>
                         )}
                       </div>
@@ -553,7 +553,7 @@ export default function RetrogradePage() {
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.startDate)}</span>
                         <span className="text-gold-dark">→</span>
                         <span className="text-gold-light font-mono text-sm font-bold">{formatDate(p.endDate)}</span>
-                        <span className="text-text-secondary/65 text-xs">({p.durationDays} {locale === 'en' || String(locale) === 'ta' ? 'days' : 'दिन'})</span>
+                        <span className="text-text-secondary/65 text-xs">({p.durationDays} {(locale !== 'hi' && String(locale) !== 'sa') ? 'days' : 'दिन'})</span>
                       </div>
                       <div className="flex items-center gap-2 text-xs mb-3">
                         <RashiIconById id={p.startSign} size={16} />
@@ -576,7 +576,7 @@ export default function RetrogradePage() {
                           <div className="flex items-center gap-2 mb-2">
                             <Zap className="w-3.5 h-3.5 text-gold-primary" />
                             <span className="text-gold-primary text-xs uppercase tracking-wider font-bold">
-                              {locale === 'en' || String(locale) === 'ta' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                              {(locale !== 'hi' && String(locale) !== 'sa') ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                             </span>
                           </div>
                           <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>
@@ -591,14 +591,14 @@ export default function RetrogradePage() {
                           <div className="rounded-lg p-3 bg-emerald-500/5 border border-emerald-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <Shield className="w-3 h-3 text-emerald-400" />
-                              <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? 'Do' : 'करें'}</span>
+                              <span className="text-emerald-400 text-xs uppercase tracking-wider font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Do' : 'करें'}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.dos)}</p>
                           </div>
                           <div className="rounded-lg p-3 bg-red-500/5 border border-red-500/15">
                             <div className="flex items-center gap-1.5 mb-1.5">
                               <AlertTriangle className="w-3 h-3 text-red-400" />
-                              <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{locale === 'en' || String(locale) === 'ta' ? "Don't" : 'न करें'}</span>
+                              <span className="text-red-400 text-xs uppercase tracking-wider font-bold">{(locale !== 'hi' && String(locale) !== 'sa') ? "Don't" : 'न करें'}</span>
                             </div>
                             <p className="text-text-secondary text-xs leading-relaxed" style={bodyFont}>{t2(meaning.donts)}</p>
                           </div>
@@ -616,7 +616,7 @@ export default function RetrogradePage() {
         <div className="space-y-4 my-10">
           {combustEvents.length === 0 ? (
             <div className="text-center py-12 text-text-secondary">
-              {locale === 'en' || String(locale) === 'ta' ? 'No combustion events found.' : 'कोई अस्त घटना नहीं मिली।'}
+              {(locale !== 'hi' && String(locale) !== 'sa') ? 'No combustion events found.' : 'कोई अस्त घटना नहीं मिली।'}
             </div>
           ) : combustEvents.map((e, i) => {
             const active = isActive(e.startDate, e.endDate);
@@ -647,12 +647,12 @@ export default function RetrogradePage() {
                         {tl(e.planetName, locale)}
                       </span>
                       <span className="text-orange-400 text-xs font-bold px-2 py-0.5 bg-orange-500/15 border border-orange-500/25 rounded-full">
-                        {locale === 'en' || String(locale) === 'ta' ? 'COMBUST' : 'अस्त'}
+                        {(locale !== 'hi' && String(locale) !== 'sa') ? 'COMBUST' : 'अस्त'}
                       </span>
                       {active && (
                         <span className="flex items-center gap-1 text-xs font-bold px-2 py-0.5 bg-amber-500/15 border border-amber-500/25 rounded-full text-amber-300">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                          {locale === 'en' || String(locale) === 'ta' ? 'ACTIVE NOW' : 'अभी सक्रिय'}
+                          {(locale !== 'hi' && String(locale) !== 'sa') ? 'ACTIVE NOW' : 'अभी सक्रिय'}
                         </span>
                       )}
                     </div>
@@ -660,7 +660,7 @@ export default function RetrogradePage() {
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.startDate)}</span>
                       <span className="text-gold-dark">→</span>
                       <span className="text-gold-light font-mono font-bold">{formatDate(e.endDate)}</span>
-                      <span className="text-text-secondary/65 text-xs">({e.durationDays} {locale === 'en' || String(locale) === 'ta' ? 'days' : 'दिन'})</span>
+                      <span className="text-text-secondary/65 text-xs">({e.durationDays} {(locale !== 'hi' && String(locale) !== 'sa') ? 'days' : 'दिन'})</span>
                       {sunSignName && (
                         <>
                           <span className="text-gold-primary/20">|</span>
@@ -687,7 +687,7 @@ export default function RetrogradePage() {
                         <div className="flex items-center gap-2 mb-2">
                           <Zap className="w-3.5 h-3.5 text-orange-400" />
                           <span className="text-orange-400 text-xs uppercase tracking-wider font-bold">
-                            {locale === 'en' || String(locale) === 'ta' ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
+                            {(locale !== 'hi' && String(locale) !== 'sa') ? `For you — ${house}${['st','nd','rd'][house-1] || 'th'} house from Moon` : `आपके लिए — चन्द्र से ${house}वाँ भाव`}
                           </span>
                         </div>
                         <p className="text-text-primary text-sm leading-relaxed" style={bodyFont}>

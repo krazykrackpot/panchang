@@ -247,7 +247,7 @@ const RELATED_LINKS = [
 
 /* ── Remedy Detail Card ───────────────────────────────────────── */
 function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }) {
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -343,10 +343,10 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}
       </text>
       <text x="100" y="158" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'Gemstone, mantra for power,' : locale === 'hi' ? 'रत्न, शक्ति मंत्र,' : 'रत्नम्, शक्तिमन्त्रः,'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemstone, mantra for power,' : locale === 'hi' ? 'रत्न, शक्ति मंत्र,' : 'रत्नम्, शक्तिमन्त्रः,'}
       </text>
       <text x="100" y="170" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'favorable colors, worship deity' : locale === 'hi' ? 'अनुकूल रंग, देवता पूजा' : 'अनुकूलवर्णाः, देवतापूजा'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'favorable colors, worship deity' : locale === 'hi' ? 'अनुकूल रंग, देवता पूजा' : 'अनुकूलवर्णाः, देवतापूजा'}
       </text>
 
       {/* Question 2 box (right) */}
@@ -372,19 +372,19 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
         {((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}
       </text>
       <text x="297" y="268" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'Donation, fasting, mantra for peace' : locale === 'hi' ? 'दान, उपवास, शान्ति मंत्र' : 'दानम्, उपवासः, शान्तिमन्त्रः'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Donation, fasting, mantra for peace' : locale === 'hi' ? 'दान, उपवास, शान्ति मंत्र' : 'दानम्, उपवासः, शान्तिमन्त्रः'}
       </text>
       <text x="297" y="280" textAnchor="middle" fill="#ef4444" fontSize="8" fontWeight="bold" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'DO NOT wear gemstone!' : locale === 'hi' ? 'रत्न न पहनें!' : 'रत्नं न धारयेत्!'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'DO NOT wear gemstone!' : locale === 'hi' ? 'रत्न न पहनें!' : 'रत्नं न धारयेत्!'}
       </text>
 
       {/* Neutral: Check context box */}
       <rect x="400" y="230" width="90" height="50" rx="10" fill="#facc1510" stroke="#facc1540" strokeWidth="1" />
       <text x="445" y="252" textAnchor="middle" fill="#facc15" fontSize="9" fontWeight="bold" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'Context' : locale === 'hi' ? 'सन्दर्भ' : 'सन्दर्भः'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Context' : locale === 'hi' ? 'सन्दर्भ' : 'सन्दर्भः'}
       </text>
       <text x="445" y="266" textAnchor="middle" fill="#8b8fa3" fontSize="7" fontFamily={bodyFont}>
-        {locale === 'en' || String(locale) === 'ta' ? 'Analyze chart' : locale === 'hi' ? 'कुण्डली विश्लेषण' : 'कुण्डलीविश्लेषणम्'}
+        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Analyze chart' : locale === 'hi' ? 'कुण्डली विश्लेषण' : 'कुण्डलीविश्लेषणम्'}
       </text>
     </svg>
   );
@@ -393,7 +393,7 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
 /* ── Main Page ────────────────────────────────────────────────── */
 export default function RemediesPage() {
   const locale = useLocale() as Locale;
-  const isHi = locale !== 'en' && String(locale) !== 'ta';
+  const isHi = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
   const [selected, setSelected] = useState<string>('sun');
@@ -457,12 +457,12 @@ export default function RemediesPage() {
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
             <span className="text-emerald-400 font-medium">{((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}</span>
-            <span className="text-text-secondary">= {locale === 'en' || String(locale) === 'ta' ? 'Gemstone + Mantra' : locale === 'hi' ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
+            <span className="text-text-secondary">= {(locale !== 'hi' && String(locale) !== 'sa') ? 'Gemstone + Mantra' : locale === 'hi' ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
             <span className="text-red-400 font-medium">{((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}</span>
-            <span className="text-text-secondary">= {locale === 'en' || String(locale) === 'ta' ? 'Charity + Fasting' : locale === 'hi' ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
+            <span className="text-text-secondary">= {(locale !== 'hi' && String(locale) !== 'sa') ? 'Charity + Fasting' : locale === 'hi' ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
           </span>
         </div>
       </motion.div>

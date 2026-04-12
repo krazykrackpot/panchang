@@ -94,8 +94,8 @@ export default function Navbar() {
       children: [
         { href: '/kundali', label: t('kundali') },
         { href: '/matching', label: t('matching') },
-        { href: '/kundali/compare', label: locale === 'en' || String(locale) === 'ta' ? 'Chart Comparison' : 'कुण्डली तुलना' },
-        { href: '/annual-forecast', label: locale === 'en' || String(locale) === 'ta' ? 'Annual Forecast' : 'वार्षिक भविष्यफल' },
+        { href: '/kundali/compare', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Chart Comparison' : 'कुण्डली तुलना' },
+        { href: '/annual-forecast', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Annual Forecast' : 'वार्षिक भविष्यफल' },
         { href: '/varshaphal', label: t('varshaphal') },
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/sade-sati', label: t('sadeSati') },
@@ -104,8 +104,8 @@ export default function Navbar() {
     {
       label: ritualsLabel,
       children: [
-        { href: '/puja', label: locale === 'en' || String(locale) === 'ta' ? 'Puja Vidhi' : 'पूजा विधि' },
-        { href: '/sankalpa', label: locale === 'en' || String(locale) === 'ta' ? 'Sankalpa' : 'सङ्कल्प' },
+        { href: '/puja', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Puja Vidhi' : 'पूजा विधि' },
+        { href: '/sankalpa', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Sankalpa' : 'सङ्कल्प' },
         { href: '/devotional', label: t('devotional') },
         { href: '/shraddha', label: t('shraddha') },
         { href: '/muhurta-ai', label: t('muhurtaAi') },
@@ -208,7 +208,7 @@ export default function Navbar() {
             <LocaleSwitcher />
             {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-xs whitespace-nowrap">
-                {locale === 'en' || String(locale) === 'ta' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                {(locale !== 'hi' && String(locale) !== 'sa') ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>
             )}
             <UserMenu />
@@ -282,7 +282,7 @@ export default function Navbar() {
                 <LocaleSwitcher />
                 {isTrialing && trialDaysLeft > 0 && (
                   <span className="text-gold-dark text-xs">
-                    {locale === 'en' || String(locale) === 'ta' ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                    {(locale !== 'hi' && String(locale) !== 'sa') ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
                   </span>
                 )}
                 <UserMenu />

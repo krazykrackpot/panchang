@@ -129,7 +129,7 @@ function intensityLabel(score: number, locale: Locale): string {
 export default function SadeSatiPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
   const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
@@ -248,7 +248,7 @@ export default function SadeSatiPage() {
       </motion.div>
 
       <InfoBlock id="sade-sati-intro" title={isTamil ? 'ஏழரை சனி என்றால் என்ன? ஏன் 7.5 வருடங்கள்?' : locale === 'en' ? 'What is Sade Sati and why 7.5 years?' : 'साढ़े साती क्या है और 7.5 वर्ष क्यों?'} defaultOpen>
-        {locale === 'en' || String(locale) === 'ta' ? (
+        {(locale !== 'hi' && String(locale) !== 'sa') ? (
           <div className="space-y-3">
             <p><strong>Sade Sati</strong> (literally &quot;seven and a half&quot;) is the ~7.5-year period when Saturn transits through three consecutive signs — the sign before your Moon sign, your Moon sign itself, and the sign after. Since Saturn takes ~2.5 years per sign, the total is ~7.5 years.</p>
             <p><strong>Why the Moon?</strong> In Vedic astrology, your Moon sign (not Sun sign) represents your mind, emotions, and inner world. When Saturn — the planet of discipline, karma, and hard lessons — passes over your Moon, it puts pressure on your emotional foundation. This isn&apos;t punishment — it&apos;s a period of deep maturation.</p>

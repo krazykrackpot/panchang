@@ -122,13 +122,13 @@ const LABELS = {
 };
 
 function t(obj: { en: string; hi: string }, locale: string): string {
-  return locale === 'en' || String(locale) === 'ta' ? obj.en : obj.hi;
+  return (locale !== 'hi' && String(locale) !== 'sa') ? obj.en : obj.hi;
 }
 
 export default function PricingPage() {
   const locale = useLocale() as Locale;
   const isTamil = String(locale) === 'ta';
-  const isDevanagari = locale !== 'en' && !isTamil;
+  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
@@ -158,7 +158,7 @@ export default function PricingPage() {
   const handleCheckout = async (tier: 'pro' | 'jyotishi') => {
     const user = useAuthStore.getState().user;
     if (!user) {
-      alert(locale === 'en' || String(locale) === 'ta' ? 'Please sign in first' : 'पहले साइन इन करें');
+      alert((locale !== 'hi' && String(locale) !== 'sa') ? 'Please sign in first' : 'पहले साइन इन करें');
       return;
     }
     try {
@@ -167,7 +167,7 @@ export default function PricingPage() {
       const session = await supabase?.auth.getSession();
       const token = session?.data.session?.access_token;
       if (!token) {
-        alert(locale === 'en' || String(locale) === 'ta' ? 'Please sign in first' : 'पहले साइन इन करें');
+        alert((locale !== 'hi' && String(locale) !== 'sa') ? 'Please sign in first' : 'पहले साइन इन करें');
         return;
       }
 
@@ -192,7 +192,7 @@ export default function PricingPage() {
 
   const formatPrice = (amount: number) => {
     if (amount === 0) {
-      return locale === 'en' || String(locale) === 'ta' ? 'Free' : 'नि:शुल्क';
+      return (locale !== 'hi' && String(locale) !== 'sa') ? 'Free' : 'नि:शुल्क';
     }
     return currency === 'INR' ? `₹${amount}` : `$${amount}`;
   };

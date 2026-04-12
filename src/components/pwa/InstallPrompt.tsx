@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useLocale } from 'next-intl';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -11,7 +12,10 @@ const DISMISS_KEY = 'pwa-install-dismissed-at';
 const DISMISS_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 export default function InstallPrompt() {
+  const locale = useLocale();
+  const isHi = locale === 'hi';
   const [show, setShow] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
   const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);
 
   const handleInstall = useCallback(async () => {
@@ -27,44 +31,45 @@ export default function InstallPrompt() {
   const handleDismiss = useCallback(() => {
     setShow(false);
     deferredPrompt.current = null;
-    try {
-      localStorage.setItem(DISMISS_KEY, Date.now().toString());
-    } catch {
-      // localStorage unavailable
-    }
+    try { localStorage.setItem(DISMISS_KEY, Date.now().toString()); } catch {}
   }, []);
 
   useEffect(() => {
-    // Check if dismissed recently
-    try {
-      const dismissedAt = localStorage.getItem(DISMISS_KEY);
-      if (dismissedAt && Date.now() - parseInt(dismissedAt) < DISMISS_DURATION) {
-        return;
-      }
-    } catch {
-      // localStorage unavailable
-    }
+    // Already installed?
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia('(display-mode: standalone)').matches) return;
 
+    // Dismissed recently?
+    try {
+      const d = localStorage.getItem(DISMISS_KEY);
+      if (d && Date.now() - parseInt(d) < DISMISS_DURATION) return;
+    } catch {}
+
+    // iOS detection
+    const ua = navigator.userAgent;
+    const iOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    setIsIOS(iOS);
+
+    // Chrome/Edge: beforeinstallprompt
     const handler = (e: Event) => {
       e.preventDefault();
       deferredPrompt.current = e as BeforeInstallPromptEvent;
-      // Delay showing the prompt by 30 seconds
-      setTimeout(() => {
-        if (deferredPrompt.current) {
-          setShow(true);
-        }
-      }, 30000);
+      setTimeout(() => { if (deferredPrompt.current) setShow(true); }, 30000);
     };
-
     window.addEventListener('beforeinstallprompt', handler);
-
-    // Hide if app is installed
     const installedHandler = () => setShow(false);
     window.addEventListener('appinstalled', installedHandler);
+
+    // iOS: show manual prompt after 60s
+    let iosTimer: ReturnType<typeof setTimeout>;
+    if (iOS) {
+      iosTimer = setTimeout(() => setShow(true), 60000);
+    }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handler);
       window.removeEventListener('appinstalled', installedHandler);
+      if (iosTimer) clearTimeout(iosTimer);
     };
   }, []);
 
@@ -76,7 +81,7 @@ export default function InstallPrompt() {
       role="banner"
       aria-label="Install application"
     >
-      <div className="max-w-lg mx-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-surface-secondary/80 backdrop-blur-xl border border-gold-primary/20 shadow-2xl shadow-black/40">
+      <div className="max-w-lg mx-auto flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#111633]/95 backdrop-blur-xl border border-gold-primary/25 shadow-2xl shadow-black/50">
         {/* Icon */}
         <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-[#f0d48a] to-[#8a6d2b] flex items-center justify-center">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0e27" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -88,10 +93,12 @@ export default function InstallPrompt() {
         {/* Text */}
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-text-primary truncate">
-            Install Dekho Panchang
+            {isHi ? 'देखो पंचांग इंस्टॉल करें' : 'Install Dekho Panchang'}
           </p>
           <p className="text-xs text-text-secondary truncate">
-            Quick access from your home screen
+            {isIOS
+              ? (isHi ? 'Share → "होम स्क्रीन पर जोड़ें" दबाएं' : 'Tap Share → "Add to Home Screen"')
+              : (isHi ? 'होम स्क्रीन से तुरंत खोलें — ऑफ़लाइन भी' : 'Quick access from home screen — works offline')}
           </p>
         </div>
 
@@ -102,14 +109,16 @@ export default function InstallPrompt() {
             className="px-3 py-1.5 text-xs text-text-tertiary hover:text-text-secondary transition-colors"
             aria-label="Dismiss install prompt"
           >
-            Not now
+            {isHi ? 'बाद में' : 'Not now'}
           </button>
-          <button
-            onClick={handleInstall}
-            className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4a853] to-[#b8912e] text-[#0a0e27] text-xs font-semibold hover:shadow-lg hover:shadow-[#d4a853]/25 transition-all active:scale-95"
-          >
-            Install
-          </button>
+          {!isIOS && (
+            <button
+              onClick={handleInstall}
+              className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-[#d4a853] to-[#b8912e] text-[#0a0e27] text-xs font-semibold hover:shadow-lg hover:shadow-[#d4a853]/25 transition-all active:scale-95"
+            >
+              {isHi ? 'इंस्टॉल' : 'Install'}
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { getPageMetadata } from '@/lib/seo/metadata';
+import { generateFAQLD } from '@/lib/seo/faq-data';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
@@ -36,9 +37,17 @@ export default async function PanchangLayout({ children, params }: { children: R
     inLanguage: locale === 'hi' ? 'hi' : locale === 'sa' ? 'sa' : 'en',
   };
 
+  const faqLD = generateFAQLD('/panchang', locale);
+
   return (
     <>
       <Script id="panchang-ld" type="application/ld+json" strategy="afterInteractive">{JSON.stringify(eventJsonLd)}</Script>
+      {faqLD && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
+        />
+      )}
       {children}
     </>
   );

@@ -4,12 +4,12 @@ import { generateFAQLD } from '@/lib/seo/faq-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  return getPageMetadata('/horoscope', locale);
+  return getPageMetadata('/rahu-kaal', locale);
 }
 
 export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const faqLD = generateFAQLD('/horoscope', locale);
+  const faqLD = generateFAQLD('/rahu-kaal', locale);
   return (
     <>
       {faqLD && (

@@ -11,7 +11,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ---------- inline bilingual labels ---------- */
 const L = {
-  title: { en: 'Rashis — The 12 Zodiac Signs', hi: 'राशियाँ — 12 राशिचक्र', sa: 'राशयः — द्वादशराशिचक्रम्' },
+  title: { en: 'Rashis — The 12 Zodiac Signs', hi: 'राशियाँ — 12 राशिचक्र', sa: 'राशयः — द्वादशराशिचक्रम्' , ta: 'ராசிகள் — 12 ராசி அடையாளங்கள்' },
   subtitle: {
     en: 'The twelve equal divisions of the sidereal ecliptic that form the foundation of Vedic astrology',
     hi: 'सायन ज्योतिषीय पथ के बारह समान विभाग जो वैदिक ज्योतिष की नींव हैं',
@@ -349,9 +349,9 @@ export default function LearnRashisPage() {
       {/* Hero */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       {/* Sanskrit Key Terms */}
@@ -363,9 +363,9 @@ export default function LearnRashisPage() {
       </div>
 
       {/* Section 1: What is a Rashi */}
-      <LessonSection number={1} title={L.whatTitle[locale]} illustration={<ZodiacBeltDiagram />}>
-        <p>{L.whatContent[locale]}</p>
-        <p>{L.whatContent2[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)} illustration={<ZodiacBeltDiagram />}>
+        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Rashi = floor(sidereal_longitude / 30) + 1</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Sidereal longitude = Tropical longitude - Ayanamsha (~24.2 in 2026)</p>
@@ -374,8 +374,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 2: Astronomy */}
-      <LessonSection number={2} title={L.astroTitle[locale]}>
-        <p>{L.astroContent[locale]}</p>
+      <LessonSection number={2} title={((L.astroTitle as Record<string, string>)[locale] ?? L.astroTitle.en)}>
+        <p>{((L.astroContent as Record<string, string>)[locale] ?? L.astroContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">360 / 12 = 30 per Rashi</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Aries (Mesha): 0-30 | Taurus (Vrishabha): 30-60 | ... | Pisces (Meena): 330-360</p>
@@ -385,8 +385,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 3: Sign Qualities */}
-      <LessonSection number={3} title={L.qualityTitle[locale]}>
-        <p>{L.qualityIntro[locale]}</p>
+      <LessonSection number={3} title={((L.qualityTitle as Record<string, string>)[locale] ?? L.qualityTitle.en)}>
+        <p>{((L.qualityIntro as Record<string, string>)[locale] ?? L.qualityIntro.en)}</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           {QUALITIES.map((q) => (
             <motion.div
@@ -408,8 +408,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 4: Elements */}
-      <LessonSection number={4} title={L.elementTitle[locale]}>
-        <p>{L.elementIntro[locale]}</p>
+      <LessonSection number={4} title={((L.elementTitle as Record<string, string>)[locale] ?? L.elementTitle.en)}>
+        <p>{((L.elementIntro as Record<string, string>)[locale] ?? L.elementIntro.en)}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
           {ELEMENTS.map((el) => (
             <motion.div
@@ -438,8 +438,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 5: Lordship */}
-      <LessonSection number={5} title={L.lordTitle[locale]}>
-        <p>{L.lordContent[locale]}</p>
+      <LessonSection number={5} title={((L.lordTitle as Record<string, string>)[locale] ?? L.lordTitle.en)}>
+        <p>{((L.lordContent as Record<string, string>)[locale] ?? L.lordContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 text-xs">
           <div className="grid grid-cols-3 gap-2 text-gold-light/80 font-mono">
             <div className="font-semibold text-gold-primary">{loc === 'en' ? 'Planet' : 'ग्रह'}</div>
@@ -457,8 +457,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 6: Exaltation & Debilitation */}
-      <LessonSection number={6} title={L.dignityTitle[locale]}>
-        <p>{L.dignityIntro[locale]}</p>
+      <LessonSection number={6} title={((L.dignityTitle as Record<string, string>)[locale] ?? L.dignityTitle.en)}>
+        <p>{((L.dignityIntro as Record<string, string>)[locale] ?? L.dignityIntro.en)}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -492,8 +492,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 7: Body Parts */}
-      <LessonSection number={7} title={L.bodyTitle[locale]}>
-        <p>{L.bodyContent[locale]}</p>
+      <LessonSection number={7} title={((L.bodyTitle as Record<string, string>)[locale] ?? L.bodyTitle.en)}>
+        <p>{((L.bodyContent as Record<string, string>)[locale] ?? L.bodyContent.en)}</p>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mt-4">
           {BODY_PARTS.map((bp) => (
             <motion.div
@@ -519,8 +519,8 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 8: Interpreting planets by sign category */}
-      <LessonSection number={8} title={L.interpTitle[locale]}>
-        <p>{L.interpContent[locale]}</p>
+      <LessonSection number={8} title={((L.interpTitle as Record<string, string>)[locale] ?? L.interpTitle.en)}>
+        <p>{((L.interpContent as Record<string, string>)[locale] ?? L.interpContent.en)}</p>
         <div className="space-y-4 mt-4">
           {INTERP_RULES.map((rule) => (
             <motion.div
@@ -539,7 +539,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 9: Common Misconceptions */}
-      <LessonSection number={9} title={L.mythTitle[locale]} variant="highlight">
+      <LessonSection number={9} title={((L.mythTitle as Record<string, string>)[locale] ?? L.mythTitle.en)} variant="highlight">
         <div className="space-y-4">
           {MYTHS.map((m, i) => (
             <motion.div
@@ -566,7 +566,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Section 10: All 12 Rashis — Detailed */}
-      <LessonSection number={10} title={L.listTitle[locale]}>
+      <LessonSection number={10} title={((L.listTitle as Record<string, string>)[locale] ?? L.listTitle.en)}>
         <div className="space-y-4">
           {RASHIS.map((r, i) => {
             const chars = RASHI_CHARS[r.id];
@@ -616,7 +616,7 @@ export default function LearnRashisPage() {
       </LessonSection>
 
       {/* Cross-references */}
-      <LessonSection title={L.crossTitle[locale]}>
+      <LessonSection title={((L.crossTitle as Record<string, string>)[locale] ?? L.crossTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link
@@ -637,7 +637,7 @@ export default function LearnRashisPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]}
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
         </Link>
       </div>
     </div>

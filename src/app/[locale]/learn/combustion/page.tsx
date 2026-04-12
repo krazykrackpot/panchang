@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Combustion (Asta)', hi: 'अस्त (ग्रह दाह)', sa: 'अस्तः (ग्रहदाहः)' },
+  title: { en: 'Combustion (Asta)', hi: 'अस्त (ग्रह दाह)', sa: 'अस्तः (ग्रहदाहः)' , ta: 'அஸ்தம் (எரிப்பு)' },
   subtitle: {
     en: 'When a planet ventures too close to the Sun, it becomes invisible — swallowed by the Sun\'s radiance. This ancient observation forms the basis of one of Vedic astrology\'s most important planetary conditions.',
     hi: 'जब कोई ग्रह सूर्य के अत्यधिक निकट आता है, वह अदृश्य हो जाता है — सूर्य की दीप्ति में विलीन। यह प्राचीन अवलोकन वैदिक ज्योतिष की सबसे महत्वपूर्ण ग्रह अवस्थाओं का आधार है।',
@@ -149,17 +149,17 @@ export default function CombustionPage() {
             {locale === 'hi' ? 'ग्रह अवस्था' : locale === 'sa' ? 'ग्रहावस्था' : 'Planetary Condition'}
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-            {L.title[locale]}
+            {((L.title as Record<string, string>)[locale] ?? L.title.en)}
           </h1>
           <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-            {L.subtitle[locale]}
+            {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
           </p>
         </motion.div>
 
         {/* Section 1: What is Combustion */}
-        <LessonSection number={1} title={L.whatTitle[locale]}>
-          <p>{L.whatP1[locale]}</p>
-          <p>{L.whatP2[locale]}</p>
+        <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+          <p>{((L.whatP1 as Record<string, string>)[locale] ?? L.whatP1.en)}</p>
+          <p>{((L.whatP2 as Record<string, string>)[locale] ?? L.whatP2.en)}</p>
         </LessonSection>
 
         {/* SVG Diagram */}
@@ -169,7 +169,7 @@ export default function CombustionPage() {
         </motion.div>
 
         {/* Section 2: Effects Per Planet */}
-        <LessonSection number={2} title={L.effectsTitle[locale]}>
+        <LessonSection number={2} title={((L.effectsTitle as Record<string, string>)[locale] ?? L.effectsTitle.en)}>
           <div className="grid gap-4 sm:grid-cols-2">
             {PLANETS.map((p) => (
               <motion.div key={p.name.en}
@@ -196,16 +196,16 @@ export default function CombustionPage() {
         </LessonSection>
 
         {/* Section 3: Combustion vs Other Weaknesses */}
-        <LessonSection number={3} title={L.vsTitle[locale]} variant="highlight">
-          <p>{L.vsP1[locale]}</p>
-          <p>{L.vsP2[locale]}</p>
+        <LessonSection number={3} title={((L.vsTitle as Record<string, string>)[locale] ?? L.vsTitle.en)} variant="highlight">
+          <p>{((L.vsP1 as Record<string, string>)[locale] ?? L.vsP1.en)}</p>
+          <p>{((L.vsP2 as Record<string, string>)[locale] ?? L.vsP2.en)}</p>
           <div className="mt-4 p-4 rounded-lg bg-bg-primary/50 border border-gold-primary/10 font-mono text-sm text-gold-light">
             <code>abs(planet_longitude - sun_longitude) &lt; combustion_distance</code>
           </div>
         </LessonSection>
 
         {/* Related Links */}
-        <LessonSection title={L.relatedTitle[locale]}>
+        <LessonSection title={((L.relatedTitle as Record<string, string>)[locale] ?? L.relatedTitle.en)}>
           <div className="flex flex-wrap gap-3">
             {[
               { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डलीनिर्माणम्' } },

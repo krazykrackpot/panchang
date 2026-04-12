@@ -21,7 +21,7 @@ function fmtDeg(d: number): string {
 
 /* ───── Inline bilingual labels ───── */
 const L = {
-  overviewTitle: { en: 'What are the 27 Nakshatras?', hi: 'नक्षत्र क्या हैं?' },
+  overviewTitle: { en: 'What are the 27 Nakshatras?', hi: 'नक्षत्र क्या हैं?', ta: '27 நட்சத்திரங்கள் என்றால் என்ன?' },
   overviewContent: {
     en: 'The Nakshatras are the 27 lunar mansions of Vedic astrology -- the original star-based coordinate system of Jyotish, predating the 12-sign Rashi system by millennia. While Rashis describe solar energy (the Sun spends ~30 days in each sign), Nakshatras describe lunar energy: the Moon spends roughly one day in each Nakshatra. Because the Moon governs the mind (Manas) in Jyotish, the birth Nakshatra reveals one\'s emotional core, instinctive nature, and deepest psychological patterns -- often more accurately than the Sun sign or even the Moon sign alone.',
     hi: 'नक्षत्र वैदिक ज्योतिष के 27 चान्द्र भवन हैं -- ज्योतिष की मूल तारा-आधारित निर्देशांक प्रणाली, जो 12 राशियों की प्रणाली से सहस्राब्दियों पुरानी है। जहाँ राशियाँ सौर ऊर्जा का वर्णन करती हैं, नक्षत्र चान्द्र ऊर्जा का वर्णन करते हैं: चन्द्रमा प्रत्येक नक्षत्र में लगभग एक दिन व्यतीत करता है। क्योंकि चन्द्र ज्योतिष में मन (मानस) का शासक है, जन्म नक्षत्र व्यक्ति के भावनात्मक केन्द्र, सहज प्रकृति, और गहनतम मनोवैज्ञानिक प्रतिरूपों को प्रकट करता है।'

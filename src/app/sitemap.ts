@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
-const locales = ['en', 'hi', 'sa', 'ta'] as const;
+const locales = ['en', 'hi'] as const;
 
 // All routes in the app
 const routes = [
@@ -144,6 +144,9 @@ const routes = [
   // Puja & Sankalpa
   '/puja',
   '/sankalpa',
+  // Legal
+  '/privacy',
+  '/terms',
   // Dashboard (public pages)
   '/dashboard',
 ];

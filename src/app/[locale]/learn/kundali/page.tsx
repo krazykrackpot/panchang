@@ -11,7 +11,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ─── Trilingual Labels ─── */
 const L = {
-  title: { en: 'How a Kundali is Made', hi: 'कुण्डली कैसे बनती है', sa: 'कुण्डली कथं रच्यते' },
+  title: { en: 'How a Kundali is Made', hi: 'कुण्डली कैसे बनती है', sa: 'कुण्डली कथं रच्यते' , ta: 'குண்டலி எப்படி உருவாக்கப்படுகிறது' },
   subtitle: {
     en: 'A complete step-by-step walkthrough — from birth data to finished chart — using a worked example',
     hi: 'एक सम्पूर्ण चरणबद्ध मार्गदर्शिका — जन्म विवरण से पूर्ण कुण्डली तक — एक उदाहरण के साथ',
@@ -216,9 +216,9 @@ export default function LearnKundaliPage() {
       {/* Header */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       {/* Key Terms */}
@@ -230,13 +230,13 @@ export default function LearnKundaliPage() {
       </div>
 
       {/* ─── Overview ─── */}
-      <LessonSection title={L.overviewTitle[locale]}>
-        <p>{L.overviewText[locale]}</p>
+      <LessonSection title={((L.overviewTitle as Record<string, string>)[locale] ?? L.overviewTitle.en)}>
+        <p>{((L.overviewText as Record<string, string>)[locale] ?? L.overviewText.en)}</p>
       </LessonSection>
 
       {/* ─── Example Introduction ─── */}
-      <LessonSection title={L.exampleTitle[locale]} variant="highlight">
-        <p>{L.exampleText[locale]}</p>
+      <LessonSection title={((L.exampleTitle as Record<string, string>)[locale] ?? L.exampleTitle.en)} variant="highlight">
+        <p>{((L.exampleText as Record<string, string>)[locale] ?? L.exampleText.en)}</p>
         <div className="mt-4 p-5 rounded-xl bg-gold-primary/5 border border-gold-primary/20">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
@@ -259,8 +259,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 1: Birth Data ─── */}
-      <LessonSection number={1} title={L.s1Title[locale]}>
-        <p>{L.s1Text[locale]}</p>
+      <LessonSection number={1} title={((L.s1Title as Record<string, string>)[locale] ?? L.s1Title.en)}>
+        <p>{((L.s1Text as Record<string, string>)[locale] ?? L.s1Text.en)}</p>
         <div className="mt-4 space-y-3">
           {[
             { label: { en: 'Date of Birth', hi: 'जन्म तिथि', sa: 'जन्मतिथिः' }, text: L.s1Date, icon: '1' },
@@ -281,8 +281,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 2: Time Conversion ─── */}
-      <LessonSection number={2} title={L.s2Title[locale]}>
-        <p>{L.s2Text[locale]}</p>
+      <LessonSection number={2} title={((L.s2Title as Record<string, string>)[locale] ?? L.s2Title.en)}>
+        <p>{((L.s2Text as Record<string, string>)[locale] ?? L.s2Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{locale === 'en' || String(locale) === 'ta' ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -296,8 +296,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 3: Sidereal Time ─── */}
-      <LessonSection number={3} title={L.s3Title[locale]}>
-        <p>{L.s3Text[locale]}</p>
+      <LessonSection number={3} title={((L.s3Title as Record<string, string>)[locale] ?? L.s3Title.en)}>
+        <p>{((L.s3Text as Record<string, string>)[locale] ?? L.s3Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{locale === 'en' || String(locale) === 'ta' ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -314,7 +314,7 @@ export default function LearnKundaliPage() {
       {/* ─── STEP 4: Lagna ─── */}
       <LessonSection
         number={4}
-        title={L.s4Title[locale]}
+        title={((L.s4Title as Record<string, string>)[locale] ?? L.s4Title.en)}
         illustration={
           <HouseHighlightChart
             highlightHouses={[1]}
@@ -325,7 +325,7 @@ export default function LearnKundaliPage() {
           />
         }
       >
-        <p>{L.s4Text[locale]}</p>
+        <p>{((L.s4Text as Record<string, string>)[locale] ?? L.s4Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{locale === 'en' || String(locale) === 'ta' ? 'For our example:' : 'हमारे उदाहरण के लिए:'}</p>
           <div className="space-y-1">
@@ -344,8 +344,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 5: Ayanamsha ─── */}
-      <LessonSection number={5} title={L.s5Title[locale]}>
-        <p>{L.s5Text[locale]}</p>
+      <LessonSection number={5} title={((L.s5Title as Record<string, string>)[locale] ?? L.s5Title.en)}>
+        <p>{((L.s5Text as Record<string, string>)[locale] ?? L.s5Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <div className="space-y-1">
             <p className="text-gold-light/80 font-mono text-xs">Lahiri Ayanamsha ≈ 23.85° + 1.397° × T</p>
@@ -366,8 +366,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 6: Planet Positions ─── */}
-      <LessonSection number={6} title={L.s6Title[locale]}>
-        <p>{L.s6Text[locale]}</p>
+      <LessonSection number={6} title={((L.s6Title as Record<string, string>)[locale] ?? L.s6Title.en)}>
+        <p>{((L.s6Text as Record<string, string>)[locale] ?? L.s6Text.en)}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -398,8 +398,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 7: House Mapping ─── */}
-      <LessonSection number={7} title={L.s7Title[locale]}>
-        <p>{L.s7Text[locale]}</p>
+      <LessonSection number={7} title={((L.s7Title as Record<string, string>)[locale] ?? L.s7Title.en)}>
+        <p>{((L.s7Text as Record<string, string>)[locale] ?? L.s7Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">{locale === 'en' || String(locale) === 'ta' ? 'Formula:' : 'सूत्र:'}</p>
           <p className="text-gold-light/80 font-mono text-xs">House = (Planet_Rashi_Number - Lagna_Rashi_Number + 12) % 12 + 1</p>
@@ -437,11 +437,11 @@ export default function LearnKundaliPage() {
       {/* ─── STEP 8: The Chart ─── */}
       <LessonSection
         number={8}
-        title={L.s8Title[locale]}
+        title={((L.s8Title as Record<string, string>)[locale] ?? L.s8Title.en)}
         variant="highlight"
         illustration={<ExampleKundaliChart size={380} />}
       >
-        <p>{L.s8Text[locale]}</p>
+        <p>{((L.s8Text as Record<string, string>)[locale] ?? L.s8Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">{locale === 'en' || String(locale) === 'ta' ? 'Reading the chart:' : 'कुण्डली पढ़ना:'}</p>
           <div className="space-y-1 text-gold-light/70 font-mono text-xs">
@@ -455,8 +455,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 9: Dignity ─── */}
-      <LessonSection number={9} title={L.s9Title[locale]}>
-        <p>{L.s9Text[locale]}</p>
+      <LessonSection number={9} title={((L.s9Title as Record<string, string>)[locale] ?? L.s9Title.en)}>
+        <p>{((L.s9Text as Record<string, string>)[locale] ?? L.s9Text.en)}</p>
         <div className="mt-4 space-y-2">
           {DIGNITY_EXAMPLES.map((d) => (
             <div key={d.planet.en} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
@@ -480,8 +480,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 10: Aspects ─── */}
-      <LessonSection number={10} title={L.s10Title[locale]}>
-        <p>{L.s10Text[locale]}</p>
+      <LessonSection number={10} title={((L.s10Title as Record<string, string>)[locale] ?? L.s10Title.en)}>
+        <p>{((L.s10Text as Record<string, string>)[locale] ?? L.s10Text.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { planet: { en: 'All Planets', hi: 'सभी ग्रह', sa: 'सर्वे ग्रहाः' }, aspect: { en: '7th house from their position', hi: 'अपनी स्थिति से 7वें भाव पर', sa: 'स्वस्थानात् सप्तमभावे' }, color: '#d4a853' },
@@ -506,8 +506,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 11: Dashas ─── */}
-      <LessonSection number={11} title={L.s11Title[locale]}>
-        <p>{L.s11Text[locale]}</p>
+      <LessonSection number={11} title={((L.s11Title as Record<string, string>)[locale] ?? L.s11Title.en)}>
+        <p>{((L.s11Text as Record<string, string>)[locale] ?? L.s11Text.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3">{locale === 'en' || String(locale) === 'ta' ? 'In our example:' : 'हमारे उदाहरण में:'}</p>
           <div className="space-y-1">
@@ -528,8 +528,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 12: Yogas & Doshas ─── */}
-      <LessonSection number={12} title={L.s12Title[locale]}>
-        <p>{L.s12Text[locale]}</p>
+      <LessonSection number={12} title={((L.s12Title as Record<string, string>)[locale] ?? L.s12Title.en)}>
+        <p>{((L.s12Text as Record<string, string>)[locale] ?? L.s12Text.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="rounded-lg p-4 border border-emerald-400/20 bg-emerald-400/5">
             <h4 className="text-emerald-400 font-bold text-sm mb-2">{locale === 'en' || String(locale) === 'ta' ? 'Yogas (Auspicious Combos)' : 'योग (शुभ संयोग)'}</h4>
@@ -559,8 +559,8 @@ export default function LearnKundaliPage() {
       </LessonSection>
 
       {/* ─── STEP 13: Synthesis ─── */}
-      <LessonSection title={L.s13Title[locale]} variant="highlight">
-        <p>{L.s13Text[locale]}</p>
+      <LessonSection title={((L.s13Title as Record<string, string>)[locale] ?? L.s13Title.en)} variant="highlight">
+        <p>{((L.s13Text as Record<string, string>)[locale] ?? L.s13Text.en)}</p>
 
         {/* Summary pipeline */}
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -590,7 +590,7 @@ export default function LearnKundaliPage() {
       {/* ─── Deeper Links ─── */}
       <div className="mt-8 mb-6">
         <h3 className="text-xl font-bold text-gold-gradient mb-4" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.deeper[locale]}
+          {((L.deeper as Record<string, string>)[locale] ?? L.deeper.en)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {DEEPER_LINKS.map((link) => (
@@ -612,7 +612,7 @@ export default function LearnKundaliPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/25 transition-colors font-semibold"
         >
-          {L.tryIt[locale]} →
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
         </Link>
       </div>
     </div>

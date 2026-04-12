@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -81,8 +77,8 @@ const SCIENCE_COMPARE = [
   { label: { en: 'Universe lifespan (est.)', hi: 'ब्रह्मांड जीवनकाल (अनुमानित)' }, vedic: '~311 trillion yrs', modern: { en: 'Unknown — far beyond current 13.8 B', hi: 'अज्ञात — वर्तमान 13.8 अरब से बहुत आगे' }, match: 'open', color: '#34d399' },
 ];
 
-export default function CosmicTimePage() {
-  const locale = useLocale() as Locale;
+export default async function CosmicTimePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -93,17 +89,16 @@ export default function CosmicTimePage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: The Time Scale ────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -123,11 +118,10 @@ export default function CosmicTimePage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: The Math ──────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
@@ -166,11 +160,10 @@ export default function CosmicTimePage() {
           <p className="text-gold-light text-2xl font-mono font-bold mt-1">= 4,320,000 {isHi ? 'वर्ष' : 'years'}</p>
           <p className="text-text-secondary text-xs mt-2">{isHi ? '× 1,000 = 1 कल्प = 4,320,000,000 वर्ष' : '× 1,000 = 1 Kalpa = 4,320,000,000 years'}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: Compare With Science ─────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -214,11 +207,10 @@ export default function CosmicTimePage() {
               : 'Kalpa (4.32 billion years) vs Earth\'s age (4.54 billion years): only 5% difference. Achieved without radiometric dating, thousands of years ago.'}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: Sources ──────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -250,11 +242,10 @@ export default function CosmicTimePage() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: Carl Sagan ────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{l(L.s5Title)}</h3>
@@ -276,11 +267,10 @@ export default function CosmicTimePage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: App Connection ────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
@@ -309,11 +299,10 @@ export default function CosmicTimePage() {
         >
           {isHi ? 'वैदिक समय उपकरण देखें' : 'Explore Vedic Time Tool'} →
         </Link>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -327,7 +316,7 @@ export default function CosmicTimePage() {
             {l(L.vedicTime)} →
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

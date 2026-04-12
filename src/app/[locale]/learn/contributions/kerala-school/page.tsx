@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -255,10 +251,10 @@ const ATTRIBUTION_TABLE = [
    ═══════════════════════════════════════════════════════════════════ */
 
 const sectionCard = 'bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6';
-const fade = (delay: number) => ({ initial: { opacity: 0, y: 20 } as const, animate: { opacity: 1, y: 0 } as const, transition: { duration: 0.5, delay } });
 
-export default function KeralaSchoolPage() {
-  const locale = useLocale() as Locale;
+
+export default async function KeralaSchoolPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -267,16 +263,16 @@ export default function KeralaSchoolPage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <motion.div {...fade(0)}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: The Setting ────────────────────────────────── */}
-      <motion.div {...fade(0.08)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s1Body)}</p>
 
@@ -298,10 +294,10 @@ export default function KeralaSchoolPage() {
           <p className="text-text-secondary text-xs font-semibold mb-1">{isHi ? 'केरल ही क्यों?' : 'Why Kerala?'}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{l(L.s1Why)}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: Madhava's Pi Series ───────────────────────── */}
-      <motion.div {...fade(0.12)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s2Body)}</p>
 
@@ -348,10 +344,10 @@ export default function KeralaSchoolPage() {
         </div>
 
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s2Result)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: Sine and Cosine Series ────────────────────── */}
-      <motion.div {...fade(0.16)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s3Body)}</p>
 
@@ -399,10 +395,10 @@ export default function KeralaSchoolPage() {
           <p className="text-gold-light text-lg font-mono">cos(x) = 1 &minus; x&sup2;/2! + x&#8308;/4! &minus; x&#8310;/6! + ...</p>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s3Cosine)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: Arctangent Series ─────────────────────────── */}
-      <motion.div {...fade(0.2)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s4Body)}</p>
 
@@ -420,10 +416,10 @@ export default function KeralaSchoolPage() {
         </div>
 
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s4Insight)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: What IS Calculus ───────────────────────────── */}
-      <motion.div {...fade(0.24)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s5Body)}</p>
 
@@ -448,10 +444,10 @@ export default function KeralaSchoolPage() {
           <p className="text-gold-light text-xs font-semibold mb-1">{isHi ? 'निर्णायक तर्क' : 'The Critical Argument'}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{l(L.s5Key)}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: Nilakantha ────────────────────────────────── */}
-      <motion.div {...fade(0.28)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s6Body)}</p>
 
@@ -473,10 +469,10 @@ export default function KeralaSchoolPage() {
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Yuktibhasha ───────────────────────────────── */}
-      <motion.div {...fade(0.32)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s7Body)}</p>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s7Method)}</p>
@@ -494,10 +490,10 @@ export default function KeralaSchoolPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 8: Transmission Question ─────────────────────── */}
-      <motion.div {...fade(0.36)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s8Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s8Body)}</p>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s8Evidence)}</p>
@@ -527,10 +523,10 @@ export default function KeralaSchoolPage() {
           <p className="text-emerald-300 font-semibold text-xs mb-2">{isHi ? 'जो बहस से परे है' : 'What Is Beyond Debate'}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{l(L.s8Conclusion)}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 9: App Connection ────────────────────────────── */}
-      <motion.div {...fade(0.4)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s9Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-4">{l(L.s9Body)}</p>
 
@@ -546,10 +542,10 @@ export default function KeralaSchoolPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 10: The Mathematicians Timeline ──────────────── */}
-      <motion.div {...fade(0.44)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{l(L.s10Title)}</h3>
 
         <div className="space-y-4">
@@ -574,10 +570,10 @@ export default function KeralaSchoolPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 11: Attribution Comparison Table ─────────────── */}
-      <motion.div {...fade(0.48)} className={sectionCard}>
+      <div className={sectionCard}>
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s11Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-5">{l(L.s11Body)}</p>
 
@@ -609,11 +605,10 @@ export default function KeralaSchoolPage() {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -627,7 +622,7 @@ export default function KeralaSchoolPage() {
             {l(L.nextPage)} &rarr;
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

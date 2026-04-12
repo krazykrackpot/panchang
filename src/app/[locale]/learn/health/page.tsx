@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Health & Medical Astrology', hi: 'स्वास्थ्य एवं चिकित्सा ज्योतिष', sa: 'आरोग्यं चिकित्साज्योतिषं च' },
+  title: { en: 'Health & Medical Astrology', hi: 'स्वास्थ्य एवं चिकित्सा ज्योतिष', sa: 'आरोग्यं चिकित्साज्योतिषं च' , ta: 'சுகாதார & மருத்துவ ஜோதிடம்' },
   subtitle: {
     en: 'The ancient science of diagnosing health vulnerabilities, timing medical events, and understanding constitution through the birth chart.',
     hi: 'जन्म कुण्डली से स्वास्थ्य कमजोरियों, चिकित्सा घटनाओं के समय और शारीरिक प्रकृति को समझने का प्राचीन विज्ञान।',

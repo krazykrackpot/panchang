@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Lagna — The Ascendant', hi: 'लग्न — उदय राशि', sa: 'लग्नम् — उदयराशिः' },
+  title: { en: 'Lagna — The Ascendant', hi: 'लग्न — उदय राशि', sa: 'लग्नम् — उदयराशिः' , ta: 'லக்னம் — உதயராசி' },
   subtitle: {
     en: 'The most important point in Vedic astrology — your cosmic identity card',
     hi: 'वैदिक ज्योतिष का सबसे महत्वपूर्ण बिन्दु — आपका ब्रह्माण्डीय पहचान पत्र',

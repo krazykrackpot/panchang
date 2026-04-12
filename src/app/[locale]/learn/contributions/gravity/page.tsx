@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -186,8 +182,8 @@ const GRAVITY_CONNECTIONS = [
   },
 ];
 
-export default function GravityPage() {
-  const locale = useLocale() as Locale;
+export default async function GravityPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -196,17 +192,16 @@ export default function GravityPage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── The Three Thinkers ───────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="grid grid-cols-1 md:grid-cols-3 gap-4"
       >
         {THINKERS.map((t, i) => (
@@ -219,11 +214,10 @@ export default function GravityPage() {
             <p className="text-text-secondary text-xs italic leading-relaxed">{l(t.quote)}</p>
           </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* ── Section 1: Bhaskaracharya ────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -251,20 +245,18 @@ export default function GravityPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: Varahamihira ──────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s2Body)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: Brahmagupta ───────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -272,11 +264,10 @@ export default function GravityPage() {
           <p className="text-blue-200 font-semibold text-xs mb-2">{isHi ? 'ब्रह्मस्फुटसिद्धांत, 628 CE' : 'Brahmasphutasiddhanta, 628 CE'}</p>
           <p className="text-text-secondary text-sm italic leading-relaxed">{l(L.s3Quote)}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: India vs Newton ───────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -298,11 +289,10 @@ export default function GravityPage() {
           <p className="text-text-primary text-2xl font-mono font-bold">F = G · m₁m₂ / r²</p>
           <p className="text-text-secondary text-xs mt-2">{isHi ? 'G = गुरुत्वाकर्षण स्थिरांक | r = दोनों द्रव्यमानों के बीच दूरी' : 'G = gravitational constant | r = distance between masses'}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: App Connection ──────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
@@ -319,11 +309,10 @@ export default function GravityPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: Timeline ──────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-6" style={hf}>{l(L.s6Title)}</h3>
@@ -351,20 +340,18 @@ export default function GravityPage() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Ujjain ───────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.45 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s7Body)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -378,7 +365,7 @@ export default function GravityPage() {
             {l(L.firstPage)} ↩
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

@@ -123,6 +123,31 @@ export default function SignCalculatorPage() {
         </p>
       </motion.div>
 
+      {/* Static educational content for SEO */}
+      <div className="max-w-4xl mx-auto px-4 mb-8">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
+          {locale === 'en' || isTamil ? (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
+                Your Moon sign (Rashi) is the cornerstone of Vedic astrology — more important than your Western Sun sign. While your Sun sign changes roughly once a month, the Moon moves through all 12 signs every 27.3 days, spending about 2.25 days in each sign. Your Moon sign at the exact moment of birth determines your emotional nature, mental patterns, and the starting point for Vimshottari Dasha — the 120-year predictive timeline that is uniquely Vedic.
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed">
+                Unlike Western astrology which uses the tropical zodiac, Vedic astrology uses the sidereal zodiac corrected by Ayanamsha (currently ~24°). This means your Vedic Moon sign is often one sign behind your Western sign. Enter your birth details below to discover your true sidereal Moon sign, Nakshatra (birth star), and Ascendant (Lagna).
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4" style={bodyFont}>
+                आपकी चन्द्र राशि वैदिक ज्योतिष की आधारशिला है — पश्चिमी सूर्य राशि से अधिक महत्वपूर्ण। जबकि सूर्य राशि लगभग एक महीने में बदलती है, चन्द्रमा हर 27.3 दिनों में सभी 12 राशियों से गुजरता है। जन्म के सटीक समय पर आपकी चन्द्र राशि आपकी भावनात्मक प्रकृति और विंशोत्तरी दशा — 120 वर्षों की भविष्यवाणी समयरेखा — का आरंभ बिंदु निर्धारित करती है।
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed" style={bodyFont}>
+                पश्चिमी ज्योतिष उष्णकटिबंधीय राशि चक्र का उपयोग करता है जबकि वैदिक ज्योतिष अयनांश (~24°) द्वारा सही किया गया नक्षत्र राशि चक्र उपयोग करता है। अपनी सही नक्षत्र चन्द्र राशि, नक्षत्र और लग्न जानने के लिए नीचे अपना जन्म विवरण दर्ज करें।
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* Input */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-8 mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

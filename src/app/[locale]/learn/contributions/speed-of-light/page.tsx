@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -128,8 +124,8 @@ const TIMELINE = [
   { year: '1983 CE', person: 'BIPM (SI)', note: { en: 'Speed of light defined exactly: 299,792,458 m/s', hi: 'प्रकाश की गति ठीक परिभाषित: 299,792,458 मी/सेकंड' }, color: '#34d399' },
 ];
 
-export default function SpeedOfLightPage() {
-  const locale = useLocale() as Locale;
+export default async function SpeedOfLightPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -138,17 +134,16 @@ export default function SpeedOfLightPage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: The Verse ─────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -179,11 +174,10 @@ export default function SpeedOfLightPage() {
             <div className="text-text-secondary text-xs">{isHi ? 'निमेष' : 'nimesha'}</div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: The Calculation ───────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
@@ -209,11 +203,10 @@ export default function SpeedOfLightPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: Comparison ────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -236,11 +229,10 @@ export default function SpeedOfLightPage() {
             <div className="text-text-secondary text-xs">{isHi ? '253 मील/सेकंड का अंतर' : '253 miles/sec difference'}</div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: The Debate ────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -260,11 +252,10 @@ export default function SpeedOfLightPage() {
           <p className="text-blue-200 font-semibold text-xs mb-1">{isHi ? 'हमारा आकलन' : 'Our Assessment'}</p>
           <p className="text-text-secondary text-xs leading-relaxed">{l(L.s4Conclusion)}</p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: Who Was Sayana ────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
@@ -283,20 +274,18 @@ export default function SpeedOfLightPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: Other References ─────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
         <p className="text-text-secondary text-sm leading-relaxed">{l(L.s6Body)}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Timeline ──────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-5" style={hf}>{l(L.s7Title)}</h3>
@@ -319,11 +308,10 @@ export default function SpeedOfLightPage() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -337,7 +325,7 @@ export default function SpeedOfLightPage() {
             {l(L.nextPage)} →
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

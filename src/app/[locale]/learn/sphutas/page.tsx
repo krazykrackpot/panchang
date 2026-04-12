@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
-  title: { en: 'Sphutas — Sensitive Points', hi: 'स्फुट — संवेदनशील बिन्दु', sa: 'स्फुटाः — संवेदनशीलबिन्दवः' },
+  title: { en: 'Sphutas — Sensitive Points', hi: 'स्फुट — संवेदनशील बिन्दु', sa: 'स्फुटाः — संवेदनशीलबिन्दवः' , ta: 'ஸ்புடங்கள் — உணர்திறன் புள்ளிகள்' },
   subtitle: {
     en: 'Sphutas are mathematically computed sensitive points in the birth chart — NOT actual planets. Think of them as "cosmic GPS coordinates" for specific life dimensions. They reveal hidden patterns invisible to standard planetary analysis: your luckiest point, your most vulnerable degree, your vitality signature, and fertility indicators.',
     hi: 'स्फुट जन्म कुण्डली में गणितीय रूप से गणना किए गए संवेदनशील बिन्दु हैं — वास्तविक ग्रह नहीं। इन्हें विशिष्ट जीवन आयामों के "ब्रह्माण्डीय GPS निर्देशांक" समझें। ये मानक ग्रहीय विश्लेषण से अदृश्य छिपे प्रतिरूप प्रकट करते हैं: आपका सबसे भाग्यशाली बिन्दु, सबसे संवेदनशील अंश, जीवनशक्ति हस्ताक्षर और प्रजनन सूचक।',

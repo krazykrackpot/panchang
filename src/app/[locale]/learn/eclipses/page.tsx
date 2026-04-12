@@ -8,7 +8,7 @@ import EclipseAnimation from '@/components/learn/EclipseAnimation';
 
 /* ─── Inline bilingual labels ─── */
 const L = {
-  title:    { en: 'Grahan — Eclipses in Vedic Astrology',                      hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण' },
+  title:    { en: 'Grahan — Eclipses in Vedic Astrology',                      hi: 'ग्रहण — वैदिक ज्योतिष में ग्रहण' , ta: 'கிரகணம் — வேத ஜோதிடத்தில் கிரகணங்கள்' },
   subtitle: {
     en: 'Eclipses occur when the Sun, Moon, and Earth align at the lunar nodes — Rahu and Ketu. They are among the most astronomically precise and spiritually charged events in Jyotish, and the only phenomena where the mythological and scientific accounts tell exactly the same story.',
     hi: 'ग्रहण तब होता है जब सूर्य, चन्द्र और पृथ्वी चन्द्र के पातों — राहु और केतु — पर संरेखित होते हैं। ये ज्योतिष की सबसे खगोलीय रूप से सटीक और आध्यात्मिक रूप से आवेशित घटनाएँ हैं।',

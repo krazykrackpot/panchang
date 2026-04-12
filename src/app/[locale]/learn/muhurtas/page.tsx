@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 import { ChevronDown } from 'lucide-react';
 
 const L = {
-  abhijitTitle: { en: 'Abhijit Muhurta — The Universally Auspicious Midday', hi: 'अभिजित् मुहूर्त — सार्वभौमिक शुभ मध्याह्न', sa: 'अभिजिन्मुहूर्तः — सार्वभौमशुभमध्याह्नः' },
+  abhijitTitle: { en: 'Abhijit Muhurta — The Universally Auspicious Midday', hi: 'अभिजित् मुहूर्त — सार्वभौमिक शुभ मध्याह्न', sa: 'अभिजिन्मुहूर्तः — सार्वभौमशुभमध्याह्नः', ta: 'அபிஜித் முகூர்த்தம் — உலகளாவிய சுப மதியம்' },
   abhijitContent: {
     en: 'Abhijit Muhurta is the 8th daytime muhurta, spanning roughly 24 minutes before to 24 minutes after local noon (when the Sun crosses the meridian). It is considered universally auspicious for ALL activities — even those normally requiring specific nakshatras or tithis. Lord Vishnu presides over this period. The name "Abhijit" means "victorious" — any task begun in this window carries the energy of success. However, Abhijit Muhurta is NOT used on Wednesdays (Budhvar), when its auspiciousness is considered nullified.',
     hi: 'अभिजित् मुहूर्त 8वाँ दिवा मुहूर्त है, जो स्थानीय मध्याह्न से लगभग 24 मिनट पहले से 24 मिनट बाद तक फैला है। यह सभी कार्यों के लिए सार्वभौमिक रूप से शुभ माना जाता है। भगवान विष्णु इस काल के अधिपति हैं। "अभिजित्" का अर्थ है "विजयी"। हालाँकि, बुधवार को अभिजित् मुहूर्त का उपयोग नहीं किया जाता।',
@@ -88,9 +88,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Abhijit Muhurta */}
-      <LessonSection title={L.abhijitTitle[locale]}>
+      <LessonSection title={((L.abhijitTitle as Record<string, string>)[locale] ?? L.abhijitTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.abhijitContent[locale]}
+          {((L.abhijitContent as Record<string, string>)[locale] ?? L.abhijitContent.en)}
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/30">
           <p className="text-gold-light font-mono text-sm mb-1">
@@ -106,9 +106,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Brahma Muhurta */}
-      <LessonSection title={L.brahmaTitle[locale]}>
+      <LessonSection title={((L.brahmaTitle as Record<string, string>)[locale] ?? L.brahmaTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.brahmaContent[locale]}
+          {((L.brahmaContent as Record<string, string>)[locale] ?? L.brahmaContent.en)}
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-indigo-400/20">
           <p className="text-indigo-300 font-mono text-sm mb-1">
@@ -133,9 +133,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Rahu Kaal, Yamaganda, Gulika */}
-      <LessonSection title={L.rahuKaalTitle[locale]}>
+      <LessonSection title={((L.rahuKaalTitle as Record<string, string>)[locale] ?? L.rahuKaalTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.rahuKaalContent[locale]}
+          {((L.rahuKaalContent as Record<string, string>)[locale] ?? L.rahuKaalContent.en)}
         </p>
         <div className="mt-4 overflow-x-auto bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-red-500/15">
           <p className="text-red-300 text-xs uppercase tracking-widest font-bold mb-3">
@@ -162,9 +162,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Choghadiya */}
-      <LessonSection title={L.choghadiyaTitle[locale]}>
+      <LessonSection title={((L.choghadiyaTitle as Record<string, string>)[locale] ?? L.choghadiyaTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.choghadiyaContent[locale]}
+          {((L.choghadiyaContent as Record<string, string>)[locale] ?? L.choghadiyaContent.en)}
         </p>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
@@ -186,9 +186,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Hora */}
-      <LessonSection title={L.horaTitle[locale]}>
+      <LessonSection title={((L.horaTitle as Record<string, string>)[locale] ?? L.horaTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.horaContent[locale]}
+          {((L.horaContent as Record<string, string>)[locale] ?? L.horaContent.en)}
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
@@ -211,9 +211,9 @@ export default function LearnMuhurtasPage() {
       </LessonSection>
 
       {/* Selecting Best Time */}
-      <LessonSection title={L.selectingTitle[locale]}>
+      <LessonSection title={((L.selectingTitle as Record<string, string>)[locale] ?? L.selectingTitle.en)}>
         <p className="text-text-secondary text-sm leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-          {L.selectingContent[locale]}
+          {((L.selectingContent as Record<string, string>)[locale] ?? L.selectingContent.en)}
         </p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-emerald-400/20">
           <p className="text-emerald-300 font-mono text-sm mb-2">

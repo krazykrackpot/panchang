@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'How We Calculate — The Math Behind Jyotish', hi: 'हम कैसे गणना करते हैं — ज्योतिष के पीछे का गणित', sa: 'वयं कथं गणयामः — ज्योतिषस्य गणितम्' },
+  title: { en: 'How We Calculate — The Math Behind Jyotish', hi: 'हम कैसे गणना करते हैं — ज्योतिष के पीछे का गणित', sa: 'वयं कथं गणयामः — ज्योतिषस्य गणितम्' , ta: 'எப்படி கணக்கிடுகிறோம் — ஜோதிடக் கணிதம்' },
   subtitle: { en: 'A deep dive into the astronomical algorithms powering this Panchang', hi: 'इस पञ्चाङ्ग को संचालित करने वाले खगोलीय एल्गोरिथ्म पर गहन दृष्टि', sa: 'एतत् पञ्चाङ्गं संचालयतां खगोलीयगणितानां गहनदृष्टिः' },
   jdTitle: { en: 'Step 1: Julian Day Numbers', hi: 'चरण 1: जूलियन दिन संख्या', sa: 'सोपानम् 1: जूलियनदिनसंख्या' },
   jdContent: {
@@ -71,9 +71,9 @@ export default function LearnCalculationsPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
@@ -83,8 +83,8 @@ export default function LearnCalculationsPage() {
         <SanskritTermCard term="Spashta" devanagari="स्पष्ट" transliteration="Spaṣṭa" meaning="True / Corrected (position)" />
       </div>
 
-      <LessonSection number={1} title={L.jdTitle[locale]}>
-        <p>{L.jdContent[locale]}</p>
+      <LessonSection number={1} title={((L.jdTitle as Record<string, string>)[locale] ?? L.jdTitle.en)}>
+        <p>{((L.jdContent as Record<string, string>)[locale] ?? L.jdContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Julian Day Conversion (Meeus formula):' : 'जूलियन दिन रूपान्तरण:'}
@@ -98,8 +98,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={2} title={L.sunTitle[locale]}>
-        <p>{L.sunContent[locale]}</p>
+      <LessonSection number={2} title={((L.sunTitle as Record<string, string>)[locale] ?? L.sunTitle.en)}>
+        <p>{((L.sunContent as Record<string, string>)[locale] ?? L.sunContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Our Sun algorithm (Meeus Ch. 25):' : 'हमारा सूर्य एल्गोरिथ्म:'}
@@ -112,8 +112,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={3} title={L.moonTitle[locale]}>
-        <p>{L.moonContent[locale]}</p>
+      <LessonSection number={3} title={((L.moonTitle as Record<string, string>)[locale] ?? L.moonTitle.en)}>
+        <p>{((L.moonContent as Record<string, string>)[locale] ?? L.moonContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Moon longitude — 60-term algorithm:' : 'चन्द्र देशान्तर — 60-पद एल्गोरिथ्म:'}
@@ -138,8 +138,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={4} title={L.ayanamshaTitle[locale]}>
-        <p>{L.ayanamshaContent[locale]}</p>
+      <LessonSection number={4} title={((L.ayanamshaTitle as Record<string, string>)[locale] ?? L.ayanamshaTitle.en)}>
+        <p>{((L.ayanamshaContent as Record<string, string>)[locale] ?? L.ayanamshaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Lahiri Ayanamsha polynomial:' : 'लहिरी अयनांश बहुपद:'}
@@ -157,8 +157,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={5} title={L.tithiCalcTitle[locale]}>
-        <p>{L.tithiCalcContent[locale]}</p>
+      <LessonSection number={5} title={((L.tithiCalcTitle as Record<string, string>)[locale] ?? L.tithiCalcTitle.en)}>
+        <p>{((L.tithiCalcContent as Record<string, string>)[locale] ?? L.tithiCalcContent.en)}</p>
         <div className="mt-4 space-y-2">
           {[
             { name: 'Tithi', formula: 'floor((Moon_sid - Sun_sid) / 12°) + 1', range: '1-30', note: 'Moon gains ~12° on Sun per day' },
@@ -185,8 +185,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={6} title={L.transitionTitle[locale]}>
-        <p>{L.transitionContent[locale]}</p>
+      <LessonSection number={6} title={((L.transitionTitle as Record<string, string>)[locale] ?? L.transitionTitle.en)}>
+        <p>{((L.transitionContent as Record<string, string>)[locale] ?? L.transitionContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Binary Search Algorithm:' : 'बाइनरी खोज एल्गोरिथ्म:'}
@@ -205,8 +205,8 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={7} title={L.sunriseTitle[locale]}>
-        <p>{L.sunriseContent[locale]}</p>
+      <LessonSection number={7} title={((L.sunriseTitle as Record<string, string>)[locale] ?? L.sunriseTitle.en)}>
+        <p>{((L.sunriseContent as Record<string, string>)[locale] ?? L.sunriseContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Sunrise calculation:' : 'सूर्योदय गणना:'}
@@ -222,7 +222,7 @@ export default function LearnCalculationsPage() {
         </div>
       </LessonSection>
 
-      <LessonSection title={L.accuracyTitle[locale]} variant="highlight">
+      <LessonSection title={((L.accuracyTitle as Record<string, string>)[locale] ?? L.accuracyTitle.en)} variant="highlight">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -255,7 +255,7 @@ export default function LearnCalculationsPage() {
           href="/panchang"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]}
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
         </Link>
       </div>
     </div>

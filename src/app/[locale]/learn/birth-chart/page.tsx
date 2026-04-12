@@ -10,6 +10,7 @@ const L = {
   title: {
     en: 'Understanding Your Birth Chart (Kundali)',
     hi: 'अपनी जन्म कुण्डली को समझें',
+    ta: 'உங்கள் ஜாதகத்தை புரிந்துகொள்ளுங்கள் (குண்டலி)',
   },
   subtitle: {
     en: 'A complete beginner\'s guide to reading the map of your sky at birth',

@@ -8,9 +8,9 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual Labels ──────────────────────────────────────────────── */
-type Tri = { en: string; hi: string; sa: string };
+type Tri = { en: string; hi: string; sa: string; ta?: string };
 const L: Record<string, Tri> = {
-  title:    { en: 'Advanced House Concepts', hi: 'उन्नत भाव सिद्धान्त', sa: 'उन्नतभावसिद्धान्ताः' },
+  title:    { en: 'Advanced House Concepts', hi: 'उन्नत भाव सिद्धान्त', sa: 'उन्नतभावसिद्धान्ताः' , ta: 'மேம்பட்ட பாவ கருத்துக்கள்' },
   subtitle: { en: 'MKS, Badhaka, Maraka, and Functional Nature of Planets', hi: 'मारक कारक स्थान, बाधक, मारक, एवं ग्रहों की कार्यात्मक प्रकृति', sa: 'मारककारकस्थानं, बाधकः, मारकः, ग्रहाणां कार्यात्मकस्वभावश्च' },
   mksTitle: { en: 'Marana Karaka Sthana (MKS) --- The Death Place', hi: 'मारक कारक स्थान (MKS) --- मृत्यु स्थान', sa: 'मारककारकस्थानम् --- मृत्युस्थानम्' },
   mksDesc:  { en: 'Certain planets are severely weakened in specific houses --- their "death place." An MKS planet gives EXTREMELY weak results regardless of sign dignity. Even an exalted planet in MKS suffers --- the house overrides the sign.', hi: 'कुछ ग्रह विशिष्ट भावों में अत्यधिक दुर्बल हो जाते हैं --- उनका "मृत्यु स्थान"। MKS ग्रह राशि गरिमा की परवाह किए बिना अत्यन्त दुर्बल फल देता है। उच्च ग्रह भी MKS में पीड़ित रहता है।', sa: 'केचन ग्रहाः विशिष्टभावेषु अतीव दुर्बलाः भवन्ति --- तेषां मृत्युस्थानम्। MKS ग्रहः राशिगौरवं विना अतीव दुर्बलफलं ददाति।' },
@@ -132,8 +132,8 @@ export default function AdvancedHousesPage() {
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
       {/* Hero */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold text-gold-light font-heading">{L.title[locale]}</h1>
-        <p className="text-text-secondary max-w-2xl mx-auto">{L.subtitle[locale]}</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-gold-light font-heading">{((L.title as Record<string, string>)[locale] ?? L.title.en)}</h1>
+        <p className="text-text-secondary max-w-2xl mx-auto">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </motion.div>
 
       {/* Section Tabs */}
@@ -152,17 +152,17 @@ export default function AdvancedHousesPage() {
         {active === 'mks' && (
           <motion.div key="mks" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
             <Glass className="p-6">
-              <h2 className="text-xl font-bold text-red-400 mb-3">{L.mksTitle[locale]}</h2>
-              <p className="text-text-secondary text-sm leading-relaxed">{L.mksDesc[locale]}</p>
+              <h2 className="text-xl font-bold text-red-400 mb-3">{((L.mksTitle as Record<string, string>)[locale] ?? L.mksTitle.en)}</h2>
+              <p className="text-text-secondary text-sm leading-relaxed">{((L.mksDesc as Record<string, string>)[locale] ?? L.mksDesc.en)}</p>
             </Glass>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gold-primary/20">
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.planet[locale]}</th>
-                    <th className="text-center py-3 px-3 text-gold-light font-semibold">{L.mksHouse[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.why[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.remedy[locale]}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.planet as Record<string, string>)[locale] ?? L.planet.en)}</th>
+                    <th className="text-center py-3 px-3 text-gold-light font-semibold">{((L.mksHouse as Record<string, string>)[locale] ?? L.mksHouse.en)}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.why as Record<string, string>)[locale] ?? L.why.en)}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.remedy as Record<string, string>)[locale] ?? L.remedy.en)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,9 +184,9 @@ export default function AdvancedHousesPage() {
         {active === 'badhaka' && (
           <motion.div key="badhaka" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
             <Glass className="p-6">
-              <h2 className="text-xl font-bold text-purple-400 mb-3">{L.badhakaTitle[locale]}</h2>
-              <p className="text-text-secondary text-sm leading-relaxed mb-3">{L.badhakaDesc[locale]}</p>
-              <p className="text-amber-400/80 text-xs italic">{L.badhakaRemedy[locale]}</p>
+              <h2 className="text-xl font-bold text-purple-400 mb-3">{((L.badhakaTitle as Record<string, string>)[locale] ?? L.badhakaTitle.en)}</h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-3">{((L.badhakaDesc as Record<string, string>)[locale] ?? L.badhakaDesc.en)}</p>
+              <p className="text-amber-400/80 text-xs italic">{((L.badhakaRemedy as Record<string, string>)[locale] ?? L.badhakaRemedy.en)}</p>
             </Glass>
             {/* Rule by Lagna Type */}
             <div className="grid md:grid-cols-3 gap-4">
@@ -217,14 +217,14 @@ export default function AdvancedHousesPage() {
         {active === 'maraka' && (
           <motion.div key="maraka" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
             <Glass className="p-6">
-              <h2 className="text-xl font-bold text-orange-400 mb-3">{L.marakaTitle[locale]}</h2>
-              <p className="text-text-secondary text-sm leading-relaxed">{L.marakaDesc[locale]}</p>
+              <h2 className="text-xl font-bold text-orange-400 mb-3">{((L.marakaTitle as Record<string, string>)[locale] ?? L.marakaTitle.en)}</h2>
+              <p className="text-text-secondary text-sm leading-relaxed">{((L.marakaDesc as Record<string, string>)[locale] ?? L.marakaDesc.en)}</p>
             </Glass>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gold-primary/20">
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.lagna[locale]}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.lagna as Record<string, string>)[locale] ?? L.lagna.en)}</th>
                     <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' || String(locale) === 'ta' ? '2nd Lord (Maraka)' : locale === 'hi' ? '2रे भाव स्वामी' : 'द्वितीयभावस्वामी'}</th>
                     <th className="text-left py-3 px-3 text-gold-light font-semibold">{locale === 'en' || String(locale) === 'ta' ? '7th Lord (Maraka)' : locale === 'hi' ? '7वें भाव स्वामी' : 'सप्तमभावस्वामी'}</th>
                   </tr>
@@ -247,17 +247,17 @@ export default function AdvancedHousesPage() {
         {active === 'func' && (
           <motion.div key="func" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
             <Glass className="p-6">
-              <h2 className="text-xl font-bold text-emerald-400 mb-3">{L.funcTitle[locale]}</h2>
-              <p className="text-text-secondary text-sm leading-relaxed">{L.funcDesc[locale]}</p>
+              <h2 className="text-xl font-bold text-emerald-400 mb-3">{((L.funcTitle as Record<string, string>)[locale] ?? L.funcTitle.en)}</h2>
+              <p className="text-text-secondary text-sm leading-relaxed">{((L.funcDesc as Record<string, string>)[locale] ?? L.funcDesc.en)}</p>
             </Glass>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-gold-primary/20">
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.lagna[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.yogakaraka[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.benefic[locale]}</th>
-                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{L.malefic[locale]}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.lagna as Record<string, string>)[locale] ?? L.lagna.en)}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.yogakaraka as Record<string, string>)[locale] ?? L.yogakaraka.en)}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.benefic as Record<string, string>)[locale] ?? L.benefic.en)}</th>
+                    <th className="text-left py-3 px-3 text-gold-light font-semibold">{((L.malefic as Record<string, string>)[locale] ?? L.malefic.en)}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -278,7 +278,7 @@ export default function AdvancedHousesPage() {
 
       {/* Related Links */}
       <Glass className="p-6">
-        <h3 className="text-sm font-bold text-gold-light mb-4">{L.relLinks[locale]}</h3>
+        <h3 className="text-sm font-bold text-gold-light mb-4">{((L.relLinks as Record<string, string>)[locale] ?? L.relLinks.en)}</h3>
         <div className="flex flex-wrap gap-3">
           {[
             { href: '/kundali', label: { en: 'Generate Kundali', hi: 'कुण्डली बनाएँ', sa: 'कुण्डलीं रचयतु' } },

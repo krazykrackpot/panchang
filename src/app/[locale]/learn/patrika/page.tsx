@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Patrika — Your Complete Astrological Document', hi: 'पत्रिका — आपका सम्पूर्ण ज्योतिषीय दस्तावेज़' },
+  title: { en: 'Patrika — Your Complete Astrological Document', hi: 'पत्रिका — आपका सम्पूर्ण ज्योतिषीय दस्तावेज़' , ta: 'பத்திரிகை — முழுமையான ஜோதிட ஆவணம்' },
   subtitle: {
     en: 'Understanding the traditional format of a Janam Kundali document and how to use it',
     hi: 'जन्म कुण्डली दस्तावेज़ के पारम्परिक प्रारूप और उसके उपयोग को समझें',
@@ -99,7 +99,7 @@ export default function PatrikaPage() {
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
       <header className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {isHi ? L.title.hi : L.title.en}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto">{isHi ? L.subtitle.hi : L.subtitle.en}</p>
       </header>

@@ -12,7 +12,7 @@ import type { Locale } from '@/types/panchang';
    LABELS
    ═══════════════════════════════════════════════════════════════ */
 const L = {
-  title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल विरासत' },
+  title: { en: 'Vedanga Jyotisha & Indian Astronomy Heritage', hi: 'वेदाङ्ग ज्योतिष एवं भारतीय खगोल विरासत' , ta: 'வேதாங்க ஜோதிடம் & இந்திய வானியல் பாரம்பரியம்' },
   subtitle: {
     en: 'The world\'s oldest astronomical tradition — where ritual precision demanded scientific discovery.',
     hi: 'विश्व की सबसे प्राचीन खगोलीय परम्परा — जहाँ अनुष्ठान की सूक्ष्मता ने वैज्ञानिक खोज को जन्म दिया।',

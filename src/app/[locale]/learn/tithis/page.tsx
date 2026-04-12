@@ -8,7 +8,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ─── Inline bilingual labels ─── */
 const L = {
-  title:        { en: 'Tithi — The Lunar Day',                    hi: 'तिथि — चान्द्र दिवस' },
+  title:        { en: 'Tithi — The Lunar Day',                    hi: 'तिथि — चान्द्र दिवस' , ta: 'திதி — சந்திர நாள்' },
   subtitle:     { en: 'The first and most important limb of the Panchang — the angular relationship between Sun and Moon that shapes every ritual, festival, and muhurta in Hindu tradition.',
                   hi: 'पञ्चाङ्ग का प्रथम और सर्वाधिक महत्वपूर्ण अंग — सूर्य और चन्द्र के बीच का कोणीय सम्बन्ध जो हिन्दू परम्परा में प्रत्येक कर्मकाण्ड, उत्सव और मुहूर्त को निर्धारित करता है।' },
   whatIs:        { en: 'What Is a Tithi?',                          hi: 'तिथि क्या है?' },

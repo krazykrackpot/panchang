@@ -12,7 +12,7 @@ import type { Locale } from '@/types/panchang';
    LABELS — bilingual (en / hi) via ternaries on locale
    ═══════════════════════════════════════════════════════════════ */
 const L = {
-  title: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान' },
+  title: { en: 'Hindu Cosmological Time Scales', hi: 'हिन्दू ब्रह्माण्डीय कालमान' , ta: 'இந்து அண்டவியல் கால அளவுகள்' },
   subtitle: {
     en: 'The only ancient civilization that measured time in BILLIONS of years — matching modern cosmology 2,000 years before the telescope.',
     hi: 'एकमात्र प्राचीन सभ्यता जिसने समय को अरबों वर्षों में मापा — दूरबीन से 2,000 वर्ष पहले आधुनिक ब्रह्माण्ड विज्ञान से मेल खाती।',

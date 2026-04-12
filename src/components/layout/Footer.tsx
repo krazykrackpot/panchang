@@ -38,6 +38,12 @@ export default function Footer() {
             <Link href="/pricing" className="hover:text-gold-light transition-colors">
               {locale === 'en' || String(locale) === 'ta' ? 'Pricing' : 'मूल्य'}
             </Link>
+            <Link href="/privacy" className="hover:text-gold-light transition-colors">
+              {locale === 'en' || String(locale) === 'ta' ? 'Privacy' : 'गोपनीयता'}
+            </Link>
+            <Link href="/terms" className="hover:text-gold-light transition-colors">
+              {locale === 'en' || String(locale) === 'ta' ? 'Terms' : 'शर्तें'}
+            </Link>
           </div>
 
           {/* Right — Sanskrit tagline */}

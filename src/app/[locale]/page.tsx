@@ -11,22 +11,11 @@ import { getSupabase } from '@/lib/supabase/client';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import dynamic from 'next/dynamic';
 
-const EclipseAlert = dynamic(() => import('@/components/dashboard/EclipseAlert'), {
-  ssr: false,
-});
+const EclipseAlert = dynamic(() => import('@/components/dashboard/EclipseAlert'));
 
-const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'), {
-  ssr: false,
-});
+const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'));
 
-const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center py-16">
-      <div className="animate-spin rounded-full h-8 w-8 border-2 border-gold-primary border-t-transparent" />
-    </div>
-  ),
-});
+const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'));
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },

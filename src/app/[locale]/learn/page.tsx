@@ -14,6 +14,8 @@ export default function LearnPage() {
   const isDevanagari = locale !== 'en' && String(locale) !== 'ta';
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
+  /** Safe trilingual access — falls back to en for ta and unknown locales */
+  const tri = (obj: Record<string, string>) => obj[locale] || obj.en;
 
   const L = {
     en: {
@@ -45,6 +47,16 @@ export default function LearnPage() {
       labsSub: 'स्वदत्तांशं दत्तवान् यन्त्रस्य गणनां पश्यतु',
       refTitle: 'सन्दर्भपुस्तकालयः',
       refSub: 'विशिष्टविषयेषु त्वरितगहनाध्ययनम्',
+    },
+    ta: {
+      heroTitle: 'வேத ஜோதிடம் கற்றுக்கொள்ளுங்கள்',
+      heroSub: 'இணையத்தில் மிகவும் விரிவான இலவச ஜோதிட பாடத்திட்டம் — அண்ட அடிப்படையிலிருந்து மேம்பட்ட கணிப்பு வரை 3 கட்டமைக்கப்பட்ட பாதைகள்',
+      freeForever: 'எப்போதும் இலவசம். கணக்கு தேவையில்லை.',
+      chooseTrack: 'உங்கள் பாதையைத் தேர்ந்தெடுங்கள்',
+      labsTitle: 'ஊடாடும் ஆய்வகங்கள்',
+      labsSub: 'உங்கள் தரவை உள்ளிடுங்கள், இயந்திரம் படிப்படியாக கணக்கிடுவதைப் பாருங்கள்',
+      refTitle: 'குறிப்பு நூலகம்',
+      refSub: 'விரைவு அணுகல் ஆழ்ந்த ஆய்வுகள்',
     },
   };
   const l = L[locale] || L.en;
@@ -221,16 +233,16 @@ export default function LearnPage() {
                   <div className="relative z-10 flex-1">
                     <Icon className={`w-10 h-10 ${track.iconColor} mb-4`} />
                     <h3 className="text-xl sm:text-2xl font-bold text-gold-light mb-2 group-hover:text-gold-primary transition-colors" style={hf}>
-                      {track.title[locale]}
+                      {tri(track.title)}
                     </h3>
                     <p className="text-text-secondary text-sm mb-4 leading-relaxed" style={bf}>
-                      {track.subtitle[locale]}
+                      {tri(track.subtitle)}
                     </p>
                     <div className={`inline-block text-xs px-3 py-1 rounded-full ${track.iconColor} bg-white/5 border border-white/10 font-medium mb-3`}>
-                      {track.stats[locale]}
+                      {tri(track.stats)}
                     </div>
                     <p className="text-text-tertiary text-xs leading-relaxed" style={bf}>
-                      {track.topics[locale]}
+                      {tri(track.topics)}
                     </p>
                   </div>
 
@@ -260,7 +272,7 @@ export default function LearnPage() {
           {LABS.map(lab => (
             <Link key={lab.href} href={lab.href}
               className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-4 border border-gold-primary/10 hover:border-gold-primary/30 transition-all group text-center">
-              <h3 className="text-gold-light font-bold text-sm mb-1 group-hover:text-gold-primary" style={bf}>{lab.title[locale]}</h3>
+              <h3 className="text-gold-light font-bold text-sm mb-1 group-hover:text-gold-primary" style={bf}>{tri(lab.title)}</h3>
             </Link>
           ))}
         </div>
@@ -362,13 +374,13 @@ export default function LearnPage() {
         <div className="space-y-6">
           {REF_GROUPS.map(group => (
             <div key={group.label.en}>
-              <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={bf}>{group.label[locale]}</h3>
+              <h3 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3" style={bf}>{tri(group.label)}</h3>
               <div className="flex flex-wrap gap-2">
                 {group.refs.map(ref => (
                   <Link key={ref.href} href={ref.href}
                     className="px-3 py-1.5 rounded-lg text-sm text-text-secondary hover:text-gold-light border border-gold-primary/10 hover:border-gold-primary/25 hover:bg-gold-primary/5 transition-colors"
                     style={bf}>
-                    {ref.name[locale]}
+                    {tri(ref.name)}
                   </Link>
                 ))}
               </div>

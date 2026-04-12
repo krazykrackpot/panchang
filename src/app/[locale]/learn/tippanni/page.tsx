@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Tippanni — Your Chart Interpretation Guide', hi: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका' },
+  title: { en: 'Tippanni — Your Chart Interpretation Guide', hi: 'टिप्पणी — कुण्डली व्याख्या मार्गदर्शिका' , ta: 'டிப்பணி — ஜாதக விளக்க வழிகாட்டி' },
   subtitle: {
     en: 'How your birth chart is transformed from raw data into meaningful life insights',
     hi: 'कैसे आपकी जन्म कुण्डली कच्चे डेटा से सार्थक जीवन अन्तर्दृष्टि में बदलती है',
@@ -244,7 +244,7 @@ export default function TippanniPage() {
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
       <header className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {isHi ? L.title.hi : L.title.en}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto">{isHi ? L.subtitle.hi : L.subtitle.en}</p>
       </header>

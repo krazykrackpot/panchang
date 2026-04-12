@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Inline labels ────────────────────────────────────────────────── */
 const L = {
-  overviewTitle: { en: 'The Navagraha — Nine Cosmic Forces', hi: 'नवग्रह — नौ ब्रह्माण्डीय शक्तियाँ', sa: 'नवग्रहाः — नव ब्रह्माण्डशक्तयः' },
+  overviewTitle: { en: 'The Navagraha — Nine Cosmic Forces', hi: 'नवग्रह — नौ ब्रह्माण्डीय शक्तियाँ', sa: 'नवग्रहाः — नव ब्रह्माण्डशक्तयः', ta: 'நவகிரகங்கள் — ஒன்பது அண்ட சக்திகள்' },
   overviewContent: {
     en: 'In Jyotish Shastra, the word "Graha" does not mean "planet" — it means "that which grasps or seizes." The nine Grahas are cosmic forces that grip human consciousness and shape destiny. They include two luminaries (Sun and Moon), five visible planets (Mars, Mercury, Jupiter, Venus, Saturn), and two shadow points (Rahu and Ketu — the lunar nodes). Unlike Western astrology, Vedic astrology excludes the outer planets Uranus, Neptune, and Pluto, considering the Navagraha sufficient for complete life analysis.',
     hi: 'ज्योतिष शास्त्र में "ग्रह" शब्द का अर्थ "ग्रहण करना" है — अर्थात् जो मानव चेतना को पकड़ लेता है। नौ ग्रह ब्रह्माण्डीय शक्तियाँ हैं जो मानव जीवन को प्रभावित करती हैं। इनमें दो ज्योतिर्मण्डल (सूर्य और चन्द्र), पाँच दृश्य ग्रह (मंगल, बुध, बृहस्पति, शुक्र, शनि) और दो छाया बिन्दु (राहु और केतु — चन्द्र के पात) सम्मिलित हैं।',
@@ -274,7 +274,7 @@ export default function LearnGrahasPage() {
       {/* ── Header ────────────────────────────────────────────────── */}
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.overviewTitle[locale]}
+          {((L.overviewTitle as Record<string, string>)[locale] ?? L.overviewTitle.en)}
         </h2>
         <p className="text-text-secondary">{t('grahasSubtitle')}</p>
       </div>
@@ -295,8 +295,8 @@ export default function LearnGrahasPage() {
 
       {/* ── Section 1: Overview ───────────────────────────────────── */}
       <LessonSection number={1} title={locale === 'en' || String(locale) === 'ta' ? 'What are the Navagraha?' : locale === 'hi' ? 'नवग्रह क्या हैं?' : 'नवग्रहाः के?'}>
-        <p>{L.overviewContent[locale]}</p>
-        <p className="mt-3">{L.overviewContent2[locale]}</p>
+        <p>{((L.overviewContent as Record<string, string>)[locale] ?? L.overviewContent.en)}</p>
+        <p className="mt-3">{((L.overviewContent2 as Record<string, string>)[locale] ?? L.overviewContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-1">
             {locale === 'en' || String(locale) === 'ta' ? 'Graha ≠ Planet. Graha = "That which seizes" (√grah = to grasp)' : 'ग्रह ≠ ग्रह। ग्रह = "जो पकड़ता है" (√ग्रह् = ग्रहण करना)'}
@@ -308,8 +308,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 2: Benefics vs Malefics ───────────────────────── */}
-      <LessonSection number={2} title={L.beneficMaleficTitle[locale]}>
-        <p>{L.beneficMaleficContent[locale]}</p>
+      <LessonSection number={2} title={((L.beneficMaleficTitle as Record<string, string>)[locale] ?? L.beneficMaleficTitle.en)}>
+        <p>{((L.beneficMaleficContent as Record<string, string>)[locale] ?? L.beneficMaleficContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg border border-emerald-400/20 bg-emerald-400/5">
             <h4 className="text-emerald-400 font-bold mb-2">{locale === 'en' || String(locale) === 'ta' ? 'Natural Benefics (Shubha)' : 'नैसर्गिक शुभ ग्रह'}</h4>
@@ -333,13 +333,13 @@ export default function LearnGrahasPage() {
           </div>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light/80 text-sm italic">{L.beneficNote[locale]}</p>
+          <p className="text-gold-light/80 text-sm italic">{((L.beneficNote as Record<string, string>)[locale] ?? L.beneficNote.en)}</p>
         </div>
       </LessonSection>
 
       {/* ── Section 3: Planetary Friendships ──────────────────────── */}
-      <LessonSection number={3} title={L.friendshipTitle[locale]}>
-        <p>{L.friendshipContent[locale]}</p>
+      <LessonSection number={3} title={((L.friendshipTitle as Record<string, string>)[locale] ?? L.friendshipTitle.en)}>
+        <p>{((L.friendshipContent as Record<string, string>)[locale] ?? L.friendshipContent.en)}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -375,8 +375,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 4: Planetary Dignities ────────────────────────── */}
-      <LessonSection number={4} title={L.dignityTitle[locale]}>
-        <p>{L.dignityContent[locale]}</p>
+      <LessonSection number={4} title={((L.dignityTitle as Record<string, string>)[locale] ?? L.dignityTitle.en)}>
+        <p>{((L.dignityContent as Record<string, string>)[locale] ?? L.dignityContent.en)}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -412,8 +412,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 5: Combustion ─────────────────────────────────── */}
-      <LessonSection number={5} title={L.combustionTitle[locale]}>
-        <p>{L.combustionContent[locale]}</p>
+      <LessonSection number={5} title={((L.combustionTitle as Record<string, string>)[locale] ?? L.combustionTitle.en)}>
+        <p>{((L.combustionContent as Record<string, string>)[locale] ?? L.combustionContent.en)}</p>
         <div className="mt-4 space-y-2">
           {COMBUSTION_TABLE.map((row) => (
             <div key={row.planet} className="flex items-center gap-3 p-3 rounded-lg bg-bg-primary/50 border border-gold-primary/5">
@@ -433,8 +433,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 6: Retrograde ─────────────────────────────────── */}
-      <LessonSection number={6} title={L.retrogradeTitle[locale]}>
-        <p>{L.retrogradeContent[locale]}</p>
+      <LessonSection number={6} title={((L.retrogradeTitle as Record<string, string>)[locale] ?? L.retrogradeTitle.en)}>
+        <p>{((L.retrogradeContent as Record<string, string>)[locale] ?? L.retrogradeContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div className="p-3 rounded-lg border border-gold-primary/10 bg-bg-primary/50 text-center">
             <div className="text-gold-primary font-bold text-lg mb-1">{locale === 'en' || String(locale) === 'ta' ? 'Can Be Retrograde' : 'वक्री हो सकते हैं'}</div>
@@ -450,13 +450,13 @@ export default function LearnGrahasPage() {
           </div>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
-          <p className="text-gold-light/80 text-sm italic">{L.retrogradeNote[locale]}</p>
+          <p className="text-gold-light/80 text-sm italic">{((L.retrogradeNote as Record<string, string>)[locale] ?? L.retrogradeNote.en)}</p>
         </div>
       </LessonSection>
 
       {/* ── Section 7: Planetary Aspects ──────────────────────────── */}
-      <LessonSection number={7} title={L.aspectsTitle[locale]}>
-        <p>{L.aspectsContent[locale]}</p>
+      <LessonSection number={7} title={((L.aspectsTitle as Record<string, string>)[locale] ?? L.aspectsTitle.en)}>
+        <p>{((L.aspectsContent as Record<string, string>)[locale] ?? L.aspectsContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm">
             {locale === 'en' || String(locale) === 'ta' ? 'Universal Rule: All planets aspect the 7th house from themselves (full 100% Drishti)' : 'सार्वभौमिक नियम: सभी ग्रह अपने 7वें भाव पर पूर्ण दृष्टि (100%) डालते हैं'}
@@ -482,8 +482,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 7b: Aspect Strength ─────────────────────────── */}
-      <LessonSection title={L.aspectStrengthTitle[locale]} variant="formula">
-        <p>{L.aspectStrengthContent[locale]}</p>
+      <LessonSection title={((L.aspectStrengthTitle as Record<string, string>)[locale] ?? L.aspectStrengthTitle.en)} variant="formula">
+        <p>{((L.aspectStrengthContent as Record<string, string>)[locale] ?? L.aspectStrengthContent.en)}</p>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -520,8 +520,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 7c: Upagrahas ────────────────────────────────── */}
-      <LessonSection title={L.upagrahaTitle[locale]}>
-        <p>{L.upagrahaContent[locale]}</p>
+      <LessonSection title={((L.upagrahaTitle as Record<string, string>)[locale] ?? L.upagrahaTitle.en)}>
+        <p>{((L.upagrahaContent as Record<string, string>)[locale] ?? L.upagrahaContent.en)}</p>
         <div className="mt-4 space-y-3">
           {UPAGRAHAS.map((upa, i) => (
             <motion.div
@@ -543,8 +543,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 8: Karakatva ──────────────────────────────────── */}
-      <LessonSection number={8} title={L.karakatvaTitle[locale]}>
-        <p>{L.karakatvaContent[locale]}</p>
+      <LessonSection number={8} title={((L.karakatvaTitle as Record<string, string>)[locale] ?? L.karakatvaTitle.en)}>
+        <p>{((L.karakatvaContent as Record<string, string>)[locale] ?? L.karakatvaContent.en)}</p>
         <div className="mt-4 space-y-3">
           {GRAHAS.map((g) => {
             const details = PLANET_DETAILS[g.id];
@@ -607,8 +607,8 @@ export default function LearnGrahasPage() {
       </LessonSection>
 
       {/* ── Section 10: Dasha Brief ───────────────────────────────── */}
-      <LessonSection number={10} title={L.dashaTitle[locale]}>
-        <p>{L.dashaContent[locale]}</p>
+      <LessonSection number={10} title={((L.dashaTitle as Record<string, string>)[locale] ?? L.dashaTitle.en)}>
+        <p>{((L.dashaContent as Record<string, string>)[locale] ?? L.dashaContent.en)}</p>
         <div className="mt-4 flex flex-wrap gap-2 justify-center">
           {[
             { name: 'Ketu', years: 7, color: '#95a5a6' },
@@ -641,11 +641,11 @@ export default function LearnGrahasPage() {
 
       {/* ── Significance (preserved) ──────────────────────────────── */}
       <LessonSection title={t('significanceSection')} variant="highlight">
-        <p>{L.significanceContent[locale]}</p>
+        <p>{((L.significanceContent as Record<string, string>)[locale] ?? L.significanceContent.en)}</p>
       </LessonSection>
 
       {/* ── Section 11: Cross References ──────────────────────────── */}
-      <LessonSection number={11} title={L.crossRefTitle[locale]}>
+      <LessonSection number={11} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link

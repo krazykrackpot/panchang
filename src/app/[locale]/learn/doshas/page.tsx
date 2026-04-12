@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Doshas & Remedies', hi: 'दोष एवं उपाय', sa: 'दोषाः उपायाः च' },
+  title: { en: 'Doshas & Remedies', hi: 'दोष एवं उपाय', sa: 'दोषाः उपायाः च' , ta: 'தோஷங்கள் & பரிகாரங்கள்' },
   subtitle: {
     en: 'Doshas are astrological afflictions formed by specific inauspicious planetary configurations. Each dosha has remedies — gemstones, mantras, charity, and rituals. Important: most doshas have "cancellation" conditions that reduce or eliminate their effects.',
     hi: 'दोष ज्योतिषीय कष्ट हैं जो ग्रहों की विशिष्ट अशुभ स्थितियों से बनते हैं। प्रत्येक दोष के उपचार हैं — रत्न, मंत्र, दान और अनुष्ठान। महत्वपूर्ण: अधिकांश दोषों में "रद्दीकरण" शर्तें हैं जो उनके प्रभाव को कम या समाप्त कर देती हैं।',
@@ -121,23 +121,23 @@ export default function DoshasPage() {
       {/* Header */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
-          {L.subtitle[locale]}
+          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
         </p>
       </div>
 
       {/* What is a Dosha */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {L.whatTitle[locale]}
+          {((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
-          {L.whatContent[locale]}
+          {((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {L.whatContent2[locale]}
+          {((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}
         </p>
       </div>
 
@@ -146,14 +146,14 @@ export default function DoshasPage() {
         <div className="flex items-center gap-3 mb-3">
           <Shield className="w-6 h-6 text-violet-400" />
           <h3 className="text-violet-300 text-lg font-bold" style={headingFont}>
-            {L.principleTitle[locale]}
+            {((L.principleTitle as Record<string, string>)[locale] ?? L.principleTitle.en)}
           </h3>
         </div>
         <p className="text-text-secondary text-sm leading-relaxed mb-3" style={bodyFont}>
-          {L.principleContent[locale]}
+          {((L.principleContent as Record<string, string>)[locale] ?? L.principleContent.en)}
         </p>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {L.principleContent2[locale]}
+          {((L.principleContent2 as Record<string, string>)[locale] ?? L.principleContent2.en)}
         </p>
       </div>
 
@@ -220,10 +220,10 @@ export default function DoshasPage() {
       {/* Guru Chandal Dosha detail section */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {L.guruChandalTitle[locale]}
+          {((L.guruChandalTitle as Record<string, string>)[locale] ?? L.guruChandalTitle.en)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {L.guruChandalContent[locale]}
+          {((L.guruChandalContent as Record<string, string>)[locale] ?? L.guruChandalContent.en)}
         </p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/15">
@@ -248,10 +248,10 @@ export default function DoshasPage() {
       {/* Kemadruma detail section */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <h3 className="text-gold-gradient text-xl font-bold mb-3" style={headingFont}>
-          {L.kemdrumaTitle[locale]}
+          {((L.kemdrumaTitle as Record<string, string>)[locale] ?? L.kemdrumaTitle.en)}
         </h3>
         <p className="text-text-secondary text-sm leading-relaxed" style={bodyFont}>
-          {L.kemdrumaContent[locale]}
+          {((L.kemdrumaContent as Record<string, string>)[locale] ?? L.kemdrumaContent.en)}
         </p>
         <div className="mt-4 p-3 rounded-xl bg-blue-400/5 border border-blue-400/15">
           <div className="text-blue-300 text-xs uppercase tracking-widest font-bold mb-1">
@@ -268,7 +268,7 @@ export default function DoshasPage() {
       {/* Remedy System Overview */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-4" style={headingFont}>
-          {L.remedySystemTitle[locale]}
+          {((L.remedySystemTitle as Record<string, string>)[locale] ?? L.remedySystemTitle.en)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {REMEDY_TYPES.map((rt, i) => {
@@ -289,7 +289,7 @@ export default function DoshasPage() {
 
       {/* Planet remedy quick reference */}
       <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-5">
-        <h4 className="text-gold-light font-bold mb-3" style={headingFont}>{L.planetRemedyTitle[locale]}</h4>
+        <h4 className="text-gold-light font-bold mb-3" style={headingFont}>{((L.planetRemedyTitle as Record<string, string>)[locale] ?? L.planetRemedyTitle.en)}</h4>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -348,7 +348,7 @@ export default function DoshasPage() {
       {/* Related Modules */}
       <div>
         <h3 className="text-gold-gradient text-lg font-bold mb-3" style={headingFont}>
-          {L.modulesTitle[locale]}
+          {((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[

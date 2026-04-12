@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { ChevronRight, Calendar } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
-type Tri = { en: string; hi: string; sa: string };
+type Tri = { en: string; hi: string; sa: string; ta?: string };
 interface Section {
   id: string;
   icon: string;
@@ -184,8 +184,8 @@ export default function PanchangTrackPage() {
             <div className="px-6 py-4 border-b border-gold-primary/10 flex items-center gap-3">
               <span className="text-2xl">{section.icon}</span>
               <div>
-                <h2 className="text-lg font-bold text-white" style={hf}>{section.title[locale]}</h2>
-                <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{section.subtitle[locale]}</span>
+                <h2 className="text-lg font-bold text-white" style={hf}>{(section.title[locale] ?? section.title.en)}</h2>
+                <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{(section.subtitle[locale] ?? section.subtitle.en)}</span>
               </div>
               {(() => {
                 const modCount = section.modules.filter(m => !m.id.startsWith('ref:')).length;
@@ -215,7 +215,7 @@ export default function PanchangTrackPage() {
                           </span>
                         )}
                         <span className={`text-sm group-hover:text-amber-200 transition-colors ${isRef ? 'text-violet-200/80' : 'text-text-primary'}`} style={bf}>
-                          {mod.title[locale]}
+                          {(mod.title[locale] ?? mod.title.en)}
                         </span>
                       </div>
                       <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />

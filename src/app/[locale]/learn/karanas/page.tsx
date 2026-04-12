@@ -11,7 +11,7 @@ import { ChevronDown } from 'lucide-react';
 
 /* ─── Inline bilingual labels (en/hi) ─── */
 const L = {
-  title: { en: 'Karanas — The 11 Half-Tithis', hi: 'करण — 11 अर्ध-तिथि' },
+  title: { en: 'Karanas — The 11 Half-Tithis', hi: 'करण — 11 अर्ध-तिथि' , ta: 'கரணங்கள் — 11 அரை திதிகள்' },
   subtitle: {
     en: 'Each Tithi has two halves, giving 60 Karanas per lunar month from just 11 types',
     hi: 'प्रत्येक तिथि के दो भाग, केवल 11 प्रकारों से प्रति चान्द्रमास 60 करण बनते हैं',

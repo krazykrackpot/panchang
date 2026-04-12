@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Wealth Prediction Guide', hi: 'धन भविष्यवाणी मार्गदर्शिका', sa: 'धनभविष्यवाणी-मार्गदर्शिका' },
+  title: { en: 'Wealth Prediction Guide', hi: 'धन भविष्यवाणी मार्गदर्शिका', sa: 'धनभविष्यवाणी-मार्गदर्शिका' , ta: 'செல்வ கணிப்பு வழிகாட்டி' },
   subtitle: {
     en: 'Analyze wealth potential through the 2-5-9-11 house axis, Dhana Yogas, timing techniques, and Ashtakavarga scoring.',
     hi: '2-5-9-11 भाव अक्ष, धन योग, समय निर्धारण तकनीक और अष्टकवर्ग स्कोरिंग से धन क्षमता का विश्लेषण।',

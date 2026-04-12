@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Dashas — Planetary Periods', hi: 'दशा — ग्रह अवधियाँ', sa: 'दशाः — ग्रहकालखण्डाः' },
+  title: { en: 'Dashas — Planetary Periods', hi: 'दशा — ग्रह अवधियाँ', sa: 'दशाः — ग्रहकालखण्डाः' , ta: 'தசைகள் — கிரக காலங்கள்' },
   subtitle: { en: 'The timing system that unfolds destiny through a 120-year planetary cycle', hi: '120 वर्षों की ग्रह चक्र से भाग्य को प्रकट करने वाली समय प्रणाली', sa: '120 वर्षाणां ग्रहचक्रेण भाग्यं प्रकटयतीति कालप्रणालिः' },
   whatTitle: { en: 'What is a Dasha?', hi: 'दशा क्या है?', sa: 'दशा का?' },
   whatContent: {
@@ -209,9 +209,9 @@ export default function LearnDashasPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{L.subtitle[locale]}</p>
+        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
@@ -223,15 +223,15 @@ export default function LearnDashasPage() {
       </div>
 
       {/* Section 1: What is a Dasha */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p style={bodyFont}>{L.whatContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent2[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
       </LessonSection>
 
       {/* Section 2: Vimshottari System */}
-      <LessonSection number={2} title={L.vimshottariTitle[locale]}>
-        <p style={bodyFont}>{L.vimshottariContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.vimshottariContent2[locale]}</p>
+      <LessonSection number={2} title={((L.vimshottariTitle as Record<string, string>)[locale] ?? L.vimshottariTitle.en)}>
+        <p style={bodyFont}>{((L.vimshottariContent as Record<string, string>)[locale] ?? L.vimshottariContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.vimshottariContent2 as Record<string, string>)[locale] ?? L.vimshottariContent2.en)}</p>
 
         {/* Dasha periods visual bar chart */}
         <div className="mt-6 space-y-2">
@@ -270,8 +270,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 3: Full reference table */}
-      <LessonSection number={3} title={L.birthNakshatraTitle[locale]}>
-        <p style={bodyFont}>{L.birthNakshatraContent[locale]}</p>
+      <LessonSection number={3} title={((L.birthNakshatraTitle as Record<string, string>)[locale] ?? L.birthNakshatraTitle.en)}>
+        <p style={bodyFont}>{((L.birthNakshatraContent as Record<string, string>)[locale] ?? L.birthNakshatraContent.en)}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
@@ -305,8 +305,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 4: Calculating Dasha Balance */}
-      <LessonSection number={4} title={L.calcTitle[locale]}>
-        <p style={bodyFont}>{L.calcContent[locale]}</p>
+      <LessonSection number={4} title={((L.calcTitle as Record<string, string>)[locale] ?? L.calcTitle.en)}>
+        <p style={bodyFont}>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Step-by-Step Calculation:' : 'चरणबद्ध गणना:'}
@@ -327,8 +327,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 5: Worked example */}
-      <LessonSection number={5} title={L.workedExampleTitle[locale]}>
-        <p style={bodyFont}>{L.workedExampleContent[locale]}</p>
+      <LessonSection number={5} title={((L.workedExampleTitle as Record<string, string>)[locale] ?? L.workedExampleTitle.en)}>
+        <p style={bodyFont}>{((L.workedExampleContent as Record<string, string>)[locale] ?? L.workedExampleContent.en)}</p>
         <div className="mt-4 space-y-3">
           <div className="p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
             <p className="text-gold-light font-mono text-sm mb-3">
@@ -356,9 +356,9 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 6: Sub-periods hierarchy */}
-      <LessonSection number={6} title={L.subTitle[locale]}>
-        <p style={bodyFont}>{L.subContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.subContent2[locale]}</p>
+      <LessonSection number={6} title={((L.subTitle as Record<string, string>)[locale] ?? L.subTitle.en)}>
+        <p style={bodyFont}>{((L.subContent as Record<string, string>)[locale] ?? L.subContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.subContent2 as Record<string, string>)[locale] ?? L.subContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Antardasha Duration Formula:' : 'अन्तर्दशा अवधि सूत्र:'}
@@ -399,8 +399,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 7: Other Dasha Systems */}
-      <LessonSection number={7} title={L.otherTitle[locale]}>
-        <p style={bodyFont}>{L.otherContent[locale]}</p>
+      <LessonSection number={7} title={((L.otherTitle as Record<string, string>)[locale] ?? L.otherTitle.en)}>
+        <p style={bodyFont}>{((L.otherContent as Record<string, string>)[locale] ?? L.otherContent.en)}</p>
         <div className="mt-4 space-y-3">
           {OTHER_DASHA_SYSTEMS.map((sys, i) => (
             <motion.div
@@ -425,8 +425,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 8: Interpretation */}
-      <LessonSection number={8} title={L.interpretTitle[locale]} variant="highlight">
-        <p style={bodyFont}>{L.interpretContent[locale]}</p>
+      <LessonSection number={8} title={((L.interpretTitle as Record<string, string>)[locale] ?? L.interpretTitle.en)} variant="highlight">
+        <p style={bodyFont}>{((L.interpretContent as Record<string, string>)[locale] ?? L.interpretContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { label: { en: 'Benefic Dasha Lord in Kendra/Trikona', hi: 'शुभ दशा स्वामी केन्द्र/त्रिकोण में', sa: 'शुभदशास्वामी केन्द्रे/त्रिकोणे' }, result: { en: 'Prosperity, success, good health', hi: 'समृद्धि, सफलता, अच्छा स्वास्थ्य', sa: 'समृद्धिः, सफलता, सुस्वास्थ्यम्' }, color: 'emerald' },
@@ -453,7 +453,7 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 9: When to use which system */}
-      <LessonSection number={9} title={L.preferenceTitle[locale]}>
+      <LessonSection number={9} title={((L.preferenceTitle as Record<string, string>)[locale] ?? L.preferenceTitle.en)}>
         <div className="space-y-3">
           {[
             { system: { en: 'Vimshottari', hi: 'विंशोत्तरी' }, condition: { en: 'Default system for all charts. Use unless specific conditions warrant another system. Works best when Moon is strong and well-placed.', hi: 'सभी कुण्डलियों के लिए डिफ़ॉल्ट प्रणाली। जब तक विशिष्ट शर्तें न हों तब तक इसका प्रयोग करें।' }, color: '#f0d48a' },
@@ -474,9 +474,9 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 10: Finding Your Current Dasha */}
-      <LessonSection number={10} title={L.findYourTitle[locale]}>
-        <p style={bodyFont}>{L.findYourContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.findYourContent2[locale]}</p>
+      <LessonSection number={10} title={((L.findYourTitle as Record<string, string>)[locale] ?? L.findYourTitle.en)}>
+        <p style={bodyFont}>{((L.findYourContent as Record<string, string>)[locale] ?? L.findYourContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.findYourContent2 as Record<string, string>)[locale] ?? L.findYourContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'How to find it:' : 'कैसे खोजें:'}
@@ -491,8 +491,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 11: Antardasha Calculation */}
-      <LessonSection number={11} title={L.antardashaCalcTitle[locale]}>
-        <p style={bodyFont}>{L.antardashaCalcContent[locale]}</p>
+      <LessonSection number={11} title={((L.antardashaCalcTitle as Record<string, string>)[locale] ?? L.antardashaCalcTitle.en)}>
+        <p style={bodyFont}>{((L.antardashaCalcContent as Record<string, string>)[locale] ?? L.antardashaCalcContent.en)}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <p className="text-gold-light text-sm font-semibold mb-3" style={headingFont}>
@@ -525,8 +525,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 12: Maha Dasha Themes */}
-      <LessonSection number={12} title={L.mahadashaThemesTitle[locale]}>
-        <p style={bodyFont}>{L.mahadashaThemesContent[locale]}</p>
+      <LessonSection number={12} title={((L.mahadashaThemesTitle as Record<string, string>)[locale] ?? L.mahadashaThemesTitle.en)}>
+        <p style={bodyFont}>{((L.mahadashaThemesContent as Record<string, string>)[locale] ?? L.mahadashaThemesContent.en)}</p>
         <div className="mt-4 space-y-3">
           {MAHADASHA_THEMES.map((md, i) => (
             <motion.div
@@ -553,9 +553,9 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 13: Dasha Sandhi */}
-      <LessonSection number={13} title={L.sandhiTitle[locale]} variant="highlight">
-        <p style={bodyFont}>{L.sandhiContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.sandhiContent2[locale]}</p>
+      <LessonSection number={13} title={((L.sandhiTitle as Record<string, string>)[locale] ?? L.sandhiTitle.en)} variant="highlight">
+        <p style={bodyFont}>{((L.sandhiContent as Record<string, string>)[locale] ?? L.sandhiContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.sandhiContent2 as Record<string, string>)[locale] ?? L.sandhiContent2.en)}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -578,8 +578,8 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 14: Event Timing */}
-      <LessonSection number={14} title={L.eventTimingTitle[locale]}>
-        <p style={bodyFont}>{L.eventTimingContent[locale]}</p>
+      <LessonSection number={14} title={((L.eventTimingTitle as Record<string, string>)[locale] ?? L.eventTimingTitle.en)}>
+        <p style={bodyFont}>{((L.eventTimingContent as Record<string, string>)[locale] ?? L.eventTimingContent.en)}</p>
         <div className="mt-4 space-y-3">
           {EVENT_TIMING.map((et, i) => (
             <motion.div
@@ -602,7 +602,7 @@ export default function LearnDashasPage() {
       </LessonSection>
 
       {/* Section 15: Related modules */}
-      <LessonSection number={15} title={L.modulesTitle[locale]}>
+      <LessonSection number={15} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/11-1', label: { en: 'Lesson 11-1: Vimshottari Dasha System', hi: 'पाठ 11-1: विंशोत्तरी दशा प्रणाली' } },
@@ -627,7 +627,7 @@ export default function LearnDashasPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]} →
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
         </Link>
       </div>
     </div>

@@ -345,6 +345,31 @@ export default function VedicTimePage() {
         {locationName && <p className="text-text-secondary/70 text-sm mt-2">{locationName}</p>}
       </motion.div>
 
+      {/* Static educational content for SEO */}
+      <div className="max-w-4xl mx-auto px-4 mb-8">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
+          {locale === 'en' || isTamil ? (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
+                The Vedic system divides the day into 30 Muhurtas (each ~48 minutes), 8 Praharas (each ~3 hours), and further into Ghatikas (24 minutes), Palas (24 seconds), and Vipalas (0.4 seconds). Unlike the modern 24-hour clock that starts at midnight, the Vedic day begins at sunrise — Suryodaya — making every timing calculation location-specific.
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed">
+                Each Muhurta has a distinct quality: Brahma Muhurta (the &ldquo;hour of Brahma&rdquo;, ~96 minutes before sunrise) is considered the most auspicious for meditation and study. Abhijit Muhurta (midday) is universally favorable. Rahu Kaal, Yamaganda, and Gulika Kaal mark inauspicious windows based on the weekday planetary ruler. Enter your location to see today&apos;s complete Vedic time breakdown.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4" style={bodyFont}>
+                वैदिक प्रणाली दिन को 30 मुहूर्तों (~48 मिनट प्रत्येक), 8 प्रहरों (~3 घंटे), घटिकाओं (24 मिनट), पलों (24 सेकंड) और विपलों (0.4 सेकंड) में विभाजित करती है। आधुनिक 24-घंटे की घड़ी से भिन्न, वैदिक दिन सूर्योदय से प्रारम्भ होता है।
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed" style={bodyFont}>
+                प्रत्येक मुहूर्त का अपना गुण है: ब्रह्म मुहूर्त (सूर्योदय से ~96 मिनट पहले) ध्यान और अध्ययन के लिए सर्वाधिक शुभ माना जाता है। अभिजित मुहूर्त (मध्याह्न) सर्वत्र अनुकूल है। राहु काल, यमगण्ड और गुलिक काल वार के ग्रह स्वामी के अनुसार अशुभ समय दर्शाते हैं।
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* Why Vedic Time? */}
       <InfoBlock
         id="vedic-time-intro"

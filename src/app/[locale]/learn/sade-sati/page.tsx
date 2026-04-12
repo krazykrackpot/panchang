@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Inline trilingual labels ─────────────────────────────────────── */
 const L = {
-  title: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का साढ़े सात वर्षीय गोचर', sa: 'साढेसाती — शनेः सार्धसप्तवर्षीयगोचरः' },
+  title: { en: 'Sade Sati — Saturn\'s 7.5-Year Transit', hi: 'साढ़े साती — शनि का साढ़े सात वर्षीय गोचर', sa: 'साढेसाती — शनेः सार्धसप्तवर्षीयगोचरः' , ta: 'சாடே சாதி — சனியின் 7.5 ஆண்டு பயணம்' },
   subtitle: {
     en: 'Saturn\'s transit over your Moon sign is the most discussed period in Vedic astrology. Understanding its three phases — and why it affects each person differently — transforms fear into preparation.',
     hi: 'आपकी चन्द्र राशि पर शनि का गोचर वैदिक ज्योतिष में सबसे अधिक चर्चित अवधि है। इसके तीन चरणों को समझना — और यह प्रत्येक व्यक्ति को अलग-अलग क्यों प्रभावित करता है — भय को तैयारी में बदल देता है।',
@@ -189,17 +189,17 @@ export default function SadeSatiLearnPage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          {L.subtitle[locale]}
+          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
         </p>
       </motion.div>
 
       {/* ── Section 1: What is Sade Sati? ─────────────────────────── */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p>{L.whatContent[locale]}</p>
-        <p>{L.whatContent2[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
 
         {/* Visual timeline */}
         <div className="mt-6 p-4 rounded-xl bg-bg-primary/40 border border-gold-primary/10">
@@ -233,8 +233,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 2: The Three Phases ────────────────────────────── */}
-      <LessonSection number={2} title={L.phasesTitle[locale]}>
-        <p>{L.phasesContent[locale]}</p>
+      <LessonSection number={2} title={((L.phasesTitle as Record<string, string>)[locale] ?? L.phasesTitle.en)}>
+        <p>{((L.phasesContent as Record<string, string>)[locale] ?? L.phasesContent.en)}</p>
 
         <div className="mt-6 space-y-4">
           {PHASES.map((phase, i) => (
@@ -271,8 +271,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 3: Severity ────────────────────────────────────── */}
-      <LessonSection number={3} title={L.severityTitle[locale]}>
-        <p>{L.severityContent[locale]}</p>
+      <LessonSection number={3} title={((L.severityTitle as Record<string, string>)[locale] ?? L.severityTitle.en)}>
+        <p>{((L.severityContent as Record<string, string>)[locale] ?? L.severityContent.en)}</p>
 
         <div className="mt-6 overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -304,8 +304,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 4: Life Cycle Patterns ─────────────────────────── */}
-      <LessonSection number={4} title={L.lifeCycleTitle[locale]}>
-        <p>{L.lifeCycleContent[locale]}</p>
+      <LessonSection number={4} title={((L.lifeCycleTitle as Record<string, string>)[locale] ?? L.lifeCycleTitle.en)}>
+        <p>{((L.lifeCycleContent as Record<string, string>)[locale] ?? L.lifeCycleContent.en)}</p>
 
         <div className="mt-6 space-y-4">
           {LIFE_CYCLES.map((lc, i) => (
@@ -328,8 +328,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 5: Remedies ────────────────────────────────────── */}
-      <LessonSection number={5} title={L.remediesTitle[locale]}>
-        <p>{L.remediesContent[locale]}</p>
+      <LessonSection number={5} title={((L.remediesTitle as Record<string, string>)[locale] ?? L.remediesTitle.en)}>
+        <p>{((L.remediesContent as Record<string, string>)[locale] ?? L.remediesContent.en)}</p>
 
         <div className="mt-6 space-y-4">
           {REMEDIES.map((rem, i) => (
@@ -358,8 +358,8 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 6: Myths Debunked ─────────────────────────────── */}
-      <LessonSection number={6} title={L.mythsTitle[locale]}>
-        <p>{L.mythsContent[locale]}</p>
+      <LessonSection number={6} title={((L.mythsTitle as Record<string, string>)[locale] ?? L.mythsTitle.en)}>
+        <p>{((L.mythsContent as Record<string, string>)[locale] ?? L.mythsContent.en)}</p>
 
         <div className="mt-6 space-y-4">
           {MYTHS.map((m, i) => (
@@ -390,7 +390,7 @@ export default function SadeSatiLearnPage() {
       </LessonSection>
 
       {/* ── Section 7: Cross References ───────────────────────────── */}
-      <LessonSection number={7} title={L.crossRefTitle[locale]}>
+      <LessonSection number={7} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link

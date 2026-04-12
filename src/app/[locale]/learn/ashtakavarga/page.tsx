@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Ashtakavarga — The 8-Fold Transit Scoring System', hi: 'अष्टकवर्ग — आठ-गुणा गोचर अंक प्रणाली', sa: 'अष्टकवर्गः — अष्टगुणगोचराङ्कपद्धतिः' },
+  title: { en: 'Ashtakavarga — The 8-Fold Transit Scoring System', hi: 'अष्टकवर्ग — आठ-गुणा गोचर अंक प्रणाली', sa: 'अष्टकवर्गः — अष्टगुणगोचराङ्कपद्धतिः' , ta: 'அஷ்டகவர்க்கம் — 8 மடங்கு கோசார மதிப்பீடு' },
   subtitle: { en: 'A numerical system that predicts the strength of planetary transits through every sign', hi: 'एक संख्यात्मक प्रणाली जो प्रत्येक राशि में ग्रह गोचर की शक्ति का पूर्वानुमान करती है', sa: 'संख्यात्मकपद्धतिः या प्रत्येकराशौ ग्रहगोचरस्य बलं पूर्वानुमानयति' },
 
   whatTitle: { en: 'What is Ashtakavarga?', hi: 'अष्टकवर्ग क्या है?', sa: 'अष्टकवर्गः कः?' },
@@ -114,9 +114,9 @@ export default function LearnAshtakavargaPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{L.subtitle[locale]}</p>
+        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
@@ -128,10 +128,10 @@ export default function LearnAshtakavargaPage() {
       </div>
 
       {/* Section 1: What is Ashtakavarga */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p style={bodyFont}>{L.whatContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent2[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent3[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent3 as Record<string, string>)[locale] ?? L.whatContent3.en)}</p>
 
         {/* 8 sources visual */}
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -163,8 +163,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 2: How to Read the Table */}
-      <LessonSection number={2} title={L.readTitle[locale]}>
-        <p style={bodyFont}>{L.readContent[locale]}</p>
+      <LessonSection number={2} title={((L.readTitle as Record<string, string>)[locale] ?? L.readTitle.en)}>
+        <p style={bodyFont}>{((L.readContent as Record<string, string>)[locale] ?? L.readContent.en)}</p>
 
         {/* Example BAV table */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
@@ -221,8 +221,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 2b: Threshold */}
-      <LessonSection number={3} title={L.thresholdTitle[locale]}>
-        <p style={bodyFont}>{L.thresholdContent[locale]}</p>
+      <LessonSection number={3} title={((L.thresholdTitle as Record<string, string>)[locale] ?? L.thresholdTitle.en)}>
+        <p style={bodyFont}>{((L.thresholdContent as Record<string, string>)[locale] ?? L.thresholdContent.en)}</p>
 
         {/* Visual bar */}
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
@@ -250,8 +250,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 4: SAV */}
-      <LessonSection number={4} title={L.savTitle[locale]}>
-        <p style={bodyFont}>{L.savContent[locale]}</p>
+      <LessonSection number={4} title={((L.savTitle as Record<string, string>)[locale] ?? L.savTitle.en)}>
+        <p style={bodyFont}>{((L.savContent as Record<string, string>)[locale] ?? L.savContent.en)}</p>
 
         {/* SAV example */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
@@ -285,12 +285,12 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 5: Practical worked example */}
-      <LessonSection number={5} title={L.practicalTitle[locale]} variant="highlight">
-        <p style={bodyFont}>{L.practicalContent[locale]}</p>
+      <LessonSection number={5} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)} variant="highlight">
+        <p style={bodyFont}>{((L.practicalContent as Record<string, string>)[locale] ?? L.practicalContent.en)}</p>
 
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-3" style={headingFont}>
-            {L.workedTitle[locale]}
+            {((L.workedTitle as Record<string, string>)[locale] ?? L.workedTitle.en)}
           </p>
           <div className="space-y-2 text-gold-light/80 font-mono text-xs">
             <p>{isHi ? 'स्थिति: शनि वर्तमान में मकर में गोचर कर रहा है' : 'Situation: Saturn is currently transiting Capricorn'}</p>
@@ -307,9 +307,9 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 6: Trikona Shodhana */}
-      <LessonSection number={6} title={L.trikonaTitle[locale]}>
-        <p style={bodyFont}>{L.trikonaContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.trikonaContent2[locale]}</p>
+      <LessonSection number={6} title={((L.trikonaTitle as Record<string, string>)[locale] ?? L.trikonaTitle.en)}>
+        <p style={bodyFont}>{((L.trikonaContent as Record<string, string>)[locale] ?? L.trikonaContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.trikonaContent2 as Record<string, string>)[locale] ?? L.trikonaContent2.en)}</p>
 
         {/* Ekadhipati pairs */}
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -344,8 +344,8 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 7: Kakshya */}
-      <LessonSection number={7} title={L.kakshyaTitle[locale]}>
-        <p style={bodyFont}>{L.kakshyaContent[locale]}</p>
+      <LessonSection number={7} title={((L.kakshyaTitle as Record<string, string>)[locale] ?? L.kakshyaTitle.en)}>
+        <p style={bodyFont}>{((L.kakshyaContent as Record<string, string>)[locale] ?? L.kakshyaContent.en)}</p>
 
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
@@ -381,7 +381,7 @@ export default function LearnAshtakavargaPage() {
       </LessonSection>
 
       {/* Section 8: Related modules */}
-      <LessonSection number={8} title={L.modulesTitle[locale]}>
+      <LessonSection number={8} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/18-3', label: { en: 'Lesson 18-3: Ashtakavarga Applications', hi: 'पाठ 18-3: अष्टकवर्ग अनुप्रयोग', sa: 'पाठः 18-3: अष्टकवर्गानुप्रयोगाः' } },
@@ -408,7 +408,7 @@ export default function LearnAshtakavargaPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]} →
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
         </Link>
       </div>
     </div>

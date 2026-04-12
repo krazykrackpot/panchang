@@ -97,6 +97,31 @@ export default function BabyNamesPage() {
         </p>
       </motion.div>
 
+      {/* Static educational content for SEO */}
+      <div className="max-w-4xl mx-auto px-4 mb-8">
+        <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-6 sm:p-8">
+          {locale === 'en' || isTamil ? (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4">
+                In the Vedic tradition, a child&apos;s name begins with the syllable (Akshara) determined by their birth Nakshatra and Pada. Each of the 27 Nakshatras has 4 Padas, yielding 108 sacred syllables — one for each bead of the Japa Mala. This system ensures the name resonates with the child&apos;s cosmic blueprint, aligning their identity with the vibrational frequency of their birth star.
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed">
+                The tradition dates to the Namakarana Samskara, one of the 16 sacred rites (Shodasha Samskaras) prescribed in the Grihya Sutras. Enter the child&apos;s birth details to discover the recommended starting syllables and curated name suggestions.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-text-secondary/80 text-base leading-relaxed mb-4" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                वैदिक परम्परा में, शिशु का नाम उनके जन्म नक्षत्र और पद द्वारा निर्धारित अक्षर से प्रारम्भ होता है। 27 नक्षत्रों में से प्रत्येक के 4 पद होते हैं, जिनसे 108 पवित्र अक्षर निकलते हैं — जप माला के प्रत्येक मनके के लिए एक। यह प्रणाली सुनिश्चित करती है कि नाम शिशु की ब्रह्मांडीय रचना के साथ प्रतिध्वनित हो।
+              </p>
+              <p className="text-text-secondary/80 text-base leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
+                यह परम्परा नामकरण संस्कार से आती है, जो गृह्य सूत्रों में वर्णित 16 पवित्र संस्कारों (षोडश संस्कार) में से एक है। अनुशंसित आरम्भिक अक्षर और नाम सुझाव जानने के लिए जन्म विवरण दर्ज करें।
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* Birth details — compact row */}
       <div className="mb-8 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-5">
         <label className="text-gold-dark text-xs uppercase tracking-wider font-bold block mb-3 text-center">

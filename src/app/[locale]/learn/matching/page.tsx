@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Kundali Matching — Ashta Kuta', hi: 'कुण्डली मिलान — अष्ट कूट', sa: 'कुण्डलीमेलनम् — अष्टकूटम्' },
+  title: { en: 'Kundali Matching — Ashta Kuta', hi: 'कुण्डली मिलान — अष्ट कूट', sa: 'कुण्डलीमेलनम् — अष्टकूटम्' , ta: 'குண்டலி பொருத்தம் — அஷ்ட கூடம்' },
   subtitle: { en: 'The 8-fold compatibility system used for marriage matching', hi: 'विवाह मिलान के लिए प्रयुक्त 8 कूट अनुकूलता प्रणाली', sa: 'विवाहमेलनार्थं प्रयुक्ता अष्टकूटानुकूलतापद्धतिः' },
   whatTitle: { en: 'What is Kundali Matching?', hi: 'कुण्डली मिलान क्या है?', sa: 'कुण्डलीमेलनं किम्?' },
   whatContent: {
@@ -173,9 +173,9 @@ export default function LearnMatchingPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       {/* Sanskrit Key Terms */}
@@ -187,9 +187,9 @@ export default function LearnMatchingPage() {
       </div>
 
       {/* Section 1: Overview */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p>{L.whatContent[locale]}</p>
-        <p className="mt-3 text-text-secondary text-sm">{L.whatContentDeep[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p className="mt-3 text-text-secondary text-sm">{((L.whatContentDeep as Record<string, string>)[locale] ?? L.whatContentDeep.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
             {locale === 'en' || String(locale) === 'ta' ? 'Total Ashta Kuta Points: 1+2+3+4+5+6+7+8 = 36 Gunas' : 'कुल अष्ट कूट अंक: 1+2+3+4+5+6+7+8 = 36 गुण'}
@@ -207,7 +207,7 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 2: The 8 Kutas in Detail */}
-      <LessonSection number={2} title={L.kutaTitle[locale]}>
+      <LessonSection number={2} title={((L.kutaTitle as Record<string, string>)[locale] ?? L.kutaTitle.en)}>
         <div className="space-y-5">
           {KUTAS.map((k, i) => (
             <motion.div
@@ -242,8 +242,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 3: Calculation */}
-      <LessonSection number={3} title={L.calcTitle[locale]}>
-        <p>{L.calcContent[locale]}</p>
+      <LessonSection number={3} title={((L.calcTitle as Record<string, string>)[locale] ?? L.calcTitle.en)}>
+        <p>{((L.calcContent as Record<string, string>)[locale] ?? L.calcContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Algorithm Steps:' : 'एल्गोरिथ्म चरण:'}
@@ -259,7 +259,7 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 4: Score Interpretation */}
-      <LessonSection number={4} title={L.scoreTitle[locale]} variant="highlight">
+      <LessonSection number={4} title={((L.scoreTitle as Record<string, string>)[locale] ?? L.scoreTitle.en)} variant="highlight">
         <div className="space-y-3 mb-4">
           {SCORE_RANGES.map((s) => (
             <div key={s.range} className={`rounded-lg p-3 border ${s.bg}`}>
@@ -272,13 +272,13 @@ export default function LearnMatchingPage() {
           ))}
         </div>
         <div className="p-4 bg-bg-primary/50 rounded-lg border border-amber-400/20">
-          <p className="text-amber-300/90 text-sm">{L.scoreNote[locale]}</p>
+          <p className="text-amber-300/90 text-sm">{((L.scoreNote as Record<string, string>)[locale] ?? L.scoreNote.en)}</p>
         </div>
       </LessonSection>
 
       {/* Section 5: Nadi Dosha */}
-      <LessonSection number={5} title={L.nadiDoshaTitle[locale]}>
-        <p className="text-text-secondary">{L.nadiDoshaContent[locale]}</p>
+      <LessonSection number={5} title={((L.nadiDoshaTitle as Record<string, string>)[locale] ?? L.nadiDoshaTitle.en)}>
+        <p className="text-text-secondary">{((L.nadiDoshaContent as Record<string, string>)[locale] ?? L.nadiDoshaContent.en)}</p>
         <div className="mt-4 space-y-2">
           {NADI_CANCELLATIONS.map((rule, i) => (
             <motion.div
@@ -306,8 +306,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 6: Bhakoot Dosha */}
-      <LessonSection number={6} title={L.bhakootDoshaTitle[locale]}>
-        <p className="text-text-secondary mb-4">{L.bhakootDoshaContent[locale]}</p>
+      <LessonSection number={6} title={((L.bhakootDoshaTitle as Record<string, string>)[locale] ?? L.bhakootDoshaTitle.en)}>
+        <p className="text-text-secondary mb-4">{((L.bhakootDoshaContent as Record<string, string>)[locale] ?? L.bhakootDoshaContent.en)}</p>
         <div className="space-y-4">
           {BHAKOOT_PAIRS.map((bp, i) => (
             <motion.div
@@ -336,8 +336,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 7: Mangal Dosha */}
-      <LessonSection number={7} title={L.mangalTitle[locale]}>
-        <p className="text-text-secondary">{L.mangalContent[locale]}</p>
+      <LessonSection number={7} title={((L.mangalTitle as Record<string, string>)[locale] ?? L.mangalTitle.en)}>
+        <p className="text-text-secondary">{((L.mangalContent as Record<string, string>)[locale] ?? L.mangalContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10 mb-4">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Mars in houses 1, 4, 7, 8, 12 from:' : 'भाव 1, 4, 7, 8, 12 में मंगल — इनसे:'}
@@ -375,8 +375,8 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 8: Modern Considerations */}
-      <LessonSection number={8} title={L.modernTitle[locale]}>
-        <p className="text-text-secondary mb-4">{L.modernContent[locale]}</p>
+      <LessonSection number={8} title={((L.modernTitle as Record<string, string>)[locale] ?? L.modernTitle.en)}>
+        <p className="text-text-secondary mb-4">{((L.modernContent as Record<string, string>)[locale] ?? L.modernContent.en)}</p>
         <div className="space-y-3">
           {MODERN_POINTS.map((point, i) => (
             <motion.div
@@ -397,7 +397,7 @@ export default function LearnMatchingPage() {
       </LessonSection>
 
       {/* Section 9: Cross-References */}
-      <LessonSection number={9} title={L.crossRefTitle[locale]}>
+      <LessonSection number={9} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link
@@ -417,7 +417,7 @@ export default function LearnMatchingPage() {
           href="/matching"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]}
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
         </Link>
       </div>
     </div>

@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -105,8 +101,8 @@ const SANSKRIT_TERMS = [
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
-export default function ZeroPage() {
-  const locale = useLocale() as Locale;
+export default async function ZeroPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const hi = locale === 'hi';
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
@@ -116,7 +112,7 @@ export default function ZeroPage() {
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(40)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
               className="absolute rounded-full bg-gold-primary/10"
               style={{
@@ -125,14 +121,12 @@ export default function ZeroPage() {
                 left: `${(i * 19 + 3) % 100}%`,
                 top: `${(i * 29 + 7) % 100}%`,
               }}
-              animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.8, 1.3, 0.8] }}
-              transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.2 }}
             />
           ))}
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-primary/30 to-amber-500/10 border border-gold-primary/30 flex items-center justify-center">
                 <Circle className="w-10 h-10 text-gold-primary" />
@@ -150,12 +144,9 @@ export default function ZeroPage() {
             <div className="flex justify-center mt-4">
               <ShareRow pageTitle={t(L.title)} locale={locale} />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
+          <div
             className="mt-10"
           >
             <div className="inline-flex flex-col items-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-8 py-6">
@@ -169,7 +160,7 @@ export default function ZeroPage() {
                 {hi ? 'ब्रह्मगुप्त द्वारा परिभाषित, 628 ईस्वी — उज्जैन, भारत' : 'Defined by Brahmagupta, 628 CE — Ujjain, India'}
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -184,17 +175,13 @@ export default function ZeroPage() {
               { civ: 'Greece', problem: { en: 'Philosophical block — "Nothing cannot be Something"', hi: 'दार्शनिक बाधा — "शून्य कुछ नहीं हो सकता"' }, color: 'border-blue-500/30' },
               { civ: 'Babylon', problem: { en: 'Placeholder zero only — never a number', hi: 'केवल स्थान-धारक शून्य — कभी संख्या नहीं' }, color: 'border-amber-500/30' },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className={`rounded-lg p-4 bg-white/[0.02] border ${item.color}`}
               >
                 <div className="text-gold-light font-bold mb-2">{item.civ}</div>
                 <div className="text-text-secondary text-sm">{t(item.problem)}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>
@@ -203,10 +190,7 @@ export default function ZeroPage() {
         <LessonSection number={2} title={t(L.s2Title)}>
           <p>{t(L.s2Intro)}</p>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+          <div
             className="my-6 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
           >
             <div
@@ -217,19 +201,15 @@ export default function ZeroPage() {
             </div>
             <div className="text-gold-light/70 text-sm italic">{t(L.s2QuoteTrans)}</div>
             <div className="text-text-secondary/60 text-xs mt-1">— Brahmasphutasiddhanta, Ch. 18, 628 CE</div>
-          </motion.div>
+          </div>
 
           <div className="mt-4 space-y-3">
             <h4 className="text-gold-light font-semibold text-sm uppercase tracking-wider">
               {hi ? 'ब्रह्मगुप्त के शून्य के 6 नियम' : "Brahmagupta's 6 Rules for Zero"}
             </h4>
             {BRAHMAGUPTA_RULES.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-4 rounded-lg bg-white/[0.02] border border-white/[0.05] px-4 py-3"
               >
                 <span className="text-gold-primary/60 text-xs font-mono w-5 flex-shrink-0">{i + 1}.</span>
@@ -240,7 +220,7 @@ export default function ZeroPage() {
                 >
                   {item.sanskrit}
                 </span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>
@@ -282,12 +262,8 @@ export default function ZeroPage() {
                   { civ: 'India — Bakhshali (~300 CE)', type: { en: 'Placeholder dot', hi: 'स्थान-धारक बिंदु' }, arith: false },
                   { civ: 'India — Brahmagupta (628 CE)', type: { en: 'FULL NUMBER with rules', hi: 'नियमों के साथ पूर्ण संख्या' }, arith: true },
                 ].map((row, i) => (
-                  <motion.tr
+                  <tr
                     key={i}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
                     className={`border-b border-white/[0.05] ${row.arith ? 'bg-gold-primary/5' : ''}`}
                   >
                     <td className="py-3 px-3 text-text-primary font-medium">{row.civ}</td>
@@ -297,7 +273,7 @@ export default function ZeroPage() {
                         {row.arith ? (hi ? 'हाँ!' : 'YES!') : (hi ? 'नहीं' : 'No')}
                       </span>
                     </td>
-                  </motion.tr>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -309,12 +285,8 @@ export default function ZeroPage() {
           <p>{t(L.s5Body)}</p>
           <div className="mt-6 space-y-4">
             {JOURNEY.map((stop, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className={`flex gap-4 rounded-lg bg-white/[0.02] border-l-4 ${stop.color} px-4 py-4`}
               >
                 <div className="flex-shrink-0">
@@ -322,7 +294,7 @@ export default function ZeroPage() {
                   <div className="text-text-secondary/70 text-xs">{t(stop.place)}</div>
                 </div>
                 <div className="text-text-secondary text-sm leading-relaxed">{t(stop.event)}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>
@@ -337,18 +309,14 @@ export default function ZeroPage() {
               { icon: <Circle className="w-5 h-5" />, label: { en: 'Calculus', hi: 'कलन' }, dep: { en: 'Limits → 0', hi: 'सीमाएँ → 0' } },
               { icon: <ArrowRight className="w-5 h-5" />, label: { en: 'Algebra', hi: 'बीजगणित' }, dep: { en: 'Equations need 0', hi: 'समीकरणों को 0 चाहिए' } },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className="rounded-lg bg-white/[0.03] border border-gold-primary/15 p-4 text-center"
               >
                 <div className="text-gold-primary flex justify-center mb-2">{item.icon}</div>
                 <div className="text-gold-light font-semibold text-sm">{t(item.label)}</div>
                 <div className="text-text-secondary text-xs mt-1">{t(item.dep)}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>

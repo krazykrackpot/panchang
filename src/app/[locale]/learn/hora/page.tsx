@@ -12,6 +12,7 @@ const L = {
   title: {
     en: 'Why Exactly 7 Days in a Week?',
     hi: 'सप्ताह में ठीक 7 दिन क्यों?',
+    ta: 'ஏன் ஒரு வாரத்தில் சரியாக 7 நாட்கள்?',
   },
   titleSub: {
     en: 'And Why Does Tuesday Follow Monday? The Answer Is Over 2,000 Years Old.',

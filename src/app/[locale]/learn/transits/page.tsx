@@ -6,7 +6,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Understanding Planetary Transits (Gochar)', hi: 'ग्रह गोचर को समझें' },
+  title: { en: 'Understanding Planetary Transits (Gochar)', hi: 'ग्रह गोचर को समझें' , ta: 'கிரக கோசாரங்களை புரிந்துகொள்ளுதல்' },
   subtitle: {
     en: 'How the moving planets in the sky activate your birth chart in real time',
     hi: 'कैसे आकाश में चलते ग्रह वास्तविक समय में आपकी जन्म कुण्डली को सक्रिय करते हैं',
@@ -112,7 +112,7 @@ export default function TransitsPage() {
     <article className="max-w-4xl mx-auto px-4 py-12 space-y-2">
       <header className="text-center mb-8">
         <h1 className="text-3xl sm:text-4xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {isHi ? L.title.hi : L.title.en}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto">{isHi ? L.subtitle.hi : L.subtitle.en}</p>
       </header>

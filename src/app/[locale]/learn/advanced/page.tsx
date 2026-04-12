@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Advanced Jyotish — Predictive Systems', hi: 'उन्नत ज्योतिष — भविष्यवाणी प्रणालियाँ', sa: 'उन्नतज्योतिषम् — भविष्यवाणीपद्धतयः' },
+  title: { en: 'Advanced Jyotish — Predictive Systems', hi: 'उन्नत ज्योतिष — भविष्यवाणी प्रणालियाँ', sa: 'उन्नतज्योतिषम् — भविष्यवाणीपद्धतयः' , ta: 'மேம்பட்ட ஜோதிடம் — கணிப்பு முறைகள்' },
   subtitle: { en: 'Varshaphal, KP System, Prashna, Muhurta, Shadbala, and Ashtakavarga — the complete predictive toolkit', hi: 'वर्षफल, KP प्रणाली, प्रश्न, मुहूर्त, षड्बल और अष्टकवर्ग — सम्पूर्ण भविष्यवाणी उपकरण', sa: 'वर्षफलं, KP पद्धतिः, प्रश्नः, मुहूर्तः, षड्बलं, अष्टकवर्गश्च — सम्पूर्णभविष्यवाणीसाधनम्' },
 
   varshaphalTitle: { en: 'Varshaphal — Solar Return Charts', hi: 'वर्षफल — सौर प्रत्यावर्तन कुण्डली', sa: 'वर्षफलम् — सौरप्रत्यावर्तनकुण्डली' },
@@ -122,9 +122,9 @@ export default function LearnAdvancedPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
@@ -137,8 +137,8 @@ export default function LearnAdvancedPage() {
       </div>
 
       {/* 1. Varshaphal */}
-      <LessonSection number={1} title={L.varshaphalTitle[locale]}>
-        <p>{L.varshaphalContent[locale]}</p>
+      <LessonSection number={1} title={((L.varshaphalTitle as Record<string, string>)[locale] ?? L.varshaphalTitle.en)}>
+        <p>{((L.varshaphalContent as Record<string, string>)[locale] ?? L.varshaphalContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'How our Varshaphal engine works:' : 'हमारा वर्षफल इंजन कैसे काम करता है:'}
@@ -150,18 +150,18 @@ export default function LearnAdvancedPage() {
           <p className="text-gold-light/80 font-mono text-xs">5. {locale === 'en' || String(locale) === 'ta' ? 'Generate Mudda Dasha (year-compressed planetary periods)' : 'मुद्दा दशा उत्पन्न करें (वर्ष-संकुचित ग्रह अवधियाँ)'}</p>
           <p className="text-gold-light/80 font-mono text-xs">6. {locale === 'en' || String(locale) === 'ta' ? 'Analyze Tajika Yogas (Ithasala, Easarapha, Nakta, etc.)' : 'ताजिक योगों का विश्लेषण (इत्थशाल, ईसराफ, नक्त, आदि)'}</p>
         </div>
-        <p className="mt-3 text-text-secondary text-sm">{L.varshaphalCalc[locale]}</p>
+        <p className="mt-3 text-text-secondary text-sm">{((L.varshaphalCalc as Record<string, string>)[locale] ?? L.varshaphalCalc.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-amber-400/15">
           <p className="text-amber-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Tajika Yogas — Unique to Varshaphal:' : 'ताजिक योग — वर्षफल के लिए विशिष्ट:'}
           </p>
-          <p className="text-amber-200/80 text-xs leading-relaxed">{L.tajikaYogas[locale]}</p>
+          <p className="text-amber-200/80 text-xs leading-relaxed">{((L.tajikaYogas as Record<string, string>)[locale] ?? L.tajikaYogas.en)}</p>
         </div>
       </LessonSection>
 
       {/* 2. KP System */}
-      <LessonSection number={2} title={L.kpTitle[locale]}>
-        <p>{L.kpContent[locale]}</p>
+      <LessonSection number={2} title={((L.kpTitle as Record<string, string>)[locale] ?? L.kpTitle.en)}>
+        <p>{((L.kpContent as Record<string, string>)[locale] ?? L.kpContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'KP Sub-Lord Division Example:' : 'KP उप-स्वामी विभाजन उदाहरण:'}
@@ -178,23 +178,23 @@ export default function LearnAdvancedPage() {
               : 'प्रत्येक विशिष्ट अंश पर ग्रह का: राशि स्वामी + नक्षत्र स्वामी + उप-स्वामी'}
           </p>
         </div>
-        <p className="mt-3 text-text-secondary text-sm">{L.kpCalc[locale]}</p>
+        <p className="mt-3 text-text-secondary text-sm">{((L.kpCalc as Record<string, string>)[locale] ?? L.kpCalc.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-blue-400/15">
           <p className="text-blue-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'The Significator Table — Heart of KP:' : 'कारक तालिका — KP का हृदय:'}
           </p>
-          <p className="text-blue-200/80 text-xs leading-relaxed">{L.kpSignificator[locale]}</p>
+          <p className="text-blue-200/80 text-xs leading-relaxed">{((L.kpSignificator as Record<string, string>)[locale] ?? L.kpSignificator.en)}</p>
         </div>
       </LessonSection>
 
       {/* 3. Prashna */}
-      <LessonSection number={3} title={L.prashnaTitle[locale]}>
-        <p>{L.prashnaContent[locale]}</p>
+      <LessonSection number={3} title={((L.prashnaTitle as Record<string, string>)[locale] ?? L.prashnaTitle.en)}>
+        <p>{((L.prashnaContent as Record<string, string>)[locale] ?? L.prashnaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-purple-400/20">
           <p className="text-purple-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Ashtamangala Prashna — Kerala Tradition:' : 'अष्टमंगल प्रश्न — केरल परम्परा:'}
           </p>
-          <p className="text-purple-200/80 font-mono text-xs">{L.ashtamangalaContent[locale]}</p>
+          <p className="text-purple-200/80 font-mono text-xs">{((L.ashtamangalaContent as Record<string, string>)[locale] ?? L.ashtamangalaContent.en)}</p>
         </div>
         <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
           {[
@@ -216,9 +216,9 @@ export default function LearnAdvancedPage() {
       </LessonSection>
 
       {/* 4. Muhurta AI */}
-      <LessonSection number={4} title={L.muhurtaTitle[locale]}>
-        <p>{L.muhurtaContent[locale]}</p>
-        <p className="mt-3 text-text-secondary text-sm">{L.muhurtaFactors[locale]}</p>
+      <LessonSection number={4} title={((L.muhurtaTitle as Record<string, string>)[locale] ?? L.muhurtaTitle.en)}>
+        <p>{((L.muhurtaContent as Record<string, string>)[locale] ?? L.muhurtaContent.en)}</p>
+        <p className="mt-3 text-text-secondary text-sm">{((L.muhurtaFactors as Record<string, string>)[locale] ?? L.muhurtaFactors.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-emerald-400/20">
           <p className="text-emerald-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Multi-Factor Scoring Example (Marriage):' : 'बहु-कारक अंकन उदाहरण (विवाह):'}
@@ -247,13 +247,13 @@ export default function LearnAdvancedPage() {
       </LessonSection>
 
       {/* 5. Shadbala */}
-      <LessonSection number={5} title={L.shadbalaTitle[locale]}>
-        <p>{L.shadbalaContent[locale]}</p>
+      <LessonSection number={5} title={((L.shadbalaTitle as Record<string, string>)[locale] ?? L.shadbalaTitle.en)}>
+        <p>{((L.shadbalaContent as Record<string, string>)[locale] ?? L.shadbalaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'The Six Components:' : 'छह घटक:'}
           </p>
-          <p className="text-gold-light/80 text-xs leading-relaxed">{L.shadbalaComponents[locale]}</p>
+          <p className="text-gold-light/80 text-xs leading-relaxed">{((L.shadbalaComponents as Record<string, string>)[locale] ?? L.shadbalaComponents.en)}</p>
         </div>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-amber-400/15">
           <p className="text-amber-300 font-mono text-sm mb-2">
@@ -284,9 +284,9 @@ export default function LearnAdvancedPage() {
       </LessonSection>
 
       {/* 6. Ashtakavarga */}
-      <LessonSection number={6} title={L.ashtakavargaTitle[locale]}>
-        <p>{L.ashtakavargaContent[locale]}</p>
-        <p className="mt-3 text-text-secondary text-sm">{L.ashtakavargaUse[locale]}</p>
+      <LessonSection number={6} title={((L.ashtakavargaTitle as Record<string, string>)[locale] ?? L.ashtakavargaTitle.en)}>
+        <p>{((L.ashtakavargaContent as Record<string, string>)[locale] ?? L.ashtakavargaContent.en)}</p>
+        <p className="mt-3 text-text-secondary text-sm">{((L.ashtakavargaUse as Record<string, string>)[locale] ?? L.ashtakavargaUse.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-cyan-400/15">
           <p className="text-cyan-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Sarvashtakavarga Score Interpretation:' : 'सर्वाष्टकवर्ग अंक व्याख्या:'}
@@ -300,8 +300,8 @@ export default function LearnAdvancedPage() {
       </LessonSection>
 
       {/* 7. Putting It Together */}
-      <LessonSection number={7} title={L.practiceTitle[locale]} variant="highlight">
-        <p>{L.practiceContent[locale]}</p>
+      <LessonSection number={7} title={((L.practiceTitle as Record<string, string>)[locale] ?? L.practiceTitle.en)} variant="highlight">
+        <p>{((L.practiceContent as Record<string, string>)[locale] ?? L.practiceContent.en)}</p>
 
         <div className="mt-4 mb-6">
           <h4 className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-3">

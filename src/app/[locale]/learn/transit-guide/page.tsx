@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ────────────────────────────────────────────── */
 const L = {
-  title: { en: 'Transit House-by-House Guide', hi: 'गोचर भाव-दर-भाव मार्गदर्शिका', sa: 'गोचरभावशः मार्गदर्शिका' },
+  title: { en: 'Transit House-by-House Guide', hi: 'गोचर भाव-दर-भाव मार्गदर्शिका', sa: 'गोचरभावशः मार्गदर्शिका' , ta: 'கோசார பாவ வாரியான வழிகாட்டி' },
   subtitle: {
     en: 'How slow-moving planets shape your years as they transit through each house from your Moon sign. Saturn, Jupiter, and Rahu-Ketu are the heavy hitters of Vedic timing.',
     hi: 'आपकी चन्द्र राशि से प्रत्येक भाव में गोचर करते हुए मन्दगति ग्रह आपके वर्षों को कैसे आकार देते हैं। शनि, गुरु और राहु-केतु वैदिक समय-निर्धारण के प्रमुख कारक हैं।',

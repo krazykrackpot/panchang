@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Marriage Prediction Guide', hi: 'विवाह भविष्यवाणी मार्गदर्शिका', sa: 'विवाहभविष्यवाणी-मार्गदर्शिका' },
+  title: { en: 'Marriage Prediction Guide', hi: 'विवाह भविष्यवाणी मार्गदर्शिका', sa: 'विवाहभविष्यवाणी-मार्गदर्शिका' , ta: 'திருமண கணிப்பு வழிகாட்டி' },
   subtitle: {
     en: 'A comprehensive framework for analyzing marriage timing, spouse characteristics, and marital happiness through D1, D9 Navamsha, and Jaimini techniques.',
     hi: 'D1, D9 नवमांश और जैमिनी तकनीकों से विवाह समय, जीवनसाथी विशेषताएं और वैवाहिक सुख का विश्लेषण।',

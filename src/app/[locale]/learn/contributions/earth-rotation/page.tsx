@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -98,8 +94,8 @@ const ACHIEVEMENTS = [
   { metric: 'Moon\'s orbit period', aryabhata: '27.32 days', modern: '27.32 days', accuracy: '99.99%' },
 ];
 
-export default function EarthRotationPage() {
-  const locale = useLocale() as Locale;
+export default async function EarthRotationPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -108,17 +104,16 @@ export default function EarthRotationPage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: The Quote ─────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -142,11 +137,10 @@ export default function EarthRotationPage() {
               : '✦ Aryabhata used the boat analogy — a person on a moving boat sees the stationary shore moving backward. This is the same starting point as Einstein\'s principle of relativity.'}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: Why Revolutionary ────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
@@ -173,11 +167,10 @@ export default function EarthRotationPage() {
             </ul>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: Brahmagupta Debate ───────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -196,11 +189,10 @@ export default function EarthRotationPage() {
               : '→ Answer: Newton\'s inertia — the object carries the Earth\'s motion with it. Discovered 1,059 years later.'}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: Circumference ────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -220,11 +212,10 @@ export default function EarthRotationPage() {
             <div className="text-text-secondary text-xs mt-1">{isHi ? 'सटीकता (499 CE में!)' : 'Accuracy (in 499 CE!)'}</div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: Sidereal / Ayanamsha ─────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
@@ -245,11 +236,10 @@ export default function EarthRotationPage() {
             ? '→ अंतर: 0.009 सेकंड। 1,500 वर्षों के बाद। यह इसलिए नहीं है कि उन्होंने भाग्य से अनुमान लगाया — यह इसलिए है कि उनके पास गणितीय मॉडल था।'
             : '→ Difference: 0.009 seconds. After 1,500 years. This is not because he guessed lucky — it\'s because he had a mathematical model.'}
         </p>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: Timeline ──────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-6" style={hf}>{l(L.s6Title)}</h3>
@@ -272,11 +262,10 @@ export default function EarthRotationPage() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Achievements Table ───────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
@@ -302,11 +291,10 @@ export default function EarthRotationPage() {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -320,7 +308,7 @@ export default function EarthRotationPage() {
             {l(L.nextPage)} →
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

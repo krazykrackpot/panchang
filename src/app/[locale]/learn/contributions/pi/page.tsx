@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -97,8 +93,8 @@ const SANSKRIT_TERMS = [
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
-export default function PiPage() {
-  const locale = useLocale() as Locale;
+export default async function PiPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const hi = locale === 'hi';
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
@@ -108,7 +104,7 @@ export default function PiPage() {
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(5)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
               className="absolute rounded-full border border-gold-primary/10"
               style={{
@@ -119,14 +115,12 @@ export default function PiPage() {
                 x: '-50%',
                 y: '-50%',
               }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20 + i * 10, repeat: Infinity, ease: 'linear' }}
             />
           ))}
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-primary/30 to-amber-500/10 border border-gold-primary/30 flex items-center justify-center">
                 <Sigma className="w-10 h-10 text-gold-primary" />
@@ -144,12 +138,9 @@ export default function PiPage() {
             <div className="flex justify-center mt-4">
               <ShareRow pageTitle={t(L.title)} locale={locale} />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
+          <div
             className="mt-10"
           >
             <div className="inline-flex flex-col items-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-8 py-6">
@@ -163,7 +154,7 @@ export default function PiPage() {
                 {hi ? 'आर्यभट का π — 499 ईस्वी | वास्तविक: 3.14159265... | त्रुटि: 0.0001%' : "Aryabhata's π — 499 CE | True: 3.14159265... | Error: 0.0001%"}
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -172,10 +163,7 @@ export default function PiPage() {
         {/* ═══ SECTION 1 ═══ */}
         <LessonSection number={1} title={t(L.s1Title)} variant="highlight">
           <p>{t(L.s1Body)}</p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+          <div
             className="my-6 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
           >
             <div
@@ -186,7 +174,7 @@ export default function PiPage() {
             </div>
             <div className="text-gold-light/70 text-sm italic px-4">{t(L.s1Trans)}</div>
             <div className="text-text-secondary/60 text-xs mt-2">— Aryabhatiya, Ganitapada, verse 10, 499 CE</div>
-          </motion.div>
+          </div>
         </LessonSection>
 
         {/* ═══ SECTION 2 ═══ */}
@@ -199,17 +187,13 @@ export default function PiPage() {
               { step: { en: '832 + 62,000 = 62,832', hi: '832 + 62,000 = 62,832' }, note: { en: '"Add 62,000" = circumference for diameter 20,000', hi: '"62,000 जोड़ें" = 20,000 व्यास के लिए परिधि' } },
               { step: { en: '62,832 ÷ 20,000 = 3.1416', hi: '62,832 ÷ 20,000 = 3.1416' }, note: { en: 'Circumference ÷ Diameter = π', hi: 'परिधि ÷ व्यास = π' }, highlight: true },
             ].map((row, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className={`flex items-center gap-4 rounded-lg px-4 py-3 border ${row.highlight ? 'bg-gold-primary/10 border-gold-primary/30' : 'bg-white/[0.02] border-white/[0.05]'}`}
               >
                 <span className="font-mono text-gold-light font-bold text-sm sm:text-base flex-shrink-0">{t(row.step)}</span>
                 <span className="text-text-secondary text-sm">{t(row.note)}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>
@@ -250,12 +234,8 @@ export default function PiPage() {
         <LessonSection number={5} title={t(L.s5Title)} variant="highlight">
           <div className="space-y-3 mt-2">
             {TIMELINE.map((row, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className={`flex items-center gap-3 rounded-lg px-4 py-3 border ${row.highlight ? 'border-gold-primary/30 bg-gold-primary/5' : 'border-white/[0.05] bg-white/[0.02]'}`}
               >
                 <span className="text-text-secondary/70 text-xs font-mono w-20 flex-shrink-0">{row.year}</span>
@@ -268,7 +248,7 @@ export default function PiPage() {
                     {row.decimals} {hi ? 'दशमलव' : 'decimals'}
                   </span>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>

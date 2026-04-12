@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -290,24 +286,6 @@ const CROSS_REFS: { label: { en: string; hi: string }; href: string }[] = [
 ];
 
 /* ════════════════════════════════════════════════════════════════
-   ANIMATIONS
-   ════════════════════════════════════════════════════════════════ */
-const fadeInUp = {
-  hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
-};
-
-const fadeInLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
-};
-
-const fadeInRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' as const } },
-};
-
-/* ════════════════════════════════════════════════════════════════
    CARD COMPONENT
    ════════════════════════════════════════════════════════════════ */
 function TimelineCard({
@@ -323,15 +301,10 @@ function TimelineCard({
 }) {
   const loc = locale as Locale;
   const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
-  const variant = side === 'left' ? fadeInLeft : fadeInRight;
 
   return (
-    <motion.div
+    <div
       className={`flex items-start gap-0 w-full ${side === 'left' ? 'flex-row' : 'flex-row-reverse'}`}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
-      variants={variant}
     >
       {/* Card */}
       <div
@@ -408,7 +381,7 @@ function TimelineCard({
 
       {/* Empty space on the other side */}
       <div className="w-[calc(50%-24px)]" />
-    </motion.div>
+    </div>
   );
 }
 
@@ -426,12 +399,8 @@ function TimelineCardMobile({
   const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
 
   return (
-    <motion.div
+    <div
       className="flex items-start gap-4"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-40px' }}
-      variants={fadeInUp}
     >
       {/* Left: dot on line */}
       <div className="flex flex-col items-center" style={{ minWidth: '28px' }}>
@@ -486,26 +455,23 @@ function TimelineCardMobile({
           </Link>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 /* ════════════════════════════════════════════════════════════════
    MAIN PAGE
    ════════════════════════════════════════════════════════════════ */
-export default function TimelinePage() {
-  const locale = useLocale();
+export default async function TimelinePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   const loc = locale as Locale;
   const t = (obj: { en: string; hi: string }) => (loc === 'hi' ? obj.hi : obj.en);
 
   return (
     <div className="min-h-screen" style={{ background: 'transparent' }}>
       {/* ── Hero ── */}
-      <motion.div
+      <div
         className="mb-16 text-center max-w-3xl mx-auto"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' as const }}
       >
         <div
           className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold mb-6 border border-purple-500/40"
@@ -527,7 +493,7 @@ export default function TimelinePage() {
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={t(L.title)} locale={locale as Locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ══════════════════════════════════════════
           DESKTOP TIMELINE (lg+)
@@ -580,12 +546,8 @@ export default function TimelinePage() {
       {/* ══════════════════════════════════════════
           SUMMARY — ATTRIBUTION GAP
       ══════════════════════════════════════════ */}
-      <motion.div
+      <div
         className="mb-16 max-w-3xl mx-auto"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        variants={fadeInUp}
       >
         <div
           className="rounded-2xl border border-red-500/30 p-8 text-center relative overflow-hidden"
@@ -610,17 +572,13 @@ export default function TimelinePage() {
             {t(L.summaryBody)}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ══════════════════════════════════════════
           CROSS-REFERENCE LINKS
       ══════════════════════════════════════════ */}
-      <motion.div
+      <div
         className="mb-12"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-40px' }}
-        variants={fadeInUp}
       >
         <h2
           className="text-xl font-bold mb-6 text-center"
@@ -645,7 +603,7 @@ export default function TimelinePage() {
             </Link>
           ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -268,8 +264,8 @@ function MeruprastaraSVG({ hi }: { hi: boolean }) {
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
-export default function FibonacciPage() {
-  const locale = useLocale() as Locale;
+export default async function FibonacciPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const hi = locale === 'hi';
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
@@ -279,7 +275,7 @@ export default function FibonacciPage() {
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(40)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
               className="absolute rounded-full bg-gold-primary/10"
               style={{
@@ -288,14 +284,12 @@ export default function FibonacciPage() {
                 left: `${(i * 19 + 3) % 100}%`,
                 top: `${(i * 29 + 7) % 100}%`,
               }}
-              animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.8, 1.3, 0.8] }}
-              transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.2 }}
             />
           ))}
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-primary/30 to-amber-500/10 border border-gold-primary/30 flex items-center justify-center">
                 <Music className="w-10 h-10 text-gold-primary" />
@@ -313,22 +307,16 @@ export default function FibonacciPage() {
             <div className="flex justify-center mt-4">
               <ShareRow pageTitle={t(L.title)} locale={locale} />
             </div>
-          </motion.div>
+          </div>
 
           {/* sequence display */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
+          <div
             className="mt-10"
           >
             <div className="inline-flex flex-wrap justify-center gap-1 sm:gap-2 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-6 py-5">
               {SEQUENCE_DEMO.map((n, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + i * 0.08 }}
                   className="flex flex-col items-center"
                 >
                   <span
@@ -337,23 +325,20 @@ export default function FibonacciPage() {
                   >
                     {n}
                   </span>
-                </motion.div>
+                </div>
               ))}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.7 }}
+              <div
                 className="flex items-center text-gold-primary/50 text-2xl font-bold pl-1"
               >
                 ...
-              </motion.div>
+              </div>
             </div>
             <div className="text-text-secondary/60 text-xs mt-3">
               {hi
                 ? 'भरत मुनि (~200 ईसा पूर्व) → पिंगल (~200 ईसा पूर्व) → विरहांका (~600 ईस्वी) → हेमचंद्र (1150 ईस्वी) → फिबोनाची (1202 ईस्वी)'
                 : 'Bharata Muni (~200 BCE) → Pingala (~200 BCE) → Virahanka (~600 CE) → Hemachandra (1150 CE) → Fibonacci (1202 CE)'}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -372,12 +357,8 @@ export default function FibonacciPage() {
               {hi ? 'N मात्राओं को भरने के तरीके (S = लघु/छोटा, L = गुरु/लंबा)' : 'Ways to fill N matras (S = short/laghu, L = long/guru)'}
             </h4>
             {TALA_COMBOS.map((row, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -15 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-3 rounded-lg bg-white/[0.02] border border-white/[0.05] px-4 py-3"
               >
                 <span className="text-gold-primary font-bold text-sm w-20 flex-shrink-0 font-mono">
@@ -390,7 +371,7 @@ export default function FibonacciPage() {
                 <span className="text-gold-primary/40 text-xs flex-shrink-0 font-mono">
                   F({row.matras})
                 </span>
-              </motion.div>
+              </div>
             ))}
             <div className="text-text-secondary/60 text-xs italic pl-2">
               {hi
@@ -432,10 +413,7 @@ export default function FibonacciPage() {
         {/* ═══ SECTION 3 — VIRAHANKA ═══ */}
         <LessonSection number={3} title={t(L.s3Title)} variant="highlight">
           <p>{t(L.s3Body)}</p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+          <div
             className="my-5 bg-gradient-to-br from-[#2d1b69]/60 to-[#0a0e27] border border-gold-primary/20 rounded-xl p-6 text-center"
           >
             <div
@@ -453,7 +431,7 @@ export default function FibonacciPage() {
             <div className="text-text-secondary/60 text-xs mt-1">
               {hi ? 'विरहांका, ~600 ईस्वी — फिबोनाची से 600 साल पहले' : 'Virahanka, ~600 CE — 600 years before Fibonacci'}
             </div>
-          </motion.div>
+          </div>
         </LessonSection>
 
         {/* ═══ SECTION 4 — HEMACHANDRA ═══ */}
@@ -507,17 +485,13 @@ export default function FibonacciPage() {
           <p>{t(L.s6Body)}</p>
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3">
             {NATURE_EXAMPLES.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
                 className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
               >
                 <div className="text-gold-light font-semibold text-sm">{t(item.item)}</div>
                 <div className="text-text-secondary text-xs mt-1 font-mono">{t(item.detail)}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
           <div className="mt-5 bg-gold-primary/5 border border-gold-primary/15 rounded-lg p-4 text-sm text-text-secondary">
@@ -538,18 +512,14 @@ export default function FibonacciPage() {
               { domain: { en: 'Nature', hi: 'प्रकृति' }, who: { en: 'Spirals & Petals', hi: 'सर्पिल और पंखुड़ियाँ' }, year: 'Always' },
               { domain: { en: 'Finance', hi: 'वित्त' }, who: { en: 'Elliott Waves', hi: 'इलियट वेव्स' }, year: '1938 CE' },
             ].map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className="rounded-xl bg-white/[0.02] border border-gold-primary/15 p-4 text-center"
               >
                 <div className="text-gold-light font-bold text-base mb-1">{t(item.domain)}</div>
                 <div className="text-text-secondary text-xs">{t(item.who)}</div>
                 <div className="text-text-secondary/50 text-xs mt-0.5 font-mono">{item.year}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>
@@ -559,12 +529,8 @@ export default function FibonacciPage() {
           <p className="mb-6">{t(L.s8Body)}</p>
           <div className="space-y-3">
             {TIMELINE.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className={`flex gap-4 rounded-lg bg-white/[0.02] border-l-4 ${item.color} px-4 py-4`}
               >
                 <div className="flex-shrink-0 min-w-[90px]">
@@ -580,7 +546,7 @@ export default function FibonacciPage() {
                     {t(item.badge)}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
           <div className="mt-5 bg-red-500/5 border border-red-500/20 rounded-lg p-4 text-sm text-text-secondary">

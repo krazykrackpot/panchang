@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Career Prediction Guide', hi: 'करियर भविष्यवाणी मार्गदर्शिका', sa: 'वृत्तिभविष्यवाणी-मार्गदर्शिका' },
+  title: { en: 'Career Prediction Guide', hi: 'करियर भविष्यवाणी मार्गदर्शिका', sa: 'वृत्तिभविष्यवाणी-मार्गदर्शिका' , ta: 'தொழில் கணிப்பு வழிகாட்டி' },
   subtitle: {
     en: 'A systematic 5-step framework for analyzing career potential, professional direction, and timing of career milestones through the birth chart.',
     hi: 'जन्म कुण्डली से व्यावसायिक क्षमता, दिशा और करियर मील के पत्थरों के समय का विश्लेषण करने के लिए 5-चरणीय ढांचा।',

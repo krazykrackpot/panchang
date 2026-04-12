@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Retrograde Effects Per Planet', hi: 'ग्रहवार वक्री प्रभाव', sa: 'ग्रहशः वक्रिप्रभावाः' },
+  title: { en: 'Retrograde Effects Per Planet', hi: 'ग्रहवार वक्री प्रभाव', sa: 'ग्रहशः वक्रिप्रभावाः' , ta: 'கிரகம் வாரியான வக்கிர விளைவுகள்' },
   subtitle: {
     en: 'Understanding retrograde motion — why planets appear to move backward, how it strengthens them in Vedic astrology, and what each retrograde planet means in your birth chart and current transits.',
     hi: 'वक्री गति को समझना — ग्रह पीछे क्यों चलते प्रतीत होते हैं, वैदिक ज्योतिष में यह उन्हें कैसे बलवान बनाता है, और प्रत्येक वक्री ग्रह का अर्थ।',

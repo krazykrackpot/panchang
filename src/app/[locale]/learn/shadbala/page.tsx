@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
-  title: { en: 'Shadbala — The Six Strengths', hi: 'षड्बल — छह शक्तियाँ', sa: 'षड्बलम् — षट् बलानि' },
+  title: { en: 'Shadbala — The Six Strengths', hi: 'षड्बल — छह शक्तियाँ', sa: 'षड्बलम् — षट् बलानि' , ta: 'ஷட்பலம் — ஆறு வலிமைகள்' },
   subtitle: {
     en: 'A quantitative framework from Brihat Parashara Hora Shastra that measures a planet\'s total power across six dimensions. The cornerstone of predictive accuracy in Vedic astrology.',
     hi: 'बृहत् पाराशर होरा शास्त्र से एक मात्रात्मक ढाँचा जो छह आयामों में ग्रह की कुल शक्ति मापता है। वैदिक ज्योतिष में भविष्यवाणी सटीकता की आधारशिला।',

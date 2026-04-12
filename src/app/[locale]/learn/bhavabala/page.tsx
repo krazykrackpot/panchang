@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
-  title: { en: 'Bhavabala — House Strength', hi: 'भावबल — भाव शक्ति', sa: 'भावबलम् — भावशक्तिः' },
+  title: { en: 'Bhavabala — House Strength', hi: 'भावबल — भाव शक्ति', sa: 'भावबलम् — भावशक्तिः' , ta: 'பாவபலம் — பாவ வலிமை' },
   subtitle: {
     en: 'While Shadbala measures a planet\'s power, Bhavabala quantifies the strength of each house. A house can function well even with a weak lord if it receives strong benefic aspects. The interplay of lord strength, positional dignity, and received aspects determines which life areas flourish.',
     hi: 'जहाँ षड्बल ग्रह की शक्ति मापता है, भावबल प्रत्येक भाव की शक्ति परिमाणित करता है। कमजोर स्वामी वाला भाव भी शुभ दृष्टियों से अच्छा कार्य कर सकता है। स्वामी बल, स्थानीय गरिमा और प्राप्त दृष्टियों का अन्तःक्रिया निर्धारित करता है कि कौन से जीवन क्षेत्र फलते-फूलते हैं।',

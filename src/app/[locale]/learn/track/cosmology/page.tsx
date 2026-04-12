@@ -7,7 +7,7 @@ import { ChevronRight, Sparkles, BookOpen, ExternalLink } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
 
 // ── Section data ─────────────────────────────────────────────────
-type Tri = { en: string; hi: string; sa: string };
+type Tri = { en: string; hi: string; sa: string; ta?: string };
 interface Section {
   id: string;
   icon: string;
@@ -228,8 +228,8 @@ export default function CosmologyTrackPage() {
             <div className="px-6 py-4 border-b border-gold-primary/10 flex items-center gap-3">
               <span className="text-2xl">{section.icon}</span>
               <div>
-                <h2 className="text-lg font-bold text-white" style={hf}>{section.title[locale]}</h2>
-                <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{section.subtitle[locale]}</span>
+                <h2 className="text-lg font-bold text-white" style={hf}>{(section.title[locale] ?? section.title.en)}</h2>
+                <span className="text-gold-light/50 text-xs uppercase tracking-wider" style={bf}>{(section.subtitle[locale] ?? section.subtitle.en)}</span>
               </div>
               <span className="ml-auto text-gold-primary/40 text-xs font-mono">{section.modules.length} {l.modules}</span>
             </div>
@@ -256,7 +256,7 @@ export default function CosmologyTrackPage() {
                       </span>
                     )}
                     <span className={`text-sm group-hover:text-indigo-200 transition-colors ${isRef ? 'text-violet-200/80' : 'text-text-primary'}`} style={bf}>
-                      {mod.title[locale]}
+                      {(mod.title[locale] ?? mod.title.en)}
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 text-text-tertiary group-hover:text-gold-light transition-colors shrink-0" />
@@ -276,7 +276,7 @@ export default function CosmologyTrackPage() {
                     style={bf}
                   >
                     <BookOpen className="w-3 h-3" />
-                    {l.deepDive}: {ref.label[locale]}
+                    {l.deepDive}: {(ref.label[locale] ?? ref.label.en)}
                     <ExternalLink className="w-2.5 h-2.5 opacity-50" />
                   </Link>
                 ))}

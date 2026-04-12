@@ -12,7 +12,7 @@ import type { Locale } from '@/types/panchang';
    LABELS
    ═══════════════════════════════════════════════════════════════ */
 const L = {
-  title: { en: 'Jantar Mantar — India\'s Stone Observatories', hi: 'जन्तर मन्तर — भारत की पाषाण वेधशालाएँ' },
+  title: { en: 'Jantar Mantar — India\'s Stone Observatories', hi: 'जन्तर मन्तर — भारत की पाषाण वेधशालाएँ' , ta: 'ஜந்தர் மந்தர் — இந்திய வான் ஆய்வகங்கள்' },
   subtitle: {
     en: 'Stone instruments that rival modern accuracy — built when Europe still relied on tiny brass gadgets.',
     hi: 'पत्थर के यन्त्र जो आधुनिक सटीकता की बराबरी करते हैं — जब यूरोप अभी भी छोटे पीतल के उपकरणों पर निर्भर था।',

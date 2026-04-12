@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -119,8 +115,8 @@ const SQRT2_COMPARISON = [
    PAGE COMPONENT
    ════════════════════════════════════════════════════════════════ */
 
-export default function PythagorasPage() {
-  const locale = useLocale() as Locale;
+export default async function PythagorasPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -129,17 +125,16 @@ export default function PythagorasPage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: The Sulba Sutras ──────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -169,11 +164,10 @@ export default function PythagorasPage() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: Baudhayana's Exact Quote ─────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s2Title)}</h3>
@@ -240,11 +234,10 @@ export default function PythagorasPage() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: √2 Accuracy ───────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -284,11 +277,10 @@ export default function PythagorasPage() {
             ? 'बौधायन का मान आधुनिक मान से केवल 0.0000021 अलग है — 5 दशमलव स्थानों तक सही।'
             : "Baudhayana's value differs from the modern value by only 0.0000021 — correct to 5 decimal places."}
         </p>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: Pythagorean Triples ───────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -296,17 +288,14 @@ export default function PythagorasPage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {PYTHAGOREAN_TRIPLES.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 + i * 0.07 }}
               className="p-4 rounded-xl bg-white/[0.03] border border-gold-primary/15 text-center"
             >
               <p className="text-gold-light font-bold text-base mb-1">({t.a}, {t.b}, {t.c})</p>
               <p className="text-text-secondary text-xs font-mono">{t.check}</p>
               <p className="text-gold-dark text-xs mt-1">✓</p>
-            </motion.div>
+            </div>
           ))}
         </div>
         <p className="text-text-secondary text-xs mt-4 italic">
@@ -314,11 +303,10 @@ export default function PythagorasPage() {
             ? 'इन सभी का उपयोग वेदी निर्माण में सटीक समकोण बनाने के लिए किया गया था।'
             : 'All used in altar construction to create precise right angles using rope-and-peg geometry.'}
         </p>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: The Altar ─────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
@@ -359,11 +347,10 @@ export default function PythagorasPage() {
             </g>
           </svg>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: Pythagoras ────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
@@ -388,11 +375,10 @@ export default function PythagorasPage() {
             ? 'निष्पक्ष मूल्यांकन: भारतीयों ने इसे खोजा और व्यावहारिक रूप से उपयोग किया। ग्रीक परम्परा ने सम्भवतः पहला औपचारिक निगमनात्मक प्रमाण दिया — हालाँकि पाइथागोरस का कोई लिखित कार्य स्वयं नहीं बचा, इसलिए यह भी पूरी तरह अनिश्चित है।'
             : "Fair assessment: Indians discovered and systematically applied the theorem. The Greek tradition likely provided the first formal deductive proof — though no written work by Pythagoras himself survives, making even this attribution uncertain."}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Timeline / Sources ───────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
@@ -403,11 +389,8 @@ export default function PythagorasPage() {
           <div className="absolute left-[72px] top-0 bottom-0 w-px bg-gold-primary/20" />
           <div className="space-y-4">
             {TIMELINE.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.45 + i * 0.07 }}
                 className="flex gap-4 items-start"
               >
                 <span className="text-xs font-mono w-16 flex-shrink-0 text-right mt-1" style={{ color: item.color }}>
@@ -418,15 +401,14 @@ export default function PythagorasPage() {
                   <p className="text-text-primary text-sm font-semibold">{item.source}</p>
                   <p className="text-text-secondary text-xs leading-relaxed">{l(item.content)}</p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Cross-references ─────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.45 }}
+      <div
         className="grid grid-cols-2 sm:grid-cols-4 gap-3"
       >
         {[
@@ -443,11 +425,10 @@ export default function PythagorasPage() {
             {ref.label} →
           </Link>
         ))}
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -461,7 +442,7 @@ export default function PythagorasPage() {
             {l(L.crossSine)} →
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

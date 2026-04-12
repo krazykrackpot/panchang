@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 import { ShareRow } from '@/components/ui/ShareButton';
@@ -110,8 +106,8 @@ const FUNCTIONS = [
   { sanskrit: 'Trijya (त्रिज्या)', english: 'Radius / R = 3438', formula: 'R = 3438\'', desc: { en: 'The base radius in arc-minutes', hi: 'चाप-मिनट में आधार त्रिज्या' } },
 ];
 
-export default function SinePage() {
-  const locale = useLocale() as Locale;
+export default async function SinePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const isHi = locale !== 'en' && String(locale) !== 'ta';
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const l = (obj: { en: string; hi: string }) => (isHi ? obj.hi : obj.en);
@@ -120,17 +116,16 @@ export default function SinePage() {
     <div className="space-y-10">
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+      <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={hf}>{l(L.title)}</h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl">{l(L.subtitle)}</p>
         <div className="flex justify-center mt-4">
           <ShareRow pageTitle={l(L.title)} locale={locale} />
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 1: What Is Jya ────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s1Title)}</h3>
@@ -227,11 +222,10 @@ export default function SinePage() {
             </svg>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 2: Aryabhata's Jya Table ────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-2" style={hf}>{l(L.s2Title)}</h3>
@@ -269,11 +263,10 @@ export default function SinePage() {
           </table>
         </div>
         <p className="text-text-secondary text-xs mt-2 italic">{isHi ? '* मान R=3438 (चाप-मिनट त्रिज्या) के पैमाने पर' : '* Values on scale of R=3438 (radius in arc-minutes)'}</p>
-      </motion.div>
+      </div>
 
       {/* ── Section 3: The Mistranslation Chain ──────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s3Title)}</h3>
@@ -310,11 +303,10 @@ export default function SinePage() {
               : '⚡ The moment "Jiba" was misread as "Jaib" (pocket) — a vowel mis-insertion error, a limitation of written Arabic. This single misreading changed the name of "sine" forever. The mathematics was unchanged.'}
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 4: Accuracy Comparison ─────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s4Title)}</h3>
@@ -334,11 +326,10 @@ export default function SinePage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 5: Full Trigonometry System ─────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s5Title)}</h3>
@@ -355,11 +346,10 @@ export default function SinePage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 6: App Connection ──────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.35 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s6Title)}</h3>
@@ -380,11 +370,10 @@ export default function SinePage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* ── Section 7: Chain Summary ─────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+      <div
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6"
       >
         <h3 className="text-gold-light font-bold text-xl mb-4" style={hf}>{l(L.s7Title)}</h3>
@@ -415,11 +404,10 @@ export default function SinePage() {
             ? 'गणित हमेशा भारतीय था। केवल नाम खो गया।'
             : 'The mathematics was always Indian. Only the name got lost.'}
         </p>
-      </motion.div>
+      </div>
 
       {/* ── Navigation ──────────────────────────────────────────── */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+      <div
         className="flex flex-col sm:flex-row gap-3 pt-4"
       >
         <Link href="/learn" className="text-text-secondary hover:text-gold-light text-sm transition-colors">
@@ -433,7 +421,7 @@ export default function SinePage() {
             {l(L.calculus)} →
           </Link>
         </div>
-      </motion.div>
+      </div>
 
     </div>
   );

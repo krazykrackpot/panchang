@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Gochar — Transits & Predictions', hi: 'गोचर — ग्रह गति और भविष्यवाणी', sa: 'गोचरः — ग्रहगतिः भविष्यवाणी च' },
+  title: { en: 'Gochar — Transits & Predictions', hi: 'गोचर — ग्रह गति और भविष्यवाणी', sa: 'गोचरः — ग्रहगतिः भविष्यवाणी च' , ta: 'கோசாரம் — கோசாரங்கள் & கணிப்புகள்' },
   subtitle: { en: 'How current planetary movements trigger events in your life', hi: 'कैसे वर्तमान ग्रह गति आपके जीवन में घटनाएँ प्रेरित करती है', sa: 'कथं वर्तमानग्रहगतिः जीवने घटनाः प्रेरयति' },
   whatTitle: { en: 'What is Gochar?', hi: 'गोचर क्या है?', sa: 'गोचरः कः?' },
   whatContent: {
@@ -130,9 +130,9 @@ export default function LearnGocharPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{L.subtitle[locale]}</p>
+        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
@@ -145,15 +145,15 @@ export default function LearnGocharPage() {
       </div>
 
       {/* Section 1: What is Gochar */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p style={bodyFont}>{L.whatContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent2[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
       </LessonSection>
 
       {/* Section 2: Moon sign */}
-      <LessonSection number={2} title={L.moonTitle[locale]}>
-        <p style={bodyFont}>{L.moonContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.moonContent2[locale]}</p>
+      <LessonSection number={2} title={((L.moonTitle as Record<string, string>)[locale] ?? L.moonTitle.en)}>
+        <p style={bodyFont}>{((L.moonContent as Record<string, string>)[locale] ?? L.moonContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.moonContent2 as Record<string, string>)[locale] ?? L.moonContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">
             {locale === 'en' || String(locale) === 'ta' ? 'Transit house = Current planet sign - Birth Moon sign + 1' : 'गोचर भाव = ग्रह की वर्तमान राशि - जन्म चन्द्र राशि + 1'}
@@ -167,7 +167,7 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 3: Transit Speeds */}
-      <LessonSection number={3} title={L.speedTitle[locale]}>
+      <LessonSection number={3} title={((L.speedTitle as Record<string, string>)[locale] ?? L.speedTitle.en)}>
         <div className="space-y-2">
           {TRANSIT_SPEEDS.map((ts, i) => (
             <motion.div
@@ -194,9 +194,9 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 4: Sade Sati */}
-      <LessonSection number={4} title={L.saturnTitle[locale]}>
-        <p style={bodyFont}>{L.saturnContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.saturnContent2[locale]}</p>
+      <LessonSection number={4} title={((L.saturnTitle as Record<string, string>)[locale] ?? L.saturnTitle.en)}>
+        <p style={bodyFont}>{((L.saturnContent as Record<string, string>)[locale] ?? L.saturnContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.saturnContent2 as Record<string, string>)[locale] ?? L.saturnContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-blue-400/20">
           <p className="text-blue-300 font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Three Phases of Sade Sati:' : 'साढ़े साती के तीन चरण:'}
@@ -219,8 +219,8 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 5: Jupiter Transit */}
-      <LessonSection number={5} title={L.jupiterTitle[locale]}>
-        <p style={bodyFont}>{L.jupiterContent[locale]}</p>
+      <LessonSection number={5} title={((L.jupiterTitle as Record<string, string>)[locale] ?? L.jupiterTitle.en)}>
+        <p style={bodyFont}>{((L.jupiterContent as Record<string, string>)[locale] ?? L.jupiterContent.en)}</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
             <div className="text-emerald-400 text-xs uppercase tracking-widest font-bold mb-1">
@@ -246,9 +246,9 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 6: Double Transit Theory */}
-      <LessonSection number={6} title={L.doubleTransitTitle[locale]} variant="highlight">
-        <p style={bodyFont}>{L.doubleTransitContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.doubleTransitContent2[locale]}</p>
+      <LessonSection number={6} title={((L.doubleTransitTitle as Record<string, string>)[locale] ?? L.doubleTransitTitle.en)} variant="highlight">
+        <p style={bodyFont}>{((L.doubleTransitContent as Record<string, string>)[locale] ?? L.doubleTransitContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.doubleTransitContent2 as Record<string, string>)[locale] ?? L.doubleTransitContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Double Transit Examples:' : 'दोहरा गोचर उदाहरण:'}
@@ -266,15 +266,15 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 7: Rahu-Ketu */}
-      <LessonSection number={7} title={L.rahuKetuTitle[locale]}>
-        <p style={bodyFont}>{L.rahuKetuContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.rahuKetuContent2[locale]}</p>
+      <LessonSection number={7} title={((L.rahuKetuTitle as Record<string, string>)[locale] ?? L.rahuKetuTitle.en)}>
+        <p style={bodyFont}>{((L.rahuKetuContent as Record<string, string>)[locale] ?? L.rahuKetuContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.rahuKetuContent2 as Record<string, string>)[locale] ?? L.rahuKetuContent2.en)}</p>
       </LessonSection>
 
       {/* Section 8: Ashtakavarga */}
-      <LessonSection number={8} title={L.ashtakavargaTitle[locale]}>
-        <p style={bodyFont}>{L.ashtakavargaContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.ashtakavargaContent2[locale]}</p>
+      <LessonSection number={8} title={((L.ashtakavargaTitle as Record<string, string>)[locale] ?? L.ashtakavargaTitle.en)}>
+        <p style={bodyFont}>{((L.ashtakavargaContent as Record<string, string>)[locale] ?? L.ashtakavargaContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.ashtakavargaContent2 as Record<string, string>)[locale] ?? L.ashtakavargaContent2.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Ashtakavarga Scoring:' : 'अष्टकवर्ग अंकन:'}
@@ -301,7 +301,7 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 9: Transit through houses table */}
-      <LessonSection number={9} title={L.transitHouseTitle[locale]}>
+      <LessonSection number={9} title={((L.transitHouseTitle as Record<string, string>)[locale] ?? L.transitHouseTitle.en)}>
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -325,8 +325,8 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 10: Chandra Balam & Tara Balam */}
-      <LessonSection number={10} title={L.balamTitle[locale]}>
-        <p style={bodyFont}>{L.balamContent[locale]}</p>
+      <LessonSection number={10} title={((L.balamTitle as Record<string, string>)[locale] ?? L.balamTitle.en)}>
+        <p style={bodyFont}>{((L.balamContent as Record<string, string>)[locale] ?? L.balamContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm mb-2">
             {locale === 'en' || String(locale) === 'ta' ? 'Chandra Balam (Moon Strength):' : 'चन्द्र बलम (चन्द्र शक्ति):'}
@@ -358,7 +358,7 @@ export default function LearnGocharPage() {
       </LessonSection>
 
       {/* Section 11: Related modules and tools */}
-      <LessonSection number={11} title={L.modulesTitle[locale]}>
+      <LessonSection number={11} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/12-1', label: { en: 'Lesson 12-1: Introduction to Transits', hi: 'पाठ 12-1: गोचर परिचय' } },
@@ -393,7 +393,7 @@ export default function LearnGocharPage() {
           href="/transits"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]} →
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
         </Link>
       </div>
     </div>

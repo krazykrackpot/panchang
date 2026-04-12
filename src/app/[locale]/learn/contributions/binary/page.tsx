@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -102,8 +98,8 @@ const SANSKRIT_TERMS = [
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
-export default function BinaryPage() {
-  const locale = useLocale() as Locale;
+export default async function BinaryPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const hi = locale === 'hi';
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
@@ -113,7 +109,7 @@ export default function BinaryPage() {
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {['1','0','1','1','0','1','0','0','1','0','1','1','0','0','1','0'].map((bit, i) => (
-            <motion.div
+            <div
               key={i}
               className="absolute font-mono text-gold-primary/15 font-bold select-none"
               style={{
@@ -121,16 +117,14 @@ export default function BinaryPage() {
                 left: `${(i * 23 + 5) % 95}%`,
                 top: `${(i * 17 + 3) % 90}%`,
               }}
-              animate={{ opacity: [0.05, 0.3, 0.05] }}
-              transition={{ duration: 2 + (i % 3), repeat: Infinity, delay: i * 0.3 }}
             >
               {bit}
-            </motion.div>
+            </div>
           ))}
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-gold-primary/30 to-amber-500/10 border border-gold-primary/30 flex items-center justify-center">
                 <Binary className="w-10 h-10 text-gold-primary" />
@@ -148,12 +142,9 @@ export default function BinaryPage() {
             <div className="flex justify-center mt-4">
               <ShareRow pageTitle={t(L.title)} locale={locale} />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
+          <div
             className="mt-10"
           >
             <div className="inline-flex flex-col items-center bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-8 py-6">
@@ -166,7 +157,7 @@ export default function BinaryPage() {
                 {hi ? '"INDIA" बाइनरी में — पिंगल, ~200 ईसा पूर्व से शुरू हुई' : '"INDIA" in binary — a tradition started by Pingala, ~200 BCE'}
               </span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -204,18 +195,14 @@ export default function BinaryPage() {
               </thead>
               <tbody>
                 {BINARY_EXAMPLES.map((row, i) => (
-                  <motion.tr
+                  <tr
                     key={i}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
                     className="border-b border-white/[0.05]"
                   >
                     <td className="py-3 px-3 font-mono text-gold-primary">{row.pattern}</td>
                     <td className="py-3 px-3 font-mono text-emerald-400 font-bold">{row.binary}</td>
                     <td className="py-3 px-3 text-text-secondary hidden sm:table-cell">{t(row.meter)}</td>
-                  </motion.tr>
+                  </tr>
                 ))}
               </tbody>
             </table>
@@ -250,12 +237,8 @@ export default function BinaryPage() {
           <p>{t(L.s4Body)}</p>
           <div className="mt-6 flex flex-col items-center gap-1">
             {MERU.map((row, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className="flex gap-2"
               >
                 {row.map((val, j) => (
@@ -273,7 +256,7 @@ export default function BinaryPage() {
                     {val}
                   </div>
                 ))}
-              </motion.div>
+              </div>
             ))}
             <div className="text-text-secondary/60 text-xs mt-3 italic">
               {hi ? 'पिंगल का मेरु प्रस्तार (~200 ईसा पूर्व) = पास्कल का त्रिभुज (1653 ईस्वी से 1,850 वर्ष पहले)' : "Pingala's Meru Prastara (~200 BCE) = Pascal's Triangle (1,850 years before Pascal's 1653 CE)"}
@@ -286,16 +269,12 @@ export default function BinaryPage() {
           <p>{t(L.s5Body)}</p>
           <div className="mt-6 flex gap-2 flex-wrap justify-center">
             {[1,1,2,3,5,8,13,21,34,55,89].map((n, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
                 className="w-12 h-12 rounded-lg bg-gradient-to-br from-gold-primary/20 to-amber-500/10 border border-gold-primary/25 flex items-center justify-center text-gold-light font-bold text-sm"
               >
                 {n}
-              </motion.div>
+              </div>
             ))}
             <div className="w-full text-center text-text-secondary/60 text-xs italic mt-2">
               {hi ? 'पिंगल-फिबोनाची अनुक्रम: F(n) = F(n-1) + F(n-2)' : 'Pingala-Fibonacci sequence: F(n) = F(n-1) + F(n-2)'}

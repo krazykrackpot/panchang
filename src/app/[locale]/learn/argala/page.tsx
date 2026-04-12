@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Inline trilingual labels ─────────────────────────────────────── */
 const L = {
-  title: { en: 'Argala — Planetary Intervention', hi: 'अर्गला — ग्रहीय हस्तक्षेप', sa: 'अर्गला — ग्रहीयहस्तक्षेपः' },
+  title: { en: 'Argala — Planetary Intervention', hi: 'अर्गला — ग्रहीय हस्तक्षेप', sa: 'अर्गला — ग्रहीयहस्तक्षेपः' , ta: 'அர்கலா — கிரக தலையீடு' },
   subtitle: {
     en: 'From Jaimini Sutras and BPHS Chapter 31. Argala reveals which planets actively intervene in each house\'s affairs — bolting support or obstruction onto your life areas.',
     hi: 'जैमिनी सूत्र और बृहत् पाराशर होरा शास्त्र अध्याय 31 से। अर्गला बताता है कि कौन से ग्रह प्रत्येक भाव के मामलों में सक्रिय हस्तक्षेप करते हैं।',
@@ -197,27 +197,27 @@ export default function ArgalaPage() {
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold-gradient mb-4"
           style={{ fontFamily: 'var(--font-heading)' }}
         >
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h1>
         <p className="text-text-secondary max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-          {L.subtitle[locale]}
+          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
         </p>
       </motion.div>
 
       {/* ── Section 1: What is Argala? ────────────────────────────── */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p>{L.whatContent[locale]}</p>
-        <p>{L.whatContent2[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
         <div className="mt-4 p-4 rounded-lg bg-gold-primary/5 border border-gold-primary/15">
           <p className="text-gold-light text-sm italic">
-            {L.sourceContent[locale]}
+            {((L.sourceContent as Record<string, string>)[locale] ?? L.sourceContent.en)}
           </p>
         </div>
       </LessonSection>
 
       {/* ── Section 2: The Four Types ─────────────────────────────── */}
-      <LessonSection number={2} title={L.typesTitle[locale]}>
-        <p>{L.typesContent[locale]}</p>
+      <LessonSection number={2} title={((L.typesTitle as Record<string, string>)[locale] ?? L.typesTitle.en)}>
+        <p>{((L.typesContent as Record<string, string>)[locale] ?? L.typesContent.en)}</p>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {ARGALA_TYPES.map((a, i) => (
             <motion.div
@@ -249,9 +249,9 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 3: Virodha Argala ─────────────────────────────── */}
-      <LessonSection number={3} title={L.virodhaTitle[locale]}>
-        <p>{L.virodhaContent[locale]}</p>
-        <p>{L.virodhaContent2[locale]}</p>
+      <LessonSection number={3} title={((L.virodhaTitle as Record<string, string>)[locale] ?? L.virodhaTitle.en)}>
+        <p>{((L.virodhaContent as Record<string, string>)[locale] ?? L.virodhaContent.en)}</p>
+        <p>{((L.virodhaContent2 as Record<string, string>)[locale] ?? L.virodhaContent2.en)}</p>
 
         {/* Virodha table */}
         <div className="mt-6 overflow-x-auto">
@@ -294,8 +294,8 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 4: Worked Example ─────────────────────────────── */}
-      <LessonSection number={4} title={L.exampleTitle[locale]}>
-        <p>{L.exampleContent[locale]}</p>
+      <LessonSection number={4} title={((L.exampleTitle as Record<string, string>)[locale] ?? L.exampleTitle.en)}>
+        <p>{((L.exampleContent as Record<string, string>)[locale] ?? L.exampleContent.en)}</p>
 
         <div className="mt-6 space-y-4">
           {EXAMPLE_STEPS.map((step, i) => (
@@ -339,9 +339,9 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 5: Reading Argala ─────────────────────────────── */}
-      <LessonSection number={5} title={L.readingTitle[locale]}>
-        <p>{L.readingContent[locale]}</p>
-        <p>{L.supportedContent[locale]}</p>
+      <LessonSection number={5} title={((L.readingTitle as Record<string, string>)[locale] ?? L.readingTitle.en)}>
+        <p>{((L.readingContent as Record<string, string>)[locale] ?? L.readingContent.en)}</p>
+        <p>{((L.supportedContent as Record<string, string>)[locale] ?? L.supportedContent.en)}</p>
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/15">
@@ -370,13 +370,13 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 6: Remedies ────────────────────────────────────── */}
-      <LessonSection number={6} title={L.remediesTitle[locale]}>
-        <p>{L.remediesContent[locale]}</p>
+      <LessonSection number={6} title={((L.remediesTitle as Record<string, string>)[locale] ?? L.remediesTitle.en)}>
+        <p>{((L.remediesContent as Record<string, string>)[locale] ?? L.remediesContent.en)}</p>
       </LessonSection>
 
       {/* ── Section 7: Special Rules ──────────────────────────────── */}
-      <LessonSection number={7} title={L.specialTitle[locale]}>
-        <p>{L.specialContent[locale]}</p>
+      <LessonSection number={7} title={((L.specialTitle as Record<string, string>)[locale] ?? L.specialTitle.en)}>
+        <p>{((L.specialContent as Record<string, string>)[locale] ?? L.specialContent.en)}</p>
         <div className="mt-4 space-y-3">
           {SPECIAL_RULES.map((rule, i) => (
             <motion.div
@@ -394,7 +394,7 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 8: Practical Tips ─────────────────────────────── */}
-      <LessonSection number={8} title={L.practicalTitle[locale]}>
+      <LessonSection number={8} title={((L.practicalTitle as Record<string, string>)[locale] ?? L.practicalTitle.en)}>
         <div className="space-y-3">
           {PRACTICAL_TIPS.map((tip, i) => (
             <motion.div
@@ -413,7 +413,7 @@ export default function ArgalaPage() {
       </LessonSection>
 
       {/* ── Section 9: Cross References ───────────────────────────── */}
-      <LessonSection number={9} title={L.crossRefTitle[locale]}>
+      <LessonSection number={9} title={((L.crossRefTitle as Record<string, string>)[locale] ?? L.crossRefTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {CROSS_REFS.map((ref) => (
             <Link

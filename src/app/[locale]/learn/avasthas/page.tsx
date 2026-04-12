@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 // ─── Trilingual Labels ────────────────────────────────────────────────────────
 const L = {
-  title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएं — ग्रह दशाएं', sa: 'अवस्थाः — ग्रहदशाः' },
+  title: { en: 'Avasthas — Planetary States', hi: 'अवस्थाएं — ग्रह दशाएं', sa: 'अवस्थाः — ग्रहदशाः' , ta: 'அவஸ்தைகள் — கிரக நிலைகள்' },
   subtitle: {
     en: 'Avasthas reveal HOW a planet delivers its results — not just whether it can. A strong planet in a miserable avastha may have power but deliver it with suffering. A weak planet in a delighted avastha may surprise with grace. Five classification systems from BPHS paint the complete psychological portrait of each planet.',
     hi: 'अवस्थाएं बताती हैं कि ग्रह अपने फल कैसे देता है — केवल यह नहीं कि दे सकता है या नहीं। दुखी अवस्था में बलवान ग्रह शक्तिशाली पर कष्टप्रद फल देता है। प्रसन्न अवस्था में दुर्बल ग्रह कृपा से आश्चर्य कर सकता है। BPHS की पाँच वर्गीकरण प्रणालियाँ प्रत्येक ग्रह का सम्पूर्ण मनोवैज्ञानिक चित्र बनाती हैं।',

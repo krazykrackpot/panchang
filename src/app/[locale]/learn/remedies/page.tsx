@@ -9,7 +9,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual Labels ──────────────────────────────────────────── */
 const L = {
-  title: { en: 'Complete Remedial Reference', hi: 'सम्पूर्ण उपचार संदर्भ', sa: 'सम्पूर्णोपचारसन्दर्भः' },
+  title: { en: 'Complete Remedial Reference', hi: 'सम्पूर्ण उपचार संदर्भ', sa: 'सम्पूर्णोपचारसन्दर्भः' , ta: 'முழுமையான பரிகார வழிகாட்டி' },
   subtitle: {
     en: 'Vedic remedies (Upayas) are prescribed actions to strengthen weak benefic planets or pacify strong malefic ones. This reference covers gemstones, mantras, charity, fasting, colors, and deities for all nine Grahas.',
     hi: 'वैदिक उपाय (उपचार) दुर्बल शुभ ग्रहों को सशक्त करने या प्रबल पाप ग्रहों को शान्त करने के लिए निर्धारित क्रियाएँ हैं। यह संदर्भ सभी नौ ग्रहों के लिए रत्न, मंत्र, दान, उपवास, रंग और देवता की जानकारी देता है।',
@@ -252,17 +252,17 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
   const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
   const rows: { icon: React.ReactNode; label: string; value: string; highlight?: boolean }[] = [
-    { icon: <Gem className="w-4 h-4" />, label: L.gemstone[locale], value: `${planet.gemstone[locale]} — ${planet.gemstoneSpec[locale]}` },
-    ...(planet.substitute[locale] ? [{ icon: <Sparkles className="w-4 h-4" />, label: L.substitute[locale], value: planet.substitute[locale] }] : []),
-    { icon: <Music className="w-4 h-4" />, label: L.beejMantra[locale], value: planet.beejMantra, highlight: true },
-    { icon: <span className="text-xs font-bold w-4 text-center">#</span>, label: L.repetitions[locale], value: planet.repetitions },
-    ...(planet.gayatri ? [{ icon: <Music className="w-4 h-4" />, label: L.gayatri[locale], value: planet.gayatri, highlight: true }] : []),
-    { icon: <Flame className="w-4 h-4" />, label: L.deity[locale], value: planet.deity[locale] },
-    { icon: <span className="text-xs">D</span>, label: L.day[locale], value: planet.day[locale] },
-    { icon: <span className="w-3 h-3 rounded-full" style={{ backgroundColor: planet.color, display: 'inline-block' }} />, label: L.color[locale], value: planet.color_val[locale] },
-    { icon: <span className="text-xs">V</span>, label: L.fast[locale], value: planet.fast[locale] },
-    { icon: <Heart className="w-4 h-4" />, label: L.charity[locale], value: planet.charity[locale] },
-    ...(planet.direction ? [{ icon: <span className="text-xs">N</span>, label: L.direction[locale], value: planet.direction[locale] }] : []),
+    { icon: <Gem className="w-4 h-4" />, label: ((L.gemstone as Record<string, string>)[locale] ?? L.gemstone.en), value: `${planet.gemstone[locale]} — ${planet.gemstoneSpec[locale]}` },
+    ...(planet.substitute[locale] ? [{ icon: <Sparkles className="w-4 h-4" />, label: ((L.substitute as Record<string, string>)[locale] ?? L.substitute.en), value: planet.substitute[locale] }] : []),
+    { icon: <Music className="w-4 h-4" />, label: ((L.beejMantra as Record<string, string>)[locale] ?? L.beejMantra.en), value: planet.beejMantra, highlight: true },
+    { icon: <span className="text-xs font-bold w-4 text-center">#</span>, label: ((L.repetitions as Record<string, string>)[locale] ?? L.repetitions.en), value: planet.repetitions },
+    ...(planet.gayatri ? [{ icon: <Music className="w-4 h-4" />, label: ((L.gayatri as Record<string, string>)[locale] ?? L.gayatri.en), value: planet.gayatri, highlight: true }] : []),
+    { icon: <Flame className="w-4 h-4" />, label: ((L.deity as Record<string, string>)[locale] ?? L.deity.en), value: planet.deity[locale] },
+    { icon: <span className="text-xs">D</span>, label: ((L.day as Record<string, string>)[locale] ?? L.day.en), value: planet.day[locale] },
+    { icon: <span className="w-3 h-3 rounded-full" style={{ backgroundColor: planet.color, display: 'inline-block' }} />, label: ((L.color as Record<string, string>)[locale] ?? L.color.en), value: planet.color_val[locale] },
+    { icon: <span className="text-xs">V</span>, label: ((L.fast as Record<string, string>)[locale] ?? L.fast.en), value: planet.fast[locale] },
+    { icon: <Heart className="w-4 h-4" />, label: ((L.charity as Record<string, string>)[locale] ?? L.charity.en), value: planet.charity[locale] },
+    ...(planet.direction ? [{ icon: <span className="text-xs">N</span>, label: ((L.direction as Record<string, string>)[locale] ?? L.direction.en), value: planet.direction[locale] }] : []),
   ];
 
   return (
@@ -283,7 +283,7 @@ function RemedyCard({ planet, locale }: { planet: PlanetRemedy; locale: Locale }
         <div className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/8 p-4 flex gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
-            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">{L.warning[locale]}</span>
+            <span className="text-amber-400 text-xs font-bold uppercase tracking-wider">{((L.warning as Record<string, string>)[locale] ?? L.warning.en)}</span>
             <p className="text-text-secondary text-sm leading-relaxed mt-1" style={bodyFont}>{planet.warning[locale]}</p>
           </div>
         </div>
@@ -323,24 +323,24 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
       {/* Question 1 box */}
       <rect x="100" y="10" width="300" height="50" rx="12" fill="#1a1f4e" stroke="#d4a85340" strokeWidth="1" />
       <text x="250" y="30" textAnchor="middle" fill="#d4a853" fontSize="11" fontWeight="bold" fontFamily={bodyFont}>
-        {L.q1[locale]}
+        {((L.q1 as Record<string, string>)[locale] ?? L.q1.en)}
       </text>
       <text x="250" y="48" textAnchor="middle" fill="#8b8fa3" fontSize="9" fontFamily={bodyFont}>
-        {L.q1sub[locale]}
+        {((L.q1sub as Record<string, string>)[locale] ?? L.q1sub.en)}
       </text>
 
       {/* YES arrow left */}
       <line x1="180" y1="60" x2="100" y2="120" stroke="#34d399" strokeWidth="1.5" />
-      <text x="120" y="88" fill="#34d399" fontSize="10" fontWeight="bold">{L.yes[locale]}</text>
+      <text x="120" y="88" fill="#34d399" fontSize="10" fontWeight="bold">{((L.yes as Record<string, string>)[locale] ?? L.yes.en)}</text>
 
       {/* NO arrow right */}
       <line x1="320" y1="60" x2="400" y2="120" stroke="#ef4444" strokeWidth="1.5" />
-      <text x="370" y="88" fill="#ef4444" fontSize="10" fontWeight="bold">{L.no[locale]}</text>
+      <text x="370" y="88" fill="#ef4444" fontSize="10" fontWeight="bold">{((L.no as Record<string, string>)[locale] ?? L.no.en)}</text>
 
       {/* Strengthen box (left) */}
       <rect x="15" y="120" width="170" height="70" rx="12" fill="#34d39910" stroke="#34d39940" strokeWidth="1" />
       <text x="100" y="142" textAnchor="middle" fill="#34d399" fontSize="12" fontWeight="bold" fontFamily={bodyFont}>
-        {L.strengthenTitle[locale]}
+        {((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}
       </text>
       <text x="100" y="158" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
         {locale === 'en' || String(locale) === 'ta' ? 'Gemstone, mantra for power,' : locale === 'hi' ? 'रत्न, शक्ति मंत्र,' : 'रत्नम्, शक्तिमन्त्रः,'}
@@ -352,24 +352,24 @@ function FlowchartDiagram({ locale }: { locale: Locale }) {
       {/* Question 2 box (right) */}
       <rect x="315" y="120" width="170" height="50" rx="12" fill="#1a1f4e" stroke="#d4a85340" strokeWidth="1" />
       <text x="400" y="140" textAnchor="middle" fill="#d4a853" fontSize="10" fontWeight="bold" fontFamily={bodyFont}>
-        {L.q2[locale]}
+        {((L.q2 as Record<string, string>)[locale] ?? L.q2.en)}
       </text>
       <text x="400" y="156" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
-        {L.q2sub[locale]}
+        {((L.q2sub as Record<string, string>)[locale] ?? L.q2sub.en)}
       </text>
 
       {/* YES arrow from Q2 */}
       <line x1="355" y1="170" x2="300" y2="230" stroke="#ef4444" strokeWidth="1.5" />
-      <text x="310" y="200" fill="#ef4444" fontSize="10" fontWeight="bold">{L.yes[locale]}</text>
+      <text x="310" y="200" fill="#ef4444" fontSize="10" fontWeight="bold">{((L.yes as Record<string, string>)[locale] ?? L.yes.en)}</text>
 
       {/* NO arrow from Q2 */}
       <line x1="445" y1="170" x2="445" y2="230" stroke="#facc15" strokeWidth="1.5" />
-      <text x="455" y="200" fill="#facc15" fontSize="10" fontWeight="bold">{L.no[locale]}</text>
+      <text x="455" y="200" fill="#facc15" fontSize="10" fontWeight="bold">{((L.no as Record<string, string>)[locale] ?? L.no.en)}</text>
 
       {/* Pacify box */}
       <rect x="200" y="230" width="195" height="70" rx="12" fill="#ef444410" stroke="#ef444440" strokeWidth="1" />
       <text x="297" y="252" textAnchor="middle" fill="#ef4444" fontSize="12" fontWeight="bold" fontFamily={bodyFont}>
-        {L.pacifyTitle[locale]}
+        {((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}
       </text>
       <text x="297" y="268" textAnchor="middle" fill="#8b8fa3" fontSize="8" fontFamily={bodyFont}>
         {locale === 'en' || String(locale) === 'ta' ? 'Donation, fasting, mantra for peace' : locale === 'hi' ? 'दान, उपवास, शान्ति मंत्र' : 'दानम्, उपवासः, शान्तिमन्त्रः'}
@@ -405,17 +405,17 @@ export default function RemediesPage() {
       {/* Header */}
       <div>
         <h2 className="text-3xl font-bold text-gold-gradient mb-3" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
         <p className="text-text-secondary text-sm leading-relaxed max-w-3xl" style={bodyFont}>
-          {L.subtitle[locale]}
+          {((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}
         </p>
       </div>
 
       {/* Planet Selector + Remedy Card */}
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
-        <p className="text-text-secondary text-xs mb-4" style={bodyFont}>{L.selectPlanet[locale]}</p>
+        <p className="text-text-secondary text-xs mb-4" style={bodyFont}>{((L.selectPlanet as Record<string, string>)[locale] ?? L.selectPlanet.en)}</p>
 
         {/* Planet buttons */}
         <div className="flex flex-wrap gap-2 mb-6">
@@ -446,9 +446,9 @@ export default function RemediesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6">
         <div className="flex items-center gap-3 mb-3">
           <ShieldCheck className="w-6 h-6 text-gold-light" />
-          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{L.flowchartTitle[locale]}</h3>
+          <h3 className="text-gold-gradient text-xl font-bold" style={headingFont}>{((L.flowchartTitle as Record<string, string>)[locale] ?? L.flowchartTitle.en)}</h3>
         </div>
-        <p className="text-text-secondary text-sm leading-relaxed mb-6" style={bodyFont}>{L.flowchartSubtitle[locale]}</p>
+        <p className="text-text-secondary text-sm leading-relaxed mb-6" style={bodyFont}>{((L.flowchartSubtitle as Record<string, string>)[locale] ?? L.flowchartSubtitle.en)}</p>
 
         <FlowchartDiagram locale={locale} />
 
@@ -456,12 +456,12 @@ export default function RemediesPage() {
         <div className="flex flex-wrap gap-4 mt-6 text-xs justify-center">
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-            <span className="text-emerald-400 font-medium">{L.strengthenTitle[locale]}</span>
+            <span className="text-emerald-400 font-medium">{((L.strengthenTitle as Record<string, string>)[locale] ?? L.strengthenTitle.en)}</span>
             <span className="text-text-secondary">= {locale === 'en' || String(locale) === 'ta' ? 'Gemstone + Mantra' : locale === 'hi' ? 'रत्न + मंत्र' : 'रत्नम् + मन्त्रः'}</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-            <span className="text-red-400 font-medium">{L.pacifyTitle[locale]}</span>
+            <span className="text-red-400 font-medium">{((L.pacifyTitle as Record<string, string>)[locale] ?? L.pacifyTitle.en)}</span>
             <span className="text-text-secondary">= {locale === 'en' || String(locale) === 'ta' ? 'Charity + Fasting' : locale === 'hi' ? 'दान + उपवास' : 'दानम् + उपवासः'}</span>
           </span>
         </div>
@@ -472,27 +472,27 @@ export default function RemediesPage() {
         className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-6 border border-amber-500/15 bg-amber-500/3">
         <div className="flex items-center gap-3 mb-4">
           <AlertTriangle className="w-6 h-6 text-amber-400" />
-          <h3 className="text-amber-300 text-lg font-bold" style={headingFont}>{L.dontWorkTitle[locale]}</h3>
+          <h3 className="text-amber-300 text-lg font-bold" style={headingFont}>{((L.dontWorkTitle as Record<string, string>)[locale] ?? L.dontWorkTitle.en)}</h3>
         </div>
         <div className="space-y-4" style={bodyFont}>
           <div className="flex gap-3">
             <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 text-xs font-bold">1</span>
-            <p className="text-text-secondary text-sm leading-relaxed">{L.dontWork1[locale]}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">{((L.dontWork1 as Record<string, string>)[locale] ?? L.dontWork1.en)}</p>
           </div>
           <div className="flex gap-3">
             <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400 text-xs font-bold">2</span>
-            <p className="text-text-secondary text-sm leading-relaxed">{L.dontWork2[locale]}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">{((L.dontWork2 as Record<string, string>)[locale] ?? L.dontWork2.en)}</p>
           </div>
           <div className="flex gap-3">
             <span className="flex-shrink-0 w-6 h-6 rounded-full bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xs font-bold">3</span>
-            <p className="text-text-secondary text-sm leading-relaxed">{L.dontWork3[locale]}</p>
+            <p className="text-text-secondary text-sm leading-relaxed">{((L.dontWork3 as Record<string, string>)[locale] ?? L.dontWork3.en)}</p>
           </div>
         </div>
       </motion.div>
 
       {/* Related Links */}
       <div>
-        <h3 className="text-gold-gradient text-lg font-bold mb-4" style={headingFont}>{L.relatedTitle[locale]}</h3>
+        <h3 className="text-gold-gradient text-lg font-bold mb-4" style={headingFont}>{((L.relatedTitle as Record<string, string>)[locale] ?? L.relatedTitle.en)}</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {RELATED_LINKS.map((link, i) => (
             <Link key={i} href={link.href}

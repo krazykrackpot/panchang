@@ -1,7 +1,3 @@
-'use client';
-
-import { useLocale } from 'next-intl';
-import { motion } from 'framer-motion';
 import LessonSection from '@/components/learn/LessonSection';
 import SanskritTermCard from '@/components/learn/SanskritTermCard';
 import { Link } from '@/lib/i18n/navigation';
@@ -101,8 +97,8 @@ const SANSKRIT_TERMS = [
 /* ═══════════════════════════════════════════════════════════════
    COMPONENT
    ═══════════════════════════════════════════════════════════════ */
-export default function NegativeNumbersPage() {
-  const locale = useLocale() as Locale;
+export default async function NegativeNumbersPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params as { locale: Locale };
   const hi = locale === 'hi';
   const t = (obj: { en: string; hi: string }) => hi ? obj.hi : obj.en;
 
@@ -112,7 +108,7 @@ export default function NegativeNumbersPage() {
       <section className="relative overflow-hidden py-16 sm:py-24">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(40)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
               className="absolute rounded-full bg-gold-primary/10"
               style={{
@@ -121,14 +117,12 @@ export default function NegativeNumbersPage() {
                 left: `${(i * 19 + 3) % 100}%`,
                 top: `${(i * 29 + 7) % 100}%`,
               }}
-              animate={{ opacity: [0.1, 0.5, 0.1], scale: [0.8, 1.3, 0.8] }}
-              transition={{ duration: 3 + (i % 4), repeat: Infinity, delay: i * 0.2 }}
             />
           ))}
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <div className="flex justify-center mb-6">
               <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-500/20 to-amber-500/10 border border-red-500/30 flex items-center justify-center">
                 <Minus className="w-10 h-10 text-red-400" />
@@ -146,12 +140,9 @@ export default function NegativeNumbersPage() {
             <div className="flex justify-center mt-4">
               <ShareRow pageTitle={t(L.title)} locale={locale} />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, type: 'spring' as const }}
+          <div
             className="mt-10"
           >
             <div className="inline-flex flex-col sm:flex-row items-center gap-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl px-10 py-7">
@@ -178,7 +169,7 @@ export default function NegativeNumbersPage() {
                 {hi ? 'ब्रह्मगुप्त, 628 ईस्वी' : 'Brahmagupta, 628 CE'}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -223,17 +214,13 @@ export default function NegativeNumbersPage() {
               {hi ? 'ब्रह्मगुप्त के ऋण-धन नियम (628 ईस्वी)' : "Brahmagupta's rina-dhana rules (628 CE)"}
             </h4>
             {BRAHMAGUPTA_RULES.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
                 className={`flex items-center gap-3 rounded-lg border px-4 py-3 ${item.sign}`}
               >
                 <span className="text-xs font-mono w-4 flex-shrink-0 opacity-60">{i + 1}.</span>
                 <span className="font-mono text-sm flex-1">{t(item.rule)}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
           <div className="mt-4 bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
@@ -282,12 +269,8 @@ export default function NegativeNumbersPage() {
               {hi ? 'यूरोपीय विरोध की समयरेखा' : 'Timeline of European resistance'}
             </h4>
             {EUROPEAN_RESISTANCE.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className={`flex gap-4 rounded-lg bg-white/[0.02] border-l-4 ${item.color} px-4 py-4`}
               >
                 <div className="flex-shrink-0">
@@ -295,7 +278,7 @@ export default function NegativeNumbersPage() {
                   <div className="text-text-secondary/70 text-xs">{item.who}</div>
                 </div>
                 <div className="text-text-secondary text-sm leading-relaxed italic">&ldquo;{t(item.stance)}&rdquo;</div>
-              </motion.div>
+              </div>
             ))}
           </div>
           <div className="mt-5 bg-gold-primary/5 border border-gold-primary/15 rounded-lg p-4 text-sm text-text-secondary">
@@ -363,17 +346,13 @@ export default function NegativeNumbersPage() {
               {hi ? 'इस ऐप में ऋणात्मक संख्याओं के उपयोग' : 'Uses of negative numbers in this app'}
             </h4>
             {JYOTISH_USES.map((item, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -15 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
                 className="flex items-start gap-3 rounded-lg bg-white/[0.02] border border-white/[0.05] px-4 py-3"
               >
                 <TrendingDown className="w-4 h-4 text-gold-primary/60 flex-shrink-0 mt-0.5" />
                 <span className="text-text-secondary text-sm">{t(item.use)}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </LessonSection>

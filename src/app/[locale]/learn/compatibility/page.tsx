@@ -8,9 +8,9 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual Labels ──────────────────────────────────────────────── */
-type Tri = { en: string; hi: string; sa: string };
+type Tri = { en: string; hi: string; sa: string; ta?: string };
 const L: Record<string, Tri> = {
-  title:    { en: 'Advanced Compatibility Analysis', hi: 'उन्नत अनुकूलता विश्लेषण', sa: 'उन्नतानुकूलताविश्लेषणम्' },
+  title:    { en: 'Advanced Compatibility Analysis', hi: 'उन्नत अनुकूलता विश्लेषण', sa: 'उन्नतानुकूलताविश्लेषणम्' , ta: 'மேம்பட்ட பொருத்த பகுப்பாய்வு' },
   subtitle: { en: 'Beyond Ashta Kuta --- chart-level factors that determine real compatibility', hi: 'अष्ट कूट से परे --- वास्तविक अनुकूलता निर्धारित करने वाले कुण्डली-स्तरीय कारक', sa: 'अष्टकूटात् परं --- वास्तविकानुकूलतां निर्धारयन्तः कुण्डलीस्तरीयकारकाः' },
   s1Title:  { en: 'Beyond Ashta Kuta --- Chart-Level Analysis', hi: 'अष्ट कूट से परे --- कुण्डली-स्तरीय विश्लेषण', sa: 'अष्टकूटात् परम् --- कुण्डलीस्तरीयविश्लेषणम्' },
   s1Desc:   { en: 'Ashta Kuta (36 points) is the SCREENING test --- necessary but not sufficient. Many couples with 28+ points have troubled marriages; some with 18 points thrive. The difference: chart-level factors that Kuta Milan doesn\'t capture.', hi: 'अष्ट कूट (36 अंक) छानबीन परीक्षा है --- आवश्यक किन्तु पर्याप्त नहीं। 28+ अंक वाले अनेक दम्पतियों का विवाह कठिन होता है; 18 अंक वाले कुछ सफल होते हैं। अन्तर: कूट मिलान में न आने वाले कुण्डली-स्तरीय कारक।', sa: 'अष्टकूटः (36 अङ्काः) परीक्षणम् --- आवश्यकं किन्तु न पर्याप्तम्। 28+ अङ्कयुक्तानां बहूनां दम्पतीनां विवाहः कठिनः; 18 अङ्कयुक्ताः केचित् सफलाः।' },
@@ -124,8 +124,8 @@ export default function CompatibilityPage() {
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
       {/* Hero */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold text-gold-light font-heading">{L.title[locale]}</h1>
-        <p className="text-text-secondary max-w-2xl mx-auto">{L.subtitle[locale]}</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-gold-light font-heading">{((L.title as Record<string, string>)[locale] ?? L.title.en)}</h1>
+        <p className="text-text-secondary max-w-2xl mx-auto">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </motion.div>
 
       {/* Section Tabs */}
@@ -145,8 +145,8 @@ export default function CompatibilityPage() {
         {active === 'beyond' && (
           <motion.div key="beyond" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
             <Glass className="p-6 space-y-4">
-              <h2 className="text-xl font-bold text-gold-light">{L.s1Title[locale]}</h2>
-              <p className="text-text-secondary text-sm leading-relaxed">{L.s1Desc[locale]}</p>
+              <h2 className="text-xl font-bold text-gold-light">{((L.s1Title as Record<string, string>)[locale] ?? L.s1Title.en)}</h2>
+              <p className="text-text-secondary text-sm leading-relaxed">{((L.s1Desc as Record<string, string>)[locale] ?? L.s1Desc.en)}</p>
               <div className="grid sm:grid-cols-3 gap-4 mt-4">
                 {[
                   { score: '28+', label: { en: 'High Kuta, but troubled', hi: 'उच्च कूट, किन्तु कठिन', sa: 'उच्चकूटम्, किन्तु कठिनम्' }, color: '#f87171' },
@@ -168,7 +168,7 @@ export default function CompatibilityPage() {
         {active === 'house7' && (
           <motion.div key="house7" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
             <Glass className="p-6 space-y-3">
-              <h2 className="text-xl font-bold text-pink-400">{L.s2Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-pink-400">{((L.s2Title as Record<string, string>)[locale] ?? L.s2Title.en)}</h2>
               {HOUSE7_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#f472b6">{pt[locale]}</Bullet>
               ))}
@@ -181,7 +181,7 @@ export default function CompatibilityPage() {
         {active === 'venus' && (
           <motion.div key="venus" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
             <Glass className="p-6 space-y-3">
-              <h2 className="text-xl font-bold text-gray-200">{L.s3Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-gray-200">{((L.s3Title as Record<string, string>)[locale] ?? L.s3Title.en)}</h2>
               {VENUS_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#e8e6e3">{pt[locale]}</Bullet>
               ))}
@@ -194,7 +194,7 @@ export default function CompatibilityPage() {
         {active === 'navamsha' && (
           <motion.div key="navamsha" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
             <Glass className="p-6 space-y-3">
-              <h2 className="text-xl font-bold text-purple-400">{L.s4Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-purple-400">{((L.s4Title as Record<string, string>)[locale] ?? L.s4Title.en)}</h2>
               {NAVAMSHA_POINTS.map((pt, i) => (
                 <Bullet key={i} color="#a78bfa">{pt[locale]}</Bullet>
               ))}
@@ -207,7 +207,7 @@ export default function CompatibilityPage() {
         {active === 'dasha' && (
           <motion.div key="dasha" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
             <Glass className="p-6">
-              <h2 className="text-xl font-bold text-emerald-400 mb-4">{L.s5Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-emerald-400 mb-4">{((L.s5Title as Record<string, string>)[locale] ?? L.s5Title.en)}</h2>
               <div className="space-y-3">
                 {DASHA_COMBOS.map((d, i) => (
                   <div key={i} className="flex items-start gap-3 p-3 rounded-xl border border-white/5 bg-white/3">
@@ -228,7 +228,7 @@ export default function CompatibilityPage() {
         {active === 'mangal' && (
           <motion.div key="mangal" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
             <Glass className="p-6 space-y-4">
-              <h2 className="text-xl font-bold text-red-400">{L.s6Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-red-400">{((L.s6Title as Record<string, string>)[locale] ?? L.s6Title.en)}</h2>
               <p className="text-text-secondary text-sm">
                 {locale === 'en' || String(locale) === 'ta' ? `Mars in houses ${MANGAL_HOUSES.join(', ')} from Lagna OR Moon OR Venus creates Mangal Dosha. Check from ALL THREE reference points --- most apps only check Lagna.` : locale === 'hi' ? `लग्न या चन्द्र या शुक्र से भाव ${MANGAL_HOUSES.join(', ')} में मंगल से मंगल दोष बनता है। तीनों सन्दर्भ बिन्दुओं से जाँचें --- अधिकांश ऐप केवल लग्न जाँचते हैं।` : `लग्नात् चन्द्रात् शुक्रात् वा भावेषु ${MANGAL_HOUSES.join(', ')} मङ्गलः मङ्गलदोषं रचयति। त्रिभ्यः सन्दर्भबिन्दुभ्यः परीक्षतु।`}
               </p>
@@ -256,7 +256,7 @@ export default function CompatibilityPage() {
         {active === 'approach' && (
           <motion.div key="approach" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
             <Glass className="p-6 space-y-4">
-              <h2 className="text-xl font-bold text-amber-400">{L.s7Title[locale]}</h2>
+              <h2 className="text-xl font-bold text-amber-400">{((L.s7Title as Record<string, string>)[locale] ?? L.s7Title.en)}</h2>
               <div className="space-y-3">
                 {PRACTICAL_STEPS.map((s) => (
                   <div key={s.step} className="flex items-start gap-4 p-3 rounded-xl border border-white/5 bg-white/3">
@@ -276,7 +276,7 @@ export default function CompatibilityPage() {
 
       {/* Related Links */}
       <Glass className="p-6">
-        <h3 className="text-sm font-bold text-gold-light mb-4">{L.relLinks[locale]}</h3>
+        <h3 className="text-sm font-bold text-gold-light mb-4">{((L.relLinks as Record<string, string>)[locale] ?? L.relLinks.en)}</h3>
         <div className="flex flex-wrap gap-3">
           {[
             { href: '/matching', label: { en: 'Kundali Matching', hi: 'कुण्डली मिलान', sa: 'कुण्डलीमिलानम्' } },

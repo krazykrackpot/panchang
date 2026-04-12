@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       images: [`${BASE_URL}/${locale}/twitter-image`],
     },
     robots: {
-      index: true,
+      index: locale === 'en' || locale === 'hi',
       follow: true,
       'max-image-preview': 'large' as const,
       'max-snippet': -1,

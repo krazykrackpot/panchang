@@ -10,7 +10,7 @@ import type { Locale } from '@/types/panchang';
 
 /* ── Trilingual labels ───────────────────────────────────────────── */
 const L = {
-  title: { en: 'Children Prediction Guide', hi: 'सन्तान भविष्यवाणी मार्गदर्शिका', sa: 'सन्तानभविष्यवाणी-मार्गदर्शिका' },
+  title: { en: 'Children Prediction Guide', hi: 'सन्तान भविष्यवाणी मार्गदर्शिका', sa: 'सन्तानभविष्यवाणी-मार्गदर्शिका' , ta: 'குழந்தை கணிப்பு வழிகாட்டி' },
   subtitle: {
     en: 'A complete framework for analyzing childbirth timing, fertility indicators, and children\'s nature through the 5th house, Jupiter, and D7 Saptamsha chart.',
     hi: 'पञ्चम भाव, गुरु और D7 सप्तमांश कुण्डली से सन्तान प्राप्ति का समय, प्रजनन सूचक और सन्तान स्वभाव का विश्लेषण।',

@@ -9,7 +9,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Bhavas — The 12 Houses of Life', hi: 'भाव — जीवन के 12 क्षेत्र', sa: 'भावाः — जीवनस्य द्वादशक्षेत्राणि' },
+  title: { en: 'Bhavas — The 12 Houses of Life', hi: 'भाव — जीवन के 12 क्षेत्र', sa: 'भावाः — जीवनस्य द्वादशक्षेत्राणि' , ta: 'பாவங்கள் — வாழ்க்கையின் 12 பாவங்கள்' },
   subtitle: { en: 'How the sky is divided into 12 areas of human experience', hi: 'आकाश को मानवीय अनुभव के 12 क्षेत्रों में कैसे बाँटा जाता है', sa: 'आकाशं मानवानुभवस्य द्वादशक्षेत्रेषु कथं विभज्यते' },
   whatTitle: { en: 'What is a Bhava?', hi: 'भाव क्या है?', sa: 'भावः कः?' },
   whatContent: {
@@ -86,9 +86,9 @@ export default function LearnBhavasPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary">{L.subtitle[locale]}</p>
+        <p className="text-text-secondary">{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       {/* Sanskrit Key Terms */}
@@ -99,8 +99,8 @@ export default function LearnBhavasPage() {
         <SanskritTermCard term="Trikona" devanagari="त्रिकोण" transliteration="Trikoṇa" meaning="Trine houses (1,5,9)" />
       </div>
 
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p>{L.whatContent[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Lagna = Rising sign at birth = 1st House</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Lagna shifts ~1 Rashi every 2 hours as Earth rotates</p>
@@ -108,8 +108,8 @@ export default function LearnBhavasPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={2} title={L.howTitle[locale]}>
-        <p>{L.howContent[locale]}</p>
+      <LessonSection number={2} title={((L.howTitle as Record<string, string>)[locale] ?? L.howTitle.en)}>
+        <p>{((L.howContent as Record<string, string>)[locale] ?? L.howContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">Whole-Sign System (Vedic standard):</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">If Lagna is in Mesha (Aries) → 1st house = all of Mesha (0°-30°)</p>
@@ -121,8 +121,8 @@ export default function LearnBhavasPage() {
         </div>
       </LessonSection>
 
-      <LessonSection number={3} title={L.lagnaTitle[locale]}>
-        <p>{L.lagnaContent[locale]}</p>
+      <LessonSection number={3} title={((L.lagnaTitle as Record<string, string>)[locale] ?? L.lagnaTitle.en)}>
+        <p>{((L.lagnaContent as Record<string, string>)[locale] ?? L.lagnaContent.en)}</p>
         <div className="mt-4 p-4 bg-bg-primary/50 rounded-lg border border-gold-primary/10">
           <p className="text-gold-light font-mono text-sm">LST (Local Sidereal Time) = GST + Longitude/15</p>
           <p className="text-gold-light/60 font-mono text-xs mt-1">Lagna longitude = atan(sin(LST) / (cos(LST) × cos(ε) - tan(φ) × sin(ε)))</p>
@@ -131,7 +131,7 @@ export default function LearnBhavasPage() {
       </LessonSection>
 
       {/* Section 4: Classifications with charts */}
-      <LessonSection number={4} title={L.classTitle[locale]}>
+      <LessonSection number={4} title={((L.classTitle as Record<string, string>)[locale] ?? L.classTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {CLASSIFICATIONS.map((item) => (
             <motion.div
@@ -158,7 +158,7 @@ export default function LearnBhavasPage() {
       </LessonSection>
 
       {/* Section 5: All 12 Houses with individual diagrams */}
-      <LessonSection number={5} title={L.housesTitle[locale]} variant="highlight">
+      <LessonSection number={5} title={((L.housesTitle as Record<string, string>)[locale] ?? L.housesTitle.en)} variant="highlight">
         <div className="space-y-8">
           {HOUSES.map((h, i) => {
             const badges = getClassBadges(h.classification);
@@ -230,7 +230,7 @@ export default function LearnBhavasPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]}
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)}
         </Link>
       </div>
     </div>

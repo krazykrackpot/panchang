@@ -8,7 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import type { Locale } from '@/types/panchang';
 
 const L = {
-  title: { en: 'Planetary Positions — Graha Sthiti', hi: 'ग्रह स्थिति — ग्रहों की स्थिति', sa: 'ग्रहस्थितिः — ग्रहाणां स्थानम्' },
+  title: { en: 'Planetary Positions — Graha Sthiti', hi: 'ग्रह स्थिति — ग्रहों की स्थिति', sa: 'ग्रहस्थितिः — ग्रहाणां स्थानम्' , ta: 'கிரக நிலைகள் — கிரக ஸ்திதி' },
   subtitle: { en: 'Understanding where the nine Vedic planets sit in your chart and what they signify', hi: 'नवग्रहों की कुण्डली में स्थिति और उनके अर्थ को समझना', sa: 'नवग्रहाणां कुण्डल्यां स्थितिं तेषां अर्थं च अवगन्तुम्' },
 
   whatTitle: { en: 'What are Planetary Positions?', hi: 'ग्रह स्थिति क्या है?', sa: 'ग्रहस्थितिः का?' },
@@ -190,9 +190,9 @@ export default function LearnPlanetsPage() {
     <div>
       <div className="mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient mb-2" style={headingFont}>
-          {L.title[locale]}
+          {((L.title as Record<string, string>)[locale] ?? L.title.en)}
         </h2>
-        <p className="text-text-secondary" style={bodyFont}>{L.subtitle[locale]}</p>
+        <p className="text-text-secondary" style={bodyFont}>{((L.subtitle as Record<string, string>)[locale] ?? L.subtitle.en)}</p>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
@@ -204,14 +204,14 @@ export default function LearnPlanetsPage() {
       </div>
 
       {/* Section 1: What are Planetary Positions */}
-      <LessonSection number={1} title={L.whatTitle[locale]}>
-        <p style={bodyFont}>{L.whatContent[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent2[locale]}</p>
-        <p className="mt-3" style={bodyFont}>{L.whatContent3[locale]}</p>
+      <LessonSection number={1} title={((L.whatTitle as Record<string, string>)[locale] ?? L.whatTitle.en)}>
+        <p style={bodyFont}>{((L.whatContent as Record<string, string>)[locale] ?? L.whatContent.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent2 as Record<string, string>)[locale] ?? L.whatContent2.en)}</p>
+        <p className="mt-3" style={bodyFont}>{((L.whatContent3 as Record<string, string>)[locale] ?? L.whatContent3.en)}</p>
       </LessonSection>
 
       {/* Section 2: Navagraha grid */}
-      <LessonSection number={2} title={L.navagrahaTitle[locale]}>
+      <LessonSection number={2} title={((L.navagrahaTitle as Record<string, string>)[locale] ?? L.navagrahaTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
           {NAVAGRAHA.map((g, i) => (
             <motion.div
@@ -240,8 +240,8 @@ export default function LearnPlanetsPage() {
       </LessonSection>
 
       {/* Section 3: Reading the Planets Table */}
-      <LessonSection number={3} title={L.readingTitle[locale]}>
-        <p style={bodyFont}>{L.readingContent[locale]}</p>
+      <LessonSection number={3} title={((L.readingTitle as Record<string, string>)[locale] ?? L.readingTitle.en)}>
+        <p style={bodyFont}>{((L.readingContent as Record<string, string>)[locale] ?? L.readingContent.en)}</p>
 
         {/* Example table structure */}
         <div className="mt-4 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
@@ -281,10 +281,10 @@ export default function LearnPlanetsPage() {
         {/* What each column means */}
         <div className="mt-6 space-y-4">
           {[
-            { title: L.signMeaning[locale], desc: L.signDesc[locale], color: 'border-violet-400/20 bg-violet-400/5' },
-            { title: L.houseMeaning[locale], desc: L.houseDesc[locale], color: 'border-emerald-400/20 bg-emerald-400/5' },
-            { title: L.nakshatraMeaning[locale], desc: L.nakshatraDesc[locale], color: 'border-amber-400/20 bg-amber-400/5' },
-            { title: L.retroMeaning[locale], desc: L.retroDesc[locale], color: 'border-sky-400/20 bg-sky-400/5' },
+            { title: ((L.signMeaning as Record<string, string>)[locale] ?? L.signMeaning.en), desc: ((L.signDesc as Record<string, string>)[locale] ?? L.signDesc.en), color: 'border-violet-400/20 bg-violet-400/5' },
+            { title: ((L.houseMeaning as Record<string, string>)[locale] ?? L.houseMeaning.en), desc: ((L.houseDesc as Record<string, string>)[locale] ?? L.houseDesc.en), color: 'border-emerald-400/20 bg-emerald-400/5' },
+            { title: ((L.nakshatraMeaning as Record<string, string>)[locale] ?? L.nakshatraMeaning.en), desc: ((L.nakshatraDesc as Record<string, string>)[locale] ?? L.nakshatraDesc.en), color: 'border-amber-400/20 bg-amber-400/5' },
+            { title: ((L.retroMeaning as Record<string, string>)[locale] ?? L.retroMeaning.en), desc: ((L.retroDesc as Record<string, string>)[locale] ?? L.retroDesc.en), color: 'border-sky-400/20 bg-sky-400/5' },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -302,8 +302,8 @@ export default function LearnPlanetsPage() {
       </LessonSection>
 
       {/* Section 4: Planet-in-Sign Element Grid */}
-      <LessonSection number={4} title={L.elementTitle[locale]}>
-        <p style={bodyFont}>{L.elementContent[locale]}</p>
+      <LessonSection number={4} title={((L.elementTitle as Record<string, string>)[locale] ?? L.elementTitle.en)}>
+        <p style={bodyFont}>{((L.elementContent as Record<string, string>)[locale] ?? L.elementContent.en)}</p>
 
         <div className="mt-6 space-y-6">
           {ELEMENT_GRID.map((el, elIdx) => (
@@ -339,18 +339,18 @@ export default function LearnPlanetsPage() {
       </LessonSection>
 
       {/* Section 5: Key Dignities */}
-      <LessonSection number={5} title={L.dignityTitle[locale]} variant="highlight">
-        <p style={bodyFont}>{L.dignityContent[locale]}</p>
+      <LessonSection number={5} title={((L.dignityTitle as Record<string, string>)[locale] ?? L.dignityTitle.en)} variant="highlight">
+        <p style={bodyFont}>{((L.dignityContent as Record<string, string>)[locale] ?? L.dignityContent.en)}</p>
 
         <div className="mt-6 bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-2xl p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-gold-primary/10">
                 <th className="text-left py-2 px-2 text-gold-dark">{isHi ? 'ग्रह' : 'Planet'}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{L.exaltationLabel[locale]}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{L.debilitationLabel[locale]}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{L.ownSignLabel[locale]}</th>
-                <th className="text-left py-2 px-2 text-gold-dark">{L.moolTriLabel[locale]}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{((L.exaltationLabel as Record<string, string>)[locale] ?? L.exaltationLabel.en)}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{((L.debilitationLabel as Record<string, string>)[locale] ?? L.debilitationLabel.en)}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{((L.ownSignLabel as Record<string, string>)[locale] ?? L.ownSignLabel.en)}</th>
+                <th className="text-left py-2 px-2 text-gold-dark">{((L.moolTriLabel as Record<string, string>)[locale] ?? L.moolTriLabel.en)}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gold-primary/5">
@@ -371,10 +371,10 @@ export default function LearnPlanetsPage() {
 
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
-            { label: L.exaltationLabel[locale], desc: { en: 'Planet at peak strength. Results come easily and abundantly. Like a king honoured in his own court.', hi: 'ग्रह चरम बल पर। परिणाम सहजता और प्रचुरता से आते हैं। अपने दरबार में सम्मानित राजा।', sa: 'ग्रहः शिखरबले। फलानि सहजतया प्रचुरतया च आगच्छन्ति।' }, color: 'emerald' },
-            { label: L.debilitationLabel[locale], desc: { en: 'Planet at weakest. Results are delayed, distorted, or come through struggle. Can be cancelled by Neechabhanga Raja Yoga.', hi: 'ग्रह सबसे कमज़ोर। परिणाम विलम्बित या संघर्ष से आते हैं। नीचभंग राजयोग से रद्द हो सकता है।', sa: 'ग्रहः दुर्बलतमः। फलानि विलम्बितानि संघर्षेण वा।' }, color: 'red' },
-            { label: L.ownSignLabel[locale], desc: { en: 'Planet comfortable and reliable. Gives steady, dependable results in its significations. Like being at home.', hi: 'ग्रह सुखी और विश्वसनीय। अपने संकेतों में स्थिर, भरोसेमन्द परिणाम देता है। घर पर होने जैसा।', sa: 'ग्रहः सुखी विश्वसनीयश्च। स्वसङ्केतेषु स्थिरफलानि ददाति।' }, color: 'blue' },
-            { label: L.moolTriLabel[locale], desc: { en: 'A special zone of strength within a sign. Planet performs with authority and clarity, especially for its primary significations.', hi: 'राशि के भीतर बल का विशेष क्षेत्र। ग्रह अधिकार और स्पष्टता से कार्य करता है, विशेषकर प्राथमिक संकेतों के लिए।', sa: 'राशेः अन्तः बलस्य विशेषक्षेत्रम्। ग्रहः अधिकारेण स्पष्टतया च कार्यं करोति।' }, color: 'amber' },
+            { label: ((L.exaltationLabel as Record<string, string>)[locale] ?? L.exaltationLabel.en), desc: { en: 'Planet at peak strength. Results come easily and abundantly. Like a king honoured in his own court.', hi: 'ग्रह चरम बल पर। परिणाम सहजता और प्रचुरता से आते हैं। अपने दरबार में सम्मानित राजा।', sa: 'ग्रहः शिखरबले। फलानि सहजतया प्रचुरतया च आगच्छन्ति।' }, color: 'emerald' },
+            { label: ((L.debilitationLabel as Record<string, string>)[locale] ?? L.debilitationLabel.en), desc: { en: 'Planet at weakest. Results are delayed, distorted, or come through struggle. Can be cancelled by Neechabhanga Raja Yoga.', hi: 'ग्रह सबसे कमज़ोर। परिणाम विलम्बित या संघर्ष से आते हैं। नीचभंग राजयोग से रद्द हो सकता है।', sa: 'ग्रहः दुर्बलतमः। फलानि विलम्बितानि संघर्षेण वा।' }, color: 'red' },
+            { label: ((L.ownSignLabel as Record<string, string>)[locale] ?? L.ownSignLabel.en), desc: { en: 'Planet comfortable and reliable. Gives steady, dependable results in its significations. Like being at home.', hi: 'ग्रह सुखी और विश्वसनीय। अपने संकेतों में स्थिर, भरोसेमन्द परिणाम देता है। घर पर होने जैसा।', sa: 'ग्रहः सुखी विश्वसनीयश्च। स्वसङ्केतेषु स्थिरफलानि ददाति।' }, color: 'blue' },
+            { label: ((L.moolTriLabel as Record<string, string>)[locale] ?? L.moolTriLabel.en), desc: { en: 'A special zone of strength within a sign. Planet performs with authority and clarity, especially for its primary significations.', hi: 'राशि के भीतर बल का विशेष क्षेत्र। ग्रह अधिकार और स्पष्टता से कार्य करता है, विशेषकर प्राथमिक संकेतों के लिए।', sa: 'राशेः अन्तः बलस्य विशेषक्षेत्रम्। ग्रहः अधिकारेण स्पष्टतया च कार्यं करोति।' }, color: 'amber' },
           ].map((item) => {
             const colorClasses: Record<string, string> = {
               emerald: 'border-emerald-400/20 bg-emerald-400/5 text-emerald-400',
@@ -394,7 +394,7 @@ export default function LearnPlanetsPage() {
       </LessonSection>
 
       {/* Section 6: Related modules */}
-      <LessonSection number={6} title={L.modulesTitle[locale]}>
+      <LessonSection number={6} title={((L.modulesTitle as Record<string, string>)[locale] ?? L.modulesTitle.en)}>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             { href: '/learn/modules/9-1', label: { en: 'Lesson 9-1: Planets in Houses', hi: 'पाठ 9-1: भावों में ग्रह', sa: 'पाठः 9-1: भावेषु ग्रहाः' } },
@@ -422,7 +422,7 @@ export default function LearnPlanetsPage() {
           href="/kundali"
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold-primary/10 border border-gold-primary/30 text-gold-light hover:bg-gold-primary/20 transition-colors text-sm font-medium"
         >
-          {L.tryIt[locale]} →
+          {((L.tryIt as Record<string, string>)[locale] ?? L.tryIt.en)} →
         </Link>
       </div>
     </div>

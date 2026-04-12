@@ -102,3 +102,59 @@ describe('RASHIS has slug field', () => {
     });
   });
 });
+
+// --- RASHI_DETAILS tests ---
+import { RASHI_DETAILS, type RashiDetail } from '@/lib/constants/rashi-details';
+
+describe('RASHI_DETAILS', () => {
+  it('has exactly 12 entries', () => {
+    expect(RASHI_DETAILS).toHaveLength(12);
+  });
+
+  it('each entry has id 1-12 matching index', () => {
+    RASHI_DETAILS.forEach((rd, i) => {
+      expect(rd.id).toBe(i + 1);
+    });
+  });
+
+  it('each entry has en and hi for all text fields', () => {
+    const textFields: (keyof RashiDetail)[] = [
+      'personality', 'career', 'health', 'relationships',
+      'strengths', 'challenges', 'luckyColors', 'luckyGems',
+    ];
+    RASHI_DETAILS.forEach(rd => {
+      textFields.forEach(field => {
+        const val = rd[field] as Record<string, string>;
+        expect(val.en, `${field} missing en for id ${rd.id}`).toBeTruthy();
+        expect(val.hi, `${field} missing hi for id ${rd.id}`).toBeTruthy();
+      });
+    });
+  });
+
+  it('each entry has 3-5 FAQs with en and hi', () => {
+    RASHI_DETAILS.forEach(rd => {
+      expect(rd.faqs.length).toBeGreaterThanOrEqual(3);
+      expect(rd.faqs.length).toBeLessThanOrEqual(5);
+      rd.faqs.forEach(faq => {
+        expect(faq.question.en).toBeTruthy();
+        expect(faq.answer.en).toBeTruthy();
+      });
+    });
+  });
+
+  it('compatibleRashis are valid IDs 1-12', () => {
+    RASHI_DETAILS.forEach(rd => {
+      expect(rd.compatibleRashis.length).toBeGreaterThan(0);
+      rd.compatibleRashis.forEach(id => {
+        expect(id).toBeGreaterThanOrEqual(1);
+        expect(id).toBeLessThanOrEqual(12);
+      });
+    });
+  });
+
+  it('personality content is substantial (>100 chars en)', () => {
+    RASHI_DETAILS.forEach(rd => {
+      expect(rd.personality.en.length).toBeGreaterThan(100);
+    });
+  });
+});

@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { parseGateError, type GateError } from '@/lib/api/parse-gate-error';
+import UsageLimitBanner from '@/components/ui/UsageLimitBanner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Loader2 } from 'lucide-react';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -125,6 +127,7 @@ export default function MuhurtaAIPage() {
   const [showLocationSearch, setShowLocationSearch] = useState(false);
   const [data, setData] = useState<MuhurtaAIResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [gateError, setGateError] = useState<GateError | null>(null);
   const { birthNakshatra, birthRashi, isSet: hasBirthData, loadFromStorage } = useBirthDataStore();
 
   useEffect(() => { loadFromStorage(); }, [loadFromStorage]);
@@ -180,11 +183,14 @@ export default function MuhurtaAIPage() {
   const handleFind = async () => {
     if (!activity) return;
     setLoading(true);
+    setGateError(null);
     try {
       const res = await authedFetch('/api/muhurta-ai', {
         method: 'POST',
         body: JSON.stringify({ activity, startDate, endDate, lat: location.lat, lng: location.lng, tz: location.tz, timezone: location.timezone, ...(hasBirthData ? { birthNakshatra, birthRashi } : {}) }),
       });
+      const gate = await parseGateError(res);
+      if (gate) { setGateError(gate); setLoading(false); return; }
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
@@ -287,6 +293,20 @@ export default function MuhurtaAIPage() {
           </motion.button>
         </div>
       </div>
+
+      {gateError && (
+        <div className="mt-8">
+          <UsageLimitBanner
+            type={gateError.type}
+            feature={gateError.feature}
+            featureName={gateError.featureName}
+            requiredTier={gateError.requiredTier}
+            limit={gateError.limit}
+            message={gateError.message}
+            source="muhurta-ai"
+          />
+        </div>
+      )}
 
       <AnimatePresence>
         {data && (

@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Check, X, ChevronDown } from 'lucide-react';
 import { useAuthStore } from '@/stores/auth-store';
 import { useSubscription } from '@/hooks/useSubscription';
 import type { Locale } from '@/types/panchang';
-import { trackSubscriptionStarted } from '@/lib/analytics';
+import { trackSubscriptionStarted, trackCheckoutStarted, trackCheckoutCompleted } from '@/lib/analytics';
 
 const PLANS = [
   {
@@ -136,6 +137,15 @@ export default function PricingPage() {
     : {};
 
   const { tier: currentTier } = useSubscription();
+  const searchParams = useSearchParams();
+
+  // Track checkout completion when user returns from Stripe/Razorpay
+  useEffect(() => {
+    const status = searchParams.get('status');
+    if (status === 'success') {
+      trackCheckoutCompleted({ tier: currentTier, provider: 'stripe' });
+    }
+  }, [searchParams, currentTier]);
 
   const [currency, setCurrency] = useState<'INR' | 'USD'>(() => {
     if (typeof window === 'undefined') return 'INR';
@@ -161,6 +171,7 @@ export default function PricingPage() {
         return;
       }
 
+      trackCheckoutStarted({ tier, billing, currency: currency.toLowerCase() as 'usd' | 'inr' });
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: {

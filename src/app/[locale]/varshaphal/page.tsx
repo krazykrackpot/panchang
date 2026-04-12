@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { parseGateError, type GateError } from '@/lib/api/parse-gate-error';
+import UsageLimitBanner from '@/components/ui/UsageLimitBanner';
 import { getSupabase } from '@/lib/supabase/client';
 import { resolveTimezoneFromCoords } from '@/lib/utils/timezone';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -94,6 +96,7 @@ export default function VarshaphalPage() {
   const [data, setData] = useState<VarshaphalData | null>(null);
   const [loading, setLoading] = useState(false);
   const [chartStyle, setChartStyle] = useState<ChartStyle>('north');
+  const [gateError, setGateError] = useState<GateError | null>(null);
 
   // Pre-populate form from user profile
   useEffect(() => {
@@ -130,6 +133,7 @@ export default function VarshaphalPage() {
   const handleSubmit = async () => {
     if (placeLat === null || placeLng === null) return;
     setLoading(true);
+    setGateError(null);
 
     const [y, m, d] = form.date.split('-').map(Number);
     if (!placeTimezone) return;
@@ -142,6 +146,8 @@ export default function VarshaphalPage() {
           year,
         }),
       });
+      const gate = await parseGateError(res);
+      if (gate) { setGateError(gate); setLoading(false); return; }
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
@@ -198,6 +204,20 @@ export default function VarshaphalPage() {
           </motion.button>
         </div>
       </div>
+
+      {gateError && (
+        <div className="mt-8">
+          <UsageLimitBanner
+            type={gateError.type}
+            feature={gateError.feature}
+            featureName={gateError.featureName}
+            requiredTier={gateError.requiredTier}
+            limit={gateError.limit}
+            message={gateError.message}
+            source="varshaphal"
+          />
+        </div>
+      )}
 
       <AnimatePresence>
         {data && (

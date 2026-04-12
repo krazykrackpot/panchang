@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { parseGateError, type GateError } from '@/lib/api/parse-gate-error';
+import UsageLimitBanner from '@/components/ui/UsageLimitBanner';
 import { motion, AnimatePresence } from 'framer-motion';
 import ChartNorth from '@/components/kundali/ChartNorth';
 import GoldDivider from '@/components/ui/GoldDivider';
@@ -95,10 +97,12 @@ export default function PrashnaAshtamangalaPage() {
   const [numbers, setNumbers] = useState<[number, number, number]>([7, 21, 54]);
   const [data, setData] = useState<AshtamangalaPrashnaData | null>(null);
   const [loading, setLoading] = useState(false);
+  const [gateError, setGateError] = useState<GateError | null>(null);
 
   const handleCast = useCallback(async () => {
     if (!category || locationStore.lat === null || locationStore.lng === null) return;
     setLoading(true);
+    setGateError(null);
 
     const now = new Date();
     const ianaTimezone = locationStore.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -108,6 +112,8 @@ export default function PrashnaAshtamangalaPage() {
         method: 'POST',
         body: JSON.stringify({ numbers, category, lat: locationStore.lat, lng: locationStore.lng, tz, timezone: Intl.DateTimeFormat().resolvedOptions().timeZone }),
       });
+      const gate = await parseGateError(res);
+      if (gate) { setGateError(gate); setLoading(false); return; }
       const result = await res.json();
       if (result.error) throw new Error(result.error);
       setData(result);
@@ -167,6 +173,20 @@ export default function PrashnaAshtamangalaPage() {
           </motion.button>
         </div>
       </div>
+
+      {gateError && (
+        <div className="mt-8">
+          <UsageLimitBanner
+            type={gateError.type}
+            feature={gateError.feature}
+            featureName={gateError.featureName}
+            requiredTier={gateError.requiredTier}
+            limit={gateError.limit}
+            message={gateError.message}
+            source="prashna-ashtamangala"
+          />
+        </div>
+      )}
 
       <AnimatePresence>
         {data && (

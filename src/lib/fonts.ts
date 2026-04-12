@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Sans_Tamil, Noto_Sans_Telugu, Noto_Sans_Bengali, Noto_Sans_Kannada } from 'next/font/google';
+import { Cormorant_Garamond, Inter, Noto_Sans_Devanagari, Noto_Sans_Tamil, Noto_Sans_Telugu, Noto_Sans_Bengali, Noto_Sans_Kannada, Noto_Sans_Gujarati } from 'next/font/google';
 
 export const inter = Inter({
   subsets: ['latin'],
@@ -48,4 +48,11 @@ export const notoKannada = Noto_Sans_Kannada({
   weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-kannada',
+});
+
+export const notoGujarati = Noto_Sans_Gujarati({
+  subsets: ['gujarati'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-gujarati',
 });

@@ -33,6 +33,8 @@
   --font-bengali-body: var(--font-bengali), var(--font-inter), sans-serif;
   --font-kannada-heading: var(--font-kannada), var(--font-cormorant), serif;
   --font-kannada-body: var(--font-kannada), var(--font-inter), sans-serif;
+  --font-gujarati-heading: var(--font-gujarati), var(--font-cormorant), serif;
+  --font-gujarati-body: var(--font-gujarati), var(--font-inter), sans-serif;
 }
 
 /* Star field animation */
@@ -112,6 +114,33 @@ html[lang="kn"] body {
 
 html[lang="kn"] h1, html[lang="kn"] h2, html[lang="kn"] h3 {
   font-family: var(--font-kannada-heading);
+}
+
+/* Marathi locale styles (Devanagari script) */
+html[lang="mr"] body {
+  font-family: var(--font-devanagari-body);
+}
+
+html[lang="mr"] h1, html[lang="mr"] h2, html[lang="mr"] h3 {
+  font-family: var(--font-devanagari-heading);
+}
+
+/* Gujarati locale styles */
+html[lang="gu"] body {
+  font-family: var(--font-gujarati-body);
+}
+
+html[lang="gu"] h1, html[lang="gu"] h2, html[lang="gu"] h3 {
+  font-family: var(--font-gujarati-heading);
+}
+
+/* Maithili locale styles (Devanagari script) */
+html[lang="mai"] body {
+  font-family: var(--font-devanagari-body);
+}
+
+html[lang="mai"] h1, html[lang="mai"] h2, html[lang="mai"] h3 {
+  font-family: var(--font-devanagari-heading);
 }
 
 /* Dark date/time picker icons — browser-native calendar & clock */

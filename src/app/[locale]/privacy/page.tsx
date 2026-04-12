@@ -234,6 +234,24 @@ const LABELS = {
       },
     ],
   },
+  te: {
+    title: 'గోప్యతా విధానం',
+    subtitle: 'మీ గోప్యత మాకు ముఖ్యం',
+    lastUpdated: 'చివరిగా నవీకరించబడింది: ఏప్రిల్ 11, 2026',
+    sections: [],
+  },
+  bn: {
+    title: 'গোপনীয়তা নীতি',
+    subtitle: 'আপনার গোপনীয়তা আমাদের কাছে গুরুত্বপূর্ণ',
+    lastUpdated: 'সর্বশেষ আপডেট: এপ্রিল ১১, ২০২৬',
+    sections: [],
+  },
+  kn: {
+    title: 'ಗೌಪ್ಯತಾ ನೀತಿ',
+    subtitle: 'ನಿಮ್ಮ ಗೌಪ್ಯತೆ ನಮಗೆ ಮುಖ್ಯ',
+    lastUpdated: 'ಕೊನೆಯದಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ: ಏಪ್ರಿಲ್ 11, 2026',
+    sections: [],
+  },
 };
 
 export async function generateMetadata({
@@ -262,7 +280,8 @@ export default async function PrivacyPolicyPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const l = locale === 'hi' ? LABELS.hi : LABELS.en;
+  const lb = (LABELS as Record<string, typeof LABELS.en>)[locale];
+  const l = lb && lb.sections.length > 0 ? lb : (locale === 'hi' ? LABELS.hi : LABELS.en);
 
   return (
     <main className="min-h-screen py-16 px-4">

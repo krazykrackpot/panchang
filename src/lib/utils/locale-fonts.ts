@@ -15,6 +15,8 @@ export function getBodyFont(locale: string): CSSProperties | undefined {
   if (locale === 'te') return { fontFamily: 'var(--font-telugu-body)' };
   if (locale === 'bn') return { fontFamily: 'var(--font-bengali-body)' };
   if (locale === 'kn') return { fontFamily: 'var(--font-kannada-body)' };
+  if (locale === 'mr' || locale === 'mai') return { fontFamily: 'var(--font-devanagari-body)' };
+  if (locale === 'gu') return { fontFamily: 'var(--font-gujarati-body)' };
   return undefined;
 }
 
@@ -33,17 +35,19 @@ export function getHeadingFont(locale: string): CSSProperties {
   if (locale === 'te') return { fontFamily: 'var(--font-telugu-heading)' };
   if (locale === 'bn') return { fontFamily: 'var(--font-bengali-heading)' };
   if (locale === 'kn') return { fontFamily: 'var(--font-kannada-heading)' };
+  if (locale === 'mr' || locale === 'mai') return { fontFamily: 'var(--font-devanagari-heading)' };
+  if (locale === 'gu') return { fontFamily: 'var(--font-gujarati-heading)' };
   return { fontFamily: 'var(--font-heading)' };
 }
 
 /** True for locales that use a non-Latin script (Devanagari, Tamil, Telugu, Bengali, Kannada). */
 export function isIndicLocale(locale: string): boolean {
-  return locale === 'hi' || locale === 'sa' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn';
+  return locale === 'hi' || locale === 'sa' || locale === 'ta' || locale === 'te' || locale === 'bn' || locale === 'kn' || locale === 'mr' || locale === 'gu' || locale === 'mai';
 }
 
 /** True only for Devanagari-script locales (Hindi, Sanskrit). */
 export function isDevanagariLocale(locale: string): boolean {
-  return locale === 'hi' || locale === 'sa';
+  return locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai';
 }
 
 /**
@@ -57,6 +61,6 @@ export function isDevanagariLocale(locale: string): boolean {
  * which does NOT handle Tamil/Telugu/Bengali/Kannada. Use this function instead.
  */
 export function dataLocale(locale: string): 'en' | 'hi' {
-  if (locale === 'hi' || locale === 'sa') return 'hi';
+  if (locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai') return 'hi';
   return 'en';
 }

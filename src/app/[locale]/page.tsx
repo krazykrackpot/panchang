@@ -1,12 +1,19 @@
+import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import AdUnit from '@/components/ads/AdUnit';
 import ProfileBanner from '@/components/home/ProfileBanner';
 import HomeClientWidgets from '@/components/home/HomeClientWidgets';
+import { computePanchang } from '@/lib/ephem/panchang-calc';
+import { getUTCOffsetForDate } from '@/lib/utils/timezone';
+import type { PanchangData } from '@/types/panchang';
 
 // ─── Locale text helper ───
-function L(texts: { en: string; hi: string; sa?: string; ta?: string }, locale: string): string {
+function L(texts: { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string }, locale: string): string {
+  if (locale === 'te' && texts.te) return texts.te;
+  if (locale === 'bn' && texts.bn) return texts.bn;
+  if (locale === 'kn' && texts.kn) return texts.kn;
   if (locale === 'ta' && texts.ta) return texts.ta;
   if (locale === 'sa' && texts.sa) return texts.sa;
   if (locale === 'hi' || locale === 'sa') return texts.hi;
@@ -225,96 +232,136 @@ function PrashnaSVG() {
 
 // Card data with unique gradient colors and SVGs
 const HERO_CARDS: { href: string; gradient: string; border: string; titleColor: string; svg: React.ReactNode;
-  label: { en: string; hi: string; ta: string }; desc: { en: string; hi: string; ta: string } }[] = [
+  label: { en: string; hi: string; ta: string; te?: string; bn?: string; kn?: string }; desc: { en: string; hi: string; ta: string; te?: string; bn?: string; kn?: string } }[] = [
   {
     href: '/kundali', gradient: 'from-[#2d1b69]/50 via-[#1a1040]/60 to-[#0a0e27]',
     border: 'border-gold-primary/12 hover:border-gold-primary/35', titleColor: 'text-[#f0d48a]',
     svg: <KundaliSVG />,
-    label: { en: 'Birth Chart', hi: 'जन्म कुण्डली', ta: 'ஜாதக வரைபடம்' },
-    desc: { en: 'Generate Kundali with Dasha, Yogas & AI insights', hi: 'दशा, योग और AI अंतर्दृष्टि के साथ कुण्डली बनाएं', ta: 'தசா, யோகம் & AI நுண்ணறிவுடன் ஜாதகம் உருவாக்கு' },
+    label: { en: 'Birth Chart', hi: 'जन्म कुण्डली', ta: 'ஜாதக வரைபடம்', te: 'జాతక చార్ట్', bn: 'জাতক চার্ট', kn: 'ಜಾತಕ ನಕ್ಷೆ' },
+    desc: { en: 'Generate Kundali with Dasha, Yogas & AI insights', hi: 'दशा, योग और AI अंतर्दृष्टि के साथ कुण्डली बनाएं', ta: 'தசா, யோகம் & AI நுண்ணறிவுடன் ஜாதகம் உருவாக்கு', te: 'దశ, యోగాలు & AI అంతర్దృష్టితో జాతకం రూపొందించండి', bn: 'দশা, যোগ ও AI অন্তর্দৃষ্টি সহ জাতক তৈরি করুন', kn: 'ದಶಾ, ಯೋಗ ಮತ್ತು AI ಒಳನೋಟಗಳೊಂದಿಗೆ ಜಾತಕ ರಚಿಸಿ' },
   },
   {
     href: '/muhurta-ai', gradient: 'from-[#1a4a3a]/40 via-[#0a2520]/50 to-[#0a0e27]',
     border: 'border-emerald-500/10 hover:border-emerald-500/30', titleColor: 'text-emerald-400',
     svg: <MuhurtaSVG />,
-    label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', ta: 'முகூர்த்தம் AI' },
-    desc: { en: 'AI-scored auspicious timing for 20 activities', hi: '20 गतिविधियों के लिए AI-अंकित शुभ समय', ta: '20 நடவடிக்கைகளுக்கான AI-மதிப்பிட்ட சுப நேரம்' },
+    label: { en: 'Muhurta AI', hi: 'मुहूर्त AI', ta: 'முகூர்த்தம் AI', te: 'ముహూర్తం AI', bn: 'মুহূর্ত AI', kn: 'ಮುಹೂರ್ತ AI' },
+    desc: { en: 'AI-scored auspicious timing for 20 activities', hi: '20 गतिविधियों के लिए AI-अंकित शुभ समय', ta: '20 நடவடிக்கைகளுக்கான AI-மதிப்பிட்ட சுப நேரம்', te: '20 కార్యకలాపాలకు AI-స్కోర్ శుభ సమయాలు', bn: '20টি কর্মকাণ্ডের জন্য AI-মূল্যায়িত শুভ সময়', kn: '20 ಚಟುವಟಿಕೆಗಳಿಗೆ AI-ಮೌಲ್ಯಮಾಪನ ಶುಭ ಸಮಯ' },
   },
   {
     href: '/calendar', gradient: 'from-[#4a2a10]/40 via-[#2a1a0a]/50 to-[#0a0e27]',
     border: 'border-orange-500/10 hover:border-orange-500/30', titleColor: 'text-orange-400',
     svg: <CalendarSVG />,
-    label: { en: 'Festivals & Vrat', hi: 'त्योहार और व्रत', ta: 'திருவிழாக்கள் & விரதம்' },
-    desc: { en: 'Hindu calendar with regional events & Ekadashi', hi: 'क्षेत्रीय त्योहार और एकादशी के साथ हिन्दू पंचांग', ta: 'பிராந்திய நிகழ்வுகள் & ஏகாதசியுடன் இந்து நாள்காட்டி' },
+    label: { en: 'Festivals & Vrat', hi: 'त्योहार और व्रत', ta: 'திருவிழாக்கள் & விரதம்', te: 'పండుగలు & వ్రతాలు', bn: 'উৎসব ও ব্রত', kn: 'ಹಬ್ಬಗಳು & ವ್ರತಗಳು' },
+    desc: { en: 'Hindu calendar with regional events & Ekadashi', hi: 'क्षेत्रीय त्योहार और एकादशी के साथ हिन्दू पंचांग', ta: 'பிராந்திய நிகழ்வுகள் & ஏகாதசியுடன் இந்து நாள்காட்டி', te: 'ప్రాంతీయ ఈవెంట్లు & ఏకాదశితో హిందూ పంచాంగం', bn: 'আঞ্চলিক অনুষ্ঠান ও একাদশী সহ হিন্দু পঞ্চাঙ্গ', kn: 'ಪ್ರಾದೇಶಿಕ ಕಾರ್ಯಕ್ರಮಗಳು & ಏಕಾದಶಿಯೊಂದಿಗೆ ಹಿಂದೂ ಪಂಚಾಂಗ' },
   },
   {
     href: '/transits', gradient: 'from-[#1a2a5a]/40 via-[#0a1530]/50 to-[#0a0e27]',
     border: 'border-blue-500/10 hover:border-blue-500/30', titleColor: 'text-blue-400',
     svg: <TransitSVG />,
-    label: { en: 'Planet Transits', hi: 'ग्रह गोचर', ta: 'கிரக பெயர்ச்சி' },
-    desc: { en: 'Track planetary movements & Gochar predictions', hi: 'ग्रहों की चाल और गोचर फल ट्रैक करें', ta: 'கிரக நகர்வுகள் & கோசார கணிப்புகளைக் கண்காணிக்கவும்' },
+    label: { en: 'Planet Transits', hi: 'ग्रह गोचर', ta: 'கிரக பெயர்ச்சி', te: 'గ్రహ గోచారం', bn: 'গ্রহ গোচর', kn: 'ಗ್ರಹ ಗೋಚಾರ' },
+    desc: { en: 'Track planetary movements & Gochar predictions', hi: 'ग्रहों की चाल और गोचर फल ट्रैक करें', ta: 'கிரக நகர்வுகள் & கோசார கணிப்புகளைக் கண்காணிக்கவும்', te: 'గ్రహ చలనాలు & గోచార ఫలాలను ట్రాక్ చేయండి', bn: 'গ্রহের গতিবিধি ও গোচর ফল ট্র্যাক করুন', kn: 'ಗ್ರಹ ಚಲನೆಗಳು & ಗೋಚಾರ ಫಲಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ' },
   },
   {
     href: '/matching', gradient: 'from-[#4a1a3a]/35 via-[#2a0a20]/45 to-[#0a0e27]',
     border: 'border-pink-500/10 hover:border-pink-500/30', titleColor: 'text-pink-400',
     svg: <MatchingSVG />,
-    label: { en: 'Kundali Matching', hi: 'कुण्डली मिलान', ta: 'ஜாதக பொருத்தம்' },
-    desc: { en: 'Ashta Kuta 36-Guna compatibility analysis', hi: 'अष्ट कूट 36-गुण अनुकूलता विश्लेषण', ta: 'அஷ்ட கூட 36-குண பொருத்த பகுப்பாய்வு' },
+    label: { en: 'Kundali Matching', hi: 'कुण्डली मिलान', ta: 'ஜாதக பொருத்தம்', te: 'జాతక పొంతన', bn: 'জাতক মিলন', kn: 'ಜಾತಕ ಹೊಂದಾಣಿಕೆ' },
+    desc: { en: 'Ashta Kuta 36-Guna compatibility analysis', hi: 'अष्ट कूट 36-गुण अनुकूलता विश्लेषण', ta: 'அஷ்ட கூட 36-குண பொருத்த பகுப்பாய்வு', te: 'అష్ట కూట 36-గుణ అనుకూలత విశ్లేషణ', bn: 'অষ্ট কূট ৩৬-গুণ সামঞ্জস্য বিশ্লেষণ', kn: 'ಅಷ್ಟ ಕೂಟ 36-ಗುಣ ಹೊಂದಾಣಿಕೆ ವಿಶ್ಲೇಷಣೆ' },
   },
   {
     href: '/sade-sati', gradient: 'from-[#1a2040]/40 via-[#0a1025]/50 to-[#0a0e27]',
     border: 'border-blue-400/10 hover:border-blue-400/30', titleColor: 'text-blue-300',
     svg: <SadeSatiSVG />,
-    label: { en: 'Sade Sati', hi: 'साढ़े साती', ta: 'சனிப்பெயர்ச்சி' },
-    desc: { en: "Saturn's 7.5 year cycle — phase & remedies", hi: 'शनि की साढ़े साती — चरण और उपाय', ta: 'சனியின் 7.5 ஆண்டு சுழற்சி — கட்டம் & பரிகாரங்கள்' },
+    label: { en: 'Sade Sati', hi: 'साढ़े साती', ta: 'சனிப்பெயர்ச்சி', te: 'సాడే సాతి', bn: 'সাড়ে সাতি', kn: 'ಸಾಡೆ ಸಾತಿ' },
+    desc: { en: "Saturn's 7.5 year cycle — phase & remedies", hi: 'शनि की साढ़े साती — चरण और उपाय', ta: 'சனியின் 7.5 ஆண்டு சுழற்சி — கட்டம் & பரிகாரங்கள்', te: 'శని 7.5 సంవత్సరాల చక్రం — దశ & పరిహారాలు', bn: 'শনির ৭.৫ বছরের চক্র — পর্ব ও প্রতিকার', kn: 'ಶನಿ 7.5 ವರ್ಷಗಳ ಚಕ್ರ — ಹಂತ & ಪರಿಹಾರಗಳು' },
   },
   {
     href: '/prashna', gradient: 'from-[#2a1a4a]/35 via-[#1a0a30]/45 to-[#0a0e27]',
     border: 'border-violet-500/10 hover:border-violet-500/30', titleColor: 'text-violet-400',
     svg: <PrashnaSVG />,
-    label: { en: 'Prashna Kundali', hi: 'प्रश्न कुण्डली', ta: 'பிரச்ன ஜாதகம்' },
-    desc: { en: 'Horary astrology — instant answers to questions', hi: 'होरेरी ज्योतिष — प्रश्नों के तत्काल उत्तर', ta: 'ஹோரேரி ஜோதிடம் — கேள்விகளுக்கு உடனடி பதில்கள்' },
+    label: { en: 'Prashna Kundali', hi: 'प्रश्न कुण्डली', ta: 'பிரச்ன ஜாதகம்', te: 'ప్రశ్న జాతకం', bn: 'প্রশ্ন জাতক', kn: 'ಪ್ರಶ್ನ ಜಾತಕ' },
+    desc: { en: 'Horary astrology — instant answers to questions', hi: 'होरेरी ज्योतिष — प्रश्नों के तत्काल उत्तर', ta: 'ஹோரேரி ஜோதிடம் — கேள்விகளுக்கு உடனடி பதில்கள்', te: 'హోరరీ జ్యోతిషం — ప్రశ్నలకు తక్షణ సమాధానాలు', bn: 'হোরারি জ্যোতিষ — প্রশ্নের তাৎক্ষণিক উত্তর', kn: 'ಹೋರರಿ ಜ್ಯೋತಿಷ — ಪ್ರಶ್ನೆಗಳಿಗೆ ತಕ್ಷಣದ ಉತ್ತರಗಳು' },
   },
   {
     href: '/learn', gradient: 'from-[#3a2a10]/35 via-[#1a1508]/45 to-[#0a0e27]',
     border: 'border-gold-primary/10 hover:border-gold-primary/30', titleColor: 'text-gold-light',
     svg: <LearnSVG />,
-    label: { en: 'Learn Jyotish', hi: 'ज्योतिष सीखें', ta: 'ஜோதிடம் கற்க' },
-    desc: { en: 'Grahas, Rashis, Nakshatras, Dashas & more', hi: 'ग्रह, राशि, नक्षत्र, दशा और बहुत कुछ', ta: 'கிரகங்கள், ராசிகள், நட்சத்திரங்கள், தசைகள் & மேலும்' },
+    label: { en: 'Learn Jyotish', hi: 'ज्योतिष सीखें', ta: 'ஜோதிடம் கற்க', te: 'జ్యోతిషం నేర్చుకోండి', bn: 'জ্যোতিষ শিখুন', kn: 'ಜ್ಯೋತಿಷ ಕಲಿಯಿರಿ' },
+    desc: { en: 'Grahas, Rashis, Nakshatras, Dashas & more', hi: 'ग्रह, राशि, नक्षत्र, दशा और बहुत कुछ', ta: 'கிரகங்கள், ராசிகள், நட்சத்திரங்கள், தசைகள் & மேலும்', te: 'గ్రహాలు, రాశులు, నక్షత్రాలు, దశలు & మరిన్ని', bn: 'গ্রহ, রাশি, নক্ষত্র, দশা ও আরও অনেক কিছু', kn: 'ಗ್ರಹಗಳು, ರಾಶಿಗಳು, ನಕ್ಷತ್ರಗಳು, ದಶೆಗಳು & ಇನ್ನಷ್ಟು' },
   },
 ];
 
-const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string; ta: string }; gradient: string; border: string }[] = [
-  { href: '/retrograde', label: { en: 'Retrograde Calendar', hi: 'वक्री पंचांग', ta: 'வக்ர நாள்காட்டி' }, gradient: 'from-red-500/8 to-transparent', border: 'border-red-500/10 hover:border-red-500/25' },
-  { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण पंचांग', ta: 'கிரகண நாள்காட்டி' }, gradient: 'from-purple-500/8 to-transparent', border: 'border-purple-500/10 hover:border-purple-500/25' },
-  { href: '/muhurat', label: { en: 'Muhurat Finder', hi: 'मुहूर्त खोजक', ta: 'முகூர்த்தம் தேடி' }, gradient: 'from-emerald-500/8 to-transparent', border: 'border-emerald-500/10 hover:border-emerald-500/25' },
-  { href: '/sign-calculator', label: { en: 'Sign Calculator', hi: 'राशि गणक', ta: 'ராசி கணிப்பான்' }, gradient: 'from-amber-500/8 to-transparent', border: 'border-amber-500/10 hover:border-amber-500/25' },
-  { href: '/baby-names', label: { en: 'Baby Names', hi: 'शिशु नाम', ta: 'குழந்தை பெயர்கள்' }, gradient: 'from-pink-500/8 to-transparent', border: 'border-pink-500/10 hover:border-pink-500/25' },
-  { href: '/shraddha', label: { en: 'Shraddha Calculator', hi: 'श्राद्ध गणक', ta: 'சிராத்த கணிப்பான்' }, gradient: 'from-stone-400/8 to-transparent', border: 'border-stone-400/10 hover:border-stone-400/25' },
-  { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय', ta: 'வேத நேரம்' }, gradient: 'from-amber-400/8 to-transparent', border: 'border-amber-400/10 hover:border-amber-400/25' },
-  { href: '/devotional', label: { en: 'Devotional Guide', hi: 'भक्ति मार्गदर्शिका', ta: 'பக்தி வழிகாட்டி' }, gradient: 'from-orange-500/8 to-transparent', border: 'border-orange-500/10 hover:border-orange-500/25' },
-  { href: '/regional', label: { en: 'Regional Calendars', hi: 'क्षेत्रीय पंचांग', ta: 'பிராந்திய நாள்காட்டிகள்' }, gradient: 'from-teal-500/8 to-transparent', border: 'border-teal-500/10 hover:border-teal-500/25' },
-  { href: '/upagraha', label: { en: 'Upagraha', hi: 'उपग्रह', ta: 'உபகிரகம்' }, gradient: 'from-cyan-500/8 to-transparent', border: 'border-cyan-500/10 hover:border-cyan-500/25' },
-  { href: '/varshaphal', label: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்' }, gradient: 'from-yellow-500/8 to-transparent', border: 'border-yellow-500/10 hover:border-yellow-500/25' },
-  { href: '/kp-system', label: { en: 'KP System', hi: 'केपी पद्धति', ta: 'KP முறை' }, gradient: 'from-indigo-500/8 to-transparent', border: 'border-indigo-500/10 hover:border-indigo-500/25' },
-  { href: '/stories', label: { en: 'Web Stories', hi: 'वेब स्टोरीज़', ta: 'வலைக் கதைகள்' }, gradient: 'from-purple-500/8 to-transparent', border: 'border-purple-500/10 hover:border-purple-500/25' },
+const SECONDARY_TOOLS: { href: string; label: { en: string; hi: string; ta: string; te?: string; bn?: string; kn?: string }; gradient: string; border: string }[] = [
+  { href: '/retrograde', label: { en: 'Retrograde Calendar', hi: 'वक्री पंचांग', ta: 'வக்ர நாள்காட்டி', te: 'వక్ర పంచాంగం', bn: 'বক্র পঞ্চাঙ্গ', kn: 'ವಕ್ರ ಪಂಚಾಂಗ' }, gradient: 'from-red-500/8 to-transparent', border: 'border-red-500/10 hover:border-red-500/25' },
+  { href: '/eclipses', label: { en: 'Eclipse Calendar', hi: 'ग्रहण पंचांग', ta: 'கிரகண நாள்காட்டி', te: 'గ్రహణ పంచాంగం', bn: 'গ্রহণ পঞ্চাঙ্গ', kn: 'ಗ್ರಹಣ ಪಂಚಾಂಗ' }, gradient: 'from-purple-500/8 to-transparent', border: 'border-purple-500/10 hover:border-purple-500/25' },
+  { href: '/muhurat', label: { en: 'Muhurat Finder', hi: 'मुहूर्त खोजक', ta: 'முகூர்த்தம் தேடி', te: 'ముహూర్తం అన్వేషణ', bn: 'মুহূর্ত অনুসন্ধান', kn: 'ಮುಹೂರ್ತ ಹುಡುಕಾಟ' }, gradient: 'from-emerald-500/8 to-transparent', border: 'border-emerald-500/10 hover:border-emerald-500/25' },
+  { href: '/sign-calculator', label: { en: 'Sign Calculator', hi: 'राशि गणक', ta: 'ராசி கணிப்பான்', te: 'రాశి గణన', bn: 'রাশি গণক', kn: 'ರಾಶಿ ಲೆಕ್ಕಾಚಾರ' }, gradient: 'from-amber-500/8 to-transparent', border: 'border-amber-500/10 hover:border-amber-500/25' },
+  { href: '/baby-names', label: { en: 'Baby Names', hi: 'शिशु नाम', ta: 'குழந்தை பெயர்கள்', te: 'శిశు నామాలు', bn: 'শিশুর নাম', kn: 'ಶಿಶು ಹೆಸರುಗಳು' }, gradient: 'from-pink-500/8 to-transparent', border: 'border-pink-500/10 hover:border-pink-500/25' },
+  { href: '/shraddha', label: { en: 'Shraddha Calculator', hi: 'श्राद्ध गणक', ta: 'சிராத்த கணிப்பான்', te: 'శ్రాద్ధ గణన', bn: 'শ্রাদ্ধ গণক', kn: 'ಶ್ರಾದ್ಧ ಲೆಕ್ಕಾಚಾರ' }, gradient: 'from-stone-400/8 to-transparent', border: 'border-stone-400/10 hover:border-stone-400/25' },
+  { href: '/vedic-time', label: { en: 'Vedic Time', hi: 'वैदिक समय', ta: 'வேத நேரம்', te: 'వేద సమయం', bn: 'বৈদিক সময়', kn: 'ವೈದಿಕ ಸಮಯ' }, gradient: 'from-amber-400/8 to-transparent', border: 'border-amber-400/10 hover:border-amber-400/25' },
+  { href: '/devotional', label: { en: 'Devotional Guide', hi: 'भक्ति मार्गदर्शिका', ta: 'பக்தி வழிகாட்டி', te: 'భక్తి మార్గదర్శి', bn: 'ভক্তি পথনির্দেশিকা', kn: 'ಭಕ್ತಿ ಮಾರ್ಗದರ್ಶಿ' }, gradient: 'from-orange-500/8 to-transparent', border: 'border-orange-500/10 hover:border-orange-500/25' },
+  { href: '/regional', label: { en: 'Regional Calendars', hi: 'क्षेत्रीय पंचांग', ta: 'பிராந்திய நாள்காட்டிகள்', te: 'ప్రాంతీయ పంచాంగాలు', bn: 'আঞ্চলিক পঞ্চাঙ্গ', kn: 'ಪ್ರಾದೇಶಿಕ ಪಂಚಾಂಗ' }, gradient: 'from-teal-500/8 to-transparent', border: 'border-teal-500/10 hover:border-teal-500/25' },
+  { href: '/upagraha', label: { en: 'Upagraha', hi: 'उपग्रह', ta: 'உபகிரகம்', te: 'ఉపగ్రహం', bn: 'উপগ্রহ', kn: 'ಉಪಗ್ರಹ' }, gradient: 'from-cyan-500/8 to-transparent', border: 'border-cyan-500/10 hover:border-cyan-500/25' },
+  { href: '/varshaphal', label: { en: 'Varshaphal', hi: 'वर्षफल', ta: 'வர்ஷபலன்', te: 'వర్షఫలం', bn: 'বর্ষফল', kn: 'ವರ್ಷಫಲ' }, gradient: 'from-yellow-500/8 to-transparent', border: 'border-yellow-500/10 hover:border-yellow-500/25' },
+  { href: '/kp-system', label: { en: 'KP System', hi: 'केपी पद्धति', ta: 'KP முறை', te: 'KP పద్ధతి', bn: 'KP পদ্ধতি', kn: 'KP ಪದ್ಧತಿ' }, gradient: 'from-indigo-500/8 to-transparent', border: 'border-indigo-500/10 hover:border-indigo-500/25' },
+  { href: '/stories', label: { en: 'Web Stories', hi: 'वेब स्टोरीज़', ta: 'வலைக் கதைகள்', te: 'వెబ్ కథలు', bn: 'ওয়েব গল্প', kn: 'ವೆಬ್ ಕಥೆಗಳು' }, gradient: 'from-purple-500/8 to-transparent', border: 'border-purple-500/10 hover:border-purple-500/25' },
 ];
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
+
+  // ─── Server-side panchang via Vercel geo headers (eliminates LCP waterfall) ───
+  let serverPanchang: PanchangData | null = null;
+  let serverLocation: { lat: number; lng: number; name: string } | null = null;
+  try {
+    const hdrs = await headers();
+    const geoLat = hdrs.get('x-vercel-ip-latitude');
+    const geoLng = hdrs.get('x-vercel-ip-longitude');
+    const geoCity = hdrs.get('x-vercel-ip-city');
+    const geoCountry = hdrs.get('x-vercel-ip-country');
+    const geoTz = hdrs.get('x-vercel-ip-timezone');
+    if (geoLat && geoLng) {
+      const lat = parseFloat(geoLat);
+      const lng = parseFloat(geoLng);
+      const locationName = [geoCity ? decodeURIComponent(geoCity) : '', geoCountry || ''].filter(Boolean).join(', ');
+      const timezone = geoTz || 'UTC';
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate();
+      const tzOffset = getUTCOffsetForDate(year, month, day, timezone);
+      serverPanchang = computePanchang({ year, month, day, lat, lng, tzOffset, timezone, locationName });
+      serverLocation = { lat, lng, name: locationName };
+    }
+  } catch { /* geo headers unavailable (local dev) — widget falls back to client fetch */ }
   const isDevanagari = locale === 'hi' || locale === 'sa';
   const isTamil = locale === 'ta';
+  const isTelugu = locale === 'te';
+  const isBengali = locale === 'bn';
+  const isKannada = locale === 'kn';
   const hf = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : isTamil
       ? { fontFamily: 'var(--font-tamil-heading)' }
-      : { fontFamily: 'var(--font-heading)' };
+      : isTelugu
+        ? { fontFamily: 'var(--font-telugu-heading)' }
+        : isBengali
+          ? { fontFamily: 'var(--font-bengali-heading)' }
+          : isKannada
+            ? { fontFamily: 'var(--font-kannada-heading)' }
+            : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-body)' }
     : isTamil
       ? { fontFamily: 'var(--font-tamil-body)' }
-      : {};
+      : isTelugu
+        ? { fontFamily: 'var(--font-telugu-body)' }
+        : isBengali
+          ? { fontFamily: 'var(--font-bengali-body)' }
+          : isKannada
+            ? { fontFamily: 'var(--font-kannada-body)' }
+            : {};
 
   return (
     <div className="relative">
@@ -364,7 +411,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="text-center mb-14 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">
-              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்' }, locale)}
+              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்', te: 'వేద జ్ఞానం యొక్క మూడు స్తంభాలు', bn: 'বৈদিক জ্ঞানের তিনটি স্তম্ভ', kn: 'ವೈದಿಕ ಜ್ಞಾನದ ಮೂರು ಸ್ತಂಭಗಳು' }, locale)}
             </span>
           </h2>
         </div>
@@ -378,15 +425,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்' }, locale)}
+                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்', te: 'పంచాంగం', bn: 'পঞ্চাঙ্গ', kn: 'ಪಂಚಾಂಗ' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்' }, locale)}
+                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்', te: 'మీ రోజును తెలుసుకోండి', bn: 'আপনার দিন জানুন', kn: 'ನಿಮ್ಮ ದಿನವನ್ನು ತಿಳಿಯಿರಿ' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {locale === 'ta'
+                  {locale === 'te'
+                    ? <>మీ ప్రాంతానికి ఖచ్చితమైన <span className="text-amber-300 not-italic font-bold">తిథి, నక్షత్రం, యోగం</span> మరియు <span className="text-amber-300 not-italic font-bold">కరణం</span> సమయాలు. <span className="text-amber-300 not-italic font-bold">దశల వారీ పూజా విధానాలు</span>, దేవనాగరి మంత్రాలు, మరియు హరి వాసర నియమాలతో <span className="text-amber-300 not-italic font-bold">ఏకాదశి పారణ</span>. 20 జీవిత కార్యకలాపాలకు <span className="text-amber-300 not-italic font-bold">ఉత్తమ ముహూర్తం</span> కనుగొనండి.</>
+                    : locale === 'bn'
+                    ? <>আপনার অবস্থানের জন্য সুনির্দিষ্ট <span className="text-amber-300 not-italic font-bold">তিথি, নক্ষত্র, যোগ</span> এবং <span className="text-amber-300 not-italic font-bold">করণ</span> সময়। <span className="text-amber-300 not-italic font-bold">ধাপে ধাপে পূজা বিধি</span>, দেবনাগরী মন্ত্র, এবং হরি বাসর নিয়ম সহ <span className="text-amber-300 not-italic font-bold">একাদশী পারণ</span>। ২০টি জীবন কর্মকাণ্ডের জন্য <span className="text-amber-300 not-italic font-bold">আদর্শ মুহূর্ত</span> খুঁজুন।</>
+                    : locale === 'kn'
+                    ? <>ನಿಮ್ಮ ಸ್ಥಳಕ್ಕೆ ನಿಖರವಾದ <span className="text-amber-300 not-italic font-bold">ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ</span> ಮತ್ತು <span className="text-amber-300 not-italic font-bold">ಕರಣ</span> ಸಮಯಗಳು. <span className="text-amber-300 not-italic font-bold">ಹಂತ ಹಂತವಾಗಿ ಪೂಜಾ ವಿಧಿಗಳು</span>, ದೇವನಾಗರಿ ಮಂತ್ರಗಳು, ಮತ್ತು ಹರಿ ವಾಸರ ನಿಯಮಗಳೊಂದಿಗೆ <span className="text-amber-300 not-italic font-bold">ಏಕಾದಶಿ ಪಾರಣ</span>. 20 ಜೀವನ ಚಟುವಟಿಕೆಗಳಿಗೆ <span className="text-amber-300 not-italic font-bold">ಪರಿಪೂರ್ಣ ಮುಹೂರ್ತ</span> ಕಂಡುಕೊಳ್ಳಿ.</>
+                    : locale === 'ta'
                     ? <>உங்கள் இருப்பிடத்திற்கான துல்லியமான <span className="text-amber-300 not-italic font-bold">திதி, நட்சத்திரம், யோகம்</span> மற்றும் <span className="text-amber-300 not-italic font-bold">கரணம்</span> நேரங்கள். <span className="text-amber-300 not-italic font-bold">படிப்படியான பூஜை விதிகள்</span>, தேவநாகரி மந்திரங்கள், மற்றும் ஹரி வாசர விதிகளுடன் <span className="text-amber-300 not-italic font-bold">ஏகாதசி பாரணம்</span>. 20 வாழ்க்கை நடவடிக்கைகளுக்கான <span className="text-amber-300 not-italic font-bold">சிறந்த முகூர்த்தம்</span> கண்டறியுங்கள்.</>
                     : (isDevanagari)
                       ? <>आपके स्थान के लिए सटीक <span className="text-amber-300 font-bold">तिथि, नक्षत्र, योग</span> और <span className="text-amber-300 font-bold">करण</span> समय। <span className="text-amber-300 font-bold">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-amber-300 font-bold">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-amber-300 font-bold">शुभ मुहूर्त</span> खोजें।</>
@@ -395,7 +448,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →' }, locale)}
+                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →', te: 'నేటి పంచాంగం చూడండి →', bn: 'আজকের পঞ্চাঙ্গ দেখুন →', kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ನೋಡಿ →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -410,15 +463,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்' }, locale)}
+                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்' }, locale)}
+                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்', te: 'మిమ్మల్ని తెలుసుకోండి', bn: 'নিজেকে জানুন', kn: 'ನಿಮ್ಮನ್ನು ತಿಳಿಯಿರಿ' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {locale === 'ta'
+                  {locale === 'te'
+                    ? <>మీ పూర్తి జాతక చార్ట్ — <span className="text-amber-300 not-italic font-bold">150+ యోగాలు</span>, షడ్బల బలం, మరియు మహాదశ, అంతర్దశ, ప్రత్యంతర దశ అంతటా <span className="text-amber-300 not-italic font-bold">కాలం వారీ దశ అంచనాలు</span>. <span className="text-amber-300 not-italic font-bold">36-గుణ అనుకూలత</span> పొంతన, వర్షఫలం ద్వారా వార్షిక అంచనాలు, మరియు అధునాతన పద్ధతులు — <span className="text-amber-300 not-italic font-bold">KP, జైమిని, ప్రశ్న</span>.</>
+                    : locale === 'bn'
+                    ? <>আপনার সম্পূর্ণ জন্ম কুণ্ডলী — <span className="text-amber-300 not-italic font-bold">১৫০+ যোগ</span>, ষড়বল শক্তি, এবং মহাদশা, অন্তর্দশা, প্রত্যন্তর দশা জুড়ে <span className="text-amber-300 not-italic font-bold">কাল-দর-কাল দশা পূর্বাভাস</span>। <span className="text-amber-300 not-italic font-bold">৩৬-গুণ সামঞ্জস্য</span> মিলন, বর্ষফলের মাধ্যমে বার্ষিক ভবিষ্যদ্বাণী, এবং উন্নত পদ্ধতি — <span className="text-amber-300 not-italic font-bold">KP, জৈমিনি, প্রশ্ন</span>।</>
+                    : locale === 'kn'
+                    ? <>ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕ — <span className="text-amber-300 not-italic font-bold">150+ ಯೋಗಗಳು</span>, ಷಡ್ಬಲ ಶಕ್ತಿ, ಮತ್ತು ಮಹಾದಶಾ, ಅಂತರ್ದಶಾ, ಪ್ರತ್ಯಂತರ ದಶೆ ಉದ್ದಕ್ಕೂ <span className="text-amber-300 not-italic font-bold">ಅವಧಿ-ವಾರಿ ದಶಾ ಮುನ್ಸೂಚನೆಗಳು</span>. <span className="text-amber-300 not-italic font-bold">36-ಗುಣ ಹೊಂದಾಣಿಕೆ</span>, ವರ್ಷಫಲದ ಮೂಲಕ ವಾರ್ಷಿಕ ಮುನ್ಸೂಚನೆಗಳು, ಮತ್ತು ಸುಧಾರಿತ ಪದ್ಧತಿಗಳು — <span className="text-amber-300 not-italic font-bold">KP, ಜೈಮಿನಿ, ಪ್ರಶ್ನ</span>.</>
+                    : locale === 'ta'
                     ? <>உங்கள் முழுமையான ஜாதக வரைபடம் — <span className="text-amber-300 not-italic font-bold">150+ யோகங்கள்</span>, ஷட்பல வலிமை, மற்றும் மகாதசா, அந்தர்தசா, பிரத்யந்தர தசா முழுவதும் <span className="text-amber-300 not-italic font-bold">கால-கால தசா கணிப்புகள்</span>. <span className="text-amber-300 not-italic font-bold">36-குண பொருத்தம்</span>, வர்ஷபலன் வழியாக வருடாந்திர கணிப்புகள், மற்றும் மேம்பட்ட முறைகள் — <span className="text-amber-300 not-italic font-bold">KP, ஜைமினி, பிரச்னம்</span>.</>
                     : (isDevanagari)
                       ? <>आपकी पूर्ण जन्म कुण्डली — <span className="text-amber-300 font-bold">150+ योग</span>, षड्बल और <span className="text-amber-300 font-bold">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-amber-300 font-bold">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-amber-300 font-bold">केपी, जैमिनी, प्रश्न</span>।</>
@@ -427,7 +486,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →' }, locale)}
+                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →', te: 'మీ జాతకం రూపొందించండి →', bn: 'আপনার জাতক তৈরি করুন →', kn: 'ನಿಮ್ಮ ಜಾತಕ ರಚಿಸಿ →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -442,15 +501,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்' }, locale)}
+                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்', te: 'జ్యోతిషం', bn: 'জ্যোতিষ', kn: 'ಜ್ಯೋತಿಷ' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி' }, locale)}
+                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி', te: 'శాస్త్రంలో నైపుణ్యం', bn: 'বিজ্ঞানে দক্ষতা', kn: 'ವಿಜ್ಞಾನದಲ್ಲಿ ಪ್ರಾವೀಣ್ಯತೆ' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {locale === 'ta'
+                  {locale === 'te'
+                    ? <><span className="text-amber-300 not-italic font-bold">89 నిర్మాణాత్మక మాడ్యూల్స్</span> — గ్రహాలు, రాశులు, నక్షత్రాల పునాదుల నుండి <span className="text-amber-300 not-italic font-bold">దశ, యోగం, షడ్బలం</span> ద్వారా <span className="text-amber-300 not-italic font-bold">KP, జైమిని, మరియు తాజిక</span> వంటి అధునాతన పద్ధతుల వరకు. ఇంటరాక్టివ్ రేఖాచిత్రాలు, శాస్త్రీయ సంస్కృత సూచనలు, మరియు ప్రతి గణన వెనుక ఖగోళ గణితం.</>
+                    : locale === 'bn'
+                    ? <><span className="text-amber-300 not-italic font-bold">৮৯টি কাঠামোগত মডিউল</span> — গ্রহ, রাশি, নক্ষত্রের ভিত্তি থেকে <span className="text-amber-300 not-italic font-bold">দশা, যোগ, ষড়বল</span> হয়ে উন্নত পদ্ধতি পর্যন্ত — <span className="text-amber-300 not-italic font-bold">KP, জৈমিনি এবং তাজিক</span>। ইন্টারেক্টিভ চিত্র, শাস্ত্রীয় সংস্কৃত তথ্যসূত্র, এবং প্রতিটি গণনার পিছনের জ্যোতির্বিজ্ঞান গণিত।</>
+                    : locale === 'kn'
+                    ? <><span className="text-amber-300 not-italic font-bold">89 ರಚನಾತ್ಮಕ ಮಾಡ್ಯೂಲ್‌ಗಳು</span> — ಗ್ರಹಗಳು, ರಾಶಿಗಳು, ನಕ್ಷತ್ರಗಳ ಅಡಿಪಾಯದಿಂದ <span className="text-amber-300 not-italic font-bold">ದಶಾ, ಯೋಗ, ಷಡ್ಬಲ</span> ಮೂಲಕ <span className="text-amber-300 not-italic font-bold">KP, ಜೈಮಿನಿ ಮತ್ತು ತಾಜಿಕ</span> ನಂತಹ ಸುಧಾರಿತ ಪದ್ಧತಿಗಳವರೆಗೆ. ಇಂಟರಾಕ್ಟಿವ್ ರೇಖಾಚಿತ್ರಗಳು, ಶಾಸ್ತ್ರೀಯ ಸಂಸ್ಕೃತ ಉಲ್ಲೇಖಗಳು, ಮತ್ತು ಪ್ರತಿ ಲೆಕ್ಕಾಚಾರದ ಹಿಂದಿನ ಖಗೋಳ ಗಣಿತ.</>
+                    : locale === 'ta'
                     ? <><span className="text-amber-300 not-italic font-bold">89 கட்டமைக்கப்பட்ட தொகுதிகள்</span> — கிரகங்கள், ராசிகள், நட்சத்திரங்கள் அடிப்படையிலிருந்து <span className="text-amber-300 not-italic font-bold">தசா, யோகம், ஷட்பலம்</span> வழியாக <span className="text-amber-300 not-italic font-bold">KP, ஜைமினி, மற்றும் தாஜிக</span> போன்ற மேம்பட்ட முறைகள் வரை. ஊடாடும் வரைபடங்கள், செவ்வியல் சமஸ்கிருத மேற்கோள்கள், மற்றும் ஒவ்வொரு கணக்கீட்டின் பின்னால் உள்ள வானியல் கணிதம்.</>
                     : (isDevanagari)
                       ? <><span className="text-amber-300 font-bold">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-amber-300 font-bold">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-amber-300 font-bold">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
@@ -459,7 +524,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →' }, locale)}
+                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →', te: 'నేర్చుకోవడం ప్రారంభించండి →', bn: 'শেখা শুরু করুন →', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -478,7 +543,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12" style={hf}>
             <span className="text-gold-gradient">{t('todayPanchang')}</span>
           </h2>
-          <HomeClientWidgets locale={locale} />
+          <HomeClientWidgets locale={locale} serverPanchang={serverPanchang} serverLocation={serverLocation} />
         </div>
       </section>
 

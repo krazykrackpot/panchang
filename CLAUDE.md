@@ -279,8 +279,11 @@ After every `git push`:
 - Falls back to birth location if panchang location not set
 - Template in `/lib/email/templates/daily-panchang.ts`
 
-### Performance Notes (Lighthouse Apr 2026)
-- Home: Performance 67, Accessibility 91, Best Practices 96, SEO 92
-- Main bottleneck: LCP 6.5s (client-side panchang fetch)
-- Framer Motion ~45KB — consider deferring or replacing with CSS animations
-- All images use `next/image`, fonts use `next/font`
+### Performance Optimizations (Done)
+- Home page Framer Motion replaced with CSS animations (`animate-fade-in-up`, `stagger-children`)
+- Heavy widgets lazy-loaded via `next/dynamic` with `ssr: false` (TodayPanchangWidget, TransitForecastWidget, EclipseAlert)
+- Suspense boundaries around each dynamic widget with meaningful fallbacks
+- `optimizePackageImports` for `framer-motion` + `lucide-react` in `next.config.ts`
+- All 8 font families use `next/font/google` with `display: 'swap'`
+- Server-side panchang computation using Vercel geo headers (eliminates client-side fetch waterfall for LCP)
+- Home page panchang widget uses CSS stagger animations instead of framer-motion

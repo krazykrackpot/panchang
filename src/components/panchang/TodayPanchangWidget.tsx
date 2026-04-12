@@ -1,20 +1,30 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
 import { MapPin, Loader2, Search, X } from 'lucide-react';
 import type { PanchangData, Locale } from '@/types/panchang';
 import { TithiIcon, NakshatraIcon, YogaIcon, KaranaIcon, VaraIcon } from '@/components/icons/PanchangIcons';
 import { useLocationStore } from '@/stores/location-store';
 
-export default function TodayPanchangWidget() {
-  const [panchang, setPanchang] = useState<PanchangData | null>(null);
+interface Props {
+  serverPanchang?: PanchangData;
+  serverLocation?: { lat: number; lng: number; name: string };
+}
+
+// Check if two locations are close enough to skip re-fetch (~10km)
+function locationsMatch(a: { lat: number; lng: number }, b: { lat: number; lng: number }): boolean {
+  return Math.abs(a.lat - b.lat) < 0.1 && Math.abs(a.lng - b.lng) < 0.1;
+}
+
+export default function TodayPanchangWidget({ serverPanchang, serverLocation }: Props) {
+  const [panchang, setPanchang] = useState<PanchangData | null>(serverPanchang ?? null);
   const [loading, setLoading] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<{ name: string; lat: number; lng: number }[]>([]);
   const [searching, setSearching] = useState(false);
+  const usedServerData = useRef(!!serverPanchang);
   const locale = useLocale() as Locale;
   const t = useTranslations('panchang');
 
@@ -22,6 +32,13 @@ export default function TodayPanchangWidget() {
 
   // Fetch panchang when location is confirmed
   const fetchPanchang = useCallback((lat: number, lng: number, name: string) => {
+    // If we already have server data for a nearby location, skip the fetch
+    if (usedServerData.current && serverLocation && locationsMatch({ lat, lng }, serverLocation)) {
+      // Update location name to match user's stored name (more specific than geo-IP city)
+      usedServerData.current = false;
+      return;
+    }
+    usedServerData.current = false;
     setLoading(true);
     const now = new Date();
     const ianaTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
@@ -29,7 +46,7 @@ export default function TodayPanchangWidget() {
       .then((res) => res.json())
       .then((data) => { setPanchang(data); setLoading(false); })
       .catch(() => setLoading(false));
-  }, []);
+  }, [serverLocation]);
 
   // React to location store changes
   useEffect(() => {
@@ -37,6 +54,13 @@ export default function TodayPanchangWidget() {
       fetchPanchang(locationStore.lat, locationStore.lng, locationStore.name);
     }
   }, [locationStore.confirmed, locationStore.lat, locationStore.lng, locationStore.name, fetchPanchang]);
+
+  // If we have server panchang but no stored location, auto-set from server geo
+  useEffect(() => {
+    if (serverPanchang && serverLocation && !locationStore.confirmed && !locationStore.detecting) {
+      locationStore.setLocation(serverLocation.lat, serverLocation.lng, serverLocation.name);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Search locations via Nominatim
   useEffect(() => {
@@ -120,10 +144,10 @@ export default function TodayPanchangWidget() {
               <Loader2 className="w-4 h-4 animate-spin text-gold-primary" />
               {(locale !== 'hi' && String(locale) !== 'sa') ? 'Detecting your location...' : 'आपका स्थान खोज रहे हैं...'}
             </span>
-          ) : locationStore.confirmed ? (
+          ) : locationStore.confirmed || panchang ? (
             <>
               <MapPin className="w-4 h-4 text-gold-primary" />
-              <span className="text-gold-light text-sm font-medium">{locationStore.name}</span>
+              <span className="text-gold-light text-sm font-medium">{locationStore.name || serverLocation?.name || ''}</span>
               <button onClick={() => setShowSearch(true)}
                 className="text-gold-primary/70 text-xs hover:text-gold-light ml-2 underline underline-offset-2">
                 {(locale !== 'hi' && String(locale) !== 'sa') ? 'Change' : 'बदलें'}
@@ -143,8 +167,8 @@ export default function TodayPanchangWidget() {
     </div>
   );
 
-  // ─── No location yet ───────────────────────────────────────────
-  if (!locationStore.detecting && !locationStore.confirmed) {
+  // ─── No location and no server data ────────────────────────────
+  if (!panchang && !locationStore.detecting && !locationStore.confirmed) {
     return (
       <div>
         <LocationBar />
@@ -166,7 +190,7 @@ export default function TodayPanchangWidget() {
   }
 
   // ─── Detecting / Loading ───────────────────────────────────────
-  if (locationStore.detecting || loading) {
+  if (!panchang && (locationStore.detecting || loading)) {
     return (
       <div>
         <LocationBar />
@@ -191,14 +215,11 @@ export default function TodayPanchangWidget() {
     <div>
       <LocationBar />
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5">
-        {elements.map((el, i) => (
-          <motion.div
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5 stagger-children">
+        {elements.map((el) => (
+          <div
             key={el.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1, duration: 0.5 }}
-            className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 md:p-8 text-center min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center"
+            className="animate-fade-in-up rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 p-4 sm:p-6 md:p-8 text-center min-h-[220px] sm:min-h-[260px] flex flex-col items-center justify-center"
           >
             <div className="flex justify-center mb-4"><el.Icon size={64} /></div>
             <div className="text-gold-dark text-xs uppercase tracking-widest font-bold mb-2">{el.label}</div>
@@ -215,7 +236,7 @@ export default function TodayPanchangWidget() {
                     <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Starts' : 'आरम्भ'}</div>
                     <div className="font-mono text-sm font-bold text-amber-300">{el.timing.start}</div>
                   </div>
-                  <span className="text-text-secondary/50 text-lg">→</span>
+                  <span className="text-text-secondary/50 text-lg">&rarr;</span>
                   <div className="text-center">
                     <div className="text-xs uppercase tracking-wider text-text-secondary/65 mb-0.5">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Ends' : 'समाप्ति'}</div>
                     <div className="font-mono text-sm font-bold text-rose-300">{el.timing.end}</div>
@@ -224,11 +245,9 @@ export default function TodayPanchangWidget() {
                 <div className="text-xs text-text-secondary/55 text-center mt-1">24h</div>
               </div>
             )}
-          </motion.div>
+          </div>
         ))}
       </div>
-
-      {/* Hora section moved to panchang page */}
     </div>
   );
 }

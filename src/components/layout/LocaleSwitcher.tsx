@@ -5,11 +5,7 @@ import { useRouter, usePathname } from '@/lib/i18n/navigation';
 import { localeLabels, type Locale } from '@/lib/i18n/config';
 import { getBodyFont } from '@/lib/utils/locale-fonts';
 
-/** Locales shown in the switcher.
- * Tamil is hidden in production until translations are complete.
- * It's still accessible via /ta/ URL directly and visible in dev. */
-const isDev = process.env.NODE_ENV === 'development';
-const visibleLocales: Locale[] = isDev ? ['en', 'hi', 'ta'] : ['en', 'hi'];
+const visibleLocales: Locale[] = ['en', 'hi', 'ta'];
 
 export default function LocaleSwitcher() {
   const currentLocale = useLocale() as Locale;

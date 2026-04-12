@@ -15,8 +15,9 @@ A web application for Indian Vedic astrology featuring daily Panchang calculatio
 - **Database**: Supabase (PostgreSQL) with RLS
 - **Payments**: Stripe (USD) + Razorpay (INR)
 - **Email**: Resend (transactional + Supabase SMTP)
-- **i18n**: next-intl (EN/HI/SA trilingual)
+- **i18n**: next-intl (EN/HI/SA/TA — 4 locales, Tamil added Apr 2026)
 - **Deployment**: Vercel (auto-deploy from main)
+- **PWA**: Service worker (sw.js) with CacheFirst/SWR/NetworkFirst strategies
 
 ## Architecture
 ```
@@ -214,8 +215,72 @@ After every `git push`:
 
 ### GENERAL
 - Prefer editing existing files over creating new ones when possible.
-- Compare astronomical calculations with Drik Panchang for same location.
+- Compare astronomical calculations with Prokerala/Shubh Panchang for same location (NOT Drik — removed all Drik references).
 - Never default location to Delhi/India — require user location.
 - When asked for analysis or assessment: explore code first, don't ask clarifying questions.
 - For multi-step work: save task list, don't rely on conversation history.
 - After any refactoring: search for ALL references to changed variables/functions.
+
+## Patterns & Best Practices (Learned from Bug Fixes)
+
+### Trilingual/Locale Safety
+- **ALWAYS** use `tl(obj, locale)` from `@/lib/utils/trilingual.ts` when accessing Trilingual objects.
+- **NEVER** write `obj.name[locale]` directly — Tamil ('ta') will return `undefined` and crash.
+- The `tl()` helper safely falls back to `.en` when the locale key doesn't exist.
+- Pattern: `tl(panchang.tithi.name, locale)` NOT `panchang.tithi.name[locale]`
+- The panchang page also has a local `tl()` (inline) — both work the same way.
+
+### Service Worker (sw.js)
+- **Clone response BEFORE async cache put**: `var clone = res.clone(); caches.open(n).then(ca => ca.put(r, clone));`
+- Never call `res.clone()` inside an async `.then()` — by then the body may be consumed.
+- Bump cache version (`dp-v2`, `dp-v3`, etc.) after any SW change to force old cache purge.
+
+### Panchang Time Windows (Varjyam, Amrit Kalam)
+- Windows computed from nakshatra ghati offsets can fall OUTSIDE the current panchang day.
+- **ALWAYS** filter windows against sunrise-to-next-sunrise bounds before displaying.
+- A nakshatra starting yesterday can have its Varjyam window before today's sunrise — filter it out.
+
+### Choghadiya/Hora Conflict Detection
+- Classical rule: Varjyam and Rahu Kaal **override** auspicious Choghadiya/Hora slots.
+- A "Shubh" choghadiya during Varjyam is NOT shubh — display amber ⚠ warning.
+- Check overlap: `startA < endB && startB < endA` for time ranges.
+
+### Kundali Page Architecture
+- The page was 7100 lines — extracted to ~5500 via lazy-loaded tab components:
+  - `PatrikaTab.tsx` (3400 lines) — lazy loaded
+  - `SphutasTab.tsx` (664 lines) — direct import
+  - `JaiminiTab.tsx` (728 lines) — direct import
+  - `TransitRadar`, `ChartChatTab`, `LifeTimeline` — lazy loaded
+- Module-level constants (HOUSE_THEMES, NARAYANA_SIGN_PROFILES, etc.) extracted from render path.
+- Inline data structures inside `.map()` loops are a **critical performance bug** — always hoist to module level.
+
+### Subscription Model (Current)
+- **All features are FREE** — no paywall gates, no usage limits (except AI calls).
+- AI calls restricted: `ai_chat` (2/day free), `muhurta_ai` (2/month free).
+- PaywallGate component still exists but is not used on any page.
+- Navbar "Upgrade" button removed. Pricing page still exists but is informational.
+
+### Chart Components (Transit Overlay)
+- `ChartNorth` and `ChartSouth` accept optional `transitData?: ChartData` prop.
+- Transit planets rendered with distinct style: outlined dots, 65% opacity, smaller text.
+- Only slow planets (Jupiter, Saturn, Rahu, Ketu) overlaid — fast planets change too quickly.
+
+### SEO Checklist for New Pages
+1. Add route to `PAGE_META` in `/lib/seo/metadata.ts`
+2. Create `layout.tsx` with `generateMetadata` using `getPageMetadata()`
+3. Add JSON-LD if it's a tool page (`generateToolLD()` + `generateBreadcrumbLD()`)
+4. Add to sitemap in `/app/sitemap.ts` with multilingual alternates
+5. Private pages: add `robots: { index: false }` in metadata
+6. Add to `robots.txt` disallow if sensitive (dashboard, embed, settings)
+
+### Email System
+- Daily panchang email: cron at 00:30 UTC via Vercel Cron
+- Uses `user_profiles.daily_panchang_email` boolean column
+- Falls back to birth location if panchang location not set
+- Template in `/lib/email/templates/daily-panchang.ts`
+
+### Performance Notes (Lighthouse Apr 2026)
+- Home: Performance 67, Accessibility 91, Best Practices 96, SEO 92
+- Main bottleneck: LCP 6.5s (client-side panchang fetch)
+- Framer Motion ~45KB — consider deferring or replacing with CSS animations
+- All images use `next/image`, fonts use `next/font`

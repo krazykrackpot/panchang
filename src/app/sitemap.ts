@@ -234,5 +234,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Daily panchang articles (last 30 days + next 7 for Discover)
+  const today = new Date();
+  for (let i = -7; i < 30; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    addEntries(entries, `/daily/${dateStr}`, {
+      changeFrequency: 'daily',
+      priority: i === 0 ? 0.9 : 0.6,
+    });
+  }
+
+  // Daily index
+  addEntries(entries, '/daily', {
+    changeFrequency: 'daily',
+    priority: 0.8,
+  });
+
   return entries;
 }

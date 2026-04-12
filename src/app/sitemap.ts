@@ -4,7 +4,8 @@ import { getAllPairSlugs } from '@/lib/constants/rashi-slugs';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
-const locales = ['en', 'hi', 'sa', 'ta', 'te', 'bn', 'kn'] as const;
+// Import from config so new locales are never missed
+import { locales } from '@/lib/i18n/config';
 
 // All routes in the app
 const routes = [

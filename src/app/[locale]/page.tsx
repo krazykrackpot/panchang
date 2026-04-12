@@ -5,6 +5,7 @@ import GoldDivider from '@/components/ui/GoldDivider';
 import AdUnit from '@/components/ads/AdUnit';
 import ProfileBanner from '@/components/home/ProfileBanner';
 import HomeClientWidgets from '@/components/home/HomeClientWidgets';
+import { getHeadingFont, getBodyFont, isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import { computePanchang } from '@/lib/ephem/panchang-calc';
 import { getUTCOffsetForDate } from '@/lib/utils/timezone';
 import type { PanchangData } from '@/types/panchang';
@@ -19,7 +20,8 @@ function L(texts: { en: string; hi: string; sa?: string; ta?: string; te?: strin
   if (locale === 'kn' && texts.kn) return texts.kn;
   if (locale === 'ta' && texts.ta) return texts.ta;
   if (locale === 'sa' && texts.sa) return texts.sa;
-  if (locale === 'hi' || locale === 'sa') return texts.hi;
+  // Devanagari locales (hi/sa/mr/mai) fall back to Hindi text
+  if (locale === 'hi' || locale === 'sa' || locale === 'mr' || locale === 'mai') return texts.hi;
   return texts.en;
 }
 
@@ -338,33 +340,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       serverLocation = { lat, lng, name: locationName };
     }
   } catch { /* geo headers unavailable (local dev) — widget falls back to client fetch */ }
-  const isDevanagari = locale === 'hi' || locale === 'sa';
-  const isTamil = locale === 'ta';
-  const isTelugu = locale === 'te';
-  const isBengali = locale === 'bn';
-  const isKannada = locale === 'kn';
-  const hf = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : isTamil
-      ? { fontFamily: 'var(--font-tamil-heading)' }
-      : isTelugu
-        ? { fontFamily: 'var(--font-telugu-heading)' }
-        : isBengali
-          ? { fontFamily: 'var(--font-bengali-heading)' }
-          : isKannada
-            ? { fontFamily: 'var(--font-kannada-heading)' }
-            : { fontFamily: 'var(--font-heading)' };
-  const bf = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-body)' }
-    : isTamil
-      ? { fontFamily: 'var(--font-tamil-body)' }
-      : isTelugu
-        ? { fontFamily: 'var(--font-telugu-body)' }
-        : isBengali
-          ? { fontFamily: 'var(--font-bengali-body)' }
-          : isKannada
-            ? { fontFamily: 'var(--font-kannada-body)' }
-            : {};
+  const isDevanagari = isDevanagariLocale(locale);
+  const hf = getHeadingFont(locale);
+  const bf = getBodyFont(locale) || {};
 
   return (
     <div className="relative">
@@ -414,7 +392,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="text-center mb-14 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={hf}>
             <span className="text-gold-gradient">
-              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்', te: 'వేద జ్ఞానం యొక్క మూడు స్తంభాలు', bn: 'বৈদিক জ্ঞানের তিনটি স্তম্ভ', kn: 'ವೈದಿಕ ಜ್ಞಾನದ ಮೂರು ಸ್ತಂಭಗಳು' }, locale)}
+              {L({ en: 'Three Pillars of Vedic Wisdom', hi: 'वैदिक ज्ञान के तीन स्तम्भ', sa: 'वैदिकज्ञानस्य त्रयः स्तम्भाः', ta: 'வேத ஞானத்தின் மூன்று தூண்கள்', te: 'వేద జ్ఞానం యొక్క మూడు స్తంభాలు', bn: 'বৈদিক জ্ঞানের তিনটি স্তম্ভ', kn: 'ವೈದಿಕ ಜ್ಞಾನದ ಮೂರು ಸ್ತಂಭಗಳು', gu: 'વૈદિક જ્ઞાનના ત્રણ સ્તંભ' }, locale)}
             </span>
           </h2>
         </div>
@@ -428,12 +406,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்', te: 'పంచాంగం', bn: 'পঞ্চাঙ্গ', kn: 'ಪಂಚಾಂಗ' }, locale)}
+                      {L({ en: 'Panchang', hi: 'पञ्चाङ्ग', ta: 'பஞ்சாங்கம்', te: 'పంచాంగం', bn: 'পঞ্চাঙ্গ', kn: 'ಪಂಚಾಂಗ', gu: 'પંચાંગ' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்', te: 'మీ రోజును తెలుసుకోండి', bn: 'আপনার দিন জানুন', kn: 'ನಿಮ್ಮ ದಿನವನ್ನು ತಿಳಿಯಿರಿ' }, locale)}
+                  {L({ en: 'Know Your Day', hi: 'अपना दिन जानें', sa: 'स्वदिनं जानातु', ta: 'உங்கள் நாளை அறியுங்கள்', te: 'మీ రోజును తెలుసుకోండి', bn: 'আপনার দিন জানুন', kn: 'ನಿಮ್ಮ ದಿನವನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારો દિવસ જાણો' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -444,6 +422,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     ? <>ನಿಮ್ಮ ಸ್ಥಳಕ್ಕೆ ನಿಖರವಾದ <span className="text-amber-300 not-italic font-bold">ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ</span> ಮತ್ತು <span className="text-amber-300 not-italic font-bold">ಕರಣ</span> ಸಮಯಗಳು. <span className="text-amber-300 not-italic font-bold">ಹಂತ ಹಂತವಾಗಿ ಪೂಜಾ ವಿಧಿಗಳು</span>, ದೇವನಾಗರಿ ಮಂತ್ರಗಳು, ಮತ್ತು ಹರಿ ವಾಸರ ನಿಯಮಗಳೊಂದಿಗೆ <span className="text-amber-300 not-italic font-bold">ಏಕಾದಶಿ ಪಾರಣ</span>. 20 ಜೀವನ ಚಟುವಟಿಕೆಗಳಿಗೆ <span className="text-amber-300 not-italic font-bold">ಪರಿಪೂರ್ಣ ಮುಹೂರ್ತ</span> ಕಂಡುಕೊಳ್ಳಿ.</>
                     : locale === 'ta'
                     ? <>உங்கள் இருப்பிடத்திற்கான துல்லியமான <span className="text-amber-300 not-italic font-bold">திதி, நட்சத்திரம், யோகம்</span> மற்றும் <span className="text-amber-300 not-italic font-bold">கரணம்</span> நேரங்கள். <span className="text-amber-300 not-italic font-bold">படிப்படியான பூஜை விதிகள்</span>, தேவநாகரி மந்திரங்கள், மற்றும் ஹரி வாசர விதிகளுடன் <span className="text-amber-300 not-italic font-bold">ஏகாதசி பாரணம்</span>. 20 வாழ்க்கை நடவடிக்கைகளுக்கான <span className="text-amber-300 not-italic font-bold">சிறந்த முகூர்த்தம்</span> கண்டறியுங்கள்.</>
+                    : locale === 'gu'
+                    ? <>તમારા સ્થાન માટે ચોક્કસ <span className="text-amber-300 not-italic font-bold">તિથિ, નક્ષત્ર, યોગ</span> અને <span className="text-amber-300 not-italic font-bold">કરણ</span> સમય. <span className="text-amber-300 not-italic font-bold">પગલે-પગલે પૂજા વિધિ</span>, દેવનાગરી મંત્રો, અને હરિ વાસર નિયમો સાથે <span className="text-amber-300 not-italic font-bold">એકાદશી પારણ</span>. 20 જીવન પ્રવૃત્તિઓ માટે <span className="text-amber-300 not-italic font-bold">શ્રેષ્ઠ મુહૂર્ત</span> શોધો.</>
                     : (isDevanagari)
                       ? <>आपके स्थान के लिए सटीक <span className="text-amber-300 font-bold">तिथि, नक्षत्र, योग</span> और <span className="text-amber-300 font-bold">करण</span> समय। <span className="text-amber-300 font-bold">पूजा विधि</span>, देवनागरी मन्त्र और हरि वासर नियमों के साथ <span className="text-amber-300 font-bold">एकादशी पारण</span>। 20 जीवन गतिविधियों के लिए <span className="text-amber-300 font-bold">शुभ मुहूर्त</span> खोजें।</>
                       : <>Precise <span className="text-amber-300 not-italic font-bold">tithi, nakshatra, yoga</span> and <span className="text-amber-300 not-italic font-bold">karana</span> timings for your location. Festival calendar with <span className="text-amber-300 not-italic font-bold">step-by-step puja vidhis</span>, mantras in Devanagari, and <span className="text-amber-300 not-italic font-bold">Ekadashi parana</span> computed with Hari Vasara rules. Find the <span className="text-amber-300 not-italic font-bold">perfect muhurat</span> for any of 20 life activities.</>
@@ -451,7 +431,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →', te: 'నేటి పంచాంగం చూడండి →', bn: 'আজকের পঞ্চাঙ্গ দেখুন →', kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ನೋಡಿ →' }, locale)}
+                    {L({ en: "View Today's Panchang →", hi: 'आज का पंचांग देखें →', ta: 'இன்றைய பஞ்சாங்கம் காண →', te: 'నేటి పంచాంగం చూడండి →', bn: 'আজকের পঞ্চাঙ্গ দেখুন →', kn: 'ಇಂದಿನ ಪಂಚಾಂಗ ನೋಡಿ →', gu: 'આજનું પંચાંગ જુઓ →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -466,12 +446,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ' }, locale)}
+                      {L({ en: 'Kundali', hi: 'कुण्डली', ta: 'ஜாதகம்', te: 'జాతకం', bn: 'জাতক', kn: 'ಜಾತಕ', gu: 'કુંડળી' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்', te: 'మిమ్మల్ని తెలుసుకోండి', bn: 'নিজেকে জানুন', kn: 'ನಿಮ್ಮನ್ನು ತಿಳಿಯಿರಿ' }, locale)}
+                  {L({ en: 'Know Yourself', hi: 'स्वयं को जानें', sa: 'आत्मानं जानातु', ta: 'உங்களை அறியுங்கள்', te: 'మిమ్మల్ని తెలుసుకోండి', bn: 'নিজেকে জানুন', kn: 'ನಿಮ್ಮನ್ನು ತಿಳಿಯಿರಿ', gu: 'તમારી જાતને જાણો' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -482,6 +462,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     ? <>ನಿಮ್ಮ ಸಂಪೂರ್ಣ ಜಾತಕ — <span className="text-amber-300 not-italic font-bold">150+ ಯೋಗಗಳು</span>, ಷಡ್ಬಲ ಶಕ್ತಿ, ಮತ್ತು ಮಹಾದಶಾ, ಅಂತರ್ದಶಾ, ಪ್ರತ್ಯಂತರ ದಶೆ ಉದ್ದಕ್ಕೂ <span className="text-amber-300 not-italic font-bold">ಅವಧಿ-ವಾರಿ ದಶಾ ಮುನ್ಸೂಚನೆಗಳು</span>. <span className="text-amber-300 not-italic font-bold">36-ಗುಣ ಹೊಂದಾಣಿಕೆ</span>, ವರ್ಷಫಲದ ಮೂಲಕ ವಾರ್ಷಿಕ ಮುನ್ಸೂಚನೆಗಳು, ಮತ್ತು ಸುಧಾರಿತ ಪದ್ಧತಿಗಳು — <span className="text-amber-300 not-italic font-bold">KP, ಜೈಮಿನಿ, ಪ್ರಶ್ನ</span>.</>
                     : locale === 'ta'
                     ? <>உங்கள் முழுமையான ஜாதக வரைபடம் — <span className="text-amber-300 not-italic font-bold">150+ யோகங்கள்</span>, ஷட்பல வலிமை, மற்றும் மகாதசா, அந்தர்தசா, பிரத்யந்தர தசா முழுவதும் <span className="text-amber-300 not-italic font-bold">கால-கால தசா கணிப்புகள்</span>. <span className="text-amber-300 not-italic font-bold">36-குண பொருத்தம்</span>, வர்ஷபலன் வழியாக வருடாந்திர கணிப்புகள், மற்றும் மேம்பட்ட முறைகள் — <span className="text-amber-300 not-italic font-bold">KP, ஜைமினி, பிரச்னம்</span>.</>
+                    : locale === 'gu'
+                    ? <>તમારો સંપૂર્ણ જન્મ ચાર્ટ — <span className="text-amber-300 not-italic font-bold">150+ યોગ</span>, ષડ્બળ શક્તિ, અને મહાદશા, અંતર્દશા, પ્રત્યંતર દશા સમગ્ર <span className="text-amber-300 not-italic font-bold">કાળ-દર-કાળ દશા આગાહી</span>. <span className="text-amber-300 not-italic font-bold">36-ગુણ સુસંગતતા</span> મેળ, વર્ષફળ દ્વારા વાર્ષિક આગાહી, અને અદ્યતન પદ્ધતિઓ — <span className="text-amber-300 not-italic font-bold">KP, જૈમિની, પ્રશ્ન</span>.</>
                     : (isDevanagari)
                       ? <>आपकी पूर्ण जन्म कुण्डली — <span className="text-amber-300 font-bold">150+ योग</span>, षड्बल और <span className="text-amber-300 font-bold">काल-दर-काल दशा पूर्वानुमान</span>। <span className="text-amber-300 font-bold">36 गुण अनुकूलता</span> मिलान, वर्षफल वार्षिक भविष्यवाणी, और उन्नत पद्धतियाँ — <span className="text-amber-300 font-bold">केपी, जैमिनी, प्रश्न</span>।</>
                       : <>Your complete birth chart with <span className="text-amber-300 not-italic font-bold">150+ yogas</span>, shadbala strength, and <span className="text-amber-300 not-italic font-bold">period-by-period dasha forecasts</span> across Mahadasha, Antardasha, and Pratyantardasha. <span className="text-amber-300 not-italic font-bold">36-Guna compatibility</span> matching, annual predictions via Varshaphal, and advanced systems — <span className="text-amber-300 not-italic font-bold">KP, Jaimini, Prashna</span>.</>
@@ -489,7 +471,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →', te: 'మీ జాతకం రూపొందించండి →', bn: 'আপনার জাতক তৈরি করুন →', kn: 'ನಿಮ್ಮ ಜಾತಕ ರಚಿಸಿ →' }, locale)}
+                    {L({ en: 'Generate Your Chart →', hi: 'अपनी कुण्डली बनाएं →', ta: 'உங்கள் ஜாதகத்தை உருவாக்கு →', te: 'మీ జాతకం రూపొందించండి →', bn: 'আপনার জাতক তৈরি করুন →', kn: 'ನಿಮ್ಮ ಜಾತಕ ರಚಿಸಿ →', gu: 'તમારી કુંડળી બનાવો →' }, locale)}
                   </span>
                 </div>
               </div>
@@ -504,12 +486,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="mb-1">
                   <div className="border-t-2 border-gold-primary/60 inline-block">
                     <h3 className="text-gold-light text-3xl sm:text-4xl font-bold tracking-wide pt-1" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600 }}>
-                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்', te: 'జ్యోతిషం', bn: 'জ্যোতিষ', kn: 'ಜ್ಯೋತಿಷ' }, locale)}
+                      {L({ en: 'Jyotish', hi: 'ज्योतिष', ta: 'ஜோதிடம்', te: 'జ్యోతిషం', bn: 'জ্যোতিষ', kn: 'ಜ್ಯೋತಿಷ', gu: 'જ્યોતિષ' }, locale)}
                     </h3>
                   </div>
                 </div>
                 <p className="text-gold-primary/80 text-lg sm:text-xl font-bold italic mb-6" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி', te: 'శాస్త్రంలో నైపుణ్యం', bn: 'বিজ্ঞানে দক্ষতা', kn: 'ವಿಜ್ಞಾನದಲ್ಲಿ ಪ್ರಾವೀಣ್ಯತೆ' }, locale)}
+                  {L({ en: 'Master the Science', hi: 'विज्ञान में निपुणता', sa: 'विज्ञानं वशीकुर्यात्', ta: 'அறிவியலில் தேர்ச்சி', te: 'శాస్త్రంలో నైపుణ్యం', bn: 'বিজ্ঞানে দক্ষতা', kn: 'ವಿಜ್ಞಾನದಲ್ಲಿ ಪ್ರಾವೀಣ್ಯತೆ', gu: 'વિજ્ઞાનમાં નિપુણતા' }, locale)}
                 </p>
                 <p className="text-text-secondary/70 text-base sm:text-lg leading-[1.9] flex-1 italic" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                   {locale === 'te'
@@ -520,6 +502,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                     ? <><span className="text-amber-300 not-italic font-bold">89 ರಚನಾತ್ಮಕ ಮಾಡ್ಯೂಲ್‌ಗಳು</span> — ಗ್ರಹಗಳು, ರಾಶಿಗಳು, ನಕ್ಷತ್ರಗಳ ಅಡಿಪಾಯದಿಂದ <span className="text-amber-300 not-italic font-bold">ದಶಾ, ಯೋಗ, ಷಡ್ಬಲ</span> ಮೂಲಕ <span className="text-amber-300 not-italic font-bold">KP, ಜೈಮಿನಿ ಮತ್ತು ತಾಜಿಕ</span> ನಂತಹ ಸುಧಾರಿತ ಪದ್ಧತಿಗಳವರೆಗೆ. ಇಂಟರಾಕ್ಟಿವ್ ರೇಖಾಚಿತ್ರಗಳು, ಶಾಸ್ತ್ರೀಯ ಸಂಸ್ಕೃತ ಉಲ್ಲೇಖಗಳು, ಮತ್ತು ಪ್ರತಿ ಲೆಕ್ಕಾಚಾರದ ಹಿಂದಿನ ಖಗೋಳ ಗಣಿತ.</>
                     : locale === 'ta'
                     ? <><span className="text-amber-300 not-italic font-bold">89 கட்டமைக்கப்பட்ட தொகுதிகள்</span> — கிரகங்கள், ராசிகள், நட்சத்திரங்கள் அடிப்படையிலிருந்து <span className="text-amber-300 not-italic font-bold">தசா, யோகம், ஷட்பலம்</span> வழியாக <span className="text-amber-300 not-italic font-bold">KP, ஜைமினி, மற்றும் தாஜிக</span> போன்ற மேம்பட்ட முறைகள் வரை. ஊடாடும் வரைபடங்கள், செவ்வியல் சமஸ்கிருத மேற்கோள்கள், மற்றும் ஒவ்வொரு கணக்கீட்டின் பின்னால் உள்ள வானியல் கணிதம்.</>
+                    : locale === 'gu'
+                    ? <><span className="text-amber-300 not-italic font-bold">89 સંરચિત મોડ્યુલ</span> — ગ્રહ, રાશિ, નક્ષત્રના પાયાથી <span className="text-amber-300 not-italic font-bold">દશા, યોગ, ષડ્બળ</span> દ્વારા <span className="text-amber-300 not-italic font-bold">KP, જૈમિની અને તાજિક</span> જેવી અદ્યતન પદ્ધતિઓ સુધી. ઇન્ટરેક્ટિવ આકૃતિઓ, શાસ્ત્રીય સંસ્કૃત સંદર્ભો, અને દરેક ગણતરી પાછળનું ખગોળીય ગણિત.</>
                     : (isDevanagari)
                       ? <><span className="text-amber-300 font-bold">89 संरचित पाठ्यक्रम</span> — ग्रह, राशि, नक्षत्र की नींव से <span className="text-amber-300 font-bold">दशा, योग, षड्बल</span> होते हुए उन्नत पद्धतियों तक — <span className="text-amber-300 font-bold">केपी, जैमिनी और ताजिक</span>। इंटरैक्टिव आरेख, शास्त्रीय संस्कृत सन्दर्भ, और प्रत्येक गणना के पीछे का खगोलीय गणित।</>
                       : <><span className="text-amber-300 not-italic font-bold">89 structured modules</span> taking you from the foundations — Grahas, Rashis, Nakshatras — through <span className="text-amber-300 not-italic font-bold">Dashas, Yogas, Shadbala</span>, to advanced systems like <span className="text-amber-300 not-italic font-bold">KP, Jaimini, and Tajika</span>. Interactive diagrams, classical Sanskrit references, and the computational astronomy behind every calculation.</>
@@ -527,7 +511,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </p>
                 <div className="mt-6 pt-4 border-t border-gold-primary/10">
                   <span className="text-amber-300 text-lg sm:text-xl font-bold tracking-wide group-hover:text-gold-light transition-colors" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →', te: 'నేర్చుకోవడం ప్రారంభించండి →', bn: 'শেখা শুরু করুন →', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ →' }, locale)}
+                    {L({ en: 'Start Learning →', hi: 'सीखना शुरू करें →', ta: 'கற்கத் தொடங்குங்கள் →', te: 'నేర్చుకోవడం ప్రారంభించండి →', bn: 'শেখা শুরু করুন →', kn: 'ಕಲಿಯಲು ಪ್ರಾರಂಭಿಸಿ →', gu: 'શીખવાનું શરૂ કરો →' }, locale)}
                   </span>
                 </div>
               </div>

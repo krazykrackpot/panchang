@@ -1,93 +1,203 @@
 /**
- * Panchang calculation tests
- * Run with: npx tsx src/lib/ephem/__tests__/panchang-calc.test.ts
+ * Panchang calculation tests (migrated to Vitest)
  */
 
+import { describe, it, expect } from 'vitest';
 import { computePanchang } from '../panchang-calc';
 
-let pass = 0;
-let fail = 0;
-
-function assert(name: string, condition: boolean, detail?: string) {
-  if (condition) {
-    pass++;
-    console.log(`  ✓ ${name}${detail ? ` — ${detail}` : ''}`);
-  } else {
-    fail++;
-    console.log(`  ✗ ${name}${detail ? ` — ${detail}` : ''}`);
-  }
-}
-
-console.log('\n═══ Panchang Computation Tests ═══');
-
 // Test Delhi, Jan 15, 2025 (known date, Wednesday)
-const p = computePanchang({ year: 2025, month: 1, day: 15, lat: 28.6139, lng: 77.209, tzOffset: 5.5, locationName: 'Delhi' });
+const p = computePanchang({
+  year: 2025,
+  month: 1,
+  day: 15,
+  lat: 28.6139,
+  lng: 77.209,
+  tzOffset: 5.5,
+  locationName: 'Delhi',
+});
 
-// Basic fields exist
-assert('Date correct', p.date === '2025-01-15', p.date);
-assert('Tithi exists', !!p.tithi?.name?.en);
-assert('Tithi number valid (1-30)', p.tithi.number >= 1 && p.tithi.number <= 30, `Tithi ${p.tithi.number}`);
-assert('Tithi paksha valid', p.tithi.paksha === 'shukla' || p.tithi.paksha === 'krishna', p.tithi.paksha);
-assert('Nakshatra exists', !!p.nakshatra?.name?.en);
-const nakNum = (p.nakshatra as { number?: number }).number;
-assert('Nakshatra has name', !!p.nakshatra.name.en, p.nakshatra.name.en);
-assert('Yoga exists', !!p.yoga?.name?.en);
-assert('Karana exists', !!p.karana?.name?.en);
-assert('Vara exists', !!p.vara?.name?.en);
-assert('Vara day 0-6', p.vara.day >= 0 && p.vara.day <= 6, `Day ${p.vara.day}`);
+describe('computePanchang (Delhi Jan 15 2025)', () => {
+  describe('basic fields', () => {
+    it('date correct', () => {
+      expect(p.date).toBe('2025-01-15');
+    });
 
-// Time fields
-assert('Sunrise HH:MM', /^\d{2}:\d{2}$/.test(p.sunrise), p.sunrise);
-assert('Sunset HH:MM', /^\d{2}:\d{2}$/.test(p.sunset), p.sunset);
-assert('Moonrise HH:MM', /^\d{2}:\d{2}$/.test(p.moonrise), p.moonrise);
+    it('tithi exists', () => {
+      expect(p.tithi?.name?.en).toBeTruthy();
+    });
 
-// Rahu Kaal
-assert('Rahu Kaal start', /^\d{2}:\d{2}$/.test(p.rahuKaal.start), p.rahuKaal.start);
-assert('Rahu Kaal end', /^\d{2}:\d{2}$/.test(p.rahuKaal.end), p.rahuKaal.end);
+    it('tithi number valid (1-30)', () => {
+      expect(p.tithi.number).toBeGreaterThanOrEqual(1);
+      expect(p.tithi.number).toBeLessThanOrEqual(30);
+    });
 
-// Transition times exist
-assert('Tithi transition', !!p.tithiTransition?.endTime);
-assert('Nakshatra transition', !!p.nakshatraTransition?.endTime);
-assert('Yoga transition', !!p.yogaTransition?.endTime);
+    it('tithi paksha valid', () => {
+      expect(['shukla', 'krishna']).toContain(p.tithi.paksha);
+    });
 
-// Muhurtas (30 per day)
-assert('Muhurtas count = 30', p.muhurtas?.length === 30, `Got ${p.muhurtas?.length}`);
+    it('nakshatra exists', () => {
+      expect(p.nakshatra?.name?.en).toBeTruthy();
+    });
 
-// Choghadiya (16 per day — 8 day + 8 night)
-assert('Choghadiya count = 16', p.choghadiya?.length === 16, `Got ${p.choghadiya?.length}`);
+    it('nakshatra has name', () => {
+      expect(p.nakshatra.name.en).toBeTruthy();
+    });
 
-// Hora (24)
-assert('Hora count = 24', p.hora?.length === 24, `Got ${p.hora?.length}`);
+    it('yoga exists', () => {
+      expect(p.yoga?.name?.en).toBeTruthy();
+    });
 
-// Planets (9)
-assert('Planets count = 9', p.planets?.length === 9, `Got ${p.planets?.length}`);
+    it('karana exists', () => {
+      expect(p.karana?.name?.en).toBeTruthy();
+    });
 
-// Enhanced fields
-assert('Disha Shool exists', !!p.dishaShool?.direction?.en);
-assert('Shiva Vaas exists', !!p.shivaVaas?.name?.en);
-assert('Agni Vaas exists', !!p.agniVaas?.name?.en);
-assert('Chandra Vaas exists', !!p.chandraVaas?.name?.en);
-assert('Rahu Vaas exists', !!p.rahuVaas?.direction?.en);
-assert('Kali Ahargana > 0', (p.kaliAhargana || 0) > 1800000, `${p.kaliAhargana}`);
-assert('Julian Day > 2460000', (p.julianDay || 0) > 2460000, `${p.julianDay}`);
-assert('Ayanamsha ~24°', (p.ayanamsha || 0) > 23 && (p.ayanamsha || 0) < 25, `${p.ayanamsha?.toFixed(2)}`);
+    it('vara exists', () => {
+      expect(p.vara?.name?.en).toBeTruthy();
+    });
 
-// New fields
-assert('Tamil Yoga exists', !!p.tamilYoga?.name?.en);
-assert('Mantri Mandala exists', p.mantriMandala?.king?.planet !== undefined);
-assert('Homahuti exists', !!p.homahuti?.direction?.en);
-assert('Udaya Lagna array', Array.isArray(p.udayaLagna) && p.udayaLagna.length > 0, `${p.udayaLagna?.length} entries`);
+    it('vara day 0-6', () => {
+      expect(p.vara.day).toBeGreaterThanOrEqual(0);
+      expect(p.vara.day).toBeLessThanOrEqual(6);
+    });
+  });
 
-// Udaya Lagna sanity
-if (p.udayaLagna && p.udayaLagna.length > 0) {
-  assert('Udaya Lagna has rashi 1-12', p.udayaLagna.every(l => l.rashi >= 1 && l.rashi <= 12));
-  assert('Udaya Lagna has time strings', p.udayaLagna.every(l => /^\d{2}:\d{2}$/.test(l.start)));
-}
+  describe('time fields', () => {
+    it('sunrise HH:MM', () => {
+      expect(p.sunrise).toMatch(/^\d{2}:\d{2}$/);
+    });
 
-// Trilingual support
-assert('Tithi has Hindi', !!p.tithi.name.hi);
-assert('Tithi has Sanskrit', !!p.tithi.name.sa);
-assert('Nakshatra has Hindi', !!p.nakshatra.name.hi);
+    it('sunset HH:MM', () => {
+      expect(p.sunset).toMatch(/^\d{2}:\d{2}$/);
+    });
 
-console.log(`\n═══ RESULTS: ${pass} passed, ${fail} failed ═══\n`);
-if (fail > 0) process.exit(1);
+    it('moonrise HH:MM', () => {
+      expect(p.moonrise).toMatch(/^\d{2}:\d{2}$/);
+    });
+  });
+
+  describe('rahu kaal', () => {
+    it('rahu kaal start HH:MM', () => {
+      expect(p.rahuKaal.start).toMatch(/^\d{2}:\d{2}$/);
+    });
+
+    it('rahu kaal end HH:MM', () => {
+      expect(p.rahuKaal.end).toMatch(/^\d{2}:\d{2}$/);
+    });
+  });
+
+  describe('transition times', () => {
+    it('tithi transition exists', () => {
+      expect(p.tithiTransition?.endTime).toBeTruthy();
+    });
+
+    it('nakshatra transition exists', () => {
+      expect(p.nakshatraTransition?.endTime).toBeTruthy();
+    });
+
+    it('yoga transition exists', () => {
+      expect(p.yogaTransition?.endTime).toBeTruthy();
+    });
+  });
+
+  describe('muhurtas', () => {
+    it('muhurtas count = 30', () => {
+      expect(p.muhurtas).toHaveLength(30);
+    });
+  });
+
+  describe('choghadiya', () => {
+    it('choghadiya count = 16', () => {
+      expect(p.choghadiya).toHaveLength(16);
+    });
+  });
+
+  describe('hora', () => {
+    it('hora count = 24', () => {
+      expect(p.hora).toHaveLength(24);
+    });
+  });
+
+  describe('planets', () => {
+    it('planets count = 9', () => {
+      expect(p.planets).toHaveLength(9);
+    });
+  });
+
+  describe('enhanced fields', () => {
+    it('disha shool exists', () => {
+      expect(p.dishaShool?.direction?.en).toBeTruthy();
+    });
+
+    it('shiva vaas exists', () => {
+      expect(p.shivaVaas?.name?.en).toBeTruthy();
+    });
+
+    it('agni vaas exists', () => {
+      expect(p.agniVaas?.name?.en).toBeTruthy();
+    });
+
+    it('chandra vaas exists', () => {
+      expect(p.chandraVaas?.name?.en).toBeTruthy();
+    });
+
+    it('rahu vaas exists', () => {
+      expect(p.rahuVaas?.direction?.en).toBeTruthy();
+    });
+
+    it('kali ahargana > 1800000', () => {
+      expect(p.kaliAhargana).toBeGreaterThan(1800000);
+    });
+
+    it('julian day > 2460000', () => {
+      expect(p.julianDay).toBeGreaterThan(2460000);
+    });
+
+    it('ayanamsha ~24 degrees', () => {
+      expect(p.ayanamsha).toBeGreaterThan(23);
+      expect(p.ayanamsha).toBeLessThan(25);
+    });
+  });
+
+  describe('new fields', () => {
+    it('tamil yoga exists', () => {
+      expect(p.tamilYoga?.name?.en).toBeTruthy();
+    });
+
+    it('mantri mandala exists', () => {
+      expect(p.mantriMandala?.king?.planet).not.toBeUndefined();
+    });
+
+    it('homahuti exists', () => {
+      expect(p.homahuti?.direction?.en).toBeTruthy();
+    });
+
+    it('udaya lagna array', () => {
+      expect(Array.isArray(p.udayaLagna)).toBe(true);
+      expect(p.udayaLagna.length).toBeGreaterThan(0);
+    });
+  });
+
+  describe('udaya lagna sanity', () => {
+    it('udaya lagna has rashi 1-12', () => {
+      expect(p.udayaLagna.every((l: { rashi: number }) => l.rashi >= 1 && l.rashi <= 12)).toBe(true);
+    });
+
+    it('udaya lagna has time strings', () => {
+      expect(p.udayaLagna.every((l: { start: string }) => /^\d{2}:\d{2}$/.test(l.start))).toBe(true);
+    });
+  });
+
+  describe('trilingual support', () => {
+    it('tithi has Hindi', () => {
+      expect(p.tithi.name.hi).toBeTruthy();
+    });
+
+    it('tithi has Sanskrit', () => {
+      expect(p.tithi.name.sa).toBeTruthy();
+    });
+
+    it('nakshatra has Hindi', () => {
+      expect(p.nakshatra.name.hi).toBeTruthy();
+    });
+  });
+});

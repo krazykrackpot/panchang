@@ -50,10 +50,24 @@ interface ShareButtonProps {
 export default function ShareButton({ title, text, url, locale, variant = 'inline', className = '' }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hasNativeShare, setHasNativeShare] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const l = (obj: { en: string; hi: string; sa: string }) => obj[locale] || obj.en;
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '');
+
+  // Detect native Web Share API support (typically mobile)
+  useEffect(() => {
+    setHasNativeShare(typeof navigator !== 'undefined' && !!navigator.share);
+  }, []);
+
+  async function nativeShare() {
+    try {
+      await navigator.share({ title, text, url: shareUrl });
+    } catch {
+      // User cancelled or API unavailable — silently ignore
+    }
+  }
 
   // Close floating panel on outside click
   useEffect(() => {
@@ -89,31 +103,43 @@ export default function ShareButton({ title, text, url, locale, variant = 'inlin
   if (variant === 'inline') {
     return (
       <div className={`flex items-center gap-2 ${className}`}>
-        {/* WhatsApp — prominent */}
+        {/* Native share — shown on mobile when available, hides individual buttons */}
+        {hasNativeShare && (
+          <button
+            onClick={nativeShare}
+            aria-label={l(LABELS.share)}
+            className="inline-flex sm:hidden items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-gold-primary/10 hover:bg-gold-primary/20 text-gold-light border border-gold-primary/20 hover:border-gold-primary/40 transition-all duration-200"
+          >
+            <Share2 className="w-4 h-4" />
+            {l(LABELS.share)}
+          </button>
+        )}
+
+        {/* WhatsApp — hidden on mobile when native share is available */}
         <a
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={l(LABELS.wa)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/20 hover:border-[#25D366]/40 transition-all duration-200"
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/30 text-[#25D366] border border-[#25D366]/20 hover:border-[#25D366]/40 transition-all duration-200 ${hasNativeShare ? 'hidden sm:inline-flex' : ''}`}
         >
           <WhatsAppIcon className="w-4 h-4" />
           <span className="hidden sm:inline">{l(LABELS.wa)}</span>
         </a>
 
-        {/* X/Twitter */}
+        {/* X/Twitter — hidden on mobile when native share is available */}
         <a
           href={xUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={l(LABELS.x)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-white/8 hover:bg-white/15 text-white/80 border border-white/10 hover:border-white/20 transition-all duration-200"
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-white/8 hover:bg-white/15 text-white/80 border border-white/10 hover:border-white/20 transition-all duration-200 ${hasNativeShare ? 'hidden sm:inline-flex' : ''}`}
         >
           <XIcon className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">{l(LABELS.x)}</span>
         </a>
 
-        {/* Copy link */}
+        {/* Copy link — always visible */}
         <button
           onClick={copyLink}
           aria-label={copied ? l(LABELS.copied) : l(LABELS.copy)}

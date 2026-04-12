@@ -3,10 +3,11 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles, Share2 } from 'lucide-react';
+import { Loader2, Briefcase, Heart, Activity, IndianRupee, Sparkles } from 'lucide-react';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { RASHIS } from '@/lib/constants/rashis';
 import { Link } from '@/lib/i18n/navigation';
+import ShareButton from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
 
@@ -28,7 +29,6 @@ const LABELS = {
     luckyNumber: 'Lucky Number',
     luckyTime: 'Lucky Time',
     dailyInsight: 'Daily Insight',
-    shareWhatsApp: 'Share on WhatsApp',
     ctaTitle: 'Get personalized horoscope',
     ctaDesc: 'Generate your Kundali to unlock daily predictions tailored to your exact birth chart.',
     ctaButton: 'Generate Kundali',
@@ -47,7 +47,6 @@ const LABELS = {
     luckyNumber: 'शुभ अंक',
     luckyTime: 'शुभ समय',
     dailyInsight: 'दैनिक अंतर्दृष्टि',
-    shareWhatsApp: 'व्हाट्सएप पर साझा करें',
     ctaTitle: 'व्यक्तिगत राशिफल प्राप्त करें',
     ctaDesc: 'अपनी सटीक जन्म कुण्डली के अनुरूप दैनिक भविष्यवाणी पाने के लिए कुण्डली बनाएँ।',
     ctaButton: 'कुण्डली बनाएँ',
@@ -66,7 +65,6 @@ const LABELS = {
     luckyNumber: 'शुभसंख्या',
     luckyTime: 'शुभसमयः',
     dailyInsight: 'दैनिकान्तर्दृष्टिः',
-    shareWhatsApp: 'व्हाट्सएप्‍ माध्यमेन साझा कुर्वन्तु',
     ctaTitle: 'व्यक्तिगतं राशिफलं प्राप्नुवन्तु',
     ctaDesc: 'स्वसटीकजन्मकुण्डल्यनुरूपं दैनिकभविष्यवाणीं प्राप्तुं कुण्डलीं रचयन्तु।',
     ctaButton: 'कुण्डलीं रचयन्तु',
@@ -144,15 +142,6 @@ export default function HoroscopePage() {
     }
     setSelectedSign(signId);
     if (date) fetchHoroscope(signId);
-  };
-
-  // Share on WhatsApp
-  const shareWhatsApp = () => {
-    if (!horoscope) return;
-    const rashi = RASHIS[horoscope.moonSign - 1];
-    const name = rashi?.name[lk] || rashi?.name.en || '';
-    const msg = `${name} - ${L.title} (${horoscope.date})\n\n${L.overallScore}: ${horoscope.overallScore}/10\n\n${horoscope.insight[lk]}\n\n${L.career}: ${horoscope.areas.career.score}/10\n${L.love}: ${horoscope.areas.love.score}/10\n${L.health}: ${horoscope.areas.health.score}/10\n${L.finance}: ${horoscope.areas.finance.score}/10\n${L.spirituality}: ${horoscope.areas.spirituality.score}/10\n\nhttps://dekhopanchang.com/${locale}/horoscope`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
@@ -291,13 +280,14 @@ export default function HoroscopePage() {
                   })}
                 </div>
 
-                {/* Share button */}
+                {/* Share buttons */}
                 <div className="flex justify-center">
-                  <button onClick={shareWhatsApp}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 rounded-xl text-sm font-medium hover:bg-emerald-600/30 transition-all">
-                    <Share2 className="w-4 h-4" />
-                    {L.shareWhatsApp}
-                  </button>
+                  <ShareButton
+                    title={`${horoscope.moonSignName[lk]} — ${L.title}`}
+                    text={`Today's ${horoscope.moonSignName.en} Horoscope — Score: ${horoscope.overallScore}/10 | dekhopanchang.com`}
+                    url={`https://dekhopanchang.com/${locale}/horoscope`}
+                    locale={locale}
+                  />
                 </div>
 
                 {/* CTA — generate kundali */}

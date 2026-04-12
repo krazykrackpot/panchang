@@ -669,6 +669,12 @@ export default function KundaliPage() {
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg border border-gold-primary/30 text-gold-light hover:bg-gold-primary/10 hover:border-gold-primary/60 transition-all duration-300"
               />
               <ShareableKundaliCard kundali={kundali} locale={locale as Locale} />
+              <ShareButton
+                title={`${kundali.birthData.name || 'Kundali'} — Birth Chart`}
+                text={`${kundali.birthData.name ? kundali.birthData.name + "'s Kundali" : 'Kundali'} — ${tl(kundali.ascendant.signName, locale)} ${locale === 'en' || isTamil ? 'Lagna' : 'लग्न'}, ${tl(kundali.planets.find(p => p.planet.id === 1)?.signName, locale) || ''} ${locale === 'en' || isTamil ? 'Moon' : 'चन्द्र'} | dekhopanchang.com`}
+                url={`https://dekhopanchang.com/${locale}/kundali`}
+                locale={locale as Locale}
+              />
             </div>
           </div>
 

@@ -428,7 +428,8 @@ export default function PanchangPage() {
               />
               <ShareButton
                 title={`Panchang — ${panchang.date}`}
-                text={`Today's Panchang: ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''} — Check yours at Dekho Panchang`}
+                text={`Today's Panchang — ${panchang.tithi?.name?.[locale] || panchang.tithi?.name?.en || ''}, ${panchang.nakshatra?.name?.[locale] || panchang.nakshatra?.name?.en || ''}, ${panchang.yoga?.name?.[locale] || panchang.yoga?.name?.en || ''} | dekhopanchang.com`}
+                url={`https://dekhopanchang.com/${locale}/panchang`}
                 locale={locale}
               />
               <button

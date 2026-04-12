@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Share2, Check, Copy, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ════════════════════════════════════════════════════════════════
    Labels
@@ -251,7 +252,7 @@ export function ShareRow({ pageTitle, shareText, url, locale, className = '' }: 
   return (
     <div className={`flex items-center gap-3 ${className}`}>
       <span className="text-text-secondary/50 text-xs hidden sm:inline">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Share:' : locale === 'hi' ? 'शेयर:' : 'प्रसारः:'}
+        {!isDevanagariLocale(locale) ? 'Share:' : locale === 'sa' ? 'प्रसारः:' : 'शेयर:'}
       </span>
       <ShareButton
         title={pageTitle}

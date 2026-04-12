@@ -11,6 +11,7 @@ import { useLocationStore } from '@/stores/location-store';
 import NotificationBell from '@/components/notifications/NotificationBell';
 import { Menu, X, Sun, Moon, ChevronDown, MapPin } from 'lucide-react';
 import SearchModal from '@/components/search/SearchModal';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface DropdownItem {
   href: string;
@@ -84,7 +85,7 @@ export default function Navbar() {
   // Auto-detect location on mount
   useEffect(() => { locationStore.detect(); }, []);
 
-  const ritualsLabel = locale === 'en' ? 'Rituals' : String(locale) === 'ta' ? 'சடங்குகள்' : locale === 'hi' ? 'अनुष्ठान' : 'अनुष्ठानानि';
+  const ritualsLabel = locale === 'sa' ? 'अनुष्ठानानि' : isDevanagariLocale(locale) ? 'अनुष्ठान' : locale === 'ta' ? 'சடங்குகள்' : 'Rituals';
 
   const navItems: NavItem[] = [
     { href: '/', label: t('home') },
@@ -94,8 +95,8 @@ export default function Navbar() {
       children: [
         { href: '/kundali', label: t('kundali') },
         { href: '/matching', label: t('matching') },
-        { href: '/kundali/compare', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Chart Comparison' : 'कुण्डली तुलना' },
-        { href: '/annual-forecast', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Annual Forecast' : 'वार्षिक भविष्यफल' },
+        { href: '/kundali/compare', label: !isDevanagariLocale(locale) ? 'Chart Comparison' : 'कुण्डली तुलना' },
+        { href: '/annual-forecast', label: !isDevanagariLocale(locale) ? 'Annual Forecast' : 'वार्षिक भविष्यफल' },
         { href: '/varshaphal', label: t('varshaphal') },
         { href: '/kp-system', label: t('kpSystem') },
         { href: '/sade-sati', label: t('sadeSati') },
@@ -104,8 +105,8 @@ export default function Navbar() {
     {
       label: ritualsLabel,
       children: [
-        { href: '/puja', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Puja Vidhi' : 'पूजा विधि' },
-        { href: '/sankalpa', label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Sankalpa' : 'सङ्कल्प' },
+        { href: '/puja', label: !isDevanagariLocale(locale) ? 'Puja Vidhi' : 'पूजा विधि' },
+        { href: '/sankalpa', label: !isDevanagariLocale(locale) ? 'Sankalpa' : 'सङ्कल्प' },
         { href: '/devotional', label: t('devotional') },
         { href: '/shraddha', label: t('shraddha') },
         { href: '/muhurta-ai', label: t('muhurtaAi') },
@@ -120,8 +121,8 @@ export default function Navbar() {
         { href: '/eclipses', label: t('eclipses') },
         { href: '/muhurat', label: t('muhuratCalendar') },
         { href: '/regional', label: t('regional') },
-        { href: '/dates/ekadashi', label: locale === 'hi' ? 'एकादशी तिथियाँ' : locale === 'sa' ? 'एकादशीतिथयः' : 'Ekadashi Dates' },
-        { href: '/dates/purnima', label: locale === 'hi' ? 'पूर्णिमा तिथियाँ' : locale === 'sa' ? 'पूर्णिमातिथयः' : 'Purnima Dates' },
+        { href: '/dates/ekadashi', label: locale === 'sa' ? 'एकादशीतिथयः' : isDevanagariLocale(locale) ? 'एकादशी तिथियाँ' : 'Ekadashi Dates' },
+        { href: '/dates/purnima', label: locale === 'sa' ? 'पूर्णिमातिथयः' : isDevanagariLocale(locale) ? 'पूर्णिमा तिथियाँ' : 'Purnima Dates' },
       ],
     },
     {
@@ -135,8 +136,8 @@ export default function Navbar() {
         { href: '/upagraha', label: t('upagraha') },
         { href: '/kaal-nirnaya', label: t('kaalNirnaya') },
         { href: '/nivas-shool', label: t('nivasShool') },
-        { href: '/rahu-kaal', label: locale === 'hi' ? 'राहु काल' : locale === 'sa' ? 'राहुकालः' : 'Rahu Kaal' },
-        { href: '/choghadiya', label: locale === 'hi' ? 'चौघड़िया' : locale === 'sa' ? 'चौघड़िया' : 'Choghadiya' },
+        { href: '/rahu-kaal', label: locale === 'sa' ? 'राहुकालः' : isDevanagariLocale(locale) ? 'राहु काल' : 'Rahu Kaal' },
+        { href: '/choghadiya', label: isDevanagariLocale(locale) ? 'चौघड़िया' : 'Choghadiya' },
       ],
     },
     {
@@ -186,7 +187,7 @@ export default function Navbar() {
                       href="/dashboard"
                       className="text-gold-light hover:text-gold-primary transition-colors duration-200 text-sm font-semibold whitespace-nowrap"
                     >
-                      {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'Dashboard'}
+                      {locale === 'sa' ? 'मम पटलम्' : isDevanagariLocale(locale) ? 'मेरा डैशबोर्ड' : 'Dashboard'}
                     </Link>
                   </span>
                 );
@@ -212,7 +213,7 @@ export default function Navbar() {
             <LocaleSwitcher />
             {hydrated && isTrialing && trialDaysLeft > 0 && (
               <span className="text-gold-dark text-xs whitespace-nowrap">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                {!isDevanagariLocale(locale) ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
               </span>
             )}
             <UserMenu />
@@ -239,7 +240,7 @@ export default function Navbar() {
                   className="text-gold-light hover:text-gold-primary transition-colors px-3 py-2 text-sm font-semibold"
                   onClick={() => setIsOpen(false)}
                 >
-                  {locale === 'sa' ? 'मम पटलम्' : locale === 'hi' ? 'मेरा डैशबोर्ड' : 'My Dashboard'}
+                  {locale === 'sa' ? 'मम पटलम्' : isDevanagariLocale(locale) ? 'मेरा डैशबोर्ड' : 'My Dashboard'}
                 </Link>
               )}
               {navItems.map((item, i) => {
@@ -286,7 +287,7 @@ export default function Navbar() {
                 <LocaleSwitcher />
                 {isTrialing && trialDaysLeft > 0 && (
                   <span className="text-gold-dark text-xs">
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
+                    {!isDevanagariLocale(locale) ? `Trial: ${trialDaysLeft}d` : `परीक्षण: ${trialDaysLeft}दि`}
                   </span>
                 )}
                 <UserMenu />

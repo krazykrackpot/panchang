@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { RASHIS } from '@/lib/constants/rashis';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Rashi colors (subtle, dark-theme friendly)
 const RASHI_COLORS = [
@@ -24,7 +25,7 @@ interface Props { locale: Locale }
 export default function RashiNakshatraWheel({ locale }: Props) {
   const [hoveredNak, setHoveredNak] = useState<number | null>(null);
   const [hoveredRashi, setHoveredRashi] = useState<number | null>(null);
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const cx = 300, cy = 300;
   const outerR = 270, midR = 210, innerR = 140, centerR = 80;

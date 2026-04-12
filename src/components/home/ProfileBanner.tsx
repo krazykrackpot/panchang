@@ -6,6 +6,7 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { ArrowRight } from 'lucide-react';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ProfileBannerData {
   display_name: string;
@@ -21,7 +22,7 @@ interface ProfileBannerData {
 export default function ProfileBanner({ locale, bf }: { locale: string; bf: React.CSSProperties }) {
   const { user, initialized } = useAuthStore();
   const [data, setData] = useState<ProfileBannerData | null>(null);
-  const isIndic = locale === 'hi' || locale === 'sa';
+  const isIndic = isDevanagariLocale(locale);
 
   const fetchProfile = useCallback(async () => {
     const supabase = getSupabase();

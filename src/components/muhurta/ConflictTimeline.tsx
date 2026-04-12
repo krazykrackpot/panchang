@@ -1,6 +1,7 @@
 'use client';
 
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ConflictTimelineProps {
   locale: Locale;
@@ -37,10 +38,10 @@ export default function ConflictTimeline({ locale }: ConflictTimelineProps) {
       <svg viewBox={`0 0 ${width} ${totalH}`} className="w-full min-w-[320px] sm:min-w-[500px]">
         {/* Header */}
         <text x={barLeft} y={18} fill="#f0d48a" fontSize="10" fontFamily="monospace">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunrise' : 'सूर्योदय'}
+          {!isDevanagariLocale(locale) ? 'Sunrise' : 'सूर्योदय'}
         </text>
         <text x={barLeft + barWidth} y={18} fill="#8a6d2b" fontSize="10" textAnchor="end" fontFamily="monospace">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunset' : 'सूर्यास्त'}
+          {!isDevanagariLocale(locale) ? 'Sunset' : 'सूर्यास्त'}
         </text>
 
         {/* Time markers */}
@@ -97,16 +98,16 @@ export default function ConflictTimeline({ locale }: ConflictTimelineProps) {
 
         {/* Legend */}
         <rect x={barLeft} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(74,222,128,0.3)" />
-        <text x={barLeft + 12} y={totalH - 8} fill="rgba(74,222,128,0.7)" fontSize="7">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Auspicious' : 'शुभ'}</text>
+        <text x={barLeft + 12} y={totalH - 8} fill="rgba(74,222,128,0.7)" fontSize="7">{!isDevanagariLocale(locale) ? 'Auspicious' : 'शुभ'}</text>
 
         <rect x={barLeft + 70} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(248,113,113,0.3)" />
-        <text x={barLeft + 82} y={totalH - 8} fill="rgba(248,113,113,0.7)" fontSize="7">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Inauspicious' : 'अशुभ'}</text>
+        <text x={barLeft + 82} y={totalH - 8} fill="rgba(248,113,113,0.7)" fontSize="7">{!isDevanagariLocale(locale) ? 'Inauspicious' : 'अशुभ'}</text>
 
         <rect x={barLeft + 150} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(139,92,246,0.3)" />
-        <text x={barLeft + 162} y={totalH - 8} fill="rgba(139,92,246,0.7)" fontSize="7">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Rahu Kalam zones' : 'राहु काल क्षेत्र'}</text>
+        <text x={barLeft + 162} y={totalH - 8} fill="rgba(139,92,246,0.7)" fontSize="7">{!isDevanagariLocale(locale) ? 'Rahu Kalam zones' : 'राहु काल क्षेत्र'}</text>
 
         <rect x={barLeft + 270} y={totalH - 15} width={8} height={8} rx="1" fill="rgba(240,212,138,0.3)" />
-        <text x={barLeft + 282} y={totalH - 8} fill="rgba(240,212,138,0.7)" fontSize="7">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Abhijit (8th)' : 'अभिजित् (8वाँ)'}</text>
+        <text x={barLeft + 282} y={totalH - 8} fill="rgba(240,212,138,0.7)" fontSize="7">{!isDevanagariLocale(locale) ? 'Abhijit (8th)' : 'अभिजित् (8वाँ)'}</text>
       </svg>
     </div>
   );

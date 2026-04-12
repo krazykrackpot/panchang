@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Badge } from '@/lib/learn/badges';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface BadgeUnlockToastProps {
   badges: Badge[];
@@ -13,7 +14,7 @@ interface BadgeUnlockToastProps {
 export default function BadgeUnlockToast({ badges, locale }: BadgeUnlockToastProps) {
   const [queue, setQueue] = useState<Badge[]>([]);
   const [current, setCurrent] = useState<Badge | null>(null);
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   // Populate queue when badges change
   useEffect(() => {

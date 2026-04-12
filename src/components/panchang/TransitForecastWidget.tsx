@@ -6,6 +6,7 @@ import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { computePersonalTransits } from '@/lib/transit/personal-transits';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import type { PersonalTransit } from '@/lib/transit/personal-transits';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface Props {
   locale: string;
@@ -16,7 +17,7 @@ export default function TransitForecastWidget({ locale }: Props) {
   const [transits, setTransits] = useState<PersonalTransit[]>([]);
   const [loading, setLoading] = useState(false);
   const [hasChart, setHasChart] = useState(false);
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   useEffect(() => {
     if (!user) return;

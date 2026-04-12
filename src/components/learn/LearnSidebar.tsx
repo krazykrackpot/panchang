@@ -16,6 +16,7 @@ import type { Locale } from '@/types/panchang';
 // ── Labels ────────────────────────────────────────────────────────────────────
 
 import { Flame } from 'lucide-react';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   yourJourney:    { en: 'Your Journey',           hi: 'आपकी यात्रा' },
@@ -33,7 +34,7 @@ const LABELS = {
 
 function t(key: keyof typeof LABELS, locale: Locale): string {
   const entry = LABELS[key];
-  return (locale !== 'hi' && String(locale) !== 'sa') ? entry.en : entry.hi;
+  return !isDevanagariLocale(locale) ? entry.en : entry.hi;
 }
 
 // ── Streak fire icons ─────────────────────────────────────────────────────────
@@ -138,7 +139,7 @@ function OverallCircle({ percent }: { percent: number }) {
 
 export default function LearnSidebar() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const {
     sidebarExpanded,

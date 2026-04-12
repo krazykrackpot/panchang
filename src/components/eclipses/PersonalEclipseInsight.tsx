@@ -5,6 +5,7 @@ import type { Locale } from '@/types/panchang';
 import type { PlanetPosition, DashaEntry } from '@/types/kundali';
 import { useAuthStore } from '@/stores/auth-store';
 import { useChartsStore } from '@/stores/charts-store';
+import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 interface EclipseInfo {
   date: string;
@@ -68,7 +69,7 @@ const CONTACT_EFFECTS: Record<number, { en: string; hi: string }> = {
 };
 
 function computePersonalInsight(eclipse: EclipseInfo, kundali: KundaliData, locale: Locale): PersonalInsight {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const now = new Date();
 
   // 1. Which house does the eclipse fall in?
@@ -268,9 +269,9 @@ export default function PersonalEclipseInsight({
   eclipseLongitude: number;
   locale: Locale;
 }) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const isHi = isDevanagariLocale(locale);
+  const headingFont = getHeadingFont(locale);
+  const bodyFont = getBodyFont(locale);
 
   const { user } = useAuthStore();
   const { charts, fetchCharts } = useChartsStore();

@@ -9,6 +9,7 @@ import type { PlanetAvasthas } from '@/lib/kundali/avasthas';
 import HouseVisual, { HouseBadge } from './HouseVisual';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { GRAHAS } from '@/lib/constants/grahas';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Planet metadata ────────────────────────────────────────────────────────
 
@@ -243,7 +244,7 @@ interface ShadbalaInterpretationProps {
 }
 
 export function ShadbalaInterpretation({ shadbala, planets, dashas, locale }: ShadbalaInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const sorted = useMemo(() => [...shadbala].sort((a, b) => b.rupas - a.rupas), [shadbala]);
   const strongest = sorted[0];
@@ -604,7 +605,7 @@ interface YogasInterpretationProps {
 }
 
 export function YogasInterpretation({ yogas, locale }: YogasInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const present = yogas.filter(y => y.present);
   const auspicious = present.filter(y => y.isAuspicious);
@@ -740,7 +741,7 @@ interface AvasthasInterpretationProps {
 }
 
 export function AvasthasInterpretation({ avasthas, planets: _planets, locale }: AvasthasInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [showHowChange, setShowHowChange] = useState(false);
 
@@ -1151,7 +1152,7 @@ interface BhavabalaInterpretationProps {
 }
 
 export function BhavabalaInterpretation({ bhavabala, locale }: BhavabalaInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const sorted = useMemo(() => {
     return [...bhavabala].sort((a, b) => b.total - a.total);
@@ -1307,7 +1308,7 @@ interface PlanetsInterpretationProps {
 }
 
 export function PlanetsInterpretation({ planets, ascendant, locale }: PlanetsInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const moonPlanet = planets.find(p => p.planet.id === 1);
   const exalted = planets.filter(p => p.isExalted);
@@ -1486,7 +1487,7 @@ interface DashaInterpretationProps {
 }
 
 export function DashaInterpretation({ dashas, planets, locale }: DashaInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const { currentMaha, currentAntar, nextMaha } = useMemo(() => {
     const now = new Date();
@@ -1698,7 +1699,7 @@ interface JaiminiInterpretationProps {
 }
 
 export function JaiminiInterpretation({ jaimini, locale }: JaiminiInterpretationProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const L = isHi ? 'hi' : 'en';
 
   if (!jaimini) return null;

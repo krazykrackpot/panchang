@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Check, Share2, Printer } from 'lucide-react';
 import type { SamagriItem } from '@/lib/constants/puja-vidhi/types';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ─────────────────────────────────────── */
 
@@ -45,7 +46,7 @@ interface SamagriListProps {
 /* ── Component ─────────────────────────────────────────────── */
 
 export default function SamagriList({ items, slug, locale }: SamagriListProps) {
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = isDevanagari ? 'var(--font-devanagari-body)' : undefined;
 
   /* ── localStorage persistence ────────────────────────────── */

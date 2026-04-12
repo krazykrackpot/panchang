@@ -7,6 +7,7 @@ import { Calendar, ChevronRight, Sparkles } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -141,10 +142,10 @@ function formatCountdown(days: number, L: (typeof LABELS)['en']): string {
 
 export default function FestivalCountdown() {
   const locale = useLocale() as Locale;
-  const L = LABELS[locale] || LABELS.en;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const L = LABELS[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const isHi = isDevanagariLocale(locale);
+  const headingFont = getHeadingFont(locale);
+  const bodyFont = getBodyFont(locale);
 
   const locationStore = useLocationStore();
   const [festivals, setFestivals] = useState<UpcomingFestival[]>([]);

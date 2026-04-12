@@ -6,6 +6,7 @@ import { Briefcase, Heart, Activity, IndianRupee, Sparkles, ArrowRight, Loader2 
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import { Link } from '@/lib/i18n/navigation';
 import type { DailyHoroscope } from '@/lib/horoscope/daily-engine';
+import { isDevanagariLocale, getHeadingFont, getBodyFont, dataLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Props & Labels
@@ -85,11 +86,10 @@ function barBg(score: number): string {
 // Component
 // ---------------------------------------------------------------------------
 export default function DailyHoroscopeWidget({ moonSign, nakshatra, locale }: DailyHoroscopeWidgetProps) {
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
-  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || LABELS.en;
-  const isHi = lk === 'hi';
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const lk = dataLocale(locale);
+  const L = (LABELS as Record<string, typeof LABELS.en>)[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const headingFont = getHeadingFont(locale);
+  const bodyFont = getBodyFont(locale);
 
   const [data, setData] = useState<DailyHoroscope | null>(null);
   const [loading, setLoading] = useState(true);

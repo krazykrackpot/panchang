@@ -2,6 +2,7 @@
 
 import type { Locale } from '@/types/panchang';
 import { getLevel } from '@/lib/learn/badges';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface LevelBadgeProps {
   masteredCount: number;
@@ -19,7 +20,7 @@ const LEVEL_ICONS: Record<string, string> = {
 };
 
 export default function LevelBadge({ masteredCount, locale, variant = 'compact' }: LevelBadgeProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const level = getLevel(masteredCount);
   const icon = LEVEL_ICONS[level.level] || '\u{1F331}';
 

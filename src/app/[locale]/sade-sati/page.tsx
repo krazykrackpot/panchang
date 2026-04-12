@@ -25,7 +25,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 // Trilingual labels
 // ---------------------------------------------------------------------------
 
-const L = (en: string, hi: string, sa?: string, ta?: string, te?: string, bn?: string, kn?: string) => ({ en, hi, sa: sa ?? hi, ...(ta ? { ta } : {}), ...(te ? { te } : {}), ...(bn ? { bn } : {}), ...(kn ? { kn } : {}) });
+const L = (en: string, hi: string, sa?: string, ta?: string, te?: string, bn?: string, kn?: string, mr?: string, gu?: string, mai?: string) => ({ en, hi, sa: sa ?? hi, ...(ta ? { ta } : {}), ...(te ? { te } : {}), ...(bn ? { bn } : {}), ...(kn ? { kn } : {}), ...(mr ? { mr } : {}), ...(gu ? { gu } : {}), ...(mai ? { mai } : {}) });
 
 const LABELS = {
   title: L('Sade Sati', 'साढ़े साती', 'साढेसाती', 'ஏழரை சனி', 'సాడే సాతి', 'সাড়ে সাতি', 'ಸಾಡೆ ಸಾತಿ'),
@@ -82,9 +82,12 @@ const LABELS = {
   intense: L('Intense', 'तीव्र', 'तीव्रम्'),
 };
 
-type Tri = { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string };
+type Tri = { en: string; hi: string; sa?: string; ta?: string; te?: string; bn?: string; kn?: string; mr?: string; gu?: string; mai?: string };
 const t = (label: Tri, locale: Locale): string => {
   const loc = String(locale);
+  if (loc === 'mr' && (label as Record<string, string>).mr) return (label as Record<string, string>).mr;
+  if (loc === 'gu' && (label as Record<string, string>).gu) return (label as Record<string, string>).gu;
+  if (loc === 'mai' && (label as Record<string, string>).mai) return (label as Record<string, string>).mai;
   if (loc === 'te' && (label as Record<string, string>).te) return (label as Record<string, string>).te;
   if (loc === 'bn' && (label as Record<string, string>).bn) return (label as Record<string, string>).bn;
   if (loc === 'kn' && (label as Record<string, string>).kn) return (label as Record<string, string>).kn;

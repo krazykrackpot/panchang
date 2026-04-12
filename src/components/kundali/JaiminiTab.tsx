@@ -10,6 +10,7 @@ import InfoBlock from '@/components/ui/InfoBlock';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Module-level constant data ─────────────────────────────────────────────
 
@@ -172,15 +173,15 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* System intro */}
       <div className="text-center">
         <h3 className="text-gold-gradient text-2xl font-bold mb-3" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jaimini Astrology' : 'जैमिनी ज्योतिष'}
+          {!isDevanagariLocale(locale) ? 'Jaimini Astrology' : 'जैमिनी ज्योतिष'}
         </h3>
       </div>
       <InfoBlock
         id="kundali-jaimini"
-        title={(locale !== 'hi' && String(locale) !== 'sa') ? 'What is Jaimini Astrology and how is it different?' : 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?'}
+        title={!isDevanagariLocale(locale) ? 'What is Jaimini Astrology and how is it different?' : 'जैमिनी ज्योतिष क्या है और यह कैसे भिन्न है?'}
         defaultOpen={false}
       >
-        {(locale !== 'hi' && String(locale) !== 'sa') ? (
+        {!isDevanagariLocale(locale) ? (
           <div className="space-y-3">
             <p>Most Vedic astrology uses the <strong>Parashara</strong> system where each planet has fixed significations (Sun always = father, Moon always = mother). <strong>Jaimini</strong> is a complementary system that assigns roles based on <em>your unique chart</em> — the planet with the highest degree becomes your <strong>Atmakaraka</strong> (soul significator), the next becomes <strong>Amatyakaraka</strong> (career), and so on.</p>
             <p><strong>Why this matters for you:</strong></p>
@@ -209,10 +210,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Chara Karakas */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chara Karakas (Variable Significators)' : 'चर कारक (परिवर्तनशील कारक)'}
+          {!isDevanagariLocale(locale) ? 'Chara Karakas (Variable Significators)' : 'चर कारक (परिवर्तनशील कारक)'}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Planets ranked by degree — highest to lowest — each assigned a life role' : 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका'}
+          {!isDevanagariLocale(locale) ? 'Planets ranked by degree — highest to lowest — each assigned a life role' : 'ग्रह अंश के अनुसार क्रमबद्ध — उच्चतम से निम्नतम — प्रत्येक को जीवन भूमिका'}
         </p>
         <div className="space-y-3">
           {jaimini.charaKarakas.map((ck, i) => {
@@ -227,15 +228,15 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2 mb-1 flex-wrap">
                     <span className="text-gold-primary font-bold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
-                      {info?.full?.[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi'] || tl(ck.karakaName, locale)}
+                      {info?.full?.[!isDevanagariLocale(locale) ? 'en' : 'hi'] || tl(ck.karakaName, locale)}
                     </span>
                     <span className="text-text-secondary/85 text-xs">
-                      ({info?.meaning?.[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi'] || tl(ck.karakaName, locale)})
+                      ({info?.meaning?.[!isDevanagariLocale(locale) ? 'en' : 'hi'] || tl(ck.karakaName, locale)})
                     </span>
                   </div>
                   {info?.governs && (
                     <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {info.governs[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                      {info.governs[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                     </p>
                   )}
                 </div>
@@ -249,10 +250,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Karakamsha */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Karakamsha' : 'कारकांश'}
+          {!isDevanagariLocale(locale) ? 'Karakamsha' : 'कारकांश'}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'The Navamsha sign of your Atmakaraka — reveals your soul\'s ultimate destination' : 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य'}
+          {!isDevanagariLocale(locale) ? 'The Navamsha sign of your Atmakaraka — reveals your soul\'s ultimate destination' : 'आत्मकारक की नवांश राशि — आत्मा का अन्तिम गन्तव्य'}
         </p>
         <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 p-6">
           <div className="text-center mb-3">
@@ -261,7 +262,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
           </div>
           {KARAKAMSHA_MEANING[jaimini.karakamsha.sign] && (
             <p className="text-text-secondary text-sm text-center leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {KARAKAMSHA_MEANING[jaimini.karakamsha.sign][(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+              {KARAKAMSHA_MEANING[jaimini.karakamsha.sign][!isDevanagariLocale(locale) ? 'en' : 'hi']}
             </p>
           )}
         </div>
@@ -273,10 +274,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Arudha Padas */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Arudha Padas (Image Points)' : 'आरूढ़ पद (छवि बिन्दु)'}
+          {!isDevanagariLocale(locale) ? 'Arudha Padas (Image Points)' : 'आरूढ़ पद (छवि बिन्दु)'}
         </h3>
         <p className="text-text-secondary/85 text-xs text-center mb-4">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'How the world perceives each area of your life — the "maya" or illusion projected outward' : 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"'}
+          {!isDevanagariLocale(locale) ? 'How the world perceives each area of your life — the "maya" or illusion projected outward' : 'विश्व आपके जीवन के प्रत्येक क्षेत्र को कैसे देखता है — बाहर प्रक्षेपित "माया"'}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {jaimini.arudhaPadas.map((ap, i) => {
@@ -296,12 +297,12 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                     </div>
                     {meaning && (
                       <p className="text-text-secondary/85 text-xs leading-relaxed font-medium" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {meaning[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                        {meaning[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                       </p>
                     )}
                     {rashiDesc && (
                       <p className="text-text-secondary/80 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                        {rashiDesc[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                        {rashiDesc[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                       </p>
                     )}
                   </div>
@@ -316,10 +317,10 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {jaimini.grahaArudhas && jaimini.grahaArudhas.length > 0 && (
         <div>
           <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)'}
+            {!isDevanagariLocale(locale) ? 'Graha Arudhas (Planet Projections)' : 'ग्रह आरूढ़ (ग्रह प्रक्षेपण)'}
           </h3>
           <p className="text-text-secondary/85 text-xs text-center mb-4">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'The Arudha of each planet — where its energy projects outward into the world' : 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है'}
+            {!isDevanagariLocale(locale) ? 'The Arudha of each planet — where its energy projects outward into the world' : 'प्रत्येक ग्रह का आरूढ़ — जहाँ इसकी ऊर्जा बाहर की ओर प्रक्षेपित होती है'}
           </p>
           <div className="rounded-2xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/18 overflow-hidden">
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 divide-x divide-y divide-gold-primary/10">
@@ -345,7 +346,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {/* Chara Dasha */}
       <div>
         <h3 className="text-gold-gradient text-xl font-bold mb-4 text-center" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Chara Dasha (Sign-Based Periods)' : 'चर दशा (राशि आधारित)'}
+          {!isDevanagariLocale(locale) ? 'Chara Dasha (Sign-Based Periods)' : 'चर दशा (राशि आधारित)'}
         </h3>
         <div className="space-y-2">
           {jaimini.charaDasha.map((cd, i) => {
@@ -359,7 +360,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                 <div className="flex items-center gap-3">
                   <span className={`w-2.5 h-2.5 rounded-full ${isCurrent ? 'bg-gold-primary animate-pulse' : isPast ? 'bg-text-secondary/30' : 'bg-gold-dark/50'}`} />
                   <span className="text-gold-light font-bold" style={headingFont}>{tl(cd.signName, locale)}</span>
-                  <span className="text-text-tertiary text-xs">{cd.years} {(locale !== 'hi' && String(locale) !== 'sa') ? 'years' : 'वर्ष'}</span>
+                  <span className="text-text-tertiary text-xs">{cd.years} {!isDevanagariLocale(locale) ? 'years' : 'वर्ष'}</span>
                 </div>
                 <span className="text-text-secondary text-xs font-mono">{cd.startDate} → {cd.endDate}</span>
               </div>
@@ -372,7 +373,7 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
       {jaimini.rajayogas && jaimini.rajayogas.length > 0 && (
         <div>
           <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jaimini Rajayogas (from Karakamsha)' : 'जैमिनी राजयोग (कारकांश से)'}
+            {!isDevanagariLocale(locale) ? 'Jaimini Rajayogas (from Karakamsha)' : 'जैमिनी राजयोग (कारकांश से)'}
           </h3>
           <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto">
             {locale === 'en'
@@ -391,16 +392,16 @@ export default function JaiminiTab({ kundali, locale, isDevanagari, headingFont 
                     yoga.strength === 'moderate' ? 'bg-purple-500/20 text-purple-300' :
                                                    'bg-bg-secondary text-text-secondary/85'
                   }`}>
-                    {yoga.strength === 'strong' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Strong' : 'प्रबल') :
-                     yoga.strength === 'moderate' ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Moderate' : 'मध्यम') :
-                     ((locale !== 'hi' && String(locale) !== 'sa') ? 'Mild' : 'मृदु')}
+                    {yoga.strength === 'strong' ? (!isDevanagariLocale(locale) ? 'Strong' : 'प्रबल') :
+                     yoga.strength === 'moderate' ? (!isDevanagariLocale(locale) ? 'Moderate' : 'मध्यम') :
+                     (!isDevanagariLocale(locale) ? 'Mild' : 'मृदु')}
                   </span>
                   <div className="flex-1">
                     <div className="text-gold-primary font-bold text-sm mb-1" style={headingFont}>
-                      {yoga.name[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                      {yoga.name[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                     </div>
                     <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                      {yoga.description[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}
+                      {yoga.description[!isDevanagariLocale(locale) ? 'en' : 'hi']}
                     </p>
                   </div>
                 </div>
@@ -433,18 +434,18 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Swamsha Profile (Karakamsha Combinations)' : 'स्वांश प्रोफाइल (कारकांश संयोग)'}
+        {!isDevanagariLocale(locale) ? 'Swamsha Profile (Karakamsha Combinations)' : 'स्वांश प्रोफाइल (कारकांश संयोग)'}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation' : 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या'}
+        {!isDevanagariLocale(locale) ? 'Classical planetary combinations in your Karakamsha sign — Jaimini Sutras interpretation' : 'आपकी कारकांश राशि में ग्रह संयोग — जैमिनी सूत्र व्याख्या'}
       </p>
       {planetsInKM.length === 0 ? (
         <p className="text-text-secondary/80 text-sm text-center">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'No planets occupy the Karakamsha sign in D9 — soul\'s path is shaped purely by the Karakamsha sign\'s qualities above.' : 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।'}
+          {!isDevanagariLocale(locale) ? 'No planets occupy the Karakamsha sign in D9 — soul\'s path is shaped purely by the Karakamsha sign\'s qualities above.' : 'D9 में कारकांश राशि में कोई ग्रह नहीं — आत्मा का पथ शुद्ध रूप से ऊपर की कारकांश राशि के गुणों द्वारा आकार पाता है।'}
         </p>
       ) : matchedCombos.length === 0 ? (
         <p className="text-text-secondary/80 text-sm text-center">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Planets present but no specific classical combination applies — see individual planet meanings above.' : 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।'}
+          {!isDevanagariLocale(locale) ? 'Planets present but no specific classical combination applies — see individual planet meanings above.' : 'ग्रह उपस्थित हैं किन्तु कोई विशिष्ट संयोग नहीं — ऊपर ग्रह अर्थ देखें।'}
         </p>
       ) : (
         <div className="space-y-3 max-w-2xl mx-auto">
@@ -453,7 +454,7 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
               <div className="flex items-start justify-between gap-3 mb-1">
                 <div className="text-gold-light font-semibold text-sm" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}>
                   {combo.ids.map(id => kundali.planets.find(p => p.planet.id === id)?.planet.name[locale] || '').filter(Boolean).join(' + ')}
-                  <span className="text-text-secondary/80 font-normal"> {(locale !== 'hi' && String(locale) !== 'sa') ? 'in Swamsha' : 'स्वांश में'}</span>
+                  <span className="text-text-secondary/80 font-normal"> {!isDevanagariLocale(locale) ? 'in Swamsha' : 'स्वांश में'}</span>
                 </div>
                 {combo.tag && (
                   <span className={`shrink-0 text-xs px-2 py-0.5 rounded-full font-medium ${TAG_COLORS[combo.tag]}`}>
@@ -462,7 +463,7 @@ function SwamshaProfile({ kundali, locale, isDevanagari, headingFont }: JaiminiT
                 )}
               </div>
               <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-                {(locale !== 'hi' && String(locale) !== 'sa') ? combo.en : combo.hi}
+                {!isDevanagariLocale(locale) ? combo.en : combo.hi}
               </p>
             </div>
           ))}
@@ -485,7 +486,7 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Rashi Drishti (Sign Aspects)' : 'राशि दृष्टि (राशि पहलू)'}
+        {!isDevanagariLocale(locale) ? 'Rashi Drishti (Sign Aspects)' : 'राशि दृष्टि (राशि पहलू)'}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-1 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {locale === 'en'
@@ -515,12 +516,12 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
               {/* Sign header */}
               <div className="flex items-center gap-1.5 mb-2">
                 <span className={`text-xs font-bold ${isKey ? 'text-gold-light' : 'text-gold-primary/85'}`} style={headingFont}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_NAMES_EN[fromSign - 1] : SIGN_NAMES_HI[fromSign - 1]}
+                  {!isDevanagariLocale(locale) ? SIGN_NAMES_EN[fromSign - 1] : SIGN_NAMES_HI[fromSign - 1]}
                 </span>
                 <span className="text-text-secondary/85 text-[10px] font-mono">{fromSign}</span>
                 {isKey && (
                   <span className="ml-auto text-[9px] px-1 py-0.5 rounded-full bg-gold-primary/15 text-gold-primary font-bold">
-                    {fromSign === ascSign ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'L' : 'ल') : fromSign === moonSign ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'M' : 'च') : ((locale !== 'hi' && String(locale) !== 'sa') ? 'K' : 'क')}
+                    {fromSign === ascSign ? (!isDevanagariLocale(locale) ? 'L' : 'ल') : fromSign === moonSign ? (!isDevanagariLocale(locale) ? 'M' : 'च') : (!isDevanagariLocale(locale) ? 'K' : 'क')}
                   </span>
                 )}
               </div>
@@ -542,7 +543,7 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
                         'bg-bg-secondary/70 text-text-secondary/85'
                       }`}
                     >
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_NAMES_EN[to - 1] : SIGN_NAMES_HI[to - 1]}
+                      {!isDevanagariLocale(locale) ? SIGN_NAMES_EN[to - 1] : SIGN_NAMES_HI[to - 1]}
                       {isMut && <span className="ml-0.5 opacity-60">↔</span>}
                     </span>
                   );
@@ -557,7 +558,7 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
       {mutualAspects.length > 0 && (
         <div className="mt-4 rounded-xl bg-purple-500/5 border border-purple-500/15 p-3">
           <div className="text-purple-300/70 text-xs font-bold mb-2">
-            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mutual Sign Aspects (↔ Both aspects each other)' : 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)'}
+            {!isDevanagariLocale(locale) ? 'Mutual Sign Aspects (↔ Both aspects each other)' : 'परस्पर राशि दृष्टि (↔ दोनों परस्पर देखती हैं)'}
           </div>
           <div className="flex flex-wrap gap-1.5">
             {mutualAspects.map(m => {
@@ -569,9 +570,9 @@ function RashiDrishtiSection({ kundali, locale, isDevanagari, headingFont }: Jai
                   key={`${m.sign1}-${m.sign2}`}
                   className={`text-[11px] px-2 py-0.5 rounded-full font-mono ${isHighlighted ? 'bg-gold-primary/20 text-gold-light font-bold' : 'bg-purple-500/10 text-purple-200/60'}`}
                 >
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_NAMES_EN[m.sign1-1] : SIGN_NAMES_HI[m.sign1-1]}
+                  {!isDevanagariLocale(locale) ? SIGN_NAMES_EN[m.sign1-1] : SIGN_NAMES_HI[m.sign1-1]}
                   {' ↔ '}
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? SIGN_NAMES_EN[m.sign2-1] : SIGN_NAMES_HI[m.sign2-1]}
+                  {!isDevanagariLocale(locale) ? SIGN_NAMES_EN[m.sign2-1] : SIGN_NAMES_HI[m.sign2-1]}
                 </span>
               );
             })}
@@ -586,7 +587,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Argala (Planetary Interventions)' : 'अर्गल (ग्रह हस्तक्षेप)'}
+        {!isDevanagariLocale(locale) ? 'Argala (Planetary Interventions)' : 'अर्गल (ग्रह हस्तक्षेप)'}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
         {locale === 'en'
@@ -596,7 +597,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
         {kundali.argala!.map((ar) => {
           const rashiName = RASHIS[ar.sign - 1]?.name;
-          const signLabel = rashiName ? ((locale !== 'hi' && String(locale) !== 'sa') ? rashiName.en : rashiName.hi) : `S${ar.sign}`;
+          const signLabel = rashiName ? (!isDevanagariLocale(locale) ? rashiName.en : rashiName.hi) : `S${ar.sign}`;
           const houseLabel = HOUSE_LABELS[ar.house];
           const strongArgalas = ar.argalas.filter(a => a.strength === 'strong');
           const strongVirodha = ar.virodha.filter(v => v.strength === 'strong');
@@ -611,16 +612,16 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
                   <span className="w-5 h-5 rounded bg-bg-secondary/80 flex items-center justify-center text-gold-primary font-bold text-xs">{ar.house}</span>
                   <div>
                     <div className="text-gold-light font-semibold text-xs" style={headingFont}>{signLabel}</div>
-                    <div className="text-text-secondary/80 text-[10px]">{houseLabel?.[(locale !== 'hi' && String(locale) !== 'sa') ? 'en' : 'hi']}</div>
+                    <div className="text-text-secondary/80 text-[10px]">{houseLabel?.[!isDevanagariLocale(locale) ? 'en' : 'hi']}</div>
                   </div>
                 </div>
                 <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full ${
                   ar.netEffect === 'supported' ? 'bg-emerald-500/15 text-emerald-400' :
                   ar.netEffect === 'obstructed' ? 'bg-red-500/12 text-red-400' : 'bg-bg-secondary/75 text-text-secondary/85'
                 }`}>
-                  {ar.netEffect === 'supported' ? ((locale !== 'hi' && String(locale) !== 'sa') ? '✦ Active' : '✦ सक्रिय') :
-                   ar.netEffect === 'obstructed' ? ((locale !== 'hi' && String(locale) !== 'sa') ? '↓ Blocked' : '↓ अवरुद्ध') :
-                   ((locale !== 'hi' && String(locale) !== 'sa') ? '— Neutral' : '— तटस्थ')}
+                  {ar.netEffect === 'supported' ? (!isDevanagariLocale(locale) ? '✦ Active' : '✦ सक्रिय') :
+                   ar.netEffect === 'obstructed' ? (!isDevanagariLocale(locale) ? '↓ Blocked' : '↓ अवरुद्ध') :
+                   (!isDevanagariLocale(locale) ? '— Neutral' : '— तटस्थ')}
                 </span>
               </div>
 
@@ -649,7 +650,7 @@ function ArgalaSection({ kundali, locale, isDevanagari, headingFont }: JaiminiTa
               )}
 
               {strongArgalas.length === 0 && strongVirodha.length === 0 && (
-                <p className="text-text-secondary/85 text-[10px]">{(locale !== 'hi' && String(locale) !== 'sa') ? 'No strong interventions' : 'कोई प्रबल हस्तक्षेप नहीं'}</p>
+                <p className="text-text-secondary/85 text-[10px]">{!isDevanagariLocale(locale) ? 'No strong interventions' : 'कोई प्रबल हस्तक्षेप नहीं'}</p>
               )}
             </div>
           );
@@ -699,10 +700,10 @@ function BrahmaRudraMaheshwara({ kundali, locale, isDevanagari, headingFont }: J
   return (
     <div>
       <h3 className="text-gold-gradient text-xl font-bold mb-2 text-center" style={headingFont}>
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Brahma · Rudra · Maheshvara' : 'ब्रह्मा · रुद्र · महेश्वर'}
+        {!isDevanagariLocale(locale) ? 'Brahma · Rudra · Maheshvara' : 'ब्रह्मा · रुद्र · महेश्वर'}
       </h3>
       <p className="text-text-secondary/85 text-xs text-center mb-4 max-w-2xl mx-auto">
-        {(locale !== 'hi' && String(locale) !== 'sa') ? 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release' : 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं'}
+        {!isDevanagariLocale(locale) ? 'Jaimini longevity significators — these three planets govern the arc of life, health transformation, and karmic release' : 'जैमिनी आयुकारक — ये तीन ग्रह जीवन, स्वास्थ्य परिवर्तन और कार्मिक मुक्ति के चाप को नियंत्रित करते हैं'}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {triplet.map(({ titleEn, titleHi, planet, descEn, descHi, color }) => (
@@ -710,7 +711,7 @@ function BrahmaRudraMaheshwara({ kundali, locale, isDevanagari, headingFont }: J
             <div className="text-center mb-3">
               {planet && <GrahaIconById id={planet.planet.id} size={36} />}
               <div className="text-gold-light font-bold text-base mt-1" style={headingFont}>
-                {(locale !== 'hi' && String(locale) !== 'sa') ? titleEn : titleHi}
+                {!isDevanagariLocale(locale) ? titleEn : titleHi}
               </div>
               {planet && (
                 <div className="text-text-secondary/85 text-xs mt-0.5" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
@@ -719,7 +720,7 @@ function BrahmaRudraMaheshwara({ kundali, locale, isDevanagari, headingFont }: J
               )}
             </div>
             <p className="text-text-secondary/85 text-xs leading-relaxed" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? descEn : descHi}
+              {!isDevanagariLocale(locale) ? descEn : descHi}
             </p>
           </div>
         ))}

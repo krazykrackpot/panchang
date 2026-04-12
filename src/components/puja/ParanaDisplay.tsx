@@ -6,6 +6,7 @@ import type { ParanaRule } from '@/lib/constants/puja-vidhi/types';
 import { computeParana } from '@/lib/puja/parana-compute';
 import { formatMuhurtaTime, muhurtaDurationMinutes } from '@/lib/puja/muhurta-compute';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ParanaDisplayProps {
   parana: ParanaRule;
@@ -49,7 +50,7 @@ function formatNextDayDate(vratDate: Date, locale: Locale): string {
     month: 'short',
   };
 
-  const loc = locale === 'hi' ? 'hi-IN' : locale === 'sa' ? 'sa-IN' : 'en-US';
+  const loc = isDevanagariLocale(locale) ? 'hi-IN' : 'en-US';
   try {
     return nextDay.toLocaleDateString(loc, options);
   } catch {

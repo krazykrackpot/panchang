@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { Sunrise, Clock, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale, getHeadingFont } from '@/lib/utils/locale-fonts';
 
 interface EkadashiParanaCardProps {
   paranaDate: string;
@@ -101,7 +102,7 @@ function parseTime(t: string): number {
 function formatDateLocale(dateStr: string, locale: Locale): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   const date = new Date(y, m - 1, d);
-  const loc = locale === 'hi' ? 'hi-IN' : locale === 'sa' ? 'sa-IN' : 'en-US';
+  const loc = isDevanagariLocale(locale) ? 'hi-IN' : 'en-US';
   try {
     return date.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   } catch {
@@ -128,10 +129,8 @@ export default function EkadashiParanaCard({
   locale,
 }: EkadashiParanaCardProps) {
   const ll = LABELS[locale] || LABELS.en;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
-  const headingFont = isDevanagari
-    ? { fontFamily: 'var(--font-devanagari-heading)' }
-    : { fontFamily: 'var(--font-heading)' };
+  const isDevanagari = isDevanagariLocale(locale);
+  const headingFont = getHeadingFont(locale);
 
   const dateFormatted = useMemo(() => formatDateLocale(paranaDate, locale), [paranaDate, locale]);
 
@@ -199,7 +198,7 @@ export default function EkadashiParanaCard({
           {ekadashiStart && (
             <div className="rounded-lg border border-purple-500/15 bg-purple-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-purple-400/60 mb-1">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
+                {!isDevanagariLocale(locale) ? 'Ekadashi Starts' : 'एकादशी आरम्भ'}
               </div>
               <div className="font-mono text-base font-bold text-purple-300">{ekadashiStart}</div>
               {ekadashiStartDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(ekadashiStartDate)}</div>}
@@ -208,7 +207,7 @@ export default function EkadashiParanaCard({
           {ekadashiEnd && (
             <div className="rounded-lg border border-amber-500/15 bg-amber-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-amber-400/60 mb-1">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
+                {!isDevanagariLocale(locale) ? 'Ekadashi Ends' : 'एकादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-amber-300">{ekadashiEnd}</div>
               {ekadashiEndDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(ekadashiEndDate)}</div>}
@@ -217,11 +216,11 @@ export default function EkadashiParanaCard({
           {dwadashiEndTime && (
             <div className="rounded-lg border border-rose-500/15 bg-rose-500/[0.04] p-3">
               <div className="text-xs uppercase tracking-wider text-rose-400/60 mb-1">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
+                {!isDevanagariLocale(locale) ? 'Dwadashi Ends' : 'द्वादशी समाप्ति'}
               </div>
               <div className="font-mono text-base font-bold text-rose-300">{dwadashiEndTime}</div>
               {dwadashiEndDate && <div className="text-xs text-text-secondary/65 mt-0.5">{fmtShortDate(dwadashiEndDate)}</div>}
-              <div className="text-xs text-rose-400/50 mt-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
+              <div className="text-xs text-rose-400/50 mt-1">{!isDevanagariLocale(locale) ? 'Absolute deadline' : 'अन्तिम सीमा'}</div>
             </div>
           )}
         </div>

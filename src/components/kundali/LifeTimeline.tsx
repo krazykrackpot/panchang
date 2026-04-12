@@ -2,6 +2,7 @@
 
 import { useMemo, useRef, useEffect, useState } from 'react';
 import type { KundaliData } from '@/types/kundali';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ── Layout constants ──────────────────────────────────────────────────────────
 const PX = 30;         // pixels per year
@@ -61,7 +62,7 @@ interface Props {
 }
 
 export default function LifeTimeline({ kundali, locale, isDevanagari, headingFont }: Props) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
 

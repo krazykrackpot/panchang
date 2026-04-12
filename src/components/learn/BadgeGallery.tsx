@@ -7,6 +7,7 @@ import { BADGES, getEarnedBadgeIds, checkBadges } from '@/lib/learn/badges';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { MODULE_SEQUENCE, getPhaseModules, PHASE_INFO } from '@/lib/learn/module-sequence';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LABELS = {
   title:       { en: 'Badge Gallery',       hi: 'बैज गैलरी' },
@@ -85,7 +86,7 @@ function getBadgeProgress(
 
 export default function BadgeGallery() {
   const locale = useLocale() as Locale;
-  const isHi = locale === 'hi' || String(locale) === 'sa';
+  const isHi = isDevanagariLocale(locale);
 
   const { progress, streak, hydrated } = useLearningProgressStore();
   const [earnedIds, setEarnedIds] = useState<Set<string>>(new Set());

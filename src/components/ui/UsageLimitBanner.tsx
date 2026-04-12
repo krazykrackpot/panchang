@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { trackUpgradePromptShown, trackUpgradePromptClicked, trackUsageLimitHit } from '@/lib/analytics';
 import { useSubscriptionStore } from '@/stores/subscription-store';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface UsageLimitBannerProps {
   /** The error type: 'upgrade_required' (feature-gated) or 'usage_limit_reached' (usage-gated) */
@@ -60,7 +61,7 @@ export default function UsageLimitBanner({
   const locale = useLocale() as 'en' | 'hi';
   const currentTier = useSubscriptionStore(s => s.tier);
   const t = LABELS[locale] || LABELS.en;
-  const isDevanagari = locale === 'hi';
+  const isDevanagari = isDevanagariLocale(locale);
   const isFeatureGate = type === 'upgrade_required';
 
   useEffect(() => {

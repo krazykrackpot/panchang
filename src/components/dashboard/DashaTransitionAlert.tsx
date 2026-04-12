@@ -6,6 +6,7 @@ import { ArrowRight, Clock, Zap } from 'lucide-react';
 import { Link } from '@/lib/i18n/navigation';
 import type { DashaEntry } from '@/types/kundali';
 import type { Locale, Trilingual } from '@/types/panchang';
+import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Planet interpretations (brief, for the alert card)
@@ -145,10 +146,10 @@ interface DashaTransitionAlertProps {
 // Component
 // ---------------------------------------------------------------------------
 export default function DashaTransitionAlert({ dashaTimeline, locale, kundaliId }: DashaTransitionAlertProps) {
-  const L = LABELS[locale] || LABELS.en;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const L = LABELS[locale] || (isDevanagariLocale(locale) ? LABELS.hi : LABELS.en);
+  const isHi = isDevanagariLocale(locale);
+  const headingFont = getHeadingFont(locale);
+  const bodyFont = getBodyFont(locale);
 
   const transitions = useMemo(() => {
     if (!dashaTimeline || dashaTimeline.length === 0) return [];

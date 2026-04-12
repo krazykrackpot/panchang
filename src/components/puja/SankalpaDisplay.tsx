@@ -6,6 +6,7 @@ import { User, Copy, Check, ChevronDown } from 'lucide-react';
 import { generateSankalpa } from '@/lib/puja/sankalpa-generator';
 import type { PujaVidhi } from '@/lib/constants/puja-vidhi/types';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ─────────────────────────────────────── */
 
@@ -88,7 +89,7 @@ export default function SankalpaDisplay({
   timezoneOffset,
 }: SankalpaDisplayProps) {
   const l = LABELS[locale];
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const bodyFont = isDevanagari ? 'var(--font-devanagari-body)' : undefined;
 
   const canCompute = date != null && lat != null && lng != null && timezoneOffset != null;

@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface SearchItem {
   title: string;
@@ -151,7 +152,7 @@ export default function SearchModal() {
         aria-label="Search"
       >
         <Search className="w-3.5 h-3.5" />
-        <span className="hidden sm:inline">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Search' : 'खोजें'}</span>
+        <span className="hidden sm:inline">{!isDevanagariLocale(locale) ? 'Search' : 'खोजें'}</span>
         <kbd className="hidden sm:inline text-xs px-1.5 py-0.5 rounded bg-bg-secondary/50 border border-gold-primary/10 text-text-secondary/65 font-mono ml-1" suppressHydrationWarning>
           {isMac ? '⌘' : 'Ctrl+'}K
         </kbd>
@@ -176,7 +177,7 @@ export default function SearchModal() {
               value={query}
               onChange={e => { setQuery(e.target.value); setSelectedIdx(0); }}
               onKeyDown={handleKeyDown}
-              placeholder={(locale !== 'hi' && String(locale) !== 'sa') ? 'Search pages, festivals, tools...' : 'पृष्ठ, त्योहार, उपकरण खोजें...'}
+              placeholder={!isDevanagariLocale(locale) ? 'Search pages, festivals, tools...' : 'पृष्ठ, त्योहार, उपकरण खोजें...'}
               className="flex-1 bg-transparent text-text-primary text-base placeholder:text-text-secondary/65 focus:outline-none"
               autoComplete="off"
             />
@@ -189,7 +190,7 @@ export default function SearchModal() {
           <div className="max-h-[50vh] overflow-y-auto py-2">
             {results.length === 0 ? (
               <div className="px-5 py-8 text-center text-text-secondary/65 text-sm">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'No results found' : 'कोई परिणाम नहीं'}
+                {!isDevanagariLocale(locale) ? 'No results found' : 'कोई परिणाम नहीं'}
               </div>
             ) : (
               results.map((item, i) => (
@@ -205,7 +206,7 @@ export default function SearchModal() {
                   <div className="flex items-center gap-3 min-w-0">
                     <span className="text-xs text-text-secondary/55 uppercase tracking-wider w-16 shrink-0">{item.category}</span>
                     <span className={`text-sm truncate ${i === selectedIdx ? 'text-gold-light font-semibold' : 'text-text-primary'}`}>
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? item.title : (item.titleHi || item.title)}
+                      {!isDevanagariLocale(locale) ? item.title : (item.titleHi || item.title)}
                     </span>
                   </div>
                   {i === selectedIdx && <ArrowRight className="w-3.5 h-3.5 text-gold-primary/50 shrink-0" />}

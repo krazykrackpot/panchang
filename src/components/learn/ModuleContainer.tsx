@@ -11,6 +11,7 @@ import { getNextModuleId, getModuleRef, isLastInPhase } from '@/lib/learn/module
 import { checkBadges } from '@/lib/learn/badges';
 import ShareButton from '@/components/ui/ShareButton';
 import BadgeUnlockToast from '@/components/learn/BadgeUnlockToast';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Bilingual text helper for module content ──────────────────────────────
 // Modules can import `useT` and call `t(en, hi)` to get the locale-appropriate string
@@ -18,7 +19,7 @@ const ModuleLocaleContext = createContext<Locale>('en');
 export function useModuleLocale(): Locale { return useContext(ModuleLocaleContext); }
 export function T({ en, hi }: { en: string; hi: string }) {
   const locale = useContext(ModuleLocaleContext);
-  return <>{(locale !== 'hi' && String(locale) !== 'sa') ? en : hi}</>;
+  return <>{!isDevanagariLocale(locale) ? en : hi}</>;
 }
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -56,7 +57,7 @@ interface ModuleContainerProps {
 
 export default function ModuleContainer({ meta, pages, questions }: ModuleContainerProps) {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const hf = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
 
   const totalContentPages = pages.length;

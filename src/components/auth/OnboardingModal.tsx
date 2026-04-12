@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import LocationSearch from '@/components/ui/LocationSearch';
 import { getSupabase } from '@/lib/supabase/client';
 import { useAuthStore } from '@/stores/auth-store';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -67,8 +68,9 @@ const LABELS = {
 };
 
 export default function OnboardingModal({ isOpen, onComplete, userName, userEmail }: OnboardingModalProps) {
-  const locale = useLocale() as 'en' | 'hi' | 'sa';
-  const L = LABELS[locale] || LABELS.en;
+  const locale = useLocale();
+  const labelsKey = isDevanagariLocale(locale) ? (locale === 'sa' ? 'sa' : 'hi') : 'en';
+  const L = LABELS[labelsKey];
   const { user } = useAuthStore();
 
   const [fullName, setFullName] = useState(userName || '');
@@ -98,12 +100,12 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
     setError('');
 
     if (!fullName.trim()) {
-      setError((locale !== 'hi' && String(locale) !== 'sa') ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
+      setError(!isDevanagariLocale(locale) ? 'Please enter your name' : 'कृपया अपना नाम दर्ज करें');
       return;
     }
     // DOB and POB are optional — user can skip
     if (birthDate && !birthLocation) {
-      setError((locale !== 'hi' && String(locale) !== 'sa') ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
+      setError(!isDevanagariLocale(locale) ? 'Please select a birth place from the suggestions' : 'कृपया सुझावों से जन्म स्थान चुनें');
       return;
     }
 
@@ -293,7 +295,7 @@ export default function OnboardingModal({ isOpen, onComplete, userName, userEmai
             type="button"
             onClick={async () => {
               if (!fullName.trim()) {
-                setError((locale !== 'hi' && String(locale) !== 'sa') ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
+                setError(!isDevanagariLocale(locale) ? 'Please enter at least your name' : 'कृपया कम से कम अपना नाम दर्ज करें');
                 return;
               }
               setSaving(true);

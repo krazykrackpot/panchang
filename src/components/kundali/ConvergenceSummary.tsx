@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, AlertTriangle, Sparkles, ArrowRightLeft, Clock, Shield, Heart, Briefcase, Coins, Activity, Star, Users } from 'lucide-react';
 import type { ConvergenceResult, PatternTheme, Tone, FlagIcon, TemporalFrame, ExecutiveInsight } from '@/lib/tippanni/convergence/types';
 import type { Locale } from '@/types/panchang';
+import { dataLocale } from '@/lib/utils/locale-fonts';
 
 // ─── Labels ─────────────────────────────────────────────────────────────────
 
@@ -90,7 +91,7 @@ const FLAG_COLORS: Record<FlagIcon, string> = {
 
 function pickText(obj: { en: string; hi: string } | undefined, locale: Locale): string {
   if (!obj) return '';
-  const key = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const key = dataLocale(locale);
   return obj[key as 'en' | 'hi'] || obj.en;
 }
 

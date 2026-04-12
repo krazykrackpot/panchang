@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // Updated house paths matching ChartNorth (500x500 viewBox, 30px inset)
 const HOUSE_PATHS: Record<number, { path: string; cx: number; cy: number; signX: number; signY: number }> = {
@@ -44,7 +45,7 @@ const PLANET_PLACEMENTS: Record<number, { names: Record<string, string>; color: 
 
 export default function ExampleKundaliChart({ size = 420 }: { size?: number }) {
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
 
   return (
     <motion.div

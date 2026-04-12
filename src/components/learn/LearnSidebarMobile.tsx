@@ -10,11 +10,12 @@ import { useAuthStore } from '@/stores/auth-store';
 import { PHASE_INFO, getPhaseModules, getModuleRef } from '@/lib/learn/module-sequence';
 import ProgressIndicator from './ProgressIndicator';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export default function LearnSidebarMobile() {
   const [open, setOpen] = useState(false);
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   const { user } = useAuthStore();
   const {

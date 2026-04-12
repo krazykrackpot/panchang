@@ -14,6 +14,8 @@
  *        (simplified to 4×3 grid)
  */
 
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+
 interface HouseVisualProps {
   /** Houses to highlight (1-12). Can be a single number or array. */
   highlight: number | number[];
@@ -99,7 +101,7 @@ export default function HouseVisual({ highlight, label, size = 'sm', color = 'go
  * Inline house badge — shows house number with signification
  */
 export function HouseBadge({ house, locale = 'en', color = 'gold' }: { house: number; locale?: string; color?: 'gold' | 'emerald' | 'red' | 'amber' }) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const sig = HOUSE_SIGNIFICATIONS[house];
   const colors = COLOR_MAP[color];
   return (

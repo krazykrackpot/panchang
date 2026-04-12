@@ -5,6 +5,7 @@ import { User, LogOut, Settings } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 import AuthModal from './AuthModal';
 import OnboardingModal from './OnboardingModal';
 
@@ -97,7 +98,7 @@ export default function UserMenu() {
             <p className="text-text-secondary text-xs truncate">{user.email}</p>
             {profileIncomplete && (
               <a href={`/${locale}/settings`} className="block mt-1.5 px-2 py-1 rounded-md bg-amber-500/10 border border-amber-500/15 text-amber-400 text-xs leading-tight hover:bg-amber-500/15 transition-colors">
-                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
+                {!isDevanagariLocale(locale) ? 'Add birth details for personalized insights' : 'व्यक्तिगत अन्तर्दृष्टि के लिए जन्म विवरण जोड़ें'}
               </a>
             )}
           </div>
@@ -106,14 +107,14 @@ export default function UserMenu() {
             className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <User className="w-3.5 h-3.5" />
-            {locale === 'hi' ? 'मेरी कुंडली' : locale === 'sa' ? 'मम कुण्डली' : 'My Profile'}
+            {isDevanagariLocale(locale) ? (locale === 'sa' ? 'मम कुण्डली' : 'मेरी कुंडली') : 'My Profile'}
           </a>
           <a
             href={`/${locale}/settings`}
             className="flex items-center gap-2 px-4 py-2 text-sm text-text-secondary hover:text-gold-light hover:bg-gold-primary/10 transition-colors"
           >
             <Settings className="w-3.5 h-3.5" />
-            {locale === 'hi' ? 'सेटिंग्स' : locale === 'sa' ? 'सेटिंग्स' : 'Settings'}
+            {isDevanagariLocale(locale) ? 'सेटिंग्स' : 'Settings'}
           </a>
           <button
             onClick={() => { signOut(); setMenuOpen(false); }}

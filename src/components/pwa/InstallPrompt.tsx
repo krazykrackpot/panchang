@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from 'next-intl';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
@@ -13,7 +14,7 @@ const DISMISS_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 export default function InstallPrompt() {
   const locale = useLocale();
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
   const [show, setShow] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);

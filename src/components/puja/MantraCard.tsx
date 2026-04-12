@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import type { MantraDetail } from '@/lib/constants/puja-vidhi/types';
 import type { Locale } from '@/types/panchang';
+import { getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 /** Shared hook for Web Speech API mantra pronunciation */
 export function useMantraPronounce() {
@@ -66,7 +67,8 @@ export default function MantraCard({
 }: MantraCardProps) {
   const [copied, setCopied] = useState(false);
   const loc = locale as Locale;
-  const isDevanagari = loc !== 'en';
+  const headingFontStyle = getHeadingFont(locale);
+  const bodyFontStyle = getBodyFont(locale);
   const { speaking, pronounce, supported } = useMantraPronounce();
 
   const handleCopy = useCallback(async () => {
@@ -135,7 +137,7 @@ export default function MantraCard({
       {/* Mantra name */}
       <h3
         className="text-gold-light font-semibold text-sm mb-3 pr-20"
-        style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
+        style={headingFontStyle}
       >
         {mantra.name[loc]}
         {loc !== 'en' && (
@@ -171,7 +173,7 @@ export default function MantraCard({
       {showMeaning && (
         <p
           className="text-text-secondary/75 text-xs mt-3 leading-relaxed"
-          style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+          style={bodyFontStyle}
         >
           {mantra.meaning[loc]}
         </p>
@@ -186,7 +188,7 @@ export default function MantraCard({
         )}
         <span
           className="text-text-secondary/65 text-xs"
-          style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+          style={bodyFontStyle}
         >
           {mantra.usage[loc]}
         </span>

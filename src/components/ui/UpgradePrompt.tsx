@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { type Feature, FEATURE_INFO, minTierForFeature } from '@/lib/subscription/tiers';
 import { useSubscriptionStore } from '@/stores/subscription-store';
 import { trackUpgradePromptShown, trackUpgradePromptClicked } from '@/lib/analytics';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface UpgradePromptProps {
   feature: Feature;
@@ -26,10 +27,10 @@ export default function UpgradePrompt({ feature, compact = false, source = 'unkn
   const currentTier = useSubscriptionStore(s => s.tier);
   const requiredTier = minTierForFeature(feature);
   const info = FEATURE_INFO[feature];
-  const featureName = locale === 'hi' ? info.hi : info.en;
+  const featureName = isDevanagariLocale(locale) ? info.hi : info.en;
   const tierLabel = requiredTier.charAt(0).toUpperCase() + requiredTier.slice(1);
   const price = TIER_PRICES[requiredTier] ?? '';
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
 
   // Track when the upgrade prompt is shown
   useEffect(() => {

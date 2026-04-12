@@ -5,6 +5,7 @@ import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import { getLevel, checkBadges } from '@/lib/learn/badges';
 import ShareButton from '@/components/ui/ShareButton';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const LEVEL_ICONS: Record<string, string> = {
   beginner: '\u{1F331}',
@@ -28,7 +29,7 @@ function t(key: keyof typeof LABELS, locale: Locale): string {
 
 export default function ShareStreakCard() {
   const locale = useLocale() as Locale;
-  const isHi = locale === 'hi' || String(locale) === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const { progress, streak, hydrated, getOverallProgress } = useLearningProgressStore();
 
   if (!hydrated) return null;
@@ -39,7 +40,7 @@ export default function ShareStreakCard() {
   const levelName = isHi ? level.label.hi : level.label.en;
   const { earned } = checkBadges(progress, streak);
 
-  const shareText = locale === 'hi'
+  const shareText = isDevanagariLocale(locale)
     ? `${icon} ${levelName} | \u{1F525} ${streak.streakDays} दिन की लय | \u{1F3C5} ${earned.length} बैज — देखो पंचांग पर वैदिक ज्योतिष सीख रहे हैं!`
     : `${icon} ${levelName} | \u{1F525} ${streak.streakDays} Day Streak | \u{1F3C5} ${earned.length} Badges — Learning Vedic Astrology on Dekho Panchang!`;
 

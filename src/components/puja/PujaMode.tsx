@@ -7,6 +7,7 @@ import type { PujaVidhi, MantraDetail, VidhiStep } from '@/lib/constants/puja-vi
 import type { Locale } from '@/types/panchang';
 import JapaCounter from './JapaCounter';
 import { useMantraPronounce } from './MantraCard';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface PujaModeProps {
   puja: PujaVidhi;
@@ -224,7 +225,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             {/* Step title */}
             <h2
               className="text-center text-2xl font-black text-gold-primary sm:text-4xl break-words"
-              style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-heading)' : undefined }}
+              style={{ fontFamily: (isDevanagariLocale(locale)) ? 'var(--font-devanagari-heading)' : undefined }}
             >
               {currentStep.title[locale]}
             </h2>
@@ -232,7 +233,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
             {/* Step description */}
             <p
               className="text-center text-base leading-relaxed text-text-secondary/70"
-              style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-body)' : undefined }}
+              style={{ fontFamily: (isDevanagariLocale(locale)) ? 'var(--font-devanagari-body)' : undefined }}
             >
               {currentStep.description[locale]}
             </p>
@@ -280,7 +281,7 @@ export default function PujaMode({ puja, locale, quickMode: initialQuickMode, on
                 </p>
                 <p
                   className="mt-2 text-center text-sm text-text-secondary/75"
-                  style={{ fontFamily: ((locale === 'hi' || String(locale) === 'sa')) ? 'var(--font-devanagari-body)' : undefined }}
+                  style={{ fontFamily: (isDevanagariLocale(locale)) ? 'var(--font-devanagari-body)' : undefined }}
                 >
                   {linkedMantra.meaning[locale]}
                 </p>

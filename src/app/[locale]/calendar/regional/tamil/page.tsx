@@ -10,6 +10,7 @@ const LABELS = {
     te: 'తమిళ క్యాలెండర్ (పంచాంగం)',
     bn: 'তামিল ক্যালেন্ডার (পঞ্চাঙ্গম্)',
     kn: 'ತಮಿಳು ಕ್ಯಾಲೆಂಡರ್ (ಪಂಚಾಂಗಂ)',
+    mr: 'तमिळ दिनदर्शिका (पंचांगम्)', gu: 'તમિળ કેલેન્ડર (પંચાંગમ)', mai: 'तमिल कैलेंडर (पंचांगम)',
   },
   intro: {
     en: 'The Tamil calendar, known as the Tamil Panchangam, is one of the oldest continuously used calendar systems in the world. Unlike the North Indian lunisolar calendar, the Tamil calendar is primarily solar-based — months are determined by the Sun\'s transit through the twelve Rashis (zodiac signs). This solar foundation gives the Tamil calendar a fixed relationship with the Gregorian calendar, making Tamil month dates remarkably consistent from year to year. The Tamil Panchangam is used by over 80 million Tamil-speaking people across Tamil Nadu, Sri Lanka, Malaysia, Singapore, and the global Tamil diaspora.',
@@ -25,6 +26,7 @@ const LABELS = {
     te: '12 తమిళ నెలలు',
     bn: '১২টি তামিল মাস',
     kn: '12 ತಮಿಳು ತಿಂಗಳುಗಳು',
+    mr: '12 तमिळ महिने', gu: '12 તમિળ મહિના', mai: '12 तमिल मास',
   },
   monthsIntro: {
     en: 'Each Tamil month begins when the Sun enters a new Rashi. Because the Sun\'s speed varies slightly through the year (faster near perihelion in January, slower near aphelion in July), Tamil months range from 29 to 32 days. The following table shows each month, its zodiac basis, approximate Gregorian dates, and number of days.',
@@ -40,6 +42,7 @@ const LABELS = {
     te: 'నెల వారీ ప్రధాన తమిళ పండుగలు',
     bn: 'মাস অনুসারে প্রধান তামিল উৎসব',
     kn: 'ತಿಂಗಳ ಪ್ರಕಾರ ಪ್ರಮುಖ ತಮಿಳು ಹಬ್ಬಗಳು',
+    mr: 'महिन्यानुसार प्रमुख तमिळ सण', gu: 'મહિના પ્રમાણે મુખ્ય તમિળ તહેવારો', mai: 'मास अनुसार प्रमुख तमिल पर्व',
   },
   puthandu: {
     en: 'Puthandu — Tamil New Year',
@@ -97,6 +100,7 @@ const LABELS = {
     te: 'సంబంధిత పూజా మార్గదర్శులు & పండుగలు',
     bn: 'সম্পর্কিত পূজা গাইড ও উৎসব',
     kn: 'ಸಂಬಂಧಿತ ಪೂಜಾ ಮಾರ್ಗದರ್ಶಿಗಳು & ಹಬ್ಬಗಳು',
+    mr: 'संबंधित पूजा मार्गदर्शक आणि सण', gu: 'સંબંધિત પૂજા માર્ગદર્શિકાઓ અને તહેવારો', mai: 'संबंधित पूजा मार्गदर्शिका आ पर्व',
   },
 };
 

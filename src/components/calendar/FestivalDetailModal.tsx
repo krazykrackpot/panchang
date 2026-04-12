@@ -8,6 +8,7 @@ import type { FestivalDetail, EkadashiDetail } from '@/lib/constants/festival-de
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import type { PujaVidhi, MantraDetail as MantraType } from '@/lib/constants/puja-vidhi/types';
 import { tl } from '@/lib/utils/trilingual';
+import { isDevanagariLocale, dataLocale } from '@/lib/utils/locale-fonts';
 
 interface FestivalDetailModalProps {
   isOpen: boolean;
@@ -114,7 +115,7 @@ export default function FestivalDetailModal({
   };
   const resolvedPujaSlug = festivalSlug ? (PUJA_VIDHIS[festivalSlug] ? festivalSlug : PUJA_SLUG_MAP[festivalSlug] || festivalSlug) : undefined;
   const hasPujaVidhi = resolvedPujaSlug ? !!PUJA_VIDHIS[resolvedPujaSlug] : false;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {};
   const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -175,7 +176,7 @@ export default function FestivalDetailModal({
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-[#1a1040]/40 flex flex-col items-center justify-center border border-gold-primary/20">
                     <span className="text-gold-light text-2xl font-bold leading-none">{dayStr}</span>
-                    <span className="text-text-secondary text-xs uppercase">{(locale !== 'hi' && String(locale) !== 'sa') ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
+                    <span className="text-text-secondary text-xs uppercase">{!isDevanagariLocale(locale) ? monthStr?.slice(0, 3) : monthStr?.slice(0, 4)}</span>
                   </div>
                   <div className="flex-1 min-w-0 pr-8">
                     <h2 className="text-2xl sm:text-3xl font-bold text-gold-gradient leading-tight" style={headingFont}>
@@ -275,7 +276,7 @@ export default function FestivalDetailModal({
                             <span className="ml-auto text-xs text-text-secondary font-mono">
                               {(() => {
                                 const pd = new Date(paranaDate + 'T00:00:00');
-                                return `${pd.getDate()} ${(locale !== 'hi' && String(locale) !== 'sa') ? MONTH_NAMES[pd.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4)}`;
+                                return `${pd.getDate()} ${!isDevanagariLocale(locale) ? MONTH_NAMES[pd.getMonth()]?.slice(0, 3) : MONTH_NAMES_HI[pd.getMonth()]?.slice(0, 4)}`;
                               })()}
                             </span>
                           )}
@@ -294,25 +295,25 @@ export default function FestivalDetailModal({
                         {/* ─── Three Rules Summary ─── */}
                         <div className="rounded-lg bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] border border-gold-primary/10 p-3 mb-3">
                           <div className="text-xs text-gold-primary/70 uppercase tracking-wider font-bold mb-2">
-                            {(locale !== 'hi' && String(locale) !== 'sa') ? 'Three Rules of Parana' : locale === 'hi' ? 'पारण के तीन नियम' : 'पारणस्य त्रयो नियमाः'}
+                            {!isDevanagariLocale(locale) ? 'Three Rules of Parana' : locale === 'sa' ? 'पारणस्य त्रयो नियमाः' : 'पारण के तीन नियम'}
                           </div>
                           <div className="space-y-1 text-xs" style={bodyFont}>
                             <div className="flex items-start gap-2">
                               <span className="text-blue-400 font-bold mt-0.5">1.</span>
                               <span className="text-text-secondary">
-                                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)' : locale === 'hi' ? 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें' : 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्'}
+                                {!isDevanagariLocale(locale) ? 'Do NOT break fast during Hari Vasara (first 1/4 of Dwadashi)' : locale === 'sa' ? 'हरिवासरे (द्वादश्याः प्रथमचतुर्थांशे) पारणं न कुर्यात्' : 'हरि वासर (द्वादशी के प्रथम 1/4) में पारण न करें'}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-amber-400 font-bold mt-0.5">2.</span>
                               <span className="text-text-secondary">
-                                {(locale !== 'hi' && String(locale) !== 'sa') ? 'Do NOT break fast during Madhyahna (midday period)' : locale === 'hi' ? 'मध्याह्न (दोपहर) में पारण न करें' : 'मध्याह्ने पारणं न कुर्यात्'}
+                                {!isDevanagariLocale(locale) ? 'Do NOT break fast during Madhyahna (midday period)' : locale === 'sa' ? 'मध्याह्ने पारणं न कुर्यात्' : 'मध्याह्न (दोपहर) में पारण न करें'}
                               </span>
                             </div>
                             <div className="flex items-start gap-2">
                               <span className="text-orange-400 font-bold mt-0.5">3.</span>
                               <span className="text-text-secondary">
-                                {(locale !== 'hi' && String(locale) !== 'sa') ? 'MUST break fast before Dwadashi tithi ends' : locale === 'hi' ? 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें' : 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्'}
+                                {!isDevanagariLocale(locale) ? 'MUST break fast before Dwadashi tithi ends' : locale === 'sa' ? 'द्वादशीतिथ्यन्तात् पूर्वं पारणम् अवश्यम्' : 'द्वादशी तिथि समाप्ति से पहले पारण अवश्य करें'}
                               </span>
                             </div>
                           </div>
@@ -325,7 +326,7 @@ export default function FestivalDetailModal({
                             {paranaSunrise && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Sunrise' : locale === 'hi' ? 'सूर्योदय' : 'सूर्योदयः'}
+                                  {!isDevanagariLocale(locale) ? 'Sunrise' : locale === 'sa' ? 'सूर्योदयः' : 'सूर्योदय'}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaSunrise}</span>
                               </div>
@@ -344,8 +345,8 @@ export default function FestivalDetailModal({
                                   paranaHariVasaraEnd === paranaSunrise ? 'text-emerald-300/80' : paranaEarlyEnd ? 'text-red-300/80' : 'text-blue-300/80'
                                 }`} style={bodyFont}>
                                   {paranaHariVasaraEnd === paranaSunrise
-                                    ? ((locale !== 'hi' && String(locale) !== 'sa') ? 'Hari Vasara — already over before sunrise' : locale === 'hi' ? 'हरि वासर — सूर्योदय से पहले समाप्त' : 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः')
-                                    : ((locale !== 'hi' && String(locale) !== 'sa') ? 'Hari Vasara ends (no food before)' : locale === 'hi' ? 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)' : 'हरिवासरान्तः')
+                                    ? (!isDevanagariLocale(locale) ? 'Hari Vasara — already over before sunrise' : locale === 'sa' ? 'हरिवासरः — सूर्योदयात् पूर्वं समाप्तः' : 'हरि वासर — सूर्योदय से पहले समाप्त')
+                                    : (!isDevanagariLocale(locale) ? 'Hari Vasara ends (no food before)' : locale === 'sa' ? 'हरिवासरान्तः' : 'हरि वासर समाप्ति (इससे पहले भोजन वर्जित)')
                                   }
                                 </span>
                                 {paranaHariVasaraEnd !== paranaSunrise && (
@@ -358,7 +359,7 @@ export default function FestivalDetailModal({
                             {paranaMadhyahnaStart && paranaMadhyahnaEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-amber-500/10 border border-amber-500/15 px-3 py-2">
                                 <span className="text-amber-300/80 font-medium" style={bodyFont}>
-                                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Madhyahna (no food during)' : locale === 'hi' ? 'मध्याह्न (इसमें भोजन वर्जित)' : 'मध्याह्नः (वर्जनीयः)'}
+                                  {!isDevanagariLocale(locale) ? 'Madhyahna (no food during)' : locale === 'sa' ? 'मध्याह्नः (वर्जनीयः)' : 'मध्याह्न (इसमें भोजन वर्जित)'}
                                 </span>
                                 <span className="text-amber-300 font-mono font-bold">{paranaMadhyahnaStart}–{paranaMadhyahnaEnd}</span>
                               </div>
@@ -368,7 +369,7 @@ export default function FestivalDetailModal({
                             {paranaDwadashiEnd && (
                               <div className="flex items-center justify-between text-xs rounded-lg bg-orange-500/10 border border-orange-500/15 px-3 py-2">
                                 <span className="text-orange-300/80 font-medium" style={bodyFont}>
-                                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'Dwadashi ends (must eat before)' : locale === 'hi' ? 'द्वादशी समाप्ति (इससे पहले खाएँ)' : 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)'}
+                                  {!isDevanagariLocale(locale) ? 'Dwadashi ends (must eat before)' : locale === 'sa' ? 'द्वादशीतिथ्यन्तः (अस्मात् पूर्वं भोजनम्)' : 'द्वादशी समाप्ति (इससे पहले खाएँ)'}
                                 </span>
                                 <span className="text-orange-300 font-mono font-bold">{paranaDwadashiEnd}</span>
                               </div>
@@ -380,9 +381,9 @@ export default function FestivalDetailModal({
                         {paranaEarlyEnd && (
                           <div className="rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 mb-3">
                             <p className="text-red-300 text-xs leading-relaxed" style={bodyFont}>
-                              {locale === 'en'
+                              {!isDevanagariLocale(locale)
                                 ? 'Dwadashi ends very early — break fast immediately after sunrise. Hari Vasara restriction is overridden by Dwadashi deadline.'
-                                : locale === 'hi'
+                                : locale !== 'sa'
                                 ? 'द्वादशी बहुत जल्दी समाप्त हो रही है — सूर्योदय के तुरंत बाद पारण करें। द्वादशी की समय सीमा के कारण हरि वासर प्रतिबंध लागू नहीं।'
                                 : 'द्वादशी शीघ्रं समाप्यते — सूर्योदयानन्तरं तूर्णं पारणं कुर्यात्।'}
                             </p>
@@ -496,7 +497,7 @@ export default function FestivalDetailModal({
 
 function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale: Locale; bodyFont: React.CSSProperties }) {
   const [copied, setCopied] = useState(false);
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const key = dataLocale(locale);
   const copy = () => {
     navigator.clipboard.writeText(mantra.devanagari).then(() => {
       setCopied(true);
@@ -508,17 +509,17 @@ function InlineMantra({ mantra, locale, bodyFont }: { mantra: MantraType; locale
       <button onClick={copy} className="absolute top-2 right-2 p-1 rounded text-gold-primary/40 hover:text-gold-light" aria-label="Copy">
         {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
       </button>
-      <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{mantra.name[lk as keyof typeof mantra.name]}</p>
+      <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{mantra.name[key as keyof typeof mantra.name]}</p>
       <p className="text-gold-light text-base leading-relaxed pr-6" style={{ fontFamily: 'var(--font-devanagari-heading)' }}>{mantra.devanagari}</p>
       <p className="text-text-secondary/75 text-xs italic mt-1">{mantra.iast}</p>
-      <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{mantra.meaning[lk as keyof typeof mantra.meaning]}</p>
+      <p className="text-text-secondary text-xs mt-1" style={bodyFont}>{mantra.meaning[key as keyof typeof mantra.meaning]}</p>
       {mantra.japaCount && <span className="text-gold-primary/50 text-xs mt-1 inline-block">{mantra.japaCount}x</span>}
     </div>
   );
 }
 
 function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVidhi; locale: Locale; headingFont: React.CSSProperties; bodyFont: React.CSSProperties }) {
-  const lk = (locale === 'hi' || locale === 'sa') ? 'hi' as const : 'en' as const;
+  const key = dataLocale(locale);
   const t = (tri: { en: string; hi: string; sa: string }) => tri[locale] || tri.en;
 
   return (
@@ -527,24 +528,24 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       <div className="flex items-center gap-3">
         <div className="flex-1 h-px bg-gold-primary/20" />
         <span className="text-gold-primary text-xs font-bold uppercase tracking-wider" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Puja Vidhi' : 'पूजा विधि'}
+          {!isDevanagariLocale(locale) ? 'Puja Vidhi' : 'पूजा विधि'}
         </span>
         <div className="flex-1 h-px bg-gold-primary/20" />
       </div>
 
       {/* Deity + Muhurta */}
       <div className="flex items-center gap-3 text-sm">
-        <span className="text-gold-dark text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Deity' : 'देवता'}:</span>
+        <span className="text-gold-dark text-xs">{!isDevanagariLocale(locale) ? 'Deity' : 'देवता'}:</span>
         <span className="text-gold-light font-bold" style={bodyFont}>{t(puja.deity)}</span>
         <span className="text-gold-primary/30">|</span>
-        <span className="text-gold-dark text-xs">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Muhurta' : 'मुहूर्त'}:</span>
+        <span className="text-gold-dark text-xs">{!isDevanagariLocale(locale) ? 'Muhurta' : 'मुहूर्त'}:</span>
         <span className="text-text-secondary text-xs" style={bodyFont}>{t(puja.muhurtaDescription)}</span>
       </div>
 
       {/* Samagri */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Materials (Samagri)' : 'सामग्री'}
+          {!isDevanagariLocale(locale) ? 'Materials (Samagri)' : 'सामग्री'}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {puja.samagri.map((item, i) => (
@@ -558,7 +559,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Vidhi Steps */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Procedure' : 'विधि'}
+          {!isDevanagariLocale(locale) ? 'Procedure' : 'विधि'}
         </p>
         <div className="space-y-2">
           {puja.vidhiSteps.map((step) => (
@@ -578,7 +579,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Mantras */}
       <div>
         <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-2">
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Mantras' : 'मन्त्र'}
+          {!isDevanagariLocale(locale) ? 'Mantras' : 'मन्त्र'}
         </p>
         <div className="space-y-2">
           {puja.mantras.map((m) => (
@@ -590,7 +591,7 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
       {/* Aarti */}
       {puja.aarti && (
         <div className="rounded-xl bg-orange-500/5 border border-orange-500/15 p-3">
-          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Aarti' : 'आरती'}</p>
+          <p className="text-orange-400 text-xs uppercase tracking-wider font-bold mb-2">{!isDevanagariLocale(locale) ? 'Aarti' : 'आरती'}</p>
           <p className="text-gold-light text-sm whitespace-pre-line leading-relaxed" style={{ fontFamily: 'var(--font-devanagari-body)' }}>
             {puja.aarti.devanagari}
           </p>
@@ -599,13 +600,13 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Naivedya */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
+        <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Offering (Naivedya)' : 'नैवेद्य'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.naivedya)}</p>
       </div>
 
       {/* Precautions */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-amber-500/20 p-3">
-        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Precautions' : 'सावधानियाँ'}</p>
+        <p className="text-amber-400 text-xs uppercase tracking-wider font-bold mb-2">{!isDevanagariLocale(locale) ? 'Precautions' : 'सावधानियाँ'}</p>
         <ul className="space-y-1">
           {puja.precautions.map((p, i) => (
             <li key={i} className="flex gap-2 text-text-secondary text-xs" style={bodyFont}>
@@ -618,14 +619,14 @@ function InlinePujaVidhi({ puja, locale, headingFont, bodyFont }: { puja: PujaVi
 
       {/* Phala */}
       <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-emerald-500/20 p-3">
-        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Benefits (Phala)' : 'फल'}</p>
+        <p className="text-emerald-400 text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Benefits (Phala)' : 'फल'}</p>
         <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.phala)}</p>
       </div>
 
       {/* Visarjan */}
       {puja.visarjan && (
         <div className="rounded-xl bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] p-3">
-          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{(locale !== 'hi' && String(locale) !== 'sa') ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
+          <p className="text-gold-dark text-xs uppercase tracking-wider font-bold mb-1">{!isDevanagariLocale(locale) ? 'Visarjan (Conclusion)' : 'विसर्जन'}</p>
           <p className="text-text-secondary text-xs" style={bodyFont}>{t(puja.visarjan)}</p>
         </div>
       )}

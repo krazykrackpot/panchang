@@ -5,6 +5,7 @@ import type { PujaVidhi, MuhurtaWindowType } from '@/lib/constants/puja-vidhi/ty
 import type { Locale } from '@/types/panchang';
 import type { ComputedMuhurta } from '@/lib/puja/muhurta-compute';
 import MuhurtaCountdown from '@/components/puja/MuhurtaCountdown';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 /* ── Trilingual labels ─────────────────────────────────────── */
 
@@ -43,7 +44,7 @@ interface HeroCardProps {
 /* ── Date formatter ────────────────────────────────────────── */
 
 function formatFestivalDate(date: Date, locale: Locale, timezone?: string): string {
-  const localeTag = locale === 'sa' ? 'hi-IN' : locale === 'hi' ? 'hi-IN' : 'en-US';
+  const localeTag = isDevanagariLocale(locale) ? 'hi-IN' : 'en-US';
   return date.toLocaleDateString(localeTag, {
     weekday: 'long',
     day: 'numeric',
@@ -63,7 +64,7 @@ export default function HeroCard({
   locationName,
   timezone,
 }: HeroCardProps) {
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const headingFont = isDevanagari ? 'var(--font-devanagari-heading)' : 'var(--font-heading)';
 
   return (

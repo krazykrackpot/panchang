@@ -7,6 +7,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { dateToJD, moonLongitude, toSidereal, getRashiNumber } from '@/lib/ephem/astronomical';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Labels
@@ -87,16 +88,16 @@ const DAY_NAMES_SA = ['रविः', 'सोमः', 'मङ्गलः', 'ब
 
 function getDayName(date: Date, locale: Locale): string {
   const dow = date.getDay();
-  if (locale === 'hi') return DAY_NAMES_HI[dow];
   if (locale === 'sa') return DAY_NAMES_SA[dow];
+  if (isDevanagariLocale(locale)) return DAY_NAMES_HI[dow];
   return DAY_NAMES_EN[dow];
 }
 
 function formatDate(date: Date, locale: Locale): string {
   const months_en = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const d = date.getDate();
-  if (locale === 'en') return `${months_en[date.getMonth()]} ${d}`;
-  // For Hindi/Sanskrit, use numeric
+  if (!isDevanagariLocale(locale)) return `${months_en[date.getMonth()]} ${d}`;
+  // For Devanagari locales, use numeric
   return `${d}/${date.getMonth() + 1}`;
 }
 

@@ -2,6 +2,7 @@
 
 import { useLocale } from 'next-intl';
 import { Link } from '@/lib/i18n/navigation';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 export default function Footer() {
   const locale = useLocale();
@@ -21,28 +22,28 @@ export default function Footer() {
           {/* Center — links */}
           <div className="flex items-center gap-4 text-xs text-text-secondary/70">
             <Link href="/panchang" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Panchang' : 'पंचांग'}
+              {!isDevanagariLocale(locale) ? 'Panchang' : 'पंचांग'}
             </Link>
             <Link href="/kundali" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Kundali' : 'कुण्डली'}
+              {!isDevanagariLocale(locale) ? 'Kundali' : 'कुण्डली'}
             </Link>
             <Link href="/calendar" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Calendar' : 'पंचांग'}
+              {!isDevanagariLocale(locale) ? 'Calendar' : 'पंचांग'}
             </Link>
             <Link href="/learn" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Learn' : 'सीखें'}
+              {!isDevanagariLocale(locale) ? 'Learn' : 'सीखें'}
             </Link>
             <Link href="/about" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'About' : 'परिचय'}
+              {!isDevanagariLocale(locale) ? 'About' : 'परिचय'}
             </Link>
             <Link href="/pricing" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Pricing' : 'मूल्य'}
+              {!isDevanagariLocale(locale) ? 'Pricing' : 'मूल्य'}
             </Link>
             <Link href="/privacy" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Privacy' : 'गोपनीयता'}
+              {!isDevanagariLocale(locale) ? 'Privacy' : 'गोपनीयता'}
             </Link>
             <Link href="/terms" className="hover:text-gold-light transition-colors">
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Terms' : 'शर्तें'}
+              {!isDevanagariLocale(locale) ? 'Terms' : 'शर्तें'}
             </Link>
           </div>
 

@@ -6,6 +6,7 @@ import { GRAHAS } from '@/lib/constants/grahas';
 import { RASHIS } from '@/lib/constants/rashis';
 import type { ChartData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ChartSouthProps {
   data: ChartData;
@@ -53,7 +54,7 @@ const PLANET_ABBR: Record<number, Record<string, string>> = {
 
 export default function ChartSouth({ data, title, size = 500, selectedHouse, onSelectHouse, retrogradeIds, combustIds, transitData }: ChartSouthProps) {
   const locale = useLocale() as Locale;
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
+  const isDevanagari = isDevanagariLocale(locale);
   const cell = 110;
   const pad = 20;
 

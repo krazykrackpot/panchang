@@ -7,6 +7,7 @@ import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
 import { useSubscription } from '@/hooks/useSubscription';
 import { authedFetch } from '@/lib/api/authed-fetch';
+import { isDevanagariLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 
 interface Props {
   kundali: KundaliData;
@@ -22,8 +23,8 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
   const [rateLimited, setRateLimited] = useState(false);
   const [rateLimitMsg, setRateLimitMsg] = useState('');
   const readingRef = useRef<HTMLDivElement>(null);
-  const isDevanagari = (locale === 'hi' || String(locale) === 'sa');
-  const bodyFont = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const isDevanagari = isDevanagariLocale(locale);
+  const bodyFont = getBodyFont(locale);
 
   // Check subscription — only Pro/Jyotishi can use AI readings
   const { tier } = useSubscription();
@@ -99,7 +100,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
       <div className="rounded-2xl p-5 border border-gold-primary/20 bg-gradient-to-br from-[#2d1b69]/30 via-[#1a1040]/40 to-[#0a0e27] text-center">
         <Sparkles className="w-8 h-8 text-gold-primary mx-auto mb-3" />
         <h3 className="text-gold-light font-bold text-lg mb-2" style={headingFont}>
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'AI-Powered Personal Reading' : 'AI-संचालित व्यक्तिगत विश्लेषण'}
+          {!isDevanagariLocale(locale) ? 'AI-Powered Personal Reading' : 'AI-संचालित व्यक्तिगत विश्लेषण'}
         </h3>
         <p className="text-text-secondary text-sm mb-4" style={bodyFont}>
           {locale === 'en'
@@ -108,7 +109,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
         </p>
         <a href="/pricing" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-dark to-gold-primary text-bg-primary font-bold text-sm rounded-xl hover:from-gold-primary hover:to-gold-light transition-all">
           <Sparkles className="w-4 h-4" />
-          {(locale !== 'hi' && String(locale) !== 'sa') ? 'Upgrade to Pro' : 'प्रो में अपग्रेड करें'}
+          {!isDevanagariLocale(locale) ? 'Upgrade to Pro' : 'प्रो में अपग्रेड करें'}
         </a>
       </div>
     );
@@ -128,7 +129,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
           <div className="flex items-center justify-center gap-3">
             <Sparkles className="w-6 h-6 text-gold-primary group-hover:text-gold-light transition-colors" />
             <span className="text-gold-light font-bold text-lg" style={headingFont}>
-              {(locale !== 'hi' && String(locale) !== 'sa') ? 'Get AI Reading' : 'AI विश्लेषण प्राप्त करें'}
+              {!isDevanagariLocale(locale) ? 'Get AI Reading' : 'AI विश्लेषण प्राप्त करें'}
             </span>
           </div>
           <p className="text-text-secondary/75 text-xs mt-2">
@@ -153,12 +154,12 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-gold-primary" />
                 <span className="text-gold-light font-bold" style={headingFont}>
-                  {(locale !== 'hi' && String(locale) !== 'sa') ? 'AI Personal Reading' : 'AI व्यक्तिगत विश्लेषण'}
+                  {!isDevanagariLocale(locale) ? 'AI Personal Reading' : 'AI व्यक्तिगत विश्लेषण'}
                 </span>
                 {loading && (
                   <span className="flex items-center gap-1.5 text-[10px] text-amber-300 bg-amber-500/15 border border-amber-500/25 rounded-full px-2 py-0.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                    {(locale !== 'hi' && String(locale) !== 'sa') ? 'Writing...' : 'लिख रहा है...'}
+                    {!isDevanagariLocale(locale) ? 'Writing...' : 'लिख रहा है...'}
                   </span>
                 )}
               </div>
@@ -177,7 +178,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-amber-200 text-sm font-bold">
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'AI Reading Limit Reached' : 'AI विश्लेषण सीमा पूर्ण'}
+                      {!isDevanagariLocale(locale) ? 'AI Reading Limit Reached' : 'AI विश्लेषण सीमा पूर्ण'}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">
                       {rateLimitMsg || (locale === 'en'
@@ -193,7 +194,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="text-red-300 text-sm font-bold">
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'AI Reading Unavailable' : 'AI विश्लेषण अनुपलब्ध'}
+                      {!isDevanagariLocale(locale) ? 'AI Reading Unavailable' : 'AI विश्लेषण अनुपलब्ध'}
                     </p>
                     <p className="text-text-secondary text-xs mt-1">{error}</p>
                   </div>
@@ -220,7 +221,7 @@ export default function AIReadingButton({ kundali, locale, headingFont }: Props)
                   <div className="flex items-center gap-3">
                     <div className="animate-spin rounded-full h-6 w-6 border-2 border-gold-primary border-t-transparent" />
                     <span className="text-text-secondary text-sm">
-                      {(locale !== 'hi' && String(locale) !== 'sa') ? 'Preparing your personal reading...' : 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...'}
+                      {!isDevanagariLocale(locale) ? 'Preparing your personal reading...' : 'आपका व्यक्तिगत विश्लेषण तैयार हो रहा है...'}
                     </span>
                   </div>
                 </div>

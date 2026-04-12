@@ -8,6 +8,7 @@ import { Eye, Calendar, ChevronRight } from 'lucide-react';
 import { useLocationStore } from '@/stores/location-store';
 import type { Locale } from '@/types/panchang';
 import type { LocalEclipseResult } from '@/lib/calendar/eclipse-compute';
+import { isDevanagariLocale, getHeadingFont, getBodyFont } from '@/lib/utils/locale-fonts';
 
 interface EclipseEvent {
   type: 'solar' | 'lunar';
@@ -25,9 +26,9 @@ interface EclipseEvent {
  */
 export default function EclipseAlert() {
   const locale = useLocale() as Locale;
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
-  const headingFont = isHi ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const isHi = isDevanagariLocale(locale);
+  const headingFont = getHeadingFont(locale);
+  const bodyFont = getBodyFont(locale);
 
   const locationStore = useLocationStore();
   const [nextEclipse, setNextEclipse] = useState<EclipseEvent | null>(null);

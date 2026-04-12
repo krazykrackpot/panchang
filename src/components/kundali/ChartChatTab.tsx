@@ -6,6 +6,7 @@ import { Send, Loader2, Bot, User } from 'lucide-react';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import type { KundaliData } from '@/types/kundali';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -43,7 +44,7 @@ export default function ChartChatTab({ kundali, locale, headingFont }: ChartChat
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
-  const isHi = locale === 'hi';
+  const isHi = isDevanagariLocale(locale);
   const suggestions = SUGGESTED_QUESTIONS[isHi ? 'hi' : 'en'];
 
   useEffect(() => {

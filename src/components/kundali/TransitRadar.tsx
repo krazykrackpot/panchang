@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { GrahaIconById } from '@/components/icons/GrahaIcons';
 import { computePersonalTransits, computeUpcomingTransitions } from '@/lib/transit/personal-transits';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 interface TransitRadarProps {
   ascendantSign: number;
@@ -11,7 +12,7 @@ interface TransitRadarProps {
 }
 
 export default function TransitRadar({ ascendantSign, savTable, locale }: TransitRadarProps) {
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
   const transits = useMemo(() => computePersonalTransits(ascendantSign, savTable), [ascendantSign, savTable]);
   const upcoming = useMemo(() => computeUpcomingTransitions(), []);
 

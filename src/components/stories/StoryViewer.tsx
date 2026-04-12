@@ -8,6 +8,7 @@ import { Link } from '@/lib/i18n/navigation';
 import { getStoryBySlug, type StorySlide } from '@/lib/stories/story-data';
 import { ChevronLeft, ChevronRight, X, Share2, Play, Pause } from 'lucide-react';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const AUTO_ADVANCE_MS = 5000;
 
@@ -92,7 +93,7 @@ export default function StoryViewer() {
   const handleShare = async () => {
     if (!story) return;
     const url = window.location.href;
-    const text = story.title[locale === 'hi' ? 'hi' : 'en'];
+    const text = story.title[isDevanagariLocale(locale) ? 'hi' : 'en'];
     if (navigator.share) {
       try { await navigator.share({ title: text, url }); } catch { /* user cancelled */ }
     } else {
@@ -112,7 +113,7 @@ export default function StoryViewer() {
   }
 
   const slide = story.slides[current];
-  const isDevanagari = locale === 'hi' || locale === 'sa';
+  const isDevanagari = isDevanagariLocale(locale);
   const hf = isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : { fontFamily: 'var(--font-heading)' };
   const bf = isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : {};
 
@@ -241,7 +242,7 @@ function SlideContent({
   bf: React.CSSProperties;
   ctaUrl: string;
 }) {
-  const l = (v: { en: string; hi: string }) => (locale === 'hi' || locale === 'sa') ? v.hi : v.en;
+  const l = (v: { en: string; hi: string }) => isDevanagariLocale(locale) ? v.hi : v.en;
 
   switch (slide.type) {
     case 'title':
@@ -443,7 +444,7 @@ function SlideContent({
               onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gold-primary text-bg-primary font-bold text-base hover:bg-gold-light transition-colors"
             >
-              {locale === 'hi' || locale === 'sa' ? 'पूरा लेख पढ़ें' : 'Read Full Article'}
+              {isDevanagariLocale(locale) ? 'पूरा लेख पढ़ें' : 'Read Full Article'}
               <ChevronRight className="w-5 h-5" />
             </Link>
           </motion.div>

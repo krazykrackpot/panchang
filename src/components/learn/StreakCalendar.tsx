@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { useLocale } from 'next-intl';
 import { useLearningProgressStore } from '@/stores/learning-progress-store';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 const DAY_LABELS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 const WEEKS = 4;
@@ -15,7 +16,7 @@ function toDateStr(d: Date): string {
 
 export default function StreakCalendar() {
   const locale = useLocale() as Locale;
-  const isHi = locale === 'hi' || String(locale) === 'sa';
+  const isHi = isDevanagariLocale(locale);
   const { streak, hydrated, progress } = useLearningProgressStore();
 
   // Build set of active dates from module lastAccessedAt timestamps

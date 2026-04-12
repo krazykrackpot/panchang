@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { NAKSHATRAS } from '@/lib/constants/nakshatras';
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // The Vimshottari sequence — 9 planets, 3 rounds
 const DASHA_SEQUENCE = [
@@ -22,7 +23,7 @@ interface Props { locale: Locale }
 export default function NakshatraDashaSpiral({ locale }: Props) {
   const [hoveredNak, setHoveredNak] = useState<number | null>(null);
   const [hoveredPlanet, setHoveredPlanet] = useState<number | null>(null);
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
+  const isHi = isDevanagariLocale(locale);
 
   // Build the 27 nakshatra-planet assignments
   const assignments = NAKSHATRAS.map((n, i) => ({

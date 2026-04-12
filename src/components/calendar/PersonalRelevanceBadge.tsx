@@ -1,6 +1,7 @@
 'use client';
 
 import type { Locale } from '@/types/panchang';
+import { isDevanagariLocale, getBodyFont } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Dasha lord to planet key mapping
@@ -122,8 +123,8 @@ interface PersonalRelevanceBadgeProps {
 export default function PersonalRelevanceBadge({ matches, locale }: PersonalRelevanceBadgeProps) {
   if (matches.length === 0) return null;
 
-  const isHi = (locale === 'hi' || String(locale) === 'sa');
-  const bodyFont = isHi ? { fontFamily: 'var(--font-devanagari-body)' } : undefined;
+  const isHi = isDevanagariLocale(locale);
+  const bodyFont = getBodyFont(locale);
 
   // Show the first (most important) match as a badge
   const primary = matches[0];

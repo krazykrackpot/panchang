@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Sun, Moon, Sparkles, Clock, AlertTriangle, Orbit } from 'lucide-react';
 import type { PanchangData, Locale, HoraSlot } from '@/types/panchang';
 import type { PersonalizedDay } from '@/lib/personalization/types';
+import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
 
 // ---------------------------------------------------------------------------
 // Labels (en / hi)
@@ -332,7 +333,7 @@ export default function MorningBriefing({ panchangData, personalizedDay, locale 
           <BriefingCell
             label={L.moonTransit}
             icon={<Moon className="w-4 h-4" />}
-            value={`${moonHouse}${(locale !== 'hi' && String(locale) !== 'sa') ? ordinalSuffix(moonHouse) : ''} ${L.houseLabel}`}
+            value={`${moonHouse}${!isDevanagariLocale(locale) ? ordinalSuffix(moonHouse) : ''} ${L.houseLabel}`}
             sub={(moonImplication as Record<string, string>)[locale === 'sa' ? 'en' : locale] || moonImplication.en}
             className="col-span-2 lg:col-span-1"
             personal

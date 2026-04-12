@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
@@ -10,12 +10,13 @@ import { useAuthStore } from '@/stores/auth-store';
 import { getSupabase } from '@/lib/supabase/client';
 import { RashiIconById } from '@/components/icons/RashiIcons';
 import dynamic from 'next/dynamic';
+import AdUnit from '@/components/ads/AdUnit';
 
-const EclipseAlert = dynamic(() => import('@/components/dashboard/EclipseAlert'));
+const EclipseAlert = dynamic(() => import('@/components/dashboard/EclipseAlert'), { ssr: false });
 
-const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'));
+const TransitForecastWidget = dynamic(() => import('@/components/panchang/TransitForecastWidget'), { ssr: false });
 
-const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'));
+const TodayPanchangWidget = dynamic(() => import('@/components/panchang/TodayPanchangWidget'), { ssr: false });
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -545,6 +546,8 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      <AdUnit placement="rectangle" className="max-w-2xl mx-auto" />
+
       <GoldDivider />
 
       {/* Today's Panchang */}
@@ -558,15 +561,23 @@ export default function HomePage() {
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12" style={hf}>
             <span className="text-gold-gradient">{t('todayPanchang')}</span>
           </h2>
-          <TodayPanchangWidget />
+          <Suspense fallback={<div className="text-center py-12 text-text-secondary">Loading panchang...</div>}>
+            <TodayPanchangWidget />
+          </Suspense>
           <div className="mt-6">
-            <TransitForecastWidget locale={locale} />
+            <Suspense fallback={<div className="text-center py-8 text-text-secondary">Loading transits...</div>}>
+              <TransitForecastWidget locale={locale} />
+            </Suspense>
           </div>
           <div className="mt-6">
-            <EclipseAlert />
+            <Suspense fallback={null}>
+              <EclipseAlert />
+            </Suspense>
           </div>
         </motion.div>
       </section>
+
+      <AdUnit placement="leaderboard" className="max-w-4xl mx-auto" />
 
       {/* Profile Banner — logged-in users with birth data */}
       {profileBanner && (

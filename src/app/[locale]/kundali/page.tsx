@@ -1,16 +1,14 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo, useRef, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, Suspense } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { tl } from '@/lib/utils/trilingual';
 import { authedFetch } from '@/lib/api/authed-fetch';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
+import dynamic from 'next/dynamic';
 import BirthForm from '@/components/kundali/BirthForm';
 import ConvergenceSummary from '@/components/kundali/ConvergenceSummary';
-import AIReadingButton from '@/components/kundali/AIReadingButton';
-import ChartNorth from '@/components/kundali/ChartNorth';
-import ChartSouth from '@/components/kundali/ChartSouth';
 import GoldDivider from '@/components/ui/GoldDivider';
 import ShareButton from '@/components/ui/ShareButton';
 import PrintButton from '@/components/ui/PrintButton';
@@ -39,16 +37,24 @@ import { useBirthDataStore } from '@/stores/birth-data-store';
 import { generateVargaTippanni, type VargaChartTippanni, type VargaSynthesis } from '@/lib/tippanni/varga-tippanni';
 import PaywallGate from '@/components/ui/PaywallGate';
 import InfoBlock from '@/components/ui/InfoBlock';
-import { ShadbalaInterpretation, YogasInterpretation, AvasthasInterpretation, BhavabalaInterpretation, PlanetsInterpretation, DashaInterpretation } from '@/components/kundali/InterpretationHelpers';
-import JaiminiTab from '@/components/kundali/JaiminiTab';
-import SphutasTab from '@/components/kundali/SphutasTab';
-import ShareableKundaliCard from '@/components/kundali/ShareableKundaliCard';
 
-// Lazy-loaded components for non-critical tabs
-const TransitRadar = lazy(() => import('@/components/kundali/TransitRadar'));
-const ChartChatTab = lazy(() => import('@/components/kundali/ChartChatTab'));
-const LifeTimeline = lazy(() => import('@/components/kundali/LifeTimeline'));
-const PatrikaTab = lazy(() => import('@/components/kundali/PatrikaTab'));
+// Dynamic imports — only loaded after chart generation or on specific tab activation
+const ChartNorth = dynamic(() => import('@/components/kundali/ChartNorth'), { ssr: false });
+const ChartSouth = dynamic(() => import('@/components/kundali/ChartSouth'), { ssr: false });
+const AIReadingButton = dynamic(() => import('@/components/kundali/AIReadingButton'), { ssr: false });
+const JaiminiTab = dynamic(() => import('@/components/kundali/JaiminiTab'), { ssr: false });
+const SphutasTab = dynamic(() => import('@/components/kundali/SphutasTab'), { ssr: false });
+const ShareableKundaliCard = dynamic(() => import('@/components/kundali/ShareableKundaliCard'), { ssr: false });
+const TransitRadar = dynamic(() => import('@/components/kundali/TransitRadar'), { ssr: false });
+const ChartChatTab = dynamic(() => import('@/components/kundali/ChartChatTab'), { ssr: false });
+const LifeTimeline = dynamic(() => import('@/components/kundali/LifeTimeline'), { ssr: false });
+const PatrikaTab = dynamic(() => import('@/components/kundali/PatrikaTab'), { ssr: false });
+const ShadbalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.ShadbalaInterpretation })), { ssr: false });
+const YogasInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.YogasInterpretation })), { ssr: false });
+const AvasthasInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.AvasthasInterpretation })), { ssr: false });
+const BhavabalaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.BhavabalaInterpretation })), { ssr: false });
+const PlanetsInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.PlanetsInterpretation })), { ssr: false });
+const DashaInterpretation = dynamic(() => import('@/components/kundali/InterpretationHelpers').then(mod => ({ default: mod.DashaInterpretation })), { ssr: false });
 
 // Planet colors for table highlights
 const PLANET_COLORS: Record<number, string> = {

@@ -241,6 +241,68 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['nakshatra', 'lunar mansion', '27 nakshatras', 'birth star', 'janma nakshatra'],
   },
 
+  // ─── Rashi Detail Pages (12) ──────────────────────────────
+  '/panchang/rashi/mesh': {
+    title: { en: "Aries (Mesh) — Personality, Career, Love & Today's Horoscope", hi: 'मेष राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मेषराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Aries (Mesh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Vedic astrology analysis with lucky numbers, colors, and compatible signs.", hi: 'मेष राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मेषराशेः सम्पूर्णमार्गदर्शनम् — व्यक्तित्वं वृत्तिः स्वास्थ्यं सम्बन्धाः।' },
+    keywords: ['aries vedic astrology', 'mesh rashi', 'aries personality', 'aries horoscope today', 'mesh rashi career'],
+  },
+  '/panchang/rashi/vrishabh': {
+    title: { en: "Taurus (Vrishabh) — Personality, Career, Love & Today's Horoscope", hi: 'वृषभ राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृषभराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Taurus (Vrishabh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled earth sign analysis.", hi: 'वृषभ राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृषभराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['taurus vedic astrology', 'vrishabh rashi', 'taurus personality', 'taurus horoscope today'],
+  },
+  '/panchang/rashi/mithun': {
+    title: { en: "Gemini (Mithun) — Personality, Career, Love & Today's Horoscope", hi: 'मिथुन राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मिथुनराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Gemini (Mithun Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled air sign analysis.", hi: 'मिथुन राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मिथुनराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['gemini vedic astrology', 'mithun rashi', 'gemini personality', 'gemini horoscope today'],
+  },
+  '/panchang/rashi/kark': {
+    title: { en: "Cancer (Kark) — Personality, Career, Love & Today's Horoscope", hi: 'कर्क राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कर्कटराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Cancer (Kark Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Moon-ruled water sign analysis.", hi: 'कर्क राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कर्कटराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['cancer vedic astrology', 'kark rashi', 'cancer personality', 'cancer horoscope today'],
+  },
+  '/panchang/rashi/simha': {
+    title: { en: "Leo (Simha) — Personality, Career, Love & Today's Horoscope", hi: 'सिंह राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'सिंहराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Leo (Simha Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Sun-ruled fire sign analysis.", hi: 'सिंह राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'सिंहराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['leo vedic astrology', 'simha rashi', 'leo personality', 'leo horoscope today'],
+  },
+  '/panchang/rashi/kanya': {
+    title: { en: "Virgo (Kanya) — Personality, Career, Love & Today's Horoscope", hi: 'कन्या राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कन्याराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Virgo (Kanya Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mercury-ruled earth sign analysis.", hi: 'कन्या राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कन्याराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['virgo vedic astrology', 'kanya rashi', 'virgo personality', 'virgo horoscope today'],
+  },
+  '/panchang/rashi/tula': {
+    title: { en: "Libra (Tula) — Personality, Career, Love & Today's Horoscope", hi: 'तुला राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'तुलाराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Libra (Tula Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Venus-ruled air sign analysis.", hi: 'तुला राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'तुलाराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['libra vedic astrology', 'tula rashi', 'libra personality', 'libra horoscope today'],
+  },
+  '/panchang/rashi/vrishchik': {
+    title: { en: "Scorpio (Vrishchik) — Personality, Career, Love & Today's Horoscope", hi: 'वृश्चिक राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'वृश्चिकराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Scorpio (Vrishchik Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Mars-ruled water sign analysis.", hi: 'वृश्चिक राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'वृश्चिकराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['scorpio vedic astrology', 'vrishchik rashi', 'scorpio personality', 'scorpio horoscope today'],
+  },
+  '/panchang/rashi/dhanu': {
+    title: { en: "Sagittarius (Dhanu) — Personality, Career, Love & Today's Horoscope", hi: 'धनु राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'धनुराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Sagittarius (Dhanu Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled fire sign analysis.", hi: 'धनु राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'धनुराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['sagittarius vedic astrology', 'dhanu rashi', 'sagittarius personality', 'sagittarius horoscope today'],
+  },
+  '/panchang/rashi/makar': {
+    title: { en: "Capricorn (Makar) — Personality, Career, Love & Today's Horoscope", hi: 'मकर राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मकरराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Capricorn (Makar Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled earth sign analysis.", hi: 'मकर राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मकरराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['capricorn vedic astrology', 'makar rashi', 'capricorn personality', 'capricorn horoscope today'],
+  },
+  '/panchang/rashi/kumbh': {
+    title: { en: "Aquarius (Kumbh) — Personality, Career, Love & Today's Horoscope", hi: 'कुम्भ राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'कुम्भराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Aquarius (Kumbh Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Saturn-ruled air sign analysis.", hi: 'कुम्भ राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'कुम्भराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['aquarius vedic astrology', 'kumbh rashi', 'aquarius personality', 'aquarius horoscope today'],
+  },
+  '/panchang/rashi/meen': {
+    title: { en: "Pisces (Meen) — Personality, Career, Love & Today's Horoscope", hi: 'मीन राशि — व्यक्तित्व, करियर, प्रेम और आज का राशिफल', sa: 'मीनराशिः — व्यक्तित्वं वृत्तिः प्रेमः' },
+    description: { en: "Complete Pisces (Meen Rashi) guide — personality traits, career aptitude, health, relationships, and daily horoscope. Jupiter-ruled water sign analysis.", hi: 'मीन राशि का पूरा मार्गदर्शन — व्यक्तित्व, करियर, स्वास्थ्य, रिश्ते और दैनिक राशिफल।', sa: 'मीनराशेः सम्पूर्णमार्गदर्शनम्।' },
+    keywords: ['pisces vedic astrology', 'meen rashi', 'pisces personality', 'pisces horoscope today'],
+  },
+
   // ─── More Tools ───────────────────────────────────────────
   '/shraddha': {
     title: { en: 'Shraddha Tithi Calculator', hi: 'श्राद्ध तिथि गणक', sa: 'श्राद्धतिथिगणकम्' },
@@ -276,6 +338,16 @@ export const PAGE_META: Record<string, PageMeta> = {
     title: { en: 'Ashtamangala Prashna — Kerala Horary Divination', hi: 'अष्टमंगल प्रश्न — केरल होरारी दैवज्ञ', sa: 'अष्टमङ्गलप्रश्नम् — केरलहोरारीदैवज्ञम्' },
     description: { en: 'Cast an Ashtamangala Prashna chart using the Kerala horary tradition. Pick 3 numbers (1-108) for divination with 8 sacred objects.', hi: 'केरल प्रश्न परम्परा से अष्टमंगल प्रश्न कुण्डली बनाएं।', sa: 'केरलप्रश्नपरम्परया अष्टमङ्गलप्रश्नकुण्डलीं रचयतु।' },
     keywords: ['ashtamangala prashna', 'kerala astrology', 'horary divination'],
+  },
+  '/rahu-kaal': {
+    title: { en: 'Rahu Kaal Today — Accurate Rahu Kalam Timings', hi: 'आज का राहु काल — सटीक राहु कालम समय', sa: 'अद्य राहुकालः — यथार्थ समयः' },
+    description: { en: 'Check today\'s Rahu Kaal timings for your city. Know the exact inauspicious period with Yamaganda and Gulika Kaal. Updated daily.', hi: 'अपने शहर के लिए आज का राहु काल समय जानें। यमगण्ड और गुलिक काल के साथ सटीक अशुभ अवधि।', sa: 'स्वनगरस्य अद्यतन राहुकालं जानीयात्। यमगण्ड-गुलिककालसहितम् अशुभकालम्।' },
+    keywords: ['rahu kaal today', 'rahu kalam', 'rahukaal timings', 'inauspicious time today'],
+  },
+  '/choghadiya': {
+    title: { en: 'Choghadiya Today — Auspicious & Inauspicious Time Slots', hi: 'आज का चौघड़िया — शुभ और अशुभ समय', sa: 'अद्य चौघड़िया — शुभाशुभकालः' },
+    description: { en: 'Check today\'s Choghadiya timings — Amrit, Shubh, Labh, Char, Rog, Kaal, Udveg periods. Find the best time for travel, business, and auspicious activities.', hi: 'आज का चौघड़िया समय — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रा, व्यापार और शुभ कार्यों के लिए सर्वोत्तम समय।', sa: 'अद्यतनचौघड़ियासमयः — अमृत, शुभ, लाभ, चर, रोग, काल, उद्वेग। यात्रायै शुभकार्याय च उत्तमसमयः।' },
+    keywords: ['choghadiya today', 'choghadiya timings', 'auspicious time today', 'shubh muhurat'],
   },
   '/kaal-nirnaya': {
     title: { en: 'Kaal Nirnaya — Hindu Time Reckoning', hi: 'काल निर्णय — हिन्दू कालगणना', sa: 'कालनिर्णयः — हिन्दूकालगणना' },

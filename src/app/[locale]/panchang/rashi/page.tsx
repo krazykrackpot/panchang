@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from '@/lib/i18n/navigation';
 import GoldDivider from '@/components/ui/GoldDivider';
 import { RASHIS } from '@/lib/constants/rashis';
@@ -436,120 +436,6 @@ function EclipticDiagram({ locale }: { locale: Locale }) {
   );
 }
 
-/* ─── Selected Rashi Detail Panel ────────────────────────────────── */
-
-function RashiDetailPanel({
-  rashi,
-  locale,
-  isDevanagari,
-  headingFont,
-  onClose,
-}: {
-  rashi: Rashi;
-  locale: Locale;
-  isDevanagari: boolean;
-  headingFont: React.CSSProperties;
-  onClose: () => void;
-}) {
-  const elemColor = ELEMENT_HEX[rashi.element.en] || '#f0d48a';
-
-  return (
-    <motion.div
-      className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-6 sm:p-8 border relative overflow-hidden"
-      style={{ borderColor: `${elemColor}30` }}
-      initial={{ opacity: 0, scale: 0.92, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.92, y: 20 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
-      layout
-    >
-      {/* Subtle colored glow behind */}
-      <div
-        className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-3xl pointer-events-none"
-        style={{ backgroundColor: `${elemColor}10` }}
-      />
-
-      <div className="flex items-start justify-between relative z-10">
-        <div className="flex items-center gap-5">
-          <motion.div
-            initial={{ rotate: -20, scale: 0.8 }}
-            animate={{ rotate: 0, scale: 1 }}
-            transition={{ duration: 0.4, ease: 'backOut' }}
-          >
-            <RashiIconById id={rashi.id} size={64} />
-          </motion.div>
-          <div>
-            <h3 className="text-2xl font-bold text-gold-light" style={headingFont}>
-              {rashi.name[locale]}
-            </h3>
-            <p className="text-text-secondary text-sm">
-              {rashi.name.en} {rashi.symbol}
-            </p>
-          </div>
-        </div>
-        <button
-          onClick={onClose}
-          className="text-text-secondary hover:text-gold-light transition-colors text-xl leading-none p-1"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6 relative z-10">
-        {[
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Degrees' : locale === 'hi' ? 'अंश' : 'अंशाः',
-            value: `${rashi.startDeg}° \u2013 ${rashi.endDeg}°`,
-          },
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Element' : locale === 'hi' ? 'तत्व' : 'तत्त्वम्',
-            value: rashi.element[locale],
-            color: elemColor,
-          },
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Ruler' : locale === 'hi' ? 'स्वामी' : 'स्वामी',
-            value: rashi.rulerName[locale],
-          },
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Quality' : locale === 'hi' ? 'गुण' : 'गुणः',
-            value: rashi.quality[locale],
-          },
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Rashi Number' : locale === 'hi' ? 'राशि क्रमांक' : 'राशिक्रमाङ्कः',
-            value: `#${rashi.id}`,
-          },
-          {
-            label: (locale !== 'hi' && String(locale) !== 'sa') ? 'Symbol' : locale === 'hi' ? 'चिह्न' : 'चिह्नम्',
-            value: rashi.symbol,
-          },
-        ].map((item, idx) => (
-          <motion.div
-            key={idx}
-            className="bg-bg-primary/40 rounded-lg p-3"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.08 * idx + 0.15, duration: 0.3 }}
-          >
-            <div className="text-gold-dark text-xs mb-1" style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}>
-              {item.label}
-            </div>
-            <div
-              className="font-semibold text-sm"
-              style={{
-                color: item.color || '#f0d48a',
-                ...(isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : {}),
-              }}
-            >
-              {item.value}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 /* ═══════════════════════════════════════════════════════════════════ */
 /*  Main Page Component                                               */
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -562,8 +448,6 @@ export default function RashiPage() {
   const headingFont = isDevanagari
     ? { fontFamily: 'var(--font-devanagari-heading)' }
     : { fontFamily: 'var(--font-heading)' };
-
-  const [selectedRashi, setSelectedRashi] = useState<Rashi | null>(null);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -648,27 +532,12 @@ export default function RashiPage() {
         <div className="bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-xl p-8 flex flex-col items-center">
           <AnimatedZodiacWheel
             locale={locale}
-            selectedRashi={selectedRashi}
-            onSelect={(r) => setSelectedRashi((prev) => (prev?.id === r.id ? null : r))}
+            selectedRashi={null}
+            onSelect={() => {}}
           />
           <ElementLegend locale={locale} />
         </div>
       </section>
-
-      {/* ── Selected Rashi Detail (AnimatePresence) ────────────────── */}
-      <AnimatePresence mode="wait">
-        {selectedRashi && (
-          <section className="my-8" key={`detail-${selectedRashi.id}`}>
-            <RashiDetailPanel
-              rashi={selectedRashi}
-              locale={locale}
-              isDevanagari={isDevanagari}
-              headingFont={headingFont}
-              onClose={() => setSelectedRashi(null)}
-            />
-          </section>
-        )}
-      </AnimatePresence>
 
       {/* ── Ecliptic Diagram ───────────────────────────────────────── */}
       <section className="my-12">
@@ -692,52 +561,50 @@ export default function RashiPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {RASHIS.map((rashi, i) => (
-            <motion.div
-              key={rashi.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.03, duration: 0.3 }}
-              onClick={() => setSelectedRashi(rashi)}
-              className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 text-center border cursor-pointer ${
-                elementBorders[rashi.element.en] || ''
-              } ${
-                selectedRashi?.id === rashi.id ? 'ring-1 ring-gold-primary/40' : ''
-              }`}
-            >
-              <div className="flex justify-center mb-2">
-                <RashiIconById id={rashi.id} size={40} />
-              </div>
-              <div className="text-gold-primary text-xs mb-1">{rashi.id}</div>
-              <div
-                className="text-gold-light font-semibold text-base"
-                style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
+            <Link key={rashi.id} href={`/panchang/rashi/${rashi.slug}`}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.03, duration: 0.3 }}
+                className={`bg-gradient-to-br from-[#2d1b69]/40 via-[#1a1040]/50 to-[#0a0e27] border border-gold-primary/12 rounded-lg p-5 text-center cursor-pointer ${
+                  elementBorders[rashi.element.en] || ''
+                }`}
               >
-                {rashi.name[locale]}
-              </div>
-              <div className="text-gold-dark text-xs mt-1">
-                {rashi.startDeg}° &ndash; {rashi.endDeg}°
-              </div>
-              <div
-                className={`text-xs mt-2 ${elementTextColor[rashi.element.en] || 'text-text-secondary'}`}
-                style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-              >
-                {rashi.element[locale]}
-              </div>
-              <div
-                className="text-text-secondary text-xs mt-1"
-                style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-              >
-                {rashi.rulerName[locale]}
-              </div>
-              <div
-                className="text-gold-dark/60 text-xs mt-0.5"
-                style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
-              >
-                {rashi.quality[locale]}
-              </div>
-            </motion.div>
+                <div className="flex justify-center mb-2">
+                  <RashiIconById id={rashi.id} size={40} />
+                </div>
+                <div className="text-gold-primary text-xs mb-1">{rashi.id}</div>
+                <div
+                  className="text-gold-light font-semibold text-base"
+                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-heading)' } : undefined}
+                >
+                  {rashi.name[locale]}
+                </div>
+                <div className="text-gold-dark text-xs mt-1">
+                  {rashi.startDeg}&deg; &ndash; {rashi.endDeg}&deg;
+                </div>
+                <div
+                  className={`text-xs mt-2 ${elementTextColor[rashi.element.en] || 'text-text-secondary'}`}
+                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                >
+                  {rashi.element[locale]}
+                </div>
+                <div
+                  className="text-text-secondary text-xs mt-1"
+                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                >
+                  {rashi.rulerName[locale]}
+                </div>
+                <div
+                  className="text-gold-dark/60 text-xs mt-0.5"
+                  style={isDevanagari ? { fontFamily: 'var(--font-devanagari-body)' } : undefined}
+                >
+                  {rashi.quality[locale]}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </section>

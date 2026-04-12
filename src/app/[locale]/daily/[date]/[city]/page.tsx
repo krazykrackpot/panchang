@@ -1,64 +1,45 @@
-import { generateDailyArticle } from '@/lib/horoscope/daily-article';
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import { tl } from '@/lib/utils/trilingual';
-import Link from 'next/link';
+import { generateDailyArticle, type ArticleCityConfig } from '@/lib/horoscope/daily-article';
 import { getCityBySlug } from '@/lib/constants/cities';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://dekhopanchang.com';
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string; date: string }> }): Promise<Metadata> {
-  const { locale, date } = await params;
-  const parsed = parseDate(date);
-  if (!parsed) return {};
-  const article = generateDailyArticle(parsed);
-  const loc = locale as 'en' | 'hi';
-  const title = article.title[loc] || article.title.en;
-  const description = article.description[loc] || article.description.en;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `${BASE_URL}/${locale}/daily/${date}`,
-      languages: {
-        en: `${BASE_URL}/en/daily/${date}`,
-        hi: `${BASE_URL}/hi/daily/${date}`,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      publishedTime: article.publishedAt,
-      authors: ['Dekho Panchang'],
-      tags: ['panchang', 'vedic astrology', 'daily horoscope', 'tithi', 'nakshatra'],
-    },
-  };
-}
+const DAILY_CITIES = ['mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi'];
 
 function parseDate(dateStr: string): Date | null {
   const match = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!match) return null;
   const d = new Date(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3]));
   if (isNaN(d.getTime())) return null;
-  // Only allow dates within reasonable range (current year ± 1)
   const now = new Date();
   if (Math.abs(d.getFullYear() - now.getFullYear()) > 1) return null;
   return d;
 }
 
-export default async function DailyPanchangArticle({ params }: { params: Promise<{ locale: string; date: string }> }) {
-  const { locale, date } = await params;
+export default async function CityDailyPanchangArticle({ params }: { params: Promise<{ locale: string; date: string; city: string }> }) {
+  const { locale, date, city } = await params;
   const parsed = parseDate(date);
   if (!parsed) notFound();
 
-  const article = generateDailyArticle(parsed);
+  const cityData = getCityBySlug(city);
+  if (!cityData) notFound();
+
+  const cityConfig: ArticleCityConfig = {
+    name: cityData.name.en,
+    nameHi: cityData.name.hi,
+    lat: cityData.lat,
+    lng: cityData.lng,
+    timezone: cityData.timezone,
+  };
+
+  const article = generateDailyArticle(parsed, cityConfig);
   const loc = (locale === 'hi' ? 'hi' : 'en') as 'en' | 'hi';
   const isHi = loc === 'hi';
   const body = article.body[loc];
   const title = article.title[loc];
+  const cityName = isHi ? cityData.name.hi : cityData.name.en;
 
-  // JSON-LD Article structured data
   const articleLD = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -68,9 +49,17 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
     dateModified: article.publishedAt,
     author: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL },
     publisher: { '@type': 'Organization', name: 'Dekho Panchang', url: BASE_URL, logo: { '@type': 'ImageObject', url: `${BASE_URL}/apple-touch-icon.png` } },
-    mainEntityOfPage: `${BASE_URL}/${locale}/daily/${date}`,
+    mainEntityOfPage: `${BASE_URL}/${locale}/daily/${date}/${city}`,
     inLanguage: locale,
+    contentLocation: {
+      '@type': 'Place',
+      name: cityData.name.en,
+      geo: { '@type': 'GeoCoordinates', latitude: cityData.lat, longitude: cityData.lng },
+    },
   };
+
+  // Other cities (exclude current city)
+  const otherCities = DAILY_CITIES.filter(s => s !== city);
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
@@ -79,7 +68,7 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
       <article className="prose prose-invert prose-gold max-w-none">
         <div className="text-center mb-8">
           <p className="text-gold-primary text-xs uppercase tracking-widest font-bold mb-2">
-            {isHi ? 'दैनिक पंचांग' : 'Daily Panchang'}
+            {isHi ? `${cityData.name.hi} दैनिक पंचांग` : `${cityData.name.en} Daily Panchang`}
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gold-light leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             {title}
@@ -108,37 +97,41 @@ export default async function DailyPanchangArticle({ params }: { params: Promise
         <div className="border-t border-gold-primary/15 my-8" />
 
         {/* CTA */}
-        <div className="text-center">
-          <a href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors">
+        <div className="text-center space-y-3">
+          <Link href={`/${locale}/daily/${date}`} className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-light font-bold text-sm hover:bg-gold-primary/25 transition-colors">
+            {isHi ? 'दिल्ली (डिफ़ॉल्ट) पंचांग देखें' : 'View Default (Delhi) Panchang'}
+          </Link>
+          <br />
+          <Link href={`/${locale}/panchang`} className="inline-flex items-center gap-2 px-5 py-2 rounded-xl text-gold-primary text-sm hover:text-gold-light transition-colors">
             {isHi ? 'अपने स्थान का पंचांग देखें' : 'View Panchang for Your Location'}
-          </a>
+          </Link>
         </div>
 
-        {/* City links */}
-        <div className="mt-12">
-          <h2 className="text-gold-light font-bold text-lg mb-4 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
-            {isHi ? 'अन्य शहरों का पंचांग देखें' : 'View Panchang for Other Cities'}
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-            {DAILY_CITIES.map(slug => {
-              const cityData = getCityBySlug(slug);
-              if (!cityData) return null;
-              const cityName = isHi ? cityData.name.hi : cityData.name.en;
-              return (
-                <Link
-                  key={slug}
-                  href={`/${locale}/daily/${date}/${slug}`}
-                  className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-secondary text-sm text-center hover:text-gold-light hover:border-gold-primary/30 transition-colors"
-                >
-                  {cityName}
-                </Link>
-              );
-            })}
+        {/* Other city links */}
+        {otherCities.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-gold-light font-bold text-lg mb-4 text-center" style={{ fontFamily: 'var(--font-heading)' }}>
+              {isHi ? 'अन्य शहरों का पंचांग' : 'Panchang for Other Cities'}
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+              {otherCities.map(slug => {
+                const cd = getCityBySlug(slug);
+                if (!cd) return null;
+                const cn = isHi ? cd.name.hi : cd.name.en;
+                return (
+                  <Link
+                    key={slug}
+                    href={`/${locale}/daily/${date}/${slug}`}
+                    className="px-3 py-2 rounded-lg bg-bg-secondary border border-gold-primary/15 text-text-secondary text-sm text-center hover:text-gold-light hover:border-gold-primary/30 transition-colors"
+                  >
+                    {cn}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </article>
     </div>
   );
 }
-
-const DAILY_CITIES = ['mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi'];

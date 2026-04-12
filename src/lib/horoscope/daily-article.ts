@@ -28,6 +28,19 @@ const TITHI_ENERGY: Record<string, { en: string; hi: string }> = {
   krishna: { en: 'waning energy supports reflection and completion', hi: 'कृष्ण पक्ष की घटती ऊर्जा चिंतन और पूर्णता के लिए अनुकूल' },
 };
 
+export interface ArticleCityConfig {
+  name: string;
+  nameHi: string;
+  lat: number;
+  lng: number;
+  timezone: string;
+}
+
+const DELHI_DEFAULT: ArticleCityConfig = {
+  name: 'Delhi', nameHi: 'दिल्ली',
+  lat: 28.6139, lng: 77.2090, timezone: 'Asia/Kolkata',
+};
+
 interface DailyArticle {
   slug: string;
   title: { en: string; hi: string };
@@ -35,19 +48,21 @@ interface DailyArticle {
   body: { en: string; hi: string };
   date: string;
   publishedAt: string;
+  cityName?: string;
 }
 
-export function generateDailyArticle(date: Date): DailyArticle {
+export function generateDailyArticle(date: Date, city?: ArticleCityConfig): DailyArticle {
+  const c = city || DELHI_DEFAULT;
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
   const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  const tzOffset = getUTCOffsetForDate(year, month, day, c.timezone);
 
-  // Compute for Delhi (most relevant for Indian audience)
   const panchang = computePanchang({
     year, month, day,
-    lat: 28.6139, lng: 77.2090, tzOffset: 5.5,
-    timezone: 'Asia/Kolkata', locationName: 'India',
+    lat: c.lat, lng: c.lng, tzOffset,
+    timezone: c.timezone, locationName: c.name,
   });
 
   const tithiName = panchang.tithi.name.en;
@@ -62,16 +77,18 @@ export function generateDailyArticle(date: Date): DailyArticle {
   const dateFormatted = date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   const dateFormattedHi = date.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  const slug = `daily-panchang-${dateStr}`;
+  const slug = city ? `daily-panchang-${dateStr}-${c.name.toLowerCase().replace(/\s+/g, '-')}` : `daily-panchang-${dateStr}`;
+  const cityLabel = city ? ` — ${c.name}` : '';
+  const cityLabelHi = city ? ` — ${c.nameHi}` : '';
 
   const title = {
-    en: `${varName} Panchang ${dateFormatted} — ${tithiName}, ${nakName}`,
-    hi: `${panchang.vara.name.hi} पंचांग ${dateFormattedHi} — ${panchang.tithi.name.hi}, ${panchang.nakshatra.name.hi}`,
+    en: `${varName} Panchang ${dateFormatted}${cityLabel} — ${tithiName}, ${nakName}`,
+    hi: `${panchang.vara.name.hi} पंचांग ${dateFormattedHi}${cityLabelHi} — ${panchang.tithi.name.hi}, ${panchang.nakshatra.name.hi}`,
   };
 
   const description = {
-    en: `Today's Vedic Panchang: ${tithiName} tithi, ${nakName} nakshatra, ${yogaName} yoga. Sunrise ${panchang.sunrise}, Rahu Kaal ${panchang.rahuKaal.start}–${panchang.rahuKaal.end}. Complete daily guidance.`,
-    hi: `आज का वैदिक पंचांग: ${panchang.tithi.name.hi} तिथि, ${panchang.nakshatra.name.hi} नक्षत्र, ${panchang.yoga.name.hi} योग। सूर्योदय ${panchang.sunrise}, राहु काल ${panchang.rahuKaal.start}–${panchang.rahuKaal.end}।`,
+    en: `${city ? `${c.name} ` : ''}Vedic Panchang for ${dateFormatted}: ${tithiName} tithi, ${nakName} nakshatra, ${yogaName} yoga. Sunrise ${panchang.sunrise}, Rahu Kaal ${panchang.rahuKaal.start}–${panchang.rahuKaal.end}. Complete daily guidance.`,
+    hi: `${city ? `${c.nameHi} ` : ''}वैदिक पंचांग ${dateFormattedHi}: ${panchang.tithi.name.hi} तिथि, ${panchang.nakshatra.name.hi} नक्षत्र, ${panchang.yoga.name.hi} योग। सूर्योदय ${panchang.sunrise}, राहु काल ${panchang.rahuKaal.start}–${panchang.rahuKaal.end}।`,
   };
 
   // Build article body
@@ -92,12 +109,19 @@ export function generateDailyArticle(date: Date): DailyArticle {
     ? `अमृत काल ${panchang.amritKalam.start} से ${panchang.amritKalam.end} तक है — महत्वपूर्ण निर्णयों, अनुष्ठानों और नए कार्यों के लिए सर्वोत्तम समय।`
     : '';
 
+  const cityNarrative = city
+    ? `\n\nIn ${c.name}, sunrise is at ${panchang.sunrise} and sunset at ${panchang.sunset}. The timings below are specific to ${c.name}'s coordinates (${c.lat.toFixed(2)}°N, ${Math.abs(c.lng).toFixed(2)}°${c.lng >= 0 ? 'E' : 'W'}).`
+    : '';
+  const cityNarrativeHi = city
+    ? `\n\n${c.nameHi} में सूर्योदय ${panchang.sunrise} और सूर्यास्त ${panchang.sunset} पर है। नीचे दिए गए समय ${c.nameHi} के निर्देशांकों के अनुसार हैं।`
+    : '';
+
   const body = {
-    en: `## ${varName}, ${dateFormatted}
+    en: `## ${varName}, ${dateFormatted}${cityLabel}
 
 ### Five Elements of the Day
 
-Today's panchang is defined by **${tithiName}** tithi under **${nakName}** nakshatra, with **${yogaName}** yoga active. The ${tithiEnergy.en}.
+Today's panchang${city ? ` for ${c.name}` : ''} is defined by **${tithiName}** tithi under **${nakName}** nakshatra, with **${yogaName}** yoga active. The ${tithiEnergy.en}.${cityNarrative}
 
 **Tithi:** ${tithiName} (${paksha === 'shukla' ? 'Shukla Paksha — Waxing Moon' : 'Krishna Paksha — Waning Moon'})
 **Nakshatra:** ${nakName} — the Moon's position today influences ${moonTheme.en}.
@@ -126,11 +150,11 @@ The combination of ${tithiName} and ${nakName} makes today ${paksha === 'shukla'
 
 *For personalized panchang based on your location, visit [Dekho Panchang](https://dekhopanchang.com/en/panchang).*`,
 
-    hi: `## ${panchang.vara.name.hi}, ${dateFormattedHi}
+    hi: `## ${panchang.vara.name.hi}, ${dateFormattedHi}${cityLabelHi}
 
 ### आज के पाँच अंग
 
-आज का पंचांग **${panchang.tithi.name.hi}** तिथि, **${panchang.nakshatra.name.hi}** नक्षत्र और **${panchang.yoga.name.hi}** योग से परिभाषित है। ${tithiEnergy.hi}।
+आज का${city ? ` ${c.nameHi} का` : ''} पंचांग **${panchang.tithi.name.hi}** तिथि, **${panchang.nakshatra.name.hi}** नक्षत्र और **${panchang.yoga.name.hi}** योग से परिभाषित है। ${tithiEnergy.hi}।${cityNarrativeHi}
 
 **तिथि:** ${panchang.tithi.name.hi} (${paksha === 'shukla' ? 'शुक्ल पक्ष' : 'कृष्ण पक्ष'})
 **नक्षत्र:** ${panchang.nakshatra.name.hi} — आज चन्द्रमा की स्थिति ${moonTheme.hi} को प्रभावित करती है।
@@ -167,5 +191,6 @@ ${panchang.tithi.name.hi} और ${panchang.nakshatra.name.hi} का संय�
     body,
     date: dateStr,
     publishedAt: new Date(year, month - 1, day, 0, 30).toISOString(),
+    cityName: city ? c.name : undefined,
   };
 }

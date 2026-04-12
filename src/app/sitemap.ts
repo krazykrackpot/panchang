@@ -245,6 +245,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Daily panchang articles (last 30 days + next 7 for Discover)
   const today = new Date();
+  const dailyCitySlugs = ['mumbai', 'bangalore', 'chennai', 'kolkata', 'hyderabad', 'pune', 'ahmedabad', 'jaipur', 'lucknow', 'varanasi'];
   for (let i = -7; i < 30; i++) {
     const d = new Date(today);
     d.setDate(d.getDate() - i);
@@ -253,6 +254,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: i === 0 ? 0.9 : 0.6,
     });
+    // City-specific daily articles
+    for (const citySlug of dailyCitySlugs) {
+      addEntries(entries, `/daily/${dateStr}/${citySlug}`, {
+        changeFrequency: 'daily',
+        priority: i === 0 ? 0.7 : 0.5,
+      });
+    }
   }
 
   // Daily index

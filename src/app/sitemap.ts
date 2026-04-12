@@ -108,6 +108,12 @@ const routes = [
   '/nivas-shool',
   '/rahu-kaal',
   '/choghadiya',
+  // Date listing pages
+  '/dates/ekadashi',
+  '/dates/purnima',
+  '/dates/amavasya',
+  '/dates/pradosham',
+  '/dates/chaturthi',
   // Learn modules (structured curriculum)
   '/learn/track/cosmology',
   '/learn/track/panchang',

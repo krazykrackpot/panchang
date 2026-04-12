@@ -120,6 +120,8 @@ export default function Navbar() {
         { href: '/eclipses', label: t('eclipses') },
         { href: '/muhurat', label: t('muhuratCalendar') },
         { href: '/regional', label: t('regional') },
+        { href: '/dates/ekadashi', label: locale === 'hi' ? 'एकादशी तिथियाँ' : locale === 'sa' ? 'एकादशीतिथयः' : 'Ekadashi Dates' },
+        { href: '/dates/purnima', label: locale === 'hi' ? 'पूर्णिमा तिथियाँ' : locale === 'sa' ? 'पूर्णिमातिथयः' : 'Purnima Dates' },
       ],
     },
     {

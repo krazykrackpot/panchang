@@ -756,6 +756,33 @@ export const PAGE_META: Record<string, PageMeta> = {
     keywords: ['patrika', 'janam patri', 'birth chart document', 'kundali document'],
   },
 
+  // ─── Date Listing Pages ──────────────────────────────────
+  '/dates/ekadashi': {
+    title: { en: 'Ekadashi 2026 — All Dates, Timings & Parana Schedule', hi: 'एकादशी 2026 — सभी तिथियाँ, समय और पारण', sa: 'एकादशी २०२६ — सर्वतिथयः समयश्च' },
+    description: { en: 'Complete list of all Ekadashi dates in 2026 with exact start/end timings, paksha, and fasting guidelines. Shukla and Krishna Ekadashi calendar.', hi: '2026 की सभी एकादशी तिथियों की पूरी सूची — सटीक आरम्भ/समाप्ति समय, पक्ष और व्रत दिशानिर्देश।', sa: '२०२६ वर्षस्य सर्वासां एकादशीतिथीनां सूची — सम्यक्कालः पक्षश्च।' },
+    keywords: ['ekadashi 2026', 'ekadashi dates', 'ekadashi vrat', 'ekadashi calendar', 'ekadashi timings'],
+  },
+  '/dates/purnima': {
+    title: { en: 'Purnima 2026 — Full Moon Dates, Timings & Significance', hi: 'पूर्णिमा 2026 — सभी तिथियाँ और समय', sa: 'पूर्णिमा २०२६ — सर्वतिथयः समयश्च' },
+    description: { en: 'All Purnima (full moon) dates in 2026 with exact timings. Guru Purnima, Sharad Purnima, and monthly full moon schedule.', hi: '2026 की सभी पूर्णिमा तिथियों की सूची — गुरु पूर्णिमा, शरद पूर्णिमा और मासिक पूर्णिमा कार्यक्रम।', sa: '२०२६ वर्षस्य सर्वपूर्णिमातिथिसूची।' },
+    keywords: ['purnima 2026', 'full moon dates', 'purnima calendar', 'purnima timings'],
+  },
+  '/dates/amavasya': {
+    title: { en: 'Amavasya 2026 — New Moon Dates, Timings & Rituals', hi: 'अमावस्या 2026 — सभी तिथियाँ और समय', sa: 'अमावस्या २०२६ — सर्वतिथयः समयश्च' },
+    description: { en: 'Complete Amavasya (new moon) dates in 2026 with exact timings. Pitru Tarpan, Shani Puja, and monthly new moon schedule.', hi: '2026 की सभी अमावस्या तिथियों की सूची — पितृ तर्पण, शनि पूजा और मासिक अमावस्या।', sa: '२०२६ वर्षस्य सर्वामावस्यातिथिसूची।' },
+    keywords: ['amavasya 2026', 'new moon dates', 'amavasya calendar', 'amavasya timings'],
+  },
+  '/dates/pradosham': {
+    title: { en: 'Pradosham 2026 — All Dates, Timings & Vrat Guide', hi: 'प्रदोष 2026 — सभी तिथियाँ और व्रत मार्गदर्शन', sa: 'प्रदोषम् २०२६ — सर्वतिथयः व्रतमार्गदर्शनं च' },
+    description: { en: 'All Pradosham dates in 2026 with timings. Shani Pradosham, Soma Pradosham schedule and Shiva worship guidelines.', hi: '2026 की सभी प्रदोष तिथियाँ — शनि प्रदोष, सोम प्रदोष और शिव पूजा मार्गदर्शन।', sa: '२०२६ वर्षस्य सर्वप्रदोषतिथिसूची।' },
+    keywords: ['pradosham 2026', 'pradosh vrat', 'shani pradosham', 'soma pradosham'],
+  },
+  '/dates/chaturthi': {
+    title: { en: 'Chaturthi 2026 — Sankashti & Vinayaka Dates & Timings', hi: 'चतुर्थी 2026 — संकष्टी और विनायक तिथियाँ', sa: 'चतुर्थी २०२६ — सङ्कष्टिविनायकतिथयः' },
+    description: { en: 'All Chaturthi dates in 2026 — Sankashti Chaturthi (Krishna) and Vinayaka Chaturthi (Shukla) with exact timings and Ganesh Puja guidelines.', hi: '2026 की सभी चतुर्थी तिथियाँ — संकष्टी चतुर्थी और विनायक चतुर्थी।', sa: '२०२६ वर्षस्य सर्वचतुर्थीतिथिसूची।' },
+    keywords: ['chaturthi 2026', 'sankashti chaturthi', 'vinayaka chaturthi', 'ganesh chaturthi dates'],
+  },
+
   // ─── Learn ────────────────────────────────────────────────
   '/learn': {
     title: {

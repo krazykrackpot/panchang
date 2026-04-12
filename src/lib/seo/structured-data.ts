@@ -38,6 +38,12 @@ const DISPLAY_NAMES: Record<string, string> = {
   rectify: 'Rectify',
   'rahu-kaal': 'Rahu Kaal',
   choghadiya: 'Choghadiya',
+  dates: 'Dates',
+  ekadashi: 'Ekadashi',
+  purnima: 'Purnima',
+  amavasya: 'Amavasya',
+  pradosham: 'Pradosham',
+  chaturthi: 'Chaturthi',
 };
 
 /**

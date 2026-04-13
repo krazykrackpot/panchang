@@ -31,11 +31,11 @@
         "sa": "2.2 संबंध",
         "mai": "2.2 संबंध",
         "mr": "2.2 संबंध",
-        "ta": "2.2 Relationships",
-        "te": "2.2 Relationships",
-        "bn": "2.2 Relationships",
-        "kn": "2.2 Relationships",
-        "gu": "2.2 Relationships"
+        "ta": "2.2 உறவுகள்",
+        "te": "2.2 సంబంధాలు",
+        "bn": "2.2 সম্পর্ক",
+        "kn": "2.2 ಸಂಬಂಧಗಳು",
+        "gu": "2.2 સંબંધો"
       },
       "href": "/learn/modules/2-2"
     },
@@ -46,11 +46,11 @@
         "sa": "2.4 वक्री",
         "mai": "2.4 वक्री",
         "mr": "2.4 वक्री",
-        "ta": "2.4 Retrograde",
-        "te": "2.4 Retrograde",
-        "bn": "2.4 Retrograde",
-        "kn": "2.4 Retrograde",
-        "gu": "2.4 Retrograde"
+        "ta": "2.4 வக்ரம்",
+        "te": "2.4 వక్రి",
+        "bn": "2.4 বক্রী",
+        "kn": "2.4 ವಕ್ರ",
+        "gu": "2.4 વક્રી"
       },
       "href": "/learn/modules/2-4"
     },
@@ -61,11 +61,11 @@
         "sa": "योग (नीच भंग)",
         "mai": "योग (नीच भंग)",
         "mr": "योग (नीच भंग)",
-        "ta": "Yogas (Neecha Bhanga)",
-        "te": "Yogas (Neecha Bhanga)",
-        "bn": "Yogas (Neecha Bhanga)",
-        "kn": "Yogas (Neecha Bhanga)",
-        "gu": "Yogas (Neecha Bhanga)"
+        "ta": "யோகங்கள் (நீச பங்கம்)",
+        "te": "యోగాలు (నీచ భంగం)",
+        "bn": "যোগ (নীচ ভঙ্গ)",
+        "kn": "ಯೋಗಗಳು (ನೀಚ ಭಂಗ)",
+        "gu": "યોગ (નીચ ભંગ)"
       },
       "href": "/learn/yogas"
     }
@@ -80,11 +80,11 @@
         "sa": "सबसे बलवान से दुर्बल तक सही गरिमा क्रम है:",
         "mai": "सबसे बलवान से दुर्बल तक सही गरिमा क्रम है:",
         "mr": "सबसे बलवान से दुर्बल तक सही गरिमा क्रम है:",
-        "ta": "The correct dignity hierarchy from strongest to weakest is:",
-        "te": "The correct dignity hierarchy from strongest to weakest is:",
-        "bn": "The correct dignity hierarchy from strongest to weakest is:",
-        "kn": "The correct dignity hierarchy from strongest to weakest is:",
-        "gu": "The correct dignity hierarchy from strongest to weakest is:"
+        "ta": "வலிமையானதிலிருந்து பலவீனமானது வரை சரியான கௌரவ வரிசை:",
+        "te": "బలమైన దాని నుండి బలహీనం వరకు సరైన గౌరవ క్రమం:",
+        "bn": "শক্তিশালী থেকে দুর্বল পর্যন্ত সঠিক মর্যাদা ক্রম হল:",
+        "kn": "ಬಲಿಷ್ಠದಿಂದ ದುರ್ಬಲದವರೆಗೆ ಸರಿಯಾದ ಘನತೆ ಕ್ರಮ:",
+        "gu": "સૌથી બળવાનથી નબળા સુધી સાચો ગૌરવ ક્રમ:"
       },
       "options": [
         {
@@ -93,11 +93,11 @@
           "sa": "उच्च > स्व > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
           "mai": "उच्च > स्व > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
           "mr": "उच्च > स्व > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
-          "ta": "Exalted > Own > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "te": "Exalted > Own > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "bn": "Exalted > Own > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "kn": "Exalted > Own > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "gu": "Exalted > Own > Moolatrikona > Friend > Neutral > Enemy > Debilitated"
+          "ta": "உச்சம் > சுவம் > மூலத்திரிகோணம் > மித்ரம் > சமம் > சத்ரு > நீசம்",
+          "te": "ఉచ్ఛం > స్వం > మూలత్రికోణం > మిత్రం > సమం > శత్రు > నీచం",
+          "bn": "উচ্চ > স্ব > মূলত্রিকোণ > মিত্র > সম > শত্রু > নীচ",
+          "kn": "ಉಚ್ಛ > ಸ್ವ > ಮೂಲತ್ರಿಕೋಣ > ಮಿತ್ರ > ಸಮ > ಶತ್ರು > ನೀಚ",
+          "gu": "ઉચ્ચ > સ્વ > મૂળત્રિકોણ > મિત્ર > સમ > શત્રુ > નીચ"
         },
         {
           "en": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
@@ -105,11 +105,11 @@
           "sa": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
           "mai": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
           "mr": "उच्च > मूलत्रिकोण > स्व > मित्र > सम > शत्रु > नीच",
-          "ta": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
-          "te": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
-          "bn": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
-          "kn": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated",
-          "gu": "Exalted > Moolatrikona > Own > Friend > Neutral > Enemy > Debilitated"
+          "ta": "உச்சம் > மூலத்திரிகோணம் > சுவம் > மித்ரம் > சமம் > சத்ரு > நீசம்",
+          "te": "ఉచ్ఛం > మూలత్రికోణం > స్వం > మిత్రం > సమం > శత్రు > నీచం",
+          "bn": "উচ্চ > মূলত্রিকোণ > স্ব > মিত্র > সম > শত্রু > নীচ",
+          "kn": "ಉಚ್ಛ > ಮೂಲತ್ರಿಕೋಣ > ಸ್ವ > ಮಿತ್ರ > ಸಮ > ಶತ್ರು > ನೀಚ",
+          "gu": "ઉચ્ચ > મૂળત્રિકોણ > સ્વ > મિત્ર > સમ > શત્રુ > નીચ"
         },
         {
           "en": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
@@ -117,11 +117,11 @@
           "sa": "स्व > उच्च > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
           "mai": "स्व > उच्च > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
           "mr": "स्व > उच्च > मूलत्रिकोण > मित्र > सम > शत्रु > नीच",
-          "ta": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "te": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "bn": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "kn": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated",
-          "gu": "Own > Exalted > Moolatrikona > Friend > Neutral > Enemy > Debilitated"
+          "ta": "சுவம் > உச்சம் > மூலத்திரிகோணம் > மித்ரம் > சமம் > சத்ரு > நீசம்",
+          "te": "స్వం > ఉచ్ఛం > మూలత్రికోణం > మిత్రం > సమం > శత్రు > నీచం",
+          "bn": "স্ব > উচ্চ > মূলত্রিকোণ > মিত্র > সম > শত্রু > নীচ",
+          "kn": "ಸ್ವ > ಉಚ್ಛ > ಮೂಲತ್ರಿಕೋಣ > ಮಿತ್ರ > ಸಮ > ಶತ್ರು > ನೀಚ",
+          "gu": "સ્વ > ઉચ્ચ > મૂળત્રિકોણ > મિત્ર > સમ > શત્રુ > નીચ"
         },
         {
           "en": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated",
@@ -129,25 +129,25 @@
           "sa": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > शत्रु > नीच",
           "mai": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > शत्रु > नीच",
           "mr": "मूलत्रिकोण > उच्च > स्व > मित्र > सम > शत्रु > नीच",
-          "ta": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated",
-          "te": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated",
-          "bn": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated",
-          "kn": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated",
-          "gu": "Moolatrikona > Exalted > Own > Friend > Neutral > Enemy > Debilitated"
+          "ta": "மூலத்திரிகோணம் > உச்சம் > சுவம் > மித்ரம் > சமம் > சத்ரு > நீசம்",
+          "te": "మూలత్రికోణం > ఉచ్ఛం > స్వం > మిత్రం > సమం > శత్రు > నీచం",
+          "bn": "মূলত্রিকোণ > উচ্চ > স্ব > মিত্র > সম > শত্রু > নীচ",
+          "kn": "ಮೂಲತ್ರಿಕೋಣ > ಉಚ್ಛ > ಸ್ವ > ಮಿತ್ರ > ಸಮ > ಶತ್ರು > ನೀಚ",
+          "gu": "મૂળત્રિકોણ > ઉચ્ચ > સ્વ > મિત્ર > સમ > શત્રુ > નીચ"
         }
       ],
       "correctAnswer": 1,
       "explanation": {
         "en": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
         "hi": "सही क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच। मूलत्रिकोण स्वराशि से बलवान — ग्रह की अपनी राशि का विशेष भाग।",
-        "sa": "सही क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच। मूलत्रिकोण स्वराशि से बलवान — ग्रह की अपनी राशि का विशेष भाग।",
-        "ta": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
-        "te": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
-        "bn": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
-        "kn": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
-        "mr": "सही क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच। मूलत्रिकोण स्वराशि से बलवान — ग्रह की अपनी राशि का विशेष भाग।",
-        "gu": "The correct order: Exalted (उच्च) > Moolatrikona (मूलत्रिकोण) > Own Sign (स्वक्षेत्र) > Friend's Sign (मित्रक्षेत्र) > Neutral (समक्षेत्र) > Enemy's Sign (शत्रुक्षेत्र) > Debilitated (नीच). Moolatrikona is STRONGER than own sign — it's a special portion of the planet's own sign where it has extra power.",
-        "mai": "सही क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच। मूलत्रिकोण स्वराशि से बलवान — ग्रह की अपनी राशि का विशेष भाग।"
+        "sa": "समीचीनः क्रमः: उच्चम् > मूलत्रिकोणम् > स्वक्षेत्रम् > मित्रक्षेत्रम् > समक्षेत्रम् > शत्रुक्षेत्रम् > नीचम्। मूलत्रिकोणं स्वक्षेत्रात् बलवत्तरम् — ग्रहस्य स्वराशौ अतिरिक्तशक्तेः विशेषभागः।",
+        "ta": "சரியான வரிசை: உச்சம் (उच्च) > மூலத்திரிகோணம் (मूलत्रिकोण) > சுவக்ஷேத்திரம் (स्वक्षेत्र) > மித்ரக்ஷேத்திரம் (मित्रक्षेत्र) > சமக்ஷேத்திரம் (समक्षेत्र) > சத்ருக்ஷேத்திரம் (शत्रुक्षेत्र) > நீசம் (नीच). மூலத்திரிகோணம் சுவக்ஷேத்திரத்தை விட வலிமையானது — கிரகத்தின் சொந்த ராசியில் அதிக சக்தி கொண்ட விசேஷ பகுதி.",
+        "te": "సరైన క్రమం: ఉచ్ఛం > మూలత్రికోణం > స్వక్షేత్రం > మిత్రక్షేత్రం > సమక్షేత్రం > శత్రుక్షేత్రం > నీచం. మూలత్రికోణం స్వక్షేత్రం కంటే బలమైనది — గ్రహం స్వరాశిలో అదనపు శక్తి ఉన్న ప్రత్యేక భాగం.",
+        "bn": "সঠিক ক্রম: উচ্চ > মূলত্রিকোণ > স্বক্ষেত্র > মিত্রক্ষেত্র > সমক্ষেত্র > শত্রুক্ষেত্র > নীচ। মূলত্রিকোণ স্বক্ষেত্রের চেয়ে শক্তিশালী — গ্রহের নিজ রাশির মধ্যে অতিরিক্ত শক্তির বিশেষ অংশ।",
+        "kn": "ಸರಿಯಾದ ಕ್ರಮ: ಉಚ್ಛ > ಮೂಲತ್ರಿಕೋಣ > ಸ್ವಕ್ಷೇತ್ರ > ಮಿತ್ರಕ್ಷೇತ್ರ > ಸಮಕ್ಷೇತ್ರ > ಶತ್ರುಕ್ಷೇತ್ರ > ನೀಚ. ಮೂಲತ್ರಿಕೋಣ ಸ್ವಕ್ಷೇತ್ರಕ್ಕಿಂತ ಬಲಿಷ್ಠ — ಗ್ರಹದ ಸ್ವಂತ ರಾಶಿಯೊಳಗೆ ಹೆಚ್ಚುವರಿ ಶಕ್ತಿಯ ವಿಶೇಷ ಭಾಗ.",
+        "mr": "योग्य क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच. मूलत्रिकोण स्वक्षेत्रापेक्षा बळकट — ग्रहाच्या स्वतःच्या राशीतील अतिरिक्त शक्तीचा विशेष भाग.",
+        "gu": "સાચો ક્રમ: ઉચ્ચ > મૂળત્રિકોણ > સ્વક્ષેત્ર > મિત્રક્ષેત્ર > સમક્ષેત્ર > શત્રુક્ષેત્ર > નીચ. મૂળત્રિકોણ સ્વક્ષેત્ર કરતાં વધુ બળવાન — ગ્રહની પોતાની રાશિમાં વધારાની શક્તિનો વિશેષ ભાગ.",
+        "mai": "सही क्रम: उच्च > मूलत्रिकोण > स्वक्षेत्र > मित्रक्षेत्र > समक्षेत्र > शत्रुक्षेत्र > नीच। मूलत्रिकोण स्वक्षेत्रसँ बेसी बलवान — ग्रहक अपन राशिमे अतिरिक्त शक्तिक विशेष भाग।"
       },
       "classicalRef": "BPHS Ch.3 v.18-20"
     },
@@ -160,11 +160,11 @@
         "sa": "सूर्य किस राशि में, कितने अंश पर उच्च है?",
         "mai": "सूर्य किस राशि में, कितने अंश पर उच्च है?",
         "mr": "सूर्य किस राशि में, कितने अंश पर उच्च है?",
-        "ta": "Sun is exalted in which sign, at what degree?",
-        "te": "Sun is exalted in which sign, at what degree?",
-        "bn": "Sun is exalted in which sign, at what degree?",
-        "kn": "Sun is exalted in which sign, at what degree?",
-        "gu": "Sun is exalted in which sign, at what degree?"
+        "ta": "சூரியன் எந்த ராசியில், எந்த பாகையில் உச்சம்?",
+        "te": "సూర్యుడు ఏ రాశిలో, ఏ డిగ్రీలో ఉచ్ఛం?",
+        "bn": "সূর্য কোন রাশিতে, কোন ডিগ্রিতে উচ্চ?",
+        "kn": "ಸೂರ್ಯ ಯಾವ ರಾಶಿಯಲ್ಲಿ, ಯಾವ ಡಿಗ್ರಿಯಲ್ಲಿ ಉಚ್ಛ?",
+        "gu": "સૂર્ય કઈ રાશિમાં, કયા અંશે ઉચ્ચ છે?"
       },
       "options": [
         {
@@ -173,11 +173,11 @@
           "sa": "सिंह 20° पर",
           "mai": "सिंह 20° पर",
           "mr": "सिंह 20° पर",
-          "ta": "Leo at 20°",
-          "te": "Leo at 20°",
-          "bn": "Leo at 20°",
-          "kn": "Leo at 20°",
-          "gu": "Leo at 20°"
+          "ta": "சிம்மம் 20°-ல்",
+          "te": "సింహం 20°",
+          "bn": "সিংহ ২০°",
+          "kn": "ಸಿಂಹ 20°",
+          "gu": "સિંહ 20°"
         },
         {
           "en": "Aries at 10°",
@@ -185,11 +185,11 @@
           "sa": "मेष 10° पर",
           "mai": "मेष 10° पर",
           "mr": "मेष 10° पर",
-          "ta": "Aries at 10°",
-          "te": "Aries at 10°",
-          "bn": "Aries at 10°",
-          "kn": "Aries at 10°",
-          "gu": "Aries at 10°"
+          "ta": "மேஷம் 10°-ல்",
+          "te": "మేషం 10°",
+          "bn": "মেষ ১০°",
+          "kn": "ಮೇಷ 10°",
+          "gu": "મેષ 10°"
         },
         {
           "en": "Cancer at 5°",
@@ -197,11 +197,11 @@
           "sa": "कर्क 5° पर",
           "mai": "कर्क 5° पर",
           "mr": "कर्क 5° पर",
-          "ta": "Cancer at 5°",
-          "te": "Cancer at 5°",
-          "bn": "Cancer at 5°",
-          "kn": "Cancer at 5°",
-          "gu": "Cancer at 5°"
+          "ta": "கடகம் 5°-ல்",
+          "te": "కర్కటకం 5°",
+          "bn": "কর্কট ৫°",
+          "kn": "ಕರ್ಕಾಟಕ 5°",
+          "gu": "કર્ક 5°"
         },
         {
           "en": "Capricorn at 28°",
@@ -209,11 +209,11 @@
           "sa": "मकर 28° पर",
           "mai": "मकर 28° पर",
           "mr": "मकर 28° पर",
-          "ta": "Capricorn at 28°",
-          "te": "Capricorn at 28°",
-          "bn": "Capricorn at 28°",
-          "kn": "Capricorn at 28°",
-          "gu": "Capricorn at 28°"
+          "ta": "மகரம் 28°-ல்",
+          "te": "మకరం 28°",
+          "bn": "মকর ২৮°",
+          "kn": "ಮಕರ 28°",
+          "gu": "મકર 28°"
         }
       ],
       "correctAnswer": 1,
@@ -223,11 +223,11 @@
         "sa": "सूर्य मेष राशि में ठीक 10° पर उच्च है — \"परमोच्च अंश\"। इस बिंदु पर अधिकतम बल। 10° से दूर जाने पर उच्च बल आनुपातिक रूप से कम होता है।",
         "mai": "सूर्य मेष राशि में ठीक 10° पर उच्च है — \"परमोच्च अंश\"। इस बिंदु पर अधिकतम बल। 10° से दूर जाने पर उच्च बल आनुपातिक रूप से कम होता है।",
         "mr": "सूर्य मेष राशि में ठीक 10° पर उच्च है — \"परमोच्च अंश\"। इस बिंदु पर अधिकतम बल। 10° से दूर जाने पर उच्च बल आनुपातिक रूप से कम होता है।",
-        "ta": "Sun is exalted in Aries at exactly 10°. This is its HIGHEST point of power — called the \"deep exaltation degree\" (Paramocha Amsha). At exactly 10° Aries, the Sun is at maximum strength. As it moves away from 10° (either direction), exaltation strength decreases proportionally.",
-        "te": "Sun is exalted in Aries at exactly 10°. This is its HIGHEST point of power — called the \"deep exaltation degree\" (Paramocha Amsha). At exactly 10° Aries, the Sun is at maximum strength. As it moves away from 10° (either direction), exaltation strength decreases proportionally.",
-        "bn": "Sun is exalted in Aries at exactly 10°. This is its HIGHEST point of power — called the \"deep exaltation degree\" (Paramocha Amsha). At exactly 10° Aries, the Sun is at maximum strength. As it moves away from 10° (either direction), exaltation strength decreases proportionally.",
-        "kn": "Sun is exalted in Aries at exactly 10°. This is its HIGHEST point of power — called the \"deep exaltation degree\" (Paramocha Amsha). At exactly 10° Aries, the Sun is at maximum strength. As it moves away from 10° (either direction), exaltation strength decreases proportionally.",
-        "gu": "Sun is exalted in Aries at exactly 10°. This is its HIGHEST point of power — called the \"deep exaltation degree\" (Paramocha Amsha). At exactly 10° Aries, the Sun is at maximum strength. As it moves away from 10° (either direction), exaltation strength decreases proportionally."
+        "ta": "சூரியன் மேஷத்தில் 10° அளவில் உச்சமடைகிறது. இது அதன் மிக உயர்ந்த சக்தி நிலை. மேஷம் செவ்வாயின் ராசி — ஒரு ஆக்ரோஷமான தீ ராசி. சூரியனின் தீ இயல்பு இங்கு பரிபூரணமாக ஒலிக்கிறது. 10° என்பது துல்லியமான உச்சப் புள்ளி.",
+        "te": "సూర్యుడు మేషంలో ఖచ్చితంగా 10° వద్ద ఉచ్ఛం. ఇది దాని అత్యున్నత శక్తి స్థానం. మేషం కుజుని రాశి — ఆక్రమణశీల అగ్ని రాశి. సూర్యుని అగ్ని స్వభావం ఇక్కడ పరిపూర్ణంగా ప్రతిధ్వనిస్తుంది. 10° ఖచ్చితమైన ఉచ్ఛ బిందువు.",
+        "bn": "সূর্য মেষে ঠিক ১০° তে উচ্চ। এটি তার সর্বোচ্চ শক্তি বিন্দু। মেষ মঙ্গলের রাশি — একটি আক্রমণাত্মক অগ্নি রাশি। সূর্যের অগ্নি প্রকৃতি এখানে নিখুঁতভাবে অনুরণিত হয়। ১০° হল সুনির্দিষ্ট উচ্চ বিন্দু।",
+        "kn": "ಸೂರ್ಯ ಮೇಷದಲ್ಲಿ ನಿಖರವಾಗಿ 10° ನಲ್ಲಿ ಉಚ್ಛ. ಇದು ಅದರ ಅತ್ಯುನ್ನತ ಶಕ್ತಿ ಬಿಂದು. ಮೇಷ ಕುಜನ ರಾಶಿ — ಆಕ್ರಮಣಕಾರಿ ಅಗ್ನಿ ರಾಶಿ. ಸೂರ್ಯನ ಅಗ್ನಿ ಸ್ವಭಾವ ಇಲ್ಲಿ ಪರಿಪೂರ್ಣವಾಗಿ ಅನುರಣಿಸುತ್ತದೆ.",
+        "gu": "સૂર્ય મેષમાં બરાબર 10° પર ઉચ્ચ છે. આ તેનું સર્વોચ્ચ શક્તિ બિંદુ છે. મેષ મંગળની રાશિ — એક આક્રમક અગ્નિ રાશિ. સૂર્યનો અગ્નિ સ્વભાવ અહીં પરિપૂર્ણ રીતે પડઘાય છે."
       },
       "classicalRef": "BPHS Ch.3 v.18"
     },
@@ -240,11 +240,11 @@
         "sa": "चन्द्र नीच है:",
         "mai": "चन्द्र नीच है:",
         "mr": "चन्द्र नीच है:",
-        "ta": "Moon is debilitated in:",
-        "te": "Moon is debilitated in:",
-        "bn": "Moon is debilitated in:",
-        "kn": "Moon is debilitated in:",
-        "gu": "Moon is debilitated in:"
+        "ta": "சந்திரன் நீசமாகும் ராசி:",
+        "te": "చంద్రుడు నీచమయ్యే రాశి:",
+        "bn": "চন্দ্র নীচ হয় যে রাশিতে:",
+        "kn": "ಚಂದ್ರ ನೀಚವಾಗುವ ರಾಶಿ:",
+        "gu": "ચંદ્ર નીચ થાય છે:"
       },
       "options": [
         {
@@ -253,11 +253,11 @@
           "sa": "वृषभ",
           "mai": "वृषभ",
           "mr": "वृषभ",
-          "ta": "Taurus",
-          "te": "Taurus",
-          "bn": "Taurus",
-          "kn": "Taurus",
-          "gu": "Taurus"
+          "ta": "ரிஷபம்",
+          "te": "వృషభం",
+          "bn": "বৃষ",
+          "kn": "ವೃಷಭ",
+          "gu": "વૃષભ"
         },
         {
           "en": "Cancer",
@@ -265,11 +265,11 @@
           "sa": "कर्क",
           "mai": "कर्क",
           "mr": "कर्क",
-          "ta": "Cancer",
-          "te": "Cancer",
-          "bn": "Cancer",
-          "kn": "Cancer",
-          "gu": "Cancer"
+          "ta": "கடகம்",
+          "te": "కర్కటకం",
+          "bn": "কর্কট",
+          "kn": "ಕರ್ಕಾಟಕ",
+          "gu": "કર્ક"
         },
         {
           "en": "Scorpio",
@@ -277,11 +277,11 @@
           "sa": "वृश्चिक",
           "mai": "वृश्चिक",
           "mr": "वृश्चिक",
-          "ta": "Scorpio",
-          "te": "Scorpio",
-          "bn": "Scorpio",
-          "kn": "Scorpio",
-          "gu": "Scorpio"
+          "ta": "விருச்சிகம்",
+          "te": "వృశ్చికం",
+          "bn": "বৃশ্চিক",
+          "kn": "ವೃಶ್ಚಿಕ",
+          "gu": "વૃશ્ચિક"
         },
         {
           "en": "Capricorn",
@@ -289,11 +289,11 @@
           "sa": "मकर",
           "mai": "मकर",
           "mr": "मकर",
-          "ta": "Capricorn",
-          "te": "Capricorn",
-          "bn": "Capricorn",
-          "kn": "Capricorn",
-          "gu": "Capricorn"
+          "ta": "மகரம்",
+          "te": "మకరం",
+          "bn": "মকর",
+          "kn": "ಮಕರ",
+          "gu": "મકર"
         }
       ],
       "correctAnswer": 2,
@@ -303,11 +303,11 @@
         "sa": "चन्द्र वृश्चिक में 3° पर नीच। नीच हमेशा उच्च से ठीक 180° विपरीत (7वीं) राशि में। चन्द्र उच्च वृषभ → नीच वृश्चिक।",
         "mai": "चन्द्र वृश्चिक में 3° पर नीच। नीच हमेशा उच्च से ठीक 180° विपरीत (7वीं) राशि में। चन्द्र उच्च वृषभ → नीच वृश्चिक।",
         "mr": "चन्द्र वृश्चिक में 3° पर नीच। नीच हमेशा उच्च से ठीक 180° विपरीत (7वीं) राशि में। चन्द्र उच्च वृषभ → नीच वृश्चिक।",
-        "ta": "Moon is debilitated in Scorpio at 3°. Debilitation is always in the sign exactly opposite (180°) from exaltation. Moon is exalted in Taurus (2nd sign) → debilitated in Scorpio (8th sign, 180° away). The 3° point mirrors the 3° exaltation degree in Taurus.",
-        "te": "Moon is debilitated in Scorpio at 3°. Debilitation is always in the sign exactly opposite (180°) from exaltation. Moon is exalted in Taurus (2nd sign) → debilitated in Scorpio (8th sign, 180° away). The 3° point mirrors the 3° exaltation degree in Taurus.",
-        "bn": "Moon is debilitated in Scorpio at 3°. Debilitation is always in the sign exactly opposite (180°) from exaltation. Moon is exalted in Taurus (2nd sign) → debilitated in Scorpio (8th sign, 180° away). The 3° point mirrors the 3° exaltation degree in Taurus.",
-        "kn": "Moon is debilitated in Scorpio at 3°. Debilitation is always in the sign exactly opposite (180°) from exaltation. Moon is exalted in Taurus (2nd sign) → debilitated in Scorpio (8th sign, 180° away). The 3° point mirrors the 3° exaltation degree in Taurus.",
-        "gu": "Moon is debilitated in Scorpio at 3°. Debilitation is always in the sign exactly opposite (180°) from exaltation. Moon is exalted in Taurus (2nd sign) → debilitated in Scorpio (8th sign, 180° away). The 3° point mirrors the 3° exaltation degree in Taurus."
+        "ta": "சந்திரன் விருச்சிகத்தில் 3° அளவில் நீசமடைகிறது. நீசம் எப்போதும் உச்சத்திற்கு நேர் எதிர் (180°) ராசியில் உள்ளது. சந்திரன் ரிஷபத்தில் (2வது ராசி) உச்சம் → விருச்சிகத்தில் (8வது ராசி, 180° தூரம்) நீசம். 3° புள்ளி ரிஷபத்தின் 3° உச்ச பாகையை பிரதிபலிக்கிறது.",
+        "te": "చంద్రుడు వృశ్చికంలో 3° వద్ద నీచం. నీచం ఎల్లప్పుడూ ఉచ్ఛానికి నేరుగా ఎదురు (180°) రాశిలో ఉంటుంది. చంద్రుడు వృషభంలో (2వ రాశి) ఉచ్ఛం → వృశ్చికంలో (8వ రాశి, 180° దూరం) నీచం.",
+        "bn": "চন্দ্র বৃশ্চিকে ৩° তে নীচ। নীচ সর্বদা উচ্চের ঠিক বিপরীত (১৮০°) রাশিতে। চন্দ্র বৃষে (২য় রাশি) উচ্চ → বৃশ্চিকে (৮ম রাশি, ১৮০° দূরে) নীচ।",
+        "kn": "ಚಂದ್ರ ವೃಶ್ಚಿಕದಲ್ಲಿ 3° ನಲ್ಲಿ ನೀಚ. ನೀಚ ಯಾವಾಗಲೂ ಉಚ್ಛಕ್ಕೆ ನೇರ ಎದುರು (180°) ರಾಶಿಯಲ್ಲಿ. ಚಂದ್ರ ವೃಷಭದಲ್ಲಿ (2ನೇ ರಾಶಿ) ಉಚ್ಛ → ವೃಶ್ಚಿಕದಲ್ಲಿ (8ನೇ ರಾಶಿ, 180° ದೂರ) ನೀಚ.",
+        "gu": "ચંદ્ર વૃશ્ચિકમાં 3° પર નીચ છે. નીચ હંમેશાં ઉચ્ચની સામે (180°) રાશિમાં હોય છે. ચંદ્ર વૃષભમાં (2જી રાશિ) ઉચ્ચ → વૃશ્ચિકમાં (8મી રાશિ, 180° દૂર) નીચ."
       },
       "classicalRef": "BPHS Ch.3 v.19"
     },
@@ -320,11 +320,11 @@
         "sa": "ग्रह की उच्च और नीच राशि हमेशा ठीक 180° (7 राशि) दूर होती हैं।",
         "mai": "ग्रह की उच्च और नीच राशि हमेशा ठीक 180° (7 राशि) दूर होती हैं।",
         "mr": "ग्रह की उच्च और नीच राशि हमेशा ठीक 180° (7 राशि) दूर होती हैं।",
-        "ta": "The exaltation sign and debilitation sign of a planet are always exactly 180° (7 signs) apart.",
-        "te": "The exaltation sign and debilitation sign of a planet are always exactly 180° (7 signs) apart.",
-        "bn": "The exaltation sign and debilitation sign of a planet are always exactly 180° (7 signs) apart.",
-        "kn": "The exaltation sign and debilitation sign of a planet are always exactly 180° (7 signs) apart.",
-        "gu": "The exaltation sign and debilitation sign of a planet are always exactly 180° (7 signs) apart."
+        "ta": "ஒரு கிரகத்தின் உச்ச ராசியும் நீச ராசியும் எப்போதும் 180° (7 ராசிகள்) இடைவெளியில் உள்ளன.",
+        "te": "ఒక గ్రహం యొక్క ఉచ్ఛ రాశి మరియు నీచ రాశి ఎల్లప్పుడూ 180° (7 రాశులు) దూరంలో ఉంటాయి.",
+        "bn": "একটি গ্রহের উচ্চ রাশি ও নীচ রাশি সর্বদা ১৮০° (৭ রাশি) দূরে থাকে।",
+        "kn": "ಒಂದು ಗ್ರಹದ ಉಚ್ಛ ರಾಶಿ ಮತ್ತು ನೀಚ ರಾಶಿ ಯಾವಾಗಲೂ 180° (7 ರಾಶಿ) ದೂರದಲ್ಲಿರುತ್ತವೆ.",
+        "gu": "કોઈ ગ્રહની ઉચ્ચ રાશિ અને નીચ રાશિ હંમેશાં 180° (7 રાશિ) અંતરે હોય છે."
       },
       "correctAnswer": true,
       "explanation": {
@@ -333,11 +333,11 @@
         "sa": "सही। उच्च और नीच राशि हमेशा विपरीत। सूर्य: मेष↔तुला, चन्द्र: वृषभ↔वृश्चिक, मंगल: मकर↔कर्क...",
         "mai": "सही। उच्च और नीच राशि हमेशा विपरीत। सूर्य: मेष↔तुला, चन्द्र: वृषभ↔वृश्चिक, मंगल: मकर↔कर्क...",
         "mr": "सही। उच्च और नीच राशि हमेशा विपरीत। सूर्य: मेष↔तुला, चन्द्र: वृषभ↔वृश्चिक, मंगल: मकर↔कर्क...",
-        "ta": "Correct. This is a fundamental rule: Exaltation and debilitation signs are always directly opposite. Sun: Aries↔Libra, Moon: Taurus↔Scorpio, Mars: Capricorn↔Cancer, Mercury: Virgo↔Pisces, Jupiter: Cancer↔Capricorn, Venus: Pisces↔Virgo, Saturn: Libra↔Aries. Notice: Sun exalted in Aries = Saturn debilitated in Aries (and vice versa).",
-        "te": "Correct. This is a fundamental rule: Exaltation and debilitation signs are always directly opposite. Sun: Aries↔Libra, Moon: Taurus↔Scorpio, Mars: Capricorn↔Cancer, Mercury: Virgo↔Pisces, Jupiter: Cancer↔Capricorn, Venus: Pisces↔Virgo, Saturn: Libra↔Aries. Notice: Sun exalted in Aries = Saturn debilitated in Aries (and vice versa).",
-        "bn": "Correct. This is a fundamental rule: Exaltation and debilitation signs are always directly opposite. Sun: Aries↔Libra, Moon: Taurus↔Scorpio, Mars: Capricorn↔Cancer, Mercury: Virgo↔Pisces, Jupiter: Cancer↔Capricorn, Venus: Pisces↔Virgo, Saturn: Libra↔Aries. Notice: Sun exalted in Aries = Saturn debilitated in Aries (and vice versa).",
-        "kn": "Correct. This is a fundamental rule: Exaltation and debilitation signs are always directly opposite. Sun: Aries↔Libra, Moon: Taurus↔Scorpio, Mars: Capricorn↔Cancer, Mercury: Virgo↔Pisces, Jupiter: Cancer↔Capricorn, Venus: Pisces↔Virgo, Saturn: Libra↔Aries. Notice: Sun exalted in Aries = Saturn debilitated in Aries (and vice versa).",
-        "gu": "Correct. This is a fundamental rule: Exaltation and debilitation signs are always directly opposite. Sun: Aries↔Libra, Moon: Taurus↔Scorpio, Mars: Capricorn↔Cancer, Mercury: Virgo↔Pisces, Jupiter: Cancer↔Capricorn, Venus: Pisces↔Virgo, Saturn: Libra↔Aries. Notice: Sun exalted in Aries = Saturn debilitated in Aries (and vice versa)."
+        "ta": "சரி. இது ஒரு அடிப்படை விதி: உச்சம் மற்றும் நீசம் எப்போதும் நேர் எதிர். சூரியன்: மேஷம்↔துலாம், சந்திரன்: ரிஷபம்↔விருச்சிகம், செவ்வாய்: மகரம்↔கடகம், புதன்: கன்னி↔மீனம், குரு: கடகம்↔மகரம், சுக்கிரன்: மீனம்↔கன்னி, சனி: துலாம்↔மேஷம்.",
+        "te": "సరైనది. ఇది ప్రాథమిక నియమం: ఉచ్ఛం మరియు నీచం ఎల్లప్పుడూ నేరుగా ఎదురు. సూర్యుడు: మేషం↔తుల, చంద్రుడు: వృషభం↔వృశ్చికం, కుజుడు: మకరం↔కర్కటకం, బుధుడు: కన్య↔మీనం, గురువు: కర్కటకం↔మకరం, శుక్రుడు: మీనం↔కన్య, శని: తుల↔మేషం.",
+        "bn": "সঠিক। এটি মৌলিক নিয়ম: উচ্চ ও নীচ সর্বদা সরাসরি বিপরীত। সূর্য: মেষ↔তুলা, চন্দ্র: বৃষ↔বৃশ্চিক, মঙ্গল: মকর↔কর্কট, বুধ: কন্যা↔মীন, বৃহস্পতি: কর্কট↔মকর, শুক্র: মীন↔কন্যা, শনি: তুলা↔মেষ।",
+        "kn": "ಸರಿ. ಇದು ಮೂಲ ನಿಯಮ: ಉಚ್ಛ ಮತ್ತು ನೀಚ ಯಾವಾಗಲೂ ನೇರ ಎದುರು. ಸೂರ್ಯ: ಮೇಷ↔ತುಲಾ, ಚಂದ್ರ: ವೃಷಭ↔ವೃಶ್ಚಿಕ, ಕುಜ: ಮಕರ↔ಕರ್ಕಾಟಕ, ಬುಧ: ಕನ್ಯಾ↔ಮೀನ, ಗುರು: ಕರ್ಕಾಟಕ↔ಮಕರ, ಶುಕ್ರ: ಮೀನ↔ಕನ್ಯಾ, ಶನಿ: ತುಲಾ↔ಮೇಷ.",
+        "gu": "સાચું. આ મૂળભૂત નિયમ છે: ઉચ્ચ અને નીચ હંમેશાં સીધા વિરુદ્ધ. સૂર્ય: મેષ↔તુલા, ચંદ્ર: વૃષભ↔વૃશ્ચિક, મંગળ: મકર↔કર્ક, બુધ: કન્યા↔મીન, ગુરુ: કર્ક↔મકર, શુક્ર: મીન↔કન્યા, શનિ: તુલા↔મેષ."
       },
       "classicalRef": "BPHS Ch.3"
     },
@@ -350,11 +350,11 @@
         "sa": "मूलत्रिकोण क्या है?",
         "mai": "मूलत्रिकोण क्या है?",
         "mr": "मूलत्रिकोण क्या है?",
-        "ta": "What is Moolatrikona?",
-        "te": "What is Moolatrikona?",
-        "bn": "What is Moolatrikona?",
-        "kn": "What is Moolatrikona?",
-        "gu": "What is Moolatrikona?"
+        "ta": "மூலத்திரிகோணம் என்றால் என்ன?",
+        "te": "మూలత్రికోణం అంటే ఏమిటి?",
+        "bn": "মূলত্রিকোণ কী?",
+        "kn": "ಮೂಲತ್ರಿಕೋಣ ಎಂದರೇನು?",
+        "gu": "મૂળત્રિકોણ શું છે?"
       },
       "options": [
         {
@@ -363,22 +363,22 @@
           "sa": "एक प्रकार का योग",
           "mai": "एक प्रकार का योग",
           "mr": "एक प्रकार का योग",
-          "ta": "A type of yoga",
-          "te": "A type of yoga",
-          "bn": "A type of yoga",
-          "kn": "A type of yoga",
-          "gu": "A type of yoga"
+          "ta": "ஒரு வகை யோகம்",
+          "te": "ఒక రకమైన యోగం",
+          "bn": "এক প্রকার যোগ",
+          "kn": "ಒಂದು ವಿಧದ ಯೋಗ",
+          "gu": "એક પ્રકારનો યોગ"
         },
         {
           "en": "A special strong portion within a planet's own sign",
           "hi": "ग्रह की अपनी राशि का एक विशेष बलवान भाग",
           "sa": "ग्रह की अपनी राशि का एक विशेष बलवान भाग",
-          "ta": "A special strong portion within a planet's own sign",
-          "te": "A special strong portion within a planet's own sign",
-          "bn": "A special strong portion within a planet's own sign",
-          "kn": "A special strong portion within a planet's own sign",
+          "ta": "கிரகத்தின் சொந்த ராசியில் விசேஷ பலமான பகுதி",
+          "te": "గ్రహం స్వరాశిలో ప్రత్యేక బలమైన భాగం",
+          "bn": "গ্রহের নিজ রাশির মধ্যে বিশেষ শক্তিশালী অংশ",
+          "kn": "ಗ್ರಹದ ಸ್ವಂತ ರಾಶಿಯೊಳಗೆ ವಿಶೇಷ ಬಲಿಷ್ಠ ಭಾಗ",
           "mr": "ग्रह की अपनी राशि का एक विशेष बलवान भाग",
-          "gu": "A special strong portion within a planet's own sign",
+          "gu": "ગ્રહની પોતાની રાશિમાં વિશેષ બળવાન ભાગ",
           "mai": "ग्रह की अपनी राशि का एक विशेष बलवान भाग"
         },
         {
@@ -387,11 +387,11 @@
           "sa": "उच्च का दूसरा नाम",
           "mai": "उच्च का दूसरा नाम",
           "mr": "उच्च का दूसरा नाम",
-          "ta": "Another name for exaltation",
-          "te": "Another name for exaltation",
-          "bn": "Another name for exaltation",
-          "kn": "Another name for exaltation",
-          "gu": "Another name for exaltation"
+          "ta": "உச்சத்தின் மற்றொரு பெயர்",
+          "te": "ఉచ్ఛానికి మరో పేరు",
+          "bn": "উচ্চের অন্য নাম",
+          "kn": "ಉಚ್ಛದ ಮತ್ತೊಂದು ಹೆಸರು",
+          "gu": "ઉચ્ચનું બીજું નામ"
         },
         {
           "en": "The sign opposite to debilitation",
@@ -399,11 +399,11 @@
           "sa": "नीच के विपरीत राशि",
           "mai": "नीच के विपरीत राशि",
           "mr": "नीच के विपरीत राशि",
-          "ta": "The sign opposite to debilitation",
-          "te": "The sign opposite to debilitation",
-          "bn": "The sign opposite to debilitation",
-          "kn": "The sign opposite to debilitation",
-          "gu": "The sign opposite to debilitation"
+          "ta": "நீசத்திற்கு எதிரான ராசி",
+          "te": "నీచానికి ఎదురు రాశి",
+          "bn": "নীচের বিপরীত রাশি",
+          "kn": "ನೀಚಕ್ಕೆ ಎದುರಿನ ರಾಶಿ",
+          "gu": "નીચની સામેની રાશિ"
         }
       ],
       "correctAnswer": 1,
@@ -411,12 +411,12 @@
         "en": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
         "hi": "मूलत्रिकोण ग्रह की अपनी राशि का विशिष्ट अंश-सीमा है जहां विशेष बल — स्वराशि से बलवान, उच्च से कम। उदा: सूर्य मूलत्रिकोण = सिंह 0°-20°।",
         "sa": "मूलत्रिकोण ग्रह की अपनी राशि का विशिष्ट अंश-सीमा है जहां विशेष बल — स्वराशि से बलवान, उच्च से कम। उदा: सूर्य मूलत्रिकोण = सिंह 0°-20°।",
-        "ta": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
-        "te": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
-        "bn": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
-        "kn": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
+        "ta": "மூலத்திரிகோணம் என்பது கிரகத்தின் சொந்த ராசியில் குறிப்பிட்ட பாகை வரம்பு — சொந்த ராசியின் மற்ற பகுதியை விட வலிமையானது, ஆனால் உச்சத்தை விட குறைவு. உதாரணம்: சூரியனின் மூலத்திரிகோணம் சிம்மம் 0°-20°.",
+        "te": "మూలత్రికోణం అనేది గ్రహం స్వరాశిలో ఒక నిర్దిష్ట డిగ్రీ శ్రేణి — స్వరాశి మిగిలిన భాగం కంటే బలమైనది, కానీ ఉచ్ఛం కంటే తక్కువ. ఉదాహరణ: సూర్యుని మూలత్రికోణం సింహం 0°-20°.",
+        "bn": "মূলত্রিকোণ হল গ্রহের নিজ রাশির মধ্যে একটি নির্দিষ্ট ডিগ্রি পরিসর — নিজ রাশির বাকি অংশের চেয়ে শক্তিশালী, কিন্তু উচ্চের চেয়ে কম। উদাহরণ: সূর্যের মূলত্রিকোণ সিংহ ০°-২০°।",
+        "kn": "ಮೂಲತ್ರಿಕೋಣ ಎಂದರೆ ಗ್ರಹದ ಸ್ವಂತ ರಾಶಿಯೊಳಗೆ ನಿರ್ದಿಷ್ಟ ಡಿಗ್ರಿ ಶ್ರೇಣಿ — ಸ್ವಂತ ರಾಶಿಯ ಉಳಿದ ಭಾಗಕ್ಕಿಂತ ಬಲಿಷ್ಠ, ಆದರೆ ಉಚ್ಛಕ್ಕಿಂತ ಕಡಿಮೆ. ಉದಾಹರಣೆ: ಸೂರ್ಯನ ಮೂಲತ್ರಿಕೋಣ ಸಿಂಹ 0°-20°.",
         "mr": "मूलत्रिकोण ग्रह की अपनी राशि का विशिष्ट अंश-सीमा है जहां विशेष बल — स्वराशि से बलवान, उच्च से कम। उदा: सूर्य मूलत्रिकोण = सिंह 0°-20°।",
-        "gu": "Moolatrikona is a specific degree range within a planet's own sign where it's especially powerful — stronger than the rest of own sign, but weaker than exaltation. Example: Sun's moolatrikona is Leo 0°-20° (the first 20° of Leo). The remaining 20°-30° of Leo is \"own sign\" (Swakshetra) — strong but not moolatrikona level.",
+        "gu": "મૂળત્રિકોણ એ ગ્રહની પોતાની રાશિમાં ચોક્કસ અંશ શ્રેણી છે — પોતાની રાશિના બાકી ભાગ કરતાં વધુ બળવાન, પણ ઉચ્ચ કરતાં ઓછું. ઉદાહરણ: સૂર્યનું મૂળત્રિકોણ સિંહ 0°-20°.",
         "mai": "मूलत्रिकोण ग्रह की अपनी राशि का विशिष्ट अंश-सीमा है जहां विशेष बल — स्वराशि से बलवान, उच्च से कम। उदा: सूर्य मूलत्रिकोण = सिंह 0°-20°।"
       },
       "classicalRef": "BPHS Ch.3 v.20"
@@ -430,11 +430,11 @@
         "sa": "नीच भंग की शर्त कौन सी है?",
         "mai": "नीच भंग की शर्त कौन सी है?",
         "mr": "नीच भंग की शर्त कौन सी है?",
-        "ta": "Which of these is a condition for Neecha Bhanga (debilitation cancellation)?",
-        "te": "Which of these is a condition for Neecha Bhanga (debilitation cancellation)?",
-        "bn": "Which of these is a condition for Neecha Bhanga (debilitation cancellation)?",
-        "kn": "Which of these is a condition for Neecha Bhanga (debilitation cancellation)?",
-        "gu": "Which of these is a condition for Neecha Bhanga (debilitation cancellation)?"
+        "ta": "இவற்றில் நீச பங்கத்தின் (நீசம் நீக்கல்) நிபந்தனை எது?",
+        "te": "వీటిలో నీచ భంగ (నీచ రద్దు) షరతు ఏది?",
+        "bn": "এদের মধ্যে নীচ ভঙ্গের (নীচ বাতিলকরণ) শর্ত কোনটি?",
+        "kn": "ಇವುಗಳಲ್ಲಿ ನೀಚ ಭಂಗದ (ನೀಚ ರದ್ದತಿ) ಷರತ್ತು ಯಾವುದು?",
+        "gu": "આમાંથી નીચ ભંગ (નીચ રદ) ની શરત કઈ છે?"
       },
       "options": [
         {
@@ -443,11 +443,11 @@
           "sa": "नीच ग्रह केंद्र में हो",
           "mai": "नीच ग्रह केंद्र में हो",
           "mr": "नीच ग्रह केंद्र में हो",
-          "ta": "The debilitated planet is in a kendra",
-          "te": "The debilitated planet is in a kendra",
-          "bn": "The debilitated planet is in a kendra",
-          "kn": "The debilitated planet is in a kendra",
-          "gu": "The debilitated planet is in a kendra"
+          "ta": "நீச கிரகம் கேந்திரத்தில் உள்ளது",
+          "te": "నీచ గ్రహం కేంద్రంలో ఉన్నది",
+          "bn": "নীচ গ্রহ কেন্দ্রে আছে",
+          "kn": "ನೀಚ ಗ್ರಹ ಕೇಂದ್ರದಲ್ಲಿದೆ",
+          "gu": "નીચ ગ્રહ કેન્દ્રમાં છે"
         },
         {
           "en": "The lord of the debilitation sign is in a kendra from Lagna or Moon",
@@ -455,11 +455,11 @@
           "sa": "नीच राशि का स्वामी लग्न या चंद्र से केंद्र में हो",
           "mai": "नीच राशि का स्वामी लग्न या चंद्र से केंद्र में हो",
           "mr": "नीच राशि का स्वामी लग्न या चंद्र से केंद्र में हो",
-          "ta": "The lord of the debilitation sign is in a kendra from Lagna or Moon",
-          "te": "The lord of the debilitation sign is in a kendra from Lagna or Moon",
-          "bn": "The lord of the debilitation sign is in a kendra from Lagna or Moon",
-          "kn": "The lord of the debilitation sign is in a kendra from Lagna or Moon",
-          "gu": "The lord of the debilitation sign is in a kendra from Lagna or Moon"
+          "ta": "நீச ராசி அதிபதி லக்னம் அல்லது சந்திரனிலிருந்து கேந்திரத்தில்",
+          "te": "నీచ రాశి అధిపతి లగ్నం లేదా చంద్రుని నుండి కేంద్రంలో",
+          "bn": "নীচ রাশির অধিপতি লগ্ন বা চন্দ্র থেকে কেন্দ্রে",
+          "kn": "ನೀಚ ರಾಶಿ ಅಧಿಪತಿ ಲಗ್ನ ಅಥವಾ ಚಂದ್ರನಿಂದ ಕೇಂದ್ರದಲ್ಲಿ",
+          "gu": "નીચ રાશિનો સ્વામી લગ્ન કે ચંદ્રથી કેન્દ્રમાં"
         },
         {
           "en": "The planet is retrograde",
@@ -467,11 +467,11 @@
           "sa": "ग्रह वक्री हो",
           "mai": "ग्रह वक्री हो",
           "mr": "ग्रह वक्री हो",
-          "ta": "The planet is retrograde",
-          "te": "The planet is retrograde",
-          "bn": "The planet is retrograde",
-          "kn": "The planet is retrograde",
-          "gu": "The planet is retrograde"
+          "ta": "கிரகம் வக்ரமாக உள்ளது",
+          "te": "గ్రహం వక్రంలో ఉన్నది",
+          "bn": "গ্রহটি বক্রী",
+          "kn": "ಗ್ರಹ ವಕ್ರದಲ್ಲಿದೆ",
+          "gu": "ગ્રહ વક્રી છે"
         },
         {
           "en": "All of the above",
@@ -479,11 +479,11 @@
           "sa": "उपरोक्त सभी",
           "mai": "उपरोक्त सभी",
           "mr": "उपरोक्त सभी",
-          "ta": "All of the above",
-          "te": "All of the above",
-          "bn": "All of the above",
-          "kn": "All of the above",
-          "gu": "All of the above"
+          "ta": "மேற்கூறிய அனைத்தும்",
+          "te": "పైవన్నీ",
+          "bn": "উপরের সবগুলি",
+          "kn": "ಮೇಲಿನ ಎಲ್ಲವೂ",
+          "gu": "ઉપરના બધા"
         }
       ],
       "correctAnswer": 3,
@@ -493,11 +493,11 @@
         "sa": "सभी मान्य नीच भंग शर्तें हैं! 4 शास्त्रीय शर्तें: (1) नीच राशि स्वामी केंद्र में, (2) उच्च राशि स्वामी केंद्र में, (3) नीच ग्रह स्वयं केंद्र में, (4) नीच ग्रह वक्री। कोई भी एक शर्त → नीच भंग राजयोग।",
         "mai": "सभी मान्य नीच भंग शर्तें हैं! 4 शास्त्रीय शर्तें: (1) नीच राशि स्वामी केंद्र में, (2) उच्च राशि स्वामी केंद्र में, (3) नीच ग्रह स्वयं केंद्र में, (4) नीच ग्रह वक्री। कोई भी एक शर्त → नीच भंग राजयोग।",
         "mr": "सभी मान्य नीच भंग शर्तें हैं! 4 शास्त्रीय शर्तें: (1) नीच राशि स्वामी केंद्र में, (2) उच्च राशि स्वामी केंद्र में, (3) नीच ग्रह स्वयं केंद्र में, (4) नीच ग्रह वक्री। कोई भी एक शर्त → नीच भंग राजयोग।",
-        "ta": "All are valid Neecha Bhanga conditions! The 4 classical conditions (BPHS): (1) Lord of debilitation sign in kendra from Lagna or Moon, (2) Lord of the exaltation sign in kendra, (3) The debilitated planet itself is in a kendra, (4) The debilitated planet is retrograde. ANY one condition cancels the debilitation, transforming weakness into Neecha Bhanga RAJA Yoga — extraordinary strength from adversity.",
-        "te": "All are valid Neecha Bhanga conditions! The 4 classical conditions (BPHS): (1) Lord of debilitation sign in kendra from Lagna or Moon, (2) Lord of the exaltation sign in kendra, (3) The debilitated planet itself is in a kendra, (4) The debilitated planet is retrograde. ANY one condition cancels the debilitation, transforming weakness into Neecha Bhanga RAJA Yoga — extraordinary strength from adversity.",
-        "bn": "All are valid Neecha Bhanga conditions! The 4 classical conditions (BPHS): (1) Lord of debilitation sign in kendra from Lagna or Moon, (2) Lord of the exaltation sign in kendra, (3) The debilitated planet itself is in a kendra, (4) The debilitated planet is retrograde. ANY one condition cancels the debilitation, transforming weakness into Neecha Bhanga RAJA Yoga — extraordinary strength from adversity.",
-        "kn": "All are valid Neecha Bhanga conditions! The 4 classical conditions (BPHS): (1) Lord of debilitation sign in kendra from Lagna or Moon, (2) Lord of the exaltation sign in kendra, (3) The debilitated planet itself is in a kendra, (4) The debilitated planet is retrograde. ANY one condition cancels the debilitation, transforming weakness into Neecha Bhanga RAJA Yoga — extraordinary strength from adversity.",
-        "gu": "All are valid Neecha Bhanga conditions! The 4 classical conditions (BPHS): (1) Lord of debilitation sign in kendra from Lagna or Moon, (2) Lord of the exaltation sign in kendra, (3) The debilitated planet itself is in a kendra, (4) The debilitated planet is retrograde. ANY one condition cancels the debilitation, transforming weakness into Neecha Bhanga RAJA Yoga — extraordinary strength from adversity."
+        "ta": "அனைத்தும் சரியான நீச பங்க நிபந்தனைகள்! BPHS-ன் 4 பாரம்பரிய நிபந்தனைகள்: (1) நீச ராசி அதிபதி லக்னம் அல்லது சந்திரனிலிருந்து கேந்திரத்தில், (2) உச்ச ராசி அதிபதி கேந்திரத்தில், (3) நீச கிரகமே கேந்திரத்தில், (4) நீச கிரகம் வக்ரமாக. எந்த ஒரு நிபந்தனையும் நீசத்தை நீக்கி நீச பங்க ராஜ யோகமாக மாற்றுகிறது.",
+        "te": "అన్నీ చెల్లుబాటు అయ్యే నీచ భంగ షరతులు! BPHS 4 సాంప్రదాయ షరతులు: (1) నీచ రాశి అధిపతి లగ్నం లేదా చంద్రుని నుండి కేంద్రంలో, (2) ఉచ్ఛ రాశి అధిపతి కేంద్రంలో, (3) నీచ గ్రహమే కేంద్రంలో, (4) నీచ గ్రహం వక్రంలో. ఏదైనా ఒక షరతు నీచాన్ని రద్దు చేస్తుంది.",
+        "bn": "সবগুলি বৈধ নীচ ভঙ্গ শর্ত! BPHS-এর ৪ ধ্রুপদী শর্ত: (১) নীচ রাশির অধিপতি লগ্ন বা চন্দ্র থেকে কেন্দ্রে, (২) উচ্চ রাশির অধিপতি কেন্দ্রে, (৩) নীচ গ্রহ নিজেই কেন্দ্রে, (৪) নীচ গ্রহ বক্রী। যেকোনো একটি শর্ত নীচ বাতিল করে।",
+        "kn": "ಎಲ್ಲವೂ ಮಾನ್ಯ ನೀಚ ಭಂಗ ಷರತ್ತುಗಳು! BPHS 4 ಶಾಸ್ತ್ರೀಯ ಷರತ್ತುಗಳು: (1) ನೀಚ ರಾಶಿ ಅಧಿಪತಿ ಲಗ್ನ ಅಥವಾ ಚಂದ್ರನಿಂದ ಕೇಂದ್ರದಲ್ಲಿ, (2) ಉಚ್ಛ ರಾಶಿ ಅಧಿಪತಿ ಕೇಂದ್ರದಲ್ಲಿ, (3) ನೀಚ ಗ್ರಹವೇ ಕೇಂದ್ರದಲ್ಲಿ, (4) ನೀಚ ಗ್ರಹ ವಕ್ರದಲ್ಲಿ. ಯಾವುದೇ ಒಂದು ಷರತ್ತು ನೀಚವನ್ನು ರದ್ದುಮಾಡುತ್ತದೆ.",
+        "gu": "બધા માન્ય નીચ ભંગ શરતો! BPHS ના 4 શાસ્ત્રીય શરતો: (1) નીચ રાશિનો સ્વામી લગ્ન કે ચંદ્રથી કેન્દ્રમાં, (2) ઉચ્ચ રાશિનો સ્વામી કેન્દ્રમાં, (3) નીચ ગ્રહ પોતે કેન્દ્રમાં, (4) નીચ ગ્રહ વક્રી. કોઈ એક શરત નીચ રદ કરે છે."
       },
       "classicalRef": "BPHS Ch.34 v.22"
     },
@@ -510,11 +510,11 @@
         "sa": "\"वर्गोत्तम\" क्या है?",
         "mai": "\"वर्गोत्तम\" क्या है?",
         "mr": "\"वर्गोत्तम\" क्या है?",
-        "ta": "What is \"Vargottama\"?",
-        "te": "What is \"Vargottama\"?",
-        "bn": "What is \"Vargottama\"?",
-        "kn": "What is \"Vargottama\"?",
-        "gu": "What is \"Vargottama\"?"
+        "ta": "\"வர்கோத்தமம்\" என்றால் என்ன?",
+        "te": "\"వర్గోత్తమం\" అంటే ఏమిటి?",
+        "bn": "\"বর্গোত্তম\" কী?",
+        "kn": "\"ವರ್ಗೋತ್ತಮ\" ಎಂದರೇನು?",
+        "gu": "\"વર્ગોત્તમ\" શું છે?"
       },
       "options": [
         {
@@ -523,11 +523,11 @@
           "sa": "D1 और D9 दोनों में उच्च राशि में ग्रह",
           "mai": "D1 और D9 दोनों में उच्च राशि में ग्रह",
           "mr": "D1 और D9 दोनों में उच्च राशि में ग्रह",
-          "ta": "A planet in its exaltation sign in both D1 and D9",
-          "te": "A planet in its exaltation sign in both D1 and D9",
-          "bn": "A planet in its exaltation sign in both D1 and D9",
-          "kn": "A planet in its exaltation sign in both D1 and D9",
-          "gu": "A planet in its exaltation sign in both D1 and D9"
+          "ta": "D1 மற்றும் D9 இரண்டிலும் உச்ச ராசியில் கிரகம்",
+          "te": "D1 మరియు D9 రెండింటిలో ఉచ్ఛ రాశిలో గ్రహం",
+          "bn": "D1 ও D9 উভয়ে উচ্চ রাশিতে গ্রহ",
+          "kn": "D1 ಮತ್ತು D9 ಎರಡರಲ್ಲೂ ಉಚ್ಛ ರಾಶಿಯಲ್ಲಿ ಗ್ರಹ",
+          "gu": "D1 અને D9 બંનેમાં ઉચ્ચ રાશિમાં ગ્રહ"
         },
         {
           "en": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)",
@@ -535,11 +535,11 @@
           "sa": "D1 (राशि) और D9 (नवांश) दोनों में एक ही राशि में ग्रह",
           "mai": "D1 (राशि) और D9 (नवांश) दोनों में एक ही राशि में ग्रह",
           "mr": "D1 (राशि) और D9 (नवांश) दोनों में एक ही राशि में ग्रह",
-          "ta": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)",
-          "te": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)",
-          "bn": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)",
-          "kn": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)",
-          "gu": "A planet in the SAME sign in both D1 (Rashi) and D9 (Navamsha)"
+          "ta": "D1 (ராசி) மற்றும் D9 (நவாம்சம்) இரண்டிலும் ஒரே ராசியில் கிரகம்",
+          "te": "D1 (రాశి) మరియు D9 (నవాంశ) రెండింటిలో ఒకే రాశిలో గ్రహం",
+          "bn": "D1 (রাশি) ও D9 (নবাংশ) উভয়ে একই রাশিতে গ্রহ",
+          "kn": "D1 (ರಾಶಿ) ಮತ್ತು D9 (ನವಾಂಶ) ಎರಡರಲ್ಲೂ ಒಂದೇ ರಾಶಿಯಲ್ಲಿ ಗ್ರಹ",
+          "gu": "D1 (રાશિ) અને D9 (નવાંશ) બંનેમાં એક જ રાશિમાં ગ્રહ"
         },
         {
           "en": "A planet with the highest Shadbala",
@@ -547,11 +547,11 @@
           "sa": "सबसे अधिक षड्बल वाला ग्रह",
           "mai": "सबसे अधिक षड्बल वाला ग्रह",
           "mr": "सबसे अधिक षड्बल वाला ग्रह",
-          "ta": "A planet with the highest Shadbala",
-          "te": "A planet with the highest Shadbala",
-          "bn": "A planet with the highest Shadbala",
-          "kn": "A planet with the highest Shadbala",
-          "gu": "A planet with the highest Shadbala"
+          "ta": "மிக உயர்ந்த ஷட்பலம் கொண்ட கிரகம்",
+          "te": "అత్యధిక షడ్బల గ్రహం",
+          "bn": "সর্বোচ্চ ষড়বল গ্রহ",
+          "kn": "ಅತ್ಯಧಿಕ ಷಡ್ಬಲ ಗ್ರಹ",
+          "gu": "સૌથી વધુ ષડ્બળ ધરાવતો ગ્રહ"
         },
         {
           "en": "A planet aspected by Jupiter",
@@ -559,11 +559,11 @@
           "sa": "गुरु द्वारा दृष्ट ग्रह",
           "mai": "गुरु द्वारा दृष्ट ग्रह",
           "mr": "गुरु द्वारा दृष्ट ग्रह",
-          "ta": "A planet aspected by Jupiter",
-          "te": "A planet aspected by Jupiter",
-          "bn": "A planet aspected by Jupiter",
-          "kn": "A planet aspected by Jupiter",
-          "gu": "A planet aspected by Jupiter"
+          "ta": "குருவால் பார்க்கப்படும் கிரகம்",
+          "te": "గురువు దృష్టి ఉన్న గ్రహం",
+          "bn": "বৃহস্পতির দৃষ্টিযুক্ত গ্রহ",
+          "kn": "ಗುರುವಿನ ದೃಷ್ಟಿಯಿರುವ ಗ್ರಹ",
+          "gu": "ગુરુની દૃષ્ટિ ધરાવતો ગ્રહ"
         }
       ],
       "correctAnswer": 1,
@@ -571,12 +571,12 @@
         "en": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
         "hi": "वर्गोत्तम = वर्ग (विभाग) + उत्तम (सर्वश्रेष्ठ)। D1 और D9 दोनों में एक ही राशि → ग्रह बहुत सशक्त। चर राशि का 1st पाद, स्थिर का 5th, द्विस्वभाव का 9th पाद में होता है।",
         "sa": "वर्गोत्तम = वर्ग (विभाग) + उत्तम (सर्वश्रेष्ठ)। D1 और D9 दोनों में एक ही राशि → ग्रह बहुत सशक्त। चर राशि का 1st पाद, स्थिर का 5th, द्विस्वभाव का 9th पाद में होता है।",
-        "ta": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
-        "te": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
-        "bn": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
-        "kn": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
+        "ta": "வர்கோத்தமம் (वर्ग = பிரிவு + उत्तम = சிறந்தது) என்றால் ஒரு கிரகம் ராசி சார்ட் (D1) மற்றும் நவாம்ச சார்ட் (D9) இரண்டிலும் ஒரே ராசியில் உள்ளது. இது கிரகத்தை கணிசமாக வலுப்படுத்துகிறது.",
+        "te": "వర్గోత్తమం (वर्ग = విభాగం + उत्तम = ఉత్తమం) అంటే ఒక గ్రహం రాశి చార్ట్ (D1) మరియు నవాంశ చార్ట్ (D9) రెండింటిలో ఒకే రాశిలో ఉండటం. ఇది గ్రహాన్ని గణనీయంగా బలపరుస్తుంది.",
+        "bn": "বর্গোত্তম (वर्ग = বিভাগ + उत्तम = শ্রেষ্ঠ) মানে একটি গ্রহ রাশি চার্ট (D1) ও নবাংশ চার্ট (D9) উভয়ে একই রাশিতে। এটি গ্রহকে উল্লেখযোগ্যভাবে শক্তিশালী করে।",
+        "kn": "ವರ್ಗೋತ್ತಮ (वर्ग = ವಿಭಾಗ + उत्तम = ಉತ್ತಮ) ಎಂದರೆ ಒಂದು ಗ್ರಹ ರಾಶಿ ಚಾರ್ಟ್ (D1) ಮತ್ತು ನವಾಂಶ ಚಾರ್ಟ್ (D9) ಎರಡರಲ್ಲೂ ಒಂದೇ ರಾಶಿಯಲ್ಲಿರುವುದು. ಇದು ಗ್ರಹವನ್ನು ಗಮನಾರ್ಹವಾಗಿ ಬಲಪಡಿಸುತ್ತದೆ.",
         "mr": "वर्गोत्तम = वर्ग (विभाग) + उत्तम (सर्वश्रेष्ठ)। D1 और D9 दोनों में एक ही राशि → ग्रह बहुत सशक्त। चर राशि का 1st पाद, स्थिर का 5th, द्विस्वभाव का 9th पाद में होता है।",
-        "gu": "Vargottama (वर्ग = division + उत्तम = best) means a planet is in the SAME sign in both the Rashi chart (D1) and Navamsha chart (D9). This significantly strengthens the planet — it's \"confirmed\" in that sign across two charts. Happens when a planet is in the 1st pada of a movable sign, 5th pada of a fixed sign, or 9th pada of a dual sign.",
+        "gu": "વર્ગોત્તમ (वर्ग = વિભાગ + उत्तम = શ્રેષ્ઠ) એટલે એક ગ્રહ રાશિ ચાર્ટ (D1) અને નવાંશ ચાર્ટ (D9) બંનેમાં એક જ રાશિમાં. આ ગ્રહને નોંધપાત્ર રીતે મજબૂત કરે છે.",
         "mai": "वर्गोत्तम = वर्ग (विभाग) + उत्तम (सर्वश्रेष्ठ)। D1 और D9 दोनों में एक ही राशि → ग्रह बहुत सशक्त। चर राशि का 1st पाद, स्थिर का 5th, द्विस्वभाव का 9th पाद में होता है।"
       }
     },
@@ -589,11 +589,11 @@
         "sa": "गुरु कर्क में उच्च और नीच है:",
         "mai": "गुरु कर्क में उच्च और नीच है:",
         "mr": "गुरु कर्क में उच्च और नीच है:",
-        "ta": "Jupiter is exalted in Cancer and debilitated in:",
-        "te": "Jupiter is exalted in Cancer and debilitated in:",
-        "bn": "Jupiter is exalted in Cancer and debilitated in:",
-        "kn": "Jupiter is exalted in Cancer and debilitated in:",
-        "gu": "Jupiter is exalted in Cancer and debilitated in:"
+        "ta": "குரு கடகத்தில் உச்சம் மற்றும் நீசமாகும் ராசி:",
+        "te": "గురువు కర్కటకంలో ఉచ్ఛం మరియు నీచమయ్యే రాశి:",
+        "bn": "বৃহস্পতি কর্কটে উচ্চ এবং নীচ হয়:",
+        "kn": "ಗುರು ಕರ್ಕಾಟಕದಲ್ಲಿ ಉಚ್ಛ ಮತ್ತು ನೀಚವಾಗುವ ರಾಶಿ:",
+        "gu": "ગુરુ કર્કમાં ઉચ્ચ અને નીચ થાય છે:"
       },
       "options": [
         {
@@ -602,11 +602,11 @@
           "sa": "मेष",
           "mai": "मेष",
           "mr": "मेष",
-          "ta": "Aries",
-          "te": "Aries",
-          "bn": "Aries",
-          "kn": "Aries",
-          "gu": "Aries"
+          "ta": "மேஷம்",
+          "te": "మేషం",
+          "bn": "মেষ",
+          "kn": "ಮೇಷ",
+          "gu": "મેષ"
         },
         {
           "en": "Virgo",
@@ -614,11 +614,11 @@
           "sa": "कन्या",
           "mai": "कन्या",
           "mr": "कन्या",
-          "ta": "Virgo",
-          "te": "Virgo",
-          "bn": "Virgo",
-          "kn": "Virgo",
-          "gu": "Virgo"
+          "ta": "கன்னி",
+          "te": "కన్య",
+          "bn": "কন্যা",
+          "kn": "ಕನ್ಯಾ",
+          "gu": "કન્યા"
         },
         {
           "en": "Capricorn",
@@ -626,11 +626,11 @@
           "sa": "मकर",
           "mai": "मकर",
           "mr": "मकर",
-          "ta": "Capricorn",
-          "te": "Capricorn",
-          "bn": "Capricorn",
-          "kn": "Capricorn",
-          "gu": "Capricorn"
+          "ta": "மகரம்",
+          "te": "మకరం",
+          "bn": "মকর",
+          "kn": "ಮಕರ",
+          "gu": "મકર"
         },
         {
           "en": "Pisces",
@@ -638,11 +638,11 @@
           "sa": "मीन",
           "mai": "मीन",
           "mr": "मीन",
-          "ta": "Pisces",
-          "te": "Pisces",
-          "bn": "Pisces",
-          "kn": "Pisces",
-          "gu": "Pisces"
+          "ta": "மீனம்",
+          "te": "మీనం",
+          "bn": "মীন",
+          "kn": "ಮೀನ",
+          "gu": "મીન"
         }
       ],
       "correctAnswer": 2,
@@ -652,11 +652,11 @@
         "sa": "गुरु उच्च कर्क (4th) → नीच मकर (10th, 180° दूर)। गुरु 5° कर्क = शिखर उच्च। ध्यान दें: मंगल मकर में उच्च — एक राशि एक ग्रह को उच्च और दूसरे को नीच कर सकती है।",
         "mai": "गुरु उच्च कर्क (4th) → नीच मकर (10th, 180° दूर)। गुरु 5° कर्क = शिखर उच्च। ध्यान दें: मंगल मकर में उच्च — एक राशि एक ग्रह को उच्च और दूसरे को नीच कर सकती है।",
         "mr": "गुरु उच्च कर्क (4th) → नीच मकर (10th, 180° दूर)। गुरु 5° कर्क = शिखर उच्च। ध्यान दें: मंगल मकर में उच्च — एक राशि एक ग्रह को उच्च और दूसरे को नीच कर सकती है।",
-        "ta": "Jupiter exalted in Cancer (4th sign) → debilitated in Capricorn (10th sign, 180° away). Jupiter at 5° Cancer = peak exaltation. Jupiter at 5° Capricorn = deepest debilitation. Note: Mars is EXALTED in Capricorn — showing that a sign can exalt one planet while debilitating another.",
-        "te": "Jupiter exalted in Cancer (4th sign) → debilitated in Capricorn (10th sign, 180° away). Jupiter at 5° Cancer = peak exaltation. Jupiter at 5° Capricorn = deepest debilitation. Note: Mars is EXALTED in Capricorn — showing that a sign can exalt one planet while debilitating another.",
-        "bn": "Jupiter exalted in Cancer (4th sign) → debilitated in Capricorn (10th sign, 180° away). Jupiter at 5° Cancer = peak exaltation. Jupiter at 5° Capricorn = deepest debilitation. Note: Mars is EXALTED in Capricorn — showing that a sign can exalt one planet while debilitating another.",
-        "kn": "Jupiter exalted in Cancer (4th sign) → debilitated in Capricorn (10th sign, 180° away). Jupiter at 5° Cancer = peak exaltation. Jupiter at 5° Capricorn = deepest debilitation. Note: Mars is EXALTED in Capricorn — showing that a sign can exalt one planet while debilitating another.",
-        "gu": "Jupiter exalted in Cancer (4th sign) → debilitated in Capricorn (10th sign, 180° away). Jupiter at 5° Cancer = peak exaltation. Jupiter at 5° Capricorn = deepest debilitation. Note: Mars is EXALTED in Capricorn — showing that a sign can exalt one planet while debilitating another."
+        "ta": "குரு கடகத்தில் (4வது ராசி) உச்சம் → மகரத்தில் (10வது ராசி, 180° தூரம்) நீசம். குரு கடகத்தில் 5° = உச்சச் சிகரம். குரு மகரத்தில் 5° = ஆழமான நீசம். குறிப்பு: செவ்வாய் மகரத்தில் உச்சம் — ஒரே ராசி ஒரு கிரகத்தை உயர்த்தி மற்றொன்றை நீசமாக்கும்.",
+        "te": "గురువు కర్కటకంలో (4వ రాశి) ఉచ్ఛం → మకరంలో (10వ రాశి, 180° దూరం) నీచం. గురువు కర్కటకంలో 5° = శిఖర ఉచ్ఛం. గురువు మకరంలో 5° = అధో నీచం. గమనిక: కుజుడు మకరంలో ఉచ్ఛం.",
+        "bn": "বৃহস্পতি কর্কটে (৪র্থ রাশি) উচ্চ → মকরে (১০ম রাশি, ১৮০° দূরে) নীচ। বৃহস্পতি কর্কটে ৫° = শীর্ষ উচ্চ। বৃহস্পতি মকরে ৫° = গভীরতম নীচ। দ্রষ্টব্য: মঙ্গল মকরে উচ্চ।",
+        "kn": "ಗುರು ಕರ್ಕಾಟಕದಲ್ಲಿ (4ನೇ ರಾಶಿ) ಉಚ್ಛ → ಮಕರದಲ್ಲಿ (10ನೇ ರಾಶಿ, 180° ದೂರ) ನೀಚ. ಗುರು ಕರ್ಕಾಟಕದಲ್ಲಿ 5° = ಗರಿಷ್ಠ ಉಚ್ಛ. ಗುರು ಮಕರದಲ್ಲಿ 5° = ಅಧೋ ನೀಚ.",
+        "gu": "ગુરુ કર્કમાં (4થી રાશિ) ઉચ્ચ → મકરમાં (10મી રાશિ, 180° દૂર) નીચ. ગુરુ કર્કમાં 5° = શિખર ઉચ્ચ. ગુરુ મકરમાં 5° = ઊંડું નીચ."
       },
       "classicalRef": "BPHS Ch.3"
     },
@@ -669,11 +669,11 @@
         "sa": "नीच ग्रह हमेशा बुरे परिणाम देता है।",
         "mai": "नीच ग्रह हमेशा बुरे परिणाम देता है।",
         "mr": "नीच ग्रह हमेशा बुरे परिणाम देता है।",
-        "ta": "A debilitated planet always gives bad results.",
-        "te": "A debilitated planet always gives bad results.",
-        "bn": "A debilitated planet always gives bad results.",
-        "kn": "A debilitated planet always gives bad results.",
-        "gu": "A debilitated planet always gives bad results."
+        "ta": "நீச கிரகம் எப்போதும் கெட்ட பலன்களைத் தருகிறது.",
+        "te": "నీచ గ్రహం ఎల్లప్పుడూ చెడు ఫలితాలు ఇస్తుంది.",
+        "bn": "নীচ গ্রহ সর্বদা খারাপ ফল দেয়।",
+        "kn": "ನೀಚ ಗ್ರಹ ಯಾವಾಗಲೂ ಕೆಟ್ಟ ಫಲಗಳನ್ನು ನೀಡುತ್ತದೆ.",
+        "gu": "નીચ ગ્રહ હંમેશાં ખરાબ ફળ આપે છે."
       },
       "correctAnswer": false,
       "explanation": {
@@ -682,11 +682,11 @@
         "sa": "गलत! नीच ग्रह नीच भंग राज योग से असाधारण परिणाम दे सकता है। यदि नीच रद्द हो → ग्रह सबसे दुर्बल से सबसे बलवान बनता है। जैसे नीचे से उठा नेता — विपरीत परिस्थितियों को पार कर अधिक प्राप्त करता है।",
         "mai": "गलत! नीच ग्रह नीच भंग राज योग से असाधारण परिणाम दे सकता है। यदि नीच रद्द हो → ग्रह सबसे दुर्बल से सबसे बलवान बनता है। जैसे नीचे से उठा नेता — विपरीत परिस्थितियों को पार कर अधिक प्राप्त करता है।",
         "mr": "गलत! नीच ग्रह नीच भंग राज योग से असाधारण परिणाम दे सकता है। यदि नीच रद्द हो → ग्रह सबसे दुर्बल से सबसे बलवान बनता है। जैसे नीचे से उठा नेता — विपरीत परिस्थितियों को पार कर अधिक प्राप्त करता है।",
-        "ta": "False! A debilitated planet can give EXTRAORDINARY results through Neecha Bhanga Raja Yoga. If the debilitation is cancelled (4 conditions), the planet transforms from its weakest to one of its strongest states. Like a leader who rises from the bottom — having overcome adversity, they achieve more than someone who started privileged. Many successful people have Neecha Bhanga yogas.",
-        "te": "False! A debilitated planet can give EXTRAORDINARY results through Neecha Bhanga Raja Yoga. If the debilitation is cancelled (4 conditions), the planet transforms from its weakest to one of its strongest states. Like a leader who rises from the bottom — having overcome adversity, they achieve more than someone who started privileged. Many successful people have Neecha Bhanga yogas.",
-        "bn": "False! A debilitated planet can give EXTRAORDINARY results through Neecha Bhanga Raja Yoga. If the debilitation is cancelled (4 conditions), the planet transforms from its weakest to one of its strongest states. Like a leader who rises from the bottom — having overcome adversity, they achieve more than someone who started privileged. Many successful people have Neecha Bhanga yogas.",
-        "kn": "False! A debilitated planet can give EXTRAORDINARY results through Neecha Bhanga Raja Yoga. If the debilitation is cancelled (4 conditions), the planet transforms from its weakest to one of its strongest states. Like a leader who rises from the bottom — having overcome adversity, they achieve more than someone who started privileged. Many successful people have Neecha Bhanga yogas.",
-        "gu": "False! A debilitated planet can give EXTRAORDINARY results through Neecha Bhanga Raja Yoga. If the debilitation is cancelled (4 conditions), the planet transforms from its weakest to one of its strongest states. Like a leader who rises from the bottom — having overcome adversity, they achieve more than someone who started privileged. Many successful people have Neecha Bhanga yogas."
+        "ta": "தவறு! நீச கிரகம் நீச பங்க ராஜ யோகத்தின் மூலம் அசாதாரண பலன்களைத் தரலாம். நீசம் நீக்கப்பட்டால் (4 நிபந்தனைகள்), கிரகம் பலவீனத்திலிருந்து வலிமைக்கு மாறுகிறது — அடிமட்டத்திலிருந்து எழும் தலைவரைப் போல.",
+        "te": "తప్పు! నీచ గ్రహం నీచ భంగ రాజ యోగం ద్వారా అసాధారణ ఫలితాలు ఇవ్వగలదు. నీచం రద్దయితే (4 షరతులు), గ్రహం బలహీనత నుండి బలానికి మారుతుంది — అడుగు నుండి లేచిన నాయకుని వలె.",
+        "bn": "ভুল! নীচ গ্রহ নীচ ভঙ্গ রাজ যোগের মাধ্যমে অসাধারণ ফল দিতে পারে। নীচ বাতিল হলে (৪ শর্ত), গ্রহ দুর্বলতা থেকে শক্তিতে রূপান্তরিত হয় — নিচু থেকে ওঠা নেতার মতো।",
+        "kn": "ತಪ್ಪು! ನೀಚ ಗ್ರಹ ನೀಚ ಭಂಗ ರಾಜ ಯೋಗದ ಮೂಲಕ ಅಸಾಧಾರಣ ಫಲಗಳನ್ನು ನೀಡಬಹುದು. ನೀಚ ರದ್ದಾದರೆ (4 ಷರತ್ತುಗಳು), ಗ್ರಹ ದೌರ್ಬಲ್ಯದಿಂದ ಬಲಕ್ಕೆ ಬದಲಾಗುತ್ತದೆ.",
+        "gu": "ખોટું! નીચ ગ્રહ નીચ ભંગ રાજ યોગ દ્વારા અસાધારણ ફળ આપી શકે છે. નીચ રદ થાય (4 શરતો), ગ્રહ નબળાઈમાંથી બળમાં રૂપાંતર થાય છે."
       },
       "classicalRef": "BPHS Ch.34"
     },
@@ -697,12 +697,12 @@
         "en": "Saturn's moolatrikona is:",
         "hi": "शनि का मूलत्रिकोण है:",
         "sa": "शनि का मूलत्रिकोण है:",
-        "ta": "Saturn's moolatrikona is:",
-        "te": "Saturn's moolatrikona is:",
-        "bn": "Saturn's moolatrikona is:",
-        "kn": "Saturn's moolatrikona is:",
+        "ta": "சனியின் மூலத்திரிகோணம்:",
+        "te": "శని మూలత్రికోణం:",
+        "bn": "শনির মূলত্রিকোণ:",
+        "kn": "ಶನಿಯ ಮೂಲತ್ರಿಕೋಣ:",
         "mr": "शनि का मूलत्रिकोण है:",
-        "gu": "Saturn's moolatrikona is:",
+        "gu": "શનિનું મૂળત્રિકોણ:",
         "mai": "शनि का मूलत्रिकोण है:"
       },
       "options": [
@@ -712,11 +712,11 @@
           "sa": "मकर 0°-20°",
           "mai": "मकर 0°-20°",
           "mr": "मकर 0°-20°",
-          "ta": "Capricorn 0°-20°",
-          "te": "Capricorn 0°-20°",
-          "bn": "Capricorn 0°-20°",
-          "kn": "Capricorn 0°-20°",
-          "gu": "Capricorn 0°-20°"
+          "ta": "மகரம் 0°-20°",
+          "te": "మకరం 0°-20°",
+          "bn": "মকর ০°-২০°",
+          "kn": "ಮಕರ 0°-20°",
+          "gu": "મકર 0°-20°"
         },
         {
           "en": "Aquarius 0°-20°",
@@ -724,11 +724,11 @@
           "sa": "कुम्भ 0°-20°",
           "mai": "कुम्भ 0°-20°",
           "mr": "कुम्भ 0°-20°",
-          "ta": "Aquarius 0°-20°",
-          "te": "Aquarius 0°-20°",
-          "bn": "Aquarius 0°-20°",
-          "kn": "Aquarius 0°-20°",
-          "gu": "Aquarius 0°-20°"
+          "ta": "கும்பம் 0°-20°",
+          "te": "కుంభం 0°-20°",
+          "bn": "কুম্ভ ০°-২০°",
+          "kn": "ಕುಂಭ 0°-20°",
+          "gu": "કુંભ 0°-20°"
         },
         {
           "en": "Libra 0°-20°",
@@ -736,11 +736,11 @@
           "sa": "तुला 0°-20°",
           "mai": "तुला 0°-20°",
           "mr": "तुला 0°-20°",
-          "ta": "Libra 0°-20°",
-          "te": "Libra 0°-20°",
-          "bn": "Libra 0°-20°",
-          "kn": "Libra 0°-20°",
-          "gu": "Libra 0°-20°"
+          "ta": "துலாம் 0°-20°",
+          "te": "తుల 0°-20°",
+          "bn": "তুলা ০°-২০°",
+          "kn": "ತುಲಾ 0°-20°",
+          "gu": "તુલા 0°-20°"
         },
         {
           "en": "Pisces 0°-20°",
@@ -748,11 +748,11 @@
           "sa": "मीन 0°-20°",
           "mai": "मीन 0°-20°",
           "mr": "मीन 0°-20°",
-          "ta": "Pisces 0°-20°",
-          "te": "Pisces 0°-20°",
-          "bn": "Pisces 0°-20°",
-          "kn": "Pisces 0°-20°",
-          "gu": "Pisces 0°-20°"
+          "ta": "மீனம் 0°-20°",
+          "te": "మీనం 0°-20°",
+          "bn": "মীন ০°-২০°",
+          "kn": "ಮೀನ 0°-20°",
+          "gu": "મીન 0°-20°"
         }
       ],
       "correctAnswer": 1,
@@ -760,12 +760,12 @@
         "en": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
         "hi": "शनि का मूलत्रिकोण कुम्भ 0°-20° है। शनि मकर और कुम्भ दोनों का स्वामी, लेकिन कुम्भ मूलत्रिकोण (अधिक बलवान)। शनि 10° कुम्भ > 10° मकर।",
         "sa": "शनि का मूलत्रिकोण कुम्भ 0°-20° है। शनि मकर और कुम्भ दोनों का स्वामी, लेकिन कुम्भ मूलत्रिकोण (अधिक बलवान)। शनि 10° कुम्भ > 10° मकर।",
-        "ta": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
-        "te": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
-        "bn": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
-        "kn": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
+        "ta": "சனியின் மூலத்திரிகோணம் கும்பம் 0°-20°. சனி மகரம் மற்றும் கும்பம் இரண்டையும் ஆளுகிறது, ஆனால் கும்பம் அதன் மூலத்திரிகோணம் (அதிக சக்தி கொண்ட ராசி). மகரம் அதன் சாதாரண சொந்த ராசி.",
+        "te": "శని మూలత్రికోణం కుంభం 0°-20°. శని మకరం మరియు కుంభం రెండింటినీ పాలిస్తాడు, కానీ కుంభం దాని మూలత్రికోణం (ఎక్కువ శక్తివంతమైన రాశి). మకరం దాని సాధారణ స్వరాశి.",
+        "bn": "শনির মূলত্রিকোণ কুম্ভ ০°-২০°। শনি মকর ও কুম্ভ দুটিই শাসন করে, কিন্তু কুম্ভ তার মূলত্রিকোণ (বেশি শক্তিশালী রাশি)। মকর তার সাধারণ স্বরাশি।",
+        "kn": "ಶನಿಯ ಮೂಲತ್ರಿಕೋಣ ಕುಂಭ 0°-20°. ಶನಿ ಮಕರ ಮತ್ತು ಕುಂಭ ಎರಡನ್ನೂ ಆಳುತ್ತಾನೆ, ಆದರೆ ಕುಂಭ ಅವನ ಮೂಲತ್ರಿಕೋಣ (ಹೆಚ್ಚು ಶಕ್ತಿಶಾಲಿ ರಾಶಿ). ಮಕರ ಅವನ ಸಾಮಾನ್ಯ ಸ್ವರಾಶಿ.",
         "mr": "शनि का मूलत्रिकोण कुम्भ 0°-20° है। शनि मकर और कुम्भ दोनों का स्वामी, लेकिन कुम्भ मूलत्रिकोण (अधिक बलवान)। शनि 10° कुम्भ > 10° मकर।",
-        "gu": "Saturn's moolatrikona is Aquarius 0°-20°. Saturn owns both Capricorn and Aquarius, but Aquarius is its moolatrikona (the sign where it's more powerful). Capricorn is its regular own sign. This distinction matters for dignity assessment — Saturn at 10° Aquarius is stronger than at 10° Capricorn.",
+        "gu": "શનિનું મૂળત્રિકોણ કુંભ 0°-20°. શનિ મકર અને કુંભ બંને રાશિનો સ્વામી છે, પણ કુંભ તેનું મૂળત્રિકોણ (વધુ બળવાન રાશિ). મકર તેની સામાન્ય સ્વરાશિ.",
         "mai": "शनि का मूलत्रिकोण कुम्भ 0°-20° है। शनि मकर और कुम्भ दोनों का स्वामी, लेकिन कुम्भ मूलत्रिकोण (अधिक बलवान)। शनि 10° कुम्भ > 10° मकर।"
       },
       "classicalRef": "BPHS Ch.3 v.20"

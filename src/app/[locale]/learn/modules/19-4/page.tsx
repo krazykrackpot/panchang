@@ -23,10 +23,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'होरा लग्न (HL) मुख्यतः किसका सूचक है?',
     },
     options: [
-      { en: 'Health and longevity', hi: 'स्वास्थ्य और दीर्घायु', sa: 'स्वास्थ्य और दीर्घायु', mai: 'स्वास्थ्य और दीर्घायु', mr: 'स्वास्थ्य और दीर्घायु', ta: 'Health and longevity', te: 'Health and longevity', bn: 'Health and longevity', kn: 'Health and longevity', gu: 'Health and longevity' },
-      { en: 'Wealth and financial prosperity', hi: 'धन और आर्थिक समृद्धि', sa: 'धन और आर्थिक समृद्धि', mai: 'धन और आर्थिक समृद्धि', mr: 'धन और आर्थिक समृद्धि', ta: 'Wealth and financial prosperity', te: 'Wealth and financial prosperity', bn: 'Wealth and financial prosperity', kn: 'Wealth and financial prosperity', gu: 'Wealth and financial prosperity' },
-      { en: 'Marriage and relationships', hi: 'विवाह और सम्बन्ध', sa: 'विवाह और सम्बन्ध', mai: 'विवाह और सम्बन्ध', mr: 'विवाह और सम्बन्ध', ta: 'Marriage and relationships', te: 'Marriage and relationships', bn: 'Marriage and relationships', kn: 'Marriage and relationships', gu: 'Marriage and relationships' },
-      { en: 'Spiritual attainment', hi: 'आध्यात्मिक उपलब्धि', sa: 'आध्यात्मिक उपलब्धि', mai: 'आध्यात्मिक उपलब्धि', mr: 'आध्यात्मिक उपलब्धि', ta: 'Spiritual attainment', te: 'Spiritual attainment', bn: 'Spiritual attainment', kn: 'Spiritual attainment', gu: 'Spiritual attainment' },
+      { en: 'Health and longevity', hi: 'स्वास्थ्य और दीर्घायु', sa: 'स्वास्थ्यं दीर्घायुश्च', mai: 'स्वास्थ्य आ दीर्घायु', mr: 'आरोग्य आणि दीर्घायुष्य', ta: 'ஆரோக்கியம் மற்றும் ஆயுள்', te: 'ఆరోగ్యం మరియు దీర్ఘాయువు', bn: 'স্বাস্থ্য ও দীর্ঘায়ু', kn: 'ಆರೋಗ್ಯ ಮತ್ತು ದೀರ್ಘಾಯುಷ್ಯ', gu: 'આરોગ્ય અને દીર્ઘાયુ' },
+      { en: 'Wealth and financial prosperity', hi: 'धन और आर्थिक समृद्धि', sa: 'धनं आर्थिकसमृद्धिश्च', mai: 'धन आ आर्थिक समृद्धि', mr: 'धन आणि आर्थिक समृद्धी', ta: 'செல்வம் மற்றும் நிதி செழிப்பு', te: 'సంపద మరియు ఆర్థిక సమృద్ధి', bn: 'ধন ও আর্থিক সমৃদ্ধি', kn: 'ಸಂಪತ್ತು ಮತ್ತು ಆರ್ಥಿಕ ಸಮೃದ್ಧಿ', gu: 'ધન અને આર્થિક સમૃદ્ધિ' },
+      { en: 'Marriage and relationships', hi: 'विवाह और सम्बन्ध', sa: 'विवाहः सम्बन्धाश्च', mai: 'विवाह आ सम्बन्ध', mr: 'विवाह आणि संबंध', ta: 'திருமணம் மற்றும் உறவுகள்', te: 'వివాహం మరియు సంబంధాలు', bn: 'বিবাহ ও সম্পর্ক', kn: 'ವಿವಾಹ ಮತ್ತು ಸಂಬಂಧಗಳು', gu: 'લગ્ન અને સંબંધો' },
+      { en: 'Spiritual attainment', hi: 'आध्यात्मिक उपलब्धि', sa: 'आध्यात्मिका उपलब्धिः', mai: 'आध्यात्मिक उपलब्धि', mr: 'आध्यात्मिक प्राप्ती', ta: 'ஆன்மீக சாதனை', te: 'ఆధ్యాత్మిక సాధన', bn: 'আধ্যাত্মিক সাধনা', kn: 'ಆಧ್ಯಾತ್ಮಿಕ ಸಾಧನೆ', gu: 'આધ્યાત્મિક સિદ્ધિ' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -41,10 +41,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'घटी लग्न (GL) प्रत्येक कितने समय में एक राशि आगे बढ़ता है?',
     },
     options: [
-      { en: '2.5 hours (1 hora)', hi: '2.5 घण्टे (1 होरा)', sa: '2.5 घण्टे (1 होरा)', mai: '2.5 घण्टे (1 होरा)', mr: '2.5 घण्टे (1 होरा)', ta: '2.5 hours (1 hora)', te: '2.5 hours (1 hora)', bn: '2.5 hours (1 hora)', kn: '2.5 hours (1 hora)', gu: '2.5 hours (1 hora)' },
-      { en: '24 minutes (1 ghati/nadika)', hi: '24 मिनट (1 घटी/नाडिका)', sa: '24 मिनट (1 घटी/नाडिका)', mai: '24 मिनट (1 घटी/नाडिका)', mr: '24 मिनट (1 घटी/नाडिका)', ta: '24 minutes (1 ghati/nadika)', te: '24 minutes (1 ghati/nadika)', bn: '24 minutes (1 ghati/nadika)', kn: '24 minutes (1 ghati/nadika)', gu: '24 minutes (1 ghati/nadika)' },
-      { en: '1 hour', hi: '1 घण्टा', sa: '1 घण्टा', mai: '1 घण्टा', mr: '1 घण्टा', ta: '1 hour', te: '1 hour', bn: '1 hour', kn: '1 hour', gu: '1 hour' },
-      { en: '12 minutes', hi: '12 मिनट', sa: '12 मिनट', mai: '12 मिनट', mr: '12 मिनट', ta: '12 minutes', te: '12 minutes', bn: '12 minutes', kn: '12 minutes', gu: '12 minutes' },
+      { en: '2.5 hours (1 hora)', hi: '2.5 घण्टे (1 होरा)', sa: '2.5 होराः (1 होरा)', mai: '2.5 घण्टा (1 होरा)', mr: '2.5 तास (1 होरा)', ta: '2.5 மணி (1 ஹோரா)', te: '2.5 గంటలు (1 హోర)', bn: '২.৫ ঘণ্টা (১ হোরা)', kn: '2.5 ಗಂಟೆ (1 ಹೋರಾ)', gu: '2.5 કલાક (1 હોરા)' },
+      { en: '24 minutes (1 ghati/nadika)', hi: '24 मिनट (1 घटी/नाडिका)', sa: '24 निमेषाः (1 घटी/नाडिका)', mai: '24 मिनट (1 घटी/नाडिका)', mr: '24 मिनिटे (1 घटी/नाडिका)', ta: '24 நிமிடம் (1 கடி/நாடிகா)', te: '24 నిమిషాలు (1 ఘటి/నాడిక)', bn: '২৪ মিনিট (১ ঘটি/নাডিকা)', kn: '24 ನಿಮಿಷ (1 ಘಟಿ/ನಾಡಿಕಾ)', gu: '24 મિનિટ (1 ઘટી/નાડિકા)' },
+      { en: '1 hour', hi: '1 घण्टा', sa: '1 होरा', mai: '1 घण्टा', mr: '1 तास', ta: '1 மணி', te: '1 గంట', bn: '১ ঘণ্টা', kn: '1 ಗಂಟೆ', gu: '1 કલાક' },
+      { en: '12 minutes', hi: '12 मिनट', sa: '12 निमेषाः', mai: '12 मिनट', mr: '12 मिनिटे', ta: '12 நிமிடம்', te: '12 నిమిషాలు', bn: '১২ মিনিট', kn: '12 ನಿಮಿಷ', gu: '12 મિનિટ' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -71,10 +71,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'होरा लग्न गणित करने के लिए जानना आवश्यक है:',
     },
     options: [
-      { en: 'Only the birth date', hi: 'केवल जन्म तिथि', sa: 'केवल जन्म तिथि', mai: 'केवल जन्म तिथि', mr: 'केवल जन्म तिथि', ta: 'Only the birth date', te: 'Only the birth date', bn: 'Only the birth date', kn: 'Only the birth date', gu: 'Only the birth date' },
-      { en: 'The sunrise time and birth time', hi: 'सूर्योदय का समय और जन्म का समय', sa: 'सूर्योदय का समय और जन्म का समय', mai: 'सूर्योदय का समय और जन्म का समय', mr: 'सूर्योदय का समय और जन्म का समय', ta: 'The sunrise time and birth time', te: 'The sunrise time and birth time', bn: 'The sunrise time and birth time', kn: 'The sunrise time and birth time', gu: 'The sunrise time and birth time' },
+      { en: 'Only the birth date', hi: 'केवल जन्म तिथि', sa: 'जन्मतिथिः एव', mai: 'खाली जन्म तिथि', mr: 'फक्त जन्मतिथी', ta: 'பிறந்த தேதி மட்டும்', te: 'జన్మ తేదీ మాత్రమే', bn: 'শুধুমাত্র জন্ম তারিখ', kn: 'ಜನ್ಮ ದಿನಾಂಕ ಮಾತ್ರ', gu: 'ફક્ત જન્મ તારીખ' },
+      { en: 'The sunrise time and birth time', hi: 'सूर्योदय का समय और जन्म का समय', sa: 'सूर्योदयकालः जन्मकालश्च', mai: 'सूर्योदयक समय आ जन्मक समय', mr: 'सूर्योदयाचा वेळ आणि जन्माचा वेळ', ta: 'சூரிய உதய நேரம் மற்றும் பிறந்த நேரம்', te: 'సూర్యోదయ సమయం మరియు జన్మ సమయం', bn: 'সূর্যোদয়ের সময় ও জন্ম সময়', kn: 'ಸೂರ್ಯೋದಯ ಸಮಯ ಮತ್ತು ಜನ್ಮ ಸಮಯ', gu: 'સૂર્યોદય સમય અને જન્મ સમય' },
       { en: 'Only the Moon\'s position', hi: 'केवल चन्द्रमा की स्थिति' },
-      { en: 'The Ayanamsha value', hi: 'अयनांश मान', sa: 'अयनांश मान', mai: 'अयनांश मान', mr: 'अयनांश मान', ta: 'The Ayanamsha value', te: 'The Ayanamsha value', bn: 'The Ayanamsha value', kn: 'The Ayanamsha value', gu: 'The Ayanamsha value' },
+      { en: 'The Ayanamsha value', hi: 'अयनांश मान', sa: 'अयनांशमानम्', mai: 'अयनांश मान', mr: 'अयनांश मूल्य', ta: 'அயனாம்ச மதிப்பு', te: 'అయనాంశ విలువ', bn: 'অয়নাংশ মান', kn: 'ಅಯನಾಂಶ ಮೌಲ್ಯ', gu: 'અયનાંશ મૂલ્ય' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -89,10 +89,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि कोई व्यक्ति सूर्योदय के 7.5 घण्टे बाद जन्मा और सूर्य मेष में है, तो होरा लग्न किस राशि में है?',
     },
     options: [
-      { en: 'Aries (no change)', hi: 'मेष (कोई परिवर्तन नहीं)', sa: 'मेष (कोई परिवर्तन नहीं)', mai: 'मेष (कोई परिवर्तन नहीं)', mr: 'मेष (कोई परिवर्तन नहीं)', ta: 'Aries (no change)', te: 'Aries (no change)', bn: 'Aries (no change)', kn: 'Aries (no change)', gu: 'Aries (no change)' },
-      { en: 'Cancer (3 signs ahead)', hi: 'कर्क (3 राशियाँ आगे)', sa: 'कर्क (3 राशियाँ आगे)', mai: 'कर्क (3 राशियाँ आगे)', mr: 'कर्क (3 राशियाँ आगे)', ta: 'Cancer (3 signs ahead)', te: 'Cancer (3 signs ahead)', bn: 'Cancer (3 signs ahead)', kn: 'Cancer (3 signs ahead)', gu: 'Cancer (3 signs ahead)' },
-      { en: 'Taurus (1 sign ahead)', hi: 'वृषभ (1 राशि आगे)', sa: 'वृषभ (1 राशि आगे)', mai: 'वृषभ (1 राशि आगे)', mr: 'वृषभ (1 राशि आगे)', ta: 'Taurus (1 sign ahead)', te: 'Taurus (1 sign ahead)', bn: 'Taurus (1 sign ahead)', kn: 'Taurus (1 sign ahead)', gu: 'Taurus (1 sign ahead)' },
-      { en: 'Leo (4 signs ahead)', hi: 'सिंह (4 राशियाँ आगे)', sa: 'सिंह (4 राशियाँ आगे)', mai: 'सिंह (4 राशियाँ आगे)', mr: 'सिंह (4 राशियाँ आगे)', ta: 'Leo (4 signs ahead)', te: 'Leo (4 signs ahead)', bn: 'Leo (4 signs ahead)', kn: 'Leo (4 signs ahead)', gu: 'Leo (4 signs ahead)' },
+      { en: 'Aries (no change)', hi: 'मेष (कोई परिवर्तन नहीं)', sa: 'मेषः (परिवर्तनं नास्ति)', mai: 'मेष (कोनो परिवर्तन नहि)', mr: 'मेष (बदल नाही)', ta: 'மேஷம் (மாற்றமில்லை)', te: 'మేషం (మార్పు లేదు)', bn: 'মেষ (কোনো পরিবর্তন নেই)', kn: 'ಮೇಷ (ಬದಲಾವಣೆ ಇಲ್ಲ)', gu: 'મેષ (કોઈ ફેરફાર નથી)' },
+      { en: 'Cancer (3 signs ahead)', hi: 'कर्क (3 राशियाँ आगे)', sa: 'कर्कटः (3 राशयः अग्रे)', mai: 'कर्क (3 राशि आगाँ)', mr: 'कर्क (3 राशी पुढे)', ta: 'கடகம் (3 ராசிகள் முன்னால்)', te: 'కర్కటకం (3 రాశులు ముందు)', bn: 'কর্কট (৩ রাশি এগিয়ে)', kn: 'ಕರ್ಕಾಟಕ (3 ರಾಶಿ ಮುಂದೆ)', gu: 'કર્ક (3 રાશિ આગળ)' },
+      { en: 'Taurus (1 sign ahead)', hi: 'वृषभ (1 राशि आगे)', sa: 'वृषभः (1 राशिः अग्रे)', mai: 'वृषभ (1 राशि आगाँ)', mr: 'वृषभ (1 राशी पुढे)', ta: 'ரிஷபம் (1 ராசி முன்னால்)', te: 'వృషభం (1 రాశి ముందు)', bn: 'বৃষ (১ রাশি এগিয়ে)', kn: 'ವೃಷಭ (1 ರಾಶಿ ಮುಂದೆ)', gu: 'વૃષભ (1 રાશિ આગળ)' },
+      { en: 'Leo (4 signs ahead)', hi: 'सिंह (4 राशियाँ आगे)', sa: 'सिंहः (4 राशयः अग्रे)', mai: 'सिंह (4 राशि आगाँ)', mr: 'सिंह (4 राशी पुढे)', ta: 'சிம்மம் (4 ராசிகள் முன்னால்)', te: 'సింహం (4 రాశులు ముందు)', bn: 'সিংহ (৪ রাশি এগিয়ে)', kn: 'ಸಿಂಹ (4 ರಾಶಿ ಮುಂದೆ)', gu: 'સિંહ (4 રાશિ આગળ)' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -137,10 +137,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्णद लग्न की गणना किनके सम्बन्ध पर निर्भर करती है?',
     },
     options: [
-      { en: 'The Moon and the Sun', hi: 'चन्द्रमा और सूर्य', sa: 'चन्द्रमा और सूर्य', mai: 'चन्द्रमा और सूर्य', mr: 'चन्द्रमा और सूर्य', ta: 'The Moon and the Sun', te: 'The Moon and the Sun', bn: 'The Moon and the Sun', kn: 'The Moon and the Sun', gu: 'The Moon and the Sun' },
-      { en: 'The Lagna and the Hora Lagna', hi: 'लग्न और होरा लग्न', sa: 'लग्न और होरा लग्न', mai: 'लग्न और होरा लग्न', mr: 'लग्न और होरा लग्न', ta: 'The Lagna and the Hora Lagna', te: 'The Lagna and the Hora Lagna', bn: 'The Lagna and the Hora Lagna', kn: 'The Lagna and the Hora Lagna', gu: 'The Lagna and the Hora Lagna' },
-      { en: 'The Atmakaraka and Amatyakaraka', hi: 'आत्मकारक और अमात्यकारक', sa: 'आत्मकारक और अमात्यकारक', mai: 'आत्मकारक और अमात्यकारक', mr: 'आत्मकारक और अमात्यकारक', ta: 'The Atmakaraka and Amatyakaraka', te: 'The Atmakaraka and Amatyakaraka', bn: 'The Atmakaraka and Amatyakaraka', kn: 'The Atmakaraka and Amatyakaraka', gu: 'The Atmakaraka and Amatyakaraka' },
-      { en: 'Jupiter and Saturn', hi: 'बृहस्पति और शनि', sa: 'बृहस्पति और शनि', mai: 'बृहस्पति और शनि', mr: 'बृहस्पति और शनि', ta: 'Jupiter and Saturn', te: 'Jupiter and Saturn', bn: 'Jupiter and Saturn', kn: 'Jupiter and Saturn', gu: 'Jupiter and Saturn' },
+      { en: 'The Moon and the Sun', hi: 'चन्द्रमा और सूर्य', sa: 'चन्द्रमा और सूर्य', mai: 'चन्द्रमा और सूर्य', mr: 'चन्द्रमा और सूर्य', ta: 'சந்திரனும் சூரியனும்', te: 'చంద్రుడు మరియు సూర్యుడు', bn: 'চন্দ্র ও সূর্য', kn: 'ಚಂದ್ರ ಮತ್ತು ಸೂರ್ಯ', gu: 'ચંદ્ર અને સૂર્ય' },
+      { en: 'The Lagna and the Hora Lagna', hi: 'लग्न और होरा लग्न', sa: 'लग्न और होरा लग्न', mai: 'लग्न और होरा लग्न', mr: 'लग्न और होरा लग्न', ta: 'லக்னமும் ஹோரா லக்னமும்', te: 'లగ్నం మరియు హోరా లగ్నం', bn: 'লগ্ন ও হোরা লগ্ন', kn: 'ಲಗ್ನ ಮತ್ತು ಹೋರಾ ಲಗ್ನ', gu: 'લગ્ન અને હોરા લગ્ન' },
+      { en: 'The Atmakaraka and Amatyakaraka', hi: 'आत्मकारक और अमात्यकारक', sa: 'आत्मकारक और अमात्यकारक', mai: 'आत्मकारक और अमात्यकारक', mr: 'आत्मकारक और अमात्यकारक', ta: 'ஆத்மகாரகனும் அமாத்யகாரகனும்', te: 'ఆత్మకారకుడు మరియు అమాత్యకారకుడు', bn: 'আত্মকারক ও অমাত্যকারক', kn: 'ಆತ್ಮಕಾರಕ ಮತ್ತು ಅಮಾತ್ಯಕಾರಕ', gu: 'આત્મકારક અને અમાત્યકારક' },
+      { en: 'Jupiter and Saturn', hi: 'बृहस्पति और शनि', sa: 'बृहस्पति और शनि', mai: 'बृहस्पति और शनि', mr: 'बृहस्पति और शनि', ta: 'குருவும் சனியும்', te: 'గురువు మరియు శని', bn: 'বৃহস্পতি ও শনি', kn: 'ಗುರು ಮತ್ತು ಶನಿ', gu: 'ગુરુ અને શનિ' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -167,10 +167,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि लग्न विषम राशि (मेष) में है और होरा लग्न भी विषम राशि (सिंह) में है, तो वर्णद लग्न की गणना किस प्रकार होती है?',
     },
     options: [
-      { en: 'Forward from Aries', hi: 'मेष से आगे गिनकर', sa: 'मेष से आगे गिनकर', mai: 'मेष से आगे गिनकर', mr: 'मेष से आगे गिनकर', ta: 'Forward from Aries', te: 'Forward from Aries', bn: 'Forward from Aries', kn: 'Forward from Aries', gu: 'Forward from Aries' },
-      { en: 'Backward from Pisces', hi: 'मीन से पीछे गिनकर', sa: 'मीन से पीछे गिनकर', mai: 'मीन से पीछे गिनकर', mr: 'मीन से पीछे गिनकर', ta: 'Backward from Pisces', te: 'Backward from Pisces', bn: 'Backward from Pisces', kn: 'Backward from Pisces', gu: 'Backward from Pisces' },
+      { en: 'Forward from Aries', hi: 'मेष से आगे गिनकर', sa: 'मेष से आगे गिनकर', mai: 'मेष से आगे गिनकर', mr: 'मेष से आगे गिनकर', ta: 'மேஷத்திலிருந்து முன்னோக்கி', te: 'మేషం నుండి ముందుకు', bn: 'মেষ থেকে সামনের দিকে', kn: 'ಮೇಷದಿಂದ ಮುಂದಕ್ಕೆ', gu: 'મેષથી આગળ' },
+      { en: 'Backward from Pisces', hi: 'मीन से पीछे गिनकर', sa: 'मीन से पीछे गिनकर', mai: 'मीन से पीछे गिनकर', mr: 'मीन से पीछे गिनकर', ta: 'மீனத்திலிருந்து பின்னோக்கி', te: 'మీనం నుండి వెనుకకు', bn: 'মীন থেকে পেছনের দিকে', kn: 'ಮೀನದಿಂದ ಹಿಂದಕ್ಕೆ', gu: 'મીનથી પાછળ' },
       { en: 'Forward from the Moon\'s sign', hi: 'चन्द्रमा की राशि से आगे गिनकर' },
-      { en: 'No counting needed — it equals the Lagna', hi: 'कोई गणना नहीं — यह लग्न के बराबर है', sa: 'कोई गणना नहीं — यह लग्न के बराबर है', mai: 'कोई गणना नहीं — यह लग्न के बराबर है', mr: 'कोई गणना नहीं — यह लग्न के बराबर है', ta: 'No counting needed — it equals the Lagna', te: 'No counting needed — it equals the Lagna', bn: 'No counting needed — it equals the Lagna', kn: 'No counting needed — it equals the Lagna', gu: 'No counting needed — it equals the Lagna' },
+      { en: 'No counting needed — it equals the Lagna', hi: 'कोई गणना नहीं — यह लग्न के बराबर है', sa: 'कोई गणना नहीं — यह लग्न के बराबर है', mai: 'कोई गणना नहीं — यह लग्न के बराबर है', mr: 'कोई गणना नहीं — यह लग्न के बराबर है', ta: 'எண்ணிக்கை தேவையில்லை — அது லக்னத்திற்கு சமம்', te: 'లెక్కింపు అవసరం లేదు — అది లగ్నానికి సమానం', bn: 'গণনা প্রয়োজন নেই — এটি লগ্নের সমান', kn: 'ಎಣಿಕೆ ಅಗತ್ಯವಿಲ್ಲ — ಅದು ಲಗ್ನಕ್ಕೆ ಸಮ', gu: 'ગણતરી જરૂરી નથી — તે લગ્ન સમાન છે' },
     ],
     correctAnswer: 0,
     explanation: {

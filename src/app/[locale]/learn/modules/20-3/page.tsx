@@ -23,10 +23,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी एक ग्रह को भाव से जोड़ने के लिए कारकत्व के कितने स्तर मान्य करता है?',
     },
     options: [
-      { en: '2 levels', hi: '2 स्तर', sa: '2 स्तर', mai: '2 स्तर', mr: '2 स्तर', ta: '2 levels', te: '2 levels', bn: '2 levels', kn: '2 levels', gu: '2 levels' },
-      { en: '3 levels', hi: '3 स्तर', sa: '3 स्तर', mai: '3 स्तर', mr: '3 स्तर', ta: '3 levels', te: '3 levels', bn: '3 levels', kn: '3 levels', gu: '3 levels' },
-      { en: '4 levels', hi: '4 स्तर', sa: '4 स्तर', mai: '4 स्तर', mr: '4 स्तर', ta: '4 levels', te: '4 levels', bn: '4 levels', kn: '4 levels', gu: '4 levels' },
-      { en: '5 levels', hi: '5 स्तर', sa: '5 स्तर', mai: '5 स्तर', mr: '5 स्तर', ta: '5 levels', te: '5 levels', bn: '5 levels', kn: '5 levels', gu: '5 levels' },
+      { en: '2 levels', hi: '2 स्तर', sa: '2 स्तराः', mai: '2 स्तर', mr: '2 स्तर', ta: '2 நிலைகள்', te: '2 స్థాయిలు', bn: '২টি স্তর', kn: '2 ಹಂತಗಳು', gu: '2 સ્તર' },
+      { en: '3 levels', hi: '3 स्तर', sa: '3 स्तराः', mai: '3 स्तर', mr: '3 स्तर', ta: '3 நிலைகள்', te: '3 స్థాయిలు', bn: '৩টি স্তর', kn: '3 ಹಂತಗಳು', gu: '3 સ્તર' },
+      { en: '4 levels', hi: '4 स्तर', sa: '4 स्तराः', mai: '4 स्तर', mr: '4 स्तर', ta: '4 நிலைகள்', te: '4 స్థాయిలు', bn: '৪টি স্তর', kn: '4 ಹಂತಗಳು', gu: '4 સ્તર' },
+      { en: '5 levels', hi: '5 स्तर', sa: '5 स्तराः', mai: '5 स्तर', mr: '5 स्तर', ta: '5 நிலைகள்', te: '5 స్థాయిలు', bn: '৫টি স্তর', kn: '5 ಹಂತಗಳು', gu: '5 સ્તર' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -41,10 +41,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी में कारकत्व का कौन-सा स्तर सबसे प्रबल है?',
     },
     options: [
-      { en: 'Level 4 — planet in the star of the house owner', hi: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', sa: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', mai: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', mr: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', ta: 'Level 4 — planet in the star of the house owner', te: 'Level 4 — planet in the star of the house owner', bn: 'Level 4 — planet in the star of the house owner', kn: 'Level 4 — planet in the star of the house owner', gu: 'Level 4 — planet in the star of the house owner' },
-      { en: 'Level 3 — planet owning the house sign', hi: 'स्तर 3 — भाव राशि का स्वामी ग्रह', sa: 'स्तर 3 — भाव राशि का स्वामी ग्रह', mai: 'स्तर 3 — भाव राशि का स्वामी ग्रह', mr: 'स्तर 3 — भाव राशि का स्वामी ग्रह', ta: 'Level 3 — planet owning the house sign', te: 'Level 3 — planet owning the house sign', bn: 'Level 3 — planet owning the house sign', kn: 'Level 3 — planet owning the house sign', gu: 'Level 3 — planet owning the house sign' },
-      { en: 'Level 2 — planet in the star of an occupant', hi: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', sa: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', mai: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', mr: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', ta: 'Level 2 — planet in the star of an occupant', te: 'Level 2 — planet in the star of an occupant', bn: 'Level 2 — planet in the star of an occupant', kn: 'Level 2 — planet in the star of an occupant', gu: 'Level 2 — planet in the star of an occupant' },
-      { en: 'Level 1 — planet occupying the house', hi: 'स्तर 1 — भाव में निवासी ग्रह', sa: 'स्तर 1 — भाव में निवासी ग्रह', mai: 'स्तर 1 — भाव में निवासी ग्रह', mr: 'स्तर 1 — भाव में निवासी ग्रह', ta: 'Level 1 — planet occupying the house', te: 'Level 1 — planet occupying the house', bn: 'Level 1 — planet occupying the house', kn: 'Level 1 — planet occupying the house', gu: 'Level 1 — planet occupying the house' },
+      { en: 'Level 4 — planet in the star of the house owner', hi: 'स्तर 4 — भाव स्वामी के नक्षत्र में ग्रह', sa: 'स्तरः 4 — भावस्वामिनः नक्षत्रे ग्रहः', mai: 'स्तर 4 — भाव स्वामीक नक्षत्रमे ग्रह', mr: 'स्तर 4 — भाव स्वामीच्या नक्षत्रात ग्रह', ta: 'நிலை 4 — பாவ அதிபதியின் நட்சத்திரத்தில் கிரகம்', te: 'స్థాయి 4 — భావాధిపతి నక్షత్రంలో గ్రహం', bn: 'স্তর ৪ — ভাবাধিপতির নক্ষত্রে গ্রহ', kn: 'ಹಂತ 4 — ಭಾವಾಧಿಪತಿಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹ', gu: 'સ્તર 4 — ભાવ સ્વામીના નક્ષત્રમાં ગ્રહ' },
+      { en: 'Level 3 — planet owning the house sign', hi: 'स्तर 3 — भाव राशि का स्वामी ग्रह', sa: 'स्तरः 3 — भावराशेः स्वामी ग्रहः', mai: 'स्तर 3 — भाव राशिक स्वामी ग्रह', mr: 'स्तर 3 — भाव राशीचा स्वामी ग्रह', ta: 'நிலை 3 — பாவ ராசியை ஆளும் கிரகம்', te: 'స్థాయి 3 — భావ రాశిని స్వంతం చేసుకున్న గ్రహం', bn: 'স্তর ৩ — ভাব রাশির মালিক গ্রহ', kn: 'ಹಂತ 3 — ಭಾವ ರಾಶಿಯ ಒಡೆಯ ಗ್ರಹ', gu: 'સ્તર 3 — ભાવ રાશિનો માલિક ગ્રહ' },
+      { en: 'Level 2 — planet in the star of an occupant', hi: 'स्तर 2 — निवासी के नक्षत्र में ग्रह', sa: 'स्तरः 2 — निवासिनः नक्षत्रे ग्रहः', mai: 'स्तर 2 — निवासीक नक्षत्रमे ग्रह', mr: 'स्तर 2 — निवासीच्या नक्षत्रात ग्रह', ta: 'நிலை 2 — குடியிருப்பாளரின் நட்சத்திரத்தில் கிரகம்', te: 'స్థాయి 2 — నివాసి నక్షత్రంలో గ్రహం', bn: 'স্তর ২ — অধিবাসীর নক্ষত্রে গ্রহ', kn: 'ಹಂತ 2 — ನಿವಾಸಿಯ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹ', gu: 'સ્તર 2 — નિવાસીના નક્ષત્રમાં ગ્રહ' },
+      { en: 'Level 1 — planet occupying the house', hi: 'स्तर 1 — भाव में निवासी ग्रह', sa: 'स्तरः 1 — भावे निवसन् ग्रहः', mai: 'स्तर 1 — भावमे निवासी ग्रह', mr: 'स्तर 1 — भावातील निवासी ग्रह', ta: 'நிலை 1 — பாவத்தில் அமர்ந்த கிரகம்', te: 'స్థాయి 1 — భావంలో ఉన్న గ్రహం', bn: 'স্তর ১ — ভাবে অবস্থিত গ্রহ', kn: 'ಹಂತ 1 — ಭಾವದಲ್ಲಿ ಇರುವ ಗ್ರಹ', gu: 'સ્તર 1 — ભાવમાં બેઠેલો ગ્રહ' },
     ],
     correctAnswer: 3,
     explanation: {
@@ -71,10 +71,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी में विवाह का आकलन करने के लिए कौन-सा भाव संयोजन जाँचा जाता है?',
     },
     options: [
-      { en: 'Houses 1, 5, 9', hi: 'भाव 1, 5, 9', sa: 'भाव 1, 5, 9', mai: 'भाव 1, 5, 9', mr: 'भाव 1, 5, 9', ta: 'Houses 1, 5, 9', te: 'Houses 1, 5, 9', bn: 'Houses 1, 5, 9', kn: 'Houses 1, 5, 9', gu: 'Houses 1, 5, 9' },
-      { en: 'Houses 2, 7, 11', hi: 'भाव 2, 7, 11', sa: 'भाव 2, 7, 11', mai: 'भाव 2, 7, 11', mr: 'भाव 2, 7, 11', ta: 'Houses 2, 7, 11', te: 'Houses 2, 7, 11', bn: 'Houses 2, 7, 11', kn: 'Houses 2, 7, 11', gu: 'Houses 2, 7, 11' },
-      { en: 'Houses 4, 7, 10', hi: 'भाव 4, 7, 10', sa: 'भाव 4, 7, 10', mai: 'भाव 4, 7, 10', mr: 'भाव 4, 7, 10', ta: 'Houses 4, 7, 10', te: 'Houses 4, 7, 10', bn: 'Houses 4, 7, 10', kn: 'Houses 4, 7, 10', gu: 'Houses 4, 7, 10' },
-      { en: 'Houses 3, 6, 12', hi: 'भाव 3, 6, 12', sa: 'भाव 3, 6, 12', mai: 'भाव 3, 6, 12', mr: 'भाव 3, 6, 12', ta: 'Houses 3, 6, 12', te: 'Houses 3, 6, 12', bn: 'Houses 3, 6, 12', kn: 'Houses 3, 6, 12', gu: 'Houses 3, 6, 12' },
+      { en: 'Houses 1, 5, 9', hi: 'भाव 1, 5, 9', sa: 'भावाः 1, 5, 9', mai: 'भाव 1, 5, 9', mr: 'भाव 1, 5, 9', ta: 'பாவங்கள் 1, 5, 9', te: 'భావాలు 1, 5, 9', bn: 'ভাব ১, ৫, ৯', kn: 'ಭಾವಗಳು 1, 5, 9', gu: 'ભાવ 1, 5, 9' },
+      { en: 'Houses 2, 7, 11', hi: 'भाव 2, 7, 11', sa: 'भावाः 2, 7, 11', mai: 'भाव 2, 7, 11', mr: 'भाव 2, 7, 11', ta: 'பாவங்கள் 2, 7, 11', te: 'భావాలు 2, 7, 11', bn: 'ভাব ২, ৭, ১১', kn: 'ಭಾವಗಳು 2, 7, 11', gu: 'ભાવ 2, 7, 11' },
+      { en: 'Houses 4, 7, 10', hi: 'भाव 4, 7, 10', sa: 'भावाः 4, 7, 10', mai: 'भाव 4, 7, 10', mr: 'भाव 4, 7, 10', ta: 'பாவங்கள் 4, 7, 10', te: 'భావాలు 4, 7, 10', bn: 'ভাব ৪, ৭, ১০', kn: 'ಭಾವಗಳು 4, 7, 10', gu: 'ભાવ 4, 7, 10' },
+      { en: 'Houses 3, 6, 12', hi: 'भाव 3, 6, 12', sa: 'भावाः 3, 6, 12', mai: 'भाव 3, 6, 12', mr: 'भाव 3, 6, 12', ta: 'பாவங்கள் 3, 6, 12', te: 'భావాలు 3, 6, 12', bn: 'ভাব ৩, ৬, ১২', kn: 'ಭಾವಗಳು 3, 6, 12', gu: 'ભાવ 3, 6, 12' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -89,10 +89,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'यदि गुरु सप्तम भाव में स्थित है, तो कौन-से ग्रह सप्तम भाव के स्तर 2 कारक बनते हैं?',
     },
     options: [
-      { en: 'Planets in the sign of Jupiter', hi: 'गुरु की राशि में स्थित ग्रह', sa: 'गुरु की राशि में स्थित ग्रह', mai: 'गुरु की राशि में स्थित ग्रह', mr: 'गुरु की राशि में स्थित ग्रह', ta: 'Planets in the sign of Jupiter', te: 'Planets in the sign of Jupiter', bn: 'Planets in the sign of Jupiter', kn: 'Planets in the sign of Jupiter', gu: 'Planets in the sign of Jupiter' },
-      { en: 'Planets in the nakshatra of Jupiter', hi: 'गुरु के नक्षत्र में स्थित ग्रह', sa: 'गुरु के नक्षत्र में स्थित ग्रह', mai: 'गुरु के नक्षत्र में स्थित ग्रह', mr: 'गुरु के नक्षत्र में स्थित ग्रह', ta: 'Planets in the nakshatra of Jupiter', te: 'Planets in the nakshatra of Jupiter', bn: 'Planets in the nakshatra of Jupiter', kn: 'Planets in the nakshatra of Jupiter', gu: 'Planets in the nakshatra of Jupiter' },
-      { en: 'Planets aspecting Jupiter', hi: 'गुरु पर दृष्टि डालने वाले ग्रह', sa: 'गुरु पर दृष्टि डालने वाले ग्रह', mai: 'गुरु पर दृष्टि डालने वाले ग्रह', mr: 'गुरु पर दृष्टि डालने वाले ग्रह', ta: 'Planets aspecting Jupiter', te: 'Planets aspecting Jupiter', bn: 'Planets aspecting Jupiter', kn: 'Planets aspecting Jupiter', gu: 'Planets aspecting Jupiter' },
-      { en: 'Planets conjunct Jupiter', hi: 'गुरु के साथ युति वाले ग्रह', sa: 'गुरु के साथ युति वाले ग्रह', mai: 'गुरु के साथ युति वाले ग्रह', mr: 'गुरु के साथ युति वाले ग्रह', ta: 'Planets conjunct Jupiter', te: 'Planets conjunct Jupiter', bn: 'Planets conjunct Jupiter', kn: 'Planets conjunct Jupiter', gu: 'Planets conjunct Jupiter' },
+      { en: 'Planets in the sign of Jupiter', hi: 'गुरु की राशि में स्थित ग्रह', sa: 'गुरोः राशौ स्थिताः ग्रहाः', mai: 'गुरुक राशिमे स्थित ग्रह', mr: 'गुरूच्या राशीतील ग्रह', ta: 'குருவின் ராசியில் உள்ள கிரகங்கள்', te: 'గురు రాశిలో ఉన్న గ్రహాలు', bn: 'বৃহস্পতির রাশিতে গ্রহ', kn: 'ಗುರುವಿನ ರಾಶಿಯಲ್ಲಿ ಗ್ರಹಗಳು', gu: 'ગુરુની રાશિમાં ગ્રહો' },
+      { en: 'Planets in the nakshatra of Jupiter', hi: 'गुरु के नक्षत्र में स्थित ग्रह', sa: 'गुरोः नक्षत्रे स्थिताः ग्रहाः', mai: 'गुरुक नक्षत्रमे स्थित ग्रह', mr: 'गुरूच्या नक्षत्रातील ग्रह', ta: 'குருவின் நட்சத்திரத்தில் உள்ள கிரகங்கள்', te: 'గురు నక్షత్రంలో ఉన్న గ్రహాలు', bn: 'বৃহস্পতির নক্ষত্রে গ্রহ', kn: 'ಗುರುವಿನ ನಕ್ಷತ್ರದಲ್ಲಿ ಗ್ರಹಗಳು', gu: 'ગુરુના નક્ષત્રમાં ગ્રહો' },
+      { en: 'Planets aspecting Jupiter', hi: 'गुरु पर दृष्टि डालने वाले ग्रह', sa: 'गुरुं पश्यन्तः ग्रहाः', mai: 'गुरु पर दृष्टि दयवला ग्रह', mr: 'गुरूकडे पाहणारे ग्रह', ta: 'குருவைப் பார்க்கும் கிரகங்கள்', te: 'గురుని చూస్తున్న గ్రహాలు', bn: 'বৃহস্পতিকে দৃষ্টিকারী গ্রহ', kn: 'ಗುರುವನ್ನು ನೋಡುವ ಗ್ರಹಗಳು', gu: 'ગુરુને જોનારા ગ્રહો' },
+      { en: 'Planets conjunct Jupiter', hi: 'गुरु के साथ युति वाले ग्रह', sa: 'गुरुणा सह युक्ताः ग्रहाः', mai: 'गुरुक संग युति वला ग्रह', mr: 'गुरूसोबत युती असलेले ग्रह', ta: 'குருவுடன் சேர்ந்த கிரகங்கள்', te: 'గురుతో కలిసిన గ్రహాలు', bn: 'বৃহস্পতির সাথে যুত গ্রহ', kn: 'ಗುರುವಿನೊಂದಿಗೆ ಸೇರಿದ ಗ್ರಹಗಳು', gu: 'ગુરુ સાથે યુતિ ગ્રહો' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -137,10 +137,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जब कोई ग्रह भाव 6, 8 और 12 का प्रबल कारक हो तो कौन-सी घटना की भविष्यवाणी होती है?',
     },
     options: [
-      { en: 'Marriage', hi: 'विवाह', sa: 'विवाह', mai: 'विवाह', mr: 'विवाह', ta: 'Marriage', te: 'Marriage', bn: 'Marriage', kn: 'Marriage', gu: 'Marriage' },
-      { en: 'Promotion at work', hi: 'कार्य में पदोन्नति', sa: 'कार्य में पदोन्नति', mai: 'कार्य में पदोन्नति', mr: 'कार्य में पदोन्नति', ta: 'Promotion at work', te: 'Promotion at work', bn: 'Promotion at work', kn: 'Promotion at work', gu: 'Promotion at work' },
-      { en: 'Denial or obstruction of the queried event', hi: 'पूछी गई घटना का निषेध या अवरोध', sa: 'पूछी गई घटना का निषेध या अवरोध', mai: 'पूछी गई घटना का निषेध या अवरोध', mr: 'पूछी गई घटना का निषेध या अवरोध', ta: 'Denial or obstruction of the queried event', te: 'Denial or obstruction of the queried event', bn: 'Denial or obstruction of the queried event', kn: 'Denial or obstruction of the queried event', gu: 'Denial or obstruction of the queried event' },
-      { en: 'Foreign travel for education', hi: 'शिक्षा हेतु विदेश यात्रा', sa: 'शिक्षा हेतु विदेश यात्रा', mai: 'शिक्षा हेतु विदेश यात्रा', mr: 'शिक्षा हेतु विदेश यात्रा', ta: 'Foreign travel for education', te: 'Foreign travel for education', bn: 'Foreign travel for education', kn: 'Foreign travel for education', gu: 'Foreign travel for education' },
+      { en: 'Marriage', hi: 'विवाह', sa: 'विवाह', mai: 'विवाह', mr: 'विवाह', ta: 'திருமணம்', te: 'వివాహం', bn: 'বিবাহ', kn: 'ವಿವಾಹ', gu: 'લગ્ન' },
+      { en: 'Promotion at work', hi: 'कार्य में पदोन्नति', sa: 'कार्य में पदोन्नति', mai: 'कार्य में पदोन्नति', mr: 'कार्य में पदोन्नति', ta: 'பணியில் பதவி உயர்வு', te: 'ఉద్యోగంలో పదోన్నతి', bn: 'কর্মে পদোন্নতি', kn: 'ಕೆಲಸದಲ್ಲಿ ಬಡ್ತಿ', gu: 'કામમાં બઢતી' },
+      { en: 'Denial or obstruction of the queried event', hi: 'पूछी गई घटना का निषेध या अवरोध', sa: 'पूछी गई घटना का निषेध या अवरोध', mai: 'पूछी गई घटना का निषेध या अवरोध', mr: 'पूछी गई घटना का निषेध या अवरोध', ta: 'கேட்கப்பட்ட நிகழ்வின் மறுப்பு அல்லது தடை', te: 'అడిగిన సంఘటన యొక్క తిరస్కారం లేదా అడ్డంకి', bn: 'জিজ্ঞাসিত ঘটনার প্রত্যাখ্যান বা বাধা', kn: 'ಕೇಳಲಾದ ಘಟನೆಯ ನಿರಾಕರಣೆ ಅಥವಾ ಅಡ್ಡಿ', gu: 'પૂછેલી ઘટનાનો ઇનકાર અથવા અવરોધ' },
+      { en: 'Foreign travel for education', hi: 'शिक्षा हेतु विदेश यात्रा', sa: 'शिक्षा हेतु विदेश यात्रा', mai: 'शिक्षा हेतु विदेश यात्रा', mr: 'शिक्षा हेतु विदेश यात्रा', ta: 'கல்விக்காக வெளிநாட்டு பயணம்', te: 'విద్య కోసం విదేశ యాత్ర', bn: 'শিক্ষার জন্য বিদেশ যাত্রা', kn: 'ಶಿಕ್ಷಣಕ್ಕಾಗಿ ವಿದೇಶ ಪ್ರಯಾಣ', gu: 'શિક્ષા માટે વિદેશ યાત્રા' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -167,10 +167,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कारक सारणी द्वारा भविष्यवाणित घटना वास्तव में कब घटित होती है?',
     },
     options: [
-      { en: 'During transit of the slowest planet', hi: 'सबसे धीमे ग्रह के गोचर के दौरान', sa: 'सबसे धीमे ग्रह के गोचर के दौरान', mai: 'सबसे धीमे ग्रह के गोचर के दौरान', mr: 'सबसे धीमे ग्रह के गोचर के दौरान', ta: 'During transit of the slowest planet', te: 'During transit of the slowest planet', bn: 'During transit of the slowest planet', kn: 'During transit of the slowest planet', gu: 'During transit of the slowest planet' },
-      { en: 'During the dasha/bhukti of the strongest significator', hi: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', sa: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mai: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mr: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', ta: 'During the dasha/bhukti of the strongest significator', te: 'During the dasha/bhukti of the strongest significator', bn: 'During the dasha/bhukti of the strongest significator', kn: 'During the dasha/bhukti of the strongest significator', gu: 'During the dasha/bhukti of the strongest significator' },
+      { en: 'During transit of the slowest planet', hi: 'सबसे धीमे ग्रह के गोचर के दौरान', sa: 'सबसे धीमे ग्रह के गोचर के दौरान', mai: 'सबसे धीमे ग्रह के गोचर के दौरान', mr: 'सबसे धीमे ग्रह के गोचर के दौरान', ta: 'மெதுவான கிரகத்தின் கோசார காலத்தில்', te: 'నెమ్మదిగా ఉన్న గ్రహం గోచరంలో', bn: 'সবচেয়ে ধীর গ্রহের গোচরে', kn: 'ನಿಧಾನ ಗ್ರಹದ ಗೋಚರದಲ್ಲಿ', gu: 'સૌથી ધીમા ગ્રહના ગોચરમાં' },
+      { en: 'During the dasha/bhukti of the strongest significator', hi: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', sa: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mai: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', mr: 'सबसे प्रबल कारक की दशा/भुक्ति के दौरान', ta: 'வலிமையான காரகரின் தசா/புக்தியில்', te: 'బలమైన కారక దశా/భుక్తిలో', bn: 'শক্তিশালী কারকের দশা/ভুক্তিতে', kn: 'ಬಲಿಷ್ಠ ಕಾರಕನ ದಶಾ/ಭುಕ್ತಿಯಲ್ಲಿ', gu: 'સૌથી બળવાન કારકની દશા/ભુક્તિમાં' },
       { en: 'On the native\'s birthday each year', hi: 'प्रत्येक वर्ष जातक के जन्मदिन पर' },
-      { en: 'When Jupiter transits the relevant house', hi: 'जब गुरु सम्बन्धित भाव में गोचर करता है', sa: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mai: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mr: 'जब गुरु सम्बन्धित भाव में गोचर करता है', ta: 'When Jupiter transits the relevant house', te: 'When Jupiter transits the relevant house', bn: 'When Jupiter transits the relevant house', kn: 'When Jupiter transits the relevant house', gu: 'When Jupiter transits the relevant house' },
+      { en: 'When Jupiter transits the relevant house', hi: 'जब गुरु सम्बन्धित भाव में गोचर करता है', sa: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mai: 'जब गुरु सम्बन्धित भाव में गोचर करता है', mr: 'जब गुरु सम्बन्धित भाव में गोचर करता है', ta: 'குரு சம்பந்தப்பட்ட பாவத்தில் கோசரிக்கும்போது', te: 'గురువు సంబంధిత భావంలో గోచరించినప్పుడు', bn: 'বৃহস্পতি সংশ্লিষ্ট ভাবে গোচর করলে', kn: 'ಗುರು ಸಂಬಂಧಿತ ಭಾವದಲ್ಲಿ ಗೋಚರಿಸಿದಾಗ', gu: 'ગુરુ સંબંધિત ભાવમાં ગોચર કરે ત્યારે' },
     ],
     correctAnswer: 1,
     explanation: {

@@ -22,10 +22,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्रमा की स्थिति की गणना सूर्य से बहुत कठिन क्यों है?',
     },
     options: [
-      { en: 'The Moon is farther away than the Sun', hi: 'चन्द्रमा सूर्य से दूर है', sa: 'चन्द्रमा सूर्य से दूर है', mai: 'चन्द्रमा सूर्य से दूर है', mr: 'चन्द्रमा सूर्य से दूर है', ta: 'The Moon is farther away than the Sun', te: 'The Moon is farther away than the Sun', bn: 'The Moon is farther away than the Sun', kn: 'The Moon is farther away than the Sun', gu: 'The Moon is farther away than the Sun' },
+      { en: 'The Moon is farther away than the Sun', hi: 'चन्द्रमा सूर्य से दूर है', sa: 'चन्द्रमा सूर्य से दूर है', mai: 'चन्द्रमा सूर्य से दूर है', mr: 'चन्द्रमा सूर्य से दूर है', ta: 'நிலவு சூரியனை விட தொலைவில் உள்ளது', te: 'చంద్రుడు సూర్యుని కంటే దూరంగా ఉన్నాడు', bn: 'চন্দ্র সূর্যের চেয়ে দূরে', kn: 'ಚಂದ್ರ ಸೂರ್ಯನಿಗಿಂತ ದೂರದಲ್ಲಿದ್ದಾನೆ', gu: 'ચંદ્ર સૂર્ય કરતાં દૂર છે' },
       { en: 'The Moon is close, fast-moving, and strongly perturbed by the Sun\'s gravity', hi: 'चन्द्रमा निकट, तेज़ गतिमान और सूर्य के गुरुत्वाकर्षण से प्रबल रूप से विक्षुब्ध है' },
-      { en: 'The Moon has an atmosphere that distorts observations', hi: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', sa: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mai: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mr: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', ta: 'The Moon has an atmosphere that distorts observations', te: 'The Moon has an atmosphere that distorts observations', bn: 'The Moon has an atmosphere that distorts observations', kn: 'The Moon has an atmosphere that distorts observations', gu: 'The Moon has an atmosphere that distorts observations' },
-      { en: 'The Moon changes shape each month', hi: 'चन्द्रमा प्रतिमास आकार बदलता है', sa: 'चन्द्रमा प्रतिमास आकार बदलता है', mai: 'चन्द्रमा प्रतिमास आकार बदलता है', mr: 'चन्द्रमा प्रतिमास आकार बदलता है', ta: 'The Moon changes shape each month', te: 'The Moon changes shape each month', bn: 'The Moon changes shape each month', kn: 'The Moon changes shape each month', gu: 'The Moon changes shape each month' },
+      { en: 'The Moon has an atmosphere that distorts observations', hi: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', sa: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mai: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', mr: 'चन्द्रमा का वायुमण्डल प्रेक्षणों को विकृत करता है', ta: 'நிலவுக்கு வளிமண்டலம் உள்ளது அது கவனிப்புகளை திரிக்கிறது', te: 'చంద్రునికి వాతావరణం ఉన్నది పరిశీలనలను వక్రీకరిస్తుంది', bn: 'চন্দ্রের বায়ুমণ্ডল পর্যবেক্ষণ বিকৃত করে', kn: 'ಚಂದ್ರನಿಗೆ ವಾಯುಮಂಡಲ ಇದ್ದು ಅವಲೋಕನಗಳನ್ನು ವಿಕೃತಗೊಳಿಸುತ್ತದೆ', gu: 'ચંદ્રને વાયુમંડળ છે જે અવલોકનોને વિકૃત કરે છે' },
+      { en: 'The Moon changes shape each month', hi: 'चन्द्रमा प्रतिमास आकार बदलता है', sa: 'चन्द्रमा प्रतिमास आकार बदलता है', mai: 'चन्द्रमा प्रतिमास आकार बदलता है', mr: 'चन्द्रमा प्रतिमास आकार बदलता है', ta: 'நிலவு ஒவ்வொரு மாதமும் வடிவம் மாறுகிறது', te: 'చంద్రుడు ప్రతి నెలా ఆకారం మారుస్తాడు', bn: 'চন্দ্র প্রতি মাসে আকার পরিবর্তন করে', kn: 'ಚಂದ್ರ ಪ್ರತಿ ತಿಂಗಳು ಆಕಾರ ಬದಲಿಸುತ್ತಾನೆ', gu: 'ચંદ્ર દર મહિને આકાર બદલે છે' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -58,10 +58,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'चन्द्र भोगांश का सबसे बड़ा सुधार पद (+6.289° × sin(M\')) कहलाता है:',
     },
     options: [
-      { en: 'Evection', hi: 'उपवर्तन (इवेक्शन)', sa: 'उपवर्तन (इवेक्शन)', mai: 'उपवर्तन (इवेक्शन)', mr: 'उपवर्तन (इवेक्शन)', ta: 'Evection', te: 'Evection', bn: 'Evection', kn: 'Evection', gu: 'Evection' },
-      { en: 'The main inequality (equation of center)', hi: 'मुख्य असमता (केन्द्र समीकरण)', sa: 'मुख्य असमता (केन्द्र समीकरण)', mai: 'मुख्य असमता (केन्द्र समीकरण)', mr: 'मुख्य असमता (केन्द्र समीकरण)', ta: 'The main inequality (equation of center)', te: 'The main inequality (equation of center)', bn: 'The main inequality (equation of center)', kn: 'The main inequality (equation of center)', gu: 'The main inequality (equation of center)' },
-      { en: 'Variation', hi: 'विचरण (वेरिएशन)', sa: 'विचरण (वेरिएशन)', mai: 'विचरण (वेरिएशन)', mr: 'विचरण (वेरिएशन)', ta: 'Variation', te: 'Variation', bn: 'Variation', kn: 'Variation', gu: 'Variation' },
-      { en: 'Annual inequality', hi: 'वार्षिक असमता', sa: 'वार्षिक असमता', mai: 'वार्षिक असमता', mr: 'वार्षिक असमता', ta: 'Annual inequality', te: 'Annual inequality', bn: 'Annual inequality', kn: 'Annual inequality', gu: 'Annual inequality' },
+      { en: 'Evection', hi: 'उपवर्तन (इवेक्शन)', sa: 'उपवर्तन (इवेक्शन)', mai: 'उपवर्तन (इवेक्शन)', mr: 'उपवर्तन (इवेक्शन)', ta: 'இவெக்ஷன்', te: 'ఇవెక్షన్', bn: 'ইভেকশন', kn: 'ಇವೆಕ್ಷನ್', gu: 'ઇવેક્શન' },
+      { en: 'The main inequality (equation of center)', hi: 'मुख्य असमता (केन्द्र समीकरण)', sa: 'मुख्य असमता (केन्द्र समीकरण)', mai: 'मुख्य असमता (केन्द्र समीकरण)', mr: 'मुख्य असमता (केन्द्र समीकरण)', ta: 'முதன்மை சமனின்மை (மைய சமன்பாடு)', te: 'ప్రధాన అసమానత (కేంద్ర సమీకరణం)', bn: 'প্রধান অসমতা (কেন্দ্র সমীকরণ)', kn: 'ಮುಖ್ಯ ಅಸಮಾನತೆ (ಕೇಂದ್ರ ಸಮೀಕರಣ)', gu: 'મુખ્ય અસમાનતા (કેન્દ્ર સમીકરણ)' },
+      { en: 'Variation', hi: 'विचरण (वेरिएशन)', sa: 'विचरण (वेरिएशन)', mai: 'विचरण (वेरिएशन)', mr: 'विचरण (वेरिएशन)', ta: 'மாறுபாடு', te: 'వైవిధ్యం', bn: 'বিচরণ', kn: 'ವ್ಯತ್ಯಯ', gu: 'વિચરણ' },
+      { en: 'Annual inequality', hi: 'वार्षिक असमता', sa: 'वार्षिक असमता', mai: 'वार्षिक असमता', mr: 'वार्षिक असमता', ta: 'வருடாந்திர சமனின்மை', te: 'వార్షిక అసమానత', bn: 'বার্ষিক অসমতা', kn: 'ವಾರ್ಷಿಕ ಅಸಮಾನತೆ', gu: 'વાર્ષિક અસમાનતા' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -79,7 +79,7 @@ const QUESTIONS: ModuleQuestion[] = [
       { en: 'Jupiter\'s gravitational pull on the Moon', hi: 'बृहस्पति का चन्द्रमा पर गुरुत्वाकर्षण' },
       { en: 'The Sun\'s gravity modulating the Moon\'s orbital eccentricity', hi: 'सूर्य का गुरुत्वाकर्षण चन्द्र कक्षा की उत्केन्द्रता को नियन्त्रित करता है' },
       { en: 'Earth\'s oblateness', hi: 'पृथ्वी की चपटाई' },
-      { en: 'Tidal friction', hi: 'ज्वारीय घर्षण', sa: 'ज्वारीय घर्षण', mai: 'ज्वारीय घर्षण', mr: 'ज्वारीय घर्षण', ta: 'Tidal friction', te: 'Tidal friction', bn: 'Tidal friction', kn: 'Tidal friction', gu: 'Tidal friction' },
+      { en: 'Tidal friction', hi: 'ज्वारीय घर्षण', sa: 'ज्वारीय घर्षण', mai: 'ज्वारीय घर्षण', mr: 'ज्वारीय घर्षण', ta: 'அலை உராய்வு', te: 'జ్వార ఘర్షణ', bn: 'জোয়ার ঘর্ষণ', kn: 'ಉಬ್ಬರ ಘರ್ಷಣೆ', gu: 'ભરતી ઘર્ષણ' },
     ],
     correctAnswer: 1,
     explanation: {

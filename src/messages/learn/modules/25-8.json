@@ -15,11 +15,11 @@
         "sa": "मॉड्यूल 25-1: शून्य",
         "mai": "मॉड्यूल 25-1: शून्य",
         "mr": "मॉड्यूल 25-1: शून्य",
-        "ta": "Module 25-1: Zero",
-        "te": "Module 25-1: Zero",
-        "bn": "Module 25-1: Zero",
-        "kn": "Module 25-1: Zero",
-        "gu": "Module 25-1: Zero"
+        "ta": "பாடம் 25-1: சுழியம்",
+        "te": "మాడ్యూల్ 25-1: శూన్యం",
+        "bn": "মডিউল 25-1: শূন্য",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-1: ಶೂನ್ಯ",
+        "gu": "મોડ્યુલ 25-1: શૂન્ય"
       },
       "href": "/learn/modules/25-1"
     },
@@ -30,11 +30,11 @@
         "sa": "मॉड्यूल 25-2: ज्या",
         "mai": "मॉड्यूल 25-2: ज्या",
         "mr": "मॉड्यूल 25-2: ज्या",
-        "ta": "Module 25-2: Sine (Sanskrit)",
-        "te": "Module 25-2: Sine (Sanskrit)",
-        "bn": "Module 25-2: Sine (Sanskrit)",
-        "kn": "Module 25-2: Sine (Sanskrit)",
-        "gu": "Module 25-2: Sine (Sanskrit)"
+        "ta": "பாடம் 25-2: ஜ்யா (சமஸ்கிருதம்)",
+        "te": "మాడ్యూల్ 25-2: జ్యా (సంస్కృతం)",
+        "bn": "মডিউল 25-2: জ্যা (সংস্কৃত)",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-2: ಜ್ಯಾ (ಸಂಸ್ಕೃತ)",
+        "gu": "મોડ્યુલ 25-2: જ્યા (સંસ્કૃત)"
       },
       "href": "/learn/modules/25-2"
     },
@@ -45,11 +45,11 @@
         "sa": "मॉड्यूल 25-3: π",
         "mai": "मॉड्यूल 25-3: π",
         "mr": "मॉड्यूल 25-3: π",
-        "ta": "Module 25-3: π = 3.1416",
-        "te": "Module 25-3: π = 3.1416",
-        "bn": "Module 25-3: π = 3.1416",
-        "kn": "Module 25-3: π = 3.1416",
-        "gu": "Module 25-3: π = 3.1416"
+        "ta": "பாடம் 25-3: π = 3.1416",
+        "te": "మాడ్యూల్ 25-3: π = 3.1416",
+        "bn": "মডিউল 25-3: π = 3.1416",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-3: π = 3.1416",
+        "gu": "મોડ્યુલ 25-3: π = 3.1416"
       },
       "href": "/learn/modules/25-3"
     }
@@ -74,11 +74,11 @@
           "sa": "पाइथागोरस",
           "mai": "पाइथागोरस",
           "mr": "पाइथागोरस",
-          "ta": "Pythagoras",
-          "te": "Pythagoras",
-          "bn": "Pythagoras",
-          "kn": "Pythagoras",
-          "gu": "Pythagoras"
+          "ta": "பைதாகரஸ்",
+          "te": "పైథాగరస్",
+          "bn": "পাইথাগোরাস",
+          "kn": "ಪೈಥಾಗೊರಸ್",
+          "gu": "પાયથાગોરસ"
         },
         {
           "en": "Euclid",
@@ -86,11 +86,11 @@
           "sa": "यूक्लिड",
           "mai": "यूक्लिड",
           "mr": "यूक्लिड",
-          "ta": "Euclid",
-          "te": "Euclid",
-          "bn": "Euclid",
-          "kn": "Euclid",
-          "gu": "Euclid"
+          "ta": "யூக்ளிட்",
+          "te": "యూక్లిడ్",
+          "bn": "ইউক্লিড",
+          "kn": "ಯೂಕ್ಲಿಡ್",
+          "gu": "યુક્લિડ"
         },
         {
           "en": "Baudhayana",
@@ -98,11 +98,11 @@
           "sa": "बौधायन",
           "mai": "बौधायन",
           "mr": "बौधायन",
-          "ta": "Baudhayana",
-          "te": "Baudhayana",
-          "bn": "Baudhayana",
-          "kn": "Baudhayana",
-          "gu": "Baudhayana"
+          "ta": "பௌதாயனர்",
+          "te": "బౌధాయనుడు",
+          "bn": "বৌধায়ন",
+          "kn": "ಬೌಧಾಯನ",
+          "gu": "બૌધાયન"
         },
         {
           "en": "Aryabhata",
@@ -110,11 +110,11 @@
           "sa": "आर्यभट",
           "mai": "आर्यभट",
           "mr": "आर्यभट",
-          "ta": "Aryabhata",
-          "te": "Aryabhata",
-          "bn": "Aryabhata",
-          "kn": "Aryabhata",
-          "gu": "Aryabhata"
+          "ta": "ஆரியபட்டர்",
+          "te": "ఆర్యభట్ట",
+          "bn": "আর্যভট্ট",
+          "kn": "ಆರ್ಯಭಟ",
+          "gu": "આર્યભટ"
         }
       ]
     },
@@ -137,11 +137,11 @@
           "sa": "आर्यभटीय",
           "mai": "आर्यभटीय",
           "mr": "आर्यभटीय",
-          "ta": "Aryabhatiya",
-          "te": "Aryabhatiya",
-          "bn": "Aryabhatiya",
-          "kn": "Aryabhatiya",
-          "gu": "Aryabhatiya"
+          "ta": "ஆரியபடீயம்",
+          "te": "ఆర్యభటీయం",
+          "bn": "আর্যভটীয়",
+          "kn": "ಆರ್ಯಭಟೀಯ",
+          "gu": "આર્યભટીય"
         },
         {
           "en": "Baudhayana Sulba Sutra",
@@ -149,11 +149,11 @@
           "sa": "बौधायन शुल्ब सूत्र",
           "mai": "बौधायन शुल्ब सूत्र",
           "mr": "बौधायन शुल्ब सूत्र",
-          "ta": "Baudhayana Sulba Sutra",
-          "te": "Baudhayana Sulba Sutra",
-          "bn": "Baudhayana Sulba Sutra",
-          "kn": "Baudhayana Sulba Sutra",
-          "gu": "Baudhayana Sulba Sutra"
+          "ta": "பௌதாயன சுல்ப சூத்திரம்",
+          "te": "బౌధాయన శుల్బ సూత్రం",
+          "bn": "বৌধায়ন শুল্ব সূত্র",
+          "kn": "ಬೌಧಾಯನ ಶುಲ್ಬ ಸೂತ್ರ",
+          "gu": "બૌધાયન શુલ્બ સૂત્ર"
         },
         {
           "en": "Brahmasphutasiddhanta",
@@ -161,11 +161,11 @@
           "sa": "ब्रह्मस्फुटसिद्धान्त",
           "mai": "ब्रह्मस्फुटसिद्धान्त",
           "mr": "ब्रह्मस्फुटसिद्धान्त",
-          "ta": "Brahmasphutasiddhanta",
-          "te": "Brahmasphutasiddhanta",
-          "bn": "Brahmasphutasiddhanta",
-          "kn": "Brahmasphutasiddhanta",
-          "gu": "Brahmasphutasiddhanta"
+          "ta": "பிரம்மஸ்புடசித்தாந்தம்",
+          "te": "బ్రహ్మస్ఫుట సిద్ధాంతం",
+          "bn": "ব্রহ্মস্ফুটসিদ্ধান্ত",
+          "kn": "ಬ್ರಹ್ಮಸ್ಫುಟಸಿದ್ಧಾಂತ",
+          "gu": "બ્રહ્મસ્ફુટસિદ્ધાન્ત"
         },
         {
           "en": "Rigveda",
@@ -173,11 +173,11 @@
           "sa": "ऋग्वेद",
           "mai": "ऋग्वेद",
           "mr": "ऋग्वेद",
-          "ta": "Rigveda",
-          "te": "Rigveda",
-          "bn": "Rigveda",
-          "kn": "Rigveda",
-          "gu": "Rigveda"
+          "ta": "ரிக்வேதம்",
+          "te": "ఋగ్వేదం",
+          "bn": "ঋগ্বেদ",
+          "kn": "ಋಗ್ವೇದ",
+          "gu": "ઋગ્વેદ"
         }
       ]
     },
@@ -263,11 +263,11 @@
           "sa": "ज्यामिति",
           "mai": "ज्यामिति",
           "mr": "ज्यामिति",
-          "ta": "Geometry",
-          "te": "Geometry",
-          "bn": "Geometry",
-          "kn": "Geometry",
-          "gu": "Geometry"
+          "ta": "வடிவவியல்",
+          "te": "రేఖాగణితం",
+          "bn": "জ্যামিতি",
+          "kn": "ರೇಖಾಗಣಿತ",
+          "gu": "ભૂમિતિ"
         },
         {
           "en": "Cord or rope",
@@ -275,11 +275,11 @@
           "sa": "रस्सी या डोरी",
           "mai": "रस्सी या डोरी",
           "mr": "रस्सी या डोरी",
-          "ta": "Cord or rope",
-          "te": "Cord or rope",
-          "bn": "Cord or rope",
-          "kn": "Cord or rope",
-          "gu": "Cord or rope"
+          "ta": "கயிறு அல்லது நாண்",
+          "te": "తాడు లేదా రజ్జువు",
+          "bn": "দড়ি বা রজ্জু",
+          "kn": "ಹಗ್ಗ ಅಥವಾ ರಜ್ಜು",
+          "gu": "દોરી અથવા રજ્જુ"
         },
         {
           "en": "Fire altar",
@@ -287,11 +287,11 @@
           "sa": "अग्निकुण्ड",
           "mai": "अग्निकुण्ड",
           "mr": "अग्निकुण्ड",
-          "ta": "Fire altar",
-          "te": "Fire altar",
-          "bn": "Fire altar",
-          "kn": "Fire altar",
-          "gu": "Fire altar"
+          "ta": "அக்னிகுண்டம்",
+          "te": "అగ్నికుండం",
+          "bn": "অগ্নিকুণ্ড",
+          "kn": "ಅಗ್ನಿಕುಂಡ",
+          "gu": "અગ્નિકુંડ"
         },
         {
           "en": "Measurement",
@@ -299,11 +299,11 @@
           "sa": "मापन",
           "mai": "मापन",
           "mr": "मापन",
-          "ta": "Measurement",
-          "te": "Measurement",
-          "bn": "Measurement",
-          "kn": "Measurement",
-          "gu": "Measurement"
+          "ta": "அளவீடு",
+          "te": "కొలత",
+          "bn": "পরিমাপ",
+          "kn": "ಮಾಪನ",
+          "gu": "માપન"
         }
       ]
     },
@@ -326,11 +326,11 @@
           "sa": "विद्यार्थियों को अंकगणित पढ़ाना",
           "mai": "विद्यार्थियों को अंकगणित पढ़ाना",
           "mr": "विद्यार्थियों को अंकगणित पढ़ाना",
-          "ta": "Teaching arithmetic to students",
-          "te": "Teaching arithmetic to students",
-          "bn": "Teaching arithmetic to students",
-          "kn": "Teaching arithmetic to students",
-          "gu": "Teaching arithmetic to students"
+          "ta": "மாணவர்களுக்கு கணிதம் கற்பிப்பு",
+          "te": "విద్యార్థులకు అంకగణితం బోధించడం",
+          "bn": "ছাত্রদের পাটিগণিত শেখানো",
+          "kn": "ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಅಂಕಗಣಿತ ಕಲಿಸುವುದು",
+          "gu": "વિદ્યાર્થીઓને અંકગણિત શીખવવું"
         },
         {
           "en": "Astronomical calculations",
@@ -338,11 +338,11 @@
           "sa": "खगोलीय गणनाएँ",
           "mai": "खगोलीय गणनाएँ",
           "mr": "खगोलीय गणनाएँ",
-          "ta": "Astronomical calculations",
-          "te": "Astronomical calculations",
-          "bn": "Astronomical calculations",
-          "kn": "Astronomical calculations",
-          "gu": "Astronomical calculations"
+          "ta": "வான கணக்கீடுகள்",
+          "te": "ఖగోళ గణనలు",
+          "bn": "জ্যোতির্বৈজ্ঞানিক গণনা",
+          "kn": "ಖಗೋಳ ಲೆಕ್ಕಾಚಾರಗಳು",
+          "gu": "ખગોળીય ગણતરીઓ"
         },
         {
           "en": "Constructing Vedic fire altars of precise shapes and areas",
@@ -350,11 +350,11 @@
           "sa": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
           "mai": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
           "mr": "सटीक आकार और क्षेत्रफल की वैदिक अग्निकुण्ड बनाना",
-          "ta": "Constructing Vedic fire altars of precise shapes and areas",
-          "te": "Constructing Vedic fire altars of precise shapes and areas",
-          "bn": "Constructing Vedic fire altars of precise shapes and areas",
-          "kn": "Constructing Vedic fire altars of precise shapes and areas",
-          "gu": "Constructing Vedic fire altars of precise shapes and areas"
+          "ta": "துல்லியமான வடிவங்கள் மற்றும் பரப்பில் வேத அக்னிகுண்டங்கள் அமைத்தல்",
+          "te": "ఖచ్చితమైన ఆకారాలు మరియు విస్తీర్ణాలతో వేద అగ్నికుండాల నిర్మాణం",
+          "bn": "সুনির্দিষ্ট আকৃতি ও ক্ষেত্রফলের বৈদিক অগ্নিকুণ্ড নির্মাণ",
+          "kn": "ನಿಖರ ಆಕಾರ ಮತ್ತು ವಿಸ್ತೀರ್ಣದ ವೈದಿಕ ಅಗ್ನಿಕುಂಡ ನಿರ್ಮಾಣ",
+          "gu": "ચોક્કસ આકાર અને ક્ષેત્રફળના વૈદિક અગ્નિકુંડ નિર્માણ"
         },
         {
           "en": "Navigation by sea",
@@ -362,11 +362,11 @@
           "sa": "समुद्री नेविगेशन",
           "mai": "समुद्री नेविगेशन",
           "mr": "समुद्री नेविगेशन",
-          "ta": "Navigation by sea",
-          "te": "Navigation by sea",
-          "bn": "Navigation by sea",
-          "kn": "Navigation by sea",
-          "gu": "Navigation by sea"
+          "ta": "கடல் வழிசெலுத்தல்",
+          "te": "సముద్ర నావిగేషన్",
+          "bn": "সামুদ্রিক নেভিগেশন",
+          "kn": "ಸಮುದ್ರ ನ್ಯಾವಿಗೇಶನ್",
+          "gu": "સમુદ્ર નેવિગેશન"
         }
       ]
     },
@@ -389,11 +389,11 @@
           "sa": "2 दशमलव स्थान",
           "mai": "2 दशमलव स्थान",
           "mr": "2 दशमलव स्थान",
-          "ta": "2 decimal places",
-          "te": "2 decimal places",
-          "bn": "2 decimal places",
-          "kn": "2 decimal places",
-          "gu": "2 decimal places"
+          "ta": "2 தசம இடங்கள்",
+          "te": "2 దశాంశ స్థానాలు",
+          "bn": "২ দশমিক স্থান",
+          "kn": "2 ದಶಮಾಂಶ ಸ್ಥಾನಗಳು",
+          "gu": "2 દશાંશ સ્થાન"
         },
         {
           "en": "3 decimal places",
@@ -401,11 +401,11 @@
           "sa": "3 दशमलव स्थान",
           "mai": "3 दशमलव स्थान",
           "mr": "3 दशमलव स्थान",
-          "ta": "3 decimal places",
-          "te": "3 decimal places",
-          "bn": "3 decimal places",
-          "kn": "3 decimal places",
-          "gu": "3 decimal places"
+          "ta": "3 தசம இடங்கள்",
+          "te": "3 దశాంశ స్థానాలు",
+          "bn": "৩ দশমিক স্থান",
+          "kn": "3 ದಶಮಾಂಶ ಸ್ಥಾನಗಳು",
+          "gu": "3 દશાંશ સ્થાન"
         },
         {
           "en": "5 decimal places",
@@ -413,11 +413,11 @@
           "sa": "5 दशमलव स्थान",
           "mai": "5 दशमलव स्थान",
           "mr": "5 दशमलव स्थान",
-          "ta": "5 decimal places",
-          "te": "5 decimal places",
-          "bn": "5 decimal places",
-          "kn": "5 decimal places",
-          "gu": "5 decimal places"
+          "ta": "5 தசம இடங்கள்",
+          "te": "5 దశాంశ స్థానాలు",
+          "bn": "৫ দশমিক স্থান",
+          "kn": "5 ದಶಮಾಂಶ ಸ್ಥಾನಗಳು",
+          "gu": "5 દશાંશ સ્થાન"
         },
         {
           "en": "10 decimal places",

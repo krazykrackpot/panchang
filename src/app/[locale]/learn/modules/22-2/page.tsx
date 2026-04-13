@@ -22,10 +22,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य क्रान्तिवृत्त पर असमान रूप से क्यों गतिमान दिखता है?',
     },
     options: [
-      { en: 'Because the Sun orbits the Earth in a circle', hi: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', sa: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mai: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mr: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', ta: 'Because the Sun orbits the Earth in a circle', te: 'Because the Sun orbits the Earth in a circle', bn: 'Because the Sun orbits the Earth in a circle', kn: 'Because the Sun orbits the Earth in a circle', gu: 'Because the Sun orbits the Earth in a circle' },
+      { en: 'Because the Sun orbits the Earth in a circle', hi: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', sa: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mai: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', mr: 'क्योंकि सूर्य पृथ्वी की वृत्ताकार कक्षा में है', ta: 'சூரியன் பூமியை வட்டப்பாதையில் சுற்றுவதால்', te: 'సూర్యుడు భూమిని వృత్తాకార కక్ష్యలో తిరుగుతాడు కాబట్టి', bn: 'সূর্য পৃথিবীকে বৃত্তাকার কক্ষপথে প্রদক্ষিণ করে বলে', kn: 'ಸೂರ್ಯ ಭೂಮಿಯನ್ನು ವೃತ್ತಾಕಾರ ಕಕ್ಷೆಯಲ್ಲಿ ಸುತ್ತುವುದರಿಂದ', gu: 'સૂર્ય પૃથ્વીની વર્તુળાકાર ભ્રમણકક્ષામાં ફરે છે તેથી' },
       { en: 'Because Earth\'s orbit is elliptical — faster at perihelion, slower at aphelion', hi: 'क्योंकि पृथ्वी की कक्षा दीर्घवृत्तीय है — उपसौर पर तेज़, अपसौर पर धीमी' },
       { en: 'Because of the Moon\'s gravitational pull on the Sun', hi: 'चन्द्रमा के सूर्य पर गुरुत्वाकर्षण खिंचाव के कारण' },
-      { en: 'Because of atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन के कारण', sa: 'वायुमण्डलीय अपवर्तन के कारण', mai: 'वायुमण्डलीय अपवर्तन के कारण', mr: 'वायुमण्डलीय अपवर्तन के कारण', ta: 'Because of atmospheric refraction', te: 'Because of atmospheric refraction', bn: 'Because of atmospheric refraction', kn: 'Because of atmospheric refraction', gu: 'Because of atmospheric refraction' },
+      { en: 'Because of atmospheric refraction', hi: 'वायुमण्डलीय अपवर्तन के कारण', sa: 'वायुमण्डलीय अपवर्तन के कारण', mai: 'वायुमण्डलीय अपवर्तन के कारण', mr: 'वायुमण्डलीय अपवर्तन के कारण', ta: 'வளிமண்டல ஒளிவிலகல் காரணமாக', te: 'వాతావరణ వక్రీభవనం కారణంగా', bn: 'বায়ুমণ্ডলীয় প্রতিসরণের কারণে', kn: 'ವಾತಾವರಣ ವಕ್ರೀಭವನದಿಂದ', gu: 'વાયુમંડળીય વક્રીભવનને કારણે' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -43,7 +43,7 @@ const QUESTIONS: ModuleQuestion[] = [
       { en: 'The Sun\'s true position at any instant', hi: 'किसी क्षण सूर्य की सत्य स्थिति' },
       { en: 'The Sun\'s average position if the orbit were circular', hi: 'सूर्य की औसत स्थिति यदि कक्षा वृत्ताकार होती' },
       { en: 'The Moon\'s mean longitude', hi: 'चन्द्रमा का माध्य भोगांश' },
-      { en: 'The ecliptic longitude of the ascending node', hi: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', sa: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mai: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mr: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', ta: 'The ecliptic longitude of the ascending node', te: 'The ecliptic longitude of the ascending node', bn: 'The ecliptic longitude of the ascending node', kn: 'The ecliptic longitude of the ascending node', gu: 'The ecliptic longitude of the ascending node' },
+      { en: 'The ecliptic longitude of the ascending node', hi: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', sa: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mai: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', mr: 'आरोही पात का क्रान्तिवृत्तीय भोगांश', ta: 'ஏறு முனையின் கிரகண தீர்க்கரேகை', te: 'ఆరోహణ బిందువు యొక్క క్రాంతివృత్త రేఖాంశం', bn: 'আরোহী বিন্দুর ক্রান্তিবৃত্তীয় দ্রাঘিমাংশ', kn: 'ಆರೋಹಿ ಬಿಂದುವಿನ ಕ್ರಾಂತಿವೃತ್ತ ರೇಖಾಂಶ', gu: 'ઊર્ધ્વ બિંદુનો ક્રાંતિવૃત્ત રેખાંશ' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -58,10 +58,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'माध्य विलम्बिका M दर्शाती है:',
     },
     options: [
-      { en: 'The angle between the Sun and Moon', hi: 'सूर्य और चन्द्रमा के बीच का कोण', sa: 'सूर्य और चन्द्रमा के बीच का कोण', mai: 'सूर्य और चन्द्रमा के बीच का कोण', mr: 'सूर्य और चन्द्रमा के बीच का कोण', ta: 'The angle between the Sun and Moon', te: 'The angle between the Sun and Moon', bn: 'The angle between the Sun and Moon', kn: 'The angle between the Sun and Moon', gu: 'The angle between the Sun and Moon' },
-      { en: 'The angle from perihelion along the orbit, as if motion were uniform', hi: 'कक्षा में उपसौर से कोण, मानो गति समान हो', sa: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mai: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mr: 'कक्षा में उपसौर से कोण, मानो गति समान हो', ta: 'The angle from perihelion along the orbit, as if motion were uniform', te: 'The angle from perihelion along the orbit, as if motion were uniform', bn: 'The angle from perihelion along the orbit, as if motion were uniform', kn: 'The angle from perihelion along the orbit, as if motion were uniform', gu: 'The angle from perihelion along the orbit, as if motion were uniform' },
-      { en: 'The declination of the Sun', hi: 'सूर्य का क्रान्ति', sa: 'सूर्य का क्रान्ति', mai: 'सूर्य का क्रान्ति', mr: 'सूर्य का क्रान्ति', ta: 'The declination of the Sun', te: 'The declination of the Sun', bn: 'The declination of the Sun', kn: 'The declination of the Sun', gu: 'The declination of the Sun' },
-      { en: 'The hour angle of the Sun', hi: 'सूर्य का घण्टा कोण', sa: 'सूर्य का घण्टा कोण', mai: 'सूर्य का घण्टा कोण', mr: 'सूर्य का घण्टा कोण', ta: 'The hour angle of the Sun', te: 'The hour angle of the Sun', bn: 'The hour angle of the Sun', kn: 'The hour angle of the Sun', gu: 'The hour angle of the Sun' },
+      { en: 'The angle between the Sun and Moon', hi: 'सूर्य और चन्द्रमा के बीच का कोण', sa: 'सूर्य और चन्द्रमा के बीच का कोण', mai: 'सूर्य और चन्द्रमा के बीच का कोण', mr: 'सूर्य और चन्द्रमा के बीच का कोण', ta: 'சூரியன் மற்றும் நிலவுக்கு இடையிலான கோணம்', te: 'సూర్య చంద్రుల మధ్య కోణం', bn: 'সূর্য ও চন্দ্রের মধ্যে কোণ', kn: 'ಸೂರ್ಯ ಮತ್ತು ಚಂದ್ರನ ನಡುವಿನ ಕೋನ', gu: 'સૂર્ય અને ચંદ્ર વચ્ચેનો ખૂણો' },
+      { en: 'The angle from perihelion along the orbit, as if motion were uniform', hi: 'कक्षा में उपसौर से कोण, मानो गति समान हो', sa: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mai: 'कक्षा में उपसौर से कोण, मानो गति समान हो', mr: 'कक्षा में उपसौर से कोण, मानो गति समान हो', ta: 'சூரிய அண்மையிலிருந்து சுற்றுப்பாதையில் கோணம், சீரான இயக்கம் போல', te: 'సూర్య సమీపం నుండి కక్ష్య వెంట కోణం, చలనం ఏకరీతిగా ఉన్నట్లు', bn: 'অনুসূর্য থেকে কক্ষপথ বরাবর কোণ, যেন গতি সমান হতো', kn: 'ಸೂರ್ಯ ಸಮೀಪದಿಂದ ಕಕ್ಷೆಯುದ್ದಕ್ಕೂ ಕೋನ, ಚಲನೆ ಏಕರೂಪ ಎಂಬಂತೆ', gu: 'સૂર્ય નિકટથી ભ્રમણકક્ષા સાથે ખૂણો, જાણે ગતિ સમાન હોય' },
+      { en: 'The declination of the Sun', hi: 'सूर्य का क्रान्ति', sa: 'सूर्य का क्रान्ति', mai: 'सूर्य का क्रान्ति', mr: 'सूर्य का क्रान्ति', ta: 'சூரியனின் விலக்கம்', te: 'సూర్యుని క్రాంతి', bn: 'সূর্যের বিষুবলম্ব', kn: 'ಸೂರ್ಯನ ಕ್ರಾಂತಿ', gu: 'સૂર્યનો ક્રાંતિ' },
+      { en: 'The hour angle of the Sun', hi: 'सूर्य का घण्टा कोण', sa: 'सूर्य का घण्टा कोण', mai: 'सूर्य का घण्टा कोण', mr: 'सूर्य का घण्टा कोण', ta: 'சூரியனின் மணி கோணம்', te: 'సూర్యుని గంట కోణం', bn: 'সূর্যের ঘণ্টা কোণ', kn: 'ಸೂರ್ಯನ ಗಂಟೆ ಕೋನ', gu: 'સૂર્યનો કલાક ખૂણો' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -154,10 +154,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सूर्य के सायन भोगांश को निरयन (वैदिक) में बदलने के लिए आप:',
     },
     options: [
-      { en: 'Add the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', ta: 'Add the Lahiri ayanamsha (~24.22° in 2026)', te: 'Add the Lahiri ayanamsha (~24.22° in 2026)', bn: 'Add the Lahiri ayanamsha (~24.22° in 2026)', kn: 'Add the Lahiri ayanamsha (~24.22° in 2026)', gu: 'Add the Lahiri ayanamsha (~24.22° in 2026)' },
-      { en: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', ta: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', te: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', bn: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', kn: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', gu: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)' },
-      { en: 'Multiply by 12/13.333', hi: '12/13.333 से गुणा करते हैं', sa: '12/13.333 से गुणा करते हैं', mai: '12/13.333 से गुणा करते हैं', mr: '12/13.333 से गुणा करते हैं', ta: 'Multiply by 12/13.333', te: 'Multiply by 12/13.333', bn: 'Multiply by 12/13.333', kn: 'Multiply by 12/13.333', gu: 'Multiply by 12/13.333' },
-      { en: 'Add 180°', hi: '180° जोड़ते हैं', sa: '180° जोड़ते हैं', mai: '180° जोड़ते हैं', mr: '180° जोड़ते हैं', ta: 'Add 180°', te: 'Add 180°', bn: 'Add 180°', kn: 'Add 180°', gu: 'Add 180°' },
+      { en: 'Add the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) जोड़ते हैं', ta: 'லாஹிரி அயனாம்சம் (~24.22° 2026-ல்) கூட்டுக', te: 'లాహిరి అయనాంశ (~24.22° 2026లో) కలపండి', bn: 'লাহিরি অয়নাংশ (~24.22° ২০২৬-এ) যোগ করুন', kn: 'ಲಾಹಿರಿ ಅಯನಾಂಶ (~24.22° 2026ರಲ್ಲಿ) ಸೇರಿಸಿ', gu: 'લાહિરી અયનાંશ (~24.22° 2026માં) ઉમેરો' },
+      { en: 'Subtract the Lahiri ayanamsha (~24.22° in 2026)', hi: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', sa: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mai: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', mr: 'लाहिरी अयनांश (~24.22° 2026 में) घटाते हैं', ta: 'லாஹிரி அயனாம்சம் (~24.22° 2026-ல்) கழிக்க', te: 'లాహిరి అయనాంశ (~24.22° 2026లో) తీయండి', bn: 'লাহিরি অয়নাংশ (~24.22° ২০২৬-এ) বিয়োগ করুন', kn: 'ಲಾಹಿರಿ ಅಯನಾಂಶ (~24.22° 2026ರಲ್ಲಿ) ಕಳೆಯಿರಿ', gu: 'લાહિરી અયનાંશ (~24.22° 2026માં) બાદ કરો' },
+      { en: 'Multiply by 12/13.333', hi: '12/13.333 से गुणा करते हैं', sa: '12/13.333 से गुणा करते हैं', mai: '12/13.333 से गुणा करते हैं', mr: '12/13.333 से गुणा करते हैं', ta: '12/13.333 ஆல் பெருக்குக', te: '12/13.333 తో గుణించండి', bn: '12/13.333 দ্বারা গুণ করুন', kn: '12/13.333 ರಿಂದ ಗುಣಿಸಿ', gu: '12/13.333 વડે ગુણો' },
+      { en: 'Add 180°', hi: '180° जोड़ते हैं', sa: '180° जोड़ते हैं', mai: '180° जोड़ते हैं', mr: '180° जोड़ते हैं', ta: '180° கூட்டுக', te: '180° కలపండి', bn: '180° যোগ করুন', kn: '180° ಸೇರಿಸಿ', gu: '180° ઉમેરો' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -172,10 +172,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'अपनी कक्षा में किस बिन्दु पर पृथ्वी सबसे तेज़ चलती है (और सूर्य क्रान्तिवृत्त पर सबसे तेज़ गतिमान दिखता है)?',
     },
     options: [
-      { en: 'Aphelion (July)', hi: 'अपसौर (जुलाई)', sa: 'अपसौर (जुलाई)', mai: 'अपसौर (जुलाई)', mr: 'अपसौर (जुलाई)', ta: 'Aphelion (July)', te: 'Aphelion (July)', bn: 'Aphelion (July)', kn: 'Aphelion (July)', gu: 'Aphelion (July)' },
-      { en: 'Perihelion (January)', hi: 'उपसौर (जनवरी)', sa: 'उपसौर (जनवरी)', mai: 'उपसौर (जनवरी)', mr: 'उपसौर (जनवरी)', ta: 'Perihelion (January)', te: 'Perihelion (January)', bn: 'Perihelion (January)', kn: 'Perihelion (January)', gu: 'Perihelion (January)' },
-      { en: 'Vernal equinox (March)', hi: 'वसन्त विषुव (मार्च)', sa: 'वसन्त विषुव (मार्च)', mai: 'वसन्त विषुव (मार्च)', mr: 'वसन्त विषुव (मार्च)', ta: 'Vernal equinox (March)', te: 'Vernal equinox (March)', bn: 'Vernal equinox (March)', kn: 'Vernal equinox (March)', gu: 'Vernal equinox (March)' },
-      { en: 'Summer solstice (June)', hi: 'ग्रीष्म अयनान्त (जून)', sa: 'ग्रीष्म अयनान्त (जून)', mai: 'ग्रीष्म अयनान्त (जून)', mr: 'ग्रीष्म अयनान्त (जून)', ta: 'Summer solstice (June)', te: 'Summer solstice (June)', bn: 'Summer solstice (June)', kn: 'Summer solstice (June)', gu: 'Summer solstice (June)' },
+      { en: 'Aphelion (July)', hi: 'अपसौर (जुलाई)', sa: 'अपसौर (जुलाई)', mai: 'अपसौर (जुलाई)', mr: 'अपसौर (जुलाई)', ta: 'சூரிய தொலைவு (ஜூலை)', te: 'సూర్య దూరం (జూలై)', bn: 'অপসূর্য (জুলাই)', kn: 'ಸೂರ್ಯ ದೂರ (ಜುಲೈ)', gu: 'સૂર્ય દૂર (જુલાઈ)' },
+      { en: 'Perihelion (January)', hi: 'उपसौर (जनवरी)', sa: 'उपसौर (जनवरी)', mai: 'उपसौर (जनवरी)', mr: 'उपसौर (जनवरी)', ta: 'சூரிய அண்மை (ஜனவரி)', te: 'సూర్య సమీపం (జనవరి)', bn: 'অনুসূর্য (জানুয়ারি)', kn: 'ಸೂರ್ಯ ಸಮೀಪ (ಜನವರಿ)', gu: 'સૂર્ય નિકટ (જાન્યુઆરી)' },
+      { en: 'Vernal equinox (March)', hi: 'वसन्त विषुव (मार्च)', sa: 'वसन्त विषुव (मार्च)', mai: 'वसन्त विषुव (मार्च)', mr: 'वसन्त विषुव (मार्च)', ta: 'வசந்த விஷுவம் (மார்ச்)', te: 'వసంత విషువం (మార్చి)', bn: 'বসন্ত বিষুব (মার্চ)', kn: 'ವಸಂತ ವಿಷುವ (ಮಾರ್ಚ್)', gu: 'વસંત વિષુવ (માર્ચ)' },
+      { en: 'Summer solstice (June)', hi: 'ग्रीष्म अयनान्त (जून)', sa: 'ग्रीष्म अयनान्त (जून)', mai: 'ग्रीष्म अयनान्त (जून)', mr: 'ग्रीष्म अयनान्त (जून)', ta: 'கோடை அயன திருப்பம் (ஜூன்)', te: 'గ్రీష్మ అయనాంతం (జూన్)', bn: 'গ্রীষ্ম অয়নান্ত (জুন)', kn: 'ಗ್ರೀಷ್ಮ ಅಯನಾಂತ (ಜೂನ್)', gu: 'ગ્રીષ્મ અયનાંત (જૂન)' },
     ],
     correctAnswer: 1,
     explanation: {

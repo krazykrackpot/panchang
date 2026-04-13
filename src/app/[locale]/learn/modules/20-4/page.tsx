@@ -42,9 +42,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'Moon\'s sign lord', hi: 'चन्द्र का राशि स्वामी' },
-      { en: 'Lagna star lord', hi: 'लग्न का नक्षत्र स्वामी', sa: 'लग्न का नक्षत्र स्वामी', mai: 'लग्न का नक्षत्र स्वामी', mr: 'लग्न का नक्षत्र स्वामी', ta: 'Lagna star lord', te: 'Lagna star lord', bn: 'Lagna star lord', kn: 'Lagna star lord', gu: 'Lagna star lord' },
+      { en: 'Lagna star lord', hi: 'लग्न का नक्षत्र स्वामी', sa: 'लग्नस्य नक्षत्रस्वामी', mai: 'लग्नक नक्षत्र स्वामी', mr: 'लग्नाचा नक्षत्र स्वामी', ta: 'லக்ன நட்சத்திர அதிபதி', te: 'లగ్న నక్షత్రాధిపతి', bn: 'লগ্ন নক্ষত্রাধিপতি', kn: 'ಲಗ್ನ ನಕ್ಷತ್ರಾಧಿಪತಿ', gu: 'લગ્ન નક્ષત્ર સ્વામી' },
       { en: 'Sun\'s sign lord', hi: 'सूर्य का राशि स्वामी' },
-      { en: 'Day lord', hi: 'दिन स्वामी', sa: 'दिन स्वामी', mai: 'दिन स्वामी', mr: 'दिन स्वामी', ta: 'Day lord', te: 'Day lord', bn: 'Day lord', kn: 'Day lord', gu: 'Day lord' },
+      { en: 'Day lord', hi: 'दिन स्वामी', sa: 'दिनस्वामी', mai: 'दिन स्वामी', mr: 'दिन स्वामी', ta: 'தின அதிபதி', te: 'దినాధిపతి', bn: 'দিনাধিপতি', kn: 'ದಿನಾಧಿಪತಿ', gu: 'દિન સ્વામી' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -72,9 +72,9 @@ const QUESTIONS: ModuleQuestion[] = [
     },
     options: [
       { en: 'To determine the native\'s personality', hi: 'जातक के व्यक्तित्व का निर्धारण' },
-      { en: 'To identify WHEN a predicted event will manifest', hi: 'यह पहचानना कि भविष्यवाणित घटना कब प्रकट होगी', sa: 'यह पहचानना कि भविष्यवाणित घटना कब प्रकट होगी', mai: 'यह पहचानना कि भविष्यवाणित घटना कब प्रकट होगी', mr: 'यह पहचानना कि भविष्यवाणित घटना कब प्रकट होगी', ta: 'To identify WHEN a predicted event will manifest', te: 'To identify WHEN a predicted event will manifest', bn: 'To identify WHEN a predicted event will manifest', kn: 'To identify WHEN a predicted event will manifest', gu: 'To identify WHEN a predicted event will manifest' },
-      { en: 'To calculate the birth chart', hi: 'जन्म कुण्डली की गणना', sa: 'जन्म कुण्डली की गणना', mai: 'जन्म कुण्डली की गणना', mr: 'जन्म कुण्डली की गणना', ta: 'To calculate the birth chart', te: 'To calculate the birth chart', bn: 'To calculate the birth chart', kn: 'To calculate the birth chart', gu: 'To calculate the birth chart' },
-      { en: 'To find compatible partners', hi: 'अनुकूल साथी खोजना', sa: 'अनुकूल साथी खोजना', mai: 'अनुकूल साथी खोजना', mr: 'अनुकूल साथी खोजना', ta: 'To find compatible partners', te: 'To find compatible partners', bn: 'To find compatible partners', kn: 'To find compatible partners', gu: 'To find compatible partners' },
+      { en: 'To identify WHEN a predicted event will manifest', hi: 'यह पहचानना कि भविष्यवाणित घटना कब प्रकट होगी', sa: 'भविष्यवाणिता घटना कदा प्रकटिष्यते इति ज्ञातुम्', mai: 'ई पहचानब जे भविष्यवाणी कयल घटना कहिया प्रकट होयत', mr: 'भविष्य सांगितलेली घटना कधी घडेल हे ओळखणे', ta: 'முன்கணிக்கப்பட்ட நிகழ்வு எப்போது நிகழும் என கண்டறிய', te: 'అంచనా వేసిన సంఘటన ఎప్పుడు వ్యక్తమవుతుందో గుర్తించడానికి', bn: 'পূর্বানুমানকৃত ঘটনা কখন ঘটবে তা চিহ্নিত করতে', kn: 'ಮುನ್ಸೂಚಿಸಿದ ಘಟನೆ ಯಾವಾಗ ಸಂಭವಿಸುತ್ತದೆ ಎಂದು ಗುರುತಿಸಲು', gu: 'ભવિષ્યવાણી કરેલી ઘટના ક્યારે ઘટશે તે ઓળખવા' },
+      { en: 'To calculate the birth chart', hi: 'जन्म कुण्डली की गणना', sa: 'जन्मकुण्डल्याः गणना', mai: 'जन्म कुण्डलीक गणना', mr: 'जन्म कुंडली मोजणी', ta: 'பிறப்பு ஜாதகத்தை கணக்கிட', te: 'జన్మ కుండలిని లెక్కించడానికి', bn: 'জন্ম কুণ্ডলী গণনা করতে', kn: 'ಜನ್ಮ ಕುಂಡಲಿಯನ್ನು ಲೆಕ್ಕಹಾಕಲು', gu: 'જન્મ કુંડળી ગણતરી કરવા' },
+      { en: 'To find compatible partners', hi: 'अनुकूल साथी खोजना', sa: 'अनुकूलं सहचरं अन्वेष्टुम्', mai: 'अनुकूल साथी ताकब', mr: 'अनुकूल जोडीदार शोधणे', ta: 'இணக்கமான துணையை கண்டறிய', te: 'అనుకూల భాగస్వాములను కనుగొనడానికి', bn: 'অনুকূল সঙ্গী খুঁজতে', kn: 'ಹೊಂದಾಣಿಕೆಯ ಸಂಗಾತಿಯನ್ನು ಹುಡುಕಲು', gu: 'અનુકૂળ જીવનસાથી શોધવા' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -101,10 +101,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी सप्ताह दिन स्वामी पद्धति में मंगलवार का शासक कौन-सा ग्रह है?',
     },
     options: [
-      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'Sun', te: 'Sun', bn: 'Sun', kn: 'Sun', gu: 'Sun' },
-      { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'Moon', te: 'Moon', bn: 'Moon', kn: 'Moon', gu: 'Moon' },
-      { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'Mars', te: 'Mars', bn: 'Mars', kn: 'Mars', gu: 'Mars' },
-      { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'Mercury', te: 'Mercury', bn: 'Mercury', kn: 'Mercury', gu: 'Mercury' },
+      { en: 'Sun', hi: 'सूर्य', sa: 'सूर्य', mai: 'सूर्य', mr: 'सूर्य', ta: 'சூரியன்', te: 'సూర్యుడు', bn: 'সূর্য', kn: 'ಸೂರ್ಯ', gu: 'સૂર્ય' },
+      { en: 'Moon', hi: 'चन्द्र', sa: 'चन्द्र', mai: 'चन्द्र', mr: 'चन्द्र', ta: 'சந்திரன்', te: 'చంద్రుడు', bn: 'চন্দ্র', kn: 'ಚಂದ್ರ', gu: 'ચંદ્ર' },
+      { en: 'Mars', hi: 'मंगल', sa: 'मंगल', mai: 'मंगल', mr: 'मंगल', ta: 'செவ்வாய்', te: 'కుజుడు', bn: 'মঙ্গল', kn: 'ಕುಜ', gu: 'મંગળ' },
+      { en: 'Mercury', hi: 'बुध', sa: 'बुध', mai: 'बुध', mr: 'बुध', ta: 'புதன்', te: 'బుధుడు', bn: 'বুধ', kn: 'ಬುಧ', gu: 'બુધ' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -119,10 +119,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'केपी शासक ग्रहों को कारक सारणी के साथ कैसे उपयोग करता है?',
     },
     options: [
-      { en: 'Ruling planets replace the significator table', hi: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', sa: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', mai: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', mr: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', ta: 'Ruling planets replace the significator table', te: 'Ruling planets replace the significator table', bn: 'Ruling planets replace the significator table', kn: 'Ruling planets replace the significator table', gu: 'Ruling planets replace the significator table' },
-      { en: 'Ruling planets confirm and narrow down the timing from the significator table', hi: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', sa: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', mai: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', mr: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', ta: 'Ruling planets confirm and narrow down the timing from the significator table', te: 'Ruling planets confirm and narrow down the timing from the significator table', bn: 'Ruling planets confirm and narrow down the timing from the significator table', kn: 'Ruling planets confirm and narrow down the timing from the significator table', gu: 'Ruling planets confirm and narrow down the timing from the significator table' },
-      { en: 'Only ruling planets are used, the significator table is ignored', hi: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', sa: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', mai: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', mr: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', ta: 'Only ruling planets are used, the significator table is ignored', te: 'Only ruling planets are used, the significator table is ignored', bn: 'Only ruling planets are used, the significator table is ignored', kn: 'Only ruling planets are used, the significator table is ignored', gu: 'Only ruling planets are used, the significator table is ignored' },
-      { en: 'The significator table replaces ruling planets', hi: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', sa: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', mai: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', mr: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', ta: 'The significator table replaces ruling planets', te: 'The significator table replaces ruling planets', bn: 'The significator table replaces ruling planets', kn: 'The significator table replaces ruling planets', gu: 'The significator table replaces ruling planets' },
+      { en: 'Ruling planets replace the significator table', hi: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', sa: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', mai: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', mr: 'शासक ग्रह कारक सारणी को प्रतिस्थापित करते हैं', ta: 'ஆளும் கிரகங்கள் காரக அட்டவணையை மாற்றுகின்றன', te: 'పాలక గ్రహాలు కారక పట్టికను భర్తీ చేస్తాయి', bn: 'শাসক গ্রহ কারক সারণি প্রতিস্থাপন করে', kn: 'ಆಳುವ ಗ್ರಹಗಳು ಕಾರಕ ಕೋಷ್ಟಕವನ್ನು ಬದಲಿಸುತ್ತವೆ', gu: 'શાસક ગ્રહો કારક કોષ્ટક બદલે છે' },
+      { en: 'Ruling planets confirm and narrow down the timing from the significator table', hi: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', sa: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', mai: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', mr: 'शासक ग्रह कारक सारणी से समय की पुष्टि और सीमित करते हैं', ta: 'ஆளும் கிரகங்கள் காரக அட்டவணையிலிருந்து நேரத்தை உறுதிசெய்து குறுக்குகின்றன', te: 'పాలక గ్రహాలు కారక పట్టిక నుండి సమయాన్ని నిర్ధారిస్తాయి', bn: 'শাসক গ্রহ কারক সারণি থেকে সময় নিশ্চিত ও সংকুচিত করে', kn: 'ಆಳುವ ಗ್ರಹಗಳು ಕಾರಕ ಕೋಷ್ಟಕದಿಂದ ಸಮಯವನ್ನು ದೃಢೀಕರಿಸಿ ಸಂಕುಚಿಸುತ್ತವೆ', gu: 'શાસક ગ્રહો કારક કોષ્ટકમાંથી સમય ચકાસે છે અને સંકુચિત કરે છે' },
+      { en: 'Only ruling planets are used, the significator table is ignored', hi: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', sa: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', mai: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', mr: 'केवल शासक ग्रह प्रयुक्त होते हैं, कारक सारणी की उपेक्षा होती है', ta: 'ஆளும் கிரகங்கள் மட்டுமே பயன்படுத்தப்படுகின்றன, காரக அட்டவணை புறக்கணிக்கப்படுகிறது', te: 'పాలక గ్రహాలు మాత్రమే ఉపయోగించబడతాయి, కారక పట్టిక విస్మరించబడుతుంది', bn: 'শুধু শাসক গ্রহ ব্যবহৃত, কারক সারণি উপেক্ষিত', kn: 'ಆಳುವ ಗ್ರಹಗಳು ಮಾತ್ರ, ಕಾರಕ ಕೋಷ್ಟಕ ನಿರ್ಲಕ್ಷಿತ', gu: 'ફક્ત શાસક ગ્રહો, કારક કોષ્ટક અવગણાય છે' },
+      { en: 'The significator table replaces ruling planets', hi: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', sa: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', mai: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', mr: 'कारक सारणी शासक ग्रहों को प्रतिस्थापित करती है', ta: 'காரக அட்டவணை ஆளும் கிரகங்களை மாற்றுகிறது', te: 'కారక పట్టిక పాలక గ్రహాలను భర్తీ చేస్తుంది', bn: 'কারক সারণি শাসক গ্রহ প্রতিস্থাপন করে', kn: 'ಕಾರಕ ಕೋಷ್ಟಕ ಆಳುವ ಗ್ರಹಗಳನ್ನು ಬದಲಿಸುತ್ತದೆ', gu: 'કારક કોષ્ટક શાસક ગ્રહોને બદલે છે' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -149,10 +149,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'घटना कब होगी इसे और परिशोधित करने के लिए केपी दशा समय के बाद कौन-सी अतिरिक्त तकनीक उपयोग करता है?',
     },
     options: [
-      { en: 'Solar return chart', hi: 'सौर प्रत्यावर्तन कुण्डली', sa: 'सौर प्रत्यावर्तन कुण्डली', mai: 'सौर प्रत्यावर्तन कुण्डली', mr: 'सौर प्रत्यावर्तन कुण्डली', ta: 'Solar return chart', te: 'Solar return chart', bn: 'Solar return chart', kn: 'Solar return chart', gu: 'Solar return chart' },
-      { en: 'Transit of ruling planets over cusp sub-lords', hi: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', sa: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', mai: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', mr: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', ta: 'Transit of ruling planets over cusp sub-lords', te: 'Transit of ruling planets over cusp sub-lords', bn: 'Transit of ruling planets over cusp sub-lords', kn: 'Transit of ruling planets over cusp sub-lords', gu: 'Transit of ruling planets over cusp sub-lords' },
-      { en: 'Progressed Moon technique', hi: 'प्रगत चन्द्र तकनीक', sa: 'प्रगत चन्द्र तकनीक', mai: 'प्रगत चन्द्र तकनीक', mr: 'प्रगत चन्द्र तकनीक', ta: 'Progressed Moon technique', te: 'Progressed Moon technique', bn: 'Progressed Moon technique', kn: 'Progressed Moon technique', gu: 'Progressed Moon technique' },
-      { en: 'Eclipse analysis', hi: 'ग्रहण विश्लेषण', sa: 'ग्रहण विश्लेषण', mai: 'ग्रहण विश्लेषण', mr: 'ग्रहण विश्लेषण', ta: 'Eclipse analysis', te: 'Eclipse analysis', bn: 'Eclipse analysis', kn: 'Eclipse analysis', gu: 'Eclipse analysis' },
+      { en: 'Solar return chart', hi: 'सौर प्रत्यावर्तन कुण्डली', sa: 'सौर प्रत्यावर्तन कुण्डली', mai: 'सौर प्रत्यावर्तन कुण्डली', mr: 'सौर प्रत्यावर्तन कुण्डली', ta: 'சூரிய மீள்வரவு வரைபடம்', te: 'సూర్య తిరిగి వచ్చే చార్ట్', bn: 'সৌর প্রত্যাবর্তন তালিকা', kn: 'ಸೌರ ಮರಳುವಿಕೆ ಚಾರ್ಟ್', gu: 'સૌર પુનરાગમન ચાર્ટ' },
+      { en: 'Transit of ruling planets over cusp sub-lords', hi: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', sa: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', mai: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', mr: 'सन्धि उप-स्वामियों पर शासक ग्रहों का गोचर', ta: 'ஆளும் கிரகங்களின் பாவ உப-அதிபதிகள் மீது கோசாரம்', te: 'పాలక గ్రహాల భావ ఉప-అధిపతులపై గోచరం', bn: 'শাসক গ্রহের ভাব উপ-অধিপতির উপর গোচর', kn: 'ಆಳುವ ಗ್ರಹಗಳ ಭಾವ ಉಪ-ಅಧಿಪತಿಗಳ ಮೇಲೆ ಗೋಚರ', gu: 'શાસક ગ્રહોનું ભાવ ઉપ-સ્વામી ઉપર ગોચર' },
+      { en: 'Progressed Moon technique', hi: 'प्रगत चन्द्र तकनीक', sa: 'प्रगत चन्द्र तकनीक', mai: 'प्रगत चन्द्र तकनीक', mr: 'प्रगत चन्द्र तकनीक', ta: 'முன்னேற்ற சந்திர தொழில்நுட்பம்', te: 'ప్రోగ్రెస్డ్ చంద్ర పద్ధతి', bn: 'প্রগতিশীল চন্দ্র কৌশল', kn: 'ಪ್ರಗತಿಶೀಲ ಚಂದ್ರ ತಂತ್ರ', gu: 'પ્રગતિશીલ ચંદ્ર તકનીક' },
+      { en: 'Eclipse analysis', hi: 'ग्रहण विश्लेषण', sa: 'ग्रहण विश्लेषण', mai: 'ग्रहण विश्लेषण', mr: 'ग्रहण विश्लेषण', ta: 'கிரகண பகுப்பாய்வு', te: 'గ్రహణ విశ్లేషణ', bn: 'গ্রহণ বিশ্লেষণ', kn: 'ಗ್ರಹಣ ವಿಶ್ಲೇಷಣೆ', gu: 'ગ્રહણ વિશ્લેષણ' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -167,10 +167,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'विवाह के उदाहरण में, यदि प्रश्न समय पर शासक ग्रह शुक्र, चन्द्र, गुरु, बुध और शनि हैं, और शुक्र भाव 2, 7, 11 का कारक है — सर्वाधिक सम्भावित विवाह काल क्या है?',
     },
     options: [
-      { en: 'Sun-Mars period', hi: 'सूर्य-मंगल काल', sa: 'सूर्य-मंगल काल', mai: 'सूर्य-मंगल काल', mr: 'सूर्य-मंगल काल', ta: 'Sun-Mars period', te: 'Sun-Mars period', bn: 'Sun-Mars period', kn: 'Sun-Mars period', gu: 'Sun-Mars period' },
-      { en: 'Venus-Jupiter or Jupiter-Venus period', hi: 'शुक्र-गुरु या गुरु-शुक्र काल', sa: 'शुक्र-गुरु या गुरु-शुक्र काल', mai: 'शुक्र-गुरु या गुरु-शुक्र काल', mr: 'शुक्र-गुरु या गुरु-शुक्र काल', ta: 'Venus-Jupiter or Jupiter-Venus period', te: 'Venus-Jupiter or Jupiter-Venus period', bn: 'Venus-Jupiter or Jupiter-Venus period', kn: 'Venus-Jupiter or Jupiter-Venus period', gu: 'Venus-Jupiter or Jupiter-Venus period' },
-      { en: 'Ketu-Rahu period', hi: 'केतु-राहु काल', sa: 'केतु-राहु काल', mai: 'केतु-राहु काल', mr: 'केतु-राहु काल', ta: 'Ketu-Rahu period', te: 'Ketu-Rahu period', bn: 'Ketu-Rahu period', kn: 'Ketu-Rahu period', gu: 'Ketu-Rahu period' },
-      { en: 'Saturn-Saturn period', hi: 'शनि-शनि काल', sa: 'शनि-शनि काल', mai: 'शनि-शनि काल', mr: 'शनि-शनि काल', ta: 'Saturn-Saturn period', te: 'Saturn-Saturn period', bn: 'Saturn-Saturn period', kn: 'Saturn-Saturn period', gu: 'Saturn-Saturn period' },
+      { en: 'Sun-Mars period', hi: 'सूर्य-मंगल काल', sa: 'सूर्य-मंगल काल', mai: 'सूर्य-मंगल काल', mr: 'सूर्य-मंगल काल', ta: 'சூரியன்-செவ்வாய் காலம்', te: 'సూర్య-కుజ కాలం', bn: 'সূর্য-মঙ্গল কাল', kn: 'ಸೂರ್ಯ-ಕುಜ ಅವಧಿ', gu: 'સૂર્ય-મંગળ કાળ' },
+      { en: 'Venus-Jupiter or Jupiter-Venus period', hi: 'शुक्र-गुरु या गुरु-शुक्र काल', sa: 'शुक्र-गुरु या गुरु-शुक्र काल', mai: 'शुक्र-गुरु या गुरु-शुक्र काल', mr: 'शुक्र-गुरु या गुरु-शुक्र काल', ta: 'சுக்கிரன்-குரு அல்லது குரு-சுக்கிரன் காலம்', te: 'శుక్ర-గురు లేదా గురు-శుక్ర కాలం', bn: 'শুক্র-বৃহস্পতি বা বৃহস্পতি-শুক্র কাল', kn: 'ಶುಕ್ರ-ಗುರು ಅಥವಾ ಗುರು-ಶುಕ್ರ ಅವಧಿ', gu: 'શુક્ર-ગુરુ અથવા ગુરુ-શુક્ર કાળ' },
+      { en: 'Ketu-Rahu period', hi: 'केतु-राहु काल', sa: 'केतु-राहु काल', mai: 'केतु-राहु काल', mr: 'केतु-राहु काल', ta: 'கேது-ராகு காலம்', te: 'కేతు-రాహు కాలం', bn: 'কেতু-রাহু কাল', kn: 'ಕೇತು-ರಾಹು ಅವಧಿ', gu: 'કેતુ-રાહુ કાળ' },
+      { en: 'Saturn-Saturn period', hi: 'शनि-शनि काल', sa: 'शनि-शनि काल', mai: 'शनि-शनि काल', mr: 'शनि-शनि काल', ta: 'சனி-சனி காலம்', te: 'శని-శని కాలం', bn: 'শনি-শনি কাল', kn: 'ಶನಿ-ಶನಿ ಅವಧಿ', gu: 'શનિ-શનિ કાળ' },
     ],
     correctAnswer: 1,
     explanation: {

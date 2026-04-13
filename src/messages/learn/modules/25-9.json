@@ -5,11 +5,11 @@
     "sa": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
     "mai": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
     "mr": "केरल स्कूल — जब भारत ने कलनशास्त्र की खोज की",
-    "ta": "Kerala School — When India Invented Calculus",
-    "te": "Kerala School — When India Invented Calculus",
-    "bn": "Kerala School — When India Invented Calculus",
-    "kn": "Kerala School — When India Invented Calculus",
-    "gu": "Kerala School — When India Invented Calculus"
+    "ta": "கேரள பள்ளி — இந்தியா கணிதவியலைக் கண்டுபிடித்தபோது",
+    "te": "కేరళ పాఠశాల — భారతదేశం కలనగణితాన్ని కనుగొన్నప్పుడు",
+    "bn": "কেরল স্কুল — যখন ভারত ক্যালকুলাস আবিষ্কার করেছিল",
+    "kn": "ಕೇರಳ ಶಾಲೆ — ಭಾರತ ಕಲನಶಾಸ್ತ್ರ ಕಂಡುಹಿಡಿದಾಗ",
+    "gu": "કેરળ શાળા — જ્યારે ભારતે ગણિતવિદ્યાની શોધ કરી"
   },
   "subtitle": {
     "en": "Madhava\"s infinite series for π, sine, cosine, and arctangent — with correction terms, worked examples, and the story of the world\"s first calculus textbook",
@@ -23,11 +23,11 @@
         "sa": "मॉड्यूल 25-7: कलन सारांश",
         "mai": "मॉड्यूल 25-7: कलन सारांश",
         "mr": "मॉड्यूल 25-7: कलन सारांश",
-        "ta": "Module 25-7: Calculus Overview",
-        "te": "Module 25-7: Calculus Overview",
-        "bn": "Module 25-7: Calculus Overview",
-        "kn": "Module 25-7: Calculus Overview",
-        "gu": "Module 25-7: Calculus Overview"
+        "ta": "பாடம் 25-7: கணிதவியல் கண்ணோட்டம்",
+        "te": "మాడ్యూల్ 25-7: కలనగణిత అవలోకనం",
+        "bn": "মডিউল 25-7: ক্যালকুলাস সারসংক্ষেপ",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-7: ಕಲನಶಾಸ್ತ್ರ ಅವಲೋಕನ",
+        "gu": "મોડ્યુલ 25-7: ગણિતવિદ્યા સારાંશ"
       },
       "href": "/learn/modules/25-7"
     },
@@ -38,11 +38,11 @@
         "sa": "मॉड्यूल 25-3: π = 3.1416",
         "mai": "मॉड्यूल 25-3: π = 3.1416",
         "mr": "मॉड्यूल 25-3: π = 3.1416",
-        "ta": "Module 25-3: Pi = 3.1416",
-        "te": "Module 25-3: Pi = 3.1416",
-        "bn": "Module 25-3: Pi = 3.1416",
-        "kn": "Module 25-3: Pi = 3.1416",
-        "gu": "Module 25-3: Pi = 3.1416"
+        "ta": "பாடம் 25-3: π = 3.1416",
+        "te": "మాడ్యూల్ 25-3: π = 3.1416",
+        "bn": "মডিউল 25-3: π = 3.1416",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-3: π = 3.1416",
+        "gu": "મોડ્યુલ 25-3: π = 3.1416"
       },
       "href": "/learn/modules/25-3"
     },
@@ -53,11 +53,11 @@
         "sa": "मॉड्यूल 25-2: ज्या से Sine",
         "mai": "मॉड्यूल 25-2: ज्या से Sine",
         "mr": "मॉड्यूल 25-2: ज्या से Sine",
-        "ta": "Module 25-2: Sine Is Sanskrit",
-        "te": "Module 25-2: Sine Is Sanskrit",
-        "bn": "Module 25-2: Sine Is Sanskrit",
-        "kn": "Module 25-2: Sine Is Sanskrit",
-        "gu": "Module 25-2: Sine Is Sanskrit"
+        "ta": "பாடம் 25-2: Sine சமஸ்கிருதம்",
+        "te": "మాడ్యూల్ 25-2: Sine సంస్కృతం",
+        "bn": "মডিউল 25-2: Sine সংস্কৃত",
+        "kn": "ಮಾಡ್ಯೂಲ್ 25-2: Sine ಸಂಸ್ಕೃತ",
+        "gu": "મોડ્યુલ 25-2: Sine સંસ્કૃત"
       },
       "href": "/learn/modules/25-2"
     },
@@ -68,11 +68,11 @@
         "sa": "गहन अध्ययन: केरल स्कूल",
         "mai": "गहन अध्ययन: केरल स्कूल",
         "mr": "गहन अध्ययन: केरल स्कूल",
-        "ta": "Deep Dive: Kerala School",
-        "te": "Deep Dive: Kerala School",
-        "bn": "Deep Dive: Kerala School",
-        "kn": "Deep Dive: Kerala School",
-        "gu": "Deep Dive: Kerala School"
+        "ta": "ஆழ்ந்த பார்வை: கேரள பள்ளி",
+        "te": "లోతైన అధ్యయనం: కేరళ పాఠశాల",
+        "bn": "গভীর অধ্যয়ন: কেরল স্কুল",
+        "kn": "ಆಳವಾದ ಅಧ್ಯಯನ: ಕೇರಳ ಶಾಲೆ",
+        "gu": "ઊંડો અભ્યાસ: કેરળ શાળા"
       },
       "href": "/learn/contributions/kerala-school"
     }
@@ -97,11 +97,11 @@
           "sa": "आर्यभट, ~500 ई.",
           "mai": "आर्यभट, ~500 ई.",
           "mr": "आर्यभट, ~500 ई.",
-          "ta": "Aryabhata, ~500 CE",
-          "te": "Aryabhata, ~500 CE",
-          "bn": "Aryabhata, ~500 CE",
-          "kn": "Aryabhata, ~500 CE",
-          "gu": "Aryabhata, ~500 CE"
+          "ta": "ஆரியபட்டர், ~500 CE",
+          "te": "ఆర్యభట్ట, ~500 CE",
+          "bn": "আর্যভট্ট, ~৫০০ খ্রি.",
+          "kn": "ಆರ್ಯಭಟ, ~500 CE",
+          "gu": "આર્યભટ, ~500 CE"
         },
         {
           "en": "Madhava of Sangamagrama, ~1350 CE",
@@ -109,11 +109,11 @@
           "sa": "संगमग्राम के माधव, ~1350 ई.",
           "mai": "संगमग्राम के माधव, ~1350 ई.",
           "mr": "संगमग्राम के माधव, ~1350 ई.",
-          "ta": "Madhava of Sangamagrama, ~1350 CE",
-          "te": "Madhava of Sangamagrama, ~1350 CE",
-          "bn": "Madhava of Sangamagrama, ~1350 CE",
-          "kn": "Madhava of Sangamagrama, ~1350 CE",
-          "gu": "Madhava of Sangamagrama, ~1350 CE"
+          "ta": "சங்கமக்கிராம மாதவர், ~1350 CE",
+          "te": "సంగమగ్రామ మాధవుడు, ~1350 CE",
+          "bn": "সংগমগ্রামের মাধব, ~১৩৫০ খ্রি.",
+          "kn": "ಸಂಗಮಗ್ರಾಮದ ಮಾಧವ, ~1350 CE",
+          "gu": "સંગમગ્રામના માધવ, ~1350 CE"
         },
         {
           "en": "Nilakantha Somayaji, ~1500 CE",
@@ -121,11 +121,11 @@
           "sa": "नीलकण्ठ सोमयाजी, ~1500 ई.",
           "mai": "नीलकण्ठ सोमयाजी, ~1500 ई.",
           "mr": "नीलकण्ठ सोमयाजी, ~1500 ई.",
-          "ta": "Nilakantha Somayaji, ~1500 CE",
-          "te": "Nilakantha Somayaji, ~1500 CE",
-          "bn": "Nilakantha Somayaji, ~1500 CE",
-          "kn": "Nilakantha Somayaji, ~1500 CE",
-          "gu": "Nilakantha Somayaji, ~1500 CE"
+          "ta": "நீலகண்ட சோமயாஜி, ~1500 CE",
+          "te": "నీలకంఠ సోమయాజి, ~1500 CE",
+          "bn": "নীলকণ্ঠ সোমযাজি, ~১৫০০ খ্রি.",
+          "kn": "ನೀಲಕಂಠ ಸೋಮಯಾಜಿ, ~1500 CE",
+          "gu": "નીલકંઠ સોમયાજી, ~1500 CE"
         },
         {
           "en": "Brahmagupta, ~628 CE",
@@ -133,11 +133,11 @@
           "sa": "ब्रह्मगुप्त, ~628 ई.",
           "mai": "ब्रह्मगुप्त, ~628 ई.",
           "mr": "ब्रह्मगुप्त, ~628 ई.",
-          "ta": "Brahmagupta, ~628 CE",
-          "te": "Brahmagupta, ~628 CE",
-          "bn": "Brahmagupta, ~628 CE",
-          "kn": "Brahmagupta, ~628 CE",
-          "gu": "Brahmagupta, ~628 CE"
+          "ta": "பிரம்மகுப்தர், ~628 CE",
+          "te": "బ్రహ్మగుప్తుడు, ~628 CE",
+          "bn": "ব্রহ্মগুপ্ত, ~৬২৮ খ্রি.",
+          "kn": "ಬ್ರಹ್ಮಗುಪ್ತ, ~628 CE",
+          "gu": "બ્રહ્મગુપ્ત, ~628 CE"
         }
       ]
     },
@@ -160,11 +160,11 @@
           "sa": "ऑयलर सूत्र",
           "mai": "ऑयलर सूत्र",
           "mr": "ऑयलर सूत्र",
-          "ta": "Euler formula",
-          "te": "Euler formula",
-          "bn": "Euler formula",
-          "kn": "Euler formula",
-          "gu": "Euler formula"
+          "ta": "ஆய்லர் சூத்திரம்",
+          "te": "ఆయిలర్ సూత్రం",
+          "bn": "অয়লার সূত্র",
+          "kn": "ಆಯ್ಲರ್ ಸೂತ್ರ",
+          "gu": "ઓઇલર સૂત્ર"
         },
         {
           "en": "Leibniz formula",
@@ -172,11 +172,11 @@
           "sa": "लाइबनिज सूत्र",
           "mai": "लाइबनिज सूत्र",
           "mr": "लाइबनिज सूत्र",
-          "ta": "Leibniz formula",
-          "te": "Leibniz formula",
-          "bn": "Leibniz formula",
-          "kn": "Leibniz formula",
-          "gu": "Leibniz formula"
+          "ta": "லைப்னிட்ஸ் சூத்திரம்",
+          "te": "లైబ్నిట్జ్ సూత్రం",
+          "bn": "লাইবনিৎস সূত্র",
+          "kn": "ಲೈಬ್ನಿಟ್ಝ್ ಸೂತ್ರ",
+          "gu": "લાઇબનિત્ઝ સૂત્ર"
         },
         {
           "en": "Newton formula",
@@ -184,11 +184,11 @@
           "sa": "न्यूटन सूत्र",
           "mai": "न्यूटन सूत्र",
           "mr": "न्यूटन सूत्र",
-          "ta": "Newton formula",
-          "te": "Newton formula",
-          "bn": "Newton formula",
-          "kn": "Newton formula",
-          "gu": "Newton formula"
+          "ta": "நியூட்டன் சூத்திரம்",
+          "te": "న్యూటన్ సూత్రం",
+          "bn": "নিউটন সূত্র",
+          "kn": "ನ್ಯೂಟನ್ ಸೂತ್ರ",
+          "gu": "ન્યૂટન સૂત્ર"
         },
         {
           "en": "Gauss formula",
@@ -196,11 +196,11 @@
           "sa": "गाउस सूत्र",
           "mai": "गाउस सूत्र",
           "mr": "गाउस सूत्र",
-          "ta": "Gauss formula",
-          "te": "Gauss formula",
-          "bn": "Gauss formula",
-          "kn": "Gauss formula",
-          "gu": "Gauss formula"
+          "ta": "காஸ் சூத்திரம்",
+          "te": "గాస్ సూత్రం",
+          "bn": "গাউস সূত্র",
+          "kn": "ಗಾಸ್ ಸೂತ್ರ",
+          "gu": "ગાઉસ સૂત્ર"
         }
       ]
     },
@@ -223,11 +223,11 @@
           "sa": "सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं",
           "mai": "सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं",
           "mr": "सुधार पद 3 पदों के बाद श्रेणी को सटीक बनाते हैं",
-          "ta": "The correction terms make the series exact after 3 terms",
-          "te": "The correction terms make the series exact after 3 terms",
-          "bn": "The correction terms make the series exact after 3 terms",
-          "kn": "The correction terms make the series exact after 3 terms",
-          "gu": "The correction terms make the series exact after 3 terms"
+          "ta": "திருத்தப் பதங்கள் 3 பதங்களுக்குப் பிறகு தொடரை துல்லியமாக்குகின்றன",
+          "te": "సవరణ పదాలు 3 పదాల తర్వాత శ్రేణిని ఖచ్చితం చేస్తాయి",
+          "bn": "সংশোধন পদগুলি ৩ পদের পর শ্রেণিকে সঠিক করে",
+          "kn": "ತಿದ್ದುಪಡಿ ಪದಗಳು 3 ಪದಗಳ ನಂತರ ಶ್ರೇಣಿಯನ್ನು ನಿಖರವಾಗಿಸುತ್ತವೆ",
+          "gu": "સુધારા પદો 3 પદો પછી શ્રેણીને ચોક્કસ બનાવે છે"
         },
         {
           "en": "They accelerate convergence, giving 11-decimal π from just 50 terms",
@@ -235,11 +235,11 @@
           "sa": "वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव π देते हैं",
           "mai": "वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव π देते हैं",
           "mr": "वे अभिसरण को तेज़ करते हैं, केवल 50 पदों से 11-दशमलव π देते हैं",
-          "ta": "They accelerate convergence, giving 11-decimal π from just 50 terms",
-          "te": "They accelerate convergence, giving 11-decimal π from just 50 terms",
-          "bn": "They accelerate convergence, giving 11-decimal π from just 50 terms",
-          "kn": "They accelerate convergence, giving 11-decimal π from just 50 terms",
-          "gu": "They accelerate convergence, giving 11-decimal π from just 50 terms"
+          "ta": "அவை ஒருங்கிணைவை துரிதப்படுத்துகின்றன, 50 பதங்களில் 11-தசம π அளிக்கின்றன",
+          "te": "అవి అభిసరణను వేగవంతం చేస్తాయి, 50 పదాల నుండి 11-దశాంశ π ఇస్తాయి",
+          "bn": "তারা অভিসরণ ত্বরান্বিত করে, মাত্র ৫০ পদ থেকে ১১-দশমিক π দেয়",
+          "kn": "ಅವು ಅಭಿಸರಣವನ್ನು ವೇಗಗೊಳಿಸುತ್ತವೆ, 50 ಪದಗಳಿಂದ 11-ದಶಮಾಂಶ π ನೀಡುತ್ತವೆ",
+          "gu": "તેઓ અભિસરણ ઝડપી કરે છે, 50 પદોમાંથી 11-દશાંશ π આપે છે"
         },
         {
           "en": "They convert the series from alternating to monotone",
@@ -247,11 +247,11 @@
           "sa": "वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं",
           "mai": "वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं",
           "mr": "वे श्रेणी को प्रत्यावर्ती से एकदिशीय बनाते हैं",
-          "ta": "They convert the series from alternating to monotone",
-          "te": "They convert the series from alternating to monotone",
-          "bn": "They convert the series from alternating to monotone",
-          "kn": "They convert the series from alternating to monotone",
-          "gu": "They convert the series from alternating to monotone"
+          "ta": "அவை தொடரை மாறி மாறி வருவதிலிருந்து ஒரே திசையாக மாற்றுகின்றன",
+          "te": "అవి శ్రేణిని ప్రత్యామ్నాయ నుండి ఏకదిశగా మారుస్తాయి",
+          "bn": "তারা শ্রেণিকে পর্যায়ক্রমিক থেকে একমুখী করে",
+          "kn": "ಅವು ಶ್ರೇಣಿಯನ್ನು ಪರ್ಯಾಯದಿಂದ ಏಕದಿಕ್ಕಾಗಿ ಪರಿವರ್ತಿಸುತ್ತವೆ",
+          "gu": "તેઓ શ્રેણીને વૈકલ્પિકમાંથી એકદિશામાં રૂપાંતરિત કરે છે"
         },
         {
           "en": "They allow computing π without knowing its value",
@@ -259,11 +259,11 @@
           "sa": "वे π के मान के बिना गणना करने देते हैं",
           "mai": "वे π के मान के बिना गणना करने देते हैं",
           "mr": "वे π के मान के बिना गणना करने देते हैं",
-          "ta": "They allow computing π without knowing its value",
-          "te": "They allow computing π without knowing its value",
-          "bn": "They allow computing π without knowing its value",
-          "kn": "They allow computing π without knowing its value",
-          "gu": "They allow computing π without knowing its value"
+          "ta": "அவை π மதிப்பை அறியாமல் கணக்கிட அனுமதிக்கின்றன",
+          "te": "అవి π విలువ తెలియకుండానే గణించడానికి అనుమతిస్తాయి",
+          "bn": "তারা π-এর মান না জেনেও গণনা করতে দেয়",
+          "kn": "ಅವು π ಮೌಲ್ಯ ತಿಳಿಯದೆ ಗಣಿಸಲು ಅನುಮತಿಸುತ್ತವೆ",
+          "gu": "તેઓ π ના મૂલ્ય જાણ્યા વિના ગણતરી કરવા દે છે"
         }
       ]
     },
@@ -286,11 +286,11 @@
           "sa": "यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था",
           "mai": "यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था",
           "mr": "यह संस्कृत में लिखा गया पहला गणितीय ग्रन्थ था",
-          "ta": "Was the first mathematical text written in Sanskrit",
-          "te": "Was the first mathematical text written in Sanskrit",
-          "bn": "Was the first mathematical text written in Sanskrit",
-          "kn": "Was the first mathematical text written in Sanskrit",
-          "gu": "Was the first mathematical text written in Sanskrit"
+          "ta": "சமஸ்கிருதத்தில் எழுதப்பட்ட முதல் கணித நூல்",
+          "te": "సంస్కృతంలో వ్రాయబడిన మొదటి గణిత గ్రంథం",
+          "bn": "সংস্কৃতে লেখা প্রথম গণিত গ্রন্থ ছিল",
+          "kn": "ಸಂಸ್ಕೃತದಲ್ಲಿ ಬರೆದ ಮೊದಲ ಗಣಿತ ಗ್ರಂಥ",
+          "gu": "સંસ્કૃતમાં લખાયેલ પ્રથમ ગણિત ગ્રંથ હતો"
         },
         {
           "en": "Contains the world\"s first complete proofs of infinite series results, written in Malayalam",
@@ -302,11 +302,11 @@
           "sa": "जेसुइट ने इसका सीधे लैटिन में अनुवाद किया",
           "mai": "जेसुइट ने इसका सीधे लैटिन में अनुवाद किया",
           "mr": "जेसुइट ने इसका सीधे लैटिन में अनुवाद किया",
-          "ta": "Was translated directly into Latin by Jesuits",
-          "te": "Was translated directly into Latin by Jesuits",
-          "bn": "Was translated directly into Latin by Jesuits",
-          "kn": "Was translated directly into Latin by Jesuits",
-          "gu": "Was translated directly into Latin by Jesuits"
+          "ta": "ஜேசுவிட்களால் நேரடியாக லத்தீனில் மொழிபெயர்க்கப்பட்டது",
+          "te": "జెస్యూట్లచే నేరుగా లాటిన్‌లో అనువదించబడింది",
+          "bn": "জেসুইটদের দ্বারা সরাসরি লাতিনে অনুবাদ করা হয়েছিল",
+          "kn": "ಜೆಸ್ಯೂಟರಿಂದ ನೇರವಾಗಿ ಲ್ಯಾಟಿನ್‌ಗೆ ಅನುವಾದಿಸಲಾಯಿತು",
+          "gu": "જેસ્યુટ્સ દ્વારા સીધું લેટિનમાં અનુવાદિત"
         },
         {
           "en": "Contains only astronomical tables without derivations",
@@ -314,11 +314,11 @@
           "sa": "इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं",
           "mai": "इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं",
           "mr": "इसमें केवल खगोलीय सारणियाँ हैं, व्युत्पत्ति नहीं",
-          "ta": "Contains only astronomical tables without derivations",
-          "te": "Contains only astronomical tables without derivations",
-          "bn": "Contains only astronomical tables without derivations",
-          "kn": "Contains only astronomical tables without derivations",
-          "gu": "Contains only astronomical tables without derivations"
+          "ta": "வான அட்டவணைகள் மட்டுமே, வருவிக்கல்கள் இல்லை",
+          "te": "ఖగోళ పట్టికలు మాత్రమే, వ్యుత్పన్నాలు లేవు",
+          "bn": "শুধু জ্যোতির্বিজ্ঞান সারণি, ব্যুৎপত্তি নেই",
+          "kn": "ಖಗೋಳ ಕೋಷ್ಟಕಗಳು ಮಾತ್ರ, ವ್ಯುತ್ಪತ್ತಿಗಳಿಲ್ಲ",
+          "gu": "ફક્ત ખગોળીય કોષ્ટકો, વ્યુત્પત્તિ નથી"
         }
       ]
     },
@@ -341,11 +341,11 @@
           "sa": "सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)",
           "mai": "सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)",
           "mr": "सभी ग्रह पृथ्वी की परिक्रमा करते हैं (पूर्ण भूकेन्द्री)",
-          "ta": "All planets orbit Earth (fully geocentric)",
-          "te": "All planets orbit Earth (fully geocentric)",
-          "bn": "All planets orbit Earth (fully geocentric)",
-          "kn": "All planets orbit Earth (fully geocentric)",
-          "gu": "All planets orbit Earth (fully geocentric)"
+          "ta": "அனைத்து கிரகங்களும் பூமியைச் சுற்றுகின்றன (முழு புவிமையம்)",
+          "te": "అన్ని గ్రహాలు భూమిని తిరుగుతాయి (పూర్తి భూకేంద్రం)",
+          "bn": "সমস্ত গ্রহ পৃথিবী প্রদক্ষিণ করে (সম্পূর্ণ ভূকেন্দ্রিক)",
+          "kn": "ಎಲ್ಲಾ ಗ್ರಹಗಳು ಭೂಮಿಯನ್ನು ಸುತ್ತುತ್ತವೆ (ಸಂಪೂರ್ಣ ಭೂಕೇಂದ್ರ)",
+          "gu": "બધા ગ્રહો પૃથ્વીની પરિક્રમા કરે છે (સંપૂર્ણ ભૂકેન્દ્રી)"
         },
         {
           "en": "All planets orbit the Sun (fully heliocentric)",
@@ -353,11 +353,11 @@
           "sa": "सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)",
           "mai": "सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)",
           "mr": "सभी ग्रह सूर्य की परिक्रमा करते हैं (पूर्ण सौरकेन्द्री)",
-          "ta": "All planets orbit the Sun (fully heliocentric)",
-          "te": "All planets orbit the Sun (fully heliocentric)",
-          "bn": "All planets orbit the Sun (fully heliocentric)",
-          "kn": "All planets orbit the Sun (fully heliocentric)",
-          "gu": "All planets orbit the Sun (fully heliocentric)"
+          "ta": "அனைத்து கிரகங்களும் சூரியனைச் சுற்றுகின்றன (முழு சூரிய மையம்)",
+          "te": "అన్ని గ్రహాలు సూర్యుడిని తిరుగుతాయి (పూర్తి సూర్యకేంద్రం)",
+          "bn": "সমস্ত গ্রহ সূর্য প্রদক্ষিণ করে (সম্পূর্ণ সূর্যকেন্দ্রিক)",
+          "kn": "ಎಲ್ಲಾ ಗ್ರಹಗಳು ಸೂರ್ಯನನ್ನು ಸುತ್ತುತ್ತವೆ (ಸಂಪೂರ್ಣ ಸೂರ್ಯಕೇಂದ್ರ)",
+          "gu": "બધા ગ્રહો સૂર્યની પરિક્રમા કરે છે (સંપૂર્ણ સૂર્યકેન્દ્રી)"
         },
         {
           "en": "Mercury and Venus orbit the Sun, which orbits Earth",
@@ -365,11 +365,11 @@
           "sa": "बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं",
           "mai": "बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं",
           "mr": "बुध और शुक्र सूर्य की, सूर्य पृथ्वी की परिक्रमा करते हैं",
-          "ta": "Mercury and Venus orbit the Sun, which orbits Earth",
-          "te": "Mercury and Venus orbit the Sun, which orbits Earth",
-          "bn": "Mercury and Venus orbit the Sun, which orbits Earth",
-          "kn": "Mercury and Venus orbit the Sun, which orbits Earth",
-          "gu": "Mercury and Venus orbit the Sun, which orbits Earth"
+          "ta": "புதன் மற்றும் சுக்கிரன் சூரியனைச் சுற்றுகின்றன, சூரியன் பூமியைச் சுற்றுகிறது",
+          "te": "బుధ శుక్రులు సూర్యుడిని, సూర్యుడు భూమిని తిరుగుతాడు",
+          "bn": "বুধ ও শুক্র সূর্যকে, সূর্য পৃথিবীকে প্রদক্ষিণ করে",
+          "kn": "ಬುಧ ಶುಕ್ರ ಸೂರ್ಯನನ್ನು, ಸೂರ್ಯ ಭೂಮಿಯನ್ನು ಸುತ್ತುತ್ತಾನೆ",
+          "gu": "બુધ અને શુક્ર સૂર્યની, સૂર્ય પૃથ્વીની પરિક્રમા કરે છે"
         },
         {
           "en": "Earth and Mars orbit the Sun, others orbit Earth",
@@ -377,11 +377,11 @@
           "sa": "पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं",
           "mai": "पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं",
           "mr": "पृथ्वी और मंगल सूर्य की, अन्य पृथ्वी की परिक्रमा करते हैं",
-          "ta": "Earth and Mars orbit the Sun, others orbit Earth",
-          "te": "Earth and Mars orbit the Sun, others orbit Earth",
-          "bn": "Earth and Mars orbit the Sun, others orbit Earth",
-          "kn": "Earth and Mars orbit the Sun, others orbit Earth",
-          "gu": "Earth and Mars orbit the Sun, others orbit Earth"
+          "ta": "பூமி மற்றும் செவ்வாய் சூரியனைச் சுற்றுகின்றன, மற்றவை பூமியைச் சுற்றுகின்றன",
+          "te": "భూమి కుజుడు సూర్యుడిని, ఇతరులు భూమిని తిరుగుతారు",
+          "bn": "পৃথিবী ও মঙ্গল সূর্যকে, অন্যরা পৃথিবীকে প্রদক্ষিণ করে",
+          "kn": "ಭೂಮಿ ಮಂಗಳ ಸೂರ್ಯನನ್ನು, ಇತರರು ಭೂಮಿಯನ್ನು ಸುತ್ತುತ್ತಾರೆ",
+          "gu": "પૃથ્વી અને મંગળ સૂર્યની, બાકીના પૃથ્વીની પરિક્રમા કરે છે"
         }
       ]
     },
@@ -404,11 +404,11 @@
           "sa": "लाइबनिज और ग्रेगरी",
           "mai": "लाइबनिज और ग्रेगरी",
           "mr": "लाइबनिज और ग्रेगरी",
-          "ta": "Leibniz and Gregory",
-          "te": "Leibniz and Gregory",
-          "bn": "Leibniz and Gregory",
-          "kn": "Leibniz and Gregory",
-          "gu": "Leibniz and Gregory"
+          "ta": "லைப்னிட்ஸ் மற்றும் கிரிகரி",
+          "te": "లైబ్నిట్జ్ మరియు గ్రెగరీ",
+          "bn": "লাইবনিৎস ও গ্রেগরি",
+          "kn": "ಲೈಬ್ನಿಟ್ಝ್ ಮತ್ತು ಗ್ರೆಗರಿ",
+          "gu": "લાઇબનિત્ઝ અને ગ્રેગરી"
         },
         {
           "en": "Taylor and Maclaurin",
@@ -416,11 +416,11 @@
           "sa": "टेलर और मैक्लॉरिन",
           "mai": "टेलर और मैक्लॉरिन",
           "mr": "टेलर और मैक्लॉरिन",
-          "ta": "Taylor and Maclaurin",
-          "te": "Taylor and Maclaurin",
-          "bn": "Taylor and Maclaurin",
-          "kn": "Taylor and Maclaurin",
-          "gu": "Taylor and Maclaurin"
+          "ta": "டேலர் மற்றும் மெக்லாரின்",
+          "te": "టేలర్ మరియు మెక్లారిన్",
+          "bn": "টেলর ও ম্যাক্লরিন",
+          "kn": "ಟೇಲರ್ ಮತ್ತು ಮೆಕ್ಲಾರಿನ್",
+          "gu": "ટેલર અને મેક્લોરિન"
         },
         {
           "en": "Euler and Bernoulli",
@@ -428,11 +428,11 @@
           "sa": "ऑयलर और बरनूली",
           "mai": "ऑयलर और बरनूली",
           "mr": "ऑयलर और बरनूली",
-          "ta": "Euler and Bernoulli",
-          "te": "Euler and Bernoulli",
-          "bn": "Euler and Bernoulli",
-          "kn": "Euler and Bernoulli",
-          "gu": "Euler and Bernoulli"
+          "ta": "ஆய்லர் மற்றும் பெர்னூலி",
+          "te": "ఆయిలర్ మరియు బెర్నూలీ",
+          "bn": "অয়লার ও বার্নুলি",
+          "kn": "ಆಯ್ಲರ್ ಮತ್ತು ಬರ್ನೌಲಿ",
+          "gu": "ઓઇલર અને બર્નૌલી"
         },
         {
           "en": "Descartes and Fermat",
@@ -440,11 +440,11 @@
           "sa": "देकार्त और फ़र्मा",
           "mai": "देकार्त और फ़र्मा",
           "mr": "देकार्त और फ़र्मा",
-          "ta": "Descartes and Fermat",
-          "te": "Descartes and Fermat",
-          "bn": "Descartes and Fermat",
-          "kn": "Descartes and Fermat",
-          "gu": "Descartes and Fermat"
+          "ta": "டெஸ்கார்ட்ஸ் மற்றும் ஃபெர்மா",
+          "te": "డెకార్ట్ మరియు ఫెర్మా",
+          "bn": "ডেকার্ট ও ফেরমা",
+          "kn": "ಡೆಕಾರ್ಟ್ ಮತ್ತು ಫೆರ್ಮಾ",
+          "gu": "ડેકાર્ટ અને ફર્મા"
         }
       ]
     },
@@ -493,11 +493,11 @@
           "sa": "10 वर्ष",
           "mai": "10 वर्ष",
           "mr": "10 वर्ष",
-          "ta": "10 years",
-          "te": "10 years",
-          "bn": "10 years",
-          "kn": "10 years",
-          "gu": "10 years"
+          "ta": "10 ஆண்டுகள்",
+          "te": "10 సంవత్సరాలు",
+          "bn": "১০ বছর",
+          "kn": "10 ವರ್ಷ",
+          "gu": "10 વર્ષ"
         },
         {
           "en": "25 years",
@@ -505,11 +505,11 @@
           "sa": "25 वर्ष",
           "mai": "25 वर्ष",
           "mr": "25 वर्ष",
-          "ta": "25 years",
-          "te": "25 years",
-          "bn": "25 years",
-          "kn": "25 years",
-          "gu": "25 years"
+          "ta": "25 ஆண்டுகள்",
+          "te": "25 సంవత్సరాలు",
+          "bn": "২৫ বছর",
+          "kn": "25 ವರ್ಷ",
+          "gu": "25 વર્ષ"
         },
         {
           "en": "55 years",
@@ -517,11 +517,11 @@
           "sa": "55 वर्ष",
           "mai": "55 वर्ष",
           "mr": "55 वर्ष",
-          "ta": "55 years",
-          "te": "55 years",
-          "bn": "55 years",
-          "kn": "55 years",
-          "gu": "55 years"
+          "ta": "55 ஆண்டுகள்",
+          "te": "55 సంవత్సరాలు",
+          "bn": "৫৫ বছর",
+          "kn": "55 ವರ್ಷ",
+          "gu": "55 વર્ષ"
         },
         {
           "en": "100 years",
@@ -529,11 +529,11 @@
           "sa": "100 वर्ष",
           "mai": "100 वर्ष",
           "mr": "100 वर्ष",
-          "ta": "100 years",
-          "te": "100 years",
-          "bn": "100 years",
-          "kn": "100 years",
-          "gu": "100 years"
+          "ta": "100 ஆண்டுகள்",
+          "te": "100 సంవత్సరాలు",
+          "bn": "১০০ বছর",
+          "kn": "100 ವರ್ಷ",
+          "gu": "100 વર્ષ"
         }
       ]
     },

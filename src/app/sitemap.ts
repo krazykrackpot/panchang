@@ -281,6 +281,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // Nakshatra detail pages (/panchang/nakshatra/{id})
+  for (let id = 1; id <= 27; id++) {
+    addEntries(entries, `/panchang/nakshatra/${id}`, {
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
+  // Horoscope per-rashi pages (/horoscope/{rashi})
+  for (const slug of rashiSlugs) {
+    addEntries(entries, `/horoscope/${slug}`, {
+      changeFrequency: 'daily',
+      priority: 0.8,
+    });
+  }
+
   // City panchang pages (/panchang/{city-slug})
   for (const slug of getAllCitySlugs()) {
     addEntries(entries, `/panchang/${slug}`, {

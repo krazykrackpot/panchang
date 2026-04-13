@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { PUJA_VIDHIS } from '@/lib/constants/puja-vidhi';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { generateHowToLD } from '@/lib/seo/structured-data';
 
 export function generateStaticParams() {
   return Object.keys(PUJA_VIDHIS).map(slug => ({ slug }));
@@ -65,18 +66,14 @@ export default async function PujaSlugLayout({
   const deityEn = puja.deity.en;
   const description = `Complete ${deityEn} puja vidhi with step-by-step procedure, mantras in Devanagari & IAST, samagri list, and auspicious timing. ${puja.muhurtaDescription.en}`.slice(0, 160);
 
-  const howToJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
+  const howToJsonLd = generateHowToLD({
     name: `${deityEn} Puja Vidhi`,
     description,
-    step: puja.vidhiSteps.map((s, i) => ({
-      '@type': 'HowToStep',
-      position: i + 1,
+    steps: puja.vidhiSteps.map((s) => ({
       name: s.title.en,
       text: s.description.en,
     })),
-  };
+  });
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { FESTIVAL_DETAILS } from '@/lib/constants/festival-details';
 import { isDevanagariLocale } from '@/lib/utils/locale-fonts';
+import { generateEventLD } from '@/lib/seo/structured-data';
 
 export function generateStaticParams() {
   return Object.keys(FESTIVAL_DETAILS).map(slug => ({ slug }));
@@ -89,11 +90,24 @@ export default async function CalendarSlugLayout({
     ],
   };
 
+  // Event JSON-LD — marks this as a calendar event for Google rich results
+  const year = new Date().getFullYear();
+  const eventJsonLd = generateEventLD({
+    name: nameEn,
+    startDate: `${year}-01-01`, // approximate; exact dates vary by lunar calendar each year
+    description: festival.significance.en.slice(0, 300),
+    url: `${BASE_URL}/${locale}/calendar/${slug}`,
+  });
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(eventJsonLd) }}
       />
       <script
         type="application/ld+json"

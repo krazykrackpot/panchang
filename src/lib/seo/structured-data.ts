@@ -155,6 +155,56 @@ export function generateToolLD(name: string, description: string, url: string): 
   };
 }
 
+/**
+ * Generate HowTo JSON-LD for puja/ritual pages.
+ * See https://schema.org/HowTo
+ */
+export function generateHowToLD(opts: {
+  name: string;
+  description: string;
+  steps: { name: string; text: string }[];
+}): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: opts.name,
+    description: opts.description,
+    step: opts.steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  };
+}
+
+/**
+ * Generate Event JSON-LD for festival/calendar pages.
+ * See https://schema.org/Event
+ */
+export function generateEventLD(opts: {
+  name: string;
+  startDate: string;
+  description: string;
+  url?: string;
+}): object {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: opts.name,
+    startDate: opts.startDate,
+    description: opts.description,
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    ...(opts.url ? { url: opts.url } : {}),
+    organizer: {
+      '@type': 'Organization',
+      name: 'Dekho Panchang',
+      url: BASE_URL,
+    },
+  };
+}
+
 export function generateWebSiteLD(): object {
   return {
     '@context': 'https://schema.org',

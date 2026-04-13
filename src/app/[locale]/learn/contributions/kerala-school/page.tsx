@@ -30,7 +30,7 @@ const SINE_TERMS = [
 
 const SCHOOL_CHAIN = [
   {
-    name: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
+    name: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'சங்கமக்கிராமத்தின் மாதவர்', te: 'సంగమగ్రామ మాధవుడు', bn: 'সঙ্গমগ্রামের মাধব', kn: 'ಸಂಗಮಗ್ರಾಮದ ಮಾಧವ', gu: 'સંગમગ્રામના માધવ' },
     years: '~1340\u20131425 CE',
     role: { en: 'Founder', hi: 'संस्थापक', sa: 'संस्थापक', mai: 'संस्थापक', mr: 'संस्थापक', ta: 'Founder', te: 'Founder', bn: 'Founder', kn: 'Founder', gu: 'Founder' },
     contrib: {
@@ -39,7 +39,7 @@ const SCHOOL_CHAIN = [
     },
   },
   {
-    name: { en: 'Parameshvara', hi: 'परमेश्वर', sa: 'परमेश्वर', mai: 'परमेश्वर', mr: 'परमेश्वर', ta: 'Parameshvara', te: 'Parameshvara', bn: 'Parameshvara', kn: 'Parameshvara', gu: 'Parameshvara' },
+    name: { en: 'Parameshvara', hi: 'परमेश्वर', sa: 'परमेश्वर', mai: 'परमेश्वर', mr: 'परमेश्वर', ta: 'பரமேஸ்வரர்', te: 'పరమేశ్వరుడు', bn: 'পরমেশ্বর', kn: 'ಪರಮೇಶ್ವರ', gu: 'પરમેશ્વર' },
     years: '~1360\u20131455 CE',
     role: { en: 'Observer', hi: 'प्रेक्षक', sa: 'प्रेक्षक', mai: 'प्रेक्षक', mr: 'प्रेक्षक', ta: 'Observer', te: 'Observer', bn: 'Observer', kn: 'Observer', gu: 'Observer' },
     contrib: {
@@ -48,7 +48,7 @@ const SCHOOL_CHAIN = [
     },
   },
   {
-    name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
+    name: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजी', sa: 'नीलकण्ठ सोमयाजी', mai: 'नीलकण्ठ सोमयाजी', mr: 'नीलकण्ठ सोमयाजी', ta: 'நீலகண்ட சோமயாஜி', te: 'నీలకంఠ సోమయాజి', bn: 'নীলকণ্ঠ সোমযাজী', kn: 'ನೀಲಕಂಠ ಸೋಮಯಾಜಿ', gu: 'નીલકંઠ સોમયાજી' },
     years: '~1444\u20131544 CE',
     role: { en: 'Astronomer-Theorist', hi: 'खगोलशास्त्री-सिद्धान्तकार', sa: 'खगोलशास्त्री-सिद्धान्तकार', mai: 'खगोलशास्त्री-सिद्धान्तकार', mr: 'खगोलशास्त्री-सिद्धान्तकार', ta: 'Astronomer-Theorist', te: 'Astronomer-Theorist', bn: 'Astronomer-Theorist', kn: 'Astronomer-Theorist', gu: 'Astronomer-Theorist' },
     contrib: {
@@ -57,7 +57,7 @@ const SCHOOL_CHAIN = [
     },
   },
   {
-    name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' },
+    name: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'ஜ்யேஷ்ட தேவர்', te: 'జ్యేష్ఠదేవుడు', bn: 'জ্যেষ্ঠদেব', kn: 'ಜ್ಯೇಷ್ಠದೇವ', gu: 'જ્યેષ્ઠદેવ' },
     years: '~1500\u20131575 CE',
     role: { en: 'Textbook Author', hi: 'पाठ्यग्रन्थ लेखक', sa: 'पाठ्यग्रन्थ लेखक', mai: 'पाठ्यग्रन्थ लेखक', mr: 'पाठ्यग्रन्थ लेखक', ta: 'Textbook Author', te: 'Textbook Author', bn: 'Textbook Author', kn: 'Textbook Author', gu: 'Textbook Author' },
     contrib: {
@@ -322,7 +322,7 @@ export default async function KeralaSchoolPage({ params }: { params: Promise<{ l
             { label: { en: 'Language', hi: 'भाषा', sa: 'भाषा', mai: 'भाषा', mr: 'भाषा', ta: 'Language', te: 'Language', bn: 'Language', kn: 'Language', gu: 'Language' }, value: { en: 'Malayalam', hi: 'मलयालम', sa: 'मलयालम', mai: 'मलयालम', mr: 'मलयालम', ta: 'Malayalam', te: 'Malayalam', bn: 'Malayalam', kn: 'Malayalam', gu: 'Malayalam' } },
             { label: { en: 'Written', hi: 'रचना', sa: 'रचना', mai: 'रचना', mr: 'रचना', ta: 'Written', te: 'Written', bn: 'Written', kn: 'Written', gu: 'Written' }, value: { en: '~1530 CE', hi: '~1530 ई.', sa: '~1530 ई.', mai: '~1530 ई.', mr: '~1530 ई.', ta: '~1530 CE', te: '~1530 CE', bn: '~1530 CE', kn: '~1530 CE', gu: '~1530 CE' } },
             { label: { en: 'Contains', hi: 'विषयवस्तु', sa: 'विषयवस्तु', mai: 'विषयवस्तु', mr: 'विषयवस्तु', ta: 'Contains', te: 'Contains', bn: 'Contains', kn: 'Contains', gu: 'Contains' }, value: { en: 'Full proofs', hi: 'पूर्ण प्रमाण', sa: 'पूर्ण प्रमाण', mai: 'पूर्ण प्रमाण', mr: 'पूर्ण प्रमाण', ta: 'Full proofs', te: 'Full proofs', bn: 'Full proofs', kn: 'Full proofs', gu: 'Full proofs' } },
-            { label: { en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्व', mai: 'महत्त्व', mr: 'महत्त्व', ta: 'Significance', te: 'Significance', bn: 'Significance', kn: 'Significance', gu: 'Significance' }, value: { en: '1st calculus text', hi: 'प्रथम कलन ग्रन्थ', sa: 'प्रथम कलन ग्रन्थ', mai: 'प्रथम कलन ग्रन्थ', mr: 'प्रथम कलन ग्रन्थ', ta: '1st calculus text', te: '1st calculus text', bn: '1st calculus text', kn: '1st calculus text', gu: '1st calculus text' } },
+            { label: { en: 'Significance', hi: 'महत्त्व', sa: 'महत्त्व', mai: 'महत्त्व', mr: 'महत्त्व', ta: 'Significance', te: 'Significance', bn: 'Significance', kn: 'Significance', gu: 'Significance' }, value: { en: '1st calculus text', hi: 'प्रथम कलन ग्रन्थ', sa: 'प्रथम कलन ग्रन्थ', mai: 'प्रथम कलन ग्रन्थ', mr: 'प्रथम कलन ग्रन्थ', ta: 'முதல் கணிதவியல் நூல்', te: 'మొదటి కలనగణిత గ్రంథం', bn: 'প্রথম ক্যালকুলাস গ্রন্থ', kn: 'ಮೊದಲ ಕ್ಯಾಲ್ಕುಲಸ್ ಗ್ರಂಥ', gu: 'પ્રથમ કેલ્ક્યુલસ ગ્રંથ' } },
           ].map((fact, i) => (
             <div key={i} className="p-3 rounded-xl bg-gold-primary/8 border border-gold-primary/15 text-center">
               <div className="text-gold-light text-sm font-bold">{typeof fact.value === 'string' ? fact.value : l(fact.value)}</div>

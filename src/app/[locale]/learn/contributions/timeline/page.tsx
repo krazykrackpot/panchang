@@ -113,7 +113,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'varahamihira',
     date: { en: '~505 CE', hi: '~505 ई.', sa: '~505 ई.', mai: '~505 ई.', mr: '~505 ई.', ta: '~505 CE', te: '~505 CE', bn: '~505 CE', kn: '~505 CE', gu: '~505 CE' },
-    person: { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'Varahamihira', te: 'Varahamihira', bn: 'Varahamihira', kn: 'Varahamihira', gu: 'Varahamihira' },
+    person: { en: 'Varahamihira', hi: 'वराहमिहिर', sa: 'वराहमिहिर', mai: 'वराहमिहिर', mr: 'वराहमिहिर', ta: 'வராஹமிஹிரர்', te: 'వరాహమిహిరుడు', bn: 'বরাহমিহির', kn: 'ವರಾಹಮಿಹಿರ', gu: 'વરાહમિહિર' },
     contribution: {
       en: 'Brihat Samhita — hora system proof establishing weekday names. Early description of gravitational force. Comprehensive treatise covering astronomy, astrology, and natural phenomena.',
       hi: 'बृहत्संहिता — वार नामों की स्थापना करने वाली होरा प्रणाली का प्रमाण। गुरुत्वाकर्षण बल का प्रारंभिक वर्णन। खगोल, ज्योतिष और प्राकृतिक घटनाओं को समेटने वाला व्यापक ग्रंथ।',
@@ -124,7 +124,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'brahmagupta',
     date: { en: '628 CE', hi: '628 ई.', sa: '628 ई.', mai: '628 ई.', mr: '628 ई.', ta: '628 CE', te: '628 CE', bn: '628 CE', kn: '628 CE', gu: '628 CE' },
-    person: { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'Brahmagupta', te: 'Brahmagupta', bn: 'Brahmagupta', kn: 'Brahmagupta', gu: 'Brahmagupta' },
+    person: { en: 'Brahmagupta', hi: 'ब्रह्मगुप्त', sa: 'ब्रह्मगुप्त', mai: 'ब्रह्मगुप्त', mr: 'ब्रह्मगुप्त', ta: 'பிரம்மகுப்தர்', te: 'బ్రహ్మగుప్తుడు', bn: 'ব্রহ্মগুপ্ত', kn: 'ಬ್ರಹ್ಮಗುಪ್ತ', gu: 'બ્રહ્મગુપ્ત' },
     contribution: {
       en: 'Zero as a number with defined arithmetic rules. Rules for negative numbers (debts and fortunes). First description of gravity as attraction. Quadratic formula.',
       hi: 'शून्य एक संख्या के रूप में परिभाषित अंकगणितीय नियमों के साथ। ऋण संख्याओं के नियम (ऋण और धन)। गुरुत्वाकर्षण का पहला वर्णन आकर्षण के रूप में। द्विघात सूत्र।',
@@ -166,7 +166,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'hemachandra',
     date: { en: '1150 CE', hi: '1150 ई.', sa: '1150 ई.', mai: '1150 ई.', mr: '1150 ई.', ta: '1150 CE', te: '1150 CE', bn: '1150 CE', kn: '1150 CE', gu: '1150 CE' },
-    person: { en: 'Hemachandra', hi: 'हेमचंद्र', sa: 'हेमचंद्र', mai: 'हेमचंद्र', mr: 'हेमचंद्र', ta: 'Hemachandra', te: 'Hemachandra', bn: 'Hemachandra', kn: 'Hemachandra', gu: 'Hemachandra' },
+    person: { en: 'Hemachandra', hi: 'हेमचंद्र', sa: 'हेमचंद्र', mai: 'हेमचंद्र', mr: 'हेमचंद्र', ta: 'ஹேமசந்திரர்', te: 'హేమచంద్రుడు', bn: 'হেমচন্দ্র', kn: 'ಹೇಮಚಂದ್ರ', gu: 'હેમચંદ્ર' },
     contribution: {
       en: 'Fibonacci sequence derived from Sanskrit prosody — 52 years before Leonardo Fibonacci published it in Europe. The sequence 1, 1, 2, 3, 5, 8... used to count rhythmic patterns.',
       hi: 'संस्कृत छंदशास्त्र से फिबोनाची अनुक्रम — यूरोप में लियोनार्डो फिबोनाची के प्रकाशन से 52 वर्ष पूर्व। 1, 1, 2, 3, 5, 8... अनुक्रम का प्रयोग लयबद्ध पैटर्न गिनने के लिए।',
@@ -194,7 +194,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'madhava',
     date: { en: '~1350 CE', hi: '~1350 ई.', sa: '~1350 ई.', mai: '~1350 ई.', mr: '~1350 ई.', ta: '~1350 CE', te: '~1350 CE', bn: '~1350 CE', kn: '~1350 CE', gu: '~1350 CE' },
-    person: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'Madhava of Sangamagrama', te: 'Madhava of Sangamagrama', bn: 'Madhava of Sangamagrama', kn: 'Madhava of Sangamagrama', gu: 'Madhava of Sangamagrama' },
+    person: { en: 'Madhava of Sangamagrama', hi: 'संगमग्राम के माधव', sa: 'संगमग्राम के माधव', mai: 'संगमग्राम के माधव', mr: 'संगमग्राम के माधव', ta: 'சங்கமக்கிராமத்தின் மாதவர்', te: 'సంగమగ్రామ మాధవుడు', bn: 'সঙ্গমগ্রামের মাধব', kn: 'ಸಂಗಮಗ್ರಾಮದ ಮಾಧವ', gu: 'સંગમગ્રામના માધવ' },
     contribution: {
       en: 'Infinite series for π (Leibniz-Gregory series), sine, cosine, and arctangent — with rigorous proofs. This is calculus, 250 years before Newton and Leibniz.',
       hi: 'π के लिए अनंत श्रेणी (लाइबनिज-ग्रेगरी श्रेणी), ज्या, कोज्या और चापस्पर्शज्या — कठोर प्रमाणों के साथ। यह कलनशास्त्र है, न्यूटन और लाइबनिज से 250 वर्ष पूर्व।',
@@ -208,7 +208,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'nilakantha',
     date: { en: '~1500 CE', hi: '~1500 ई.', sa: '~1500 ई.', mai: '~1500 ई.', mr: '~1500 ई.', ta: '~1500 CE', te: '~1500 CE', bn: '~1500 CE', kn: '~1500 CE', gu: '~1500 CE' },
-    person: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजि', sa: 'नीलकण्ठ सोमयाजि', mai: 'नीलकण्ठ सोमयाजि', mr: 'नीलकण्ठ सोमयाजि', ta: 'Nilakantha Somayaji', te: 'Nilakantha Somayaji', bn: 'Nilakantha Somayaji', kn: 'Nilakantha Somayaji', gu: 'Nilakantha Somayaji' },
+    person: { en: 'Nilakantha Somayaji', hi: 'नीलकण्ठ सोमयाजि', sa: 'नीलकण्ठ सोमयाजि', mai: 'नीलकण्ठ सोमयाजि', mr: 'नीलकण्ठ सोमयाजि', ta: 'நீலகண்ட சோமயாஜி', te: 'నీలకంఠ సోమయాజి', bn: 'নীলকণ্ঠ সোমযাজী', kn: 'ನೀಲಕಂಠ ಸೋಮಯಾಜಿ', gu: 'નીલકંઠ સોમયાજી' },
     contribution: {
       en: 'Tantrasangraha — refined planetary models placing the Sun at the centre of inner planetary orbits. A near-heliocentric system, decades before Copernicus published in Europe.',
       hi: 'तन्त्रसंग्रह — परिष्कृत ग्रह मॉडल जो आंतरिक ग्रहों की कक्षाओं के केंद्र में सूर्य को रखते हैं। एक निकट-सूर्यकेंद्रीय प्रणाली, कोपर्निकस के यूरोप में प्रकाशन से दशकों पूर्व।',
@@ -222,7 +222,7 @@ const TIMELINE: TimelineEntry[] = [
   {
     id: 'jyeshthadeva',
     date: { en: '~1530 CE', hi: '~1530 ई.', sa: '~1530 ई.', mai: '~1530 ई.', mr: '~1530 ई.', ta: '~1530 CE', te: '~1530 CE', bn: '~1530 CE', kn: '~1530 CE', gu: '~1530 CE' },
-    person: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'Jyeshthadeva', te: 'Jyeshthadeva', bn: 'Jyeshthadeva', kn: 'Jyeshthadeva', gu: 'Jyeshthadeva' },
+    person: { en: 'Jyeshthadeva', hi: 'ज्येष्ठदेव', sa: 'ज्येष्ठदेव', mai: 'ज्येष्ठदेव', mr: 'ज्येष्ठदेव', ta: 'ஜ்யேஷ்ட தேவர்', te: 'జ్యేష్ఠదేవుడు', bn: 'জ্যেষ্ঠদেব', kn: 'ಜ್ಯೇಷ್ಠದೇವ', gu: 'જ્યેષ્ઠદેવ' },
     contribution: {
       en: 'Yuktibhasha — the world\'s first calculus textbook, written in Malayalam. Full proofs for Madhava\'s series, tangent series, and product rule. Predates any European calculus text by 150 years.',
       hi: 'युक्तिभाषा — विश्व की पहली कलनशास्त्र पाठ्यपुस्तक, मलयालम में लिखी। माधव की श्रेणी, स्पर्शज्या श्रेणी और गुणन नियम के पूर्ण प्रमाण। किसी भी यूरोपीय कलनशास्त्र पाठ्यपुस्तक से 150 वर्ष पूर्व।',

@@ -20,16 +20,16 @@ const CALC_STEPS = [
   },
   {
     step: 2,
-    label: { en: '1 yojana (Arthashastra)', hi: '1 योजन (अर्थशास्त्र)', sa: '1 योजन (अर्थशास्त्र)', mai: '1 योजन (अर्थशास्त्र)', mr: '1 योजन (अर्थशास्त्र)', ta: '1 yojana (Arthashastra)', te: '1 yojana (Arthashastra)', bn: '1 yojana (Arthashastra)', kn: '1 yojana (Arthashastra)', gu: '1 yojana (Arthashastra)' },
+    label: { en: '1 yojana (Arthashastra)', hi: '1 योजन (अर्थशास्त्र)', sa: '1 योजन (अर्थशास्त्र)', mai: '1 योजन (अर्थशास्त्र)', mr: '1 योजन (अर्थशास्त्र)', ta: '1 யோஜனை (அர்த்தசாஸ்திரம்)', te: '1 యోజనం (అర్థశాస్త్రం)', bn: '1 যোজন (অর্থশাস্ত্র)', kn: '1 ಯೋಜನ (ಅರ್ಥಶಾಸ್ತ್ರ)', gu: '1 યોજન (અર્થશાસ્ત્ર)' },
     value: '≈ 9.09 miles',
     note: { en: 'Kautilya\'s Arthashastra, ~300 BCE', hi: 'कौटिल्य का अर्थशास्त्र, ~300 BCE' },
     color: '#60a5fa',
   },
   {
     step: 3,
-    label: { en: '1 nimesha (Surya Siddhanta)', hi: '1 निमेष (सूर्य सिद्धांत)', sa: '1 निमेष (सूर्य सिद्धांत)', mai: '1 निमेष (सूर्य सिद्धांत)', mr: '1 निमेष (सूर्य सिद्धांत)', ta: '1 nimesha (Surya Siddhanta)', te: '1 nimesha (Surya Siddhanta)', bn: '1 nimesha (Surya Siddhanta)', kn: '1 nimesha (Surya Siddhanta)', gu: '1 nimesha (Surya Siddhanta)' },
+    label: { en: '1 nimesha (Surya Siddhanta)', hi: '1 निमेष (सूर्य सिद्धांत)', sa: '1 निमेष (सूर्य सिद्धांत)', mai: '1 निमेष (सूर्य सिद्धांत)', mr: '1 निमेष (सूर्य सिद्धांत)', ta: '1 நிமேஷம் (சூர்ய சித்தாந்தம்)', te: '1 నిమేషం (సూర్య సిద్ధాంతం)', bn: '1 নিমেষ (সূর্য সিদ্ধান্ত)', kn: '1 ನಿಮೇಷ (ಸೂರ್ಯ ಸಿದ್ಧಾಂತ)', gu: '1 નિમેષ (સૂર્ય સિદ્ધાંત)' },
     value: '16/75 seconds',
-    note: { en: '= 0.2133 seconds; half = 0.1067 seconds', hi: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', sa: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', mai: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', mr: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', ta: '= 0.2133 seconds; half = 0.1067 seconds', te: '= 0.2133 seconds; half = 0.1067 seconds', bn: '= 0.2133 seconds; half = 0.1067 seconds', kn: '= 0.2133 seconds; half = 0.1067 seconds', gu: '= 0.2133 seconds; half = 0.1067 seconds' },
+    note: { en: '= 0.2133 seconds; half = 0.1067 seconds', hi: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', sa: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', mai: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', mr: '= 0.2133 सेकंड; आधा = 0.1067 सेकंड', ta: '= 0.2133 வினாடிகள்; பாதி = 0.1067 வினாடிகள்', te: '= 0.2133 సెకన్లు; సగం = 0.1067 సెకన్లు', bn: '= 0.2133 সেকেন্ড; অর্ধেক = 0.1067 সেকেন্ড', kn: '= 0.2133 ಸೆಕೆಂಡುಗಳು; ಅರ್ಧ = 0.1067 ಸೆಕೆಂಡುಗಳು', gu: '= 0.2133 સેકન્ડ; અર્ધ = 0.1067 સેકન્ડ' },
     color: '#a78bfa',
   },
   {

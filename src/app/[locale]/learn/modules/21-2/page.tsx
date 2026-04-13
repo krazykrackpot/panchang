@@ -23,10 +23,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'सहम गणना का सामान्य सूत्र क्या है?',
     },
     options: [
-      { en: 'Saham = Point_A - Point_B + Point_C', hi: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', sa: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', mai: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', mr: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', ta: 'Saham = Point_A - Point_B + Point_C', te: 'Saham = Point_A - Point_B + Point_C', bn: 'Saham = Point_A - Point_B + Point_C', kn: 'Saham = Point_A - Point_B + Point_C', gu: 'Saham = Point_A - Point_B + Point_C' },
-      { en: 'Saham = Point_A + Point_B - Point_C', hi: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', sa: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', mai: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', mr: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', ta: 'Saham = Point_A + Point_B - Point_C', te: 'Saham = Point_A + Point_B - Point_C', bn: 'Saham = Point_A + Point_B - Point_C', kn: 'Saham = Point_A + Point_B - Point_C', gu: 'Saham = Point_A + Point_B - Point_C' },
-      { en: 'Saham = Point_A x Point_B / Point_C', hi: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', sa: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', mai: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', mr: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', ta: 'Saham = Point_A x Point_B / Point_C', te: 'Saham = Point_A x Point_B / Point_C', bn: 'Saham = Point_A x Point_B / Point_C', kn: 'Saham = Point_A x Point_B / Point_C', gu: 'Saham = Point_A x Point_B / Point_C' },
-      { en: 'Saham = (Point_A + Point_B) / 2', hi: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', sa: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', mai: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', mr: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', ta: 'Saham = (Point_A + Point_B) / 2', te: 'Saham = (Point_A + Point_B) / 2', bn: 'Saham = (Point_A + Point_B) / 2', kn: 'Saham = (Point_A + Point_B) / 2', gu: 'Saham = (Point_A + Point_B) / 2' },
+      { en: 'Saham = Point_A - Point_B + Point_C', hi: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', sa: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', mai: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', mr: 'सहम = बिन्दु_A - बिन्दु_B + बिन्दु_C', ta: 'ஸஹம = பிந்து_A - பிந்து_B + பிந்து_C', te: 'సహమ = బిన్దు_A - బిన్దు_B + బిన్దు_C', bn: 'সহম = বিন্দু_A - বিন্দু_B + বিন্দু_C', kn: 'ಸಹಮ = ಬಿನ್ದು_A - ಬಿನ್ದು_B + ಬಿನ್ದು_C', gu: 'સહમ = બિન્દુ_A - બિન્દુ_B + બિન્દુ_C' },
+      { en: 'Saham = Point_A + Point_B - Point_C', hi: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', sa: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', mai: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', mr: 'सहम = बिन्दु_A + बिन्दु_B - बिन्दु_C', ta: 'ஸஹம = பிந்து_A + பிந்து_B - பிந்து_C', te: 'సహమ = బిన్దు_A + బిన్దు_B - బిన్దు_C', bn: 'সহম = বিন্দু_A + বিন্দু_B - বিন্দু_C', kn: 'ಸಹಮ = ಬಿನ್ದು_A + ಬಿನ್ದು_B - ಬಿನ್ದು_C', gu: 'સહમ = બિન્દુ_A + બિન્દુ_B - બિન્દુ_C' },
+      { en: 'Saham = Point_A x Point_B / Point_C', hi: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', sa: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', mai: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', mr: 'सहम = बिन्दु_A x बिन्दु_B / बिन्दु_C', ta: 'ஸஹம = பிந்து_A x பிந்து_B / பிந்து_C', te: 'సహమ = బిన్దు_A x బిన్దు_B / బిన్దు_C', bn: 'সহম = বিন্দু_A x বিন্দু_B / বিন্দু_C', kn: 'ಸಹಮ = ಬಿನ್ದು_A x ಬಿನ್ದು_B / ಬಿನ್ದು_C', gu: 'સહમ = બિન્દુ_A x બિન્દુ_B / બિન્દુ_C' },
+      { en: 'Saham = (Point_A + Point_B) / 2', hi: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', sa: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', mai: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', mr: 'सहम = (बिन्दु_A + बिन्दु_B) / 2', ta: 'ஸஹம = (பிந்து_A + பிந்து_B) / 2', te: 'సహమ = (బిన్దు_A + బిన్దు_B) / 2', bn: 'সহম = (বিন্দু_A + বিন্দু_B) / 2', kn: 'ಸಹಮ = (ಬಿನ್ದು_A + ಬಿನ್ದು_B) / 2', gu: 'સહમ = (બિન્દુ_A + બિન્દુ_B) / 2' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -41,10 +41,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'पुण्य सहम (भाग्य भाग) का सूत्र क्या है?',
     },
     options: [
-      { en: 'Sun + Moon - Lagna', hi: 'सूर्य + चन्द्र - लग्न', sa: 'सूर्य + चन्द्र - लग्न', mai: 'सूर्य + चन्द्र - लग्न', mr: 'सूर्य + चन्द्र - लग्न', ta: 'Sun + Moon - Lagna', te: 'Sun + Moon - Lagna', bn: 'Sun + Moon - Lagna', kn: 'Sun + Moon - Lagna', gu: 'Sun + Moon - Lagna' },
-      { en: 'Moon + Sun - Lagna', hi: 'चन्द्र + सूर्य - लग्न', sa: 'चन्द्र + सूर्य - लग्न', mai: 'चन्द्र + सूर्य - लग्न', mr: 'चन्द्र + सूर्य - लग्न', ta: 'Moon + Sun - Lagna', te: 'Moon + Sun - Lagna', bn: 'Moon + Sun - Lagna', kn: 'Moon + Sun - Lagna', gu: 'Moon + Sun - Lagna' },
-      { en: 'Jupiter + Mercury - Lagna', hi: 'गुरु + बुध - लग्न', sa: 'गुरु + बुध - लग्न', mai: 'गुरु + बुध - लग्न', mr: 'गुरु + बुध - लग्न', ta: 'Jupiter + Mercury - Lagna', te: 'Jupiter + Mercury - Lagna', bn: 'Jupiter + Mercury - Lagna', kn: 'Jupiter + Mercury - Lagna', gu: 'Jupiter + Mercury - Lagna' },
-      { en: 'Saturn + Sun - Lagna', hi: 'शनि + सूर्य - लग्न', sa: 'शनि + सूर्य - लग्न', mai: 'शनि + सूर्य - लग्न', mr: 'शनि + सूर्य - लग्न', ta: 'Saturn + Sun - Lagna', te: 'Saturn + Sun - Lagna', bn: 'Saturn + Sun - Lagna', kn: 'Saturn + Sun - Lagna', gu: 'Saturn + Sun - Lagna' },
+      { en: 'Sun + Moon - Lagna', hi: 'सूर्य + चन्द्र - लग्न', sa: 'सूर्य + चन्द्र - लग्न', mai: 'सूर्य + चन्द्र - लग्न', mr: 'सूर्य + चन्द्र - लग्न', ta: 'ஸூர்ய + சந்த்ர - லக்ந', te: 'సూర్య + చన్ద్ర - లగ్న', bn: 'সূর্য + চন্দ্র - লগ্ন', kn: 'ಸೂರ್ಯ + ಚನ್ದ್ರ - ಲಗ್ನ', gu: 'સૂર્ય + ચન્દ્ર - લગ્ન' },
+      { en: 'Moon + Sun - Lagna', hi: 'चन्द्र + सूर्य - लग्न', sa: 'चन्द्र + सूर्य - लग्न', mai: 'चन्द्र + सूर्य - लग्न', mr: 'चन्द्र + सूर्य - लग्न', ta: 'சந்த்ர + ஸூர்ய - லக்ந', te: 'చన్ద్ర + సూర్య - లగ్న', bn: 'চন্দ্র + সূর্য - লগ্ন', kn: 'ಚನ್ದ್ರ + ಸೂರ್ಯ - ಲಗ್ನ', gu: 'ચન્દ્ર + સૂર્ય - લગ્ન' },
+      { en: 'Jupiter + Mercury - Lagna', hi: 'गुरु + बुध - लग्न', sa: 'गुरु + बुध - लग्न', mai: 'गुरु + बुध - लग्न', mr: 'गुरु + बुध - लग्न', ta: 'குரு + புध - லக்ந', te: 'గురు + బుధ - లగ్న', bn: 'গুরু + বুধ - লগ্ন', kn: 'ಗುರು + ಬುಧ - ಲಗ್ನ', gu: 'ગુરુ + બુધ - લગ્ન' },
+      { en: 'Saturn + Sun - Lagna', hi: 'शनि + सूर्य - लग्न', sa: 'शनि + सूर्य - लग्न', mai: 'शनि + सूर्य - लग्न', mr: 'शनि + सूर्य - लग्न', ta: 'ஶநி + ஸூர்ய - லக்ந', te: 'శని + సూర్య - లగ్న', bn: 'শনি + সূর্য - লগ্ন', kn: 'ಶನಿ + ಸೂರ್ಯ - ಲಗ್ನ', gu: 'શનિ + સૂર્ય - લગ્ન' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -71,10 +71,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कौन-सा सहम शैक्षिक सम्भावनाएँ बताता है?',
     },
     options: [
-      { en: 'Karma Saham', hi: 'कर्म सहम', sa: 'कर्म सहम', mai: 'कर्म सहम', mr: 'कर्म सहम', ta: 'Karma Saham', te: 'Karma Saham', bn: 'Karma Saham', kn: 'Karma Saham', gu: 'Karma Saham' },
-      { en: 'Vivaha Saham', hi: 'विवाह सहम', sa: 'विवाह सहम', mai: 'विवाह सहम', mr: 'विवाह सहम', ta: 'Vivaha Saham', te: 'Vivaha Saham', bn: 'Vivaha Saham', kn: 'Vivaha Saham', gu: 'Vivaha Saham' },
-      { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्या सहम', mai: 'विद्या सहम', mr: 'विद्या सहम', ta: 'Vidya Saham', te: 'Vidya Saham', bn: 'Vidya Saham', kn: 'Vidya Saham', gu: 'Vidya Saham' },
-      { en: 'Mrityu Saham', hi: 'मृत्यु सहम', sa: 'मृत्यु सहम', mai: 'मृत्यु सहम', mr: 'मृत्यु सहम', ta: 'Mrityu Saham', te: 'Mrityu Saham', bn: 'Mrityu Saham', kn: 'Mrityu Saham', gu: 'Mrityu Saham' },
+      { en: 'Karma Saham', hi: 'कर्म सहम', sa: 'कर्म सहम', mai: 'कर्म सहम', mr: 'कर्म सहम', ta: 'கர்ம ஸஹம', te: 'కర్మ సహమ', bn: 'কর্ম সহম', kn: 'ಕರ್ಮ ಸಹಮ', gu: 'કર્મ સહમ' },
+      { en: 'Vivaha Saham', hi: 'विवाह सहम', sa: 'विवाह सहम', mai: 'विवाह सहम', mr: 'विवाह सहम', ta: 'விவாஹ ஸஹம', te: 'వివాహ సహమ', bn: 'বিবাহ সহম', kn: 'ವಿವಾಹ ಸಹಮ', gu: 'વિવાહ સહમ' },
+      { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्या सहम', mai: 'विद्या सहम', mr: 'विद्या सहम', ta: 'வித்யா ஸஹம', te: 'విద్యా సహమ', bn: 'বিদ্যা সহম', kn: 'ವಿದ್ಯಾ ಸಹಮ', gu: 'વિદ્યા સહમ' },
+      { en: 'Mrityu Saham', hi: 'मृत्यु सहम', sa: 'मृत्यु सहम', mai: 'मृत्यु सहम', mr: 'मृत्यु सहम', ta: 'மிருத்யு ஸஹம', te: 'మృత్యు సహమ', bn: 'মৃত্যু সহম', kn: 'ಮೃತ್ಯು ಸಹಮ', gu: 'મૃત્યુ સહમ' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -89,10 +89,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'कर्म सहम (करियर भाग) का सूत्र क्या है?',
     },
     options: [
-      { en: 'Moon + Sun - Lagna', hi: 'चन्द्र + सूर्य - लग्न', sa: 'चन्द्र + सूर्य - लग्न', mai: 'चन्द्र + सूर्य - लग्न', mr: 'चन्द्र + सूर्य - लग्न', ta: 'Moon + Sun - Lagna', te: 'Moon + Sun - Lagna', bn: 'Moon + Sun - Lagna', kn: 'Moon + Sun - Lagna', gu: 'Moon + Sun - Lagna' },
-      { en: 'Jupiter + Mercury - Lagna', hi: 'गुरु + बुध - लग्न', sa: 'गुरु + बुध - लग्न', mai: 'गुरु + बुध - लग्न', mr: 'गुरु + बुध - लग्न', ta: 'Jupiter + Mercury - Lagna', te: 'Jupiter + Mercury - Lagna', bn: 'Jupiter + Mercury - Lagna', kn: 'Jupiter + Mercury - Lagna', gu: 'Jupiter + Mercury - Lagna' },
-      { en: 'Saturn + Sun - Lagna', hi: 'शनि + सूर्य - लग्न', sa: 'शनि + सूर्य - लग्न', mai: 'शनि + सूर्य - लग्न', mr: 'शनि + सूर्य - लग्न', ta: 'Saturn + Sun - Lagna', te: 'Saturn + Sun - Lagna', bn: 'Saturn + Sun - Lagna', kn: 'Saturn + Sun - Lagna', gu: 'Saturn + Sun - Lagna' },
-      { en: 'Venus + Mars - Lagna', hi: 'शुक्र + मंगल - लग्न', sa: 'शुक्र + मंगल - लग्न', mai: 'शुक्र + मंगल - लग्न', mr: 'शुक्र + मंगल - लग्न', ta: 'Venus + Mars - Lagna', te: 'Venus + Mars - Lagna', bn: 'Venus + Mars - Lagna', kn: 'Venus + Mars - Lagna', gu: 'Venus + Mars - Lagna' },
+      { en: 'Moon + Sun - Lagna', hi: 'चन्द्र + सूर्य - लग्न', sa: 'चन्द्र + सूर्य - लग्न', mai: 'चन्द्र + सूर्य - लग्न', mr: 'चन्द्र + सूर्य - लग्न', ta: 'சந்த்ர + ஸூர்ய - லக்ந', te: 'చన్ద్ర + సూర్య - లగ్న', bn: 'চন্দ্র + সূর্য - লগ্ন', kn: 'ಚನ್ದ್ರ + ಸೂರ್ಯ - ಲಗ್ನ', gu: 'ચન્દ્ર + સૂર્ય - લગ્ન' },
+      { en: 'Jupiter + Mercury - Lagna', hi: 'गुरु + बुध - लग्न', sa: 'गुरु + बुध - लग्न', mai: 'गुरु + बुध - लग्न', mr: 'गुरु + बुध - लग्न', ta: 'குரு + புध - லக்ந', te: 'గురు + బుధ - లగ్న', bn: 'গুরু + বুধ - লগ্ন', kn: 'ಗುರು + ಬುಧ - ಲಗ್ನ', gu: 'ગુરુ + બુધ - લગ્ન' },
+      { en: 'Saturn + Sun - Lagna', hi: 'शनि + सूर्य - लग्न', sa: 'शनि + सूर्य - लग्न', mai: 'शनि + सूर्य - लग्न', mr: 'शनि + सूर्य - लग्न', ta: 'ஶநி + ஸூர்ய - லக்ந', te: 'శని + సూర్య - లగ్న', bn: 'শনি + সূর্য - লগ্ন', kn: 'ಶನಿ + ಸೂರ್ಯ - ಲಗ್ನ', gu: 'શનિ + સૂર્ય - લગ્ન' },
+      { en: 'Venus + Mars - Lagna', hi: 'शुक्र + मंगल - लग्न', sa: 'शुक्र + मंगल - लग्न', mai: 'शुक्र + मंगल - लग्न', mr: 'शुक्र + मंगल - लग्न', ta: 'ஶுக்ர + மம்கல - லக்ந', te: 'శుక్ర + మంగల - లగ్న', bn: 'শুক্র + মংগল - লগ্ন', kn: 'ಶುಕ್ರ + ಮಂಗಲ - ಲಗ್ನ', gu: 'શુક્ર + મંગલ - લગ્ન' },
     ],
     correctAnswer: 2,
     explanation: {
@@ -119,10 +119,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वर्षफल विश्लेषण में सामान्यतः कितने सहम प्रयुक्त होते हैं?',
     },
     options: [
-      { en: 'About 5', hi: 'लगभग 5', sa: 'लगभग 5', mai: 'लगभग 5', mr: 'लगभग 5', ta: 'About 5', te: 'About 5', bn: 'About 5', kn: 'About 5', gu: 'About 5' },
-      { en: 'About 16', hi: 'लगभग 16', sa: 'लगभग 16', mai: 'लगभग 16', mr: 'लगभग 16', ta: 'About 16', te: 'About 16', bn: 'About 16', kn: 'About 16', gu: 'About 16' },
-      { en: 'About 50', hi: 'लगभग 50', sa: 'लगभग 50', mai: 'लगभग 50', mr: 'लगभग 50', ta: 'About 50', te: 'About 50', bn: 'About 50', kn: 'About 50', gu: 'About 50' },
-      { en: 'About 108', hi: 'लगभग 108', sa: 'लगभग 108', mai: 'लगभग 108', mr: 'लगभग 108', ta: 'About 108', te: 'About 108', bn: 'About 108', kn: 'About 108', gu: 'About 108' },
+      { en: 'About 5', hi: 'लगभग 5', sa: 'लगभग 5', mai: 'लगभग 5', mr: 'लगभग 5', ta: 'லகभக 5', te: 'లగభగ 5', bn: 'লগভগ 5', kn: 'ಲಗಭಗ 5', gu: 'લગભગ 5' },
+      { en: 'About 16', hi: 'लगभग 16', sa: 'लगभग 16', mai: 'लगभग 16', mr: 'लगभग 16', ta: 'லகभக 16', te: 'లగభగ 16', bn: 'লগভগ 16', kn: 'ಲಗಭಗ 16', gu: 'લગભગ 16' },
+      { en: 'About 50', hi: 'लगभग 50', sa: 'लगभग 50', mai: 'लगभग 50', mr: 'लगभग 50', ta: 'லகभக 50', te: 'లగభగ 50', bn: 'লগভগ 50', kn: 'ಲಗಭಗ 50', gu: 'લગભગ 50' },
+      { en: 'About 108', hi: 'लगभग 108', sa: 'लगभग 108', mai: 'लगभग 108', mr: 'लगभग 108', ta: 'லகभக 108', te: 'లగభగ 108', bn: 'লগভগ 108', kn: 'ಲಗಭಗ 108', gu: 'લગભગ 108' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -137,10 +137,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'जब वर्ष स्वामी पुण्य सहम की राशि के स्वामी से इत्थशाल बनाता है तब क्या होता है?',
     },
     options: [
-      { en: 'An unfortunate year', hi: 'एक दुर्भाग्यपूर्ण वर्ष', sa: 'एक दुर्भाग्यपूर्ण वर्ष', mai: 'एक दुर्भाग्यपूर्ण वर्ष', mr: 'एक दुर्भाग्यपूर्ण वर्ष', ta: 'An unfortunate year', te: 'An unfortunate year', bn: 'An unfortunate year', kn: 'An unfortunate year', gu: 'An unfortunate year' },
-      { en: 'A generally fortunate year', hi: 'एक सामान्यतः भाग्यशाली वर्ष', sa: 'एक सामान्यतः भाग्यशाली वर्ष', mai: 'एक सामान्यतः भाग्यशाली वर्ष', mr: 'एक सामान्यतः भाग्यशाली वर्ष', ta: 'A generally fortunate year', te: 'A generally fortunate year', bn: 'A generally fortunate year', kn: 'A generally fortunate year', gu: 'A generally fortunate year' },
-      { en: 'Health problems', hi: 'स्वास्थ्य समस्याएँ', sa: 'स्वास्थ्य समस्याएँ', mai: 'स्वास्थ्य समस्याएँ', mr: 'स्वास्थ्य समस्याएँ', ta: 'Health problems', te: 'Health problems', bn: 'Health problems', kn: 'Health problems', gu: 'Health problems' },
-      { en: 'No specific effect', hi: 'कोई विशिष्ट प्रभाव नहीं', sa: 'कोई विशिष्ट प्रभाव नहीं', mai: 'कोई विशिष्ट प्रभाव नहीं', mr: 'कोई विशिष्ट प्रभाव नहीं', ta: 'No specific effect', te: 'No specific effect', bn: 'No specific effect', kn: 'No specific effect', gu: 'No specific effect' },
+      { en: 'An unfortunate year', hi: 'एक दुर्भाग्यपूर्ण वर्ष', sa: 'एक दुर्भाग्यपूर्ण वर्ष', mai: 'एक दुर्भाग्यपूर्ण वर्ष', mr: 'एक दुर्भाग्यपूर्ण वर्ष', ta: 'எக துர்भாக்யபூர்ண வர்ஷ', te: 'ఏక దుర్భాగ్యపూర్ణ వర్ష', bn: 'এক দুর্ভাগ্যপূর্ণ বর্ষ', kn: 'ಏಕ ದುರ್ಭಾಗ್ಯಪೂರ್ಣ ವರ್ಷ', gu: 'એક દુર્ભાગ્યપૂર્ણ વર્ષ' },
+      { en: 'A generally fortunate year', hi: 'एक सामान्यतः भाग्यशाली वर्ष', sa: 'एक सामान्यतः भाग्यशाली वर्ष', mai: 'एक सामान्यतः भाग्यशाली वर्ष', mr: 'एक सामान्यतः भाग्यशाली वर्ष', ta: 'எக ஸாமாந்யதஃ भாக்யஶாலீ வர்ஷ', te: 'ఏక సామాన్యతః భాగ్యశాలీ వర్ష', bn: 'এক সামান্যতঃ ভাগ্যশালী বর্ষ', kn: 'ಏಕ ಸಾಮಾನ್ಯತಃ ಭಾಗ್ಯಶಾಲೀ ವರ್ಷ', gu: 'એક સામાન્યતઃ ભાગ્યશાલી વર્ષ' },
+      { en: 'Health problems', hi: 'स्वास्थ्य समस्याएँ', sa: 'स्वास्थ्य समस्याएँ', mai: 'स्वास्थ्य समस्याएँ', mr: 'स्वास्थ्य समस्याएँ', ta: 'ஸ்வாஸ்थ்ய ஸமஸ்யாஎँ', te: 'స్వాస్థ్య సమస్యాఏఁ', bn: 'স্বাস্থ্য সমস্যাএঁ', kn: 'ಸ್ವಾಸ್ಥ್ಯ ಸಮಸ್ಯಾಏಁ', gu: 'સ્વાસ્થ્ય સમસ્યાએઁ' },
+      { en: 'No specific effect', hi: 'कोई विशिष्ट प्रभाव नहीं', sa: 'कोई विशिष्ट प्रभाव नहीं', mai: 'कोई विशिष्ट प्रभाव नहीं', mr: 'कोई विशिष्ट प्रभाव नहीं', ta: 'கோஈ விஶிஷ்ட ப்ரभாவ நஹீம்', te: 'కోఈ విశిష్ట ప్రభావ నహీం', bn: 'কোঈ বিশিষ্ট প্রভাব নহীং', kn: 'ಕೋಈ ವಿಶಿಷ್ಟ ಪ್ರಭಾವ ನಹೀಂ', gu: 'કોઈ વિશિષ્ટ પ્રભાવ નહીં' },
     ],
     correctAnswer: 1,
     explanation: {
@@ -167,10 +167,10 @@ const QUESTIONS: ModuleQuestion[] = [
       hi: 'वार्षिक कुण्डली में विवाह सम्भावनाओं के लिए कौन-सा सहम जाँचेंगे?',
     },
     options: [
-      { en: 'Punya Saham', hi: 'पुण्य सहम', sa: 'पुण्य सहम', mai: 'पुण्य सहम', mr: 'पुण्य सहम', ta: 'Punya Saham', te: 'Punya Saham', bn: 'Punya Saham', kn: 'Punya Saham', gu: 'Punya Saham' },
-      { en: 'Karma Saham', hi: 'कर्म सहम', sa: 'कर्म सहम', mai: 'कर्म सहम', mr: 'कर्म सहम', ta: 'Karma Saham', te: 'Karma Saham', bn: 'Karma Saham', kn: 'Karma Saham', gu: 'Karma Saham' },
-      { en: 'Vivaha Saham', hi: 'विवाह सहम', sa: 'विवाह सहम', mai: 'विवाह सहम', mr: 'विवाह सहम', ta: 'Vivaha Saham', te: 'Vivaha Saham', bn: 'Vivaha Saham', kn: 'Vivaha Saham', gu: 'Vivaha Saham' },
-      { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्या सहम', mai: 'विद्या सहम', mr: 'विद्या सहम', ta: 'Vidya Saham', te: 'Vidya Saham', bn: 'Vidya Saham', kn: 'Vidya Saham', gu: 'Vidya Saham' },
+      { en: 'Punya Saham', hi: 'पुण्य सहम', sa: 'पुण्य सहम', mai: 'पुण्य सहम', mr: 'पुण्य सहम', ta: 'புண்ய ஸஹம', te: 'పుణ్య సహమ', bn: 'পুণ্য সহম', kn: 'ಪುಣ್ಯ ಸಹಮ', gu: 'પુણ્ય સહમ' },
+      { en: 'Karma Saham', hi: 'कर्म सहम', sa: 'कर्म सहम', mai: 'कर्म सहम', mr: 'कर्म सहम', ta: 'கர்ம ஸஹம', te: 'కర్మ సహమ', bn: 'কর্ম সহম', kn: 'ಕರ್ಮ ಸಹಮ', gu: 'કર્મ સહમ' },
+      { en: 'Vivaha Saham', hi: 'विवाह सहम', sa: 'विवाह सहम', mai: 'विवाह सहम', mr: 'विवाह सहम', ta: 'விவாஹ ஸஹம', te: 'వివాహ సహమ', bn: 'বিবাহ সহম', kn: 'ವಿವಾಹ ಸಹಮ', gu: 'વિવાહ સહમ' },
+      { en: 'Vidya Saham', hi: 'विद्या सहम', sa: 'विद्या सहम', mai: 'विद्या सहम', mr: 'विद्या सहम', ta: 'வித்யா ஸஹம', te: 'విద్యా సహమ', bn: 'বিদ্যা সহম', kn: 'ವಿದ್ಯಾ ಸಹಮ', gu: 'વિદ્યા સહમ' },
     ],
     correctAnswer: 2,
     explanation: {

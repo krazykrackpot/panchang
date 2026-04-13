@@ -27,12 +27,12 @@ const NEGATIVE_PATTERNS: Record<string, string[]> = {
 // ─── Helper: Theme display names ─────────────────────────────────────────────
 
 const THEME_NAMES: Record<string, LocaleText> = {
-  career: { en: 'career', hi: 'करियर', sa: 'करियर', mai: 'करियर', mr: 'करियर', ta: 'career', te: 'career', bn: 'career', kn: 'career', gu: 'career' },
-  relationship: { en: 'relationship', hi: 'संबंध', sa: 'संबंध', mai: 'संबंध', mr: 'संबंध', ta: 'relationship', te: 'relationship', bn: 'relationship', kn: 'relationship', gu: 'relationship' },
-  wealth: { en: 'wealth', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'wealth', te: 'wealth', bn: 'wealth', kn: 'wealth', gu: 'wealth' },
-  health: { en: 'health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्य', mai: 'स्वास्थ्य', mr: 'स्वास्थ्य', ta: 'health', te: 'health', bn: 'health', kn: 'health', gu: 'health' },
-  spiritual: { en: 'spirituality', hi: 'आध्यात्म', sa: 'आध्यात्म', mai: 'आध्यात्म', mr: 'आध्यात्म', ta: 'spirituality', te: 'spirituality', bn: 'spirituality', kn: 'spirituality', gu: 'spirituality' },
-  family: { en: 'family', hi: 'परिवार', sa: 'परिवार', mai: 'परिवार', mr: 'परिवार', ta: 'family', te: 'family', bn: 'family', kn: 'family', gu: 'family' },
+  career: { en: 'career', hi: 'करियर', sa: 'करियर', mai: 'करियर', mr: 'करियर', ta: 'தொழில்', te: 'వృత్తి', bn: 'কর্মজীবন', kn: 'ವೃತ್ತಿ', gu: 'કારકિર્દી' },
+  relationship: { en: 'relationship', hi: 'संबंध', sa: 'संबंध', mai: 'संबंध', mr: 'संबंध', ta: 'உறவு', te: 'సంబంధం', bn: 'সম্পর্ক', kn: 'ಸಂಬಂಧ', gu: 'સંબંધ' },
+  wealth: { en: 'wealth', hi: 'धन', sa: 'धन', mai: 'धन', mr: 'धन', ta: 'செல்வம்', te: 'సంపద', bn: 'ধন', kn: 'ಸಂಪತ್ತು', gu: 'ધન' },
+  health: { en: 'health', hi: 'स्वास्थ्य', sa: 'स्वास्थ्य', mai: 'स्वास्थ्य', mr: 'स्वास्थ्य', ta: 'ஆரோக்கியம்', te: 'ఆరోగ్యం', bn: 'স্বাস্থ্য', kn: 'ಆರೋಗ್ಯ', gu: 'આરોગ્ય' },
+  spiritual: { en: 'spirituality', hi: 'आध्यात्म', sa: 'आध्यात्म', mai: 'आध्यात्म', mr: 'आध्यात्म', ta: 'ஆன்மிகம்', te: 'ఆధ్యాత్మికత', bn: 'আধ্যাত্মিকতা', kn: 'ಆಧ್ಯಾತ್ಮಿಕತೆ', gu: 'આધ્યાત્મિકતા' },
+  family: { en: 'family', hi: 'परिवार', sa: 'परिवार', mai: 'परिवार', mr: 'परिवार', ta: 'குடும்பம்', te: 'కుటుంబం', bn: 'পরিবার', kn: 'ಕುಟುಂಬ', gu: 'કુટુંબ' },
 };
 
 // ─── Helper predicates ───────────────────────────────────────────────────────

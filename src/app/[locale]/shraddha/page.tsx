@@ -34,12 +34,12 @@ const PAKSHA_OPTIONS = [
 ];
 
 const MASA_NAMES = [
-  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', mai: 'चैत', mr: 'चैत्र', ta: 'சித்திரை', te: 'చైత్రం', bn: 'চৈত্র', kn: 'ಚೈತ್ರ', gu: 'ચૈત્ર' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाख', mai: 'वैशाख', mr: 'वैशाख', ta: 'Vaishakha', te: 'Vaishakha', bn: 'Vaishakha', kn: 'Vaishakha', gu: 'Vaishakha' },
-  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', mai: 'जेठ', mr: 'ज्येष्ठ', ta: 'ஆனி', te: 'జ్యేష్ఠం', bn: 'জ্যৈষ্ঠ', kn: 'ಜ್ಯೇಷ್ಠ', gu: 'જ્યેષ્ઠ' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढ़', mai: 'आषाढ़', mr: 'आषाढ़', ta: 'Ashadha', te: 'Ashadha', bn: 'Ashadha', kn: 'Ashadha', gu: 'Ashadha' },
-  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', mai: 'सावन', mr: 'श्रावण', ta: 'ஆவணி', te: 'శ్రావణం', bn: 'শ্রাবণ', kn: 'ಶ್ರಾವಣ', gu: 'શ્રાવણ' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपद', mai: 'भाद्रपद', mr: 'भाद्रपद', ta: 'Bhadrapada', te: 'Bhadrapada', bn: 'Bhadrapada', kn: 'Bhadrapada', gu: 'Bhadrapada' },
-  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विनः', mai: 'आश्विन', mr: 'आश्विन', ta: 'ஐப்பசி', te: 'ఆశ్వయుజం', bn: 'আশ্বিন', kn: 'ಆಶ್ವಯುಜ', gu: 'આશ્વિન' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिक', mai: 'कार्तिक', mr: 'कार्तिक', ta: 'Kartika', te: 'Kartika', bn: 'Kartika', kn: 'Kartika', gu: 'Kartika' },
-  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', mai: 'अगहन', mr: 'मार्गशीर्ष', ta: 'மார்கழி', te: 'మార్గశిరం', bn: 'অগ্রহায়ণ', kn: 'ಮಾರ್ಗಶಿರ', gu: 'માર્ગશીર્ષ' }, { en: 'Pausha', hi: 'पौष', sa: 'पौष', mai: 'पौष', mr: 'पौष', ta: 'Pausha', te: 'Pausha', bn: 'Pausha', kn: 'Pausha', gu: 'Pausha' },
-  { en: 'Magha', hi: 'माघ', sa: 'माघः', mai: 'माघ', mr: 'माघ', ta: 'மாசி', te: 'మాఘం', bn: 'মাঘ', kn: 'ಮಾಘ', gu: 'માઘ' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुन', mai: 'फाल्गुन', mr: 'फाल्गुन', ta: 'Phalguna', te: 'Phalguna', bn: 'Phalguna', kn: 'Phalguna', gu: 'Phalguna' },
+  { en: 'Chaitra', hi: 'चैत्र', sa: 'चैत्रः', mai: 'चैत', mr: 'चैत्र', ta: 'சித்திரை', te: 'చైత్రం', bn: 'চৈত্র', kn: 'ಚೈತ್ರ', gu: 'ચૈત્ર' }, { en: 'Vaishakha', hi: 'वैशाख', sa: 'वैशाखः', mai: 'वैशाख', mr: 'वैशाख', ta: 'வைகாசி', te: 'వైశాఖం', bn: 'বৈশাখ', kn: 'ವೈಶಾಖ', gu: 'વૈશાખ' },
+  { en: 'Jyeshtha', hi: 'ज्येष्ठ', sa: 'ज्येष्ठः', mai: 'जेठ', mr: 'ज्येष्ठ', ta: 'ஆனி', te: 'జ్యేష్ఠం', bn: 'জ্যৈষ্ঠ', kn: 'ಜ್ಯೇಷ್ಠ', gu: 'જ્યેષ્ઠ' }, { en: 'Ashadha', hi: 'आषाढ़', sa: 'आषाढः', mai: 'आषाढ़', mr: 'आषाढ', ta: 'ஆடி', te: 'ఆషాఢం', bn: 'আষাঢ়', kn: 'ಆಷಾಢ', gu: 'અષાઢ' },
+  { en: 'Shravana', hi: 'श्रावण', sa: 'श्रावणः', mai: 'सावन', mr: 'श्रावण', ta: 'ஆவணி', te: 'శ్రావణం', bn: 'শ্রাবণ', kn: 'ಶ್ರಾವಣ', gu: 'શ્રાવણ' }, { en: 'Bhadrapada', hi: 'भाद्रपद', sa: 'भाद्रपदः', mai: 'भादो', mr: 'भाद्रपद', ta: 'புரட்டாசி', te: 'భాద్రపదం', bn: 'ভাদ্র', kn: 'ಭಾದ್ರಪದ', gu: 'ભાદ્રપદ' },
+  { en: 'Ashwina', hi: 'आश्विन', sa: 'आश्विनः', mai: 'आश्विन', mr: 'आश्विन', ta: 'ஐப்பசி', te: 'ఆశ్వయుజం', bn: 'আশ্বিন', kn: 'ಆಶ್ವಯುಜ', gu: 'આશ્વિન' }, { en: 'Kartika', hi: 'कार्तिक', sa: 'कार्तिकः', mai: 'कार्तिक', mr: 'कार्तिक', ta: 'கார்த்திகை', te: 'కార్తీకం', bn: 'কার্তিক', kn: 'ಕಾರ್ತೀಕ', gu: 'કાર્તિક' },
+  { en: 'Margashirsha', hi: 'मार्गशीर्ष', sa: 'मार्गशीर्षः', mai: 'अगहन', mr: 'मार्गशीर्ष', ta: 'மார்கழி', te: 'మార్గశిరం', bn: 'অগ্রহায়ণ', kn: 'ಮಾರ್ಗಶಿರ', gu: 'માર્ગશીર્ષ' }, { en: 'Pausha', hi: 'पौष', sa: 'पौषः', mai: 'पूस', mr: 'पौष', ta: 'தை', te: 'పుష్యం', bn: 'পৌষ', kn: 'ಪುಷ್ಯ', gu: 'પોષ' },
+  { en: 'Magha', hi: 'माघ', sa: 'माघः', mai: 'माघ', mr: 'माघ', ta: 'மாசி', te: 'మాఘం', bn: 'মাঘ', kn: 'ಮಾಘ', gu: 'માઘ' }, { en: 'Phalguna', hi: 'फाल्गुन', sa: 'फाल्गुनः', mai: 'फागुन', mr: 'फाल्गुन', ta: 'பங்குனி', te: 'ఫాల్గుణం', bn: 'ফাল্গুন', kn: 'ಫಾಲ್ಗುಣ', gu: 'ફાલ્ગુન' },
 ];
 
 function findTithiDateInYear(tithiNum: number, paksha: 'shukla' | 'krishna', year: number): string | null {
